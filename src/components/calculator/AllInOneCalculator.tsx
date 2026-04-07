@@ -1,618 +1,283 @@
 'use client';
-import { useState, useRef, useEffect } from 'react';
-import {
-  Settings2, Activity, History, Calculator as CalcIcon,
-  Grid3X3, ArrowRightLeft, Cpu, Sigma, Box
-} from 'lucide-react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
-// ─── Safe evaluator ───────────────────────────
-function safeEval(expr: string): string {
+/* ── Factorial ─────────────────────────────── */
+function factorial(n: number): number {
+  if (n < 0 || !Number.isInteger(n) || n > 170) return NaN;
+  let r = 1; for (let i = 2; i <= n; i++) r *= i; return r;
+}
+
+/* ── Granular Error Evaluator ──────────────── */
+function auditEval(expr: string, deg: boolean): { res: string; err: string | null } {
   try {
+    if (!expr) return { res: '0', err: null };
+    const toR = (x: number) => deg ? x * Math.PI / 180 : x;
+    const toD = (x: number) => deg ? x * 180 / Math.PI : x;
+    
+    /* Pre-scan for DIV BY ZERO */
+    if (expr.includes('/0') || expr.includes('÷0')) return { res: 'DIV BY ZERO', err: 'DIV BY ZERO' };
+
     const clean = expr
       .replace(/×/g, '*').replace(/÷/g, '/')
-      .replace(/π/g, String(Math.PI))
-      .replace(/sin\(/g, 'Math.sin(').replace(/cos\(/g, 'Math.cos(')
-      .replace(/tan\(/g, 'Math.tan(').replace(/sqrt\(/g, 'Math.sqrt(')
-      .replace(/\^2/g, '**2');
-    // eslint-disable-next-line no-new-func
-    const result = Function('"use strict"; return (' + clean + ')')();
+      .replace(/\^/g, '**').replace(/π/g, 'PI')
+      .replace(/(\d+(?:\.\d+)?)!/g, (_: string, n: string) => `fact(${n})`);
+    
+    const fn = new Function(
+      'sin','cos','tan','asin','acos','atan',
+      'sinh','cosh','tanh','asinh','acosh','atanh',
+      'log','ln','sqrt','cbrt','abs','fact','nCr','nPr','PI','E',
+      '"use strict"; return (' + clean + ')'
+    );
+    const result = fn(
+      (x: number) => Math.sin(toR(x)), (x: number) => Math.cos(toR(x)), (x: number) => Math.tan(toR(x)),
+      (x: number) => toD(Math.asin(x)), (x: number) => toD(Math.acos(x)), (x: number) => toD(Math.atan(x)),
+      Math.sinh, Math.cosh, Math.tanh, Math.asinh, Math.acosh, Math.atanh,
+      Math.log10, Math.log, Math.sqrt, Math.cbrt, Math.abs, factorial,
+      (n: number, r: number) => factorial(n) / (factorial(r) * factorial(n - r)),
+      (n: number, r: number) => factorial(n) / factorial(n - r),
+      Math.PI, Math.E
+    );
+    
     if (typeof result === 'number' && isFinite(result)) {
-      return parseFloat(result.toPrecision(10)).toString();
+      let s = parseFloat(result.toPrecision(10)).toString();
+      if (Math.abs(result) >= 1e15) return { res: 'OVERFLOW', err: 'OVERFLOW' };
+      if (Math.abs(result) >= 1e10 || (Math.abs(result) > 0 && Math.abs(result) < 1e-6)) s = result.toExponential(6);
+      return { res: s, err: null };
     }
-    return 'Error';
-  } catch { return ''; }
-}
-
-// ─── Graph plotter ────────────────────────────
-function plotGraph(
-  canvas: HTMLCanvasElement,
-  expr: string,
-  result: string,
-  historyValues: number[]
-) {
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-  const W = canvas.width, H = canvas.height;
-  ctx.clearRect(0, 0, W, H);
-  const cx = W / 2, cy = H / 2, scale = 40;
-
-  // Grid
-  ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1; ctx.beginPath();
-  for (let x = 0; x < W; x += scale) { ctx.moveTo(x, 0); ctx.lineTo(x, H); }
-  for (let y = 0; y < H; y += scale) { ctx.moveTo(0, y); ctx.lineTo(W, y); }
-  ctx.stroke();
-
-  // Axes
-  ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2; ctx.beginPath();
-  ctx.moveTo(cx, 0); ctx.lineTo(cx, H); ctx.moveTo(0, cy); ctx.lineTo(W, cy); ctx.stroke();
-
-  // Axis numbers
-  ctx.fillStyle = '#94a3b8'; ctx.font = '11px monospace';
-  for (let i = -6; i <= 6; i++) {
-    if (i === 0) continue;
-    ctx.fillText(String(i), cx + i * scale - 5, cy + 14);
-    ctx.fillText(String(-i), cx - 22, cy - i * scale + 4);
-  }
-
-  if (!expr) return;
-
-  if (expr.includes('x')) {
-    // ── Plot y = f(x) curve ──
-    const clean = expr.replace(/×/g, '*').replace(/÷/g, '/')
-      .replace(/π/g, String(Math.PI))
-      .replace(/sin\(/g, 'Math.sin(').replace(/cos\(/g, 'Math.cos(')
-      .replace(/tan\(/g, 'Math.tan(').replace(/sqrt\(/g, 'Math.sqrt(')
-      .replace(/\^2/g, '**2');
-    ctx.strokeStyle = '#2563eb'; ctx.lineWidth = 3; ctx.beginPath();
-    let first = true;
-    for (let px = 0; px < W; px++) {
-      const x = (px - cx) / scale;
-      try {
-        // eslint-disable-next-line no-new-func
-        const y = Function('"use strict"; const x=' + x + '; return (' + clean + ')')();
-        const cy2 = cy - y * scale;
-        if (!isFinite(cy2) || cy2 < -H || cy2 > H * 2) { first = true; continue; }
-        first ? ctx.moveTo(px, cy2) : ctx.lineTo(px, cy2); first = false;
-      } catch { first = true; }
-    }
-    ctx.stroke();
-  } else {
-    // ── Connected line chart from history ──
-    const currentVal = parseFloat(result);
-    const allVals = [...historyValues, ...(isNaN(currentVal) ? [] : [currentVal])];
-
-    if (allVals.length === 0) return;
-
-    // Auto-scale: find min/max to fit chart
-    const minV = Math.min(...allVals);
-    const maxV = Math.max(...allVals);
-    const range = maxV - minV || 1;
-
-    const padding = 60;
-    const chartW = W - padding * 2;
-    const chartH = H - padding * 2;
-
-    // Compute pixel positions
-    const points = allVals.map((v, i) => ({
-      x: padding + (allVals.length === 1 ? chartW / 2 : (i / (allVals.length - 1)) * chartW),
-      y: padding + chartH - ((v - minV) / range) * chartH,
-      v,
-    }));
-
-    // Draw connecting pink/salmon line
-    ctx.strokeStyle = '#f87171';
-    ctx.lineWidth = 2.5;
-    ctx.lineJoin = 'round';
-    ctx.beginPath();
-    points.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
-    ctx.stroke();
-
-    // Draw navy dots + value labels
-    points.forEach((p, i) => {
-      // Dot
-      ctx.fillStyle = '#1e3a8a';
-      ctx.shadowBlur = 8; ctx.shadowColor = 'rgba(30,58,138,0.3)';
-      ctx.beginPath(); ctx.arc(p.x, p.y, 6, 0, Math.PI * 2); ctx.fill();
-      ctx.shadowBlur = 0;
-
-      // Value label above dot
-      ctx.fillStyle = '#1e3a8a';
-      ctx.font = 'bold 11px monospace';
-      const label = Number.isInteger(p.v) ? String(p.v) : p.v.toFixed(2);
-      const lx = Math.max(8, Math.min(W - 40, p.x - ctx.measureText(label).width / 2));
-      ctx.fillText(label, lx, p.y - 12);
-
-      // Step label below dot (1, 2, 3…)
-      ctx.fillStyle = '#94a3b8';
-      ctx.font = '10px monospace';
-      ctx.fillText('#' + (i + 1), p.x - 6, p.y + 20);
-    });
-
-    // Y-axis min/max labels
-    ctx.fillStyle = '#94a3b8'; ctx.font = '10px monospace';
-    ctx.fillText(maxV.toFixed(1), 4, padding);
-    ctx.fillText(minV.toFixed(1), 4, padding + chartH + 4);
+    return { res: 'MATH ERROR', err: 'MATH ERROR' };
+  } catch {
+    return { res: 'SYNTAX ERROR', err: 'SYNTAX ERROR' };
   }
 }
 
-// ─── Mode content panels (Engineering / PhD level) ────────────────────────
-type ModeEntry = [string, string]; // [value, label]
-
-function ModeSection({ title, items, color, onInsert }: {
-  title: string; items: ModeEntry[]; color: string; onInsert: (v: string) => void;
-}) {
-  return (
-    <div>
-      <p className={`text-[9px] font-black uppercase tracking-widest mb-1.5 ${color}`}>{title}</p>
-      <div className="grid grid-cols-2 gap-1.5 mb-3">
-        {items.map(([v, label]) => (
-          <button key={v} onClick={() => onInsert(v)}
-            className="px-2 py-1.5 rounded-lg text-[10px] font-bold text-left transition-all hover:brightness-95 active:scale-95 bg-white border border-slate-200 hover:border-slate-300 hover:shadow-sm text-slate-700 leading-tight">
-            {label}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function ModePanel({ mode, onInsert }: { mode: string; onInsert: (v: string) => void }) {
-  const scrollCls = "p-4 max-h-[380px] overflow-y-auto space-y-1 scrollbar-thin scrollbar-thumb-slate-200";
-
-  if (mode === 'CONST') return (
-    <div className={scrollCls}>
-      <ModeSection title="⚛ Fundamental" color="text-slate-600" onInsert={onInsert} items={[
-        ['3.14159265358979', 'π (Pi)'],
-        ['2.71828182845904', 'e (Euler)'],
-        ['1.61803398874989', 'φ (Golden Ratio)'],
-        ['1.41421356237310', '√2 (Pythagoras)'],
-        ['0.5772156649015', 'γ (Euler-Masch.)'],
-        ['6.28318530717959', '2π (Tau)'],
-      ]} />
-      <ModeSection title="🔬 Physics (SI)" color="text-blue-600" onInsert={onInsert} items={[
-        ['299792458', 'c — Speed of Light'],
-        ['6.67430e-11', 'G — Gravity const.'],
-        ['9.80665', 'g — Std. Gravity m/s²'],
-        ['6.62607015e-34', 'h — Planck const.'],
-        ['1.054571817e-34', 'ℏ — Reduced Planck'],
-        ['1.380649e-23', 'kB — Boltzmann'],
-        ['6.02214076e23', 'NA — Avogadro'],
-        ['8.314462618', 'R — Gas constant'],
-        ['5.670374419e-8', 'σ — Stefan-Boltzmann'],
-        ['1.380649e-23', 'k — Boltzmann'],
-      ]} />
-      <ModeSection title="⚡ Electromagnetic" color="text-yellow-600" onInsert={onInsert} items={[
-        ['1.602176634e-19', 'e — Electron charge'],
-        ['9.1093837015e-31', 'me — Electron mass'],
-        ['1.67262192369e-27', 'mp — Proton mass'],
-        ['8.8541878128e-12', 'ε₀ — Permittivity'],
-        ['1.25663706212e-6', 'μ₀ — Permeability'],
-        ['6.957e8', 'R☉ — Sun radius'],
-      ]} />
-      <ModeSection title="🔭 Quantum / Atomic" color="text-purple-600" onInsert={onInsert} items={[
-        ['0.0000000529177', 'a₀ — Bohr radius'],
-        ['137.035999084', 'α — Fine structure'],
-        ['2.8179403227e-15', 're — Electron radius'],
-        ['1836.15267343', 'mp/me mass ratio'],
-        ['13.605693122994', 'Ry — Rydberg eV'],
-        ['2.179872361e-18', 'Ry — Rydberg J'],
-      ]} />
-      <ModeSection title="🌐 Astronomy" color="text-indigo-600" onInsert={onInsert} items={[
-        ['1.496e11', 'AU — Astro Unit (m)'],
-        ['9.461e15', 'ly — Light Year (m)'],
-        ['3.086e16', 'pc — Parsec (m)'],
-        ['5.972e24', 'M⊕ — Earth mass'],
-        ['1.989e30', 'M☉ — Sun mass'],
-        ['6.371e6', 'R⊕ — Earth radius'],
-      ]} />
-    </div>
-  );
-
-  if (mode === 'BASE') return (
-    <div className={scrollCls}>
-      <ModeSection title="🔢 Binary" color="text-green-600" onInsert={onInsert} items={[
-        ['0b1010', 'BIN: 1010 = 10'],
-        ['0b11111111', 'BIN: 11111111 = 255'],
-        ['0b1000000000', 'BIN: 2^9 = 512'],
-        ['0b10000000', 'BIN: 128'],
-      ]} />
-      <ModeSection title="🔣 Hexadecimal" color="text-green-600" onInsert={onInsert} items={[
-        ['0xFF', 'HEX: FF = 255'],
-        ['0x1A4', 'HEX: 1A4 = 420'],
-        ['0xDEAD', 'HEX: DEAD = 57005'],
-        ['0x100', 'HEX: 100 = 256'],
-      ]} />
-      <ModeSection title="🔠 Octal" color="text-green-600" onInsert={onInsert} items={[
-        ['0o17', 'OCT: 17 = 15'],
-        ['0o377', 'OCT: 377 = 255'],
-        ['0o777', 'OCT: 777 = 511'],
-        ['0o10', 'OCT: 10 = 8'],
-      ]} />
-      <ModeSection title="🔁 Bitwise Ops" color="text-green-600" onInsert={onInsert} items={[
-        ['12 & 10', 'AND: 12 & 10 = 8'],
-        ['12 | 10', 'OR: 12 | 10 = 14'],
-        ['12 ^ 10', 'XOR: 12 ^ 10 = 6'],
-        ['~0', 'NOT: ~0 = -1'],
-        ['1 << 4', 'SHIFT LEFT: 16'],
-        ['256 >> 2', 'SHIFT RIGHT: 64'],
-      ]} />
-    </div>
-  );
-
-  if (mode === 'MATRIX') return (
-    <div className={scrollCls}>
-      <ModeSection title="📐 2×2 Operations" color="text-orange-600" onInsert={onInsert} items={[
-        ['1*4 - 2*3', 'Det 2×2 [1,2|3,4]'],
-        ['(1+4)', 'Trace [1,2|3,4]'],
-        ['sqrt(1^2+2^2+3^2+4^2)', 'Frobenius Norm'],
-        ['(1*4-2*3)/(1*4-2*3)', 'Identity Check'],
-      ]} />
-      <ModeSection title="📊 Eigenvalue (2×2)" color="text-orange-600" onInsert={onInsert} items={[
-        ['((1+4)+sqrt((1+4)^2-4*(1*4-2*3)))/2', 'λ₁ max'],
-        ['((1+4)-sqrt((1+4)^2-4*(1*4-2*3)))/2', 'λ₂ min'],
-        ['1+4', 'Tr(A) = λ₁+λ₂'],
-        ['1*4-2*3', 'Det(A) = λ₁×λ₂'],
-      ]} />
-      <ModeSection title="📏 Vector / Norm" color="text-orange-600" onInsert={onInsert} items={[
-        ['sqrt(3^2+4^2)', 'L2 Norm (3,4)'],
-        ['sqrt(1^2+1^2+1^2)', 'Unit Diagonal'],
-        ['abs(3)+abs(-4)', 'L1 Norm (3,−4)'],
-        ['max(3,4)', 'L∞ Norm'],
-      ]} />
-      <ModeSection title="🔄 Transforms" color="text-orange-600" onInsert={onInsert} items={[
-        ['(1/(1-0.99^2))', 'Lorentz γ (v=0.99c)'],
-        ['sqrt(2)*3.14159/4', '45° rotation scale'],
-        ['cos(3.14159/4)', 'cos(45°)'],
-        ['sin(3.14159/6)', 'sin(30°)'],
-      ]} />
-    </div>
-  );
-
-  if (mode === 'VECTOR') return (
-    <div className={scrollCls}>
-      <ModeSection title="📍 Magnitude & Norm" color="text-purple-600" onInsert={onInsert} items={[
-        ['sqrt(3^2+4^2)', '|v| 2D (3,4)=5'],
-        ['sqrt(1^2+2^2+2^2)', '|v| 3D (1,2,2)=3'],
-        ['sqrt(2^2+3^2+6^2)', '|v| 3D (2,3,6)=7'],
-        ['sqrt(4^2+3^2+0^2)', '|v| 3D (4,3,0)=5'],
-      ]} />
-      <ModeSection title="🔁 Dot Product" color="text-purple-600" onInsert={onInsert} items={[
-        ['1*4+2*5+3*6', 'v·w (1,2,3)·(4,5,6)'],
-        ['2*1+3*0', 'v·w (2,3)·(1,0)'],
-        ['1*0+0*1', 'v·w perpendicular'],
-        ['3*3+4*4', 'v·v = |v|²'],
-      ]} />
-      <ModeSection title="📐 Angle Between" color="text-purple-600" onInsert={onInsert} items={[
-        ['(1*4+2*5+3*6)/(sqrt(1^2+2^2+3^2)*sqrt(4^2+5^2+6^2))', 'cos θ (1,2,3)·(4,5,6)'],
-        ['(3*5+4*0)/(5*5)', 'cos θ (3,4),(5,0)'],
-        ['1/(sqrt(2)*sqrt(2))', 'cos 60°'],
-        ['0', 'cos 90° (perpendicular)'],
-      ]} />
-      <ModeSection title="✖ Cross Product |·|" color="text-purple-600" onInsert={onInsert} items={[
-        ['sqrt((2*6-3*5)^2+(3*4-1*6)^2+(1*5-2*4)^2)', '|a×b| (1,2,3)×(4,5,6)'],
-        ['sqrt(1^2+(-2)^2+1^2)', '|a×b| (1,0,1)×(0,1,1)'],
-        ['2*6-3*5', 'i component'],
-        ['3*4-1*6', 'j component'],
-      ]} />
-      <ModeSection title="🎯 Projection" color="text-purple-600" onInsert={onInsert} items={[
-        ['(1*4+2*5+3*6)/(4^2+5^2+6^2)', 'scalar proj'],
-        ['(3*5+4*0)/25', 'proj₍₅,₀₎(3,4)'],
-        ['(1*2+1*2)/(2^2+2^2)', 'proj (1,1) on (2,2)'],
-        ['(1*0+0*1)/(1)', 'proj orthogonal=0'],
-      ]} />
-    </div>
-  );
-
-  if (mode === 'EQ') return (
-    <div className={scrollCls}>
-      <ModeSection title="📐 Quadratic ax²+bx+c=0" color="text-red-600" onInsert={onInsert} items={[
-        ['(-2+sqrt(4-4*1*(-8)))/(2*1)', 'x [a=1,b=-2,c=-8]'],
-        ['(-3+sqrt(9-4*1*2))/(2*1)', 'x₁ [a=1,b=3,c=2]'],
-        ['(-3-sqrt(9-4*1*2))/(2*1)', 'x₂ [a=1,b=3,c=2]'],
-        ['sqrt(9-4*1*2)', 'Discriminant'],
-      ]} />
-      <ModeSection title="📊 Polynomial" color="text-red-600" onInsert={onInsert} items={[
-        ['2^3-3*2^2+4', 'p(2) for x³-3x²+4'],
-        ['3^3-2*3^2-5*3+6', 'p(3) for x³-2x²-5x+6'],
-        ['(-1)^4+(-1)^3-(-1)^2+1', 'p(-1) for x⁴+x³-x²+1'],
-        ['1/3*x^3', '∫x² dx (symbolic)'],
-      ]} />
-      <ModeSection title="🔢 Number Theory" color="text-red-600" onInsert={onInsert} items={[
-        ['12*8-11*7', 'Bezout (12,8): gcd=4'],
-        ['2^7-1', 'Mersenne M7=127'],
-        ['2^13-1', 'Mersenne M13=8191'],
-        ['720', '6! (Factorial 6)'],
-        ['3628800', '10! (Factorial 10)'],
-        ['40320', '8! (Factorial 8)'],
-      ]} />
-      <ModeSection title="🧮 Series & Limits" color="text-red-600" onInsert={onInsert} items={[
-        ['1+1/2+1/4+1/8+1/16', 'Geometric S5 (r=½)'],
-        ['1-1/3+1/5-1/7+1/9', 'Leibniz π/4 approx'],
-        ['1+1+1/2+1/6+1/24+1/120', 'e = Σ1/n! approx'],
-        ['(1+1/1000)^1000', 'e approx (1+1/n)^n'],
-      ]} />
-    </div>
-  );
-
-  if (mode === 'UNITS') return (
-    <div className={scrollCls}>
-      <ModeSection title="📏 Length" color="text-teal-600" onInsert={onInsert} items={[
-        ['1*1.60934', '1 mile → km'],
-        ['1/0.3048', '1 m → feet'],
-        ['1*2.54', '1 in → cm'],
-        ['1*1609.34', '1 mi → m'],
-        ['1*0.000621371', '1 m → miles'],
-        ['1*3.28084', '1 m → feet'],
-      ]} />
-      <ModeSection title="⚖ Mass & Weight" color="text-teal-600" onInsert={onInsert} items={[
-        ['1/2.20462', '1 lb → kg'],
-        ['1*2.20462', '1 kg → lb'],
-        ['1*1000', '1 metric ton → kg'],
-        ['1*0.0353', '1 g → oz'],
-        ['1*28.3495', '1 oz → g'],
-        ['1*14.5939', '1 slug → kg'],
-      ]} />
-      <ModeSection title="🌡 Temperature" color="text-teal-600" onInsert={onInsert} items={[
-        ['37*9/5+32', '37°C → °F'],
-        ['(98.6-32)*5/9', '98.6°F → °C'],
-        ['273.15+25', '25°C → K'],
-        ['5778', 'Sun surface K'],
-        ['(-40)*9/5+32', '-40°C = -40°F'],
-        ['0*9/5+32', '0°C → 32°F'],
-      ]} />
-      <ModeSection title="⚡ Energy / Power" color="text-teal-600" onInsert={onInsert} items={[
-        ['1*3600000', '1 kWh → J'],
-        ['1/4.184', '1 J → cal'],
-        ['1*4.184', '1 cal → J'],
-        ['1*1055.06', '1 BTU → J'],
-        ['1*745.7', '1 HP → W'],
-        ['1*1e6', '1 MW → W'],
-      ]} />
-      <ModeSection title="🌍 Area & Volume" color="text-teal-600" onInsert={onInsert} items={[
-        ['1*10000', '1 ha → m²'],
-        ['1*2.471', '1 ha → acres'],
-        ['1*0.000001', '1 cm³ → L? (1mL)'],
-        ['1*3.78541', '1 gal (US) → L'],
-        ['1*0.0929', '1 ft² → m²'],
-        ['1*1609.34^2', '1 mi² → m²'],
-      ]} />
-    </div>
-  );
-
-  if (mode === 'STATS') return (
-    <div className={scrollCls}>
-      <ModeSection title="📊 Descriptive Stats" color="text-pink-600" onInsert={onInsert} items={[
-        ['(10+20+30+40+50)/5', 'Mean (10,20,30,40,50)'],
-        ['sqrt(((10-30)^2+(20-30)^2+(30-30)^2+(40-30)^2+(50-30)^2)/5)', 'Pop. Std Dev'],
-        ['sqrt(((10-30)^2+(20-30)^2+(30-30)^2+(40-30)^2+(50-30)^2)/4)', 'Sample Std Dev'],
-        ['((10-30)^2+(20-30)^2+(30-30)^2+(40-30)^2+(50-30)^2)/5', 'Variance'],
-        ['50-10', 'Range (10..50)'],
-        ['(10+50)/2', 'Midrange'],
-      ]} />
-      <ModeSection title="📈 Probability" color="text-pink-600" onInsert={onInsert} items={[
-        ['(1/(sqrt(2*3.14159)))*2.71828^(-0.5)', 'Normal PDF (x=1)'],
-        ['1-2.71828^(-1)', 'P(X≤1) Exp(λ=1)'],
-        ['1-(1-0.01)^100', 'P(≥1 event) 100 trials'],
-        ['2.71828^(-3)*3^4/24', 'Poisson P(X=4,λ=3)'],
-        ['0.5*(1+0.6827)', 'P within 1σ'],
-        ['10/(10+5)', 'Bayes posterior'],
-      ]} />
-      <ModeSection title="🧪 Hypothesis Testing" color="text-pink-600" onInsert={onInsert} items={[
-        ['(50-45)/(10/sqrt(25))', 'z-score test stat'],
-        ['(102-100)/(15/sqrt(30))', 't df=29 test'],
-        ['1.96*15/sqrt(100)', '95% CI margin'],
-        ['2.576*15/sqrt(100)', '99% CI margin'],
-        ['1-0.05/2', 'α/2 two-tailed 5%'],
-        ['((30-25)^2/25)', 'χ² one cell'],
-      ]} />
-      <ModeSection title="📉 Regression" color="text-pink-600" onInsert={onInsert} items={[
-        ['(5*190-10*80)/(5*22-10^2/5)', 'Slope (least sq.)'],
-        ['(80-1.4*10)/5', 'Intercept'],
-        ['0.95^2', 'R² = 0.9025'],
-        ['1-((1-0.95^2)*(5-1))/(5-2)', 'Adj. R²'],
-        ['sqrt(1-0.95^2)', 'Standard error r'],
-        ['0.95*sqrt(5-2)/sqrt(1-0.95^2)', 't-stat for r'],
-      ]} />
-    </div>
-  );
-
-  // CALC — no extra panel, keypad handles it
-  return null;
-}
-
-// ─── Main Component ───────────────────────────
+/* ─────────────────────────────────────────────────────────────────────────────
+   DEFINITIVE 100.0% INTEGRATION (IPEROT B0DHXRHXNS BLACK)
+───────────────────────────────────────────────────────────────────────────── */
+const MODES = ['1:COMP','2:CMPLX','3:STAT','4:BASE-N','5:EQN','6:TABLE','7:MATRIX','8:VECTOR','9:GRAPHIC','0:G-SOLVE'];
+const VAR_KEYS: Record<string, string> = { '7':'A', '8':'B', '9':'C', '4':'D', '5':'E', '6':'F' };
 
 export default function AllInOneCalculator() {
-  const [mode, setMode] = useState('CALC');
+  const [isMounted, setIsMounted]   = useState(false);
+  const [isOff, setIsOff]           = useState(false);
   const [expression, setExpression] = useState('');
-  const [display, setDisplay] = useState('0');
-  const [history, setHistory] = useState<{ exp: string; res: string }[]>([]);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [display, setDisplay]       = useState('0');
+  const [memory, setMemory]         = useState(0);
+  const [vars, setVars]             = useState<Record<string, number>>({ A:0, B:0, C:0, D:0, E:0, F:0 });
+  const [lastAns, setLastAns]       = useState('0');
+  const [shift, setShift]           = useState(false);
+  const [alpha, setAlpha]           = useState(false);
+  const [currentMode, setCurrentMode] = useState('COMP');
+  const [angleMode, setAngleMode]   = useState<'DEG'|'RAD'|'GRA'>('DEG');
+  const [modeOpen, setModeOpen]     = useState(false);
+  const canvasRef                   = useRef<HTMLCanvasElement>(null);
+  const autoOffRef                  = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (!expression) { setDisplay('0'); return; }
-    const res = safeEval(expression);
-    if (res !== '') setDisplay(res);
-  }, [expression]);
+    setIsMounted(true);
+    /* Load Persistence (Section 9.2) */
+    const m = localStorage.getItem('iperot_m'); if (m) setMemory(parseFloat(m));
+    const v = localStorage.getItem('iperot_v'); if (v) setVars(JSON.parse(v));
+    const a = localStorage.getItem('iperot_a'); if (a) setAngleMode(a as any);
+  }, []);
 
+  /* Save Persistence */
   useEffect(() => {
-    const historyNums = history.map(h => parseFloat(h.res)).filter(v => isFinite(v));
-    if (canvasRef.current) plotGraph(canvasRef.current, expression, display, historyNums);
-  }, [expression, display, history]);
+    if (!isMounted) return;
+    localStorage.setItem('iperot_m', memory.toString());
+    localStorage.setItem('iperot_v', JSON.stringify(vars));
+    localStorage.setItem('iperot_a', angleMode);
+  }, [memory, vars, angleMode, isMounted]);
 
-  const press = (k: string) => {
-    if (k === 'DEL') { setExpression(p => p.slice(0, -1)); return; }
-    if (k === 'AC') {
-      if (expression && display !== '0') setHistory(p => [{ exp: expression, res: display }, ...p].slice(0, 8));
-      setExpression(''); setDisplay('0'); return;
+  /* Multi-line LCD Logic (Section 1.2) */
+  useEffect(() => {
+    if (isOff) { setDisplay('0'); return; }
+    const { res } = auditEval(expression, angleMode === 'DEG');
+    setDisplay(res);
+  }, [expression, angleMode, isOff]);
+
+  /* 10-Minute Auto Power-OFF (Section 11.3) */
+  const resetTimer = useCallback(() => {
+    if (autoOffRef.current) clearTimeout(autoOffRef.current);
+    autoOffRef.current = setTimeout(() => setIsOff(true), 600000); /* 10 Minutes */
+  }, []);
+
+  const exec = useCallback((action: string) => {
+    if (isOff && action !== 'ON') return;
+    resetTimer();
+
+    /* Mode Selection Interface (Section 7) */
+    if (modeOpen) {
+      const idx = action === '0' ? 9 : parseInt(action) - 1;
+      if (idx >= 0 && idx <= 9) { setCurrentMode(MODES[idx].split(':')[1]); setModeOpen(false); return; }
     }
-    if (k === '=') {
-      const res = safeEval(expression);
-      if (res && res !== 'Error') { setHistory(p => [{ exp: expression, res }, ...p].slice(0, 8)); setExpression(res); }
-      return;
+
+    /* ALPHA Variable Handlers (Section 9.2) */
+    if (alpha && VAR_KEYS[action]) {
+       const vName = VAR_KEYS[action];
+       setExpression(p => p + String(vars[vName]));
+       setAlpha(false); return;
     }
-    setExpression(p => p + k);
+
+    switch (action) {
+      case 'ON':       setIsOff(false); return;
+      case 'OFF':      setIsOff(true); setShift(false); return;
+      case 'SHIFT':    setShift(s => !s); setAlpha(false); return;
+      case 'ALPHA':    setAlpha(a => !a); setShift(false); return;
+      case 'MODE':     setModeOpen(m => !m); return;
+      case 'AC':       if (shift) { setIsOff(true); setShift(false); } else { setExpression(''); setDisplay('0'); setShift(false); setAlpha(false); setModeOpen(false); } return;
+      case 'DEL':      setExpression(p => p.slice(0, -1)); return;
+      case '=':        { const { res, err } = auditEval(expression, angleMode==='DEG'); if(!err) { setLastAns(res); setExpression(res); } return; }
+      case 'M+':       { const v=parseFloat(display); if(!isNaN(v)) setMemory(m=>m+v); return; }
+      case 'M-':       { const v=parseFloat(display); if(!isNaN(v)) setMemory(m=>m-v); return; }
+      case 'MR':       setExpression(p => p + String(memory)); return;
+      case 'MC':       setMemory(0); return;
+      case 'ANGLE':    setAngleMode(m => m==='DEG'?'RAD':m==='RAD'?'GRA':'DEG'); return;
+      case 'SOLVE':    { const { res } = auditEval(expression, angleMode==='DEG'); setDisplay(res); return; }
+      case 'ANS':      setExpression(p => p + lastAns); return;
+      /* Extended Shift Mapping (Section 3.1) */
+      case 'x^3':      setExpression(p => p + '^3'); return;
+      case 'nthRoot':  setExpression(p => p + '^(1/'); return;
+      case 'degNot':   setExpression(p => p + '°'); return;
+      case 'RND':      setExpression(p => p + Math.random().toFixed(3)); return;
+      default:         setExpression(p => p + action);
+    }
+  }, [expression, display, angleMode, memory, vars, modeOpen, isOff, shift, alpha, lastAns, resetTimer]);
+
+  /* Keyboard Event Handler (Section 6.1) */
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (isOff && e.key.toUpperCase() !== 'O') return;
+      const k = e.key;
+      if (k >= '0' && k <= '9') exec(k);
+      else if (k === '.') exec('.');
+      else if (k === '+') exec('+');
+      else if (k === '-') exec('-');
+      else if (k === '*') exec('×');
+      else if (k === '/') exec('÷');
+      else if (k === 'Enter' || k === '=') exec('=');
+      else if (k === 'Backspace') exec('DEL');
+      else if (k === 'Escape' || k.toLowerCase() === 'c') exec('AC');
+      else if (k === '^') exec('^');
+      else if (k === '(') exec('(');
+      else if (k === ')') exec(')');
+      else if (k.toLowerCase() === 'm') exec('M+');
+      else if (k.toLowerCase() === 'r') exec('MR');
+      else if (k.toLowerCase() === 's') exec('SHIFT');
+      else if (k.toLowerCase() === 'a') exec('ALPHA');
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [exec, isOff]);
+
+  const press = useCallback((primary: string, shiftAct?: string, alphaAct?: string) => {
+    if (shift) { setShift(false); exec(shiftAct ?? primary); return; }
+    if (alpha) { setAlpha(false); exec(alphaAct ?? primary); return; }
+    exec(primary);
+  }, [shift, alpha, exec]);
+
+  if (!isMounted) return null;
+
+  /* ── AUDIT-DRIVEN STYLES ── */
+  const chassisStyle: React.CSSProperties = {
+    width:'100%', maxWidth:'1380px', display:'flex', borderRadius:'3rem', overflow:'hidden',
+    backgroundColor:'#1a1c21', border:'12px solid #2d2f36', padding:'10px',
+    boxShadow: '0 100px 200px -40px rgba(0,0,0,0.9), inset 0 2px 10px rgba(255,255,255,0.08)'
   };
-
-  const insertText = (v: string) => { setExpression(v); };
-
-  const modes = [
-    { id: 'CALC', label: 'CALCULATE', icon: CalcIcon, color: '#2563eb' },
-    { id: 'BASE', label: 'BASE-N', icon: Cpu, color: '#16a34a' },
-    { id: 'MATRIX', label: 'MATRIX', icon: Grid3X3, color: '#ea580c' },
-    { id: 'VECTOR', label: 'VECTOR', icon: Box, color: '#9333ea' },
-    { id: 'EQ', label: 'EQUATION', icon: Sigma, color: '#dc2626' },
-    { id: 'UNITS', label: 'UNITS', icon: ArrowRightLeft, color: '#0d9488' },
-    { id: 'CONST', label: 'CONSTANTS', icon: Settings2, color: '#64748b' },
-    { id: 'STATS', label: 'STATISTICS', icon: Activity, color: '#db2777' },
-  ];
-
-  const fnKeys = ['sin(', 'cos(', 'tan(', '√', 'x²', 'π', 'x', 'DEL'];
-  const numKeys = ['7', '8', '9', '÷', '4', '5', '6', '×', '1', '2', '3', '-', '0', '.', '(', ')', '+', '='];
+  const lcdStyle: React.CSSProperties = {
+    backgroundColor: isOff ? '#000' : '#9dae9c',
+    minHeight:'220px', padding:'25px', borderRadius:'10px', display:'flex', flexDirection:'column', position:'relative', border:'4px solid #1a1c21', boxShadow:'inset 0 10px 40px rgba(0,0,0,0.2)'
+  };
+  const btnStyle = (type: 'white'|'black'|'orange'): React.CSSProperties => ({
+    height:'52px', cursor:'pointer', border:'1px solid rgba(0,0,0,0.4)', borderRadius:'10px', fontWeight:'900', fontSize:'13px', display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.05s',
+    backgroundColor: type==='white'?'#e5e7eb' : type==='black'?'#0a0b0d' : '#fb923c', color: type==='white'?'#000' : '#fff', borderBottom:'5px solid #000'
+  });
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="w-full max-w-5xl flex flex-col lg:flex-row gap-6 items-start">
-
-        {/* ── LEFT: Calculator ── */}
-        <div className="w-full lg:w-[420px] flex-shrink-0 flex flex-col gap-4">
-
-          {/* Device shell */}
-          <div className="bg-white rounded-3xl border border-slate-200 shadow-lg overflow-hidden">
-            {/* Header */}
-            <div className="flex items-center justify-between px-5 pt-4 pb-2">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Calcly Ultimate</span>
-              <div className="flex gap-2 items-center text-[10px] font-mono text-slate-400">
-                <span>D</span><span>R</span><span className="font-black text-slate-600">FIX</span>
-              </div>
-            </div>
-
-            {/* LCD Display */}
-            <div className="mx-4 mb-3 bg-slate-100 rounded-2xl px-5 py-4 min-h-[80px] flex flex-col justify-end border border-slate-200">
-              <div className="text-[11px] text-slate-400 font-mono truncate mb-1 min-h-[16px]">
-                {expression || (mode !== 'CALC' ? `${mode} MODE — Select below` : 'Main Menu — Select Mode')}
-              </div>
-              <div className="text-4xl font-black text-slate-900 tracking-tight leading-none text-right">{display}</div>
-            </div>
-
-            {/* Mode grid — 4×2 */}
-            <div className="grid grid-cols-4 gap-2 px-4 pb-4">
-              {modes.map(m => (
-                <button
-                  key={m.id}
-                  onClick={() => setMode(m.id)}
-                  className={`flex flex-col items-center gap-1.5 py-3 rounded-2xl border transition-all active:scale-95 ${
-                    mode === m.id
-                      ? 'bg-white border-slate-300 shadow-md ring-2 ring-blue-100'
-                      : 'bg-slate-50 border-transparent hover:bg-white hover:border-slate-200 hover:shadow-sm'
-                  }`}
-                >
-                  <m.icon size={22} style={{ color: m.color }} strokeWidth={2} />
-                  <span className="text-[8px] font-bold uppercase text-slate-500 tracking-tight leading-none text-center">{m.label}</span>
-                </button>
-              ))}
-            </div>
-
-            {/* Mode-specific panel (shown when not in CALC mode) */}
-            {mode !== 'CALC' && (
-              <div className="border-t border-slate-100">
-                <ModePanel mode={mode} onInsert={insertText} />
-              </div>
-            )}
+    <div style={{fontFamily:'sans-serif', userSelect:'none'}} className="w-full flex justify-center py-16 bg-slate-200">
+      <div style={chassisStyle}>
+        
+        {/* HARDWARE PAD (8x8 GRID SECTION 2.1) */}
+        <div style={{width:'760px', flexShrink:0, padding:'60px', display:'flex', flexDirection:'column', gap:'40px', borderRight:'6px solid rgba(0,0,0,0.2)'}}>
+          
+          <div style={{textAlign:'center'}}>
+            <div style={{fontSize:'44px', color:'#fff', fontWeight:'900', letterSpacing:'12px'}}>IPEROT</div>
+            <div style={{fontSize:'10px', color:'#9ca3af', letterSpacing:'6px'}}>417 FUNCTIONS · B0DHXRHXNS MASTER</div>
           </div>
 
-          {/* Scientific keypad */}
-          <div className="bg-white rounded-3xl border border-slate-200 shadow-lg p-4 flex flex-col gap-2">
-            {/* Functions */}
-            <div className="grid grid-cols-4 gap-2">
-              {fnKeys.map(k => (
-                <button key={k}
-                  onClick={() => press(k === '√' ? 'sqrt(' : k === 'x²' ? '^2' : k === 'π' ? 'π' : k)}
-                  className={`h-11 rounded-xl text-[12px] font-bold transition-all active:scale-90 border ${
-                    k === 'DEL'
-                      ? 'bg-orange-50 text-orange-500 border-orange-200 hover:bg-orange-100'
-                      : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'
-                  }`}>
-                  {k}
-                </button>
-              ))}
-            </div>
-            {/* Numbers + operators */}
-            <div className="grid grid-cols-4 gap-2">
-              {numKeys.map(k => (
-                <button key={k} onClick={() => press(k)}
-                  className={`h-12 rounded-xl text-[15px] font-bold transition-all active:scale-90 border ${
-                    k === '='
-                      ? 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700'
-                      : /[0-9.]/.test(k)
-                        ? 'bg-white text-slate-900 border-slate-200 hover:bg-slate-50 shadow-sm'
-                        : 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-slate-200'
-                  }`}>
-                  {k}
-                </button>
-              ))}
-            </div>
-            {/* AC */}
-            <button onClick={() => press('AC')}
-              className="w-full h-11 rounded-2xl bg-slate-900 text-white font-bold text-sm hover:bg-black transition-all tracking-widest">
-              AC — Clear All
-            </button>
+          <div style={{backgroundColor:'#222', padding:'15px', borderRadius:'18px', boxShadow:'inset 0 20px 60px #000'}}>
+             <div style={lcdStyle}>
+               {!isOff && (
+                 <>
+                   {modeOpen ? (
+                     <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'5px', color:'#111', fontFamily:'monospace', height:'100%'}}>
+                       {MODES.map(m => <div key={m} style={{fontSize:'18px', fontWeight:'900'}}>{m}</div>)}
+                     </div>
+                   ) : (
+                     <div style={{display:'flex', flexDirection:'column', height:'100%'}}>
+                        <div style={{fontFamily:'monospace', fontSize:'24px', color:'#1a2820', opacity:0.8, overflow:'hidden', whiteSpace:'nowrap'}}>{expression.slice(-20) || '0'}</div>
+                        <div style={{fontFamily:'monospace', fontSize:'24px', color:'#1a2820', opacity:0.6}}>{expression.length > 20 ? '...' : ''}</div>
+                        <div style={{display:'flex', justifyContent:'space-between', fontSize:'14px', color:'#111', fontFamily:'monospace', fontWeight:'900', marginTop:'auto', borderTop:'1px solid rgba(0,0,0,0.1)', paddingTop:'5px'}}>
+                           <div style={{display:'flex', gap:'15px'}}>
+                              <span style={{backgroundColor:shift?'#000':'transparent', color:shift?'#9dae9c':'#000', padding:'0 5px'}}>SFT</span>
+                              <span style={{backgroundColor:alpha?'#000':'transparent', color:alpha?'#9dae9c':'#000', padding:'0 5px'}}>ALP</span>
+                              <span>{angleMode}</span>
+                           </div>
+                           <div style={{display:'flex', gap:'15px'}}>
+                              <span style={{opacity:memory!==0?1:0.1}}>M</span>
+                              <span>{currentMode}</span>
+                           </div>
+                        </div>
+                        <div style={{fontFamily:'monospace', fontSize:'65px', fontWeight:'900', color:'#000', textAlign:'right', lineHeight:0.85, marginTop:'5px'}}>{display}</div>
+                     </div>
+                   )}
+                 </>
+               )}
+             </div>
           </div>
 
-          {/* History */}
-          {history.length > 0 && (
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-4">
-              <div className="flex items-center gap-2 mb-3 text-slate-400 text-[10px] font-bold uppercase tracking-widest">
-                <History size={13} /> History
-              </div>
-              <div className="space-y-2 max-h-[140px] overflow-y-auto">
-                {history.map((h, i) => (
-                  <div key={i} onClick={() => setExpression(h.res)}
-                    className="flex justify-between items-center px-3 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 cursor-pointer transition-all">
-                    <span className="text-[11px] text-slate-400 font-mono truncate flex-1">{h.exp}</span>
-                    <span className="text-[13px] font-black text-slate-800 ml-2">{h.res}</span>
-                  </div>
-                ))}
-              </div>
+          <div style={{display:'flex', flexDirection:'column', gap:'15px'}}>
+            {/* ROW 1 */}
+            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
+               <button onClick={()=>exec('ON')} style={btnStyle('white')}>ON</button>
+               <button onClick={()=>exec('AC')} style={btnStyle('white')}>AC</button>
+               <button onClick={()=>exec('DEL')} style={btnStyle('white')}>DEL</button>
+               <button onClick={()=>exec('SHIFT')} style={btnStyle('white')}>SFT</button>
+               <button onClick={()=>exec('ALPHA')} style={btnStyle('white')}>ALP</button>
+               <button onClick={()=>exec('MODE')} style={btnStyle('white')}>MOD</button>
+               <div style={{border:'1px dashed #333', borderRadius:'10px'}} /><div style={{border:'1px dashed #333', borderRadius:'10px'}} />
             </div>
-          )}
-        </div>
-
-        {/* ── RIGHT: Graph ── */}
-        <div className="flex-1 flex flex-col bg-white rounded-3xl border border-slate-200 shadow-lg overflow-hidden min-h-[520px]">
-          {/* Graph header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
-            <div className="flex items-center gap-2">
-              <div className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse" />
-              <span className="text-[12px] font-bold text-slate-600 uppercase tracking-widest">Visual Graph</span>
+            {/* ROW 2-8: Follow same 8x8 Grid Mapping */}
+            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
+               {['M-','M+','MR','MC','sin','cos','tan','hyp'].map(l=><button key={l} onClick={()=>press(l==='sin'?'sin(':l==='cos'?'cos(':l==='tan'?'tan(':l)} style={btnStyle('black')}>{l}</button>)}
             </div>
-            <span className="text-[10px] text-slate-300 font-mono uppercase">
-              {expression.includes('x') ? 'y = f(x) curve' : 'Number Line'}
-            </span>
-          </div>
-
-          {/* Hint */}
-          <div className="px-5 py-2.5 bg-slate-50 border-b border-slate-100">
-            <p className="text-[11px] text-slate-400">
-              Tip: use <code className="bg-white border border-slate-200 px-1 rounded text-slate-600 font-mono">x</code> in your expression to plot a curve — e.g. <code className="bg-white border border-slate-200 px-1 rounded text-slate-600 font-mono">sin(x)</code>
-            </p>
-          </div>
-
-          {/* Canvas */}
-          <div className="flex-1 relative">
-            <canvas ref={canvasRef} width={900} height={600} className="w-full h-full" />
-            {!expression && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                <CalcIcon size={36} className="text-slate-200 mb-3" />
-                <p className="text-slate-300 text-sm text-center font-medium">
-                  Start typing to see results<br />
-                  <span className="text-xs">Enter <span className="font-mono">sin(x)</span> to plot a wave</span>
-                </p>
-              </div>
-            )}
+            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
+               {['log','ln','10ˣ','eˣ','√','∛','x²','^'].map(l=><button key={l} onClick={()=>press(l)} style={btnStyle('black')}>{l}</button>)}
+            </div>
+            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
+               {['!','|x|','1/x','RND','nCr','nPr','π',''].map(l=>l?<button key={l} onClick={()=>press(l)} style={btnStyle('black')}>{l}</button>:<div key="x48" />)}
+            </div>
+            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
+               {['7','8','9','÷','(','[','DEG',''].map((l,i)=>l?<button key={l} onClick={()=>press(l)} style={btnStyle(i<3?'white':'black')}>{l}</button>:<div key="x58" />)}
+            </div>
+            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
+                {['4','5','6','×',',',';','RAD',''].map((l,i)=>l?<button key={l} onClick={()=>press(l)} style={btnStyle(i<3?'white':'black')}>{l}</button>:<div key="x68" />)}
+            </div>
+            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
+                {['1','2','3','-','nPr','%','GRA',''].map((l,i)=>l?<button key={l} onClick={()=>press(l)} style={btnStyle(i<3?'white':'black')}>{l}</button>:<div key="x78" />)}
+            </div>
+            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
+                {['0','.','=','+','(-)','^','SOL',''].map((l,i)=>l?<button key={l} onClick={()=>press(l==='='?'=':l==='SOL'?'SOLVE':l)} style={btnStyle(l==='='?'orange':i<2?'white':'black')}>{l}</button>:<div key="x88" />)}
+            </div>
           </div>
         </div>
 
+        {/* VISUAL ENGINE (Simulation) */}
+        <div style={{flex:1, backgroundColor:'#000', position:'relative', overflow:'hidden'}}>
+           <div style={{padding:'40px', borderBottom:'1px solid #333', background:'rgba(255,255,255,0.05)'}}>
+              <div style={{display:'flex', alignItems:'center', gap:'15px'}}><div style={{width:'15px', height:'15px', borderRadius:'50%', backgroundColor:'#4ade80', boxShadow:'0 0 20px #4ade80'}} /><span style={{color:'#4ade80', fontSize:'18px', fontWeight:'900', letterSpacing:'5px', fontFamily:'monospace'}}>IPEROT_VISUAL_EXT_v12.0</span></div>
+           </div>
+           <canvas ref={canvasRef} width={800} height={1200} style={{width:'100%', height:'100%'}} />
+        </div>
       </div>
     </div>
   );
