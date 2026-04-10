@@ -18,6 +18,9 @@ export default function BodyFatCalculator() {
   const [hip, setHip] = useState(90);
 
   const bf = useMemo(() => {
+    if (gender === 'male' && waist <= neck) return null;
+    if (gender === 'female' && (waist + hip) <= neck) return null;
+
     let val: number;
     if (gender === 'male') {
       val = 495 / (1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(height)) - 450;
@@ -27,7 +30,10 @@ export default function BodyFatCalculator() {
     return Math.max(0, Math.min(100, val));
   }, [gender, height, neck, waist, hip]);
 
-  const { label: catLabel, color: catColor } = CATEGORIES[gender].find(c => bf < c.max)!;
+  const { label: catLabel, color: catColor } = useMemo(() => {
+    if (bf === null) return { label: 'Invalid Input', color: 'text-red-600' };
+    return CATEGORIES[gender].find(c => bf < c.max)!;
+  }, [bf, gender]);
 
   const RANGES = gender === 'male'
     ? [['Essential', '2–5%'], ['Athletes', '6–13%'], ['Fitness', '14–17%'], ['Average', '18–24%'], ['Obese', '25%+']]
@@ -97,7 +103,7 @@ export default function BodyFatCalculator() {
           {/* Body Fat Result */}
           <div className="p-8 bg-white border border-[var(--border)] text-center">
             <div className="text-xs font-bold uppercase text-[var(--text-muted)] mb-2">Body Fat Percentage</div>
-            <div className={`text-7xl font-black tracking-tighter mb-3 ${catColor}`}>{bf.toFixed(1)}<span className="text-3xl">%</span></div>
+            <div className={`text-7xl font-black tracking-tighter mb-3 ${catColor}`}>{(bf ?? 0).toFixed(1)}<span className="text-3xl">%</span></div>
             <div className={`inline-block px-4 py-1 text-xs font-black uppercase tracking-widest border ${catColor} border-current`}>
               {catLabel}
             </div>
@@ -109,7 +115,7 @@ export default function BodyFatCalculator() {
             <div className="h-4 w-full bg-gray-200 relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-300 via-green-400 via-yellow-300 to-red-500 opacity-80" />
               <div className="absolute top-0 bottom-0 w-1.5 bg-[var(--primary)]"
-                style={{ left: `${Math.min((bf / 40) * 100, 100)}%` }} />
+                style={{ left: `${Math.min(((bf ?? 0) / 40) * 100, 100)}%` }} />
             </div>
             <div className="flex justify-between text-[9px] font-bold text-[var(--text-muted)] uppercase">
               <span>0%</span><span>10%</span><span>20%</span><span>30%</span><span>40%</span>

@@ -39,7 +39,7 @@ export default function SIPCalculator() {
       category={{ label: 'Finance', href: '/calculator/category/finance' }}
       leftPanel={
         <div className="space-y-6">
-          <ValidatedInput label="Monthly Investment (Rs.)" value={monthly} onChange={v => update('monthly', v)} min={500} prefix="Rs." step={500} required />
+          <ValidatedInput label="Monthly Investment (NPR)" value={monthly} onChange={v => update('monthly', v)} min={500} prefix="NPR" step={500} required />
 
           <div className="grid grid-cols-2 gap-4">
             <ValidatedInput label="Expected Return Rate (p.a.)" value={rate} onChange={v => update('rate', v)} min={1} max={50} suffix="%" step={0.5} required />
@@ -97,7 +97,7 @@ export default function SIPCalculator() {
               <TrendingUp className="w-4 h-4 text-[var(--text-muted)]" />
               <div className="text-xs font-bold uppercase text-[var(--text-muted)]">Estimated Future Value</div>
             </div>
-            <div className="text-5xl font-black text-[#006600] tracking-tighter mb-2">Rs. {fmt(result.fv)}</div>
+            <div className="text-5xl font-black text-[#006600] tracking-tighter mb-2">NPR {fmt(result.fv)}</div>
             <div className="text-xs font-bold text-[var(--text-secondary)] uppercase">Wealth gained {result.wealthGainedPct.toFixed(1)}%</div>
           </div>
 
@@ -105,11 +105,11 @@ export default function SIPCalculator() {
           <div className="space-y-3">
             <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
               <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Total Invested</span>
-              <span className="text-sm font-black text-[var(--text-main)]">Rs. {fmt(result.totalInvested)}</span>
+              <span className="text-sm font-black text-[var(--text-main)]">NPR {fmt(result.totalInvested)}</span>
             </div>
             <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
               <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Est. Returns</span>
-              <span className="text-sm font-black text-[#006600]">+ Rs. {fmt(result.returns)}</span>
+              <span className="text-sm font-black text-[#006600]">+ NPR {fmt(result.returns)}</span>
             </div>
             <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
               <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Duration</span>
@@ -134,7 +134,8 @@ export default function SIPCalculator() {
           </div>
 
           <div className="p-4 bg-[var(--bg-subtle)] border border-[var(--border)]">
-            <p className="text-[11px] text-[var(--text-secondary)] italic">Estimates are based on a constant annual return. Actual mutual fund returns may vary.</p>
+            <p className="text-[11px] text-[var(--text-secondary)] italic mb-1">Estimates assume beginning-of-month deposits (Annuity Due).</p>
+            <p className="text-[11px] text-[var(--text-secondary)] italic">Actual mutual fund returns may vary.</p>
           </div>
         </div>
       }
@@ -142,7 +143,7 @@ export default function SIPCalculator() {
         <CalcFAQ faqs={[
           { question: 'What is a SIP?', answer: 'A Systematic Investment Plan (SIP) lets you invest a fixed amount in mutual funds at regular intervals, leveraging compounding and dollar-cost averaging.' },
           { question: 'What is Step-Up SIP?', answer: 'A Step-Up SIP automatically increases your monthly investment by a fixed percentage each year, matching salary growth and accelerating wealth creation.' },
-          { question: 'How much can I start with in Nepal?', answer: 'Most Nepal mutual funds allow SIPs starting from Rs. 1,000/month.' },
+          { question: 'How much can I start with in Nepal?', answer: 'Most Nepal mutual funds allow SIPs starting from NPR 1,000/month.' },
         ]} />
       }
     />

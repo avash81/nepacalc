@@ -85,3 +85,61 @@ button:active {
   line-height: 0.95;
   letter-spacing: -0.04em;
 }
+
+/* 📱 CASIO fx-991EX DESIGN SYSTEM */
+.calc-casio-body {
+  @apply flex flex-col lg:flex-row w-full max-w-[1250px] mx-auto rounded-[3rem] overflow-hidden 
+         bg-[#181a1d] border-[10px] lg:border-[16px] border-[#2d2f34] shadow-[0_50px_100px_rgba(0,0,0,0.8)] 
+         relative ring-1 ring-white/5;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 80%),
+    linear-gradient(45deg, rgba(0,0,0,0.2) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.2) 75%, rgba(0,0,0,0.2) 100%);
+  background-size: 100% 100%, 4px 4px;
+}
+
+.calc-sidebar {
+  @apply w-full lg:w-[640px] flex-shrink-0 p-6 sm:p-10 lg:p-14 flex flex-col gap-6 lg:gap-8 border-b-8 lg:border-b-0 lg:border-r-[12px] border-black/40 bg-[#1e2024];
+}
+
+.calc-graph-area {
+  @apply flex-1 bg-[#1e232b] relative overflow-hidden min-h-[450px] lg:min-h-0 flex flex-col shadow-[inset_15px_0_40px_rgba(0,0,0,0.5)];
+}
+
+.casio-lcd {
+  @apply min-h-[160px] sm:min-h-[200px] p-5 sm:p-7 rounded-lg flex flex-col relative 
+         bg-[#9cae9c] border-[6px] border-[#16181b] shadow-[inset_0_10px_20px_rgba(0,0,0,0.3)] overflow-hidden;
+}
+
+/* Casio Specialized Buttons */
+.btn-casio-sci {
+  @apply bg-gradient-to-b from-[#2d2f34] to-[#0a0b0d] text-white rounded-md border-b-[4px] border-black/60 
+         hover:brightness-125 active:translate-y-[2px] active:border-b-0 transition-all font-bold text-[10px] sm:text-[12px];
+}
+
+.btn-casio-num {
+  @apply bg-gradient-to-b from-[#f8fafc] to-[#cbd5e1] text-[#1e293b] rounded-md border-b-[5px] border-[#64748b] 
+         hover:brightness-95 active:translate-y-[3px] active:border-b-0 transition-all font-black text-[16px] sm:text-[18px];
+}
+
+.btn-casio-util {
+  @apply bg-gradient-to-b from-[#fb923c] to-[#ea580c] text-white rounded-md border-b-[5px] border-[#9a3412] 
+         hover:brightness-110 active:translate-y-[3px] active:border-b-0 transition-all font-black text-[14px] sm:text-[16px];
+}
+
+.btn-casio-top {
+  @apply bg-gradient-to-b from-[#e5e7eb] to-[#9ca3af] text-black h-10 rounded-[100px] border-b-[3px] border-[#4b5563] 
+         hover:brightness-110 active:translate-y-[2px] active:border-b-0 transition-all font-black text-[10px] uppercase;
+}
+
+/* Replay Pad Circle (Silver) */
+.calc-replay-silver {
+  @apply w-[100px] h-[100px] sm:w-[130px] sm:h-[130px] rounded-full mx-auto relative 
+         bg-gradient-to-tr from-[#64748b] via-[#cbd5e1] to-[#f8fafc] 
+         border-[4px] border-[#1e293b] shadow-[0_10px_30px_rgba(0,0,0,0.5),inset_0_-5px_15px_rgba(0,0,0,0.3)]
+         flex items-center justify-center cursor-pointer hover:rotate-12 transition-transform duration-500;
+}
+
+/* Secondary Typography */
+.sec-label-yellow { @apply text-[#eab308] text-[9px] font-black uppercase tracking-tighter block mb-0.5; }
+.sec-label-pink { @apply text-[#db2777] text-[9px] font-black uppercase tracking-tighter block mb-0.5; }
+.sec-label-blue { @apply text-[#0ea5e9] text-[9px] font-black uppercase tracking-tighter block mb-0.5; }

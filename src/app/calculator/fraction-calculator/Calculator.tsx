@@ -114,11 +114,13 @@ export default function FractionCalculator() {
               <div className="text-[10px] font-bold uppercase text-[var(--text-muted)] mb-2">Mixed Number</div>
               <div className="flex items-center justify-center gap-2">
                 <span className="text-3xl font-black text-[#006600] font-mono">{r.mixed.w}</span>
-                <div className="flex flex-col items-center gap-0.5">
-                  <span className="text-lg font-bold font-mono">{r.mixed.n}</span>
-                  <div className="w-8 h-0.5 bg-[var(--border)]" />
-                  <span className="text-lg font-bold font-mono">{r.mixed.d}</span>
-                </div>
+                {r.mixed.n !== 0 && (
+                  <div className="flex flex-col items-center gap-0.5">
+                    <span className="text-lg font-bold font-mono">{r.mixed.n}</span>
+                    <div className="w-8 h-0.5 bg-[var(--border)]" />
+                    <span className="text-lg font-bold font-mono">{r.mixed.d}</span>
+                  </div>
+                )}
               </div>
             </div>
           )}

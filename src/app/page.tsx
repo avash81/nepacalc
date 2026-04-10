@@ -12,13 +12,13 @@ export default function HomePage() {
       
       <div className="min-h-screen bg-white font-sans antialiased text-[14px]">
         {/* 1. Interactive Command Center - Isolated Client Island */}
-        <header className="pt-12 pb-24 border-b border-slate-100 bg-white relative overflow-hidden">
-          <div className="w-full max-w-[1700px] mx-auto px-10 flex flex-col items-center">
-            <div className="text-center mb-8 relative z-10">
-              <h1 className="text-2xl md:text-3xl font-bold text-slate-800 mb-3 tracking-tight">
-                CalcPro — All-in-One Calculator Suite
+        <header className="pt-8 sm:pt-12 pb-16 sm:pb-24 border-b border-slate-100 bg-white relative overflow-hidden">
+          <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-10 flex flex-col items-center">
+            <div className="text-center mb-6 sm:mb-8 relative z-10 w-full max-w-[800px]">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 mb-3 tracking-tighter leading-tight uppercase">
+                Nepal's #1 All-in-One CalcPro Suite
               </h1>
-              <p className="text-slate-400 text-sm">Scientific Calculator • Graph Plotter • Unit Converter • Statistics</p>
+              <p className="text-slate-400 text-xs sm:text-sm font-medium tracking-wide">Scientific • Graphing • Unit Conversion • Statistics • Financial</p>
             </div>
             
             <div className="w-full relative z-10">
@@ -32,14 +32,14 @@ export default function HomePage() {
         </header>
 
         {/* 2. Calculator Directory - High-Precision Server Component Rendering */}
-        <main className="max-w-[1300px] mx-auto px-8 py-16">
-          <div className="flex items-end justify-between mb-10 border-b-2 border-slate-100 pb-6">
+        <main className="max-w-[1400px] mx-auto px-4 sm:px-8 py-10 sm:py-16">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 sm:mb-10 border-b-2 border-slate-100 pb-6 gap-4">
             <div>
-              <h2 className="text-2xl font-black text-slate-900 tracking-tight">Calculator Directory</h2>
-              <p className="text-slate-500 text-sm mt-1">Browse 75+ Professional Tools — 100% Reliable & Fast</p>
+              <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Calculator Directory</h2>
+              <p className="text-slate-500 text-xs sm:text-sm mt-1">Browse 75+ Professional Tools — 100% Mobile Optimized</p>
             </div>
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest bg-slate-50 border border-slate-200 px-3 py-1 rounded-full">
-              Nepal Specific & Global Tools
+            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full shrink-0">
+              verified Nepal specific data
             </span>
           </div>
 

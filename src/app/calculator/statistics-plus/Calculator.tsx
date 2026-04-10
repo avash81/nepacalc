@@ -19,7 +19,7 @@ export default function StatisticsPlus() {
     nums.forEach(n => { counts[n] = (counts[n]||0)+1; if (counts[n] > maxFreq) maxFreq = counts[n]; });
     const modes = Object.keys(counts).filter(k => counts[Number(k)] === maxFreq).map(Number);
     const range  = sorted[sorted.length-1] - sorted[0];
-    return { mean, median, modes, range, min: sorted[0], max: sorted[sorted.length-1], count: nums.length, sorted };
+    return { mean, median, modes, range, min: sorted[0], max: sorted[sorted.length-1], count: nums.length, sum, sorted };
   }, [input]);
 
   return (
@@ -87,7 +87,7 @@ export default function StatisticsPlus() {
                 { label: 'Min',          val: stats.min },
                 { label: 'Max',          val: stats.max },
                 { label: 'Count (n)',    val: stats.count },
-                { label: 'Sum',          val: stats.mean * stats.count },
+                { label: 'Sum',          val: stats.sum },
               ].map(({ label, val }) => (
                 <div key={label} className="p-4 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
                   <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">{label}</span>

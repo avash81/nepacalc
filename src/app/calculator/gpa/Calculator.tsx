@@ -23,7 +23,7 @@ const US_GRADES = [
   { grade: 'B+', point: 3.3 },
   { grade: 'B', point: 3.0 },
   { grade: 'B-', point: 2.7 },
-  { grade: 'C+', pool: 2.3 },
+  { grade: 'C+', point: 2.3 },
   { grade: 'C', point: 2.0 },
   { grade: 'C-', point: 1.7 },
   { grade: 'D+', point: 1.3 },

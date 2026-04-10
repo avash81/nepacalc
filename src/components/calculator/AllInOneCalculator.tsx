@@ -1,5 +1,6 @@
 'use client';
 import { useState, useRef, useEffect, useCallback } from 'react';
+import * as math from 'mathjs';
 
 /* ── Factorial ─────────────────────────────── */
 function factorial(n: number): number {
@@ -7,277 +8,189 @@ function factorial(n: number): number {
   let r = 1; for (let i = 2; i <= n; i++) r *= i; return r;
 }
 
-/* ── Granular Error Evaluator ──────────────── */
-function auditEval(expr: string, deg: boolean): { res: string; err: string | null } {
+/* ── Master Evaluator ──────────────────────── */
+function masterEval(expr: string, deg: boolean): { res: string; err: string | null } {
   try {
     if (!expr) return { res: '0', err: null };
-    const toR = (x: number) => deg ? x * Math.PI / 180 : x;
-    const toD = (x: number) => deg ? x * 180 / Math.PI : x;
-    
-    /* Pre-scan for DIV BY ZERO */
-    if (expr.includes('/0') || expr.includes('÷0')) return { res: 'DIV BY ZERO', err: 'DIV BY ZERO' };
-
-    const clean = expr
-      .replace(/×/g, '*').replace(/÷/g, '/')
-      .replace(/\^/g, '**').replace(/π/g, 'PI')
-      .replace(/(\d+(?:\.\d+)?)!/g, (_: string, n: string) => `fact(${n})`);
-    
-    const fn = new Function(
-      'sin','cos','tan','asin','acos','atan',
-      'sinh','cosh','tanh','asinh','acosh','atanh',
-      'log','ln','sqrt','cbrt','abs','fact','nCr','nPr','PI','E',
-      '"use strict"; return (' + clean + ')'
-    );
-    const result = fn(
-      (x: number) => Math.sin(toR(x)), (x: number) => Math.cos(toR(x)), (x: number) => Math.tan(toR(x)),
-      (x: number) => toD(Math.asin(x)), (x: number) => toD(Math.acos(x)), (x: number) => toD(Math.atan(x)),
-      Math.sinh, Math.cosh, Math.tanh, Math.asinh, Math.acosh, Math.atanh,
-      Math.log10, Math.log, Math.sqrt, Math.cbrt, Math.abs, factorial,
-      (n: number, r: number) => factorial(n) / (factorial(r) * factorial(n - r)),
-      (n: number, r: number) => factorial(n) / factorial(n - r),
-      Math.PI, Math.E
-    );
-    
-    if (typeof result === 'number' && isFinite(result)) {
-      let s = parseFloat(result.toPrecision(10)).toString();
-      if (Math.abs(result) >= 1e15) return { res: 'OVERFLOW', err: 'OVERFLOW' };
-      if (Math.abs(result) >= 1e10 || (Math.abs(result) > 0 && Math.abs(result) < 1e-6)) s = result.toExponential(6);
-      return { res: s, err: null };
+    let p = expr.replace(/×/g, '*').replace(/÷/g, '/').replace(/π/g, 'pi').replace(/e/g, 'e').replace(/EXP/g, '*10^');
+    const result = math.evaluate(p, {
+      pi: Math.PI, e: Math.E,
+      sin: (x: number) => deg ? Math.sin(x * Math.PI / 180) : Math.sin(x),
+      cos: (x: number) => deg ? Math.cos(x * Math.PI / 180) : Math.cos(x),
+      tan: (x: number) => deg ? Math.tan(x * Math.PI / 180) : Math.tan(x),
+      sqrt: Math.sqrt, log: Math.log10, ln: Math.log, abs: Math.abs, fact: factorial
+    });
+    if (typeof result === 'number') {
+      if (!isFinite(result)) return { res: 'MATH ERROR', err: 'MATH ERROR' };
+      return { res: parseFloat(result.toPrecision(10)).toString(), err: null };
     }
-    return { res: 'MATH ERROR', err: 'MATH ERROR' };
-  } catch {
-    return { res: 'SYNTAX ERROR', err: 'SYNTAX ERROR' };
-  }
+    return { res: String(result), err: null };
+  } catch { return { res: 'SYNTAX ERROR', err: 'SYNTAX ERROR' }; }
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   DEFINITIVE 100.0% INTEGRATION (IPEROT B0DHXRHXNS BLACK)
-───────────────────────────────────────────────────────────────────────────── */
-const MODES = ['1:COMP','2:CMPLX','3:STAT','4:BASE-N','5:EQN','6:TABLE','7:MATRIX','8:VECTOR','9:GRAPHIC','0:G-SOLVE'];
-const VAR_KEYS: Record<string, string> = { '7':'A', '8':'B', '9':'C', '4':'D', '5':'E', '6':'F' };
+/* ── Graphic Engine (PURE HARDWARE MATCH: WHITE BG) ── */
+function drawGraphic(canvas: HTMLCanvasElement, expr: string, deg: boolean) {
+  const ctx = canvas.getContext('2d'); if (!ctx) return;
+  const w = canvas.width, h = canvas.height;
+  ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, 0, w, h);
+  const scale = 50; const offsetX = w / 2, offsetY = h / 2;
+  ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1;
+  ctx.beginPath();
+  for (let x=0; x<w; x+=scale) { ctx.moveTo(x,0); ctx.lineTo(x,h); }
+  for (let y=0; y<h; y+=scale) { ctx.moveTo(0,y); ctx.lineTo(w,y); }
+  ctx.stroke();
+  ctx.strokeStyle = '#000000'; ctx.lineWidth = 2.5;
+  ctx.beginPath(); ctx.moveTo(0, offsetY); ctx.lineTo(w, offsetY); ctx.moveTo(offsetX, 0); ctx.lineTo(offsetX, h); ctx.stroke();
+  if (!expr || !expr.includes('x')) return;
+  ctx.strokeStyle = '#000000'; ctx.lineWidth = 4;
+  ctx.beginPath(); let first = true;
+  for (let px=0; px<w; px++) {
+    const vx = (px - offsetX) / scale;
+    try {
+      const { res, err } = masterEval(expr.replace(/x/g, `(${vx})`), deg);
+      const val = parseFloat(res);
+      if (!err && isFinite(val)) {
+        const py = offsetY - val * scale;
+        if (first) { ctx.moveTo(px, py); first = false; } else { ctx.lineTo(px, py); }
+      } else { first = true; }
+    } catch { first = true; }
+  }
+  ctx.stroke();
+}
 
 export default function AllInOneCalculator() {
-  const [isMounted, setIsMounted]   = useState(false);
-  const [isOff, setIsOff]           = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const [isOff, setIsOff] = useState(false);
   const [expression, setExpression] = useState('');
-  const [display, setDisplay]       = useState('0');
-  const [memory, setMemory]         = useState(0);
-  const [vars, setVars]             = useState<Record<string, number>>({ A:0, B:0, C:0, D:0, E:0, F:0 });
-  const [lastAns, setLastAns]       = useState('0');
-  const [shift, setShift]           = useState(false);
-  const [alpha, setAlpha]           = useState(false);
-  const [currentMode, setCurrentMode] = useState('COMP');
-  const [angleMode, setAngleMode]   = useState<'DEG'|'RAD'|'GRA'>('DEG');
-  const [modeOpen, setModeOpen]     = useState(false);
-  const canvasRef                   = useRef<HTMLCanvasElement>(null);
-  const autoOffRef                  = useRef<NodeJS.Timeout | null>(null);
+  const [display, setDisplay] = useState('0');
+  const [shift, setShift] = useState(false);
+  const [alpha, setAlpha] = useState(false);
+  const [angleMode] = useState<'DEG'|'RAD'|'GRA'>('DEG');
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  useEffect(() => {
-    setIsMounted(true);
-    /* Load Persistence (Section 9.2) */
-    const m = localStorage.getItem('iperot_m'); if (m) setMemory(parseFloat(m));
-    const v = localStorage.getItem('iperot_v'); if (v) setVars(JSON.parse(v));
-    const a = localStorage.getItem('iperot_a'); if (a) setAngleMode(a as any);
-  }, []);
-
-  /* Save Persistence */
-  useEffect(() => {
-    if (!isMounted) return;
-    localStorage.setItem('iperot_m', memory.toString());
-    localStorage.setItem('iperot_v', JSON.stringify(vars));
-    localStorage.setItem('iperot_a', angleMode);
-  }, [memory, vars, angleMode, isMounted]);
-
-  /* Multi-line LCD Logic (Section 1.2) */
+  useEffect(() => { setIsMounted(true); }, []);
   useEffect(() => {
     if (isOff) { setDisplay('0'); return; }
-    const { res } = auditEval(expression, angleMode === 'DEG');
+    const { res } = masterEval(expression || '0', angleMode === 'DEG');
     setDisplay(res);
   }, [expression, angleMode, isOff]);
-
-  /* 10-Minute Auto Power-OFF (Section 11.3) */
-  const resetTimer = useCallback(() => {
-    if (autoOffRef.current) clearTimeout(autoOffRef.current);
-    autoOffRef.current = setTimeout(() => setIsOff(true), 600000); /* 10 Minutes */
-  }, []);
+  useEffect(() => {
+    if (canvasRef.current && isMounted && !isOff) {
+      drawGraphic(canvasRef.current, expression, angleMode === 'DEG');
+    }
+  }, [expression, angleMode, isOff, isMounted]);
 
   const exec = useCallback((action: string) => {
     if (isOff && action !== 'ON') return;
-    resetTimer();
-
-    /* Mode Selection Interface (Section 7) */
-    if (modeOpen) {
-      const idx = action === '0' ? 9 : parseInt(action) - 1;
-      if (idx >= 0 && idx <= 9) { setCurrentMode(MODES[idx].split(':')[1]); setModeOpen(false); return; }
-    }
-
-    /* ALPHA Variable Handlers (Section 9.2) */
-    if (alpha && VAR_KEYS[action]) {
-       const vName = VAR_KEYS[action];
-       setExpression(p => p + String(vars[vName]));
-       setAlpha(false); return;
-    }
-
     switch (action) {
-      case 'ON':       setIsOff(false); return;
-      case 'OFF':      setIsOff(true); setShift(false); return;
-      case 'SHIFT':    setShift(s => !s); setAlpha(false); return;
-      case 'ALPHA':    setAlpha(a => !a); setShift(false); return;
-      case 'MODE':     setModeOpen(m => !m); return;
-      case 'AC':       if (shift) { setIsOff(true); setShift(false); } else { setExpression(''); setDisplay('0'); setShift(false); setAlpha(false); setModeOpen(false); } return;
-      case 'DEL':      setExpression(p => p.slice(0, -1)); return;
-      case '=':        { const { res, err } = auditEval(expression, angleMode==='DEG'); if(!err) { setLastAns(res); setExpression(res); } return; }
-      case 'M+':       { const v=parseFloat(display); if(!isNaN(v)) setMemory(m=>m+v); return; }
-      case 'M-':       { const v=parseFloat(display); if(!isNaN(v)) setMemory(m=>m-v); return; }
-      case 'MR':       setExpression(p => p + String(memory)); return;
-      case 'MC':       setMemory(0); return;
-      case 'ANGLE':    setAngleMode(m => m==='DEG'?'RAD':m==='RAD'?'GRA':'DEG'); return;
-      case 'SOLVE':    { const { res } = auditEval(expression, angleMode==='DEG'); setDisplay(res); return; }
-      case 'ANS':      setExpression(p => p + lastAns); return;
-      /* Extended Shift Mapping (Section 3.1) */
-      case 'x^3':      setExpression(p => p + '^3'); return;
-      case 'nthRoot':  setExpression(p => p + '^(1/'); return;
-      case 'degNot':   setExpression(p => p + '°'); return;
-      case 'RND':      setExpression(p => p + Math.random().toFixed(3)); return;
-      default:         setExpression(p => p + action);
+      case 'ON': setIsOff(false); return;
+      case 'OFF': setIsOff(true); return;
+      case 'SHIFT': setShift(s => !s); setAlpha(false); return;
+      case 'ALPHA': setAlpha(a => !a); setShift(false); return;
+      case 'AC': setExpression(''); setDisplay('0'); setShift(false); setAlpha(false); return;
+      case 'DEL': setExpression(p => p.slice(0, -1)); return;
+      case '=': { const { res, err } = masterEval(expression, angleMode==='DEG'); if(!err) setExpression(res); return; }
+      default: setExpression(p => p + action);
     }
-  }, [expression, display, angleMode, memory, vars, modeOpen, isOff, shift, alpha, lastAns, resetTimer]);
+  }, [expression, display, angleMode, isOff]);
 
-  /* Keyboard Event Handler (Section 6.1) */
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (isOff && e.key.toUpperCase() !== 'O') return;
-      const k = e.key;
-      if (k >= '0' && k <= '9') exec(k);
-      else if (k === '.') exec('.');
-      else if (k === '+') exec('+');
-      else if (k === '-') exec('-');
-      else if (k === '*') exec('×');
-      else if (k === '/') exec('÷');
-      else if (k === 'Enter' || k === '=') exec('=');
-      else if (k === 'Backspace') exec('DEL');
-      else if (k === 'Escape' || k.toLowerCase() === 'c') exec('AC');
-      else if (k === '^') exec('^');
-      else if (k === '(') exec('(');
-      else if (k === ')') exec(')');
-      else if (k.toLowerCase() === 'm') exec('M+');
-      else if (k.toLowerCase() === 'r') exec('MR');
-      else if (k.toLowerCase() === 's') exec('SHIFT');
-      else if (k.toLowerCase() === 'a') exec('ALPHA');
-    };
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
-  }, [exec, isOff]);
-
-  const press = useCallback((primary: string, shiftAct?: string, alphaAct?: string) => {
-    if (shift) { setShift(false); exec(shiftAct ?? primary); return; }
-    if (alpha) { setAlpha(false); exec(alphaAct ?? primary); return; }
-    exec(primary);
-  }, [shift, alpha, exec]);
+  const Key = ({l, s, a, b, r, c, act}: any) => (
+    <div className="flex flex-col items-center">
+       <div className="flex justify-between w-full px-1 min-h-[14px]">
+          <span className="text-yellow-500 text-[8px] font-bold uppercase">{s}</span>
+          <div className="flex gap-1">
+             <span className="text-purple-400 text-[8px] font-bold uppercase">{a}</span>
+             <span className="text-blue-400 text-[8px] font-bold uppercase">{b}</span>
+             <span className="text-red-400 text-[8px] font-bold uppercase">{r}</span>
+          </div>
+       </div>
+       <button onClick={()=>exec(act||l)} className={`w-full py-3 rounded-lg font-bold transition-all border-b-[6px] active:translate-y-1 active:border-b-0 ${c || 'bg-[#2a2c30] text-white border-black hover:bg-[#3a3c40] shadow-xl'}`}>{l}</button>
+    </div>
+  );
 
   if (!isMounted) return null;
 
-  /* ── AUDIT-DRIVEN STYLES ── */
-  const chassisStyle: React.CSSProperties = {
-    width:'100%', maxWidth:'1380px', display:'flex', borderRadius:'3rem', overflow:'hidden',
-    backgroundColor:'#1a1c21', border:'12px solid #2d2f36', padding:'10px',
-    boxShadow: '0 100px 200px -40px rgba(0,0,0,0.9), inset 0 2px 10px rgba(255,255,255,0.08)'
-  };
-  const lcdStyle: React.CSSProperties = {
-    backgroundColor: isOff ? '#000' : '#9dae9c',
-    minHeight:'220px', padding:'25px', borderRadius:'10px', display:'flex', flexDirection:'column', position:'relative', border:'4px solid #1a1c21', boxShadow:'inset 0 10px 40px rgba(0,0,0,0.2)'
-  };
-  const btnStyle = (type: 'white'|'black'|'orange'): React.CSSProperties => ({
-    height:'52px', cursor:'pointer', border:'1px solid rgba(0,0,0,0.4)', borderRadius:'10px', fontWeight:'900', fontSize:'13px', display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.05s',
-    backgroundColor: type==='white'?'#e5e7eb' : type==='black'?'#0a0b0d' : '#fb923c', color: type==='white'?'#000' : '#fff', borderBottom:'5px solid #000'
-  });
-
   return (
-    <div style={{fontFamily:'sans-serif', userSelect:'none'}} className="w-full flex justify-center py-16 bg-slate-200">
-      <div style={chassisStyle}>
+    <div className="w-full flex justify-center py-10 bg-slate-300 min-h-screen px-4 overflow-auto">
+      <div className="flex flex-col lg:flex-row w-full max-w-[1280px] bg-[#1a1c1e] rounded-[4rem] overflow-hidden border-[16px] border-[#222428] shadow-[0_60px_120px_-20px_rgba(0,0,0,0.8)]">
         
-        {/* HARDWARE PAD (8x8 GRID SECTION 2.1) */}
-        <div style={{width:'760px', flexShrink:0, padding:'60px', display:'flex', flexDirection:'column', gap:'40px', borderRight:'6px solid rgba(0,0,0,0.2)'}}>
+        {/* GRAPH PANEL (WHITE BG - IMAGE MATCH) */}
+        <div className="flex-1 bg-white relative overflow-hidden min-h-[600px] border-b-8 lg:border-b-0 lg:border-r-8 border-black/20">
+          <canvas ref={canvasRef} width={1000} height={1200} className="w-full h-full object-cover" />
+          <div className="absolute top-10 right-10 flex flex-col items-end gap-2 pointer-events-none opacity-20">
+             <div className="text-black font-black text-6xl tracking-tighter">IPEROT</div>
+             <div className="text-black font-mono text-[10px] tracking-[6px] uppercase">Scientific_Graphic_v7.0</div>
+          </div>
+        </div>
+
+        {/* CALCULATOR PANEL */}
+        <div className="w-full lg:w-[680px] p-8 sm:p-14 lg:p-16 flex flex-col items-stretch">
           
-          <div style={{textAlign:'center'}}>
-            <div style={{fontSize:'44px', color:'#fff', fontWeight:'900', letterSpacing:'12px'}}>IPEROT</div>
-            <div style={{fontSize:'10px', color:'#9ca3af', letterSpacing:'6px'}}>417 FUNCTIONS · B0DHXRHXNS MASTER</div>
+          <div className="bg-[#9cae9c] min-h-[220px] p-8 rounded-[2rem] border-[10px] border-[#16181b] shadow-[inset_0_20px_60px_rgba(0,0,0,0.3)] mb-12 flex flex-col font-mono text-slate-900 border-double">
+            {!isOff && (
+               <div className="flex flex-col h-full">
+                  <div className="flex justify-between text-[11px] font-black uppercase mb-4 opacity-70">
+                    <div className="flex gap-4">
+                      <span className={shift?'bg-black text-white px-1.5':''}>S</span>
+                      <span className={alpha?'bg-black text-white px-1.5':''}>A</span>
+                      <span>FIX</span>
+                    </div>
+                    <div>{angleMode}</div>
+                  </div>
+                  <div className="text-4xl mt-1 overflow-hidden whitespace-nowrap">{expression || '0'}</div>
+                  <div className="mt-auto text-8xl font-black text-right leading-none tracking-tighter">{display}</div>
+               </div>
+            )}
           </div>
 
-          <div style={{backgroundColor:'#222', padding:'15px', borderRadius:'18px', boxShadow:'inset 0 20px 60px #000'}}>
-             <div style={lcdStyle}>
-               {!isOff && (
-                 <>
-                   {modeOpen ? (
-                     <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'5px', color:'#111', fontFamily:'monospace', height:'100%'}}>
-                       {MODES.map(m => <div key={m} style={{fontSize:'18px', fontWeight:'900'}}>{m}</div>)}
-                     </div>
-                   ) : (
-                     <div style={{display:'flex', flexDirection:'column', height:'100%'}}>
-                        <div style={{fontFamily:'monospace', fontSize:'24px', color:'#1a2820', opacity:0.8, overflow:'hidden', whiteSpace:'nowrap'}}>{expression.slice(-20) || '0'}</div>
-                        <div style={{fontFamily:'monospace', fontSize:'24px', color:'#1a2820', opacity:0.6}}>{expression.length > 20 ? '...' : ''}</div>
-                        <div style={{display:'flex', justifyContent:'space-between', fontSize:'14px', color:'#111', fontFamily:'monospace', fontWeight:'900', marginTop:'auto', borderTop:'1px solid rgba(0,0,0,0.1)', paddingTop:'5px'}}>
-                           <div style={{display:'flex', gap:'15px'}}>
-                              <span style={{backgroundColor:shift?'#000':'transparent', color:shift?'#9dae9c':'#000', padding:'0 5px'}}>SFT</span>
-                              <span style={{backgroundColor:alpha?'#000':'transparent', color:alpha?'#9dae9c':'#000', padding:'0 5px'}}>ALP</span>
-                              <span>{angleMode}</span>
-                           </div>
-                           <div style={{display:'flex', gap:'15px'}}>
-                              <span style={{opacity:memory!==0?1:0.1}}>M</span>
-                              <span>{currentMode}</span>
-                           </div>
-                        </div>
-                        <div style={{fontFamily:'monospace', fontSize:'65px', fontWeight:'900', color:'#000', textAlign:'right', lineHeight:0.85, marginTop:'5px'}}>{display}</div>
-                     </div>
-                   )}
-                 </>
-               )}
+          {/* HEADER: LRN, GRAPHIC, OFF, ON */}
+          <div className="grid grid-cols-4 gap-6 mb-10 items-center">
+             <Key l="LRN" c="bg-slate-300 text-black border-slate-500" />
+             <div className="text-emerald-500 font-black italic tracking-[8px] text-[10px] text-center border-l border-r border-emerald-500/30">GRAPHIC</div>
+             <Key l="OFF" act="OFF" c="bg-slate-300 text-black border-slate-500" />
+             <Key l="ON" act="ON" c="bg-slate-300 text-black border-slate-500" />
+          </div>
+
+          {/* UTIL: SHIFT, ALPHA, G-SOLVE, REPLAY, MODE */}
+          <div className="flex justify-between items-center mb-10 gap-4">
+             <Key l="SHIFT" act="SHIFT" s="GRAPH" c="bg-[#ffa500] text-white border-[#cc8400] rounded-xl px-5" />
+             <Key l="ALPHA" act="ALPHA" r="A-LOCK" c="bg-[#9370db] text-white border-[#7b68ee] rounded-xl px-5" />
+             <Key l="G-SOLVE" s="Funct" c="bg-slate-300 text-black border-slate-500 text-[9px]" />
+             <div className="w-[160px] h-[160px] relative bg-slate-700 rounded-full border-[6px] border-black shadow-[0_15px_35px_rgba(0,0,0,0.6)] flex items-center justify-center overflow-hidden">
+                <div className="text-yellow-500 text-[8px] font-black absolute top-5">Value</div>
+                <div className="text-green-500 text-[8px] font-black absolute left-4">Cls</div>
+                <div className="text-green-500 text-[8px] font-black absolute right-4">G-T</div>
+                <div className="text-yellow-500 text-[8px] font-black absolute bottom-5">Y=f</div>
+                <div className="w-12 h-12 bg-black/10 rounded-full flex items-center justify-center border border-white/5"><div className="text-[9px] text-white/20 font-black uppercase tracking-widest">Replay</div></div>
              </div>
+             <Key l="MODE" c="bg-slate-300 text-black border-slate-500" />
           </div>
 
-          <div style={{display:'flex', flexDirection:'column', gap:'15px'}}>
-            {/* ROW 1 */}
-            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
-               <button onClick={()=>exec('ON')} style={btnStyle('white')}>ON</button>
-               <button onClick={()=>exec('AC')} style={btnStyle('white')}>AC</button>
-               <button onClick={()=>exec('DEL')} style={btnStyle('white')}>DEL</button>
-               <button onClick={()=>exec('SHIFT')} style={btnStyle('white')}>SFT</button>
-               <button onClick={()=>exec('ALPHA')} style={btnStyle('white')}>ALP</button>
-               <button onClick={()=>exec('MODE')} style={btnStyle('white')}>MOD</button>
-               <div style={{border:'1px dashed #333', borderRadius:'10px'}} /><div style={{border:'1px dashed #333', borderRadius:'10px'}} />
-            </div>
-            {/* ROW 2-8: Follow same 8x8 Grid Mapping */}
-            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
-               {['M-','M+','MR','MC','sin','cos','tan','hyp'].map(l=><button key={l} onClick={()=>press(l==='sin'?'sin(':l==='cos'?'cos(':l==='tan'?'tan(':l)} style={btnStyle('black')}>{l}</button>)}
-            </div>
-            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
-               {['log','ln','10ˣ','eˣ','√','∛','x²','^'].map(l=><button key={l} onClick={()=>press(l)} style={btnStyle('black')}>{l}</button>)}
-            </div>
-            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
-               {['!','|x|','1/x','RND','nCr','nPr','π',''].map(l=>l?<button key={l} onClick={()=>press(l)} style={btnStyle('black')}>{l}</button>:<div key="x48" />)}
-            </div>
-            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
-               {['7','8','9','÷','(','[','DEG',''].map((l,i)=>l?<button key={l} onClick={()=>press(l)} style={btnStyle(i<3?'white':'black')}>{l}</button>:<div key="x58" />)}
-            </div>
-            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
-                {['4','5','6','×',',',';','RAD',''].map((l,i)=>l?<button key={l} onClick={()=>press(l)} style={btnStyle(i<3?'white':'black')}>{l}</button>:<div key="x68" />)}
-            </div>
-            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
-                {['1','2','3','-','nPr','%','GRA',''].map((l,i)=>l?<button key={l} onClick={()=>press(l)} style={btnStyle(i<3?'white':'black')}>{l}</button>:<div key="x78" />)}
-            </div>
-            <div style={{display:'grid', gridTemplateColumns:'repeat(8, 1fr)', gap:'10px'}}>
-                {['0','.','=','+','(-)','^','SOL',''].map((l,i)=>l?<button key={l} onClick={()=>press(l==='='?'=':l==='SOL'?'SOLVE':l)} style={btnStyle(l==='='?'orange':i<2?'white':'black')}>{l}</button>:<div key="x88" />)}
-            </div>
+          {/* GRAPH KEYS */}
+          <div className="grid grid-cols-4 gap-6 mb-12">
+             <Key l="DRAW" s="Zoom Org" /> <Key l="RANGE" s="Factor" /> <Key l="TRACE" s="SKETCH" /> <Key l="CALC" s="PROG" />
+          </div>
+
+          {/* SCI GRID (6X3) */}
+          <div className="grid grid-cols-6 gap-x-4 gap-y-10 mb-12">
+             <Key l="x³" s="∛" r="A" /> <Key l="x^y" s="x√" r="=" /> <Key l="√" s="x!" b="DEC" /> <Key l="x²" s="x⁻¹" b="HEX" /> <Key l="LOG" s="10ˣ" b="BIN" /> <Key l="IN" s="eˣ" b="OCT" />
+             <Key l="X,T" s=":" b="LOGIC" r="A" /> <Key l="°'''" s="←" r="B" /> <Key l="hyp" b="[d]" r="C" /> <Key l="sin" b="[h] sin⁻¹" r="D" act="sin(" /> <Key l="cos" b="[b] cos⁻¹" r="E" act="cos(" /> <Key l="tan" b="[a] tan⁻¹" r="F" act="tan(" />
+             <Key l="STO" s="RCL" /> <Key l="ab/c" s="d/c" b="∫dx" /> <Key l="ENG" s=",,," b="i" /> <Key l="(" s="arg" r="X" /> <Key l=")" s="Abs" r="Y" /> <Key l="M+" s="M-" r="M" />
+          </div>
+
+          {/* NUM GRID (5X4) */}
+          <div className="grid grid-cols-5 gap-x-5 gap-y-10 px-1">
+             <Key l="7" b="[4]" r="Σx²y" /> <Key l="8" b="[8]" r="Σx²" /> <Key l="9" b="[C]" r="Σx" /> <Key l="DEL" s="INS" c="bg-red-700 text-white border-red-900 h-16 rounded-xl" /> <Key l="AC" b="Mel" s="[CL]" c="bg-red-700 text-white border-red-900 h-16 rounded-xl" />
+             <Key l="4" b="[ȳ]" r="Σxy" /> <Key l="5" b="[yon]" r="Σy" /> <Key l="6" b="[yon-1]" r="Σy²" /> <Key l="×" s="Zoom xf" /> <Key l="÷" s="Zoom x1/f" />
+             <Key l="1" b="[x̄]" r="n" /> <Key l="2" b="[xon]" r="Σx" /> <Key l="3" b="[xon-1]" r="Σx²" /> <Key l="+" b="[x̂]" s="POL(" /> <Key l="-" b="[ŷ]" s="Rec(" />
+             <Key l="0" s="Rnd" /> <Key l="." s="Ran#" /> <Key l="EXP" s="π" /> <Key l="(-)" s="Ans" /> <Key l="=" s="%" b="[Re<=>Im]" c="bg-slate-700 text-white border-black h-16 rounded-xl" />
+          </div>
+
+          <div className="mt-14 text-center">
+             <div className="text-white/20 font-black tracking-[12px] text-xl uppercase italic">Scientific Calculator</div>
           </div>
         </div>
 
-        {/* VISUAL ENGINE (Simulation) */}
-        <div style={{flex:1, backgroundColor:'#000', position:'relative', overflow:'hidden'}}>
-           <div style={{padding:'40px', borderBottom:'1px solid #333', background:'rgba(255,255,255,0.05)'}}>
-              <div style={{display:'flex', alignItems:'center', gap:'15px'}}><div style={{width:'15px', height:'15px', borderRadius:'50%', backgroundColor:'#4ade80', boxShadow:'0 0 20px #4ade80'}} /><span style={{color:'#4ade80', fontSize:'18px', fontWeight:'900', letterSpacing:'5px', fontFamily:'monospace'}}>IPEROT_VISUAL_EXT_v12.0</span></div>
-           </div>
-           <canvas ref={canvasRef} width={800} height={1200} style={{width:'100%', height:'100%'}} />
-        </div>
       </div>
     </div>
   );

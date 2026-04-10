@@ -39,8 +39,12 @@ export default function NumberToWords() {
     const n = parseInt(number);
     if (isNaN(n)) return 'Invalid number';
     if (n === 0) return asCurrency ? 'Zero Rupees Only' : 'Zero';
-    const w = system === 'intl' ? toIntl(n) : toLakh(n);
-    return asCurrency ? `Rupees ${w.trim()} Only` : w.trim();
+    
+    const prefix = n < 0 ? 'Minus ' : '';
+    const abs = Math.abs(n);
+    const w = system === 'intl' ? toIntl(abs) : toLakh(abs);
+    
+    return asCurrency ? `Rupees ${prefix}${w.trim()} Only` : `${prefix}${w.trim()}`;
   }, [number, system, asCurrency]);
 
   const copy = () => { navigator.clipboard.writeText(r); setCopied(true); setTimeout(() => setCopied(false), 2000); };

@@ -137,6 +137,7 @@ export default function BMICalculator() {
                     <span>18.5</span>
                     <span>25.0</span>
                     <span>30.0</span>
+                    <span>40.0+</span>
                   </div>
                   <div className="h-3 w-full bg-gray-200 relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-300 via-green-400 via-yellow-300 to-red-400 opacity-80" />

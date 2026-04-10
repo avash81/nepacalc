@@ -8,8 +8,7 @@ export default function PregnancyDueDateCalculator() {
   const [lmp, setLmp] = useState(new Date().toISOString().split('T')[0]);
 
   const r = useMemo(() => {
-    const d = new Date(lmp);
-    d.setMonth(d.getMonth() + 9); d.setDate(d.getDate() + 7);
+    const d = new Date(new Date(lmp).getTime() + 280 * 86400000);
     const diff = d.getTime() - new Date().getTime();
     const daysLeft = Math.max(0, Math.ceil(diff / 86400000));
     const weeksPregnant = Math.floor((280 - daysLeft) / 7);

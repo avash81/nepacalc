@@ -20,7 +20,34 @@ export default function MatrixCalc() {
     }
     const det = m[0][0]*(m[1][1]*m[2][2]-m[1][2]*m[2][1]) - m[0][1]*(m[1][0]*m[2][2]-m[1][2]*m[2][0]) + m[0][2]*(m[1][0]*m[2][1]-m[1][1]*m[2][0]);
     const trace = m[0][0]+m[1][1]+m[2][2];
-    return { det, trace, inverse: null };
+    
+    let inverse: number[][] | null = null;
+    if (det !== 0) {
+      const c = [
+        [
+          (m[1][1]*m[2][2] - m[1][2]*m[2][1]),
+          -(m[1][0]*m[2][2] - m[1][2]*m[2][0]),
+          (m[1][0]*m[2][1] - m[1][1]*m[2][0])
+        ],
+        [
+          -(m[0][1]*m[2][2] - m[0][2]*m[2][1]),
+          (m[0][0]*m[2][2] - m[0][2]*m[2][0]),
+          -(m[0][0]*m[2][1] - m[0][1]*m[2][0])
+        ],
+        [
+          (m[0][1]*m[1][2] - m[0][2]*m[1][1]),
+          -(m[0][0]*m[1][2] - m[0][2]*m[1][0]),
+          (m[0][0]*m[1][1] - m[0][1]*m[1][0])
+        ]
+      ];
+      // Transpose of cofactor matrix (adjugate) / determinant
+      inverse = [
+        [c[0][0]/det, c[1][0]/det, c[2][0]/det],
+        [c[0][1]/det, c[1][1]/det, c[2][1]/det],
+        [c[0][2]/det, c[1][2]/det, c[2][2]/det]
+      ];
+    }
+    return { det, trace, inverse };
   }, [matrix, size]);
 
   const upd = (r: number, c: number, v: number) => {
@@ -90,14 +117,14 @@ export default function MatrixCalc() {
             <span className="text-xl font-black font-mono text-[#006600]">{results.trace}</span>
           </div>
 
-          {size === 2 && results.inverse && (
+          {results.inverse && (
             <div className="bg-white border border-[var(--border)]">
               <div className="px-4 py-3 bg-[var(--bg-surface)] border-b border-[var(--border)]">
                 <h3 className="text-[11px] font-bold uppercase text-[var(--text-main)]">Inverse Matrix A⁻¹</h3>
               </div>
-              <div className="p-4 grid grid-cols-2 gap-2">
+              <div className="p-4 grid gap-2" style={{ gridTemplateColumns: `repeat(${size}, 1fr)` }}>
                 {results.inverse.map((row, r) => row.map((v, c) => (
-                  <div key={`${r}-${c}`} className="p-3 bg-[var(--bg-surface)] border border-[var(--border)] text-center font-mono font-black text-sm text-[var(--primary)]">
+                  <div key={`${r}-${c}`} className="p-3 bg-[var(--bg-surface)] border border-[var(--border)] text-center font-mono font-black text-sm text-[var(--primary)] overflow-hidden text-ellipsis">
                     {v.toFixed(4)}
                   </div>
                 )))}

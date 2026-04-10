@@ -22,7 +22,7 @@ export default function CGPACalculator() {
     const next = [...semesters]; next[i][field] = val; setSemesters(next);
   };
 
-  const letter = r.cgpa >= 3.7 ? 'A+' : r.cgpa >= 3.3 ? 'A' : r.cgpa >= 3.0 ? 'A−' : r.cgpa >= 2.7 ? 'B+' : r.cgpa >= 2.3 ? 'B' : r.cgpa >= 2.0 ? 'B−' : 'Below B−';
+  const letter = r.cgpa >= 3.6 ? 'A (Distinction)' : r.cgpa >= 3.2 ? 'A− (Excellent)' : r.cgpa >= 2.8 ? 'B+ (Very Good)' : r.cgpa >= 2.4 ? 'B (Good)' : r.cgpa >= 2.0 ? 'C+ (Satisfactory)' : 'Pass/Fail';
 
   return (
     <CalculatorLayout

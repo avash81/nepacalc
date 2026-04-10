@@ -143,6 +143,10 @@ export default function SavingsCalculator() {
               <span>{((result.interest / result.fv) * 100).toFixed(0)}% interest</span>
             </div>
           </div>
+          <div className="p-4 bg-[var(--bg-subtle)] border border-[var(--border)]">
+            <p className="text-[11px] text-[var(--text-secondary)] italic mb-1">Estimates assume beginning-of-month deposits (Annuity Due).</p>
+            <p className="text-[11px] text-[var(--text-secondary)] italic">Calculated with compound interest compounded monthly.</p>
+          </div>
         </div>
       }
       faqSection={

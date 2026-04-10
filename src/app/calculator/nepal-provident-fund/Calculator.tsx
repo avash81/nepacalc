@@ -23,8 +23,8 @@ export default function NepalPFCalculator() {
 
   return (
     <CalculatorLayout
-      title="Nepal PF & Gratuity Calculator"
-      description="Calculate your accumulated Provident Fund and Gratuity under Nepal Labor Act 2074. Includes monthly compound interest projections."
+      title="Nepal PF (EPF) & Gratuity Calculator"
+      description="Calculate your accumulated Provident Fund (EPF) and Gratuity under Nepal Labor Act 2074. Differentiates between traditional EPF and the private sector Social Security Fund (SSF)."
       category={{ label: 'Nepal Tools', href: '/calculator/category/nepal' }}
       leftPanel={
         <div className="space-y-6">

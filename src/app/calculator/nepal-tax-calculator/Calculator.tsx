@@ -27,7 +27,7 @@ export default function GrowthTaxCalculator() {
   return (
     <CalculatorLayout
       title="Nepal Capital Gains Tax Calculator"
-      description="Calculate Capital Gains Tax (CGT) on NEPSE shares and real estate in Nepal. Based on FY 2081/82 rules with short-term and long-term rates."
+      description="Calculate Capital Gains Tax (CGT) on NEPSE shares and real estate in Nepal. Updated for FY 2082/83 with verified short-term and long-term rates."
       category={{ label: 'Nepal Tools', href: '/calculator/category/nepal' }}
       leftPanel={
         <div className="space-y-6">
@@ -52,7 +52,7 @@ export default function GrowthTaxCalculator() {
           {/* CGT Rate Table */}
           <div className="bg-white border border-[var(--border)]">
             <div className="px-4 py-3 bg-[var(--bg-surface)] border-b border-[var(--border)]">
-              <h3 className="text-[11px] font-bold uppercase text-[var(--text-main)]">CGT Rates (FY 2081/82)</h3>
+              <h3 className="text-[11px] font-bold uppercase text-[var(--text-main)]">CGT Rates (FY 2082/83)</h3>
             </div>
             {RULES.map((row, i) => (
               <div key={i} className={`px-4 py-3 border-b border-[var(--border)] flex justify-between last:border-0 ${(!r.isShortTerm && i===1) || (r.isShortTerm && i===0) ? 'bg-amber-50' : ''}`}>
@@ -94,7 +94,7 @@ export default function GrowthTaxCalculator() {
       faqSection={
         <CalcFAQ faqs={[
           { question: 'What is CGT on NEPSE shares?', answer: 'Individual investors pay 7.5% on short-term gains (<1 year) and 5% on long-term gains (≥1 year) in the Nepal Stock Exchange.' },
-          { question: 'What are real estate CGT rates in Nepal?', answer: 'As per FY 2081/82 budget: 7.5% if sold within 5 years, 5% if held for 5+ years.' },
+          { question: 'What are real estate CGT rates in Nepal?', answer: 'As per FY 2081/82 and 2082/83 budget: 7.5% if sold within 5 years, 5% if held for 5+ years.' },
         ]} />
       }
     />

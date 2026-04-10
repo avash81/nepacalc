@@ -46,19 +46,24 @@ export function safeCalculateEMI(
       totalInterest = totalInterestAmount;
     } else {
       // Reducing balance formula
-      const numerator = monthlyRate * Math.pow(1 + monthlyRate, months);
-      const denominator = Math.pow(1 + monthlyRate, months) - 1;
+      if (monthlyRate === 0) {
+        emi = principal / months;
+        totalInterest = 0;
+      } else {
+        const numerator = monthlyRate * Math.pow(1 + monthlyRate, months);
+        const denominator = Math.pow(1 + monthlyRate, months) - 1;
 
-      if (!isFinite(numerator) || !isFinite(denominator)) {
-        return { 
-          success: false, 
-          error: 'Calculation resulted in invalid number. Please check inputs.' 
-        };
+        if (!isFinite(numerator) || !isFinite(denominator)) {
+          return { 
+            success: false, 
+            error: 'Calculation resulted in invalid number. Please check inputs.' 
+          };
+        }
+
+        emi = (principal * numerator) / denominator;
+        const totalAmount = emi * months;
+        totalInterest = totalAmount - principal;
       }
-
-      emi = (principal * numerator) / denominator;
-      const totalAmount = emi * months;
-      totalInterest = totalAmount - principal;
     }
 
     // Check for reasonable results

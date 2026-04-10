@@ -93,7 +93,7 @@ export default function AttendanceCalculator() {
                 <span className="text-sm font-black text-red-700">{r.needed} more</span>
               </div>
             )}
-            {r.status === 'safe' && (
+            {r.current >= target && (
               <div className="p-5 bg-green-50 border border-green-200 flex justify-between">
                 <span className="text-[11px] font-bold uppercase text-[#006600]">Can Still Miss</span>
                 <span className="text-sm font-black text-[#006600]">{r.canMiss} classes</span>

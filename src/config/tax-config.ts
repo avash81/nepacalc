@@ -37,8 +37,8 @@ export const TAX_YEARS = {
 export const DEDUCTIONS = {
   life_insurance: {
     name: 'Life Insurance Premium',
-    limit: 100000,
-    description: 'Max ₹1 lakh per year',
+    limit: 40000,
+    description: 'Max NPR 40,000 per year (IRD Nepal)',
   },
   home_loan_interest: {
     name: 'Home Loan Interest',

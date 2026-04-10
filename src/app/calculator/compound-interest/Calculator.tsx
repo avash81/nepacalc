@@ -30,7 +30,8 @@ export default function CompoundInterestCalculator() {
     const schedule = Array.from({ length: debY }, (_, i) => {
       const yr = i + 1;
       const bal = debP * Math.pow(1 + r / n, n * yr);
-      return { year: yr, interest: bal - debP, balance: bal };
+      const prevBal = debP * Math.pow(1 + r / n, n * (yr - 1));
+      return { year: yr, yearlyInterest: bal - prevBal, balance: bal };
     });
     return { amount, interest, schedule };
   }, [debP, debR, debY, compounding]);
@@ -131,7 +132,7 @@ export default function CompoundInterestCalculator() {
                   {result.schedule.map(row => (
                     <tr key={row.year} className="border-b border-[var(--border)] hover:bg-[var(--bg-surface)]">
                       <td className="px-3 py-2 font-bold text-[var(--text-secondary)]">{row.year}</td>
-                      <td className="px-3 py-2 text-right font-mono text-[#006600] text-[11px]">+{fmt(row.interest)}</td>
+                      <td className="px-3 py-2 text-right font-mono text-[#006600] text-[11px]">+{fmt(row.yearlyInterest)}</td>
                       <td className="px-3 py-2 text-right font-mono font-black text-[var(--primary)] text-[11px]">{fmt(row.balance)}</td>
                     </tr>
                   ))}

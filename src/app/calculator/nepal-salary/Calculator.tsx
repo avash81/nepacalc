@@ -7,6 +7,7 @@ import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { TAX_YEARS } from '@/config/tax-config';
 import { Wallet, Landmark, TrendingUp, Info, PieChart } from 'lucide-react';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+import { calculateNepalIncomeTax } from '@/utils/math/country-rules/nepal';
 
 const DEFAULT_STATE = {
   fiscalYear: '2082/83' as keyof typeof TAX_YEARS,
@@ -39,7 +40,6 @@ export default function NepalSalaryCalculator() {
     const annualTaxableIncome = (grossMonthly - totalMonthlyDeductions) * 12;
 
     // Tax Logic (Using centralized config via country-rules)
-    const { calculateNepalIncomeTax } = require('@/utils/math/country-rules/nepal');
     const taxResult = calculateNepalIncomeTax(annualTaxableIncome, married, ssf);
 
     const annualTax = taxResult.totalTax;
@@ -113,7 +113,7 @@ export default function NepalSalaryCalculator() {
                         </div>
                         <div className="text-left">
                            <div className="text-sm font-black uppercase text-gray-900 dark:text-gray-100">SSF Contributor</div>
-                           <div className="text-[9px] text-gray-400 font-bold uppercase tracking-widest">11% Combined Contribution</div>
+                           <div className="text-[9px] text-gray-400 font-bold uppercase tracking-widest leading-tight">Emp: 11% + Er: 20% (31% Total)</div>
                         </div>
                      </div>
                      <div className={`w-12 h-6 rounded-full relative transition-all ${ssf ? 'bg-emerald-600' : 'bg-gray-300'}`}>
