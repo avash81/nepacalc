@@ -108,7 +108,9 @@ export default function AllInOneCalculator() {
     </div>
   );
 
-  if (!isMounted) return null;
+  const NumBtn = ({label, shift: sL, alpha: aL, act, c}: any) => (
+    <Key l={label} s={sL} r={aL} act={act} c={c || 'bg-white text-black border-slate-400 hover:bg-slate-100 shadow-lg h-16 rounded-xl'} />
+  );
 
   return (
     <div className="w-full flex justify-center py-10 bg-slate-300 min-h-screen px-4 overflow-auto">

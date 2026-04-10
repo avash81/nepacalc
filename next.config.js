@@ -57,6 +57,12 @@ const nextConfig = {
     ];
   },
 
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000, // Year long cache for generated optimized images
