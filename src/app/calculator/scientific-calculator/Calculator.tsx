@@ -186,6 +186,16 @@ export default function ScientificCalculator() {
     </div>
   );
 
+  const NumBtn = ({label, shift: sL, alpha: aL, act, sA, aA, cls}: any) => (
+    <div className="flex flex-col items-center group">
+       <div className="flex gap-2 min-h-[14px]">
+          {sL && <span className="text-yellow-400 text-[9px] font-bold uppercase">{sL}</span>}
+          {aL && <span className="text-pink-300 text-[9px] font-bold uppercase">{aL}</span>}
+       </div>
+       <button onClick={()=>press(act||label, sA, aA)} className={`w-full py-2 rounded-md transition-all font-bold text-[13px] border-b-4 active:border-b-0 active:translate-y-[2px] ${cls || 'bg-white text-black border-slate-300 hover:bg-slate-100 shadow-md'}`}>{label}</button>
+    </div>
+  );
+
   return (
     <div className="w-full flex justify-center py-10 bg-slate-200 min-h-screen px-4 overflow-auto">
       <div className="flex flex-col lg:flex-row w-full max-w-[1240px] bg-[#1e2024] rounded-[4rem] overflow-hidden border-[16px] border-[#2d2f34] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] relative">

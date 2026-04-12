@@ -143,3 +143,6 @@ button:active {
 .sec-label-yellow { @apply text-[#eab308] text-[9px] font-black uppercase tracking-tighter block mb-0.5; }
 .sec-label-pink { @apply text-[#db2777] text-[9px] font-black uppercase tracking-tighter block mb-0.5; }
 .sec-label-blue { @apply text-[#0ea5e9] text-[9px] font-black uppercase tracking-tighter block mb-0.5; }
+
+/* iOS safe-area bottom inset — fixes overlap with iPhone home indicator */
+.pb-safe { padding-bottom: env(safe-area-inset-bottom, 12px); }

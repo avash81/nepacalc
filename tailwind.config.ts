@@ -15,7 +15,11 @@ const config: Config = {
           accent:       'var(--accent)',
           'accent-dark':'var(--accent-dark)',
         },
-        'nepal-red': '#DC143C',
+        'nepal-red':        '#DC143C',
+        'google-blue':      '#1A73E8',
+        'google-blue-light':'#E8F0FE',
+        'google-border':    '#DADCE0',
+        'google-gray':      '#F1F3F4',
       },
       gridTemplateColumns: {
         '7': 'repeat(7, minmax(0, 1fr))',

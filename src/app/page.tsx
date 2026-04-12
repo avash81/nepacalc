@@ -16,7 +16,7 @@ export default function HomePage() {
           <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-10 flex flex-col items-center">
             <div className="text-center mb-6 sm:mb-8 relative z-10 w-full max-w-[800px]">
               <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 mb-3 tracking-tighter leading-tight uppercase">
-                Nepal's #1 All-in-One CalcPro Suite
+                Nepal&apos;s #1 All-in-One CalcPro Suite
               </h1>
               <p className="text-slate-400 text-xs sm:text-sm font-medium tracking-wide">Scientific • Graphing • Unit Conversion • Statistics • Financial</p>
             </div>
