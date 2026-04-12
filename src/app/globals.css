@@ -45,6 +45,18 @@
     @apply bg-[var(--bg-page)] text-[var(--text-secondary)] font-sans antialiased text-[14px];
     font-family: var(--font-inter), 'Inter', ui-sans-serif, system-ui, sans-serif;
   }
+
+  /* Issue 6 fix: globally suppress number spinner arrows and ensure consistent
+     numeric appearance on iOS/Android. inputMode="decimal" must still be set
+     per input — this handles the visual/UX side globally. */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 
 @layer components {

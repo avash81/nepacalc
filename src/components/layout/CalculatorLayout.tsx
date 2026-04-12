@@ -30,7 +30,7 @@ export function CalculatorLayout({
   const catLink = typeof category === 'object' ? category.href : categoryHref;
 
   return (
-    <div className="min-h-screen bg-white font-sans antialiased">
+    <div className="min-h-screen bg-white font-sans antialiased pb-24 lg:pb-0">
       {/* 1. Slim Navy Breadcrumb/Header */}
       <div className="bg-[#083366] text-white/80 py-2 border-b border-white/5">
         <div className="hp-container flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider">
@@ -51,7 +51,7 @@ export function CalculatorLayout({
       <main className="hp-container py-8">
         {/* 2. Professional Header Section */}
         <header className="mb-10 border-b border-[#CCCCCC] pb-8">
-          <h1 className="text-3xl font-black text-[#006600] tracking-tight mb-2">
+          <h1 className="text-2xl sm:text-3xl font-black text-[#006600] tracking-tight mb-2">
             {title}
           </h1>
           <p className="text-[14px] text-[#333333] leading-relaxed max-w-4xl">

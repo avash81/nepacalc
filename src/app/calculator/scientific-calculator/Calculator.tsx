@@ -197,8 +197,75 @@ export default function ScientificCalculator() {
   );
 
   return (
-    <div className="w-full flex justify-center py-10 bg-slate-200 min-h-screen px-4 overflow-auto">
-      <div className="flex flex-col lg:flex-row w-full max-w-[1240px] bg-[#1e2024] rounded-[4rem] overflow-hidden border-[16px] border-[#2d2f34] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] relative">
+    <div className="w-full min-h-screen pb-24 lg:pb-0">
+
+      {/* ── MOBILE LAYOUT (phones < lg) ─────────────────────────────────── */}
+      <div className="lg:hidden flex flex-col bg-slate-200 min-h-screen px-4 py-6">
+        <div className="text-center mb-4">
+          <div className="text-slate-700 font-black italic text-2xl tracking-tighter">CASIO <span className="text-xs font-normal not-italic tracking-widest opacity-60">SCIENTIFIC</span></div>
+          <div className="mt-2 inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
+            🖥️ Full scientific mode available on desktop
+          </div>
+        </div>
+
+        {/* Mobile Display */}
+        <div className="bg-[#151c14] rounded-2xl border-4 border-black p-5 mb-4 font-mono">
+          <div className="flex justify-between text-[10px] text-green-500/60 font-bold uppercase mb-3">
+            <span className={shift ? 'text-yellow-400 font-black' : ''}>SHIFT</span>
+            <span className={alpha ? 'text-pink-400 font-black' : ''}>ALPHA</span>
+            <span>{angleMode}</span>
+          </div>
+          <div className="text-green-400 text-sm overflow-hidden whitespace-nowrap mb-1 opacity-70">{expressions[activeIndex] || '0'}</div>
+          <div className="text-green-400 text-4xl font-black text-right leading-none">{display}</div>
+        </div>
+
+        {/* Mobile Key Rows */}
+        <div className="bg-[#1e2024] rounded-3xl p-5 flex flex-col gap-3">
+          {/* Utility row */}
+          <div className="grid grid-cols-4 gap-2">
+            {[
+              ['SHIFT','bg-amber-500 text-white border-amber-800','SHIFT'],
+              ['ALPHA','bg-purple-600 text-white border-purple-900','ALPHA'],
+              ['DEL','bg-red-600 text-white border-red-900','DEL'],
+              ['AC','bg-red-600 text-white border-red-900','AC'],
+            ].map(([l,c,a]) => (
+              <button key={l} onClick={() => exec(a)} className={`py-3 rounded-lg font-black text-xs border-b-4 active:border-b-0 active:translate-y-[2px] transition-all ${c}`}>{l}</button>
+            ))}
+          </div>
+          {/* Trig row */}
+          <div className="grid grid-cols-4 gap-2">
+            {[['sin','sin('],['cos','cos('],['tan','tan('],['√','sqrt(']].map(([l,a]) => (
+              <button key={l} onClick={() => exec(a)} className="py-3 rounded-lg font-bold text-sm bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0 active:translate-y-[2px]">{l}</button>
+            ))}
+          </div>
+          {/* Log / power row */}
+          <div className="grid grid-cols-4 gap-2">
+            {[['log','log('],['ln','ln('],['x²','x²'],['( )','(']].map(([l,a]) => (
+              <button key={l} onClick={() => exec(a)} className="py-3 rounded-lg font-bold text-sm bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0 active:translate-y-[2px]">{l}</button>
+            ))}
+          </div>
+          {/* Number pad */}
+          {[[7,8,9],[4,5,6],[1,2,3]].map(row => (
+            <div key={row[0]} className="grid grid-cols-5 gap-2">
+              {row.map(n => (
+                <button key={n} onClick={() => exec(String(n))} className="col-span-1 py-4 rounded-lg font-black text-lg bg-white text-black border-b-4 border-slate-300 active:border-b-0 active:translate-y-[2px]">{n}</button>
+              ))}
+              {row[0] === 7 && <><button onClick={() => exec('÷')} className="py-4 rounded-lg font-black text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">÷</button><button onClick={() => exec('×')} className="py-4 rounded-lg font-black text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">×</button></>}
+              {row[0] === 4 && <><button onClick={() => exec('-')} className="py-4 rounded-lg font-black text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">−</button><button onClick={() => exec('+')} className="py-4 rounded-lg font-black text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">+</button></>}
+              {row[0] === 1 && <><button onClick={() => exec('.')} className="py-4 rounded-lg font-black text-lg bg-white text-black border-b-4 border-slate-300 active:border-b-0">.</button><button onClick={() => exec('=')} className="py-4 rounded-lg font-black text-lg bg-blue-600 text-white border-b-4 border-blue-900 active:border-b-0">=</button></>}
+            </div>
+          ))}
+          <div className="grid grid-cols-3 gap-2 mt-1">
+            <button onClick={() => exec('0')} className="col-span-1 py-4 rounded-lg font-black text-lg bg-white text-black border-b-4 border-slate-300 active:border-b-0">0</button>
+            <button onClick={() => exec('(')} className="py-4 rounded-lg font-bold text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">(</button>
+            <button onClick={() => exec(')')} className="py-4 rounded-lg font-bold text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">)</button>
+          </div>
+        </div>
+      </div>
+
+      {/* ── DESKTOP LAYOUT (≥ lg only) ────────────────────────────────────── */}
+      <div className="hidden lg:flex justify-center py-10 bg-slate-200 px-4 overflow-auto">
+        <div className="flex flex-row w-full max-w-[1240px] bg-[#1e2024] rounded-[4rem] overflow-hidden border-[16px] border-[#2d2f34] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] relative">
         
         {/* HARWARE INTERFACE */}
         <div className="w-full lg:w-[600px] p-8 sm:p-14 lg:p-16 border-b-8 lg:border-b-0 lg:border-r-8 border-black/20 flex flex-col relative z-10">
@@ -298,6 +365,8 @@ export default function ScientificCalculator() {
         </div>
 
       </div>
+      </div>  {/* end desktop inner */}
+      </div>  {/* end desktop wrapper */}
     </div>
   );
 }

@@ -10,7 +10,7 @@ export function Footer() {
     <footer className="bg-slate-950 border-t border-slate-900 py-12 mt-12 text-slate-400">
       <div className="max-w-7xl mx-auto px-10">
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-10 gap-x-12 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-10 gap-x-4 md:gap-x-12 mb-12">
           
           <div className="col-span-2 lg:col-span-1 border-r border-slate-900 pr-8">
             <div className="mb-4">
@@ -54,7 +54,7 @@ export function Footer() {
 
           <div>
             <h3 className="text-white font-black mb-4 uppercase tracking-widest text-[11px]">Academic</h3>
-            <ul className="space-y-3 text-[12px) font-bold text-slate-400">
+            <ul className="space-y-3 text-[12px] font-bold text-slate-400">
               <li><Link href="/calculator/gpa" className="hover:text-blue-400 transition-colors">GPA Suite</Link></li>
               <li><Link href="/calculator/cgpa" className="hover:text-blue-400 transition-colors">CGPA Master</Link></li>
               <li><Link href="/calculator/age-calculator" className="hover:text-blue-400 transition-colors">Chronicle Age</Link></li>

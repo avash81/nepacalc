@@ -7,11 +7,11 @@ export function MobileNav() {
   const pathname = usePathname();
 
   const tabs = [
-    { name: 'Home', icon: Home, path: '/' },
-    { name: 'Search', icon: '/calculator', isSearch: true }, // Placeholder path for search trigger
-    { name: 'Nepal', icon: Globe, path: '/calculator/nepal-income-tax', isSpecial: true },
-    { name: 'Tools', icon: Grid, path: '/calculator' },
-    { name: 'Blog', icon: BookOpen, path: '/blog' },
+    { name: 'Home',   icon: Home,     path: '/' },
+    { name: 'Search', icon: Search,   path: '/calculator', isSearch: true },
+    { name: 'Nepal',  icon: Globe,    path: '/calculator/nepal-income-tax', isSpecial: true },
+    { name: 'Tools',  icon: Grid,     path: '/calculator' },
+    { name: 'Blog',   icon: BookOpen, path: '/blog' },
   ];
 
   return (

@@ -77,14 +77,17 @@ export default function MatrixCalc() {
           {/* Matrix grid */}
           <div className="p-6 bg-white border border-[var(--border)]">
             <div className="text-[10px] font-bold uppercase text-[var(--text-secondary)] mb-4">Enter Matrix Values</div>
-            <div className={`grid gap-2`} style={{ gridTemplateColumns: `repeat(${size}, 1fr)` }}>
-              {Array.from({ length:size }).map((_, r) =>
-                Array.from({ length:size }).map((_, c) => (
-                  <input key={`${r}-${c}`} type="number" value={matrix[r][c]}
-                    onChange={e => upd(r, c, Number(e.target.value))}
-                    className={inputC} />
-                ))
-              )}
+            {/* overflow-x-auto prevents layout break on 375px phones with 3×3 matrices */}
+            <div className="overflow-x-auto">
+              <div className={`grid gap-2`} style={{ gridTemplateColumns: `repeat(${size}, minmax(60px, 1fr))` }}>
+                {Array.from({ length:size }).map((_, r) =>
+                  Array.from({ length:size }).map((_, c) => (
+                    <input key={`${r}-${c}`} type="number" inputMode="decimal" value={matrix[r][c]}
+                      onChange={e => upd(r, c, Number(e.target.value))}
+                      className={inputC} />
+                  ))
+                )}
+              </div>
             </div>
           </div>
 
