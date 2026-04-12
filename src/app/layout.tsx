@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://calcpro.com.np'),
-  title: "CalcPro Nepal | Free Online Calculators",
+  title: "CalcPro.NP | Free Online Calculators",
   description: "75+ free online calculators for finance, health, science, and more. Built for Nepal and the world.",
 };
 

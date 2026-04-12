@@ -76,7 +76,7 @@ export function Footer() {
         <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-col md:flex-row items-center gap-4">
             <div className="text-white text-[11px] font-black uppercase tracking-widest">
-              © {currentYear} Calcly.com
+              © {currentYear} CalcPro.NP
             </div>
             <div className="hidden md:block w-px h-3 bg-slate-800 mx-1"></div>
             <div className="flex items-center gap-4">

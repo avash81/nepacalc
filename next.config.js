@@ -62,9 +62,9 @@ const nextConfig = {
     minimumCacheTTL: 31536000, // Year long cache for generated optimized images
     remotePatterns: [
       {
-        // Allow the platform administrator to use ANY CDN for blog image slots
+        // Allow images only from securely hosted locations
         protocol: 'https',
-        hostname: '**',
+        hostname: 'firebasestorage.googleapis.com',
       },
     ],
   },

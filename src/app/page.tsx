@@ -12,7 +12,7 @@ export default function HomePage() {
       
       <div className="min-h-screen bg-white font-sans antialiased text-[14px]">
         {/* 1. Interactive Command Center - Isolated Client Island */}
-        <header className="pt-8 sm:pt-12 pb-16 sm:pb-24 border-b border-slate-100 bg-white relative overflow-hidden">
+        <section className="pt-8 sm:pt-12 pb-16 sm:pb-24 border-b border-slate-100 bg-white relative overflow-hidden">
           <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-10 flex flex-col items-center">
             <div className="text-center mb-6 sm:mb-8 relative z-10 w-full max-w-[800px]">
               <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 mb-3 tracking-tighter leading-tight uppercase">
@@ -29,7 +29,7 @@ export default function HomePage() {
           {/* Decorative Background Elements */}
           <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-50/40 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-slate-50 rounded-full blur-3xl pointer-events-none" />
-        </header>
+        </section>
 
         {/* 2. Calculator Directory - High-Precision Server Component Rendering */}
         <main className="max-w-[1400px] mx-auto px-4 sm:px-8 py-10 sm:py-16">

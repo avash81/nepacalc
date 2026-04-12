@@ -20,7 +20,7 @@ interface JsonLdProps {
 
 export function JsonLd({ type, name, description, url, faqs, category = 'UtilitiesApplication' }: JsonLdProps) {
   const base = 'https://calcly.com';
-  const siteName = 'Calcly';
+  const siteName = 'CalcPro.NP';
 
   const schemas: Record<string, object> = {
     organization: {

@@ -56,7 +56,7 @@ export function Navbar() {
           {/* Left: Logo + Desktop Links */}
           <div className="flex items-center gap-6">
             <Link href="/" className="hover:opacity-80 transition-opacity">
-               <span className="text-lg font-black tracking-tight">Calcly</span>
+               <span className="text-lg font-black tracking-tight">CalcPro.NP</span>
             </Link>
             
             <div className="hidden md:flex items-center gap-1 h-11">
@@ -150,7 +150,7 @@ export function Navbar() {
           </div>
 
           <div className="p-6 border-t border-[var(--border)] text-center text-[var(--text-muted)] bg-[var(--bg-page)]">
-            © 2026 Calcly — Built for Precision
+            © 2026 CalcPro.NP — Built for Precision
           </div>
         </div>
       </aside>

@@ -15,7 +15,7 @@ export function Logo({ className = "", theme = "indigo" }: { className?: string,
       
       {/* BRAND TEXT */}
       <span className={`text-xl font-black tracking-tight transition-colors font-sans ${isWhite ? 'text-white' : 'text-omni-indigo-dark group-hover:text-omni-indigo'}`}>
-        Calcly<span className={isWhite ? 'text-blue-400' : 'text-omni-amber font-bold'}>.com</span>
+        CalcPro<span className={isWhite ? 'text-blue-400' : 'text-omni-amber font-bold'}>.NP</span>
       </span>
     </div>
   );

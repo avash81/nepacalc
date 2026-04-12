@@ -195,10 +195,8 @@ export default function ScientificCalculator() {
        <button onClick={()=>press(act||label, sA, aA)} className={`w-full py-2 rounded-md transition-all font-bold text-[13px] border-b-4 active:border-b-0 active:translate-y-[2px] ${cls || 'bg-white text-black border-slate-300 hover:bg-slate-100 shadow-md'}`}>{label}</button>
     </div>
   );
-
   return (
     <div className="w-full min-h-screen pb-24 lg:pb-0">
-
       {/* ── MOBILE LAYOUT (phones < lg) ─────────────────────────────────── */}
       <div className="lg:hidden flex flex-col bg-slate-200 min-h-screen px-4 py-6">
         <div className="text-center mb-4">
@@ -365,8 +363,7 @@ export default function ScientificCalculator() {
         </div>
 
       </div>
-      </div>  {/* end desktop inner */}
-      </div>  {/* end desktop wrapper */}
+      </div>
     </div>
   );
 }

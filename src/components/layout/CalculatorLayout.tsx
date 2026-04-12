@@ -44,7 +44,7 @@ export function CalculatorLayout({
             </>
           )}
           <span className="opacity-30">/</span>
-          <span className="text-white truncate">{title}</span>
+          <span className="text-white truncate" title={title}>{title}</span>
         </div>
       </div>
 
@@ -109,7 +109,7 @@ export function CalculatorLayout({
       <footer className="mt-24 py-12 bg-[#F8F8F8] border-t border-[#CCCCCC]">
         <div className="hp-container text-center">
            <p className="text-[12px] text-[#666666] font-bold uppercase tracking-widest">
-             © 2026 Calcly — Precision Professional Utility Suite
+             © 2026 CalcPro.NP — Precision Professional Utility Suite
            </p>
         </div>
       </footer>

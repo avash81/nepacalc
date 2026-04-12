@@ -27,7 +27,7 @@ export function CalcWrapper({
   children, formula,
 }: Props) {
   return (
-    <div className="min-h-screen bg-[#FDFDFD] dark:bg-gray-950 transition-colors duration-300">
+    <div lang={isNepal ? 'ne' : 'en'} className="min-h-screen bg-[#FDFDFD] dark:bg-gray-950 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 py-6 sm:py-10">
 
         {/* ── BREADCRUMBS & NAVIGATION ──────────────────────────── */}
@@ -57,7 +57,7 @@ export function CalcWrapper({
 
         {/* ── HEADER ────────────────────────────────────────────── */}
         <header className="mb-12 max-w-3xl">
-          <h1 className="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white mb-6 tracking-tight leading-tight">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-6 tracking-tight leading-tight">
             {title}
           </h1>
           <p className="text-gray-500 dark:text-gray-400 text-xl leading-relaxed font-medium">
@@ -137,7 +137,7 @@ export function CalcWrapper({
           
           <div className="flex flex-col sm:flex-row items-center justify-between gap-8 pt-8 pb-16">
             <div className="text-[10px] font-black text-gray-300 dark:text-gray-700 uppercase tracking-[0.4em]">
-              &copy; 2026 CALCPRO NEPAL &middot; AUTOMATED BY CORTEX
+              &copy; 2026 CALCPRO.NP &middot; AUTOMATED BY CORTEX
             </div>
             <div className="flex gap-8">
                {['About', 'Contact', 'Terms', 'Privacy'].map(link => (
