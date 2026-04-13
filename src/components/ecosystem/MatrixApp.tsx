@@ -233,8 +233,8 @@ export function MatrixApp() {
                                 type="text"
                                 value={cell}
                                 onChange={(e) => updateMatrixCell(m.name, rIdx, cIdx, e.target.value)}
-                                className="w-14 h-10 border border-slate-300 rounded bg-white text-center font-serif text-lg text-slate-800 shadow-inner focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-bold"
-                                placeholder="0"
+                                className="w-10 h-10 md:w-14 md:h-12 border border-slate-300 rounded bg-white text-center font-serif text-sm md:text-lg text-slate-800 shadow-inner focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-bold"
+                                placeholder="..."
                               />
                            ))}
                         </div>

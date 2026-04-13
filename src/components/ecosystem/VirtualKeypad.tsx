@@ -85,7 +85,7 @@ export function VirtualKeypad({ mode, onInput, onAction }: VirtualKeypadProps) {
 
   const renderKey = (key: any, i: number) => {
     // Style logic adhering to Equaly thematic patterns (Slate & Blue)
-    let className = "flex items-center justify-center font-bold text-lg md:text-xl rounded shadow-sm select-none transition-colors border ";
+    let className = "flex items-center justify-center font-bold text-base md:text-xl rounded shadow-sm select-none transition-colors border p-1 md:p-2 ";
     
     if (key.bg) {
        className += key.bg;

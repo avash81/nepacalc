@@ -14,7 +14,7 @@ interface Equation {
   visible: boolean;
 }
 
-function Surface({ equation, resolution = 64 }: { equation: string; resolution?: number }) {
+function Surface({ equation, resolution = 40 }: { equation: string; resolution?: number }) {
   const meshRef = useRef<THREE.Mesh>(null);
 
   const geometry = useMemo(() => {
@@ -80,7 +80,7 @@ export function ThreeDApp() {
   };
 
   return (
-    <div className="w-full h-[calc(100vh-50px)] flex flex-col md:row overflow-hidden bg-white">
+    <div className="w-full min-h-[calc(100vh-50px)] md:h-[calc(100vh-50px)] flex flex-col md:flex-row overflow-hidden bg-white">
       
       {/* Sidebar: Equation List */}
       <div className="w-full md:w-[320px] shrink-0 border-r border-slate-200 bg-slate-50 flex flex-col z-20 shadow-lg">
