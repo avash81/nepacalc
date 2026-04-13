@@ -18,7 +18,7 @@ const MODES = [
 ] as const;
 
 export default function PercentageCalculator() {
-  const [state, setState] = useLocalStorage('calcpro_percentage_v2', DEFAULT_STATE);
+  const [state, setState] = useLocalStorage('equaly_percentage_v2', DEFAULT_STATE);
   const { mode, num, den, initial, final } = state;
   const updateState = (u: Partial<typeof DEFAULT_STATE>) => setState({ ...state, ...u });
 

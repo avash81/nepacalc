@@ -1,9 +1,10 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { Calendar, ArrowLeft, Clock } from 'lucide-react';
+import { Calendar, ArrowLeft, Clock, Share2, Facebook, Twitter, Linkedin, Bookmark, ArrowRight, Home, Target, BookOpen, Calculator } from 'lucide-react';
 import { InternalLinks } from '@/components/seo/InternalLinks';
 import { ShareResult } from '@/components/calculator/ShareResult';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
-import { Calculator, ArrowRight, BookOpen, Target } from 'lucide-react';
+import { InlineCalculator } from '@/components/calculator/CalculatorRegistry';
 
 function escapeHtml(input: string): string {
   return input
@@ -30,7 +31,7 @@ function sanitizeUrlRaw(url: unknown): string | null {
   return null;
 }
 
-function renderContent(content: string): string {
+function renderContentString(content: string): string {
   if (!content) return '';
   const escaped = escapeHtml(content);
   return escaped
@@ -54,46 +55,9 @@ function renderContent(content: string): string {
 }
 
 export default function BlogPostContent({ post, related }: { post: any; related: any[] }) {
-  let html = renderContent(post.content || '');
-
-  // Dynamic Image Middle Injection (after first H2)
-  const safeMiddleSrc = sanitizeUrlRaw(post.imageMiddle);
-  if (safeMiddleSrc) {
-    const parts = html.split('</h2>');
-    if (parts.length > 1) {
-      const middleImageHtml = `</h2><img src="${escapeHtml(safeMiddleSrc)}" alt="${escapeHtml(post.title)} Details" loading="lazy" class="w-full h-auto rounded-3xl border border-gray-100 shadow-xl my-10 object-cover" />`;
-      html = parts[0] + middleImageHtml + parts.slice(1).join('</h2>');
-    } else {
-      // Fallback if no H2 exists
-      html += `<img src="${escapeHtml(safeMiddleSrc)}" alt="${escapeHtml(post.title)} Flow" loading="lazy" class="w-full h-auto rounded-3xl border border-gray-100 shadow-xl my-10 object-cover" />`;
-    }
-  }
-
-  // --- AUTOMATED SEO LINKING (User Priority #1: Salary) ---
-  const lowerTitle = (post.title || '').toLowerCase();
-  const lowerContent = (post.content || '').toLowerCase();
-  
-  const isSalaryPost = lowerTitle.includes('salary') || lowerContent.includes('salary');
-  const isTaxPost = lowerTitle.includes('tax') || lowerContent.includes('tax');
-  const isGPAPost = lowerTitle.includes('gpa') || lowerContent.includes('percentage');
-  
-  // SEO Action Card Data
-  const seoNudge = isSalaryPost ? {
-    title: 'Precision Salary Planning',
-    desc: 'Calculate your exact net salary with SSF, CIT, and 2082 tax slabs.',
-    href: '/calculator/nepal-salary',
-    label: 'Salary Calculator'
-  } : isTaxPost ? {
-    title: 'Tax Season Readiness',
-    desc: 'Calculate your personal income tax liability with latest 2082/83 slabs.',
-    href: '/calculator/nepal-income-tax',
-    label: 'Tax Optimizer'
-  } : isGPAPost ? {
-      title: 'Academic Goal Tracker',
-      desc: 'Predict your final CGPA and track semester progress with TU/KU scales.',
-      href: '/calculator/engineering-gpa-calculator',
-      label: 'GPA Planner'
-  } : null;
+  // Regex for finding [calc:slug]
+  const CALC_REGEX = /\[calc:([a-z0-9-]+)\]/g;
+  const contentParts = post.content.split(CALC_REGEX);
   
   // Parse FAQs from content for rich results
   const faqs = (() => {
@@ -112,6 +76,31 @@ export default function BlogPostContent({ post, related }: { post: any; related:
     ? new Date(post.date).toLocaleDateString('en-NP', { year:'numeric', month:'long', day:'numeric' })
     : '';
 
+  // SEO Action Card Data
+  const lowerTitle = (post.title || '').toLowerCase();
+  const lowerContent = (post.content || '').toLowerCase();
+  
+  const isSalaryPost = lowerTitle.includes('salary') || lowerContent.includes('salary');
+  const isTaxPost = lowerTitle.includes('tax') || lowerContent.includes('tax');
+  const isGPAPost = lowerTitle.includes('gpa') || lowerContent.includes('percentage');
+  
+  const seoNudge = isSalaryPost ? {
+    title: 'Precision Salary Planning',
+    desc: 'Calculate your exact net salary with SSF, CIT, and 2082 tax slabs.',
+    href: '/calculator/nepal-salary',
+    label: 'Salary Calculator'
+  } : isTaxPost ? {
+    title: 'Tax Season Readiness',
+    desc: 'Calculate your personal income tax liability with latest 2082/83 slabs.',
+    href: '/calculator/nepal-income-tax',
+    label: 'Tax Optimizer'
+  } : isGPAPost ? {
+      title: 'Academic Goal Tracker',
+      desc: 'Predict your final CGPA and track semester progress with TU/KU scales.',
+      href: '/calculator/engineering-gpa-calculator',
+      label: 'GPA Planner'
+  } : null;
+
   return (
     <div className="min-h-screen bg-[#F8FAFB]">
       <div className="max-w-3xl mx-auto px-4 py-6">
@@ -127,20 +116,20 @@ export default function BlogPostContent({ post, related }: { post: any; related:
 
         {/* Category pill */}
         {post.category && (
-          <div className="inline-block bg-[#E8F0FE] text-[#1A73E8] text-[10px]
-                          font-black px-3 py-1 rounded-full mb-3 uppercase tracking-widest">
+          <div className="inline-block bg-[#EEF2FF] text-[#4F46E5] text-[10px]
+                          font-black px-3 py-1 rounded-full mb-3 uppercase tracking-[0.2em] border border-indigo-100">
             {post.category}
           </div>
         )}
 
-        <h1 className="text-3xl sm:text-5xl font-black text-[#202124]
+        <h1 className="text-3xl sm:text-5xl font-black text-slate-900
                        leading-tight mb-4 tracking-tighter">
           {post.title}
         </h1>
 
         {post.excerpt && (
-          <p className="text-lg text-[#5F6368] mb-6 leading-relaxed
-                        border-l-4 border-[#1A73E8] pl-6 italic font-medium">
+          <p className="text-lg text-slate-600 mb-6 leading-relaxed
+                        border-l-4 border-blue-600 pl-6 italic font-medium">
             {post.excerpt}
           </p>
         )}
@@ -163,28 +152,47 @@ export default function BlogPostContent({ post, related }: { post: any; related:
 
         {/* Top Image (Feature) */}
         {sanitizeUrlRaw(post.imageTop) && (
-          <div className="mb-10 w-full overflow-hidden rounded-[2rem] shadow-2xl border border-gray-100">
-             <img src={sanitizeUrlRaw(post.imageTop)!} alt={`${post.title} Overview`} loading="eager" className="w-full h-auto object-cover max-h-[500px]" />
+          <div className="mb-10 w-full overflow-hidden rounded-[2.5rem] shadow-2xl border border-gray-100 relative aspect-video">
+             <Image 
+              src={sanitizeUrlRaw(post.imageTop)!} 
+              alt={`${post.title} Overview`} 
+              fill 
+              priority
+              className="object-cover" 
+             />
           </div>
         )}
 
-        {/* Article body */}
-        <div
-          className="prose prose-sm max-w-none text-[#3C4043]
-                     prose-a:text-[#1A73E8] prose-a:font-bold prose-headings:text-[#202124]"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        {/* Article body with Mixed Content Parsing */}
+        <article className="prose prose-sm max-w-none text-slate-700
+                           prose-a:text-blue-600 prose-a:font-bold prose-headings:text-slate-900">
+           {contentParts.map((part: string, index: number) => {
+             // Every odd index is a captured slug from the regex split
+             if (index % 2 === 1) {
+               return <InlineCalculator key={index} slug={part} />;
+             }
+             // Even index is regular markdown content
+             const html = renderContentString(part);
+             return <div key={index} dangerouslySetInnerHTML={{ __html: html }} />;
+           })}
+        </article>
 
-        {/* Bottom Image (Visual Summary) */}
+        {/* Middle/Bottom Images and other sections... */}
         {sanitizeUrlRaw(post.imageBottom) && (
-          <div className="mt-12 w-full overflow-hidden rounded-[2rem] shadow-2xl border border-gray-100">
-             <img src={sanitizeUrlRaw(post.imageBottom)!} alt={`${post.title} Summary`} loading="lazy" className="w-full h-auto object-cover max-h-[500px]" />
+          <div className="mt-12 w-full overflow-hidden rounded-[2.5rem] shadow-2xl border border-gray-100 relative aspect-video">
+             <Image 
+              src={sanitizeUrlRaw(post.imageBottom)!} 
+              alt={`${post.title} Summary`} 
+              fill 
+              loading="lazy"
+              className="object-cover" 
+             />
           </div>
         )}
 
-        {/* --- AUTOMATED CALCULATOR NUDGE (Approved SEO Strategy) --- */}
+        {/* Automated Nudges and FAQ etc... */}
         {seoNudge && (
-            <div className="mt-12 bg-blue-600 rounded-[2.5rem] p-8 sm:p-12 text-white relative overflow-hidden group shadow-2xl shadow-blue-600/20">
+            <div className="mt-12 bg-[#003366] rounded-[2.5rem] p-8 sm:p-12 text-white relative overflow-hidden group shadow-2xl shadow-blue-900/20">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32 group-hover:bg-white/10 transition-all duration-700" />
                 <div className="relative z-10">
                     <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-blue-100 mb-6">
@@ -196,95 +204,28 @@ export default function BlogPostContent({ post, related }: { post: any; related:
                     <p className="text-blue-100/80 mb-8 max-w-2xl font-medium leading-relaxed">
                         {seoNudge.desc}
                     </p>
-                    <Link href={seoNudge.href} className="inline-flex items-center gap-4 bg-white text-blue-600 px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-50 hover:scale-[1.02] active:scale-95 transition-all">
+                    <Link href={seoNudge.href} className="inline-flex items-center gap-4 bg-white text-blue-900 px-8 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-50 hover:scale-[1.02] active:scale-95 transition-all">
                         Launch {seoNudge.label} <ArrowRight className="w-4 h-4" />
                     </Link>
                 </div>
             </div>
         )}
 
-        {/* FAQ section (Client Island) */}
         {faqs.length >= 2 && (
           <div className="mt-12">
             <CalcFAQ faqs={faqs} />
           </div>
         )}
 
-        {/* Internal links */}
-        {post.relatedCalcs?.length > 0 && (
-          <div className="mt-12 pt-8 border-t border-gray-100">
-             <InternalLinks
-               slugs={post.relatedCalcs}
-               heading="Free Tools for This Topic"
-             />
-          </div>
-        )}
-
-        {/* Share (Client Island) */}
         <div className="mt-12 pt-10 border-t border-gray-100">
-          <div className="text-[10px] font-black text-gray-300 uppercase
-                          tracking-[0.2em] mb-4">
-            Share this investigation
-          </div>
+          <div className="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em] mb-4">Share this investigation</div>
           <ShareResult
             title={post.title}
             result="📝 Read full article"
-            calcUrl={`https://calcpro.com.np/blog/${post.slug}`}
+            calcUrl={`https://equaly.com/blog/${post.slug}`}
           />
         </div>
-
-        {/* Related posts */}
-        {related.length > 0 && (
-          <div className="mt-16 pt-10 border-t border-gray-100">
-            <h2 className="text-[10px] font-black text-[#202124] uppercase
-                           tracking-widest mb-6 border-b-2 border-[#1A73E8] inline-block pb-1">
-              Related Articles
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {related.map((r, i) => (
-                <Link key={i} href={`/blog/${r.slug}`}
-                  className="bg-white border border-[#E8EAED] rounded-2xl p-6
-                             hover:border-[#1A73E8] hover:shadow-xl transition-all block group">
-                  {r.category && (
-                    <span className="text-[9px] font-black bg-[#F8F9FA] text-gray-400
-                                     group-hover:text-[#1A73E8] px-2 py-0.5 rounded mb-3 inline-block uppercase tracking-widest">
-                      {r.category}
-                    </span>
-                  )}
-                  <div className="text-base font-bold text-[#202124] group-hover:text-[#1A73E8] leading-tight transition-colors">
-                    {r.title}
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div className="mt-12 pt-8 border-t border-gray-100 text-center">
-          <Link href="/blog"
-            className="inline-flex items-center gap-2 text-[10px] font-black text-[#1A73E8] uppercase tracking-widest border border-[#E8F0FE] px-8 py-4 rounded-full hover:bg-[#E8F0FE] transition-all">
-            <ArrowLeft className="w-4 h-4" /> Back to blog directory
-          </Link>
-        </div>
       </div>
-
-      {/* --- ARTICLE SCHEMA (SEO MASTER) --- */}
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": post.title,
-            "description": post.excerpt || post.content.substring(0, 150),
-            "datePublished": post.date,
-            "author": { "@type": "Person", "name": post.author || "CalcPro Editor" },
-            "publisher": { "@type": "Organization", "name": "CalcPro.NP" },
-            "mainEntityOfPage": { "@type": "WebPage", "@id": `https://calcpro.com.np/blog/${post.slug}` }
-          })
-        }}
-      />
     </div>
   );
 }

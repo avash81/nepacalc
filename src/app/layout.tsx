@@ -8,8 +8,8 @@ import { MobileNav } from "@/components/layout/MobileNav";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://calcpro.com.np'),
-  title: "CalcPro.NP | Free Online Calculators",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://equaly.com'),
+  title: "Equaly | Free Online Calculators",
   description: "75+ free online calculators for finance, health, science, and more. Built for Nepal and the world.",
 };
 

@@ -1,5 +1,5 @@
 /**
- * @fileoverview useDebounce hook — CalcPro.NP
+ * @fileoverview useDebounce hook — Equaly
  *
  * Delays updating a value until after a period of inactivity.
  * Prevents expensive recalculations on every keystroke.

@@ -31,17 +31,21 @@ export default function MortgageCalculator() {
       category={{ label: 'Finance', href: '/calculator/category/finance' }}
       leftPanel={
         <div className="space-y-6">
-          <div className="space-y-2">
-            <div className="flex justify-between">
-              <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Home Price</label>
-              <span className="text-[11px] font-black text-[var(--primary)]">{fmt(pPrice)}</span>
-            </div>
-            <input type="range" min={1000000} max={50000000} step={100000} value={pPrice} onChange={e => setPPrice(Number(e.target.value))} className="w-full accent-[#083366]" />
-          </div>
+          <ValidatedInput 
+            label="Home Price (NPR)" 
+            value={pPrice} 
+            onChange={setPPrice} 
+            min={100000} 
+            max={500000000} 
+            step={100000} 
+            prefix="NPR" 
+            required 
+            withSlider 
+          />
 
           <div className="grid grid-cols-2 gap-4">
-            <ValidatedInput label="Down Payment (%)" value={downPercent} onChange={setDown} min={0} max={100} suffix="%" />
-            <ValidatedInput label="Interest Rate (%)" value={rate} onChange={setRate} min={1} max={30} step={0.1} suffix="%" />
+            <ValidatedInput label="Down Payment (%)" value={downPercent} onChange={setDown} min={0} max={100} suffix="%" withSlider />
+            <ValidatedInput label="Interest Rate (%)" value={rate} onChange={setRate} min={1} max={30} step={0.1} suffix="%" withSlider />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -52,10 +56,10 @@ export default function MortgageCalculator() {
                 {[5,10,15,20,25,30].map(y => <option key={y} value={y}>{y} Years</option>)}
               </select>
             </div>
-            <ValidatedInput label="Annual Tax (%)" value={taxRate} onChange={setTaxRate} min={0} max={5} step={0.1} suffix="%" />
+            <ValidatedInput label="Annual Tax (%)" value={taxRate} onChange={setTaxRate} min={0} max={5} step={0.1} suffix="%" withSlider />
           </div>
 
-          <ValidatedInput label="Annual Insurance (NPR)" value={insurance} onChange={setInsurance} min={0} prefix="NPR" />
+          <ValidatedInput label="Annual Insurance (NPR)" value={insurance} onChange={setInsurance} min={0} max={500000} step={5000} prefix="NPR" withSlider />
         </div>
       }
       rightPanel={

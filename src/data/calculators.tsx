@@ -32,6 +32,9 @@ export const CALCULATORS: Calculator[] = [
   { id: 'nepal-home-loan', slug: 'nepal-home-loan', name: 'Home Loan (Nepal)', icon: '🏠', description: 'Home loan EMI for Nepal banks.', category: 'nepal', isNepal: true },
   { id: 'nepal-provident-fund', slug: 'nepal-provident-fund', name: 'Provident Fund', icon: '💰', description: 'EPF retirement calculations.', category: 'nepal', isNepal: true },
   { id: 'nepal-tax-calculator', slug: 'nepal-tax-calculator', name: 'Generic Tax Calc', icon: '📜', description: 'Generic Nepal tax rules.', category: 'nepal', isNepal: true },
+  { id: 'nepal-tds', slug: 'nepal-tds-calculator', name: 'Nepal TDS', icon: '💸', description: 'Calculate TDS for Nepal.', category: 'nepal', isNepal: true, isNew: true },
+  { id: 'nepse-bonus-tax', slug: 'nepse-bonus-tax', name: 'NEPSE Bonus Tax', icon: '📈', description: 'Tax on dividends and bonus shares.', category: 'nepal', isNepal: true, isNew: true },
+  { id: 'see-gpa', slug: 'see-gpa', name: 'SEE GPA', icon: '🎓', description: 'Nepal SEE GPA calculator.', category: 'nepal', isNepal: true, isNew: true },
 
   // ==========================================
   // FINANCE & BANKING PILLAR
@@ -55,6 +58,9 @@ export const CALCULATORS: Calculator[] = [
   { id: 'engineering-gpa-calculator', slug: 'engineering-gpa-calculator', name: 'Engineering GPA', icon: '⚙️', description: 'Stem GPA calculator.', category: 'education' },
   { id: 'marks-needed', slug: 'marks-needed', name: 'Final Grade Target', icon: '📝', description: 'Find what you need on the final.', category: 'education' },
   { id: 'attendance', slug: 'attendance', name: 'Attendance Calc', icon: '✅', description: 'Track class attendance %.', category: 'education' },
+  { id: 'area-calculator', slug: 'area-calculator', name: 'Area Calculator', icon: '📏', description: 'Calculate area for 2D shapes.', category: 'education', isNew: true },
+  { id: 'decimal-to-fraction', slug: 'decimal-to-fraction', name: 'Decimal to Fraction', icon: '➗', description: 'Convert decimals precisely.', category: 'education', isNew: true },
+  { id: 'simple-calculator', slug: 'simple-calculator', name: 'Basic Calculator', icon: '🔢', description: 'Fast arithmetic tool.', category: 'education', isNew: true },
   
   { id: 'scientific-calculator', slug: 'scientific-calculator', name: 'Scientific Engine', icon: '🧮', description: 'High-precision scientific engine.', category: 'education', isHot: true },
   { id: 'linear-solver', slug: 'linear-solver', name: 'Linear Equations', icon: '📐', description: 'Solve simultaneous linear equations.', category: 'education', isNew: true },
@@ -95,6 +101,8 @@ export const CALCULATORS: Calculator[] = [
   { id: 'word-counter', slug: 'word-counter', name: 'Word & Character', icon: '📝', description: 'Live typing metrics.', category: 'conversion' },
   { id: 'tip-calculator', slug: 'tip-calculator', name: 'Tip & Split Bill', icon: '🍽️', description: 'Wait staff tip percentage.', category: 'conversion' },
   { id: 'discount-calculator', slug: 'discount-calculator', name: 'Store Discount Calc', icon: '🛍️', description: 'Sale markup percentages.', category: 'conversion' },
+  { id: 'paint-cost', slug: 'paint-cost', name: 'Paint Cost', icon: '🎨', description: 'Estimate painting costs.', category: 'conversion', isNew: true },
+  { id: 'solar-requirement', slug: 'solar-requirement', name: 'Solar Calculator', icon: '☀️', description: 'Solar power needs.', category: 'conversion', isNew: true },
 
   // ==========================================
   // HEALTH & FITNESS PILLAR
@@ -106,7 +114,9 @@ export const CALCULATORS: Calculator[] = [
   { id: 'momo-calorie-counter', slug: 'momo-calorie-counter', name: 'Momo Calories!', icon: '🥟', description: 'Nepal standard dumpling calc.', category: 'health' },
   { id: 'ideal-weight', slug: 'ideal-weight', name: 'Ideal Weight', icon: '🧍', description: 'Healthy weight charts.', category: 'health' },
   { id: 'water-intake', slug: 'water-intake', name: 'Water Hydration', icon: '💧', description: 'Daily fluid requirements.', category: 'health' },
-  { id: 'pregnancy-due-date', slug: 'pregnancy-due-date', name: 'Pregnancy Due Date', icon: '👶', description: 'Maternity scheduling.', category: 'health' }
+  { id: 'pregnancy-due-date', slug: 'pregnancy-due-date', name: 'Pregnancy Due Date', icon: '👶', description: 'Maternity scheduling.', category: 'health' },
+  { id: 'bmi-child', slug: 'bmi-child', name: 'BMI Child', icon: '🧒', description: 'BMI for kids/teens.', category: 'health', isNew: true },
+  { id: 'sleep', slug: 'sleep', name: 'Sleep Cycle', icon: '😴', description: 'Optimize sleep time.', category: 'health', isNew: true }
 ];
 
 export const CATEGORIES: Category[] = [

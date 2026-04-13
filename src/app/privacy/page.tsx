@@ -5,7 +5,7 @@ export default function PrivacyPage() {
         Privacy Policy
       </h1>
       <div className="prose text-gray-600 text-sm space-y-4">
-        <p>CalcPro.NP does not collect or store any personal data.
+        <p>Equaly does not collect or store any personal data.
           All calculations happen entirely in your browser.
           No user data is sent to our servers.</p>
         <p>We do not require registration. We do not use

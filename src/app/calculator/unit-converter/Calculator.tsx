@@ -66,7 +66,7 @@ const DEFAULT_STATE = {
 };
 
 export default function UnitConverter() {
-  const [state, setState] = useLocalStorage('calcpro_unit_v2', DEFAULT_STATE);
+  const [state, setState] = useLocalStorage('equaly_unit_v2', DEFAULT_STATE);
   
   const { category, fromUnit, toUnit, value } = state;
   const units = UNIT_CATEGORIES[category].units;

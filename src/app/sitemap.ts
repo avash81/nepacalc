@@ -4,7 +4,7 @@ import { CALCULATORS } from '@/data/calculators';
 export const revalidate = 86400; // Refetch daily for static content
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://calcpro.com.np';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://equaly.com';
 
   // 1. Static Core Paths
   const staticPaths = [

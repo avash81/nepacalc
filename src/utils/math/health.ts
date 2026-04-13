@@ -1,5 +1,5 @@
 /**
- * @fileoverview Health calculation utilities — CalcPro.NP
+ * @fileoverview Health calculation utilities — Equaly
  *
  * Pure functions for health/fitness calculations.
  * All formulas use WHO/international standards.

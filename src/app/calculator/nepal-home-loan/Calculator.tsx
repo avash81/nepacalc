@@ -30,11 +30,11 @@ export default function NepalHomeLoan() {
       category={{ label: 'Nepal Tools', href: '/calculator/category/nepal' }}
       leftPanel={
         <div className="space-y-6">
-          <ValidatedInput label="Loan Amount (NPR)" value={amount} onChange={setAmount} min={100000} prefix="NPR" required />
+          <ValidatedInput label="Loan Amount (NPR)" value={amount} onChange={setAmount} min={100000} max={50000000} step={100000} prefix="NPR" required withSlider />
 
           <div className="grid grid-cols-2 gap-4">
-            <ValidatedInput label="Interest Rate (p.a.)" value={rate} onChange={setRate} min={1} max={30} step={0.5} suffix="%" required />
-            <ValidatedInput label="Tenure" value={tenure} onChange={setTenure} min={1} max={30} suffix="yr" required />
+            <ValidatedInput label="Interest Rate (p.a.)" value={rate} onChange={setRate} min={1} max={30} step={0.5} suffix="%" required withSlider />
+            <ValidatedInput label="Tenure (yrs)" value={tenure} onChange={setTenure} min={1} max={30} suffix="yr" required withSlider />
           </div>
 
           <div className="space-y-2">

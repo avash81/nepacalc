@@ -120,18 +120,18 @@ function buildSchema(page: GuidePageData): object {
     '@type': page.schemaType || 'Article',
     headline: page.metaTitle || page.title,
     description: page.metaDesc || page.excerpt,
-    url: `https://calcpro.com.np/guide/${page.slug}`,
+    url: `https://equaly.com/guide/${page.slug}`,
     datePublished: page.date,
     dateModified: page.date,
     author: {
       '@type': 'Organization',
-      name: 'CalcPro.NP',
-      url: 'https://calcpro.com.np',
+      name: 'Equaly',
+      url: 'https://equaly.com',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'CalcPro.NP',
-      url: 'https://calcpro.com.np',
+      name: 'Equaly',
+      url: 'https://equaly.com',
     },
     inLanguage: 'en-NP',
     ...(page.ogImage ? { image: page.ogImage } : {}),
@@ -203,9 +203,9 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [
-              { '@type':'ListItem', position:1, name:'Home', item:'https://calcpro.com.np' },
-              { '@type':'ListItem', position:2, name:'Guides', item:'https://calcpro.com.np/guide' },
-              { '@type':'ListItem', position:3, name:page.title, item:`https://calcpro.com.np/guide/${page.slug}` },
+              { '@type':'ListItem', position:1, name:'Home', item:'https://equaly.com' },
+              { '@type':'ListItem', position:2, name:'Guides', item:'https://equaly.com/guide' },
+              { '@type':'ListItem', position:3, name:page.title, item:`https://equaly.com/guide/${page.slug}` },
             ]
           })
         }}
@@ -258,7 +258,7 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
                                   justify-center text-white text-[9px] font-bold">
                     CP
                   </div>
-                  <span>CalcPro.NP Team</span>
+                  <span>Equaly Team</span>
                 </div>
                 <span>·</span>
                 <time dateTime={page.date}>{pubDate}</time>
@@ -347,7 +347,7 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
                 <ShareResult
                   title={page.title}
                   result="📖 Read the full guide"
-                  calcUrl={`https://calcpro.com.np/guide/${page.slug}`}
+                  calcUrl={`https://equaly.com/guide/${page.slug}`}
                 />
               </div>
             </article>

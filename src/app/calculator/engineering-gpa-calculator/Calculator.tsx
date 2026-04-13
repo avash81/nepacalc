@@ -32,7 +32,7 @@ const DEFAULT_STATE = {
 };
 
 export default function EngineeringGPACalculator() {
-  const [state, setState] = useLocalStorage('calcpro_engineering_gpa_v2', DEFAULT_STATE);
+  const [state, setState] = useLocalStorage('equaly_engineering_gpa_v2', DEFAULT_STATE);
   const { uni, currentCGPA, completedCredits, targetCGPA, remainingCredits, semesters } = state;
 
   const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {

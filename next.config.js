@@ -6,7 +6,7 @@ const nextConfig = {
 
   // Security + performance headers
   async headers() {
-    return [
+    const baseHeaders = [
       {
         source: '/(.*)',
         headers: [
@@ -27,34 +27,38 @@ const nextConfig = {
               "https://picsum.photos " + 
               "https://images.unsplash.com " + 
               "https://www.googletagmanager.com " + 
-              "https://firebasestorage.googleapis.com", // Firebase storage support
+              "https://firebasestorage.googleapis.com", 
               "connect-src 'self' https://firestore.googleapis.com https://www.google-analytics.com https://analytics.google.com https://generativelanguage.googleapis.com https://firebaseinstallations.googleapis.com https://identitytoolkit.googleapis.com",
               "frame-src 'self' https://www.googletagmanager.com",
               "base-uri 'self'",
               "form-action 'self'",
             ].join('; '),
           },
-          // Cache aggressively on the edge for generic assets, but validate
-          { key: 'Cache-Control', value: 'public, max-age=3600, stale-while-revalidate=86400' },
+          ...(process.env.NODE_ENV === 'production' ? [{ key: 'Cache-Control', value: 'public, max-age=3600, stale-while-revalidate=86400' }] : []),
         ],
-      },
-      {
-        // Calculators should cache aggressively and seamlessly revalidate in the background
-        source: '/calculator/:path*',
-        headers: [{
-          key: 'Cache-Control',
-          value: 'public, max-age=86400, stale-while-revalidate=604800', // 1 day edge cache, 1 week stale cache
-        }],
-      },
-      {
-        // Static assets shouldn't change
-        source: '/_next/static/:path*',
-        headers: [{
-          key: 'Cache-Control',
-          value: 'public, max-age=31536000, immutable',
-        }],
-      },
+      }
     ];
+
+    if (process.env.NODE_ENV === 'production') {
+      baseHeaders.push(
+        {
+          source: '/calculator/:path*',
+          headers: [{
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=604800', 
+          }],
+        },
+        {
+          source: '/_next/static/:path*',
+          headers: [{
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          }],
+        }
+      );
+    }
+
+    return baseHeaders;
   },
 
   images: {

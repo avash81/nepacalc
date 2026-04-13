@@ -13,7 +13,7 @@ const DEFAULT_STATE = {
   fiscalYear: '2082/83' as keyof typeof TAX_YEARS,
   income: 1500000,
   married: false,
-  lifeInsurance: 50000,
+  lifeInsurance: 40000,
   homeLoanInterest: 0,
   educationAllowance: 0,
 };
@@ -21,8 +21,13 @@ const DEFAULT_STATE = {
 import { calculateNepalIncomeTax } from '@/utils/math/country-rules/nepal';
 
 function calculateIncomeTax(income: number, fiscalYear: string, deductions: Record<string, number>, married: boolean) {
-  const totalDeductions = Object.values(deductions).reduce((a, b) => a + b, 0);
-  const result = calculateNepalIncomeTax(income - totalDeductions, married, false);
+  const { life_insurance = 0, ...otherDeductions } = deductions;
+  const totalOtherDeductions = Object.values(otherDeductions).reduce((a, b) => a + b, 0);
+  
+  // Life insurance is capped at 40,000 per IRD rules
+  const finalLifeInsurance = Math.min(life_insurance, 40000);
+  
+  const result = calculateNepalIncomeTax(income - totalOtherDeductions - finalLifeInsurance, married, false);
 
   return { 
     totalTax: Math.round(result.totalTax), 
@@ -33,12 +38,12 @@ function calculateIncomeTax(income: number, fiscalYear: string, deductions: Reco
       tax: b.taxAmount,
       rate: b.rate
     })), 
-    totalDeductions 
+    totalDeductions: totalOtherDeductions + finalLifeInsurance
   };
 }
 
 export default function NepalIncomeTaxCalculator() {
-  const [state, setState] = useLocalStorage('calcpro_tax_v2', DEFAULT_STATE);
+  const [state, setState] = useLocalStorage('equaly_tax_v2', DEFAULT_STATE);
   const { fiscalYear, income, married, lifeInsurance, homeLoanInterest, educationAllowance } = state;
 
   const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {
@@ -52,7 +57,7 @@ export default function NepalIncomeTaxCalculator() {
   ];
 
   const deductions = useMemo(() => ({
-    life_insurance: Math.min(lifeInsurance, DEDUCTIONS.life_insurance.limit as number),
+    life_insurance: lifeInsurance,
     home_loan_interest: homeLoanInterest,
     education_allowance: educationAllowance,
   }), [lifeInsurance, homeLoanInterest, educationAllowance]);
@@ -95,7 +100,14 @@ export default function NepalIncomeTaxCalculator() {
             <div className="pt-6 border-t border-[var(--border)] space-y-6">
                <h3 className="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]">Deductions & Status</h3>
                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <ValidatedInput label="Life Insurance" value={lifeInsurance} onChange={(v) => updateState({ lifeInsurance: v })} min={0} max={100000} />
+                  <ValidatedInput 
+                    label="Life Insurance Premium" 
+                    value={lifeInsurance} 
+                    onChange={(v) => updateState({ lifeInsurance: v })} 
+                    min={0} 
+                    max={40000}
+                    hint="Max deductible: NPR 40,000"
+                  />
                   <ValidatedInput label="Home Loan Interest" value={homeLoanInterest} onChange={(v) => updateState({ homeLoanInterest: v })} min={0} max={1000000} />
                   <div className="space-y-3">
                     <label className="text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)]">Marital Status</label>
@@ -166,12 +178,53 @@ export default function NepalIncomeTaxCalculator() {
           </div>
         }
         faqSection={
-          <CalcFAQ
-            faqs={[
-              { question: 'What is individual Tax threshold in Nepal?', answer: 'For FY 2082/83, the non-taxable limit is ₹5,00,000 for individual and ₹6,00,000 for married taxpayers.' },
-              { question: 'How is effective tax calculated?', answer: 'Effective tax rate is the total tax amount divided by your gross annual income.' }
-            ]}
-          />
+           <div className="prose prose-slate max-w-none w-full print-hide mt-16 pt-12 border-t border-slate-200">
+             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-6">Mastering Nepal Income Tax 2026 (FY 2082/83)</h2>
+             
+             <p className="text-slate-600 text-sm leading-relaxed mb-6 font-medium">Income Tax in Nepal is regulated by the Inland Revenue Department (IRD). As per the Income Tax Act 2058 (2002), whether you are a salaried employee, a freelancer, or a business owner, understanding exactly how your taxable limits are calculated is crucial for maintaining legal compliance while legally maximizing your take-home pay.</p>
+             
+             <div className="bg-slate-50 p-6 rounded-lg border border-slate-200 mb-8">
+               <h3 className="text-lg font-black text-slate-900 mb-4">Tax Exemptions & Deduction Limits</h3>
+               <p className="text-slate-600 text-xs mb-4">Before applying the progressive tax slabs, the government allows you to deduct specific investments directly from your Gross Salary, significantly lowering your final tax burden:</p>
+               <ul className="list-disc pl-5 space-y-2 text-xs text-slate-700 font-medium">
+                 <li><strong>Provident Fund (EPF/SSF):</strong> Up to 1/3rd of your Gross Income, maxed at NPR 5,00,000 per year.</li>
+                 <li><strong>Citizen Investment Trust (CIT):</strong> Similar bounds apply, often pooled with PF up to the 3 Lakhs mutual threshold.</li>
+                 <li><strong>Life Insurance Premium:</strong> Actual premium paid or NPR 40,000 (whichever is lower).</li>
+                 <li><strong>Health Insurance Premium:</strong> Actual premium paid or NPR 20,000 (whichever is lower).</li>
+               </ul>
+             </div>
+
+             <h3 className="text-xl font-black text-slate-900 mt-8 mb-4">The Progressive Tax Slab System</h3>
+             <p className="text-slate-600 text-sm leading-relaxed mb-4">Nepal utilizes a marginal tax rate system. This means your entire salary is NOT taxed at the highest bracket you fall into. Instead, your income is sliced into chunks, and each chunk is taxed sequentially.</p>
+             
+             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+               <div className="bg-white p-5 border border-slate-200 shadow-sm">
+                 <h4 className="font-bold text-slate-900 uppercase text-xs tracking-wider mb-2">Individual Taxpayer</h4>
+                 <ul className="space-y-1 text-xs text-slate-600 font-mono">
+                   <li>First 5,00,000 : 1% (Social Security Tax)</li>
+                   <li>Next 2,00,000 : 10%</li>
+                   <li>Next 3,00,000 : 20%</li>
+                   <li>Next 10,00,000 : 30%</li>
+                   <li>Above 20,00,000 : 36% (Includes 20% Additional Surcharge)</li>
+                 </ul>
+               </div>
+               <div className="bg-white p-5 border border-slate-200 shadow-sm">
+                 <h4 className="font-bold text-slate-900 uppercase text-xs tracking-wider mb-2">Couple / Married Taxpayer</h4>
+                 <ul className="space-y-1 text-xs text-slate-600 font-mono">
+                   <li>First 6,00,000 : 1% (Social Security Tax)</li>
+                   <li>Next 2,00,000 : 10%</li>
+                   <li>Next 3,00,000 : 20%</li>
+                   <li>Next 9,00,000 : 30%</li>
+                   <li>Above 20,00,000 : 36% (Includes 20% Additional Surcharge)</li>
+                 </ul>
+               </div>
+             </div>
+
+             <div className="bg-green-50 border-l-4 border-green-500 p-5 mt-6 mb-10">
+               <h4 className="font-bold text-green-900 text-sm uppercase tracking-wide mb-1">Tax Loophole: The 1% Exemption</h4>
+               <p className="text-xs text-green-800 leading-relaxed">If you are formally contributing strictly to the Social Security Fund (SSF), you are completely exempt from paying the base 1% Social Security Tax on your primary salary bracket. This is a massive systemic advantage designed to drive SSF adoption across Nepal.</p>
+             </div>
+           </div>
         }
       />
     </CalculatorErrorBoundary>

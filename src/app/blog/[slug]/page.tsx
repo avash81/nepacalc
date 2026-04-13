@@ -32,7 +32,7 @@ async function getPostData(slug: string) {
           date: f.date?.stringValue || new Date().toISOString(),
           relatedCalcs: f.relatedCalcs?.arrayValue?.values?.map((v: any) => v.stringValue) || [],
           ogImage: f.ogImage?.stringValue || '',
-          author: f.author?.stringValue || 'CalcPro.NP',
+          author: f.author?.stringValue || 'Equaly',
           imageTop: f.imageTop?.stringValue || '',
           imageMiddle: f.imageMiddle?.stringValue || '',
           imageBottom: f.imageBottom?.stringValue || '',
@@ -67,18 +67,18 @@ export async function generateMetadata({
 
   const { post } = data;
   return {
-    title: `${post.title} | CalcPro.NP Blog`,
+    title: `${post.title} | Equaly Blog`,
     description: post.excerpt || post.content.substring(0, 150),
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: `https://calcpro.com.np/blog/${post.slug}`,
-      siteName: 'CalcPro.NP',
+      url: `https://equaly.com/blog/${post.slug}`,
+      siteName: 'Equaly',
       type: 'article',
       ...(post.ogImage ? { images: [{ url: post.ogImage }] } : {}),
     },
     alternates: {
-      canonical: `https://calcpro.com.np/blog/${post.slug}`,
+      canonical: `https://equaly.com/blog/${post.slug}`,
     },
   };
 }
@@ -108,9 +108,9 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://calcpro.com.np" },
-              { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://calcpro.com.np/blog" },
-              { "@type": "ListItem", "position": 3, "name": data.post.title, "item": `https://calcpro.com.np/blog/${data.post.slug}` }
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://equaly.com" },
+              { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://equaly.com/blog" },
+              { "@type": "ListItem", "position": 3, "name": data.post.title, "item": `https://equaly.com/blog/${data.post.slug}` }
             ]
           }),
         }}

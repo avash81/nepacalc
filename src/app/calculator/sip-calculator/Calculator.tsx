@@ -27,7 +27,28 @@ export default function SIPCalculator() {
     }
     const returns = fv - totalInvested;
     const wealthGainedPct = totalInvested > 0 ? (returns / totalInvested) * 100 : 0;
-    return { fv, totalInvested, returns, wealthGainedPct, schedule };
+    
+    // What-If Scenarios (LibreOffice Style)
+    const baseP = monthly;
+    const n = years * 12;
+    const calcScenario = (scenarioRate: number) => {
+        let scFv = 0, scInv = 0, scM = baseP;
+        const sr = scenarioRate / 12 / 100;
+        const sStep = stepUp / 100;
+        for (let year = 1; year <= years; year++) {
+          for (let m = 1; m <= 12; m++) { scFv = (scFv + scM) * (1 + sr); scInv += scM; }
+          scM = scM * (1 + sStep);
+        }
+        return { rate: scenarioRate, fv: scFv };
+    };
+
+    const scenarios = [
+      calcScenario(Math.max(1, rate - 4)),
+      calcScenario(rate), // Current
+      calcScenario(rate + 4)
+    ];
+
+    return { fv, totalInvested, returns, wealthGainedPct, schedule, scenarios };
   }, [monthly, rate, years, stepUp]);
 
   const invPct = result.fv > 0 ? (result.totalInvested / result.fv) * 100 : 0;
@@ -39,14 +60,14 @@ export default function SIPCalculator() {
       category={{ label: 'Finance', href: '/calculator/category/finance' }}
       leftPanel={
         <div className="space-y-6">
-          <ValidatedInput label="Monthly Investment (NPR)" value={monthly} onChange={v => update('monthly', v)} min={500} prefix="NPR" step={500} required />
+          <ValidatedInput label="Monthly Investment (NPR)" value={monthly} onChange={v => update('monthly', v)} min={500} max={100000} prefix="NPR" step={500} required withSlider />
 
           <div className="grid grid-cols-2 gap-4">
-            <ValidatedInput label="Expected Return Rate (p.a.)" value={rate} onChange={v => update('rate', v)} min={1} max={50} suffix="%" step={0.5} required />
-            <ValidatedInput label="Time Period (Years)" value={years} onChange={v => update('years', v)} min={1} max={50} required />
+            <ValidatedInput label="Expected Return Rate (p.a.)" value={rate} onChange={v => update('rate', v)} min={1} max={30} suffix="%" step={0.5} required withSlider />
+            <ValidatedInput label="Time Period (Years)" value={years} onChange={v => update('years', v)} min={1} max={40} required withSlider />
           </div>
 
-          <ValidatedInput label="Annual Step-Up (%)" value={stepUp} onChange={v => update('stepUp', v)} min={0} max={100} suffix="%" hint="Increase your SIP amount each year" />
+          <ValidatedInput label="Annual Step-Up (%)" value={stepUp} onChange={v => update('stepUp', v)} min={0} max={50} suffix="%" hint="Increase your SIP amount each year" withSlider />
 
           {/* Monthly Presets */}
           <div className="space-y-2">
@@ -66,8 +87,8 @@ export default function SIPCalculator() {
             <div className="px-4 py-3 bg-[var(--bg-surface)] border-b border-[var(--border)]">
               <h3 className="text-[11px] font-bold uppercase text-[var(--text-main)]">Yearly Growth Schedule</h3>
             </div>
-            <div className="overflow-y-auto max-h-48">
-              <table className="w-full">
+            <div className="overflow-y-auto overflow-x-auto max-h-48">
+              <table className="w-full min-w-[300px]">
                 <thead>
                   <tr className="bg-[var(--bg-surface)] border-b border-[var(--border)] text-[10px] text-[var(--text-muted)] font-black uppercase">
                     <th className="px-3 py-2 text-left">Year</th>
@@ -133,6 +154,40 @@ export default function SIPCalculator() {
             </div>
           </div>
 
+          {/* What-If Scenario Compare (LibreOffice Style) */}
+          <div className="bg-white border border-[var(--border)] overflow-hidden">
+             <div className="bg-indigo-50 px-4 py-3 border-b border-[var(--border)] flex items-center justify-between">
+                <h4 className="text-[10px] font-black uppercase text-indigo-900 tracking-widest">What-If Scenarios</h4>
+                <span className="text-[9px] font-bold tracking-widest text-indigo-700 uppercase bg-indigo-100 px-2 py-0.5 rounded-full">Comparison</span>
+             </div>
+             <table className="w-full text-left table-fixed">
+                <thead>
+                   <tr className="bg-[var(--bg-surface)] border-b border-[var(--border)] text-[9px] font-black uppercase tracking-widest text-[var(--text-muted)]">
+                      <th className="p-3 w-1/3">Market</th>
+                      <th className="p-3 w-1/3 border-l border-[var(--border)]">Return Rate</th>
+                      <th className="p-3 w-1/3 border-l border-[var(--border)] text-right">Maturity Value</th>
+                   </tr>
+                </thead>
+                <tbody className="text-[11px] font-bold text-[var(--text-secondary)]">
+                   <tr className="border-b border-[var(--border)] hover:bg-[var(--bg-subtle)]">
+                      <td className="p-3 text-red-600">Conservative</td>
+                      <td className="p-3 border-l border-[var(--border)]">{result.scenarios[0].rate}%</td>
+                      <td className="p-3 border-l border-[var(--border)] text-right">{fmt(result.scenarios[0].fv)}</td>
+                   </tr>
+                   <tr className="border-b border-[var(--border)] hover:bg-[var(--bg-subtle)] bg-[var(--primary-light)]">
+                      <td className="p-3 text-[var(--primary)]">Expected (Yours)</td>
+                      <td className="p-3 border-l border-[var(--border)] font-black text-[var(--primary)]">{result.scenarios[1].rate}%</td>
+                      <td className="p-3 border-l border-[var(--border)] font-black text-right text-[var(--primary)]">{fmt(result.scenarios[1].fv)}</td>
+                   </tr>
+                   <tr className="hover:bg-[var(--bg-subtle)]">
+                      <td className="p-3 text-green-600">Aggressive</td>
+                      <td className="p-3 border-l border-[var(--border)]">{result.scenarios[2].rate}%</td>
+                      <td className="p-3 border-l border-[var(--border)] text-right">{fmt(result.scenarios[2].fv)}</td>
+                   </tr>
+                </tbody>
+             </table>
+          </div>
+
           <div className="p-4 bg-[var(--bg-subtle)] border border-[var(--border)]">
             <p className="text-[11px] text-[var(--text-secondary)] italic mb-1">Estimates assume beginning-of-month deposits (Annuity Due).</p>
             <p className="text-[11px] text-[var(--text-secondary)] italic">Actual mutual fund returns may vary.</p>
@@ -140,11 +195,33 @@ export default function SIPCalculator() {
         </div>
       }
       faqSection={
-        <CalcFAQ faqs={[
-          { question: 'What is a SIP?', answer: 'A Systematic Investment Plan (SIP) lets you invest a fixed amount in mutual funds at regular intervals, leveraging compounding and dollar-cost averaging.' },
-          { question: 'What is Step-Up SIP?', answer: 'A Step-Up SIP automatically increases your monthly investment by a fixed percentage each year, matching salary growth and accelerating wealth creation.' },
-          { question: 'How much can I start with in Nepal?', answer: 'Most Nepal mutual funds allow SIPs starting from NPR 1,000/month.' },
-        ]} />
+         <div className="prose prose-slate max-w-none w-full print-hide mt-16 pt-12 border-t border-slate-200">
+             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-6">Demystifying Systematic Investment Plans (SIP) in Nepal</h2>
+             
+             <p className="text-slate-600 text-sm leading-relaxed mb-6 font-medium">A Systematic Investment Plan (SIP) is a highly disciplined investment methodology offered by Mutual Funds managed under the jurisdiction of the Securities Board of Nepal (SEBON). It allows individual retail investors to incrementally invest a fixed mathematical amount in a mutual fund scheme automatically at regular intervals (monthly, quarterly, or semi-annually).</p>
+             
+             <h3 className="text-xl font-black text-slate-900 mt-8 mb-4">The Magic of Compounding in NEPSE</h3>
+             <p className="text-slate-600 text-sm leading-relaxed mb-4">Einstein allegedly called compound interest the &quot;Eighth Wonder of the World.&quot; In the context of the Nepalese Stock Exchange (NEPSE), SIP relies on two core mathematical mechanisms that systematically dismantle market risk:</p>
+             
+             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 mt-4">
+               <div className="bg-white p-5 border border-slate-200 shadow-sm rounded-lg">
+                 <h4 className="font-bold text-slate-900 uppercase text-xs tracking-wider mb-2">1. Rupee Cost Averaging</h4>
+                 <p className="text-xs text-slate-600 leading-relaxed">Because you invest a static fixed amount consistently, you purchase more mutual fund Nav (Net Asset Value) units when the NEPSE index crashes, and fewer units when the market rallies. This automatically lowers the average cost per unit over a 5-10 year horizon, entirely removing the psychological stress of &quot;timing&quot; the volatile Nepalese market.</p>
+               </div>
+               <div className="bg-white p-5 border border-slate-200 shadow-sm rounded-lg">
+                 <h4 className="font-bold text-slate-900 uppercase text-xs tracking-wider mb-2">2. Exponential Compounding</h4>
+                 <p className="text-xs text-slate-600 leading-relaxed">Unlike a standard fixed deposit (FD), mutual fund capital gains and dividends are reinvested back into purchasing more units of the fund. As your total unit count balloons, future percentage yields are calculated against a massively larger capital base. (Interest earning interest).</p>
+               </div>
+             </div>
+
+             <h3 className="text-xl font-black text-slate-900 mt-8 mb-4">What is a Step-Up SIP?</h3>
+             <p className="text-slate-600 text-sm leading-relaxed mb-4">A standard SIP keeps the monthly investment static (e.g., NPR 5,000 every month for 10 years). However, standard economic inflation in Nepal heavily depreciates that NPR 5,000 over time. Furthermore, as an individual, your corporate salary and disposable income theoretically increase annually.</p>
+             
+             <div className="bg-indigo-50 border-l-4 border-indigo-500 p-5 mt-6 mb-10">
+               <h4 className="font-bold text-indigo-900 text-sm uppercase tracking-wide mb-1">The Step-Up Strategy</h4>
+               <p className="text-xs text-indigo-800 leading-relaxed">A &quot;Step-Up SIP&quot; systematically forces you to increase your monthly contribution by a fixed percentage (usually 5% to 10%) every single year. By anchoring your SIP growth to your annual salary appraisal, a 10% Step-Up SIP historically generates almost <strong>40% to 60% more total corpus</strong> at maturity compared to a static flat SIP.</p>
+             </div>
+           </div>
       }
     />
   );

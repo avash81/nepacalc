@@ -20,7 +20,7 @@ interface JsonLdProps {
 
 export function JsonLd({ type, name, description, url, faqs, category = 'UtilitiesApplication' }: JsonLdProps) {
   const base = 'https://calcly.com';
-  const siteName = 'CalcPro.NP';
+  const siteName = 'Equaly';
 
   const schemas: Record<string, object> = {
     organization: {
@@ -53,7 +53,7 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
     calculator: {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: name || 'CalcPro Calculator',
+      name: name || 'Equaly Calculator',
       description: description || 'Free online mathematical tool',
       url: url || base,
       applicationCategory: category,
@@ -66,7 +66,7 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
       inLanguage: ['en-NP', 'en-US'],
       creator: {
         '@type': 'Organization',
-        name: 'CalcPro.NP',
+        name: 'Equaly',
         url: base,
       },
       featureList: [

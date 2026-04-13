@@ -4,9 +4,11 @@ import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { safeCalculateBMI } from '@/utils/math/safeCalculations';
 import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useSyncState } from '@/hooks/useSyncState';
 import { Info } from 'lucide-react';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
+import { ResultDisplay } from '@/components/calculator/ResultDisplay';
 
 interface BMIReading {
   date: string;
@@ -25,8 +27,8 @@ const DEFAULT_STATE = {
 };
 
 export default function BMICalculator() {
-  const [state, setState] = useLocalStorage('calcpro_bmi_v2', DEFAULT_STATE);
-  const [readings, setReadings] = useLocalStorage<BMIReading[]>('calcpro_bmi_history', []);
+  const [state, setState] = useSyncState('bmi_v3', DEFAULT_STATE);
+  const [readings, setReadings] = useLocalStorage<BMIReading[]>('equaly_bmi_history', []);
   const { unit, weight, height, feet, inches, lbs } = state;
 
   const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {
@@ -42,16 +44,6 @@ export default function BMICalculator() {
     }
   }, [unit, weight, height, feet, inches, lbs]);
 
-  const getStatusColorClass = (status: string) => {
-    switch (status) {
-      case 'underweight': return 'text-blue-500';
-      case 'normal': return 'text-[var(--success)]';
-      case 'overweight': return 'text-amber-500';
-      case 'obese': return 'text-rose-500';
-      default: return 'text-[var(--text-secondary)]';
-    }
-  };
-
   const saveReading = () => {
     if (result.success && result.data) {
       const newReading: BMIReading = {
@@ -64,24 +56,30 @@ export default function BMICalculator() {
     }
   };
 
+  const getInterpretation = (bmi: number): { text: string; variant: 'info' | 'success' | 'warning' | 'danger' } => {
+    if (bmi < 18.5) return { text: `Your BMI of ${bmi} is Underweight. Normal range: 18.5–24.9. Consult a nutritionist.`, variant: 'info' };
+    if (bmi < 25) return { text: `Your BMI of ${bmi} is Normal. You are within the healthy reference range.`, variant: 'success' };
+    if (bmi < 30) return { text: `Your BMI of ${bmi} is Overweight. Normal range: 18.5–24.9. Lifestyle changes advised.`, variant: 'warning' };
+    return { text: `Your BMI of ${bmi} is Obese. Clinical consultation strongly recommended.`, variant: 'danger' };
+  };
+
   return (
     <CalculatorErrorBoundary calculatorName="BMI">
       <CalculatorLayout
-        title="BMI Calculator"
-        description="Verify your Body Mass Index (BMI) based on World Health Organization standards. All calculations are private and instant."
-        badge="Health"
-        badgeColor="green"
+        title="Clinical BMI Calculator"
+        description="Verify your Body Mass Index (BMI) based on WHO standards. All calculations are private, instant, and shareable."
+        purpose="Health Assessment"
         category={{ label: 'Health', href: '/calculator/category/health' }}
         leftPanel={
-          <div className="space-y-6">
-            {/* Unit Toggle - Classic Style */}
-            <div className="flex p-1 bg-[var(--bg-surface)] border border-[var(--border)]">
+          <div className="space-y-8">
+            {/* Unit Toggle */}
+            <div className="flex p-1 bg-slate-50 border border-slate-200 rounded-xl">
               {['metric', 'imperial'].map((u) => (
                 <button
                   key={u}
                   onClick={() => updateState({ unit: u as any })}
-                  className={`flex-1 py-2 text-xs font-bold uppercase tracking-tight transition-all ${
-                    unit === u ? 'bg-[var(--primary)] text-white shadow-sm' : 'text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]'
+                  className={`flex-1 py-2.5 text-[10px] font-black uppercase tracking-widest transition-all rounded-lg ${
+                    unit === u ? 'bg-white text-blue-600 shadow-sm border border-slate-100' : 'text-slate-400 hover:text-slate-600'
                   }`}
                 >
                   {u}
@@ -89,30 +87,30 @@ export default function BMICalculator() {
               ))}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-6">
               {unit === 'metric' ? (
                 <>
-                  <ValidatedInput label="Weight (kg)" value={weight} onChange={(v) => updateState({ weight: v })} min={2} max={500} required />
-                  <ValidatedInput label="Height (cm)" value={height} onChange={(v) => updateState({ height: v })} min={30} max={300} required />
+                  <ValidatedInput label="Weight (kg)" value={weight} onChange={(v) => updateState({ weight: v })} min={2} max={300} required withSlider />
+                  <ValidatedInput label="Height (cm)" value={height} onChange={(v) => updateState({ height: v })} min={30} max={250} required withSlider />
                 </>
               ) : (
                 <>
-                  <ValidatedInput label="Weight (lbs)" value={lbs} onChange={(v) => updateState({ lbs: v })} min={5} max={1100} required />
+                  <ValidatedInput label="Weight (lbs)" value={lbs} onChange={(v) => updateState({ lbs: v })} min={5} max={650} required withSlider />
                   <div className="grid grid-cols-2 gap-4">
-                    <ValidatedInput label="Feet" value={feet} onChange={(v) => updateState({ feet: v })} min={1} max={9} required />
-                    <ValidatedInput label="Inches" value={inches} onChange={(v) => updateState({ inches: v })} min={0} max={11.9} required />
+                    <ValidatedInput label="Feet" value={feet} onChange={(v) => updateState({ feet: v })} min={1} max={8} required withSlider />
+                    <ValidatedInput label="Inches" value={inches} onChange={(v) => updateState({ inches: v })} min={0} max={11.9} step={0.1} required withSlider />
                   </div>
                 </>
               )}
             </div>
 
-            <div className="p-5 bg-[var(--primary-light)] border border-[var(--primary)]/10">
-              <div className="flex items-center gap-2 mb-2 text-[var(--primary)] text-xs font-bold uppercase">
+            <div className="p-6 bg-blue-50/50 border border-blue-100 rounded-3xl">
+              <div className="flex items-center gap-2 mb-3 text-blue-600 text-[10px] font-black uppercase tracking-widest">
                 <Info className="w-4 h-4" />
                 <span>WHO Reference Range</span>
               </div>
-              <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">
-                Healthy weight range for your height: <span className="font-bold text-[var(--text-main)]">
+              <p className="text-[13px] text-slate-600 font-medium leading-relaxed">
+                Healthy weight range for your height: <span className="font-black text-slate-900">
                   {unit === 'metric' ? ((18.5 * (height/100)**2).toFixed(1)) : ((18.5 * (feet*12+inches)**2 / 703).toFixed(1))} - {unit === 'metric' ? ((25 * (height/100)**2).toFixed(1)) : ((25 * (feet*12+inches)**2 / 703).toFixed(1))} {unit === 'metric' ? 'kg' : 'lbs'}
                 </span>
               </p>
@@ -123,43 +121,26 @@ export default function BMICalculator() {
           <div className="space-y-8">
             {result.success && result.data ? (
               <>
-                <div className="text-center p-6 bg-white border border-[var(--border)]">
-                  <div className="text-xs font-bold uppercase tracking-tight text-[var(--text-muted)] mb-2">Calculated BMI Value</div>
-                  <div className="text-6xl font-black text-[var(--primary)] tracking-tighter mb-2">{result.data.bmi}</div>
-                  <div className={`text-sm font-bold uppercase tracking-widest ${getStatusColorClass(result.data.status)}`}>
-                    {result.data.category}
-                  </div>
-                </div>
-
-                {/* Simplified Gauge */}
-                <div className="space-y-4">
-                  <div className="flex justify-between text-[11px] font-bold text-[var(--text-main)]">
-                    <span>18.5</span>
-                    <span>25.0</span>
-                    <span>30.0</span>
-                    <span>40.0+</span>
-                  </div>
-                  <div className="h-3 w-full bg-gray-200 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-300 via-green-400 via-yellow-300 to-red-400 opacity-80" />
-                    <div 
-                      className="absolute top-0 bottom-0 w-1.5 bg-[var(--primary)] shadow-sm transition-all duration-500" 
-                      style={{ left: `${Math.min(Math.max((result.data.bmi / 40) * 100, 0), 100)}%` }} 
-                    />
-                  </div>
-                  <div className="text-[11px] text-center font-bold text-[var(--text-muted)] uppercase tracking-tight">
-                    WHO BMI Scale Matrix
-                  </div>
-                </div>
+                <ResultDisplay 
+                  title="Your BMI Result"
+                  primaryResult={{
+                    label: "Calculated BMI",
+                    value: result.data.bmi,
+                    description: result.data.category,
+                    bgColor: 'bg-slate-900',
+                  }}
+                  interpretation={getInterpretation(result.data.bmi)}
+                />
 
                 <button
                   onClick={saveReading}
-                  className="w-full py-4 bg-[var(--primary)] text-white text-xs font-bold uppercase tracking-widest hover:bg-[var(--accent)] transition-all shadow-sm"
+                  className="w-full py-4 bg-blue-600 text-white text-[11px] font-black uppercase tracking-[0.2em] hover:bg-blue-700 transition-all shadow-xl shadow-blue-200 rounded-2xl active:scale-95"
                 >
-                  Save Result to History
+                  Save to History Log
                 </button>
               </>
             ) : (
-              <div className="p-4 bg-red-50 text-red-600 font-bold text-xs border border-red-200">
+              <div className="p-6 bg-rose-50 text-rose-600 font-black text-xs border border-rose-100 rounded-2xl">
                 {result.error || 'Please enter valid height and weight values.'}
               </div>
             )}
@@ -167,43 +148,41 @@ export default function BMICalculator() {
         }
         faqSection={
           <div className="space-y-12">
-            {/* History Table - Classic High Contrast */}
             {readings.length > 0 && (
-              <div className="bg-white border border-[var(--border)]">
-                <div className="p-4 bg-[var(--bg-surface)] border-b border-[var(--border)] flex items-center justify-between">
-                   <h3 className="text-xs font-bold uppercase tracking-tight text-[var(--text-main)]">BMI History Log</h3>
-                   <button onClick={() => setReadings([])} className="text-xs font-bold text-red-600 uppercase hover:underline">Clear History</button>
+              <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+                <div className="p-6 bg-slate-50 flex items-center justify-between">
+                   <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-900">BMI Performance History</h3>
+                   <button onClick={() => setReadings([])} className="text-[10px] font-black text-rose-600 uppercase tracking-widest hover:underline">Clear Records</button>
                 </div>
-                <div className="p-4">
-                  <div className="grid grid-cols-4 gap-4 text-[11px] font-bold uppercase text-[var(--text-muted)] mb-4 border-b border-[var(--border)] pb-2 text-center">
-                    <div>Date Recorded</div><div>BMI Index</div><div>Weight</div><div>Category</div>
-                  </div>
-                  <div className="space-y-3">
-                    {readings.map((r, i) => (
-                      <div key={i} className="grid grid-cols-4 gap-4 text-sm font-bold text-[var(--text-main)] text-center items-center">
-                        <div className="text-[var(--text-secondary)] font-medium">{r.date}</div>
-                        <div className="text-[var(--primary)]">{r.bmi}</div>
-                        <div>{r.weight}{unit === 'metric' ? 'kg' : 'lbs'}</div>
-                        <div className={`capitalize ${getStatusColorClass(r.status)}`}>{r.status}</div>
-                      </div>
-                    ))}
-                  </div>
+                <div className="p-6">
+                  <table className="w-full text-left">
+                    <thead>
+                      <tr className="text-[9px] font-black uppercase text-slate-400 tracking-widest border-b border-slate-100">
+                        <th className="pb-4">Date</th>
+                        <th className="pb-4">BMI</th>
+                        <th className="pb-4">Weight</th>
+                        <th className="pb-4">Category</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-[13px] font-bold text-slate-700">
+                      {readings.map((r, i) => (
+                        <tr key={i} className="border-b border-slate-50 last:border-0">
+                          <td className="py-4 text-slate-400">{r.date}</td>
+                          <td className="py-4 text-blue-600 font-black">{r.bmi}</td>
+                          <td className="py-4">{r.weight}{unit === 'metric' ? 'kg' : 'lbs'}</td>
+                          <td className={`py-4 uppercase text-[10px] font-black`}>{r.status}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             )}
-
-            <CalcFAQ
-              faqs={[
-                {
-                  question: 'What is BMI and why does it matter?',
-                  answer: 'Body Mass Index (BMI) is a simple index of weight-for-height used to classify weight categories. It is a useful population-level measure, though it does not account for muscle mass vs body fat.'
-                },
-                {
-                  question: 'What are the WHO BMI categories?',
-                  answer: 'Underweight: < 18.5, Normal: 18.5–24.9, Overweight: 25–29.9, and Obese: > 30.'
-                }
-              ]}
-            />
+            
+            <div className="prose prose-slate max-w-none w-full print-hide pt-12 border-t border-slate-200">
+             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-6 uppercase">Understanding Your Clinical BMI</h2>
+             <p className="text-slate-600 text-sm leading-relaxed mb-6 font-medium">Body Mass Index (BMI) is an internationally recognized anthropometric metric used by the WHO to classify weight risk. Fundamentals of Nepalese health also rely on these metrics for primary screening.</p>
+            </div>
           </div>
         }
       />

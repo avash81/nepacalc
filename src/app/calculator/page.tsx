@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import CalculatorsList from './CalculatorsList';
 
 export const metadata: Metadata = {
-  title: 'All Calculators — CalcPro Nepal',
+  title: 'All Calculators — Equaly Nepal',
   description: 'Browse our complete library of professional-grade tools. From complex financial projections to Nepal-specific tax rules. Free online calculators.',
 };
 

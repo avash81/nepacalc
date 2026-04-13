@@ -1,5 +1,5 @@
 /**
- * @fileoverview Blog Page (RSC) — CalcPro.NP
+ * @fileoverview Blog Page (RSC) — Equaly
  *
  * Refactored to React Server Component (RSC) for maximum SEO impact.
  * Fetches all published blog posts and SEO guide pages server-side.
@@ -15,14 +15,14 @@ import { fetchFirestoreCollection } from '@/lib/firestore-rest';
 
 // --- SEO CONFIGURATION ---
 export const metadata: Metadata = {
-  title: 'Blog & Financial Guides | CalcPro.NP',
+  title: 'Blog & Financial Guides | Equaly',
   description: 'Pro tips on Nepal income tax, salary planning, SSF, home loans, and expert calculator tutorials. Stay financially informed with the latest BS 2082/83 updates.',
-  alternates: { canonical: 'https://calcpro.com.np/blog' },
+  alternates: { canonical: 'https://equaly.com/blog' },
   openGraph: {
-    title: 'CalcPro.NP Blog — Expert Nepal Calculation Guides',
+    title: 'Equaly Blog — Expert Nepal Calculation Guides',
     description: 'Expert financial advice and calculator walkthroughs for Nepal.',
-    url: 'https://calcpro.com.np/blog',
-    siteName: 'CalcPro.NP',
+    url: 'https://equaly.com/blog',
+    siteName: 'Equaly',
     type: 'website',
   },
 };

@@ -28,7 +28,7 @@ export function SimpleCalculator() {
       return prev + display + ' ' + op + ' ';
     });
     setDisplay('0');
-  }, [display, equation]);
+  }, [display]);
 
   const calculate = useCallback(() => {
     if (!equation) return;

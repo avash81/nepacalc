@@ -15,7 +15,7 @@ const DEFAULT_STATE = {
 };
 
 export default function QuadraticSolver() {
-  const [state, setState] = useLocalStorage('calcpro_quadratic_v2', DEFAULT_STATE);
+  const [state, setState] = useLocalStorage('equaly_quadratic_v2', DEFAULT_STATE);
   const { a, b, c } = state;
 
   const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {

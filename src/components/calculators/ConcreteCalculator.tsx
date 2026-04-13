@@ -62,7 +62,7 @@ export default function ConcreteCalculator() {
       <JsonLd type="calculator"
         name="Concrete Mix Calculator"
         description="Professional civil engineering calculator for estimating cement, sand, and aggregate requirement for various concrete grades (M5 to M25)."
-        url="https://calcpro.com.np/calculator/concrete-mix" />
+        url="https://equaly.com/calculator/concrete-mix" />
 
       <CalcWrapper
         title="Concrete Mix Calculator"

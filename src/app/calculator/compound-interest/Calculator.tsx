@@ -120,7 +120,7 @@ export default function CompoundInterestCalculator() {
               <h3 className="text-[11px] font-bold uppercase text-[var(--text-main)]">Yearly Growth Schedule</h3>
             </div>
             <div className="overflow-x-auto max-h-64 overflow-y-auto">
-              <table className="w-full text-sm">
+              <table className="w-full text-sm whitespace-nowrap">
                 <thead>
                   <tr className="bg-[var(--bg-surface)] border-b border-[var(--border)] text-[10px] text-[var(--text-muted)] font-bold uppercase">
                     <th className="px-3 py-2 text-left">Year</th>

@@ -1,7 +1,7 @@
 import Calculator from './Calculator';
 
 export const metadata = {
-  title: 'LCM & GCF Calculator | CalcPro.NP',
+  title: 'LCM & GCF Calculator | Equaly',
   description: 'Calculate the Least Common Multiple (LCM) and Greatest Common Factor (GCF/HCF) for up to 5 numbers instantly. Step-by-step mathematical tool.',
 };
 

@@ -158,3 +158,39 @@ button:active {
 
 /* iOS safe-area bottom inset — fixes overlap with iPhone home indicator */
 .pb-safe { padding-bottom: env(safe-area-inset-bottom, 12px); }
+
+/* Global Print Architecture */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .no-print,
+  nav,
+  header:not(.print-header),
+  footer,
+  aside,
+  button,
+  .print-hide {
+    display: none !important;
+  }
+
+  .hp-container, 
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+  .print-break-inside-avoid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}

@@ -1,5 +1,5 @@
 /**
- * @fileoverview Safe math calculation utilities for CalcPro.NP
+ * @fileoverview Safe math calculation utilities for Equaly
  * Includes validation for common financial and health metrics.
  */
 

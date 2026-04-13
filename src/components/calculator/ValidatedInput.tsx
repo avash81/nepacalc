@@ -17,6 +17,8 @@ export interface ValidatedInputProps {
   required?: boolean;
   variant?: 'default' | 'minimal';
   type?: 'number' | 'text';
+  placeholder?: string;
+  withSlider?: boolean;
 }
 
 /**
@@ -38,6 +40,8 @@ export function ValidatedInput({
   required = false,
   variant = 'default',
   type = 'number',
+  placeholder,
+  withSlider = false,
 }: ValidatedInputProps) {
   const inputId = useId();
   const hintId = useId();
@@ -112,11 +116,12 @@ export function ValidatedInput({
           min={type === 'number' && min !== -Infinity ? min : undefined}
           max={type === 'number' && max !== Infinity ? max : undefined}
           step={type === 'number' ? step : undefined}
+          placeholder={placeholder}
           required={required}
           aria-required={required}
           aria-invalid={hasError}
           aria-describedby={`${hint ? hintId : ''} ${hasError ? errorId : ''}`.trim() || undefined}
-          className={`w-full ${variant === 'minimal' ? 'h-10' : 'h-11'} ${prefix ? 'pl-10' : 'pl-3'} ${suffix ? 'pr-10' : 'pr-3'} 
+          className={`w-full ${variant === 'minimal' ? 'h-10' : 'h-11'} ${!prefix ? 'pl-3' : prefix.length > 2 ? 'pl-16' : 'pl-10'} ${!suffix ? 'pr-3' : suffix.length > 2 ? 'pr-14' : 'pr-10'} 
                        py-2 rounded-sm font-bold ${variant === 'minimal' ? 'text-sm' : 'text-[15px]'}
                        border transition-all outline-none
                        bg-white text-[var(--text-main)]
@@ -138,6 +143,25 @@ export function ValidatedInput({
         <div id={errorId} className="flex items-center gap-2 text-[11px] font-bold uppercase text-red-600 px-1">
           <AlertCircle className="w-3.5 h-3.5" />
           <span>{error || `Required: ${min.toLocaleString()} to ${max.toLocaleString()}`}</span>
+        </div>
+      )}
+
+      {/* Optional Range Slider (Desmos Style) */}
+      {withSlider && isValid && !hasError && type === 'number' && typeof numValue === 'number' && min !== -Infinity && max !== Infinity && (
+        <div className="pt-2 pb-1 px-1">
+           <input 
+             type="range" 
+             min={min} 
+             max={max} 
+             step={step} 
+             value={numValue} 
+             onChange={(e) => onChange(parseFloat(e.target.value))}
+             className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600 hover:accent-blue-700 transition-all"
+           />
+           <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-[#999999] mt-1.5">
+             <span>{formatter ? formatter(min) : min}{(suffix && !formatter) ? suffix : ''}</span>
+             <span>{formatter ? formatter(max) : max}{(suffix && !formatter) ? suffix : ''}</span>
+           </div>
         </div>
       )}
 

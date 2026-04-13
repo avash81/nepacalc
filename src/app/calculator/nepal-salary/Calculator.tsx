@@ -20,7 +20,7 @@ const DEFAULT_STATE = {
 };
 
 export default function NepalSalaryCalculator() {
-  const [state, setState] = useLocalStorage('calcpro_salary_v2', DEFAULT_STATE);
+  const [state, setState] = useLocalStorage('equaly_salary_v2', DEFAULT_STATE);
   const { fiscalYear, basic, allowance, married, ssf, cit, citAmount } = state;
 
   const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {
@@ -59,7 +59,7 @@ export default function NepalSalaryCalculator() {
       ctcMonthly,
       effectiveTaxRate: (annualTax / grossAnnual) * 100
     };
-  }, [fiscalYear, basic, allowance, married, ssf, cit, citAmount]);
+  }, [basic, allowance, married, ssf, cit, citAmount]);
 
   const formatNPR = (n: number) =>
     new Intl.NumberFormat('en-NP', {

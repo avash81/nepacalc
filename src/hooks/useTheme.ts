@@ -1,5 +1,5 @@
 /**
- * @fileoverview useTheme hook — CalcPro.NP
+ * @fileoverview useTheme hook — Equaly
  *
  * Manages dark/light mode preference with localStorage persistence.
  * Reads saved theme on mount, applies class to document root.

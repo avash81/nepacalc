@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Search, Sun, Moon, ChevronRight } from 'lucide-react';
+import { Menu, X, Search, Sun, Moon, ChevronRight, History, Star } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
 import { SearchModal } from './SearchModal';
 
@@ -10,7 +10,20 @@ export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [recent, setRecent] = useState<{ title: string; href: string }[]>([]);
+  const [favs, setFavs] = useState<{ title: string; href: string }[]>([]);
   const path = usePathname();
+
+  // Load Recent & Favs
+  useEffect(() => {
+    const loadData = () => {
+      setRecent(JSON.parse(localStorage.getItem('cp_recent') || '[]'));
+      setFavs(JSON.parse(localStorage.getItem('cp_favs') || '[]'));
+    };
+    loadData();
+    window.addEventListener('cp_favs_updated', loadData);
+    return () => window.removeEventListener('cp_favs_updated', loadData);
+  }, [path]);
 
   // Dark Mode Toggle
   useEffect(() => {
@@ -42,21 +55,23 @@ export function Navbar() {
   useEffect(() => setIsMenuOpen(false), [path]);
 
   const navLinks = [
+    { name: 'Math Tools', href: '/math-tools' },
     { name: 'Directory', href: '/calculator' },
     { name: 'Financial', href: '/calculator/category/finance' },
-    { name: 'Health', href: '/calculator/category/health' },
     { name: 'Blog', href: '/blog' },
   ];
 
+  if (path.startsWith('/math-tools')) return null;
+
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 h-11 bg-[var(--primary)] text-white z-[200] select-none shadow-sm">
+      <nav className="fixed top-0 left-0 right-0 h-11 bg-[#083366] text-white z-[200] select-none shadow-sm no-print">
         <div className="hp-container h-full flex items-center justify-between">
           
           {/* Left: Logo + Desktop Links */}
           <div className="flex items-center gap-6">
-            <Link href="/" className="hover:opacity-80 transition-opacity">
-               <span className="text-lg font-black tracking-tight">CalcPro.NP</span>
+            <Link href="/" className="hover:opacity-80 transition-opacity flex items-center gap-2">
+               <span className="text-sm font-black tracking-tighter uppercase italic">Equaly</span>
             </Link>
             
             <div className="hidden md:flex items-center gap-1 h-11">
@@ -66,8 +81,8 @@ export function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-3 h-11 flex items-center text-[12px] font-bold transition-all relative ${
-                      active ? 'text-white bg-white/10' : 'text-blue-100/80 hover:text-white hover:bg-white/5'
+                    className={`px-3 h-11 flex items-center text-[11px] font-black uppercase tracking-widest transition-all relative ${
+                      active ? 'text-white bg-white/10' : 'text-blue-100/60 hover:text-white hover:bg-white/5'
                     }`}
                   >
                     {link.name}
@@ -78,20 +93,68 @@ export function Navbar() {
           </div>
 
           {/* Right: Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
+            
+            {/* Favorites Dropdown */}
+            <div className="hidden lg:flex items-center h-11 group relative">
+               <button className="flex items-center gap-1.5 px-3 h-full text-[10px] font-black uppercase tracking-widest text-blue-100/60 hover:text-white hover:bg-white/5 transition-all">
+                  <Star className="w-3.5 h-3.5" />
+                  <span>Favs</span>
+               </button>
+               <div className="absolute top-full right-0 w-64 bg-white border border-slate-200 shadow-xl rounded-b-xl overflow-hidden hidden group-hover:block animate-in fade-in slide-in-from-top-1 duration-200 cursor-default">
+                  <div className="p-3 bg-slate-50 border-b border-slate-100 text-[9px] font-black uppercase tracking-widest text-slate-400">Your Saved Tools</div>
+                  <div className="p-1 max-h-[300px] overflow-y-auto">
+                     {favs.length > 0 ? favs.map((f, i) => (
+                       <Link key={i} href={f.href} className="flex items-center gap-3 p-2.5 hover:bg-yellow-50 rounded-lg group/item transition-colors">
+                          <Star className="w-4 h-4 text-slate-300 group-hover/item:text-yellow-500 transition-colors" />
+                          <span className="text-[12px] font-bold text-slate-700 truncate">{f.title}</span>
+                       </Link>
+                     )) : (
+                       <div className="p-4 text-center text-slate-400 italic text-[11px]">Click the star on any calculator to save it here.</div>
+                     )}
+                  </div>
+               </div>
+            </div>
+
+            {/* Recently Used Dropdown (MDCalc Style) */}
+            <div className="hidden lg:flex items-center h-11 group relative">
+               <button className="flex items-center gap-1.5 px-3 h-full text-[10px] font-black uppercase tracking-widest text-blue-100/60 hover:text-white hover:bg-white/5 transition-all">
+                  <History className="w-3.5 h-3.5" />
+                  <span>Recent</span>
+               </button>
+               <div className="absolute top-full right-0 w-64 bg-white border border-slate-200 shadow-xl rounded-b-xl overflow-hidden hidden group-hover:block animate-in fade-in slide-in-from-top-1 duration-200 cursor-default">
+                  <div className="p-3 bg-slate-50 border-b border-slate-100 text-[9px] font-black uppercase tracking-widest text-slate-400">Recently Used Tools</div>
+                  <div className="p-1 max-h-[300px] overflow-y-auto">
+                     {recent.length > 0 ? recent.map((r, i) => (
+                       <Link key={i} href={r.href} className="flex items-center gap-3 p-2.5 hover:bg-blue-50 rounded-lg group/item transition-colors">
+                          <div className="w-8 h-8 rounded-md bg-slate-100 flex items-center justify-center text-xs group-hover/item:bg-blue-600 group-hover/item:text-white transition-all shrink-0">
+                             {i + 1}
+                          </div>
+                          <span className="text-[12px] font-bold text-slate-700 truncate">{r.title}</span>
+                       </Link>
+                     )) : (
+                       <div className="p-4 text-center text-slate-400 italic text-[11px]">No recent tools yet.</div>
+                     )}
+                  </div>
+                  <div className="p-2 border-t border-slate-100 bg-slate-50">
+                     <Link href="/calculator" className="block w-full py-2 text-center text-[9px] font-black uppercase tracking-widest text-blue-600 hover:text-blue-800">Browse Full Directory</Link>
+                  </div>
+               </div>
+            </div>
+
             {/* Simple Search Trigger */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="flex items-center gap-2 px-2 py-1 rounded bg-white/10 hover:bg-white/20 border border-white/10 transition-all group"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 transition-all group"
             >
               <Search className="w-3.5 h-3.5 text-white/70 group-hover:text-white" />
-              <span className="hidden sm:inline text-[11px] font-bold text-white/70 group-hover:text-white">Search tools...</span>
+              <span className="hidden sm:inline text-[10px] font-black uppercase tracking-widest text-white/50 group-hover:text-white">Search tools...</span>
             </button>
 
             {/* Theme Toggle */}
             <button
               onClick={toggleDark}
-              className="p-1.5 hover:bg-white/10 rounded transition-colors text-white/70 hover:text-white"
+              className="p-1.5 hover:bg-white/10 rounded-lg transition-colors text-white/70 hover:text-white"
               title="Toggle Theme"
             >
               {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
@@ -100,7 +163,7 @@ export function Navbar() {
             {/* Mobile Menu */}
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="md:hidden p-1.5 hover:bg-white/10 rounded text-white"
+              className="md:hidden p-1.5 hover:bg-white/10 rounded-lg text-white"
             >
               <Menu className="w-5 h-5" />
             </button>
@@ -127,13 +190,12 @@ export function Navbar() {
 
           <div className="flex-1 overflow-y-auto p-4 space-y-2">
             {[
-              { name: 'Directory', href: '/calculator', icon: '📁' },
-              { name: 'Financial', href: '/calculator/category/finance', icon: '💰' },
-              { name: 'Health', href: '/calculator/category/health', icon: '❤️' },
-              { name: 'Math', href: '/calculator/category/math', icon: '📐' },
-              { name: 'Nepal 🇳🇵', href: '/calculator/category/nepal', icon: '🚩' },
-              { name: 'Blog', href: '/blog', icon: '📖' },
-              { name: 'About', href: '/about', icon: 'ℹ️' },
+               { name: 'Math Tools', href: '/math-tools', icon: '✨' },
+               { name: 'Directory', href: '/calculator', icon: '📁' },
+               { name: 'Financial', href: '/calculator/category/finance', icon: '💰' },
+               { name: 'Health', href: '/calculator/category/health', icon: '❤️' },
+               { name: 'Blog', href: '/blog', icon: '📖' },
+               { name: 'About', href: '/about', icon: 'ℹ️' },
             ].map((link) => (
               <Link
                 key={link.href}
@@ -150,7 +212,7 @@ export function Navbar() {
           </div>
 
           <div className="p-6 border-t border-[var(--border)] text-center text-[var(--text-muted)] bg-[var(--bg-page)]">
-            © 2026 CalcPro.NP — Built for Precision
+            © 2026 Equaly — Built for Precision
           </div>
         </div>
       </aside>

@@ -1,6 +1,7 @@
 'use client';
-import React, { useState } from 'react';
-import { Copy, Check, Share2 } from 'lucide-react';
+import { Copy, Check, Share2, QrCode, AlertCircle, TrendingUp } from 'lucide-react';
+import * as QRCode from 'qrcode';
+import { useEffect, useState } from 'react';
 
 export interface ResultData {
   label: string;
@@ -14,27 +15,38 @@ export interface ResultDisplayProps {
   title: string;
   primaryResult: ResultData;
   secondaryResults?: ResultData[];
+  interpretation?: {
+    text: string;
+    variant: 'info' | 'success' | 'warning' | 'danger';
+  };
   onShare?: () => void;
   className?: string;
 }
 
-/**
- * ResultDisplay — A high-aesthetics, fully accessible result showcase component.
- * Features ARIA live regions for real-time calculation updates and premium visual hierarchy.
- */
 export function ResultDisplay({
   title,
   primaryResult,
   secondaryResults = [],
+  interpretation,
   onShare,
   className = '',
 }: ResultDisplayProps) {
   const [copied, setCopied] = useState(false);
+  const [showQr, setShowQr] = useState(false);
+  const [qrDataUrl, setQrDataUrl] = useState('');
+
+  useEffect(() => {
+    if (showQr) {
+      QRCode.toDataURL(window.location.href, { scale: 8, margin: 2 })
+        .then(url => setQrDataUrl(url))
+        .catch(err => console.error(err));
+    }
+  }, [showQr]);
 
   const handleCopy = async () => {
     const textToCopy = `${title}: ${primaryResult.value} ${typeof primaryResult.description === 'string' ? primaryResult.description : ''}\n` +
       secondaryResults.map(r => `${r.label}: ${r.value}`).join('\n') + 
-      `\nCalculated on CalcPro.NP`;
+      `\nCalculated on Equaly — ${window.location.href}`;
       
     try {
       await navigator.clipboard.writeText(textToCopy);
@@ -45,57 +57,98 @@ export function ResultDisplay({
     }
   };
 
+  const interpretationColors = {
+    info: 'bg-blue-50 text-blue-800 border-blue-100',
+    success: 'bg-emerald-50 text-emerald-800 border-emerald-100',
+    warning: 'bg-amber-50 text-amber-800 border-amber-100',
+    danger: 'bg-rose-50 text-rose-800 border-rose-100',
+  };
+
   return (
     <div className={`space-y-6 ${className}`}>
       {/* Primary Result Showcase */}
       <div 
         role="status"
         aria-live="polite"
-        aria-atomic="true"
-        className={`relative overflow-hidden rounded-[2.5rem] p-10 text-center shadow-2xl transition-all duration-500 hover:scale-[1.02] 
-                      ${primaryResult.bgColor || 'bg-blue-600'} 
-                      ${primaryResult.color || 'text-white'}`}
+        className={`relative overflow-hidden rounded-[2.5rem] p-8 sm:p-12 text-center shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-black/5 group transition-all duration-500
+                      ${primaryResult.bgColor || 'bg-gradient-to-br from-[#083366] via-[#0a4080] to-[#042040] text-white'}
+                      print:bg-white print:text-black print:border-2 print:border-black print:shadow-none print:rounded-3xl print:p-8`}
       >
-        
+        {/* Subtle Background Glow */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32 group-hover:bg-white/10 transition-all duration-700 pointer-events-none" />
+
         {/* Actions Hub */}
-        <div className="absolute top-6 right-6 flex gap-3 z-10">
+        <div className="absolute top-5 right-5 flex gap-2 z-10 no-print">
           <button
             onClick={handleCopy}
-            className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/10 hover:bg-white/20 transition-all backdrop-blur-md border border-white/10"
-            aria-label={copied ? "Result Copied" : "Copy results to clipboard"}
+            className="w-11 h-11 flex items-center justify-center rounded-2xl bg-white/10 hover:bg-white/20 transition-all backdrop-blur-md border border-white/10 shadow-sm active:scale-95"
             title="Copy Result"
           >
-            {copied ? <Check className="w-5 h-5 text-green-300" /> : <Copy className="w-5 h-5" />}
+            {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-white/90" />}
           </button>
-          {onShare && (
-            <button
-              onClick={onShare}
-              className="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/10 hover:bg-white/20 transition-all backdrop-blur-md border border-white/10"
-              aria-label="Share current results"
-              title="Share Result"
-            >
-              <Share2 className="w-5 h-5" />
-            </button>
+          <button
+            onClick={() => setShowQr(!showQr)}
+            className="w-11 h-11 flex items-center justify-center rounded-2xl bg-white/10 hover:bg-white/20 transition-all backdrop-blur-md border border-white/10 shadow-sm active:scale-95"
+            title="Share via QR"
+          >
+            <QrCode className="w-4 h-4 text-white/90" />
+          </button>
+        </div>
+
+        <div className="flex flex-col items-center justify-center relative z-10 print:mt-2">
+          <div className="text-[11px] font-black uppercase tracking-[0.4em] mb-4 text-blue-200/80 print:text-slate-600">
+            {primaryResult.label}
+          </div>
+          
+          <div className="text-5xl sm:text-7xl font-black mb-5 tracking-tighter break-words text-transparent bg-clip-text bg-gradient-to-b from-white to-white/90 drop-shadow-sm leading-tight print:text-black print:bg-none print:drop-shadow-none">
+            {primaryResult.value}
+          </div>
+          
+          {primaryResult.description && (
+            <div className="text-[10px] items-center gap-2 font-black uppercase tracking-[0.2em] px-6 py-2.5 bg-black/20 backdrop-blur-sm rounded-full inline-flex border border-white/10 text-blue-50 shadow-inner print:bg-white print:text-black print:border-slate-300">
+              <TrendingUp className="w-3.5 h-3.5 text-blue-300 print:text-slate-500" />
+              {primaryResult.description}
+            </div>
           )}
         </div>
 
-        {/* Decorative Background Element */}
-        <div className="absolute -top-10 -left-10 w-40 h-40 bg-white/5 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="text-[10px] font-black uppercase tracking-[0.4em] mb-4 opacity-70">
-          {primaryResult.label}
-        </div>
-        
-        <div className="text-6xl sm:text-7xl font-black mb-4 tracking-tighter break-words font-mono">
-          {primaryResult.value}
-        </div>
-        
-        {primaryResult.description && (
-          <div className="text-[10px] font-black uppercase tracking-widest px-6 py-2.5 bg-black/10 rounded-2xl inline-block border border-white/5">
-            {primaryResult.description}
+        {/* Interpretation Band - MDCalc Style Premium */}
+        {interpretation && (
+          <div className={`mt-10 -mx-12 -mb-12 p-5 border-t flex items-center justify-center gap-3 font-black text-[11px] uppercase tracking-widest backdrop-blur-md ${interpretationColors[interpretation.variant]}`}>
+            <AlertCircle className="w-4 h-4 shrink-0" />
+            <span className="truncate">{interpretation.text}</span>
           </div>
         )}
       </div>
+
+      {/* QR Code Modal Overlay */}
+      {showQr && (
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-slate-900/60 backdrop-blur-md no-print p-4" onClick={() => setShowQr(false)}>
+           <div className="bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-2xl max-w-sm w-full text-center space-y-5 animate-in zoom-in-95 duration-300 relative" onClick={e => e.stopPropagation()}>
+              {/* Decorative top pill */}
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-12 h-1.5 bg-slate-200 rounded-full" />
+              
+              <h3 className="text-base font-black uppercase tracking-[0.2em] text-slate-900 pt-2">Share Calculation</h3>
+              <p className="text-[11px] text-slate-500 font-bold uppercase tracking-widest leading-relaxed">Scan to perfectly sync this exact state to another device.</p>
+              
+              <div className="bg-slate-50 p-5 rounded-3xl inline-block border-[3px] border-slate-100 shadow-inner">
+                 {qrDataUrl ? (
+                   // eslint-disable-next-line @next/next/no-img-element
+                   <img src={qrDataUrl} alt="QR Code" className="w-52 h-52 mx-auto mix-blend-darken" />
+                 ) : (
+                   <div className="w-52 h-52 flex items-center justify-center text-slate-400 font-bold uppercase text-[10px] tracking-widest">Generating Engine...</div>
+                 )}
+              </div>
+              
+              <button 
+                onClick={() => setShowQr(false)}
+                className="w-full py-4 mt-2 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl text-xs font-black uppercase tracking-[0.2em] transition-all active:scale-[0.98] shadow-md"
+              >
+                Close Scanner
+              </button>
+           </div>
+        </div>
+      )}
 
       {/* Secondary Intelligence Grid */}
       {secondaryResults.length > 0 && (
@@ -103,17 +156,15 @@ export function ResultDisplay({
           {secondaryResults.map((res, idx) => (
             <div 
               key={idx} 
-              className={`p-6 rounded-[2rem] border transition-all hover:bg-gray-50 dark:hover:bg-gray-800/50
-                         ${res.bgColor || 'bg-white dark:bg-gray-950'} 
-                         ${res.color || 'text-gray-900 dark:text-gray-100'} 
-                         border-gray-100 dark:border-gray-800 shadow-sm`}
+              className={`p-6 rounded-2xl border transition-all hover:bg-slate-50 border-slate-200 bg-white shadow-sm flex flex-col justify-center print:border-black print:break-inside-avoid`}
             >
-              <div className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-2 opacity-60">
+              <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1.5 opacity-60 print:text-slate-500 print:opacity-100">
                 {res.label}
               </div>
-              <div className="text-xl font-black truncate font-mono text-cp-primary">
+              <div className="text-xl font-black text-slate-900 break-words font-mono print:text-black">
                 {res.value}
               </div>
+              {res.description && <div className="text-[9px] font-bold text-slate-400 mt-1 uppercase print:text-slate-500">{res.description}</div>}
             </div>
           ))}
         </div>

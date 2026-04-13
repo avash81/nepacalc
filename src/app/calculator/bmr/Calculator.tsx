@@ -23,7 +23,7 @@ const ACTIVITY_MULTIPLIERS = {
 };
 
 export default function BMRCalculator() {
-  const [state, setState] = useLocalStorage('calcpro_bmr_v2', DEFAULT_STATE);
+  const [state, setState] = useLocalStorage('equaly_bmr_v2', DEFAULT_STATE);
   const { gender, age, weight, height, activity } = state;
 
   const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {
@@ -59,12 +59,12 @@ export default function BMRCalculator() {
                     ))}
                  </div>
               </div>
-              <ValidatedInput label="Age" value={age} onChange={(v) => updateState({ age: v })} min={5} max={110} required />
+              <ValidatedInput label="Age" value={age} onChange={(v) => updateState({ age: v })} min={5} max={110} required withSlider />
            </div>
 
            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <ValidatedInput label="Weight (kg)" value={weight} onChange={(v) => updateState({ weight: v })} min={10} max={500} step={0.1} required />
-              <ValidatedInput label="Height (cm)" value={height} onChange={(v) => updateState({ height: v })} min={50} max={300} step={0.1} required />
+              <ValidatedInput label="Weight (kg)" value={weight} onChange={(v) => updateState({ weight: v })} min={10} max={300} step={0.1} required withSlider />
+              <ValidatedInput label="Height (cm)" value={height} onChange={(v) => updateState({ height: v })} min={50} max={250} step={0.1} required withSlider />
            </div>
 
            <div className="pt-6 border-t border-[var(--border)] space-y-4">
@@ -127,18 +127,40 @@ export default function BMRCalculator() {
         </div>
       }
       faqSection={
-        <CalcFAQ
-          faqs={[
-            {
-              question: 'What is BMR and TDEE?',
-              answer: 'BMR is energy burned at rest. TDEE is total energy burned including exercise.'
-            },
-            {
-              question: 'How accurate is this?',
-              answer: 'Mifflin-St Jeor is accurate within 10% for most adults.'
-            }
-          ]}
-        />
+        <div className="prose prose-slate max-w-none w-full print-hide mt-16 pt-12 border-t border-slate-200">
+             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-6">Mastering BMR & TDEE Core Concepts</h2>
+             
+             <p className="text-slate-600 text-sm leading-relaxed mb-6 font-medium">Your Basal Metabolic Rate (BMR) defines the absolute minimum number of calories (energy) your body requires to survive and maintain critical somatic functions—like breathing, circulating blood, and cellular reproduction—if you were resting in bed for 24 hours.</p>
+
+             <h3 className="text-xl font-black text-slate-900 mt-8 mb-4">The Clinical Standard: Mifflin-St Jeor Equation</h3>
+             <p className="text-slate-600 text-sm leading-relaxed mb-6">Historically, nutritionists used the Harris-Benedict equation (formulated in 1919). Total modern consensus, however, dictates the <strong>Mifflin-St. Jeor equation (1990)</strong>, which is mathematically proven to be significantly more accurate in calculating modern metabolic rates, particularly in non-obese populations.</p>
+             
+             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 mt-4">
+               <div className="bg-slate-50 p-5 border border-slate-200 shadow-sm rounded-lg">
+                 <h4 className="font-bold text-slate-900 uppercase text-xs tracking-wider mb-2">Biological Male BMR</h4>
+                 <p className="text-xs text-slate-600 leading-normal font-mono font-bold tracking-tight">(10 × Weight in kg) + (6.25 × Height in cm) - (5 × Age in yrs) + 5</p>
+               </div>
+               <div className="bg-slate-50 p-5 border border-slate-200 shadow-sm rounded-lg">
+                 <h4 className="font-bold text-slate-900 uppercase text-xs tracking-wider mb-2">Biological Female BMR</h4>
+                 <p className="text-xs text-slate-600 leading-normal font-mono font-bold tracking-tight">(10 × Weight in kg) + (6.25 × Height in cm) - (5 × Age in yrs) - 161</p>
+               </div>
+             </div>
+
+             <h3 className="text-xl font-black text-slate-900 mt-8 mb-4">From BMR to TDEE (Total Daily Energy Expenditure)</h3>
+             <p className="text-slate-600 text-sm leading-relaxed mb-4">Because you are not bedridden, your BMR must be multiplied by an Activity Factor (the Thermic Effect of Activity) to find your TDEE—the total amount of calories you actually burn in a 24-hour cycle. The metabolic multipliers are uniformly scaled:</p>
+             
+             <ul className="list-disc pl-5 space-y-2 text-sm text-slate-600 mb-8">
+                <li><strong>Sedentary (BMR × 1.2):</strong> Office job, zero exercise.</li>
+                <li><strong>Lightly Active (BMR × 1.375):</strong> Casual walking or light sports 1-3 times a week.</li>
+                <li><strong>Moderately Active (BMR × 1.55):</strong> Standard gym/cardio 3-5 times a week.</li>
+                <li><strong>Highly Active (BMR × 1.725):</strong> Daily intense training or physical labor.</li>
+             </ul>
+
+             <div className="bg-emerald-50 border-l-4 border-emerald-500 p-5 mt-6 mb-10">
+               <h4 className="font-bold text-emerald-900 text-sm uppercase tracking-wide mb-1">Applying the Caloric Deficit / Surplus</h4>
+               <p className="text-xs text-emerald-800 leading-relaxed">Once you know your TDEE, human thermodynamics dictates weight manipulation: To lose exactly 0.5kg per week, consume exactly <strong>500 calories less</strong> than your TDEE daily. To gain 0.5kg, consume <strong>500 calories more</strong>. A deficit larger than 1000 calories/day heavily risks permanent metabolic adaptation and muscle catabolism.</p>
+             </div>
+           </div>
       }
     />
   );

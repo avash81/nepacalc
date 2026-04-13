@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Download } from 'lucide-react';
 
 export default function QRGenerator() {
-  const [text, setText] = useState('https://calcpro.com.np');
+  const [text, setText] = useState('https://equaly.com');
   const [size, setSize] = useState(300);
 
   const qrUrl = useMemo(
@@ -47,9 +47,9 @@ export default function QRGenerator() {
           <div className="space-y-2">
             <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Quick Presets</label>
             {[
-              { label: 'Website URL',   val: 'https://calcpro.com.np' },
+              { label: 'Website URL',   val: 'https://equaly.com' },
               { label: 'Phone number',  val: 'tel:+9779800000000' },
-              { label: 'Email link',    val: 'mailto:hello@calcpro.com.np' },
+              { label: 'Email link',    val: 'mailto:hello@equaly.com' },
               { label: 'Wifi access',   val: 'WIFI:T:WPA;S:MyNetwork;P:mypassword;;' },
             ].map(p => (
               <button key={p.label} onClick={() => setText(p.val)}

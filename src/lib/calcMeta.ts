@@ -1,14 +1,14 @@
 import { Metadata } from 'next';
 
 export const SITE_CONFIG = {
-  name: 'CalcPro.NP',
-  domain: 'calcpro.com.np',
-  baseUrl: 'https://calcpro.com.np',
-  twitter: '@calcpronp',
+  name: 'Equaly',
+  domain: 'equaly.com',
+  baseUrl: 'https://equaly.com',
+  twitter: '@equalynp',
 };
 
 export function calcMeta({ title, description, slug, keywords }: { title: string; description: string; slug: string; keywords: string[] }): Metadata {
-  const ogImage = `https://calcpro.com.np/api/og?title=${encodeURIComponent(title)}`;
+  const ogImage = `https://equaly.com/api/og?title=${encodeURIComponent(title)}`;
   
   return {
     title,

@@ -92,7 +92,7 @@ export async function POST(req: NextRequest) {
             {
               parts: [
                 {
-                  text: `You are CalcPro AI, a friendly and expert math assistant.
+                  text: `You are Equaly AI, a friendly and expert math assistant.
 User asked: ${trimmedQuery}
 Provide a step-by-step explanation in plain text (no LaTeX).
 Keep total response under 200 words.`,

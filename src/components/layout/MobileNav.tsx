@@ -5,6 +5,7 @@ import { Home, Search, Globe, Grid, BookOpen } from 'lucide-react';
 
 export function MobileNav() {
   const pathname = usePathname();
+  if (pathname.startsWith('/math-tools')) return null;
 
   const tabs = [
     { name: 'Home',   icon: Home,     path: '/' },

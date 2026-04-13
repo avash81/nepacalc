@@ -109,7 +109,7 @@ export function CalcWrapper({
             <div className="bg-blue-600/5 rounded-3xl p-8 border border-blue-100/50 text-center">
                <div className="text-[8px] font-black text-blue-600 uppercase tracking-[0.4em] mb-2">Power Optimization</div>
                <p className="text-[10px] font-bold text-blue-600/60 leading-relaxed uppercase tracking-widest">
-                 CalcPro computations run entirely on your browser for zero latency and maximum privacy.
+                 Equaly computations run entirely on your browser for zero latency and maximum privacy.
                </p>
             </div>
           </aside>
@@ -131,13 +131,13 @@ export function CalcWrapper({
             </div>
             <p className="text-xs text-red-600/70 dark:text-red-400/70 leading-relaxed font-bold max-w-3xl">
               Calculations provided are for planning and informational purposes only. We maintain strict mathematical integrity aligned with Nepal&apos;s 2082/83 regulations. 
-              CalcPro.NP is not a substitute for certified financial or legal consultation. All compute cycles remain local to your device.
+              Equaly is not a substitute for certified financial or legal consultation. All compute cycles remain local to your device.
             </p>
           </div>
           
           <div className="flex flex-col sm:flex-row items-center justify-between gap-8 pt-8 pb-16">
             <div className="text-[10px] font-black text-gray-300 dark:text-gray-700 uppercase tracking-[0.4em]">
-              &copy; 2026 CALCPRO.NP &middot; AUTOMATED BY CORTEX
+              &copy; 2026 EQUALY &middot; AUTOMATED BY CORTEX
             </div>
             <div className="flex gap-8">
                {['About', 'Contact', 'Terms', 'Privacy'].map(link => (
@@ -156,12 +156,12 @@ export function CalcWrapper({
               '@context': 'https://schema.org',
               '@type': 'BreadcrumbList',
               'itemListElement': [
-                { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://calcpro.com.np' },
+                { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://equaly.com' },
                 ...crumbs.map((c, i) => ({
                   '@type': 'ListItem',
                   'position': i + 2,
                   'name': c.label,
-                  'item': c.href ? `https://calcpro.com.np${c.href}` : undefined
+                  'item': c.href ? `https://equaly.com${c.href}` : undefined
                 })).filter(x => x.item)
               ]
             })

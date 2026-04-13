@@ -14,11 +14,11 @@ export default function HomePage() {
         {/* 1. Interactive Command Center - Isolated Client Island */}
         <section className="pt-8 sm:pt-12 pb-16 sm:pb-24 border-b border-slate-100 bg-white relative overflow-hidden">
           <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-10 flex flex-col items-center">
-            <div className="text-center mb-6 sm:mb-8 relative z-10 w-full max-w-[800px]">
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-slate-900 mb-3 tracking-tighter leading-tight uppercase">
-                Nepal&apos;s #1 All-in-One CalcPro Suite
-              </h1>
-              <p className="text-slate-400 text-xs sm:text-sm font-medium tracking-wide">Scientific • Graphing • Unit Conversion • Statistics • Financial</p>
+            <div className="text-center mb-10 md:mb-16 relative z-10 w-full max-w-[800px]">
+               <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-slate-900 mb-6 tracking-tighter leading-tight">
+                 Precision Financial <span className="text-blue-600 block sm:inline">Calculators</span>
+               </h1>
+               <p className="text-slate-500 text-lg sm:text-xl font-medium tracking-tight mb-8">Access Nepal&apos;s most reliable suite of financial, tax, and professional utility calculators.</p>
             </div>
             
             <div className="w-full relative z-10">

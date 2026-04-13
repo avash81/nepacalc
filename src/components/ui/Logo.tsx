@@ -1,48 +1,44 @@
+'use client';
 import React from 'react';
 
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg';
-  dark?: boolean;
+  theme?: 'indigo' | 'white';
   className?: string;
 }
 
-export const Logo: React.FC<LogoProps> = ({ size = 'md', dark = false, className = '' }) => {
+/**
+ * Equaly Master Logo
+ * Unified version for Navbar, Footer, and Admin.
+ */
+export const Logo: React.FC<LogoProps> = ({ size = 'md', theme = 'indigo', className = '' }) => {
+  const isWhite = theme === 'white';
+  
   const sizes = {
-    sm: { glyph: 20, font: 'text-lg', icon: 10 },
-    md: { glyph: 28, font: 'text-xl', icon: 14 },
-    lg: { glyph: 36, font: 'text-2xl', icon: 18 },
+    sm: { glyph: 20, font: 'text-lg' },
+    md: { glyph: 28, font: 'text-xl' },
+    lg: { glyph: 36, font: 'text-2xl' },
   };
 
-  const { glyph, font, icon } = sizes[size];
+  const { glyph, font } = sizes[size];
 
   return (
-    <div className={`flex items-center gap-2 select-none ${className}`}>
-      {/* SVG Glyph */}
-      <svg 
-        width={glyph} 
-        height={glyph} 
-        viewBox="0 0 28 28" 
-        fill="none" 
-        xmlns="http://www.w3.org/2000/svg"
-        className="flex-shrink-0"
+    <div className={`flex items-center gap-2.5 group select-none ${className}`}>
+      {/* MINIMALIST LOGO SYMBOL */}
+      <div 
+        className={`relative rounded-lg flex items-center justify-center shadow-md transition-all duration-300
+                    ${isWhite ? 'bg-white shadow-white/10 group-hover:bg-blue-400' : 'bg-blue-600 shadow-blue-900/20 group-hover:bg-blue-700'}`}
+        style={{ width: glyph, height: glyph }}
       >
-        <rect width="28" height="28" rx="6" fill="var(--primary)" />
-        <path 
-          d="M8 11H20M8 17H20" 
-          stroke="white" 
-          strokeWidth="3" 
-          strokeLinecap="round"
-        />
-      </svg>
-
-      {/* Brand Text */}
-      <span className={`${font} tracking-tight flex items-baseline`}>
-        <span className={`font-bold ${dark ? 'text-white' : 'text-[var(--primary)]'}`}>
-          Calc
-        </span>
-        <span className={`font-light ${dark ? 'text-white/70' : 'text-[var(--text-main)]'}`}>
-          ly
-        </span>
+        <div className="flex flex-col justify-between" style={{ width: glyph * 0.5, height: glyph * 0.4 }}>
+          <div className={`h-0.5 rounded-full w-full ${isWhite ? 'bg-slate-900' : 'bg-white'}`} />
+          <div className={`h-0.5 rounded-full w-full ${isWhite ? 'bg-slate-900' : 'bg-white'}`} />
+        </div>
+      </div>
+      
+      {/* BRAND TEXT */}
+      <span className={`${font} font-black tracking-tight transition-colors font-sans overflow-hidden ${isWhite ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
+        Equaly<span className={isWhite ? 'text-blue-400' : 'text-blue-600 font-bold'}>.NP</span>
       </span>
     </div>
   );

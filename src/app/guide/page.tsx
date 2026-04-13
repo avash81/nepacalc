@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { BookOpen } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Nepal Calculator Guides — Free SEO Resources | CalcPro.NP',
-  description: 'Free guides on Nepal income tax, EMI, Nepali date conversion, GPA, and more. Written by CalcPro.NP team.',
-  alternates: { canonical: 'https://calcpro.com.np/guide' },
+  title: 'Nepal Calculator Guides — Free SEO Resources | Equaly',
+  description: 'Free guides on Nepal income tax, EMI, Nepali date conversion, GPA, and more. Written by Equaly team.',
+  alternates: { canonical: 'https://equaly.com/guide' },
 };
 
 export default function GuidesPage() {

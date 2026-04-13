@@ -1,5 +1,5 @@
 /**
- * @fileoverview Finance calculation utilities — CalcPro.NP
+ * @fileoverview Finance calculation utilities — Equaly
  *
  * Pure functions for financial calculations. No side effects.
  * Safe to use in React useMemo hooks.

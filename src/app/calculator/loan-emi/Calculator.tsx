@@ -1,187 +1,168 @@
 'use client';
-import { useMemo, useCallback } from 'react';
+import { useMemo, useState } from 'react';
 import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
 import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { QuickPresets } from '@/components/calculator/QuickPresets';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
-import { safeCalculateEMI } from '@/utils/math/safeCalculations';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useSyncState } from '@/hooks/useSyncState';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
+import { ResultDisplay } from '@/components/calculator/ResultDisplay';
+import { safeCalculateEMI } from '@/utils/math/safeCalculations';
+import { Target, RefreshCw } from 'lucide-react';
 
 const LOAN_PRESETS: any[] = [
-  {
-    name: 'Personal Loan',
-    description: 'NPR 5 Lakh @ 12%',
-    icon: 'briefcase',
-    values: { principal: 500000, rate: 12, tenure: 3, method: 'reducing' },
-  },
-  {
-    name: 'Home Loan',
-    description: 'NPR 50 Lakh @ 8.5%',
-    icon: 'home',
-    values: { principal: 5000000, rate: 8.5, tenure: 20, method: 'reducing' },
-  },
-  {
-    name: 'Auto Loan',
-    description: 'NPR 25 Lakh @ 10%',
-    icon: 'car',
-    values: { principal: 1500000, rate: 10, tenure: 5, method: 'reducing' },
-  },
-  {
-    name: 'Education',
-    description: 'NPR 10 Lakh @ 9%',
-    icon: 'graduation',
-    values: { principal: 1000000, rate: 9, tenure: 10, method: 'reducing' },
-  },
+  { name: 'Personal Loan', description: 'NPR 5 Lakh @ 12%', icon: 'briefcase', values: { principal: 500000, rate: 12, tenure: 3, method: 'reducing', extraMonthly: 0 } },
+  { name: 'Home Loan', description: 'NPR 50 Lakh @ 8.5%', icon: 'home', values: { principal: 5000000, rate: 8.5, tenure: 20, method: 'reducing', extraMonthly: 0 } },
+  { name: 'Auto Loan', description: 'NPR 25 Lakh @ 10%', icon: 'car', values: { principal: 1500000, rate: 10, tenure: 5, method: 'reducing', extraMonthly: 0 } },
 ];
 
-const DEFAULT_STATE = {
-  principal: 1000000,
-  rate: 11.5,
-  tenure: 15,
-  method: 'reducing' as 'reducing' | 'flat',
-  fee: 1,
+const DEFAULT_STATE = { 
+  principal: 1000000, 
+  rate: 11.5, 
+  tenure: 15, 
+  method: 'reducing' as 'reducing' | 'flat', 
+  fee: 1, 
+  extraMonthly: 0,
+  targetEmi: 15000,
+  isReverse: false // Goal Seek mode
 };
 
 export default function LoanEMICalculator() {
-  const [state, setState] = useLocalStorage('calcpro_emi_v2', DEFAULT_STATE);
-  const { principal, rate, tenure, method, fee } = state;
+  const [state, setState] = useSyncState('emi_v4', DEFAULT_STATE);
+  const { principal, rate, tenure, method, fee, extraMonthly, targetEmi, isReverse } = state;
 
-  const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {
-    setState({ ...state, ...updates });
-  };
+  const updateState = (updates: Partial<typeof DEFAULT_STATE>) => setState({ ...state, ...updates });
 
+  // Calculation Logic (Forward & Reverse)
   const result = useMemo(() => {
-    return safeCalculateEMI(principal, rate, tenure, method);
-  }, [principal, rate, tenure, method]);
+    let activePrincipal = principal;
 
-  const feeAmount = useMemo(() => Math.round((fee / 100) * principal), [fee, principal]);
-  const totalWithFee = useMemo(() => {
-    if (!result.success || !result.data) return 0;
-    return Math.round(result.data.totalPayment + feeAmount);
-  }, [result, feeAmount]);
+    // Goal Seek Logic
+    if (isReverse) {
+      const r = rate / 12 / 100;
+      const n = tenure * 12;
+      // Formula: P = EMI * [((1+r)^n - 1) / (r * (1+r)^n)]
+      activePrincipal = targetEmi * ((Math.pow(1 + r, n) - 1) / (r * Math.pow(1 + r, n)));
+    }
 
-  const formatNPR = (n: number) => {
-    return new Intl.NumberFormat('en-NP', {
-      style: 'currency',
-      currency: 'NPR',
-      maximumFractionDigits: 0,
-    }).format(n);
-  };
+    const baseCalc = safeCalculateEMI(activePrincipal, rate, tenure, method);
+    if (!baseCalc.success || !baseCalc.data) return { success: false, error: baseCalc.error };
 
-  const handlePresetSelect = useCallback((preset: any) => {
-    updateState({
-      principal: preset.values.principal,
-      rate: preset.values.rate,
-      tenure: preset.values.tenure,
-      method: preset.values.method
-    });
-  }, [updateState]);
+    const baseEmi = baseCalc.data.emi;
+    const actualMonthlyPayment = baseEmi + extraMonthly;
+    const totalInterest = baseCalc.data.totalInterest;
+    
+    return { 
+      success: true, 
+      activePrincipal: Math.round(activePrincipal),
+      baseEmi, 
+      actualMonthlyPayment, 
+      totalInterest: Math.round(totalInterest),
+      totalPayment: Math.round(activePrincipal + totalInterest),
+    };
+  }, [principal, rate, tenure, method, extraMonthly, targetEmi, isReverse]);
+
+  const formatNPR = (n: number) => new Intl.NumberFormat('en-NP', { style: 'currency', currency: 'NPR', maximumFractionDigits: 0 }).format(n);
 
   return (
     <CalculatorErrorBoundary calculatorName="Loan EMI">
       <CalculatorLayout
-        title="Loan EMI Calculator"
-        description="Verify your personal, home, or auto loan monthly repayment amount. Plan your finances with precision."
-        badge="Finance"
-        badgeColor="indigo"
+        title={isReverse ? "Reverse EMI (Goal Seek)" : "Loan EMI Calculator"}
+        description={isReverse 
+          ? "Find the maximum loan amount you can afford based on your monthly budget." 
+          : "Calculate your monthly EMI and total interest for various loan types in Nepal."
+        }
+        purpose="Financial Planning"
         category={{ label: 'Finance', href: '/calculator/category/finance' }}
         leftPanel={
-          <div className="space-y-8 text-left">
-            <QuickPresets presets={LOAN_PRESETS} onSelect={handlePresetSelect} />
+          <div className="space-y-8">
+            {/* Goal Seek Toggle */}
+            <div className="flex items-center justify-between p-4 bg-slate-900 text-white rounded-2xl shadow-xl">
+               <div className="flex items-center gap-3">
+                  <div className={`p-2 rounded-xl ${isReverse ? 'bg-blue-600' : 'bg-slate-800'}`}>
+                     <Target className="w-5 h-5" />
+                  </div>
+                  <div>
+                     <div className="text-[10px] font-black uppercase tracking-widest opacity-60">Mode: {isReverse ? 'Goal Seek' : 'Forward'}</div>
+                     <div className="text-xs font-bold">{isReverse ? 'Find Max Loan Amount' : 'Find Monthly EMI'}</div>
+                  </div>
+               </div>
+               <button 
+                  onClick={() => updateState({ isReverse: !isReverse })}
+                  className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all border border-white/5"
+               >
+                  Switch Mode
+               </button>
+            </div>
+
+            <QuickPresets presets={LOAN_PRESETS} onSelect={(p: any) => updateState({ ...p.values, isReverse: false })} />
             
-            <div className="space-y-3">
-              <div className="text-xs font-bold uppercase tracking-tight text-[var(--text-main)] px-1">Interest Calculation Method</div>
-              <div className="flex p-1 bg-[var(--bg-surface)] border border-[var(--border)]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-6">
+              {isReverse ? (
+                <ValidatedInput label="Affordable EMI (NPR)" value={targetEmi} onChange={(v) => updateState({ targetEmi: v })} min={1000} max={1000000} step={500} required hint="How much can you pay per month?" withSlider />
+              ) : (
+                <ValidatedInput label="Loan Amount (NPR)" value={principal} onChange={(v) => updateState({ principal: v })} min={50000} max={100000000} step={50000} required withSlider formatter={formatNPR} />
+              )}
+              <ValidatedInput label="Interest Rate (%)" value={rate} onChange={(v) => updateState({ rate: v })} min={1} max={30} step={0.25} required withSlider suffix="%" />
+              <ValidatedInput label="Tenure (Years)" value={tenure} onChange={(v) => updateState({ tenure: v })} min={1} max={50} required withSlider suffix=" Yrs" />
+              <ValidatedInput label="Processing Fee (%)" value={fee} onChange={(v) => updateState({ fee: v })} min={0} max={10} step={0.1} withSlider suffix="%" />
+            </div>
+
+            <div className="flex p-1 bg-slate-100 rounded-xl">
                 {['reducing', 'flat'].map((m) => (
-                  <button
-                    key={m}
-                    onClick={() => updateState({ method: m as 'reducing' | 'flat' })}
-                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-tight transition-all ${
-                      method === m ? 'bg-[var(--primary)] text-white shadow-sm' : 'text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]'
-                    }`}
-                  >
+                  <button key={m} onClick={() => updateState({ method: m as 'reducing' | 'flat' })}
+                    className={`flex-1 py-2 text-[10px] font-black uppercase tracking-widest transition-all rounded-lg ${method === m ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}>
                     {m} Balance
                   </button>
                 ))}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <ValidatedInput label="Loan Amount (NPR)" value={principal} onChange={(v) => updateState({ principal: v })} min={10000} max={500000000} step={50000} required />
-              <ValidatedInput label="Interest Rate (%)" value={rate} onChange={(v) => updateState({ rate: v })} min={0.1} max={40} step={0.1} required />
-              <ValidatedInput label="Loan Tenure (Years)" value={tenure} onChange={(v) => updateState({ tenure: v })} min={1} max={50} required />
-              <ValidatedInput label="Processing Fee (%)" value={fee} onChange={(v) => updateState({ fee: v })} min={0} max={10} step={0.1} />
             </div>
           </div>
         }
         rightPanel={
-          <div className="space-y-8">
-            {result.success && result.data ? (
+          <div className="space-y-6">
+            {result.success ? (
               <>
-                <div className="text-center p-6 bg-white border border-[var(--border)]">
-                  <div className="text-xs font-bold uppercase tracking-tight text-[var(--text-muted)] mb-2">Monthly EMI Payment</div>
-                  <div className="text-5xl font-black text-[var(--primary)] tracking-tighter mb-2">{formatNPR(result.data.emi)}</div>
-                  <div className="text-xs font-bold text-[var(--text-secondary)] uppercase tracking-tight">per month for {tenure} years</div>
-                </div>
-
-                <div className="space-y-4 bg-white/40 p-6 border border-[var(--primary)]/10">
-                  <div className="flex justify-between items-center text-[13px]">
-                    <span className="font-bold text-[var(--text-secondary)] uppercase text-xs">Total Interest Paid</span>
-                    <span className="font-bold text-[var(--text-main)]">{formatNPR(result.data.totalInterest)}</span>
-                  </div>
-                  <div className="flex justify-between items-center text-[13px]">
-                     <span className="font-bold text-[var(--text-secondary)] uppercase text-xs">Total Payment (P + I)</span>
-                     <span className="font-bold text-[var(--text-main)]">{formatNPR(result.data.totalPayment)}</span>
-                  </div>
-                  <div className="pt-4 border-t border-[var(--primary)]/10 flex justify-between items-center">
-                    <span className="text-xs font-bold text-[var(--primary)] uppercase">Grand Total (Incl. Fees)</span>
-                    <div className="text-right">
-                      <div className="text-2xl font-black text-[var(--primary)]">{formatNPR(totalWithFee)}</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Progress Bar Visual - Classic Steel Blue */}
-                <div className="space-y-3">
-                  <div className="flex justify-between text-[11px] font-bold uppercase tracking-tight text-[var(--text-main)]">
-                    <span>Principal {Math.round((principal / result.data.totalPayment) * 100)}%</span>
-                    <span>Interest {Math.round((result.data.totalInterest / result.data.totalPayment) * 100)}%</span>
-                  </div>
-                  <div className="h-3 w-full bg-gray-200 overflow-hidden flex">
-                    <div 
-                      className="h-full bg-[var(--primary)] transition-all duration-500" 
-                      style={{ width: `${(principal / result.data.totalPayment) * 100}%` }}
-                    />
-                    <div 
-                      className="h-full bg-[var(--accent)] transition-all duration-500" 
-                      style={{ width: `${(result.data.totalInterest / result.data.totalPayment) * 100}%` }}
-                    />
-                  </div>
-                </div>
+                <ResultDisplay 
+                  title="Loan Calculation"
+                  primaryResult={isReverse ? {
+                    label: "Max Loan Possible",
+                    value: formatNPR(result.activePrincipal!),
+                    description: `At ${rate}% for ${tenure} years`,
+                    bgColor: 'bg-slate-900',
+                  } : {
+                    label: "Monthly EMI",
+                    value: formatNPR(result.baseEmi!),
+                    description: "Reducing Balance",
+                    bgColor: 'bg-[#003366]',
+                  }}
+                  secondaryResults={[
+                    { label: 'Total Interest', value: formatNPR(result.totalInterest!) },
+                    { label: 'Total Repayment', value: formatNPR(result.totalPayment!) },
+                    { label: 'Processing Fee', value: formatNPR(Math.round((fee/100) * result.activePrincipal!)) },
+                  ]}
+                  interpretation={isReverse ? {
+                    variant: 'success',
+                    text: `You can borrow up to ${formatNPR(result.activePrincipal!)} with a monthly budget of ${formatNPR(targetEmi)}.`
+                  } : {
+                    variant: 'info',
+                    text: `Your EMI will be ${formatNPR(result.baseEmi!)} per month for ${tenure * 12} installments.`
+                  }}
+                />
               </>
             ) : (
-              <div className="p-4 bg-red-50 text-red-600 font-bold text-xs border border-red-200">
-                {result.error || 'Please enter valid loan inputs.'}
+              <div className="p-6 bg-rose-50 text-rose-600 font-bold text-xs border border-rose-100 rounded-2xl">
+                {result.error}
               </div>
             )}
           </div>
         }
-        faqSection={
-           <CalcFAQ
-              faqs={[
-                {
-                  question: 'Reducing vs Flat Rate: Which is better?',
-                  answer: 'Reducing balance is almost always better for the borrower. Interest is only charged on the outstanding balance. Flat rate charges interest on the original loan amount for the entire period, making it much more expensive in reality.'
-                },
-                {
-                  question: 'Can I pay off my loan early in Nepal?',
-                  answer: 'Most A, B, and C class banks in Nepal allow partial or full prepayment. However, be aware of "Prepayment Fees" which typically range from 0.5% to 2% of the principal being paid early.'
-                }
-              ]}
-           />
-        }
+        faqSection={<CalcFAQ faqs={[
+          { question: "What is Goal Seek for EMI?", answer: "Goal Seek (or Reverse Calculation) lets you enter your desired monthly payment to find out the maximum loan amount you can qualify for based on current interest rates and tenure." }
+        ]} />}
       />
     </CalculatorErrorBoundary>
   );
 }
+
+function fmt(n: number) { return Math.round(n).toLocaleString('en-IN'); }

@@ -96,7 +96,7 @@ export default function AdminSetupPage() {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1.5">Admin Email</label>
             <input type="email" value={email} onChange={e => setEmail(e.target.value)} required
-              placeholder="admin@calcpro.com.np"
+              placeholder="admin@equaly.com"
               className="w-full border-2 border-gray-200 rounded-lg px-4 py-3 text-base focus:outline-none focus:border-blue-500 transition-colors" />
           </div>
           <div>

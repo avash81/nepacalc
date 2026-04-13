@@ -8,7 +8,7 @@ export default function SitemapPage() {
   return (
     <CalcWrapper
       title="Sitemap"
-      description="Complete directory of all calculators and tools available on CalcPro.NP."
+      description="Complete directory of all calculators and tools available on Equaly."
       crumbs={[{label:'sitemap'}]}
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 py-12">

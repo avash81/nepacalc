@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { ShieldCheck, Target } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About CalcPro.NP | Professional Calculators for Nepal',
-  description: 'CalcPro.NP is Nepal&apos;s premier destination for high-precision financial, tax, health, and engineering calculators. Built for accuracy, No Ads, 100% Free.',
+  title: 'About Equaly | Professional Calculators for Nepal',
+  description: 'Equaly is Nepal&apos;s premier destination for high-precision financial, tax, health, and engineering calculators. Built for accuracy, No Ads, 100% Free.',
 };
 
 export default function AboutPage() {
@@ -26,7 +26,7 @@ export default function AboutPage() {
            <div className="space-y-6">
               <h2 className="text-2xl font-black text-gray-900 leading-tight">Empowering 30 Million <br/> Minds in Nepal.</h2>
               <p className="text-gray-600 leading-relaxed">
-                 Calculating Income Tax, EMI, or even BMI shouldn&apos;t involve complex spreadsheets or ad-filled websites. CalcPro.NP was founded with a single mission: to provide the most accurate, secure, and user-friendly calculation ecosystem for the Nepalese people.
+                 Calculating Income Tax, EMI, or even BMI shouldn&apos;t involve complex spreadsheets or ad-filled websites. Equaly was founded with a single mission: to provide the most accurate, secure, and user-friendly calculation ecosystem for the Nepalese people.
               </p>
               <div className="pt-4 flex flex-wrap gap-4">
                  <div className="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-2xl">

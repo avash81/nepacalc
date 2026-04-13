@@ -60,7 +60,7 @@ export default function FeatureGrid() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="h2-section text-cp-text mb-4">
-            Why Choose <span className="text-cp-blue">CalcPro?</span>
+            Why Choose <span className="text-cp-blue">Equaly?</span>
           </h2>
           <p className="text-cp-text-muted max-w-2xl mx-auto text-sm">
             We combined professional-grade precision with a modern user experience to build the ultimate tool suite for Nepal.

@@ -17,7 +17,7 @@ function getZodiac(d: number, m: number) {
 }
 
 export default function AgeCalculator() {
-  const [state, setState] = useLocalStorage('calcpro_age_v2', DEFAULT);
+  const [state, setState] = useLocalStorage('equaly_age_v2', DEFAULT);
   const { dob, targetDate } = state;
   const update = (u: Partial<typeof DEFAULT>) => setState({ ...state, ...u });
 

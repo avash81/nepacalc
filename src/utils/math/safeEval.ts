@@ -1,5 +1,5 @@
 /**
- * @fileoverview safeEval — Safe math expression evaluator for CalcPro.NP
+ * @fileoverview safeEval — Safe math expression evaluator for Equaly
  *
  * Replaces the dangerous eval() function with a safe, sandboxed
  * math expression parser. Supports:

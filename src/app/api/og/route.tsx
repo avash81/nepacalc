@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
 
     // Dynamic params
-    const title = searchParams.get('title') || 'CalcPro.NP — Best Free Calculators';
+    const title = searchParams.get('title') || 'Equaly — Best Free Calculators';
     const description = searchParams.get('description') || 'Free online calculators for Nepal';
 
     return new ImageResponse(
@@ -47,7 +47,7 @@ export async function GET(req: NextRequest) {
               +−×÷
             </div>
             <span style={{ fontSize: 50, color: '#38bdf8', fontWeight: 800, fontFamily: 'sans-serif' }}>
-              CalcPro.NP
+              Equaly
             </span>
           </div>
 

@@ -1,7 +1,7 @@
 'use client';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import * as math from 'mathjs';
-import QRCode from 'qrcode';
+import * as QRCode from 'qrcode';
 
 /* ── Professional Factorial ───────────────── */
 function factorial(n: number): number {
@@ -123,14 +123,14 @@ export default function ScientificCalculator() {
     }
   }, [expressions, angleMode, isOff, isMounted]);
 
-  const generateQR = async () => {
+  const generateQR = useCallback(async () => {
     try {
       const data = `Expression: ${expressions[activeIndex]}\nResult: ${display}`;
       const url = await QRCode.toDataURL(data);
       setQrBlob(url);
       setTimeout(() => setQrBlob(null), 5000);
     } catch (err) { console.error(err); }
-  };
+  }, [expressions, activeIndex, display]);
 
   const exec = useCallback((action: string) => {
     if (isOff && action !== 'ON') return;
@@ -166,7 +166,7 @@ export default function ScientificCalculator() {
       case 'DIFF': setExpressions(p => { const n=[...p]; n[activeIndex]=`diff(${n[activeIndex]})`; return n; }); return;
       default: setExpressions(p => { const n=[...p]; n[activeIndex]=n[activeIndex].slice(0, cursorIndex) + action + n[activeIndex].slice(cursorIndex); return n; }); setCursorIndex(p=>p+action.length);
     }
-  }, [expressions, activeIndex, display, angleMode, memory, vars, isOff, shift, alpha, lastAns, stoMode, cursorIndex]);
+  }, [expressions, activeIndex, display, angleMode, memory, vars, isOff, shift, alpha, lastAns, stoMode, cursorIndex, generateQR]);
 
   const press = (p: string, s?: string, a?: string) => {
     if (shift) { setShift(false); exec(s ?? p); return; }
@@ -291,7 +291,7 @@ export default function ScientificCalculator() {
                 <div className="mt-auto text-7xl font-black text-right leading-none tracking-tighter drop-shadow-[0_0_10px_rgba(34,197,94,0.4)]">{display}</div>
                </>
             )}
-            {qrBlob && <div className="absolute inset-0 bg-black/90 flex flex-col items-center justify-center animate-in fade-in transition-all"><img src={qrBlob} className="w-32 h-32 mb-2 p-2 bg-white rounded-lg shadow-xl"/><span className="text-[10px] uppercase font-black text-white px-2 py-1 bg-green-600 rounded">Shared Link Ready</span></div>}
+            {qrBlob && <div className="absolute inset-0 bg-black/90 flex flex-col items-center justify-center animate-in fade-in transition-all"><img src={qrBlob} className="w-32 h-32 mb-2 p-2 bg-white rounded-lg shadow-xl" alt="QR Code"/><span className="text-[10px] uppercase font-black text-white px-2 py-1 bg-green-600 rounded">Shared Link Ready</span></div>}
           </div>
 
           {/* D-PAD */}

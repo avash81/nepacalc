@@ -1,18 +1,24 @@
 'use client';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import * as math from 'mathjs';
+import { History, ChevronUp, ChevronDown, MoreVertical, Delete } from 'lucide-react';
 
-/* ── Factorial ─────────────────────────────── */
+/* ── Factorial Helper ── */
 function factorial(n: number): number {
   if (n < 0 || !Number.isInteger(n) || n > 170) return NaN;
   let r = 1; for (let i = 2; i <= n; i++) r *= i; return r;
 }
 
-/* ── Master Evaluator ──────────────────────── */
+/* ── Master Evaluator ── */
 function masterEval(expr: string, deg: boolean): { res: string; err: string | null } {
   try {
     if (!expr) return { res: '0', err: null };
-    let p = expr.replace(/×/g, '*').replace(/÷/g, '/').replace(/π/g, 'pi').replace(/e/g, 'e').replace(/EXP/g, '*10^');
+    let p = expr
+        .replace(/×/g, '*')
+        .replace(/÷/g, '/')
+        .replace(/π/g, 'pi')
+        .replace(/e/g, 'e')
+        .replace(/EXP/g, '*10^');
     const result = math.evaluate(p, {
       pi: Math.PI, e: Math.E,
       sin: (x: number) => deg ? Math.sin(x * Math.PI / 180) : Math.sin(x),
@@ -21,179 +27,316 @@ function masterEval(expr: string, deg: boolean): { res: string; err: string | nu
       sqrt: Math.sqrt, log: Math.log10, ln: Math.log, abs: Math.abs, fact: factorial
     });
     if (typeof result === 'number') {
-      if (!isFinite(result)) return { res: 'MATH ERROR', err: 'MATH ERROR' };
+      if (!isFinite(result)) return { res: 'Error', err: 'Error' };
       return { res: parseFloat(result.toPrecision(10)).toString(), err: null };
     }
     return { res: String(result), err: null };
-  } catch { return { res: 'SYNTAX ERROR', err: 'SYNTAX ERROR' }; }
+  } catch { 
+     // Silently swallow errors during typing to maintain Google's live-resolve approach without flashing syntax errors
+     return { res: '', err: 'SYNTAX ERROR' }; 
+  }
 }
 
-/* ── Graphic Engine (PURE HARDWARE MATCH: WHITE BG) ── */
-function drawGraphic(canvas: HTMLCanvasElement, expr: string, deg: boolean) {
-  const ctx = canvas.getContext('2d'); if (!ctx) return;
-  const w = canvas.width, h = canvas.height;
-  ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, 0, w, h);
-  const scale = 50; const offsetX = w / 2, offsetY = h / 2;
-  ctx.strokeStyle = '#d1d5db'; ctx.lineWidth = 1;
-  ctx.beginPath();
-  for (let x=0; x<w; x+=scale) { ctx.moveTo(x,0); ctx.lineTo(x,h); }
-  for (let y=0; y<h; y+=scale) { ctx.moveTo(0,y); ctx.lineTo(w,y); }
-  ctx.stroke();
-  ctx.strokeStyle = '#000000'; ctx.lineWidth = 2.5;
-  ctx.beginPath(); ctx.moveTo(0, offsetY); ctx.lineTo(w, offsetY); ctx.moveTo(offsetX, 0); ctx.lineTo(offsetX, h); ctx.stroke();
-  if (!expr || !expr.includes('x')) return;
-  ctx.strokeStyle = '#000000'; ctx.lineWidth = 4;
-  ctx.beginPath(); let first = true;
-  for (let px=0; px<w; px++) {
-    const vx = (px - offsetX) / scale;
-    try {
-      const { res, err } = masterEval(expr.replace(/x/g, `(${vx})`), deg);
-      const val = parseFloat(res);
-      if (!err && isFinite(val)) {
-        const py = offsetY - val * scale;
-        if (first) { ctx.moveTo(px, py); first = false; } else { ctx.lineTo(px, py); }
-      } else { first = true; }
-    } catch { first = true; }
-  }
-  ctx.stroke();
+/* ── Generic Button Component ── */
+function CalcBtn({ label, onClick, className, span = 1 }: { label: React.ReactNode, onClick: () => void, className?: string, span?: number }) {
+    return (
+        <button 
+           onClick={onClick}
+           className={`flex items-center justify-center rounded-full text-[15px] sm:text-[17px] transition-colors duration-150 py-3 sm:py-3.5 focus:outline-none active:scale-[0.97] min-h-[48px] ${className} ${span > 1 ? `col-span-${span}` : ''}`}
+           style={span > 1 ? { gridColumn: `span ${span} / span ${span}` } : {}}
+        >
+           {label}
+        </button>
+    );
 }
 
 export default function AllInOneCalculator() {
-  const [isMounted, setIsMounted] = useState(false);
-  const [isOff, setIsOff] = useState(false);
+  const [mode, setMode] = useState<'standard' | 'solver'>('standard');
+  const [tab, setTab] = useState<'algebra' | 'trig' | 'calc'>('algebra');
+  
   const [expression, setExpression] = useState('');
   const [display, setDisplay] = useState('0');
-  const [shift, setShift] = useState(false);
-  const [alpha, setAlpha] = useState(false);
-  const [angleMode] = useState<'DEG'|'RAD'|'GRA'>('DEG');
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isDeg, setIsDeg] = useState(true);
+  const [hasEvaluated, setHasEvaluated] = useState(false);
 
-  useEffect(() => { setIsMounted(true); }, []);
+  // Live evaluation effect
   useEffect(() => {
-    if (isOff) { setDisplay('0'); return; }
-    const { res } = masterEval(expression || '0', angleMode === 'DEG');
-    setDisplay(res);
-  }, [expression, angleMode, isOff]);
-  useEffect(() => {
-    if (canvasRef.current && isMounted && !isOff) {
-      drawGraphic(canvasRef.current, expression, angleMode === 'DEG');
+    if (hasEvaluated) return;
+    const { res, err } = masterEval(expression, isDeg);
+    if (!err && res) {
+      setDisplay(res);
+    } else if (!expression) {
+      setDisplay('0');
     }
-  }, [expression, angleMode, isOff, isMounted]);
+  }, [expression, isDeg, hasEvaluated]);
 
   const exec = useCallback((action: string) => {
-    if (isOff && action !== 'ON') return;
+    setHasEvaluated(false);
     switch (action) {
-      case 'ON': setIsOff(false); return;
-      case 'OFF': setIsOff(true); return;
-      case 'SHIFT': setShift(s => !s); setAlpha(false); return;
-      case 'ALPHA': setAlpha(a => !a); setShift(false); return;
-      case 'AC': setExpression(''); setDisplay('0'); setShift(false); setAlpha(false); return;
+      case 'AC': setExpression(''); setDisplay('0'); return;
       case 'DEL': setExpression(p => p.slice(0, -1)); return;
-      case '=': { const { res, err } = masterEval(expression, angleMode==='DEG'); if(!err) setExpression(res); return; }
-      default: setExpression(p => p + action);
+      case 'DegRad': setIsDeg(!isDeg); return;
+      case '=': { 
+        const { res, err } = masterEval(expression, isDeg); 
+        if(!err) { setExpression(res); setDisplay(res); setHasEvaluated(true); }
+        return; 
+      }
+      default: setExpression(p => (hasEvaluated ? action : p + action));
     }
-  }, [expression, display, angleMode, isOff]);
+  }, [expression, isDeg, hasEvaluated]);
 
-  const Key = ({l, s, a, b, r, c, act}: any) => (
-    <div className="flex flex-col items-center">
-       <div className="flex justify-between w-full px-1 min-h-[14px]">
-          <span className="text-yellow-500 text-[8px] font-bold uppercase">{s}</span>
-          <div className="flex gap-1">
-             <span className="text-purple-400 text-[8px] font-bold uppercase">{a}</span>
-             <span className="text-blue-400 text-[8px] font-bold uppercase">{b}</span>
-             <span className="text-red-400 text-[8px] font-bold uppercase">{r}</span>
-          </div>
+  /* Base Colors referencing Google Search Palette */
+  const cFunc = "bg-[#f0f4f9] hover:bg-[#e0e4e9] text-[#202124]"; // Light blue/grey
+  const cNum = "bg-white hover:bg-[#f0f4f9] text-[#202124]"; // Clean white
+  const cEqBase = "bg-[#0a56d1] hover:bg-[#0842a0] text-white"; // Blue eq
+  
+  // Solver Colors
+  const cAlg = "bg-[#f3e8ff] hover:bg-[#e9d5ff] text-[#6b21a8] font-medium"; // Purple
+  const cAlgEq = "bg-[#6b21a8] hover:bg-[#581c87] text-white";
+  
+  const cTrig = "bg-[#e6f4ea] hover:bg-[#ceead6] text-[#137333] font-medium"; // Green
+  const cTrigEq = "bg-[#188038] hover:bg-[#137333] text-white";
+  
+  const cCalc = "bg-[#fce8e6] hover:bg-[#fad2cf] text-[#b31412] font-medium"; // Red/Pink
+  const cCalcEq = "bg-[#b31412] hover:bg-[#a50e0e] text-white";
+
+  const renderStandardGrid = () => (
+    <div className="grid grid-cols-7 gap-1.5 sm:gap-2 px-2 pb-4">
+       {/* ROW 1 */}
+       <div className="col-span-2 bg-[#f0f4f9] rounded-full flex items-center justify-between p-1 select-none">
+          <button onClick={() => setIsDeg(true)} className={`flex-1 rounded-full text-center py-2 text-[13px] font-bold ${isDeg ? 'text-blue-600' : 'text-slate-500 hover:bg-slate-200'}`}>Deg</button>
+          <div className="w-[1px] h-4 bg-slate-300"></div>
+          <button onClick={() => setIsDeg(false)} className={`flex-1 rounded-full text-center py-2 text-[13px] font-bold ${!isDeg ? 'text-blue-600' : 'text-slate-500 hover:bg-slate-200'}`}>Rad</button>
        </div>
-       <button onClick={()=>exec(act||l)} className={`w-full py-3 rounded-lg font-bold transition-all border-b-[6px] active:translate-y-1 active:border-b-0 ${c || 'bg-[#2a2c30] text-white border-black hover:bg-[#3a3c40] shadow-xl'}`}>{l}</button>
+       <CalcBtn label="x!" onClick={() => exec('!')} className={cFunc} />
+       <CalcBtn label="(" onClick={() => exec('(')} className={cFunc} />
+       <CalcBtn label=")" onClick={() => exec(')')} className={cFunc} />
+       <CalcBtn label="%" onClick={() => exec('%')} className={cFunc} />
+       <CalcBtn label="AC" onClick={() => exec('AC')} className={cFunc} />
+       
+       {/* ROW 2 */}
+       <CalcBtn label="Inv" onClick={() => {}} className={cFunc} />
+       <CalcBtn label="sin" onClick={() => exec('sin(')} className={cFunc} />
+       <CalcBtn label="ln" onClick={() => exec('ln(')} className={cFunc} />
+       <CalcBtn label="7" onClick={() => exec('7')} className={cNum} />
+       <CalcBtn label="8" onClick={() => exec('8')} className={cNum} />
+       <CalcBtn label="9" onClick={() => exec('9')} className={cNum} />
+       <CalcBtn label="÷" onClick={() => exec('÷')} className={cFunc} />
+       
+       {/* ROW 3 */}
+       <CalcBtn label="π" onClick={() => exec('π')} className={cFunc} />
+       <CalcBtn label="cos" onClick={() => exec('cos(')} className={cFunc} />
+       <CalcBtn label="log" onClick={() => exec('log(')} className={cFunc} />
+       <CalcBtn label="4" onClick={() => exec('4')} className={cNum} />
+       <CalcBtn label="5" onClick={() => exec('5')} className={cNum} />
+       <CalcBtn label="6" onClick={() => exec('6')} className={cNum} />
+       <CalcBtn label="×" onClick={() => exec('×')} className={cFunc} />
+       
+       {/* ROW 4 */}
+       <CalcBtn label="e" onClick={() => exec('e')} className={cFunc} />
+       <CalcBtn label="tan" onClick={() => exec('tan(')} className={cFunc} />
+       <CalcBtn label="√" onClick={() => exec('sqrt(')} className={cFunc} />
+       <CalcBtn label="1" onClick={() => exec('1')} className={cNum} />
+       <CalcBtn label="2" onClick={() => exec('2')} className={cNum} />
+       <CalcBtn label="3" onClick={() => exec('3')} className={cNum} />
+       <CalcBtn label="−" onClick={() => exec('-')} className={cFunc} />
+       
+       {/* ROW 5 */}
+       <CalcBtn label="Ans" onClick={() => exec('ans')} className={cFunc} />
+       <CalcBtn label="EXP" onClick={() => exec('EXP')} className={cFunc} />
+       <CalcBtn label={<span>x<sup>y</sup></span>} onClick={() => exec('^')} className={cFunc} />
+       <CalcBtn label="0" onClick={() => exec('0')} className={cNum} />
+       <CalcBtn label="." onClick={() => exec('.')} className={cNum} />
+       <CalcBtn label="=" onClick={() => exec('=')} className={cEqBase} />
+       <CalcBtn label="+" onClick={() => exec('+')} className={cFunc} />
     </div>
   );
 
-  const NumBtn = ({label, shift: sL, alpha: aL, act, c}: any) => (
-    <Key l={label} s={sL} r={aL} act={act} c={c || 'bg-white text-black border-slate-400 hover:bg-slate-100 shadow-lg h-16 rounded-xl'} />
-  );
+  const renderSolverGrid = () => {
+    let tBtn = cAlg;
+    let tEq = cAlgEq;
+    if (tab === 'trig') { tBtn = cTrig; tEq = cTrigEq; }
+    if (tab === 'calc') { tBtn = cCalc; tEq = cCalcEq; }
+
+    const NumpadCols = (
+      <>
+       <CalcBtn label="(" onClick={() => exec('(')} className={cFunc} />
+       <CalcBtn label=")" onClick={() => exec(')')} className={cFunc} />
+       <CalcBtn label={<Delete className="w-5 h-5 fill-slate-700 stroke-white" />} onClick={() => exec('DEL')} className={cFunc} />
+       <CalcBtn label="AC" onClick={() => exec('AC')} className={cFunc} />
+       
+       <CalcBtn label="7" onClick={() => exec('7')} className={cNum} />
+       <CalcBtn label="8" onClick={() => exec('8')} className={cNum} />
+       <CalcBtn label="9" onClick={() => exec('9')} className={cNum} />
+       <CalcBtn label="÷" onClick={() => exec('÷')} className={cFunc} />
+       
+       <CalcBtn label="4" onClick={() => exec('4')} className={cNum} />
+       <CalcBtn label="5" onClick={() => exec('5')} className={cNum} />
+       <CalcBtn label="6" onClick={() => exec('6')} className={cNum} />
+       <CalcBtn label="×" onClick={() => exec('×')} className={cFunc} />
+       
+       <CalcBtn label="1" onClick={() => exec('1')} className={cNum} />
+       <CalcBtn label="2" onClick={() => exec('2')} className={cNum} />
+       <CalcBtn label="3" onClick={() => exec('3')} className={cNum} />
+       <CalcBtn label="−" onClick={() => exec('-')} className={cFunc} />
+       
+       <CalcBtn label="0" onClick={() => exec('0')} className={cNum} />
+       <CalcBtn label="." onClick={() => exec('.')} className={cNum} />
+       <CalcBtn label={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>} onClick={() => exec('=')} className={tEq} />
+       <CalcBtn label="+" onClick={() => exec('+')} className={cFunc} />
+      </>
+    );
+
+    const Lbl = ({ m, s, b }: {m?:string, s?:string, b?:string}) => (
+       <div className="flex flex-col items-center">
+          {m && <span>{m}</span>}
+          <div className="flex text-[10px] mt-0.5 opacity-60">
+             {s && <sup>{s}</sup>}
+             {b && <sub>{b}</sub>}
+          </div>
+       </div>
+    );
+
+    return (
+       <div className="grid grid-cols-7 gap-1.5 sm:gap-2 px-2 pb-4 h-full relative">
+          <div className="col-span-3 grid grid-cols-3 gap-1.5 sm:gap-2 mr-2 border-r border-slate-100 pr-2">
+             {tab === 'algebra' && (
+                <>
+                  <CalcBtn label="□/□" onClick={() => exec('/')} className={tBtn} />
+                  <CalcBtn label="ⁿ√" onClick={() => exec('nthRoot(')} className={tBtn} />
+                  <CalcBtn label="<" onClick={() => exec('<')} className={tBtn} />
+                  
+                  <CalcBtn label="[ ]" onClick={() => {}} className={tBtn} />
+                  <CalcBtn label="|x|" onClick={() => exec('abs(')} className={tBtn} />
+                  <CalcBtn label="≤" onClick={() => exec('<=')} className={tBtn} />
+                  
+                  <CalcBtn label={<Lbl m="log" b="□" />} onClick={() => exec('log(')} className={tBtn} />
+                  <CalcBtn label="x!" onClick={() => exec('!')} className={tBtn} />
+                  <CalcBtn label=">" onClick={() => exec('>')} className={tBtn} />
+                  
+                  <CalcBtn label={<span className="italic">i</span>} onClick={() => exec('i')} className={tBtn} />
+                  <CalcBtn label="%" onClick={() => exec('%')} className={tBtn} />
+                  <CalcBtn label="≥" onClick={() => exec('>=')} className={tBtn} />
+                  
+                  <CalcBtn label={<span className="italic font-serif">x</span>} onClick={() => exec('x')} className={tBtn} />
+                  <CalcBtn label={<span className="italic font-serif">y</span>} onClick={() => exec('y')} className={tBtn} />
+                  <CalcBtn label="=" onClick={() => exec('=')} className={tBtn} />
+                </>
+             )}
+             {tab === 'trig' && (
+                <>
+                  <CalcBtn label="sin" onClick={() => exec('sin(')} className={tBtn} />
+                  <CalcBtn label="cos" onClick={() => exec('cos(')} className={tBtn} />
+                  <CalcBtn label="tan" onClick={() => exec('tan(')} className={tBtn} />
+                  
+                  <CalcBtn label="csc" onClick={() => exec('csc(')} className={tBtn} />
+                  <CalcBtn label="sec" onClick={() => exec('sec(')} className={tBtn} />
+                  <CalcBtn label="cot" onClick={() => exec('cot(')} className={tBtn} />
+                  
+                  <CalcBtn label="arcsin" onClick={() => exec('asin(')} className={tBtn} />
+                  <CalcBtn label="arccos" onClick={() => exec('acos(')} className={tBtn} />
+                  <CalcBtn label="arctan" onClick={() => exec('atan(')} className={tBtn} />
+                  
+                  <CalcBtn label={<Lbl m="x" s="2" />} onClick={() => exec('^2')} className={tBtn} />
+                  <CalcBtn label={<Lbl m="x" s="°" />} onClick={() => exec('deg')} className={tBtn} />
+                  <CalcBtn label="π" onClick={() => exec('π')} className={tBtn} />
+                  
+                  <CalcBtn label={<span className="italic font-serif">x</span>} onClick={() => exec('x')} className={tBtn} />
+                  <CalcBtn label={<span className="italic font-serif">y</span>} onClick={() => exec('y')} className={tBtn} />
+                  <CalcBtn label="=" onClick={() => exec('=')} className={tBtn} />
+                </>
+             )}
+             {tab === 'calc' && (
+                <>
+                  <CalcBtn label={<div className="flex flex-col items-center leading-none text-sm"><span className="border-b border-rose-800">d</span><span>dx</span></div>} onClick={() => exec('d/dx ')} className={tBtn} />
+                  <CalcBtn label="∞" onClick={() => exec('∞')} className={tBtn} />
+                  <CalcBtn label="ⁿ√" onClick={() => exec('nthRoot(')} className={tBtn} />
+                  
+                  <CalcBtn label={<Lbl m="lim" b="x→0" />} onClick={() => exec('lim ')} className={tBtn} />
+                  <CalcBtn label={<Lbl m="lim" b="x→0+" />} onClick={() => exec('lim+ ')} className={tBtn} />
+                  <CalcBtn label={<Lbl m="lim" b="x→0-" />} onClick={() => exec('lim- ')} className={tBtn} />
+                  
+                  <CalcBtn label={<Lbl m="log" b="□" />} onClick={() => exec('log(')} className={tBtn} />
+                  <CalcBtn label="C(n,k)" onClick={() => exec('C(')} className={tBtn} />
+                  <CalcBtn label="P(n,k)" onClick={() => exec('P(')} className={tBtn} />
+                  
+                  <CalcBtn label="Σ" onClick={() => exec('Σ ')} className={tBtn} />
+                  <CalcBtn label={<span className="text-xl">∫</span>} onClick={() => exec('∫ ')} className={tBtn} />
+                  <CalcBtn label={<Lbl m="∫" s="b" b="a" />} onClick={() => exec('∫_a^b ')} className={tBtn} />
+                  
+                  <CalcBtn label={<span className="italic font-serif">x</span>} onClick={() => exec('x')} className={tBtn} />
+                  <CalcBtn label={<span className="italic font-serif">y</span>} onClick={() => exec('y')} className={tBtn} />
+                  <CalcBtn label="e" onClick={() => exec('e')} className={tBtn} />
+                </>
+             )}
+          </div>
+          <div className="col-span-4 grid grid-cols-4 gap-1.5 sm:gap-2">
+             {NumpadCols}
+          </div>
+       </div>
+    );
+  };
 
   return (
-    <div className="w-full flex justify-center py-10 bg-slate-300 min-h-screen px-4 overflow-auto">
-      <div className="flex flex-col lg:flex-row w-full max-w-[1280px] bg-[#1a1c1e] rounded-[4rem] overflow-hidden border-[16px] border-[#222428] shadow-[0_60px_120px_-20px_rgba(0,0,0,0.8)]">
-        
-        {/* GRAPH PANEL (WHITE BG - IMAGE MATCH) */}
-        <div className="flex-1 bg-white relative overflow-hidden min-h-[600px] border-b-8 lg:border-b-0 lg:border-r-8 border-black/20">
-          <canvas ref={canvasRef} width={1000} height={1200} className="w-full h-full object-cover" />
-          <div className="absolute top-10 right-10 flex flex-col items-end gap-2 pointer-events-none opacity-20">
-             <div className="text-black font-black text-6xl tracking-tighter">IPEROT</div>
-             <div className="text-black font-mono text-[10px] tracking-[6px] uppercase">Scientific_Graphic_v7.0</div>
-          </div>
-        </div>
+    <div className="w-full flex justify-center pb-8 pt-4">
+      <div className={`w-full max-w-[700px] border border-slate-200 rounded-[28px] overflow-hidden bg-white shadow-xl transition-all duration-300 font-sans ${mode === 'solver' ? 'min-h-[550px]' : ''}`}>
+         
+         {/* Top Display Area */}
+         {mode === 'standard' ? (
+           <div className="px-6 py-4 flex flex-col justify-between min-h-[140px] border-b border-slate-100">
+             <div className="flex justify-between items-center text-slate-500">
+                <button className="p-2 hover:bg-slate-100 rounded-full transition-colors"><History className="w-5 h-5" /></button>
+                <div className="text-lg tracking-wide opacity-50 truncate max-w-[80%] text-right">{expression || '\u00A0'}</div>
+             </div>
+             <div className="text-right">
+                <div className="text-5xl font-normal text-slate-800 truncate" style={{ fontFamily: 'ui-sans-serif, system-ui' }}>
+                   {hasEvaluated ? display : expression || '0'}
+                </div>
+             </div>
+           </div>
+         ) : (
+           <div className="px-6 py-4 flex flex-col border-b border-slate-100 bg-white z-10 relative">
+             <div className="flex justify-between items-center mb-4">
+                <div className="text-xl font-medium text-slate-800">Maths solver</div>
+                <button className="p-1.5 hover:bg-slate-100 rounded-full"><MoreVertical className="w-5 h-5 text-slate-600" /></button>
+             </div>
+             <div className="flex items-center border border-slate-200 rounded-2xl px-4 py-3 bg-white shadow-sm ring-1 ring-transparent focus-within:ring-blue-500 focus-within:border-blue-500 transition-all">
+                <input 
+                  type="text" 
+                  value={expression} 
+                  onChange={(e) => { setExpression(e.target.value); setHasEvaluated(false); }}
+                  className="flex-1 text-2xl outline-none text-slate-800 placeholder-slate-300"
+                  placeholder="Enter equation..."
+                />
+                <button onClick={() => setMode('standard')} className="ml-2 p-1 bg-slate-100 hover:bg-slate-200 rounded-full">
+                  <ChevronUp className="w-5 h-5 text-slate-600" />
+                </button>
+             </div>
+             <div className="flex gap-6 mt-4 px-2">
+                <button onClick={() => setTab('algebra')} className={`pb-2 text-sm font-medium border-b-2 transition-colors ${tab === 'algebra' ? 'border-[#0a56d1] text-[#0a56d1]' : 'border-transparent text-slate-500 hover:text-slate-800'}`}>Algebra</button>
+                <button onClick={() => setTab('trig')} className={`pb-2 text-sm font-medium border-b-2 transition-colors ${tab === 'trig' ? 'border-[#0a56d1] text-[#0a56d1]' : 'border-transparent text-slate-500 hover:text-slate-800'}`}>Trigonometry</button>
+                <button onClick={() => setTab('calc')} className={`pb-2 text-sm font-medium border-b-2 transition-colors ${tab === 'calc' ? 'border-[#0a56d1] text-[#0a56d1]' : 'border-transparent text-slate-500 hover:text-slate-800'}`}>Calculus</button>
+             </div>
+           </div>
+         )}
 
-        {/* CALCULATOR PANEL */}
-        <div className="w-full lg:w-[680px] p-8 sm:p-14 lg:p-16 flex flex-col items-stretch">
-          
-          <div className="bg-[#9cae9c] min-h-[220px] p-8 rounded-[2rem] border-[10px] border-[#16181b] shadow-[inset_0_20px_60px_rgba(0,0,0,0.3)] mb-12 flex flex-col font-mono text-slate-900 border-double">
-            {!isOff && (
-               <div className="flex flex-col h-full">
-                  <div className="flex justify-between text-[11px] font-black uppercase mb-4 opacity-70">
-                    <div className="flex gap-4">
-                      <span className={shift?'bg-black text-white px-1.5':''}>S</span>
-                      <span className={alpha?'bg-black text-white px-1.5':''}>A</span>
-                      <span>FIX</span>
-                    </div>
-                    <div>{angleMode}</div>
-                  </div>
-                  <div className="text-4xl mt-1 overflow-hidden whitespace-nowrap">{expression || '0'}</div>
-                  <div className="mt-auto text-8xl font-black text-right leading-none tracking-tighter">{display}</div>
+         {/* Content Grid Area */}
+         <div className="pt-4 bg-white">
+            {mode === 'standard' ? renderStandardGrid() : renderSolverGrid()}
+            
+            {mode === 'standard' && (
+               <div className="border-t border-slate-100 mt-2">
+                 <button 
+                   onClick={() => setMode('solver')}
+                   className="w-full py-3.5 text-[15px] font-medium text-slate-600 hover:bg-slate-50 flex items-center justify-center gap-1 transition-colors"
+                 >
+                   Maths solver <ChevronDown className="w-4 h-4" />
+                 </button>
                </div>
             )}
-          </div>
-
-          {/* HEADER: LRN, GRAPHIC, OFF, ON */}
-          <div className="grid grid-cols-4 gap-6 mb-10 items-center">
-             <Key l="LRN" c="bg-slate-300 text-black border-slate-500" />
-             <div className="text-emerald-500 font-black italic tracking-[8px] text-[10px] text-center border-l border-r border-emerald-500/30">GRAPHIC</div>
-             <Key l="OFF" act="OFF" c="bg-slate-300 text-black border-slate-500" />
-             <Key l="ON" act="ON" c="bg-slate-300 text-black border-slate-500" />
-          </div>
-
-          {/* UTIL: SHIFT, ALPHA, G-SOLVE, REPLAY, MODE */}
-          <div className="flex justify-between items-center mb-10 gap-4">
-             <Key l="SHIFT" act="SHIFT" s="GRAPH" c="bg-[#ffa500] text-white border-[#cc8400] rounded-xl px-5" />
-             <Key l="ALPHA" act="ALPHA" r="A-LOCK" c="bg-[#9370db] text-white border-[#7b68ee] rounded-xl px-5" />
-             <Key l="G-SOLVE" s="Funct" c="bg-slate-300 text-black border-slate-500 text-[9px]" />
-             <div className="w-[160px] h-[160px] relative bg-slate-700 rounded-full border-[6px] border-black shadow-[0_15px_35px_rgba(0,0,0,0.6)] flex items-center justify-center overflow-hidden">
-                <div className="text-yellow-500 text-[8px] font-black absolute top-5">Value</div>
-                <div className="text-green-500 text-[8px] font-black absolute left-4">Cls</div>
-                <div className="text-green-500 text-[8px] font-black absolute right-4">G-T</div>
-                <div className="text-yellow-500 text-[8px] font-black absolute bottom-5">Y=f</div>
-                <div className="w-12 h-12 bg-black/10 rounded-full flex items-center justify-center border border-white/5"><div className="text-[9px] text-white/20 font-black uppercase tracking-widest">Replay</div></div>
-             </div>
-             <Key l="MODE" c="bg-slate-300 text-black border-slate-500" />
-          </div>
-
-          {/* GRAPH KEYS */}
-          <div className="grid grid-cols-4 gap-6 mb-12">
-             <Key l="DRAW" s="Zoom Org" /> <Key l="RANGE" s="Factor" /> <Key l="TRACE" s="SKETCH" /> <Key l="CALC" s="PROG" />
-          </div>
-
-          {/* SCI GRID (6X3) */}
-          <div className="grid grid-cols-6 gap-x-4 gap-y-10 mb-12">
-             <Key l="x³" s="∛" r="A" /> <Key l="x^y" s="x√" r="=" /> <Key l="√" s="x!" b="DEC" /> <Key l="x²" s="x⁻¹" b="HEX" /> <Key l="LOG" s="10ˣ" b="BIN" /> <Key l="IN" s="eˣ" b="OCT" />
-             <Key l="X,T" s=":" b="LOGIC" r="A" /> <Key l="°'''" s="←" r="B" /> <Key l="hyp" b="[d]" r="C" /> <Key l="sin" b="[h] sin⁻¹" r="D" act="sin(" /> <Key l="cos" b="[b] cos⁻¹" r="E" act="cos(" /> <Key l="tan" b="[a] tan⁻¹" r="F" act="tan(" />
-             <Key l="STO" s="RCL" /> <Key l="ab/c" s="d/c" b="∫dx" /> <Key l="ENG" s=",,," b="i" /> <Key l="(" s="arg" r="X" /> <Key l=")" s="Abs" r="Y" /> <Key l="M+" s="M-" r="M" />
-          </div>
-
-          {/* NUM GRID (5X4) */}
-          <div className="grid grid-cols-5 gap-x-5 gap-y-10 px-1">
-             <Key l="7" b="[4]" r="Σx²y" /> <Key l="8" b="[8]" r="Σx²" /> <Key l="9" b="[C]" r="Σx" /> <Key l="DEL" s="INS" c="bg-red-700 text-white border-red-900 h-16 rounded-xl" /> <Key l="AC" b="Mel" s="[CL]" c="bg-red-700 text-white border-red-900 h-16 rounded-xl" />
-             <Key l="4" b="[ȳ]" r="Σxy" /> <Key l="5" b="[yon]" r="Σy" /> <Key l="6" b="[yon-1]" r="Σy²" /> <Key l="×" s="Zoom xf" /> <Key l="÷" s="Zoom x1/f" />
-             <Key l="1" b="[x̄]" r="n" /> <Key l="2" b="[xon]" r="Σx" /> <Key l="3" b="[xon-1]" r="Σx²" /> <Key l="+" b="[x̂]" s="POL(" /> <Key l="-" b="[ŷ]" s="Rec(" />
-             <Key l="0" s="Rnd" /> <Key l="." s="Ran#" /> <Key l="EXP" s="π" /> <Key l="(-)" s="Ans" /> <Key l="=" s="%" b="[Re<=>Im]" c="bg-slate-700 text-white border-black h-16 rounded-xl" />
-          </div>
-
-          <div className="mt-14 text-center">
-             <div className="text-white/20 font-black tracking-[12px] text-xl uppercase italic">Scientific Calculator</div>
-          </div>
-        </div>
-
+         </div>
       </div>
     </div>
   );
 }
+

@@ -1,5 +1,5 @@
 /**
- * @fileoverview Nepal-specific calculation utilities — CalcPro.NP
+ * @fileoverview Nepal-specific calculation utilities — Equaly
  *
  * Pure functions for Nepal government rule-based calculations.
  * All rules verified against official Nepal government sources.
