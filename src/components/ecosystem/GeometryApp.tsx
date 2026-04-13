@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { Mafs, Coordinates, Line, Circle, Theme, MovablePoint, vec } from 'mafs';
-import 'mafs/index.css';
+import 'mafs/core.css';
+import 'mafs/font.css';
 import { GeometrySidebar } from './GeometrySidebar';
 
 export type GeoPoint = {
