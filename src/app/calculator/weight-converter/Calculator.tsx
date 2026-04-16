@@ -1,8 +1,9 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
-import { ArrowLeftRight, Gem } from 'lucide-react';
+import { useSyncState } from '@/hooks/useSyncState';
+import { ArrowLeftRight, Gem, TrendingUp, DollarSign } from 'lucide-react';
 
 const UNITS: Record<string, { name: string; factor: number }> = {
   kg:   { name: 'Kilogram (kg)',      factor: 1000 },
@@ -14,24 +15,31 @@ const UNITS: Record<string, { name: string; factor: number }> = {
   ton:  { name: 'Metric Ton',         factor: 1000000 },
 };
 
-const QUICK_TABLE = [
-  { label: '1 kg → lb',       val: '2.2046 lb' },
-  { label: '1 tola → g',      val: '11.66 g' },
-  { label: '1 lb → g',        val: '453.59 g' },
-  { label: '10 g → tola',     val: '0.857 tola' },
-];
+const DEFAULT_STATE = {
+  value: 1,
+  from: 'kg',
+  to: 'lb',
+  goldPricePerTola: 150000, // NPR
+};
 
 export default function WeightConverter() {
-  const [value, setValue] = useState(1);
-  const [from, setFrom] = useState('kg');
-  const [to, setTo]     = useState('lb');
+  const [state, setState] = useSyncState('weight_converter_v2', DEFAULT_STATE);
+  const { value, from, to, goldPricePerTola } = state;
+
+  const updateState = (u: Partial<typeof DEFAULT_STATE>) => setState({ ...state, ...u });
 
   const result = useMemo(() => {
     const r = (value * UNITS[from].factor) / UNITS[to].factor;
     return r.toLocaleString(undefined, { maximumFractionDigits: 6 });
   }, [value, from, to]);
 
-  const swap = () => { const tmp = from; setFrom(to); setTo(tmp); };
+  const goldValue = useMemo(() => {
+    // Current input converted to Tola
+    const tolas = (value * UNITS[from].factor) / UNITS['tola'].factor;
+    return tolas * goldPricePerTola;
+  }, [value, from, goldPricePerTola]);
+
+  const swap = () => { updateState({ from: to, to: from }); };
 
   return (
     <CalculatorLayout
@@ -43,7 +51,7 @@ export default function WeightConverter() {
           {/* Amount Input */}
           <div className="space-y-2">
             <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Amount to Convert</label>
-            <input type="number" value={value} onChange={e => setValue(Number(e.target.value))} min={0}
+            <input type="number" value={value} onChange={e => updateState({ value: Number(e.target.value) })} min={0}
               className="w-full h-14 px-4 border-2 border-[var(--border)] bg-white font-mono text-2xl font-black focus:border-[var(--primary)] outline-none" />
           </div>
 
@@ -51,7 +59,7 @@ export default function WeightConverter() {
           <div className="grid grid-cols-[1fr_auto_1fr] gap-3 items-center">
             <div className="space-y-2">
               <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">From</label>
-              <select value={from} onChange={e => setFrom(e.target.value)}
+              <select value={from} onChange={e => updateState({ from: e.target.value })}
                 className="w-full h-12 px-3 border border-[var(--border)] bg-[var(--bg-surface)] font-bold text-sm outline-none focus:border-[var(--primary)] cursor-pointer">
                 {Object.entries(UNITS).map(([k, v]) => <option key={k} value={k}>{v.name}</option>)}
               </select>
@@ -64,7 +72,7 @@ export default function WeightConverter() {
 
             <div className="space-y-2">
               <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">To</label>
-              <select value={to} onChange={e => setTo(e.target.value)}
+              <select value={to} onChange={e => updateState({ to: e.target.value })}
                 className="w-full h-12 px-3 border border-[var(--border)] bg-[var(--bg-surface)] font-bold text-sm outline-none focus:border-[var(--primary)] cursor-pointer">
                 {Object.entries(UNITS).map(([k, v]) => <option key={k} value={k}>{v.name}</option>)}
               </select>
@@ -82,17 +90,36 @@ export default function WeightConverter() {
             </div>
           </div>
 
-          {/* Quick Reference */}
-          <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Common Conversions</label>
-            <div className="space-y-1">
-              {QUICK_TABLE.map((item, i) => (
-                <div key={i} className="p-3 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-                  <span className="text-[11px] font-bold text-[var(--text-secondary)] uppercase">{item.label}</span>
-                  <span className="text-[11px] font-black text-[var(--primary)]">{item.val}</span>
+          {/* Gold Value Card */}
+          <div className="p-6 bg-slate-900 rounded-3xl text-white space-y-4 shadow-xl">
+             <div className="flex items-center gap-2">
+                <Gem className="w-5 h-5 text-amber-400" />
+                <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-400">Market Value Estimator</h3>
+             </div>
+             <div className="space-y-3">
+                <div className="space-y-1">
+                   <label className="text-[9px] font-black uppercase text-slate-500">Live Rate (NPR per Tola)</label>
+                   <input type="number" value={goldPricePerTola} onChange={e => updateState({ goldPricePerTola: Number(e.target.value) })}
+                    className="w-full h-11 px-3 bg-white/5 border border-white/10 rounded-xl font-mono font-bold text-white focus:outline-none focus:border-amber-500 transition-all" />
                 </div>
-              ))}
-            </div>
+                <div className="pt-2 border-t border-white/5 flex justify-between items-end">
+                   <span className="text-[10px] font-black text-slate-500 uppercase">Estimated Value</span>
+                   <span className="text-2xl font-black text-amber-400 tracking-tighter">NPR {goldValue.toLocaleString()}</span>
+                </div>
+             </div>
+          </div>
+
+          {/* Quick Reference (Simplified) */}
+          <div className="grid grid-cols-2 gap-2">
+            {[
+              { label: '1 kg → lb', val: '2.2046 lb' },
+              { label: '1 tola → g', val: '11.664 g' },
+            ].map((item, i) => (
+              <div key={i} className="p-3 bg-[var(--bg-surface)] border border-[var(--border)] flex flex-col items-center">
+                <span className="text-[9px] font-bold text-[var(--text-secondary)] uppercase">{item.label}</span>
+                <span className="text-[11px] font-black text-[var(--primary)]">{item.val}</span>
+              </div>
+            ))}
           </div>
         </div>
       }

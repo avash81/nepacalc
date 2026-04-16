@@ -3,13 +3,18 @@ import { useState, useMemo } from 'react';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
 import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+import { useSyncState } from '@/hooks/useSyncState';
 import { Receipt, Landmark } from 'lucide-react';
 
 function fmt(n: number) { return Math.round(n).toLocaleString('en-IN'); }
 
 export default function NepalVATCalculator() {
-  const [mode, setMode] = useState<'add' | 'remove'>('add');
-  const [amount, setAmount] = useState(1000);
+  const [state, setState] = useSyncState('nepal_vat_v3', {
+    mode: 'add' as 'add' | 'remove',
+    amount: 1000
+  });
+  const { mode, amount } = state;
+  const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
   const r = useMemo(() => {
     const rate = 0.13;
@@ -36,7 +41,7 @@ export default function NepalVATCalculator() {
             <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Calculation Mode</label>
             <div className="flex border border-[var(--border)] p-1 bg-[var(--bg-surface)]">
               {([{ id: 'add', label: 'Add VAT (13%)' }, { id: 'remove', label: 'Remove VAT' }] as const).map(m => (
-                <button key={m.id} onClick={() => setMode(m.id)}
+                <button key={m.id} onClick={() => update({ mode: m.id })}
                   className={`flex-1 py-3 text-xs font-bold uppercase transition-all ${mode === m.id ? 'bg-[var(--primary)] text-white' : 'text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]'}`}>
                   {m.label}
                 </button>
@@ -47,14 +52,14 @@ export default function NepalVATCalculator() {
           {/* Amount Input */}
           <ValidatedInput
             label={mode === 'add' ? 'Price (VAT Exclusive)' : 'Total Price (VAT Inclusive)'}
-            value={amount} onChange={setAmount} min={0} prefix="Rs." required />
+            value={amount} onChange={v => update({ amount: v })} min={0} prefix="Rs." required />
 
           {/* Quick Presets */}
           <div className="space-y-2">
             <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Common Amounts</label>
             <div className="grid grid-cols-4 gap-2">
               {PRESETS.map(v => (
-                <button key={v} onClick={() => setAmount(v)}
+                <button key={v} onClick={() => update({ amount: v })}
                   className={`py-3 text-[11px] font-bold border transition-all ${amount === v ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'border-[var(--border)] bg-[var(--bg-surface)] hover:bg-[var(--bg-subtle)]'}`}>
                   {fmt(v)}
                 </button>

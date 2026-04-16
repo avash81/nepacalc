@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import * as math from 'mathjs';
 import * as QRCode from 'qrcode';
+import { useSyncState } from '@/hooks/useSyncState';
 
 /* ── Professional Factorial ───────────────── */
 function factorial(n: number): number {
@@ -34,6 +35,9 @@ function stemEval(expr: string, deg: boolean): { res: string; err: string | null
       atan: (x: number) => deg ? Math.atan(x) * 180 / Math.PI : Math.atan(x),
       sqrt: Math.sqrt, log: Math.log10, ln: Math.log, abs: Math.abs, fact: factorial
     });
+
+    if (result === undefined || result === null) return { res: '0', err: null };
+
     if (typeof result === 'number') {
       if (!isFinite(result)) return { res: 'MATH ERROR', err: 'MATH ERROR' };
       let s = parseFloat(result.toPrecision(10)).toString();
@@ -41,8 +45,16 @@ function stemEval(expr: string, deg: boolean): { res: string; err: string | null
       if (Math.abs(result) >= 1e10 || (Math.abs(result) > 0 && Math.abs(result) < 1e-6)) s = result.toExponential(6);
       return { res: s, err: null };
     }
+
+    if (typeof result === 'object' && 'toNumber' in result) {
+       const n = (result as any).toNumber();
+       return { res: n.toPrecision(10), err: null };
+    }
+
     return { res: String(result), err: null };
-  } catch { return { res: 'SYNTAX ERROR', err: 'SYNTAX ERROR' }; }
+  } catch (e) { 
+    return { res: 'SYNTAX ERROR', err: 'SYNTAX ERROR' }; 
+  }
 }
 
 /* ── COLOR MULTI-PLOTTER ── */
@@ -80,36 +92,30 @@ function drawMultiGraph(canvas: HTMLCanvasElement, expressions: string[], deg: b
 
 const VAR_KEYS: Record<string, string> = { '(-)': 'A', '.,,,': 'B', 'hyp': 'C', 'sin': 'D', 'cos': 'E', 'tan': 'F', '(': 'X', ')': 'Y', 'M+': 'M' };
 
+const DEFAULT_STATE = {
+  expressions: ['', '', ''],
+  activeIndex: 0,
+  memory: 0,
+  vars: { A:0, B:0, C:0, D:0, E:0, F:0, X:0, Y:0, M:0 } as Record<string, number>,
+  lastAns: '0',
+  angleMode: 'DEG' as 'DEG'|'RAD'|'GRA',
+  cursorIndex: 0
+};
+
 export default function ScientificCalculator() {
   const [isMounted, setIsMounted]   = useState(false);
   const [isOff, setIsOff]           = useState(false);
-  const [expressions, setExpressions] = useState<string[]>(['', '', '']);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [state, setState]           = useSyncState('sci_calc_v4', DEFAULT_STATE);
+  const { expressions, activeIndex, memory, vars, lastAns, angleMode, cursorIndex } = state;
+
   const [display, setDisplay]       = useState('0');
-  const [memory, setMemory]         = useState(0);
-  const [vars, setVars]             = useState<Record<string, number>>({ A:0, B:0, C:0, D:0, E:0, F:0, X:0, Y:0, M:0 });
-  const [lastAns, setLastAns]       = useState('0');
   const [shift, setShift]           = useState(false);
   const [alpha, setAlpha]           = useState(false);
   const [stoMode, setStoMode]       = useState(false);
   const [qrBlob, setQrBlob]         = useState<string | null>(null);
-  const [angleMode, setAngleMode]   = useState<'DEG'|'RAD'|'GRA'>('DEG');
-  const [cursorIndex, setCursorIndex] = useState(0);
   const canvasRef                   = useRef<HTMLCanvasElement>(null);
 
-  useEffect(() => {
-    setIsMounted(true);
-    const m = localStorage.getItem('cp_m'); if (m) setMemory(parseFloat(m));
-    const v = localStorage.getItem('cp_v'); if (v) setVars(JSON.parse(v));
-    const a = localStorage.getItem('cp_a'); if (a) setAngleMode(a as any);
-  }, []);
-
-  useEffect(() => {
-    if (!isMounted) return;
-    localStorage.setItem('cp_m', memory.toString());
-    localStorage.setItem('cp_v', JSON.stringify(vars));
-    localStorage.setItem('cp_a', angleMode);
-  }, [memory, vars, angleMode, isMounted]);
+  useEffect(() => { setIsMounted(true); }, []);
 
   useEffect(() => {
     if (isOff) { setDisplay('0'); return; }
@@ -122,6 +128,10 @@ export default function ScientificCalculator() {
       drawMultiGraph(canvasRef.current, expressions, angleMode === 'DEG');
     }
   }, [expressions, angleMode, isOff, isMounted]);
+
+  const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {
+    setState({ ...state, ...updates });
+  };
 
   const generateQR = useCallback(async () => {
     try {
@@ -137,12 +147,12 @@ export default function ScientificCalculator() {
     if (stoMode && VAR_KEYS[action]) {
        const vName = VAR_KEYS[action];
        const currentVal = parseFloat(display);
-       if (!isNaN(currentVal)) { setVars(prev => ({ ...prev, [vName]: currentVal })); setStoMode(false); setShift(false); return; }
+       if (!isNaN(currentVal)) { updateState({ vars: { ...vars, [vName]: currentVal }, cursorIndex }); setStoMode(false); setShift(false); return; }
     }
     if (alpha && VAR_KEYS[action]) {
        const vName = VAR_KEYS[action];
-       setExpressions(p => { const n=[...p]; n[activeIndex]=n[activeIndex].slice(0, cursorIndex) + String(vars[vName]) + n[activeIndex].slice(cursorIndex); return n; });
-       setCursorIndex(p => p + String(vars[vName]).length);
+       const n=[...expressions]; n[activeIndex]=n[activeIndex].slice(0, cursorIndex) + String(vars[vName]) + n[activeIndex].slice(cursorIndex);
+       updateState({ expressions: n, cursorIndex: cursorIndex + String(vars[vName]).length });
        setAlpha(false); return;
     }
     switch (action) {
@@ -151,22 +161,32 @@ export default function ScientificCalculator() {
       case 'ALPHA': setAlpha(a => !a); setShift(false); setStoMode(false); return;
       case 'STO': setStoMode(true); return;
       case 'QR': generateQR(); return;
-      case 'AC': if (shift) { setIsOff(true); setShift(false); } else { setExpressions(p=>{ const n=[...p]; n[activeIndex]=''; return n; }); setDisplay('0'); setCursorIndex(0); setShift(false); setAlpha(false); setStoMode(false); } return;
-      case 'DEL': setExpressions(p => { const n=[...p]; n[activeIndex]=n[activeIndex].slice(0, cursorIndex - 1) + n[activeIndex].slice(cursorIndex); return n; }); setCursorIndex(p => Math.max(0, p - 1)); return;
-      case '=': { const { res, err } = stemEval(expressions[activeIndex], angleMode==='DEG'); if(!err) { setLastAns(res); setExpressions(p => { const n=[...p]; n[activeIndex]=res; return n; }); setCursorIndex(res.length); } return; }
-      case 'M+': { const v=parseFloat(display); if(!isNaN(v)) setMemory(m=>m+v); return; }
-      case 'MR': setExpressions(p => { const n=[...p]; n[activeIndex]=n[activeIndex].slice(0, cursorIndex) + String(memory) + n[activeIndex].slice(cursorIndex); return n; }); setCursorIndex(p=>p+String(memory).length); return;
-      case 'ANGLE': setAngleMode(m => m==='DEG'?'RAD':m==='RAD'?'GRA':'DEG'); return;
-      case 'ANS': setExpressions(p => { const n=[...p]; n[activeIndex]=n[activeIndex].slice(0, cursorIndex) + lastAns + n[activeIndex].slice(cursorIndex); return n; }); setCursorIndex(p=>p+lastAns.length); return;
-      case 'LEFT': setCursorIndex(p => Math.max(0, p - 1)); return;
-      case 'RIGHT': setCursorIndex(p => Math.min(expressions[activeIndex].length, p + 1)); return;
-      case 'UP': setActiveIndex(p => (p + 1) % 3); return;
-      case 'DOWN': setActiveIndex(p => (p - 1 + 3) % 3); return;
-      case 'SIMPLIFY': setExpressions(p => { const n=[...p]; n[activeIndex]=`simplify(${n[activeIndex]})`; return n; }); return;
-      case 'DIFF': setExpressions(p => { const n=[...p]; n[activeIndex]=`diff(${n[activeIndex]})`; return n; }); return;
-      default: setExpressions(p => { const n=[...p]; n[activeIndex]=n[activeIndex].slice(0, cursorIndex) + action + n[activeIndex].slice(cursorIndex); return n; }); setCursorIndex(p=>p+action.length);
+      case 'AC': if (shift) { setIsOff(true); setShift(false); } else { const n=[...expressions]; n[activeIndex]=''; updateState({ expressions: n, cursorIndex: 0 }); setDisplay('0'); setShift(false); setAlpha(false); setStoMode(false); } return;
+      case 'DEL': { const n=[...expressions]; n[activeIndex]=n[activeIndex].slice(0, cursorIndex - 1) + n[activeIndex].slice(cursorIndex); updateState({ expressions: n, cursorIndex: Math.max(0, cursorIndex - 1) }); return; }
+      case '=': { const { res, err } = stemEval(expressions[activeIndex], angleMode==='DEG'); if(!err) { const n=[...expressions]; n[activeIndex]=res; updateState({ lastAns: res, expressions: n, cursorIndex: res.length }); } return; }
+      case 'M+': { const v=parseFloat(display); if(!isNaN(v)) updateState({ memory: memory + v }); return; }
+      case 'MR': { const n=[...expressions]; n[activeIndex]=n[activeIndex].slice(0, cursorIndex) + String(memory) + n[activeIndex].slice(cursorIndex); updateState({ expressions: n, cursorIndex: cursorIndex + String(memory).length }); return; }
+      case 'ANGLE': updateState({ angleMode: angleMode==='DEG'?'RAD':angleMode==='RAD'?'GRA':'DEG' }); return;
+      case 'ANS': { const n=[...expressions]; n[activeIndex]=n[activeIndex].slice(0, cursorIndex) + lastAns + n[activeIndex].slice(cursorIndex); updateState({ expressions: n, cursorIndex: cursorIndex + lastAns.length }); return; }
+      case 'LEFT': updateState({ cursorIndex: Math.max(0, cursorIndex - 1) }); return;
+      case 'RIGHT': updateState({ cursorIndex: Math.min(expressions[activeIndex].length, cursorIndex + 1) }); return;
+      case 'UP': updateState({ activeIndex: (activeIndex + 1) % 3 }); return;
+      case 'DOWN': updateState({ activeIndex: (activeIndex - 1 + 3) % 3 }); return;
+      case 'SIMPLIFY': { const n=[...expressions]; n[activeIndex]=`simplify(${n[activeIndex]})`; updateState({ expressions: n }); return; }
+      case 'DIFF': { const n=[...expressions]; n[activeIndex]=`diff(${n[activeIndex]})`; updateState({ expressions: n }); return; }
+      default: { 
+        const n=[...expressions]; 
+        // Auto-clear zero if it's the only character
+        if (n[activeIndex] === '' || n[activeIndex] === '0') {
+           n[activeIndex] = action;
+           updateState({ expressions: n, cursorIndex: action.length });
+        } else {
+           n[activeIndex]=n[activeIndex].slice(0, cursorIndex) + action + n[activeIndex].slice(cursorIndex); 
+           updateState({ expressions: n, cursorIndex: cursorIndex + action.length });
+        }
+      }
     }
-  }, [expressions, activeIndex, display, angleMode, memory, vars, isOff, shift, alpha, lastAns, stoMode, cursorIndex, generateQR]);
+  }, [state, isOff, shift, alpha, stoMode, display, generateQR]);
 
   const press = (p: string, s?: string, a?: string) => {
     if (shift) { setShift(false); exec(s ?? p); return; }
@@ -238,7 +258,7 @@ export default function ScientificCalculator() {
           </div>
           {/* Log / power row */}
           <div className="grid grid-cols-4 gap-2">
-            {[['log','log('],['ln','ln('],['x²','x²'],['( )','(']].map(([l,a]) => (
+            {[['log10','log10('],['ln','ln('],['x²','^2'],['( )','(']].map(([l,a]) => (
               <button key={l} onClick={() => exec(a)} className="py-3 rounded-lg font-bold text-sm bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0 active:translate-y-[2px]">{l}</button>
             ))}
           </div>
@@ -320,7 +340,7 @@ export default function ScientificCalculator() {
              <SciBtn label="CALC" shift="SOLVE" sA="SIMPLIFY" /> 
              <SciBtn label="∫dx" shift="d/dx" act="∫" sA="DIFF" /> 
              <SciBtn label="x⁻¹" shift="x!" act="^-1" /> 
-             <SciBtn label="log口" shift="Σ" act="log(" /> 
+             <SciBtn label="log10" shift="Σ" act="log10(" /> 
              <SciBtn label="ln" shift="eˣ" act="ln(" />
              {['ab/c','√','x²','x^','log','ln'].map((l, i) => (
                 <SciBtn key={l} label={l} shift={['b/c','∛','x³','nth√','10ˣ','eˣ'][i]} act={['(','sqrt(','^2','^','log10(','ln('][i]} />

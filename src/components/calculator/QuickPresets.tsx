@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Target, TrendingUp, Briefcase, Home, GraduationCap, Car } from 'lucide-react';
+import { Target, TrendingUp, Briefcase, Home, GraduationCap, Car, ShieldCheck, Clock, Zap, Calculator } from 'lucide-react';
 
 interface Preset {
   name: string;
@@ -14,12 +14,16 @@ interface QuickPresetsProps {
   onSelect: (presetValue: Preset) => void;
 }
 
-const ICON_MAP = {
+const ICON_MAP: Record<string, any> = {
   home: Home,
   car: Car,
   briefcase: Briefcase,
   graduation: GraduationCap,
   target: Target,
+  shield: ShieldCheck,
+  clock: Clock,
+  zap: Zap,
+  calculator: Calculator,
 };
 
 /**
@@ -38,7 +42,7 @@ export function QuickPresets({ presets, onSelect }: QuickPresetsProps) {
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {presets.map((preset, index) => {
-          const Icon = preset.icon ? ICON_MAP[preset.icon] : Target;
+          const Icon = (preset.icon && ICON_MAP[preset.icon]) || Target;
           
           return (
             <button

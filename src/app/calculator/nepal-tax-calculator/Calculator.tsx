@@ -1,5 +1,6 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
+import { useSyncState } from '@/hooks/useSyncState';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
 import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
@@ -7,10 +8,14 @@ import { CalcFAQ } from '@/components/calculator/CalcFAQ';
 function fmt(n: number) { return 'NPR ' + Math.round(n).toLocaleString('en-IN'); }
 
 export default function GrowthTaxCalculator() {
-  const [assetType, setAssetType]         = useState<'share'|'land'>('share');
-  const [buyPrice, setBuyPrice]           = useState(1000000);
-  const [sellPrice, setSellPrice]         = useState(1500000);
-  const [holdingPeriod, setHolding]       = useState(1);
+  const [state, setState] = useSyncState('nepal_cgt_v3', {
+    assetType: 'share' as 'share'|'land',
+    buyPrice: 1000000,
+    sellPrice: 1500000,
+    holdingPeriod: 1
+  });
+  const { assetType, buyPrice, sellPrice, holdingPeriod } = state;
+  const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
   const r = useMemo(() => {
     const profit = Math.max(0, sellPrice - buyPrice);
@@ -35,7 +40,7 @@ export default function GrowthTaxCalculator() {
             <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Asset Type</label>
             <div className="grid grid-cols-2 gap-3">
               {[{ v: 'share', l: 'Shares (NEPSE)' }, { v: 'land', l: 'Real Estate' }].map(a => (
-                <button key={a.v} onClick={() => setAssetType(a.v as any)}
+                <button key={a.v} onClick={() => update({ assetType: a.v as any })}
                   className={`py-4 text-xs font-black border transition-all uppercase ${assetType === a.v ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'border-[var(--border)] bg-white hover:bg-[var(--bg-subtle)]'}`}>
                   {a.l}
                 </button>
@@ -44,10 +49,10 @@ export default function GrowthTaxCalculator() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <ValidatedInput label="Purchase Price (NPR)" value={buyPrice} onChange={setBuyPrice} min={0} prefix="NPR" />
-            <ValidatedInput label="Selling Price (NPR)" value={sellPrice} onChange={setSellPrice} min={0} prefix="NPR" />
+            <ValidatedInput label="Purchase Price (NPR)" value={buyPrice} onChange={v => update({ buyPrice: v })} min={0} prefix="NPR" />
+            <ValidatedInput label="Selling Price (NPR)" value={sellPrice} onChange={v => update({ sellPrice: v })} min={0} prefix="NPR" />
           </div>
-          <ValidatedInput label={`Holding Period (${assetType === 'share' ? 'years' : 'years'})`} value={holdingPeriod} onChange={setHolding} min={0} max={50} step={0.5} suffix="yr" />
+          <ValidatedInput label={`Holding Period (${assetType === 'share' ? 'years' : 'years'})`} value={holdingPeriod} onChange={v => update({ holdingPeriod: v })} min={0} max={50} step={0.5} suffix="yr" />
 
           {/* CGT Rate Table */}
           <div className="bg-white border border-[var(--border)]">

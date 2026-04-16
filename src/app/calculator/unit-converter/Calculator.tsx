@@ -1,11 +1,12 @@
 'use client';
+
 import { useState, useMemo } from 'react';
 import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { ResultCard } from '@/components/calculator/ResultCard';
 import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
-import { ArrowRightLeft, Ruler, Scale, Droplets, Maximize } from 'lucide-react';
+import { ArrowRightLeft, Ruler, Scale, Droplets, Maximize, Search, Zap } from 'lucide-react';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+import { useSyncState } from '@/hooks/useSyncState';
 
 const UNIT_CATEGORIES: any = {
   length: {
@@ -32,6 +33,7 @@ const UNIT_CATEGORIES: any = {
       lb: { name: 'Pound', factor: 2.20462 },
       oz: { name: 'Ounce', factor: 35.274 },
       ton: { name: 'Metric Ton', factor: 0.001 },
+      stone: { name: 'Stone', factor: 0.157473 },
     },
   },
   volume: {
@@ -66,7 +68,8 @@ const DEFAULT_STATE = {
 };
 
 export default function UnitConverter() {
-  const [state, setState] = useLocalStorage('equaly_unit_v2', DEFAULT_STATE);
+  const [state, setState] = useSyncState('unit_conv_v3', DEFAULT_STATE);
+  const [search, setSearch] = useState('');
   
   const { category, fromUnit, toUnit, value } = state;
   const units = UNIT_CATEGORIES[category].units;
@@ -79,8 +82,14 @@ export default function UnitConverter() {
     updateState({ fromUnit: toUnit, toUnit: fromUnit });
   };
 
+  const filteredUnits = useMemo(() => {
+    return Object.entries(units).filter(([k, u]: [string, any]) => 
+      u.name.toLowerCase().includes(search.toLowerCase()) || k.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [units, search]);
+
   const convert = useMemo(() => {
-    if (value < 0 && category !== 'temperature') return { result: '0', error: 'Negative values not supported for this category' };
+    if (value < 0) return { result: '0', error: 'Negative values not supported' };
 
     const fromFactor = units[fromUnit]?.factor || 1;
     const toFactor = units[toUnit]?.factor || 1;
@@ -89,161 +98,177 @@ export default function UnitConverter() {
     const resultValue = baseValue * toFactor;
 
     return {
-      result: resultValue.toLocaleString(undefined, { maximumFractionDigits: 6 }),
+      result: resultValue < 0.000001 && resultValue > 0 ? resultValue.toExponential(4) : resultValue.toLocaleString(undefined, { maximumFractionDigits: 6 }),
       raw: resultValue,
       fromLabel: units[fromUnit]?.name || '',
       toLabel: units[toUnit]?.name || '',
       error: null
     };
-  }, [value, fromUnit, toUnit, category, units]);
+  }, [value, fromUnit, toUnit, units]);
 
   return (
     <CalculatorErrorBoundary calculatorName="Unit Converter">
-      <div className="max-w-6xl mx-auto space-y-8">
+      <div className="max-w-6xl mx-auto space-y-12">
         
-        {/* Header */}
-        <div className="text-center space-y-4 py-8">
-          <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-600 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border border-indigo-100 mb-2">
-             <div className="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-pulse" />
-             Universal Utility
-          </div>
-          <h1 className="text-4xl sm:text-6xl font-black text-gray-900 dark:text-white tracking-tight">
-            Unit <span className="text-indigo-600">Converter</span>
-          </h1>
-          <p className="max-w-2xl mx-auto text-lg text-gray-500 dark:text-gray-400 font-medium">
-             Seamlessly switch between metric and imperial systems with high-precision scientific constants.
-          </p>
+        {/* Category Header */}
+        <div className="flex flex-col md:flex-row justify-between items-end gap-6">
+           <div className="space-y-4 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest border border-indigo-100">
+                 <Zap className="w-3 h-3 fill-indigo-600" />
+                 Instant Unit Conversion
+              </div>
+              <h1 className="text-5xl font-black text-slate-900 tracking-tighter">
+                Unit <span className="text-indigo-600">Pro</span>
+              </h1>
+           </div>
+
+           <div className="w-full md:w-auto flex bg-slate-100 p-1.5 rounded-[1.5rem] border border-slate-200 overflow-x-auto overflow-hidden">
+              {Object.entries(UNIT_CATEGORIES).map(([key, cat]: [string, any]) => {
+                const Icon = cat.icon;
+                const active = category === key;
+                return (
+                  <button
+                    key={key}
+                    onClick={() => {
+                      const newUnits = UNIT_CATEGORIES[key].units;
+                      const newFrom = Object.keys(newUnits)[0];
+                      const newTo = Object.keys(newUnits)[1] || newFrom;
+                      updateState({ category: key as any, fromUnit: newFrom, toUnit: newTo });
+                    }}
+                    className={`flex items-center gap-2 px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${
+                      active ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50'
+                    }`}
+                  >
+                    <Icon className={`w-4 h-4 ${active ? 'text-indigo-600' : 'text-slate-400'}`} />
+                    {cat.name}
+                  </button>
+                );
+              })}
+           </div>
         </div>
 
-        {/* Category Selector */}
-        <div className="flex gap-2 bg-gray-50 dark:bg-gray-800/50 p-2 rounded-[2rem] border border-gray-100 dark:border-gray-800 overflow-x-auto no-scrollbar">
-          {Object.entries(UNIT_CATEGORIES).map(([key, cat]: [string, any]) => {
-            const Icon = cat.icon;
-            return (
-              <button
-                key={key}
-                onClick={() => {
-                  const newFrom = Object.keys(cat.units)[0];
-                  const newTo = Object.keys(cat.units)[1] || newFrom;
-                  updateState({ category: key as any, fromUnit: newFrom, toUnit: newTo });
-                }}
-                className={`flex-1 min-w-[120px] py-4 rounded-[1.25rem] flex flex-col items-center gap-2 text-[10px] font-black uppercase tracking-widest transition-all ${
-                  category === key
-                    ? 'bg-white dark:bg-gray-700 text-indigo-600 dark:text-indigo-400 shadow-sm border border-gray-100 dark:border-gray-600'
-                    : 'text-gray-400 hover:text-gray-600'
-                }`}
-              >
-                <Icon className="w-5 h-5" />
-                {cat.name}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Converter Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Converter Panel */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          <div className="lg:col-span-2 space-y-8 bg-white dark:bg-gray-900 p-8 sm:p-10 rounded-[2.5rem] border border-gray-100 dark:border-gray-800 shadow-xl shadow-gray-200/20 dark:shadow-none">
-            
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-6 items-center">
-              {/* FROM SECTION */}
-              <div className="space-y-4">
-                <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-1">Convert From</label>
-                <ValidatedInput
-                  label=""
-                  variant="minimal"
-                  value={value}
-                  onChange={(v) => updateState({ value: v })}
-                />
-                <select
-                  value={fromUnit}
-                  onChange={(e) => updateState({ fromUnit: e.target.value })}
-                  className="w-full h-14 px-6 border-2 border-gray-100 dark:border-gray-800 rounded-2xl bg-gray-50 dark:bg-gray-950 font-bold outline-none focus:border-indigo-500 transition-all"
-                >
-                  {Object.entries(units).map(([k, u]: [string, any]) => (
-                    <option key={k} value={k}>{u.name}</option>
-                  ))}
-                </select>
-              </div>
+          <div className="lg:col-span-8 bg-white border border-slate-100 rounded-[3rem] p-8 sm:p-12 shadow-xl shadow-slate-200/20 space-y-10">
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 items-center">
+               {/* From */}
+               <div className="space-y-4">
+                  <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Source Value</div>
+                  <ValidatedInput
+                    label=""
+                    variant="minimal"
+                    value={value}
+                    onChange={(v) => updateState({ value: v })}
+                    placeholder="Enter amount"
+                  />
+                  <select
+                    value={fromUnit}
+                    onChange={(e) => updateState({ fromUnit: e.target.value })}
+                    className="w-full h-16 px-6 border-2 border-slate-50 hover:border-slate-100 rounded-[1.25rem] bg-slate-50 font-black text-slate-700 outline-none focus:border-indigo-500 transition-all cursor-pointer appearance-none shadow-sm"
+                  >
+                    {Object.entries(units).map(([k, u]: [string, any]) => (
+                      <option key={k} value={k}>{u.name} ({k})</option>
+                    ))}
+                  </select>
+               </div>
 
-              {/* SWAP BUTTON */}
-              <button 
-                onClick={swapUnits}
-                className="lg:mt-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 hover:scale-110 active:scale-95 transition-all mx-auto border border-indigo-100 dark:border-indigo-800"
-              >
-                <ArrowRightLeft className="w-5 h-5 rotate-90 md:rotate-0" />
-              </button>
-
-              {/* TO SECTION */}
-              <div className="space-y-4">
-                <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest px-1">Target Unit</label>
-                <div className="h-14 flex items-center px-6 bg-indigo-50/50 dark:bg-indigo-900/20 border-2 border-indigo-100 dark:border-indigo-800 rounded-2xl text-xl font-black text-indigo-600 tracking-tighter">
-                  {convert.result}
-                </div>
-                <select
-                  value={toUnit}
-                  onChange={(e) => updateState({ toUnit: e.target.value })}
-                  className="w-full h-14 px-6 border-2 border-gray-100 dark:border-gray-800 rounded-2xl bg-gray-50 dark:bg-gray-950 font-bold outline-none focus:border-indigo-500 transition-all"
+               {/* Interaction */}
+               <button 
+                  onClick={swapUnits}
+                  className="mt-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-600 text-white hover:scale-110 active:scale-95 transition-all mx-auto shadow-lg shadow-indigo-100"
                 >
-                  {Object.entries(units).map(([k, u]: [string, any]) => (
-                    <option key={k} value={k}>{u.name}</option>
-                  ))}
-                </select>
-              </div>
+                  <ArrowRightLeft className="w-6 h-6 rotate-90 md:rotate-0" />
+               </button>
+
+               {/* To */}
+               <div className="space-y-4 text-right">
+                  <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Calculated Result</div>
+                  <div className="h-20 flex items-center justify-end px-8 bg-indigo-50/50 border-2 border-indigo-100 rounded-3xl text-3xl font-black text-indigo-600 tracking-tighter">
+                    {convert.result}
+                  </div>
+                  <select
+                    value={toUnit}
+                    onChange={(e) => updateState({ toUnit: e.target.value })}
+                    className="w-full h-16 px-6 border-2 border-slate-50 hover:border-slate-100 rounded-[1.25rem] bg-slate-50 font-black text-slate-700 outline-none focus:border-indigo-500 transition-all cursor-pointer appearance-none shadow-sm text-right"
+                  >
+                    {Object.entries(units).map(([k, u]: [string, any]) => (
+                      <option key={k} value={k}>{u.name} ({k})</option>
+                    ))}
+                  </select>
+               </div>
             </div>
 
-            {/* QUICK EQUALITIES GRID */}
-            <div className="pt-8 border-t border-gray-100 dark:border-gray-800 space-y-6">
-              <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">Fast Comparison Matrix</h4>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                 {Object.entries(units).map(([k, u]: [string, any]) => {
-                   const val = (value / units[fromUnit].factor) * u.factor;
-                   return (
-                     <div key={k} className={`p-4 rounded-2xl border flex flex-col items-center text-center gap-1 transition-all ${k === toUnit ? 'bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-500/20' : 'bg-gray-50 dark:bg-gray-800/50 border-gray-100 dark:border-gray-800'}`}>
-                        <span className={`text-[8px] font-black uppercase tracking-widest ${k === toUnit ? 'text-indigo-200' : 'text-gray-400'}`}>{k}</span>
-                        <span className="text-xs font-black truncate w-full">{val.toLocaleString(undefined, { maximumFractionDigits: 4 })}</span>
-                     </div>
-                   );
-                 })}
-              </div>
+            {/* Matrix View */}
+            <div className="pt-12 border-t border-slate-50">
+               <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
+                  <div className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Unit Conversion Matrix</div>
+                  <div className="relative w-full sm:w-64">
+                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                     <input 
+                       type="text" 
+                       placeholder="Search Units..." 
+                       value={search}
+                       onChange={(e) => setSearch(e.target.value)}
+                       className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-100 rounded-xl text-xs font-bold focus:outline-none focus:border-indigo-300 transition-all"
+                     />
+                  </div>
+               </div>
+               
+               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {filteredUnits.map(([k, u]: [string, any]) => {
+                    const val = (value / units[fromUnit].factor) * u.factor;
+                    const isActive = k === toUnit;
+                    return (
+                      <button 
+                        key={k} 
+                        onClick={() => updateState({ toUnit: k })}
+                        className={`p-5 rounded-[1.5rem] border text-left transition-all group ${isActive ? 'bg-indigo-600 border-indigo-600 shadow-xl shadow-indigo-100' : 'bg-slate-50 border-slate-50 hover:border-indigo-200 hover:bg-white'}`}
+                      >
+                         <div className={`text-[10px] font-black uppercase tracking-widest mb-1 ${isActive ? 'text-indigo-200' : 'text-slate-400'}`}>{k}</div>
+                         <div className={`text-lg font-black truncate ${isActive ? 'text-white' : 'text-slate-900 group-hover:text-indigo-600'}`}>
+                           {val < 0.0001 && val > 0 ? val.toExponential(2) : val.toLocaleString(undefined, { maximumFractionDigits: 4 })}
+                         </div>
+                         <div className={`text-[9px] font-bold ${isActive ? 'text-indigo-100' : 'text-slate-400 italic'}`}>{u.name}</div>
+                      </button>
+                    );
+                  })}
+               </div>
             </div>
           </div>
 
-          {/* Results Side */}
-          <div className="space-y-6 lg:sticky lg:top-8 h-fit">
+          <div className="lg:col-span-4 space-y-6">
             <ResultCard
-              label="Final Conversion"
+              label="Primary Result"
               value={convert.result}
               unit={` ${toUnit.toUpperCase()}`}
-              color="purple"
-              title="Metric"
+              color="blue"
+              title="Conversion"
               copyValue={`${value} ${fromUnit} = ${convert.result} ${toUnit}`}
             />
 
-            <div className="bg-gray-900 text-white p-8 rounded-[2rem] space-y-4">
-               <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-gray-400">
-                  <span>Unit Summary</span>
-               </div>
-               <div className="space-y-2">
-                  <div className="flex justify-between text-xs font-bold">
-                    <span className="text-gray-400">From Name</span>
-                    <span>{convert.fromLabel}</span>
+            <div className="bg-slate-900 rounded-[2rem] p-8 space-y-6 text-white shadow-2xl">
+               <div className="text-[10px] font-black uppercase tracking-widest text-indigo-400 mb-2">Technical Properties</div>
+               <div className="space-y-4">
+                  <div className="flex justify-between items-center pb-4 border-b border-white/10">
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider">Scale Factor</span>
+                    <span className="text-xl font-black font-mono">{(units[toUnit].factor / units[fromUnit].factor).toFixed(6)}</span>
                   </div>
-                  <div className="flex justify-between text-xs font-bold">
-                    <span className="text-gray-400">To Name</span>
-                    <span>{convert.toLabel}</span>
+                  <div className="flex justify-between items-center pb-4 border-b border-white/10">
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider">Unit Domain</span>
+                    <span className="text-xs font-bold text-white uppercase tracking-widest">{String(category)}</span>
                   </div>
-                  <div className="flex justify-between text-xs font-bold">
-                    <span className="text-gray-400">Factor Diff</span>
-                    <span>{(units[toUnit].factor / units[fromUnit].factor).toFixed(6)}</span>
+                  <div className="bg-indigo-600/20 rounded-xl p-4 border border-indigo-500/20">
+                     <p className="text-[11px] text-indigo-200 font-medium leading-relaxed italic text-center">
+                       High-precision IEEE-754 floating point standard applied for maximum accuracy.
+                     </p>
                   </div>
                </div>
             </div>
           </div>
         </div>
 
-        {/* FAQ Section */}
-        <div className="pt-8">
+        <div className="pt-12">
            <CalcFAQ
               faqs={[
                 {
@@ -254,10 +279,6 @@ export default function UnitConverter() {
                   question: 'Does this converter support Nepal-specific units?',
                   answer: 'While this tool focuses on universal units (Metric/Imperial), we have a dedicated "Nepal Land Calculator" for specialized units like Ropani, Bigha, Kattha, and Dhur.'
                 },
-                {
-                  question: 'Why are there so many length units?',
-                  answer: 'Distance measurements vary wildly across industries. For example, Miles are common in the US, Kilometers in Nepal, and Inches in construction. We provide all of them in one place for ease of use.'
-                }
               ]}
            />
         </div>

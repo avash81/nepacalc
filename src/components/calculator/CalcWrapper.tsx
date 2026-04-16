@@ -46,13 +46,14 @@ export function CalcWrapper({
             ))}
           </nav>
           
-          <Link 
-            href={crumbs.length > 0 && crumbs[0].href ? crumbs[0].href : '/'} 
-            className="group inline-flex items-center justify-center gap-3 px-6 py-3 text-[10px] font-black text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-900 border-2 border-gray-100 dark:border-gray-800 hover:border-blue-500 hover:text-blue-600 rounded-2xl transition-all w-fit shadow-sm active:scale-95"
+          <button 
+            type="button"
+            onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
+            className="group inline-flex items-center justify-center gap-2.5 px-5 py-2.5 text-[11px] font-bold text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all w-fit shadow-sm active:scale-95"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            BACK TO TOOLS
-          </Link>
+            GO BACK
+          </button>
         </div>
 
         {/* ── HEADER ────────────────────────────────────────────── */}

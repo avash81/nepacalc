@@ -1,15 +1,23 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+import { useSyncState } from '@/hooks/useSyncState';
+
+const DEFAULT_STATE = {
+  mode: '2var' as '2var'|'3var',
+  a1: 1, b1: 1, c1: 5,
+  a2: 1, b2: -1, c2: 1,
+  eq1: { a:1, b:1, c:1, d:6 },
+  eq2: { a:0, b:2, c:5, d:-4 },
+  eq3: { a:2, b:5, c:-1, d:27 },
+};
 
 export default function LinearSolver() {
-  const [mode, setMode] = useState<'2var'|'3var'>('2var');
-  const [a1, setA1] = useState(1);  const [b1, setB1] = useState(1);  const [c1, setC1] = useState(5);
-  const [a2, setA2] = useState(1);  const [b2, setB2] = useState(-1); const [c2, setC2] = useState(1);
-  const [eq1, setEq1] = useState({ a:1, b:1, c:1, d:6 });
-  const [eq2, setEq2] = useState({ a:0, b:2, c:5, d:-4 });
-  const [eq3, setEq3] = useState({ a:2, b:5, c:-1, d:27 });
+  const [state, setState] = useSyncState('linear_solver_v2', DEFAULT_STATE);
+  const { mode, a1, b1, c1, a2, b2, c2, eq1, eq2, eq3 } = state;
+
+  const updateState = (u: Partial<typeof DEFAULT_STATE>) => setState({ ...state, ...u });
 
   const result = useMemo(() => {
     if (mode === '2var') {
@@ -44,7 +52,7 @@ export default function LinearSolver() {
               { k:'2var', l:'2 Variables (x, y)' },
               { k:'3var', l:'3 Variables (x, y, z)' },
             ].map(m => (
-              <button key={m.k} onClick={() => setMode(m.k as any)}
+              <button key={m.k} onClick={() => updateState({ mode: m.k as any })}
                 className={`py-3 text-xs font-black border transition-all uppercase ${mode===m.k ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'border-[var(--border)] bg-white hover:bg-[var(--bg-subtle)]'}`}>
                 {m.l}
               </button>
@@ -54,17 +62,17 @@ export default function LinearSolver() {
           {mode === '2var' ? (
             <div className="space-y-4">
               {[
-                { label:'Equation 1',  cols:['a','x +','b','y =','c'], vals:[a1,b1,c1], setters:[setA1,setB1,setC1] },
-                { label:'Equation 2',  cols:['a','x +','b','y =','c'], vals:[a2,b2,c2], setters:[setA2,setB2,setC2] },
-              ].map(({ label, vals, setters }) => (
-                <div key={label} className="p-4 bg-white border border-[var(--border)]">
+                { label:'Equation 1',  vals:[a1,b1,c1], keys:['a1','b1','c1'] },
+                { label:'Equation 2',  vals:[a2,b2,c2], keys:['a2','b2','c2'] },
+              ].map(({ label, vals, keys }) => (
+                <div key={label} className="p-4 bg-white border border-[var(--border)] lg:rounded-2xl">
                   <div className="text-[10px] font-black uppercase text-[var(--text-secondary)] mb-3">{label}: ax + by = c</div>
                   <div className="flex items-center gap-2">
-                    <input type="number" value={vals[0]} onChange={e => setters[0](Number(e.target.value))} className={inputCls} />
+                    <input type="number" value={vals[0]} onChange={e => updateState({ [keys[0] as any]: Number(e.target.value) })} className={inputCls} />
                     <span className="text-sm font-bold text-[var(--text-muted)]">x +</span>
-                    <input type="number" value={vals[1]} onChange={e => setters[1](Number(e.target.value))} className={inputCls} />
+                    <input type="number" value={vals[1]} onChange={e => updateState({ [keys[1] as any]: Number(e.target.value) })} className={inputCls} />
                     <span className="text-sm font-bold text-[var(--text-muted)]">y =</span>
-                    <input type="number" value={vals[2]} onChange={e => setters[2](Number(e.target.value))} className={inputCls} />
+                    <input type="number" value={vals[2]} onChange={e => updateState({ [keys[2] as any]: Number(e.target.value) })} className={inputCls} />
                   </div>
                 </div>
               ))}
@@ -72,20 +80,20 @@ export default function LinearSolver() {
           ) : (
             <div className="space-y-3">
               {[
-                { label:'Eq 1', eq:eq1, set:setEq1 },
-                { label:'Eq 2', eq:eq2, set:setEq2 },
-                { label:'Eq 3', eq:eq3, set:setEq3 },
-              ].map(({ label, eq, set }) => (
-                <div key={label} className="p-4 bg-white border border-[var(--border)]">
+                { label:'Eq 1', eq:eq1, setK:'eq1' },
+                { label:'Eq 2', eq:eq2, setK:'eq2' },
+                { label:'Eq 3', eq:eq3, setK:'eq3' },
+              ].map(({ label, eq, setK }) => (
+                <div key={label} className="p-4 bg-white border border-[var(--border)] lg:rounded-2xl">
                   <div className="text-[10px] font-black uppercase text-[var(--text-secondary)] mb-2">{label}: ax + by + cz = d</div>
                   <div className="flex items-center gap-2">
-                    <input type="number" value={eq.a} onChange={e => set({...eq,a:Number(e.target.value)})} className={inputCls} />
+                    <input type="number" value={eq.a} onChange={e => updateState({ [setK as any]: {...eq, a:Number(e.target.value)} })} className={inputCls} />
                     <span className="text-xs text-[var(--text-muted)]">x</span>
-                    <input type="number" value={eq.b} onChange={e => set({...eq,b:Number(e.target.value)})} className={inputCls} />
+                    <input type="number" value={eq.b} onChange={e => updateState({ [setK as any]: {...eq, b:Number(e.target.value)} })} className={inputCls} />
                     <span className="text-xs text-[var(--text-muted)]">y</span>
-                    <input type="number" value={eq.c} onChange={e => set({...eq,c:Number(e.target.value)})} className={inputCls} />
+                    <input type="number" value={eq.c} onChange={e => updateState({ [setK as any]: {...eq, c:Number(e.target.value)} })} className={inputCls} />
                     <span className="text-xs text-[var(--text-muted)]">z =</span>
-                    <input type="number" value={eq.d} onChange={e => set({...eq,d:Number(e.target.value)})} className={inputCls} />
+                    <input type="number" value={eq.d} onChange={e => updateState({ [setK as any]: {...eq, d:Number(e.target.value)} })} className={inputCls} />
                   </div>
                 </div>
               ))}
@@ -118,9 +126,35 @@ export default function LinearSolver() {
                 </div>
               </div>
 
-              <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)]">
-                <p className="text-[11px] text-[var(--text-secondary)]">This is the intersection point of all equations — the unique solution to the system.</p>
+              <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] lg:rounded-2xl">
+                <p className="text-[11px] text-[var(--text-secondary)] font-medium">This is the intersection point — the unique solution where all equations meet.</p>
               </div>
+
+              {mode === '2var' && result.ok && (
+                <div className="p-4 bg-white border border-[var(--border)] lg:rounded-2xl">
+                  <div className="text-[10px] font-black uppercase text-slate-400 mb-3 tracking-widest text-center">Visual Intersection</div>
+                  <div className="aspect-square bg-slate-50 border border-slate-100 relative overflow-hidden flex items-center justify-center">
+                    <svg viewBox="-10 -10 20 20" className="w-full h-full transform scale-y-[-1]">
+                      <line x1="-15" y1="0" x2="15" y2="0" stroke="#e2e8f0" strokeWidth="0.1" />
+                      <line x1="0" y1="-15" x2="0" y2="15" stroke="#e2e8f0" strokeWidth="0.1" />
+                      {/* Eq 1: a1x + b1y = c1 => y = (c1 - a1x)/b1 */}
+                      <line 
+                        x1="-10" y1={(c1 - a1*(-10))/b1} 
+                        x2="10" y2={(c1 - a1*(10))/b1} 
+                        stroke="var(--primary)" strokeWidth="0.2" opacity="0.5" 
+                      />
+                      {/* Eq 2: a2x + b2y = c2 => y = (c2 - a2x)/b2 */}
+                      <line 
+                        x1="-10" y1={(c2 - a2*(-10))/b2} 
+                        x2="10" y2={(c2 - a2*(10))/b2} 
+                        stroke="#006600" strokeWidth="0.2" opacity="0.5" 
+                      />
+                      {/* Intersection Point */}
+                      <circle cx={result.x} cy={result.y} r="0.4" fill="#ef4444" />
+                    </svg>
+                  </div>
+                </div>
+              )}
             </>
           ) : (
             <div className="p-5 border border-red-200 bg-red-50 text-red-700 text-sm font-bold">{(result as any).msg}</div>

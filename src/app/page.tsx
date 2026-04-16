@@ -12,13 +12,13 @@ export default function HomePage() {
       
       <div className="min-h-screen bg-white font-sans antialiased text-[14px]">
         {/* 1. Interactive Command Center - Isolated Client Island */}
-        <section className="pt-8 sm:pt-12 pb-16 sm:pb-24 border-b border-slate-100 bg-white relative overflow-hidden">
+        <section className="pt-24 sm:pt-32 pb-4 sm:pb-8 border-b border-slate-100 bg-white relative overflow-hidden">
           <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-10 flex flex-col items-center">
-            <div className="text-center mb-10 md:mb-16 relative z-10 w-full max-w-[800px]">
-               <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-slate-900 mb-6 tracking-tighter leading-tight">
+            <div className="text-center mb-6 md:mb-8 relative z-10 w-full max-w-[800px]">
+               <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-3 tracking-tighter leading-tight">
                  Precision Financial <span className="text-blue-600 block sm:inline">Calculators</span>
                </h1>
-               <p className="text-slate-500 text-lg sm:text-xl font-medium tracking-tight mb-8">Access Nepal&apos;s most reliable suite of financial, tax, and professional utility calculators.</p>
+               <p className="text-slate-500 text-base sm:text-lg font-medium tracking-tight mb-4">Access Nepal&apos;s most reliable suite of financial, tax, and professional utility calculators.</p>
             </div>
             
             <div className="w-full relative z-10">
@@ -32,14 +32,14 @@ export default function HomePage() {
         </section>
 
         {/* 2. Calculator Directory - High-Precision Server Component Rendering */}
-        <main className="max-w-[1400px] mx-auto px-4 sm:px-8 py-10 sm:py-16">
-          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 sm:mb-10 border-b-2 border-slate-100 pb-6 gap-4">
+        <main className="max-w-[1400px] mx-auto px-4 sm:px-8 pt-6 pb-4 sm:pt-8 sm:pb-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 sm:mb-10 border-b-2 border-slate-100 pb-5 gap-4">
             <div>
               <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Calculator Directory</h2>
               <p className="text-slate-500 text-xs sm:text-sm mt-1">Browse 75+ Professional Tools — 100% Mobile Optimized</p>
             </div>
-            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-full shrink-0">
-              verified Nepal specific data
+            <span className="text-[11px] font-bold text-emerald-700 uppercase tracking-wide bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full shrink-0 shadow-sm inline-flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Verified Nepal Specific Data
             </span>
           </div>
 
@@ -82,9 +82,9 @@ export default function HomePage() {
                         <li className="pt-3 border-t border-slate-100 mt-2">
                           <Link
                              href={`/calculator/category/${cat.id}`}
-                             className="text-[12px] font-bold text-blue-500 hover:text-blue-700 flex items-center gap-1 transition-colors"
+                             className="inline-flex items-center gap-1.5 mt-1 px-4 py-2 text-[12px] font-semibold text-blue-700 bg-blue-50/80 hover:bg-blue-100 rounded-xl transition-all w-max"
                           >
-                             View all {cat.calculators.length} tools <ChevronRight className="w-3 h-3" />
+                             View all {cat.calculators.length} tools <ChevronRight className="w-3.5 h-3.5 text-blue-500" />
                           </Link>
                         </li>
                       )}

@@ -1,5 +1,6 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
+import { useSyncState } from '@/hooks/useSyncState';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
 import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
@@ -7,9 +8,13 @@ import { CalcFAQ } from '@/components/calculator/CalcFAQ';
 function fmt(n: number) { return 'NPR ' + Math.round(n).toLocaleString('en-IN'); }
 
 export default function NepalPFCalculator() {
-  const [basic, setBasic]  = useState(50000);
-  const [years, setYears]  = useState(10);
-  const [rate, setRate]    = useState(8);
+  const [state, setState] = useSyncState('nepal_pf_v3', {
+    basic: 50000,
+    years: 10,
+    rate: 8
+  });
+  const { basic, years, rate } = state;
+  const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
   const r = useMemo(() => {
     const monthlyPF       = basic * 0.20;
@@ -28,10 +33,10 @@ export default function NepalPFCalculator() {
       category={{ label: 'Nepal Tools', href: '/calculator/category/nepal' }}
       leftPanel={
         <div className="space-y-6">
-          <ValidatedInput label="Monthly Basic Salary (NPR)" value={basic} onChange={setBasic} min={10000} prefix="NPR" required />
+          <ValidatedInput label="Monthly Basic Salary (NPR)" value={basic} onChange={v => update({ basic: v })} min={10000} prefix="NPR" required />
           <div className="grid grid-cols-2 gap-4">
-            <ValidatedInput label="Service Years" value={years} onChange={setYears} min={1} max={40} required />
-            <ValidatedInput label="PF Interest Rate" value={rate} onChange={setRate} min={1} max={20} step={0.5} suffix="%" required />
+            <ValidatedInput label="Service Years" value={years} onChange={v => update({ years: v })} min={1} max={40} required />
+            <ValidatedInput label="PF Interest Rate" value={rate} onChange={v => update({ rate: v })} min={1} max={20} step={0.5} suffix="%" required />
           </div>
 
           {/* PF Rules summary */}

@@ -93,13 +93,25 @@ export default function BmiChildCalculator() {
                  </div>
               </div>
               <div className={`p-8 ${results.bgColor} text-center`}>
-                 <div className="text-[10px] font-black uppercase tracking-[0.2em] opacity-70 mb-2">Category</div>
+                 <div className="text-[10px] font-black uppercase tracking-[0.2em] opacity-70 mb-2">Simplified Category</div>
                  <div className={`text-3xl font-black uppercase ${results.color}`}>
                    {results.category}
                  </div>
               </div>
             </div>
 
+            <div className="p-6 bg-rose-50 rounded-3xl border border-rose-100 flex gap-4 items-start">
+                <div className="p-3 bg-white rounded-xl shadow-sm text-rose-500">
+                  <Info className="w-5 h-5" />
+                </div>
+                <div>
+                   <h4 className="text-sm font-black text-rose-900 mb-1 leading-tight">Medical Disclaimer</h4>
+                   <p className="text-[11px] text-rose-700 leading-relaxed font-medium">
+                     This calculator uses simplified adult BMI thresholds for demonstration purposes. <strong>It is NOT suitable for clinical use.</strong> 
+                     Child BMI must be interpreted using age and sex-specific growth charts from the CDC or WHO. Please consult a pediatrician for accurate health assessment.
+                   </p>
+                </div>
+            </div>
 
             <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100 flex gap-4 items-start">
                 <div className="p-3 bg-white rounded-xl shadow-sm italic text-xs font-bold text-slate-400">?</div>

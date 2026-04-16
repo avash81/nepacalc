@@ -1,5 +1,6 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
+import { useSyncState } from '@/hooks/useSyncState';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
 import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
@@ -9,10 +10,15 @@ const SQFT_PER_BIGHA  = 72900;
 const SQM_PER_SQFT    = 0.092903;
 
 export default function NepalLandCalculator() {
-  const [system, setSystem] = useState<'hill'|'terai'|'intl'>('hill');
-  const [ropani, setRopani] = useState(1); const [aana, setAana] = useState(0); const [paisa, setPaisa] = useState(0); const [daam, setDaam] = useState(0);
-  const [bigha,  setBigha]  = useState(0); const [kattha, setKattha] = useState(0); const [dhur, setDhur] = useState(0);
-  const [sqft,   setSqft]   = useState(5476);
+  const [state, setState] = useSyncState('nepal_land_v3', {
+    system: 'hill' as 'hill'|'terai'|'intl',
+    ropani: 1, aana: 0, paisa: 0, daam: 0,
+    bigha: 0, kattha: 0, dhur: 0,
+    sqft: 5476
+  });
+
+  const { system, ropani, aana, paisa, daam, bigha, kattha, dhur, sqft } = state;
+  const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
   const totalSqft = useMemo(() => {
     if (system === 'hill')  return ropani*SQFT_PER_ROPANI + aana*(SQFT_PER_ROPANI/16) + paisa*(SQFT_PER_ROPANI/64) + daam*(SQFT_PER_ROPANI/256);
@@ -56,7 +62,7 @@ export default function NepalLandCalculator() {
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-2">
             {SYSTEMS.map(s => (
-              <button key={s.k} onClick={() => setSystem(s.k as any)}
+              <button key={s.k} onClick={() => update({ system: s.k as any })}
                 className={`py-3 text-xs font-black border transition-all uppercase text-left px-4 ${system===s.k ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'border-[var(--border)] bg-white hover:bg-[var(--bg-subtle)]'}`}>
                 {s.l}
               </button>
@@ -65,23 +71,23 @@ export default function NepalLandCalculator() {
 
           {system === 'hill' && (
             <div className="grid grid-cols-2 gap-4">
-              <ValidatedInput label="Ropani" value={ropani} onChange={setRopani} min={0} />
-              <ValidatedInput label="Aana (max 15)" value={aana} onChange={setAana} min={0} max={15} />
-              <ValidatedInput label="Paisa (max 3)" value={paisa} onChange={setPaisa} min={0} max={3} />
-              <ValidatedInput label="Daam (max 3)" value={daam} onChange={setDaam} min={0} max={3} />
+              <ValidatedInput label="Ropani" value={ropani} onChange={v => update({ ropani: v })} min={0} />
+              <ValidatedInput label="Aana (max 15)" value={aana} onChange={v => update({ aana: v })} min={0} max={15} />
+              <ValidatedInput label="Paisa (max 3)" value={paisa} onChange={v => update({ paisa: v })} min={0} max={3} />
+              <ValidatedInput label="Daam (max 3)" value={daam} onChange={v => update({ daam: v })} min={0} max={3} />
             </div>
           )}
 
           {system === 'terai' && (
             <div className="grid grid-cols-2 gap-4">
-              <ValidatedInput label="Bigha" value={bigha} onChange={setBigha} min={0} />
-              <ValidatedInput label="Kattha (max 19)" value={kattha} onChange={setKattha} min={0} max={19} />
-              <ValidatedInput label="Dhur (max 19)" value={dhur} onChange={setDhur} min={0} max={19} />
+              <ValidatedInput label="Bigha" value={bigha} onChange={v => update({ bigha: v })} min={0} />
+              <ValidatedInput label="Kattha (max 19)" value={kattha} onChange={v => update({ kattha: v })} min={0} max={19} />
+              <ValidatedInput label="Dhur (max 19)" value={dhur} onChange={v => update({ dhur: v })} min={0} max={19} />
             </div>
           )}
 
           {system === 'intl' && (
-            <ValidatedInput label="Total Square Feet" value={sqft} onChange={setSqft} min={0} suffix="sq ft" />
+            <ValidatedInput label="Total Square Feet" value={sqft} onChange={v => update({ sqft: v })} min={0} suffix="sq ft" />
           )}
 
           {/* Quick load presets */}
@@ -90,9 +96,9 @@ export default function NepalLandCalculator() {
             <div className="grid grid-cols-4 gap-2">
               {[1,2,5,10].map(v => (
                 <button key={v} onClick={() => {
-                  if (system==='hill')  { setRopani(v); setAana(0); setPaisa(0); setDaam(0); }
-                  if (system==='terai') { setBigha(v);  setKattha(0); setDhur(0); }
-                  if (system==='intl')  setSqft(v*5476);
+                  if (system==='hill')  { update({ ropani: v, aana: 0, paisa: 0, daam: 0 }); }
+                  if (system==='terai') { update({ bigha: v, kattha: 0, dhur: 0 }); }
+                  if (system==='intl')  update({ sqft: v*5476 });
                 }}
                   className="py-3 border border-[var(--border)] bg-white hover:bg-[var(--bg-subtle)] text-[10px] font-black transition-all uppercase">
                   {v}

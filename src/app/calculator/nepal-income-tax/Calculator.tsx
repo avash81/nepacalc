@@ -4,65 +4,56 @@ import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { QuickPresets } from '@/components/calculator/QuickPresets';
 import { TAX_YEARS, DEDUCTIONS } from '@/config/tax-config';
 import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useSyncState } from '@/hooks/useSyncState';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { Info, Receipt, Wallet } from 'lucide-react';
+import { Info, Receipt, Wallet, ShieldCheck } from 'lucide-react';
+import { calculateNepalIncomeTax } from '@/utils/math/country-rules/nepal';
 
 const DEFAULT_STATE = {
   fiscalYear: '2082/83' as keyof typeof TAX_YEARS,
   income: 1500000,
   married: false,
+  isSSFContributor: false,
   lifeInsurance: 40000,
   homeLoanInterest: 0,
   educationAllowance: 0,
 };
 
-import { calculateNepalIncomeTax } from '@/utils/math/country-rules/nepal';
-
-function calculateIncomeTax(income: number, fiscalYear: string, deductions: Record<string, number>, married: boolean) {
-  const { life_insurance = 0, ...otherDeductions } = deductions;
-  const totalOtherDeductions = Object.values(otherDeductions).reduce((a, b) => a + b, 0);
-  
-  // Life insurance is capped at 40,000 per IRD rules
-  const finalLifeInsurance = Math.min(life_insurance, 40000);
-  
-  const result = calculateNepalIncomeTax(income - totalOtherDeductions - finalLifeInsurance, married, false);
-
-  return { 
-    totalTax: Math.round(result.totalTax), 
-    taxableIncome: result.taxableIncome, 
-    breakdown: result.breakdown.map(b => ({
-      slab: b.slabLabel,
-      income: b.taxableInSlab,
-      tax: b.taxAmount,
-      rate: b.rate
-    })), 
-    totalDeductions: totalOtherDeductions + finalLifeInsurance
-  };
-}
-
 export default function NepalIncomeTaxCalculator() {
-  const [state, setState] = useLocalStorage('equaly_tax_v2', DEFAULT_STATE);
-  const { fiscalYear, income, married, lifeInsurance, homeLoanInterest, educationAllowance } = state;
+  const [state, setState] = useSyncState('nepal_tax_v2', DEFAULT_STATE);
+  const { fiscalYear, income, married, isSSFContributor, lifeInsurance, homeLoanInterest, educationAllowance } = state;
 
   const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {
     setState({ ...state, ...updates });
   };
 
   const presets = [
-    { name: 'Standard Employee', description: 'Avg income, simple life insurance', icon: 'briefcase', values: { income: 900000, married: false, lifeInsurance: 25000, homeLoanInterest: 0 } },
-    { name: 'Family & Home', description: 'Married + Home loan interest', icon: 'home', values: { income: 1500000, married: true, lifeInsurance: 40000, homeLoanInterest: 150000 } },
-    { name: 'High Earner', description: 'Maximum deductions applied', icon: 'target', values: { income: 5000000, married: true, lifeInsurance: 40000, homeLoanInterest: 300000 } },
+    { name: 'Standard Employee', description: 'Avg income, simple life insurance', icon: 'briefcase', values: { income: 900000, married: false, isSSFContributor: false, lifeInsurance: 25000, homeLoanInterest: 0 } },
+    { name: 'SSF Contributor', description: 'Tax-free first slab via SSF', icon: 'shield', values: { income: 1500000, married: true, isSSFContributor: true, lifeInsurance: 40000, homeLoanInterest: 0 } },
+    { name: 'High Earner', description: 'Maximum deductions applied', icon: 'target', values: { income: 5000000, married: true, isSSFContributor: true, lifeInsurance: 40000, homeLoanInterest: 300000 } },
   ];
 
-  const deductions = useMemo(() => ({
-    life_insurance: lifeInsurance,
-    home_loan_interest: homeLoanInterest,
-    education_allowance: educationAllowance,
-  }), [lifeInsurance, homeLoanInterest, educationAllowance]);
+  const result = useMemo(() => {
+    // Other deductions are subtracted from gross income BEFORE reaching the tax calculation slabs
+    // SSF deduction is handled INSIDE calculateNepalIncomeTax
+    const otherDeductions = Math.min(lifeInsurance, 40000) + homeLoanInterest + educationAllowance;
+    const coreIncome = income - otherDeductions;
+    
+    const calculation = calculateNepalIncomeTax(coreIncome, married, isSSFContributor);
 
-  const result = useMemo(() => calculateIncomeTax(income, fiscalYear, deductions, married), [income, fiscalYear, deductions, married]);
+    return {
+      totalTax: Math.round(calculation.totalTax),
+      taxableIncome: calculation.taxableIncome,
+      breakdown: calculation.breakdown.map(b => ({
+        slab: b.slabLabel,
+        income: b.taxableInSlab,
+        tax: b.taxAmount,
+        rate: b.rate
+      })),
+      totalDeductions: otherDeductions + (calculation.grossIncome - calculation.taxableIncome)
+    };
+  }, [income, married, isSSFContributor, lifeInsurance, homeLoanInterest, educationAllowance]);
 
   const formatNPR = (n: number) =>
     new Intl.NumberFormat('en-NP', {
@@ -110,6 +101,29 @@ export default function NepalIncomeTaxCalculator() {
                   />
                   <ValidatedInput label="Home Loan Interest" value={homeLoanInterest} onChange={(v) => updateState({ homeLoanInterest: v })} min={0} max={1000000} />
                   <div className="space-y-3">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)]">SSF Contributor</label>
+                    <button
+                      onClick={() => updateState({ isSSFContributor: !isSSFContributor })}
+                      className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all ${
+                        isSSFContributor 
+                          ? 'bg-blue-50 border-blue-200 text-blue-700 shadow-sm' 
+                          : 'bg-[var(--bg-subtle)] border-[var(--border)] text-[var(--text-muted)]'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <ShieldCheck className={`w-5 h-5 ${isSSFContributor ? 'text-blue-600' : 'text-slate-400'}`} />
+                        <span className="text-xs font-bold uppercase tracking-wider">Formal Sector (SSF)</span>
+                      </div>
+                      <div className={`w-10 h-5 rounded-full relative transition-colors ${isSSFContributor ? 'bg-blue-600' : 'bg-slate-300'}`}>
+                        <div className={`absolute top-1 w-3 h-3 bg-white rounded-full transition-all ${isSSFContributor ? 'left-6' : 'left-1'}`} />
+                      </div>
+                    </button>
+                    {isSSFContributor && (
+                      <p className="text-[10px] text-blue-600 font-bold uppercase mt-1">✓ 1% Social Security Tax Waived on first slab</p>
+                    )}
+                  </div>
+
+                  <div className="space-y-3">
                     <label className="text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)]">Marital Status</label>
                     <div className="flex p-1 bg-[var(--bg-subtle)] rounded-xl border border-[var(--border)]">
                       {[{ v: false, l: 'Single' }, { v: true, l: 'Married' }].map((m) => (
@@ -131,9 +145,16 @@ export default function NepalIncomeTaxCalculator() {
         }
         rightPanel={
           <div className="space-y-8">
+            <div className="p-6 bg-blue-50/50 rounded-2xl border border-blue-100 flex gap-4 items-start mb-4">
+              <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+              <p className="text-[11px] text-blue-700 leading-relaxed font-medium">
+                <strong>SSF Benefit:</strong> Contributing to the Social Security Fund waives the 1% SST on your first tax bracket, significantly increasing take-home pay for lower income ranges.
+              </p>
+            </div>
             {result.totalTax !== undefined ? (
               <>
-                <div className="text-center p-6 bg-white rounded-2xl border border-[var(--primary)]/10 shadow-sm">
+                <div className="text-center p-6 bg-white rounded-2xl border border-[var(--primary)]/10 shadow-sm relative overflow-hidden">
+                  {isSSFContributor && <div className="absolute top-0 right-0 p-2 bg-blue-600 text-white text-[8px] font-black uppercase tracking-widest rounded-bl-lg">SSF Active</div>}
                   <div className="text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)] mb-1">Estimated Tax Liability</div>
                   <div className="text-4xl font-black text-[var(--primary)] tracking-tighter mb-1">{formatNPR(result.totalTax)}</div>
                   <div className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest">Effective Rate: {((result.totalTax / (income || 1)) * 100).toFixed(2)}%</div>

@@ -1,5 +1,6 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
+import { useSyncState } from '@/hooks/useSyncState';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
 import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
@@ -14,7 +15,10 @@ const MOMO_TYPES = [
 ];
 
 export default function MomoCalculator() {
-  const [items, setItems] = useState([{ typeId: 'buff', count: 10 }]);
+  const [state, setState] = useSyncState('momo_counter_v3', {
+    items: [{ typeId: 'buff', count: 10 }]
+  });
+  const { items } = state;
 
   const result = useMemo(() => {
     let cals = 0, protein = 0, fat = 0, carbs = 0;
@@ -25,9 +29,9 @@ export default function MomoCalculator() {
     return { cals, protein: protein.toFixed(1), fat: fat.toFixed(1), carbs: carbs.toFixed(1) };
   }, [items]);
 
-  const update = (i: number, f: string, v: any) => { const list = [...items]; (list[i] as any)[f] = v; setItems(list); };
-  const add    = () => setItems([...items, { typeId: 'buff', count: 10 }]);
-  const remove = (i: number) => setItems(items.filter((_, idx) => idx !== i));
+  const update = (i: number, f: string, v: any) => { const list = [...items]; (list[i] as any)[f] = v; setState({ ...state, items: list }); };
+  const add    = () => setState({ ...state, items: [...items, { typeId: 'buff', count: 10 }] });
+  const remove = (i: number) => setState({ ...state, items: items.filter((_, idx) => idx !== i) });
 
   return (
     <CalculatorLayout

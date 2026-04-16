@@ -34,6 +34,8 @@ export const CALCULATORS: Calculator[] = [
   { id: 'nepal-tax-calculator', slug: 'nepal-tax-calculator', name: 'Generic Tax Calc', icon: '📜', description: 'Generic Nepal tax rules.', category: 'nepal', isNepal: true },
   { id: 'nepal-tds', slug: 'nepal-tds-calculator', name: 'Nepal TDS', icon: '💸', description: 'Calculate TDS for Nepal.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepse-bonus-tax', slug: 'nepse-bonus-tax', name: 'NEPSE Bonus Tax', icon: '📈', description: 'Tax on dividends and bonus shares.', category: 'nepal', isNepal: true, isNew: true },
+  { id: 'nepse-wacc', slug: 'nepse-wacc', name: 'NEPSE WACC & Tax', icon: '🛒', description: 'Average share cost for NEPSE selling.', category: 'nepal', isNepal: true, isNew: true },
+  { id: 'nepal-vehicle-tax', slug: 'nepal-vehicle-tax', name: 'Vehicle Tax Calc', icon: '🏍️', description: 'Annual road tax for motorbikes & cars.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'see-gpa', slug: 'see-gpa', name: 'SEE GPA', icon: '🎓', description: 'Nepal SEE GPA calculator.', category: 'nepal', isNepal: true, isNew: true },
 
   // ==========================================

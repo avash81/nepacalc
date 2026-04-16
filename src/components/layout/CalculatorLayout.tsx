@@ -101,17 +101,25 @@ export function CalculatorLayout({
       <div className="bg-gradient-to-r from-[#003366] to-[#044c92] text-white/90 py-2.5 border-b border-blue-800 shadow-sm no-print relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-full bg-white/5 skew-x-12 transform -translate-x-10 pointer-events-none" />
         <div className="hp-container flex items-center gap-2.5 text-[10px] font-black uppercase tracking-[0.2em] relative z-10">
-          <Link href="/" className="hover:text-white hover:drop-shadow-md transition-all text-blue-200">Home</Link>
+          <button 
+            type="button"
+            onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
+            className="flex items-center gap-1 hover:text-white text-blue-100 border-r border-blue-800/60 pr-3 mr-1 transition-colors"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+            BACK
+          </button>
+          <Link href="/" className="hover:text-white hover:drop-shadow-md transition-all text-blue-200 hidden sm:inline-block">Home</Link>
           {catLabel && (
             <>
-              <span className="opacity-40 text-blue-300">/</span>
-              <Link href={catLink || '/calculator'} className="hover:text-white hover:drop-shadow-md transition-all text-blue-200">
+              <span className="opacity-40 text-blue-300 hidden sm:inline-block">/</span>
+              <Link href={catLink || '/calculator'} className="hover:text-white hover:drop-shadow-md transition-all text-blue-200 hidden sm:inline-block">
                 {catLabel}
               </Link>
             </>
           )}
-          <span className="opacity-40 text-blue-300">/</span>
-          <span className="text-white truncate tracking-widest drop-shadow-sm" title={title}>{title}</span>
+          <span className="opacity-40 text-blue-300 hidden sm:inline-block">/</span>
+          <span className="text-white truncate tracking-widest drop-shadow-sm flex-1 sm:flex-none" title={title}>{title}</span>
         </div>
       </div>
 

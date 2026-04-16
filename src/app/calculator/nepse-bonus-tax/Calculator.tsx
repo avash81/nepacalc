@@ -1,154 +1,151 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
 import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
-import { TrendingUp, PieChart, Info, AlertTriangle } from 'lucide-react';
+import { TrendingUp, PieChart, Info, AlertTriangle, ShieldCheck, Wallet, Receipt } from 'lucide-react';
+import { useSyncState } from '@/hooks/useSyncState';
+import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+
+const DEFAULT_STATE = {
+  bonusShares: 50,
+  cashDividend: 500,
+  faceValue: 100,
+  investorType: 'individual' as 'individual' | 'institutional',
+};
 
 export default function NepseBonusTaxCalculator() {
-  const [bonusShares, setBonusShares] = useState<number>(0);
-  const [cashDividend, setCashDividend] = useState<number>(0);
-  const [faceValue, setFaceValue] = useState<number>(100);
-  const [investorType, setInvestorType] = useState<'individual' | 'institutional'>('individual');
+  const [state, setState] = useSyncState('nepse_tax_v3', DEFAULT_STATE);
+  const { bonusShares, cashDividend, faceValue, investorType } = state;
+
+  const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {
+    setState({ ...state, ...updates });
+  };
 
   const results = useMemo(() => {
-    // Individual tax rate for dividends in Nepal is generally 5%
-    // Institutional is usually 15%, but for many companies it's 5% final. 
-    // We will use 5% for Individual and 15% for institutional as per basic IT Act 2058.
-    const taxRate = investorType === 'individual' ? 0.05 : 0.15;
-    
-    // Bonus Share Tax: Taxed on the face value of the bonus shares received
+    const taxRate = 0.05;
     const bonusTaxAmount = (bonusShares * faceValue) * taxRate;
-    
-    // Cash Dividend Tax: Taxed on the gross cash amount
     const cashTaxAmount = cashDividend * taxRate;
-    
     const totalTax = bonusTaxAmount + cashTaxAmount;
 
     return {
       bonusTaxAmount,
       cashTaxAmount,
       totalTax,
+      totalDividendValue: (bonusShares * faceValue) + cashDividend,
       taxRatePercent: taxRate * 100
     };
-  }, [bonusShares, cashDividend, faceValue, investorType]);
+  }, [bonusShares, cashDividend, faceValue]);
+
+  const formatNPR = (n: number) =>
+    new Intl.NumberFormat('en-NP', {
+      style: 'currency',
+      currency: 'NPR',
+      maximumFractionDigits: 0,
+    }).format(n);
 
   return (
     <CalculatorErrorBoundary calculatorName="NEPSE Bonus Tax">
       <CalculatorLayout
-        title="NEPSE Bonus & Dividend Tax Calculator"
-        description="Calculate the tax payable on your bonus shares and cash dividends in the Nepal Stock Market (NEPSE)."
-        badge="NEPSE Tools"
-        badgeColor="green"
-        category={{ label: 'Finance & Tax', href: '/calculator/category/finance' }}
+        title="NEPSE Dividend Tax"
+        description="Calculate dividend withholding tax for bonus shares and cash distributions according to Nepal Income Tax Act (FY 2082/83)."
+        badge="NEPSE Tool"
+        badgeColor="emerald"
+        category={{ label: 'Finance', href: '/calculator/category/finance' }}
         leftPanel={
           <div className="space-y-8">
+            <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-100 flex gap-4 items-center">
+               <Info className="w-5 h-5 text-emerald-600 shrink-0" />
+               <p className="text-[11px] text-emerald-800 leading-relaxed font-bold uppercase tracking-wide">
+                 Official Tax Rate: 5% (Listed Companies)
+               </p>
+            </div>
+
             <div className="space-y-3">
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">Investor Type</label>
+              <label className="text-[10px] font-black uppercase tracking-widest text-slate-500">Investor Classification</label>
               <div className="flex p-1 bg-slate-50 rounded-xl border border-slate-200">
                 {(['individual', 'institutional'] as const).map((t) => (
                   <button
                     key={t}
-                    onClick={() => setInvestorType(t)}
+                    onClick={() => updateState({ investorType: t })}
                     className={`flex-1 py-3 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all ${
                       investorType === t 
-                        ? 'bg-white text-blue-600 shadow-sm border border-slate-100' 
+                        ? 'bg-white text-emerald-600 shadow-md transform scale-[1.02]' 
                         : 'text-slate-400'
                     }`}
                   >
-                    {t.charAt(0).toUpperCase() + t.slice(1)}
+                    {t}
                   </button>
                 ))}
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <ValidatedInput 
-                label="Number of Bonus Shares" 
-                value={bonusShares} 
-                onChange={setBonusShares} 
-                min={0}
-                placeholder="e.g. 50"
-              />
-              <ValidatedInput 
-                label="Face Value (NPR)" 
-                value={faceValue} 
-                onChange={setFaceValue} 
-                min={1}
-                placeholder="Usually 100"
-              />
+              <ValidatedInput label="Bonus Shares Received" value={bonusShares} onChange={(v) => updateState({ bonusShares: v })} min={0} />
+              <ValidatedInput label="Face Value (NPR)" value={faceValue} onChange={(v) => updateState({ faceValue: v })} min={1} hint="Standard base is NPR 100" />
             </div>
 
-            <ValidatedInput 
-              label="Gross Cash Dividend (NPR)" 
-              value={cashDividend} 
-              onChange={setCashDividend} 
-              min={0}
-              placeholder="Total cash dividend before tax"
-            />
+            <ValidatedInput label="Gross Cash Dividend" value={cashDividend} onChange={(v) => updateState({ cashDividend: v })} min={0} prefix="NPR" />
           </div>
         }
         rightPanel={
-          <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
-            <div className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
-              <div className="p-8 border-b border-slate-50 text-center">
-                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-rose-600 mb-2">Total Tax Payable</div>
-                 <div className="text-5xl font-black text-slate-900 tracking-tighter">
-                   NPR {results.totalTax.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+          <div className="space-y-8">
+            <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-xl overflow-hidden text-center transition-all hover:shadow-2xl">
+              <div className="p-10 border-b border-slate-50 bg-slate-50/30">
+                 <div className="text-[10px] font-black uppercase tracking-[0.3em] text-rose-500 mb-3">Total Tax Liability</div>
+                 <div className="text-6xl font-black text-slate-900 tracking-tighter">
+                   {formatNPR(results.totalTax)}
                  </div>
               </div>
               
-              <div className="p-6 grid grid-cols-2 gap-4">
-                <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                    <div className="text-[10px] font-black uppercase text-slate-400 mb-1">On Bonus</div>
-                    <div className="text-lg font-black text-slate-900">NPR {results.bonusTaxAmount.toLocaleString()}</div>
+              <div className="p-8 bg-white flex justify-around items-center">
+                <div className="flex flex-col items-center">
+                    <div className="text-[9px] font-black uppercase text-slate-400 mb-1 tracking-widest">Bonus Tax</div>
+                    <div className="text-lg font-black text-slate-800">{formatNPR(results.bonusTaxAmount)}</div>
                 </div>
-                <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                    <div className="text-[10px] font-black uppercase text-slate-400 mb-1">On Cash</div>
-                    <div className="text-lg font-black text-slate-900">NPR {results.cashTaxAmount.toLocaleString()}</div>
+                <div className="w-px h-12 bg-slate-100" />
+                <div className="flex flex-col items-center">
+                    <div className="text-[9px] font-black uppercase text-slate-400 mb-1 tracking-widest">Cash Tax</div>
+                    <div className="text-lg font-black text-slate-800">{formatNPR(results.cashTaxAmount)}</div>
                 </div>
               </div>
             </div>
 
-            <div className="p-6 bg-blue-600 rounded-3xl text-white">
-                <div className="flex items-center gap-3 mb-4">
-                    <PieChart className="w-5 h-5 text-blue-200" />
-                    <h4 className="text-[10px] font-black uppercase tracking-widest">Investment Summary</h4>
+            <div className="bg-slate-900 rounded-[2.5rem] p-8 text-white space-y-6 shadow-2xl relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:opacity-10 transition-opacity">
+                   <Wallet className="w-32 h-32" />
                 </div>
-                <div className="space-y-3">
-                    <div className="flex justify-between text-xs font-bold text-blue-100">
-                        <span>Tax Rate</span>
-                        <span className="text-white">{results.taxRatePercent}%</span>
+                <div className="flex items-center gap-2 mb-2 relative z-10">
+                   <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                   <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Withholding Context</h3>
+                </div>
+                <div className="space-y-4 relative z-10">
+                    <div className="flex justify-between items-center text-xs">
+                        <span className="font-bold text-slate-500 uppercase tracking-widest text-[9px]">Gross Dividend Value</span>
+                        <span className="font-black text-emerald-400 text-lg">{formatNPR(results.totalDividendValue)}</span>
                     </div>
-                    <div className="flex justify-between text-xs font-bold text-blue-100">
-                        <span>Bonus Worth (Face Value)</span>
-                        <span className="text-white">NPR {(bonusShares * faceValue).toLocaleString()}</span>
+                    <div className="h-px bg-white/10 w-full" />
+                    <div className="flex justify-between items-center text-xs">
+                        <span className="font-bold text-slate-500 uppercase tracking-widest text-[9px]">Net Payable (In-Hand)</span>
+                        <span className="font-black text-white text-lg">{formatNPR(results.totalDividendValue - results.totalTax)}</span>
                     </div>
                 </div>
+            </div>
+
+            <div className="p-6 bg-amber-50 rounded-3xl border border-amber-100 flex gap-4 items-center">
+                <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0" />
+                <p className="text-[10px] text-amber-800 leading-relaxed font-bold uppercase">
+                  Verify final WHT with CDSC or your DP broker.
+                </p>
             </div>
           </div>
         }
         faqSection={
-          <div className="prose prose-slate max-w-none w-full print-hide mt-16 pt-12 border-t border-slate-200">
-            <h2 className="text-2xl font-black text-slate-900 tracking-tight">Understanding Dividend Tax in Nepal</h2>
-            
-            <div className="bg-amber-50 p-6 rounded-2xl border border-amber-100 my-8">
-                <div className="flex items-start gap-4">
-                    <AlertTriangle className="w-6 h-6 text-amber-600 shrink-0 mt-1" />
-                    <div>
-                        <h4 className="text-sm font-black text-amber-900 uppercase tracking-wide mb-2">Important Note on WACC</h4>
-                        <p className="text-sm text-amber-800 leading-relaxed">Starting from FY 2080/81, the government has introduced changes regarding WACC. However, for most individual investors, the 5% final withholding tax still applies to distributed profits as dividends.</p>
-                    </div>
-                </div>
-            </div>
-
-            <h3 className="text-lg font-bold text-slate-800">1. How is Bonus Share Tax calculated?</h3>
-            <p className="text-sm text-slate-600">In Nepal, when a company issues bonus shares, the tax is not calculated on the current market price (LTP). Instead, it is calculated on the <strong>Face Value</strong> (usually NPR 100). The current rate for individuals is 5%.</p>
-
-            <h3 className="text-lg font-bold text-slate-800 mt-6">2. Do I need to pay this manually?</h3>
-            <p className="text-sm text-slate-600">Often, the company will deduct the required tax from your cash dividend to cover the tax on bonus shares. If the cash dividend is insufficient, you may need to deposit the amount or it will be shown as a liability in your portfolio.</p>
-          </div>
+          <CalcFAQ faqs={[
+            { question: 'Is Bonus Share taxed on Market Price?', answer: 'No. In Nepal, bonus shares are taxed at 5% of their Face Value (usually Rs. 100), not the current market price (LTP).' },
+            { question: 'How is the tax paid?', answer: 'Usually, the company deducts the tax amount from your cash dividend. If you only receive bonus shares, you may have to pay the tax through your broker.' },
+          ]} />
         }
       />
     </CalculatorErrorBoundary>

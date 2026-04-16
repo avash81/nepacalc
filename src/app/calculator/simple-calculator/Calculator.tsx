@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
 import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
 import { RotateCcw, Delete, Equal, Minus, Plus, X, Divide, Percent } from 'lucide-react';
+import { safeEval } from '@/utils/math/safeEval';
 
 export default function SimpleCalculator() {
   const [display, setDisplay] = useState('0');
@@ -26,17 +27,11 @@ export default function SimpleCalculator() {
   };
 
   const calculate = () => {
-    try {
-      const fullExpr = formula + display;
-      // Note: In a production app, use a proper expression parser like mathjs.
-      // For this simple tool, we use a basic safely-filtered eval or manual logic.
-      const result = eval(fullExpr.replace('×', '*').replace('÷', '/'));
-      setDisplay(String(Number(result.toFixed(8))));
-      setFormula('');
-      setIsDone(true);
-    } catch (e) {
-      setDisplay('Error');
-    }
+    const fullExpr = formula + display;
+    const result = safeEval(fullExpr);
+    setDisplay(result);
+    setFormula('');
+    setIsDone(true);
   };
 
   const clear = () => {

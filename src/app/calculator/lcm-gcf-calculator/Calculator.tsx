@@ -1,10 +1,19 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+import { useSyncState } from '@/hooks/useSyncState';
+import { Binary, ListChecks, Sigma, Info } from 'lucide-react';
+
+const DEFAULT_STATE = {
+  inputVal: '12, 18, 24',
+};
 
 export default function LcmGcfCalculator() {
-  const [inputVal, setInputVal] = useState('12, 18, 24');
+  const [state, setState] = useSyncState('lcm_gcf_v2', DEFAULT_STATE);
+  const { inputVal } = state;
+
+  const updateState = (u: Partial<typeof DEFAULT_STATE>) => setState({ ...state, ...u });
 
   const r = useMemo(() => {
     const arr = inputVal.split(/[,\s]+/).map(s => parseInt(s)).filter(n => !isNaN(n) && n > 0);
@@ -24,44 +33,52 @@ export default function LcmGcfCalculator() {
   return (
     <CalculatorLayout
       title="LCM & GCF Calculator"
-      description="Find the Least Common Multiple (LCM) and Greatest Common Factor (GCF/HCF) of two or more numbers, with prime factorization."
-      category={{ label: 'Math', href: '/calculator/category/math' }}
+      description="Calculate the Least Common Multiple and Greatest Common Factor for any set of numbers with full prime factorization steps."
+      category={{ label: 'Mathematics', href: '/calculator/category/math' }}
       leftPanel={
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Enter Numbers (comma separated)</label>
-            <textarea value={inputVal} onChange={e => setInputVal(e.target.value)}
-              className="w-full h-28 p-4 border border-[var(--border)] bg-white font-mono text-lg font-bold focus:border-[var(--primary)] outline-none resize-none"
-              placeholder="e.g. 12, 18, 24" />
+        <div className="space-y-8">
+          <div className="space-y-3">
+            <label className="text-[10px] font-black uppercase text-slate-500 tracking-widest">Enter Numbers (comma separated)</label>
+            <textarea 
+              value={inputVal} 
+              onChange={e => updateState({ inputVal: e.target.value })}
+              className="w-full h-32 p-6 border-2 border-slate-100 rounded-3xl bg-slate-50 font-mono text-xl font-bold focus:border-blue-500 focus:bg-white outline-none transition-all resize-none shadow-inner"
+              placeholder="e.g. 12, 18, 24" 
+            />
           </div>
 
-          <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Quick Sets</label>
-            {[
-              { label: '2 numbers', data: '12, 18' },
-              { label: '3 numbers', data: '12, 18, 24' },
-              { label: 'Large set', data: '36, 48, 60, 84' },
-            ].map(d => (
-              <button key={d.label} onClick={() => setInputVal(d.data)}
-                className="w-full p-4 border border-[var(--border)] bg-white hover:bg-[var(--bg-subtle)] text-left flex justify-between items-center transition-all">
-                <span className="text-[12px] font-bold text-[var(--text-main)]">{d.label}</span>
-                <span className="text-[11px] font-mono text-[var(--text-muted)]">{d.data}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Prime factorizations */}
-          {r && (
-            <div className="bg-white border border-[var(--border)]">
-              <div className="px-4 py-3 bg-[var(--bg-surface)] border-b border-[var(--border)]">
-                <h3 className="text-[11px] font-bold uppercase text-[var(--text-main)]">Prime Factorization</h3>
-              </div>
-              {r.factors.map(({ n, f }) => (
-                <div key={n} className="px-4 py-3 border-b border-[var(--border)] flex justify-between last:border-0">
-                  <span className="text-[11px] font-black text-[var(--primary)]">{n}</span>
-                  <span className="text-[11px] font-mono font-bold text-[var(--text-main)]">{f.join(' × ')}</span>
-                </div>
+          <div className="space-y-4">
+            <label className="text-[10px] font-black uppercase text-slate-400 tracking-widest">Quick Practice Sets</label>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {[
+                { label: 'Standard Set', data: '12, 18, 24' },
+                { label: 'Primes Only', data: '7, 13, 19' },
+                { label: 'Multiples', data: '15, 30, 45, 60' },
+                { label: 'Large Ints', data: '120, 150, 200' },
+              ].map(d => (
+                <button key={d.label} onClick={() => updateState({ inputVal: d.data })}
+                  className="p-4 border border-slate-100 bg-white rounded-2xl hover:border-blue-500 hover:shadow-md text-left flex justify-between items-center transition-all group">
+                  <span className="text-[11px] font-bold text-slate-700">{d.label}</span>
+                  <span className="text-[10px] font-mono text-blue-600 font-bold opacity-60 group-hover:opacity-100">{d.data}</span>
+                </button>
               ))}
+            </div>
+          </div>
+
+          {r && (
+            <div className="bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden shadow-sm">
+              <div className="px-6 py-4 bg-slate-50 border-b border-slate-100 flex items-center gap-2">
+                <Binary className="w-4 h-4 text-blue-600" />
+                <h3 className="text-[10px] font-black uppercase text-slate-500 tracking-widest">Prime Factors</h3>
+              </div>
+              <div className="divide-y divide-slate-50">
+                {r.factors.map(({ n, f }) => (
+                  <div key={n} className="px-6 py-4 flex justify-between items-center group hover:bg-slate-50 transition-colors">
+                    <span className="text-sm font-black text-slate-900">{n}</span>
+                    <span className="text-xs font-mono font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">{f.join(' × ')}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
@@ -70,34 +87,45 @@ export default function LcmGcfCalculator() {
         <div className="space-y-6">
           {r ? (
             <>
-              <div className="p-8 bg-white border border-[var(--border)] text-center">
-                <div className="text-xs font-bold uppercase text-[var(--text-muted)] mb-2">Least Common Multiple (LCM)</div>
-                <div className="text-6xl font-black text-[var(--primary)] tracking-tighter font-mono mb-2">{r.lcm.toLocaleString()}</div>
+              <div className="p-10 bg-white border border-slate-100 rounded-[2.5rem] text-center shadow-lg shadow-blue-500/5 group">
+                <div className="text-[10px] font-black uppercase text-slate-400 mb-4 tracking-widest">Least Common Multiple</div>
+                <div className="text-7xl font-black text-blue-600 tracking-tighter font-mono group-hover:scale-105 transition-transform">{r.lcm.toLocaleString()}</div>
+                <div className="mt-4 text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em] bg-blue-50 py-1 rounded-full inline-block px-4">LCM</div>
               </div>
 
-              <div className="p-8 bg-white border border-[var(--border)] text-center">
-                <div className="text-xs font-bold uppercase text-[var(--text-muted)] mb-2">Greatest Common Factor (GCF / HCF)</div>
-                <div className="text-6xl font-black text-[#006600] tracking-tighter font-mono">{r.gcf.toLocaleString()}</div>
+              <div className="p-10 bg-white border border-slate-100 rounded-[2.5rem] text-center shadow-lg shadow-emerald-500/5 group border-b-8 border-b-emerald-50">
+                <div className="text-[10px] font-black uppercase text-slate-400 mb-4 tracking-widest">Greatest Common Factor</div>
+                <div className="text-7xl font-black text-emerald-600 tracking-tighter font-mono group-hover:scale-105 transition-transform">{r.gcf.toLocaleString()}</div>
+                <div className="mt-4 text-[10px] font-bold text-emerald-400 uppercase tracking-[0.2em] bg-emerald-50 py-1 rounded-full inline-block px-4">GCF / HCF</div>
               </div>
 
               {r.nums.length === 2 && (
-                <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)]">
-                  <div className="text-[10px] font-black uppercase text-[var(--text-muted)] mb-2">Mathematical Relation</div>
-                  <p className="text-[11px] font-mono text-[var(--text-main)]">LCM × GCF = {r.lcm} × {r.gcf} = {r.lcm * r.gcf}</p>
-                  <p className="text-[11px] font-mono text-[var(--text-secondary)] mt-1">{r.nums[0]} × {r.nums[1]} = {r.nums[0] * r.nums[1]}</p>
+                <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sigma className="w-4 h-4 text-blue-400" />
+                    <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Mathematical Proof</h4>
+                  </div>
+                  <div className="space-y-2">
+                    <p className="text-[11px] font-mono text-slate-300">LCM(a,b) × GCF(a,b) = a × b</p>
+                    <div className="p-3 bg-white/5 rounded-xl border border-white/10 font-mono text-xs text-blue-400">
+                      {r.lcm} × {r.gcf} = <span className="text-white font-black">{(r.lcm * r.gcf).toLocaleString()}</span>
+                    </div>
+                  </div>
                 </div>
               )}
             </>
           ) : (
-            <div className="p-5 border border-amber-200 bg-amber-50 text-amber-700 text-sm font-bold">Enter at least one positive integer.</div>
+            <div className="p-10 bg-amber-50 border-2 border-dashed border-amber-200 rounded-[2.5rem] text-center space-y-3">
+               <Info className="w-8 h-8 text-amber-500 mx-auto" />
+               <p className="text-sm font-bold text-amber-700">Awaiting input... enter numbers to begin calculation.</p>
+            </div>
           )}
         </div>
       }
       faqSection={
         <CalcFAQ faqs={[
-          { question: 'What is LCM?', answer: 'Least Common Multiple: the smallest positive integer exactly divisible by all given numbers. e.g., LCM(4,6) = 12.' },
-          { question: 'What is GCF/HCF?', answer: 'Greatest Common Factor (also HCF): the largest integer that divides all given numbers exactly. e.g., GCF(12,18) = 6.' },
-          { question: 'How are LCM and GCF related?', answer: 'For two numbers a and b: LCM(a,b) × GCF(a,b) = a × b.' },
+          { question: 'How is LCM calculated?', answer: 'LCM is found by identifying the largest multiple shared by all given numbers. Mathmatically, it is (a*b)/GCF(a,b).' },
+          { question: 'What is the GCF?', answer: 'The Greatest Common Factor is the largest positive integer that divides each of the integers without a remainder.' },
         ]} />
       }
     />
