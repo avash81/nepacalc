@@ -1,5 +1,5 @@
 /**
- * @fileoverview useTheme hook — Equaly
+ * @fileoverview useTheme hook — NEPACALC
  *
  * Manages dark/light mode preference with localStorage persistence.
  * Reads saved theme on mount, applies class to document root.

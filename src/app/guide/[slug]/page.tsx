@@ -51,7 +51,7 @@ async function getPage(slug: string) {
       imageMiddle:  f.imageMiddle?.stringValue || '',
       imageBottom:  f.imageBottom?.stringValue || '',
       relatedCalcs: f.relatedCalcs?.arrayValue?.values?.map((v: any) => v.stringValue) || [],
-      author:       f.author?.stringValue || 'Equaly',
+      author:       f.author?.stringValue || 'NEPACALC',
       date:         f.date?.stringValue || new Date().toISOString(),
       wordCount:    f.wordCount?.integerValue || 0,
     };
@@ -76,13 +76,13 @@ export async function generateMetadata({
     openGraph: {
       title: page.metaTitle || page.title,
       description: page.metaDesc || page.excerpt,
-      url: `https://equaly.com/guide/${page.slug}`,
-      siteName: 'Equaly',
+      url: `https://nepacalc.com/guide/${page.slug}`,
+      siteName: 'NEPACALC',
       type: 'article',
       ...(page.ogImage ? { images: [{ url: page.ogImage }] } : {}),
     },
     alternates: {
-      canonical: `https://equaly.com/guide/${page.slug}`,
+      canonical: `https://nepacalc.com/guide/${page.slug}`,
     },
   };
 }
@@ -106,9 +106,9 @@ export default async function GuidePage({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://equaly.com" },
-              { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://equaly.com/blog?type=guides" },
-              { "@type": "ListItem", "position": 3, "name": page.title, "item": `https://equaly.com/guide/${page.slug}` }
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nepacalc.com" },
+              { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://nepacalc.com/guide" },
+              { "@type": "ListItem", "position": 3, "name": page.title, "item": `https://nepacalc.com/guide/${page.slug}` }
             ]
           }),
         }}

@@ -3,8 +3,9 @@ import { Mail, MessageCircle, MapPin, Globe, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Equaly Support',
-  description: 'Need help or have a feature request? Contact the Equaly Nepal team for support or business inquiries.',
+  title: 'Contact Us | NEPACALC Support',
+  description: 'Need help or have a feature request? Contact the NEPACALC research team for support or business inquiries.',
+  alternates: { canonical: 'https://nepacalc.com/contact' },
 };
 
 export default function ContactPage() {
@@ -30,7 +31,7 @@ export default function ContactPage() {
               </div>
               <h2 className="text-2xl font-black text-gray-900 mb-2">Support Email</h2>
               <p className="text-sm text-gray-400 mb-8 font-black uppercase tracking-widest">Available 24/7</p>
-              <a href="mailto:support@equaly.com" className="text-xl font-black text-blue-600 hover:scale-105 inline-block transition-all">support@equaly.com</a>
+              <a href="mailto:support@nepacalc.com" className="text-xl font-black text-blue-600 hover:scale-105 inline-block transition-all">support@nepacalc.com</a>
            </div>
 
            <div className="bg-gray-900 rounded-[3rem] p-12 text-white shadow-2xl hover:bg-black transition-all">

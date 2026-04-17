@@ -1,85 +1,46 @@
 import { MetadataRoute } from 'next';
-import { CALCULATORS } from '@/data/calculators';
+import { CATEGORIES } from '@/data/calculators';
 
-export const revalidate = 86400; // Refetch daily for static content
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nepacalc.com';
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL 
-    ? process.env.NEXT_PUBLIC_SITE_URL 
-    : process.env.VERCEL_URL 
-      ? `https://${process.env.VERCEL_URL}` 
-      : 'https://nepacalc.com';
-
-  // 1. Static Core Paths
-  const staticPaths = [
+  // 1. Static Core Pages
+  const staticPages = [
     '',
-    '/calculator',
+    '/directory',
+    '/math-tools',
     '/blog',
     '/contact',
-    '/about',
     '/privacy',
-    '/terms',
-    '/search',
+    '/terms'
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
+    changeFrequency: 'weekly' as const,
     priority: route === '' ? 1.0 : 0.8,
   }));
 
-  // 2. Category Hubs (Filtered Search Result Pages)
-  const categoryPaths = [
-    'nepal', 'finance', 'health', 'education', 'conversion', 'utility', 'engineering'
-  ].map((cat) => ({
-    url: `${baseUrl}/calculator/category/${cat}`,
+  // 2. Canonical Pillar Pages (Rewritten URLs)
+  // We use the category ID directly as the slug to match next.config.js rewrites
+  const pillarPages = CATEGORIES.map((cat) => ({
+    url: `${baseUrl}/${cat.id}`,
     lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
+    changeFrequency: 'daily' as const,
+    priority: 0.9,
   }));
 
-  // 3. Individual Calculator Tools
-  const calculatorPaths = CALCULATORS.map((calc) => ({
-    url: `${baseUrl}/calculator/${calc.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'yearly' as const,
-    priority: 0.95,
-  }));
+  // 3. Institutional Calculation Hubs (Individual Tools)
+  const calculatorPages = CATEGORIES.flatMap((cat) =>
+    cat.calculators.map((calc) => ({
+      url: `${baseUrl}/calculator/${calc.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
+  );
 
-  // 4. Dynamic Content from Firestore (REST API for speed/reliability)
-  let contentPaths: MetadataRoute.Sitemap = [];
-  try {
-    const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
-    const dbId = process.env.NEXT_PUBLIC_FIREBASE_DATABASE_ID || '(default)';
-    
-    if (projectId) {
-      const collections = [
-        { name: 'posts', route: 'blog', priority: 0.75 },
-        { name: 'seo_pages', route: 'guide', priority: 0.85 }
-      ];
+  // Combine and ensure absolute uniqueness and sort integrity
+  const fullSitemap = [...staticPages, ...pillarPages, ...calculatorPages];
 
-      for (const col of collections) {
-        const url = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/${dbId}/documents/${col.name}?pageSize=100`;
-        const res = await fetch(url, { next: { revalidate: 3600 } });
-        
-        if (res.ok) {
-          const data = await res.json();
-          if (data.documents) {
-            const paths = data.documents
-              .filter((d: any) => d.fields?.status?.stringValue === 'published')
-              .map((d: any) => ({
-                url: `${baseUrl}/${col.route}/${d.fields?.slug?.stringValue}`,
-                lastModified: new Date(d.updateTime || new Date()),
-                changeFrequency: 'weekly' as const,
-                priority: col.priority,
-              }));
-            contentPaths = [...contentPaths, ...paths];
-          }
-        }
-      }
-    }
-  } catch (error) {
-    console.error('Sitemap Build Error:', error);
-  }
-
-  return [...staticPaths, ...categoryPaths, ...calculatorPaths, ...contentPaths];
+  return fullSitemap;
 }

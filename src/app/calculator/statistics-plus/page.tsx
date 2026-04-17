@@ -2,7 +2,7 @@ import Calculator from './Calculator';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Mean, Median, Mode Calculator | Equaly',
+  title: 'Mean, Median, Mode Calculator | NEPACALC',
   description: 'Free online statistics calculator for mean, median, mode, and range of any data set. Analyze datasets instantly.',
   keywords: ['mean', 'median', 'mode', 'range', 'statistics calculator', 'averages', 'datasets'],
 };

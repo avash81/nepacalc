@@ -20,7 +20,7 @@ const CURRENCY_META: Record<string, { label: string; symbol: string; flag: strin
   CAD: { label: 'Canadian Dollar',   symbol: 'C$', flag: '🇨🇦' },
 };
 
-const CACHE_KEY = 'equaly_currency_rates_v3';
+const CACHE_KEY = 'NEPACALC_currency_rates_v3';
 const CACHE_TTL = 60 * 60 * 1000; // 1 hour in ms
 
 interface RateCache {
@@ -31,7 +31,7 @@ interface RateCache {
 const DEFAULT = { fromCurrency: 'USD', amount: 100 };
 
 export default function CurrencyCalculator() {
-  const [state, setState] = useLocalStorage('equaly_currency_v2', DEFAULT);
+  const [state, setState] = useLocalStorage('NEPACALC_currency_v2', DEFAULT);
   const { fromCurrency, amount } = state;
   const update = (u: Partial<typeof DEFAULT>) => setState({ ...state, ...u });
 

@@ -1,17 +1,19 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nepacalc.com';
+
   return {
     rules: {
       userAgent: '*',
       allow: '/',
       disallow: [
         '/admin/',
-        '/admin/login',
-        '/admin/posts',
-        '/admin/seo-pages',
+        '/api/',
+        '/_next/',
+        '/calculator/category/', // Disallow the internal un-rewritten paths to favor pillars
       ],
     },
-    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://nepacalc.com'}/sitemap.xml`,
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }

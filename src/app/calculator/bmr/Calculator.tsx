@@ -23,7 +23,7 @@ const ACTIVITY_MULTIPLIERS = {
 };
 
 export default function BMRCalculator() {
-  const [state, setState] = useLocalStorage('equaly_bmr_v2', DEFAULT_STATE);
+  const [state, setState] = useLocalStorage('NEPACALC_bmr_v2', DEFAULT_STATE);
   const { gender, age, weight, height, activity } = state;
 
   const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {

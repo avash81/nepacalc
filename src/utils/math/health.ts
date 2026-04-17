@@ -1,5 +1,5 @@
 /**
- * @fileoverview Health calculation utilities — Equaly
+ * @fileoverview Health calculation utilities — NEPACALC
  *
  * Pure functions for health/fitness calculations.
  * All formulas use WHO/international standards.

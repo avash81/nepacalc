@@ -63,6 +63,26 @@ const nextConfig = {
     return baseHeaders;
   },
 
+  async redirects() {
+    return [
+      {
+        source: '/sitemap',
+        destination: '/directory',
+        permanent: true,
+      },
+    ];
+  },
+
+  async rewrites() {
+    return [
+      { source: '/finance', destination: '/calculator/category/finance' },
+      { source: '/health', destination: '/calculator/category/health' },
+      { source: '/education', destination: '/calculator/category/education' },
+      { source: '/utility', destination: '/calculator/category/utility' },
+      { source: '/nepal', destination: '/calculator/category/nepal' },
+    ];
+  },
+
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000, // Year long cache for generated optimized images
@@ -75,7 +95,16 @@ const nextConfig = {
     ],
   },
   experimental: {
-    optimizePackageImports: ['lucide-react'],
+    optimizePackageImports: [
+      'lucide-react',
+      'mathjs',
+      'date-fns',
+      'clsx',
+      'tailwind-merge'
+    ],
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 };
 

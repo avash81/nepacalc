@@ -1,5 +1,5 @@
 /**
- * @fileoverview Firestore REST Utility — Equaly
+ * @fileoverview Firestore REST Utility — NEPACALC
  * Used for fetching content in React Server Components (RSCs) without
  * initializing the full Firebase Client SDK.
  */

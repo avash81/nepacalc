@@ -12,7 +12,7 @@ export default function HomePage() {
       
       <div className="min-h-screen bg-[var(--bg-page)] font-sans antialiased text-[14px]">
         {/* 1. Precision Tool Console (MOCKUP EXACT RECONSTRUCTION) */}
-        <section className="pt-24 pb-20 border-b border-[#F1F3F4] bg-white relative overflow-hidden">
+        <section className="pt-16 pb-12 border-b border-[#F1F3F4] bg-white relative overflow-hidden">
           
           {/* Mockup Background: Grid + Formulas */}
           <div className="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" 
@@ -45,9 +45,12 @@ export default function HomePage() {
 
           <div className="hp-container flex flex-col items-center relative z-10">
             {/* Heading Stacking As Per Mockup - Optimized LCP */}
-            <div className="text-center mb-12 w-full">
-               <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-[#202124] tracking-tighter leading-[0.85] mb-4">
-                 Precision <span className="text-[#1A73E8]">Laboratory</span>
+            <div className="text-center mb-8 w-full px-4">
+               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#202124] tracking-tight leading-tight mb-4">
+                 Nepal’s Precision Tools
+                 <span className="block text-[8px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-[#1A73E8] mt-3">
+                   EMI · Tax · GPA · 75+ Professional Calculators
+                 </span>
                </h1>
             </div>
             
@@ -72,7 +75,7 @@ export default function HomePage() {
             </div>
 
             {/* Subtext description below focal point */}
-            <div className="mt-20 text-center max-w-2xl px-4">
+            <div className="mt-12 text-center max-w-2xl px-4">
                <p className="text-[#3c4043] text-lg sm:text-xl font-medium tracking-tight leading-relaxed">
                   The authoritative calculation ecosystem for Nepal professionals. Engineered for accuracy. Built for speed.
                </p>
@@ -81,7 +84,7 @@ export default function HomePage() {
         </section>
 
         {/* 2. Calculator Directory - High-Precision Server Component Rendering */}
-        <main className="max-w-[1400px] mx-auto px-4 sm:px-8 pt-6 pb-4 sm:pt-8 sm:pb-6">
+        <main className="max-w-[1400px] mx-auto px-4 sm:px-8 pt-6 pb-0 sm:pt-8 sm:pb-0">
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 sm:mb-10 border-b border-[#F1F3F4] pb-6 gap-4">
             <div>
               <h2 className="text-xl sm:text-2xl font-black text-[#202124] tracking-tight uppercase">Calculator Directory</h2>
@@ -143,6 +146,23 @@ export default function HomePage() {
             ))}
           </div>
         </main>
+        {/* 3. Static SEO Authority Layer (Google Crawler Depth) */}
+        <section className="hp-container pt-20 pb-24 border-t border-[#F1F3F4] text-[#3c4043] select-none">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <div>
+              <h4 className="text-[11px] font-black uppercase tracking-widest text-[#1A73E8] mb-4 underline decoration-2 underline-offset-8">Institutional Authority</h4>
+              <p className="text-[13px] leading-relaxed font-medium">NEPACALC is Nepal&apos;s most advanced mathematical laboratory, providing 75+ professional-grade tools engineered for the latest fiscal environment. Our ecosystem handles everything from Salary calculations to complex Civil Engineering formulas with verified precision.</p>
+            </div>
+            <div>
+              <h4 className="text-[11px] font-black uppercase tracking-widest text-[#1A73E8] mb-4 underline decoration-2 underline-offset-8">Financial Precision</h4>
+              <p className="text-[13px] leading-relaxed font-medium">As the leading financial hub for Nepal, we offer comprehensive Income Tax Calculators updated for the latest IRD regulations, EMI tools for local bank rates, and provident fund (EPF/CIT) tools designed for the Nepalese workforce.</p>
+            </div>
+            <div>
+              <h4 className="text-[11px] font-black uppercase tracking-widest text-[#1A73E8] mb-4 underline decoration-2 underline-offset-8">Academic Standards</h4>
+              <p className="text-[13px] leading-relaxed font-medium">Our educational suite includes specialized Engineering GPA calculators, Roman Numeral converters, and advanced LCM/GCF tools specifically tailored for the Nepal education curricula (NEB/TU/PU), ensuring accuracy for students and researchers.</p>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );

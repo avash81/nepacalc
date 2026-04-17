@@ -116,7 +116,7 @@ export default function NewPostPage() {
                      <div className="flex items-center gap-3 text-[11px] font-black uppercase tracking-widest">
                         <span className="text-slate-400">Target Path:</span>
                         <div className="flex items-center bg-slate-50 border border-slate-100 rounded-lg overflow-hidden focus-within:border-blue-300 transition-colors">
-                           <span className="text-slate-400 bg-slate-100 px-3 py-2 border-r border-slate-100">equaly.com/blog/</span>
+                           <span className="text-slate-400 bg-slate-100 px-3 py-2 border-r border-slate-100">NEPACALC.com/blog/</span>
                            <input 
                               value={slug} 
                               onChange={e => setSlug(e.target.value)}

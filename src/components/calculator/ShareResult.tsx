@@ -9,7 +9,7 @@ interface Props {
 export function ShareResult({ title, result, calcUrl }: Props) {
   const shareText =
     `I calculated my ${title}: ${result}\n` +
-    `Try it free at Equaly 🇳🇵\n${calcUrl}`;
+    `Try it free at NEPACALC 🇳🇵\n${calcUrl}`;
 
   const share = (platform: string) => {
     const encoded = encodeURIComponent(shareText);

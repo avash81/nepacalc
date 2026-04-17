@@ -2,7 +2,7 @@ import Calculator from './Calculator';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Ratio & Proportion Calculator | Equaly',
+  title: 'Ratio & Proportion Calculator | NEPACALC',
   description: 'Free online ratio and proportion solver. Solve for unknown values in any A:B = C:D equation instantly.',
   keywords: ['ratio', 'proportion', 'cross multiply', 'math solver', 'scaling', 'calculator'],
 };

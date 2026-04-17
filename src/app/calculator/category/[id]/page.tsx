@@ -1,8 +1,20 @@
 import { CATEGORIES } from '@/data/calculators';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { MoveLeft, ArrowRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { PhysicalCalculatorGuide } from '@/components/education/PhysicalCalculatorGuide';
+import { CalcWrapper } from '@/components/calculator/CalcWrapper';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const category = CATEGORIES.find(c => c.id === params.id);
+  if (!category) return { title: 'Category Not Found' };
+  
+  return {
+    title: `${category.name} Calculators & Tools — NEPACALC`,
+    description: `Official collection of ${category.calculators.length} professional tools for ${category.name.toLowerCase()}. Free high-precision institutional units.`,
+  };
+}
 
 export default function CategoryPage({ params }: { params: { id: string } }) {
   const category = CATEGORIES.find(c => c.id === params.id);
@@ -12,63 +24,67 @@ export default function CategoryPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        
-        <Link href="/" className="inline-flex items-center gap-2 text-xs font-black text-gray-400 uppercase tracking-widest hover:text-google-blue transition-colors mb-12">
-          <MoveLeft className="w-3 h-3" /> Back to all Categories
-        </Link>
-
-        <header className="mb-16">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 h-16 bg-google-gray rounded-[2rem] flex items-center justify-center text-3xl shadow-sm border border-google-border">
+    <CalcWrapper
+      title={category.name}
+      description={`Official collection of ${category.calculators.length} professional tools designed for high-precision institutional requirements.`}
+      crumbs={[{ label: 'Directory', href: '/directory' }, { label: category.name }]}
+    >
+      <div className="py-8">
+        <header className="mb-16 max-w-2xl">
+          <div className="flex items-center gap-6 mb-8">
+            <div className="w-20 h-20 bg-white dark:bg-gray-900 rounded-[2.5rem] flex items-center justify-center text-4xl shadow-sm border border-gray-100 dark:border-gray-800">
               {category.icon}
             </div>
             <div>
-              <h1 className="text-4xl font-black text-gray-900 tracking-tight">{category.name}</h1>
-              <p className="text-gray-500 font-medium mt-1">Free professional tools & calculators</p>
+              <h1 className="text-3xl sm:text-5xl font-black text-gray-900 dark:text-white tracking-tighter leading-none mb-4">{category.name}</h1>
+              <div className="flex items-center gap-4">
+                 <div className="h-1 w-12 bg-blue-600 rounded-full" />
+                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">
+                   {category.calculators.length} PRO UNITS VERIFIED
+                 </p>
+              </div>
             </div>
           </div>
-          <div className="h-1 w-20 bg-google-blue rounded-full" />
         </header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {category.calculators.map((calc) => (
             <Link 
               key={calc.id} 
               href={`/calculator/${calc.slug}`}
-              className="group bg-white border border-[#E5E5E5] hover:border-[#0000CC] p-4 flex items-start gap-3 transition-colors shrink-0"
+              className="group bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-[2.5rem] p-8 hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/5 transition-all"
             >
-              <div className="text-2xl mt-1 opacity-70 group-hover:opacity-100 transition-opacity">{calc.icon}</div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <h3 className="text-[14px] font-bold text-[#0000CC] group-hover:underline truncate">{calc.name}</h3>
-                  {calc.isHot && (
-                    <span className="text-[9px] font-black bg-[var(--accent)] text-white px-1 py-0.5 rounded-sm uppercase tracking-tighter shrink-0">Hot</span>
-                  )}
-                </div>
-                <p className="text-[12px] text-[#666666] leading-tight line-clamp-2">{calc.description}</p>
+              <div className="flex items-center justify-between mb-6">
+                 <div className="w-12 h-12 rounded-2xl bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                    {calc.icon}
+                 </div>
+                 <ChevronRight className="w-4 h-4 text-gray-300 dark:text-gray-700 group-hover:text-blue-500 transform group-hover:translate-x-1" />
               </div>
+              <h3 className="text-sm font-black text-gray-800 dark:text-gray-100 uppercase tracking-tight mb-2 group-hover:text-blue-600 transition-colors">{calc.name}</h3>
+              <p className="text-[11px] text-gray-500 dark:text-gray-400 leading-relaxed font-bold line-clamp-2">{calc.description}</p>
             </Link>
           ))}
         </div>
 
         {/* SEO Content Block */}
-        <div className="mt-24 pt-12 border-t border-gray-100">
-           <h2 className="text-sm font-black text-gray-900 uppercase tracking-[0.2em] mb-6">About {category.name} Suite</h2>
-           <p className="text-sm text-gray-500 leading-relaxed font-medium">
-             Our {category.name} collection features {category.calculators.length} specialized tools designed specifically for the Nepal market. 
-             Every calculator in this category follows international standards and Nepal government regulations where applicable. 
-             Updates for FY 2082/83 are applied across all financial and legal tools.
-           </p>
+        <div className="mt-24 pt-12 border-t border-gray-100 dark:border-gray-900">
+           <h2 className="text-[10px] font-black text-gray-900 dark:text-white uppercase tracking-[0.4em] mb-8">Institutional Scope: {category.name}</h2>
+           <div className="max-w-3xl">
+              <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed font-bold">
+                Our {category.name} collection features {category.calculators.length} specialized tools designed specifically for high-accuracy requirements. 
+                Every calculator in this category follows international standards and Nepal government regulations where applicable. 
+                Latest fiscal mandates and regulatory updates are applied across all relevant financial and legal tools.
+              </p>
+           </div>
         </div>
 
         {/* PHYSICAL CALCULATOR GUIDE (Only for Education) */}
         {params.id === 'education' && <PhysicalCalculatorGuide />}
       </div>
-    </div>
+    </CalcWrapper>
   );
 }
+
 
 export async function generateStaticParams() {
   return CATEGORIES.map((cat) => ({

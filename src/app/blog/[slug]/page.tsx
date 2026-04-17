@@ -32,7 +32,7 @@ async function getPostData(slug: string) {
           date: f.date?.stringValue || new Date().toISOString(),
           relatedCalcs: f.relatedCalcs?.arrayValue?.values?.map((v: any) => v.stringValue) || [],
           ogImage: f.ogImage?.stringValue || '',
-          author: f.author?.stringValue || 'Equaly',
+          author: f.author?.stringValue || 'NEPACALC',
           imageTop: f.imageTop?.stringValue || '',
           imageMiddle: f.imageMiddle?.stringValue || '',
           imageBottom: f.imageBottom?.stringValue || '',
@@ -67,18 +67,18 @@ export async function generateMetadata({
 
   const { post } = data;
   return {
-    title: `${post.title} | Equaly Blog`,
+    title: `${post.title} | NEPACALC Blog`,
     description: post.excerpt || post.content.substring(0, 150),
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: `https://equaly.com/blog/${post.slug}`,
-      siteName: 'Equaly',
+      url: `https://NEPACALC.com/blog/${post.slug}`,
+      siteName: 'NEPACALC',
       type: 'article',
       ...(post.ogImage ? { images: [{ url: post.ogImage }] } : {}),
     },
     alternates: {
-      canonical: `https://equaly.com/blog/${post.slug}`,
+      canonical: `https://NEPACALC.com/blog/${post.slug}`,
     },
   };
 }
@@ -108,9 +108,9 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://equaly.com" },
-              { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://equaly.com/blog" },
-              { "@type": "ListItem", "position": 3, "name": data.post.title, "item": `https://equaly.com/blog/${data.post.slug}` }
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://NEPACALC.com" },
+              { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://NEPACALC.com/blog" },
+              { "@type": "ListItem", "position": 3, "name": data.post.title, "item": `https://NEPACALC.com/blog/${data.post.slug}` }
             ]
           }),
         }}

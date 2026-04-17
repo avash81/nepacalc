@@ -222,7 +222,7 @@ export default function BlogPostContent({ post, related }: { post: any; related:
           <ShareResult
             title={post.title}
             result="📝 Read full article"
-            calcUrl={`https://equaly.com/blog/${post.slug}`}
+            calcUrl={`https://NEPACALC.com/blog/${post.slug}`}
           />
         </div>
       </div>

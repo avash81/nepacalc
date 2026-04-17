@@ -1,5 +1,5 @@
 /**
- * @fileoverview Admin Login — Equaly
+ * @fileoverview Admin Login — NEPACALC
  * Protected by Firebase Authentication.
  * Shows helpful message if Firebase not configured.
  * @component
@@ -80,7 +80,7 @@ export default function AdminLoginPage() {
               value={email} 
               onChange={e => setEmail(e.target.value)} 
               required
-              placeholder="admin@equaly.com"
+              placeholder="admin@NEPACALC.com"
               className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-[15px] font-medium text-slate-900 placeholder:text-slate-300 focus:outline-none focus:ring-4 focus:ring-blue-500/5 focus:border-blue-500 transition-all shadow-inner" 
             />
           </div>

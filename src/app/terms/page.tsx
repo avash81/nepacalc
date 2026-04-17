@@ -5,7 +5,7 @@ export default function TermsPage() {
         Terms of Service
       </h1>
       <div className="prose text-gray-600 text-sm space-y-4">
-        <p>By using Equaly, you agree to these terms. The calculators provided on this website are for informational and educational purposes only.</p>
+        <p>By using NEPACALC, you agree to these terms. The calculators provided on this website are for informational and educational purposes only.</p>
         <p>While we strive for accuracy, we do not guarantee the correctness of any calculations. For official tax filings, loan agreements, or medical advice, please consult a certified professional.</p>
         <p>We reserve the right to modify or discontinue any calculator at any time without notice.</p>
         <p>Last updated: {new Date().getFullYear()}</p>

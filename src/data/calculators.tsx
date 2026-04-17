@@ -24,14 +24,14 @@ export const CALCULATORS: Calculator[] = [
   // ==========================================
   // NEPAL SPECIFIC PILLAR
   // ==========================================
-  { id: 'nepal-income-tax', slug: 'nepal-income-tax', name: 'Income Tax 2082/83', icon: '📋', description: 'Official Nepal tax calculator for FY 2082/83.', category: 'nepal', isNepal: true, isHot: true },
-  { id: 'nepal-salary', slug: 'nepal-salary', name: 'Salary Calculator', icon: '💼', description: 'Calculate net-take-home salary with deductions.', category: 'nepal', isNepal: true, isNew: true },
-  { id: 'nepal-land', slug: 'nepal-land', name: 'Nepal Land (R-A-P-D)', icon: '🗺️', description: 'Convert land metrics.', category: 'nepal', isNepal: true, isHot: true },
-  { id: 'nepali-date', slug: 'nepali-date', name: 'Nepali Date Converter', icon: '📅', description: 'BS to AD official converter.', category: 'nepal', isNepal: true },
-  { id: 'nepal-vat', slug: 'nepal-vat', name: 'VAT & Bill Calc', icon: '🧾', description: 'VAT (13%) addition and subtraction.', category: 'nepal', isNepal: true },
-  { id: 'nepal-home-loan', slug: 'nepal-home-loan', name: 'Home Loan (Nepal)', icon: '🏠', description: 'Home loan EMI for Nepal banks.', category: 'nepal', isNepal: true },
-  { id: 'nepal-provident-fund', slug: 'nepal-provident-fund', name: 'Provident Fund', icon: '💰', description: 'EPF retirement calculations.', category: 'nepal', isNepal: true },
-  { id: 'nepal-tax-calculator', slug: 'nepal-tax-calculator', name: 'Generic Tax Calc', icon: '📜', description: 'Generic Nepal tax rules.', category: 'nepal', isNepal: true },
+  { id: 'nepal-income-tax', slug: 'nepal-income-tax', name: 'Income Tax (Nepal)', icon: '📋', description: 'Institutional Nepal tax calculator updated for latest fiscal mandates.', category: 'nepal', isNepal: true, isHot: true },
+  { id: 'nepal-salary', slug: 'nepal-salary', name: 'Salary Calculator', icon: '💼', description: 'Calculate net-take-home salary with latest IRD deductions.', category: 'nepal', isNepal: true, isNew: true },
+  { id: 'nepal-land', slug: 'nepal-land', name: 'Nepal Land (R-A-P-D)', icon: '🗺️', description: 'Convert land metrics (Ropani, Aana, Paisa, Dam).', category: 'nepal', isNepal: true, isHot: true },
+  { id: 'nepali-date', slug: 'nepali-date', name: 'Nepali Date Converter', icon: '📅', description: 'BS to AD institutional converter.', category: 'nepal', isNepal: true },
+  { id: 'nepal-vat', slug: 'nepal-vat', name: 'VAT & Bill Calc', icon: '🧾', description: 'VAT (13%) addition and subtraction logic.', category: 'nepal', isNepal: true },
+  { id: 'nepal-home-loan', slug: 'nepal-home-loan', name: 'Home Loan (Nepal)', icon: '🏠', description: 'Home loan EMI for latest Nepal bank rates.', category: 'nepal', isNepal: true },
+  { id: 'nepal-provident-fund', slug: 'nepal-provident-fund', name: 'Provident Fund', icon: '💰', description: 'EPF retirement logic for Nepal.', category: 'nepal', isNepal: true },
+  { id: 'nepal-tax-calculator', slug: 'nepal-tax-calculator', name: 'Generic Tax Calc', icon: '📜', description: 'Generic Nepal tax rules and logic.', category: 'nepal', isNepal: true },
   { id: 'nepal-tds', slug: 'nepal-tds-calculator', name: 'Nepal TDS', icon: '💸', description: 'Calculate TDS for Nepal.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepse-bonus-tax', slug: 'nepse-bonus-tax', name: 'NEPSE Bonus Tax', icon: '📈', description: 'Tax on dividends and bonus shares.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepse-wacc', slug: 'nepse-wacc', name: 'NEPSE WACC & Tax', icon: '🛒', description: 'Average share cost for NEPSE selling.', category: 'nepal', isNepal: true, isNew: true },
@@ -91,20 +91,20 @@ export const CALCULATORS: Calculator[] = [
   // ==========================================
   // CONVERTERS & UTILITY PILLAR
   // ==========================================
-  { id: 'unit-converter', slug: 'unit-converter', name: 'Universal Converter', icon: '🔄', description: 'Convert international metrics.', category: 'conversion', isHot: true },
-  { id: 'length-converter', slug: 'length-converter', name: 'Length & Distance', icon: '📏', description: 'Meters, km, miles, feet.', category: 'conversion', isNew: true },
-  { id: 'weight-converter', slug: 'weight-converter', name: 'Weight & Mass', icon: '⚖️', description: 'Grams, kg, lbs, oz.', category: 'conversion', isNew: true },
-  { id: 'base-converter', slug: 'base-converter', name: 'Base Converter', icon: '💻', description: 'Decimal, Bin, Hex, Octal.', category: 'conversion', isNew: true },
-  { id: 'date-duration', slug: 'date-duration', name: 'Date Duration', icon: '⌛', description: 'Days between dates.', category: 'conversion' },
-  { id: 'age-calculator', slug: 'age-calculator', name: 'Exact Age Time', icon: '🎂', description: 'Years, months, days lived.', category: 'conversion' },
-  { id: 'number-to-words', slug: 'number-to-words', name: 'Number Words', icon: '🔤', description: 'Print logic checks.', category: 'conversion' },
-  { id: 'qr-generator', slug: 'qr-generator', name: 'QR Code Generator', icon: '📱', description: 'Build instant QR Codes.', category: 'conversion' },
-  { id: 'password-generator', slug: 'password-generator', name: 'Password Gen', icon: '🔑', description: 'Secure passwords.', category: 'conversion' },
-  { id: 'word-counter', slug: 'word-counter', name: 'Word & Character', icon: '📝', description: 'Live typing metrics.', category: 'conversion' },
-  { id: 'tip-calculator', slug: 'tip-calculator', name: 'Tip & Split Bill', icon: '🍽️', description: 'Wait staff tip percentage.', category: 'conversion' },
-  { id: 'discount-calculator', slug: 'discount-calculator', name: 'Store Discount Calc', icon: '🛍️', description: 'Sale markup percentages.', category: 'conversion' },
-  { id: 'paint-cost', slug: 'paint-cost', name: 'Paint Cost', icon: '🎨', description: 'Estimate painting costs.', category: 'conversion', isNew: true },
-  { id: 'solar-requirement', slug: 'solar-requirement', name: 'Solar Calculator', icon: '☀️', description: 'Solar power needs.', category: 'conversion', isNew: true },
+  { id: 'unit-converter', slug: 'unit-converter', name: 'Universal Converter', icon: '🔄', description: 'Convert international metrics.', category: 'utility', isHot: true },
+  { id: 'length-converter', slug: 'length-converter', name: 'Length & Distance', icon: '📏', description: 'Meters, km, miles, feet.', category: 'utility', isNew: true },
+  { id: 'weight-converter', slug: 'weight-converter', name: 'Weight & Mass', icon: '⚖️', description: 'Grams, kg, lbs, oz.', category: 'utility', isNew: true },
+  { id: 'base-converter', slug: 'base-converter', name: 'Base Converter', icon: '💻', description: 'Decimal, Bin, Hex, Octal.', category: 'utility', isNew: true },
+  { id: 'date-duration', slug: 'date-duration', name: 'Date Duration', icon: '⌛', description: 'Days between dates.', category: 'utility' },
+  { id: 'age-calculator', slug: 'age-calculator', name: 'Exact Age Time', icon: '🎂', description: 'Years, months, days lived.', category: 'utility' },
+  { id: 'number-to-words', slug: 'number-to-words', name: 'Number Words', icon: '🔤', description: 'Print logic checks.', category: 'utility' },
+  { id: 'qr-generator', slug: 'qr-generator', name: 'QR Code Generator', icon: '📱', description: 'Build instant QR Codes.', category: 'utility' },
+  { id: 'password-generator', slug: 'password-generator', name: 'Password Gen', icon: '🔑', description: 'Secure passwords.', category: 'utility' },
+  { id: 'word-counter', slug: 'word-counter', name: 'Word & Character', icon: '📝', description: 'Live typing metrics.', category: 'utility' },
+  { id: 'tip-calculator', slug: 'tip-calculator', name: 'Tip & Split Bill', icon: '🍽️', description: 'Wait staff tip percentage.', category: 'utility' },
+  { id: 'discount-calculator', slug: 'discount-calculator', name: 'Store Discount Calc', icon: '🛍️', description: 'Sale markup percentages.', category: 'utility' },
+  { id: 'paint-cost', slug: 'paint-cost', name: 'Paint Cost', icon: '🎨', description: 'Estimate painting costs.', category: 'utility', isNew: true },
+  { id: 'solar-requirement', slug: 'solar-requirement', name: 'Solar Calculator', icon: '☀️', description: 'Solar power needs.', category: 'utility', isNew: true },
 
   // ==========================================
   // HEALTH & FITNESS PILLAR
@@ -125,7 +125,7 @@ export const CATEGORIES: Category[] = [
   { id: 'nepal', name: 'Nepal Specific', icon: '🇳🇵', calculators: CALCULATORS.filter(c => c.category === 'nepal') },
   { id: 'finance', name: 'Finance & Tax', icon: '💰', calculators: CALCULATORS.filter(c => c.category === 'finance') },
   { id: 'education', name: 'Math & Education', icon: '🎓', calculators: CALCULATORS.filter(c => c.category === 'education') },
-  { id: 'conversion', name: 'Converters & Utility', icon: '🔄', calculators: CALCULATORS.filter(c => c.category === 'conversion') },
+  { id: 'utility', name: 'Converters & Utility', icon: '🔄', calculators: CALCULATORS.filter(c => c.category === 'utility') },
   { id: 'health', name: 'Health & Fitness', icon: '❤️', calculators: CALCULATORS.filter(c => c.category === 'health') }
 ];
 

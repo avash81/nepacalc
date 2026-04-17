@@ -106,9 +106,15 @@
 
 /* Base Button Reset for Calculator */
 button {
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+}
+
+button:hover {
+  background-color: #FFC107 !important;
+  color: #000000 !important;
+  box-shadow: 0 10px 15px -3px rgba(255, 193, 7, 0.3);
 }
 
 button:active {

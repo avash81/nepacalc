@@ -12,7 +12,6 @@ import { SearchModal } from './SearchModal';
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const [recent, setRecent] = useState<{ title: string; href: string }[]>([]);
   const [favs, setFavs] = useState<{ title: string; href: string }[]>([]);
   const path = usePathname();
@@ -28,20 +27,7 @@ export function Navbar() {
     return () => window.removeEventListener('cp_favs_updated', loadData);
   }, [path]);
 
-  // Dark Mode Toggle
-  useEffect(() => {
-    const theme = localStorage.getItem('theme');
-    const dark = theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    setIsDark(dark);
-    document.documentElement.classList.toggle('dark', dark);
-  }, []);
 
-  const toggleDark = () => {
-    const next = !isDark;
-    setIsDark(next);
-    localStorage.setItem('theme', next ? 'dark' : 'light');
-    document.documentElement.classList.toggle('dark', next);
-  };
 
   // Keyboard Shortcuts
   useEffect(() => {
@@ -59,24 +45,22 @@ export function Navbar() {
 
   const navLinks = [
     { name: 'Math Tools', href: '/math-tools' },
-    { name: 'Directory',  href: '/calculator' },
-    { name: 'Financial',  href: '/calculator/category/finance' },
-    { name: 'Health',     href: '/calculator/category/health' },
-    { name: 'Blog',       href: '/blog' },
-    { name: 'About',      href: '/about' },
+    { name: 'Directory',  href: '/directory' },
+    { name: 'Finance',   href: '/finance' },
+    { name: 'Health',     href: '/health' },
+    { name: 'Education',  href: '/education' },
+    { name: 'Converters & Utility', href: '/utility' },
   ];
-
-  if (path.startsWith('/math-tools')) return null;
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 h-16 bg-[#002147] text-white z-[200] select-none border-b border-[#D4AF37]/30 no-print shadow-xl">
+      <nav className="fixed top-0 left-0 right-0 h-16 bg-white text-[#202124] z-[200] select-none border-b border-[#e8eaed] no-print shadow-sm">
         <div className="hp-container h-full flex items-center justify-between">
           
           {/* Left: Logo + Desktop Links */}
           <div className="flex items-center gap-10">
-            <Link href="/" className="hover:opacity-90 transition-opacity" aria-label="NEPACALC Home">
-               <Logo size="sm" isWhite={true} />
+            <Link href="/" className="hover:opacity-80 transition-opacity" aria-label="NEPACALC Home">
+               <Logo size="sm" theme="indigo" />
             </Link>
             
             <div className="hidden lg:flex items-center gap-2 h-16">
@@ -86,13 +70,13 @@ export function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-4 h-full flex items-center text-[10.5px] font-black uppercase tracking-[0.15em] transition-all relative group/nav ${
-                      active ? 'text-[#D4AF37]' : 'text-white/80 hover:text-white'
+                    className={`px-4 h-full flex items-center text-[11px] font-black uppercase tracking-[0.12em] transition-all relative group/nav ${
+                      active ? 'text-[#202124]' : 'text-[#5F6368] hover:text-[#202124]'
                     }`}
                   >
                     {link.name}
-                    {active && <div className="absolute bottom-0 left-4 right-4 h-[3px] bg-[#D4AF37] rounded-t-full shadow-[0_-4px_10px_rgba(212,175,55,0.4)]" />}
-                    <div className="absolute bottom-0 left-4 right-4 h-[2px] bg-[#D4AF37] scale-x-0 group-hover/nav:scale-x-100 transition-transform origin-center duration-300 rounded-t-full" />
+                    {active && <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#FFC107] rounded-t-full" />}
+                    <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#FFC107] scale-x-0 group-hover/nav:scale-x-100 transition-transform origin-center duration-300 rounded-t-full" />
                   </Link>
                 );
               })}
@@ -100,24 +84,18 @@ export function Navbar() {
           </div>
 
           {/* Right: Actions */}
-          <div className="flex items-center gap-6">
-            <div className="hidden md:flex items-center gap-6 px-4 py-1.5 border-r border-white/10 mr-2">
-               <span className="text-[9px] font-black text-[#D4AF37] tracking-[0.2em] uppercase">Academic Edition</span>
-            </div>
-            
-            {/* Simple Search Trigger */}
+          <div className="flex items-center gap-2 sm:gap-4">
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="p-2 hover:bg-white/10 rounded-xl transition-all text-white"
-              aria-label="Search laboratory"
+              className="p-2.5 text-[#5F6368] hover:bg-[#F1F3F4] rounded-full transition-colors group"
+              aria-label="Search Laboratory"
             >
-              <Search className="w-5 h-5" />
+              <Search className="w-5 h-5 group-hover:scale-110 transition-transform" />
             </button>
-
             {/* Mobile Menu */}
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="lg:hidden p-2 hover:bg-white/10 rounded-xl text-white"
+              className="lg:hidden p-2.5 hover:bg-[#F1F3F4] rounded-full text-[#5F6368]"
               aria-label="Open menu"
             >
               <Menu className="w-5 h-5" />
@@ -134,11 +112,11 @@ export function Navbar() {
       )}
 
       {/* Mobile Drawer */}
-      <aside className={`fixed top-0 right-0 bottom-0 w-[300px] bg-[#002147] text-white z-[301] shadow-2xl transform transition-transform duration-300 ease-out border-l border-[#D4AF37]/30 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <aside className={`fixed top-0 right-0 bottom-0 w-[300px] bg-white text-[#202124] z-[301] shadow-2xl transform transition-transform duration-300 ease-out border-l border-[#e8eaed] ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex flex-col h-full uppercase tracking-widest font-black text-[10px]">
-          <div className="p-6 flex items-center justify-between border-b border-white/10 bg-[#001a38]">
-            <Logo size="sm" isWhite={true} />
-            <button onClick={() => setIsMenuOpen(false)} className="p-2 hover:bg-white/10 rounded-xl text-white" aria-label="Close menu">
+          <div className="p-6 flex items-center justify-between border-b border-[#e8eaed] bg-[#f8f9fa]">
+            <Logo size="sm" theme="indigo" />
+            <button onClick={() => setIsMenuOpen(false)} className="p-2 hover:bg-black/5 rounded-xl text-[#5F6368]" aria-label="Close menu">
               <X className="w-5 h-5" />
             </button>
           </div>
@@ -146,7 +124,7 @@ export function Navbar() {
           <div className="flex-1 overflow-y-auto p-6 space-y-3">
             {[
                { name: 'Math Tools', href: '/math-tools', icon: <Sparkles className="w-5 h-5" /> },
-               { name: 'Directory', href: '/calculator', icon: <Folder className="w-5 h-5" /> },
+               { name: 'Tool Directory', href: '/directory', icon: <Folder className="w-5 h-5" /> },
                { name: 'Financial', href: '/calculator/category/finance', icon: <Wallet className="w-5 h-5" /> },
                { name: 'Health', href: '/calculator/category/health', icon: <Heart className="w-5 h-5" /> },
                { name: 'Blog', href: '/blog', icon: <BookOpen className="w-5 h-5" /> },
@@ -155,20 +133,20 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="flex items-center justify-between p-4 rounded-xl hover:bg-white/10 text-white/70 hover:text-[#D4AF37] transition-all group border border-transparent hover:border-[#D4AF37]/20"
+                className="flex items-center justify-between p-4 rounded-xl hover:bg-[#F1F3F4] text-[#5F6368] hover:text-[#202124] transition-all group border border-transparent"
               >
                 <div className="flex items-center gap-4">
-                  <span className="text-[#D4AF37] opacity-80 group-hover:opacity-100 transition-opacity">{link.icon}</span>
-                  <span className="tracking-[0.15em]">{link.name}</span>
+                  <span className="text-[#FFC107] opacity-80 group-hover:opacity-100 transition-opacity">{link.icon}</span>
+                  <span className="tracking-[0.12em]">{link.name}</span>
                 </div>
-                <ChevronRight className="w-4 h-4 opacity-30 group-hover:opacity-100 transition-opacity text-[#D4AF37]" />
+                <ChevronRight className="w-4 h-4 opacity-30 group-hover:opacity-100 transition-opacity text-[#FFC107]" />
               </Link>
             ))}
           </div>
 
-          <div className="p-8 border-t border-white/10 text-center text-[9px] font-black uppercase tracking-[0.2em] bg-[#001a38]">
-            <div className="text-[#D4AF37] mb-2">NEPAL ACADEMIC EDITION</div>
-            <div className="text-white/40">© 2026 NEPACALC Laboratory</div>
+          <div className="p-8 border-t border-[#e8eaed] text-center text-[9px] font-black uppercase tracking-[0.2em] bg-[#f8f9fa]">
+            <div className="text-[#FFC107] mb-2 bg-black py-2 rounded-md mx-4">Nepal Academic Edition</div>
+            <div className="text-[#5F6368]">© NEPACALC Laboratory</div>
           </div>
         </div>
       </aside>

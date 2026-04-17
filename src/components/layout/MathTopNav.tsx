@@ -24,46 +24,48 @@ export function MathTopNav() {
 
   return (
     <>
-      <header className="h-[50px] w-full bg-white border-b border-gray-300 flex items-center justify-between px-4 z-[9000] fixed top-0 left-0 right-0 select-none shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
-        <div className="flex items-center gap-6 h-full">
-          <Link href="/" className="hover:opacity-80 transition-opacity">
+      <header className="h-[48px] w-full bg-white border-b border-[#e8eaed] flex items-center justify-between px-4 z-[9000] fixed top-0 left-0 right-0 select-none shadow-sm">
+        <div className="flex items-center gap-4 h-full">
+          <Link href="/" className="hover:opacity-80 transition-all flex items-center gap-4 group">
             <Logo size="sm" />
+            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-black group-hover:text-[#FFC107] transition-all border-l border-[#e8eaed] pl-4">
+              <span className="hidden sm:inline">Return Home</span>
+              <span className="sm:hidden">Home</span>
+            </div>
           </Link>
           
-          <div className="h-6 w-px bg-gray-300 hidden md:block"></div>
+          <div className="h-4 w-px bg-[#e8eaed] hidden lg:block"></div>
           
           <button 
             onClick={() => setMenuOpen(!menuOpen)}
-            className="hidden md:flex items-center gap-2 hover:bg-gray-100 h-9 px-3 rounded text-sm font-bold text-gray-700 transition-colors"
+            className="flex items-center gap-2 hover:bg-[#F1F3F4] h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest text-black transition-all border border-[#e8eaed]"
           >
             <span>Math Tools</span>
-            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="8" height="5" viewBox="0 0 10 6" fill="none" className={`transition-transform duration-300 ${menuOpen ? 'rotate-180' : ''}`}>
               <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
 
-          <span className="text-sm font-black text-gray-800 ml-2 hidden md:block">
-            {activeLink.name}
+          <span className="text-[10px] font-black uppercase tracking-[0.1em] text-[#FFC107] bg-black px-3 py-1 rounded-full hidden lg:block">
+            {activeLink.name} Edition
           </span>
         </div>
 
-        <div className="flex items-center gap-2 md:gap-4 h-full">
-          <Link href="/blog" className="hidden border border-gray-300 px-3 py-1.5 rounded lg:flex text-[11px] font-black uppercase tracking-widest text-gray-400 hover:text-gray-900 transition-colors">Resources</Link>
-          <div className="flex items-center gap-2">
-             <button 
-                onClick={() => setMenuOpen(!menuOpen)}
-                className="md:hidden flex items-center justify-center h-10 w-10 hover:bg-gray-100 rounded-full"
-             >
-                {menuOpen ? <X className="w-5 h-5 text-gray-700" /> : <Menu className="w-5 h-5 text-gray-700" />}
-             </button>
-          </div>
+        <div className="flex items-center gap-1 h-full">
+          <Link href="/blog" className="hidden lg:flex items-center gap-2 px-4 h-8 rounded-lg text-[10px] font-black uppercase tracking-widest text-[#5F6368] hover:text-black hover:bg-[#F1F3F4] transition-all">Documentation</Link>
+          <button 
+             onClick={() => setMenuOpen(!menuOpen)}
+             className="md:hidden flex items-center justify-center h-8 w-8 hover:bg-[#F1F3F4] rounded-lg"
+          >
+             {menuOpen ? <X className="w-4 h-4 text-black" /> : <Menu className="w-4 h-4 text-black" />}
+          </button>
         </div>
       </header>
 
       {/* Math Tools Dropdown / Mobile Menu */}
       {menuOpen && (
-        <div className="fixed top-[50px] left-0 md:left-[140px] w-full md:w-[320px] bg-white border-b md:border md:rounded-b-lg border-gray-300 shadow-xl z-[8900] py-2 md:py-4 flex flex-col max-h-[calc(100vh-50px)] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
-           <div className="px-5 py-2 text-xs font-black uppercase tracking-widest text-gray-400 border-b border-gray-100 mb-2">Math Tools Suite</div>
+        <div className="fixed top-[48px] left-0 md:left-[140px] w-full md:w-[320px] bg-white border-b md:border md:rounded-b-lg border-[#e8eaed] shadow-2xl z-[8900] py-4 flex flex-col max-h-[calc(100vh-50px)] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+           <div className="px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#5F6368] border-b border-[#F1F3F4] mb-2 mx-2">Laboratory Suite</div>
            {ECO_LINKS.map(link => {
              const Icon = link.icon;
              const isCurrent = pathname === link.path;
@@ -71,17 +73,14 @@ export function MathTopNav() {
                <Link 
                   key={link.path} 
                   href={link.path}
-                  onClick={() => setMenuOpen(false)}
-                  className={`flex items-center gap-3 px-5 py-3 hover:bg-gray-50 transition-colors ${isCurrent ? 'bg-green-50/50' : ''}`}
+                   onClick={() => setMenuOpen(false)}
+                  className={`flex items-center gap-4 px-6 py-4 transition-all ${isCurrent ? 'bg-black text-[#FFC107]' : 'hover:bg-[#F1F3F4] text-[#5F6368] hover:text-black'}`}
                >
-                 <Icon className={`w-5 h-5 ${isCurrent ? 'text-green-600' : 'text-gray-400'}`} />
-                 <span className={`text-sm ${isCurrent ? 'font-black text-green-700' : 'font-semibold text-gray-700'}`}>{link.name}</span>
+                 <Icon className={`w-5 h-5 ${isCurrent ? 'text-[#FFC107]' : 'text-[#DADCE0]'}`} />
+                 <span className={`text-[11px] font-black uppercase tracking-widest`}>{link.name}</span>
                </Link>
              )
            })}
-           <div className="md:hidden border-t border-gray-100 mt-2 p-4 flex flex-col gap-3">
-              <Link href="/blog" className="text-sm font-bold text-gray-600">Resources</Link>
-           </div>
         </div>
       )}
       

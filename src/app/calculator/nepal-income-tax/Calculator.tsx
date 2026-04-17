@@ -11,7 +11,7 @@ import { Info, Receipt, Wallet, ShieldCheck } from 'lucide-react';
 import { calculateNepalIncomeTax } from '@/utils/math/country-rules/nepal';
 
 const DEFAULT_STATE = {
-  fiscalYear: '2082/83' as keyof typeof TAX_YEARS,
+  fiscalYear: 'current' as keyof typeof TAX_YEARS,
   income: 1500000,
   married: false,
   isSSFContributor: false,
@@ -66,7 +66,7 @@ export default function NepalIncomeTaxCalculator() {
     <CalculatorErrorBoundary calculatorName="Income Tax">
       <CalculatorLayout
         title="Nepal Income Tax Calculator"
-        description="Calculate your personal income tax for FY 2082/83 based on IRD Nepal tax slabs and deductions."
+        description="Nepal Income Tax Calculator: Calculate personal tax for the latest fiscal mandates based on current IRD Nepal tax slabs, SSF contributions, and legal deductions."
         badge="Nepal Exclusive"
         badgeColor="red"
         category={{ label: 'Nepal Sanchar', href: '/calculator/category/nepal' }}
@@ -200,7 +200,7 @@ export default function NepalIncomeTaxCalculator() {
         }
         faqSection={
            <div className="prose prose-slate max-w-none w-full print-hide mt-16 pt-12 border-t border-slate-200">
-             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-6">Mastering Nepal Income Tax 2026 (FY 2082/83)</h2>
+             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-6">Mastering Nepal Income Tax Guide (Latest Slabs)</h2>
              
              <p className="text-slate-600 text-sm leading-relaxed mb-6 font-medium">Income Tax in Nepal is regulated by the Inland Revenue Department (IRD). As per the Income Tax Act 2058 (2002), whether you are a salaried employee, a freelancer, or a business owner, understanding exactly how your taxable limits are calculated is crucial for maintaining legal compliance while legally maximizing your take-home pay.</p>
              

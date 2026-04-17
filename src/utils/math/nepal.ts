@@ -1,5 +1,5 @@
 /**
- * @fileoverview Nepal-specific calculation utilities — Equaly
+ * @fileoverview Nepal-specific calculation utilities — NEPACALC
  *
  * Pure functions for Nepal government rule-based calculations.
  * All rules verified against official Nepal government sources.

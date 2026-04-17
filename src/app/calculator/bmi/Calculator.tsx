@@ -27,7 +27,7 @@ const DEFAULT_STATE = {
 
 export default function BMICalculator() {
   const [state, setState] = useSyncState('bmi_v4', DEFAULT_STATE);
-  const [readings, setReadings] = useLocalStorage<BMIReading[]>('equaly_bmi_history_v2', []);
+  const [readings, setReadings] = useLocalStorage<BMIReading[]>('NEPACALC_bmi_history_v2', []);
   const { unit, weight, height, feet, inches, lbs } = state;
 
   const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {

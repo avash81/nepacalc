@@ -1,8 +1,21 @@
 'use client';
 
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { ExpressionDrawer } from './ExpressionDrawer';
-import { PlotCanvas } from './PlotCanvas';
+
+// Dynamically import heavy plotter component to isolate mathjs bundle
+const PlotCanvas = dynamic(() => import('./PlotCanvas').then(mod => mod.PlotCanvas), {
+  ssr: false,
+  loading: () => (
+    <div className="flex-1 h-full flex items-center justify-center bg-[#fdfdfd]">
+      <div className="flex flex-col items-center gap-4">
+        <div className="w-10 h-10 border-4 border-[#FFC107] border-t-transparent rounded-full animate-spin" />
+        <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Initializing Core...</span>
+      </div>
+    </div>
+  )
+});
 
 export interface ExpressionItem {
   id: string;

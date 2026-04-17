@@ -1,5 +1,5 @@
 /**
- * @fileoverview Firebase SDK — Equaly
+ * @fileoverview Firebase SDK — NEPACALC
  *
  * Lazy initialization: Firebase only loads when needed.
  * If .env.local is missing, all 37 calculator pages still work.
@@ -34,7 +34,7 @@ function getApp(): FirebaseApp | null {
     return _app;
   } catch (e) {
     if (process.env.NODE_ENV === 'development') {
-      console.warn('Equaly: Firebase not configured — blog/admin disabled.');
+      console.warn('NEPACALC: Firebase not configured — blog/admin disabled.');
     }
     return null;
   }

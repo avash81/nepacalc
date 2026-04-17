@@ -73,7 +73,7 @@ export default function NotFound() {
         </div>
 
         <div className="pt-12 text-[9px] font-black text-gray-300 dark:text-gray-700 uppercase tracking-[0.4em]">
-          &copy; 2026 EQUALY — NEPAL&apos;S PRECISION SUITE
+          &copy; NEPACALC — NEPAL&apos;S PRECISION SUITE
         </div>
       </div>
     </div>

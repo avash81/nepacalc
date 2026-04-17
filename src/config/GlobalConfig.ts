@@ -1,14 +1,14 @@
 /**
- * Global Configuration for Equaly
+ * Global Configuration for NEPACALC
  * 
  * Centralized constants for the entire platform. 
  * Update these each year to ensure the site remains "evergreen".
  */
 
 export const GLOBAL_CONFIG = {
-  CURRENT_YEAR: 2026,
-  CURRENT_FISCAL_YEAR: '2082/83',
-  NEXT_FISCAL_YEAR: '2083/84',
+  CURRENT_YEAR: 'Institutional',
+  CURRENT_FISCAL_YEAR: 'Latest Fiscal Mandates',
+  NEXT_FISCAL_YEAR: 'Upcoming Financial Period',
   
   // SEO Defaults
   SITE_NAME: 'NEPACALC',

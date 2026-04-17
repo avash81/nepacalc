@@ -1,5 +1,5 @@
 /**
- * @fileoverview Blog Page (RSC) — Equaly
+ * @fileoverview Blog Page (RSC) — NEPACALC
  *
  * Refactored to React Server Component (RSC) for maximum SEO impact.
  * Fetches all published blog posts and SEO guide pages server-side.
@@ -15,14 +15,14 @@ import { fetchFirestoreCollection } from '@/lib/firestore-rest';
 
 // --- SEO CONFIGURATION ---
 export const metadata: Metadata = {
-  title: 'Blog & Financial Guides | NepCalc Precision',
-  description: 'Pro tips on Nepal income tax, salary planning, SSF, home loans, and expert calculator tutorials. Stay financially informed with the latest BS 2082/83 updates.',
-  alternates: { canonical: 'https://nepcalc.com/blog' },
+  title: 'Blog & Financial Guides | NEPACALC Precision',
+  description: 'Expert tips on Nepal income tax, salary planning, SSF, home loans, and professional calculator tutorials. Stay financially informed with the latest updates.',
+  alternates: { canonical: 'https://nepacalc.com/blog' },
   openGraph: {
-    title: 'NepCalc Blog — Expert Nepal Calculation Guides',
+    title: 'NEPACALC Blog — Expert Nepal Calculation Guides',
     description: 'Expert financial advice and calculator walkthroughs for Nepal.',
-    url: 'https://nepcalc.com/blog',
-    siteName: 'NepCalc',
+    url: 'https://nepacalc.com/blog',
+    siteName: 'NEPACALC',
     type: 'website',
   },
 };
@@ -99,7 +99,7 @@ export default async function BlogIndexPage({
             Scientific <span className="text-[var(--primary)]">Resources</span>
           </h1>
           <p className="text-[var(--text-secondary)] text-xl leading-relaxed font-medium">
-             Expert financial guidance, local tax intelligence, and professional calculator tutorials for the Nepal BS 2082/83 ecosystem.
+             Expert financial guidance, local tax intelligence, and professional calculator tutorials for the latest Nepal fiscal ecosystem.
           </p>
         </header>
 
@@ -191,16 +191,16 @@ export default async function BlogIndexPage({
         )}
 
         {/* --- NEWSLETTER CTA --- */}
-        <section className="mt-32 bg-gray-950 dark:bg-white rounded-[4rem] p-12 sm:p-20 text-center relative overflow-hidden">
-           <div className="relative z-10 space-y-8">
-              <h2 className="text-white dark:text-black text-3xl sm:text-5xl font-black tracking-tight">Stay ahead of the <span className="text-blue-500">market.</span></h2>
-              <p className="text-white/60 dark:text-black/60 max-w-xl mx-auto text-lg">Join 12,000+ Nepal professionals receiving weekly tax updates and financial alerts.</p>
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                 <input type="email" placeholder="Your work email" className="flex-1 bg-white/10 dark:bg-gray-100 border border-white/20 dark:border-gray-200 rounded-2xl px-6 py-4 text-white dark:text-black focus:outline-none focus:border-blue-500 transition-all font-medium" />
-                 <button className="bg-blue-600 text-white font-black text-[10px] uppercase tracking-[0.2em] px-10 py-5 rounded-2xl hover:bg-blue-500 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-blue-600/30">Subscribe</button>
-              </div>
-           </div>
-        </section>
+         <section className="mt-32 bg-gray-950 dark:bg-white rounded-[4rem] p-12 sm:p-20 text-center relative overflow-hidden">
+            <div className="relative z-10 space-y-8">
+               <h2 className="text-white dark:text-black text-3xl sm:text-5xl font-black tracking-tight">Stay ahead of the <span className="text-blue-500">market.</span></h2>
+               <p className="text-white/60 dark:text-black/60 max-w-xl mx-auto text-lg">Join our growing community of Nepal professionals receiving weekly tax insights and 2082/83 financial alerts.</p>
+               <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                  <input type="email" placeholder="Your work email" className="flex-1 bg-white/10 dark:bg-gray-100 border border-white/20 dark:border-gray-200 rounded-2xl px-6 py-4 text-white dark:text-black focus:outline-none focus:border-blue-500 transition-all font-medium" />
+                  <button className="bg-blue-600 text-white font-black text-[10px] uppercase tracking-[0.2em] px-10 py-5 rounded-2xl hover:bg-blue-500 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-blue-600/30">Get Alerts</button>
+               </div>
+            </div>
+         </section>
 
       </div>
     </div>

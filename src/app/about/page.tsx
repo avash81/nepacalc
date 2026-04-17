@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { ShieldCheck, Target } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Equaly | Professional Calculators for Nepal',
-  description: 'Equaly is Nepal&apos;s premier destination for high-precision financial, tax, health, and engineering calculators. Built for accuracy, No Ads, 100% Free.',
+  title: 'About NEPACALC | Precision Mathematical Laboratory',
+  description: 'NEPACALC is Nepal&apos;s premier destination for high-precision financial, tax, health, and engineering calculators. Built for accuracy, No Ads, 100% Free.',
 };
 
 export default function AboutPage() {
@@ -13,9 +13,9 @@ export default function AboutPage() {
       <div className="max-w-4xl mx-auto px-4 py-16 sm:py-24">
         
         <header className="mb-20 text-center">
-           <Link href="/" className="inline-block text-xs font-black text-blue-600 uppercase tracking-widest mb-6 px-4 py-1.5 bg-blue-50 rounded-full">Explore Tools →</Link>
+           <Link href="/" className="inline-block text-xs font-black text-[#1A73E8] uppercase tracking-widest mb-6 px-4 py-1.5 bg-blue-50 rounded-full">Explore Tools →</Link>
            <h1 className="text-4xl sm:text-6xl font-black text-gray-900 tracking-tight mb-8">
-             Precision Meets <span className="text-blue-600">Trust.</span>
+             Precision Meets <span className="text-[#1A73E8]">Trust.</span>
            </h1>
            <p className="text-xl text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed">
              We build advanced tools that empower Nepalese people to make smarter decisions, every single day.
@@ -26,11 +26,11 @@ export default function AboutPage() {
            <div className="space-y-6">
               <h2 className="text-2xl font-black text-gray-900 leading-tight">Empowering 30 Million <br/> Minds in Nepal.</h2>
               <p className="text-gray-600 leading-relaxed">
-                 Calculating Income Tax, EMI, or even BMI shouldn&apos;t involve complex spreadsheets or ad-filled websites. Equaly was founded with a single mission: to provide the most accurate, secure, and user-friendly calculation ecosystem for the Nepalese people.
+                 Calculating Income Tax, EMI, or even BMI shouldn&apos;t involve complex spreadsheets or ad-filled websites. NEPACALC was founded with a single mission: to provide the most accurate, secure, and user-friendly calculation ecosystem for the Nepalese people.
               </p>
               <div className="pt-4 flex flex-wrap gap-4">
                  <div className="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-2xl">
-                    <ShieldCheck className="w-5 h-5 text-blue-600" />
+                    <ShieldCheck className="w-5 h-5 text-[#1A73E8]" />
                     <span className="text-xs font-black text-blue-900 uppercase">Privacy First</span>
                  </div>
                  <div className="flex items-center gap-2 bg-green-50 px-4 py-2 rounded-2xl">
@@ -40,7 +40,7 @@ export default function AboutPage() {
               </div>
            </div>
            <div className="bg-gray-50 rounded-[3rem] p-10 flex flex-col justify-center border border-gray-100">
-              <div className="text-4xl font-black text-gray-900 mb-2">40+</div>
+              <div className="text-4xl font-black text-gray-900 mb-2">75+</div>
               <div className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-8">Specialized Tools</div>
               <p className="text-sm text-gray-500 leading-relaxed italic">
                  &quot;Our goal is to make precision accessible, helping users from Kathmandu to Kanchanpur solve their numeric problems in seconds.&quot;

@@ -1,5 +1,5 @@
 /**
- * @fileoverview Safe math calculation utilities for Equaly
+ * @fileoverview Safe math calculation utilities for NEPACALC
  * Includes validation for common financial and health metrics.
  */
 

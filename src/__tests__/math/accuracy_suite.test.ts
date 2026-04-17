@@ -1,9 +1,9 @@
 /**
  * ═══════════════════════════════════════════════════════════════════════
- * EQUALY — COMPLETE ACCURACY VERIFICATION SUITE
+ * NEPACALC — COMPLETE ACCURACY VERIFICATION SUITE
  * ═══════════════════════════════════════════════════════════════════════
  *
- * This file is the MASTER mathematical truth for the Equaly platform.
+ * This file is the MASTER mathematical truth for the NEPACALC platform.
  * Every formula used across all 43+ calculators is extracted here and
  * tested against textbook results and competitor outputs (calculator.net).
  *
@@ -253,7 +253,7 @@ const fromRoman = (rom: string): number => {
 //  T E S T   S U I T E
 // ═══════════════════════════════════════════════════════════════════════
 
-describe('═══ EQUALY COMPLETE ACCURACY SUITE ═══', () => {
+describe('═══ NEPACALC COMPLETE ACCURACY SUITE ═══', () => {
 
   // ─────────────────────────────────────────────────
   // 1. FINANCE (9 calculators)

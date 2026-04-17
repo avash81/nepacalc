@@ -1,5 +1,5 @@
 /**
- * @fileoverview safeEval — Safe math expression evaluator for Equaly
+ * @fileoverview safeEval — Safe math expression evaluator for NEPACALC
  *
  * Replaces the dangerous eval() function with a safe, sandboxed
  * math expression parser. Supports:

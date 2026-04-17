@@ -1,5 +1,5 @@
 /**
- * @fileoverview useDebounce hook — Equaly
+ * @fileoverview useDebounce hook — NEPACALC
  *
  * Delays updating a value until after a period of inactivity.
  * Prevents expensive recalculations on every keystroke.

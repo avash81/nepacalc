@@ -1,5 +1,5 @@
 /**
- * @fileoverview Finance calculation utilities — Equaly
+ * @fileoverview Finance calculation utilities — NEPACALC
  *
  * Pure functions for financial calculations. No side effects.
  * Safe to use in React useMemo hooks.

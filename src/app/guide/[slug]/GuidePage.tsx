@@ -120,18 +120,18 @@ function buildSchema(page: GuidePageData): object {
     '@type': page.schemaType || 'Article',
     headline: page.metaTitle || page.title,
     description: page.metaDesc || page.excerpt,
-    url: `https://equaly.com/guide/${page.slug}`,
+    url: `https://nepacalc.com/guide/${page.slug}`,
     datePublished: page.date,
     dateModified: page.date,
     author: {
       '@type': 'Organization',
-      name: 'Equaly',
-      url: 'https://equaly.com',
+      name: 'NEPACALC',
+      url: 'https://nepacalc.com',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Equaly',
-      url: 'https://equaly.com',
+      name: 'NEPACALC',
+      url: 'https://nepacalc.com',
     },
     inLanguage: 'en-NP',
     ...(page.ogImage ? { image: page.ogImage } : {}),
@@ -203,9 +203,9 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [
-              { '@type':'ListItem', position:1, name:'Home', item:'https://equaly.com' },
-              { '@type':'ListItem', position:2, name:'Guides', item:'https://equaly.com/guide' },
-              { '@type':'ListItem', position:3, name:page.title, item:`https://equaly.com/guide/${page.slug}` },
+              { '@type':'ListItem', position:1, name:'Home', item:'https://nepacalc.com' },
+              { '@type':'ListItem', position:2, name:'Guides', item:'https://nepacalc.com/guide' },
+              { '@type':'ListItem', position:3, name:page.title, item:`https://nepacalc.com/guide/${page.slug}` },
             ]
           })
         }}
@@ -258,7 +258,7 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
                                   justify-center text-white text-[9px] font-bold">
                     CP
                   </div>
-                  <span>Equaly Team</span>
+                  <span>NEPACALC Research Team</span>
                 </div>
                 <span>·</span>
                 <time dateTime={page.date}>{pubDate}</time>
@@ -347,7 +347,7 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
                 <ShareResult
                   title={page.title}
                   result="📖 Read the full guide"
-                  calcUrl={`https://equaly.com/guide/${page.slug}`}
+                  calcUrl={`https://NEPACALC.com/guide/${page.slug}`}
                 />
               </div>
             </article>
@@ -406,7 +406,7 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
                     <span className="text-xs font-bold text-red-700">Nepal Specific</span>
                   </div>
                   <p className="text-[11px] text-red-600 leading-relaxed">
-                    Rules verified against Nepal IRD, NRB, and SSF for FY 2082/83.
+                    Rules verified against Nepal IRD, NRB, and SSF — updated for latest fiscal mandates.
                     Check official sources for latest updates.
                   </p>
                   <a href="https://ird.gov.np" target="_blank" rel="noopener noreferrer"

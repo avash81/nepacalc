@@ -8,7 +8,7 @@ interface LogoProps {
 }
 
   /* 
-   * EQUALY Master Logo
+   * NEPACALC Master Logo
    * Unified version for Navbar, Footer, and Admin.
    */
 export const Logo: React.FC<LogoProps> = ({ size = 'md', theme = 'indigo', className = '' }) => {
@@ -23,7 +23,11 @@ export const Logo: React.FC<LogoProps> = ({ size = 'md', theme = 'indigo', class
   const { glyph, font } = sizes[size];
 
   return (
-    <div className={`flex items-center gap-2 group select-none ${className}`}>
+    <div 
+      className={`flex items-center gap-2 group select-none ${className}`}
+      role="img"
+      aria-label="NEPACALC Logo - High Precision Nepal Calculators"
+    >
       {/* Precision Sector Symbol */}
       <div 
         className={`relative rounded-full flex items-center justify-center transition-all duration-300 overflow-hidden

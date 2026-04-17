@@ -86,7 +86,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                  <NepalFlag className="w-6 h-6" />
               </div>
               <div className="flex flex-col">
-                <span className="text-[15px] font-black text-white tracking-tight leading-none uppercase italic">EQUALY</span>
+                <span className="text-[15px] font-black text-white tracking-tight leading-none uppercase italic">NEPACALC</span>
                 <span className="text-[9px] font-black text-blue-500 uppercase tracking-[0.2em] mt-1">Command Center</span>
               </div>
             </Link>
@@ -150,7 +150,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               Review Site <ExternalLink className="w-3.5 h-3.5" />
             </Link>
             <div className="w-10 h-10 rounded-2xl bg-slate-950 border border-white/10 flex items-center justify-center text-blue-500 font-black text-xs shadow-lg uppercase italic">
-              EQ
+              NC
             </div>
           </div>
         </header>
