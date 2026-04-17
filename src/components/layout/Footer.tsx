@@ -11,7 +11,7 @@ export function Footer() {
   if (path.startsWith('/math-tools')) return null;
 
   return (
-    <footer className="bg-slate-950 border-t border-slate-900 py-12 mt-12 text-slate-400 no-print">
+    <footer className="bg-slate-950 border-t border-slate-900 py-12 pb-24 lg:pb-12 mt-12 text-slate-400 no-print">
       <div className="hp-container">
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-y-10 gap-x-4 md:gap-x-12 mb-12 text-center sm:text-left">
@@ -89,9 +89,9 @@ export function Footer() {
             </div>
           </div>
           
-          <div className="flex items-center gap-4 text-[10px] font-black text-slate-500 uppercase tracking-widest">
-            <span className="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded text-slate-300 border border-slate-800"><Globe className="w-3.5 h-3.5" /> NEPAL EDITION</span>
-            <span className="text-slate-300">ISO Standardized Math</span>
+          <div className="flex flex-col sm:flex-row items-center gap-3 text-[10px] font-black text-slate-500 uppercase tracking-widest">
+            <span className="flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded text-slate-300 border border-slate-800"><Globe className="w-3.5 h-3.5 text-blue-400" /> NEPAL EDITION</span>
+            <span className="text-slate-400 bg-slate-900/50 px-3 py-1.5 rounded border border-slate-900/50">ISO Standardized Math</span>
           </div>
         </div>
       </div>
