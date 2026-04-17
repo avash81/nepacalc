@@ -13,7 +13,7 @@ export function CalculatorCard({ calc, compact = false }: Props) {
       href={`/calculator/${calc.slug}`}
       className={`
         group flex items-start gap-4 px-5 py-6 bg-white
-        border border-[#E5E7EB] hover:border-blue-300 hover:shadow-sm transition-all
+        border border-[var(--border)] rounded-3xl hover:border-[var(--primary)] hover:shadow-md transition-all
         cursor-pointer text-left no-underline h-full
         ${calc.isNepal ? 'border-l-4 border-l-red-500' : ''}
       `}
@@ -23,17 +23,17 @@ export function CalculatorCard({ calc, compact = false }: Props) {
       </span>
       <div>
         <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-          <h3 className="text-[15px] font-bold text-[#0000CC] tracking-tight group-hover:text-blue-600 transition-colors">
+          <h3 className="text-[15px] font-bold text-[var(--primary)] tracking-tight group-hover:underline decoration-2 transition-colors">
             {calc.name}
           </h3>
           {calc.isNepal && <NepalFlag />}
           {calc.isNew && (
-            <span className="bg-[#1E3A8A] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-sm uppercase tracking-wider">
+            <span className="bg-[#1A73E8] text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">
               NEW
             </span>
           )}
           {calc.isHot && (
-            <span className="bg-[#1E3A8A] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-sm uppercase tracking-wider">
+            <span className="bg-[#D93025] text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">
               HOT
             </span>
           )}

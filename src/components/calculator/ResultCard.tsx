@@ -14,12 +14,12 @@ interface ResultCardProps {
 }
 
 const COLORS = {
-  blue: 'from-blue-600 to-indigo-600 shadow-blue-500/20 text-white',
-  green: 'from-emerald-600 to-teal-600 shadow-emerald-500/20 text-white',
-  red: 'from-rose-600 to-pink-600 shadow-rose-500/20 text-white',
-  yellow: 'from-amber-500 to-orange-500 shadow-amber-500/20 text-white',
-  purple: 'from-violet-600 to-fuchsia-600 shadow-violet-500/20 text-white',
-  gray: 'from-gray-700 to-gray-900 shadow-gray-500/20 text-white',
+  blue: 'bg-white border-[var(--border)] text-[var(--text-main)]',
+  green: 'bg-white border-[var(--border)] text-[var(--text-main)]',
+  red: 'bg-white border-[var(--border)] text-[var(--text-main)]',
+  yellow: 'bg-white border-[var(--border)] text-[var(--text-main)]',
+  purple: 'bg-white border-[var(--border)] text-[var(--text-main)]',
+  gray: 'bg-white border-[var(--border)] text-[var(--text-main)]',
 };
 
 /**
@@ -45,28 +45,26 @@ export function ResultCard({
   };
 
   return (
-    <div className={`relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br ${COLORS[color]} p-8 sm:p-10 shadow-2xl transition-all hover:scale-[1.02] active:scale-[0.98]`}>
-      {/* Decorative background shape */}
-      <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
+    <div className={`relative overflow-hidden rounded-3xl border ${COLORS[color]} p-8 shadow-sm hover:shadow-md transition-all`}>
       
       <div className="relative flex flex-col items-center text-center space-y-4">
         <span className="text-[10px] font-black uppercase tracking-[0.3em] opacity-80">
           {label}
         </span>
         
-        <div className="flex items-baseline gap-1" aria-live="polite">
-          <span className="text-4xl sm:text-6xl font-black tracking-tighter">
+        <div className="flex items-baseline gap-2" aria-live="polite">
+          <span className="text-4xl sm:text-6xl font-black tracking-tighter text-[var(--primary)]">
             {value.toLocaleString()}
           </span>
           {unit && (
-            <span className="text-xl sm:text-2xl font-bold opacity-60">
+            <span className="text-xl sm:text-2xl font-bold text-[var(--text-muted)]">
               {unit}
             </span>
           )}
         </div>
 
         {title && (
-          <div className="rounded-full bg-white/20 px-4 py-1 text-[10px] font-bold uppercase tracking-widest backdrop-blur-sm">
+          <div className="rounded-full bg-[var(--bg-subtle)] px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] border border-[var(--border)]">
             {title} Verified
           </div>
         )}
@@ -74,15 +72,15 @@ export function ResultCard({
         <div className="flex gap-4 pt-4">
           <button 
             onClick={handleCopy}
-            className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 hover:bg-white/20 transition-all border border-white/10"
+            className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-50 hover:bg-slate-100 transition-all border border-[var(--border)] text-[var(--text-secondary)] shadow-sm"
             title="Copy Result"
           >
-            {copied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+            {copied ? <Check className="w-5 h-5 text-emerald-600" /> : <Copy className="w-5 h-5" />}
           </button>
           
           {shareUrl && (
             <button 
-              className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 hover:bg-white/20 transition-all border border-white/10"
+              className="flex h-12 w-12 items-center justify-center rounded-xl bg-slate-50 hover:bg-slate-100 transition-all border border-[var(--border)] text-[var(--text-secondary)] shadow-sm"
               title="Share Result"
             >
               <Share2 className="w-5 h-5" />

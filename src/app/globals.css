@@ -4,25 +4,25 @@
 
 :root {
   /* Brand Classic - Reclone Palette */
-  --primary:        #083366;   /* Deep Navy */
-  --primary-light:  #E8F0F8;
-  --accent:         #336699;   /* Steel Blue */
-  --success:        #006600;   /* Forest Green Heading */
-  --error:          #CC0000;
+  --primary:        #1A73E8;   /* Google Blue */
+  --primary-light:  #E8F0FE;
+  --accent:         #1A73E8;
+  --success:        #188038;
+  --error:          #D93025;
 
   /* Neutral Scale - Classic Utility */
   --bg-page:        #FFFFFF;
-  --bg-surface:     #F8F8F8;
-  --bg-subtle:      #EEEEEE;
-  --border:         #CCCCCC;
+  --bg-surface:     #F8F9FA;
+  --bg-subtle:      #F1F3F4;
+  --border:         #DADCE0;
 
   /* Text - High Contrast Utility */
-  --text-main:      #000000; 
-  --text-secondary: #333333; 
-  --text-muted:     #666666;
+  --text-main:      #202124; 
+  --text-secondary: #5F6368; 
+  --text-muted:     #70757A;
   
-  /* Link Classic */
-  --link-blue:      #0000CC;
+  /* Link Material */
+  --link-blue:      #1A73E8;
 }
 
 .dark {

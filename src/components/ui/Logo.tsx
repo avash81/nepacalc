@@ -27,7 +27,7 @@ export const Logo: React.FC<LogoProps> = ({ size = 'md', theme = 'indigo', class
       {/* MINIMALIST LOGO SYMBOL */}
       <div 
         className={`relative rounded-lg flex items-center justify-center shadow-md transition-all duration-300
-                    ${isWhite ? 'bg-white shadow-white/10 group-hover:bg-blue-400' : 'bg-blue-600 shadow-blue-900/20 group-hover:bg-blue-700'}`}
+                    ${isWhite ? 'bg-white shadow-white/10 group-hover:bg-[#1A73E8]' : 'bg-[#1A73E8] shadow-blue-500/20 group-hover:bg-[#1558b0]'}`}
         style={{ width: glyph, height: glyph }}
       >
         <div className="flex flex-col justify-between" style={{ width: glyph * 0.5, height: glyph * 0.4 }}>
@@ -37,8 +37,8 @@ export const Logo: React.FC<LogoProps> = ({ size = 'md', theme = 'indigo', class
       </div>
       
       {/* BRAND TEXT */}
-      <span className={`${font} font-black tracking-tight transition-colors font-sans overflow-hidden ${isWhite ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
-        NepCalc<span className={isWhite ? 'text-blue-400' : 'text-blue-600 font-bold'}>.com</span>
+      <span className={`${font} font-black tracking-tighter transition-colors font-sans overflow-hidden ${isWhite ? 'text-white' : 'text-[#202124]'}`}>
+        NepCalc<span className={isWhite ? 'text-blue-400' : 'text-[#1A73E8]'}>.com</span>
       </span>
     </div>
   );
