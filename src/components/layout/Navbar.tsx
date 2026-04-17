@@ -2,7 +2,10 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Search, Sun, Moon, ChevronRight, History, Star } from 'lucide-react';
+import { 
+  Menu, X, Search, Sun, Moon, ChevronRight, History, Star,
+  Sparkles, Folder, Wallet, Heart, BookOpen, Info 
+} from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
 import { SearchModal } from './SearchModal';
 
@@ -55,40 +58,41 @@ export function Navbar() {
   useEffect(() => setIsMenuOpen(false), [path]);
 
   const navLinks = [
-    { name: 'Calculators', href: '/calculator' },
-    { name: 'Manuals',      href: '/guide' },
-    { name: 'Resources',   href: '/blog' },
-    { name: 'Pricing',     href: '/pricing' },
+    { name: 'Math Tools', href: '/math-tools' },
+    { name: 'Directory',  href: '/calculator' },
+    { name: 'Financial',  href: '/calculator/category/finance' },
+    { name: 'Health',     href: '/calculator/category/health' },
+    { name: 'Blog',       href: '/blog' },
+    { name: 'About',      href: '/about' },
   ];
 
   if (path.startsWith('/math-tools')) return null;
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 h-14 bg-white text-[#202124] z-[200] select-none border-b border-[#f1f3f4] no-print">
+      <nav className="fixed top-0 left-0 right-0 h-16 bg-[#002147] text-white z-[200] select-none border-b border-[#D4AF37]/30 no-print shadow-xl">
         <div className="hp-container h-full flex items-center justify-between">
           
           {/* Left: Logo + Desktop Links */}
-          <div className="flex items-center gap-8">
-            <Link href="/" className="hover:opacity-80 transition-opacity" aria-label="NEPACALC Home">
-               <Logo size="sm" />
+          <div className="flex items-center gap-10">
+            <Link href="/" className="hover:opacity-90 transition-opacity" aria-label="NEPACALC Home">
+               <Logo size="sm" isWhite={true} />
             </Link>
             
-            <div className="hidden md:flex items-center gap-1 h-14">
+            <div className="hidden lg:flex items-center gap-2 h-16">
               {navLinks.map((link) => {
                 const active = path === link.href || (link.href !== '/' && path.startsWith(link.href));
-                const hasSub = ['Calculators', 'Manuals', 'Resources'].includes(link.name);
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-3 h-14 flex items-center gap-1 text-[11px] font-black uppercase tracking-widest transition-all relative group/nav ${
-                      active ? 'text-[#1A73E8]' : 'text-[#5F6368] hover:text-[#202124]'
+                    className={`px-4 h-full flex items-center text-[10.5px] font-black uppercase tracking-[0.15em] transition-all relative group/nav ${
+                      active ? 'text-[#D4AF37]' : 'text-white/80 hover:text-white'
                     }`}
                   >
                     {link.name}
-                    {hasSub && <ChevronRight className="w-3 h-3 rotate-90 text-[#9AA0A6] group-hover/nav:text-[#1A73E8] transition-colors" />}
-                    {active && <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#1A73E8] rounded-t-full" />}
+                    {active && <div className="absolute bottom-0 left-4 right-4 h-[3px] bg-[#D4AF37] rounded-t-full shadow-[0_-4px_10px_rgba(212,175,55,0.4)]" />}
+                    <div className="absolute bottom-0 left-4 right-4 h-[2px] bg-[#D4AF37] scale-x-0 group-hover/nav:scale-x-100 transition-transform origin-center duration-300 rounded-t-full" />
                   </Link>
                 );
               })}
@@ -97,14 +101,15 @@ export function Navbar() {
 
           {/* Right: Actions */}
           <div className="flex items-center gap-6">
-            <button className="hidden md:block text-[11px] font-black uppercase tracking-widest text-[#202124] hover:text-[#1A73E8] transition-all">Sign In</button>
-            <button className="hidden md:block px-5 py-2.5 bg-[#1A73E8] text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20">Get Started</button>
+            <div className="hidden md:flex items-center gap-6 px-4 py-1.5 border-r border-white/10 mr-2">
+               <span className="text-[9px] font-black text-[#D4AF37] tracking-[0.2em] uppercase">Academic Edition</span>
+            </div>
             
             {/* Simple Search Trigger */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors text-slate-500"
-              aria-label="Search tools"
+              className="p-2 hover:bg-white/10 rounded-xl transition-all text-white"
+              aria-label="Search laboratory"
             >
               <Search className="w-5 h-5" />
             </button>
@@ -112,7 +117,7 @@ export function Navbar() {
             {/* Theme Toggle */}
             <button
               onClick={toggleDark}
-              className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors text-slate-500 hover:text-[#1A73E8]"
+              className="p-2 hover:bg-white/10 rounded-xl transition-all text-white hover:text-[#D4AF37]"
               aria-label="Toggle theme"
               title="Toggle Theme"
             >
@@ -122,7 +127,7 @@ export function Navbar() {
             {/* Mobile Menu */}
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="md:hidden p-1.5 hover:bg-slate-100 rounded-lg text-slate-600"
+              className="lg:hidden p-2 hover:bg-white/10 rounded-xl text-white"
               aria-label="Open menu"
             >
               <Menu className="w-5 h-5" />
@@ -139,40 +144,41 @@ export function Navbar() {
       )}
 
       {/* Mobile Drawer */}
-      <aside className={`fixed top-0 right-0 bottom-0 w-[280px] bg-[var(--bg-surface)] z-[301] shadow-2xl transform transition-transform duration-300 ease-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <aside className={`fixed top-0 right-0 bottom-0 w-[300px] bg-[#002147] text-white z-[301] shadow-2xl transform transition-transform duration-300 ease-out border-l border-[#D4AF37]/30 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex flex-col h-full uppercase tracking-widest font-black text-[10px]">
-          <div className="p-4 flex items-center justify-between border-b border-[var(--border)] bg-[var(--bg-page)]">
-            <Logo size="sm" />
-            <button onClick={() => setIsMenuOpen(false)} className="p-2 hover:bg-[var(--bg-subtle)] rounded-lg text-[var(--text-muted)]" aria-label="Close menu">
+          <div className="p-6 flex items-center justify-between border-b border-white/10 bg-[#001a38]">
+            <Logo size="sm" isWhite={true} />
+            <button onClick={() => setIsMenuOpen(false)} className="p-2 hover:bg-white/10 rounded-xl text-white" aria-label="Close menu">
               <X className="w-5 h-5" />
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 space-y-2">
+          <div className="flex-1 overflow-y-auto p-6 space-y-3">
             {[
-               { name: 'Math Tools', href: '/math-tools', icon: '✨' },
-               { name: 'Directory', href: '/calculator', icon: '📁' },
-               { name: 'Financial', href: '/calculator/category/finance', icon: '💰' },
-               { name: 'Health', href: '/calculator/category/health', icon: '❤️' },
-               { name: 'Blog', href: '/blog', icon: '📖' },
-               { name: 'About', href: '/about', icon: 'ℹ️' },
+               { name: 'Math Tools', href: '/math-tools', icon: <Sparkles className="w-5 h-5" /> },
+               { name: 'Directory', href: '/calculator', icon: <Folder className="w-5 h-5" /> },
+               { name: 'Financial', href: '/calculator/category/finance', icon: <Wallet className="w-5 h-5" /> },
+               { name: 'Health', href: '/calculator/category/health', icon: <Heart className="w-5 h-5" /> },
+               { name: 'Blog', href: '/blog', icon: <BookOpen className="w-5 h-5" /> },
+               { name: 'About', href: '/about', icon: <Info className="w-5 h-5" /> },
             ].map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="flex items-center justify-between p-3 rounded-xl hover:bg-[var(--primary-light)] text-[var(--text-secondary)] hover:text-[var(--primary)] transition-all group"
+                className="flex items-center justify-between p-4 rounded-xl hover:bg-white/10 text-white/70 hover:text-[#D4AF37] transition-all group border border-transparent hover:border-[#D4AF37]/20"
               >
-                <div className="flex items-center gap-3">
-                  <span className="text-lg opacity-80 group-hover:opacity-100">{link.icon}</span>
-                  <span>{link.name}</span>
+                <div className="flex items-center gap-4">
+                  <span className="text-[#D4AF37] opacity-80 group-hover:opacity-100 transition-opacity">{link.icon}</span>
+                  <span className="tracking-[0.15em]">{link.name}</span>
                 </div>
-                <ChevronRight className="w-4 h-4 opacity-50" />
+                <ChevronRight className="w-4 h-4 opacity-30 group-hover:opacity-100 transition-opacity text-[#D4AF37]" />
               </Link>
             ))}
           </div>
 
-          <div className="p-6 border-t border-[var(--border)] text-center text-[#202124] bg-[var(--bg-page)] font-bold">
-            © 2026 NEPACALC — BUILT FOR PRECISION
+          <div className="p-8 border-t border-white/10 text-center text-[9px] font-black uppercase tracking-[0.2em] bg-[#001a38]">
+            <div className="text-[#D4AF37] mb-2">NEPAL ACADEMIC EDITION</div>
+            <div className="text-white/40">© 2026 NEPACALC Laboratory</div>
           </div>
         </div>
       </aside>
