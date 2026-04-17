@@ -4,7 +4,11 @@ import { CALCULATORS } from '@/data/calculators';
 export const revalidate = 86400; // Refetch daily for static content
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nepacalc.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL 
+    ? process.env.NEXT_PUBLIC_SITE_URL 
+    : process.env.VERCEL_URL 
+      ? `https://${process.env.VERCEL_URL}` 
+      : 'https://nepacalc.com';
 
   // 1. Static Core Paths
   const staticPaths = [
