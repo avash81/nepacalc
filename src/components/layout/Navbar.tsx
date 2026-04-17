@@ -114,16 +114,6 @@ export function Navbar() {
               <Search className="w-5 h-5" />
             </button>
 
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleDark}
-              className="p-2 hover:bg-white/10 rounded-xl transition-all text-white hover:text-[#D4AF37]"
-              aria-label="Toggle theme"
-              title="Toggle Theme"
-            >
-              {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
-
             {/* Mobile Menu */}
             <button
               onClick={() => setIsMenuOpen(true)}
