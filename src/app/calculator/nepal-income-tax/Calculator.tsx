@@ -106,20 +106,20 @@ export default function NepalIncomeTaxCalculator() {
                       onClick={() => updateState({ isSSFContributor: !isSSFContributor })}
                       className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all ${
                         isSSFContributor 
-                          ? 'bg-blue-50 border-blue-200 text-blue-700 shadow-sm' 
+                          ? 'bg-[var(--primary-light)] border-[var(--primary)]/20 text-[var(--primary)] shadow-sm' 
                           : 'bg-[var(--bg-subtle)] border-[var(--border)] text-[var(--text-muted)]'
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <ShieldCheck className={`w-5 h-5 ${isSSFContributor ? 'text-blue-600' : 'text-slate-400'}`} />
+                        <ShieldCheck className={`w-5 h-5 ${isSSFContributor ? 'text-[var(--primary)]' : 'text-slate-400'}`} />
                         <span className="text-xs font-bold uppercase tracking-wider">Formal Sector (SSF)</span>
                       </div>
-                      <div className={`w-10 h-5 rounded-full relative transition-colors ${isSSFContributor ? 'bg-blue-600' : 'bg-slate-300'}`}>
+                      <div className={`w-10 h-5 rounded-full relative transition-colors ${isSSFContributor ? 'bg-[var(--primary)]' : 'bg-slate-300'}`}>
                         <div className={`absolute top-1 w-3 h-3 bg-white rounded-full transition-all ${isSSFContributor ? 'left-6' : 'left-1'}`} />
                       </div>
                     </button>
                     {isSSFContributor && (
-                      <p className="text-[10px] text-blue-600 font-bold uppercase mt-1">✓ 1% Social Security Tax Waived on first slab</p>
+                      <p className="text-[10px] text-[var(--primary)] font-bold uppercase mt-1">✓ 1% Social Security Tax Waived on first slab</p>
                     )}
                   </div>
 
@@ -145,16 +145,16 @@ export default function NepalIncomeTaxCalculator() {
         }
         rightPanel={
           <div className="space-y-8">
-            <div className="p-6 bg-blue-50/50 rounded-2xl border border-blue-100 flex gap-4 items-start mb-4">
-              <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
-              <p className="text-[11px] text-blue-700 leading-relaxed font-medium">
+            <div className="p-6 bg-[var(--primary-light)]/50 rounded-2xl border border-[var(--primary)]/10 flex gap-4 items-start mb-4">
+              <Info className="w-5 h-5 text-[var(--primary)] shrink-0 mt-0.5" />
+              <p className="text-[11px] text-[var(--primary)] leading-relaxed font-medium">
                 <strong>SSF Benefit:</strong> Contributing to the Social Security Fund waives the 1% SST on your first tax bracket, significantly increasing take-home pay for lower income ranges.
               </p>
             </div>
             {result.totalTax !== undefined ? (
               <>
                 <div className="text-center p-6 bg-white rounded-2xl border border-[var(--primary)]/10 shadow-sm relative overflow-hidden">
-                  {isSSFContributor && <div className="absolute top-0 right-0 p-2 bg-blue-600 text-white text-[8px] font-black uppercase tracking-widest rounded-bl-lg">SSF Active</div>}
+                  {isSSFContributor && <div className="absolute top-0 right-0 p-2 bg-[var(--primary)] text-white text-[8px] font-black uppercase tracking-widest rounded-bl-lg">SSF Active</div>}
                   <div className="text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)] mb-1">Estimated Tax Liability</div>
                   <div className="text-4xl font-black text-[var(--primary)] tracking-tighter mb-1">{formatNPR(result.totalTax)}</div>
                   <div className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest">Effective Rate: {((result.totalTax / (income || 1)) * 100).toFixed(2)}%</div>
@@ -241,10 +241,10 @@ export default function NepalIncomeTaxCalculator() {
                </div>
              </div>
 
-             <div className="bg-green-50 border-l-4 border-green-500 p-5 mt-6 mb-10">
-               <h4 className="font-bold text-green-900 text-sm uppercase tracking-wide mb-1">Tax Loophole: The 1% Exemption</h4>
-               <p className="text-xs text-green-800 leading-relaxed">If you are formally contributing strictly to the Social Security Fund (SSF), you are completely exempt from paying the base 1% Social Security Tax on your primary salary bracket. This is a massive systemic advantage designed to drive SSF adoption across Nepal.</p>
-             </div>
+              <div className="bg-blue-50 border-l-4 border-[var(--primary)] p-5 mt-6 mb-10">
+                <h4 className="font-bold text-[var(--primary)] text-sm uppercase tracking-wide mb-1">Tax Loophole: The 1% Exemption</h4>
+                <p className="text-xs text-[var(--primary)] leading-relaxed opacity-80">If you are formally contributing strictly to the Social Security Fund (SSF), you are completely exempt from paying the base 1% Social Security Tax on your primary salary bracket. This is a massive systemic advantage designed to drive SSF adoption across Nepal.</p>
+              </div>
            </div>
         }
       />

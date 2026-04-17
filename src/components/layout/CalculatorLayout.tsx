@@ -97,7 +97,7 @@ export function CalculatorLayout({
   );
 
   return (
-    <div className="min-h-screen bg-[#F8FAFB] font-sans antialiased pb-24 lg:pb-0">
+    <div className="min-h-screen bg-[var(--bg-page)] font-sans antialiased pb-24 lg:pb-0">
       {/* 0. SEO Injection (Phase 4 Mastery) */}
       <JsonLd 
         type="calculator"
@@ -107,28 +107,27 @@ export function CalculatorLayout({
       />
 
       {/* 1. Premium Grade Breadcrumb/Header */}
-      <div className="bg-gradient-to-r from-[#003366] to-[#044c92] text-white/90 py-2.5 border-b border-blue-800 shadow-sm no-print relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-full bg-white/5 skew-x-12 transform -translate-x-10 pointer-events-none" />
+      <div className="bg-[#F8F9FA] text-[#5F6368] py-3 border-b border-[#DADCE0] no-print relative overflow-hidden">
         <div className="hp-container flex items-center gap-2.5 text-[10px] font-black uppercase tracking-[0.2em] relative z-10">
           <button 
             type="button"
             onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
-            className="flex items-center gap-1 hover:text-white text-blue-100 border-r border-blue-800/60 pr-3 mr-1 transition-colors"
+            className="flex items-center gap-1 hover:text-[#1A73E8] text-[#5F6368] border-r border-[#DADCE0] pr-3 mr-1 transition-colors"
           >
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="15 18 9 12 15 6"/></svg>
             BACK
           </button>
-          <Link href="/" className="hover:text-white hover:drop-shadow-md transition-all text-blue-200 hidden sm:inline-block">Home</Link>
+          <Link href="/" className="hover:text-[#1A73E8] transition-all text-[#5F6368] hidden sm:inline-block border-b border-transparent hover:border-[#1A73E8]">Home</Link>
           {catLabel && (
             <>
-              <span className="opacity-40 text-blue-300 hidden sm:inline-block">/</span>
-              <Link href={catLink || '/calculator'} className="hover:text-white hover:drop-shadow-md transition-all text-blue-200 hidden sm:inline-block">
+              <span className="opacity-40 text-slate-300 hidden sm:inline-block">/</span>
+              <Link href={catLink || '/calculator'} className="hover:text-[#1A73E8] transition-all text-[#5F6368] hidden sm:inline-block border-b border-transparent hover:border-[#1A73E8]">
                 {catLabel}
               </Link>
             </>
           )}
-          <span className="opacity-40 text-blue-300 hidden sm:inline-block">/</span>
-          <span className="text-white truncate tracking-widest drop-shadow-sm flex-1 sm:flex-none" title={title}>{title}</span>
+          <span className="opacity-40 text-slate-300 hidden sm:inline-block">/</span>
+          <span className="text-[#202124] truncate tracking-widest flex-1 sm:flex-none" title={title}>{title}</span>
         </div>
       </div>
 
@@ -137,11 +136,11 @@ export function CalculatorLayout({
         <header className="mb-6 sm:mb-8 border-b-2 border-slate-200/60 pb-5 flex flex-col sm:flex-row justify-between items-start gap-4">
           <div className="flex-1">
             <div className="flex flex-wrap items-center gap-3 mb-2">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tighter drop-shadow-sm">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#202124] tracking-tighter">
                 {title}
               </h1>
               {autoPurpose && (
-                <div className="flex items-center gap-1.5 px-4 py-1.5 bg-indigo-50/80 backdrop-blur-sm text-indigo-700 text-[10px] font-black uppercase tracking-widest rounded-full border border-indigo-200/50 shadow-sm">
+                <div className="flex items-center gap-1.5 px-4 py-1.5 bg-blue-50 text-[#1A73E8] text-[10px] font-black uppercase tracking-widest rounded-full border border-blue-100 shadow-sm">
                   <Info className="w-3.5 h-3.5" />
                   {autoPurpose}
                 </div>
@@ -214,8 +213,8 @@ export function CalculatorLayout({
 
         {/* 4. Shared FAQ/Detail Section */}
         {faqSection && (
-          <section className="mt-10 pt-8 border-t border-[#CCCCCC] print:hidden">
-             <div className="prose prose-slate max-w-none prose-headings:text-[#006600] prose-a:text-[#0000CC] prose-p:text-[#444444] prose-strong:text-black prose-sm">
+          <section className="mt-10 pt-8 border-t border-[var(--border)] print:hidden">
+             <div className="prose prose-slate max-w-none prose-headings:text-[var(--primary)] prose-a:text-[var(--primary)] prose-p:text-[var(--text-secondary)] prose-strong:text-[var(--text-main)] prose-sm">
                 {faqSection}
              </div>
           </section>
@@ -223,12 +222,12 @@ export function CalculatorLayout({
       </main>
 
       {/* 5. Minimal Bottom Link Bar */}
-      <footer className="mt-12 py-8 bg-[#F8F8F8] border-t border-[#CCCCCC] no-print">
+      <footer className="mt-12 py-10 bg-[var(--bg-surface)] border-t border-[var(--border)] no-print">
         <div className="hp-container text-center">
-           <p className="text-[12px] text-[#666666] font-black uppercase tracking-[0.2em]">
-             © {GLOBAL_CONFIG.CURRENT_YEAR} {GLOBAL_CONFIG.SITE_NAME} — Precision Utility Suite
+           <p className="text-[12px] text-[var(--text-muted)] font-black uppercase tracking-[0.2em]">
+             © {GLOBAL_CONFIG.CURRENT_YEAR} NepCalc — Precision Utility Suite
            </p>
-           <p className="text-[10px] text-[#999999] mt-2 italic font-medium">
+           <p className="text-[10px] text-[var(--text-muted)] opacity-60 mt-2 italic font-medium">
              Designed for Nepal Budget {GLOBAL_CONFIG.CURRENT_FISCAL_YEAR} Compliance
            </p>
         </div>

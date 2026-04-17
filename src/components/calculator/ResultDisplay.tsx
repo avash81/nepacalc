@@ -58,10 +58,10 @@ export function ResultDisplay({
   };
 
   const interpretationColors = {
-    info: 'bg-blue-50 text-blue-800 border-blue-100',
-    success: 'bg-emerald-50 text-emerald-800 border-emerald-100',
+    info: 'bg-blue-50 text-[var(--primary)] border-blue-100',
+    success: 'bg-emerald-50 text-[var(--success)] border-emerald-100',
     warning: 'bg-amber-50 text-amber-800 border-amber-100',
-    danger: 'bg-rose-50 text-rose-800 border-rose-100',
+    danger: 'bg-rose-50 text-[var(--error)] border-rose-100',
   };
 
   return (
@@ -70,8 +70,8 @@ export function ResultDisplay({
       <div 
         role="status"
         aria-live="polite"
-        className={`relative overflow-hidden rounded-[2.5rem] p-8 sm:p-12 text-center shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-black/5 group transition-all duration-500
-                      ${primaryResult.bgColor || 'bg-gradient-to-br from-[#083366] via-[#0a4080] to-[#042040] text-white'}
+        className={`relative overflow-hidden rounded-3xl p-8 sm:p-14 text-center border-2 transition-all duration-500
+                      ${primaryResult.bgColor || 'bg-white border-[#F1F3F4] text-[#202124] shadow-sm hover:shadow-md'}
                       print:bg-white print:text-black print:border-2 print:border-black print:shadow-none print:rounded-3xl print:p-8`}
       >
         {/* Subtle Background Glow */}
@@ -81,32 +81,32 @@ export function ResultDisplay({
         <div className="absolute top-5 right-5 flex gap-2 z-10 no-print">
           <button
             onClick={handleCopy}
-            className="w-11 h-11 flex items-center justify-center rounded-2xl bg-white/10 hover:bg-white/20 transition-all backdrop-blur-md border border-white/10 shadow-sm active:scale-95"
+            className="w-11 h-11 flex items-center justify-center rounded-xl bg-[var(--bg-surface)] hover:bg-[#E8F0FE] transition-all border border-[var(--border)] shadow-sm active:scale-95"
             title="Copy Result"
           >
-            {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-white/90" />}
+            {copied ? <Check className="w-4 h-4 text-[var(--success)]" /> : <Copy className="w-4 h-4 text-[var(--text-secondary)]" />}
           </button>
           <button
             onClick={() => setShowQr(!showQr)}
-            className="w-11 h-11 flex items-center justify-center rounded-2xl bg-white/10 hover:bg-white/20 transition-all backdrop-blur-md border border-white/10 shadow-sm active:scale-95"
+            className="w-11 h-11 flex items-center justify-center rounded-xl bg-[var(--bg-surface)] hover:bg-[#E8F0FE] transition-all border border-[var(--border)] shadow-sm active:scale-95"
             title="Share via QR"
           >
-            <QrCode className="w-4 h-4 text-white/90" />
+            <QrCode className="w-4 h-4 text-[var(--text-secondary)]" />
           </button>
         </div>
 
         <div className="flex flex-col items-center justify-center relative z-10 print:mt-2">
-          <div className="text-[11px] font-black uppercase tracking-[0.4em] mb-4 text-blue-200/80 print:text-slate-600">
+          <div className="text-[11px] font-black uppercase tracking-[0.4em] mb-4 text-[var(--text-muted)] print:text-slate-600">
             {primaryResult.label}
           </div>
           
-          <div className="text-5xl sm:text-7xl font-black mb-5 tracking-tighter break-words text-transparent bg-clip-text bg-gradient-to-b from-white to-white/90 drop-shadow-sm leading-tight print:text-black print:bg-none print:drop-shadow-none">
+          <div className="text-5xl sm:text-7xl font-black mb-5 tracking-tighter text-[var(--primary)] drop-shadow-sm leading-tight print:text-black">
             {primaryResult.value}
           </div>
           
           {primaryResult.description && (
-            <div className="text-[10px] items-center gap-2 font-black uppercase tracking-[0.2em] px-6 py-2.5 bg-black/20 backdrop-blur-sm rounded-full inline-flex border border-white/10 text-blue-50 shadow-inner print:bg-white print:text-black print:border-slate-300">
-              <TrendingUp className="w-3.5 h-3.5 text-blue-300 print:text-slate-500" />
+            <div className="text-[10px] items-center gap-2 font-black uppercase tracking-[0.2em] px-6 py-2.5 bg-[var(--bg-subtle)] rounded-full inline-flex border border-[var(--border)] text-[var(--text-secondary)] shadow-inner print:bg-white print:text-black print:border-slate-300">
+              <TrendingUp className="w-3.5 h-3.5 text-[var(--primary)] print:text-slate-500" />
               {primaryResult.description}
             </div>
           )}
