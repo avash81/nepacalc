@@ -1,8 +1,14 @@
 import { MetadataRoute } from 'next';
 import { CATEGORIES } from '@/data/calculators';
+import { headers } from 'next/headers';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://nepacalc.com';
+  const headersList = headers();
+  const host = headersList.get('host');
+  const protocol = host?.includes('localhost') ? 'http' : 'https';
+  
+  // Dynamic Base Resolution: Use current host or default to production
+  const baseUrl = host ? `${protocol}://${host}` : (process.env.NEXT_PUBLIC_SITE_URL || 'https://nepacalc.com');
 
   // 1. Static Core Pages
   const staticPages = [
@@ -21,7 +27,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // 2. Canonical Pillar Pages (Rewritten URLs)
-  // We use the category ID directly as the slug to match next.config.js rewrites
   const pillarPages = CATEGORIES.map((cat) => ({
     url: `${baseUrl}/${cat.id}`,
     lastModified: new Date(),
@@ -39,8 +44,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Combine and ensure absolute uniqueness and sort integrity
-  const fullSitemap = [...staticPages, ...pillarPages, ...calculatorPages];
-
-  return fullSitemap;
+  return [...staticPages, ...pillarPages, ...calculatorPages];
 }
