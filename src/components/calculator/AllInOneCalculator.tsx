@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
+import { ChevronRight } from 'lucide-react';
 
 /* ─────────────────────────────────────────────────────────────────
    SAFE MATH EVALUATOR  (no eval, no external lib dependency issues)
@@ -65,8 +66,8 @@ function K({
       onClick={on}
       style={span ? { gridColumn: `span ${span}` } : undefined}
       className={`flex items-center justify-center rounded-full select-none cursor-pointer
-        focus:outline-none transition-all duration-100 active:bg-slate-200 active:scale-95
-        text-[12px] sm:text-[14px] min-h-[44px] sm:min-h-[48px] px-0.5 sm:px-1 ${cls}`}
+        focus:outline-none transition-all duration-200 active:scale-90
+        text-[13px] sm:text-[15px] min-h-[44px] sm:min-h-[50px] px-0.5 sm:px-1 ${cls}`}
     >
       {label}
     </button>
@@ -111,308 +112,278 @@ export default function AllInOneCalculator() {
   /* ── COLOUR TOKENS ─────────────────────────────────────────────
      Matching Google Search calculator exactly from the screenshots
      GFN = grey function pill   GNM = white number   GEQ = blue =  */
-  const GFN = 'bg-[#f1f3f4] hover:bg-[#e8eaed] text-[#202124] border border-transparent';
-  const GNM = 'bg-white border border-[#dadce0] hover:bg-[#f8f9fa] text-[#202124] shadow-sm';
-  const GEQ = 'bg-[#1a73e8] hover:bg-[#185abc] text-white font-bold shadow-md shadow-blue-200';
+  const GFN = 'bg-[#F1F3F4] hover:bg-[#E8EAED] text-[#202124] border border-[#DADCE0]/10 font-medium';
+  const GNM = 'bg-white border border-[#DADCE0] hover:bg-[#F8F9FA] text-[#202124] shadow-sm font-bold';
+  const GEQ = 'bg-[#1A73E8] hover:bg-[#1557B0] text-white font-black shadow-lg shadow-blue-500/20';
 
-  const P = {
-    algebra:  { k: 'bg-[#f3e8ff] hover:bg-[#e8d5ff] text-[#7c3aed]', s: 'bg-[#7c3aed] hover:bg-[#6d28d9] text-white' },
-    trig:     { k: 'bg-[#e6f4ea] hover:bg-[#d2ead8] text-[#188038]', s: 'bg-[#188038] hover:bg-[#137333] text-white' },
-    calculus: { k: 'bg-[#fce8e6] hover:bg-[#fbcfcc] text-[#c5221f]', s: 'bg-[#c5221f] hover:bg-[#a50e0e] text-white' },
+  /* ── ICONS ── */
+  const HistoryIcon = () => (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F6368" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+    </svg>
+  );
+
+  const SolverToggle = () => (
+    <div className="border-t border-[#F1F3F4] pt-4 pb-2 px-6 flex justify-center">
+       <button 
+         onClick={() => setMode(mode === 'sci' ? 'solver' : 'sci')}
+         className="w-[70%] py-2.5 bg-[#F8F9FA] rounded-full text-[13px] font-medium text-[#3C4043] flex items-center justify-center gap-2 hover:bg-[#F1F3F4] transition-all border border-[#DADCE0]"
+       >
+         {mode === 'sci' ? 'Maths solver' : 'Scientific calculator'}
+         <ChevronRight className="w-4 h-4 opacity-60" />
+       </button>
+    </div>
+  );
+
+  /* ─────────────────────────────────────────────────────────────────
+     SUB-GRIDS FOR DIFFERENT MODES
+     ───────────────────────────────────────────────────────────────── */
+  
+  // SCIENTIFIC MODE (GRAY/WHITE/BLUE)
+  const SciKeypad = () => (
+    <div className="grid grid-cols-7 gap-1.5 p-6 sm:p-8 bg-white">
+      <div className="col-span-2 flex items-center justify-center gap-2 text-[11px] text-[#5f6368] mb-1">
+        <button onClick={() => setIsDeg(true)} className={`font-bold ${isDeg ? 'text-[#1a73e8]' : ''}`}>Rad</button>
+        <span className="opacity-20">|</span>
+        <button onClick={() => setIsDeg(false)} className={`font-bold ${!isDeg ? 'text-[#1a73e8]' : ''}`}>Deg</button>
+      </div>
+      <K label="x!" on={() => push('!')} cls={GFN} />
+      <K label="("  on={() => push('(')} cls={GFN} />
+      <K label=")"  on={() => push(')')} cls={GFN} />
+      <K label="%"  on={() => push('%')} cls={GFN} />
+      <K label="AC" on={ac}              cls={GFN} />
+
+      <K label="Inv" on={() => {}}            cls={GFN} />
+      <K label="sin" on={() => push('sin(')}  cls={GFN} />
+      <K label="ln"  on={() => push('ln(')}   cls={GFN} />
+      <K label="7"   on={() => push('7')}     cls={GNM} />
+      <K label="8"   on={() => push('8')}     cls={GNM} />
+      <K label="9"   on={() => push('9')}     cls={GNM} />
+      <K label="÷"   on={() => push('÷')}     cls={GFN} />
+
+      <K label="π"   on={() => push('π')}     cls={GFN} />
+      <K label="cos" on={() => push('cos(')}  cls={GFN} />
+      <K label="log" on={() => push('log(')}  cls={GFN} />
+      <K label="4"   on={() => push('4')}     cls={GNM} />
+      <K label="5"   on={() => push('5')}     cls={GNM} />
+      <K label="6"   on={() => push('6')}     cls={GNM} />
+      <K label="×"   on={() => push('×')}     cls={GFN} />
+
+      <K label="e"   on={() => push('e')}     cls={GFN} />
+      <K label="tan" on={() => push('tan(')}  cls={GFN} />
+      <K label="√"   on={() => push('sqrt(')} cls={GFN} />
+      <K label="1"   on={() => push('1')}     cls={GNM} />
+      <K label="2"   on={() => push('2')}     cls={GNM} />
+      <K label="3"   on={() => push('3')}     cls={GNM} />
+      <K label="−"   on={() => push('-')}     cls={GFN} />
+
+      <K label="Ans" on={() => push(disp)}    cls={GFN} />
+      <K label="EXP" on={() => push('EXP')}   cls={GFN} />
+      <K label={<span>x<sup>y</sup></span>} on={() => push('^')} cls={GFN} />
+      <K label="0"   on={() => push('0')}     cls={GNM} />
+      <K label="."   on={() => push('.')}     cls={GNM} />
+      <K label="="   on={eq}                  cls={GEQ} />
+      <K label="+"   on={() => push('+')}     cls={GFN} />
+    </div>
+  );
+
+  // SOLVER MODE (COLOR THEMED)
+  const SolverKeypad = () => {
+    let themeCls = "bg-[#F3E5F5] text-[#7B1FA2]"; // Default Purple (Algebra)
+    let actionCls = "bg-[#7B1FA2] text-white";
+    
+    if (tab === 'trig') {
+       themeCls = "bg-[#E8F5E9] text-[#2E7D32]"; // Green
+       actionCls = "bg-[#2E7D32] text-white";
+    } else if (tab === 'calculus') {
+       themeCls = "bg-[#FCE4EC] text-[#C2185B]"; // Pink
+       actionCls = "bg-[#C2185B] text-white";
+    }
+
+    const T = (l: string | React.ReactNode, v: string) => <K label={l} on={() => push(v)} cls={themeCls} />;
+
+    return (
+      <div className="grid grid-cols-7 gap-1.5 p-6 sm:p-8 bg-white">
+        {tab === 'algebra' && (
+          <>
+            <K label={<span>☐<sup>☐</sup></span>} on={() => push('^')} cls={themeCls} />
+            {T(<span>ⁿ√☐</span>, 'sqrt(')}
+            {T("<", "<")}
+            <K label="(" on={() => push('(')} cls={GFN} />
+            <K label=")" on={() => push(')')} cls={GFN} />
+            <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-white" />
+            <K label="AC" on={ac} cls={GFN} />
+
+            {T(<span>☐/☐</span>, '/')}
+            {T("|☐|", "abs(")}
+            {T("≤", "<=")}
+            <K label="7" on={() => push('7')} cls={GNM} />
+            <K label="8" on={() => push('8')} cls={GNM} />
+            <K label="9" on={() => push('9')} cls={GNM} />
+            <K label="÷" on={() => push('÷')} cls={GFN} />
+
+            {T(<span>log<sub>☐</sub></span>, 'log(')}
+            {T("☐!", "!")}
+            {T(">", ">")}
+            <K label="4" on={() => push('4')} cls={GNM} />
+            <K label="5" on={() => push('5')} cls={GNM} />
+            <K label="6" on={() => push('6')} cls={GNM} />
+            <K label="×" on={() => push('×')} cls={GFN} />
+
+            {T("i", "i")}
+            {T("%", "%")}
+            {T("≥", ">=")}
+            <K label="1" on={() => push('1')} cls={GNM} />
+            <K label="2" on={() => push('2')} cls={GNM} />
+            <K label="3" on={() => push('3')} cls={GNM} />
+            <K label="−" on={() => push('-')} cls={GFN} />
+
+            {T("x", "x")}
+            {T("y", "y")}
+            {T("=", "=")}
+            <K label="0" on={() => push('0')} cls={GNM} />
+            <K label="." on={() => push('.')} cls={GNM} />
+            <K label={<span>➤</span>} on={eq} cls={actionCls + " text-lg"} />
+            <K label="+" on={() => push('+')} cls={GFN} />
+          </>
+        )}
+
+        {tab === 'trig' && (
+          <>
+            {T("sin", "sin(")} {T("cos", "cos(")} {T("tan", "tan(")} 
+            <K label="(" on={() => push('(')} cls={GFN} />
+            <K label=")" on={() => push(')')} cls={GFN} />
+            <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-white" />
+            <K label="AC" on={ac} cls={GFN} />
+
+            {T("csc", "csc(")} {T("sec", "sec(")} {T("cot", "cot(")} 
+            <K label="7" on={() => push('7')} cls={GNM} />
+            <K label="8" on={() => push('8')} cls={GNM} />
+            <K label="9" on={() => push('9')} cls={GNM} />
+            <K label="÷" on={() => push('÷')} cls={GFN} />
+
+            {T("asin", "asin(")} {T("acos", "acos(")} {T("atan", "atan(")} 
+            <K label="4" on={() => push('4')} cls={GNM} />
+            <K label="5" on={() => push('5')} cls={GNM} />
+            <K label="6" on={() => push('6')} cls={GNM} />
+            <K label="×" on={() => push('×')} cls={GFN} />
+
+            {T(<span>☐<sup>2</sup></span>, "^2")} {T(<span>☐°</span>, "")} {T("π", "π")} 
+            <K label="1" on={() => push('1')} cls={GNM} />
+            <K label="2" on={() => push('2')} cls={GNM} />
+            <K label="3" on={() => push('3')} cls={GNM} />
+            <K label="−" on={() => push('-')} cls={GFN} />
+
+            {T("x", "x")} {T("y", "y")} {T("=", "=")} 
+            <K label="0" on={() => push('0')} cls={GNM} />
+            <K label="." on={() => push('.')} cls={GNM} />
+            <K label={<span>➤</span>} on={eq} cls={actionCls + " text-lg"} />
+            <K label="+" on={() => push('+')} cls={GFN} />
+          </>
+        )}
+
+        {tab === 'calculus' && (
+          <>
+            {T(<span>d/d☐</span>, "d")} {T("∞", "inf")} {T(<span>ⁿ√☐</span>, "sqrt(")} 
+            <K label="(" on={() => push('(')} cls={GFN} />
+            <K label=")" on={() => push(')')} cls={GFN} />
+            <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-white" />
+            <K label="AC" on={ac} cls={GFN} />
+
+            {T(<span>lim</span>, "lim")} {T(<span>lim⁺</span>, "lim+")} {T(<span>lim⁻</span>, "lim-")} 
+            <K label="7" on={() => push('7')} cls={GNM} />
+            <K label="8" on={() => push('8')} cls={GNM} />
+            <K label="9" on={() => push('9')} cls={GNM} />
+            <K label="÷" on={() => push('÷')} cls={GFN} />
+
+            {T(<span>log<sub>☐</sub></span>, "log")} {T("C(n,k)", "C")} {T("P(n,k)", "P")} 
+            <K label="4" on={() => push('4')} cls={GNM} />
+            <K label="5" on={() => push('5')} cls={GNM} />
+            <K label="6" on={() => push('6')} cls={GNM} />
+            <K label="×" on={() => push('×')} cls={GFN} />
+
+            {T("∑", "sum")} {T(<span>∫</span>, "int")} {T(<span>∫<sub>☐</sub><sup>☐</sup></span>, "defint")} 
+            <K label="1" on={() => push('1')} cls={GNM} />
+            <K label="2" on={() => push('2')} cls={GNM} />
+            <K label="3" on={() => push('3')} cls={GNM} />
+            <K label="−" on={() => push('-')} cls={GFN} />
+
+            {T("x", "x")} {T("y", "y")} {T("e", "e")} 
+            <K label="0" on={() => push('0')} cls={GNM} />
+            <K label="." on={() => push('.')} cls={GNM} />
+            <K label={<span>➤</span>} on={eq} cls={actionCls + " text-lg"} />
+            <K label="+" on={() => push('+')} cls={GFN} />
+          </>
+        )}
+      </div>
+    );
   };
-  const pal = P[tab];
-
-  /* ── ARROW ICON (Google solver send button) ── */
-  const Arrow = () => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-         stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>
-    </svg>
-  );
-
-  /* ── BACKSPACE ICON ── */
-  const BackIcon = () => (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-         stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 4H8l-7 8 7 8h13a2 2 0 002-2V6a2 2 0 00-2-2z"/>
-      <line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/>
-    </svg>
-  );
-
-  /* ═══════════════════════════════════════════════════════════════
-     SCIENTIFIC GRID — 7 columns, 5 rows, exactly like Image 1
-     ═══════════════════════════════════════════════════════════════ */
-  const SciGrid = () => (
-    <div className="grid grid-cols-5 sm:grid-cols-7 gap-1.5 sm:gap-[6px] px-3 sm:px-4 pb-4 pt-2">
-
-      {/* Row 1 — Deg|Rad  x!  (  )  %  AC */}
-      <div className="col-span-2 flex items-center justify-center gap-2 text-[13px] text-[#5f6368]">
-        <button onClick={() => setIsDeg(true)}
-          className={`font-medium hover:text-[#202124] transition-colors ${isDeg ? 'text-[#1a73e8]' : ''}`}>Deg</button>
-        <span className="text-[#dadce0] font-light">|</span>
-        <button onClick={() => setIsDeg(false)}
-          className={`font-medium hover:text-[#202124] transition-colors ${!isDeg ? 'text-[#1a73e8]' : ''}`}>Rad</button>
-      </div>
-      <K label="x!"                        on={() => push('!')}      cls={GFN} />
-      <K label="("                          on={() => push('(')}      cls={GFN} />
-      <K label=")"                          on={() => push(')')}      cls={GFN} />
-      <K label="%"                          on={() => push('%')}      cls={GFN} />
-      <K label="AC"                         on={ac}                   cls={GFN} />
-
-      {/* Row 2 — Inv  sin  ln   7  8  9  ÷ */}
-      <K label="Inv"                        on={() => {}}             cls={GFN} />
-      <K label="sin"                        on={() => push('sin(')}   cls={GFN} />
-      <K label="ln"                         on={() => push('ln(')}    cls={GFN} />
-      <K label="7"                          on={() => push('7')}      cls={GNM} />
-      <K label="8"                          on={() => push('8')}      cls={GNM} />
-      <K label="9"                          on={() => push('9')}      cls={GNM} />
-      <K label="÷"                          on={() => push('÷')}      cls={GFN} />
-
-      {/* Row 3 — π  cos  log   4  5  6  × */}
-      <K label="π"                          on={() => push('π')}      cls={GFN} />
-      <K label="cos"                        on={() => push('cos(')}   cls={GFN} />
-      <K label="log"                        on={() => push('log(')}   cls={GFN} />
-      <K label="4"                          on={() => push('4')}      cls={GNM} />
-      <K label="5"                          on={() => push('5')}      cls={GNM} />
-      <K label="6"                          on={() => push('6')}      cls={GNM} />
-      <K label="×"                          on={() => push('×')}      cls={GFN} />
-
-      {/* Row 4 — e  tan  √   1  2  3  − */}
-      <K label="e"                          on={() => push('e')}      cls={GFN} />
-      <K label="tan"                        on={() => push('tan(')}   cls={GFN} />
-      <K label="√"                          on={() => push('sqrt(')}  cls={GFN} />
-      <K label="1"                          on={() => push('1')}      cls={GNM} />
-      <K label="2"                          on={() => push('2')}      cls={GNM} />
-      <K label="3"                          on={() => push('3')}      cls={GNM} />
-      <K label="−"                          on={() => push('-')}      cls={GFN} />
-
-      {/* Row 5 — Ans  EXP  xʸ   0  .  =  + */}
-      <K label="Ans"                        on={() => push(disp)}     cls={GFN} />
-      <K label="EXP"                        on={() => push('EXP')}    cls={GFN} />
-      <K label={<span>x<sup>y</sup></span>} on={() => push('^')}      cls={GFN} />
-      <K label="0"                          on={() => push('0')}      cls={GNM} />
-      <K label="."                          on={() => push('.')}      cls={GNM} />
-      <K label="="                          on={eq}                   cls={GEQ} />
-      <K label="+"                          on={() => push('+')}      cls={GFN} />
-    </div>
-  );
-
-  /* ═══════════════════════════════════════════════════════════════
-     SHARED NUMPAD (right 4 cols of solver)  — Images 2, 3, 4
-     ═══════════════════════════════════════════════════════════════ */
-  const NumPad = () => (
-    <>
-      <K label="("           on={() => push('(')}    cls={GFN} />
-      <K label=")"           on={() => push(')')}    cls={GFN} />
-      <K label={<BackIcon/>} on={del}                cls={GFN} />
-      <K label="AC"          on={ac}                 cls={GFN} />
-      {[7,8,9].map(n => <K key={n} label={n} on={() => push(String(n))} cls={GNM} />)}
-      <K label="÷"           on={() => push('÷')}    cls={GFN} />
-      {[4,5,6].map(n => <K key={n} label={n} on={() => push(String(n))} cls={GNM} />)}
-      <K label="×"           on={() => push('×')}    cls={GFN} />
-      {[1,2,3].map(n => <K key={n} label={n} on={() => push(String(n))} cls={GNM} />)}
-      <K label="−"           on={() => push('-')}    cls={GFN} />
-      <K label="0"           on={() => push('0')}    cls={GNM} />
-      <K label="."           on={() => push('.')}    cls={GNM} />
-      <K label={<Arrow/>}    on={eq}                 cls={pal.s} />
-      <K label="+"           on={() => push('+')}    cls={GFN} />
-    </>
-  );
-
-  /* ── ALGEBRA LEFT KEYS — Image 2 (purple) ── */
-  const AlgKeys = () => (
-    <>
-      <K label={<span>□<sup>□</sup></span>}           on={() => push('^')}        cls={pal.k} />
-      <K label="ⁿ√□"                                  on={() => push('sqrt(')}    cls={pal.k} />
-      <K label="&lt;"                                  on={() => push('<')}        cls={pal.k} />
-      <K label={<span className="flex flex-col items-center leading-none text-[13px]"><span>□</span><span className="border-t border-current mt-px">□</span></span>} on={() => push('/')} cls={pal.k} />
-      <K label="[ ]"                                   on={() => push('[')}        cls={pal.k} />
-      <K label="≤"                                     on={() => push('<=')}       cls={pal.k} />
-      <K label={<span>log<sub>□</sub></span>}           on={() => push('log(')}    cls={pal.k} />
-      <K label="□!"                                    on={() => push('!')}        cls={pal.k} />
-      <K label="&gt;"                                  on={() => push('>')}        cls={pal.k} />
-      <K label={<em>i</em>}                            on={() => push('i')}        cls={pal.k} />
-      <K label="%"                                     on={() => push('%')}        cls={pal.k} />
-      <K label="≥"                                     on={() => push('>=')}       cls={pal.k} />
-      <K label={<em className="font-serif">x</em>}    on={() => push('x')}        cls={pal.k} />
-      <K label={<em className="font-serif">y</em>}    on={() => push('y')}        cls={pal.k} />
-      <K label="="                                     on={() => push('=')}        cls={pal.k} />
-    </>
-  );
-
-  /* ── TRIG LEFT KEYS — Image 3 (green) ── */
-  const TrigKeys = () => (
-    <>
-      <K label="sin"    on={() => push('sin(')}   cls={pal.k} />
-      <K label="cos"    on={() => push('cos(')}   cls={pal.k} />
-      <K label="tan"    on={() => push('tan(')}   cls={pal.k} />
-      <K label="csc"    on={() => push('csc(')}   cls={pal.k} />
-      <K label="sec"    on={() => push('sec(')}   cls={pal.k} />
-      <K label="cot"    on={() => push('cot(')}   cls={pal.k} />
-      <K label="arcsin" on={() => push('asin(')}  cls={pal.k} />
-      <K label="arccos" on={() => push('acos(')}  cls={pal.k} />
-      <K label="arctan" on={() => push('atan(')}  cls={pal.k} />
-      <K label={<span>□<sup>2</sup></span>}  on={() => push('^2')}    cls={pal.k} />
-      <K label={<span>□<sup>°</sup></span>}  on={() => push('°')}     cls={pal.k} />
-      <K label="π"      on={() => push('π')}       cls={pal.k} />
-      <K label={<em className="font-serif">x</em>} on={() => push('x')} cls={pal.k} />
-      <K label={<em className="font-serif">y</em>} on={() => push('y')} cls={pal.k} />
-      <K label="="      on={() => push('=')}        cls={pal.k} />
-    </>
-  );
-
-  /* ── CALCULUS LEFT KEYS — Image 4 (red) ── */
-  const CalcKeys = () => (
-    <>
-      <K label={<div className="flex flex-col items-center text-[12px] leading-none"><span className="border-b border-current font-medium px-px">d</span><span className="font-medium">d□</span></div>} on={() => push('d/dx ')} cls={pal.k} />
-      <K label="∞"      on={() => push('∞')}        cls={pal.k} />
-      <K label="ⁿ√□"    on={() => push('sqrt(')}    cls={pal.k} />
-      <K label={<span>lim<sub>□→0</sub></span>}    on={() => push('lim ')}   cls={pal.k} />
-      <K label={<span>lim<sub>□→0⁺</sub></span>}   on={() => push('lim+ ')}  cls={pal.k} />
-      <K label={<span>lim<sub>□→0⁻</sub></span>}   on={() => push('lim- ')}  cls={pal.k} />
-      <K label={<span>log<sub>□</sub></span>}       on={() => push('log(')}   cls={pal.k} />
-      <K label="C(n,k)" on={() => push('C(')}        cls={pal.k} />
-      <K label="P(n,k)" on={() => push('P(')}        cls={pal.k} />
-      <K label="Σ"      on={() => push('Σ ')}        cls={pal.k} />
-      <K label={<span className="text-lg">∫</span>} on={() => push('∫ ')} cls={pal.k} />
-      <K label={<span>∫<sub>a</sub><sup>b</sup></span>} on={() => push('∫_a^b ')} cls={pal.k} />
-      <K label={<em className="font-serif">x</em>} on={() => push('x')} cls={pal.k} />
-      <K label={<em className="font-serif">y</em>} on={() => push('y')} cls={pal.k} />
-      <K label="e"      on={() => push('e')}          cls={pal.k} />
-    </>
-  );
-
-  /* ── SOLVER FULL GRID ── */
-  const SolverGrid = () => (
-    <div className="grid grid-cols-5 sm:grid-cols-7 gap-1.5 sm:gap-[6px] px-3 sm:px-4 pb-4 pt-2">
-      {/* Left 3 cols: tab-specific operator keys */}
-      <div className="col-span-3 grid grid-cols-3 gap-[6px]">
-        {tab === 'algebra'  && <AlgKeys />}
-        {tab === 'trig'     && <TrigKeys />}
-        {tab === 'calculus' && <CalcKeys />}
-      </div>
-      {/* Right 4 cols: numpad */}
-      <div className="col-span-4 grid grid-cols-4 gap-[6px]">
-        <NumPad />
-      </div>
-    </div>
-  );
-
-  /* ── TAB STYLES ── */
-  const tClr = { algebra: '#7c3aed', trig: '#188038', calculus: '#c5221f' };
 
   /* ═══════════════════════════════════════════════════════════════
      RENDER
      ═══════════════════════════════════════════════════════════════ */
   return (
-    <div className="flex justify-center w-full font-[Google_Sans,Roboto,sans-serif]">
+    <div className="flex justify-center w-full font-[Google_Sans,Roboto,sans-serif] animate-fade-in group/calc">
       <div
-        className="w-full bg-white border border-[#dadce0] overflow-hidden"
-        style={{ maxWidth: 660, borderRadius: 28, boxShadow: '0 2px 10px rgba(0,0,0,0.08)' }}
+        className="w-full bg-[#FFFFFF] border border-[#DADCE0] overflow-hidden"
+        style={{ maxWidth: 720, borderRadius: '1.5rem', boxShadow: '0 1px 6px rgba(32,33,36,0.28)' }}
       >
 
-        {/* ── DISPLAY ──────────────────────────────────────────── */}
-        {mode === 'sci' ? (
-          <div className="px-5 pt-5 pb-3 flex flex-col min-h-[110px] border-b border-[#f1f3f4]">
-            {/* Top row: history icon + expression echo */}
-            <div className="flex items-center justify-between mb-2 text-[#9aa0a6]">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-              </svg>
-              <span className="text-[13px] truncate max-w-[80%] text-right">{expr || ''}</span>
-            </div>
-            {/* Big number */}
-            <div className="text-right text-[44px] font-light text-[#202124] tracking-tight leading-none truncate">
-              {answered ? disp : (expr || '0')}
-            </div>
-          </div>
-        ) : (
-          /* ── SOLVER HEADER ─────────────────────────────────── */
-          <div className="px-5 pt-4 pb-0 border-b border-[#f1f3f4]">
-            {/* Title row */}
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-[17px] font-medium text-[#202124]">Maths solver</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5f6368" strokeWidth="2" strokeLinecap="round">
-                <circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/>
-              </svg>
-            </div>
-            {/* Input field */}
-            <div className="relative border border-[#dadce0] rounded-2xl px-4 py-3 mb-3 focus-within:border-[#1a73e8] focus-within:shadow-[inset_0_0_0_1px_#1a73e8] transition-all bg-white">
-              <input
-                type="text"
-                value={expr}
-                onChange={ev => { setExpr(ev.target.value); setAnswered(false); }}
-                placeholder="Enter a problem"
-                className="w-full text-[20px] text-[#202124] bg-transparent outline-none placeholder:text-[#bdc1c6]"
-              />
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col text-[#9aa0a6]">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="18 15 12 9 6 15"/></svg>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        {/* ── HEADER ─────────────────── */}
+        <div className="p-4 sm:p-6 pb-2">
+           {mode === 'solver' && (
+              <div className="flex items-center justify-between mb-4 px-2">
+                 <h2 className="text-[22px] font-medium text-[#202124]">Maths solver</h2>
+                 <button className="p-1 hover:bg-slate-100 rounded-full">
+                    <HistoryIcon />
+                 </button>
               </div>
-            </div>
-            {/* Tabs */}
-            <div className="flex gap-5 text-[13px]">
-              {(['algebra', 'trig', 'calculus'] as const).map(t => {
-                const active = tab === t;
-                const label = t === 'trig' ? 'Trigonometry' : t === 'calculus' ? 'Calculus' : 'Algebra';
-                return (
-                  <button
-                    key={t}
-                    onClick={() => setTab(t)}
-                    className="pb-2.5 font-medium transition-colors"
-                    style={{
-                      color: active ? tClr[t] : '#5f6368',
-                      borderBottom: active ? `2px solid ${tClr[t]}` : '2px solid transparent',
-                    }}
-                  >
-                    {label}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
+           )}
 
-        {/* ── KEYPAD ───────────────────────────────────────────── */}
-        {mode === 'sci' ? <SciGrid /> : <SolverGrid />}
+           <div className={`relative border border-[#DADCE0] rounded-xl px-4 py-8 flex items-center transition-all ${mode === 'solver' ? 'min-h-[100px]' : 'min-h-[80px]'}`}>
+              {mode === 'sci' && (
+                 <div className="absolute left-4 top-4">
+                    <HistoryIcon />
+                 </div>
+              )}
+              <div className="flex-1 text-right text-[44px] sm:text-[54px] font-light text-[#202124] tracking-tight leading-none truncate">
+                 {answered ? disp : (expr || '0')}
+              </div>
+              {mode === 'solver' && (
+                 <div className="absolute right-4 bottom-2 flex flex-col gap-1">
+                    <ChevronRight className="w-4 h-4 rotate-[270deg] opacity-60" />
+                    <ChevronRight className="w-4 h-4 rotate-90 opacity-60" />
+                 </div>
+              )}
+           </div>
 
-        {/* ── BOTTOM STRIP ─────────────────────────────────────── */}
-        {mode === 'sci' ? (
-          /* "Maths solver ›" pill */
-          <div className="border-t border-[#f1f3f4] flex justify-center py-2.5 bg-slate-50/50 mt-1">
-            <button
-              onClick={() => { setMode('solver'); setExpr(''); setAnswered(false); }}
-              className="flex items-center gap-1.5 text-[12px] font-bold text-slate-600
-                         bg-white border border-slate-200 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600 rounded-full px-5 py-1.5 transition-all shadow-sm"
-            >
-              Maths solver
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-          </div>
-        ) : (
-          /* example-equations strip + collapse button */
-          <div className="border-t border-[#f1f3f4] px-4 py-3 flex items-center justify-between bg-[#fafafa]">
-            <div className="flex gap-2 flex-wrap">
-              {['6x + 5 = 14', '(x+5)(x+2)', '4x²−5x=12'].map(ex => (
-                <button
-                  key={ex}
-                  onClick={() => { setExpr(ex); setAnswered(false); }}
-                  className="text-[12px] border border-[#dadce0] rounded-full px-3 py-1.5
-                             bg-white hover:bg-[#f1f3f4] text-[#202124] transition-colors"
-                >
-                  {ex}
-                </button>
-              ))}
-            </div>
-            <button
-              onClick={() => setMode('sci')}
-              title="Close Maths solver"
-              className="ml-3 text-[#5f6368] hover:text-[#202124] transition-colors shrink-0"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="18 15 12 9 6 15"/></svg>
-            </button>
-          </div>
-        )}
+           {mode === 'solver' && (
+              <div className="flex items-center gap-8 mt-4 border-b border-[#DADCE0] px-2 overflow-x-auto no-scrollbar">
+                 {[
+                   { id: 'algebra', label: 'Algebra' },
+                   { id: 'trig',    label: 'Trigonometry' },
+                   { id: 'calculus', label: 'Calculus' },
+                 ].map((t) => (
+                   <button
+                     key={t.id}
+                     onClick={() => setTab(t.id as any)}
+                     className={`pb-3 text-[14px] font-medium transition-all relative ${
+                       tab === t.id ? 'text-[#1A73E8]' : 'text-[#70757A] hover:text-[#202124]'
+                     }`}
+                   >
+                     {t.label}
+                     {tab === t.id && <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#1A73E8] rounded-t-full" />}
+                   </button>
+                 ))}
+              </div>
+           )}
+        </div>
+
+        {/* ── KEYPAD ───────────────────────────────────── */}
+        {mode === 'sci' ? <SciKeypad /> : <SolverKeypad />}
+
+        {/* ── BOTTOM TOGGLE ───────────────────────────── */}
+        <SolverToggle />
 
       </div>
     </div>

@@ -10,32 +10,85 @@ export default function HomePage() {
       <JsonLd type="website" />
       <JsonLd type="organization" />
       
-      <div className="min-h-screen bg-white font-sans antialiased text-[14px]">
-        {/* 1. Precision Tool Console */}
-        <section className="pt-20 sm:pt-32 pb-8 sm:pb-16 border-b border-[#F1F3F4] bg-white relative">
-          <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-10 flex flex-col items-center">
-            <div className="text-center mb-10 md:mb-14 relative z-10 w-full max-w-[900px]">
-               <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-[#202124] mb-4 tracking-tighter leading-tight">
+      <div className="min-h-screen bg-[var(--bg-page)] font-sans antialiased text-[14px]">
+        {/* 1. Precision Tool Console (MOCKUP EXACT RECONSTRUCTION) */}
+        <section className="pt-24 pb-20 border-b border-[#F1F3F4] bg-white relative overflow-hidden">
+          
+          {/* Mockup Background: Grid + Formulas */}
+          <div className="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" 
+               style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
+          </div>
+          
+          {/* Floating Math Elements */}
+          <div className="absolute inset-0 z-0 opacity-10 pointer-events-none select-none">
+             <span className="absolute top-[15%] left-[10%] text-xl font-serif italic text-slate-400">nx&apos; = k²w³</span>
+             <span className="absolute top-[30%] left-[4%] text-lg font-serif text-slate-300">f(x) = ∫ ...</span>
+             <span className="absolute bottom-[30%] left-[8%] text-2xl font-serif text-slate-300">A = πr²</span>
+             <span className="absolute top-[10%] right-[15%] text-2xl font-serif text-slate-300">E = mc²</span>
+             <span className="absolute bottom-[20%] right-[10%] text-xl font-serif text-slate-300">∑(xᵢ + hⱼ)</span>
+             <span className="absolute top-[40%] right-[25%] text-lg font-serif text-slate-200 italic">2πn = λ</span>
+          </div>
+
+          {/* Area Chart Visualization */}
+          <div className="absolute bottom-0 right-0 w-[60%] h-[400px] opacity-20 pointer-events-none z-0">
+             <svg viewBox="0 0 1000 500" className="w-full h-full" preserveAspectRatio="none">
+               <defs>
+                 <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                   <stop offset="0%" stopColor="#1A73E8" stopOpacity="0.4" />
+                   <stop offset="100%" stopColor="#1A73E8" stopOpacity="0" />
+                 </linearGradient>
+               </defs>
+               <path d="M0,500 L0,450 C100,430 200,480 300,420 C400,360 500,450 600,400 C700,350 800,200 900,250 L1000,150 L1000,500 Z" fill="url(#chartGrad)" />
+               <path d="M0,450 C100,430 200,480 300,420 C400,360 500,450 600,400 C700,350 800,200 900,250 L1000,150" fill="none" stroke="#1A73E8" strokeWidth="4" />
+             </svg>
+          </div>
+
+          <div className="hp-container flex flex-col items-center relative z-10">
+            {/* Heading Stacking As Per Mockup */}
+            <div className="text-center mb-12 w-full animate-fade-in">
+               <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-[#202124] tracking-tighter leading-[0.85] mb-4">
                  Precision <span className="text-[#1A73E8]">Laboratory</span>
                </h1>
-               <p className="text-[#5F6368] text-base sm:text-lg font-medium tracking-tight">Access Nepal&apos;s authoritative suite of financial, tax, and professional utility calculators.</p>
             </div>
             
-            <div className="w-full relative z-10">
-              <HomePageCalculatorClient />
+            <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-16">
+               {/* Left Precision Callout (PIXEL ACCURATE TO MOCKUP) */}
+               <div className="lg:w-[150px] flex justify-center lg:justify-end animate-fade-in [animation-delay:400ms]">
+                  <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white border border-slate-200 shadow-xl shadow-slate-200/20 text-[#1A73E8] font-black text-[11px] uppercase tracking-widest group cursor-pointer hover:border-[#1A73E8] transition-all">
+                    <div className="w-5 h-5 rounded-full border-2 border-[#1A73E8] flex items-center justify-center p-0.5">
+                       <div className="w-full h-full rounded-full bg-[#1A73E8] opacity-20 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                    Precision
+                  </div>
+               </div>
+
+               {/* Centerpiece Calculator */}
+               <div className="w-full max-w-[560px] relative z-20 animate-slide-up [animation-delay:200ms] shadow-2xl">
+                  <HomePageCalculatorClient />
+               </div>
+
+               {/* Right Side Spacer Area */}
+               <div className="hidden lg:block lg:w-[150px]" />
+            </div>
+
+            {/* Subtext description below focal point */}
+            <div className="mt-20 text-center max-w-2xl px-4 animate-fade-in [animation-delay:600ms]">
+               <p className="text-[#5F6368] text-lg sm:text-xl font-medium tracking-tight leading-relaxed opacity-80">
+                  The authoritative calculation ecosystem for Nepal professionals. Engineered for accuracy. Built for speed.
+               </p>
             </div>
           </div>
         </section>
 
         {/* 2. Calculator Directory - High-Precision Server Component Rendering */}
         <main className="max-w-[1400px] mx-auto px-4 sm:px-8 pt-6 pb-4 sm:pt-8 sm:pb-6">
-          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 sm:mb-10 border-b-2 border-slate-100 pb-5 gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-8 sm:mb-10 border-b border-[#F1F3F4] pb-6 gap-4">
             <div>
-              <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Calculator Directory</h2>
-              <p className="text-slate-500 text-xs sm:text-sm mt-1">Browse 75+ Professional Tools — 100% Mobile Optimized</p>
+              <h2 className="text-xl sm:text-2xl font-black text-[#202124] tracking-tight uppercase">Calculator Directory</h2>
+              <p className="text-[#5F6368] text-xs sm:text-sm mt-1 font-medium">Browse 75+ Professional Tools — 100% Mobile Optimized</p>
             </div>
-            <span className="text-[11px] font-bold text-emerald-700 uppercase tracking-wide bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full shrink-0 shadow-sm inline-flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Verified Nepal Specific Data
+            <span className="text-[10px] font-black text-[#188038] uppercase tracking-widest bg-emerald-50 border border-emerald-100 px-4 py-2 rounded-full shrink-0 shadow-sm inline-flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#188038] animate-pulse"></span> Verified Nepal Data
             </span>
           </div>
 
@@ -59,18 +112,18 @@ export default function HomePage() {
                         .sort((a, b) => ((b.isHot ? 2 : 0) + (b.isNew ? 1 : 0)) - ((a.isHot ? 2 : 0) + (a.isNew ? 1 : 0)))
                         .slice(0, 10)
                         .map(calc => (
-                          <li key={calc.id} className="flex items-center gap-2">
+                          <li key={calc.id} className="flex items-center gap-2 group/link">
                             <Link
                               href={`/calculator/${calc.slug}`}
-                              className="text-[14px] text-slate-700 hover:text-blue-600 font-semibold leading-snug flex-1 transition-colors duration-200 hover:underline underline-offset-2"
+                              className="text-[14px] text-slate-700 hover:text-blue-600 font-semibold leading-snug flex-1 transition-all duration-200 hover:translate-x-1"
                             >
                               {calc.name}
                             </Link>
                             {calc.isHot && (
-                              <span className="text-[9px] font-black bg-orange-500 text-white px-1.5 py-0.5 rounded-full uppercase tracking-tight shrink-0 shadow-sm shadow-orange-500/20">HOT</span>
+                              <span className="text-[9px] font-black bg-orange-500 text-white px-1.5 py-0.5 rounded-full uppercase tracking-tight shrink-0 shadow-sm shadow-orange-500/20 animate-pulse-subtle">HOT</span>
                             )}
                             {!calc.isHot && calc.isNew && (
-                              <span className="text-[9px] font-black bg-blue-500 text-white px-1.5 py-0.5 rounded-full uppercase tracking-tight shrink-0 shadow-sm shadow-blue-500/20">NEW</span>
+                              <span className="text-[9px] font-black bg-blue-500 text-white px-1.5 py-0.5 rounded-full uppercase tracking-tight shrink-0 shadow-sm shadow-blue-500/20 animate-pulse-subtle">NEW</span>
                             )}
                           </li>
                         ))}

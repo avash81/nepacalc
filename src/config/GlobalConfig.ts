@@ -11,9 +11,9 @@ export const GLOBAL_CONFIG = {
   NEXT_FISCAL_YEAR: '2083/84',
   
   // SEO Defaults
-  SITE_NAME: 'NepCalc',
-  TAGLINE: 'Nepal’s #1 Precision Utility Suite',
-  SITE_URL: 'https://nepcalc.com',
+  SITE_NAME: 'NEPACALC',
+  TAGLINE: 'Nepal’s Precision Mathematical Laboratory',
+  SITE_URL: 'https://nepacalc.com',
   
   // Premium Layout Tokens (Google Material Precision)
   THEME_COLOR: '#FFFFFF',

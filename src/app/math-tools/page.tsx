@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Activity, Calculator, Grid, Hexagon, AlignLeft, ChevronRight } from 'lucide-react';
+import { Activity, Calculator, Grid, Hexagon, AlignLeft, ChevronRight, Zap } from 'lucide-react';
 
 const MATH_TOOLS = [
   {
@@ -9,107 +9,111 @@ const MATH_TOOLS = [
     description: 'Explore math with our beautiful, free online graphing calculator. Graph functions, plot points, visualize algebraic equations.',
     icon: Activity,
     path: '/math-tools/calculator',
-    color: 'bg-green-600',
-    hoverColor: 'group-hover:bg-green-700'
+    tag: 'Flagship Tool'
   },
   {
     title: 'Scientific Calculator',
-    description: 'A beautiful, free online scientific calculator with advanced features for evaluating percentages, fractions, exponential functions, and logarithms.',
+    description: 'Advanced features for evaluating percentages, fractions, exponential functions, and logarithms.',
     icon: Calculator,
     path: '/math-tools/scientific',
-    color: 'bg-blue-600',
-    hoverColor: 'group-hover:bg-blue-700'
-  },
-  {
-    title: 'Four Function',
-    description: 'A simple, beautiful, free online four function calculator.',
-    icon: Calculator,
-    path: '/math-tools/fourfunction',
-    color: 'bg-blue-600',
-    hoverColor: 'group-hover:bg-blue-700'
-  },
-  {
-    title: 'Matrix Calculator',
-    description: 'A beautiful, free online matrix calculator. Perform arithmetic operations, find the determinant, inverse, or REF of matrices.',
-    icon: Grid,
-    path: '/math-tools/matrix',
-    color: 'bg-indigo-600',
-    hoverColor: 'group-hover:bg-indigo-700'
-  },
-  {
-    title: 'Test Practice',
-    description: 'Practice using the testing versions of our calculators in a secure, locked environment.',
-    icon: AlignLeft,
-    path: '/math-tools/practice',
-    color: 'bg-orange-600',
-    hoverColor: 'group-hover:bg-orange-700'
   },
   {
     title: 'Geometry Tool',
-    description: 'Explore geometry with our beautiful, free online geometry tool. Construct polygons, transform objects, and explore spatial math.',
+    description: 'Explore geometry construct polygons, transform objects, and explore spatial math concepts visually.',
     icon: Hexagon,
     path: '/math-tools/geometry',
-    color: 'bg-purple-600',
-    hoverColor: 'group-hover:bg-purple-700'
+  },
+  {
+    title: 'Matrix Calculator',
+    description: 'Perform arithmetic operations, find the determinant, inverse, or REF of matrices in a laboratory environment.',
+    icon: Grid,
+    path: '/math-tools/matrix',
   },
   {
     title: '3D Calculator',
-    description: 'Explore 3D math with our beautiful, free online 3D calculator. Graph surfaces, visualize vector fields, and plot parameterized curves.',
+    description: 'Graph surfaces, visualize vector fields, and plot parameterized curves in three-dimensional space.',
     icon: Hexagon,
     path: '/math-tools/3d',
-    color: 'bg-teal-600',
-    hoverColor: 'group-hover:bg-teal-700'
+  },
+  {
+    title: 'Test Practice',
+    description: 'Practice using the testing versions of our calculators in a secure, high-precision environment.',
+    icon: AlignLeft,
+    path: '/math-tools/practice',
   }
 ];
 
 export default function MathToolsPillarPage() {
   return (
-    <div className="w-full flex-1 flex flex-col pt-12 pb-24">
-      {/* Hero Section */}
-      <div className="max-w-6xl mx-auto px-6 w-full mb-20 text-center">
-         <h1 className="text-5xl md:text-7xl font-black text-gray-900 tracking-tighter mb-6">
-            Explore Math.
+    <div className="w-full min-h-screen bg-[#F1F3F4] flex flex-col pt-14 relative overflow-hidden">
+      
+      {/* 🔬 SCIENTIFIC GRID BACKGROUND (MATCHING HOME) */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-0" 
+           style={{ backgroundImage: 'radial-gradient(#202124 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+      <div className="absolute inset-0 pointer-events-none opacity-[0.05] z-0" 
+           style={{ backgroundImage: 'linear-gradient(#202124 1px, transparent 1px), linear-gradient(90deg, #202124 1px, transparent 1px)', backgroundSize: '128px 128px' }}></div>
+
+      {/* Hero Section: Mathematical Laboratory */}
+      <div className="hp-container relative z-10 pt-20 pb-16 text-center">
+         <div className="flex items-center justify-center gap-2 text-[#1A73E8] font-black uppercase tracking-[0.3em] text-[10px] mb-6">
+            <Zap className="w-4 h-4 fill-current" /> Verified Laboratory Standards
+         </div>
+         <h1 className="text-6xl sm:text-8xl font-black text-[#202124] tracking-tighter leading-none mb-8">
+            Mathematical <span className="text-[#1A73E8]">Laboratory</span>
          </h1>
-         <p className="text-xl md:text-2xl text-gray-500 font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
-            Beautiful, free math tools built to help students discover and explore mathematical concepts visually.
+         <p className="text-xl text-[#5F6368] font-medium max-w-2xl mx-auto mb-12 leading-relaxed opacity-80">
+            Professional-grade mathematical visualization tools engineered for precision, speed, and deep scientific exploration.
          </p>
          
          <Link 
            href="/math-tools/calculator"
-           className="inline-flex items-center gap-3 bg-green-600 text-white px-8 py-4 rounded-lg font-bold text-lg md:text-xl shadow-lg hover:bg-green-700 hover:shadow-xl transition-all hover:-translate-y-1"
+           className="inline-flex items-center gap-4 bg-[#1A73E8] text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-[11px] shadow-2xl shadow-blue-500/20 hover:bg-blue-700 hover:shadow-blue-500/40 transition-all hover:-translate-y-1 active:scale-95"
          >
-           <Activity className="w-6 h-6" />
-           Graphing Calculator
+           Launch Graphing Console
          </Link>
       </div>
 
-      {/* Grid Section */}
-      <div className="bg-gray-50 flex-1 border-t border-gray-200">
-        <div className="max-w-6xl mx-auto px-6 py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-             {MATH_TOOLS.slice(1).map(tool => {
+      {/* Directory Section: Laboratory Sheet */}
+      <div className="flex-1 relative z-10 px-4 pb-24">
+        <div className="hp-container">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-1 bg-[#DADCE0] border border-[#DADCE0] rounded-[2.5rem] overflow-hidden shadow-2xl">
+             {MATH_TOOLS.map(tool => {
                const Icon = tool.icon;
                return (
                  <Link 
                    key={tool.path}
                    href={tool.path}
-                   className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl transition-all hover:border-gray-300 flex flex-col h-full"
+                   className="group bg-white p-10 hover:bg-[#F8F9FA] transition-all flex flex-col h-full border-[0.5px] border-[#DADCE0]/10"
                  >
-                    <div className={`w-12 h-12 rounded-xl text-white flex items-center justify-center mb-6 transition-colors shadow-sm ${tool.color} ${tool.hoverColor}`}>
-                       <Icon className="w-6 h-6" />
+                    <div className="mb-8 flex justify-between items-start">
+                       <div className="w-14 h-14 rounded-2xl bg-[#E8F0FE] text-[#1A73E8] flex items-center justify-center transition-all group-hover:scale-110 group-hover:bg-[#1A73E8] group-hover:text-white shadow-sm">
+                          <Icon className="w-6 h-6" />
+                       </div>
+                       {tool.tag && (
+                         <span className="text-[9px] font-black uppercase tracking-widest px-3 py-1 bg-[#E8F0FE] text-[#1A73E8] rounded-full">
+                           {tool.tag}
+                         </span>
+                       )}
                     </div>
-                    <h2 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                    
+                    <h2 className="text-2xl font-black text-[#202124] mb-4 tracking-tight group-hover:text-[#1A73E8] transition-colors">
                       {tool.title}
                     </h2>
-                    <p className="text-gray-500 leading-relaxed font-medium flex-1">
+                    <p className="text-[#5F6368] leading-relaxed font-medium flex-1 text-[15px] opacity-80 group-hover:opacity-100 transition-opacity">
                       {tool.description}
                     </p>
-                    <div className="mt-6 flex items-center gap-2 text-sm font-bold text-gray-400 group-hover:text-blue-600 transition-colors">
-                       Open {tool.title} <ChevronRight className="w-4 h-4" />
+                    
+                    <div className="mt-10 flex items-center justify-between text-[11px] font-black uppercase tracking-widest text-[#1A73E8] opacity-0 group-hover:opacity-100 transition-all transform translate-x-[-10px] group-hover:translate-x-0">
+                       <span>Initialize Tool</span>
+                       <ChevronRight className="w-4 h-4" />
                     </div>
                  </Link>
                )
              })}
+          </div>
+
+          <div className="mt-16 text-center text-[#5F6368] text-[11px] font-black uppercase tracking-[0.3em] opacity-40">
+             Laboratory Session ID: NC-MATH-2026-B
           </div>
         </div>
       </div>

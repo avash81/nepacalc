@@ -1,5 +1,6 @@
 'use client';
 
+import { Logo } from '@/components/ui/Logo';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Calculator, Grid, Hexagon, AlignLeft, Menu, Activity, X } from 'lucide-react';
@@ -26,9 +27,7 @@ export function MathTopNav() {
       <header className="h-[50px] w-full bg-white border-b border-gray-300 flex items-center justify-between px-4 z-[9000] fixed top-0 left-0 right-0 select-none shadow-[0_1px_3px_rgba(0,0,0,0.05)]">
         <div className="flex items-center gap-6 h-full">
           <Link href="/" className="hover:opacity-80 transition-opacity">
-            <span className="text-xl tracking-tighter font-black text-slate-800 uppercase italic">
-              Equaly
-            </span>
+            <Logo size="sm" />
           </Link>
           
           <div className="h-6 w-px bg-gray-300 hidden md:block"></div>

@@ -19,8 +19,8 @@ interface JsonLdProps {
 }
 
 export function JsonLd({ type, name, description, url, faqs, category = 'UtilitiesApplication' }: JsonLdProps) {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://nepcalc.com';
-  const siteName = 'NepCalc';
+  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://nepacalc.com';
+  const siteName = 'NEPACALC';
 
   const schemas: Record<string, object> = {
     organization: {
@@ -30,20 +30,20 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
       url: base,
       logo: `${base}/logo.png`,
       sameAs: [
-        'https://facebook.com/calcly',
-        'https://twitter.com/calcly',
-        'https://linkedin.com/company/calcly'
+        'https://facebook.com/nepacalc',
+        'https://twitter.com/nepacalc',
+        'https://linkedin.com/company/nepacalc'
       ],
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'customer support',
-        email: 'support@calcly.com'
+        email: 'support@nepacalc.com'
       }
     },
     website: {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      description: 'Free online professional calculators for Nepal — income tax 2082/83, EMI, BMI, Nepali date and 80+ tools',
+      description: 'Free online professional calculators for Nepal — income tax, EMI, BMI, and 80+ specialized laboratory tools.',
       potentialAction: {
         '@type': 'SearchAction',
         target: `${base}/search?q={search_term_string}`,
@@ -53,8 +53,8 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
     calculator: {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: name || 'Equaly Calculator',
-      description: description || 'Free online mathematical tool',
+      name: name || 'NEPACALC Laboratory Tool',
+      description: description || 'Professional mathematical visualization and calculation tool.',
       url: url || base,
       applicationCategory: category,
       operatingSystem: 'Any',
@@ -66,13 +66,13 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
       inLanguage: ['en-NP', 'en-US'],
       creator: {
         '@type': 'Organization',
-        name: 'Equaly',
+        name: 'NEPACALC',
         url: base,
       },
       featureList: [
-        'Free online calculation',
-        'Real-time results',
-        'Nepal specific regulations (FY 2082/83)',
+        'High-precision numeric engine',
+        'Real-time scientific visualization',
+        'Authorized Laboratory Standards',
         'Mobile optimization'
       ],
       aggregateRating: {

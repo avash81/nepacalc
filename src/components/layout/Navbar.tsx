@@ -55,10 +55,10 @@ export function Navbar() {
   useEffect(() => setIsMenuOpen(false), [path]);
 
   const navLinks = [
-    { name: 'Math Tools', href: '/math-tools' },
-    { name: 'Directory', href: '/calculator' },
-    { name: 'Financial', href: '/calculator/category/finance' },
-    { name: 'Blog', href: '/blog' },
+    { name: 'Calculators', href: '/calculator' },
+    { name: 'Solutions',   href: '/solutions' },
+    { name: 'Resources',   href: '/blog' },
+    { name: 'Pricing',     href: '/pricing' },
   ];
 
   if (path.startsWith('/math-tools')) return null;
@@ -69,23 +69,26 @@ export function Navbar() {
         <div className="hp-container h-full flex items-center justify-between">
           
           {/* Left: Logo + Desktop Links */}
-          <div className="flex items-center gap-6">
-            <Link href="/" className="hover:opacity-80 transition-opacity flex items-center gap-2">
-               <span className="text-lg font-black tracking-tighter uppercase italic text-[#1A73E8]">NepCalc</span>
+          <div className="flex items-center gap-8">
+            <Link href="/" className="hover:opacity-80 transition-opacity">
+               <Logo size="sm" />
             </Link>
             
-            <div className="hidden md:flex items-center gap-1 h-11">
+            <div className="hidden md:flex items-center gap-1 h-14">
               {navLinks.map((link) => {
                 const active = path === link.href || (link.href !== '/' && path.startsWith(link.href));
+                const hasSub = ['Calculators', 'Solutions', 'Resources'].includes(link.name);
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-3 h-14 flex items-center text-[11px] font-black uppercase tracking-widest transition-all relative ${
-                      active ? 'text-[#1A73E8] border-b-2 border-[#1A73E8]' : 'text-[#5F6368] hover:text-[#202124] hover:bg-slate-50'
+                    className={`px-3 h-14 flex items-center gap-1 text-[11px] font-black uppercase tracking-widest transition-all relative group/nav ${
+                      active ? 'text-[#1A73E8]' : 'text-[#5F6368] hover:text-[#202124]'
                     }`}
                   >
                     {link.name}
+                    {hasSub && <ChevronRight className="w-3 h-3 rotate-90 text-[#9AA0A6] group-hover/nav:text-[#1A73E8] transition-colors" />}
+                    {active && <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#1A73E8] rounded-t-full" />}
                   </Link>
                 );
               })}
@@ -93,62 +96,16 @@ export function Navbar() {
           </div>
 
           {/* Right: Actions */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
+            <button className="hidden md:block text-[11px] font-black uppercase tracking-widest text-[#5F6368] hover:text-[#1A73E8] transition-all">Sign In</button>
+            <button className="hidden md:block px-5 py-2.5 bg-[#1A73E8] text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20">Get Started</button>
             
-            {/* Favorites Dropdown */}
-            <div className="hidden lg:flex items-center h-11 group relative">
-               <button className="flex items-center gap-1.5 px-3 h-full text-[10px] font-black uppercase tracking-widest text-blue-100/60 hover:text-white hover:bg-white/5 transition-all">
-                  <Star className="w-3.5 h-3.5" />
-                  <span>Favs</span>
-               </button>
-               <div className="absolute top-full right-0 w-64 bg-white border border-slate-200 shadow-xl rounded-b-xl overflow-hidden hidden group-hover:block animate-in fade-in slide-in-from-top-1 duration-200 cursor-default">
-                  <div className="p-3 bg-slate-50 border-b border-slate-100 text-[9px] font-black uppercase tracking-widest text-slate-400">Your Saved Tools</div>
-                  <div className="p-1 max-h-[300px] overflow-y-auto">
-                     {favs.length > 0 ? favs.map((f, i) => (
-                       <Link key={i} href={f.href} className="flex items-center gap-3 p-2.5 hover:bg-yellow-50 rounded-lg group/item transition-colors">
-                          <Star className="w-4 h-4 text-slate-300 group-hover/item:text-yellow-500 transition-colors" />
-                          <span className="text-[12px] font-bold text-slate-700 truncate">{f.title}</span>
-                       </Link>
-                     )) : (
-                       <div className="p-4 text-center text-slate-400 italic text-[11px]">Click the star on any calculator to save it here.</div>
-                     )}
-                  </div>
-               </div>
-            </div>
-
-            {/* Recently Used Dropdown (MDCalc Style) */}
-            <div className="hidden lg:flex items-center h-11 group relative">
-               <button className="flex items-center gap-1.5 px-3 h-full text-[10px] font-black uppercase tracking-widest text-blue-100/60 hover:text-white hover:bg-white/5 transition-all">
-                  <History className="w-3.5 h-3.5" />
-                  <span>Recent</span>
-               </button>
-               <div className="absolute top-full right-0 w-64 bg-white border border-slate-200 shadow-xl rounded-b-xl overflow-hidden hidden group-hover:block animate-in fade-in slide-in-from-top-1 duration-200 cursor-default">
-                  <div className="p-3 bg-slate-50 border-b border-slate-100 text-[9px] font-black uppercase tracking-widest text-slate-400">Recently Used Tools</div>
-                  <div className="p-1 max-h-[300px] overflow-y-auto">
-                     {recent.length > 0 ? recent.map((r, i) => (
-                       <Link key={i} href={r.href} className="flex items-center gap-3 p-2.5 hover:bg-blue-50 rounded-lg group/item transition-colors">
-                          <div className="w-8 h-8 rounded-md bg-slate-100 flex items-center justify-center text-xs group-hover/item:bg-blue-600 group-hover/item:text-white transition-all shrink-0">
-                             {i + 1}
-                          </div>
-                          <span className="text-[12px] font-bold text-slate-700 truncate">{r.title}</span>
-                       </Link>
-                     )) : (
-                       <div className="p-4 text-center text-slate-400 italic text-[11px]">No recent tools yet.</div>
-                     )}
-                  </div>
-                  <div className="p-2 border-t border-slate-100 bg-slate-50">
-                     <Link href="/calculator" className="block w-full py-2 text-center text-[9px] font-black uppercase tracking-widest text-blue-600 hover:text-blue-800">Browse Full Directory</Link>
-                  </div>
-               </div>
-            </div>
-
             {/* Simple Search Trigger */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 border border-transparent transition-all group"
+              className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors text-slate-500"
             >
-              <Search className="w-3.5 h-3.5 text-slate-500 group-hover:text-[#1A73E8]" />
-              <span className="hidden sm:inline text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-slate-600">Search tools...</span>
+              <Search className="w-5 h-5" />
             </button>
 
             {/* Theme Toggle */}

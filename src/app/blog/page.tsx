@@ -15,14 +15,14 @@ import { fetchFirestoreCollection } from '@/lib/firestore-rest';
 
 // --- SEO CONFIGURATION ---
 export const metadata: Metadata = {
-  title: 'Blog & Financial Guides | Equaly',
+  title: 'Blog & Financial Guides | NepCalc Precision',
   description: 'Pro tips on Nepal income tax, salary planning, SSF, home loans, and expert calculator tutorials. Stay financially informed with the latest BS 2082/83 updates.',
-  alternates: { canonical: 'https://equaly.com/blog' },
+  alternates: { canonical: 'https://nepcalc.com/blog' },
   openGraph: {
-    title: 'Equaly Blog — Expert Nepal Calculation Guides',
+    title: 'NepCalc Blog — Expert Nepal Calculation Guides',
     description: 'Expert financial advice and calculator walkthroughs for Nepal.',
-    url: 'https://equaly.com/blog',
-    siteName: 'Equaly',
+    url: 'https://nepcalc.com/blog',
+    siteName: 'NepCalc',
     type: 'website',
   },
 };
@@ -86,20 +86,20 @@ export default async function BlogIndexPage({
   ];
 
   return (
-    <div className="min-h-screen bg-[#FDFDFD] dark:bg-gray-950 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 py-8 sm:py-16">
+    <div className="min-h-screen bg-[var(--bg-page)] dark:bg-gray-950 transition-colors duration-300">
+      <div className="hp-container py-8 sm:py-20">
 
         {/* --- HEADER --- */}
-        <header className="mb-16 text-center lg:text-left max-w-3xl">
-          <div className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/10 border border-blue-100/50 dark:border-blue-900/20 rounded-2xl px-6 py-2.5 mb-8">
-            <span className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full animate-pulse shadow-sm shadow-blue-500/50" />
-            Cortex Editorial V4
+        <header className="mb-16 text-center lg:text-left max-w-3xl animate-fade-in">
+          <div className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-[var(--primary)] bg-[var(--primary-light)] border border-[var(--primary-light)] rounded-2xl px-6 py-2.5 mb-8 shadow-sm">
+            <span className="w-2 h-2 bg-[var(--primary)] rounded-full animate-pulse shadow-sm shadow-blue-500/50" />
+            Mathematical Insights
           </div>
-          <h1 className="text-4xl sm:text-6xl font-black text-gray-900 dark:text-white mb-8 tracking-tight leading-[1.1]">
-            Content <span className="text-blue-600">Dominance</span>
+          <h1 className="text-4xl sm:text-6xl font-black text-[var(--text-main)] mb-8 tracking-tighter leading-[0.9]">
+            Scientific <span className="text-[var(--primary)]">Resources</span>
           </h1>
-          <p className="text-gray-500 dark:text-gray-400 text-xl leading-relaxed font-medium">
-             Expert financial guidance, local tax intelligence, and professional calculator tutorials for the Nepal 2082 ecosystem.
+          <p className="text-[var(--text-secondary)] text-xl leading-relaxed font-medium">
+             Expert financial guidance, local tax intelligence, and professional calculator tutorials for the Nepal BS 2082/83 ecosystem.
           </p>
         </header>
 
@@ -125,9 +125,9 @@ export default async function BlogIndexPage({
 
         {/* --- CONTENT GRID --- */}
         {items.length === 0 ? (
-          <div className="text-center py-32 bg-gray-50/50 dark:bg-gray-900/50 rounded-[3rem] border border-dashed border-gray-200 dark:border-gray-800">
+          <div className="text-center py-32 bg-[var(--bg-surface)] rounded-[3rem] border border-[var(--border)] shadow-sm">
             <BookOpen className="w-12 h-12 text-gray-300 mx-auto mb-6 opacity-50" />
-            <h3 className="text-sm font-black text-gray-400 uppercase tracking-widest">No articles found in this category</h3>
+            <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-widest text-center">No articles found in this category</h3>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -137,7 +137,7 @@ export default async function BlogIndexPage({
               const isSalaryFocus = item.title.toLowerCase().includes('salary') || item.excerpt.toLowerCase().includes('salary');
 
               return (
-                <Link key={item.id} href={href} className="group relative flex flex-col bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-[2.5rem] p-8 transition-all hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/10 active:scale-[0.98]">
+                <Link key={item.id} href={href} className="group relative flex flex-col bg-[var(--bg-surface)] border border-[var(--border)] rounded-[2rem] p-8 transition-all hover:border-[var(--primary)] hover:shadow-xl active:scale-[0.98] shadow-sm">
                   
                   {/* Badge */}
                   <div className="flex items-center justify-between mb-8">
