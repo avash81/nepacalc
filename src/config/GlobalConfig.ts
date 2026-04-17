@@ -15,9 +15,12 @@ export const GLOBAL_CONFIG = {
   TAGLINE: 'Nepal’s #1 Precision Utility Suite',
   SITE_URL: 'https://nepcalc.com',
   
-  // Premium Layout Tokens
-  THEME_COLOR: '#083366',
-  ACCENT_COLOR: '#4F46E5', // Indigo-600 for premium feel
+  // Premium Layout Tokens (Google Material Precision)
+  THEME_COLOR: '#FFFFFF',
+  ACCENT_COLOR: '#1A73E8', // Google Blue
+  SECONDARY_BG: '#F8F9FA', // Google Surface
+  TEXT_MAIN: '#202124',    // Google Secondary Text
+  TEXT_MUTED: '#5F6368',   // Google Muted Text
   
   // Formatters
   CURRENCY: 'NPR',

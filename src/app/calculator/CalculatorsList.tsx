@@ -33,8 +33,8 @@ function CalculatorsListInner() {
     <div className="max-w-7xl mx-auto">
       {/* Header */}
       <div className="text-center mb-16">
-        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight mb-6">
-          All <span className="text-blue-600">Calculators</span>
+        <h1 className="text-3xl sm:text-5xl font-black text-[#202124] tracking-tighter mb-4 leading-tight">
+          Professional <span className="text-[#1A73E8]">Calculators</span>
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           Browse our complete library of professional-grade tools. From complex financial projections to Nepal-specific tax rules.
@@ -49,20 +49,20 @@ function CalculatorsListInner() {
           </div>
           <input
             type="text"
-            placeholder="Search for a calculator (e.g. 'Income Tax', 'EMI')..."
+            placeholder="Search for a calculator..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="block w-full pl-12 pr-4 py-4 text-base sm:text-lg text-gray-900 bg-white border-2 border-gray-200 rounded-2xl focus:ring-0 focus:border-blue-500 shadow-sm hover:border-gray-300 transition-all outline-none"
+            className="block w-full pl-12 pr-4 py-4 text-base sm:text-lg text-gray-900 bg-white border border-gray-200 rounded-3xl focus:ring-4 focus:ring-blue-50 focus:border-blue-500 shadow-sm hover:border-gray-300 transition-all outline-none"
           />
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-3">
+        <div className="flex sm:flex-wrap items-center sm:justify-center gap-2 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
           <button
             onClick={() => setActiveCategory('all')}
-            className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all shadow-sm ${
+            className={`px-5 py-2 rounded-full text-[13px] font-bold transition-all whitespace-nowrap border ${
               activeCategory === 'all' 
-                ? "bg-blue-600 text-white border-transparent" 
-                : "bg-white text-gray-700 border border-gray-200 hover:border-blue-300 hover:text-blue-600 hover:bg-blue-50"
+                ? "bg-[#1A73E8] text-white border-[#1A73E8] shadow-md shadow-blue-200" 
+                : "bg-white text-[#5F6368] border-gray-200 hover:border-blue-400 hover:text-[#1A73E8] shadow-sm hover:shadow-md"
             }`}
           >
             All Tools
@@ -71,14 +71,14 @@ function CalculatorsListInner() {
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all shadow-sm flex items-center gap-2 ${
+              className={`px-5 py-2 rounded-full text-[13px] font-bold transition-all whitespace-nowrap border ${
                 activeCategory === cat.id 
-                  ? "bg-blue-600 text-white border-transparent" 
-                  : "bg-white text-gray-700 border border-gray-200 hover:border-blue-300 hover:text-blue-600 hover:bg-blue-50"
+                  ? "bg-[#1A73E8] text-white border-[#1A73E8] shadow-md shadow-blue-200" 
+                  : "bg-white text-[#5F6368] border-gray-200 hover:border-blue-400 hover:text-[#1A73E8] shadow-sm hover:shadow-md"
               }`}
             >
               <span>{cat.icon}</span>
-              {cat.name}
+              <span className="ml-2">{cat.name}</span>
             </button>
           ))}
         </div>

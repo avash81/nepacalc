@@ -65,8 +65,8 @@ function K({
       onClick={on}
       style={span ? { gridColumn: `span ${span}` } : undefined}
       className={`flex items-center justify-center rounded-full select-none cursor-pointer
-        focus:outline-none transition-all duration-100 active:brightness-90 active:scale-95
-        text-[13px] sm:text-[15px] min-h-[42px] sm:min-h-[46px] px-0.5 sm:px-1 ${cls}`}
+        focus:outline-none transition-all duration-100 active:bg-slate-200 active:scale-95
+        text-[12px] sm:text-[14px] min-h-[44px] sm:min-h-[48px] px-0.5 sm:px-1 ${cls}`}
     >
       {label}
     </button>
@@ -111,9 +111,9 @@ export default function AllInOneCalculator() {
   /* ── COLOUR TOKENS ─────────────────────────────────────────────
      Matching Google Search calculator exactly from the screenshots
      GFN = grey function pill   GNM = white number   GEQ = blue =  */
-  const GFN = 'bg-[#f1f3f4] hover:bg-[#e5e7e9] text-[#202124]';
-  const GNM = 'bg-white border border-[#dadce0] hover:bg-[#f8f9fa] text-[#202124]';
-  const GEQ = 'bg-[#1a73e8] hover:bg-[#1558b0] text-white font-medium';
+  const GFN = 'bg-[#f1f3f4] hover:bg-[#e8eaed] text-[#202124] border border-transparent';
+  const GNM = 'bg-white border border-[#dadce0] hover:bg-[#f8f9fa] text-[#202124] shadow-sm';
+  const GEQ = 'bg-[#1a73e8] hover:bg-[#185abc] text-white font-bold shadow-md shadow-blue-200';
 
   const P = {
     algebra:  { k: 'bg-[#f3e8ff] hover:bg-[#e8d5ff] text-[#7c3aed]', s: 'bg-[#7c3aed] hover:bg-[#6d28d9] text-white' },
@@ -143,7 +143,7 @@ export default function AllInOneCalculator() {
      SCIENTIFIC GRID — 7 columns, 5 rows, exactly like Image 1
      ═══════════════════════════════════════════════════════════════ */
   const SciGrid = () => (
-    <div className="grid grid-cols-7 gap-1 sm:gap-[6px] px-2 sm:px-4 pb-4 pt-2">
+    <div className="grid grid-cols-5 sm:grid-cols-7 gap-1.5 sm:gap-[6px] px-3 sm:px-4 pb-4 pt-2">
 
       {/* Row 1 — Deg|Rad  x!  (  )  %  AC */}
       <div className="col-span-2 flex items-center justify-center gap-2 text-[13px] text-[#5f6368]">
@@ -284,7 +284,7 @@ export default function AllInOneCalculator() {
 
   /* ── SOLVER FULL GRID ── */
   const SolverGrid = () => (
-    <div className="grid grid-cols-7 gap-1 sm:gap-[6px] px-2 sm:px-4 pb-4 pt-2">
+    <div className="grid grid-cols-5 sm:grid-cols-7 gap-1.5 sm:gap-[6px] px-3 sm:px-4 pb-4 pt-2">
       {/* Left 3 cols: tab-specific operator keys */}
       <div className="col-span-3 grid grid-cols-3 gap-[6px]">
         {tab === 'algebra'  && <AlgKeys />}
@@ -308,7 +308,7 @@ export default function AllInOneCalculator() {
     <div className="flex justify-center w-full font-[Google_Sans,Roboto,sans-serif]">
       <div
         className="w-full bg-white border border-[#dadce0] overflow-hidden"
-        style={{ maxWidth: 660, borderRadius: 24, boxShadow: '0 1px 6px rgba(32,33,36,.15)' }}
+        style={{ maxWidth: 660, borderRadius: 28, boxShadow: '0 2px 10px rgba(0,0,0,0.08)' }}
       >
 
         {/* ── DISPLAY ──────────────────────────────────────────── */}

@@ -11,24 +11,20 @@ export default function HomePage() {
       <JsonLd type="organization" />
       
       <div className="min-h-screen bg-white font-sans antialiased text-[14px]">
-        {/* 1. Interactive Command Center - Isolated Client Island */}
-        <section className="pt-16 sm:pt-32 pb-4 sm:pb-8 border-b border-slate-100 bg-white relative overflow-hidden">
+        {/* 1. Precision Tool Console */}
+        <section className="pt-20 sm:pt-32 pb-8 sm:pb-16 border-b border-[#F1F3F4] bg-white relative">
           <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-10 flex flex-col items-center">
-            <div className="text-center mb-6 md:mb-8 relative z-10 w-full max-w-[800px]">
-               <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-3 tracking-tighter leading-tight">
-                 Precision Financial <span className="text-blue-600 block sm:inline">Calculators</span>
+            <div className="text-center mb-10 md:mb-14 relative z-10 w-full max-w-[900px]">
+               <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-[#202124] mb-4 tracking-tighter leading-tight">
+                 Precision <span className="text-[#1A73E8]">Laboratory</span>
                </h1>
-               <p className="text-slate-500 text-base sm:text-lg font-medium tracking-tight mb-4">Access Nepal&apos;s most reliable suite of financial, tax, and professional utility calculators.</p>
+               <p className="text-[#5F6368] text-base sm:text-lg font-medium tracking-tight">Access Nepal&apos;s authoritative suite of financial, tax, and professional utility calculators.</p>
             </div>
             
             <div className="w-full relative z-10">
               <HomePageCalculatorClient />
             </div>
           </div>
-          
-          {/* Decorative Background Elements */}
-          <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-50/40 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-slate-50 rounded-full blur-3xl pointer-events-none" />
         </section>
 
         {/* 2. Calculator Directory - High-Precision Server Component Rendering */}
@@ -46,12 +42,12 @@ export default function HomePage() {
           <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-5 gap-8 space-y-12">
             {CATEGORIES.map(cat => (
               <section key={cat.id} className="break-inside-avoid">
-                 <div className="flex flex-col gap-3 group mb-5">
-                    <div className="w-14 h-14 rounded-2xl bg-slate-50 border-2 border-slate-200 flex items-center justify-center text-2xl group-hover:border-blue-400 group-hover:bg-blue-50 group-hover:shadow-lg transition-all duration-300">
+         <div className="flex flex-col gap-4 group mb-6">
+                    <div className="w-16 h-16 rounded-3xl bg-[#F8F9FA] border border-[#E8EAED] flex items-center justify-center text-3xl group-hover:border-[#1A73E8] group-hover:bg-blue-50 group-hover:shadow-md transition-all duration-300">
                       {cat.icon}
                     </div>
                     <Link href={`/calculator/category/${cat.id}`}>
-                      <h3 className="text-[18px] font-black text-slate-900 hover:text-blue-600 transition-colors tracking-tight leading-tight">
+                      <h3 className="text-[20px] font-black text-[#202124] hover:text-[#1A73E8] transition-colors tracking-tight leading-tight">
                         {cat.name}
                       </h3>
                     </Link>

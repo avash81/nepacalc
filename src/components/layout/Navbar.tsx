@@ -65,13 +65,13 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 h-11 bg-[#083366] text-white z-[200] select-none shadow-sm no-print">
+      <nav className="fixed top-0 left-0 right-0 h-14 bg-white text-[#202124] z-[200] select-none border-b border-[#f1f3f4] no-print">
         <div className="hp-container h-full flex items-center justify-between">
           
           {/* Left: Logo + Desktop Links */}
           <div className="flex items-center gap-6">
             <Link href="/" className="hover:opacity-80 transition-opacity flex items-center gap-2">
-               <span className="text-sm font-black tracking-tighter uppercase italic">NepCalc</span>
+               <span className="text-lg font-black tracking-tighter uppercase italic text-[#1A73E8]">NepCalc</span>
             </Link>
             
             <div className="hidden md:flex items-center gap-1 h-11">
@@ -81,8 +81,8 @@ export function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-3 h-11 flex items-center text-[11px] font-black uppercase tracking-widest transition-all relative ${
-                      active ? 'text-white bg-white/10' : 'text-blue-100/60 hover:text-white hover:bg-white/5'
+                    className={`px-3 h-14 flex items-center text-[11px] font-black uppercase tracking-widest transition-all relative ${
+                      active ? 'text-[#1A73E8] border-b-2 border-[#1A73E8]' : 'text-[#5F6368] hover:text-[#202124] hover:bg-slate-50'
                     }`}
                   >
                     {link.name}
@@ -145,16 +145,16 @@ export function Navbar() {
             {/* Simple Search Trigger */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 transition-all group"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 border border-transparent transition-all group"
             >
-              <Search className="w-3.5 h-3.5 text-white/70 group-hover:text-white" />
-              <span className="hidden sm:inline text-[10px] font-black uppercase tracking-widest text-white/50 group-hover:text-white">Search tools...</span>
+              <Search className="w-3.5 h-3.5 text-slate-500 group-hover:text-[#1A73E8]" />
+              <span className="hidden sm:inline text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-slate-600">Search tools...</span>
             </button>
 
             {/* Theme Toggle */}
             <button
               onClick={toggleDark}
-              className="p-1.5 hover:bg-white/10 rounded-lg transition-colors text-white/70 hover:text-white"
+              className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors text-slate-500 hover:text-[#1A73E8]"
               title="Toggle Theme"
             >
               {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
@@ -163,7 +163,7 @@ export function Navbar() {
             {/* Mobile Menu */}
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="md:hidden p-1.5 hover:bg-white/10 rounded-lg text-white"
+              className="md:hidden p-1.5 hover:bg-slate-100 rounded-lg text-slate-600"
             >
               <Menu className="w-5 h-5" />
             </button>

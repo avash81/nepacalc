@@ -14,9 +14,9 @@ export function Footer() {
     <footer className="bg-slate-950 border-t border-slate-900 py-12 mt-12 text-slate-400 no-print">
       <div className="hp-container">
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-y-10 gap-x-4 md:gap-x-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-y-10 gap-x-4 md:gap-x-12 mb-12 text-center sm:text-left">
           
-          <div className="col-span-2 lg:col-span-1 border-r border-slate-900 pr-8">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-1 border-b sm:border-b-0 sm:border-r border-slate-900 pb-8 sm:pb-0 sm:pr-8 flex flex-col items-center sm:items-start">
             <div className="mb-4">
               <span className="text-white text-sm font-black tracking-tighter uppercase italic">NepCalc</span>
             </div>
@@ -78,14 +78,14 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex flex-col md:flex-row items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center gap-4">
             <div className="text-white text-[11px] font-black uppercase tracking-widest">
               © {GLOBAL_CONFIG.CURRENT_YEAR} NepCalc
             </div>
-            <div className="hidden md:block w-px h-3 bg-slate-800 mx-1"></div>
+            <div className="hidden sm:block w-px h-3 bg-slate-800 mx-1"></div>
             <div className="flex items-center gap-4">
-              <span className="flex items-center gap-2 text-[10px] font-black text-slate-500 uppercase tracking-widest"><ShieldCheck className="w-3.5 h-3.5 text-blue-500" /> Nepal Secured</span>
-              <span className="flex items-center gap-2 text-[10px] font-black text-slate-500 uppercase tracking-widest"><Zap className="w-3.5 h-3.5 text-amber-500" /> Fast Edge</span>
+              <span className="flex items-center gap-2 text-[10px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap"><ShieldCheck className="w-3.5 h-3.5 text-blue-500" /> Nepal Secured</span>
+              <span className="flex items-center gap-2 text-[10px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap"><Zap className="w-3.5 h-3.5 text-amber-500" /> Fast Edge</span>
             </div>
           </div>
           
