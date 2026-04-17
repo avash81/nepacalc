@@ -56,7 +56,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: 'Calculators', href: '/calculator' },
-    { name: 'Solutions',   href: '/solutions' },
+    { name: 'Manuals',      href: '/guide' },
     { name: 'Resources',   href: '/blog' },
     { name: 'Pricing',     href: '/pricing' },
   ];
@@ -70,14 +70,14 @@ export function Navbar() {
           
           {/* Left: Logo + Desktop Links */}
           <div className="flex items-center gap-8">
-            <Link href="/" className="hover:opacity-80 transition-opacity">
+            <Link href="/" className="hover:opacity-80 transition-opacity" aria-label="NEPACALC Home">
                <Logo size="sm" />
             </Link>
             
             <div className="hidden md:flex items-center gap-1 h-14">
               {navLinks.map((link) => {
                 const active = path === link.href || (link.href !== '/' && path.startsWith(link.href));
-                const hasSub = ['Calculators', 'Solutions', 'Resources'].includes(link.name);
+                const hasSub = ['Calculators', 'Manuals', 'Resources'].includes(link.name);
                 return (
                   <Link
                     key={link.href}
@@ -97,13 +97,14 @@ export function Navbar() {
 
           {/* Right: Actions */}
           <div className="flex items-center gap-6">
-            <button className="hidden md:block text-[11px] font-black uppercase tracking-widest text-[#5F6368] hover:text-[#1A73E8] transition-all">Sign In</button>
+            <button className="hidden md:block text-[11px] font-black uppercase tracking-widest text-[#202124] hover:text-[#1A73E8] transition-all">Sign In</button>
             <button className="hidden md:block px-5 py-2.5 bg-[#1A73E8] text-white text-[10px] font-black uppercase tracking-widest rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/20">Get Started</button>
             
             {/* Simple Search Trigger */}
             <button
               onClick={() => setIsSearchOpen(true)}
               className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors text-slate-500"
+              aria-label="Search tools"
             >
               <Search className="w-5 h-5" />
             </button>
@@ -112,6 +113,7 @@ export function Navbar() {
             <button
               onClick={toggleDark}
               className="p-1.5 hover:bg-slate-100 rounded-lg transition-colors text-slate-500 hover:text-[#1A73E8]"
+              aria-label="Toggle theme"
               title="Toggle Theme"
             >
               {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
@@ -121,6 +123,7 @@ export function Navbar() {
             <button
               onClick={() => setIsMenuOpen(true)}
               className="md:hidden p-1.5 hover:bg-slate-100 rounded-lg text-slate-600"
+              aria-label="Open menu"
             >
               <Menu className="w-5 h-5" />
             </button>
@@ -140,7 +143,7 @@ export function Navbar() {
         <div className="flex flex-col h-full uppercase tracking-widest font-black text-[10px]">
           <div className="p-4 flex items-center justify-between border-b border-[var(--border)] bg-[var(--bg-page)]">
             <Logo size="sm" />
-            <button onClick={() => setIsMenuOpen(false)} className="p-2 hover:bg-[var(--bg-subtle)] rounded-lg text-[var(--text-muted)]">
+            <button onClick={() => setIsMenuOpen(false)} className="p-2 hover:bg-[var(--bg-subtle)] rounded-lg text-[var(--text-muted)]" aria-label="Close menu">
               <X className="w-5 h-5" />
             </button>
           </div>
@@ -168,8 +171,8 @@ export function Navbar() {
             ))}
           </div>
 
-          <div className="p-6 border-t border-[var(--border)] text-center text-[var(--text-muted)] bg-[var(--bg-page)]">
-            © 2026 NepCalc — Built for Precision
+          <div className="p-6 border-t border-[var(--border)] text-center text-[#202124] bg-[var(--bg-page)] font-bold">
+            © 2026 NEPACALC — BUILT FOR PRECISION
           </div>
         </div>
       </aside>

@@ -10,6 +10,7 @@ const nextConfig = {
       {
         source: '/(.*)',
         headers: [
+          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
@@ -23,7 +24,8 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: https: " + 
-              "https://calcpro.com.np " + 
+              "https://nepacalc.com " + 
+              "https://nepcalc.com " + 
               "https://picsum.photos " + 
               "https://images.unsplash.com " + 
               "https://www.googletagmanager.com " + 
@@ -32,6 +34,7 @@ const nextConfig = {
               "frame-src 'self' https://www.googletagmanager.com",
               "base-uri 'self'",
               "form-action 'self'",
+              "require-trusted-types-for 'script'"
             ].join('; '),
           },
           ...(process.env.NODE_ENV === 'production' ? [{ key: 'Cache-Control', value: 'public, max-age=3600, stale-while-revalidate=86400' }] : []),

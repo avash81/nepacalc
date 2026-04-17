@@ -29,9 +29,9 @@ export default function HomePage() {
              <span className="absolute top-[40%] right-[25%] text-lg font-serif text-slate-200 italic">2πn = λ</span>
           </div>
 
-          {/* Area Chart Visualization */}
+          {/* Area Chart Visualization (CLS Optimized) */}
           <div className="absolute bottom-0 right-0 w-[60%] h-[400px] opacity-20 pointer-events-none z-0">
-             <svg viewBox="0 0 1000 500" className="w-full h-full" preserveAspectRatio="none">
+             <svg viewBox="0 0 1000 500" width="1000" height="500" className="w-full h-full object-cover" preserveAspectRatio="none">
                <defs>
                  <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
                    <stop offset="0%" stopColor="#1A73E8" stopOpacity="0.4" />
@@ -44,17 +44,17 @@ export default function HomePage() {
           </div>
 
           <div className="hp-container flex flex-col items-center relative z-10">
-            {/* Heading Stacking As Per Mockup */}
-            <div className="text-center mb-12 w-full animate-fade-in">
+            {/* Heading Stacking As Per Mockup - Optimized LCP */}
+            <div className="text-center mb-12 w-full">
                <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-[#202124] tracking-tighter leading-[0.85] mb-4">
                  Precision <span className="text-[#1A73E8]">Laboratory</span>
                </h1>
             </div>
             
             <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-16">
-               {/* Left Precision Callout (PIXEL ACCURATE TO MOCKUP) */}
-               <div className="lg:w-[150px] flex justify-center lg:justify-end animate-fade-in [animation-delay:400ms]">
-                  <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white border border-slate-200 shadow-xl shadow-slate-200/20 text-[#1A73E8] font-black text-[11px] uppercase tracking-widest group cursor-pointer hover:border-[#1A73E8] transition-all">
+               {/* Left Precision Callout */}
+               <div className="lg:w-[150px] flex justify-center lg:justify-end">
+                  <div className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white border border-slate-200 shadow-xl shadow-slate-200/20 text-[#1A73E8] font-black text-[11px] uppercase tracking-widest group cursor-pointer hover:border-[#1A73E8] transition-all" aria-label="Precision metrics">
                     <div className="w-5 h-5 rounded-full border-2 border-[#1A73E8] flex items-center justify-center p-0.5">
                        <div className="w-full h-full rounded-full bg-[#1A73E8] opacity-20 group-hover:opacity-100 transition-opacity"></div>
                     </div>
@@ -63,7 +63,7 @@ export default function HomePage() {
                </div>
 
                {/* Centerpiece Calculator */}
-               <div className="w-full max-w-[560px] relative z-20 animate-slide-up [animation-delay:200ms] shadow-2xl">
+               <div className="w-full max-w-[560px] relative z-20 shadow-2xl">
                   <HomePageCalculatorClient />
                </div>
 
@@ -72,8 +72,8 @@ export default function HomePage() {
             </div>
 
             {/* Subtext description below focal point */}
-            <div className="mt-20 text-center max-w-2xl px-4 animate-fade-in [animation-delay:600ms]">
-               <p className="text-[#5F6368] text-lg sm:text-xl font-medium tracking-tight leading-relaxed opacity-80">
+            <div className="mt-20 text-center max-w-2xl px-4">
+               <p className="text-[#3c4043] text-lg sm:text-xl font-medium tracking-tight leading-relaxed">
                   The authoritative calculation ecosystem for Nepal professionals. Engineered for accuracy. Built for speed.
                </p>
             </div>
@@ -120,10 +120,10 @@ export default function HomePage() {
                               {calc.name}
                             </Link>
                             {calc.isHot && (
-                              <span className="text-[9px] font-black bg-orange-500 text-white px-1.5 py-0.5 rounded-full uppercase tracking-tight shrink-0 shadow-sm shadow-orange-500/20 animate-pulse-subtle">HOT</span>
+                              <span className="text-[9px] font-black bg-orange-700 text-white px-1.5 py-0.5 rounded-full uppercase tracking-tight shrink-0 shadow-sm shadow-orange-500/20">HOT</span>
                             )}
                             {!calc.isHot && calc.isNew && (
-                              <span className="text-[9px] font-black bg-blue-500 text-white px-1.5 py-0.5 rounded-full uppercase tracking-tight shrink-0 shadow-sm shadow-blue-500/20 animate-pulse-subtle">NEW</span>
+                              <span className="text-[9px] font-black bg-blue-700 text-white px-1.5 py-0.5 rounded-full uppercase tracking-tight shrink-0 shadow-sm shadow-blue-500/20">NEW</span>
                             )}
                           </li>
                         ))}

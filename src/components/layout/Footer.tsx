@@ -66,16 +66,16 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-[var(--border)] flex flex-col md:flex-row justify-between items-center gap-6 opacity-60">
-           <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest">
+        <div className="pt-8 border-t border-[var(--border)] flex flex-col md:flex-row justify-between items-center gap-6 opacity-90">
+           <div className="flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-[#202124]">
               <span>© {GLOBAL_CONFIG.CURRENT_YEAR} NEPACALC MATHEMATICAL LABORATORY</span>
               <div className="w-px h-3 bg-[var(--border)]" />
               <div className="flex items-center gap-4">
-                 <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-[var(--primary)]" /> SECURED</span>
+                 <span className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-[#1A73E8]" /> SECURED</span>
                  <span className="flex items-center gap-1.5"><Globe className="w-3.5 h-3.5" /> GLOBAL EDITION</span>
               </div>
            </div>
-           <div className="text-[9px] font-black uppercase tracking-[0.2em]">ISO 27001:2022 STANDARDIZED MATHEMATICS</div>
+           <div className="text-[9px] font-black uppercase tracking-[0.2em] text-[#5F6368]">ISO 27001:2022 STANDARDIZED MATHEMATICS</div>
         </div>
       </div>
     </footer>
