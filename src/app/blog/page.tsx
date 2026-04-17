@@ -52,18 +52,28 @@ export default async function BlogIndexPage({
     fetchFirestoreCollection('seo_pages')
   ]);
 
-  const posts: ContentItem[] = postsRaw
-    .filter((p: any) => p.status === 'published')
-    .map((p: any) => ({ ...p, type: 'post' as const }));
+  let posts: ContentItem[] = [];
+  let guides: ContentItem[] = [];
 
-  const guides: ContentItem[] = guidesRaw
-    .filter((p: any) => p.status === 'published')
-    .map((p: any) => ({ ...p, type: 'guide' as const }));
+  try {
+    posts = (postsRaw || [])
+      .filter((p: any) => p && p.status === 'published')
+      .map((p: any) => ({ ...p, type: 'post' as const }));
+
+    guides = (guidesRaw || [])
+      .filter((p: any) => p && p.status === 'published')
+      .map((p: any) => ({ ...p, type: 'guide' as const }));
+  } catch (error) {
+    console.error('Blog Render mapping error:', error);
+    // Graceful fallback if data shape is unexpectedly corrupted
+  }
 
   // Combine and sort by date descending
-  let items = [...posts, ...guides].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  let items = [...posts, ...guides].sort((a, b) => {
+    const da = a.date ? new Date(a.date).getTime() : 0;
+    const db = b.date ? new Date(b.date).getTime() : 0;
+    return (isNaN(db) ? 0 : db) - (isNaN(da) ? 0 : da);
+  });
 
   // Apply tab filtering server-side
   if (currentTab === 'posts') items = items.filter(i => i.type === 'post');
@@ -156,7 +166,9 @@ export default async function BlogIndexPage({
                     <div className="flex items-center gap-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">
                        <span className="flex items-center gap-2">
                           <Calendar className="w-3.5 h-3.5" />
-                          {new Date(item.date).toLocaleDateString('en-NP', { month: 'short', day: 'numeric' })}
+                          {item.date && !isNaN(new Date(item.date).getTime()) 
+                            ? new Date(item.date).toLocaleDateString('en-NP', { month: 'short', day: 'numeric' })
+                            : 'Recent'}
                        </span>
                        <span>·</span>
                        <span className="flex items-center gap-2">

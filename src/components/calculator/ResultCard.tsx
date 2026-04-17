@@ -54,7 +54,7 @@ export function ResultCard({
           {label}
         </span>
         
-        <div className="flex items-baseline gap-1">
+        <div className="flex items-baseline gap-1" aria-live="polite">
           <span className="text-4xl sm:text-6xl font-black tracking-tighter">
             {value.toLocaleString()}
           </span>

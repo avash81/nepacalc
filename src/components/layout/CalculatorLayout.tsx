@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { CATEGORIES } from '@/data/calculators';
 import { Printer, Info, Star } from 'lucide-react';
 import { GLOBAL_CONFIG, CATEGORY_PURPOSE_MAP } from '@/config/GlobalConfig';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 interface CalculatorLayoutProps {
   children?: React.ReactNode;
@@ -97,6 +98,14 @@ export function CalculatorLayout({
 
   return (
     <div className="min-h-screen bg-[#F8FAFB] font-sans antialiased pb-24 lg:pb-0">
+      {/* 0. SEO Injection (Phase 4 Mastery) */}
+      <JsonLd 
+        type="calculator"
+        name={title}
+        description={description}
+        category={catLabel ? `${catLabel}Application` : 'UtilitiesApplication'}
+      />
+
       {/* 1. Premium Grade Breadcrumb/Header */}
       <div className="bg-gradient-to-r from-[#003366] to-[#044c92] text-white/90 py-2.5 border-b border-blue-800 shadow-sm no-print relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-full bg-white/5 skew-x-12 transform -translate-x-10 pointer-events-none" />
