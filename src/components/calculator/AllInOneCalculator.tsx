@@ -65,8 +65,8 @@ function K({
       onClick={on}
       style={span ? { gridColumn: `span ${span}` } : undefined}
       className={`flex items-center justify-center rounded-full select-none cursor-pointer
-        focus:outline-none transition-colors duration-100 active:brightness-90
-        text-[15px] min-h-[46px] px-1 ${cls}`}
+        focus:outline-none transition-all duration-100 active:brightness-90 active:scale-95
+        text-[13px] sm:text-[15px] min-h-[42px] sm:min-h-[46px] px-0.5 sm:px-1 ${cls}`}
     >
       {label}
     </button>
@@ -143,7 +143,7 @@ export default function AllInOneCalculator() {
      SCIENTIFIC GRID — 7 columns, 5 rows, exactly like Image 1
      ═══════════════════════════════════════════════════════════════ */
   const SciGrid = () => (
-    <div className="grid grid-cols-7 gap-[6px] px-4 pb-4 pt-2">
+    <div className="grid grid-cols-7 gap-1 sm:gap-[6px] px-2 sm:px-4 pb-4 pt-2">
 
       {/* Row 1 — Deg|Rad  x!  (  )  %  AC */}
       <div className="col-span-2 flex items-center justify-center gap-2 text-[13px] text-[#5f6368]">
@@ -284,7 +284,7 @@ export default function AllInOneCalculator() {
 
   /* ── SOLVER FULL GRID ── */
   const SolverGrid = () => (
-    <div className="grid grid-cols-7 gap-[6px] px-4 pb-4 pt-2">
+    <div className="grid grid-cols-7 gap-1 sm:gap-[6px] px-2 sm:px-4 pb-4 pt-2">
       {/* Left 3 cols: tab-specific operator keys */}
       <div className="col-span-3 grid grid-cols-3 gap-[6px]">
         {tab === 'algebra'  && <AlgKeys />}

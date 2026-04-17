@@ -12,7 +12,7 @@ export default function HomePage() {
       
       <div className="min-h-screen bg-white font-sans antialiased text-[14px]">
         {/* 1. Interactive Command Center - Isolated Client Island */}
-        <section className="pt-24 sm:pt-32 pb-4 sm:pb-8 border-b border-slate-100 bg-white relative overflow-hidden">
+        <section className="pt-16 sm:pt-32 pb-4 sm:pb-8 border-b border-slate-100 bg-white relative overflow-hidden">
           <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-10 flex flex-col items-center">
             <div className="text-center mb-6 md:mb-8 relative z-10 w-full max-w-[800px]">
                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-3 tracking-tighter leading-tight">
