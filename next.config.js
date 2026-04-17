@@ -34,7 +34,6 @@ const nextConfig = {
               "frame-src 'self' https://www.googletagmanager.com",
               "base-uri 'self'",
               "form-action 'self'",
-              "require-trusted-types-for 'script'"
             ].join('; '),
           },
           ...(process.env.NODE_ENV === 'production' ? [{ key: 'Cache-Control', value: 'public, max-age=3600, stale-while-revalidate=86400' }] : []),
