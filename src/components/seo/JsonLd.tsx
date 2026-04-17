@@ -19,8 +19,8 @@ interface JsonLdProps {
 }
 
 export function JsonLd({ type, name, description, url, faqs, category = 'UtilitiesApplication' }: JsonLdProps) {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://equaly.com';
-  const siteName = 'Equaly';
+  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://nepcalc.com';
+  const siteName = 'NepCalc';
 
   const schemas: Record<string, object> = {
     organization: {

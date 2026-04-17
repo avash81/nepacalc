@@ -71,7 +71,7 @@ export function Navbar() {
           {/* Left: Logo + Desktop Links */}
           <div className="flex items-center gap-6">
             <Link href="/" className="hover:opacity-80 transition-opacity flex items-center gap-2">
-               <span className="text-sm font-black tracking-tighter uppercase italic">Equaly</span>
+               <span className="text-sm font-black tracking-tighter uppercase italic">NepCalc</span>
             </Link>
             
             <div className="hidden md:flex items-center gap-1 h-11">
@@ -212,7 +212,7 @@ export function Navbar() {
           </div>
 
           <div className="p-6 border-t border-[var(--border)] text-center text-[var(--text-muted)] bg-[var(--bg-page)]">
-            © 2026 Equaly — Built for Precision
+            © 2026 NepCalc — Built for Precision
           </div>
         </div>
       </aside>

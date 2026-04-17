@@ -8,9 +8,9 @@ import { MobileNav } from "@/components/layout/MobileNav";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://equaly.com'),
-  title: "Equaly | Free Online Calculators",
-  description: "75+ free online calculators for finance, health, science, and more. Built for Nepal and the world.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://nepcalc.com'),
+  title: "NepCalc | Nepal's Leading Online Calculators",
+  description: "75+ free online calculators for finance, health, science, and more. Built specifically for Nepal.",
 };
 
 export default function RootLayout({

@@ -11,9 +11,9 @@ export const GLOBAL_CONFIG = {
   NEXT_FISCAL_YEAR: '2083/84',
   
   // SEO Defaults
-  SITE_NAME: 'Equaly',
+  SITE_NAME: 'NepCalc',
   TAGLINE: 'Nepal’s #1 Precision Utility Suite',
-  SITE_URL: 'https://equaly.com',
+  SITE_URL: 'https://nepcalc.com',
   
   // Premium Layout Tokens
   THEME_COLOR: '#083366',

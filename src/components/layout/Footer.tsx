@@ -18,7 +18,7 @@ export function Footer() {
           
           <div className="col-span-2 lg:col-span-1 border-r border-slate-900 pr-8">
             <div className="mb-4">
-              <span className="text-white text-sm font-black tracking-tighter uppercase italic">Equaly</span>
+              <span className="text-white text-sm font-black tracking-tighter uppercase italic">NepCalc</span>
             </div>
             <p className="text-slate-500 text-[11px] leading-relaxed font-bold uppercase tracking-widest">
               80+ Premium Precision Tools. <br/>
@@ -80,7 +80,7 @@ export function Footer() {
         <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex flex-col md:flex-row items-center gap-4">
             <div className="text-white text-[11px] font-black uppercase tracking-widest">
-              © {GLOBAL_CONFIG.CURRENT_YEAR} Equaly
+              © {GLOBAL_CONFIG.CURRENT_YEAR} NepCalc
             </div>
             <div className="hidden md:block w-px h-3 bg-slate-800 mx-1"></div>
             <div className="flex items-center gap-4">

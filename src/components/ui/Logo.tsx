@@ -8,7 +8,7 @@ interface LogoProps {
 }
 
 /**
- * Equaly Master Logo
+ * NepCalc Master Logo
  * Unified version for Navbar, Footer, and Admin.
  */
 export const Logo: React.FC<LogoProps> = ({ size = 'md', theme = 'indigo', className = '' }) => {
@@ -38,7 +38,7 @@ export const Logo: React.FC<LogoProps> = ({ size = 'md', theme = 'indigo', class
       
       {/* BRAND TEXT */}
       <span className={`${font} font-black tracking-tight transition-colors font-sans overflow-hidden ${isWhite ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
-        Equaly<span className={isWhite ? 'text-blue-400' : 'text-blue-600 font-bold'}>.NP</span>
+        NepCalc<span className={isWhite ? 'text-blue-400' : 'text-blue-600 font-bold'}>.com</span>
       </span>
     </div>
   );
