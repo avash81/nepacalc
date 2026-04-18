@@ -5,6 +5,7 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { TrendingSidebar } from '@/components/layout/TrendingSidebar';
 import { ChevronRight, ArrowLeft, ShieldCheck, Globe } from 'lucide-react';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 interface Props {
   title: string;
@@ -28,6 +29,16 @@ export function CalcWrapper({
 }: Props) {
   return (
     <div lang={isNepal ? 'ne' : 'en'} className="min-h-screen bg-[#FDFDFD] dark:bg-gray-950 transition-colors duration-300">
+      <JsonLd 
+        type="breadcrumb"
+        breadcrumbItems={[
+          { name: 'Home', item: 'https://nepacalc.com' },
+          ...crumbs.map(c => ({
+              name: c.label,
+              item: c.href ? `https://nepacalc.com${c.href}` : `https://nepacalc.com/calculator/${title.toLowerCase().replace(/ /g, '-')}`
+          }))
+        ]}
+      />
       <div className="max-w-7xl mx-auto px-4 pt-24 pb-12 sm:pb-20">
 
         <div className="flex items-center justify-between mb-12 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 p-4 rounded-[2rem] shadow-sm">

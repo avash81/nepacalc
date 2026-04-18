@@ -3,8 +3,9 @@
 import { Logo } from '@/components/ui/Logo';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Calculator, Grid, Hexagon, AlignLeft, Menu, Activity, X } from 'lucide-react';
+import { Calculator, Grid, Hexagon, AlignLeft, Menu, Activity, X, ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 const ECO_LINKS = [
   { name: 'Graphing Calculator', path: '/math-tools/calculator', icon: Activity },
@@ -24,14 +25,25 @@ export function MathTopNav() {
 
   return (
     <>
+      <JsonLd 
+         type="breadcrumb"
+         breadcrumbItems={[
+           { name: 'Home', item: 'https://nepacalc.com' },
+           { name: 'Math Tools', item: 'https://nepacalc.com/directory' },
+           { name: activeLink.name, item: `https://nepacalc.com${activeLink.path}` }
+         ]}
+      />
       <header className="h-[48px] w-full bg-white border-b border-[#e8eaed] flex items-center justify-between px-4 z-[9000] fixed top-0 left-0 right-0 select-none shadow-sm">
         <div className="flex items-center gap-4 h-full">
+          <button 
+             onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
+             className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#5F6368] hover:text-[#1A73E8] transition-all border-r border-[#e8eaed] pr-4 h-full"
+          >
+             <ArrowLeft className="w-4 h-4" /> <span className="hidden sm:inline">Back</span>
+          </button>
+          
           <Link href="/" className="hover:opacity-80 transition-all flex items-center gap-4 group">
             <Logo size="sm" />
-            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-black group-hover:text-[#FFC107] transition-all border-l border-[#e8eaed] pl-4">
-              <span className="hidden sm:inline">Return Home</span>
-              <span className="sm:hidden">Home</span>
-            </div>
           </Link>
           
           <div className="h-4 w-px bg-[#e8eaed] hidden lg:block"></div>
