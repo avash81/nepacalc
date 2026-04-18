@@ -56,9 +56,9 @@ export default function MathToolsPillarPage() {
          <div className="flex items-center justify-center gap-2 text-[#202124] font-black uppercase tracking-[0.3em] text-[10px] mb-4">
             <Zap className="w-4 h-4 fill-[#FFC107] text-[#FFC107]" /> Verified Laboratory Standards
          </div>
-         <h1 className="text-4xl sm:text-7xl font-black text-[#202124] tracking-tighter leading-none mb-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-            <span>Mathematical</span>
-            <span className="text-[#FFC107] bg-black px-5 py-2 sm:py-1.5 rounded-3xl shadow-xl shadow-yellow-500/10">Laboratory</span>
+         <h1 className="text-4xl sm:text-7xl font-black text-[#202124] tracking-tighter leading-tight sm:leading-none mb-6 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-4">
+            <span className="block pb-2 sm:pb-0">Mathematical</span>
+            <span className="inline-block text-[#FFC107] bg-black px-6 py-3 sm:py-2 rounded-[2.5rem] shadow-xl shadow-yellow-500/10 shrink-0 leading-none">Laboratory</span>
          </h1>
          <p className="text-lg text-[#5F6368] font-medium max-w-xl mx-auto mb-10 leading-relaxed opacity-80">
             Professional-grade mathematical visualization tools engineered for precision, speed, and deep scientific exploration.
