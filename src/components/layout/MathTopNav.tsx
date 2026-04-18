@@ -33,7 +33,7 @@ export function MathTopNav() {
            { name: activeLink.name, item: `https://nepacalc.com${activeLink.path}` }
          ]}
       />
-      <header className="h-[48px] w-full bg-white border-b border-[#e8eaed] flex items-center justify-between px-4 z-[9000] fixed top-0 left-0 right-0 select-none shadow-sm">
+      <header className="h-[48px] sm:h-[56px] w-full bg-[#f8f9fa] border-b border-[#e8eaed] flex items-center justify-between px-4 sm:px-6 select-none relative z-[50]">
         <div className="flex items-center gap-4 h-full">
           <button 
              onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
@@ -72,11 +72,9 @@ export function MathTopNav() {
              {menuOpen ? <X className="w-4 h-4 text-black" /> : <Menu className="w-4 h-4 text-black" />}
           </button>
         </div>
-      </header>
-
       {/* Math Tools Dropdown / Mobile Menu */}
       {menuOpen && (
-        <div className="fixed top-[48px] left-0 md:left-[140px] w-full md:w-[320px] bg-white border-b md:border md:rounded-b-lg border-[#e8eaed] shadow-2xl z-[8900] py-4 flex flex-col max-h-[calc(100vh-50px)] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute top-full left-0 md:left-[140px] w-full md:w-[320px] bg-white border-b md:border md:rounded-b-lg border-[#e8eaed] shadow-2xl z-[8900] py-4 flex flex-col max-h-[calc(100vh-120px)] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
            <div className="px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#5F6368] border-b border-[#F1F3F4] mb-2 mx-2">Laboratory Suite</div>
            {ECO_LINKS.map(link => {
              const Icon = link.icon;
@@ -98,6 +96,7 @@ export function MathTopNav() {
       
       {/* Backdrop for desktop dropdown */}
       {menuOpen && <div className="hidden md:block fixed inset-0 z-[8800]" onClick={() => setMenuOpen(false)} />}
+      </header>
     </>
   );
 }
