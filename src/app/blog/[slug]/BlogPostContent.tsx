@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, ArrowLeft, Clock, Share2, Facebook, Twitter, Linkedin, Bookmark, ArrowRight, Home, Target, BookOpen, Calculator } from 'lucide-react';

@@ -119,7 +119,7 @@ export default function NepalVATCalculator() {
               {mode === 'add' ? 'Total (incl. VAT)' : 'Amount (excl. VAT)'}
             </div>
             <div className="text-6xl font-black text-[var(--primary)] tracking-tighter mb-2">
-              Rs. {fmt(mode === 'add' ? r.final : r.original)}
+              Rs. {fmt(mode === 'add' ? r.final : r.baseAmount)}
             </div>
             <div className="text-xs font-bold text-[var(--text-secondary)] uppercase">
               {mode === 'add' ? 'Gross Price' : 'Net Price'}
