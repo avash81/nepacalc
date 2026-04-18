@@ -1,0 +1,1348 @@
+{
+  "communities": {
+    "0": [
+      "page_page",
+      "src_app_calculator_age_calculator_page_tsx",
+      "src_app_calculator_attendance_page_tsx",
+      "src_app_calculator_base_converter_page_tsx",
+      "src_app_calculator_bmr_page_tsx",
+      "src_app_calculator_body_fat_page_tsx",
+      "src_app_calculator_brick_calculator_page_tsx",
+      "src_app_calculator_cagr_calculator_page_tsx",
+      "src_app_calculator_cgpa_page_tsx",
+      "src_app_calculator_chemistry_molar_page_tsx",
+      "src_app_calculator_compound_interest_page_tsx",
+      "src_app_calculator_concrete_mix_page_tsx",
+      "src_app_calculator_date_duration_page_tsx",
+      "src_app_calculator_discount_calculator_page_tsx",
+      "src_app_calculator_engineering_gpa_calculator_page_tsx",
+      "src_app_calculator_fd_calculator_page_tsx",
+      "src_app_calculator_foreign_employment_page_tsx",
+      "src_app_calculator_fraction_calculator_page_tsx",
+      "src_app_calculator_geometry_3d_page_tsx",
+      "src_app_calculator_gold_converter_page_tsx",
+      "src_app_calculator_gpa_page_tsx",
+      "src_app_calculator_gratuity_calculator_page_tsx",
+      "src_app_calculator_ideal_weight_page_tsx",
+      "src_app_calculator_kukl_bill_page_tsx",
+      "src_app_calculator_lcm_gcf_calculator_page_tsx",
+      "src_app_calculator_length_converter_page_tsx",
+      "src_app_calculator_linear_solver_page_tsx",
+      "src_app_calculator_logarithm_calculator_page_tsx",
+      "src_app_calculator_marks_needed_page_tsx",
+      "src_app_calculator_matrices_page_tsx",
+      "src_app_calculator_momo_calorie_counter_page_tsx",
+      "src_app_calculator_mortgage_calculator_page_tsx",
+      "src_app_calculator_nea_bill_page_tsx",
+      "src_app_calculator_nepal_attendance_page_tsx",
+      "src_app_calculator_nepal_home_loan_page_tsx",
+      "src_app_calculator_nepal_land_page_tsx",
+      "src_app_calculator_nepal_provident_fund_page_tsx",
+      "src_app_calculator_nepal_salary_page_tsx",
+      "src_app_calculator_nepal_stocks_page_tsx",
+      "src_app_calculator_nepal_tax_calculator_page_tsx",
+      "src_app_calculator_nepal_tds_calculator_page_tsx",
+      "src_app_calculator_nepal_vat_page_tsx",
+      "src_app_calculator_nepal_vehicle_tax_page_tsx",
+      "src_app_calculator_nepali_date_page_tsx",
+      "src_app_calculator_nepse_bonus_tax_page_tsx",
+      "src_app_calculator_nepse_wacc_page_tsx",
+      "src_app_calculator_number_to_words_page_tsx",
+      "src_app_calculator_percentage_page_tsx",
+      "src_app_calculator_physics_energy_page_tsx",
+      "src_app_calculator_physics_force_page_tsx",
+      "src_app_calculator_pregnancy_due_date_page_tsx",
+      "src_app_calculator_probability_page_tsx",
+      "src_app_calculator_property_registration_page_tsx",
+      "src_app_calculator_property_tax_page_tsx",
+      "src_app_calculator_qr_generator_page_tsx",
+      "src_app_calculator_quadratic_solver_page_tsx",
+      "src_app_calculator_ratio_proportion_page_tsx",
+      "src_app_calculator_remittance_calculator_page_tsx",
+      "src_app_calculator_roman_numerals_page_tsx",
+      "src_app_calculator_rounding_page_tsx",
+      "src_app_calculator_scientific_calculator_page_tsx",
+      "src_app_calculator_see_gpa_page_tsx",
+      "src_app_calculator_simple_interest_page_tsx",
+      "src_app_calculator_sip_calculator_page_tsx",
+      "src_app_calculator_standard_deviation_page_tsx",
+      "src_app_calculator_statistics_plus_page_tsx",
+      "src_app_calculator_tip_calculator_page_tsx",
+      "src_app_calculator_unit_converter_page_tsx",
+      "src_app_calculator_water_intake_page_tsx",
+      "src_app_calculator_weight_converter_page_tsx",
+      "src_app_calculator_word_counter_page_tsx",
+      "src_app_calculator_z_score_page_tsx"
+    ],
+    "1": [
+      "calculator_add",
+      "calculator_addcluster",
+      "calculator_convertadtobs",
+      "calculator_convertbstoad",
+      "calculator_fetchrates",
+      "calculator_fmt",
+      "calculator_getzodiac",
+      "calculator_remove",
+      "calculator_removecluster",
+      "calculator_switchtab",
+      "calculator_update",
+      "calculator_updatecluster",
+      "src_app_calculator_age_calculator_calculator_tsx",
+      "src_app_calculator_attendance_calculator_tsx",
+      "src_app_calculator_bonus_tax_calculator_tsx",
+      "src_app_calculator_cagr_calculator_calculator_tsx",
+      "src_app_calculator_cgpa_calculator_tsx",
+      "src_app_calculator_compound_interest_calculator_tsx",
+      "src_app_calculator_currency_converter_calculator_tsx",
+      "src_app_calculator_discount_calculator_calculator_tsx",
+      "src_app_calculator_fd_calculator_calculator_tsx",
+      "src_app_calculator_foreign_employment_calculator_tsx",
+      "src_app_calculator_gold_converter_calculator_tsx",
+      "src_app_calculator_kukl_bill_calculator_tsx",
+      "src_app_calculator_momo_calorie_counter_calculator_tsx",
+      "src_app_calculator_mortgage_calculator_calculator_tsx",
+      "src_app_calculator_nea_bill_calculator_tsx",
+      "src_app_calculator_nepal_attendance_calculator_tsx",
+      "src_app_calculator_nepal_home_loan_calculator_tsx",
+      "src_app_calculator_nepal_land_calculator_tsx",
+      "src_app_calculator_nepal_provident_fund_calculator_tsx",
+      "src_app_calculator_nepal_stocks_calculator_tsx",
+      "src_app_calculator_nepal_tax_calculator_calculator_tsx",
+      "src_app_calculator_nepal_vat_calculator_tsx",
+      "src_app_calculator_nepali_date_calculator_tsx",
+      "src_app_calculator_nepse_wacc_calculator_tsx",
+      "src_app_calculator_property_registration_calculator_tsx",
+      "src_app_calculator_property_tax_calculator_tsx",
+      "src_app_calculator_provident_fund_calculator_tsx",
+      "src_app_calculator_remittance_calculator_calculator_tsx",
+      "src_app_calculator_savings_calculator_tsx",
+      "src_app_calculator_simple_interest_calculator_tsx",
+      "src_app_calculator_tds_calculator_calculator_tsx",
+      "src_app_calculator_tip_calculator_calculator_tsx"
+    ],
+    "2": [
+      "calculator_addsemester",
+      "calculator_drawmultigraph",
+      "calculator_factorial",
+      "calculator_formatnpr",
+      "calculator_getstatuscolor",
+      "calculator_numbtn",
+      "calculator_press",
+      "calculator_removesemester",
+      "calculator_savereading",
+      "calculator_scibtn",
+      "calculator_stemeval",
+      "calculator_swap",
+      "calculator_swapunits",
+      "calculator_updatesemester",
+      "calculator_updatestate",
+      "src_app_calculator_bmi_calculator_tsx",
+      "src_app_calculator_bmr_calculator_tsx",
+      "src_app_calculator_concrete_mix_calculator_tsx",
+      "src_app_calculator_engineering_gpa_calculator_calculator_tsx",
+      "src_app_calculator_lcm_gcf_calculator_calculator_tsx",
+      "src_app_calculator_length_converter_calculator_tsx",
+      "src_app_calculator_linear_solver_calculator_tsx",
+      "src_app_calculator_loan_emi_calculator_tsx",
+      "src_app_calculator_logarithm_calculator_calculator_tsx",
+      "src_app_calculator_nepal_income_tax_calculator_tsx",
+      "src_app_calculator_nepal_salary_calculator_tsx",
+      "src_app_calculator_nepal_tds_calculator_calculator_tsx",
+      "src_app_calculator_nepse_bonus_tax_calculator_tsx",
+      "src_app_calculator_percentage_calculator_tsx",
+      "src_app_calculator_scientific_calculator_calculator_tsx",
+      "src_app_calculator_sip_calculator_calculator_tsx",
+      "src_app_calculator_solar_requirement_calculator_tsx",
+      "src_app_calculator_unit_converter_calculator_tsx",
+      "src_app_calculator_weight_converter_calculator_tsx"
+    ],
+    "3": [
+      "accuracy_suite_test_calculatebmi",
+      "accuracy_suite_test_calculatebmiimperial",
+      "accuracy_suite_test_calculatebmr",
+      "accuracy_suite_test_calculatebodyfatfemale",
+      "accuracy_suite_test_calculatebodyfatmale",
+      "accuracy_suite_test_calculatecagr",
+      "accuracy_suite_test_calculatediscount",
+      "accuracy_suite_test_calculateemi",
+      "accuracy_suite_test_calculatefd",
+      "accuracy_suite_test_calculateflatemi",
+      "accuracy_suite_test_calculatefraction",
+      "accuracy_suite_test_calculateidealweight",
+      "accuracy_suite_test_calculatelog",
+      "accuracy_suite_test_calculatemortgage",
+      "accuracy_suite_test_calculateoriginalfrompercent",
+      "accuracy_suite_test_calculatepctchange",
+      "accuracy_suite_test_calculatepercentage",
+      "accuracy_suite_test_calculatesavings",
+      "accuracy_suite_test_calculatesd",
+      "accuracy_suite_test_calculatesi",
+      "accuracy_suite_test_calculatesip",
+      "accuracy_suite_test_calculatetip",
+      "accuracy_suite_test_calculatevat",
+      "accuracy_suite_test_calculatewhatpercent",
+      "accuracy_suite_test_fromroman",
+      "accuracy_suite_test_gcd",
+      "accuracy_suite_test_lcm",
+      "accuracy_suite_test_multigcd",
+      "accuracy_suite_test_multilcm",
+      "accuracy_suite_test_solvequadratic",
+      "accuracy_suite_test_toroman",
+      "src_tests_math_accuracy_suite_test_ts"
+    ],
+    "4": [
+      "adminlayout_handlelogout",
+      "firebase_getapp",
+      "firebase_getdb",
+      "firebase_getfirebaseauth",
+      "firebase_handlefirestoreerror",
+      "firebase_isconfigured",
+      "page_fetchdata",
+      "page_fetchpages",
+      "page_fetchpost",
+      "page_fetchposts",
+      "page_handledelete",
+      "page_handlelogin",
+      "page_handlesave",
+      "page_handlesetup",
+      "page_handletitlechange",
+      "page_handleupdate",
+      "src_app_admin_login_page_tsx",
+      "src_app_admin_page_tsx",
+      "src_app_admin_posts_edit_slug_page_tsx",
+      "src_app_admin_posts_new_page_tsx",
+      "src_app_admin_posts_page_tsx",
+      "src_app_admin_seo_pages_new_page_tsx",
+      "src_app_admin_seo_pages_page_tsx",
+      "src_app_admin_setup_page_tsx",
+      "src_components_layout_adminlayout_tsx",
+      "src_lib_firebase_ts"
+    ],
+    "5": [
+      "calculator_bankingemicalculator",
+      "calculator_gratuitycalculator",
+      "calculator_nepalvehicletaxcalculator",
+      "calculator_quadraticsolver",
+      "calculator_vehicletaxcalculator",
+      "concretecalculator_fmt",
+      "footer_footer",
+      "googleanalytics_googleanalyticsinner",
+      "percentagecalculator_test_usepathname",
+      "percentagecalculator_test_userouter",
+      "src_app_calculator_gratuity_calculator_calculator_tsx",
+      "src_app_calculator_home_loan_calculator_tsx",
+      "src_app_calculator_nepal_vehicle_tax_calculator_tsx",
+      "src_app_calculator_quadratic_solver_calculator_tsx",
+      "src_app_calculator_vehicle_tax_calculator_tsx",
+      "src_components_calculators_concretecalculator_tsx",
+      "src_components_layout_footer_tsx",
+      "src_components_seo_googleanalytics_tsx",
+      "src_hooks_usesyncstate_ts",
+      "src_tests_components_percentagecalculator_test_tsx",
+      "usesyncstate_usesyncstate"
+    ],
+    "6": [
+      "auth_getadminsession",
+      "auth_getadmintoken",
+      "auth_logout",
+      "auth_requireadmin",
+      "middleware_middleware",
+      "robots_robots",
+      "route_get",
+      "route_post",
+      "sitemap_sitemap",
+      "src_app_api_admin_auth_route_ts",
+      "src_app_api_admin_session_route_ts",
+      "src_app_api_admin_setup_route_ts",
+      "src_app_api_ai_solve_route_ts",
+      "src_app_api_nepal_rates_route_ts",
+      "src_app_robots_ts",
+      "src_app_sitemap_ts",
+      "src_lib_auth_ts",
+      "src_middleware_ts"
+    ],
+    "7": [
+      "calculator_backspace",
+      "calculator_calculate",
+      "calculator_clear",
+      "calculator_handlenumber",
+      "calculator_handleoperator",
+      "homecalculator_memop",
+      "homecalculator_solvemathquery",
+      "safeeval_evalexpression",
+      "safeeval_factorial",
+      "safeeval_safeeval",
+      "safeeval_todeg",
+      "safeeval_torad",
+      "src_app_calculator_simple_calculator_calculator_tsx",
+      "src_components_home_homecalculator_tsx",
+      "src_utils_math_safeeval_ts"
+    ],
+    "8": [
+      "nepal_calculatekuklbill",
+      "nepal_calculatenepalgratuity",
+      "nepal_calculatenepalincometax",
+      "nepal_calculatenepalpropertyregistration",
+      "nepal_calculatenepalsalary",
+      "nepal_calculatenepaltax",
+      "nepal_calculatenepalvat",
+      "nepal_calculatenepsereturn",
+      "nepal_calculatevat",
+      "src_utils_math_country_rules_nepal_ts",
+      "src_utils_math_nepal_ts"
+    ],
+    "9": [
+      "finance_calculatecagr",
+      "finance_calculatecompoundinterest",
+      "finance_calculatediscount",
+      "finance_calculateemi",
+      "finance_calculatefd",
+      "finance_calculateinflation",
+      "finance_calculateretirement",
+      "finance_calculatesip",
+      "finance_calculatesplitbill",
+      "src_utils_math_finance_ts"
+    ],
+    "10": [
+      "guidepage_buildschema",
+      "guidepage_escapehtml",
+      "guidepage_extracttoc",
+      "guidepage_readingtime",
+      "guidepage_rendermarkdown",
+      "guidepage_sanitizeid",
+      "guidepage_sanitizeurlescaped",
+      "guidepage_sanitizeurlraw",
+      "src_app_guide_slug_guidepage_tsx"
+    ],
+    "11": [
+      "allinonecalculator_ac",
+      "allinonecalculator_compute",
+      "allinonecalculator_del",
+      "allinonecalculator_historyicon",
+      "allinonecalculator_k",
+      "allinonecalculator_solvertoggle",
+      "src_components_calculator_allinonecalculator_tsx"
+    ],
+    "12": [
+      "calculator_addsubject",
+      "calculator_getsubjectgrade",
+      "calculator_removesubject",
+      "calculator_updatesubject",
+      "src_app_calculator_gpa_calculator_tsx",
+      "src_app_calculator_see_gpa_calculator_tsx"
+    ],
+    "13": [
+      "calculatorerrorboundary_calculatorerrorboundary",
+      "calculatorerrorboundary_calculatorerrorboundary_componentdidcatch",
+      "calculatorerrorboundary_calculatorerrorboundary_constructor",
+      "calculatorerrorboundary_calculatorerrorboundary_getderivedstatefromerror",
+      "calculatorerrorboundary_calculatorerrorboundary_render",
+      "src_components_calculator_calculatorerrorboundary_tsx"
+    ],
+    "14": [
+      "geometryapp_addcircle",
+      "geometryapp_addpoint",
+      "geometryapp_addsegment",
+      "geometryapp_deleteobject",
+      "geometryapp_updatepointposition",
+      "src_components_ecosystem_geometryapp_tsx"
+    ],
+    "15": [
+      "conversion_convertadtobs",
+      "conversion_convertbstoad",
+      "conversion_getbsmonthname",
+      "conversion_getnepalidayname",
+      "conversion_gettodayinbs",
+      "src_utils_math_conversion_ts"
+    ],
+    "16": [
+      "blogpostcontent_escapehtml",
+      "blogpostcontent_rendercontentstring",
+      "blogpostcontent_sanitizeurlescaped",
+      "blogpostcontent_sanitizeurlraw",
+      "src_app_blog_slug_blogpostcontent_tsx"
+    ],
+    "17": [
+      "calculator_copy",
+      "calculator_helper",
+      "calculator_tointl",
+      "calculator_tolakh",
+      "src_app_calculator_number_to_words_calculator_tsx"
+    ],
+    "18": [
+      "calculator_fromroman",
+      "calculator_handlenum",
+      "calculator_handleroman",
+      "calculator_toroman",
+      "src_app_calculator_roman_numerals_calculator_tsx"
+    ],
+    "19": [
+      "page_generatemetadata",
+      "page_getpage",
+      "page_getpostdata",
+      "src_app_blog_slug_page_tsx",
+      "src_app_guide_slug_page_tsx"
+    ],
+    "20": [
+      "matrixapp_addmatrix",
+      "matrixapp_evaluateline",
+      "matrixapp_updatematrixcell",
+      "matrixapp_updatematrixsize",
+      "src_components_ecosystem_matrixapp_tsx"
+    ],
+    "21": [
+      "errorboundary_errorboundary",
+      "errorboundary_errorboundary_componentdidcatch",
+      "errorboundary_errorboundary_getderivedstatefromerror",
+      "errorboundary_errorboundary_render",
+      "src_components_ui_errorboundary_tsx"
+    ],
+    "22": [
+      "safecalculations_safecalculatebmi",
+      "safecalculations_safecalculateemi",
+      "safecalculations_safecalculatepercentage",
+      "safecalculations_solvequadratic",
+      "src_utils_math_safecalculations_ts"
+    ],
+    "23": [
+      "pageclient_escapehtml",
+      "pageclient_rendercontent",
+      "pageclient_sanitizeurlescaped",
+      "src_app_blog_slug_pageclient_tsx"
+    ],
+    "24": [
+      "health_calculatebmi",
+      "health_calculatebmr",
+      "health_calculatepregnancyduedate",
+      "src_utils_math_health_ts"
+    ],
+    "25": [
+      "seoscorepanel_calcseo",
+      "seoscorepanel_scorecolor",
+      "src_components_admin_seoscorepanel_tsx"
+    ],
+    "26": [
+      "src_components_calculator_validatedinput_tsx",
+      "validatedinput_handleblur",
+      "validatedinput_handlechange"
+    ],
+    "27": [
+      "programmerapp_handlebaseinput",
+      "programmerapp_togglebit",
+      "src_components_ecosystem_programmerapp_tsx"
+    ],
+    "28": [
+      "navbar_handlekey",
+      "navbar_loaddata",
+      "src_components_layout_navbar_tsx"
+    ],
+    "29": [
+      "card_card",
+      "card_cn",
+      "src_components_ui_card_tsx"
+    ],
+    "30": [
+      "firestore_rest_fetchdocumentbyslug",
+      "firestore_rest_fetchfirestorecollection",
+      "src_lib_firestore_rest_ts"
+    ],
+    "31": [
+      "education_calculateattendance",
+      "education_calculategpa",
+      "src_utils_math_education_ts"
+    ],
+    "32": [
+      "audit_security_pass",
+      "blueprint_google_standard",
+      "nepcalc_platform"
+    ],
+    "33": [
+      "clean_js",
+      "clean_walk"
+    ],
+    "34": [
+      "clean_patterns_js",
+      "clean_patterns_walk"
+    ],
+    "35": [
+      "fix_lint_js",
+      "fix_lint_walk"
+    ],
+    "36": [
+      "fix_safe_js",
+      "fix_safe_walk"
+    ],
+    "37": [
+      "homepagecalculatorclient_homepagecalculatorclient",
+      "src_app_homepagecalculatorclient_tsx"
+    ],
+    "38": [
+      "layout_rootlayout",
+      "src_app_layout_tsx"
+    ],
+    "39": [
+      "page_aboutpage",
+      "src_app_about_page_tsx"
+    ],
+    "40": [
+      "layout_adminrootlayout",
+      "src_app_admin_layout_tsx"
+    ],
+    "41": [
+      "layout_bloglayout",
+      "src_app_blog_layout_tsx"
+    ],
+    "42": [
+      "loading_calcloading",
+      "src_app_calculator_loading_tsx"
+    ],
+    "43": [
+      "calculator_updateparam",
+      "src_app_calculator_area_calculator_calculator_tsx"
+    ],
+    "44": [
+      "page_areacalculatorpage",
+      "src_app_calculator_area_calculator_page_tsx"
+    ],
+    "45": [
+      "calculator_bmichildcalculator",
+      "src_app_calculator_bmi_child_calculator_tsx"
+    ],
+    "46": [
+      "page_bmichildpage",
+      "src_app_calculator_bmi_child_page_tsx"
+    ],
+    "47": [
+      "page_currencypage",
+      "src_app_calculator_currency_converter_page_tsx"
+    ],
+    "48": [
+      "calculator_gcd",
+      "src_app_calculator_decimal_to_fraction_calculator_tsx"
+    ],
+    "49": [
+      "page_decimalfractionpage",
+      "src_app_calculator_decimal_to_fraction_page_tsx"
+    ],
+    "50": [
+      "page_leadtimecalculatorpage",
+      "src_app_calculator_lead_time_page_tsx"
+    ],
+    "51": [
+      "calculator_upd",
+      "src_app_calculator_matrices_calculator_tsx"
+    ],
+    "52": [
+      "calculator_paintcostcalculator",
+      "src_app_calculator_paint_cost_calculator_tsx"
+    ],
+    "53": [
+      "page_paintcostpage",
+      "src_app_calculator_paint_cost_page_tsx"
+    ],
+    "54": [
+      "calculator_inputcls",
+      "src_app_calculator_physics_energy_calculator_tsx"
+    ],
+    "55": [
+      "calculator_pregnancyduedatecalculator",
+      "src_app_calculator_pregnancy_due_date_calculator_tsx"
+    ],
+    "56": [
+      "calculator_boxcls",
+      "src_app_calculator_ratio_proportion_calculator_tsx"
+    ],
+    "57": [
+      "page_simplecalculatorpage",
+      "src_app_calculator_simple_calculator_page_tsx"
+    ],
+    "58": [
+      "page_sleepcalculatorpage",
+      "src_app_calculator_sleep_page_tsx"
+    ],
+    "59": [
+      "page_solarcalculatorpage",
+      "src_app_calculator_solar_requirement_page_tsx"
+    ],
+    "60": [
+      "page_categorypage",
+      "src_app_calculators_category_page_tsx"
+    ],
+    "61": [
+      "page_contactpage",
+      "src_app_contact_page_tsx"
+    ],
+    "62": [
+      "page_converterspillarpage",
+      "src_app_converters_page_tsx"
+    ],
+    "63": [
+      "page_financepillarpage",
+      "src_app_finance_page_tsx"
+    ],
+    "64": [
+      "page_guidespage",
+      "src_app_guide_page_tsx"
+    ],
+    "65": [
+      "page_healthpillarpage",
+      "src_app_health_page_tsx"
+    ],
+    "66": [
+      "layout_mathecosystemlayout",
+      "src_app_math_tools_layout_tsx"
+    ],
+    "67": [
+      "page_threedimensionalpage",
+      "src_app_math_tools_3d_page_tsx"
+    ],
+    "68": [
+      "page_graphingcalculatorpage",
+      "src_app_math_tools_calculator_page_tsx"
+    ],
+    "69": [
+      "page_calculuspage",
+      "src_app_math_tools_calculus_page_tsx"
+    ],
+    "70": [
+      "page_fourfunctionpage",
+      "src_app_math_tools_fourfunction_page_tsx"
+    ],
+    "71": [
+      "page_geometrytoolpage",
+      "src_app_math_tools_geometry_page_tsx"
+    ],
+    "72": [
+      "page_matrixcalculatorpage",
+      "src_app_math_tools_matrix_page_tsx"
+    ],
+    "73": [
+      "page_programmerpage",
+      "src_app_math_tools_programmer_page_tsx"
+    ],
+    "74": [
+      "page_scientificcalculatorpage",
+      "src_app_math_tools_scientific_page_tsx"
+    ],
+    "75": [
+      "page_statisticspage",
+      "src_app_math_tools_statistics_page_tsx"
+    ],
+    "76": [
+      "page_nepalpillarpage",
+      "src_app_nepal_page_tsx"
+    ],
+    "77": [
+      "page_privacypage",
+      "src_app_privacy_page_tsx"
+    ],
+    "78": [
+      "page_termspage",
+      "src_app_terms_page_tsx"
+    ],
+    "79": [
+      "posteditor_menubutton",
+      "src_components_admin_posteditor_tsx"
+    ],
+    "80": [
+      "seopanel_getscore",
+      "src_components_admin_seopanel_tsx"
+    ],
+    "81": [
+      "calculatorcard_calculatorcard",
+      "src_components_calculator_calculatorcard_tsx"
+    ],
+    "82": [
+      "calculatorregistry_inlinecalculator",
+      "src_components_calculator_calculatorregistry_tsx"
+    ],
+    "83": [
+      "marketratesbanner_fmt",
+      "src_components_calculator_marketratesbanner_tsx"
+    ],
+    "84": [
+      "quickpresets_quickpresets",
+      "src_components_calculator_quickpresets_tsx"
+    ],
+    "85": [
+      "resultcard_handlecopy",
+      "src_components_calculator_resultcard_tsx"
+    ],
+    "86": [
+      "resultdisplay_handlecopy",
+      "src_components_calculator_resultdisplay_tsx"
+    ],
+    "87": [
+      "shareresult_shareresult",
+      "src_components_calculator_shareresult_tsx"
+    ],
+    "88": [
+      "calculusapp_calculusapp",
+      "src_components_ecosystem_calculusapp_tsx"
+    ],
+    "89": [
+      "geometrysidebar_handlepointclick",
+      "src_components_ecosystem_geometrysidebar_tsx"
+    ],
+    "90": [
+      "graphapp_graphapp",
+      "src_components_ecosystem_graphapp_tsx"
+    ],
+    "91": [
+      "plotcanvas_plotcanvas",
+      "src_components_ecosystem_plotcanvas_tsx"
+    ],
+    "92": [
+      "practiceapp_practiceapp",
+      "src_components_ecosystem_practiceapp_tsx"
+    ],
+    "93": [
+      "scientificapp_scientificapp",
+      "src_components_ecosystem_scientificapp_tsx"
+    ],
+    "94": [
+      "src_components_ecosystem_statisticsapp_tsx",
+      "statisticsapp_statisticsapp"
+    ],
+    "95": [
+      "featuregrid_featuregrid",
+      "src_components_home_featuregrid_tsx"
+    ],
+    "96": [
+      "src_components_home_trustband_tsx",
+      "trustband_trustband"
+    ],
+    "97": [
+      "calculatorlayout_togglefavorite",
+      "src_components_layout_calculatorlayout_tsx"
+    ],
+    "98": [
+      "clientshell_clientshell",
+      "src_components_layout_clientshell_tsx"
+    ],
+    "99": [
+      "cookiebanner_cookiebanner",
+      "src_components_layout_cookiebanner_tsx"
+    ],
+    "100": [
+      "searchmodal_handlekey",
+      "src_components_layout_searchmodal_tsx"
+    ],
+    "101": [
+      "src_components_layout_themetoggle_tsx",
+      "themetoggle_themetoggle"
+    ],
+    "102": [
+      "jsonld_jsonld",
+      "src_components_seo_jsonld_tsx"
+    ],
+    "103": [
+      "button_button",
+      "src_components_ui_button_tsx"
+    ],
+    "104": [
+      "logo_logo",
+      "src_components_ui_logo_tsx"
+    ],
+    "105": [
+      "nepalflag_nepalflag",
+      "src_components_ui_nepalflag_tsx"
+    ],
+    "106": [
+      "slider_formatvalue",
+      "src_components_ui_slider_tsx"
+    ],
+    "107": [
+      "src_hooks_usedebounce_ts",
+      "usedebounce_usedebounce"
+    ],
+    "108": [
+      "src_hooks_useliverates_ts",
+      "useliverates_useliverates"
+    ],
+    "109": [
+      "src_hooks_uselocalstorage_ts",
+      "uselocalstorage_uselocalstorage"
+    ],
+    "110": [
+      "src_hooks_usetheme_ts",
+      "usetheme_usetheme"
+    ],
+    "111": [
+      "calcmeta_calcmeta",
+      "src_lib_calcmeta_ts"
+    ],
+    "112": [
+      "jest_config_ts"
+    ],
+    "113": [
+      "jest_setup_ts"
+    ],
+    "114": [
+      "next_env_d_ts"
+    ],
+    "115": [
+      "next_config_js"
+    ],
+    "116": [
+      "postcss_config_js"
+    ],
+    "117": [
+      "tailwind_config_ts"
+    ],
+    "118": [
+      "src_app_error_tsx"
+    ],
+    "119": [
+      "src_app_loading_tsx"
+    ],
+    "120": [
+      "src_app_not_found_tsx"
+    ],
+    "121": [
+      "src_app_page_tsx"
+    ],
+    "122": [
+      "src_app_api_og_route_tsx"
+    ],
+    "123": [
+      "src_app_blog_page_tsx"
+    ],
+    "124": [
+      "src_app_calculator_base_converter_calculator_tsx"
+    ],
+    "125": [
+      "src_app_calculator_bmi_page_tsx"
+    ],
+    "126": [
+      "src_app_calculator_body_fat_calculator_tsx"
+    ],
+    "127": [
+      "src_app_calculator_brick_calculator_calculator_tsx"
+    ],
+    "128": [
+      "src_app_calculator_calorie_calculator_calculator_tsx"
+    ],
+    "129": [
+      "src_app_calculator_calorie_calculator_page_tsx"
+    ],
+    "130": [
+      "src_app_calculator_chemistry_molar_calculator_tsx"
+    ],
+    "131": [
+      "src_app_calculator_date_duration_calculator_tsx"
+    ],
+    "132": [
+      "src_app_calculator_fraction_calculator_calculator_tsx"
+    ],
+    "133": [
+      "src_app_calculator_geometry_3d_calculator_tsx"
+    ],
+    "134": [
+      "src_app_calculator_ideal_weight_calculator_tsx"
+    ],
+    "135": [
+      "src_app_calculator_lead_time_calculator_tsx"
+    ],
+    "136": [
+      "src_app_calculator_loan_emi_page_tsx"
+    ],
+    "137": [
+      "src_app_calculator_marks_needed_calculator_tsx"
+    ],
+    "138": [
+      "src_app_calculator_nepal_income_tax_page_tsx"
+    ],
+    "139": [
+      "src_app_calculator_physics_force_calculator_tsx"
+    ],
+    "140": [
+      "src_app_calculator_probability_calculator_tsx"
+    ],
+    "141": [
+      "src_app_calculator_qr_generator_calculator_tsx"
+    ],
+    "142": [
+      "src_app_calculator_rounding_calculator_tsx"
+    ],
+    "143": [
+      "src_app_calculator_savings_page_tsx"
+    ],
+    "144": [
+      "src_app_calculator_sleep_calculator_tsx"
+    ],
+    "145": [
+      "src_app_calculator_standard_deviation_calculator_tsx"
+    ],
+    "146": [
+      "src_app_calculator_statistics_plus_calculator_tsx"
+    ],
+    "147": [
+      "src_app_calculator_water_intake_calculator_tsx"
+    ],
+    "148": [
+      "src_app_calculator_word_counter_calculator_tsx"
+    ],
+    "149": [
+      "src_app_calculator_z_score_calculator_tsx"
+    ],
+    "150": [
+      "src_app_calculators_nepal_page_tsx"
+    ],
+    "151": [
+      "src_app_calculators_category_slug_page_tsx"
+    ],
+    "152": [
+      "src_app_directory_page_tsx"
+    ],
+    "153": [
+      "src_app_high_traffic_page_tsx"
+    ],
+    "154": [
+      "src_app_math_tools_page_tsx"
+    ],
+    "155": [
+      "src_app_pricing_page_tsx"
+    ],
+    "156": [
+      "src_app_search_page_tsx"
+    ],
+    "157": [
+      "src_components_calculator_calcfaq_tsx"
+    ],
+    "158": [
+      "src_components_calculator_calcwrapper_tsx"
+    ],
+    "159": [
+      "src_components_calculator_simplecalculator_tsx"
+    ],
+    "160": [
+      "src_components_calculators_emicalculator_tsx"
+    ],
+    "161": [
+      "src_components_calculators_incometaxcalculator_tsx"
+    ],
+    "162": [
+      "src_components_calculators_sipcalculator_tsx"
+    ],
+    "163": [
+      "src_components_calculators_vatcalculator_tsx"
+    ],
+    "164": [
+      "src_components_ecosystem_expressiondrawer_tsx"
+    ],
+    "165": [
+      "src_components_ecosystem_threedapp_tsx"
+    ],
+    "166": [
+      "src_components_ecosystem_virtualkeypad_tsx"
+    ],
+    "167": [
+      "src_components_education_physicalcalculatorguide_tsx"
+    ],
+    "168": [
+      "src_components_home_calculatorshowcase_tsx"
+    ],
+    "169": [
+      "src_components_home_sidebar_tsx"
+    ],
+    "170": [
+      "src_components_layout_mathtopnav_tsx"
+    ],
+    "171": [
+      "src_components_layout_mobilenav_tsx"
+    ],
+    "172": [
+      "src_components_layout_trendingsidebar_tsx"
+    ],
+    "173": [
+      "src_components_seo_internallinks_tsx"
+    ],
+    "174": [
+      "src_components_ui_breakdowntable_tsx"
+    ],
+    "175": [
+      "src_components_ui_geometryicons_tsx"
+    ],
+    "176": [
+      "src_components_ui_index_tsx"
+    ],
+    "177": [
+      "src_components_ui_input_tsx"
+    ],
+    "178": [
+      "src_components_ui_select_tsx"
+    ],
+    "179": [
+      "src_components_ui_toggle_tsx"
+    ],
+    "180": [
+      "src_config_globalconfig_ts"
+    ],
+    "181": [
+      "src_config_tax_config_ts"
+    ],
+    "182": [
+      "src_data_calculators_tsx"
+    ],
+    "183": [
+      "src_utils_math_advancedsolvers_ts"
+    ],
+    "184": [
+      "src_utils_math_calculatorconstants_ts"
+    ],
+    "185": [
+      "src_tests_math_nepal_test_ts"
+    ],
+    "186": [
+      "src_tests_math_safeeval_test_ts"
+    ],
+    "187": [
+      "blueprint_university_standard"
+    ],
+    "188": [
+      "blueprint_clinical_precision"
+    ],
+    "189": [
+      "public_logo"
+    ]
+  },
+  "cohesion": {
+    "0": 0.03,
+    "1": 0.06,
+    "2": 0.07,
+    "3": 0.07,
+    "4": 0.13,
+    "5": 0.11,
+    "6": 0.12,
+    "7": 0.14,
+    "8": 0.2,
+    "9": 0.2,
+    "10": 0.25,
+    "11": 0.29,
+    "12": 0.33,
+    "13": 0.33,
+    "14": 0.33,
+    "15": 0.4,
+    "16": 0.5,
+    "17": 0.6,
+    "18": 0.6,
+    "19": 0.6,
+    "20": 0.4,
+    "21": 0.4,
+    "22": 0.4,
+    "23": 0.67,
+    "24": 0.5,
+    "25": 0.67,
+    "26": 0.67,
+    "27": 0.67,
+    "28": 0.67,
+    "29": 0.67,
+    "30": 0.67,
+    "31": 0.67,
+    "32": 0.67,
+    "33": 1.0,
+    "34": 1.0,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0,
+    "38": 1.0,
+    "39": 1.0,
+    "40": 1.0,
+    "41": 1.0,
+    "42": 1.0,
+    "43": 1.0,
+    "44": 1.0,
+    "45": 1.0,
+    "46": 1.0,
+    "47": 1.0,
+    "48": 1.0,
+    "49": 1.0,
+    "50": 1.0,
+    "51": 1.0,
+    "52": 1.0,
+    "53": 1.0,
+    "54": 1.0,
+    "55": 1.0,
+    "56": 1.0,
+    "57": 1.0,
+    "58": 1.0,
+    "59": 1.0,
+    "60": 1.0,
+    "61": 1.0,
+    "62": 1.0,
+    "63": 1.0,
+    "64": 1.0,
+    "65": 1.0,
+    "66": 1.0,
+    "67": 1.0,
+    "68": 1.0,
+    "69": 1.0,
+    "70": 1.0,
+    "71": 1.0,
+    "72": 1.0,
+    "73": 1.0,
+    "74": 1.0,
+    "75": 1.0,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0,
+    "119": 1.0,
+    "120": 1.0,
+    "121": 1.0,
+    "122": 1.0,
+    "123": 1.0,
+    "124": 1.0,
+    "125": 1.0,
+    "126": 1.0,
+    "127": 1.0,
+    "128": 1.0,
+    "129": 1.0,
+    "130": 1.0,
+    "131": 1.0,
+    "132": 1.0,
+    "133": 1.0,
+    "134": 1.0,
+    "135": 1.0,
+    "136": 1.0,
+    "137": 1.0,
+    "138": 1.0,
+    "139": 1.0,
+    "140": 1.0,
+    "141": 1.0,
+    "142": 1.0,
+    "143": 1.0,
+    "144": 1.0,
+    "145": 1.0,
+    "146": 1.0,
+    "147": 1.0,
+    "148": 1.0,
+    "149": 1.0,
+    "150": 1.0,
+    "151": 1.0,
+    "152": 1.0,
+    "153": 1.0,
+    "154": 1.0,
+    "155": 1.0,
+    "156": 1.0,
+    "157": 1.0,
+    "158": 1.0,
+    "159": 1.0,
+    "160": 1.0,
+    "161": 1.0,
+    "162": 1.0,
+    "163": 1.0,
+    "164": 1.0,
+    "165": 1.0,
+    "166": 1.0,
+    "167": 1.0,
+    "168": 1.0,
+    "169": 1.0,
+    "170": 1.0,
+    "171": 1.0,
+    "172": 1.0,
+    "173": 1.0,
+    "174": 1.0,
+    "175": 1.0,
+    "176": 1.0,
+    "177": 1.0,
+    "178": 1.0,
+    "179": 1.0,
+    "180": 1.0,
+    "181": 1.0,
+    "182": 1.0,
+    "183": 1.0,
+    "184": 1.0,
+    "185": 1.0,
+    "186": 1.0,
+    "187": 1.0,
+    "188": 1.0,
+    "189": 1.0
+  },
+  "gods": [
+    {
+      "id": "page_page",
+      "label": "Page()",
+      "degree": 71
+    },
+    {
+      "id": "calculator_fmt",
+      "label": "fmt()",
+      "degree": 26
+    },
+    {
+      "id": "calculator_update",
+      "label": "update()",
+      "degree": 23
+    },
+    {
+      "id": "calculator_updatestate",
+      "label": "updateState()",
+      "degree": 23
+    },
+    {
+      "id": "firebase_getdb",
+      "label": "getDb()",
+      "degree": 10
+    },
+    {
+      "id": "usesyncstate_usesyncstate",
+      "label": "useSyncState()",
+      "degree": 8
+    },
+    {
+      "id": "firebase_handlefirestoreerror",
+      "label": "handleFirestoreError()",
+      "degree": 7
+    },
+    {
+      "id": "route_get",
+      "label": "GET()",
+      "degree": 6
+    },
+    {
+      "id": "firebase_getfirebaseauth",
+      "label": "getFirebaseAuth()",
+      "degree": 6
+    },
+    {
+      "id": "page_handledelete",
+      "label": "handleDelete()",
+      "degree": 5
+    }
+  ],
+  "surprises": [
+    {
+      "source": "middleware()",
+      "target": "GET()",
+      "source_files": [
+        "src\\middleware.ts",
+        "src\\app\\api\\nepal-rates\\route.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `middleware()` unexpectedly reaches hub `GET()`"
+    },
+    {
+      "source": "robots()",
+      "target": "GET()",
+      "source_files": [
+        "src\\app\\robots.ts",
+        "src\\app\\api\\nepal-rates\\route.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `robots()` unexpectedly reaches hub `GET()`"
+    },
+    {
+      "source": "sitemap()",
+      "target": "GET()",
+      "source_files": [
+        "src\\app\\sitemap.ts",
+        "src\\app\\api\\nepal-rates\\route.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `sitemap()` unexpectedly reaches hub `GET()`"
+    },
+    {
+      "source": "handleLogin()",
+      "target": "getFirebaseAuth()",
+      "source_files": [
+        "src\\app\\admin\\login\\page.tsx",
+        "src\\lib\\firebase.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `handleLogin()` unexpectedly reaches hub `getFirebaseAuth()`"
+    },
+    {
+      "source": "fetchPost()",
+      "target": "getDb()",
+      "source_files": [
+        "src\\app\\admin\\posts\\edit\\[slug]\\page.tsx",
+        "src\\lib\\firebase.ts"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `fetchPost()` unexpectedly reaches hub `getDb()`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `fmt()` connect `Community 1` to `Community 2`?",
+      "why": "High betweenness centrality (0.010) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 8 inferred relationships involving `getDb()` (e.g. with `fetchData()` and `fetchPosts()`) actually correct?",
+      "why": "`getDb()` has 8 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `Google Standard Design`, `University Density Standard`, `Clinical Precision UX` to the rest of the system?",
+      "why": "5 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.03 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.06 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 2` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.07 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 3` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.07 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

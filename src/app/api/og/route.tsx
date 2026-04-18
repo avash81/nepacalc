@@ -10,6 +10,12 @@ export async function GET(req: NextRequest) {
     // Dynamic params
     const title = searchParams.get('title') || 'NEPACALC — Best Free Calculators';
     const description = searchParams.get('description') || 'Free online calculators for Nepal';
+    const mode = searchParams.get('mode') || 'default';
+
+    // Variations for Multi-Image SEO
+    const isStep = mode.startsWith('step');
+    const accentColor = isStep ? '#38bdf8' : '#2563eb';
+    const subLabel = isStep ? `STEP ${mode.replace('step', '')} GUIDE` : 'PROFESSIONAL CALCULATION';
 
     return new ImageResponse(
       (
@@ -23,8 +29,25 @@ export async function GET(req: NextRequest) {
             justifyContent: 'center',
             backgroundColor: '#0f172a', // slate-900
             padding: '40px 80px',
+            border: isStep ? `10px solid ${accentColor}` : 'none',
           }}
         >
+          {/* Label Tag */}
+          <div style={{
+            position: 'absolute',
+            top: 40,
+            right: 40,
+            background: accentColor,
+            color: 'white',
+            padding: '8px 24px',
+            borderRadius: '100px',
+            fontSize: 24,
+            fontWeight: 800,
+            fontFamily: 'sans-serif',
+          }}>
+            {subLabel}
+          </div>
+
           <div
             style={{
               display: 'flex',

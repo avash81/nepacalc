@@ -7,7 +7,7 @@ interface ResultCardProps {
   label: string;
   value: string | number;
   unit?: string;
-  color?: 'blue' | 'green' | 'red' | 'yellow' | 'purple' | 'gray';
+  color?: 'blue' | 'green' | 'red' | 'yellow' | 'purple' | 'gray' | 'indigo' | 'emerald' | 'rose' | 'amber';
   title?: string;
   shareUrl?: string;
   copyValue?: string;
@@ -20,6 +20,10 @@ const COLORS = {
   yellow: 'bg-white border-[var(--border)] text-[var(--text-main)]',
   purple: 'bg-white border-[var(--border)] text-[var(--text-main)]',
   gray: 'bg-white border-[var(--border)] text-[var(--text-main)]',
+  indigo: 'bg-white border-[var(--border)] text-[var(--text-main)]',
+  emerald: 'bg-white border-[var(--border)] text-[var(--text-main)]',
+  rose: 'bg-white border-[var(--border)] text-[var(--text-main)]',
+  amber: 'bg-white border-[var(--border)] text-[var(--text-main)]',
 };
 
 /**

@@ -95,3 +95,32 @@ export function getBSMonthName(monthIndex: number) {
 export function getNepaliDayName(dayIndex: number) {
   return nepaliDays[dayIndex];
 }
+
+export function toRoman(num: number): string {
+  if (isNaN(num)) return NaN.toString();
+  const lookup: Record<string, number> = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1};
+  let roman = '';
+  for (let i in lookup) {
+    while (num >= lookup[i]) {
+      roman += i;
+      num -= lookup[i];
+    }
+  }
+  return roman;
+}
+
+export function fromRoman(roman: string): number {
+  const lookup: Record<string, number> = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1};
+  let num = 0;
+  let i = 0;
+  while(i < roman.length) {
+    if (i + 1 < roman.length && lookup[roman.substring(i, i+2)]) {
+      num += lookup[roman.substring(i, i+2)];
+      i += 2;
+    } else {
+      num += lookup[roman.substring(i, i+1)];
+      i++;
+    }
+  }
+  return num;
+}

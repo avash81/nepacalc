@@ -9,23 +9,37 @@ import { Receipt, Landmark } from 'lucide-react';
 function fmt(n: number) { return Math.round(n).toLocaleString('en-IN'); }
 
 export default function NepalVATCalculator() {
-  const [state, setState] = useSyncState('nepal_vat_v3', {
+  const [state, setState] = useSyncState('nepal_vat_v4', {
     mode: 'add' as 'add' | 'remove',
-    amount: 1000
+    amount: 1000,
+    includeServiceCharge: false
   });
-  const { mode, amount } = state;
+  const { mode, amount, includeServiceCharge } = state;
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
   const r = useMemo(() => {
-    const rate = 0.13;
-    let original = 0, vatAmount = 0, final = 0;
+    const vatRate = 0.13;
+    const scRate = 0.10;
+    
+    let baseAmount = 0, scAmount = 0, vatAmount = 0, final = 0;
+
     if (mode === 'add') {
-      original = amount; vatAmount = original * rate; final = original + vatAmount;
+      baseAmount = amount;
+      scAmount = includeServiceCharge ? baseAmount * scRate : 0;
+      vatAmount = (baseAmount + scAmount) * vatRate;
+      final = baseAmount + scAmount + vatAmount;
     } else {
-      final = amount; original = final / (1 + rate); vatAmount = final - original;
+      final = amount;
+      // Formula: Final = Base * (1 + scRate) * (1 + vatRate)
+      // Base = Final / ((1+scRate) * (1+vatRate))
+      const combinedMultiplier = includeServiceCharge ? (1 + scRate) * (1 + vatRate) : (1 + vatRate);
+      baseAmount = final / combinedMultiplier;
+      scAmount = includeServiceCharge ? baseAmount * scRate : 0;
+      vatAmount = final - baseAmount - scAmount;
     }
-    return { original, vatAmount, final };
-  }, [mode, amount]);
+
+    return { baseAmount, scAmount, vatAmount, final };
+  }, [mode, amount, includeServiceCharge]);
 
   const PRESETS = [1000, 5000, 10000, 50000];
 
@@ -37,15 +51,33 @@ export default function NepalVATCalculator() {
       leftPanel={
         <div className="space-y-6">
           {/* Mode selector */}
-          <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Calculation Mode</label>
-            <div className="flex border border-[var(--border)] p-1 bg-[var(--bg-surface)]">
-              {([{ id: 'add', label: 'Add VAT (13%)' }, { id: 'remove', label: 'Remove VAT' }] as const).map(m => (
-                <button key={m.id} onClick={() => update({ mode: m.id })}
-                  className={`flex-1 py-3 text-xs font-bold uppercase transition-all ${mode === m.id ? 'bg-[var(--primary)] text-white' : 'text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]'}`}>
-                  {m.label}
-                </button>
-              ))}
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Calculation Mode</label>
+              <div className="flex border border-[var(--border)] p-1 bg-[var(--bg-surface)]">
+                {([{ id: 'add', label: 'Add VAT' }, { id: 'remove', label: 'Extract VAT' }] as const).map(m => (
+                  <button key={m.id} onClick={() => update({ mode: m.id })}
+                    className={`flex-1 py-3 text-xs font-bold uppercase transition-all ${mode === m.id ? 'bg-[var(--primary)] text-white shadow-md' : 'text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]'}`}>
+                    {m.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div 
+              onClick={() => update({ includeServiceCharge: !includeServiceCharge })}
+              className={`flex items-center justify-between p-4 border transition-all cursor-pointer group ${includeServiceCharge ? 'bg-amber-50 border-amber-200' : 'bg-[var(--bg-surface)] border-[var(--border)] hover:border-amber-100'}`}
+            >
+              <div className="flex gap-3 items-center">
+                <Receipt className={`w-5 h-5 ${includeServiceCharge ? 'text-amber-600' : 'text-[var(--text-muted)]'}`} />
+                <div>
+                   <div className={`text-[11px] font-black uppercase tracking-wider ${includeServiceCharge ? 'text-amber-800' : 'text-[var(--text-main)]'}`}>Service Charge (10%)</div>
+                   <div className="text-[9px] font-bold text-[var(--text-secondary)] uppercase">Standard Hospitality Rate</div>
+                </div>
+              </div>
+              <div className={`w-10 h-5 rounded-full relative transition-colors ${includeServiceCharge ? 'bg-amber-500' : 'bg-slate-200'}`}>
+                 <div className={`absolute top-1 w-3 h-3 bg-white rounded-full transition-all ${includeServiceCharge ? 'left-6' : 'left-1'}`} />
+              </div>
             </div>
           </div>
 
@@ -102,16 +134,22 @@ export default function NepalVATCalculator() {
             </div>
             <div className="divide-y divide-[var(--border)]">
               <div className="px-4 py-4 flex justify-between">
-                <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Net Amount (excl. VAT)</span>
-                <span className="text-sm font-black text-[var(--text-main)] font-mono">Rs. {fmt(r.original)}</span>
+                <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Base Amount (excl. Tax)</span>
+                <span className="text-sm font-black text-[var(--text-main)] font-mono">Rs. {fmt(r.baseAmount)}</span>
               </div>
+              {includeServiceCharge && (
+                <div className="px-4 py-4 flex justify-between animate-in slide-in-from-top-1 duration-300">
+                  <span className="text-[11px] font-bold uppercase text-amber-600">Service Charge (10%)</span>
+                  <span className="text-sm font-black text-amber-700 font-mono">+ Rs. {fmt(r.scAmount)}</span>
+                </div>
+              )}
               <div className="px-4 py-4 flex justify-between">
-                <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">VAT Amount (13%)</span>
-                <span className="text-sm font-black text-amber-700 font-mono">+ Rs. {fmt(r.vatAmount)}</span>
+                <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">VAT (13%)</span>
+                <span className="text-sm font-black text-[var(--primary)] font-mono">+ Rs. {fmt(r.vatAmount)}</span>
               </div>
               <div className="px-4 py-5 flex justify-between bg-[var(--bg-subtle)]">
-                <span className="text-[11px] font-black uppercase text-[var(--text-main)]">Gross Total (incl. VAT)</span>
-                <span className="text-lg font-black text-[var(--primary)] font-mono">Rs. {fmt(r.final)}</span>
+                <span className="text-[11px] font-black uppercase text-[var(--text-main)]">Final Total (incl. All)</span>
+                <span className="text-xl font-black text-[var(--primary)] font-mono">Rs. {fmt(r.final)}</span>
               </div>
             </div>
           </div>

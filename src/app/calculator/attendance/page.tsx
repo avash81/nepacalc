@@ -1,13 +1,11 @@
-import { calcMeta } from '@/lib/calcMeta';
-import AttendanceCalculator from './Calculator';
+import Calculator from './Calculator';
+import { Metadata } from 'next';
 
-export const metadata = calcMeta({
-  title: 'Attendance Calculator — Track & Meet Requirements',
-  description: 'Check if you meet the minimum attendance requirement (usually 75% in Nepal). Calculate how many more classes you need to attend or can afford to miss. Free online tool.',
-  slug: 'attendance',
-  keywords: ['attendance calculator', 'calculate attendance', 'attendance percentage', 'school attendance', 'university attendance'],
-});
+export const metadata: Metadata = {
+  title: 'TU/PU Attendance Calculator — Nepal Exam Eligibility',
+  description: 'Calculate your university attendance percentage for Tribhuvan University (TU) and Pokhara University (PU). Track the 75% eligibility threshold.',
+};
 
 export default function Page() {
-  return <AttendanceCalculator />;
+  return <Calculator />;
 }

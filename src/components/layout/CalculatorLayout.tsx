@@ -1,10 +1,13 @@
 'use client';
 import React, { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { CATEGORIES } from '@/data/calculators';
 import { Printer, Info, Star } from 'lucide-react';
 import { GLOBAL_CONFIG, CATEGORY_PURPOSE_MAP } from '@/config/GlobalConfig';
-import { JsonLd } from '@/components/seo/JsonLd';
+import { CALCULATORS } from '@/data/calculators';
+import CalculatorSchema from '@/components/seo/CalculatorSchema';
+import RelatedCalculators from '@/components/calculator/RelatedCalculators';
 
 interface CalculatorLayoutProps {
   children?: React.ReactNode;
@@ -15,6 +18,7 @@ interface CalculatorLayoutProps {
   purpose?: string; // MDCalc style purpose tag
   category?: string | { label: string; href: string };
   categoryHref?: string;
+  topHeaderPanel?: React.ReactNode;
   leftPanel?: React.ReactNode;
   rightPanel?: React.ReactNode;
   faqSection?: React.ReactNode;
@@ -30,14 +34,20 @@ export function CalculatorLayout({
   purpose,
   category,
   categoryHref,
+  topHeaderPanel,
   leftPanel,
   rightPanel,
   faqSection,
   faqs,
   slug
 }: CalculatorLayoutProps) {
+  const pathname = usePathname();
   const catLabel = typeof category === 'object' ? category.label : category;
   const catLink = typeof category === 'object' ? category.href : categoryHref;
+  
+  // Auto-resolve slug from path if not provided
+  const resolvedSlug = slug || pathname.split('/').pop() || '';
+  const calculatorData = CALCULATORS.find(c => c.slug === resolvedSlug);
   
   // Resolve automatic purpose if not provided
   const autoPurpose = purpose || (catLabel ? CATEGORY_PURPOSE_MAP[catLabel.toLowerCase()] : null);
@@ -101,27 +111,9 @@ export function CalculatorLayout({
   );
 
   return (
-    <div className="min-h-screen bg-[var(--bg-page)] font-sans antialiased pb-24 lg:pb-0">
-      {/* 0. SEO Injection (Phase 4 Mastery) */}
-      <JsonLd 
-        type="calculator"
-        name={title}
-        description={description}
-        category={catLabel ? `${catLabel}Application` : 'UtilitiesApplication'}
-      />
-      <JsonLd 
-        type="faq"
-        name={title}
-        faqs={faqs}
-      />
-      <JsonLd 
-        type="breadcrumb"
-        breadcrumbItems={[
-          { name: 'Home', item: 'https://nepacalc.com' },
-          { name: catLabel || 'Calculator', item: `https://nepacalc.com/calculator/category/${catLabel?.toLowerCase() || 'utility'}` },
-          { name: title, item: `https://nepacalc.com/calculator/${slug || ''}` }
-        ]}
-      />
+    <div className="min-h-screen bg-[var(--bg-page)] font-sans antialiased pb-24 lg:pb-0 pt-24">
+      {/* 0. SEO Power Injection (JSON-LD & Multi-Image Architecture) */}
+      {calculatorData && <CalculatorSchema calculator={calculatorData} />}
 
       {/* 1. Premium Grade Breadcrumb/Header */}
       <div className="bg-[#F8F9FA] text-[#5F6368] py-3 border-b border-[#DADCE0] no-print relative overflow-hidden">
@@ -197,6 +189,12 @@ export function CalculatorLayout({
            </div>
         )}
 
+        {topHeaderPanel && (
+           <section className="w-full mb-8 print:hidden">
+             {topHeaderPanel}
+           </section>
+        )}
+
         <div className="grid grid-cols-1 lg:grid-cols-10 gap-x-8 items-start print:flex print:flex-col print:gap-y-6">
           {leftPanel && rightPanel ? (
             <>
@@ -223,7 +221,13 @@ export function CalculatorLayout({
           )}
         </div>
         
-        {/* 4. Cross-Navigation (Solves Whitespace Gap) */}
+        {/* 4. SEO Category Silo (Automated Internal Linking) */}
+        {resolvedSlug && (
+          <div className="hp-container pb-12">
+             <RelatedCalculators currentSlug={resolvedSlug} category={calculatorData?.category || 'utility'} />
+          </div>
+        )}
+
         <section className="mt-12 pt-12 border-t border-slate-200 print:hidden">
           {renderCategoryGrid()}
         </section>

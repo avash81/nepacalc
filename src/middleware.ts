@@ -35,6 +35,19 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  // 301 Permanent Redirects: /calculator/category/* → clean pillar pages
+  const PILLAR_REDIRECTS: Record<string, string> = {
+    '/calculator/category/nepal': '/nepal',
+    '/calculator/category/finance': '/finance',
+    '/calculator/category/health': '/health',
+    '/calculator/category/utility': '/converters',
+    '/calculator/category/education': '/math-tools',
+  };
+
+  if (PILLAR_REDIRECTS[pathname]) {
+    return NextResponse.redirect(new URL(PILLAR_REDIRECTS[pathname], request.url), 301);
+  }
+
   return NextResponse.next();
 }
 

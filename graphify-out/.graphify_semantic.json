@@ -1,0 +1,66 @@
+{
+  "nodes": [
+    {
+      "id": "blueprint_google_standard",
+      "label": "Google Standard Design",
+      "file_type": "document",
+      "source_file": "docs/design_blueprint.md"
+    },
+    {
+      "id": "blueprint_university_standard",
+      "label": "University Density Standard",
+      "file_type": "document",
+      "source_file": "docs/design_blueprint.md"
+    },
+    {
+      "id": "blueprint_clinical_precision",
+      "label": "Clinical Precision UX",
+      "file_type": "document",
+      "source_file": "docs/design_blueprint.md"
+    },
+    {
+      "id": "nepcalc_platform",
+      "label": "NepCalc Platform",
+      "file_type": "document",
+      "source_file": "README.md"
+    },
+    {
+      "id": "audit_security_pass",
+      "label": "Security Audit (Passed)",
+      "file_type": "document",
+      "source_file": "AUDIT_REPORT.md"
+    },
+    {
+      "id": "public_logo",
+      "label": "Platform Logo",
+      "file_type": "image",
+      "source_file": "public/logo.png"
+    }
+  ],
+  "edges": [
+    {
+      "source": "blueprint_google_standard",
+      "target": "nepcalc_platform",
+      "relation": "defines_design_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "blueprint_clinical_precision",
+      "target": "Calculator",
+      "relation": "implemented_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8
+    },
+    {
+      "source": "audit_security_pass",
+      "target": "nepcalc_platform",
+      "relation": "validates",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

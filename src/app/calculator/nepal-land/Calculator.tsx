@@ -48,9 +48,9 @@ export default function NepalLandCalculator() {
   }, [totalSqft]);
 
   const SYSTEMS = [
-    { k:'hill',  l:'Hills System (Ropani)' },
-    { k:'terai', l:'Terai System (Bigha)' },
-    { k:'intl',  l:'International (Sq.Ft)' },
+    { k:'hill',  l:'Hills/Valley (Ropani, Aana, Paisa, Daam)' },
+    { k:'terai', l:'Terai Region (Bigha, Kattha, Dhur)' },
+    { k:'intl',  l:'International Standard (Sq.Ft, Sq.M)' },
   ];
 
   return (

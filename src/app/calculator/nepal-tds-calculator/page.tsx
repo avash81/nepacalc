@@ -1,13 +1,12 @@
+import { Metadata } from 'next';
 import Calculator from './Calculator';
-import { calcMeta } from '@/lib/calcMeta';
 
-export const metadata = calcMeta({
-  title: 'Nepal TDS Calculator | Tax Deducted at Source | NEPACALC',
-  description: 'Calculate Tax Deducted at Source (TDS) for various payments in Nepal including Rent, Interest, and Consultancy as per latest IRD guidelines.',
-  keywords: ['nepal tds calculator', 'tds rates nepal', 'rent tds nepal', 'interest tds nepal', 'consultancy tds nepal', 'ird nepal tds'],
-  slug: 'nepal-tds-calculator',
-});
+export const metadata: Metadata = {
+  title: 'Nepal TDS (Withholding Tax) Laboratory',
+  description: 'Calculate 2081/82 TDS rates for rent, service fees, interest, and contracts in Nepal according to IRD guidelines.',
+  keywords: ['tds calculator nepal', 'house rent tds', 'service tds nepal', 'withholding tax rates']
+};
 
-export default function NepalTdsPage() {
+export default function Page() {
   return <Calculator />;
 }

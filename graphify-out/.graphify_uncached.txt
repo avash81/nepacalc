@@ -1,0 +1,14 @@
+AUDIT_REPORT.md
+build_log.txt
+build_log_final.txt
+DEVELOPER_REPORT.md
+GEMINI_FINAL_AUDIT_PROMPT.md
+index.html
+lint_output.txt
+README.md
+test_out2.txt
+test_out3.txt
+test_output.txt
+docs\design_blueprint.md
+public\favicon.png
+public\logo.png

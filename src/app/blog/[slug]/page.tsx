@@ -115,7 +115,41 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           }),
         }}
       />
-      {/* FAQ Schema for PAA Dominance */}
+      {/* BlogPosting Schema for Global Search Dominance (Multi-Image SEO) */}
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": data.post.title,
+            "description": data.post.excerpt || data.post.content.substring(0, 160),
+            "image": [
+              data.post.imageTop,
+              data.post.imageMiddle,
+              data.post.imageBottom
+            ].filter(Boolean),
+            "datePublished": data.post.date,
+            "author": {
+              "@type": "Person",
+              "name": data.post.author || "NEPACALC Research"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "NEPACALC",
+              "logo": {
+                 "@type": "ImageObject",
+                 "url": "https://NEPACALC.com/logo.png"
+              }
+            },
+            "mainEntityOfPage": {
+               "@type": "WebPage",
+               "@id": `https://NEPACALC.com/blog/${data.post.slug}`
+            }
+          }),
+        }}
+      />
       {(() => {
         const matches = [...(data.post.content || '').matchAll(/^### (.+\?)\n([\s\S]+?)(?=\n###|\n##|$)/gm)];
         if (matches.length === 0) return null;

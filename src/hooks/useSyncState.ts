@@ -24,9 +24,8 @@ export function useSyncState<T>(
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // 1. Initial State Resolution
+  // 1. Initial State Resolution (URL Only for stability)
   const [state, setState] = useState<T>(() => {
-    // Priority 1: URL
     const urlValue = searchParams.get(key);
     if (urlValue !== null) {
       try {
@@ -35,21 +34,22 @@ export function useSyncState<T>(
         return urlValue as unknown as T;
       }
     }
+    return defaultValue;
+  });
 
-    // Priority 2: LocalStorage
-    if (typeof window !== 'undefined' && options.persistent) {
+  // 2. Hydration: Load from LocalStorage once on mount if URL was empty
+  useEffect(() => {
+    if (options.persistent && !searchParams.has(key)) {
       const stored = localStorage.getItem(`cp_${key}`);
       if (stored !== null) {
         try {
-          return JSON.parse(stored) as T;
+          setState(JSON.parse(stored) as T);
         } catch {
-          return stored as unknown as T;
+          setState(stored as unknown as T);
         }
       }
     }
-
-    return defaultValue;
-  });
+  }, []); // Only once on mount
 
   // 2. Sync to URL & LocalStorage
   const sync = useCallback((value: T) => {
@@ -62,9 +62,9 @@ export function useSyncState<T>(
       params.set(key, stringValue);
     }
 
-    // Push to URL without refreshing (silent update)
+    // Push to URL (Next.js Way)
     const newUrl = `${pathname}?${params.toString()}`;
-    window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+    router.replace(newUrl, { scroll: false });
 
     // Sync to LocalStorage
     if (options.persistent) {

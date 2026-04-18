@@ -14,6 +14,7 @@ const DEFAULT_STATE = {
   fiscalYear: 'current' as keyof typeof TAX_YEARS,
   income: 1500000,
   married: false,
+  gender: 'male' as 'male' | 'female',
   isSSFContributor: false,
   lifeInsurance: 40000,
   homeLoanInterest: 0,
@@ -40,7 +41,7 @@ export default function NepalIncomeTaxCalculator() {
     const otherDeductions = Math.min(lifeInsurance, 40000) + homeLoanInterest + educationAllowance;
     const coreIncome = income - otherDeductions;
     
-    const calculation = calculateNepalIncomeTax(coreIncome, married, isSSFContributor);
+    const calculation = calculateNepalIncomeTax(coreIncome, married, isSSFContributor, state.gender || 'male');
 
     return {
       totalTax: Math.round(calculation.totalTax),
@@ -123,7 +124,7 @@ export default function NepalIncomeTaxCalculator() {
                     )}
                   </div>
 
-                  <div className="space-y-3">
+                   <div className="space-y-3">
                     <label className="text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)]">Marital Status</label>
                     <div className="flex p-1 bg-[var(--bg-subtle)] rounded-xl border border-[var(--border)]">
                       {[{ v: false, l: 'Single' }, { v: true, l: 'Married' }].map((m) => (
@@ -138,6 +139,26 @@ export default function NepalIncomeTaxCalculator() {
                         </button>
                       ))}
                     </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)]">Gender Status</label>
+                    <div className="flex p-1 bg-[var(--bg-subtle)] rounded-xl border border-[var(--border)]">
+                      {[{ v: 'male' as const, l: 'Male' }, { v: 'female' as const, l: 'Female' }].map((g) => (
+                        <button
+                          key={g.l}
+                          onClick={() => updateState({ gender: g.v })}
+                          className={`flex-1 py-2 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all ${
+                            (state.gender || 'male') === g.v ? 'bg-[var(--bg-surface)] text-[var(--primary)] shadow-sm' : 'text-[var(--text-muted)]'
+                          }`}
+                        >
+                          {g.l}
+                        </button>
+                      ))}
+                    </div>
+                    {(state.gender || 'male') === 'female' && (
+                      <p className="text-[9px] text-[var(--primary)] font-bold uppercase tracking-tighter mt-1 animate-in fade-in">✓ 10% Tax Rebate Applied (Salary earners only)</p>
+                    )}
                   </div>
                </div>
             </div>

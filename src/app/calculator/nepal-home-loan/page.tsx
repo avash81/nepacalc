@@ -1,12 +1,11 @@
-import { calcMeta } from '@/lib/calcMeta';
+import { Metadata } from 'next';
 import Calculator from './Calculator';
 
-export const metadata = calcMeta({
-  title: 'Nepal Home Loan EMI Calculator — NRB Guidelines',
-  description: 'Calculate monthly EMI for home loans in Nepal. Includes interest rate trends from major commercial banks and NRB guidelines. Free online tool.',
-  slug: 'nepal-home-loan',
-  keywords: ['nepal home loan calculator', 'home loan emi calculator', 'nepal bank loan', 'nrb home loan', 'finance tool nepal'],
-});
+export const metadata: Metadata = {
+  title: 'Home Loan & Banking EMI Console — Nepal (v2)',
+  description: 'Calculate professional EMIs for home and vehicle loans using the official Base Rate + Premium model for Nepal.',
+  keywords: ['home loan calculator nepal', 'banking emi nepal', 'base rate loan', 'emi calculator with amortization']
+};
 
 export default function Page() {
   return <Calculator />;

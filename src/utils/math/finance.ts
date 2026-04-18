@@ -197,3 +197,26 @@ export function calculateSplitBill(total: number, tipPercentage: number, numberO
     perPerson: Number(perPerson.toFixed(2)),
   };
 }
+/**
+ * Calculate Simple Interest
+ */
+export function calculateSI(principal: number, annualRate: number, timeYears: number) {
+  const interest = (principal * annualRate * timeYears) / 100;
+  return {
+    interest: Number(interest.toFixed(2)),
+    total: Number((principal + interest).toFixed(2)),
+  };
+}
+
+/**
+ * Calculate Flat EMI
+ */
+export function calculateFlatEMI(principal: number, annualRate: number, tenureYears: number) {
+  const totalInterest = principal * (annualRate / 100) * tenureYears;
+  const emi = (principal + totalInterest) / (tenureYears * 12);
+  return {
+    emi: Number(emi.toFixed(2)),
+    totalInterest: Number(totalInterest.toFixed(2)),
+    totalPayment: Number((principal + totalInterest).toFixed(2)),
+  };
+}

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Activity, Calculator, Grid, Hexagon, AlignLeft, ChevronRight, Zap } from 'lucide-react';
+import { Activity, Calculator, Grid, Hexagon, AlignLeft, ChevronRight, Zap, FunctionSquare, Sigma, Binary } from 'lucide-react';
 
 const MATH_TOOLS = [
   {
@@ -16,28 +16,41 @@ const MATH_TOOLS = [
     path: '/math-tools/scientific',
   },
   {
-    title: 'Geometry Tool',
-    description: 'Explore geometry construct polygons, transform objects, and explore spatial math concepts visually.',
-    icon: Hexagon,
-    path: '/math-tools/geometry',
+    title: 'Calculus & Algebra',
+    description: 'Solve derivatives, integrals, and algebraic equations with step-by-step symbolic logic.',
+    icon: FunctionSquare,
+    path: '/math-tools/calculus',
+    tag: 'Flagship Tool'
+  },
+  {
+    title: 'Statistics Laboratory',
+    description: 'Perform advanced statistical analysis, T-tests, regressions, and data distributions.',
+    icon: Sigma,
+    path: '/math-tools/statistics',
   },
   {
     title: 'Matrix Calculator',
-    description: 'Perform arithmetic operations, find the determinant, inverse, or REF of matrices in a laboratory environment.',
+    description: 'Perform arithmetic operations, find the determinant, inverse, or REF of matrices.',
     icon: Grid,
     path: '/math-tools/matrix',
   },
   {
-    title: '3D Calculator',
-    description: 'Graph surfaces, visualize vector fields, and plot parameterized curves in three-dimensional space.',
-    icon: Hexagon,
-    path: '/math-tools/3d',
+    title: 'Programmer Console',
+    description: 'Engineering-grade base converter with bitwise logic gates and 64-bit precision.',
+    icon: Binary,
+    path: '/math-tools/programmer',
   },
   {
-    title: 'Test Practice',
-    description: 'Practice using the testing versions of our calculators in a secure, high-precision environment.',
-    icon: AlignLeft,
-    path: '/math-tools/practice',
+    title: 'Geometry Tool',
+    description: 'Construct polygons, transform objects, and explore spatial math concepts visually.',
+    icon: Hexagon,
+    path: '/math-tools/geometry',
+  },
+  {
+    title: '3D Calculator',
+    description: 'Graph surfaces, visualize vector fields, and plot parameterized curves in 3D.',
+    icon: Hexagon,
+    path: '/math-tools/3d',
   }
 ];
 

@@ -163,18 +163,65 @@ export default function BlogPostContent({ post, related }: { post: any; related:
           </div>
         )}
 
-        {/* Article body with Mixed Content Parsing */}
+        {/* Article body with Mixed Content Parsing + Smart Image Injection */}
         <article className="prose prose-sm max-w-none text-slate-700
                            prose-a:text-blue-600 prose-a:font-bold prose-headings:text-slate-900">
-           {contentParts.map((part: string, index: number) => {
-             // Every odd index is a captured slug from the regex split
-             if (index % 2 === 1) {
-               return <InlineCalculator key={index} slug={part} />;
-             }
-             // Even index is regular markdown content
-             const html = renderContentString(part);
-             return <div key={index} dangerouslySetInnerHTML={{ __html: html }} />;
-           })}
+           {(() => {
+             let hasInjectedMiddle = false;
+             return contentParts.map((part: string, index: number) => {
+               // Every odd index is a captured slug from the regex split
+               if (index % 2 === 1) {
+                 return <InlineCalculator key={index} slug={part} />;
+               }
+               
+               // Even index is regular markdown content
+               const html = renderContentString(part);
+               
+               // Logic: Inject middle image after the first block if it has a heading,
+               // or if we are at the second block and haven't injected yet.
+               const shouldInject = !hasInjectedMiddle && sanitizeUrlRaw(post.imageMiddle) && 
+                                   (html.includes('</h2>') || index >= 2);
+               
+               if (shouldInject) {
+                 hasInjectedMiddle = true;
+                 // If there's an H2, we try to put it right after it for better flow
+                 if (html.includes('</h2>')) {
+                    const parts = html.split('</h2>');
+                    const firstPart = parts[0] + '</h2>';
+                    const rest = parts.slice(1).join('</h2>');
+                    return (
+                      <React.Fragment key={index}>
+                        <div dangerouslySetInnerHTML={{ __html: firstPart }} />
+                        <div className="my-10 w-full overflow-hidden rounded-[2.5rem] shadow-2xl border border-gray-100 relative aspect-video">
+                           <Image 
+                            src={sanitizeUrlRaw(post.imageMiddle)!} 
+                            alt={`${post.title} Deep Dive`} 
+                            fill 
+                            className="object-cover" 
+                           />
+                        </div>
+                        <div dangerouslySetInnerHTML={{ __html: rest }} />
+                      </React.Fragment>
+                    );
+                 }
+                 return (
+                   <React.Fragment key={index}>
+                     <div dangerouslySetInnerHTML={{ __html: html }} />
+                     <div className="my-10 w-full overflow-hidden rounded-[2.5rem] shadow-2xl border border-gray-100 relative aspect-video">
+                        <Image 
+                         src={sanitizeUrlRaw(post.imageMiddle)!} 
+                         alt={`${post.title} Context`} 
+                         fill 
+                         className="object-cover" 
+                        />
+                     </div>
+                   </React.Fragment>
+                 );
+               }
+
+               return <div key={index} dangerouslySetInnerHTML={{ __html: html }} />;
+             });
+           })()}
         </article>
 
         {/* Middle/Bottom Images and other sections... */}

@@ -108,3 +108,30 @@ export function calculatePregnancyDueDate(lmpDate: Date) {
     daysRemaining: Math.max(0, daysRemaining)
   };
 }
+/**
+ * Calculate Ideal Weight (Devine Formula)
+ */
+export function calculateIdealWeight(gender: 'male' | 'female', heightCm: number) {
+  const heightInches = heightCm / 2.54;
+  const inchesOver5Feet = Math.max(0, heightInches - 60);
+  const base = gender === 'male' ? 50.0 : 45.5;
+  const ideal = base + (2.3 * inchesOver5Feet);
+  return {
+    ideal: Number(ideal.toFixed(2)),
+    min: Number((ideal * 0.9).toFixed(2)),
+    max: Number((ideal * 1.1).toFixed(2)),
+  };
+}
+
+/**
+ * Calculate Body Fat (US Navy)
+ */
+export function calculateBodyFat(gender: 'male' | 'female', height: number, neck: number, waist: number, hip?: number) {
+  let percentage: number;
+  if (gender === 'male') {
+    percentage = 495 / (1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(height)) - 450;
+  } else {
+    percentage = 495 / (1.29579 - 0.35004 * Math.log10(waist + (hip || 0) - neck) + 0.221 * Math.log10(height)) - 450;
+  }
+  return { percentage: Number(percentage.toFixed(2)) };
+}

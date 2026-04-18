@@ -28,8 +28,10 @@ describe('Percentage Calculator Accuracy Test Suite', () => {
     fireEvent.change(inputs[1], { target: { value: '2500' } });
     
     // The UI formats 375.toLocaleString() -> "375"
-    expect(screen.getByText('375')).toBeInTheDocument();
+    // Use getAllByText as the value appears in both the Result Card and Visual Bar
+    expect(screen.getAllByText('375')[0]).toBeInTheDocument();
   });
+
 
   test('Type 2: X is what % of Y? (150 is what % of 600 = 25%)', () => {
     render(<PercentageCalculator />);
@@ -44,8 +46,9 @@ describe('Percentage Calculator Accuracy Test Suite', () => {
     fireEvent.change(inputs[0], { target: { value: '150' } });
     fireEvent.change(inputs[1], { target: { value: '600' } });
 
-    expect(screen.getByText('25.00%')).toBeInTheDocument();
+    expect(screen.getAllByText('25.00%')[0]).toBeInTheDocument();
   });
+
 
   test('Type 3: Find Original Number (375 is 15% of what = 2500)', () => {
     render(<PercentageCalculator />);
@@ -62,8 +65,9 @@ describe('Percentage Calculator Accuracy Test Suite', () => {
     fireEvent.change(inputs[0], { target: { value: '15' } });
     fireEvent.change(inputs[1], { target: { value: '375' } });
 
-    expect(screen.getByText('2,500')).toBeInTheDocument();
+    expect(screen.getAllByText('2,500')[0]).toBeInTheDocument();
   });
+
 
   test('Type 4: Percentage Increase (100 to 120 = 20% Increase)', () => {
     render(<PercentageCalculator />);
@@ -78,7 +82,8 @@ describe('Percentage Calculator Accuracy Test Suite', () => {
     fireEvent.change(inputs[0], { target: { value: '100' } });
     fireEvent.change(inputs[1], { target: { value: '120' } });
 
-    expect(screen.getByText('+20.00%')).toBeInTheDocument();
+    expect(screen.getAllByText('+20.00%')[0]).toBeInTheDocument();
     expect(screen.getAllByText(/Increase/i).length).toBeGreaterThan(0);
   });
+
 });

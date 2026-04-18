@@ -45,6 +45,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: 'Math Tools', href: '/math-tools' },
+    { name: 'Nepal Specific', href: '/calculator/category/nepal' },
     { name: 'Directory',  href: '/directory' },
     { name: 'Finance',   href: '/finance' },
     { name: 'Health',     href: '/health' },
@@ -124,6 +125,7 @@ export function Navbar() {
           <div className="flex-1 overflow-y-auto p-6 space-y-3">
             {[
                { name: 'Math Tools', href: '/math-tools', icon: <Sparkles className="w-5 h-5" /> },
+               { name: 'Nepal Specific', href: '/calculator/category/nepal', icon: <Star className="w-5 h-5" /> },
                { name: 'Tool Directory', href: '/directory', icon: <Folder className="w-5 h-5" /> },
                { name: 'Financial', href: '/calculator/category/finance', icon: <Wallet className="w-5 h-5" /> },
                { name: 'Health', href: '/calculator/category/health', icon: <Heart className="w-5 h-5" /> },

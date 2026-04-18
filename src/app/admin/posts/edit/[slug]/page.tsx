@@ -23,6 +23,7 @@ export default function EditPostPage() {
   const [imageTop, setImageTop] = useState('');
   const [imageMiddle, setImageMiddle] = useState('');
   const [imageBottom, setImageBottom] = useState('');
+  const [ogImage, setOgImage] = useState('');
   
   const [initialLoading, setInitialLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -47,6 +48,7 @@ export default function EditPostPage() {
           setImageTop(data.imageTop || '');
           setImageMiddle(data.imageMiddle || '');
           setImageBottom(data.imageBottom || '');
+          setOgImage(data.ogImage || '');
         } else {
           alert('Post not found in database.');
           router.push('/admin/posts');
@@ -94,6 +96,7 @@ export default function EditPostPage() {
         imageTop,
         imageMiddle,
         imageBottom,
+        ogImage,
         updatedAt: serverTimestamp(),
       });
 
@@ -301,12 +304,12 @@ export default function EditPostPage() {
                      />
                   </div>
                   <div className="space-y-2">
-                     <label className="block text-[10px] font-black text-emerald-500 uppercase tracking-widest ml-2">Phase 3: Summary (Bottom)</label>
+                     <label className="block text-[10px] font-black text-rose-500 uppercase tracking-widest ml-2">Social Hub: OG Image</label>
                      <input 
-                        value={imageBottom} 
-                        onChange={(e) => setImageBottom(e.target.value)} 
-                        placeholder="https://..."
-                        className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-[13px] font-bold text-slate-800 focus:outline-none focus:border-emerald-400 transition-all shadow-inner" 
+                        value={ogImage} 
+                        onChange={(e) => setOgImage(e.target.value)} 
+                        placeholder="Social preview asset..."
+                        className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-[13px] font-bold text-slate-800 focus:outline-none focus:border-rose-400 transition-all shadow-inner" 
                      />
                   </div>
                </div>

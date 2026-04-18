@@ -1,12 +1,11 @@
-import { calcMeta } from '@/lib/calcMeta';
+import { Metadata } from 'next';
 import Calculator from './Calculator';
 
-export const metadata = calcMeta({
-  title: 'NEPSE WACC Calculator — Calculate Average Share Cost in Nepal',
-  description: 'Official NEPSE WACC calculator. Calculate Weighted Average Cost of Capital (WACC) for stocks including bonus and right shares for accurate profit and tax estimation.',
-  slug: 'nepse-wacc',
-  keywords: ['nepse wacc calculator', 'average cost nepal stocks', 'share market tax nepal', 'bonus share wacc'],
-});
+export const metadata: Metadata = {
+  title: 'NEPSE WACC & Tax Analyzer (v2)',
+  description: 'Calculate your Weighted Average Cost of Capital (WACC) for Meroshare selling and capital gains tax declaration.',
+  keywords: ['nepse wacc', 'average cost calculator', 'meroshare wacc', 'share profit tax']
+};
 
 export default function Page() {
   return <Calculator />;

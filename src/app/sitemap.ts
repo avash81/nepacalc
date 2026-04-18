@@ -27,7 +27,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     '',
     '/directory',
-    '/math-tools',
     '/blog',
     '/contact',
     '/privacy',
@@ -40,8 +39,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // 2. Canonical Pillar Pages (Rewritten URLs)
+  const catIdToSlug: Record<string, string> = {
+    utility: 'converters',
+    education: 'math-tools',
+  };
+
   const pillarPages = CATEGORIES.map((cat) => ({
-    url: `${baseUrl}/${cat.id}`,
+    url: `${baseUrl}/${catIdToSlug[cat.id] || cat.id}`,
     lastModified: new Date(),
     changeFrequency: 'daily' as const,
     priority: 0.9,

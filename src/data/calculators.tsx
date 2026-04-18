@@ -11,6 +11,10 @@ export interface Calculator {
   isNew?: boolean;
   isHot?: boolean;
   keywords?: string[];
+  // SEO Enhancements
+  steps?: string[];
+  faqs?: { q: string, a: string }[];
+  imageSteps?: string[];
 }
 
 export interface Category {
@@ -24,11 +28,37 @@ export const CALCULATORS: Calculator[] = [
   // ==========================================
   // NEPAL SPECIFIC PILLAR
   // ==========================================
-  { id: 'nepal-income-tax', slug: 'nepal-income-tax', name: 'Income Tax (Nepal)', icon: '📋', description: 'Institutional Nepal tax calculator updated for latest fiscal mandates.', category: 'nepal', isNepal: true, isHot: true },
+  { id: 'nepal-income-tax', slug: 'nepal-income-tax', name: 'Income Tax (Nepal)', icon: '📋', description: 'Institutional Nepal tax calculator updated for latest fiscal mandates.', category: 'nepal', isNepal: true, isHot: true, 
+    steps: [
+      'Enter your total annual or monthly gross income.',
+      'Select your marital status (Single or Married) to apply correct tax slabs.',
+      'Deduct mandatory contributions like Provident Fund (CIT/EPF).',
+      'The engine automatically applies the latest Nepal Government tax brackets for the current fiscal year.',
+      'Review your net take-home pay and total annual tax liability.'
+    ]
+  },
   { id: 'nepal-salary', slug: 'nepal-salary', name: 'Salary Calculator', icon: '💼', description: 'Calculate net-take-home salary with latest IRD deductions.', category: 'nepal', isNepal: true, isNew: true },
-  { id: 'nepal-land', slug: 'nepal-land', name: 'Nepal Land (R-A-P-D)', icon: '🗺️', description: 'Convert land metrics (Ropani, Aana, Paisa, Dam).', category: 'nepal', isNepal: true, isHot: true },
+  { id: 'nepal-land', slug: 'nepal-land', name: 'Nepal Land (Bigha, Aana, Ropani)', icon: '🗺️', description: 'Institutional land converter for Hill (Ropani, Aana) and Terai (Bigha, Kattha) systems.', category: 'nepal', isNepal: true, isHot: true, keywords: ['bigha', 'kattha', 'ropani', 'aana', 'land converter', 'nepal land'] },
   { id: 'nepali-date', slug: 'nepali-date', name: 'Nepali Date Converter', icon: '📅', description: 'BS to AD institutional converter.', category: 'nepal', isNepal: true },
   { id: 'nepal-vat', slug: 'nepal-vat', name: 'VAT & Bill Calc', icon: '🧾', description: 'VAT (13%) addition and subtraction logic.', category: 'nepal', isNepal: true },
+  { id: 'gold-converter', slug: 'gold-converter', name: 'Gold & Silver Lab', icon: '🟡', description: 'Nepal Tola-to-Gram converter for jewelry market.', category: 'nepal', isNepal: true, isNew: true, keywords: ['tola to gram', 'gold price nepal', 'lal to gram', 'silver tola'],
+    steps: [
+      'Select the metal type (Gold or Silver).',
+      'Enter the weight in either Tola or Grams.',
+      'Specify the impurity level if calculating jewelry value.',
+      'Our engine instantly converts between Tola, Gram, and Lal using the official Nepal standardization.',
+      'Check the final weight and estimated market value.'
+    ]
+  },
+  { id: 'nea-bill', slug: 'nea-bill', name: 'NEA Bill Calc', icon: '⚡', description: 'Progressive slab billing for Nepal Electricity Authority.', category: 'nepal', isNepal: true, isNew: true, keywords: ['nea electricity bill', 'electricity rate nepal', 'nea units'] },
+  { id: 'property-tax', slug: 'property-tax', name: 'Property Tax (CGT)', icon: '📜', description: 'Calculate Capital Gains Tax for Nepal real estate.', category: 'nepal', isNepal: true, isNew: true, keywords: ['malpok tax', 'cgt nepal', 'property sales tax'] },
+  { id: 'nepal-attendance', slug: 'nepal-attendance', name: 'TU/PU Attendance', icon: '🎓', description: 'Track 75% exam eligibility for Nepal universities.', category: 'nepal', isNepal: true, isNew: true, keywords: ['tu attendance', 'pu eligibility', 'education nepal'] },
+  { id: 'remittance-calculator', slug: 'remittance-calculator', name: 'Remittance Lab', icon: '💸', description: 'Convert earnings from abroad to NPR with fee comparisons.', category: 'nepal', isNepal: true, isHot: true, keywords: ['remittance today', 'usd to npr', 'ime rates', 'western union nepal'] },
+  { id: 'gratuity-calculator', slug: 'gratuity-calculator', name: 'Gratuity Console', icon: '💼', description: 'Calculate retirement benefits under Labor Act 2074.', category: 'nepal', isNepal: true, isNew: true, keywords: ['gratuity nepal', 'labor act 2074', 'retirement benefits'] },
+  { id: 'property-registration', slug: 'property-registration', name: 'Registry & Stamp Duty', icon: '📜', description: 'Calculate property Malpok fees with female discounts.', category: 'nepal', isNepal: true, isNew: true, keywords: ['malpok fee', 'registration tax', 'nepal real estate'] },
+  { id: 'nepal-stocks', slug: 'nepal-stocks', name: 'NEPSE Trading Lab', icon: '📈', description: 'Calculate stock profits after commissions and CGT.', category: 'nepal', isNepal: true, isHot: true, keywords: ['nepse profit', 'broker commission', 'cgt nepal shares'] },
+  { id: 'kukl-bill', slug: 'kukl-bill', name: 'KUKL Water Bill', icon: '💧', description: 'Analyze Kathmandu water bill slabs and sewerage tax.', category: 'nepal', isNepal: true, isNew: true, keywords: ['kukl rate', 'water bill kathmandu', 'sewerage tax'] },
+  { id: 'foreign-employment', slug: 'foreign-employment', name: 'Foreign Emp. Safety', icon: '✈️', description: 'Check legal manpower fees for destination countries.', category: 'nepal', isNepal: true, isNew: true, keywords: ['manpower fee', 'free visa free ticket', 'dofe nepal'] },
   { id: 'nepal-home-loan', slug: 'nepal-home-loan', name: 'Home Loan (Nepal)', icon: '🏠', description: 'Home loan EMI for latest Nepal bank rates.', category: 'nepal', isNepal: true },
   { id: 'nepal-provident-fund', slug: 'nepal-provident-fund', name: 'Provident Fund', icon: '💰', description: 'EPF retirement logic for Nepal.', category: 'nepal', isNepal: true },
   { id: 'nepal-tax-calculator', slug: 'nepal-tax-calculator', name: 'Generic Tax Calc', icon: '📜', description: 'Generic Nepal tax rules and logic.', category: 'nepal', isNepal: true },
@@ -81,7 +111,14 @@ export const CALCULATORS: Calculator[] = [
   { id: 'probability', slug: 'probability', name: 'Probability Calc', icon: '🎲', description: 'Dice and coin chances.', category: 'education' },
   { id: 'fraction-calculator', slug: 'fraction-calculator', name: 'Fraction Solver', icon: '➗', description: 'Add, div, multiply fractions.', category: 'education' },
   { id: 'lcm-gcf-calculator', slug: 'lcm-gcf-calculator', name: 'LCM & GCF', icon: '🔢', description: 'Common multiples.', category: 'education' },
-  { id: 'percentage', slug: 'percentage', name: 'Percentage Calc', icon: '💯', description: 'Standard percents.', category: 'education' },
+  { id: 'percentage', slug: 'percentage', name: 'Percentage Calc', icon: '💯', description: 'Standard percents.', category: 'education',
+    steps: [
+      'Choose your calculation mode (e.g., Value of %, Percentage Change).',
+      'Input the primary numbers in the labeled fields.',
+      'Reference the live-updating result display.',
+      'Use the Visual Scale bar to understand the relative mathematical weight of the result.'
+    ]
+  },
   { id: 'ratio-proportion', slug: 'ratio-proportion', name: 'Ratio Matrix', icon: '⚖️', description: 'Math ratio comparisons.', category: 'education' },
   { id: 'rounding', slug: 'rounding', name: 'Rounding / SigFigs', icon: '≈', description: 'Decimal places and sigfigs.', category: 'education' },
   { id: 'roman-numerals', slug: 'roman-numerals', name: 'Roman Numerals', icon: '🏛️', description: 'Classic numeral translation.', category: 'education' },
@@ -109,7 +146,15 @@ export const CALCULATORS: Calculator[] = [
   // ==========================================
   // HEALTH & FITNESS PILLAR
   // ==========================================
-  { id: 'bmi', slug: 'bmi', name: 'BMI Checker', icon: '⚖️', description: 'Body Mass Index.', category: 'health' },
+  { id: 'bmi', slug: 'bmi', name: 'BMI Checker', icon: '⚖️', description: 'Body Mass Index.', category: 'health',
+    steps: [
+      'Select your measurement system (Metric or Imperial).',
+      'Input your current weight and height accurately.',
+      'The engine calculates your BMI score using the standard WHO formula.',
+      'Review your health category (Underweight, Normal, Overweight, Obese).',
+      'Refer to the clinical guide below for personalized health insights.'
+    ]
+  },
   { id: 'bmr', slug: 'bmr', name: 'BMR Calories', icon: '🔥', description: 'Basal Metabolic Rate.', category: 'health' },
   { id: 'body-fat', slug: 'body-fat', name: 'Body Fat %', icon: '💪', description: 'Navy fitness standard.', category: 'health' },
   { id: 'calorie-calculator', slug: 'calorie-calculator', name: 'Calorie Tracker', icon: '🥗', description: 'Daily burn metrics.', category: 'health' },

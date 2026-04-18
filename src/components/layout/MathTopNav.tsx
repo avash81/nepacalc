@@ -3,16 +3,17 @@
 import { Logo } from '@/components/ui/Logo';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Calculator, Grid, Hexagon, AlignLeft, Menu, Activity, X, ArrowLeft } from 'lucide-react';
+import { Calculator, Grid, Hexagon, AlignLeft, Menu, Activity, X, ArrowLeft, Binary, Sigma, FunctionSquare } from 'lucide-react';
 import { useState } from 'react';
 import { JsonLd } from '@/components/seo/JsonLd';
 
 const ECO_LINKS = [
   { name: 'Graphing Calculator', path: '/math-tools/calculator', icon: Activity },
   { name: 'Scientific Calculator', path: '/math-tools/scientific', icon: Calculator },
-  { name: 'Four Function Calculator', path: '/math-tools/fourfunction', icon: Calculator },
+  { name: 'Calculus & Algebra', path: '/math-tools/calculus', icon: FunctionSquare },
+  { name: 'Statistics Laboratory', path: '/math-tools/statistics', icon: Sigma },
   { name: 'Matrix Calculator', path: '/math-tools/matrix', icon: Grid },
-  { name: 'Test Practice', path: '/math-tools/practice', icon: AlignLeft },
+  { name: 'Programmer Console', path: '/math-tools/programmer', icon: Binary },
   { name: 'Geometry Tool', path: '/math-tools/geometry', icon: Hexagon },
   { name: '3D Calculator', path: '/math-tools/3d', icon: Hexagon }
 ];

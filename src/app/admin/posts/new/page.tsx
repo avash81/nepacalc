@@ -19,6 +19,7 @@ export default function NewPostPage() {
   const [imageTop, setImageTop] = useState('');
   const [imageMiddle, setImageMiddle] = useState('');
   const [imageBottom, setImageBottom] = useState('');
+  const [ogImage, setOgImage] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -47,6 +48,7 @@ export default function NewPostPage() {
         imageTop,
         imageMiddle,
         imageBottom,
+        ogImage,
         author: getFirebaseAuth()?.currentUser?.displayName || 'Admin',
         authorUid: getFirebaseAuth()?.currentUser?.uid,
         status: 'published', // Default to published
@@ -248,12 +250,12 @@ export default function NewPostPage() {
                      />
                   </div>
                   <div className="space-y-2">
-                     <label className="block text-[10px] font-black text-blue-500 uppercase tracking-widest ml-2">Phase 3: Summary (Bottom)</label>
+                     <label className="block text-[10px] font-black text-rose-500 uppercase tracking-widest ml-2">Social Hub: OG Image</label>
                      <input 
-                        value={imageBottom} 
-                        onChange={(e) => setImageBottom(e.target.value)} 
-                        placeholder="https://..."
-                        className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-[13px] font-bold text-slate-800 focus:outline-none focus:border-emerald-400 transition-all shadow-inner" 
+                        value={ogImage} 
+                        onChange={(e) => setOgImage(e.target.value)} 
+                        placeholder="Social preview asset..."
+                        className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-[13px] font-bold text-slate-800 focus:outline-none focus:border-rose-400 transition-all shadow-inner" 
                      />
                   </div>
                </div>
