@@ -15,14 +15,14 @@ export function ExpressionDrawer({ expressions, onUpdate, onToggle, onAdd }: Exp
     <div className="flex-1 flex flex-col h-full bg-white relative">
       <div className="flex items-center justify-between p-3 border-b border-gray-200 bg-[#f9f9f9]">
         <div className="flex items-center gap-2">
-           <button className="p-1.5 hover:bg-gray-200 rounded text-gray-500 transition-colors">
+           <button className="p-1.5 hover:bg-gray-200 rounded text-gray-500 transition-colors" aria-label="Add new expression">
               <Plus className="w-4 h-4" />
            </button>
-           <button className="p-1.5 hover:bg-gray-200 rounded text-gray-500 transition-colors hidden sm:block">
+           <button className="p-1.5 hover:bg-gray-200 rounded text-gray-500 transition-colors hidden sm:block" aria-label="Toggle expression list">
               <AlignLeft className="w-4 h-4" />
            </button>
         </div>
-        <button className="p-1.5 hover:bg-gray-200 rounded text-gray-400 transition-colors">
+        <button className="p-1.5 hover:bg-gray-200 rounded text-gray-400 transition-colors" aria-label="Settings">
            <Settings className="w-4 h-4" />
         </button>
       </div>

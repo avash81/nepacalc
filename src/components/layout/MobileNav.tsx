@@ -26,7 +26,7 @@ export function MobileNav() {
             <Link 
               key={tab.name} 
               href={tab.path || '#'}
-              className={`flex flex-col items-center justify-center flex-1 transition-all relative ${isActive ? 'text-[var(--primary)]' : 'text-slate-400'}`}
+              className={`flex flex-col items-center justify-center flex-1 transition-all relative ${isActive ? 'text-[var(--primary)]' : 'text-slate-500'}`}
             >
               <div className={`transition-all duration-300 ${tab.isSpecial ? 'bg-[var(--primary)] text-white -mt-7 shadow-lg w-12 h-12 rounded-2xl flex items-center justify-center border-4 border-white active:scale-95' : 'p-1'}`}>
                 {tab.isSpecial ? (
@@ -37,7 +37,7 @@ export function MobileNav() {
                   <Icon className={`w-5 h-5 ${isActive ? 'stroke-[2.5px]' : 'stroke-2'}`} />
                 ) : null}
               </div>
-              <span className={`text-[9px] font-black uppercase tracking-widest mt-0.5 transition-colors ${tab.isSpecial ? 'text-[var(--primary)]' : isActive ? 'text-[var(--primary)]' : 'text-slate-400'}`}>
+              <span className={`text-[9px] font-black uppercase tracking-widest mt-0.5 transition-colors ${tab.isSpecial ? 'text-[var(--primary)]' : isActive ? 'text-[var(--primary)]' : 'text-slate-500'}`}>
                 {tab.name}
               </span>
             </Link>

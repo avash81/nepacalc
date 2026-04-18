@@ -90,7 +90,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                 <span className="text-[9px] font-black text-blue-500 uppercase tracking-[0.2em] mt-1">Command Center</span>
               </div>
             </Link>
-            <button onClick={() => setIsSidebarOpen(false)} className="lg:hidden p-2 hover:bg-white/5 rounded-xl transition-colors">
+            <button onClick={() => setIsSidebarOpen(false)} className="lg:hidden p-2 hover:bg-white/5 rounded-xl transition-colors" aria-label="Close sidebar">
               <X className="w-5 h-5 text-slate-500" />
             </button>
           </div>
@@ -136,7 +136,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       <div className="flex-1 flex flex-col min-w-0 bg-slate-50">
         <header className="h-20 bg-white border-b border-slate-100 flex items-center justify-between px-6 lg:px-12 sticky top-0 z-40 backdrop-blur-md bg-white/80">
           <div className="flex items-center gap-6">
-            <button onClick={() => setIsSidebarOpen(true)} className="lg:hidden p-3 bg-slate-50 rounded-2xl text-slate-600 hover:bg-slate-100 transition-colors">
+            <button onClick={() => setIsSidebarOpen(true)} className="lg:hidden p-3 bg-slate-50 rounded-2xl text-slate-600 hover:bg-slate-100 transition-colors" aria-label="Open sidebar">
               <Menu className="w-6 h-6" />
             </button>
             <div className="hidden lg:flex items-center px-4 py-2 bg-slate-50 rounded-xl border border-slate-100">

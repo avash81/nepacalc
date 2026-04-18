@@ -160,7 +160,7 @@ export default function BMICalculator() {
                   <div className="bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden">
                     <div className="px-8 py-4 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
                        <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">History Log</h3>
-                       <button onClick={() => setReadings([])} className="p-2 hover:bg-rose-50 rounded-lg text-rose-400 transition-colors"><Trash2 className="w-4 h-4" /></button>
+                       <button onClick={() => setReadings([])} className="p-2 hover:bg-rose-50 rounded-lg text-rose-400 transition-colors" aria-label="Clear all readings"><Trash2 className="w-4 h-4" /></button>
                     </div>
                     <div className="divide-y divide-slate-50 max-h-60 overflow-y-auto scrollbar-hide">
                       {readings.map((r, i) => (

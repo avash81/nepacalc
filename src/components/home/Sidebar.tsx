@@ -27,7 +27,7 @@ export function Sidebar() {
               <div className="w-1 h-1 rounded-full bg-red-500" />
               Nepal Specific
            </div>
-           <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.2em] mt-3">Nepal Tools</h3>
+           <h3 className="text-xs font-black text-gray-500 uppercase tracking-[0.2em] mt-3">Nepal Tools</h3>
         </div>
 
         <div className="space-y-3">
@@ -45,7 +45,7 @@ export function Sidebar() {
             >
               <div className="flex items-center gap-4">
                  <div className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center group-hover/item:bg-red-50 transition-colors">
-                    <tool.icon className="w-4 h-4 text-gray-400 group-hover/item:text-red-500" strokeWidth={2.5} />
+                    <tool.icon className="w-4 h-4 text-gray-500 group-hover/item:text-red-500" strokeWidth={2.5} />
                  </div>
                  <span className="text-sm font-bold text-gray-700 group-hover/item:text-gray-900">{tool.name}</span>
                  {tool.hot && <span className="text-[8px] bg-[#FFC107]/20 text-[#D48806] px-2 py-0.5 rounded-md font-black uppercase tracking-widest border border-[#FFC107]/30">HOT</span>}
@@ -58,7 +58,7 @@ export function Sidebar() {
 
       {/* CARD 2: POPULAR RIGHT NOW */}
       <div className="bg-white border border-gray-100 rounded-[32px] p-5 shadow-sm">
-        <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">Popular Right Now</h3>
+        <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4">Popular Right Now</h3>
         <div className="space-y-3">
           {popular.map(tool => (
             <Link 
@@ -81,7 +81,7 @@ export function Sidebar() {
 
       {/* CARD 3: QUICK CONVERSION */}
       <div className="bg-white border border-gray-100 rounded-[32px] p-5 shadow-sm">
-        <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">Quick Conversion</h3>
+        <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] mb-4">Quick Conversion</h3>
         <div className="grid grid-cols-2 gap-3">
            {['NPR ↔ USD', 'km ↔ miles', '°C ↔ °F', 'kg ↔ lbs'].map(conv => (
              <Link 

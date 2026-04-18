@@ -5,25 +5,25 @@ const PILLARS = [
     icon: Lock, 
     title: 'Secure Encryption', 
     desc: 'Your data never leaves your device. All calculations are 100% private and offline-capable.',
-    color: 'text-gray-400'
+    color: 'text-gray-500'
   },
   { 
     icon: Zap, 
     title: 'Instant Results', 
     desc: 'Optimized for speed. Get complex mathematical solutions in milliseconds, not minutes.',
-    color: 'text-gray-400'
+    color: 'text-gray-500'
   },
   { 
     icon: Smartphone, 
     title: 'Fully Responsive', 
     desc: 'Pixel-perfect experience across all devices. Built for mobile-first Nepal.',
-    color: 'text-gray-400'
+    color: 'text-gray-500'
   },
   { 
     icon: ShieldCheck, 
     title: 'No Account Required', 
     desc: 'We value your privacy. Access all 75+ professional tools without ever signing up.',
-    color: 'text-gray-400'
+    color: 'text-gray-500'
   },
 ];
 

@@ -59,7 +59,7 @@ export function Footer() {
               <h3 className="text-[#FFC107] font-black uppercase tracking-[0.1em] text-[10px] border-b border-white/10 pb-1.5">Support</h3>
               <ul className="space-y-2 text-[11px] font-bold">
                 <li><Link href="/utility" className="text-white hover:text-[#FFC107] transition-all">Utility Tools</Link></li>
-                <li><Link href="/about" className="text-white hover:text-[#FFC107] transition-all">About Us</Link></li>
+                <li><Link href="/privacy" className="text-white hover:text-[#FFC107] transition-all">Privacy Policy</Link></li>
                 <li><Link href="/blog" className="text-white hover:text-[#FFC107] transition-all">Institutional Blog</Link></li>
                 <li><Link href="/contact" className="text-white hover:text-[#FFC107] transition-all">Contact</Link></li>
               </ul>

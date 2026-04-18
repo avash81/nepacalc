@@ -70,7 +70,7 @@ export function HomeCalculator() {
       <div className="p-6 md:p-8">
         <div className="space-y-6">
           <div className="bg-google-gray rounded-[24px] p-6 text-right border border-google-border min-h-[120px] flex flex-col justify-end text-gray-900">
-             <div className="text-sm text-gray-400 font-mono mb-1">{equation || ' '}</div>
+             <div className="text-sm text-gray-600 font-mono mb-1">{equation || ' '}</div>
              <div className="text-5xl md:text-6xl font-sans font-bold text-gray-900 tracking-tighter">{display}</div>
           </div>
 
@@ -84,32 +84,32 @@ export function HomeCalculator() {
              <button onClick={() => append('sin(')} className="h-11 bg-google-blue-light text-google-blue font-black text-xs rounded-xl">sin</button>
              <button onClick={() => append('ln(')} className="h-11 bg-google-blue-light text-google-blue font-black text-xs rounded-xl">ln</button>
              {[7,8,9].map(n => <button key={n} onClick={() => append(String(n))} className="h-11 bg-white border border-google-border font-bold rounded-xl text-gray-900">{n}</button>)}
-             <button onClick={() => append('/')} className="h-11 bg-google-gray text-gray-400 text-xl font-bold rounded-xl">÷</button>
+             <button onClick={() => append('/')} className="h-11 bg-google-gray text-gray-600 text-xl font-bold rounded-xl">÷</button>
 
              <button onClick={() => append('pi')} className="h-11 bg-google-gray text-google-blue font-black text-xs rounded-xl">π</button>
              <button onClick={() => append('cos(')} className="h-11 bg-google-blue-light text-google-blue font-black text-xs rounded-xl">cos</button>
              <button onClick={() => append('log(')} className="h-11 bg-google-blue-light text-google-blue font-black text-xs rounded-xl">log</button>
              {[4,5,6].map(n => <button key={n} onClick={() => append(String(n))} className="h-11 bg-white border border-google-border font-bold rounded-xl text-gray-900">{n}</button>)}
-             <button onClick={() => append('*')} className="h-11 bg-google-gray text-gray-400 text-xl font-bold rounded-xl">×</button>
+             <button onClick={() => append('*')} className="h-11 bg-google-gray text-gray-600 text-xl font-bold rounded-xl">×</button>
 
              <button onClick={() => append('e')} className="h-11 bg-google-gray text-google-blue font-black text-xs rounded-xl">e</button>
              <button onClick={() => append('tan(')} className="h-11 bg-google-blue-light text-google-blue font-black text-xs rounded-xl">tan</button>
              <button onClick={() => append('sqrt(')} className="h-11 bg-google-blue-light text-google-blue font-black text-xs rounded-xl">√</button>
              {[1,2,3].map(n => <button key={n} onClick={() => append(String(n))} className="h-11 bg-white border border-google-border font-bold rounded-xl text-gray-900">{n}</button>)}
-             <button onClick={() => append('-')} className="h-11 bg-google-gray text-gray-400 text-3xl font-bold rounded-xl">−</button>
+             <button onClick={() => append('-')} className="h-11 bg-google-gray text-gray-600 text-3xl font-bold rounded-xl">−</button>
 
-             <button onClick={() => setDisplay('Ans')} className="h-11 bg-google-gray text-gray-400 text-xs font-black rounded-xl">Ans</button>
+             <button onClick={() => setDisplay('Ans')} className="h-11 bg-google-gray text-gray-600 text-xs font-black rounded-xl">Ans</button>
              <button onClick={() => append('EXP')} className="h-11 bg-google-blue-light text-google-blue text-xs font-black rounded-xl">EXP</button>
              <button onClick={() => append('^')} className="h-11 bg-google-blue-light text-google-blue text-xs font-black rounded-xl">x^y</button>
              <button onClick={() => append('0')} className="h-11 bg-white border border-google-border font-bold rounded-xl text-gray-900">0</button>
              <button onClick={() => append('.')} className="h-11 bg-white border border-google-border font-bold rounded-xl text-gray-900">.</button>
              <button onClick={calculate} className="h-11 bg-google-blue text-white rounded-xl font-black">=</button>
-             <button onClick={() => append('+')} className="h-11 bg-google-gray text-gray-400 text-2xl font-bold rounded-xl">+</button>
+             <button onClick={() => append('+')} className="h-11 bg-google-gray text-gray-600 text-2xl font-bold rounded-xl">+</button>
 
              <button onClick={() => append('(')} className="h-11 bg-google-gray font-bold rounded-xl text-gray-900">(</button>
              <button onClick={() => append(')')} className="h-11 bg-google-gray font-bold rounded-xl text-gray-900">)</button>
              <button onClick={() => append('%')} className="h-11 bg-google-gray font-bold rounded-xl text-gray-900">%</button>
-             <button onClick={() => { setDisplay(d=>d.slice(0,-1)||'0'); setEquation(e=>e.slice(0,-1)); }} className="h-11 bg-google-gray text-gray-400 rounded-xl flex items-center justify-center"><Delete className="w-5 h-5"/></button>
+             <button onClick={() => { setDisplay(d=>d.slice(0,-1)||'0'); setEquation(e=>e.slice(0,-1)); }} className="h-11 bg-google-gray text-gray-600 rounded-xl flex items-center justify-center" aria-label="Delete last character"><Delete className="w-5 h-5"/></button>
              <button onClick={() => { setDisplay('0'); setEquation(''); }} className="h-11 bg-google-gray text-google-blue font-black text-xs rounded-xl">AC</button>
              <button onClick={() => append('fact(')} className="h-11 bg-google-blue-light text-google-blue font-black text-xs rounded-xl">n!</button>
              <button onClick={() => append('inv(')} className="h-11 bg-google-blue-light text-google-blue font-black text-xs rounded-xl">1/x</button>
@@ -117,7 +117,7 @@ export function HomeCalculator() {
 
           <div className="grid grid-cols-5 gap-2">
              {['MS', 'MR', 'M+', 'M−', 'MC'].map(m => (
-               <button key={m} onClick={() => memOp(m)} className="h-11 bg-google-gray text-gray-400 text-xs font-black uppercase tracking-widest rounded-xl hover:text-google-blue transition-all">
+               <button key={m} onClick={() => memOp(m)} className="h-11 bg-google-gray text-gray-600 text-xs font-black uppercase tracking-widest rounded-xl hover:text-google-blue transition-all">
                   {m}
                </button>
              ))}

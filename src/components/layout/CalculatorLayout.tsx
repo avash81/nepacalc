@@ -74,7 +74,7 @@ export function CalculatorLayout({
 
   const renderCategoryGrid = () => (
     <div className="no-print">
-      <h4 className="text-[11px] font-black uppercase text-slate-400 mb-6 tracking-widest text-center">Explore More Calculators</h4>
+      <h4 className="text-[11px] font-black uppercase text-slate-500 mb-6 tracking-widest text-center">Explore More Calculators</h4>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {CATEGORIES.map(cat => (
             <div key={cat.id} className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
@@ -171,7 +171,7 @@ export function CalculatorLayout({
             <button 
               onClick={toggleFavorite} 
               className={`group flex items-center justify-center w-12 h-12 border-2 rounded-xl transition-all duration-300 shadow-sm active:scale-[0.98]
-                ${isFavorite ? 'bg-yellow-50 border-yellow-300 text-yellow-500' : 'bg-white border-slate-200 text-slate-400 hover:bg-slate-50 hover:border-slate-300 hover:text-yellow-500'}`}
+                ${isFavorite ? 'bg-yellow-50 border-yellow-300 text-yellow-500' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50 hover:border-slate-300 hover:text-yellow-500'}`}
               title={isFavorite ? "Remove from Favorites" : "Add to Favorites"}
             >
               <Star className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
@@ -180,7 +180,7 @@ export function CalculatorLayout({
               onClick={() => window.print()} 
               className="group flex items-center gap-2.5 px-6 py-3 bg-white border-2 border-slate-200 rounded-xl hover:bg-slate-50 hover:border-slate-300 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-[11px] font-black uppercase tracking-[0.2em] text-slate-700 no-print active:scale-[0.98]"
             >
-              <Printer className="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition-colors" />
+              <Printer className="w-4 h-4 text-slate-500 group-hover:text-blue-600 transition-colors" />
               Print Report
             </button>
           </div>
@@ -202,7 +202,7 @@ export function CalculatorLayout({
             <>
               {/* Refactored 60/40 Split */}
               <section className="lg:col-span-6 space-y-6 print:w-full">
-                <div className="print:block hidden text-sm font-black uppercase text-slate-400 mb-4 border-b pb-2">Calculation Inputs</div>
+                <div className="print:block hidden text-sm font-black uppercase text-slate-500 mb-4 border-b pb-2">Calculation Inputs</div>
                 <article className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden print:border-none print:shadow-none">
                   {leftPanel}
                 </article>

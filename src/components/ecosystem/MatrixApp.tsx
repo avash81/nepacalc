@@ -210,15 +210,15 @@ export function MatrixApp() {
                   <div className="text-3xl font-serif text-indigo-900">{m.name} =</div>
                   <div className="flex gap-2">
                      <span className="text-xs font-bold text-indigo-600 bg-indigo-100 px-2 py-1 rounded">ROWS</span>
-                     <button onClick={() => updateMatrixSize(m.name, 'rows', -1)} className="w-6 h-6 flex items-center justify-center bg-white border border-indigo-200 rounded hover:bg-indigo-50"><Minus className="w-3 h-3 text-indigo-700" /></button>
+                     <button onClick={() => updateMatrixSize(m.name, 'rows', -1)} className="w-6 h-6 flex items-center justify-center bg-white border border-indigo-200 rounded hover:bg-indigo-50" aria-label="Decrease rows"><Minus className="w-3 h-3 text-indigo-700" /></button>
                      <span className="font-mono text-sm font-bold w-4 text-center text-indigo-900">{m.rows}</span>
-                     <button onClick={() => updateMatrixSize(m.name, 'rows', 1)} className="w-6 h-6 flex items-center justify-center bg-white border border-indigo-200 rounded hover:bg-indigo-50"><Plus className="w-3 h-3 text-indigo-700" /></button>
+                     <button onClick={() => updateMatrixSize(m.name, 'rows', 1)} className="w-6 h-6 flex items-center justify-center bg-white border border-indigo-200 rounded hover:bg-indigo-50" aria-label="Increase rows"><Plus className="w-3 h-3 text-indigo-700" /></button>
                   </div>
                   <div className="flex gap-2">
                      <span className="text-xs font-bold text-indigo-600 bg-indigo-100 px-2 py-1 rounded">COLS</span>
-                     <button onClick={() => updateMatrixSize(m.name, 'cols', -1)} className="w-6 h-6 flex items-center justify-center bg-white border border-indigo-200 rounded hover:bg-indigo-50"><Minus className="w-3 h-3 text-indigo-700" /></button>
+                     <button onClick={() => updateMatrixSize(m.name, 'cols', -1)} className="w-6 h-6 flex items-center justify-center bg-white border border-indigo-200 rounded hover:bg-indigo-50" aria-label="Decrease columns"><Minus className="w-3 h-3 text-indigo-700" /></button>
                      <span className="font-mono text-sm font-bold w-4 text-center text-indigo-900">{m.cols}</span>
-                     <button onClick={() => updateMatrixSize(m.name, 'cols', 1)} className="w-6 h-6 flex items-center justify-center bg-white border border-indigo-200 rounded hover:bg-indigo-50"><Plus className="w-3 h-3 text-indigo-700" /></button>
+                     <button onClick={() => updateMatrixSize(m.name, 'cols', 1)} className="w-6 h-6 flex items-center justify-center bg-white border border-indigo-200 rounded hover:bg-indigo-50" aria-label="Increase columns"><Plus className="w-3 h-3 text-indigo-700" /></button>
                   </div>
                </div>
                
