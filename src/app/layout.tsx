@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -78,6 +79,7 @@ export default function RootLayout({
         <Footer />
         <MobileNav />
         <CookieBanner />
+        <SpeedInsights />
       </body>
     </html>
   );
