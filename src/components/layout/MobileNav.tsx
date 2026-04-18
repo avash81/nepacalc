@@ -2,6 +2,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, Search, Globe, Grid, BookOpen } from 'lucide-react';
+import { useState } from 'react';
+import { SearchModal } from './SearchModal';
 
 export function MobileNav() {
   const pathname = usePathname();
@@ -9,13 +11,16 @@ export function MobileNav() {
 
   const tabs = [
     { name: 'Home',   icon: Home,     path: '/' },
-    { name: 'Search', icon: Search,   path: '/calculator', isSearch: true },
+    { name: 'Search', icon: Search,   isSearch: true },
     { name: 'Nepal',  icon: Globe,    path: '/calculator/nepal-income-tax', isSpecial: true },
-    { name: 'Tools',  icon: Grid,     path: '/calculator' },
+    { name: 'Tools',  icon: Grid,     path: '/directory' },
     { name: 'Blog',   icon: BookOpen, path: '/blog' },
   ];
 
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   return (
+    <>
     <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-[var(--border)] z-[150] px-2 pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.05)] no-print">
       <div className="flex justify-around items-center h-14 relative">
         {tabs.map((tab) => {
@@ -26,6 +31,12 @@ export function MobileNav() {
             <Link 
               key={tab.name} 
               href={tab.path || '#'}
+              onClick={(e) => {
+                 if (tab.isSearch) {
+                    e.preventDefault();
+                    setIsSearchOpen(true);
+                 }
+              }}
               className={`flex flex-col items-center justify-center flex-1 transition-all relative ${isActive ? 'text-[var(--primary)]' : 'text-slate-500'}`}
             >
               <div className={`transition-all duration-300 ${tab.isSpecial ? 'bg-[var(--primary)] text-white -mt-7 shadow-lg w-12 h-12 rounded-2xl flex items-center justify-center border-4 border-white active:scale-95' : 'p-1'}`}>
@@ -45,5 +56,7 @@ export function MobileNav() {
         })}
       </div>
     </nav>
+    <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+    </>
   );
 }

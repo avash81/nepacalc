@@ -93,7 +93,7 @@ function SearchResults() {
           </div>
           
           <div className="mt-12 pt-8 border-t border-gray-50">
-            <Link href="/calculator" className="inline-flex items-center gap-2 text-blue-600 font-bold hover:gap-3 transition-all">
+            <Link href="/directory" className="inline-flex items-center gap-2 text-blue-600 font-bold hover:gap-3 transition-all">
               Browse All Calculators <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
