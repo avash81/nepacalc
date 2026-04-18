@@ -10,7 +10,7 @@ export function Footer() {
   const path = usePathname();
 
   return (
-    <footer className="bg-[#002147] text-white/90 pt-10 pb-12 mt-0 no-print select-none border-t-[3px] border-[#FFC107]">
+    <footer className="bg-[#002147] text-white/90 pt-10 pb-24 lg:pb-12 mt-0 no-print select-none border-t-[3px] border-[#FFC107]">
       <div className="hp-container">
         
         <div className="grid grid-cols-1 lg:grid-cols-6 gap-y-8 gap-x-8 mb-8 text-center sm:text-left">
