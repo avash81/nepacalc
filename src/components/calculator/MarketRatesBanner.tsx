@@ -1,6 +1,6 @@
 'use client';
 import React, { useMemo, useState, useEffect } from 'react';
-import { Activity, TrendingUp } from 'lucide-react';
+import { Activity, TrendingUp, Info } from 'lucide-react';
 import { AreaChart, Area, ResponsiveContainer, YAxis, Tooltip, XAxis } from 'recharts';
 
 function PriceRow({ label, value, highlight, bold, color = 'blue' }: { 
