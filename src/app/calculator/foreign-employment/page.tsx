@@ -4,6 +4,17 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Foreign Employment Fee & Manpower Checker — Nepal DOFE Safety',
   description: 'Check legal manpower fees and free visa/ticket policies for Qatar, UAE, Malaysia, and Korea. Protect yourself from overcharging.',
+
+  openGraph: {
+    title: 'Foreign Employment Fee & Manpower Checker — Nepal DOFE Safety',
+    description: 'Check legal manpower fees and free visa/ticket policies for Qatar, UAE, Malaysia, and Korea. Protect yourself from overcharging.',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Foreign Employment Fee & Manpower Checker — Nepal DOFE Safety',
+    description: 'Check legal manpower fees and free visa/ticket policies for Qatar, UAE, Malaysia, and Korea. Protect yourself from overcharging.',
+  },
 };
 
 export default function Page() {

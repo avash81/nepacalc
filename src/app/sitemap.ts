@@ -1,15 +1,10 @@
 import { MetadataRoute } from 'next';
+import { fetchFirestoreCollection } from '@/lib/firestore-rest';
 import { CATEGORIES } from '@/data/calculators';
-import { headers } from 'next/headers';
-
-export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // Cache sitemap for 1 hour to prevent timeouts
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Use environment variables for the absolute URL or fallback to the provided Verel URL
-  const host = headers().get('host') || 'www.nepacalc.com';
-  const protocol = host.includes('localhost') ? 'http' : 'https';
-  const baseUrl = `${protocol}://${host}`;
+  const baseUrl = 'https://nepacalc.com';
 
   // 1. Static Core Pages
   const staticPages = [
@@ -18,7 +13,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/blog',
     '/contact',
     '/privacy',
-    '/terms'
+    '/terms',
+    '/engineering',
+    '/engineering/graphing',
+    '/engineering/3d',
+    '/engineering/geometry',
+    '/engineering/formulas'
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
@@ -52,7 +52,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 4. Dynamic Content (Blogs & Guides)
   let dynamicPages: any[] = [];
   try {
-    const { fetchFirestoreCollection } = require('@/lib/firestore-rest');
     const posts = await fetchFirestoreCollection('posts');
     const guides = await fetchFirestoreCollection('seo_pages');
 

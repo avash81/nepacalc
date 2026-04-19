@@ -17,7 +17,6 @@ export async function fetchFirestoreCollection(collectionName: string) {
 
   try {
     const res = await fetch(url, { 
-      next: { revalidate: 3600 }, // ISR: Cache for 1 hour
       headers: { 'Content-Type': 'application/json' }
     });
 
@@ -62,7 +61,6 @@ export async function fetchDocumentBySlug(collectionName: string, slug: string) 
   try {
     const res = await fetch(url, {
       method: 'POST',
-      next: { revalidate: 3600 },
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         structuredQuery: {

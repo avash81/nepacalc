@@ -1,0 +1,27 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # ── 1. CLEAN URLS (Remove .html) ───────────────────────
+  # Redirect /page.html to /page
+  RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
+  RewriteRule ^ %1 [R=301,L]
+
+  # Internally serve /page as /page.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+
+  # ── 2. INSTITUTIONAL REWRITES (Redirects) ──────────────
+  # Pillar Page Rewrites to categorical indices
+  RewriteRule ^finance$ calculator/category/finance [R=301,L]
+  RewriteRule ^health$ calculator/category/health [R=301,L]
+  RewriteRule ^education$ calculator/category/education [R=301,L]
+  RewriteRule ^utility$ calculator/category/utility [R=301,L]
+  RewriteRule ^nepal$ calculator/category/nepal [R=301,L]
+
+  # ── 3. ERROR HANDLING ──────────────────────────────────
+  # Serve 404.html if file doesn't exist
+  ErrorDocument 404 /404.html
+</IfModule>

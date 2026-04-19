@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   title: 'Current Exchange Rates (NPR) & Currency Converter 2082',
   description: 'Convert USD, EUR, INR, GBP to Nepalese Rupees (NPR) with live-cached exchange rates. Professional currency calculator for travel and business in Nepal.',
   keywords: ['currency converter nepal', 'usd to npr', 'inr to npr', 'nepalese rupee exchange rate', 'live currency rates nepal'],
+
+  openGraph: {
+    title: 'Current Exchange Rates (NPR) & Currency Converter 2082',
+    description: 'Convert USD, EUR, INR, GBP to Nepalese Rupees (NPR) with live-cached exchange rates. Professional currency calculator for travel and business in Nepal.',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Current Exchange Rates (NPR) & Currency Converter 2082',
+    description: 'Convert USD, EUR, INR, GBP to Nepalese Rupees (NPR) with live-cached exchange rates. Professional currency calculator for travel and business in Nepal.',
+  },
 };
 
 export default function CurrencyPage() {

@@ -8,7 +8,7 @@ import { MobileNav } from "@/components/layout/MobileNav";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://calculator-workbro81-2035s-projects.vercel.app'),
+  metadataBase: new URL('https://nepacalc.com'),
   title: "Free Online Calculators for Nepal — Tax, EMI, GPA & More | NEPACALC",
   description: "Nepal's authoritative laboratory for high-precision income tax calculation, EMI planning, GPA tracking, and 75+ professional utility tools. Updated for latest IRD mandates.",
   icons: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     apple: '/favicon.png',
   },
   verification: {
-    google: "TTNOlEjZe-wjCOkIv-nBIKN2uv_rFFfb9w71xj6B8LM",
+    // google: "ADD_NEW_TAG_HERE",
   },
   robots: {
     index: true,
@@ -53,9 +53,59 @@ export const metadata: Metadata = {
 };
 
 import { CookieBanner } from "@/components/layout/CookieBanner";
-import { Analytics } from "@vercel/analytics/next";
-
 import { GoogleAnalytics } from "@/components/seo/GoogleAnalytics";
+
+const globalSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://nepacalc.com/#organization",
+      "name": "NEPACALC",
+      "url": "https://nepacalc.com",
+      "logo": "https://nepacalc.com/favicon.png",
+      "sameAs": [
+        "https://www.facebook.com/nepacalc",
+        "https://twitter.com/nepacalc"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://nepacalc.com/#website",
+      "url": "https://nepacalc.com",
+      "name": "NEPACALC",
+      "description": "Free online scientific calculator with real-time graphing, maths solver, and 80+ professional calculators for Nepal.",
+      "publisher": {
+        "@id": "https://nepacalc.com/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://nepacalc.com/calculator/{search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://nepacalc.com/#calculator",
+      "name": "NEPACALC Scientific Calculator & Graphing Engine",
+      "url": "https://nepacalc.com",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript, HTML5 Canvas",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "NPR" },
+      "featureList": [
+        "Scientific calculator with Deg/Rad toggle",
+        "Maths Solver with Algebra, Trigonometry, Calculus tabs",
+        "Advanced 4-tab keyboard (123, f(x), ABC, Symbols)",
+        "Real-time interactive Canvas graphing engine",
+        "Infinite pan and zoom on function graphs",
+        "80+ specialized professional calculators",
+        "Nepal income tax, EMI, GPA, BMI, and unit converters"
+      ],
+      "isPartOf": { "@id": "https://nepacalc.com/#website" }
+    }
+  ]
+};
 
 export default function RootLayout({
   children,
@@ -65,6 +115,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} font-sans`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
+        />
         <GoogleAnalytics />
         <a 
           href="#main-content" 
@@ -82,7 +136,6 @@ export default function RootLayout({
         <Footer />
         <MobileNav />
         <CookieBanner />
-        <Analytics />
       </body>
     </html>
   );

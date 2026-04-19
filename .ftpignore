@@ -1,0 +1,27 @@
+# CalcPro.NP — cPanel FTP Ignore List
+# This file prevents sensitive or redundant files from being uploaded.
+
+.git/
+.env
+.env.local
+.env.production
+node_modules/
+src/
+app/
+tailwind.config.js
+next.config.js
+tsconfig.json
+package.json
+package-lock.json
+build/
+.next/
+scripts/
+tests/
+ARCHITECTURE.md
+README.md
+implementation_plan.md
+task.md
+walkthrough.md
+.github/
+.vscode/
+.ftpignore

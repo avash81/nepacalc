@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
   Menu, X, Search, Sun, Moon, ChevronRight, History, Star,
-  Sparkles, Folder, Wallet, Heart, BookOpen, Info 
+  Sparkles, Folder, Wallet, Heart, BookOpen, Info, Globe
 } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
 import { SearchModal } from './SearchModal';
@@ -44,13 +44,13 @@ export function Navbar() {
   useEffect(() => setIsMenuOpen(false), [path]);
 
   const navLinks = [
-    { name: 'Math Tools', href: '/math-tools' },
-    { name: 'Nepal Specific', href: '/calculator/category/nepal' },
-    { name: 'Directory',  href: '/directory' },
-    { name: 'Finance',   href: '/finance' },
-    { name: 'Health',     href: '/health' },
-    { name: 'Education',  href: '/education' },
-    { name: 'Converters & Utility', href: '/utility' },
+    { name: 'Nepal',       href: '/calculator/category/nepal' },
+    { name: 'Finance',     href: '/calculator/category/finance' },
+    { name: 'Health',      href: '/calculator/category/health' },
+    { name: 'Math',        href: '/calculator/category/education' },
+    { name: 'Engineering', href: '/engineering' },
+    { name: 'Converters',  href: '/calculator/category/utility' },
+    { name: 'Blog',        href: '/blog' },
   ];
 
   return (
@@ -124,13 +124,13 @@ export function Navbar() {
 
           <div className="flex-1 overflow-y-auto p-6 space-y-3">
             {[
-               { name: 'Math Tools', href: '/math-tools', icon: <Sparkles className="w-5 h-5" /> },
-               { name: 'Nepal Specific', href: '/calculator/category/nepal', icon: <Star className="w-5 h-5" /> },
-               { name: 'Tool Directory', href: '/directory', icon: <Folder className="w-5 h-5" /> },
-               { name: 'Financial', href: '/calculator/category/finance', icon: <Wallet className="w-5 h-5" /> },
-               { name: 'Health', href: '/calculator/category/health', icon: <Heart className="w-5 h-5" /> },
-               { name: 'Blog', href: '/blog', icon: <BookOpen className="w-5 h-5" /> },
-               { name: 'About', href: '/about', icon: <Info className="w-5 h-5" /> },
+               { name: 'Nepal',       href: '/calculator/category/nepal', icon: <Star className="w-5 h-5" /> },
+               { name: 'Finance',     href: '/calculator/category/finance', icon: <Wallet className="w-5 h-5" /> },
+               { name: 'Health',      href: '/calculator/category/health', icon: <Heart className="w-5 h-5" /> },
+               { name: 'Math',        href: '/calculator/category/education', icon: <Sparkles className="w-5 h-5" /> },
+               { name: 'Engineering', href: '/engineering', icon: <Sparkles className="w-5 h-5" /> },
+               { name: 'Converters',  href: '/calculator/category/utility', icon: <Globe className="w-5 h-5" /> },
+               { name: 'Blog',        href: '/blog', icon: <BookOpen className="w-5 h-5" /> },
             ].map((link) => (
               <Link
                 key={link.href}

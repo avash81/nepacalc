@@ -3,6 +3,10 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  output: 'export',
+  images: {
+    unoptimized: true,
+  },
 
   // Security + performance headers
   async headers() {
@@ -83,17 +87,6 @@ const nextConfig = {
     ];
   },
 
-  images: {
-    formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 31536000, // Year long cache for generated optimized images
-    remotePatterns: [
-      {
-        // Allow images only from securely hosted locations
-        protocol: 'https',
-        hostname: 'firebasestorage.googleapis.com',
-      },
-    ],
-  },
   experimental: {
     optimizePackageImports: [
       'lucide-react',

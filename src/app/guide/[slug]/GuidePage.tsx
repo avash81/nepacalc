@@ -347,7 +347,7 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
                 <ShareResult
                   title={page.title}
                   result="📖 Read the full guide"
-                  calcUrl={`https://NEPACALC.com/guide/${page.slug}`}
+                  calcUrl={`https://nepacalc.com/guide/${page.slug}`}
                 />
               </div>
             </article>

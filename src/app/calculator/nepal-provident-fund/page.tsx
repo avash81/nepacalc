@@ -4,7 +4,18 @@ import Calculator from './Calculator';
 export const metadata: Metadata = {
   title: 'EPF/Provident Fund & CIT Projector (Nepal)',
   description: 'Project your retirement savings with Employees Provident Fund (Kosh) and CIT logic for 2081/82.',
-  keywords: ['epf calculator nepal', 'provident fund kosh', 'retirement fund nepal', 'cit calculator']
+  keywords: ['epf calculator nepal', 'provident fund kosh', 'retirement fund nepal', 'cit calculator'],
+
+  openGraph: {
+    title: 'EPF/Provident Fund & CIT Projector (Nepal)',
+    description: 'Project your retirement savings with Employees Provident Fund (Kosh) and CIT logic for 2081/82.',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'EPF/Provident Fund & CIT Projector (Nepal)',
+    description: 'Project your retirement savings with Employees Provident Fund (Kosh) and CIT logic for 2081/82.',
+  },
 };
 
 export default function Page() {

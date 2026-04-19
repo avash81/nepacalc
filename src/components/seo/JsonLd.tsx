@@ -82,7 +82,7 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
     website: {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      description: 'Free online professional calculators for Nepal — income tax, EMI, BMI, and 80+ specialized laboratory tools.',
+      description: 'Free online scientific calculator with real-time graphing engine, maths solver (algebra, trigonometry, calculus), and 80+ professional calculators for Nepal — income tax, EMI, GPA, BMI and more.',
       potentialAction: {
         '@type': 'SearchAction',
         target: `${base}/search?q={search_term_string}`,

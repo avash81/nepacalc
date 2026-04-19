@@ -1,14 +1,67 @@
 import Link from 'next/link';
-import { CALCULATORS, Calculator } from '@/data/calculators';
+import { CALCULATORS, Calculator as CalculatorType } from '@/data/calculators';
+import { 
+  Calculator, 
+  Scale, 
+  Ruler, 
+  Banknote, 
+  Clock, 
+  PercentSquare, 
+  TrendingUp, 
+  Landmark, 
+  Activity, 
+  Building2, 
+  Globe, 
+  Binary, 
+  GraduationCap, 
+  BookOpen, 
+  HeartPulse,
+  Trees,
+  Zap,
+  BookMarked
+} from 'lucide-react';
 
 interface Props {
   currentSlug: string;
   category: string;
 }
 
+const getIconForSlug = (slug: string, category: string) => {
+  const s = slug.toLowerCase();
+  
+  // Health
+  if (s.includes('bmi') || s.includes('fat') || s.includes('weight')) return <Activity className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  if (s.includes('calorie') || s.includes('water') || s.includes('sleep')) return <HeartPulse className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  
+  // Finance & Tax
+  if (s.includes('tax') || s.includes('vat')) return <Landmark className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  if (s.includes('emi') || s.includes('loan') || s.includes('mortgage')) return <Building2 className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  if (s.includes('currency') || s.includes('remittance') || s.includes('salary') || s.includes('finance')) return <Banknote className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  if (s.includes('sip') || s.includes('compound') || s.includes('cagr') || s.includes('nepse') || s.includes('stock')) return <TrendingUp className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  
+  // Education
+  if (s.includes('gpa') || s.includes('cgpa')) return <GraduationCap className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  if (s.includes('attendance') || s.includes('marks')) return <BookOpen className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  if (s.includes('physics') || s.includes('chemistry') || s.includes('science')) return <Zap className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  if (s.includes('fraction') || s.includes('percentage') || s.includes('ratio') || s.includes('math')) return <PercentSquare className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  
+  // Converters & Utility
+  if (s.includes('length') || s.includes('area') || s.includes('land') || s.includes('distance')) return <Ruler className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  if (s.includes('mass')) return <Scale className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  if (s.includes('date') || s.includes('age') || s.includes('time')) return <Clock className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  if (s.includes('base') || s.includes('binary') || s.includes('hex')) return <Binary className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  if (s.includes('unit') || s.includes('convert')) return <Globe className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  
+  // Generic Fallbacks by Category
+  if (category === 'nepal') return <Trees className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  if (category === 'finance') return <Landmark className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  if (category === 'education') return <BookMarked className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  if (category === 'utility') return <Globe className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+  
+  return <Calculator className="w-6 h-6 text-slate-400 group-hover:text-blue-500 transition-colors" />;
+}
+
 export default function RelatedCalculators({ currentSlug, category }: Props) {
-  // Find other calculators in the same category, excluding the current one
-  // Prioritize markers like isHot or isNew for the shuffle
   const related = CALCULATORS.filter(
     (c) => c.category === category && c.slug !== currentSlug
   )
@@ -40,7 +93,7 @@ export default function RelatedCalculators({ currentSlug, category }: Props) {
           >
             <div className="flex items-center gap-5">
               <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-3xl group-hover:scale-110 group-hover:bg-blue-50 group-hover:border-blue-100 transition-all duration-300 shadow-sm">
-                {typeof calc.icon === 'string' ? calc.icon : '🧮'}
+                {calc.icon ? calc.icon : getIconForSlug(calc.slug, calc.category)}
               </div>
               <div className="min-w-0">
                 <h4 className="font-black text-slate-900 group-hover:text-blue-600 transition-colors uppercase text-[12px] tracking-tight">

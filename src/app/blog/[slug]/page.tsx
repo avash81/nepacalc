@@ -3,6 +3,35 @@ import { notFound } from 'next/navigation';
 import BlogPostContent from './BlogPostContent';
 import Link from 'next/link';
 
+export const dynamic = 'force-static';
+export const dynamicParams = false;
+export const runtime = 'nodejs';
+
+export async function generateStaticParams() {
+  try {
+    const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+    const dbId = process.env.NEXT_PUBLIC_FIREBASE_DATABASE_ID;
+    if (!projectId) return [{ slug: 'welcome-to-nepacalc' }]; // Fallback slug
+
+    const url = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/${dbId || '(default)'}/documents/posts?pageSize=100`;
+    const res = await fetch(url);
+    if (!res.ok) return [{ slug: 'welcome-to-nepacalc' }];
+
+    const data = await res.json();
+    if (!data.documents) return [{ slug: 'welcome-to-nepacalc' }];
+
+    return data.documents
+      .filter((d: any) => d.fields?.status?.stringValue === 'published')
+      .map((d: any) => ({
+        slug: d.fields.slug?.stringValue || '',
+      }))
+      .filter((p: any) => p.slug !== '');
+  } catch (e) {
+    console.error('Error generating static params for blog:', e);
+    return [{ slug: 'welcome-to-nepacalc' }];
+  }
+}
+
 async function getPostData(slug: string) {
   try {
     const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
@@ -10,7 +39,7 @@ async function getPostData(slug: string) {
     if (!projectId) return null;
 
     const url = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/${dbId || '(default)'}/documents/posts`;
-    const res = await fetch(url + '?pageSize=100', { next: { revalidate: 3600 } });
+    const res = await fetch(url + '?pageSize=100');
     
     if (!res.ok) return null;
     const data = await res.json();
@@ -72,13 +101,13 @@ export async function generateMetadata({
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: `https://NEPACALC.com/blog/${post.slug}`,
+      url: `https://nepacalc.com/blog/${post.slug}`,
       siteName: 'NEPACALC',
       type: 'article',
       ...(post.ogImage ? { images: [{ url: post.ogImage }] } : {}),
     },
     alternates: {
-      canonical: `https://NEPACALC.com/blog/${post.slug}`,
+      canonical: `https://nepacalc.com/blog/${post.slug}`,
     },
   };
 }
@@ -108,9 +137,9 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://NEPACALC.com" },
-              { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://NEPACALC.com/blog" },
-              { "@type": "ListItem", "position": 3, "name": data.post.title, "item": `https://NEPACALC.com/blog/${data.post.slug}` }
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nepacalc.com" },
+              { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://nepacalc.com/blog" },
+              { "@type": "ListItem", "position": 3, "name": data.post.title, "item": `https://nepacalc.com/blog/${data.post.slug}` }
             ]
           }),
         }}
@@ -140,12 +169,12 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
               "name": "NEPACALC",
               "logo": {
                  "@type": "ImageObject",
-                 "url": "https://NEPACALC.com/logo.png"
+                 "url": "https://nepacalc.com/logo.png"
               }
             },
             "mainEntityOfPage": {
                "@type": "WebPage",
-               "@id": `https://NEPACALC.com/blog/${data.post.slug}`
+               "@id": `https://nepacalc.com/blog/${data.post.slug}`
             }
           }),
         }}

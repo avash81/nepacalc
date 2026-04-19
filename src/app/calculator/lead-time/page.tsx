@@ -23,8 +23,18 @@ export const metadata: Metadata = {
   description: 'Easily calculate expected delivery dates and when to place your orders based on manufacturing and shipping lead times. Includes business day logic.',
   keywords: 'lead time calculator, expected delivery calculator, order-by date calculator, lead time business days, supply chain calculator engineering',
   alternates: {
-    canonical: 'https://calcly.com/calculator/lead-time'
-  }
+    canonical: 'https://nepacalc.com/calculator/lead-time',
+  },
+  openGraph: {
+    title: 'Lead Time Calculator - Expected Delivery & Order Dates | NEPACALC',
+    description: 'Easily calculate expected delivery dates and when to place your orders based on manufacturing and shipping lead times. Includes business day logic.',
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Lead Time Calculator - Expected Delivery & Order Dates | NEPACALC',
+    description: 'Easily calculate expected delivery dates and when to place your orders based on manufacturing and shipping lead times. Includes business day logic.',
+  },
 };
 
 export default function LeadTimeCalculatorPage() {

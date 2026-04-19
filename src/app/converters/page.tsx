@@ -2,6 +2,7 @@ import { CATEGORIES } from '@/data/calculators';
 import Link from 'next/link';
 import { ChevronRight, Star, Flame } from 'lucide-react';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
+import { PillarFAQ } from '@/components/seo/PillarFAQ';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -10,6 +11,25 @@ export const metadata: Metadata = {
   keywords: ['unit converter', 'length converter', 'weight converter', 'currency converter nepal', 'utility tools'],
   alternates: { canonical: 'https://nepacalc.com/converters' },
 };
+
+const CONVERTER_FAQS = [
+  {
+    question: "How frequently are the currency and unit rates updated?",
+    answer: "Fixed units (such as metric to imperial length/weight) are absolute and constant. Dynamic rates (like gold and currency) map to verified institutional endpoints."
+  },
+  {
+    question: "Can I use these conversions for academic research?",
+    answer: "Yes, our unit conversion algorithms use exact scientific constants (e.g., 1 inch = exactly 2.54 cm) ensuring 100% precision for academic and engineering use."
+  },
+  {
+    question: "Do you support base numeral conversions?",
+    answer: "Yes. The base converter accurately translates binary, octal, decimal, and hexadecimal numeral systems up to 64-bit integer limits."
+  },
+  {
+    question: "Are the generated passwords cryptographically secure?",
+    answer: "Our password generator uses the browser's native crypto framework to generate strong, non-deterministic strings locally on your device."
+  }
+];
 
 export default function ConvertersPillarPage() {
   const category = CATEGORIES.find(c => c.id === 'utility')!;
@@ -20,46 +40,43 @@ export default function ConvertersPillarPage() {
       crumbs={[{ label: 'Converters & Utility Tools' }]}
     >
       <div className="py-8">
-        <header className="mb-16 max-w-3xl">
-          <div className="flex items-center gap-6 mb-6">
-            <div className="w-20 h-20 bg-white rounded-[2.5rem] flex items-center justify-center text-4xl shadow-sm border border-gray-100">🔄</div>
-            <div>
-              <h1 className="text-3xl sm:text-5xl font-black text-gray-900 tracking-tighter leading-none mb-3">Converters & Utility</h1>
-              <div className="flex items-center gap-4">
-                <div className="h-1 w-12 bg-blue-600 rounded-full" />
-                <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">{category.calculators.length} Daily-Use Tools</p>
-              </div>
-            </div>
-          </div>
-          <p className="text-sm text-slate-500 font-medium leading-relaxed max-w-2xl">Fast, accurate online converters for units, length, weight, currency, and a full suite of daily utility tools.</p>
-        </header>
 
-        <div className="mb-12">
-          <div className="flex items-center gap-2 mb-6"><Flame className="w-4 h-4 text-orange-500" /><h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">Most Used</h2></div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {category.calculators.filter(c => c.isHot).map(calc => (
-              <Link key={calc.id} href={`/calculator/${calc.slug}`} className="group bg-white border border-orange-100 rounded-[2rem] p-6 hover:border-orange-300 hover:shadow-xl transition-all relative overflow-hidden">
-                <div className="absolute top-3 right-3"><span className="text-[8px] font-black uppercase tracking-widest bg-orange-500 text-white px-2 py-1 rounded-full">HOT</span></div>
-                <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-xl group-hover:scale-110 transition-transform mb-4">{calc.icon}</div>
-                <h3 className="text-sm font-black text-gray-800 uppercase tracking-tight mb-1.5 group-hover:text-orange-600 transition-colors">{calc.name}</h3>
-                <p className="text-[11px] text-gray-400 leading-relaxed font-medium line-clamp-2">{calc.description}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Clinical Index Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
           {category.calculators.map(calc => (
-            <Link key={calc.id} href={`/calculator/${calc.slug}`} className="group bg-white border border-gray-100 rounded-[2rem] p-6 hover:border-slate-900 hover:shadow-xl transition-all">
-              <div className="flex items-center justify-between mb-5">
-                <div className="w-11 h-11 rounded-xl bg-slate-50 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">{calc.icon}</div>
-                <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-slate-900 transform group-hover:translate-x-1 transition-all" />
-              </div>
-              <h3 className="text-sm font-black text-gray-800 uppercase tracking-tight mb-1.5 group-hover:text-slate-900 transition-colors">{calc.name}</h3>
-              <p className="text-[11px] text-gray-400 leading-relaxed font-medium line-clamp-2">{calc.description}</p>
-            </Link>
+            <div key={calc.id} className="group flex flex-col gap-1 border-b border-slate-50 pb-4">
+              <Link
+                href={`/calculator/${calc.slug}`}
+                className="text-[16px] font-bold text-[#1a73e8] hover:underline"
+              >
+                {calc.name}
+              </Link>
+              <p className="text-[13px] text-[#5f6368] leading-relaxed font-medium">
+                {calc.description}
+              </p>
+            </div>
           ))}
         </div>
+
+        {/* Institutional Authority Block */}
+        <div className="mt-24 pt-12 border-t border-[#dadce0]">
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl opacity-80">
+              <div>
+                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">Verification</h3>
+                <p className="text-[11px] text-[#5f6368] leading-relaxed">Measurement constants based on SI standards and international metric/imperial conventions.</p>
+              </div>
+              <div>
+                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">Real-time Data</h3>
+                <p className="text-[11px] text-[#5f6368] leading-relaxed">Currency and exchange rates pull live from central bank APIs to ensure calculation validity.</p>
+              </div>
+              <div>
+                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">System Logic</h3>
+                <p className="text-[11px] text-[#5f6368] leading-relaxed">Base converters and bitwise tools optimized for developer-grade 64-bit precision.</p>
+              </div>
+           </div>
+        </div>
+        
+        <PillarFAQ faqs={CONVERTER_FAQS} title="Converter Facts" />
       </div>
     </CalcWrapper>
   );

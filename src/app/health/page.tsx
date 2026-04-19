@@ -2,6 +2,7 @@ import { CATEGORIES } from '@/data/calculators';
 import Link from 'next/link';
 import { ChevronRight, Flame } from 'lucide-react';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
+import { PillarFAQ } from '@/components/seo/PillarFAQ';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -10,6 +11,25 @@ export const metadata: Metadata = {
   keywords: ['bmi calculator nepal', 'bmr calculator', 'body fat calculator', 'calorie calculator', 'health tools nepal'],
   alternates: { canonical: 'https://nepacalc.com/health' },
 };
+
+const HEALTH_FAQS = [
+  {
+    question: "Are the health calculators designed for medical diagnosis?",
+    answer: "No, our health tools, including BMI and calorie calculators, are designed for informational and fitness tracking purposes only. They do not replace professional medical advice."
+  },
+  {
+    question: "What body mass index standard is used?",
+    answer: "We follow universally accepted World Health Organization (WHO) and CDC guidelines for all standard fitness metrics and metabolic rate estimations."
+  },
+  {
+    question: "Do the calorie calculators account for activity levels?",
+    answer: "Yes, our daily energy expenditure (TDEE) models incorporate standard physiological activity multipliers to provide accurate macronutrient requirements."
+  },
+  {
+    question: "Are these tools suitable for children?",
+    answer: "We offer dedicated pediatric tools, such as the Child BMI Calculator, which utilize specific percentile growth charts distinct from adult metric standards."
+  }
+];
 
 export default function HealthPillarPage() {
   const category = CATEGORIES.find(c => c.id === 'health')!;
@@ -20,46 +40,43 @@ export default function HealthPillarPage() {
       crumbs={[{ label: 'Health & Fitness Tools' }]}
     >
       <div className="py-8">
-        <header className="mb-16 max-w-3xl">
-          <div className="flex items-center gap-6 mb-6">
-            <div className="w-20 h-20 bg-white rounded-[2.5rem] flex items-center justify-center text-4xl shadow-sm border border-gray-100">❤️</div>
-            <div>
-              <h1 className="text-3xl sm:text-5xl font-black text-gray-900 tracking-tighter leading-none mb-3">Health & Fitness</h1>
-              <div className="flex items-center gap-4">
-                <div className="h-1 w-12 bg-red-500 rounded-full" />
-                <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">{category.calculators.length} Wellness Tools</p>
-              </div>
-            </div>
-          </div>
-          <p className="text-sm text-slate-500 font-medium leading-relaxed max-w-2xl">Professional health assessment tools based on WHO guidelines. Calculate BMI, BMR, body composition, calorie needs and more.</p>
-        </header>
 
-        <div className="mb-12">
-          <div className="flex items-center gap-2 mb-6"><Flame className="w-4 h-4 text-orange-500" /><h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">Most Popular</h2></div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {category.calculators.filter(c => c.isHot).map(calc => (
-              <Link key={calc.id} href={`/calculator/${calc.slug}`} className="group bg-white border border-red-100 rounded-[2rem] p-6 hover:border-red-300 hover:shadow-xl hover:shadow-red-500/5 transition-all relative overflow-hidden">
-                <div className="absolute top-3 right-3"><span className="text-[8px] font-black uppercase tracking-widest bg-red-500 text-white px-2 py-1 rounded-full">HOT</span></div>
-                <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-xl group-hover:scale-110 transition-transform mb-4">{calc.icon}</div>
-                <h3 className="text-sm font-black text-gray-800 uppercase tracking-tight mb-1.5 group-hover:text-red-600 transition-colors">{calc.name}</h3>
-                <p className="text-[11px] text-gray-400 leading-relaxed font-medium line-clamp-2">{calc.description}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Clinical Index Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
           {category.calculators.map(calc => (
-            <Link key={calc.id} href={`/calculator/${calc.slug}`} className="group bg-white border border-gray-100 rounded-[2rem] p-6 hover:border-slate-900 hover:shadow-xl transition-all">
-              <div className="flex items-center justify-between mb-5">
-                <div className="w-11 h-11 rounded-xl bg-slate-50 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">{calc.icon}</div>
-                <ChevronRight className="w-4 h-4 text-gray-300 group-hover:text-slate-900 transform group-hover:translate-x-1 transition-all" />
-              </div>
-              <h3 className="text-sm font-black text-gray-800 uppercase tracking-tight mb-1.5 group-hover:text-slate-900 transition-colors">{calc.name}</h3>
-              <p className="text-[11px] text-gray-400 leading-relaxed font-medium line-clamp-2">{calc.description}</p>
-            </Link>
+            <div key={calc.id} className="group flex flex-col gap-1 border-b border-slate-50 pb-4">
+              <Link
+                href={`/calculator/${calc.slug}`}
+                className="text-[16px] font-bold text-[#1a73e8] hover:underline"
+              >
+                {calc.name}
+              </Link>
+              <p className="text-[13px] text-[#5f6368] leading-relaxed font-medium">
+                {calc.description}
+              </p>
+            </div>
           ))}
         </div>
+
+        {/* Institutional Authority Block */}
+        <div className="mt-24 pt-12 border-t border-[#dadce0]">
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl opacity-80">
+              <div>
+                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">Standards</h3>
+                <p className="text-[11px] text-[#5f6368] leading-relaxed">All formulas (BMI, BMR, Body Fat) are based on World Health Organization (WHO) and NIH standards.</p>
+              </div>
+              <div>
+                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">Data Privacy</h3>
+                <p className="text-[11px] text-[#5f6368] leading-relaxed">Physical metrics are processed locally. No personal health information (PHI) is stored or transmitted.</p>
+              </div>
+              <div>
+                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">Medical Disclaimer</h3>
+                <p className="text-[11px] text-[#5f6368] leading-relaxed">Results are for informational purposes only and do not constitute professional medical advice or diagnosis.</p>
+              </div>
+           </div>
+        </div>
+        
+        <PillarFAQ faqs={HEALTH_FAQS} title="Health Tools Facts" />
       </div>
     </CalcWrapper>
   );

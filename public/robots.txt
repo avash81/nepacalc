@@ -1,0 +1,5 @@
+﻿User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+Sitemap: https://nepacalc.com/sitemap.xml

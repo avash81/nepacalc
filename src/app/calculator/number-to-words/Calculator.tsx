@@ -8,6 +8,7 @@ const UNITS = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight
 const TENS  = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
 
 function helper(n: number): string {
+  if (n === 0) return '';
   if (n < 20) return UNITS[n];
   if (n < 100) return TENS[Math.floor(n/10)] + (n%10 ? ' ' + UNITS[n%10] : '');
   return UNITS[Math.floor(n/100)] + ' Hundred' + (n%100 ? ' and ' + helper(n%100) : '');
@@ -26,7 +27,7 @@ function toLakh(n: number): string {
   if (n >= 100000)   { r += helper(Math.floor(n/100000)) + ' Lakh '; n %= 100000; }
   if (n >= 1000)     { r += helper(Math.floor(n/1000)) + ' Thousand '; n %= 1000; }
   if (n > 0) r += helper(n);
-  return r;
+  return r.trim();
 }
 
 export default function NumberToWords() {
@@ -36,15 +37,17 @@ export default function NumberToWords() {
   const [copied, setCopied]   = useState(false);
 
   const r = useMemo(() => {
-    const n = parseInt(number);
+    const n = Math.floor(Math.abs(Number(number)));
     if (isNaN(n)) return 'Invalid number';
     if (n === 0) return asCurrency ? 'Zero Rupees Only' : 'Zero';
+    if (n > 9999999999) return 'Number too large for words';
     
-    const prefix = n < 0 ? 'Minus ' : '';
-    const abs = Math.abs(n);
-    const w = system === 'intl' ? toIntl(abs) : toLakh(abs);
+    const prefix = number.startsWith('-') ? 'Minus ' : '';
+    const w = system === 'intl' ? toIntl(n) : toLakh(n);
     
-    return asCurrency ? `Rupees ${prefix}${w.trim()} Only` : `${prefix}${w.trim()}`;
+    // Capitalize first letter and format
+    const final = w.charAt(0).toUpperCase() + w.slice(1);
+    return asCurrency ? `Rupees ${final.trim()} Only` : `${prefix}${final.trim()}`;
   }, [number, system, asCurrency]);
 
   const copy = () => { navigator.clipboard.writeText(r); setCopied(true); setTimeout(() => setCopied(false), 2000); };

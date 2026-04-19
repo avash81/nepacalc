@@ -157,12 +157,12 @@ export function CalculatorLayout({
         </div>
       </div>
 
-      <main className="hp-container py-6 sm:py-8">
+      <main className="hp-container py-4 sm:py-5">
         {/* 2. Professional Header Section */}
-        <header className="mb-6 sm:mb-8 border-b-2 border-slate-200/60 pb-5 flex flex-col sm:flex-row justify-between items-start gap-4">
+        <header className="mb-4 sm:mb-6 border-b border-slate-200 pb-4 flex flex-col sm:flex-row justify-between items-start gap-4">
           <div className="flex-1">
-            <div className="flex flex-wrap items-center gap-3 mb-2">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#202124] tracking-tighter">
+            <div className="flex flex-wrap items-center gap-3 mb-1">
+              <h1 className="text-2xl sm:text-2xl lg:text-3xl font-bold text-[#202124] tracking-tight">
                 {title}
               </h1>
               {autoPurpose && (
@@ -172,7 +172,7 @@ export function CalculatorLayout({
                 </div>
               )}
             </div>
-            <p className="text-[15px] sm:text-base text-slate-600 font-medium leading-relaxed max-w-3xl">
+            <p className="text-[13px] sm:text-sm text-slate-500 font-medium leading-relaxed max-w-3xl">
               {description}
             </p>
           </div>
