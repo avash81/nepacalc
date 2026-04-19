@@ -36,8 +36,8 @@ export function HomePageCalculatorClient() {
       <div className="flex items-center justify-center gap-2 py-1">
         <p className="text-[12px] text-slate-400 font-medium mr-1">Calculator style:</p>
         {[
-          { id: 'google',   label: '🔵 Google Style' },
-          { id: 'advanced', label: '🟣 Advanced (GeoGebra)' },
+          { id: 'google',   label: '🔵 Scientific Calculator' },
+          { id: 'advanced', label: '🟣 Advanced Graphing' },
         ].map(opt => (
           <button
             key={opt.id}

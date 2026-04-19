@@ -20,8 +20,9 @@ export function HomeCalculator() {
   const [equation, setEquation] = useState('');
   const [isDeg, setIsDeg] = useState(true);
   const [solverInput, setSolverInput] = useState('');
-  const [solverResult, setSolverResult] = useState('');
   const [memory, setMemory] = useState<number>(0);
+  const [isSolving, setIsSolving] = useState(false);
+  const [logicEngineResult, setLogicEngineResult] = useState('');
 
   useEffect(() => { setMounted(true); }, []);
 
@@ -38,20 +39,44 @@ export function HomeCalculator() {
     } catch { setDisplay('Error'); }
   }, [display, equation, isDeg]);
 
-  const solveMathQuery = () => {
+  const solveMathQuery = async () => {
     if (!solverInput.trim()) return;
-    const res = safeEval(solverInput, { isDeg: true });
+    setIsSolving(true);
+    setLogicEngineResult('');
     
-    // If it's an equation (contains =) or safeEval can't handle it (returns Error)
-    // we redirect to the full solver which has advanced parsing.
-    if (res === 'Error' || solverInput.includes('=')) {
-       localStorage.setItem('calc_query', solverInput.trim());
-       // Use hard location for maximum reliability in dev environments
-       window.location.href = '/calculator/scientific-calculator';
-       return;
+    const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+    if (!apiKey) {
+      setLogicEngineResult("Precision Logic Engine is in maintenance mode.");
+      setIsSolving(false);
+      return;
     }
-    
-    setSolverResult(res);
+
+    try {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{
+              parts: [{
+                text: `You are the NEPACALC Precision Logic Engine. Provide expert, clinical step-by-step logic for: "${solverInput}".
+                RULES: 1. Plain text only. 2. No brand names (Google, Gemini, etc.). 3. Max 100 words. 4. Professional tone.`
+              }]
+            }]
+          })
+        }
+      );
+
+      const data = await response.json();
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (text) setLogicEngineResult(text);
+      else throw new Error();
+    } catch {
+      setLogicEngineResult("Unable to evaluate logic at this time.");
+    } finally {
+      setIsSolving(false);
+    }
   };
 
   const memOp = (op: string) => {
@@ -67,17 +92,71 @@ export function HomeCalculator() {
 
   return (
     <div className="w-full bg-white border border-google-border rounded-[32px] shadow-sm overflow-hidden select-none font-sans">
-      <div className="p-6 md:p-8">
-        <div className="space-y-6">
-          <div className="bg-google-gray rounded-[24px] p-6 text-right border border-google-border min-h-[120px] flex flex-col justify-end text-gray-900">
-             <div className="text-sm text-gray-600 font-mono mb-1">{equation || ' '}</div>
-             <div className="text-5xl md:text-6xl font-sans font-bold text-gray-900 tracking-tighter">{display}</div>
-          </div>
+      <div className="p-6 md:p-8 shrink-0">
+        <div className="flex bg-google-gray p-1 rounded-2xl mb-6 w-fit">
+          <button 
+            onClick={() => setMode('scientific')}
+            className={`px-6 py-2 rounded-xl text-sm font-bold transition-all ${mode === 'scientific' ? 'bg-white shadow-sm text-google-blue' : 'text-gray-500'}`}
+          >
+            Scientific
+          </button>
+          <button 
+            onClick={() => setMode('solver')}
+            className={`px-6 py-2 rounded-xl text-sm font-bold transition-all ${mode === 'solver' ? 'bg-white shadow-sm text-google-blue' : 'text-gray-500'}`}
+          >
+            Maths Solver
+          </button>
+        </div>
 
-          <div className="flex gap-4">
-             <button onClick={() => setIsDeg(true)} className={`text-xs font-black uppercase px-3 py-1 rounded-lg ${isDeg ? 'bg-google-blue-light text-google-blue' : 'text-gray-300'}`}>Deg</button>
-             <button onClick={() => setIsDeg(false)} className={`text-xs font-black uppercase px-3 py-1 rounded-lg ${!isDeg ? 'bg-google-blue-light text-google-blue' : 'text-gray-300'}`}>Rad</button>
-          </div>
+        <div className="space-y-6">
+          {mode === 'scientific' ? (
+            <>
+              <div className="bg-google-gray rounded-[24px] p-6 text-right border border-google-border min-h-[120px] flex flex-col justify-end text-gray-900">
+                 <div className="text-sm text-gray-600 font-mono mb-1">{equation || ' '}</div>
+                 <div className="text-5xl md:text-6xl font-sans font-bold text-gray-900 tracking-tighter">{display}</div>
+              </div>
+
+              <div className="flex gap-4">
+                 <button onClick={() => setIsDeg(true)} className={`text-xs font-black uppercase px-3 py-1 rounded-lg ${isDeg ? 'bg-google-blue-light text-google-blue' : 'text-gray-300'}`}>Deg</button>
+                 <button onClick={() => setIsDeg(false)} className={`text-xs font-black uppercase px-3 py-1 rounded-lg ${!isDeg ? 'bg-google-blue-light text-google-blue' : 'text-gray-300'}`}>Rad</button>
+              </div>
+            </>
+          ) : (
+            <div className="min-h-[200px] flex flex-col gap-6 animate-in fade-in slide-in-from-top-4 duration-500">
+               <div className="relative group">
+                 <input 
+                   type="text"
+                   value={solverInput}
+                   onChange={(e) => setSolverInput(e.target.value)}
+                   onKeyDown={(e) => e.key === 'Enter' && solveMathQuery()}
+                   placeholder="Enter a mathematical problem (e.g. solve 2x + 5 = 15)"
+                   className="w-full bg-google-gray border border-google-border rounded-2xl px-6 py-4 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-google-blue/20 transition-all"
+                 />
+                 <button 
+                   onClick={solveMathQuery}
+                   className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-google-blue text-white rounded-xl hover:bg-google-blue/90 transition-all"
+                 >
+                   <Play className="w-5 h-5 fill-current" />
+                 </button>
+               </div>
+
+               {isSolving && (
+                 <div className="flex items-center gap-3 text-google-blue italic text-sm animate-pulse">
+                   <Activity className="w-4 h-4" />
+                   Evaluating logical steps...
+                 </div>
+               )}
+
+               {logicEngineResult && !isSolving && (
+                 <div className="bg-google-gray/50 border border-google-border rounded-2xl p-6">
+                    <div className="text-[10px] uppercase font-black tracking-widest text-google-blue mb-3 opacity-70">Expert Logic Response</div>
+                    <div className="text-[#3C4043] text-sm leading-relaxed whitespace-pre-wrap font-sans">
+                      {logicEngineResult}
+                    </div>
+                 </div>
+               )}
+            </div>
+          )}
 
           <div className="grid grid-cols-7 gap-2">
              <button className="h-11 bg-google-gray font-bold text-xs rounded-xl text-gray-500">Inv</button>

@@ -7,9 +7,9 @@ import type { Metadata } from 'next';
 
 /* ── Homepage-specific metadata (overrides layout.tsx defaults) ── */
 export const metadata: Metadata = {
-  title: 'Free Online Scientific Calculator & Graphing Tool — Tax, EMI, GPA & 80+ Tools | NEPACALC',
+  title: 'Free Online Scientific Calculator & Graphing Tool | Tax, EMI, GPA & 80+ Tools | NEPACALC',
   description:
-    "Nepal's #1 free online scientific calculator with real-time graphing, maths solver (algebra, trigonometry, calculus), income tax calculator, EMI planner, GPA tracker, and 80+ professional tools. Interactive Canvas graph engine with infinite pan & zoom.",
+    "NEPACALC is a free, professional toolkit for Nepal. Solve advanced math with our scientific calculator and real-time graphing engine, or use our 80+ specialized tools for income tax, loan EMI, GPA tracking, and more. No registration required.",
   keywords: [
     'online calculator', 'scientific calculator', 'graphing calculator',
     'maths solver', 'algebra solver', 'trigonometry calculator',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     'graphing tool', 'math plotter', 'function grapher',
   ],
   openGraph: {
-    title: 'Free Scientific Calculator & Graphing Tool — 80+ Tools | NEPACALC',
+    title: 'Free Scientific Calculator & Graphing Tool | 80+ Tools | NEPACALC',
     description: 'Interactive scientific calculator with real-time function graphing, maths solver, and 80+ professional calculators for Nepal.',
     url: 'https://nepacalc.com',
     siteName: 'NEPACALC',
@@ -46,8 +46,8 @@ const homepageCalcSchema = {
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'NPR' },
   featureList: [
     'Scientific calculator with Deg/Rad mode',
-    'Google-style 7-column keypad layout',
-    'Advanced GeoGebra-style 4-tab keyboard (123, f(x), ABC, #&¬)',
+    'Scientific Calculator 7-column keypad layout',
+    'Advanced Graphing 4-tab keyboard (123, f(x), ABC, #&¬)',
     'Maths Solver — Algebra, Trigonometry, Calculus tabs',
     'Real-time interactive Canvas graphing engine',
     'Infinite pan and zoom on graph (no axis limits)',
@@ -111,12 +111,12 @@ const homepageFaqSchema = {
     {
       '@type': 'Question',
       name: 'What is the Maths Solver on NEPACALC?',
-      acceptedAnswer: { '@type': 'Answer', text: 'The Maths Solver provides specialized keyboards for Algebra (variables, powers, logarithms), Trigonometry (sin, cos, tan and inverses), and Calculus (derivatives, integrals, limits, summation). Each tab uses color-coded keys matching Google\'s Maths Solver design.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'The Maths Solver provides specialized keyboards for Algebra (variables, powers, logarithms), Trigonometry (sin, cos, tan and inverses), and Calculus (derivatives, integrals, limits, summation). Each tab uses professional color-coded keys for maximum clarity.' },
     },
     {
       '@type': 'Question',
       name: 'Can I switch between different calculator styles?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes. The homepage offers two calculator modes: Google-style (scientific + maths solver with Algebra/Trigonometry/Calculus tabs) and Advanced GeoGebra-style (4-tab keyboard with 123, f(x), ABC, and symbol keys). Both modes connect to the real-time graphing engine.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. The homepage offers two calculator modes: Scientific Calculator (7-column layout with Deg/Rad toggle and full Maths Solver) and Advanced Graphing (4-tab keyboard with 123, f(x), ABC, and symbol keys). Both modes connect to the real-time graphing engine.' },
     },
   ],
 };
@@ -146,7 +146,7 @@ export default function HomePage() {
         </section>
 
         {/* 2. Structured Directory */}
-        <main className="hp-container py-16">
+        <main className="hp-container py-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-x-8 gap-y-16">
             {CATEGORIES.map(cat => (
               <div key={cat.id} className="space-y-4">
@@ -159,15 +159,20 @@ export default function HomePage() {
                   {/* Special case for Engineering: inject the advanced child tools first */}
                   {cat.id === 'engineering' && (
                     <>
-                      <li><Link href="/engineering/graphing" className="text-[14px] text-[#202124] hover:text-[#4361ee] hover:underline font-bold">Graphing Calculator</Link></li>
-                      <li><Link href="/engineering/3d" className="text-[14px] text-[#202124] hover:text-[#4361ee] hover:underline font-bold">3D Visualizer</Link></li>
-                      <li><Link href="/engineering/geometry" className="text-[14px] text-[#202124] hover:text-[#4361ee] hover:underline font-bold">Geometry Canvas</Link></li>
-                      <li><Link href="/engineering/formulas" className="text-[14px] text-[#202124] hover:text-[#4361ee] hover:underline font-bold">Formula Reference</Link></li>
+                      <li className="h-[21px]"><Link href="/engineering/graphing" className="text-[14px] text-[#202124] hover:text-[#4361ee] hover:underline font-bold truncate block">Graphing Calculator</Link></li>
+                      <li className="h-[21px]"><Link href="/engineering/3d" className="text-[14px] text-[#202124] hover:text-[#4361ee] hover:underline font-bold truncate block">3D Visualizer</Link></li>
+                      <li className="h-[21px]"><Link href="/engineering/geometry" className="text-[14px] text-[#202124] hover:text-[#4361ee] hover:underline font-bold truncate block">Geometry Canvas</Link></li>
+                      <li className="h-[21px]"><Link href="/engineering/formulas" className="text-[14px] text-[#202124] hover:text-[#4361ee] hover:underline font-bold truncate block">Formula Reference</Link></li>
                     </>
                   )}
-                  {cat.calculators.slice(0, 10).map(calc => (
-                    <li key={calc.id}>
-                      <Link href={`/calculator/${calc.slug}`} className="text-[14px] text-[#202124] hover:text-blue-600 hover:underline">
+                  {/* Total 10 rows per column for symmetry */}
+                  {cat.calculators.slice(0, cat.id === 'engineering' ? 6 : 10).map(calc => (
+                    <li key={calc.id} className="h-[21px]">
+                      <Link 
+                        href={`/calculator/${calc.slug}`} 
+                        className="text-[14px] text-[#202124] hover:text-blue-600 hover:underline truncate block"
+                        title={calc.name}
+                      >
                         {calc.name}
                       </Link>
                     </li>
@@ -183,13 +188,13 @@ export default function HomePage() {
           </div>
 
           {/* Full-Width SEO & Institutional Footer Block */}
-          <div className="mt-16 pt-10 border-t border-slate-200">
+          <div className="mt-10 pt-6 border-t border-slate-200">
             <div className="max-w-5xl">
-              <h2 className="text-[#202124] text-[16px] font-black tracking-tight mb-3">
+              <h2 className="text-[#202124] text-[16px] font-black tracking-tight mb-2">
                 Nepal's Leading Scientific Calculator, Graphing Tool & Digital Laboratory
               </h2>
-              <p className="text-[13px] text-[#5f6368] leading-relaxed font-medium mb-6">
-                Welcome to <strong>NEPACALC</strong> — the most comprehensive suite of professional online calculators, graphing tools, and math solvers. Our homepage features an <strong>interactive scientific calculator</strong> with two switchable modes: a Google-style layout with Deg/Rad toggle and a full <strong>Maths Solver</strong> (Algebra, Trigonometry, Calculus tabs), plus an <strong>Advanced GeoGebra-style keyboard</strong> with 123, f(x), ABC, and symbol input. Every expression you type is instantly visualized on our <strong>real-time Canvas graphing engine</strong> — supporting infinite pan, zoom, asymptote-aware rendering, and auto-scaling axes. Beyond the homepage, we provide 80+ institutional-grade tools for <strong>Nepal income tax</strong>, loan EMI, SIP compounding, GPA tracking, BMI, BMR, unit conversion, and engineering calculations — all mathematically engineered per Inland Revenue Department (IRD) and Nepal Rastra Bank directives. 100% free. No registration required.
+              <p className="text-[13px] text-[#5f6368] leading-relaxed font-medium mb-4">
+                Welcome to <strong>NEPACALC</strong>: your simple yet powerful toolkit for everything from school math to complex financial planning in Nepal. We’ve combined a fast scientific calculator with an interactive graphing engine and over 80 specialized tools to help you get things done. Whether you’re calculating your income tax, planning a loan EMI, or just need a quick unit conversion, NEPACALC provides accurate results without the need for sign-ups. It’s free, it’s fast, and it’s built specifically for our local needs.
               </p>
               <div className="flex items-center gap-6">
                  <Link href="/sitemap.html" className="text-[12px] font-black text-red-600 hover:underline uppercase tracking-widest">

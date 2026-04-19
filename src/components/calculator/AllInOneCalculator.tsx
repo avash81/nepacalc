@@ -86,6 +86,10 @@ export default function AllInOneCalculator({
   const [isDeg,    setIsDeg]    = useState(true);
   const [answered, setAnswered] = useState(false);
 
+  const [isSolving, setIsSolving] = useState(false);
+  const [logicResult, setLogicResult] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
   /* Live preview */
   useEffect(() => {
     if (onExpressionChange) onExpressionChange(expr);
@@ -96,16 +100,67 @@ export default function AllInOneCalculator({
 
   const push = useCallback((v: string) => {
     setAnswered(false);
+    setLogicResult(null);
     setExpr(p => answered ? v : p + v);
   }, [answered]);
 
+  const solveWithLogicEngine = async (query: string) => {
+    if (!query.trim()) return;
+    setIsSolving(true);
+    setError(null);
+    setLogicResult(null);
+
+    const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+    if (!apiKey) {
+      setError("Logic Engine is in maintenance. Contact support.");
+      setIsSolving(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{
+              parts: [{
+                text: `You are the NEPACALC Logic Engine. Provide expert, clinical step-by-step logic for: "${query}".
+                RULES: 1. Plain text only. 2. No brand names (Google, Gemini, etc.). 3. Max 150 words. 4. Professional tone.`
+              }]
+            }]
+          })
+        }
+      );
+
+      const data = await response.json();
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+      
+      if (text) {
+        setLogicResult(text);
+        setAnswered(true);
+      } else {
+        throw new Error("Invalid response");
+      }
+    } catch (err) {
+      setError("Logical evaluation unavailable.");
+    } finally {
+      setIsSolving(false);
+    }
+  };
+
   const eq = useCallback(() => {
+    if (mode === 'solver') {
+      solveWithLogicEngine(expr);
+      return;
+    }
     const r = compute(expr, isDeg);
     if (r && r !== 'Error') { setExpr(r); setDisp(r); setAnswered(true); }
-  }, [expr, isDeg]);
+  }, [expr, isDeg, mode]);
 
-  const ac  = () => { setExpr(''); setDisp('0'); setAnswered(false); };
-  const del = () => { setAnswered(false); setExpr(p => p.slice(0, -1)); };
+  const ac  = () => { setExpr(''); setDisp('0'); setAnswered(false); setLogicResult(null); setError(null); };
+  const del = () => { setAnswered(false); setLogicResult(null); setExpr(p => p.slice(0, -1)); };
 
   /* ── COLOUR TOKENS ──────────────────────────────────────────────
      Matching Google Search calculator exactly
@@ -375,6 +430,29 @@ export default function AllInOneCalculator({
                   {tab === t.id && <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#1A73E8] rounded-t-full" />}
                 </button>
               ))}
+            </div>
+          )}
+
+          {/* Logic Engine Result Area */}
+          {mode === 'solver' && (isSolving || logicResult || error) && (
+            <div className="mt-4 p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-xl animate-in fade-in slide-in-from-top-2 duration-300">
+               {isSolving && (
+                 <div className="flex items-center gap-3 text-[#70757A] italic text-sm">
+                   <div className="w-4 h-4 border-2 border-[#1A73E8] border-t-transparent rounded-full animate-spin" />
+                   Evaluating logical steps...
+                 </div>
+               )}
+               {error && <div className="text-red-500 text-sm">{error}</div>}
+               {logicResult && !isSolving && (
+                 <div className="space-y-3">
+                    <div className="text-[11px] font-black uppercase tracking-widest text-[#1A73E8] opacity-70">
+                      Step-by-Step Logic
+                    </div>
+                    <div className="text-[#3C4043] text-[14px] leading-relaxed whitespace-pre-line font-sans">
+                      {logicResult}
+                    </div>
+                 </div>
+               )}
             </div>
           )}
         </div>
