@@ -34,41 +34,33 @@ export function MathTopNav() {
            { name: activeLink.name, item: `https://nepacalc.com${activeLink.path}` }
          ]}
       />
-      <header className="h-[48px] sm:h-[56px] w-full bg-[#f8f9fa] border-b border-[#e8eaed] flex items-center justify-between px-4 sm:px-6 select-none relative z-[50]">
-        <div className="flex items-center gap-4 h-full">
+      <header className="h-[44px] w-full bg-[#f8f9fa] border-b border-[#e8eaed] flex items-center justify-between px-4 sm:px-6 select-none relative z-[50]">
+        <div className="flex items-center gap-2 h-full">
           <button 
              onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
              className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#5F6368] hover:text-[#1A73E8] transition-all border-r border-[#e8eaed] pr-4 h-full"
           >
-             <ArrowLeft className="w-4 h-4" /> <span className="hidden sm:inline">Back</span>
+             <ArrowLeft className="w-3.5 h-3.5" /> <span>Back</span>
           </button>
           
-          <Link href="/" className="hover:opacity-80 transition-all flex items-center gap-4 group">
-            <Logo size="sm" />
-          </Link>
-          
-          <div className="h-4 w-px bg-[#e8eaed] hidden lg:block"></div>
-          
-          <button 
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="flex items-center gap-2 hover:bg-[#F1F3F4] h-8 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest text-black transition-all border border-[#e8eaed]"
-          >
-            <span>Math Tools</span>
-            <svg width="8" height="5" viewBox="0 0 10 6" fill="none" className={`transition-transform duration-300 ${menuOpen ? 'rotate-180' : ''}`}>
-              <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
-
-          <span className="text-[10px] font-black uppercase tracking-[0.1em] text-[#FFC107] bg-black px-3 py-1 rounded-full hidden lg:block">
-            {activeLink.name} Edition
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-black uppercase tracking-widest text-slate-300 hidden sm:inline">Home / Math Tools /</span>
+            <button 
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="flex items-center gap-2 hover:bg-[#F1F3F4] h-7 px-3 rounded-lg text-[10px] font-black uppercase tracking-widest text-black transition-all border border-[#e8eaed] bg-white shadow-sm"
+            >
+              <span>{activeLink.name}</span>
+              <svg width="8" height="5" viewBox="0 0 10 6" fill="none" className={`transition-transform duration-300 ${menuOpen ? 'rotate-180' : ''}`}>
+                <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
         </div>
 
         <div className="flex items-center gap-1 h-full">
-          <Link href="/blog" className="hidden lg:flex items-center gap-2 px-4 h-8 rounded-lg text-[10px] font-black uppercase tracking-widest text-[#5F6368] hover:text-black hover:bg-[#F1F3F4] transition-all">Documentation</Link>
           <button 
              onClick={() => setMenuOpen(!menuOpen)}
-             className="md:hidden flex items-center justify-center h-8 w-8 hover:bg-[#F1F3F4] rounded-lg"
+             className="flex items-center justify-center h-8 px-3 hover:bg-[#F1F3F4] rounded-lg text-[10px] font-black uppercase tracking-widest text-[#5F6368]"
           >
              {menuOpen ? <X className="w-4 h-4 text-black" /> : <Menu className="w-4 h-4 text-black" />}
           </button>

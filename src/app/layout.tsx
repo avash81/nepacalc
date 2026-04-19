@@ -8,7 +8,7 @@ import { MobileNav } from "@/components/layout/MobileNav";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://nepacalc.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://calculator-workbro81-2035s-projects.vercel.app'),
   title: "Free Online Calculators for Nepal — Tax, EMI, GPA & More | NEPACALC",
   description: "Nepal's authoritative laboratory for high-precision income tax calculation, EMI planning, GPA tracking, and 75+ professional utility tools. Updated for latest IRD mandates.",
   icons: {

@@ -7,8 +7,7 @@ export const revalidate = 3600; // Cache sitemap for 1 hour to prevent timeouts
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Use environment variables for the absolute URL or fallback to the provided Verel URL
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 
-                  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://nepacalc.com');
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://calculator-workbro81-2035s-projects.vercel.app';
 
   // 1. Static Core Pages
   const staticPages = [
