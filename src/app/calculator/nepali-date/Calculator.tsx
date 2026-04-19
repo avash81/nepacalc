@@ -90,13 +90,19 @@ export default function NepaliDateConverter() {
     return { date: converted, dayEn: DAYS_EN[dayIndex], dayNp: DAYS_NP[dayIndex], diffDays };
   }, [inputDate, tab, todayAD]);
 
-
   const bsYears = Array.from({ length: 131 }, (_, i) => 1970 + i);
-  const bsMonths = [
+  const adYears = Array.from({ length: 131 }, (_, i) => 1913 + i);
+  const bsMonthsList = [
     { n: 1, label: 'Baisakh' }, { n: 2, label: 'Jestha' }, { n: 3, label: 'Ashar' },
     { n: 4, label: 'Shrawan' }, { n: 5, label: 'Bhadra' }, { n: 6, label: 'Ashwin' },
     { n: 7, label: 'Kartik' }, { n: 8, label: 'Mangsir' }, { n: 9, label: 'Poush' },
     { n: 10, label: 'Magh' }, { n: 11, label: 'Falgun' }, { n: 12, label: 'Chaitra' }
+  ];
+  const adMonthsList = [
+    { n: 1, label: 'January' }, { n: 2, label: 'February' }, { n: 3, label: 'March' },
+    { n: 4, label: 'April' }, { n: 5, label: 'May' }, { n: 6, label: 'June' },
+    { n: 7, label: 'July' }, { n: 8, label: 'August' }, { n: 9, label: 'September' },
+    { n: 10, label: 'October' }, { n: 11, label: 'November' }, { n: 12, label: 'December' }
   ];
 
   const handleBsDatePartChange = (part: 'y'|'m'|'d', val: string) => {
@@ -106,9 +112,16 @@ export default function NepaliDateConverter() {
     if (part === 'd') update({ inputDate: `${y}-${m}-${val.padStart(2, '0')}` });
   };
 
+  const handleAdDatePartChange = (part: 'y'|'m'|'d', val: string) => {
+    const [y, m, d] = inputDate.split('-');
+    if (part === 'y') update({ inputDate: `${val}-${m}-${d}` });
+    if (part === 'm') update({ inputDate: `${y}-${val.padStart(2, '0')}-${d}` });
+    if (part === 'd') update({ inputDate: `${y}-${m}-${val.padStart(2, '0')}` });
+  };
+
   const [inputY, inputM, inputD] = useMemo(() => {
     const parts = inputDate.split('-');
-    return [parts[0] || '2083', parts[1] || '01', parts[2] || '01'];
+    return [parts[0] || '2026', parts[1] || '01', parts[2] || '01'];
   }, [inputDate]);
 
   return (
@@ -144,14 +157,30 @@ export default function NepaliDateConverter() {
             
             <div className="relative">
               {tab === 'ad2bs' ? (
-                <div className="relative">
-                   <input 
-                    type="date" 
-                    value={inputDate} 
-                    onChange={e => update({ inputDate: e.target.value })}
-                    className="w-full h-16 px-6 border-2 border-slate-100 rounded-3xl bg-slate-50 font-mono text-xl font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner appearance-none [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:inset-0 [&::-webkit-calendar-picker-indicator]:cursor-pointer" 
-                   />
-                   <Calendar className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 pointer-events-none" />
+                <div className="grid grid-cols-3 gap-3">
+                   <select 
+                    value={inputY} 
+                    onChange={e => handleAdDatePartChange('y', e.target.value)}
+                    className="h-16 px-4 border-2 border-slate-100 rounded-2xl bg-slate-50 font-mono text-lg font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner"
+                   >
+                     {adYears.map(y => <option key={y} value={y}>{y}</option>)}
+                   </select>
+                   <select 
+                    value={inputM} 
+                    onChange={e => handleAdDatePartChange('m', e.target.value)}
+                    className="h-16 px-4 border-2 border-slate-100 rounded-2xl bg-slate-50 font-mono text-lg font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner"
+                   >
+                     {adMonthsList.map(m => <option key={m.n} value={String(m.n).padStart(2, '0')}>{m.label}</option>)}
+                   </select>
+                   <select 
+                    value={inputD} 
+                    onChange={e => handleAdDatePartChange('d', e.target.value)}
+                    className="h-16 px-4 border-2 border-slate-100 rounded-2xl bg-slate-50 font-mono text-lg font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner"
+                   >
+                     {Array.from({ length: 31 }, (_, i) => i + 1).map(d => (
+                       <option key={d} value={String(d).padStart(2, '0')}>{d}</option>
+                     ))}
+                   </select>
                 </div>
               ) : (
                 <div className="grid grid-cols-3 gap-3">
@@ -167,7 +196,7 @@ export default function NepaliDateConverter() {
                     onChange={e => handleBsDatePartChange('m', e.target.value)}
                     className="h-16 px-4 border-2 border-slate-100 rounded-2xl bg-slate-50 font-mono text-lg font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner"
                    >
-                     {bsMonths.map(m => <option key={m.n} value={String(m.n).padStart(2, '0')}>{m.label}</option>)}
+                     {bsMonthsList.map(m => <option key={m.n} value={String(m.n).padStart(2, '0')}>{m.label}</option>)}
                    </select>
                    <select 
                     value={inputD} 
