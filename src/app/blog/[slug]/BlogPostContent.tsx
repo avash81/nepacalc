@@ -216,7 +216,7 @@ export default function BlogPostContent({ post, related }: { post: any; related:
                          className="object-cover" 
                         />
                      </div>
-                   </React.Fragment>
+                   </Fragment>
                  );
                }
 
