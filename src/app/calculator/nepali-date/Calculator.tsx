@@ -12,17 +12,33 @@ const DEFAULT_STATE = {
 };
 
 function convertADtoBS(s: string): string | null {
-  try { const d = new Date(s); if (isNaN(d.getTime())) return null; return new NepaliDate(d).format('YYYY-MM-DD'); } catch { return null; }
+  try { 
+    const d = new Date(s); 
+    if (isNaN(d.getTime())) return null; 
+    // Fix: Use local time for conversion to avoid UTC day-shifts
+    return new NepaliDate(d).format('YYYY-MM-DD'); 
+  } catch { return null; }
 }
+
 function convertBStoAD(s: string): string | null {
-  try { const [y,m,d] = s.split('-').map(Number); if (isNaN(y)||isNaN(m)||isNaN(d)) return null; return new NepaliDate(y, m-1, d).toJsDate().toISOString().split('T')[0]; } catch { return null; }
+  try { 
+    const [y,m,d] = s.split('-').map(Number); 
+    if (isNaN(y)||isNaN(m)||isNaN(d)) return null; 
+    // Fix: Higher precision local date mapping to avoid UTC ISO shifts
+    const nd = new NepaliDate(y, m-1, d);
+    const date = nd.toJsDate();
+    const yr = date.getFullYear();
+    const mo = String(date.getMonth() + 1).padStart(2, '0');
+    const dy = String(date.getDate()).padStart(2, '0');
+    return `${yr}-${mo}-${dy}`;
+  } catch { return null; }
 }
 
 const DAYS_EN = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const DAYS_NP = ['आइतबार','सोमबार','मंगलबार','बुधबार','बिहीबार','शुक्रबार','शनिबार'];
 
 export default function NepaliDateConverter() {
-  const [state, setState] = useSyncState('nepali_date_v4', DEFAULT_STATE);
+  const [state, setState] = useSyncState('nepali_date_v5', DEFAULT_STATE);
   const { tab, inputDate } = state;
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
@@ -31,16 +47,26 @@ export default function NepaliDateConverter() {
 
   useEffect(() => {
     const now = new Date();
-    const t = now.toISOString().split('T')[0];
+    const yr = now.getFullYear();
+    const mo = String(now.getMonth() + 1).padStart(2, '0');
+    const dy = String(now.getDate()).padStart(2, '0');
+    const t = `${yr}-${mo}-${dy}`;
     const bs = new NepaliDate(now).format('YYYY-MM-DD');
     setTodayAD(t); setTodayBS(bs);
     if (!inputDate) update({ inputDate: t });
   }, []);
 
-  const switchTab = () => {
-    const nextTab = tab === 'ad2bs' ? 'bs2ad' : 'ad2bs';
-    const nextDate = tab === 'ad2bs' ? (convertADtoBS(inputDate) || todayBS) : (convertBStoAD(inputDate) || todayAD);
-    update({ tab: nextTab, inputDate: nextDate });
+  const handleTabChange = (newTab: 'ad2bs' | 'bs2ad') => {
+    if (newTab === tab) return;
+    let nextDate = inputDate;
+    if (newTab === 'bs2ad') {
+       // Converting current AD input to BS string for the new BS tab
+       nextDate = convertADtoBS(inputDate) || todayBS;
+    } else {
+       // Converting current BS input to AD string for the new AD tab
+       nextDate = convertBStoAD(inputDate) || todayAD;
+    }
+    update({ tab: newTab, inputDate: nextDate });
   };
 
   const result = useMemo(() => {
@@ -48,14 +74,19 @@ export default function NepaliDateConverter() {
     let converted = '', dayIndex = 0;
     if (tab === 'ad2bs') {
       converted = convertADtoBS(inputDate) || '';
-      const d = new Date(inputDate); if (!isNaN(d.getTime())) dayIndex = d.getDay();
+      const d = new Date(inputDate); 
+      if (!isNaN(d.getTime())) dayIndex = d.getDay();
     } else {
       converted = convertBStoAD(inputDate) || '';
-      try { dayIndex = new NepaliDate(inputDate).getDay(); } catch { dayIndex = 0; }
+      try { 
+        // Use the library's day calculation to be precise with BS dates
+        const [y,m,d] = inputDate.split('-').map(Number);
+        dayIndex = new NepaliDate(y, m-1, d).getDay(); 
+      } catch { dayIndex = 0; }
     }
     if (!converted) return null;
     const targetAD = tab === 'ad2bs' ? inputDate : converted;
-    const diffDays = Math.ceil((new Date(targetAD).getTime() - new Date(todayAD).getTime()) / 86400000);
+    const diffDays = Math.round((new Date(targetAD).getTime() - new Date(todayAD).getTime()) / 86400000);
     return { date: converted, dayEn: DAYS_EN[dayIndex], dayNp: DAYS_NP[dayIndex], diffDays };
   }, [inputDate, tab, todayAD]);
 
@@ -73,7 +104,7 @@ export default function NepaliDateConverter() {
               { key: 'ad2bs', label: 'AD To BS' },
               { key: 'bs2ad', label: 'BS To AD' },
             ].map(t => (
-              <button key={t.key} onClick={() => { update({ tab: t.key as any }); }}
+              <button key={t.key} onClick={() => handleTabChange(t.key as any)}
                 className={`flex-1 py-3 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${tab === t.key ? 'bg-white text-blue-600 shadow-md' : 'text-slate-500 hover:text-slate-700'}`}>
                 {t.label}
               </button>
@@ -85,7 +116,7 @@ export default function NepaliDateConverter() {
                <label className="text-[10px] font-black uppercase text-slate-500 tracking-widest">
                 {tab === 'ad2bs' ? 'Gregorian Date (English)' : 'Bikram Sambat (Nepali)'}
               </label>
-              <button onClick={switchTab} className="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-all shadow-sm group">
+              <button onClick={() => handleTabChange(tab === 'ad2bs' ? 'bs2ad' : 'ad2bs')} className="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-all shadow-sm group">
                  <RefreshCw className="w-3.5 h-3.5 group-hover:rotate-180 transition-transform duration-500" />
               </button>
             </div>

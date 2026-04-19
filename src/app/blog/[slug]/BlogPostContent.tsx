@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, ArrowLeft, Clock, Share2, Facebook, Twitter, Linkedin, Bookmark, ArrowRight, Home, Target, BookOpen, Calculator } from 'lucide-react';
@@ -191,7 +191,7 @@ export default function BlogPostContent({ post, related }: { post: any; related:
                     const firstPart = parts[0] + '</h2>';
                     const rest = parts.slice(1).join('</h2>');
                     return (
-                      <React.Fragment key={index}>
+                      <Fragment key={index}>
                         <div dangerouslySetInnerHTML={{ __html: firstPart }} />
                         <div className="my-10 w-full overflow-hidden rounded-[2.5rem] shadow-2xl border border-gray-100 relative aspect-video">
                            <Image 
@@ -202,11 +202,11 @@ export default function BlogPostContent({ post, related }: { post: any; related:
                            />
                         </div>
                         <div dangerouslySetInnerHTML={{ __html: rest }} />
-                      </React.Fragment>
+                      </Fragment>
                     );
                  }
                  return (
-                   <React.Fragment key={index}>
+                   <Fragment key={index}>
                      <div dangerouslySetInnerHTML={{ __html: html }} />
                      <div className="my-10 w-full overflow-hidden rounded-[2.5rem] shadow-2xl border border-gray-100 relative aspect-video">
                         <Image 
