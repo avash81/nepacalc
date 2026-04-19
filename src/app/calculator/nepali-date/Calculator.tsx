@@ -90,7 +90,7 @@ export default function NepaliDateConverter() {
     return { date: converted, dayEn: DAYS_EN[dayIndex], dayNp: DAYS_NP[dayIndex], diffDays };
   }, [inputDate, tab, todayAD]);
 
-  return (
+
   const bsYears = Array.from({ length: 131 }, (_, i) => 1970 + i);
   const bsMonths = [
     { n: 1, label: 'Baisakh' }, { n: 2, label: 'Jestha' }, { n: 3, label: 'Ashar' },
