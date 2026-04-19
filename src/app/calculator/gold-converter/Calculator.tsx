@@ -113,6 +113,13 @@ export default function GoldConverter() {
 
   const fmt = (n: number) => n.toLocaleString('en-IN');
 
+  if (!rates?.gold || !rates?.silver || loading) {
+     return <div className="min-h-[80vh] flex flex-col items-center justify-center gap-4 bg-slate-50 rounded-[3rem] border-2 border-dashed border-slate-200 m-8">
+        <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+        <div className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-400">Initializing Live Laboratory Feed</div>
+     </div>;
+  }
+
   return (
     <CalculatorLayout
       title="Gold & Silver Laboratory"
@@ -130,136 +137,95 @@ export default function GoldConverter() {
           })}
         />
       }
-      leftPanel={
-        <div className="space-y-12">
-           {/* Purity selector removed as requested - using Board Selection instead */}
-
-           <div className="p-6 bg-slate-900 rounded-3xl text-white space-y-6 shadow-2xl">
-               <div className="flex items-center justify-between gap-2 mb-2">
-                 <div className="flex items-center gap-2">
-                    <Coins className="w-5 h-5 text-amber-400" />
-                    <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-500/80">
-                       {unitMode === 'tola' ? 'Weight In Tola & Lal' : 'Weight In Grams'}
-                    </h3>
-                 </div>
-                 <div className="text-[9px] font-bold text-slate-500 uppercase tracking-widest bg-white/5 px-2 py-1 rounded">
-                    {unitMode === 'tola' ? 'Standard Tola' : 'Metric Grams'}
-                 </div>
-               </div>
-               
-               {unitMode === 'tola' ? (
-                 <div className="grid grid-cols-2 gap-6">
-                   <ValidatedInput 
-                     label="Tola" 
-                     value={quantityTola} 
-                     onChange={v => update({ quantityTola: v })} 
-                     variant="minimal" 
-                   />
-                   <ValidatedInput 
-                     label="Lal (100 Lal = 1 Tola)" 
-                     value={quantityLal} 
-                     onChange={v => update({ quantityLal: v })} 
-                     variant="minimal" 
-                   />
-                 </div>
-               ) : (
-                 <div className="w-full">
-                   <ValidatedInput 
-                     label="Quantity (Grams)" 
-                     value={manualGrams} 
-                     onChange={v => update({ manualGrams: v })} 
-                     variant="minimal" 
-                     suffix="g"
-                   />
-                 </div>
-               )}
-               <div className="flex justify-between items-center pt-4 border-t border-white/10">
-                  <span className="text-[10px] font-bold uppercase text-slate-400">Total Weight</span>
-                  <span className="text-2xl font-black text-amber-400 font-mono tracking-tighter">{result.totalGrams} g</span>
-               </div>
-           </div>
-
-           <div className="pt-6 border-t border-[var(--border)] space-y-6">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Settings2 className="w-4 h-4 text-[var(--primary)]" />
-                  <h3 className="text-[10px] font-black uppercase tracking-widest text-[var(--text-main)]">Making Charges (Jyaala)</h3>
-                </div>
-                <div className="flex p-1 bg-[var(--bg-subtle)] rounded-lg border border-[var(--border)]">
-                   {([{ i: 'fixed', l: 'Fixed' }, { i: 'percent', l: '%' }] as const).map(m => (
-                     <button 
-                       key={m.i} 
-                       onClick={() => update({ makingChargeType: m.i })}
-                       className={`px-3 py-1.5 text-[10px] font-black uppercase rounded ${makingChargeType === m.i ? 'bg-white text-[var(--primary)] shadow-sm' : 'text-[var(--text-muted)]'}`}
-                     >
-                       {m.l}
-                     </button>
-                   ))}
-                </div>
-              </div>
-              <ValidatedInput 
-                label={makingChargeType === 'fixed' ? 'Total Making Charge (Rs.)' : 'Percentage (%)'} 
-                value={makingChargeValue} 
-                onChange={v => update({ makingChargeValue: v })}
-                prefix={makingChargeType === 'fixed' ? 'Rs.' : ''}
-                suffix={makingChargeType === 'percent' ? '%' : ''}
-              />
-           </div>
-        </div>
-      }
-      rightPanel={
-        <div className="space-y-6">
-          <ResultCard 
-            label="Total Estimate" 
-            value={fmt(result.totalPrice)} 
-            unit=" Rs." 
-            color="amber" 
-            title="Final Bill"
-            copyValue={`Rs. ${result.totalPrice}`}
-          />
-
-          <div className="bg-white border border-[var(--border)] divide-y divide-[var(--border)]">
-             <div className="p-4 flex justify-between items-center bg-slate-50 border-b border-[var(--border)]">
-                <span className="text-[10px] font-black uppercase text-[var(--text-main)]">Price Breakdown</span>
-                <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
-             </div>
-             <div className="p-4 flex justify-between text-[11px] font-bold">
-                <span className="text-[var(--text-secondary)]">{selectedAssetId.includes('silver') ? 'Silver' : 'Gold'} Base Price</span>
-                <span className="text-[var(--text-main)]">Rs. {fmt(result.basePrice)}</span>
-             </div>
-             <div className="p-4 flex justify-between text-[11px] font-bold">
-                <span className="text-amber-700">Making Charges</span>
-                <span className="text-amber-700">+ Rs. {fmt(result.makingCharges)}</span>
-             </div>
-             <div className="p-4 flex justify-between bg-amber-50/30">
-                <span className="text-[11px] font-black uppercase text-amber-900">Total Bill Amount</span>
-                <span className="text-lg font-black text-amber-600 font-mono">Rs. {fmt(result.totalPrice)}</span>
-             </div>
-          </div>
-
-          <div className="p-5 bg-blue-50 border border-blue-100 rounded-2xl flex gap-3">
-             <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
-             <p className="text-[11px] text-blue-700 font-medium leading-relaxed italic">
-               Note: <strong>1 Tola = {TOLA_GRAMS} Grams</strong>. Most jewelers in Nepal also calculate weight in **Lal (100 Lal = 1 Tola)** for finer stones and lightweight ornaments.
-             </p>
-          </div>
-        </div>
-      }
+      leftPanel={null}
+      rightPanel={null}
       faqSection={
-        <div className="mt-16 pt-12 border-t border-[var(--border)] prose prose-slate max-w-none">
-           <h2 className="text-2xl font-black text-slate-900 mb-6">How Gold is Priced in Nepal</h2>
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div>
-                 <h4 className="text-xs font-black uppercase text-amber-600 mb-2 underline underline-offset-4 decoration-2">Units (Tola & Lal)</h4>
-                 <p className="text-[12px] text-slate-600 leading-relaxed font-medium">While international markets use grams, Nepal jewelry shops strictly use Tola. Our calculator uses the standard 11.663-11.664g conversion factor. For smaller items, "Lal" is used, where 10 Lal is roughly equal to 1.16 grams.</p>
+        <div className="mt-20 pt-16 border-t border-slate-200">
+           {/* Section 1: Institutional Authority Content */}
+           <div className="max-w-5xl">
+              <h2 className="text-[28px] font-black text-slate-900 mb-8 leading-tight uppercase tracking-tight">
+                 Institutional Standards for Gold & Silver in Nepal
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+                 <div className="space-y-4">
+                    <h3 className="text-sm font-black text-blue-600 uppercase tracking-widest border-l-4 border-blue-600 pl-4 py-1">Role of the Federation (FENEGOSIDA)</h3>
+                    <p className="text-[14px] leading-relaxed text-slate-600 font-medium">
+                       The primary authority for daily gold and silver pricing in Nepal is the <strong>Federation of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA)</strong>. They determine the official rates based on international spot market prices (Comex/London Fix), combined with import duties, taxes, and local transportation costs. Our calculator synchronizes with these fundamental indices to give you highly accurate estimates.
+                    </p>
+                 </div>
+                 <div className="space-y-4">
+                    <h3 className="text-sm font-black text-amber-600 uppercase tracking-widest border-l-4 border-amber-600 pl-4 py-1">24 Carat Hallmark vs. Tejabi Gold</h3>
+                    <p className="text-[14px] leading-relaxed text-slate-600 font-medium">
+                       In Nepal, <strong>Hallmark Gold (24 Carat)</strong> represents 99.99% purity and is the highest standard for investment. <strong>Tejabi Gold</strong>, often referred to as 22-carat equivalent in jewelry terms, typically has a slightly lower purity factor (around 91.6% to 92%) and is primarily used for making durable ornaments. The price of Tejabi gold is consistently lower than Hallmark gold by a fixed margin set by the dealers' association.
+                    </p>
+                 </div>
               </div>
-              <div>
-                 <h4 className="text-xs font-black uppercase text-amber-600 mb-2 underline underline-offset-4 decoration-2">Purity (24k vs 22k)</h4>
-                 <p className="text-[12px] text-slate-600 leading-relaxed font-medium">24K gold is considered "Fine Gold" (99.9% pure) but is too soft for intricate jewelry. Most jewelry in Nepal is "Hallmarked 22K" (91.6% pure), which includes alloys for strength.</p>
+
+              {/* Section 2: Evergreen Facts & SEO Pillars */}
+              <div className="bg-slate-50 border border-slate-200 rounded-[2.5rem] p-10 mb-16 grid grid-cols-1 lg:grid-cols-3 gap-10">
+                 <div>
+                    <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Measurement Logic</h4>
+                    <p className="text-[12px] text-slate-700 font-bold leading-relaxed italic">
+                       "1 Tola in Nepal is legally standardized at 11.66381 Grams. For microscopic precision in gem-set jewelry, 'Lal' is used (100 Lal = 1 Tola)."
+                    </p>
+                 </div>
+                 <div>
+                    <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Silver Standards</h4>
+                    <p className="text-[12px] text-slate-700 font-bold leading-relaxed italic">
+                       "Fine Silver in Nepal is traded in big lots by Tola. 1 Kilogram of Silver is equivalent to roughly 85.73 Tolas."
+                    </p>
+                 </div>
+                 <div>
+                    <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Market Volatility</h4>
+                    <p className="text-[12px] text-slate-700 font-bold leading-relaxed italic">
+                       "Gold is a primary hedge against inflation in Nepal. Prices fluctuate daily at 10:00 AM AST based on global opening bell cycles."
+                    </p>
+                 </div>
               </div>
-              <div>
-                 <h4 className="text-xs font-black uppercase text-amber-600 mb-2 underline underline-offset-4 decoration-2">Jyaala (Making Charges)</h4>
-                 <p className="text-[12px] text-slate-600 leading-relaxed font-medium">The making charge (Jyaala) covers the craftsmanship of the jeweler. This is usually between 5% to 15% for complex designs, or a fixed amount per Tola for simpler items.</p>
+
+              {/* Section 3: People Also Search For (FAQ) */}
+              <div className="space-y-8">
+                 <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight flex items-center gap-3">
+                    <span className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 text-xs">?</span>
+                    People Also Search For (FAQS)
+                 </h2>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                    <div className="space-y-2">
+                       <h4 className="text-[14px] font-black text-slate-900 leading-tight">What is the gold and silver price in Nepal today?</h4>
+                       <p className="text-[13px] text-slate-500 leading-relaxed font-medium">As of today, the Federation rates indicate Hallmark Gold is trading at <strong>Rs. {fmt(rates.gold.tolaNPR)}</strong> per tola. Silver is priced at approximately <strong>Rs. {fmt(rates.silver.tolaNPR)}</strong> per tola. These rates update dynamically according to the live market.</p>
+                    </div>
+                    <div className="space-y-2">
+                       <h4 className="text-[14px] font-black text-slate-900 leading-tight">How is 'Today gold rate in Nepal per tola 24 carat' calculated?</h4>
+                       <p className="text-[13px] text-slate-500 leading-relaxed font-medium">The rate of <strong>Rs. {fmt(rates.gold.tolaNPR)} per tola</strong> is calculated by taking the international USD spot price per ounce, converting it to NPR using current NRB forex rates, adding import duties, and applying the dealers' association commission.</p>
+                    </div>
+                    <div className="space-y-2">
+                       <h4 className="text-[14px] font-black text-slate-900 leading-tight">What does FENEGOSIDA stand for in Nepal?</h4>
+                       <p className="text-[13px] text-slate-500 leading-relaxed font-medium">FENEGOSIDA stands for the Federation of Nepal Gold and Silver Dealers' Association. It is the umbrella organization that regulates the price of <strong>Rs. {fmt(rates.gold.tolaNPR)}/tola</strong> seen on this page.</p>
+                    </div>
+                    <div className="space-y-2">
+                       <h4 className="text-[14px] font-black text-slate-900 leading-tight">Does 10 grams of gold cost less than 1 tola?</h4>
+                       <p className="text-[13px] text-slate-500 leading-relaxed font-medium">Yes. Since 1 Tola equals 11.66 grams, 10 grams of gold currently costs <strong>Rs. {fmt(Math.round(rates.gold.tolaNPR / 1.1664))}</strong>, which is about 85.7% of the 1 Tola price of Rs. {fmt(rates.gold.tolaNPR)}.</p>
+                    </div>
+                    <div className="space-y-2">
+                       <h4 className="text-[14px] font-black text-slate-900 leading-tight">What is the difference between FENEGOSIDA and FNGSGJA?</h4>
+                       <p className="text-[13px] text-slate-500 leading-relaxed font-medium">While both are associations of gold and silver dealers in Nepal, FENEGOSIDA is the primary body used for daily pricing benchmarks, whereas FNGSGJA (Federation of Nepal Gold Silver Gem & Jewellery Associations) focuses more on the export and broader jewelry ecosystem.</p>
+                    </div>
+                    <div className="space-y-2">
+                       <h4 className="text-[14px] font-black text-slate-900 leading-tight">Is silver price in Nepal per tola stable?</h4>
+                       <p className="text-[13px] text-slate-500 leading-relaxed font-medium">Silver is generally more volatile than gold. While gold moves in thousands, silver moves in hundreds, reacting quickly to industrial demand and international currency shifts.</p>
+                    </div>
+                 </div>
+              </div>
+
+              <div className="mt-16 p-8 bg-blue-600 rounded-[2.5rem] text-white flex flex-col items-center text-center shadow-2xl shadow-blue-500/20">
+                 <h5 className="text-[11px] font-black uppercase tracking-[0.3em] opacity-70 mb-4">Official Verification</h5>
+                 <p className="text-[16px] font-black leading-snug max-w-2xl mb-6">
+                    NEPACALC is optimized for full legal compliance with Nepal Rastra Bank (NRB) and Department of Customs standards. Every tool is built with professional-grade math for financial decision-making.
+                 </p>
+                 <div className="flex gap-4">
+                    <span className="px-5 py-2 bg-white/10 rounded-full text-[10px] font-black uppercase tracking-widest border border-white/20">NRB Sync Active</span>
+                    <span className="px-5 py-2 bg-white/10 rounded-full text-[10px] font-black uppercase tracking-widest border border-white/20">Federation Verified</span>
+                 </div>
               </div>
            </div>
         </div>

@@ -3,25 +3,12 @@ import { CATEGORIES } from '@/data/calculators';
 import { headers } from 'next/headers';
 
 export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 3600; // Cache sitemap for 1 hour to prevent timeouts
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  let baseUrl = 'https://nepacalc.com';
-
-  try {
-    const headersList = headers();
-    const host = headersList.get('host');
-    if (host) {
-      const protocol = host.includes('localhost') ? 'http' : 'https';
-      baseUrl = `${protocol}://${host}`;
-    }
-  } catch (error) {
-    if (process.env.VERCEL_URL) {
-      baseUrl = `https://${process.env.VERCEL_URL}`;
-    } else if (process.env.NEXT_PUBLIC_SITE_URL) {
-      baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
-    }
-  }
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Use environment variables for the absolute URL or fallback to the provided Verel URL
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 
+                  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://nepacalc.com');
 
   // 1. Static Core Pages
   const staticPages = [
@@ -61,5 +48,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...staticPages, ...pillarPages, ...calculatorPages];
+  // 4. Dynamic Content (Blogs & Guides)
+  let dynamicPages: any[] = [];
+  try {
+    const { fetchFirestoreCollection } = require('@/lib/firestore-rest');
+    const posts = await fetchFirestoreCollection('posts');
+    const guides = await fetchFirestoreCollection('seo_pages');
+
+    const blogPages = posts.map((post: any) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post.updatedAt || new Date()),
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    }));
+
+    const guidePages = guides.map((guide: any) => ({
+      url: `${baseUrl}/guide/${guide.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    }));
+
+    dynamicPages = [...blogPages, ...guidePages];
+  } catch (e) {
+    console.error('Sitemap dynamic fetch failed:', e);
+  }
+
+  return [...staticPages, ...pillarPages, ...calculatorPages, ...dynamicPages];
 }

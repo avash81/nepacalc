@@ -84,9 +84,9 @@
 }
 
 @layer components {
-  /* Standard 1000px Centered Container (calculator.net style) */
+  /* Cinematic 80% Centered Container (User Requested Wide Layout) */
   .hp-container {
-    @apply max-w-[1000px] mx-auto px-4 w-full;
+    @apply max-w-[80%] mx-auto px-4 w-full;
   }
   
   .utility-link {

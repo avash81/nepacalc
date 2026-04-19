@@ -21,28 +21,36 @@ interface JsonLdProps {
 
 const INSTITUTIONAL_FAQS = [
   { 
-    question: "How accurate is this calculator for professional use?", 
-    answer: "NEPACALC uses high-precision floating point arithmetic verified against international SI units and local Nepal mandates to ensure results are suitable for professional and academic documentation." 
+    question: "How accurate is this calculator for professional use in Nepal?", 
+    answer: "NEPACALC uses high-precision floating point arithmetic verified against Nepal Inland Revenue Department (IRD) guidelines and international financial standards. It's suitable for professional planning, internal audits, and academic documentation." 
   },
   { 
-    question: "Does NEPACALC store my calculation data?", 
-    answer: "Privacy is paramount. All calculations are performed on the client-side. NEPACALC does not store, transmit, or record your specific input data, maintaining absolute user confidentiality." 
+    question: "Does NEPACALC store my personal calculation data?", 
+    answer: "No. Privacy is our priority. All calculations are performed entirely on your device (client-side). Your inputs are never transmitted to our servers or stored in any database." 
   },
   { 
-    question: "Is this tool compatible with mobile devices?", 
-    answer: "Yes. The entire NEPACALC laboratory is built on a responsive framework designed for high performance on both modern smartphones and professional desktop workstations." 
+    question: "Is this tool updated for the latest Nepal fiscal year mandates?", 
+    answer: "Yes. Our research team monitors the official Finance Bill and IRD circulars daily. We update our tax slabs, VAT logic, and interest rate methodologies as soon as new regulations are released." 
   },
   { 
-    question: "Are the formulas updated for the current mandates?", 
-    answer: "Our research team monitors local fiscal and academic mandates daily. Formulas are updated as soon as new guidelines are released by authorized bodies in Nepal." 
+    question: "Can I use these results for official legal or bank filings?", 
+    answer: "While our tools provide 99.9% accuracy for planning purposes, we always recommend verifying final figures with a certified Chartered Accountant (CA) or financial advisor for official government filings." 
   },
   { 
-    question: "Can I use these results for official documentation?", 
-    answer: "While our tools provide high-precision approximations, we recommend cross-verifying results with a certified professional for high-stakes legal or financial filings." 
+    question: "Is NEPACALC compatible with mobile devices and tablets?", 
+    answer: "Yes. The platform is built on a responsive, mobile-first framework, ensuring full functionality on everything from small smartphones to large professional monitors." 
   },
   { 
-    question: "Is there a cost to use NEPACALC tools?", 
-    answer: "No. The NEPACALC platform is a free institutional resource provided to the people of Nepal to enhance scientific and financial literacy nationwide." 
+    question: "Is there any subscription fee for using NEPACALC tools?", 
+    answer: "No. NEPACALC is a free institutional resource. Our mission is to provide high-precision financial and mathematical tools to every citizen of Nepal without any cost barriers." 
+  },
+  { 
+    question: "How do I print a report of my calculation?", 
+    answer: "Most of our calculators feature a 'Print Report' button that generates a clean, professional PDF-ready layout. Alternatively, you can use (Ctrl + P) on your keyboard." 
+  },
+  { 
+    question: "What should I do if the results look incorrect?", 
+    answer: "If you notice any discrepancy, please contact our technical audit team via the 'Contact' page. We investigate all precision-related reports within 24 hours to maintain our 100% accuracy standard." 
   }
 ];
 

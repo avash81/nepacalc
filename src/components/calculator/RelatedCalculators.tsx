@@ -22,33 +22,38 @@ export default function RelatedCalculators({ currentSlug, category }: Props) {
   if (related.length === 0) return null;
 
   return (
-    <section className="mt-12 border-t border-slate-800 pt-10">
-      <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-        <span className="text-blue-500">Related</span> Professional Tools
-      </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <section className="mt-16 pt-12 border-t border-slate-200/60">
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h3 className="text-xl font-black text-slate-900 tracking-tight uppercase">
+            <span className="text-blue-600">Related</span> Professional Tools
+          </h3>
+          <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mt-1">Discover more verified Nepal calculators</p>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {related.map((calc) => (
           <Link
             key={calc.id}
             href={`/calculator/${calc.slug}`}
-            className="group p-4 bg-slate-900/50 border border-slate-800 rounded-xl hover:border-blue-500/50 hover:bg-slate-800/50 transition-all duration-300 flex items-center justify-between"
+            className="group p-6 bg-white border border-slate-200 rounded-[2rem] hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 flex items-center justify-between"
           >
-            <div className="flex items-center gap-4">
-              <span className="text-2xl group-hover:scale-110 transition-transform duration-300">
+            <div className="flex items-center gap-5">
+              <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-3xl group-hover:scale-110 group-hover:bg-blue-50 group-hover:border-blue-100 transition-all duration-300 shadow-sm">
                 {typeof calc.icon === 'string' ? calc.icon : '🧮'}
-              </span>
-              <div>
-                <h4 className="font-semibold text-slate-200 group-hover:text-white transition-colors">
+              </div>
+              <div className="min-w-0">
+                <h4 className="font-black text-slate-900 group-hover:text-blue-600 transition-colors uppercase text-[12px] tracking-tight">
                   {calc.name}
                 </h4>
-                <p className="text-xs text-slate-500 line-clamp-1">
-                  {calc.description}
+                <p className="text-[11px] text-slate-500 font-medium line-clamp-1 mt-0.5">
+                  {calc.description || `Professional ${calc.name} utility.`}
                 </p>
               </div>
             </div>
-            <div className="text-slate-600 group-hover:text-blue-400 transform translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-300 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
               </svg>
             </div>
           </Link>

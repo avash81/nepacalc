@@ -2,11 +2,11 @@
 import React, { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { CATEGORIES } from '@/data/calculators';
+import { CALCULATORS, CATEGORIES } from '@/data/calculators';
 import { Printer, Info, Star } from 'lucide-react';
 import { GLOBAL_CONFIG, CATEGORY_PURPOSE_MAP } from '@/config/GlobalConfig';
-import { CALCULATORS } from '@/data/calculators';
 import CalculatorSchema from '@/components/seo/CalculatorSchema';
+import { JsonLd } from '@/components/seo/JsonLd';
 import RelatedCalculators from '@/components/calculator/RelatedCalculators';
 
 interface CalculatorLayoutProps {
@@ -112,8 +112,25 @@ export function CalculatorLayout({
 
   return (
     <div className="min-h-screen bg-[var(--bg-page)] font-sans antialiased pb-24 lg:pb-0 pt-24">
-      {/* 0. SEO Power Injection (JSON-LD & Multi-Image Architecture) */}
-      {calculatorData && <CalculatorSchema calculator={calculatorData} />}
+      {/* 0. SEO Power Injection (Standardized JsonLd Suite) */}
+      <JsonLd 
+        type="breadcrumb"
+        breadcrumbItems={[
+          { name: 'Home', item: 'https://nepacalc.com' },
+          ...(catLabel ? [{ name: catLabel, item: `https://nepacalc.com${catLink || '/directory'}` }] : []),
+          { name: title, item: `https://nepacalc.com/calculator/${resolvedSlug}` }
+        ]}
+      />
+      <JsonLd 
+        type="calculator"
+        name={title}
+        description={description}
+        url={`https://nepacalc.com/calculator/${resolvedSlug}`}
+      />
+      <JsonLd 
+        type="faq"
+        faqs={faqs}
+      />
 
       {/* 1. Premium Grade Breadcrumb/Header */}
       <div className="bg-[#F8F9FA] text-[#5F6368] py-3 border-b border-[#DADCE0] no-print relative overflow-hidden">

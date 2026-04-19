@@ -29,18 +29,15 @@ export default function HomePage() {
              <span className="absolute top-[40%] right-[25%] text-lg font-serif text-slate-200 italic">2πn = λ</span>
           </div>
 
-          {/* Area Chart Visualization (CLS Optimized) */}
-          <div className="absolute bottom-0 right-0 w-[60%] h-[400px] opacity-20 pointer-events-none z-0">
-             <svg viewBox="0 0 1000 500" width="1000" height="500" className="w-full h-full object-cover" preserveAspectRatio="none">
-               <defs>
-                 <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                   <stop offset="0%" stopColor="#1A73E8" stopOpacity="0.4" />
-                   <stop offset="100%" stopColor="#1A73E8" stopOpacity="0" />
-                 </linearGradient>
-               </defs>
-               <path d="M0,500 L0,450 C100,430 200,480 300,420 C400,360 500,450 600,400 C700,350 800,200 900,250 L1000,150 L1000,500 Z" fill="url(#chartGrad)" />
-               <path d="M0,450 C100,430 200,480 300,420 C400,360 500,450 600,400 C700,350 800,200 900,250 L1000,150" fill="none" stroke="#1A73E8" strokeWidth="4" />
-             </svg>
+          {/* Premium Hero Image (Checklist: Media Richness & Alt Optimization) */}
+          <div className="absolute inset-x-0 bottom-0 h-full w-full pointer-events-none z-0">
+             <img 
+               src="/nepacalc_precision_hero.png" 
+               alt="NEPACALC Precision Mathematical Laboratory — Professional Financial Tools for Nepal" 
+               className="w-full h-full object-cover opacity-10 lg:opacity-20"
+               loading="eager"
+               decoding="async"
+             />
           </div>
 
           <div className="hp-container flex flex-col items-center relative z-10">

@@ -44,6 +44,10 @@ export function useLiveRates() {
 
   useEffect(() => {
     fetchRates();
+    
+    // Auto-align heart-beat: Sync every 5 minutes (300,000ms)
+    const interval = setInterval(fetchRates, 300000);
+    return () => clearInterval(interval);
   }, []);
 
   return { rates, loading, error, refresh: fetchRates };

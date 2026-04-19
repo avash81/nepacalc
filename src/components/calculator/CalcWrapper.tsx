@@ -39,6 +39,15 @@ export function CalcWrapper({
           }))
         ]}
       />
+      <JsonLd 
+        type="calculator"
+        name={title}
+        description={description}
+        url={`https://nepacalc.com/calculator/${title.toLowerCase().replace(/ /g, '-')}`}
+      />
+      <JsonLd 
+        type="faq"
+      />
       <div className="max-w-7xl mx-auto px-4 pt-24 pb-12 sm:pb-20">
 
         <div className="flex items-center justify-between mb-12 bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 p-4 rounded-[2rem] shadow-sm">
