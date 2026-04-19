@@ -91,6 +91,27 @@ export default function NepaliDateConverter() {
   }, [inputDate, tab, todayAD]);
 
   return (
+  const bsYears = Array.from({ length: 131 }, (_, i) => 1970 + i);
+  const bsMonths = [
+    { n: 1, label: 'Baisakh' }, { n: 2, label: 'Jestha' }, { n: 3, label: 'Ashar' },
+    { n: 4, label: 'Shrawan' }, { n: 5, label: 'Bhadra' }, { n: 6, label: 'Ashwin' },
+    { n: 7, label: 'Kartik' }, { n: 8, label: 'Mangsir' }, { n: 9, label: 'Poush' },
+    { n: 10, label: 'Magh' }, { n: 11, label: 'Falgun' }, { n: 12, label: 'Chaitra' }
+  ];
+
+  const handleBsDatePartChange = (part: 'y'|'m'|'d', val: string) => {
+    const [y, m, d] = inputDate.split('-');
+    if (part === 'y') update({ inputDate: `${val}-${m}-${d}` });
+    if (part === 'm') update({ inputDate: `${y}-${val.padStart(2, '0')}-${d}` });
+    if (part === 'd') update({ inputDate: `${y}-${m}-${val.padStart(2, '0')}` });
+  };
+
+  const [inputY, inputM, inputD] = useMemo(() => {
+    const parts = inputDate.split('-');
+    return [parts[0] || '2083', parts[1] || '01', parts[2] || '01'];
+  }, [inputDate]);
+
+  return (
     <CalculatorLayout
       title="Nepali Date Converter"
       description="Professional Gregorian (AD) to Bikram Sambat (BS) converter with astronomical accuracy for Nepal's official calendar."
@@ -123,13 +144,42 @@ export default function NepaliDateConverter() {
             
             <div className="relative">
               {tab === 'ad2bs' ? (
-                <input type="date" value={inputDate} onChange={e => update({ inputDate: e.target.value })}
-                  className="w-full h-16 px-6 border-2 border-slate-100 rounded-3xl bg-slate-50 font-mono text-xl font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner" />
+                <div className="relative">
+                   <input 
+                    type="date" 
+                    value={inputDate} 
+                    onChange={e => update({ inputDate: e.target.value })}
+                    className="w-full h-16 px-6 border-2 border-slate-100 rounded-3xl bg-slate-50 font-mono text-xl font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner appearance-none [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:inset-0 [&::-webkit-calendar-picker-indicator]:cursor-pointer" 
+                   />
+                   <Calendar className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 pointer-events-none" />
+                </div>
               ) : (
-                <input type="text" placeholder="YYYY-MM-DD (e.g. 2081-12-30)" value={inputDate} onChange={e => update({ inputDate: e.target.value })}
-                  className="w-full h-16 px-6 border-2 border-slate-100 rounded-3xl bg-slate-50 font-mono text-xl font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner" />
+                <div className="grid grid-cols-3 gap-3">
+                   <select 
+                    value={inputY} 
+                    onChange={e => handleBsDatePartChange('y', e.target.value)}
+                    className="h-16 px-4 border-2 border-slate-100 rounded-2xl bg-slate-50 font-mono text-lg font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner"
+                   >
+                     {bsYears.map(y => <option key={y} value={y}>{y}</option>)}
+                   </select>
+                   <select 
+                    value={inputM} 
+                    onChange={e => handleBsDatePartChange('m', e.target.value)}
+                    className="h-16 px-4 border-2 border-slate-100 rounded-2xl bg-slate-50 font-mono text-lg font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner"
+                   >
+                     {bsMonths.map(m => <option key={m.n} value={String(m.n).padStart(2, '0')}>{m.label}</option>)}
+                   </select>
+                   <select 
+                    value={inputD} 
+                    onChange={e => handleBsDatePartChange('d', e.target.value)}
+                    className="h-16 px-4 border-2 border-slate-100 rounded-2xl bg-slate-50 font-mono text-lg font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner"
+                   >
+                     {Array.from({ length: 32 }, (_, i) => i + 1).map(d => (
+                       <option key={d} value={String(d).padStart(2, '0')}>{d}</option>
+                     ))}
+                   </select>
+                </div>
               )}
-              <Calendar className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300 pointer-events-none" />
             </div>
             <div className="flex gap-2">
                <button onClick={() => update({ inputDate: tab === 'ad2bs' ? todayAD : todayBS })}

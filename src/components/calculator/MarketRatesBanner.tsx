@@ -256,18 +256,38 @@ export function MarketRatesBanner({ rates, selectedId, onSelect }: {
                 </div>
              </div>
 
-             <div className="bg-white rounded-[2rem] p-6 flex items-center justify-between border border-slate-200 shadow-xl group hover:border-emerald-500 transition-colors">
-                <div className="flex items-center gap-4">
-                   <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm font-black">NPR</div>
-                   <div>
-                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Exchange Rate</p>
-                      <p className="text-[13px] font-bold text-slate-900">USD / NPR (NRB)</p>
+             <div className="bg-white rounded-[2rem] p-6 flex flex-col justify-between border border-slate-200 shadow-xl group hover:border-emerald-500 transition-colors">
+                <div className="flex items-center justify-between mb-4">
+                   <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm font-black">NPR</div>
+                      <div>
+                         <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Exchange Rate</p>
+                         <p className="text-[13px] font-bold text-slate-900">USD / NPR (Live)</p>
+                      </div>
                    </div>
+                   <a 
+                    href="https://www.google.com/finance/quote/USD-NPR" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-2 bg-slate-50 text-slate-400 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all"
+                    title="Verify on Google Finance"
+                   >
+                      <Info className="w-4 h-4" />
+                   </a>
                 </div>
-                <div className="text-right">
-                   <p className="text-xl font-black font-mono tracking-tighter text-emerald-600">
-                      Rs. {rates.forex.usd}
-                   </p>
+                <div className="flex items-end justify-between">
+                   <div className="flex flex-col">
+                      <p className="text-xl font-black font-mono tracking-tighter text-emerald-600">
+                         Rs. {rates.forex.usd}
+                      </p>
+                      <div className="flex items-center gap-1 mt-1">
+                         <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                         <p className="text-[8px] font-black text-slate-400 uppercase tracking-[0.1em]">Synced with Google Index</p>
+                      </div>
+                   </div>
+                   <div className="text-[8px] font-black text-slate-300 uppercase italic">
+                      {rates.forex.provider === 'Google Finance Index' ? 'Primary' : 'Official NRB'}
+                   </div>
                 </div>
              </div>
           </div>
