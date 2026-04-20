@@ -1,31 +1,9 @@
 'use client';
 import React, { useMemo, useState, useEffect } from 'react';
-import { Activity, TrendingUp, Info } from 'lucide-react';
+import { Activity } from 'lucide-react';
 import { AreaChart, Area, ResponsiveContainer, YAxis, Tooltip, XAxis } from 'recharts';
 
-function PriceRow({ label, value, highlight, bold, color = 'blue' }: { 
-  label: string, 
-  value: number, 
-  highlight?: boolean, 
-  bold?: boolean,
-  color?: 'blue' | 'amber' | 'slate'
-}) {
-  const colors = {
-    blue: { bg: 'bg-blue-50/40', border: 'border-blue-100/50', text: 'text-blue-700' },
-    amber: { bg: 'bg-amber-50/40', border: 'border-amber-100/50', text: 'text-amber-700' },
-    slate: { bg: 'bg-slate-50', border: 'border-slate-200/50', text: 'text-slate-700' }
-  };
-  const c = colors[color];
 
-  return (
-    <div className={`flex justify-between items-center p-3 rounded-2xl transition-all ${highlight ? `${c.bg} ${c.border} border shadow-sm` : ''}`}>
-       <span className={`text-[11px] ${bold ? 'font-black uppercase tracking-tighter' : 'font-bold'} text-slate-500`}>{label}</span>
-       <span className={`text-sm tracking-tighter font-mono ${bold ? 'font-black text-slate-900 scale-110 origin-right' : 'font-black text-slate-800'}`}>
-          Rs. {Math.round(value).toLocaleString('en-IN')}
-       </span>
-    </div>
-  );
-}
 
 export function MarketRatesBanner({ rates, selectedId, onSelect, variant = 'default', filter }: { 
   rates: any, 
