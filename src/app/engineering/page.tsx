@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Engineering & Math Tools — Graphing, 3D Visualizer, Geometry, Formulas | NEPACALC',
+  title: 'Engineering & Math Tools — Graphing, 3D & Geometry | NEPACALC',
   description:
     'Advanced engineering math suite: graphing calculator, 3D surface plotter, interactive geometry, scientific calculator, formula reference, matrices, statistics, and more. Free, no login.',
   keywords: [

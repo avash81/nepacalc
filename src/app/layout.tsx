@@ -15,8 +15,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nepacalc.com'),
-  title: "Free Online Calculators for Nepal | Tax, EMI, GPA & More | NEPACALC",
-  description: "Nepal's authoritative laboratory for high-precision income tax calculation, EMI planning, GPA tracking, and 75+ professional utility tools. Updated for latest IRD mandates.",
+  title: "Free Online Calculators for Nepal | NEPACALC",
+  description: "Nepal's trusted free calculator platform for income tax, EMI planning, GPA tracking, unit conversions & 80+ professional tools. No registration needed.",
   icons: {
     icon: '/favicon.png',
     apple: '/favicon.png',

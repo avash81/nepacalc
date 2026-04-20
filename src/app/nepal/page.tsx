@@ -7,7 +7,7 @@ import { PillarFAQ } from '@/components/seo/PillarFAQ';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Nepal Specific Calculators — Free Tax, EMI, NEPSE, SEE GPA Tools | NEPACALC',
+  title: 'Nepal Calculators — Tax, EMI, NEPSE & GPA | NEPACALC',
   description: 'All 23 official Nepal-specific calculators: Income Tax 2082/83, Loan EMI, NEPSE WACC, SEE GPA, Vehicle Tax, Remittance, Gold Price, and more. Free, accurate, institutional-grade.',
   keywords: ['nepal calculator', 'income tax calculator nepal', 'nepse calculator', 'see gpa calculator', 'nepal specific tools', 'tds calculator nepal'],
   alternates: { canonical: 'https://nepacalc.com/nepal' },

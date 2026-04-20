@@ -3,7 +3,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import GeometryCanvasClient from './GeometryCanvasClient';
 
 export const metadata: Metadata = {
-  title: 'Free Interactive Geometry Tool — Points, Lines, Circles, Polygons | NEPACALC',
+  title: 'Free Interactive Geometry Tool — Constructions | NEPACALC',
   description: 'Interactive geometry canvas: construct points, lines, circles, and polygons with real-time measurements. Drag objects, measure angles and distances. Free online geometry tool.',
   keywords: ['geometry tool', 'interactive geometry', 'draw circles online', 'geometry canvas', 'compass and straightedge', 'measure angles online'],
   openGraph: { title: 'Free Geometry Tool | NEPACALC', description: 'Interactive constructions with measurements.', url: 'https://nepacalc.com/engineering/geometry' },

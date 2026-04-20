@@ -3,7 +3,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import ThreeDCalculatorClient from './ThreeDCalculatorClient';
 
 export const metadata: Metadata = {
-  title: 'Free 3D Graphing Calculator — Plot 3D Surfaces z=f(x,y) Online | NEPACALC',
+  title: 'Free 3D Graphing Calculator — Plot 3D Surfaces Online | NEPACALC',
   description: '3D surface plotter: visualize z=f(x,y) functions with orbit camera, rotation, zoom, wireframe & solid rendering modes. Supports sin, cos, tan, log and more. Free, no login.',
   keywords: ['3d graphing calculator', '3d surface plotter', 'plot z=f(x,y)', '3d math visualizer', '3d function graph'],
   openGraph: { title: 'Free 3D Calculator | NEPACALC', description: '3D surface plotter with orbit camera and wireframe rendering.', url: 'https://nepacalc.com/engineering/3d' },
