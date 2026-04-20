@@ -46,9 +46,9 @@ export function Navbar() {
   const navLinks = [
     { name: 'Nepal Specific', href: '/nepal' },
     { name: 'Finance & Tax', href: '/finance' },
-    { name: 'Math & Education', href: '/math-tools' },
-    { name: 'Converters &', href: '/converters' },
-    { name: 'Health & Fitness', href: '/health' },
+    { name: 'Math Tools', href: '/math-tools' },
+    { name: 'Converters', href: '/converters' },
+    { name: 'Health', href: '/health' },
     { name: 'Engineering', href: '/engineering' },
     { name: 'Market Rates', href: '/market-rates' },
   ];
@@ -127,8 +127,8 @@ export function Navbar() {
             {[
                { name: 'Nepal Specific', href: '/nepal', icon: <Star className="w-5 h-5" /> },
                { name: 'Finance & Tax', href: '/finance', icon: <Wallet className="w-5 h-5" /> },
-               { name: 'Math & Education', href: '/math-tools', icon: <Sparkles className="w-5 h-5" /> },
-               { name: 'Converters &', href: '/converters', icon: <Globe className="w-5 h-5" /> },
+               { name: 'Math Tools', href: '/math-tools', icon: <Sparkles className="w-5 h-5" /> },
+               { name: 'Converters', href: '/converters', icon: <Globe className="w-5 h-5" /> },
                { name: 'Health & Fitness', href: '/health', icon: <Heart className="w-5 h-5" /> },
                { name: 'Engineering', href: '/engineering', icon: <Sparkles className="w-5 h-5" /> },
                { name: 'Market Rates', href: '/market-rates', icon: <Activity className="w-5 h-5" /> },
