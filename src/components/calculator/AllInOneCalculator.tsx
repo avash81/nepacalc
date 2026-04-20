@@ -50,16 +50,18 @@ function compute(rawExpr: string, deg: boolean): string {
    PILL BUTTON — Google's rounded-full key style
    ───────────────────────────────────────────────────────────────── */
 function K({
-  label, on, cls, span,
+  label, on, cls, span, ariaLabel
 }: {
   label: React.ReactNode;
   on: () => void;
   cls: string;
   span?: number;
+  ariaLabel?: string;
 }) {
   return (
     <button
       onClick={on}
+      aria-label={ariaLabel || (typeof label === 'string' ? label : undefined)}
       style={span ? { gridColumn: `span ${span}` } : undefined}
       className={`flex items-center justify-center rounded-full select-none cursor-pointer
         focus:outline-none transition-all duration-200 active:scale-90
@@ -202,9 +204,8 @@ export default function AllInOneCalculator({
       <K label="("  on={() => push('(')} cls={GFN} />
       <K label=")"  on={() => push(')')} cls={GFN} />
       <K label="%"  on={() => push('%')} cls={GFN} />
-      <K label="AC" on={ac}              cls={GFN} />
-
-      <K label="⌫"  on={del}             cls={GFN} />
+      <K label="AC" on={ac}              cls={GFN} ariaLabel="All Clear" />
+      <K label="⌫"  on={del}             cls={GFN} ariaLabel="Backspace" />
       <K label="sin" on={() => push('sin(')}  cls={GFN} />
       <K label="ln"  on={() => push('ln(')}   cls={GFN} />
       <K label="7"   on={() => push('7')}     cls={GNM} />
@@ -264,10 +265,10 @@ export default function AllInOneCalculator({
           <K label={<span>□<sup>□</sup></span>} on={() => push('^')}    cls={funcCls} />
           {F(<span>ⁿ√□</span>, 'sqrt(')}
           {F('<',  '<')}
-          <K label="(" on={() => push('(')} cls={GFN} />
-          <K label=")" on={() => push(')')} cls={GFN} />
-          <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-white hover:bg-[#2C3033] border border-[#3C4043] font-bold" />
-          <K label="AC" on={ac} cls={GFN} />
+          <K label="(" on={() => push('(')} cls={GFN} ariaLabel="Open parenthesis" />
+          <K label=")" on={() => push(')')} cls={GFN} ariaLabel="Close parenthesis" />
+          <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-white hover:bg-[#2C3033] border border-[#3C4043] font-bold" ariaLabel="Backspace" />
+          <K label="AC" on={ac} cls={GFN} ariaLabel="All Clear" />
 
           {F(<span>□/□</span>, '/')}
           {F('|□|', 'abs(')}
@@ -305,10 +306,10 @@ export default function AllInOneCalculator({
         {/* ── TRIGONOMETRY ── */}
         {tab === 'trig' && (<>
           {F('sin', 'sin(')}  {F('cos', 'cos(')}  {F('tan', 'tan(')}
-          <K label="(" on={() => push('(')} cls={GFN} />
-          <K label=")" on={() => push(')')} cls={GFN} />
-          <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-white hover:bg-[#2C3033] border border-[#3C4043] font-bold" />
-          <K label="AC" on={ac} cls={GFN} />
+          <K label="(" on={() => push('(')} cls={GFN} ariaLabel="Open parenthesis" />
+          <K label=")" on={() => push(')')} cls={GFN} ariaLabel="Close parenthesis" />
+          <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-white hover:bg-[#2C3033] border border-[#3C4043] font-bold" ariaLabel="Backspace" />
+          <K label="AC" on={ac} cls={GFN} ariaLabel="All Clear" />
 
           {F('csc', 'csc(')}  {F('sec', 'sec(')}  {F('cot', 'cot(')}
           <K label="7" on={() => push('7')} cls={GNM} />
@@ -338,10 +339,10 @@ export default function AllInOneCalculator({
         {/* ── CALCULUS ── */}
         {tab === 'calculus' && (<>
           {F(<span>d/d□</span>, 'd')}  {F('∞', 'inf')}  {F(<span>ⁿ√□</span>, 'sqrt(')}
-          <K label="(" on={() => push('(')} cls={GFN} />
-          <K label=")" on={() => push(')')} cls={GFN} />
-          <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-white hover:bg-[#2C3033] border border-[#3C4043] font-bold" />
-          <K label="AC" on={ac} cls={GFN} />
+          <K label="(" on={() => push('(')} cls={GFN} ariaLabel="Open parenthesis" />
+          <K label=")" on={() => push(')')} cls={GFN} ariaLabel="Close parenthesis" />
+          <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-white hover:bg-[#2C3033] border border-[#3C4043] font-bold" ariaLabel="Backspace" />
+          <K label="AC" on={ac} cls={GFN} ariaLabel="All Clear" />
 
           {F(<span>lim<br /><span className="text-[9px]">□→□</span></span>, 'lim')}
           {F(<span>lim<sup>+</sup><br /><span className="text-[9px]">□→□</span></span>, 'lim+')}
@@ -387,7 +388,7 @@ export default function AllInOneCalculator({
           {mode === 'solver' && (
             <div className="flex items-center justify-between mb-4 px-2">
               <h2 className="text-[22px] font-medium text-[#202124]">Maths solver</h2>
-              <button className="p-1 hover:bg-slate-100 rounded-full">
+              <button className="p-1 hover:bg-slate-100 rounded-full" aria-label="View history">
                 <HistoryIcon />
               </button>
             </div>
@@ -465,6 +466,7 @@ export default function AllInOneCalculator({
           <button
             onClick={() => setMode(mode === 'sci' ? 'solver' : 'sci')}
             className="w-[70%] py-2.5 bg-[#F8F9FA] rounded-full text-[13px] font-medium text-[#3C4043] flex items-center justify-center gap-2 hover:bg-[#F1F3F4] transition-all border border-[#DADCE0]"
+            aria-label={mode === 'sci' ? "Switch to Maths Solver" : "Switch to Scientific Calculator"}
           >
             {mode === 'sci' ? 'Maths solver' : 'Scientific calculator'}
             <ChevronRight className="w-4 h-4 opacity-60" />

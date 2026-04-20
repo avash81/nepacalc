@@ -45,11 +45,12 @@ function compute(rawExpr: string, deg: boolean): string {
 const PURPLE = '#5b5ea6';
 
 /* ─── KEY BUTTON ────────────────────────────────────────────────── */
-function Key({ label, on, variant = 'normal', small = false }: {
+function Key({ label, on, variant = 'normal', small = false, ariaLabel }: {
   label: React.ReactNode;
   on: () => void;
   variant?: 'normal' | 'dark' | 'purple' | 'num';
   small?: boolean;
+  ariaLabel?: string;
 }) {
   const themes: Record<string, string> = {
     normal: 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm font-medium',
@@ -60,6 +61,7 @@ function Key({ label, on, variant = 'normal', small = false }: {
   return (
     <button
       onClick={on}
+      aria-label={ariaLabel || (typeof label === 'string' ? label : undefined)}
       className={`flex items-center justify-center select-none cursor-pointer rounded-xl transition-all duration-150 active:scale-90 focus:outline-none border w-full min-h-[44px] py-2 ${small ? 'text-[11px]' : 'text-[14px]'} ${themes[variant]}`}
       style={variant === 'purple' ? { background: PURPLE, borderColor: PURPLE, color: '#fff' } : undefined}
     >
@@ -117,23 +119,24 @@ export default function AdvancedCalculator({
   /* Bottom row — reusable */
   const BotRow = ({ leftLabel, leftFn }: { leftLabel: string; leftFn: () => void }) => (
     <div className="flex gap-1.5">
-      <button onClick={leftFn}   className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-slate-100 text-slate-700 text-[12px] font-bold hover:bg-slate-200 transition-all active:scale-90">{leftLabel}</button>
-      <button onClick={() => push(',')} className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-700 text-[14px] font-medium hover:bg-slate-50 shadow-sm transition-all active:scale-90">,</button>
-      <button onClick={() => push('(')} className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-700 text-[14px] font-medium hover:bg-slate-50 shadow-sm transition-all active:scale-90">(</button>
-      <button onClick={() => push(')')} className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-700 text-[14px] font-medium hover:bg-slate-50 shadow-sm transition-all active:scale-90">)</button>
+      <button onClick={leftFn} aria-label="Toggle keyboard type" className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-slate-100 text-slate-700 text-[12px] font-bold hover:bg-slate-200 transition-all active:scale-90">{leftLabel}</button>
+      <button onClick={() => push(',')} aria-label="Comma" className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-700 text-[14px] font-medium hover:bg-slate-50 shadow-sm transition-all active:scale-90">,</button>
+      <button onClick={() => push('(')} aria-label="Open parenthesis" className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-700 text-[14px] font-medium hover:bg-slate-50 shadow-sm transition-all active:scale-90">(</button>
+      <button onClick={() => push(')')} aria-label="Close parenthesis" className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-700 text-[14px] font-medium hover:bg-slate-50 shadow-sm transition-all active:scale-90">)</button>
       <div className="flex-[2]" />
-      <button onClick={eq} style={{ background: PURPLE, color: '#fff', borderColor: PURPLE }} className="flex-[2] min-h-[44px] rounded-xl text-[14px] font-bold hover:opacity-90 shadow-sm transition-all active:scale-90">↵</button>
+      <button onClick={eq} aria-label="Calculate result" style={{ background: PURPLE, color: '#fff', borderColor: PURPLE }} className="flex-[2] min-h-[44px] rounded-xl text-[14px] font-bold hover:opacity-90 shadow-sm transition-all active:scale-90">↵</button>
     </div>
   );
 
   /* ── 123 ── */
   const K123 = () => {
-    const L = (l: React.ReactNode, v: string) => <Key label={l} on={() => push(v)} />;
+    const L = (l: React.ReactNode, v: string, a?: string) => <Key label={l} on={() => push(v)} ariaLabel={a} />;
     return (
       <div className="px-4 pb-2 flex flex-col gap-1.5">
         <div className="flex gap-1 mb-1">
           {['Deg', 'Rad'].map(m => (
             <button key={m} onClick={() => setIsDeg(m === 'Deg')}
+              aria-label={`Switch to ${m}`}
               className="px-3 py-1 rounded-full text-[12px] font-bold transition-all"
               style={{ background: (m === 'Deg') === isDeg ? PURPLE : '#f1f5f9', color: (m === 'Deg') === isDeg ? '#fff' : '#64748b' }}>
               {m}
@@ -145,31 +148,31 @@ export default function AdvancedCalculator({
           <Key label="7" on={() => push('7')} variant="num" />
           <Key label="8" on={() => push('8')} variant="num" />
           <Key label="9" on={() => push('9')} variant="num" />
-          {L('×','×')} {L('÷','÷')}
+          {L('×','×','Multiply')} {L('÷','÷','Divide')}
         </div>
         <div className="grid grid-cols-9 gap-1.5">
-          {L(<span>□<sup>2</sup></span>,'^2')} {L(<span>□<sup>y</sup></span>,'^')} {L('√□','sqrt(')} {L('|□|','abs(')}
+          {L(<span>□<sup>2</sup></span>,'^2','Square')} {L(<span>□<sup>y</sup></span>,'^','Power')} {L('√□','sqrt(','Square root')} {L('|□|','abs(','Absolute value')}
           <Key label="4" on={() => push('4')} variant="num" />
           <Key label="5" on={() => push('5')} variant="num" />
           <Key label="6" on={() => push('6')} variant="num" />
-          {L('+','+')} {L('−','-')}
+          {L('+','+','Plus')} {L('−','-','Minus')}
         </div>
         <div className="grid grid-cols-9 gap-1.5">
-          {L('<','<')} {L('>','>')} {L('≤','<=')} {L('≥','>=')}
+          {L('<','<','Less than')} {L('>','>','Greater than')} {L('≤','<=','Less than or equal')} {L('≥','>=','Greater than or equal')}
           <Key label="1" on={() => push('1')} variant="num" />
           <Key label="2" on={() => push('2')} variant="num" />
           <Key label="3" on={() => push('3')} variant="num" />
-          {L('=','=')}
-          <Key label="⌫" on={del} variant="dark" />
+          {L('=','=','Equals')}
+          <Key label="⌫" on={del} variant="dark" ariaLabel="Backspace" />
         </div>
         <div className="flex gap-1.5">
-          <button onClick={ac} className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-slate-100 text-slate-700 text-[13px] font-bold hover:bg-slate-200 transition-all active:scale-90">AC</button>
-          <button onClick={() => push(',')} className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-700 text-[14px] font-medium hover:bg-slate-50 shadow-sm transition-all active:scale-90">,</button>
-          <button onClick={() => push('(')} className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-700 text-[14px] font-medium hover:bg-slate-50 shadow-sm transition-all active:scale-90">(</button>
-          <button onClick={() => push(')')} className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-700 text-[14px] font-medium hover:bg-slate-50 shadow-sm transition-all active:scale-90">)</button>
-          <button onClick={() => push('0')} className="flex-[2] min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-900 text-[14px] font-bold hover:bg-slate-50 shadow-sm transition-all active:scale-90">0</button>
-          <button onClick={() => push('.')} className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-700 text-[14px] font-medium hover:bg-slate-50 shadow-sm transition-all active:scale-90">.</button>
-          <button onClick={eq} style={{ background: PURPLE, color: '#fff', borderColor: PURPLE }} className="flex-[2] min-h-[44px] rounded-xl text-[14px] font-bold hover:opacity-90 shadow-sm transition-all active:scale-90">↵</button>
+          <button onClick={ac} aria-label="All Clear" className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-slate-100 text-slate-700 text-[13px] font-bold hover:bg-slate-200 transition-all active:scale-90">AC</button>
+          <button onClick={() => push(',')} aria-label="Comma" className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-700 text-[14px] font-medium hover:bg-slate-50 shadow-sm transition-all active:scale-90">,</button>
+          <button onClick={() => push('(')} aria-label="Open parenthesis" className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-700 text-[14px] font-medium hover:bg-slate-50 shadow-sm transition-all active:scale-90">(</button>
+          <button onClick={() => push(')')} aria-label="Close parenthesis" className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-700 text-[14px] font-medium hover:bg-slate-50 shadow-sm transition-all active:scale-90">)</button>
+          <button onClick={() => push('0')} aria-label="Number 0" className="flex-[2] min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-900 text-[14px] font-bold hover:bg-slate-50 shadow-sm transition-all active:scale-90">0</button>
+          <button onClick={() => push('.')} aria-label="Decimal point" className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-white text-slate-700 text-[14px] font-medium hover:bg-slate-50 shadow-sm transition-all active:scale-90">.</button>
+          <button onClick={eq} aria-label="Calculate result" style={{ background: PURPLE, color: '#fff', borderColor: PURPLE }} className="flex-[2] min-h-[44px] rounded-xl text-[14px] font-bold hover:opacity-90 shadow-sm transition-all active:scale-90">↵</button>
         </div>
       </div>
     );

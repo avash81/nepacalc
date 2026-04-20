@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { CATEGORIES } from '@/data/calculators';
 import { ChevronRight } from 'lucide-react';
+import { InstitutionalBlock } from '@/components/layout/InstitutionalBlock';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { HomePageCalculatorClient } from './HomePageCalculatorClient';
+import { HeroSearch } from '@/components/ui/HeroSearch';
 import type { Metadata } from 'next';
 
 /* ── Homepage-specific metadata (overrides layout.tsx defaults) ── */
@@ -134,9 +136,17 @@ export default function HomePage() {
       
       <div className="min-h-screen bg-white">
         {/* 1. Clinical Header & Search */}
-        <section className="pt-20 pb-12 border-b border-[#dadce0]">
+        <section className="pt-24 pb-16 border-b border-[#dadce0] bg-[#f8f9fa]">
           <div className="hp-container">
-            <h1 className="sr-only">Free Online Scientific Calculator, Graphing Tool & Maths Solver — 80+ Professional Calculators</h1>
+            <div className="max-w-4xl mb-6">
+              <h1 className="text-[28px] sm:text-[36px] lg:text-[44px] font-black text-[#202124] leading-[1.05] tracking-tight mb-4">
+                Free Scientific Calculator, <br className="hidden sm:block" />
+                <span className="text-blue-600">Graphing Engine</span> & 80+ Specialized Tools
+              </h1>
+              <p className="text-[16px] sm:text-[18px] text-[#5f6368] font-medium leading-relaxed max-w-2xl">
+                Nepal's leading digital laboratory for precision mathematics, financial planning, and engineering solvers. Professional-grade tools with no registration required.
+              </p>
+            </div>
             
             {/* Search Focal Point with Graph Engine side-by-side */}
             <div className="w-full mb-0">
@@ -169,11 +179,11 @@ export default function HomePage() {
                   {cat.calculators.slice(0, cat.id === 'engineering' ? 6 : 10).map(calc => (
                     <li key={calc.id} className="h-[21px]">
                       <Link 
-                        href={`/calculator/${calc.slug}`} 
-                        className="text-[14px] text-[#202124] hover:text-blue-600 hover:underline truncate block"
-                        title={calc.name}
+                         href={`/calculator/${calc.slug}`} 
+                         className="text-[14px] text-[#202124] hover:text-blue-600 hover:underline truncate block"
+                         title={calc.name}
                       >
-                        {calc.name}
+                         {calc.name}
                       </Link>
                     </li>
                   ))}
@@ -188,24 +198,7 @@ export default function HomePage() {
           </div>
 
           {/* Full-Width SEO & Institutional Footer Block */}
-          <div className="mt-20 pt-8 border-t border-slate-200">
-            <div className="max-w-5xl">
-              <h2 className="text-[#202124] text-[16px] font-black tracking-tight mb-2">
-                Nepal's Leading Scientific Calculator, Graphing Tool & Digital Laboratory
-              </h2>
-              <p className="text-[13px] text-[#5f6368] leading-relaxed font-medium mb-4">
-                Welcome to <strong>NEPACALC</strong>: your simple yet powerful toolkit for everything from school math to complex financial planning in Nepal. We’ve combined a fast scientific calculator with an interactive graphing engine and over 80 specialized tools to help you get things done. Whether you’re calculating your income tax, planning a loan EMI, or just need a quick unit conversion, NEPACALC provides accurate results without the need for sign-ups. It’s free, it’s fast, and it’s built specifically for our local needs.
-              </p>
-              <div className="flex items-center gap-6">
-                 <Link href="/sitemap.html" className="text-[12px] font-black text-red-600 hover:underline uppercase tracking-widest">
-                   Full Site Index &rarr;
-                 </Link>
-                 <Link href="/about" className="text-[12px] font-black text-blue-600 hover:underline uppercase tracking-widest">
-                   Our Methodology &rarr;
-                 </Link>
-              </div>
-            </div>
-          </div>
+          <InstitutionalBlock />
         </main>
       </div>
     </>

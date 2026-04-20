@@ -58,7 +58,7 @@ export function Navbar() {
         <div className="hp-container h-full flex items-center justify-between">
           
           {/* Left: Logo + Desktop Links */}
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-14">
             <Link href="/" className="hover:opacity-80 transition-opacity" aria-label="NEPACALC Home">
                <Logo size="sm" theme="indigo" />
             </Link>

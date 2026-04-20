@@ -10,7 +10,7 @@ export default function CategoryClient({ categoryId }: { categoryId: string }) {
   if (!category) return null;
 
   return (
-    <div className="page-container py-12 md:py-20">
+    <div className="page-container pt-12 md:pt-20 pb-0 md:pb-20">
       <div className="mb-12">
         <Link href="/calculators" className="inline-flex items-center gap-2 text-cp-text-light hover:text-cp-blue transition-colors font-bold uppercase tracking-widest text-xs">
           <ArrowLeft className="w-4 h-4" /> All Categories
@@ -45,6 +45,7 @@ export default function CategoryClient({ categoryId }: { categoryId: string }) {
           </Link>
         ))}
       </div>
+      <div className="mt-16 sm:mt-20 pt-8 border-t border-slate-200" aria-hidden="true" />
     </div>
   );
 }

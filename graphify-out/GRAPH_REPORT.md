@@ -1,26 +1,26 @@
-# Graph Report - .  (2026-04-18)
+# Graph Report - .  (2026-04-20)
 
 ## Corpus Check
-- Large corpus: 350 files · ~200,975 words. Semantic extraction will be expensive (many Claude tokens). Consider running on a subfolder, or use --no-semantic to run AST-only.
+- Large corpus: 381 files · ~296,064 words. Semantic extraction will be expensive (many Claude tokens). Consider running on a subfolder, or use --no-semantic to run AST-only.
 
 ## Summary
-- 626 nodes · 499 edges · 190 communities detected
-- Extraction: 92% EXTRACTED · 8% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.8)
+- 742 nodes · 602 edges · 212 communities detected
+- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 39 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Community Hubs (Navigation)
-- [[_COMMUNITY_Application Routing & UI Pages|Application Routing & UI Pages]]
-- [[_COMMUNITY_Calculator Implementation Logic|Calculator Implementation Logic]]
-- [[_COMMUNITY_Specialized Mathematical Engines|Specialized Mathematical Engines]]
-- [[_COMMUNITY_Mathematical Validation Suite|Mathematical Validation Suite]]
-- [[_COMMUNITY_Administrative Backend & Data Management|Administrative Backend & Data Management]]
-- [[_COMMUNITY_Base Platform Infrastructure|Base Platform Infrastructure]]
-- [[_COMMUNITY_Security, Middleware & API Endpoints|Security, Middleware & API Endpoints]]
-- [[_COMMUNITY_Global Calc Engine & Safe Eval|Global Calc Engine & Safe Eval]]
-- [[_COMMUNITY_Nepal Domain Rules|Nepal Domain Rules]]
-- [[_COMMUNITY_Financial Formula Library|Financial Formula Library]]
-- [[_COMMUNITY_Academic Writing & Reading Workspace|Academic Writing & Reading Workspace]]
-- [[_COMMUNITY_All-in-One Multifunction Interface|All-in-One Multifunction Interface]]
+- [[_COMMUNITY_Community 0|Community 0]]
+- [[_COMMUNITY_Community 1|Community 1]]
+- [[_COMMUNITY_Community 2|Community 2]]
+- [[_COMMUNITY_Community 3|Community 3]]
+- [[_COMMUNITY_Community 4|Community 4]]
+- [[_COMMUNITY_Community 5|Community 5]]
+- [[_COMMUNITY_Community 6|Community 6]]
+- [[_COMMUNITY_Community 7|Community 7]]
+- [[_COMMUNITY_Community 8|Community 8]]
+- [[_COMMUNITY_Community 9|Community 9]]
+- [[_COMMUNITY_Community 10|Community 10]]
+- [[_COMMUNITY_Community 11|Community 11]]
 - [[_COMMUNITY_Community 12|Community 12]]
 - [[_COMMUNITY_Community 13|Community 13]]
 - [[_COMMUNITY_Community 14|Community 14]]
@@ -199,195 +199,217 @@
 - [[_COMMUNITY_Community 187|Community 187]]
 - [[_COMMUNITY_Community 188|Community 188]]
 - [[_COMMUNITY_Community 189|Community 189]]
+- [[_COMMUNITY_Community 190|Community 190]]
+- [[_COMMUNITY_Community 191|Community 191]]
+- [[_COMMUNITY_Community 192|Community 192]]
+- [[_COMMUNITY_Community 193|Community 193]]
+- [[_COMMUNITY_Community 194|Community 194]]
+- [[_COMMUNITY_Community 195|Community 195]]
+- [[_COMMUNITY_Community 196|Community 196]]
+- [[_COMMUNITY_Community 197|Community 197]]
+- [[_COMMUNITY_Community 198|Community 198]]
+- [[_COMMUNITY_Community 199|Community 199]]
+- [[_COMMUNITY_Community 200|Community 200]]
+- [[_COMMUNITY_Community 201|Community 201]]
+- [[_COMMUNITY_Community 202|Community 202]]
+- [[_COMMUNITY_Community 203|Community 203]]
+- [[_COMMUNITY_Community 204|Community 204]]
+- [[_COMMUNITY_Community 205|Community 205]]
+- [[_COMMUNITY_Community 206|Community 206]]
+- [[_COMMUNITY_Community 207|Community 207]]
+- [[_COMMUNITY_Community 208|Community 208]]
+- [[_COMMUNITY_Community 209|Community 209]]
+- [[_COMMUNITY_Community 210|Community 210]]
+- [[_COMMUNITY_Community 211|Community 211]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Page()` - 71 edges
 2. `fmt()` - 26 edges
-3. `update()` - 23 edges
+3. `update()` - 25 edges
 4. `updateState()` - 23 edges
 5. `getDb()` - 10 edges
 6. `useSyncState()` - 8 edges
 7. `handleFirestoreError()` - 7 edges
-8. `GET()` - 6 edges
+8. `generateMetadata()` - 6 edges
 9. `getFirebaseAuth()` - 6 edges
-10. `handleDelete()` - 5 edges
+10. `runHeartbeat()` - 5 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `middleware()` --calls--> `GET()`  [INFERRED]
-  src\middleware.ts → src\app\api\nepal-rates\route.ts
-- `robots()` --calls--> `GET()`  [INFERRED]
-  src\app\robots.ts → src\app\api\nepal-rates\route.ts
-- `sitemap()` --calls--> `GET()`  [INFERRED]
-  src\app\sitemap.ts → src\app\api\nepal-rates\route.ts
+- `runHeartbeat()` --calls--> `calculateEMI()`  [INFERRED]
+  scratch_heartbeat.ts → src\utils\math\finance.ts
+- `runHeartbeat()` --calls--> `calculateSI()`  [INFERRED]
+  scratch_heartbeat.ts → src\utils\math\finance.ts
+- `runHeartbeat()` --calls--> `calculateBMI()`  [INFERRED]
+  scratch_heartbeat.ts → src\utils\math\health.ts
+- `runHeartbeat()` --calls--> `calculatePercentage()`  [INFERRED]
+  scratch_heartbeat.ts → src\utils\math\education.ts
 - `handleLogin()` --calls--> `getFirebaseAuth()`  [INFERRED]
-  src\app\admin\login\page.tsx → src\lib\firebase.ts
-- `fetchPost()` --calls--> `getDb()`  [INFERRED]
-  src\app\admin\posts\edit\[slug]\page.tsx → src\lib\firebase.ts
+  src\admin-dashboard\login\page.tsx → src\lib\firebase.ts
 
 ## Communities
 
-### Community 0 - "Application Routing & UI Pages"
+### Community 0 - "Community 0"
 Cohesion: 0.03
 Nodes (1): Page()
 
-### Community 1 - "Calculator Implementation Logic"
-Cohesion: 0.06
-Nodes (7): add(), convertADtoBS(), convertBStoAD(), fmt(), remove(), switchTab(), update()
+### Community 1 - "Community 1"
+Cohesion: 0.04
+Nodes (3): calculateFraction(), gcd(), lcm()
 
-### Community 2 - "Specialized Mathematical Engines"
+### Community 2 - "Community 2"
+Cohesion: 0.06
+Nodes (9): add(), convertADtoBS(), convertBStoAD(), fmt(), handleAdDatePartChange(), handleBsDatePartChange(), handleTabChange(), remove() (+1 more)
+
+### Community 3 - "Community 3"
 Cohesion: 0.07
 Nodes (7): addSemester(), formatNPR(), removeSemester(), swap(), swapUnits(), updateSemester(), updateState()
 
-### Community 3 - "Mathematical Validation Suite"
+### Community 4 - "Community 4"
 Cohesion: 0.07
-Nodes (3): calculateFraction(), gcd(), lcm()
+Nodes (7): gcd(), calculateFraction(), calculatePercentage(), calculateEMI(), calculateSI(), calculateBMI(), runHeartbeat()
 
-### Community 4 - "Administrative Backend & Data Management"
+### Community 5 - "Community 5"
 Cohesion: 0.13
 Nodes (16): handleLogout(), getApp(), getDb(), getFirebaseAuth(), handleFirestoreError(), isConfigured(), fetchData(), fetchPages() (+8 more)
 
-### Community 5 - "Base Platform Infrastructure"
-Cohesion: 0.11
-Nodes (11): BankingEMICalculator(), GratuityCalculator(), NepalVehicleTaxCalculator(), QuadraticSolver(), VehicleTaxCalculator(), fmt(), Footer(), GoogleAnalyticsInner() (+3 more)
-
-### Community 6 - "Security, Middleware & API Endpoints"
+### Community 6 - "Community 6"
 Cohesion: 0.12
-Nodes (8): getAdminSession(), getAdminToken(), requireAdmin(), middleware(), robots(), GET(), POST(), sitemap()
+Nodes (10): BankingEMICalculator(), GratuityCalculator(), NepalVehicleTaxCalculator(), QuadraticSolver(), VehicleTaxCalculator(), fmt(), GoogleAnalyticsInner(), usePathname() (+2 more)
 
-### Community 7 - "Global Calc Engine & Safe Eval"
-Cohesion: 0.14
-Nodes (4): calculate(), solveMathQuery(), evalExpression(), safeEval()
+### Community 7 - "Community 7"
+Cohesion: 0.12
+Nodes (0): 
 
-### Community 8 - "Nepal Domain Rules"
+### Community 8 - "Community 8"
+Cohesion: 0.18
+Nodes (3): calculate(), evalExpression(), safeEval()
+
+### Community 9 - "Community 9"
 Cohesion: 0.2
 Nodes (3): calculateNepalIncomeTax(), calculateNepalSalary(), calculateNepalTax()
 
-### Community 9 - "Financial Formula Library"
+### Community 10 - "Community 10"
+Cohesion: 0.31
+Nodes (4): generateMetadata(), generateStaticParams(), getPage(), getPostData()
+
+### Community 11 - "Community 11"
 Cohesion: 0.2
 Nodes (0): 
 
-### Community 10 - "Academic Writing & Reading Workspace"
+### Community 12 - "Community 12"
 Cohesion: 0.25
 Nodes (2): escapeHtml(), renderMarkdown()
 
-### Community 11 - "All-in-One Multifunction Interface"
-Cohesion: 0.29
+### Community 13 - "Community 13"
+Cohesion: 0.22
 Nodes (0): 
 
-### Community 12 - "Community 12"
-Cohesion: 0.33
-Nodes (1): updateSubject()
-
-### Community 13 - "Community 13"
-Cohesion: 0.33
-Nodes (1): CalculatorErrorBoundary
-
 ### Community 14 - "Community 14"
-Cohesion: 0.33
+Cohesion: 0.25
 Nodes (0): 
 
 ### Community 15 - "Community 15"
-Cohesion: 0.4
-Nodes (2): convertADtoBS(), getTodayInBS()
+Cohesion: 0.32
+Nodes (3): findPointAt(), handleClick(), onMD()
 
 ### Community 16 - "Community 16"
+Cohesion: 0.29
+Nodes (2): convertADtoBS(), getTodayInBS()
+
+### Community 17 - "Community 17"
+Cohesion: 0.38
+Nodes (4): getAdminSession(), getAdminToken(), requireAdmin(), GET()
+
+### Community 18 - "Community 18"
+Cohesion: 0.33
+Nodes (0): 
+
+### Community 19 - "Community 19"
+Cohesion: 0.33
+Nodes (1): updateSubject()
+
+### Community 20 - "Community 20"
+Cohesion: 0.33
+Nodes (1): CalculatorErrorBoundary
+
+### Community 21 - "Community 21"
+Cohesion: 0.33
+Nodes (0): 
+
+### Community 22 - "Community 22"
 Cohesion: 0.5
 Nodes (2): escapeHtml(), renderContentString()
 
-### Community 17 - "Community 17"
+### Community 23 - "Community 23"
 Cohesion: 0.6
 Nodes (3): helper(), toIntl(), toLakh()
 
-### Community 18 - "Community 18"
+### Community 24 - "Community 24"
 Cohesion: 0.6
 Nodes (4): fromRoman(), handleNum(), handleRoman(), toRoman()
 
-### Community 19 - "Community 19"
-Cohesion: 0.6
-Nodes (3): generateMetadata(), getPage(), getPostData()
-
-### Community 20 - "Community 20"
-Cohesion: 0.4
-Nodes (0): 
-
-### Community 21 - "Community 21"
-Cohesion: 0.4
-Nodes (1): ErrorBoundary
-
-### Community 22 - "Community 22"
-Cohesion: 0.4
-Nodes (0): 
-
-### Community 23 - "Community 23"
-Cohesion: 0.67
-Nodes (2): escapeHtml(), renderContent()
-
-### Community 24 - "Community 24"
-Cohesion: 0.5
-Nodes (0): 
-
 ### Community 25 - "Community 25"
-Cohesion: 0.67
+Cohesion: 0.4
 Nodes (0): 
 
 ### Community 26 - "Community 26"
-Cohesion: 0.67
+Cohesion: 0.4
 Nodes (0): 
 
 ### Community 27 - "Community 27"
-Cohesion: 0.67
-Nodes (0): 
+Cohesion: 0.4
+Nodes (1): ErrorBoundary
 
 ### Community 28 - "Community 28"
-Cohesion: 0.67
-Nodes (0): 
+Cohesion: 0.4
+Nodes (2): fetchFirestoreCollection(), sitemap()
 
 ### Community 29 - "Community 29"
-Cohesion: 0.67
+Cohesion: 0.4
 Nodes (0): 
 
 ### Community 30 - "Community 30"
-Cohesion: 0.67
-Nodes (0): 
+Cohesion: 0.5
+Nodes (1): POST()
 
 ### Community 31 - "Community 31"
 Cohesion: 0.67
-Nodes (0): 
+Nodes (2): escapeHtml(), renderContent()
 
 ### Community 32 - "Community 32"
-Cohesion: 0.67
-Nodes (3): Security Audit (Passed), Google Standard Design, NepCalc Platform
+Cohesion: 0.5
+Nodes (4): Cloud AI Audit Report, HP Container Width, Main Layout Bottom Padding, Mobile Menu Alignment
 
 ### Community 33 - "Community 33"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (2): fetchUrl(), runCompleteQAAudit()
 
 ### Community 34 - "Community 34"
-Cohesion: 1.0
+Cohesion: 0.67
 Nodes (0): 
 
 ### Community 35 - "Community 35"
-Cohesion: 1.0
+Cohesion: 0.67
 Nodes (0): 
 
 ### Community 36 - "Community 36"
-Cohesion: 1.0
+Cohesion: 0.67
 Nodes (0): 
 
 ### Community 37 - "Community 37"
-Cohesion: 1.0
+Cohesion: 0.67
 Nodes (0): 
 
 ### Community 38 - "Community 38"
-Cohesion: 1.0
+Cohesion: 0.67
 Nodes (0): 
 
 ### Community 39 - "Community 39"
-Cohesion: 1.0
+Cohesion: 0.67
 Nodes (0): 
 
 ### Community 40 - "Community 40"
-Cohesion: 1.0
+Cohesion: 0.67
 Nodes (0): 
 
 ### Community 41 - "Community 41"
@@ -976,236 +998,308 @@ Nodes (0):
 
 ### Community 187 - "Community 187"
 Cohesion: 1.0
-Nodes (1): University Density Standard
+Nodes (0): 
 
 ### Community 188 - "Community 188"
 Cohesion: 1.0
-Nodes (1): Clinical Precision UX
+Nodes (0): 
 
 ### Community 189 - "Community 189"
 Cohesion: 1.0
-Nodes (1): Platform Logo
+Nodes (0): 
+
+### Community 190 - "Community 190"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 191 - "Community 191"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 192 - "Community 192"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 193 - "Community 193"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 194 - "Community 194"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 195 - "Community 195"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 196 - "Community 196"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 197 - "Community 197"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 198 - "Community 198"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 199 - "Community 199"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 200 - "Community 200"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 201 - "Community 201"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 202 - "Community 202"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 203 - "Community 203"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 204 - "Community 204"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 205 - "Community 205"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 206 - "Community 206"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 207 - "Community 207"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 208 - "Community 208"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 209 - "Community 209"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 210 - "Community 210"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 211 - "Community 211"
+Cohesion: 1.0
+Nodes (1): Sitemap.html Reference
 
 ## Knowledge Gaps
-- **5 isolated node(s):** `Google Standard Design`, `University Density Standard`, `Clinical Precision UX`, `Security Audit (Passed)`, `Platform Logo`
+- **3 isolated node(s):** `Main Layout Bottom Padding`, `HP Container Width`, `Sitemap.html Reference`
   These have ≤1 connection - possible missing edges or undocumented components.
-- **Thin community `Community 33`** (2 nodes): `clean.js`, `walk()`
+- **Thin community `Community 41`** (2 nodes): `clean.js`, `walk()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 34`** (2 nodes): `clean_patterns.js`, `walk()`
+- **Thin community `Community 42`** (2 nodes): `clean_patterns.js`, `walk()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 35`** (2 nodes): `fix_lint.js`, `walk()`
+- **Thin community `Community 43`** (2 nodes): `fix_lint.js`, `walk()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 36`** (2 nodes): `fix_safe.js`, `walk()`
+- **Thin community `Community 44`** (2 nodes): `fix_safe.js`, `walk()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 37`** (2 nodes): `HomePageCalculatorClient()`, `HomePageCalculatorClient.tsx`
+- **Thin community `Community 45`** (2 nodes): `inject_og.js`, `walk()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 38`** (2 nodes): `RootLayout()`, `layout.tsx`
+- **Thin community `Community 46`** (2 nodes): `replace_urls.js`, `walk()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 39`** (2 nodes): `AboutPage()`, `page.tsx`
+- **Thin community `Community 47`** (2 nodes): `AdminRootLayout()`, `layout.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 40`** (2 nodes): `AdminRootLayout()`, `layout.tsx`
+- **Thin community `Community 48`** (2 nodes): `RootLayout()`, `layout.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 41`** (2 nodes): `BlogLayout()`, `layout.tsx`
+- **Thin community `Community 49`** (2 nodes): `AboutPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 42`** (2 nodes): `CalcLoading()`, `loading.tsx`
+- **Thin community `Community 50`** (2 nodes): `BlogLayout()`, `layout.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 43`** (2 nodes): `updateParam()`, `Calculator.tsx`
+- **Thin community `Community 51`** (2 nodes): `CalcLoading()`, `loading.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 44`** (2 nodes): `AreaCalculatorPage()`, `page.tsx`
+- **Thin community `Community 52`** (2 nodes): `updateParam()`, `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 45`** (2 nodes): `BmiChildCalculator()`, `Calculator.tsx`
+- **Thin community `Community 53`** (2 nodes): `AreaCalculatorPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 46`** (2 nodes): `BmiChildPage()`, `page.tsx`
+- **Thin community `Community 54`** (2 nodes): `BmiChildCalculator()`, `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 47`** (2 nodes): `CurrencyPage()`, `page.tsx`
+- **Thin community `Community 55`** (2 nodes): `BmiChildPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 48`** (2 nodes): `gcd()`, `Calculator.tsx`
+- **Thin community `Community 56`** (2 nodes): `CurrencyPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 49`** (2 nodes): `DecimalFractionPage()`, `page.tsx`
+- **Thin community `Community 57`** (2 nodes): `DecimalFractionPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 50`** (2 nodes): `LeadTimeCalculatorPage()`, `page.tsx`
+- **Thin community `Community 58`** (2 nodes): `LeadTimeCalculatorPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 51`** (2 nodes): `upd()`, `Calculator.tsx`
+- **Thin community `Community 59`** (2 nodes): `upd()`, `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 52`** (2 nodes): `PaintCostCalculator()`, `Calculator.tsx`
+- **Thin community `Community 60`** (2 nodes): `PaintCostCalculator()`, `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 53`** (2 nodes): `PaintCostPage()`, `page.tsx`
+- **Thin community `Community 61`** (2 nodes): `PaintCostPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 54`** (2 nodes): `inputCls()`, `Calculator.tsx`
+- **Thin community `Community 62`** (2 nodes): `inputCls()`, `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 55`** (2 nodes): `PregnancyDueDateCalculator()`, `Calculator.tsx`
+- **Thin community `Community 63`** (2 nodes): `PregnancyDueDateCalculator()`, `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 56`** (2 nodes): `boxCls()`, `Calculator.tsx`
+- **Thin community `Community 64`** (2 nodes): `boxCls()`, `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 57`** (2 nodes): `SimpleCalculatorPage()`, `page.tsx`
+- **Thin community `Community 65`** (2 nodes): `SimpleCalculatorPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 58`** (2 nodes): `SleepCalculatorPage()`, `page.tsx`
+- **Thin community `Community 66`** (2 nodes): `SleepCalculatorPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 59`** (2 nodes): `SolarCalculatorPage()`, `page.tsx`
+- **Thin community `Community 67`** (2 nodes): `SolarCalculatorPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 60`** (2 nodes): `CategoryPage()`, `page.tsx`
+- **Thin community `Community 68`** (2 nodes): `CategoryClient()`, `CategoryClient.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 61`** (2 nodes): `ContactPage()`, `page.tsx`
+- **Thin community `Community 69`** (2 nodes): `ContactPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 62`** (2 nodes): `ConvertersPillarPage()`, `page.tsx`
+- **Thin community `Community 70`** (2 nodes): `ConvertersPillarPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 63`** (2 nodes): `FinancePillarPage()`, `page.tsx`
+- **Thin community `Community 71`** (2 nodes): `ThreeDPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 64`** (2 nodes): `GuidesPage()`, `page.tsx`
+- **Thin community `Community 72`** (2 nodes): `FormulasPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 65`** (2 nodes): `HealthPillarPage()`, `page.tsx`
+- **Thin community `Community 73`** (2 nodes): `GeometryPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 66`** (2 nodes): `MathEcosystemLayout()`, `layout.tsx`
+- **Thin community `Community 74`** (2 nodes): `GraphingPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 67`** (2 nodes): `ThreeDimensionalPage()`, `page.tsx`
+- **Thin community `Community 75`** (2 nodes): `FinancePillarPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 68`** (2 nodes): `GraphingCalculatorPage()`, `page.tsx`
+- **Thin community `Community 76`** (2 nodes): `GuidesPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 69`** (2 nodes): `CalculusPage()`, `page.tsx`
+- **Thin community `Community 77`** (2 nodes): `HealthPillarPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 70`** (2 nodes): `FourFunctionPage()`, `page.tsx`
+- **Thin community `Community 78`** (2 nodes): `MathEcosystemLayout()`, `layout.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 71`** (2 nodes): `GeometryToolPage()`, `page.tsx`
+- **Thin community `Community 79`** (2 nodes): `MathToolsPillarPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 72`** (2 nodes): `MatrixCalculatorPage()`, `page.tsx`
+- **Thin community `Community 80`** (2 nodes): `ThreeDimensionalPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 73`** (2 nodes): `ProgrammerPage()`, `page.tsx`
+- **Thin community `Community 81`** (2 nodes): `GraphingCalculatorPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 74`** (2 nodes): `ScientificCalculatorPage()`, `page.tsx`
+- **Thin community `Community 82`** (2 nodes): `CalculusPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 75`** (2 nodes): `StatisticsPage()`, `page.tsx`
+- **Thin community `Community 83`** (2 nodes): `FourFunctionPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 76`** (2 nodes): `NepalPillarPage()`, `page.tsx`
+- **Thin community `Community 84`** (2 nodes): `GeometryToolPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 77`** (2 nodes): `PrivacyPage()`, `page.tsx`
+- **Thin community `Community 85`** (2 nodes): `MatrixCalculatorPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 78`** (2 nodes): `TermsPage()`, `page.tsx`
+- **Thin community `Community 86`** (2 nodes): `ProgrammerPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 79`** (2 nodes): `MenuButton()`, `PostEditor.tsx`
+- **Thin community `Community 87`** (2 nodes): `ScientificCalculatorPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 80`** (2 nodes): `getScore()`, `SEOPanel.tsx`
+- **Thin community `Community 88`** (2 nodes): `StatisticsPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 81`** (2 nodes): `CalculatorCard()`, `CalculatorCard.tsx`
+- **Thin community `Community 89`** (2 nodes): `NepalPillarPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 82`** (2 nodes): `InlineCalculator()`, `CalculatorRegistry.tsx`
+- **Thin community `Community 90`** (2 nodes): `PrivacyPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 83`** (2 nodes): `fmt()`, `MarketRatesBanner.tsx`
+- **Thin community `Community 91`** (2 nodes): `TermsPage()`, `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 84`** (2 nodes): `QuickPresets()`, `QuickPresets.tsx`
+- **Thin community `Community 92`** (2 nodes): `MenuButton()`, `PostEditor.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 85`** (2 nodes): `handleCopy()`, `ResultCard.tsx`
+- **Thin community `Community 93`** (2 nodes): `getScore()`, `SEOPanel.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 86`** (2 nodes): `handleCopy()`, `ResultDisplay.tsx`
+- **Thin community `Community 94`** (2 nodes): `CalculatorCard()`, `CalculatorCard.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 87`** (2 nodes): `ShareResult()`, `ShareResult.tsx`
+- **Thin community `Community 95`** (2 nodes): `InlineCalculator()`, `CalculatorRegistry.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 88`** (2 nodes): `CalculusApp()`, `CalculusApp.tsx`
+- **Thin community `Community 96`** (2 nodes): `QuickPresets()`, `QuickPresets.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 89`** (2 nodes): `handlePointClick()`, `GeometrySidebar.tsx`
+- **Thin community `Community 97`** (2 nodes): `getIconForSlug()`, `RelatedCalculators.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 90`** (2 nodes): `GraphApp()`, `GraphApp.tsx`
+- **Thin community `Community 98`** (2 nodes): `handleCopy()`, `ResultCard.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 91`** (2 nodes): `PlotCanvas()`, `PlotCanvas.tsx`
+- **Thin community `Community 99`** (2 nodes): `handleCopy()`, `ResultDisplay.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 92`** (2 nodes): `PracticeApp()`, `PracticeApp.tsx`
+- **Thin community `Community 100`** (2 nodes): `ShareResult()`, `ShareResult.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 93`** (2 nodes): `ScientificApp()`, `ScientificApp.tsx`
+- **Thin community `Community 101`** (2 nodes): `CalculusApp()`, `CalculusApp.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 94`** (2 nodes): `StatisticsApp.tsx`, `StatisticsApp()`
+- **Thin community `Community 102`** (2 nodes): `handlePointClick()`, `GeometrySidebar.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 95`** (2 nodes): `FeatureGrid()`, `FeatureGrid.tsx`
+- **Thin community `Community 103`** (2 nodes): `GraphApp()`, `GraphApp.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 96`** (2 nodes): `TrustBand.tsx`, `TrustBand()`
+- **Thin community `Community 104`** (2 nodes): `PlotCanvas()`, `PlotCanvas.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 97`** (2 nodes): `toggleFavorite()`, `CalculatorLayout.tsx`
+- **Thin community `Community 105`** (2 nodes): `PracticeApp()`, `PracticeApp.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 98`** (2 nodes): `ClientShell()`, `ClientShell.tsx`
+- **Thin community `Community 106`** (2 nodes): `ScientificApp()`, `ScientificApp.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 99`** (2 nodes): `CookieBanner()`, `CookieBanner.tsx`
+- **Thin community `Community 107`** (2 nodes): `StatisticsApp.tsx`, `StatisticsApp()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 100`** (2 nodes): `handleKey()`, `SearchModal.tsx`
+- **Thin community `Community 108`** (2 nodes): `FeatureGrid()`, `FeatureGrid.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 101`** (2 nodes): `ThemeToggle.tsx`, `ThemeToggle()`
+- **Thin community `Community 109`** (2 nodes): `TrustBand.tsx`, `TrustBand()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 102`** (2 nodes): `JsonLd()`, `JsonLd.tsx`
+- **Thin community `Community 110`** (2 nodes): `toggleFavorite()`, `CalculatorLayout.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 103`** (2 nodes): `Button()`, `Button.tsx`
+- **Thin community `Community 111`** (2 nodes): `ClientShell()`, `ClientShell.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 104`** (2 nodes): `Logo()`, `Logo.tsx`
+- **Thin community `Community 112`** (2 nodes): `CookieBanner()`, `CookieBanner.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 105`** (2 nodes): `NepalFlag()`, `NepalFlag.tsx`
+- **Thin community `Community 113`** (2 nodes): `Footer()`, `Footer.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 106`** (2 nodes): `formatValue()`, `Slider.tsx`
+- **Thin community `Community 114`** (2 nodes): `handleKey()`, `SearchModal.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 107`** (2 nodes): `useDebounce.ts`, `useDebounce()`
+- **Thin community `Community 115`** (2 nodes): `ThemeToggle.tsx`, `ThemeToggle()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 108`** (2 nodes): `useLiveRates.ts`, `useLiveRates()`
+- **Thin community `Community 116`** (2 nodes): `JsonLd()`, `JsonLd.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 109`** (2 nodes): `useLocalStorage.ts`, `useLocalStorage()`
+- **Thin community `Community 117`** (2 nodes): `PillarFAQ()`, `PillarFAQ.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 110`** (2 nodes): `useTheme.ts`, `useTheme()`
+- **Thin community `Community 118`** (2 nodes): `Button()`, `Button.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 111`** (2 nodes): `calcMeta()`, `calcMeta.ts`
+- **Thin community `Community 119`** (2 nodes): `Logo()`, `Logo.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 112`** (1 nodes): `jest.config.ts`
+- **Thin community `Community 120`** (2 nodes): `NepalFlag()`, `NepalFlag.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 113`** (1 nodes): `jest.setup.ts`
+- **Thin community `Community 121`** (2 nodes): `formatValue()`, `Slider.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 114`** (1 nodes): `next-env.d.ts`
+- **Thin community `Community 122`** (2 nodes): `useDebounce.ts`, `useDebounce()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 115`** (1 nodes): `next.config.js`
+- **Thin community `Community 123`** (2 nodes): `useLiveRates.ts`, `useLiveRates()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 116`** (1 nodes): `postcss.config.js`
+- **Thin community `Community 124`** (2 nodes): `useLocalStorage.ts`, `useLocalStorage()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 117`** (1 nodes): `tailwind.config.ts`
+- **Thin community `Community 125`** (2 nodes): `useTheme.ts`, `useTheme()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 118`** (1 nodes): `error.tsx`
+- **Thin community `Community 126`** (2 nodes): `calcMeta()`, `calcMeta.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 119`** (1 nodes): `loading.tsx`
+- **Thin community `Community 127`** (1 nodes): `jest.config.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 120`** (1 nodes): `not-found.tsx`
+- **Thin community `Community 128`** (1 nodes): `jest.setup.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 121`** (1 nodes): `page.tsx`
+- **Thin community `Community 129`** (1 nodes): `next-env.d.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 122`** (1 nodes): `route.tsx`
+- **Thin community `Community 130`** (1 nodes): `next.config.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 123`** (1 nodes): `page.tsx`
+- **Thin community `Community 131`** (1 nodes): `postcss.config.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 124`** (1 nodes): `Calculator.tsx`
+- **Thin community `Community 132`** (1 nodes): `qa_debug.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 125`** (1 nodes): `page.tsx`
+- **Thin community `Community 133`** (1 nodes): `tailwind.config.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 126`** (1 nodes): `Calculator.tsx`
+- **Thin community `Community 134`** (1 nodes): `test_nepali_date.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 127`** (1 nodes): `Calculator.tsx`
+- **Thin community `Community 135`** (1 nodes): `route.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 128`** (1 nodes): `Calculator.tsx`
+- **Thin community `Community 136`** (1 nodes): `error.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 129`** (1 nodes): `page.tsx`
+- **Thin community `Community 137`** (1 nodes): `HomePageCalculatorClient.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 130`** (1 nodes): `Calculator.tsx`
+- **Thin community `Community 138`** (1 nodes): `loading.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 131`** (1 nodes): `Calculator.tsx`
+- **Thin community `Community 139`** (1 nodes): `not-found.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 132`** (1 nodes): `Calculator.tsx`
+- **Thin community `Community 140`** (1 nodes): `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 133`** (1 nodes): `Calculator.tsx`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 134`** (1 nodes): `Calculator.tsx`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 135`** (1 nodes): `Calculator.tsx`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 136`** (1 nodes): `page.tsx`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 137`** (1 nodes): `Calculator.tsx`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 138`** (1 nodes): `page.tsx`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 139`** (1 nodes): `Calculator.tsx`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 140`** (1 nodes): `Calculator.tsx`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 141`** (1 nodes): `Calculator.tsx`
+- **Thin community `Community 141`** (1 nodes): `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 142`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
@@ -1217,107 +1311,151 @@ Nodes (1): Platform Logo
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 146`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 147`** (1 nodes): `Calculator.tsx`
+- **Thin community `Community 147`** (1 nodes): `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 148`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 149`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 150`** (1 nodes): `page.tsx`
+- **Thin community `Community 150`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 151`** (1 nodes): `page.tsx`
+- **Thin community `Community 151`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 152`** (1 nodes): `page.tsx`
+- **Thin community `Community 152`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 153`** (1 nodes): `page.tsx`
+- **Thin community `Community 153`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 154`** (1 nodes): `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 155`** (1 nodes): `page.tsx`
+- **Thin community `Community 155`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 156`** (1 nodes): `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 157`** (1 nodes): `CalcFAQ.tsx`
+- **Thin community `Community 157`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 158`** (1 nodes): `CalcWrapper.tsx`
+- **Thin community `Community 158`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 159`** (1 nodes): `SimpleCalculator.tsx`
+- **Thin community `Community 159`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 160`** (1 nodes): `EMICalculator.tsx`
+- **Thin community `Community 160`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 161`** (1 nodes): `IncomeTaxCalculator.tsx`
+- **Thin community `Community 161`** (1 nodes): `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 162`** (1 nodes): `SIPCalculator.tsx`
+- **Thin community `Community 162`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 163`** (1 nodes): `VATCalculator.tsx`
+- **Thin community `Community 163`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 164`** (1 nodes): `ExpressionDrawer.tsx`
+- **Thin community `Community 164`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 165`** (1 nodes): `ThreeDApp.tsx`
+- **Thin community `Community 165`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 166`** (1 nodes): `VirtualKeypad.tsx`
+- **Thin community `Community 166`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 167`** (1 nodes): `PhysicalCalculatorGuide.tsx`
+- **Thin community `Community 167`** (1 nodes): `Calculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 168`** (1 nodes): `CalculatorShowcase.tsx`
+- **Thin community `Community 168`** (1 nodes): `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 169`** (1 nodes): `Sidebar.tsx`
+- **Thin community `Community 169`** (1 nodes): `CalculatorClient.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 170`** (1 nodes): `MathTopNav.tsx`
+- **Thin community `Community 170`** (1 nodes): `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 171`** (1 nodes): `MobileNav.tsx`
+- **Thin community `Community 171`** (1 nodes): `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 172`** (1 nodes): `TrendingSidebar.tsx`
+- **Thin community `Community 172`** (1 nodes): `FormulaReferenceClient.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 173`** (1 nodes): `InternalLinks.tsx`
+- **Thin community `Community 173`** (1 nodes): `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 174`** (1 nodes): `BreakdownTable.tsx`
+- **Thin community `Community 174`** (1 nodes): `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 175`** (1 nodes): `GeometryIcons.tsx`
+- **Thin community `Community 175`** (1 nodes): `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 176`** (1 nodes): `index.tsx`
+- **Thin community `Community 176`** (1 nodes): `page.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 177`** (1 nodes): `Input.tsx`
+- **Thin community `Community 177`** (1 nodes): `CalcFAQ.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 178`** (1 nodes): `Select.tsx`
+- **Thin community `Community 178`** (1 nodes): `CalcWrapper.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 179`** (1 nodes): `Toggle.tsx`
+- **Thin community `Community 179`** (1 nodes): `SimpleCalculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 180`** (1 nodes): `GlobalConfig.ts`
+- **Thin community `Community 180`** (1 nodes): `EMICalculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 181`** (1 nodes): `tax-config.ts`
+- **Thin community `Community 181`** (1 nodes): `IncomeTaxCalculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 182`** (1 nodes): `calculators.tsx`
+- **Thin community `Community 182`** (1 nodes): `SIPCalculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 183`** (1 nodes): `advancedSolvers.ts`
+- **Thin community `Community 183`** (1 nodes): `VATCalculator.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 184`** (1 nodes): `calculatorConstants.ts`
+- **Thin community `Community 184`** (1 nodes): `ExpressionDrawer.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 185`** (1 nodes): `nepal.test.ts`
+- **Thin community `Community 185`** (1 nodes): `ThreeDApp.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 186`** (1 nodes): `safeEval.test.ts`
+- **Thin community `Community 186`** (1 nodes): `VirtualKeypad.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 187`** (1 nodes): `University Density Standard`
+- **Thin community `Community 187`** (1 nodes): `PhysicalCalculatorGuide.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 188`** (1 nodes): `Clinical Precision UX`
+- **Thin community `Community 188`** (1 nodes): `CalculatorShowcase.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 189`** (1 nodes): `Platform Logo`
+- **Thin community `Community 189`** (1 nodes): `Sidebar.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 190`** (1 nodes): `CategorySidebar.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 191`** (1 nodes): `MathTopNav.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 192`** (1 nodes): `MobileNav.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 193`** (1 nodes): `TrendingSidebar.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 194`** (1 nodes): `CalculatorSchema.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 195`** (1 nodes): `InternalLinks.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 196`** (1 nodes): `BreakdownTable.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 197`** (1 nodes): `GeometryIcons.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 198`** (1 nodes): `index.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 199`** (1 nodes): `Input.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 200`** (1 nodes): `Select.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 201`** (1 nodes): `Toggle.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 202`** (1 nodes): `GlobalConfig.ts`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 203`** (1 nodes): `tax-config.ts`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 204`** (1 nodes): `calculators.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 205`** (1 nodes): `jstat.d.ts`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 206`** (1 nodes): `advancedSolvers.ts`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 207`** (1 nodes): `calculatorConstants.ts`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 208`** (1 nodes): `accuracy_suite.test.ts`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 209`** (1 nodes): `nepal.test.ts`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 210`** (1 nodes): `safeEval.test.ts`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 211`** (1 nodes): `Sitemap.html Reference`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `fmt()` connect `Calculator Implementation Logic` to `Specialized Mathematical Engines`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+- **Why does `fmt()` connect `Community 2` to `Community 3`?**
+  _High betweenness centrality (0.008) - this node is a cross-community bridge._
 - **Are the 8 inferred relationships involving `getDb()` (e.g. with `fetchData()` and `fetchPosts()`) actually correct?**
   _`getDb()` has 8 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `Google Standard Design`, `University Density Standard`, `Clinical Precision UX` to the rest of the system?**
-  _5 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Application Routing & UI Pages` be split into smaller, more focused modules?**
+- **What connects `Main Layout Bottom Padding`, `HP Container Width`, `Sitemap.html Reference` to the rest of the system?**
+  _3 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.03 - nodes in this community are weakly interconnected._
-- **Should `Calculator Implementation Logic` be split into smaller, more focused modules?**
+- **Should `Community 1` be split into smaller, more focused modules?**
+  _Cohesion score 0.04 - nodes in this community are weakly interconnected._
+- **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.06 - nodes in this community are weakly interconnected._
-- **Should `Specialized Mathematical Engines` be split into smaller, more focused modules?**
-  _Cohesion score 0.07 - nodes in this community are weakly interconnected._
-- **Should `Mathematical Validation Suite` be split into smaller, more focused modules?**
+- **Should `Community 3` be split into smaller, more focused modules?**
   _Cohesion score 0.07 - nodes in this community are weakly interconnected._

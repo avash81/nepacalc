@@ -79,12 +79,14 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
             ref={inputRef}
             type="text"
             placeholder="Search calculators (EMI, BMI, Tax...)"
+            aria-label="Search all calculators and converters"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="flex-1 bg-transparent border-none outline-none text-base text-[var(--text-main)] placeholder:text-[var(--text-muted)]"
           />
           <button 
             onClick={onClose}
+            aria-label="Close search"
             className="p-1.5 hover:bg-[var(--bg-subtle)] rounded-lg text-[var(--text-muted)] transition-colors"
           >
             <X className="w-5 h-5" />

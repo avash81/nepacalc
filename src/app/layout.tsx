@@ -5,7 +5,13 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { MobileNav } from "@/components/layout/MobileNav";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = Inter({ 
+  subsets: ["latin"], 
+  variable: "--font-inter",
+  display: 'swap',
+  preload: true,
+  fallback: ['system-ui', 'arial']
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nepacalc.com'),
@@ -129,11 +135,11 @@ export default function RootLayout({
         <Navbar />
         {/* Add bottom padding on mobile so content is not hidden behind MobileNav */}
         <main id="main-content">
-          <div className="pb-0 lg:pb-0">
+          <div className="lg:pb-0">
             {children}
+            <Footer />
           </div>
         </main>
-        <Footer />
         <MobileNav />
         <CookieBanner />
       </body>

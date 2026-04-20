@@ -1,5 +1,7 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
-Disallow: /admin
-Disallow: /api
-Sitemap: https://nepacalc.com/sitemap.xml
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap location (directory based)
+Sitemap: https://nepacalc.com/sitemap/

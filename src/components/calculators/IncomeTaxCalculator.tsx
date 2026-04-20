@@ -42,8 +42,8 @@ export default function IncomeTaxCalculator() {
       description="Plan your finances with the latest Nepal Income Tax rules for FY 2082/83. Includes SSF exemptions and marital status benefits."
       category={{ label: "Nepal Tools", href: "/calculator/category/nepal" }}
       leftPanel={
-        <div className="space-y-6">
-          <div className="space-y-4">
+        <div className="space-y-8 p-6 lg:p-8">
+          <div className="space-y-6">
             <ValidatedInput 
               label="Annual Gross Income (NPR)" 
               value={income} 
@@ -51,15 +51,15 @@ export default function IncomeTaxCalculator() {
               min={1000} max={50000000} step={1000} required 
             />
             
-            <div className="space-y-2 px-1">
-              <label className="text-xs font-bold uppercase text-[var(--text-secondary)]">Marital Status</label>
-              <div className="flex bg-[var(--bg-surface)] border border-[var(--border)] p-1">
+            <div className="space-y-3 px-1">
+              <label className="text-xs font-black uppercase tracking-widest text-[var(--text-secondary)]">Marital Status</label>
+              <div className="flex bg-[var(--bg-page)] border-2 border-[var(--border)] p-1 rounded-xl">
                 {(['single', 'married'] as const).map((s) => (
                   <button
                     key={s}
                     onClick={() => setStatus(s)}
-                    className={`flex-1 py-2 text-xs font-bold uppercase transition-all ${
-                      status === s ? 'bg-[var(--primary)] text-white' : 'text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]'
+                    className={`flex-1 py-3 text-xs font-black uppercase tracking-widest transition-all rounded-lg ${
+                      status === s ? 'bg-white text-[var(--primary)] shadow-md' : 'text-[var(--text-muted)] hover:bg-white/50'
                     }`}
                   >
                     {s}
@@ -68,16 +68,16 @@ export default function IncomeTaxCalculator() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-[var(--bg-surface)] border border-[var(--border)]">
-              <div className="space-y-0.5">
-                <div className="text-[13px] font-bold text-[var(--text-main)]">SSF Enrollment</div>
-                <div className="text-[11px] text-[var(--text-muted)] leading-tight">1% slab exemption applies.</div>
+            <div className="flex items-center justify-between p-6 bg-blue-50 border-2 border-blue-100 rounded-2xl shadow-sm">
+              <div className="space-y-1">
+                <div className="text-[14px] font-black text-blue-900 uppercase tracking-tight">SSF Enrollment</div>
+                <div className="text-[12px] text-blue-700/70 font-medium leading-tight">Apply 1% social security tax exemption.</div>
               </div>
               <button 
                 onClick={() => setSsf(!ssf)}
-                className={`w-12 h-6 rounded-full transition-colors relative ${ssf ? 'bg-[var(--success)]' : 'bg-gray-300'}`}
+                className={`w-14 h-7 rounded-full transition-all duration-300 relative shadow-inner ${ssf ? 'bg-blue-600' : 'bg-slate-300'}`}
               >
-                <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all ${ssf ? 'left-7' : 'left-1'}`} />
+                <div className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow-md transition-all duration-300 ${ssf ? 'left-8' : 'left-1'}`} />
               </button>
             </div>
           </div>
@@ -85,10 +85,13 @@ export default function IncomeTaxCalculator() {
       }
       rightPanel={
         <div className="space-y-8">
-          <div className="text-center p-6 bg-white border border-[var(--border)]">
-            <div className="text-xs font-bold uppercase tracking-tight text-[var(--text-muted)] mb-2">Net Annual Take-Home</div>
-            <div className="text-5xl font-black text-[var(--primary)] tracking-tighter mb-2">Rs. {results.netIncome.toLocaleString()}</div>
-            <div className="text-xs font-bold text-red-600 uppercase tracking-tight">Tax Liability: Rs. {results.totalTax.toLocaleString()}</div>
+          <div className="text-center p-8 lg:p-12 bg-white border-2 border-blue-100 rounded-2xl shadow-xl relative overflow-hidden group">
+            <div className="absolute top-0 left-0 w-full h-1.5 bg-blue-600" />
+            <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-600 mb-4">Net Annual Take-Home</div>
+            <div className="text-6xl lg:text-7xl font-black text-slate-900 tracking-tighter mb-4 group-hover:scale-105 transition-transform duration-500">Rs. {results.netIncome.toLocaleString()}</div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-full text-[11px] font-black uppercase tracking-widest border border-red-100">
+               <TrendingDown size={14} /> Total Tax Liability: Rs. {results.totalTax.toLocaleString()}
+            </div>
           </div>
 
           <div className="space-y-4">

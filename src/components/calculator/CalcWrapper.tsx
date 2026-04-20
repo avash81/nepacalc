@@ -53,7 +53,7 @@ export function CalcWrapper({
         }}
       />
 
-      <div className="max-w-[1300px] mx-auto px-4 sm:px-6 pt-24 pb-20">
+      <div className="max-w-[94%] mx-auto px-4 sm:px-6 pt-24">
         
         {/* Breadcrumb Path & Back Button */}
         <div className="mb-6 flex flex-wrap items-center gap-4">
@@ -79,10 +79,10 @@ export function CalcWrapper({
           </nav>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-12 items-start">
+        <div className="flex flex-col lg:flex-row gap-8 items-start">
           
-          {/* 1. Left Sidebar (Fixed 200px Category Navigator) */}
-          <aside className="hidden lg:block w-[200px] shrink-0 sticky top-24">
+          {/* 1. Left Sidebar (Scaled Category Navigator) */}
+          <aside className="hidden lg:block w-[260px] shrink-0 sticky top-24">
             <CategorySidebar />
           </aside>
 
@@ -131,6 +131,7 @@ export function CalcWrapper({
                 </div>
               </section>
             )}
+            <div className="mt-16 sm:mt-20 pt-8 border-t border-slate-200" aria-hidden="true" />
           </main>
         </div>
       </div>

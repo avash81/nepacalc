@@ -4,6 +4,9 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# 1.1 Redirect old sitemap.html to new /sitemap/ directory
+RewriteRule ^sitemap\.html$ /sitemap/ [L,R=301]
+
 # 2. Force Trailing Slash (matches Next.js trailingSlash: true)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !(.*)/$

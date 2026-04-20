@@ -35,3 +35,7 @@ next-env.d.ts
 # Firebase config — contains real API keys, never commit
 firebase-applet-config.json
 firebase-blueprint.json
+
+# Tool Analysis & Documentation
+/graphify-out/
+

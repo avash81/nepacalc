@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function HTMLSitemap() {
   return (
-    <div className="min-h-screen bg-[#f8f9fa] py-20 font-sans">
+    <div className="min-h-screen bg-[#f8f9fa] pt-20 pb-0 sm:pb-20 font-sans">
        <main className="max-w-4xl mx-auto px-6 bg-white p-12 shadow-sm border border-slate-200 rounded-xl">
           
           {/* Breadcrumb Path & Back Button */}
@@ -112,6 +112,7 @@ export default function HTMLSitemap() {
                    </li>
                 </ul>
              </section>
+             <div className="mt-16 sm:mt-20 pt-8 border-t border-slate-200" aria-hidden="true" />
           </div>
        </main>
     </div>

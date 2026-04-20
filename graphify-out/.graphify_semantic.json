@@ -1,63 +1,57 @@
 {
   "nodes": [
     {
-      "id": "blueprint_google_standard",
-      "label": "Google Standard Design",
+      "id": "audit_cloudaireport",
+      "label": "Cloud AI Audit Report",
       "file_type": "document",
-      "source_file": "docs/design_blueprint.md"
+      "source_file": "docs/EXTERNAL_AI_AUDIT.md"
     },
     {
-      "id": "blueprint_university_standard",
-      "label": "University Density Standard",
-      "file_type": "document",
-      "source_file": "docs/design_blueprint.md"
+      "id": "layout_mainpadding",
+      "label": "Main Layout Bottom Padding",
+      "file_type": "code",
+      "source_file": "src/app/layout.tsx"
     },
     {
-      "id": "blueprint_clinical_precision",
-      "label": "Clinical Precision UX",
-      "file_type": "document",
-      "source_file": "docs/design_blueprint.md"
+      "id": "globals_hpcontainer",
+      "label": "HP Container Width",
+      "file_type": "code",
+      "source_file": "src/app/globals.css"
     },
     {
-      "id": "nepcalc_platform",
-      "label": "NepCalc Platform",
-      "file_type": "document",
-      "source_file": "README.md"
+      "id": "navbar_menualignment",
+      "label": "Mobile Menu Alignment",
+      "file_type": "code",
+      "source_file": "src/components/layout/Navbar.tsx"
     },
     {
-      "id": "audit_security_pass",
-      "label": "Security Audit (Passed)",
-      "file_type": "document",
-      "source_file": "AUDIT_REPORT.md"
-    },
-    {
-      "id": "public_logo",
-      "label": "Platform Logo",
-      "file_type": "image",
-      "source_file": "public/logo.png"
+      "id": "sitemap_link",
+      "label": "Sitemap.html Reference",
+      "file_type": "code",
+      "source_file": "src/components/layout/Footer.tsx"
     }
   ],
   "edges": [
     {
-      "source": "blueprint_google_standard",
-      "target": "nepcalc_platform",
-      "relation": "defines_design_for",
+      "source": "audit_cloudaireport",
+      "target": "layout_mainpadding",
+      "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0
     },
     {
-      "source": "blueprint_clinical_precision",
-      "target": "Calculator",
-      "relation": "implemented_in",
+      "source": "audit_cloudaireport",
+      "target": "navbar_menualignment",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0
+    },
+    {
+      "source": "globals_hpcontainer",
+      "target": "navbar_menualignment",
+      "relation": "conceptually_related_to",
       "confidence": "INFERRED",
-      "confidence_score": 0.8
-    },
-    {
-      "source": "audit_security_pass",
-      "target": "nepcalc_platform",
-      "relation": "validates",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0
+      "confidence_score": 0.9
     }
   ],
   "hyperedges": [],

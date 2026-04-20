@@ -78,9 +78,9 @@ export default function RelatedCalculators({ currentSlug, category }: Props) {
     <section className="mt-16 pt-12 border-t border-slate-200/60">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h3 className="text-xl font-black text-slate-900 tracking-tight uppercase">
+          <h2 className="text-xl font-black text-slate-900 tracking-tight uppercase">
             <span className="text-blue-600">Related</span> Professional Tools
-          </h3>
+          </h2>
           <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mt-1">Discover more verified Nepal calculators</p>
         </div>
       </div>
@@ -96,9 +96,9 @@ export default function RelatedCalculators({ currentSlug, category }: Props) {
                 {calc.icon ? calc.icon : getIconForSlug(calc.slug, calc.category)}
               </div>
               <div className="min-w-0">
-                <h4 className="font-black text-slate-900 group-hover:text-blue-600 transition-colors uppercase text-[12px] tracking-tight">
+                <h3 className="font-black text-slate-900 group-hover:text-blue-600 transition-colors uppercase text-[12px] tracking-tight">
                   {calc.name}
-                </h4>
+                </h3>
                 <p className="text-[11px] text-slate-500 font-medium line-clamp-1 mt-0.5">
                   {calc.description || `Professional ${calc.name} utility.`}
                 </p>

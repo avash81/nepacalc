@@ -387,7 +387,7 @@ export default function CustomGrapher({ expression }: { expression: string }) {
       </div>
 
       {/* Control Cluster (Bottom Right) */}
-      <div className="absolute bottom-6 right-6 z-20 flex flex-col gap-3">
+      <div className="absolute bottom-24 lg:bottom-6 right-4 lg:right-6 z-20 flex flex-col gap-2 lg:gap-3">
         <button onClick={toggleFullscreen} className="p-3.5 bg-white/95 backdrop-blur-sm border border-slate-200 rounded-full shadow-xl text-slate-600 hover:text-indigo-600 hover:scale-110 active:scale-95 transition-all">
           <Maximize size={22} />
         </button>
@@ -416,7 +416,7 @@ export default function CustomGrapher({ expression }: { expression: string }) {
         />
         
         {/* Adaptive Status Pill */}
-        <div className="absolute bottom-6 left-6 p-4 bg-white/90 backdrop-blur-md border border-slate-200 rounded-[1.5rem] shadow-2xl max-w-[220px]">
+        <div className="absolute bottom-24 lg:bottom-6 left-4 lg:left-6 p-3 lg:p-4 bg-white/90 backdrop-blur-md border border-slate-200 rounded-[1.25rem] lg:rounded-[1.5rem] shadow-2xl max-w-[180px] lg:max-w-[220px]">
           <div className="flex items-center gap-2 mb-1.5">
             <div className={`w-2.5 h-2.5 rounded-full ${expression ? 'bg-indigo-500 animate-pulse' : 'bg-slate-300'}`} />
             <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Precision Plotter</span>

@@ -29,12 +29,16 @@ export function CookieBanner() {
           </div>
           <div className="flex-1 min-w-0">
             <h4 className="text-[12px] font-black uppercase tracking-widest text-blue-400 mb-1">Privacy Compliance</h4>
-            <p className="text-[11px] font-medium leading-relaxed text-white/70">
+            <p className="text-[11px] font-medium leading-relaxed text-white/90">
               NEPACALC uses session metadata to ensure calculation precision and analytical integrity. 
               By continuing, you verify compliance with our professional privacy standards.
             </p>
           </div>
-          <button onClick={() => setShow(false)} className="text-white/30 hover:text-white transition-colors">
+          <button 
+             onClick={() => setShow(false)} 
+             className="text-white/30 hover:text-white transition-colors"
+             aria-label="Close privacy notice"
+          >
              <X className="w-4 h-4" />
           </button>
         </div>

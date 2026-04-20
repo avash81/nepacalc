@@ -13,10 +13,10 @@ export async function generateMetadata({ params }: { params: { category: string 
   if (!category) return { title: 'Not Found' };
 
   return {
-    title: `${category.name} Tools | NEPACALC`,
-    description: `Professional ${category.name.toLowerCase()} calculators and tools for the Nepali market.`,
+    title: `${category.name} Calculators | ${category.name} Tools Nepal | NEPACALC`,
+    description: `Access professional ${category.name.toLowerCase()} calculators for the Nepali market. Free tools including ${category.calculators.slice(0, 3).map(c => c.name).join(', ')} and more. Accurate, fast, and no sign-up required.`,
     alternates: {
-      canonical: `https://nepacalc.com/calculators/${category.id}`
+      canonical: `https://nepacalc.com/calculators/${category.id}/`
     }
   };
 }

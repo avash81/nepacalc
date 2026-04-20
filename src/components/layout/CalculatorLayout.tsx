@@ -111,7 +111,7 @@ export function CalculatorLayout({
   );
 
   return (
-    <div className="min-h-screen bg-[var(--bg-page)] font-sans antialiased pb-24 lg:pb-0 pt-24">
+    <div className="min-h-screen bg-[var(--bg-page)] font-sans antialiased lg:pb-0 pt-24">
       {/* 0. SEO Power Injection (Standardized JsonLd Suite) */}
       <JsonLd 
         type="breadcrumb"
@@ -157,9 +157,9 @@ export function CalculatorLayout({
         </div>
       </div>
 
-      <main className="hp-container py-4 sm:py-5">
+      <main className="hp-container py-3 sm:py-4">
         {/* 2. Professional Header Section */}
-        <header className="mb-4 sm:mb-6 border-b border-slate-200 pb-4 flex flex-col sm:flex-row justify-between items-start gap-4">
+        <header className="mb-4 sm:mb-5 border-b border-slate-200 pb-3 flex flex-col sm:flex-row justify-between items-start gap-4">
           <div className="flex-1">
             <div className="flex flex-wrap items-center gap-3 mb-1">
               <h1 className="text-2xl sm:text-2xl lg:text-3xl font-bold text-[#202124] tracking-tight">
@@ -212,17 +212,17 @@ export function CalculatorLayout({
            </section>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-x-8 items-start print:flex print:flex-col print:gap-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 items-start print:flex print:flex-col print:gap-y-6">
           {leftPanel && rightPanel ? (
             <>
-              {/* Refactored 60/40 Split */}
-              <section className="lg:col-span-6 space-y-6 print:w-full">
+              {/* Refactored 60/40 Split into 7/5 for wider screens */}
+              <section className="lg:col-span-7 space-y-6 print:w-full">
                 <div className="print:block hidden text-sm font-black uppercase text-slate-500 mb-4 border-b pb-2">Calculation Inputs</div>
                 <article className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden print:border-none print:shadow-none">
                   {leftPanel}
                 </article>
               </section>
-              <aside className="lg:col-span-4 space-y-6 lg:sticky lg:top-6 print:hidden">
+              <aside className="lg:col-span-5 space-y-6 lg:sticky lg:top-6 print:hidden">
                 <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                   {rightPanel}
                 </div>
@@ -305,6 +305,8 @@ export function CalculatorLayout({
               </div>
           )}
         </section>
+
+        <div className="mt-16 sm:mt-20 pt-8 border-t border-slate-200" aria-hidden="true" />
       </main>
     </div>
   );
