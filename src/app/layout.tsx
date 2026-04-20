@@ -120,10 +120,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <GoogleAnalytics />
-      </head>
       <body className={`${inter.variable} font-sans`}>
+        <GoogleAnalytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
