@@ -147,16 +147,7 @@ export default function HomePage() {
         {/* 1. Clinical Header & Search */}
         <section className="pt-24 pb-16 border-b border-[#dadce0] bg-[#f8f9fa]">
           <div className="hp-container">
-            <div className="max-w-4xl mb-6">
-              <h1 className="text-[28px] sm:text-[36px] lg:text-[44px] font-black text-[#202124] leading-[1.05] tracking-tight mb-4">
-                Free Scientific Calculator, <br className="hidden sm:block" />
-                <span className="text-blue-700">Graphing Engine</span> & 80+ Specialized Tools
-              </h1>
-              <p className="text-[16px] sm:text-[18px] text-[#505559] font-medium leading-relaxed">
-                Nepal's leading digital laboratory for precision mathematics, financial planning, and engineering solvers. Professional-grade tools with no registration required.
-              </p>
-            </div>
-            
+
             {/* Search Focal Point with Graph Engine side-by-side */}
             <div className="w-full mb-0">
                <HomePageCalculatorClient />

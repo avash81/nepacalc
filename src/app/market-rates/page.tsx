@@ -1,7 +1,6 @@
 'use client';
 import Link from 'next/link';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { MarketRatesBanner } from '@/components/calculator/MarketRatesBanner';
 import { useLiveRates } from '@/hooks/useLiveRates';
 
 const ADVANCED = [
@@ -88,12 +87,7 @@ export default function MarketRatesPillar() {
           </div>
         </section>
 
-        {/* Live Market Banner */}
-        <section className="bg-white py-2 border-b border-slate-100">
-          <div className="max-w-7xl mx-auto px-6">
-             <MarketRatesBanner rates={rates} />
-          </div>
-        </section>
+
 
         {/* Live Grids */}
         <section className="max-w-6xl mx-auto px-6 pt-6 pb-16">
