@@ -231,7 +231,7 @@ export default function AllInOneCalculator({
 
       <K label="Ans" on={() => push(disp)}    cls={GFN} />
       <K label="EXP" on={() => push('EXP')}   cls={GFN} />
-      <K label={<span>x<sup>y</sup></span>} on={() => push('^')} cls={GFN} />
+      <K label={<span>x<sup>y</sup></span>} on={() => push('^')} cls={GFN} ariaLabel="Power of" />
       <K label="0"   on={() => push('0')}     cls={GNM} />
       <K label="."   on={() => push('.')}     cls={GNM} />
       <K label="="   on={eq}                  cls={GEQ} />
@@ -255,22 +255,22 @@ export default function AllInOneCalculator({
       actCls  = 'bg-[#C2185B] hover:bg-[#880E4F] text-white font-black shadow';
     }
 
-    const F = (l: React.ReactNode, v: string) => <K label={l} on={() => push(v)} cls={funcCls} />;
+    const F = (l: React.ReactNode, v: string, a?: string) => <K label={l} on={() => push(v)} cls={funcCls} ariaLabel={a} />;
 
     return (
       <div className="grid grid-cols-7 gap-1.5 p-6 sm:p-8 bg-white">
 
         {/* ── ALGEBRA ── */}
         {tab === 'algebra' && (<>
-          <K label={<span>□<sup>□</sup></span>} on={() => push('^')}    cls={funcCls} />
-          {F(<span>ⁿ√□</span>, 'sqrt(')}
+          <K label={<span>□<sup>□</sup></span>} on={() => push('^')}    cls={funcCls} ariaLabel="Power of" />
+          {F(<span>ⁿ√□</span>, 'sqrt(', "Square root")}
           {F('<',  '<')}
           <K label="(" on={() => push('(')} cls={GFN} ariaLabel="Open parenthesis" />
           <K label=")" on={() => push(')')} cls={GFN} ariaLabel="Close parenthesis" />
           <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-white hover:bg-[#2C3033] border border-[#3C4043] font-bold" ariaLabel="Backspace" />
           <K label="AC" on={ac} cls={GFN} ariaLabel="All Clear" />
 
-          {F(<span>□/□</span>, '/')}
+          {F(<span>□/□</span>, '/', "Fraction")}
           {F('|□|', 'abs(')}
           {F('≤', '<=')}
           <K label="7" on={() => push('7')} cls={GNM} />
@@ -278,7 +278,7 @@ export default function AllInOneCalculator({
           <K label="9" on={() => push('9')} cls={GNM} />
           <K label="÷" on={() => push('÷')} cls={GFN} />
 
-          {F(<span>log<sub>□</sub></span>, 'log(')}
+          {F(<span>log<sub>□</sub></span>, 'log(', "Logarithm")}
           {F('□!', '!')}
           {F('>',  '>')}
           <K label="4" on={() => push('4')} cls={GNM} />

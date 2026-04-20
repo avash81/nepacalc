@@ -142,6 +142,8 @@ export function MarketRatesBanner({ rates, selectedId, onSelect }: {
                       <button 
                          key={asset}
                          onClick={() => setChartMode(asset as any)}
+                         aria-label={`View ${asset} price chart`}
+                         aria-pressed={chartMode === asset}
                          className={`px-6 py-2.5 text-[11px] font-black uppercase rounded-xl transition-all duration-300 ${chartMode === asset ? 'bg-blue-600 text-white shadow-xl shadow-blue-500/30' : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'}`}
                       >
                          {asset}
@@ -271,6 +273,7 @@ export function MarketRatesBanner({ rates, selectedId, onSelect }: {
                     rel="noopener noreferrer"
                     className="p-2 bg-slate-50 text-slate-400 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all"
                     title="Verify on Google Finance"
+                    aria-label="Verify live rates on Google Finance"
                    >
                       <Info className="w-4 h-4" />
                    </a>

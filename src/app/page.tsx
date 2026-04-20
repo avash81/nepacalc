@@ -130,9 +130,17 @@ export default function HomePage() {
       <JsonLd type="organization" />
 
       {/* Homepage-specific rich schemas */}
-      <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageCalcSchema) }} />
-      <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageItemListSchema) }} />
-      <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageFaqSchema) }} />
+      <script 
+        type="application/ld+json" 
+        suppressHydrationWarning 
+        dangerouslySetInnerHTML={{ 
+          __html: JSON.stringify([
+            homepageCalcSchema,
+            homepageItemListSchema,
+            homepageFaqSchema
+          ]) 
+        }} 
+      />
       
       <div className="min-h-screen bg-white">
         {/* 1. Clinical Header & Search */}
@@ -156,7 +164,8 @@ export default function HomePage() {
         </section>
 
         {/* 2. Structured Directory */}
-        <main className="hp-container py-10">
+        <main className="hp-container py-10" aria-labelledby="calc-directory-heading">
+          <h2 id="calc-directory-heading" className="sr-only">Calculator Categories</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-x-8 gap-y-16">
             {CATEGORIES.map(cat => (
               <div key={cat.id} className="space-y-4">

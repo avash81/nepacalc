@@ -1,8 +1,10 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
-import AllInOneCalculator from '@/components/calculator/AllInOneCalculator';
-import AdvancedCalculator  from '@/components/calculator/AdvancedCalculator';
-import CustomGrapher       from '@/components/calculator/CustomGrapher';
+import dynamic from 'next/dynamic';
+
+const AllInOneCalculator = dynamic(() => import('@/components/calculator/AllInOneCalculator'), { ssr: false });
+const AdvancedCalculator  = dynamic(() => import('@/components/calculator/AdvancedCalculator'), { ssr: false });
+const CustomGrapher       = dynamic(() => import('@/components/calculator/CustomGrapher'), { ssr: false });
 
 const PURPLE = '#5b5ea6';
 
