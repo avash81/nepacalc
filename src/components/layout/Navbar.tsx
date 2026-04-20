@@ -44,13 +44,12 @@ export function Navbar() {
   useEffect(() => setIsMenuOpen(false), [path]);
 
   const navLinks = [
-    { name: 'Nepal',       href: '/calculator/category/nepal' },
-    { name: 'Finance',     href: '/calculator/category/finance' },
-    { name: 'Health',      href: '/calculator/category/health' },
-    { name: 'Math',        href: '/calculator/category/education' },
+    { name: 'Nepal Specific',       href: '/nepal' },
+    { name: 'Finance',     href: '/finance' },
+    { name: 'Health',      href: '/health' },
+    { name: 'Math',        href: '/math-tools' },
     { name: 'Engineering', href: '/engineering' },
-    { name: 'Converters',  href: '/calculator/category/utility' },
-    { name: 'Blog',        href: '/blog' },
+    { name: 'Converters',  href: '/converters' },
   ];
 
   return (
@@ -124,13 +123,12 @@ export function Navbar() {
 
           <div className="flex-1 overflow-y-auto p-6 space-y-3">
             {[
-               { name: 'Nepal',       href: '/calculator/category/nepal', icon: <Star className="w-5 h-5" /> },
-               { name: 'Finance',     href: '/calculator/category/finance', icon: <Wallet className="w-5 h-5" /> },
-               { name: 'Health',      href: '/calculator/category/health', icon: <Heart className="w-5 h-5" /> },
-               { name: 'Math',        href: '/calculator/category/education', icon: <Sparkles className="w-5 h-5" /> },
+               { name: 'Nepal Specific',       href: '/nepal', icon: <Star className="w-5 h-5" /> },
+               { name: 'Finance',     href: '/finance', icon: <Wallet className="w-5 h-5" /> },
+               { name: 'Health',      href: '/health', icon: <Heart className="w-5 h-5" /> },
+               { name: 'Math',        href: '/math-tools', icon: <Sparkles className="w-5 h-5" /> },
                { name: 'Engineering', href: '/engineering', icon: <Sparkles className="w-5 h-5" /> },
-               { name: 'Converters',  href: '/calculator/category/utility', icon: <Globe className="w-5 h-5" /> },
-               { name: 'Blog',        href: '/blog', icon: <BookOpen className="w-5 h-5" /> },
+               { name: 'Converters',  href: '/converters', icon: <Globe className="w-5 h-5" /> },
             ].map((link) => (
               <Link
                 key={link.href}

@@ -1,27 +1,32 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
+RewriteEngine On
 
-  # ── 1. CLEAN URLS (Remove .html) ───────────────────────
-  # Redirect /page.html to /page
-  RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
-  RewriteRule ^ %1 [R=301,L]
+# 1. Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # Internally serve /page as /page.html
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME}.html -f
-  RewriteRule ^(.*)$ $1.html [L]
+# 2. Force Trailing Slash (matches Next.js trailingSlash: true)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteCond %{REQUEST_URI} !^/404
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1/ [L,R=301]
 
-  # ── 2. INSTITUTIONAL REWRITES (Redirects) ──────────────
-  # Pillar Page Rewrites to categorical indices
-  RewriteRule ^finance$ calculator/category/finance [R=301,L]
-  RewriteRule ^health$ calculator/category/health [R=301,L]
-  RewriteRule ^education$ calculator/category/education [R=301,L]
-  RewriteRule ^utility$ calculator/category/utility [R=301,L]
-  RewriteRule ^nepal$ calculator/category/nepal [R=301,L]
+# 3. Handle Clean URLs (Serve index.html for directories)
+# Apache does this by default if DirectoryIndex is index.html, but we enforce it
+DirectoryIndex index.html
 
-  # ── 3. ERROR HANDLING ──────────────────────────────────
-  # Serve 404.html if file doesn't exist
-  ErrorDocument 404 /404.html
+# 4. Error Handling
+ErrorDocument 404 /404/index.html
+
+# 5. Browser Caching for static assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType text/html "access plus 1 hour"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpg "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
 </IfModule>

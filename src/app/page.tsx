@@ -188,7 +188,7 @@ export default function HomePage() {
           </div>
 
           {/* Full-Width SEO & Institutional Footer Block */}
-          <div className="mt-10 pt-6 border-t border-slate-200">
+          <div className="mt-20 pt-8 border-t border-slate-200">
             <div className="max-w-5xl">
               <h2 className="text-[#202124] text-[16px] font-black tracking-tight mb-2">
                 Nepal's Leading Scientific Calculator, Graphing Tool & Digital Laboratory

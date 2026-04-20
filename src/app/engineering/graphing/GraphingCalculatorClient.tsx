@@ -12,8 +12,8 @@ function evalExpr(raw: string, x: number): number | null {
     let e = raw
       .replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-')
       .replace(/π/g, String(Math.PI)).replace(/\be\b/g, String(Math.E))
-      .replace(/(\d)(x)/g,'$1*$2').replace(/\)(x)/g,')*x')
-      .replace(/\bx\b/g, `(${x})`);
+      .replace(/(\d)([a-df-z])/gi,'$1*$2').replace(/\)([a-df-z])/gi,')*$1')
+      .replace(/\b[a-df-z]\b/gi, `(${x})`);
     e = e
       .replace(/sin\(/g,'Math.sin(').replace(/cos\(/g,'Math.cos(').replace(/tan\(/g,'Math.tan(')
       .replace(/asin\(/g,'Math.asin(').replace(/acos\(/g,'Math.acos(').replace(/atan\(/g,'Math.atan(')
@@ -30,7 +30,9 @@ function evalExpr(raw: string, x: number): number | null {
 function hasX(expr: string) {
   if (!expr) return false;
   const clean = expr.replace(/exp/gi,'');
-  return /\bx\b/.test(clean) || /sin\(|cos\(|tan\(|log\(|ln\(|sqrt\(|abs\(/.test(expr);
+  return /\b[a-df-z]\b/i.test(clean) || 
+         /sin\(|cos\(|tan\(|log\(|ln\(|sqrt\(|abs\(/.test(expr) ||
+         /^[0-9.+\-*\/^() \t]+$/.test(expr.trim());
 }
 
 function niceStep(range: number, target: number) {

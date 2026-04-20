@@ -10,6 +10,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = [
     '',
     '/directory',
+    '/about',
+    '/pricing',
     '/blog',
     '/contact',
     '/privacy',
@@ -18,9 +20,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/engineering/graphing',
     '/engineering/3d',
     '/engineering/geometry',
-    '/engineering/formulas'
+    '/engineering/formulas',
+    '/math-tools/calculator',
+    '/math-tools/scientific',
+    '/math-tools/calculus',
+    '/math-tools/statistics',
+    '/math-tools/matrix',
+    '/math-tools/programmer',
+    '/math-tools/geometry',
+    '/math-tools/3d'
   ].map((route) => ({
-    url: `${baseUrl}${route}`,
+    url: `${baseUrl}${route}/`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: route === '' ? 1.0 : 0.8,
@@ -33,7 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   };
 
   const pillarPages = CATEGORIES.map((cat) => ({
-    url: `${baseUrl}/${catIdToSlug[cat.id] || cat.id}`,
+    url: `${baseUrl}/${catIdToSlug[cat.id] || cat.id}/`,
     lastModified: new Date(),
     changeFrequency: 'daily' as const,
     priority: 0.9,
@@ -42,7 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 3. Institutional Calculation Hubs (Individual Tools)
   const calculatorPages = CATEGORIES.flatMap((cat) =>
     cat.calculators.map((calc) => ({
-      url: `${baseUrl}/calculator/${calc.slug}`,
+      url: `${baseUrl}/calculator/${calc.slug}/`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
@@ -56,14 +66,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const guides = await fetchFirestoreCollection('seo_pages');
 
     const blogPages = posts.map((post: any) => ({
-      url: `${baseUrl}/blog/${post.slug}`,
+      url: `${baseUrl}/blog/${post.slug}/`,
       lastModified: new Date(post.updatedAt || new Date()),
       changeFrequency: 'weekly' as const,
       priority: 0.6,
     }));
 
     const guidePages = guides.map((guide: any) => ({
-      url: `${baseUrl}/guide/${guide.slug}`,
+      url: `${baseUrl}/guide/${guide.slug}/`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.6,

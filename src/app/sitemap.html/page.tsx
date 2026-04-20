@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { CATEGORIES } from '@/data/calculators';
+import { ArrowLeft } from 'lucide-react';
 
 export const metadata = {
   title: 'Full Site Index — Complete HTML Sitemap',
@@ -10,6 +11,23 @@ export default function HTMLSitemap() {
   return (
     <div className="min-h-screen bg-[#f8f9fa] py-20 font-sans">
        <main className="max-w-4xl mx-auto px-6 bg-white p-12 shadow-sm border border-slate-200 rounded-xl">
+          
+          {/* Breadcrumb Path & Back Button */}
+          <div className="mb-10 flex flex-wrap items-center gap-4">
+            <Link 
+               href="/"
+               className="flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-[#5F6368] hover:text-blue-600 transition-all border-r border-[#dadce0] pr-4 py-1"
+            >
+               <ArrowLeft className="w-4 h-4" /> <span>Back</span>
+            </Link>
+
+            <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-2 text-[13px] font-medium text-[#5f6368]">
+              <Link href="/" className="hover:text-blue-600 hover:underline">Home</Link>
+              <span className="text-slate-300">/</span>
+              <span className="text-[#202124] font-bold">HTML Sitemap</span>
+            </nav>
+          </div>
+
           <header className="mb-12 border-b border-slate-200 pb-8">
              <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-3">HTML Sitemap</h1>
              <p className="text-slate-600 font-medium">
@@ -91,10 +109,6 @@ export default function HTMLSitemap() {
                       <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
                       <Link href="/nepal" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Nepal-Specific Pillar</Link>
                       <span className="text-sm text-slate-500 hidden sm:inline-block">— Localized tools for the Nepali mathematical standards.</span>
-                   </li>
-                   <li className="relative">
-                      <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
-                      <Link href="/contact" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Support & Verification</Link>
                    </li>
                 </ul>
              </section>

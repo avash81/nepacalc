@@ -12,9 +12,8 @@ export function MobileNav() {
   const tabs = [
     { name: 'Home',   icon: Home,     path: '/' },
     { name: 'Search', icon: Search,   isSearch: true },
-    { name: 'Nepal',  icon: Globe,    path: '/calculator/nepal-income-tax', isSpecial: true },
+    { name: 'Nepal Specific',  icon: Globe,    path: '/calculator/nepal-income-tax', isSpecial: true },
     { name: 'Tools',  icon: Grid,     path: '/directory' },
-    { name: 'Blog',   icon: BookOpen, path: '/blog' },
   ];
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);

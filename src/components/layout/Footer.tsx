@@ -6,6 +6,8 @@ export function Footer() {
   return (
     <footer className="bg-[#f2f2f2] text-[#70757a] py-2 no-print border-t border-[#dadce0] text-[13px]">
       <div className="hp-container flex flex-wrap justify-center sm:justify-end items-center gap-2">
+        <Link href="/blog" className="hover:text-[#3c4043] transition-colors">blog</Link>
+        <span className="text-[#dadce0]">|</span>
         <Link href="/about" className="hover:text-[#3c4043] transition-colors">about us</Link>
         <span className="text-[#dadce0]">|</span>
         <Link href="/sitemap.html" className="hover:text-[#3c4043] transition-colors">sitemap</Link>

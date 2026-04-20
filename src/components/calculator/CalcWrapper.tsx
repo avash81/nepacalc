@@ -3,7 +3,7 @@
 import React, { Fragment } from 'react';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ArrowLeft } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { CategorySidebar } from '@/components/layout/CategorySidebar';
 
@@ -55,20 +55,29 @@ export function CalcWrapper({
 
       <div className="max-w-[1300px] mx-auto px-4 sm:px-6 pt-24 pb-20">
         
-        {/* Breadcrumb Path */}
-        <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-2 text-[13px] font-medium text-[#5f6368]">
-          <Link href="/" className="hover:text-blue-600 hover:underline">Home</Link>
-          {crumbs.map((c, i) => (
-            <Fragment key={i}>
-              <span className="text-slate-300">/</span>
-              {c.href ? (
-                <Link href={c.href} className="hover:text-blue-600 hover:underline">{c.label}</Link>
-              ) : (
-                <span className="text-[#202124] font-bold">{c.label}</span>
-              )}
-            </Fragment>
-          ))}
-        </nav>
+        {/* Breadcrumb Path & Back Button */}
+        <div className="mb-6 flex flex-wrap items-center gap-4">
+          <button 
+             onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
+             className="flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-[#5F6368] hover:text-blue-600 transition-all border-r border-[#dadce0] pr-4 py-1"
+          >
+             <ArrowLeft className="w-4 h-4" /> <span>Back</span>
+          </button>
+
+          <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-2 text-[13px] font-medium text-[#5f6368]">
+            <Link href="/" className="hover:text-blue-600 hover:underline">Home</Link>
+            {crumbs.map((c, i) => (
+              <Fragment key={i}>
+                <span className="text-slate-300">/</span>
+                {c.href ? (
+                  <Link href={c.href} className="hover:text-blue-600 hover:underline">{c.label}</Link>
+                ) : (
+                  <span className="text-[#202124] font-bold">{c.label}</span>
+                )}
+              </Fragment>
+            ))}
+          </nav>
+        </div>
 
         <div className="flex flex-col lg:flex-row gap-12 items-start">
           

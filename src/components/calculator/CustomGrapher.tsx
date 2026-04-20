@@ -10,8 +10,8 @@ function evalY(rawExpr: string, xVal: number): number | null {
     let e = rawExpr
       .replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-')
       .replace(/π/g, String(Math.PI)).replace(/EXP/g, 'e')
-      .replace(/(\d)(x)/g, '$1*$2').replace(/\)(x)/g, ')*$2')
-      .replace(/\bx\b/g, `(${xVal})`);
+      .replace(/(\d)([a-df-z])/gi, '$1*$2').replace(/\)([a-df-z])/gi, ')*$1')
+      .replace(/\b[a-df-z]\b/gi, `(${xVal})`);
 
     const fnSafe = e
       .replace(/sin\(/g,  'Math.sin(')
@@ -42,8 +42,11 @@ function evalY(rawExpr: string, xVal: number): number | null {
 
 function isPlottable(expr: string) {
   if (!expr) return false;
+  // Allow if it contains x, a function, OR is purely a numeric expression (constant)
   const clean = expr.replace(/EXP|exp/g, '').replace(/max|min/g, '');
-  return /\bx\b/.test(clean) || /sin\(|cos\(|tan\(|log\(|ln\(|sqrt\(|abs\(/.test(expr);
+  return /\b[a-df-z]\b/i.test(clean) || 
+         /sin\(|cos\(|tan\(|log\(|ln\(|sqrt\(|abs\(/.test(expr) ||
+         /^[0-9.+\-*\/^() \t]+$/.test(expr.trim());
 }
 
 /* ── Nice round grid intervals ──────────────────────────────── */
@@ -339,7 +342,37 @@ export default function CustomGrapher({ expression }: { expression: string }) {
                       className={`h-11 border rounded-xl flex items-center justify-center transition-all ${gridStyle === s ? 'border-indigo-500 bg-indigo-50 text-indigo-600 scale-105' : 'border-slate-100 hover:border-slate-300 text-slate-400 hover:bg-slate-50'}`}
                       title={s.toUpperCase()}
                     >
-                      <Grid size={18} />
+                      {s === 'full' && (
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <rect width="18" height="18" x="3" y="3" rx="2" />
+                          <path d="M3 9h18M3 15h18M9 3v18M15 3v18" />
+                        </svg>
+                      )}
+                      {s === 'major' && (
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <rect width="18" height="18" x="3" y="3" rx="2" />
+                          <path d="M3 12h18M12 3v18" />
+                        </svg>
+                      )}
+                      {s === 'dots' && (
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <rect width="18" height="18" x="3" y="3" rx="2" />
+                          <circle cx="8" cy="8" r="0.5" fill="currentColor" />
+                          <circle cx="12" cy="8" r="0.5" fill="currentColor" />
+                          <circle cx="16" cy="8" r="0.5" fill="currentColor" />
+                          <circle cx="8" cy="12" r="0.5" fill="currentColor" />
+                          <circle cx="12" cy="12" r="0.5" fill="currentColor" />
+                          <circle cx="16" cy="12" r="0.5" fill="currentColor" />
+                          <circle cx="8" cy="16" r="0.5" fill="currentColor" />
+                          <circle cx="12" cy="16" r="0.5" fill="currentColor" />
+                          <circle cx="16" cy="16" r="0.5" fill="currentColor" />
+                        </svg>
+                      )}
+                      {s === 'none' && (
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <rect width="18" height="18" x="3" y="3" rx="2" />
+                        </svg>
+                      )}
                     </button>
                   ))}
                 </div>
