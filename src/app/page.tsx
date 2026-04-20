@@ -9,9 +9,9 @@ import type { Metadata } from 'next';
 
 /* ── Homepage-specific metadata (overrides layout.tsx defaults) ── */
 export const metadata: Metadata = {
-  title: 'Free Online Scientific Calculator & Graphing Tool | Tax, EMI, GPA & 80+ Tools | NEPACALC',
+  title: 'Free Scientific Calculator & Graphing Tool | NEPACALC',
   description:
-    "NEPACALC is a free, professional toolkit for Nepal. Solve advanced math with our scientific calculator and real-time graphing engine, or use our 80+ specialized tools for income tax, loan EMI, GPA tracking, and more. No registration required.",
+    "NEPACALC: Nepal's free scientific calculator with real-time graphing, income tax, loan EMI, GPA tracking & 80+ professional tools. No sign-up needed.",
   keywords: [
     'online calculator', 'scientific calculator', 'graphing calculator',
     'maths solver', 'algebra solver', 'trigonometry calculator',
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
     'graphing tool', 'math plotter', 'function grapher',
   ],
   openGraph: {
-    title: 'Free Scientific Calculator & Graphing Tool | 80+ Tools | NEPACALC',
-    description: 'Interactive scientific calculator with real-time function graphing, maths solver, and 80+ professional calculators for Nepal.',
+    title: 'Free Scientific Calculator & Graphing Tool | NEPACALC',
+    description: 'Nepal\'s free scientific calculator with real-time graphing, maths solver & 80+ professional tools for income tax, EMI, GPA and more.',
     url: 'https://nepacalc.com',
     siteName: 'NEPACALC',
     locale: 'en_NP',
