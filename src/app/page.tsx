@@ -143,7 +143,7 @@ export default function HomePage() {
                 Free Scientific Calculator, <br className="hidden sm:block" />
                 <span className="text-blue-600">Graphing Engine</span> & 80+ Specialized Tools
               </h1>
-              <p className="text-[16px] sm:text-[18px] text-[#5f6368] font-medium leading-relaxed max-w-2xl">
+              <p className="text-[16px] sm:text-[18px] text-[#5f6368] font-medium leading-relaxed">
                 Nepal's leading digital laboratory for precision mathematics, financial planning, and engineering solvers. Professional-grade tools with no registration required.
               </p>
             </div>

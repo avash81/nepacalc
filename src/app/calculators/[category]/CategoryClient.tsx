@@ -25,7 +25,7 @@ export default function CategoryClient({ categoryId }: { categoryId: string }) {
           <h1 className="text-display mb-4">
             {category.name} <span className="text-cp-blue">Tools.</span>
           </h1>
-          <p className="text-cp-text-muted max-w-2xl text-lg">
+          <p className="text-cp-text-muted text-lg">
             Professional tools for {category.name.toLowerCase()} specifically designed for the Nepali market.
           </p>
         </div>

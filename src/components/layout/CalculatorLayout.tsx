@@ -172,7 +172,7 @@ export function CalculatorLayout({
                 </div>
               )}
             </div>
-            <p className="text-[13px] sm:text-sm text-slate-500 font-medium leading-relaxed max-w-3xl">
+            <p className="text-[13px] sm:text-sm text-slate-500 font-medium leading-relaxed">
               {description}
             </p>
           </div>
