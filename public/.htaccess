@@ -8,6 +8,8 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !(.*)/$
 RewriteCond %{REQUEST_URI} !^/404
+RewriteCond %{REQUEST_URI} !^/_next/
+RewriteCond %{REQUEST_URI} !\.(js|css|json|txt|rsc|png|jpg|jpeg|gif|svg|ico)$ [NC]
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1/ [L,R=301]
 
 # 3. Handle Clean URLs (Serve index.html for directories)
