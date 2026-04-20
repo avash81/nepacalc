@@ -25,7 +25,7 @@ function GoogleAnalyticsInner({ gaId }: { gaId: string }) {
 }
 
 export function GoogleAnalytics() {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-G78ED8CZ3D';
   if (!gaId) return null;
 
   return (
