@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     apple: '/favicon.png',
   },
   verification: {
-    // google: "ADD_NEW_TAG_HERE",
+    google: "IoM3eC1OeiymFDD1h8N5MWQlfN-5tUmRxpj-e1BFIT8",
   },
   robots: {
     index: true,
