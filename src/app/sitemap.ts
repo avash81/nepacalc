@@ -9,7 +9,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 1. Static Core Pages
   const staticPages = [
     '',
-    '/directory',
     '/about',
     '/pricing',
     '/blog',
@@ -36,14 +35,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === '' ? 1.0 : 0.8,
   }));
 
-  // 2. Canonical Pillar Pages (Rewritten URLs)
-  const catIdToSlug: Record<string, string> = {
-    utility: 'converters',
-    education: 'math-tools',
-  };
-
+  // 2. Canonical Pillar Pages
   const pillarPages = CATEGORIES.map((cat) => ({
-    url: `${baseUrl}/${catIdToSlug[cat.id] || cat.id}/`,
+    url: `${baseUrl}/${cat.id}/`,
     lastModified: new Date(),
     changeFrequency: 'daily' as const,
     priority: 0.9,

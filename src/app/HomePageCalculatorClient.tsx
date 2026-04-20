@@ -2,9 +2,15 @@
 import { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 
-const AllInOneCalculator = dynamic(() => import('@/components/calculator/AllInOneCalculator'), { ssr: false });
-const AdvancedCalculator  = dynamic(() => import('@/components/calculator/AdvancedCalculator'), { ssr: false });
-const CustomGrapher       = dynamic(() => import('@/components/calculator/CustomGrapher'), { ssr: false });
+const LoadingSkeleton = () => (
+  <div className="h-[600px] w-full bg-white border border-slate-200 rounded-[1.5rem] shadow-sm animate-pulse flex items-center justify-center">
+     <div className="w-8 h-8 border-4 border-slate-100 border-t-blue-500 rounded-full animate-spin" />
+  </div>
+);
+
+const AllInOneCalculator = dynamic(() => import('@/components/calculator/AllInOneCalculator'), { ssr: false, loading: LoadingSkeleton });
+const AdvancedCalculator  = dynamic(() => import('@/components/calculator/AdvancedCalculator'), { ssr: false, loading: LoadingSkeleton });
+const CustomGrapher       = dynamic(() => import('@/components/calculator/CustomGrapher'), { ssr: false, loading: () => <div className="h-full w-full bg-slate-50 animate-pulse" /> });
 
 const PURPLE = '#5b5ea6';
 
@@ -25,18 +31,14 @@ export function HomePageCalculatorClient() {
     return () => obs.disconnect();
   }, [mounted, calcStyle]);
 
-  if (!mounted) return (
-    <div className="h-[600px] w-full bg-white border border-[#DADCE0] rounded-[1.5rem] shadow-sm animate-pulse flex items-center justify-center">
-      <div className="w-10 h-10 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin" />
-    </div>
-  );
+  /* Removed mounted check to allow layout SSR */
 
   return (
     <div className="flex flex-col w-full max-w-7xl mx-auto gap-3">
 
       {/* ── Style toggle ──────────────────────────────────────── */}
       <div className="flex items-center justify-center gap-2 py-1">
-        <p className="text-[12px] text-slate-400 font-medium mr-1">Calculator style:</p>
+        <p className="text-[12px] text-slate-600 font-medium mr-1">Calculator style:</p>
         {[
           { id: 'google',   label: '🔵 Scientific Calculator' },
           { id: 'advanced', label: '🟣 Advanced Graphing' },

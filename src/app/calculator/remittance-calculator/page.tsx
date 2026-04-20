@@ -1,22 +1,11 @@
-import Calculator from './Calculator';
-import { Metadata } from 'next';
+'use client';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
-export const metadata: Metadata = {
-  title: 'Remittance & Forex Laboratory — Nepal Today’s Exchange Rates',
-  description: 'Convert USD, SAR, QAR, AED, MYR to NPR. Compare Western Union, IME, and Prabhu Remit rates. Stay updated with daily NRB buying rates.',
-
-  openGraph: {
-    title: 'Remittance & Forex Laboratory — Nepal Today’s Exchange Rates',
-    description: 'Convert USD, SAR, QAR, AED, MYR to NPR. Compare Western Union, IME, and Prabhu Remit rates. Stay updated with daily NRB buying rates.',
-    type: 'article',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Remittance & Forex Laboratory — Nepal Today’s Exchange Rates',
-    description: 'Convert USD, SAR, QAR, AED, MYR to NPR. Compare Western Union, IME, and Prabhu Remit rates. Stay updated with daily NRB buying rates.',
-  },
-};
-
-export default function Page() {
-  return <Calculator />;
+export default function Redirect() {
+  const router = useRouter();
+  useEffect(() => {
+    router.replace('/market-rates/remittance');
+  }, [router]);
+  return null;
 }

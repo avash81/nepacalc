@@ -18,28 +18,25 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 export function useSyncState<T>(
   key: string,
   defaultValue: T,
-  options = { persistent: true, debounce: 300 }
+  options = { persistent: true, debounce: 300, syncToUrl: true }
 ) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // 1. Initial State Resolution (URL Only for stability)
-  const [state, setState] = useState<T>(() => {
+  // 1. Initial State Resolution (SSR Safe)
+  const [state, setState] = useState<T>(defaultValue);
+
+  // 2. Hydration: Load from URL, then LocalStorage once on mount
+  useEffect(() => {
     const urlValue = searchParams.get(key);
     if (urlValue !== null) {
       try {
-        return JSON.parse(urlValue) as T;
+        setState(JSON.parse(urlValue) as T);
       } catch {
-        return urlValue as unknown as T;
+        setState(urlValue as unknown as T);
       }
-    }
-    return defaultValue;
-  });
-
-  // 2. Hydration: Load from LocalStorage once on mount if URL was empty
-  useEffect(() => {
-    if (options.persistent && !searchParams.has(key)) {
+    } else if (options.persistent) {
       const stored = localStorage.getItem(`cp_${key}`);
       if (stored !== null) {
         try {
@@ -62,9 +59,11 @@ export function useSyncState<T>(
       params.set(key, stringValue);
     }
 
-    // Push to URL (Next.js Way)
-    const newUrl = `${pathname}?${params.toString()}`;
-    router.replace(newUrl, { scroll: false });
+    // Push to URL (Next.js Way) - ONLY if enabled
+    if (options.syncToUrl !== false) {
+      const newUrl = `${pathname}?${params.toString()}`;
+      router.replace(newUrl, { scroll: false });
+    }
 
     // Sync to LocalStorage
     if (options.persistent) {

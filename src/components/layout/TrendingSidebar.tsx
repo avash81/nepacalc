@@ -18,7 +18,7 @@ const ALL_TRENDING: CalculatorLink[] = [
   { name: 'Nepal Income Tax', slug: 'nepal-income-tax', category: 'Finance' },
   { name: 'Loan EMI Pro', slug: 'loan-emi', category: 'Finance' },
   { name: 'Engineering GPA Suite', slug: 'engineering-gpa-calculator', category: 'Education' },
-  { name: 'Currency Converter', slug: 'currency-converter', category: 'Utility' },
+  { name: 'Exchange Rate', slug: 'currency-converter', category: 'Market' },
   { name: 'BMI & Body Fat', slug: 'bmi', category: 'Health' },
   { name: 'Nepal Salary Calculator', slug: 'nepal-salary', category: 'Finance' },
   { name: 'Percentage Suite', slug: 'percentage', category: 'Utility' },

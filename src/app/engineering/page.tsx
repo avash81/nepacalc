@@ -96,7 +96,7 @@ export default function EngineeringPage() {
 
       <div className="min-h-screen bg-white">
         {/* Hero */}
-        <section className="pt-20 pb-16 border-b border-slate-100">
+        <section className="pt-20 pb-8 border-b border-slate-100">
           <div className="max-w-6xl mx-auto px-6">
             <div className="mb-2 flex items-center gap-3">
               <span className="text-3xl">🧮</span>
@@ -113,7 +113,7 @@ export default function EngineeringPage() {
         </section>
 
         {/* Main tools grid */}
-        <section className="max-w-6xl mx-auto px-6 py-16">
+        <section className="max-w-6xl mx-auto px-6 pt-6 pb-16">
           <h2 className="text-[13px] font-black uppercase tracking-[0.15em] text-[#4361ee] mb-8 border-b-2 border-slate-100 pb-2">
             Advanced Tools
           </h2>

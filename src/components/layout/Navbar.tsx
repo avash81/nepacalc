@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
   Menu, X, Search, Sun, Moon, ChevronRight, History, Star,
-  Sparkles, Folder, Wallet, Heart, BookOpen, Info, Globe
+  Sparkles, Folder, Wallet, Heart, BookOpen, Info, Globe, Activity
 } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
 import { SearchModal } from './SearchModal';
@@ -44,12 +44,11 @@ export function Navbar() {
   useEffect(() => setIsMenuOpen(false), [path]);
 
   const navLinks = [
-    { name: 'Nepal Specific',       href: '/nepal' },
     { name: 'Finance',     href: '/finance' },
     { name: 'Health',      href: '/health' },
     { name: 'Math',        href: '/math-tools' },
     { name: 'Engineering', href: '/engineering' },
-    { name: 'Converters',  href: '/converters' },
+    { name: 'Market Rates', href: '/market-rates' },
   ];
 
   return (
@@ -75,8 +74,8 @@ export function Navbar() {
                     }`}
                   >
                     {link.name}
-                    {active && <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#FFC107] rounded-t-full" />}
-                    <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#FFC107] scale-x-0 group-hover/nav:scale-x-100 transition-transform origin-center duration-300 rounded-t-full" />
+                    {active && <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#059669] rounded-t-full" />}
+                    <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#059669] scale-x-0 group-hover/nav:scale-x-100 transition-transform origin-center duration-300 rounded-t-full" />
                   </Link>
                 );
               })}
@@ -84,7 +83,8 @@ export function Navbar() {
           </div>
 
           {/* Right: Actions */}
-          <div className="flex items-center gap-2 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-6">
+
             <button
               onClick={() => setIsSearchOpen(true)}
               className="p-2.5 text-[#5F6368] hover:bg-[#F1F3F4] rounded-full transition-colors group"
@@ -123,12 +123,11 @@ export function Navbar() {
 
           <div className="flex-1 overflow-y-auto p-6 space-y-3">
             {[
-               { name: 'Nepal Specific',       href: '/nepal', icon: <Star className="w-5 h-5" /> },
                { name: 'Finance',     href: '/finance', icon: <Wallet className="w-5 h-5" /> },
                { name: 'Health',      href: '/health', icon: <Heart className="w-5 h-5" /> },
                { name: 'Math',        href: '/math-tools', icon: <Sparkles className="w-5 h-5" /> },
                { name: 'Engineering', href: '/engineering', icon: <Sparkles className="w-5 h-5" /> },
-               { name: 'Converters',  href: '/converters', icon: <Globe className="w-5 h-5" /> },
+               { name: 'Market Rates',         href: '/market-rates', icon: <Activity className="w-5 h-5" /> },
             ].map((link) => (
               <Link
                 key={link.href}

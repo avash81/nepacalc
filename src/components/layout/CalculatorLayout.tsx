@@ -111,7 +111,7 @@ export function CalculatorLayout({
   );
 
   return (
-    <div className="min-h-screen bg-[var(--bg-page)] font-sans antialiased lg:pb-0 pt-24">
+    <div className="min-h-screen bg-[var(--bg-page)] font-sans antialiased lg:pb-0 pt-20">
       {/* 0. SEO Power Injection (Standardized JsonLd Suite) */}
       <JsonLd 
         type="breadcrumb"
@@ -133,7 +133,7 @@ export function CalculatorLayout({
       />
 
       {/* 1. Premium Grade Breadcrumb/Header */}
-      <div className="bg-[#F8F9FA] text-[#5F6368] py-3 border-b border-[#DADCE0] no-print relative overflow-hidden">
+      <div className="bg-[#F8F9FA] text-[#5F6368] py-2.5 border-b border-[#DADCE0] no-print relative overflow-hidden">
         <div className="hp-container flex items-center gap-2.5 text-[10px] font-black uppercase tracking-[0.2em] relative z-10">
           <button 
             type="button"
@@ -157,9 +157,9 @@ export function CalculatorLayout({
         </div>
       </div>
 
-      <main className="hp-container py-3 sm:py-4">
+      <main className="hp-container py-2 sm:py-3">
         {/* 2. Professional Header Section */}
-        <header className="mb-4 sm:mb-5 border-b border-slate-200 pb-3 flex flex-col sm:flex-row justify-between items-start gap-4">
+        <header className="mb-3 sm:mb-4 border-b border-slate-200 pb-2.5 flex flex-col sm:flex-row justify-between items-start gap-4">
           <div className="flex-1">
             <div className="flex flex-wrap items-center gap-3 mb-1">
               <h1 className="text-2xl sm:text-2xl lg:text-3xl font-bold text-[#202124] tracking-tight">
@@ -245,12 +245,12 @@ export function CalculatorLayout({
           </div>
         )}
 
-        <section className="mt-12 pt-12 border-t border-slate-200 print:hidden">
+        <section className="mt-8 pt-8 border-t border-slate-200 print:hidden">
           {renderCategoryGrid()}
         </section>
 
         {/* 4. Shared FAQ/Detail Section (Solves 'No Content' SEO Warning) */}
-        <section className="mt-10 pt-8 border-t border-slate-200 print:hidden">
+        <section className="mt-8 pt-6 border-t border-slate-200 print:hidden">
           {faqSection ? (
              <div className="prose prose-slate max-w-none prose-headings:text-[#202124] prose-a:text-[#1A73E8] prose-p:text-slate-600 prose-strong:text-black prose-sm font-medium">
                 {faqSection}
@@ -306,7 +306,6 @@ export function CalculatorLayout({
           )}
         </section>
 
-        <div className="mt-16 sm:mt-20 pt-8 border-t border-slate-200" aria-hidden="true" />
       </main>
     </div>
   );

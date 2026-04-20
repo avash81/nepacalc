@@ -81,13 +81,14 @@ const homepageItemListSchema = {
   '@type': 'ItemList',
   name: 'NEPACALC Calculator Categories',
   description: 'All calculator and converter categories available on NEPACALC',
-  numberOfItems: 5,
+  numberOfItems: 6,
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Nepal Specific Calculators', url: 'https://nepacalc.com/nepal' },
     { '@type': 'ListItem', position: 2, name: 'Finance & Tax Calculators', url: 'https://nepacalc.com/finance' },
     { '@type': 'ListItem', position: 3, name: 'Health & Fitness Calculators', url: 'https://nepacalc.com/health' },
     { '@type': 'ListItem', position: 4, name: 'Math & Education Tools', url: 'https://nepacalc.com/math-tools' },
     { '@type': 'ListItem', position: 5, name: 'Unit Converters & Utility Tools', url: 'https://nepacalc.com/converters' },
+    { '@type': 'ListItem', position: 6, name: 'Engineering Calculators', url: 'https://nepacalc.com/engineering' },
   ],
 };
 
@@ -149,9 +150,9 @@ export default function HomePage() {
             <div className="max-w-4xl mb-6">
               <h1 className="text-[28px] sm:text-[36px] lg:text-[44px] font-black text-[#202124] leading-[1.05] tracking-tight mb-4">
                 Free Scientific Calculator, <br className="hidden sm:block" />
-                <span className="text-blue-600">Graphing Engine</span> & 80+ Specialized Tools
+                <span className="text-blue-700">Graphing Engine</span> & 80+ Specialized Tools
               </h1>
-              <p className="text-[16px] sm:text-[18px] text-[#5f6368] font-medium leading-relaxed">
+              <p className="text-[16px] sm:text-[18px] text-[#505559] font-medium leading-relaxed">
                 Nepal's leading digital laboratory for precision mathematics, financial planning, and engineering solvers. Professional-grade tools with no registration required.
               </p>
             </div>
@@ -167,7 +168,7 @@ export default function HomePage() {
         <main className="hp-container py-10" aria-labelledby="calc-directory-heading">
           <h2 id="calc-directory-heading" className="sr-only">Calculator Categories</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-x-8 gap-y-16">
-            {CATEGORIES.map(cat => (
+            {CATEGORIES.filter(c => c.id !== 'market').map(cat => (
               <div key={cat.id} className="space-y-4">
                 <Link href={cat.id === 'education' ? '/math-tools' : cat.id === 'utility' ? '/converters' : `/${cat.id}`}>
                   <h2 className={`${cat.id === 'engineering' ? 'text-[#4361ee]' : 'text-[#1a73e8]'} text-[13px] font-black uppercase tracking-widest border-b-2 border-slate-100 pb-2 hover:underline`}>
@@ -184,11 +185,11 @@ export default function HomePage() {
                       <li className="h-[21px]"><Link href="/engineering/formulas" className="text-[14px] text-[#202124] hover:text-[#4361ee] hover:underline font-bold truncate block">Formula Reference</Link></li>
                     </>
                   )}
-                  {/* Total 10 rows per column for symmetry */}
-                  {cat.calculators.slice(0, cat.id === 'engineering' ? 6 : 10).map(calc => (
+                  {/* Total 8 rows per column for symmetry, pushing niche tools to category pages */}
+                  {cat.calculators.slice(0, cat.id === 'engineering' ? 6 : cat.id === 'nepal' ? 10 : 7).map(calc => (
                     <li key={calc.id} className="h-[21px]">
                       <Link 
-                         href={`/calculator/${calc.slug}`} 
+                         href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`} 
                          className="text-[14px] text-[#202124] hover:text-blue-600 hover:underline truncate block"
                          title={calc.name}
                       >

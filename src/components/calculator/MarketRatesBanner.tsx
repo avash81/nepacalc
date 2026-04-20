@@ -27,10 +27,12 @@ function PriceRow({ label, value, highlight, bold, color = 'blue' }: {
   );
 }
 
-export function MarketRatesBanner({ rates, selectedId, onSelect }: { 
+export function MarketRatesBanner({ rates, selectedId, onSelect, variant = 'default', filter }: { 
   rates: any, 
   selectedId?: string, 
-  onSelect?: (id: string, rate: number, purity: number, is10g: boolean) => void 
+  onSelect?: (id: string, rate: number, purity: number, is10g: boolean) => void,
+  variant?: 'default' | 'compact',
+  filter?: 'gold' | 'silver'
 }) {
   const [mounted, setMounted] = useState(false);
   const [chartMode, setChartMode] = useState<'GOLD' | 'SILVER'>('GOLD');
@@ -71,79 +73,24 @@ export function MarketRatesBanner({ rates, selectedId, onSelect }: {
     { id: 'silver_10g', label: 'Silver - 10g', np: '( चाँदी )', rate: Math.round(rates.silver.tolaNPR / 1.1664), purity: 1.0, isSilver: true, is10g: true },
   ];
 
-  return (
-    <div className="w-full bg-white border border-[#DADCE0] rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col">
-       <div className="flex flex-col lg:flex-row">
-          {/* 1. Left Panel: Market Rates Board */}
-          <div className="flex-1 lg:w-1/2 border-b lg:border-b-0 lg:border-r border-[#DADCE0] min-w-0 overflow-x-auto bg-white">
-             <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-                <div className="flex items-center gap-3">
-                   <div className="w-10 h-10 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
-                      <Activity className="w-5 h-5" />
-                   </div>
-                   <div>
-                      <h3 className="text-[12px] font-black uppercase tracking-[0.2em] text-slate-900">Market Board</h3>
-                      <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Official Federation Rates</p>
-                   </div>
-                </div>
-                <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-emerald-50 rounded-full border border-emerald-100">
-                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                   <span className="text-[9px] font-black text-emerald-700 uppercase tracking-widest">NRB Unified</span>
-                </div>
-             </div>
-             <div>
-                <table className="w-full text-left whitespace-nowrap">
-                   <thead>
-                      <tr className="bg-slate-50/30">
-                          <th className="py-4 px-8 font-black text-slate-400 uppercase text-[10px] tracking-widest">Asset Class</th>
-                          <th className="py-4 px-8 font-black text-slate-900 uppercase text-[10px] tracking-widest text-right">Official (Rs.)</th>
-                          <th className="py-4 px-8 font-black text-slate-400 uppercase text-[10px] tracking-widest text-right">Status</th>
-                      </tr>
-                   </thead>
-                   <tbody className="divide-y divide-slate-100">
-                      {rows.map(row => {
-                        const isSelected = selectedId === row.id;
-                        return (
-                          <tr 
-                            key={row.id} 
-                            onClick={() => onSelect?.(row.id, row.rate, row.purity, row.is10g)}
-                            className={`cursor-pointer group transition-all duration-300 
-                              ${isSelected ? 'bg-blue-50/50 border-l-4 border-l-blue-600' : 'hover:bg-slate-50'}`}
-                          >
-                             <td className="py-5 px-8">
-                                <div className="flex flex-col">
-                                   <span className={`text-sm font-black tracking-tight ${isSelected ? 'text-blue-700' : 'text-slate-800'}`}>
-                                      {row.label}
-                                   </span>
-                                   <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{row.np}</span>
-                                </div>
-                             </td>
-                             <td className={`py-5 px-8 text-right font-mono text-base font-black tracking-tighter ${isSelected ? 'text-blue-600' : 'text-slate-900'}`}>
-                                {fmt(row.rate)}
-                             </td>
-                             <td className="py-5 px-8 text-right">
-                                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 shadow-sm opacity-80 group-hover:opacity-100 transition-opacity">
-                                   <span className="text-[10px] font-black tracking-widest uppercase">Verified</span>
-                                </div>
-                             </td>
-                          </tr>
-                        );
-                      })}
-                   </tbody>
-                </table>
-             </div>
-          </div>
+  const filteredRows = filter 
+    ? rows.filter(r => filter === 'gold' ? !r.isSilver : r.isSilver)
+    : rows;
 
-          {/* 2. Right Panel: Market Trend Analysis Dashboard */}
-          <div className="flex-1 lg:w-1/2 p-10 flex flex-col bg-[#F8F9FA]/40 min-h-[440px] min-w-0">
+  const isCompact = variant === 'compact';
+
+  return (
+    <div className={`w-full bg-white border border-[#DADCE0] ${isCompact ? 'rounded-2xl' : 'rounded-[2.5rem]'} overflow-hidden ${isCompact ? 'shadow-lg' : 'shadow-2xl'} flex flex-col`}>
+       <div className="flex flex-col lg:flex-row">
+          {/* 1. Left Panel: Market Trend Analysis Dashboard */}
+          {!isCompact && (
+            <div className="flex-1 lg:w-1/2 p-10 flex flex-col bg-[#F8F9FA]/40 min-h-[440px] min-w-0 border-b lg:border-b-0 lg:border-r border-[#DADCE0]">
              <div className="flex items-center justify-between mb-8 border-b border-slate-200 pb-5">
                 <div className="flex bg-white p-1.5 rounded-[1.25rem] border border-slate-200 shadow-sm">
                    {['GOLD', 'SILVER'].map(asset => (
                       <button 
                          key={asset}
                          onClick={() => setChartMode(asset as any)}
-                         aria-label={`View ${asset} price chart`}
-                         aria-pressed={chartMode === asset}
                          className={`px-6 py-2.5 text-[11px] font-black uppercase rounded-xl transition-all duration-300 ${chartMode === asset ? 'bg-blue-600 text-white shadow-xl shadow-blue-500/30' : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'}`}
                       >
                          {asset}
@@ -160,31 +107,31 @@ export function MarketRatesBanner({ rates, selectedId, onSelect }: {
              
              <div className="flex-1 w-full relative">
                 <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-                     <defs>
-                        <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                           <stop offset="5%" stopColor={chartMode === 'GOLD' ? '#1A73E8' : '#64748b'} stopOpacity={0.15}/>
-                           <stop offset="95%" stopColor={chartMode === 'GOLD' ? '#1A73E8' : '#64748b'} stopOpacity={0}/>
-                        </linearGradient>
-                     </defs>
-                     <XAxis dataKey="date" tick={{fontSize: 9, fill: '#64748b', fontWeight: 800}} tickLine={false} axisLine={false} dy={10} minTickGap={30} />
-                     <YAxis domain={['auto', 'auto']} tick={{fontSize: 9, fill: '#64748b', fontWeight: 800}} tickFormatter={v => (v/1000).toFixed(0) + 'k'} tickLine={false} axisLine={false} />
-                     <Tooltip 
-                       contentStyle={{ borderRadius: '20px', border: 'none', boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)', fontSize: '13px', backgroundColor: '#fff', padding: '16px' }}
-                       itemStyle={{ color: chartMode === 'GOLD' ? '#1A73E8' : '#334155', fontWeight: 900 }}
-                       formatter={(value: any) => [`Rs. ${fmt(value)}`, `${chartMode} Spot Price`]}
-                       labelStyle={{ color: '#94a3b8', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.1em' }}
-                     />
-                     <Area 
-                       type="monotone" 
-                       dataKey="price" 
-                       stroke={chartMode === 'GOLD' ? '#1A73E8' : '#475569'} 
-                       strokeWidth={4} 
-                       fillOpacity={1} 
-                       fill="url(#chartGradient)"
-                       animationDuration={2000}
-                     />
-                  </AreaChart>
+                   <AreaChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+                      <defs>
+                         <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="5%" stopColor={chartMode === 'GOLD' ? '#1A73E8' : '#64748b'} stopOpacity={0.15}/>
+                            <stop offset="95%" stopColor={chartMode === 'GOLD' ? '#1A73E8' : '#64748b'} stopOpacity={0}/>
+                         </linearGradient>
+                      </defs>
+                      <XAxis dataKey="date" tick={{fontSize: 9, fill: '#64748b', fontWeight: 800}} tickLine={false} axisLine={false} dy={10} minTickGap={30} />
+                      <YAxis domain={['auto', 'auto']} tick={{fontSize: 9, fill: '#64748b', fontWeight: 800}} tickFormatter={v => (v/1000).toFixed(0) + 'k'} tickLine={false} axisLine={false} />
+                      <Tooltip 
+                        contentStyle={{ borderRadius: '20px', border: 'none', boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)', fontSize: '13px', backgroundColor: '#fff', padding: '16px' }}
+                        itemStyle={{ color: chartMode === 'GOLD' ? '#1A73E8' : '#334155', fontWeight: 900 }}
+                        formatter={(value: any) => [`Rs. ${fmt(value)}`, `${chartMode} Spot Price`]}
+                        labelStyle={{ color: '#94a3b8', fontSize: '10px', fontWeight: 900, textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.1em' }}
+                      />
+                      <Area 
+                        type="monotone" 
+                        dataKey="price" 
+                        stroke={chartMode === 'GOLD' ? '#1A73E8' : '#475569'} 
+                        strokeWidth={4} 
+                        fillOpacity={1} 
+                        fill="url(#chartGradient)"
+                        animationDuration={2000}
+                      />
+                   </AreaChart>
                 </ResponsiveContainer>
              </div>
              
@@ -206,10 +153,74 @@ export function MarketRatesBanner({ rates, selectedId, onSelect }: {
                 </div>
              </div>
           </div>
+          )}
+
+          {/* 2. Right Panel: Market Rates Board */}
+          <div className={`flex-1 ${isCompact ? 'w-full' : 'lg:w-1/2'} min-w-0 overflow-x-auto bg-white`}>
+             <div className={`${isCompact ? 'px-6 py-4' : 'px-8 py-6'} border-b border-slate-100 flex items-center justify-between bg-slate-50/50`}>
+                <div className="flex items-center gap-3">
+                   <div className={`${isCompact ? 'w-8 h-8' : 'w-10 h-10'} rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20`}>
+                      <Activity className={`${isCompact ? 'w-4 h-4' : 'w-5 h-5'}`} />
+                   </div>
+                   <div>
+                      <h3 className={`${isCompact ? 'text-[10px]' : 'text-[12px]'} font-black uppercase tracking-[0.2em] text-slate-900`}>Market Board</h3>
+                      {!isCompact && <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Official Federation Rates</p>}
+                   </div>
+                </div>
+                <div className={`${isCompact ? 'hidden' : 'hidden sm:flex'} items-center gap-2 px-4 py-2 bg-emerald-50 rounded-full border border-emerald-100`}>
+                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                   <span className="text-[9px] font-black text-emerald-700 uppercase tracking-widest">NRB Unified</span>
+                </div>
+             </div>
+             <div>
+                <table className="w-full text-left whitespace-nowrap">
+                   <thead>
+                      <tr className="bg-slate-50/30">
+                          <th className={`${isCompact ? 'py-3 px-6' : 'py-4 px-8'} font-black text-slate-400 uppercase text-[10px] tracking-widest`}>Asset Class</th>
+                          <th className={`${isCompact ? 'py-3 px-6' : 'py-4 px-8'} font-black text-slate-900 uppercase text-[10px] tracking-widest text-right`}>Official (Rs.)</th>
+                          {!isCompact && <th className="py-4 px-8 font-black text-slate-400 uppercase text-[10px] tracking-widest text-right">Status</th>}
+                      </tr>
+                   </thead>
+                   <tbody className="divide-y divide-slate-100">
+                      {filteredRows.map(row => {
+                        const isSelected = selectedId === row.id;
+                        return (
+                          <tr 
+                            key={row.id} 
+                            onClick={() => onSelect?.(row.id, row.rate, row.purity, row.is10g)}
+                            className={`cursor-pointer group transition-all duration-300 
+                              ${isSelected ? 'bg-blue-50/50 border-l-4 border-l-blue-600' : 'hover:bg-slate-50'}`}
+                          >
+                             <td className={`${isCompact ? 'py-4 px-6' : 'py-5 px-8'}`}>
+                                <div className="flex flex-col">
+                                   <span className={`${isCompact ? 'text-[13px]' : 'text-sm'} font-black tracking-tight ${isSelected ? 'text-blue-700' : 'text-slate-800'}`}>
+                                      {row.label}
+                                   </span>
+                                   <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{row.np}</span>
+                                </div>
+                             </td>
+                             <td className={`${isCompact ? 'py-4 px-6' : 'py-5 px-8'} text-right font-mono ${isCompact ? 'text-[14px]' : 'text-base'} font-black tracking-tighter ${isSelected ? 'text-blue-600' : 'text-slate-900'}`}>
+                                {fmt(row.rate)}
+                             </td>
+                             {!isCompact && (
+                               <td className="py-5 px-8 text-right">
+                                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 shadow-sm opacity-80 group-hover:opacity-100 transition-opacity">
+                                     <span className="text-[10px] font-black tracking-widest uppercase">Verified</span>
+                                  </div>
+                               </td>
+                             )}
+                          </tr>
+                        );
+                      })}
+                   </tbody>
+                </table>
+             </div>
+          </div>
        </div>
 
        {/* 3. Bottom Hub: Professional Measurement & Conversion Bridge */}
-       <div className="bg-[#fcfdfe] border-t border-slate-100 p-8 lg:p-14">
+       {!isCompact && (
+         <div className="bg-[#fcfdfe] border-t border-slate-100 p-8 lg:p-14">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-14">
              <div className="flex items-center gap-5">
                 <div className="w-16 h-16 rounded-[1.5rem] bg-[#002147] flex items-center justify-center text-white shadow-2xl shadow-blue-900/30">
@@ -226,7 +237,7 @@ export function MarketRatesBanner({ rates, selectedId, onSelect }: {
              </div>
           </div>
 
-          {/* Global Spot Index Row (User Requested USD Integration) */}
+          {/* Global Spot Index Row */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
              <div className="bg-slate-900 rounded-[2rem] p-6 text-white flex items-center justify-between border border-white/10 shadow-xl group hover:border-blue-500 transition-colors">
                 <div className="flex items-center gap-4">
@@ -273,7 +284,6 @@ export function MarketRatesBanner({ rates, selectedId, onSelect }: {
                     rel="noopener noreferrer"
                     className="p-2 bg-slate-50 text-slate-400 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all"
                     title="Verify on Google Finance"
-                    aria-label="Verify live rates on Google Finance"
                    >
                       <Info className="w-4 h-4" />
                    </a>
@@ -281,23 +291,19 @@ export function MarketRatesBanner({ rates, selectedId, onSelect }: {
                 <div className="flex items-end justify-between">
                    <div className="flex flex-col">
                       <p className="text-xl font-black font-mono tracking-tighter text-emerald-600">
-                         Rs. {rates.forex.usd}
+                         Rs. {rates.forex.usd.toFixed(2)}
                       </p>
                       <div className="flex items-center gap-1 mt-1">
                          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
                          <p className="text-[8px] font-black text-slate-400 uppercase tracking-[0.1em]">Synced with Google Index</p>
                       </div>
                    </div>
-                   <div className="text-[8px] font-black text-slate-300 uppercase italic">
-                      {rates.forex.provider === 'Google Finance Index' ? 'Primary' : 'Official NRB'}
-                   </div>
                 </div>
              </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-             {/* Hallmark Gold Metric Card */}
-             <div className="bg-white rounded-[3rem] p-10 space-y-8 border border-slate-200 shadow-xl shadow-slate-100/50 hover:border-blue-500 transition-all duration-700 group">
+             <div className="bg-white rounded-[3rem] p-10 space-y-8 border border-slate-200 shadow-xl group">
                 <div className="flex items-center justify-between border-b pb-4">
                    <div className="flex flex-col">
                       <span className="text-[10px] font-black text-blue-600 tracking-[0.2em] uppercase">Metrics Alpha</span>
@@ -311,13 +317,11 @@ export function MarketRatesBanner({ rates, selectedId, onSelect }: {
                    <PriceRow label="1 Gram (Precision)" value={rates.gold.tolaNPR / 11.6638} />
                    <div className="pt-6 border-t border-slate-100 space-y-4">
                       <PriceRow label="1 Kilogram (kg)" value={(rates.gold.tolaNPR / 11.6638) * 1000} bold />
-                      <PriceRow label="1 Ounce (oz)" value={(rates.gold.tolaNPR / 11.6638) * 31.1035} />
                    </div>
                 </div>
              </div>
 
-             {/* Tejabi Gold Metric Card */}
-             <div className="bg-white rounded-[3rem] p-10 space-y-8 border border-slate-200 shadow-xl shadow-slate-100/50 hover:border-amber-500 transition-all duration-700 group">
+             <div className="bg-white rounded-[3rem] p-10 space-y-8 border border-slate-200 shadow-xl group">
                 <div className="flex items-center justify-between border-b pb-4">
                    <div className="flex flex-col">
                       <span className="text-[10px] font-black text-amber-600 tracking-[0.2em] uppercase">Metrics Beta</span>
@@ -331,13 +335,11 @@ export function MarketRatesBanner({ rates, selectedId, onSelect }: {
                    <PriceRow label="1 Gram (Precision)" value={(rates.gold.tolaNPR * 0.916) / 11.6638} color="amber" />
                    <div className="pt-6 border-t border-slate-100 space-y-4">
                       <PriceRow label="1 Kilogram (kg)" value={(rates.gold.tolaNPR * 0.916 / 11.6638) * 1000} bold color="amber" />
-                      <PriceRow label="1 Ounce (oz)" value={(rates.gold.tolaNPR * 0.916 / 11.6638) * 31.1035} color="amber" />
                    </div>
                 </div>
              </div>
 
-             {/* Fine Silver Metric Card */}
-             <div className="bg-white rounded-[3rem] p-10 space-y-8 border border-slate-200 shadow-xl shadow-slate-100/50 hover:border-slate-800 transition-all duration-700 group">
+             <div className="bg-white rounded-[3rem] p-10 space-y-8 border border-slate-200 shadow-xl group">
                 <div className="flex items-center justify-between border-b pb-4">
                    <div className="flex flex-col">
                       <span className="text-[10px] font-black text-slate-500 tracking-[0.2em] uppercase">Precious Gamma</span>
@@ -351,12 +353,12 @@ export function MarketRatesBanner({ rates, selectedId, onSelect }: {
                    <PriceRow label="1 Gram (Precision)" value={rates.silver.tolaNPR / 11.6638} color="slate" />
                    <div className="pt-6 border-t border-slate-100 space-y-4">
                       <PriceRow label="1 Kilogram (kg)" value={(rates.silver.tolaNPR / 11.6638) * 1000} bold color="slate" />
-                      <PriceRow label="1 Ounce (oz)" value={(rates.silver.tolaNPR / 11.6638) * 31.1035} color="slate" />
                    </div>
                 </div>
              </div>
           </div>
-       </div>
+        </div>
+       )}
     </div>
   );
 }

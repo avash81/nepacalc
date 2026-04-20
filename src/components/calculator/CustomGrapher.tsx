@@ -299,6 +299,7 @@ export default function CustomGrapher({ expression }: { expression: string }) {
       <div className="absolute top-4 right-4 z-20 flex flex-col items-end">
         <button 
           onClick={() => setSettingsOpen(!settingsOpen)}
+          aria-label="Toggle settings"
           className={`p-2.5 bg-white/95 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-xl transition-all hover:bg-slate-50 active:scale-95 ${settingsOpen ? 'text-indigo-600 ring-4 ring-indigo-50/50' : 'text-slate-500'}`}
         >
           <Settings size={22} />
@@ -388,18 +389,18 @@ export default function CustomGrapher({ expression }: { expression: string }) {
 
       {/* Control Cluster (Bottom Right) */}
       <div className="absolute bottom-24 lg:bottom-6 right-4 lg:right-6 z-20 flex flex-col gap-2 lg:gap-3">
-        <button onClick={toggleFullscreen} className="p-3.5 bg-white/95 backdrop-blur-sm border border-slate-200 rounded-full shadow-xl text-slate-600 hover:text-indigo-600 hover:scale-110 active:scale-95 transition-all">
+        <button onClick={toggleFullscreen} aria-label="Toggle fullscreen" className="p-3.5 bg-white/95 backdrop-blur-sm border border-slate-200 rounded-full shadow-xl text-slate-600 hover:text-indigo-600 hover:scale-110 active:scale-95 transition-all">
           <Maximize size={22} />
         </button>
         <div className="flex flex-col gap-[2px] bg-slate-200 border border-slate-200 rounded-[1.5rem] shadow-2xl overflow-hidden">
-          <button onClick={() => zoomBy(0.85)} className="p-3.5 bg-white hover:bg-slate-50 text-slate-600 hover:text-indigo-600 transition-colors" title="Zoom In">
+          <button onClick={() => zoomBy(0.85)} aria-label="Zoom in" className="p-3.5 bg-white hover:bg-slate-50 text-slate-600 hover:text-indigo-600 transition-colors" title="Zoom In">
             <Plus size={22} />
           </button>
-          <button onClick={() => zoomBy(1.15)} className="p-3.5 bg-white hover:bg-slate-50 text-slate-600 hover:text-indigo-600 transition-colors" title="Zoom Out">
+          <button onClick={() => zoomBy(1.15)} aria-label="Zoom out" className="p-3.5 bg-white hover:bg-slate-50 text-slate-600 hover:text-indigo-600 transition-colors" title="Zoom Out">
             <Minus size={22} />
           </button>
         </div>
-        <button onClick={() => { view.current = { xMin: -10, xMax: 10, yMin: -7, yMax: 7 }; draw(); }} className="p-3.5 bg-white border border-slate-200 rounded-full shadow-xl text-slate-600 hover:text-indigo-600 transition-all hover:scale-110 active:scale-90" title="Recentre">
+        <button onClick={() => { view.current = { xMin: -10, xMax: 10, yMin: -7, yMax: 7 }; draw(); }} aria-label="Recenter graph" className="p-3.5 bg-white border border-slate-200 rounded-full shadow-xl text-slate-600 hover:text-indigo-600 transition-all hover:scale-110 active:scale-90" title="Recentre">
           <Home size={22} />
         </button>
       </div>

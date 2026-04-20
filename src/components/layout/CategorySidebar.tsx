@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import { CATEGORIES } from '@/data/calculators';
 
 const PILLAR_LINKS: Record<string, string> = {
+  market: '/market-rates',
   nepal: '/nepal',
   finance: '/finance',
   health: '/health',

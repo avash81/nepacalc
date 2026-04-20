@@ -44,7 +44,6 @@ export const metadata: Metadata = {
     type: 'website',
   },
   alternates: {
-    canonical: 'https://nepacalc.com',
     languages: {
       'en-NP': 'https://nepacalc.com',
       'en-US': 'https://nepacalc.com',
@@ -86,7 +85,7 @@ const globalSchema = {
       },
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://nepacalc.com/calculator/{search_term_string}",
+        "target": "https://nepacalc.com/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     },
