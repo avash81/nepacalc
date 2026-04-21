@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useCallback, useState } from 'react';
+import { useEffect, useRef, useCallback, useState, useMemo } from 'react';
 import Link from 'next/link';
 import { Settings, Maximize, Minus, Plus, Home, Grid, X } from 'lucide-react';
 
