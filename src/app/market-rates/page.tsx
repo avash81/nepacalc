@@ -77,10 +77,10 @@ export default function MarketRatesPillar() {
               <span className="text-3xl">📊</span>
               <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#059669]">Live Market Authority</span>
             </div>
-            <h1 className="text-[36px] sm:text-[48px] font-black text-[#202124] tracking-tight leading-tight mb-4 lowercase">
+            <h1 className="text-[18px] sm:text-[24px] font-black text-[#202124] tracking-tight leading-tight mb-2 lowercase">
               Market Rates <span className="text-[#059669]">&</span> Live Prices
             </h1>
-            <p className="text-[16px] text-[#5f6368] max-w-2xl leading-relaxed">
+            <p className="text-[13px] text-[#5f6368] max-w-2xl leading-relaxed">
               Official live gold and silver prices from FENEGOSIDA and real-time foreign exchange (Forex) rates from official indices.
               Professional calculations for remittance, taxes, and investments.
             </p>
@@ -98,19 +98,19 @@ export default function MarketRatesPillar() {
             {ADVANCED.map(tool => (
               <div
                 key={tool.title}
-                className="group relative rounded-2xl border border-slate-200 p-6 hover:border-transparent hover:shadow-xl transition-all duration-300 overflow-hidden"
+                className="group relative rounded-xl border border-slate-200 p-3 hover:border-transparent hover:shadow-lg transition-all duration-300 overflow-hidden"
               >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ background: `linear-gradient(135deg, ${tool.color}08, ${tool.color}15)` }} />
 
                 <div className="relative z-10">
-                  <div className="text-4xl mb-4">{tool.icon}</div>
-                  <h3 className="text-[18px] font-bold text-[#202124] mb-2">{tool.title}</h3>
-                  <p className="text-[13px] text-[#5f6368] leading-relaxed mb-6">{tool.desc}</p>
+                  <div className="text-xl mb-2">{tool.icon}</div>
+                  <h3 className="text-[13px] font-bold text-[#202124] mb-1">{tool.title}</h3>
+                  <p className="text-[11px] text-[#5f6368] leading-relaxed mb-2">{tool.desc}</p>
 
                   <Link
                     href={tool.href}
-                    className="inline-block px-5 py-2.5 rounded-xl text-[12px] font-black uppercase tracking-wider text-white transition-all hover:scale-105 active:scale-95"
+                    className="inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider text-white transition-all hover:scale-105 active:scale-95"
                     style={{ background: tool.color }}
                   >
                     Open Live Feed →
