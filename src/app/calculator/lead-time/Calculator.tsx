@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 type Mode = 'delivery' | 'order';
 type Unit = 'days' | 'weeks' | 'months';
 
-export function Calculator() {
+export function Calculator({ faqs }: { faqs?: { question: string; answer: string; }[] }) {
   const [mode, setMode] = useState<Mode>('delivery');
   
   // States
@@ -168,6 +168,7 @@ export function Calculator() {
       title="Lead Time Calculator"
       description="Calculate expected delivery schedules or required order dates based on lead time metrics."
       category={{ label: "Finance & Logistics", href: "/calculator/category/finance" }}
+      faqs={faqs}
       leftPanel={Inputs}
       rightPanel={Results}
     />
