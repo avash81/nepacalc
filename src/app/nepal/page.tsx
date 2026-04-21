@@ -1,9 +1,8 @@
 import { CATEGORIES } from '@/data/calculators';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ChevronRight, Star, Flame } from 'lucide-react';
-import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
+import { JsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -41,50 +40,87 @@ export default function NepalPillarPage() {
   const category = CATEGORIES.find(c => c.id === 'nepal')!;
 
   return (
-    <CalcWrapper
-      title="Nepal Specific Tools"
-      description={`Free suite of ${category.calculators.length} institutional-grade calculators designed for Nepal. High-precision tools natively tailored for local inland revenue taxation, national banking directives, and examination board standards.`}
-      crumbs={[{ label: 'Nepal Specific Tools' }]}
-    >
-      <div className="py-8">
+    <>
+      <JsonLd
+        type="breadcrumb"
+        breadcrumbItems={[
+          { name: 'Home', item: 'https://nepacalc.com' },
+          { name: 'Nepal Specific', item: 'https://nepacalc.com/nepal' }
+        ]}
+      />
+      <JsonLd
+        type="calculator"
+        name="NEPACALC Nepal Specific Suite"
+        description="The most complete suite of Nepal financial, legal, and educational calculators."
+        url="https://nepacalc.com/nepal"
+        category="FinancialApplication"
+      />
 
-        {/* Clinical Index Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
-          {category.calculators.map(calc => (
-            <div key={calc.id} className="group flex flex-col gap-1 border-b border-slate-50 pb-4">
-              <Link
-                href={`/calculator/${calc.slug}`}
-                className="text-[16px] font-bold text-[#1a73e8] hover:underline"
-              >
-                {calc.name}
-              </Link>
-              <p className="text-[13px] text-[#5f6368] leading-relaxed font-medium">
-                {calc.description}
-              </p>
+      <div className="min-h-screen bg-white">
+        {/* Hero */}
+        <section className="pt-20 pb-8 border-b border-slate-100">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="mb-2 flex items-center gap-3">
+              <span className="text-3xl">🇳🇵</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#059669]">Nepal Specific</span>
             </div>
-          ))}
-        </div>
+            <h1 className="text-[36px] sm:text-[48px] font-black text-[#202124] tracking-tight leading-tight mb-4">
+              Nepal Calculators
+            </h1>
+            <p className="text-[16px] text-[#5f6368] max-w-2xl leading-relaxed">
+              Free suite of {category.calculators.length} institutional-grade calculators designed for Nepal. High-precision tools natively tailored for local inland revenue taxation, national banking directives, and examination board standards.
+            </p>
+          </div>
+        </section>
+
+        {/* Existing calculators */}
+        <section className="max-w-6xl mx-auto px-6 pb-16 pt-10">
+          <h2 className="text-[13px] font-black uppercase tracking-[0.15em] text-[#059669] mb-8 border-b-2 border-slate-100 pb-2">
+            Official Nepal Calculators
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            {category.calculators.map(calc => (
+              <Link
+                key={calc.id}
+                href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:border-[#059669] hover:bg-[#05966908] transition-all group"
+              >
+                <span className="text-lg flex-shrink-0">{calc.icon}</span>
+                <span className="text-[13px] font-medium text-[#202124] group-hover:text-[#059669] transition-colors truncate">
+                  {calc.name}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
 
         {/* Institutional SEO Block */}
-        <div className="mt-24 pt-12 border-t border-[#dadce0]">
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl opacity-80">
+        <section className="border-t border-slate-200 py-12">
+          <div className="max-w-5xl mx-auto px-6">
+            <h2 className="text-[16px] font-black text-[#202124] mb-6">
+              NEPACALC Compliance & Accuracy
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 opacity-80">
               <div>
-                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">Compliance</h3>
-                <p className="text-[11px] text-[#5f6368] leading-relaxed">Verified against official Nepal Rastra Bank and Inland Revenue Department (IRD) guidelines.</p>
+                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">Verification</h3>
+                <p className="text-[11px] text-[#5f6368] leading-relaxed">Measurement constants based on SI standards and international metric/imperial conventions.</p>
               </div>
               <div>
-                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">Accuracy</h3>
-                <p className="text-[11px] text-[#5f6368] leading-relaxed">High-precision numeric engines updated annually for Finance Bill mandates.</p>
+                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">Real-time Data</h3>
+                <p className="text-[11px] text-[#5f6368] leading-relaxed">Currency and exchange rates pull live from central bank APIs to ensure calculation validity.</p>
               </div>
               <div>
-                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">Privacy</h3>
-                <p className="text-[11px] text-[#5f6368] leading-relaxed">Client-side execution ensures your financial data never leaves your browser.</p>
+                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">System Logic</h3>
+                <p className="text-[11px] text-[#5f6368] leading-relaxed">Tax, EMI, and GPA systems are meticulously maintained using official institutional formulas from IRD and NRB.</p>
               </div>
-           </div>
-        </div>
+            </div>
+          </div>
+        </section>
         
-        <PillarFAQ faqs={NEPAL_FAQS} title="Nepal Tools Facts" />
+        <div className="max-w-5xl mx-auto px-6 pb-20">
+          <PillarFAQ faqs={NEPAL_FAQS} title="Nepal Tools Facts" />
+        </div>
       </div>
-    </CalcWrapper>
+    </>
   );
 }

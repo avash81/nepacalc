@@ -1,15 +1,19 @@
 import { CATEGORIES } from '@/data/calculators';
 import Link from 'next/link';
-import { ChevronRight, Star, Flame } from 'lucide-react';
-import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
+import { JsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Converters & Utility Tools — Unit, Length, Weight, Base | NEPACALC',
-  description: 'Free online converters: Unit converter, Length, Weight, Currency, QR Generator, Password Generator, Word Counter and more utility tools.',
-  keywords: ['unit converter', 'length converter', 'weight converter', 'currency converter nepal', 'utility tools'],
+  description: 'Free online converters: Unit converter, Length, Weight, Currency, QR Generator, Password Generator, Word Counter and more utility tools. All free, all instant.',
+  keywords: ['unit converter', 'length converter', 'weight converter', 'currency converter nepal', 'base converter', 'utility tools', 'qr code generator'],
   alternates: { canonical: 'https://nepacalc.com/converters' },
+  openGraph: {
+    title: 'Converters & Utility Tools | NEPACALC',
+    description: 'Free precision converters and utility tools for everyday tasks.',
+    url: 'https://nepacalc.com/converters',
+  },
 };
 
 const CONVERTER_FAQS = [
@@ -33,34 +37,78 @@ const CONVERTER_FAQS = [
 
 export default function ConvertersPillarPage() {
   const category = CATEGORIES.find(c => c.id === 'utility')!;
-  return (
-    <CalcWrapper
-      title="Converters & Utility"
-      description={`${category.calculators.length} precision converters and utility tools for everyday tasks.`}
-      crumbs={[{ label: 'Converters & Utility Tools' }]}
-    >
-      <div className="py-8">
 
-        {/* Clinical Index Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
-          {category.calculators.map(calc => (
-            <div key={calc.id} className="group flex flex-col gap-1 border-b border-slate-50 pb-4">
-              <Link
-                href={`/calculator/${calc.slug}`}
-                className="text-[16px] font-bold text-[#1a73e8] hover:underline"
-              >
-                {calc.name}
-              </Link>
-              <p className="text-[13px] text-[#5f6368] leading-relaxed font-medium">
-                {calc.description}
-              </p>
+  return (
+    <>
+      <JsonLd
+        type="breadcrumb"
+        breadcrumbItems={[
+          { name: 'Home', item: 'https://nepacalc.com' },
+          { name: 'Converters', item: 'https://nepacalc.com/converters' }
+        ]}
+      />
+      <JsonLd
+        type="calculator"
+        name="NEPACALC Converters & Utility Suite"
+        description="Free precision converters and utility tools for everyday tasks."
+        url="https://nepacalc.com/converters"
+        category="UtilityApplication"
+      />
+
+      <div className="min-h-screen bg-white">
+        {/* Hero */}
+        <section className="pt-20 pb-8 border-b border-slate-100">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="mb-2 flex items-center gap-3">
+              <span className="text-3xl">🔄</span>
+              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#0891b2]">Converters & Utility</span>
             </div>
-          ))}
-        </div>
+            <h1 className="text-[36px] sm:text-[48px] font-black text-[#202124] tracking-tight leading-tight mb-4">
+              Converters & Tools
+            </h1>
+            <p className="text-[16px] text-[#5f6368] max-w-2xl leading-relaxed">
+              {category.calculators.length} precision converters and utility tools for everyday tasks — unit conversion, date math, QR codes, password generation, and more. All free, all instant.
+            </p>
+          </div>
+        </section>
+
+        {/* Tools Grid */}
+        <section className="max-w-6xl mx-auto px-6 pb-16 pt-10">
+          <h2 className="text-[13px] font-black uppercase tracking-[0.15em] text-[#0891b2] mb-8 border-b-2 border-slate-100 pb-2">
+            All Converters & Utility Tools
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+            {category.calculators.map(calc => (
+              <Link
+                key={calc.id}
+                href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`}
+                className="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:border-[#0891b2] hover:bg-[#0891b208] transition-all group"
+              >
+                <span className="text-lg flex-shrink-0">{calc.icon}</span>
+                <span className="text-[13px] font-medium text-[#202124] group-hover:text-[#0891b2] transition-colors truncate">
+                  {calc.name}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* SEO text */}
+        <section className="border-t border-slate-200 py-12">
+          <div className="max-w-5xl mx-auto px-6">
+            <h2 className="text-[16px] font-black text-[#202124] mb-3">
+              NEPACALC Converter Accuracy & Standards
+            </h2>
+            <p className="text-[13px] text-[#5f6368] leading-relaxed">
+              Every converter on NEPACALC is built on exact scientific constants and internationally recognized measurement standards. Length and weight conversions adhere to the SI (International System of Units), ensuring that 1 inch is always exactly 2.54 cm and 1 pound is always exactly 0.45359237 kg. Our base converter handles binary, octal, decimal, and hexadecimal conversions up to 64-bit integer precision — ideal for developers and CS students. The QR code generator produces ISO/IEC 18004-compliant machine-readable matrices entirely in-browser. All tools run client-side with zero server round-trips, guaranteeing instant results and full data privacy.
+            </p>
+          </div>
+        </section>
 
         {/* Institutional Authority Block */}
-        <div className="mt-24 pt-12 border-t border-[#dadce0]">
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl opacity-80">
+        <section className="pb-12">
+          <div className="max-w-5xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 opacity-80">
               <div>
                 <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">Verification</h3>
                 <p className="text-[11px] text-[#5f6368] leading-relaxed">Measurement constants based on SI standards and international metric/imperial conventions.</p>
@@ -73,11 +121,14 @@ export default function ConvertersPillarPage() {
                 <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">System Logic</h3>
                 <p className="text-[11px] text-[#5f6368] leading-relaxed">Base converters and bitwise tools optimized for developer-grade 64-bit precision.</p>
               </div>
-           </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="max-w-5xl mx-auto px-6 pb-20">
+          <PillarFAQ faqs={CONVERTER_FAQS} title="Converter Facts" />
         </div>
-        
-        <PillarFAQ faqs={CONVERTER_FAQS} title="Converter Facts" />
       </div>
-    </CalcWrapper>
+    </>
   );
 }
