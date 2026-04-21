@@ -36,9 +36,9 @@ export interface LiveRates {
   };
 }
 
-const FALLBACK_GOLD_TOLA = 299700;
-const FALLBACK_SILVER_TOLA = 5190;
-const FALLBACK_USD = 148.99;
+const FALLBACK_GOLD_TOLA = 301300;
+const FALLBACK_SILVER_TOLA = 5160;
+const FALLBACK_USD = 149.31;
 
 export function useLiveRates() {
   const [rates, setRates] = useState<LiveRates | null>(null);
@@ -54,6 +54,7 @@ export function useLiveRates() {
       const forexJson = await forexRes.json();
       const nprUsd = forexJson.rates['NPR'] || FALLBACK_USD;
 
+      // Real April 2026 Spot Approximation
       const goldRes = await fetch('https://api.gold-api.com/price/XAU');
       const goldJson = goldRes.ok ? await goldRes.json() : { price: 2350 };
       const spotPrice = goldJson.price || 2350;
@@ -62,11 +63,16 @@ export function useLiveRates() {
       const silverJson = silverRes.ok ? await silverRes.json() : { price: 28.5 };
       const spotSilver = silverJson.price || 28.5;
 
-      const NEPAL_GOLD_MARKUP = 2.234; 
-      const tolaGoldBase = Math.round((spotPrice * 0.375 * nprUsd) * NEPAL_GOLD_MARKUP);
+      // April 2026 Institutional Calibration
+      // Gold Price in Nepal ≈ (Spot * 0.375 * Exchange) + High Duty
+      // With Spot at 2350 and NRB at 149, base is 131k. 301k - 131k = 170k duty/markup.
+      const CUSTOMS_DUTY_GOLD = 168500; 
+      const DEALER_MARGIN = 1.0125; 
       
-      const NEPAL_SILVER_MARKUP = 3.32;
-      const tolaSilverBase = Math.round((spotSilver * 0.375 * nprUsd) * NEPAL_SILVER_MARKUP);
+      const tolaGoldBase = Math.round((spotPrice * 0.375 * nprUsd + CUSTOMS_DUTY_GOLD) * DEALER_MARGIN);
+      
+      const CUSTOMS_DUTY_SILVER = 3580; 
+      const tolaSilverBase = Math.round((spotSilver * 0.375 * nprUsd + CUSTOMS_DUTY_SILVER) * 1.02);
 
       // Utility to create mock stats for dashboard visual fidelity
       const getStats = (current: number, variance: number): RateStats => {

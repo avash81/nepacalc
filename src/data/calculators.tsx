@@ -107,9 +107,9 @@ export const CALCULATORS: Calculator[] = [
   { id: 'chemistry-molar', slug: 'chemistry-molar', name: 'Molar Mass Calculator', icon: '⚗️', description: 'Compute molar mass of molecular compounds.', category: 'engineering' },
   { id: 'concrete-mix', slug: 'concrete-mix', name: 'Concrete Mixer', icon: '🏗️', description: 'Calculate concrete volume and proportions.', category: 'engineering' },
   { id: 'brick-calculator', slug: 'brick-calculator', name: 'Brick Calculator', icon: '🧱', description: 'Estimate physical brick count for construction.', category: 'engineering' },
-  { id: 'graphing-pro', slug: 'engineering/graphing', name: 'Graphing Calculator Pro', icon: '📈', description: 'Advanced 2D function plotter with multi-expression support.', category: 'engineering', isHot: true },
+  { id: 'graphing-pro', slug: 'engineering/graphing', name: 'Interactive Graphing Calculator', icon: '📈', description: 'High-precision 2D function plotter with multi-expression support and real-time rendering.', category: 'engineering', isHot: true },
   { id: 'formulas-lab', slug: 'engineering/formulas', name: 'Mathematical Formula Library', icon: '📖', description: 'Comprehensive library of math and engineering formulas.', category: 'engineering' },
-  { id: '3d-visualizer', slug: 'engineering/3d', name: '3D Surface Visualizer', icon: '🧊', description: '3D surface plotter for complex z=f(x,y) functions.', category: 'engineering' },
+  { id: '3d-visualizer', slug: 'engineering/3d', name: '3D Surface Plotter', icon: '🧊', description: 'Advanced 3D surface plotter for z=f(x,y) functions with interactive Orbit Camera and Wireframe Mode.', category: 'engineering' },
   { id: 'geometry-lab', slug: 'engineering/geometry', name: 'Geometry Canvas Lab', icon: '📐', description: 'Interactive geometric construction and measurement tool.', category: 'engineering' },
 
   // ==========================================

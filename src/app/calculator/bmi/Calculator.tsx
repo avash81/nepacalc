@@ -71,7 +71,6 @@ export default function BMICalculator() {
         badge="Clinical"
         badgeColor="blue"
         category={{ label: 'Health', href: '/calculator/category/health' }}
-        hideTitle={true}
         leftPanel={
           <div className="space-y-8">
             <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 shadow-inner">

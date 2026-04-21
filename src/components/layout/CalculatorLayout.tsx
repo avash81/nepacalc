@@ -50,15 +50,16 @@ export function CalculatorLayout({
   let catLink = typeof category === 'object' ? category.href : (category ? CATEGORY_URL_MAP[category.toLowerCase()] : categoryHref);
   
   // Logic: Intercept legacy category URLs and map them to pillars to avoid 404s
-  if (catLink && catLink.includes('/calculator/category/')) {
-    const categoryId = catLink.split('/').filter(Boolean).pop();
+  if (catLink && (catLink.includes('/calculator/category/') || !catLink.startsWith('/'))) {
+    const categoryId = catLink.split('/').filter(Boolean).pop() || catLink;
     if (categoryId && CATEGORY_URL_MAP[categoryId.toLowerCase()]) {
       catLink = CATEGORY_URL_MAP[categoryId.toLowerCase()];
     }
   }
   
-  // Auto-resolve slug from path if not provided
-  const resolvedSlug = slug || pathname.split('/').pop() || '';
+  // Correctly resolve the full slug from the path (preserving pillar prefixes like math-tools/ or market-rates/)
+  const fullPathSlug = pathname.replace(/^\/calculator\//, '').replace(/^\//, '');
+  const resolvedSlug = slug || fullPathSlug;
   const calculatorData = CALCULATORS.find(c => c.slug === resolvedSlug);
   
   // Resolve automatic purpose if not provided
@@ -170,8 +171,8 @@ export function CalculatorLayout({
       </div>
 
       <main className="hp-container py-2 sm:py-3">
-        {/* 2. Professional Header Section */}
-        {!hideTitle && (
+        {/* 2. Professional Header Section (Guarantees H1 for SEO) */}
+        <div className={hideTitle ? 'sr-only' : ''}>
           <header className="mb-3 sm:mb-4 border-b border-slate-200 pb-2.5 flex flex-col sm:flex-row justify-between items-start gap-4">
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-3 mb-1">
@@ -189,25 +190,27 @@ export function CalculatorLayout({
                 {description}
               </p>
             </div>
-            <div className="flex items-center gap-3 shrink-0">
-              <button 
-                onClick={toggleFavorite} 
-                className={`group flex items-center justify-center w-12 h-12 border-2 rounded-xl transition-all duration-300 shadow-sm active:scale-[0.98]
-                  ${isFavorite ? 'bg-yellow-50 border-yellow-300 text-yellow-500' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50 hover:border-slate-300 hover:text-yellow-500'}`}
-                title={isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-              >
-                <Star className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
-              </button>
-              <button 
-                onClick={() => window.print()} 
-                className="group flex items-center gap-2.5 px-6 py-3 bg-white border-2 border-slate-200 rounded-xl hover:bg-slate-50 hover:border-slate-300 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-[11px] font-black uppercase tracking-[0.2em] text-slate-700 no-print active:scale-[0.98]"
-              >
-                <Printer className="w-4 h-4 text-slate-500 group-hover:text-blue-600 transition-colors" />
-                Print Report
-              </button>
-            </div>
+            {!hideTitle && (
+              <div className="flex items-center gap-3 shrink-0 no-print">
+                <button 
+                  onClick={toggleFavorite} 
+                  className={`group flex items-center justify-center w-12 h-12 border-2 rounded-xl transition-all duration-300 shadow-sm active:scale-[0.98]
+                    ${isFavorite ? 'bg-yellow-50 border-yellow-300 text-yellow-500' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50 hover:border-slate-300 hover:text-yellow-500'}`}
+                  title={isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+                >
+                  <Star className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
+                </button>
+                <button 
+                  onClick={() => window.print()} 
+                  className="group flex items-center gap-2.5 px-6 py-3 bg-white border-2 border-slate-200 rounded-xl hover:bg-slate-50 hover:border-slate-300 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-[11px] font-black uppercase tracking-[0.2em] text-slate-700 no-print active:scale-[0.98]"
+                >
+                  <Printer className="w-4 h-4 text-slate-500 group-hover:text-blue-600 transition-colors" />
+                  Print Report
+                </button>
+              </div>
+            )}
           </header>
-        )}
+        </div>
 
         {/* 3. Main Content Area */}
         {/* PRINT ONLY: Top Level Results Stack (Guarantees Results Print First) */}

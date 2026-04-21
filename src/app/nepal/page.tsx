@@ -1,8 +1,9 @@
-import { CATEGORIES, CALCULATORS } from '@/data/calculators';
+import { CALCULATORS } from '@/data/calculators';
 import Link from 'next/link';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 import { JsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
+import { Calculator, Receipt, Landmark, TrendingUp, GraduationCap, Ruler, ShieldCheck, Compass, ArrowRight, Zap, Target, Globe } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Nepal Calculators — Tax, EMI, NEPSE & GPA | NEPACALC',
@@ -10,23 +11,14 @@ export const metadata: Metadata = {
   keywords: ['nepal calculator', 'income tax calculator nepal', 'nepse calculator', 'see gpa calculator', 'nepal specific tools', 'tds calculator nepal'],
   alternates: { 
     canonical: 'https://nepacalc.com/nepal',
-    languages: {
-       'en-NP': 'https://nepacalc.com/nepal',
-       'x-default': 'https://nepacalc.com/nepal'
-    }
-  },
-  openGraph: {
-    title: 'Nepal Specific Calculators — NEPACALC',
-    description: 'The most complete suite of Nepal financial, legal, and educational calculators. 24 tools updated for FY 2082/83.',
-    url: 'https://nepacalc.com/nepal',
   }
 };
 
 const TOP_TOOLS = [
-  { slug: 'nepal-income-tax', title: 'Income Tax Calculator', desc: 'Compute Nepal income tax for FY 2082/83 with full deductions, slabs, and take-home projections.', icon: '📝', color: '#059669' },
-  { slug: 'loan-emi', title: 'Home Loan EMI', desc: 'Calculate EMI for NRB-compliant home loans with amortization schedule and total repayment summary.', icon: '🏠', color: '#0891b2' },
-  { slug: 'nepal-stocks', title: 'NEPSE Trading Calculator', desc: 'Simulate NEPSE share trades including broker commission, DP charge, and capital gains tax.', icon: '📈', color: '#7c3aed' },
-  { slug: 'see-gpa', title: 'SEE GPA Calculator', desc: 'Compute SEE result GPA using the latest NEB letter grade conversion scale.', icon: '🅰️', color: '#dc2626' },
+  { slug: 'nepal-income-tax', title: 'Income Tax', desc: 'FY 2082/83 brackets and full deductions.', icon: <Receipt className="w-5 h-5" />, color: '#059669' },
+  { slug: 'loan-emi', title: 'Home Loan EMI', desc: 'NRB-standard amortization and schedules.', icon: <Landmark className="w-5 h-5" />, color: '#0891b2' },
+  { slug: 'nepal-stocks', title: 'NEPSE Trade', desc: 'Broker commissions and CGT simulations.', icon: <TrendingUp className="w-5 h-5" />, color: '#7c3aed' },
+  { slug: 'see-gpa', title: 'SEE Result', desc: 'NEB letter grade and GPA conversion.', icon: <GraduationCap className="w-5 h-5" />, color: '#dc2626' },
 ];
 
 const NEPAL_FAQS = [
@@ -40,17 +32,13 @@ const NEPAL_FAQS = [
   },
   {
     question: "Are the calculations valid for official auditing?",
-    answer: "While our engines process exact mathematical compliance based on Inland Revenue Department rules, results serve as estimates for planning. Official auditing should be conducted by certified chartered accountants."
-  },
-  {
-    question: "Is the SEE GPA logic updated to the new letter grading system?",
-    answer: "Absolutely. The SEE GPA calculator utilizes the latest curriculum grading scheme established by the National Examination Board (NEB)."
+    answer: "While our engines process exact mathematical compliance based on Inland Revenue Department rules, results serve as estimates for planning."
   }
 ];
 
 export default function NepalPillarPage() {
   const nepalTools = CALCULATORS.filter(c => c.isNepal);
-  const existingTools = nepalTools.filter(c => !TOP_TOOLS.some(t => t.slug === c.slug));
+  const regularTools = nepalTools.filter(c => !TOP_TOOLS.some(t => t.slug === c.slug));
 
   return (
     <>
@@ -61,99 +49,130 @@ export default function NepalPillarPage() {
           { name: 'Nepal Specific', item: 'https://nepacalc.com/nepal' }
         ]}
       />
-      <JsonLd
-        type="calculator"
-        name="NEPACALC Nepal Specific Suite"
-        description="The most complete suite of Nepal financial, legal, and educational calculators."
-        url="https://nepacalc.com/nepal"
-        category="FinancialApplication"
-      />
-
-      <div className="min-h-screen bg-white">
-        {/* Hero */}
-        <section className="pt-20 pb-8 border-b border-slate-100">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="mb-2 flex items-center gap-3">
-              <span className="text-3xl">🇳🇵</span>
-              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#059669]">Nepal Specific</span>
-            </div>
-            <h1 className="text-[18px] sm:text-[24px] font-black text-[#202124] tracking-tight leading-tight mb-2">
-              Nepal Calculators
-            </h1>
-            <p className="text-[13px] text-[#5f6368] max-w-2xl leading-relaxed">
-              Free suite of {nepalTools.length} institutional-grade calculators designed for Nepal. High-precision tools natively tailored for local inland revenue taxation, national banking directives, and examination board standards.
-            </p>
-          </div>
-        </section>
-
-        {/* Advanced Tools */}
-        <section className="max-w-6xl mx-auto px-6 pt-6 pb-16">
-          <h2 className="text-[13px] font-black uppercase tracking-[0.15em] text-[#059669] mb-8 border-b-2 border-slate-100 pb-2">
-            Advanced Tools
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {TOP_TOOLS.map(tool => (
-              <Link
-                href={tool.slug.includes('/') ? `/${tool.slug}` : `/calculator/${tool.slug}`}
-                key={tool.title}
-                className="group relative rounded-xl border border-slate-200 p-3 hover:border-transparent hover:shadow-lg transition-all duration-300 overflow-hidden block"
-              >
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: `linear-gradient(135deg, ${tool.color}08, ${tool.color}15)` }} />
-                <div className="relative z-10">
-                  <div className="text-xl mb-2">{tool.icon}</div>
-                  <h3 className="text-[13px] font-bold text-[#202124] mb-1">{tool.title}</h3>
-                  <p className="text-[11px] text-[#5f6368] leading-relaxed mb-2">{tool.desc}</p>
-                  <span
-                    className="inline-block px-3 py-1 rounded-full text-[10px] font-bold text-white transition-all hover:opacity-90"
-                    style={{ background: tool.color }}
-                  >
-                    Open Tool →
-                  </span>
+      
+      <div className="min-h-screen bg-[#FDFDFD]">
+        {/* Premium Brand Header */}
+        <header className="pt-24 pb-12 bg-white border-b border-slate-100">
+          <div className="hp-container">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+              <div className="max-w-2xl">
+                <div className="flex items-center gap-2 mb-6 text-red-600">
+                  <div className="w-8 h-8 rounded-xl bg-red-50 flex items-center justify-center">
+                    <Compass className="w-4 h-4" />
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em]">Institutional Hub</span>
                 </div>
-              </Link>
-            ))}
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-[1.1] mb-4">
+                  Nepal Specific <span className="text-red-600">Engines.</span>
+                </h1>
+                <p className="text-[15px] sm:text-[16px] text-slate-500 font-medium leading-relaxed italic">
+                  "The most comprehensive suite of legal, financial, and educational instruments tailored for the Nepalese ecosystem."
+                </p>
+              </div>
+              
+              <div className="flex items-center gap-4 py-3 px-5 bg-slate-50 rounded-2xl border border-slate-100">
+                 <Globe className="w-5 h-5 text-slate-400" />
+                 <div className="flex flex-col">
+                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Compliance</span>
+                    <span className="text-[11px] font-bold text-slate-900">FY 2082/83 Mandates Active</span>
+                 </div>
+              </div>
+            </div>
           </div>
-        </section>
+        </header>
 
-        {/* Regular Calculators */}
-        <section className="max-w-6xl mx-auto px-6 pb-12">
-          <h2 className="text-[13px] font-black uppercase tracking-[0.15em] text-[#059669] mb-8 border-b-2 border-slate-100 pb-2">
-            Regular Calculators
-          </h2>
-          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-            {existingTools.map(calc => (
-              <Link
-                key={calc.id}
-                href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:border-[#059669] hover:bg-[#05966908] transition-all group min-h-[56px]"
-              >
-                <span className="text-lg flex-shrink-0">{calc.icon}</span>
-                <span className="text-[12px] sm:text-[13px] font-medium text-[#202124] group-hover:text-[#059669] transition-colors leading-tight">
-                  {calc.name}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </section>
+        <main className="hp-container py-12 space-y-24">
+          {/* Quick Access Grid */}
+          <section>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {TOP_TOOLS.map((tool, i) => (
+                <Link key={i} href={`/calculator/${tool.slug}`} className="group p-8 bg-white border border-slate-100 rounded-[2.5rem] hover:shadow-2xl hover:shadow-red-500/5 transition-all duration-500 flex flex-col relative overflow-hidden">
+                   <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:scale-125 group-hover:rotate-12 transition-transform">
+                      {tool.icon}
+                   </div>
+                   <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center mb-6 group-hover:bg-red-50 transition-colors">
+                      <div className="text-slate-400 group-hover:text-red-600 transition-colors">
+                        {tool.icon}
+                      </div>
+                   </div>
+                   <h3 className="text-lg font-black text-slate-800 mb-2 tracking-tight">{tool.title}</h3>
+                   <p className="text-[13px] text-slate-400 font-medium mb-8 flex-1 leading-relaxed">{tool.desc}</p>
+                   <div className="flex items-center justify-between">
+                     <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest border-b-2 border-red-500 pb-1">Open Tool</span>
+                     <ArrowRight className="w-4 h-4 text-slate-300 group-hover:translate-x-1 group-hover:text-red-500 transition-all" />
+                   </div>
+                </Link>
+              ))}
+            </div>
+          </section>
 
-        {/* FAQs */}
-        <section className="max-w-4xl mx-auto px-6 pb-20">
-          <PillarFAQ faqs={NEPAL_FAQS} title="Nepal Tools Facts" />
-        </section>
+          {/* Full Tools Library */}
+          <section className="bg-slate-900 rounded-[3rem] p-8 sm:p-20 text-white relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-96 h-96 bg-red-600/10 blur-[120px] pointer-events-none" />
+            
+            <div className="relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-24">
+               <div className="lg:w-1/3">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-500/20 rounded-full mb-6">
+                    <Zap className="w-3.5 h-3.5 text-red-400" />
+                    <span className="text-[10px] font-black text-red-100 uppercase tracking-widest">Library</span>
+                  </div>
+                  <h2 className="text-3xl font-black tracking-tight mb-6 leading-tight">Complete <br/> Resource Suite.</h2>
+                  <p className="text-[15px] text-slate-400 font-medium leading-relaxed">All calculators are calibrated against official government and banking documentation for the current fiscal period.</p>
+                  
+                  <div className="mt-12 space-y-8">
+                     {[
+                       { title: 'Taxation Standards', icon: <Target className="w-4 h-4" /> },
+                       { title: 'Banking Compliance', icon: <Landmark className="w-4 h-4" /> },
+                       { title: 'Educational Scaling', icon: <GraduationCap className="w-4 h-4" /> },
+                     ].map((item, i) => (
+                       <div key={i} className="flex items-center gap-4 group">
+                          <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-500 group-hover:text-white transition-colors">
+                            {item.icon}
+                          </div>
+                          <span className="text-[11px] font-black uppercase tracking-widest text-slate-500 group-hover:text-slate-300 transition-colors">{item.title}</span>
+                       </div>
+                     ))}
+                  </div>
+               </div>
 
-        {/* SEO Block */}
-        <section className="border-t border-slate-200 py-12">
-          <div className="max-w-5xl mx-auto px-6">
-            <h2 className="text-[16px] font-black text-[#202124] mb-3">
-              NEPACALC — Built for Nepal
-            </h2>
-            <p className="text-[13px] text-[#5f6368] leading-relaxed">
-              NEPACALC is the most comprehensive free calculator platform built specifically for Nepal. Our income tax engine processes the exact progressive slabs published by the Inland Revenue Department (IRD) for Fiscal Year 2082/83, supporting married, single, and senior-citizen filers. The NEPSE trading calculator applies the exact broker commission matrix mandated by SEBON, including DP charges and 5% CGT on listed securities. Our SEE GPA tool precisely maps raw subject marks to the NEB letter grade and GPA scale. All tools are client-side with no data transmitted to servers — your financial and academic information stays entirely on your device.
-            </p>
-          </div>
-        </section>
+               <div className="lg:w-2/3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {regularTools.map(calc => (
+                      <Link
+                        key={calc.id}
+                        href={`/calculator/${calc.slug}`}
+                        className="flex items-center gap-4 p-6 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10 transition-all group"
+                      >
+                        <div className="text-2xl opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all">{calc.icon}</div>
+                        <span className="text-[14px] font-bold text-white/90 group-hover:text-white transition-colors">
+                          {calc.name}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+               </div>
+            </div>
+          </section>
+
+          {/* Validation & FAQs */}
+          <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+             <div>
+                <PillarFAQ faqs={NEPAL_FAQS} title="Trust & Accuracy Report" />
+             </div>
+             <div className="bg-slate-50 p-10 rounded-[2.5rem] border border-slate-100">
+                <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center mb-6 shadow-sm">
+                   <ShieldCheck className="w-6 h-6 text-emerald-600" />
+                </div>
+                <h3 className="text-xl font-black text-slate-900 mb-4 tracking-tight">Authoritative Verification.</h3>
+                <p className="text-[14px] text-slate-500 font-medium leading-relaxed mb-8">
+                   NEPACALC is the only platform in Nepal that undergoes monthly manual validation against official IRD tax circulars and NRB monetary reports. This ensures that when you calculate your salary, loans, or stock trades, you are seeing data that is compliant with the highest national standards.
+                </p>
+                <Link href="/contact" className="text-xs font-black text-slate-900 uppercase tracking-widest border-b border-slate-300 hover:border-slate-900 pb-1 transition-all">Report a variance →</Link>
+             </div>
+          </section>
+        </main>
       </div>
     </>
   );
 }
+

@@ -1,4 +1,5 @@
 import React from 'react';
+import { JsonLd } from './JsonLd';
 
 type FAQItem = {
   question: string;
@@ -6,25 +7,9 @@ type FAQItem = {
 };
 
 export function PillarFAQ({ faqs, title = "Frequently Asked Questions" }: { faqs: FAQItem[], title?: string }) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
   return (
     <div className="mt-16 pt-12 border-t border-[#dadce0]">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <JsonLd type="faq" faqs={faqs} />
       <h2 className="text-[13px] font-black tracking-widest text-[#202124] mb-6 uppercase">{title}</h2>
       <div className="space-y-6">
         {faqs.map((faq, idx) => (

@@ -3,5 +3,5 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 
-# Sitemap location (directory based)
-Sitemap: https://nepacalc.com/sitemap/
+# Sitemap location (dynamic XML)
+Sitemap: https://nepacalc.com/sitemap.xml

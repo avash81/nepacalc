@@ -30,11 +30,17 @@ export default function LcmGcfCalculator() {
     return { lcm, gcf, nums: arr, factors: arr.map(n => ({ n, f: getPF(n) })) };
   }, [inputVal]);
 
+  const LCM_GCF_FAQS = [
+    { question: 'How is LCM calculated?', answer: 'LCM is found by identifying the largest multiple shared by all given numbers. Mathematically, it is (a*b)/GCF(a,b).' },
+    { question: 'What is the GCF?', answer: 'The Greatest Common Factor is the largest positive integer that divides each of the integers without a remainder.' },
+  ];
+
   return (
     <CalculatorLayout
       title="LCM & GCF Calculator"
       description="Calculate the Least Common Multiple and Greatest Common Factor for any set of numbers with full prime factorization steps."
       category={{ label: 'Mathematics', href: '/calculator/category/math' }}
+      faqs={LCM_GCF_FAQS}
       leftPanel={
         <div className="space-y-8">
           <div className="space-y-3">
@@ -122,12 +128,7 @@ export default function LcmGcfCalculator() {
           )}
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'How is LCM calculated?', answer: 'LCM is found by identifying the largest multiple shared by all given numbers. Mathmatically, it is (a*b)/GCF(a,b).' },
-          { question: 'What is the GCF?', answer: 'The Greatest Common Factor is the largest positive integer that divides each of the integers without a remainder.' },
-        ]} />
-      }
+      faqSection={<CalcFAQ faqs={LCM_GCF_FAQS} />}
     />
   );
 }

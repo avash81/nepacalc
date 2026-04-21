@@ -50,7 +50,7 @@ export function Navbar() {
     { name: 'Converters', href: '/converters' },
     { name: 'Health', href: '/health' },
     { name: 'Engineering', href: '/engineering' },
-    { name: 'Market Rates', href: '/market-rates' },
+    // { name: 'Market Rates', href: '/market-rates' },
   ];
 
   return (
@@ -131,7 +131,7 @@ export function Navbar() {
                { name: 'Converters', href: '/converters', icon: <Globe className="w-5 h-5" /> },
                { name: 'Health & Fitness', href: '/health', icon: <Heart className="w-5 h-5" /> },
                { name: 'Engineering', href: '/engineering', icon: <Sparkles className="w-5 h-5" /> },
-               { name: 'Market Rates', href: '/market-rates', icon: <Activity className="w-5 h-5" /> },
+               // { name: 'Market Rates', href: '/market-rates', icon: <Activity className="w-5 h-5" /> },
             ].map((link) => (
               <Link
                 key={link.href}

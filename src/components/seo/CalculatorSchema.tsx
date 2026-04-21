@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function CalculatorSchema({ calculator }: Props) {
-  const url = `${SITE_CONFIG.baseUrl}/calculator/${calculator.slug}`;
+  const url = calculator.slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${calculator.slug}` : `${SITE_CONFIG.baseUrl}/calculator/${calculator.slug}`;
   const ogImage = `${SITE_CONFIG.baseUrl}/api/og?title=${encodeURIComponent(calculator.name)}`;
 
   // 1. SoftwareApplication Schema (The tool itself)

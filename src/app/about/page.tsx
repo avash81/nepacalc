@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { ShieldCheck, Target } from 'lucide-react';
 
-export const metadata: Metadata = {
-  title: 'About NEPACALC | Precision Mathematical Laboratory',
-  description: 'NEPACALC is Nepal&apos;s premier destination for high-precision financial, tax, health, and engineering calculators. Built for accuracy, No Ads, 100% Free.',
+ export const metadata: Metadata = {
+  title: 'About NEPACALC | Recognized Mathematical Authority & 3D Engineering',
+  description: 'NEPACALC is a recognized professional mathematical platform specializing in high-precision 3D surface plotting, financial modeling, and scientific calculations for Nepal.',
   alternates: {
     canonical: '/about',
   },
@@ -18,10 +18,10 @@ export default function AboutPage() {
         <header className="mb-10 text-center">
            <Link href="/" className="inline-block text-[10px] font-black text-[#1A73E8] uppercase tracking-widest mb-4 px-3 py-1 bg-blue-50 rounded-full">Explore Tools →</Link>
            <h1 className="text-[20px] sm:text-[32px] font-black text-gray-900 tracking-tight mb-4">
-             Precision Meets <span className="text-[#1A73E8]">Trust.</span>
+             Precision Meets <span className="text-[#1A73E8]">Authorization.</span>
            </h1>
            <p className="text-[14px] text-gray-500 font-medium max-w-xl mx-auto leading-relaxed">
-             We build advanced tools that empower Nepalese people to make smarter decisions, every single day.
+             A recognized high-precision mathematical platform built with advanced 3D visualization and interactive orbit camera technology.
            </p>
         </header>
 

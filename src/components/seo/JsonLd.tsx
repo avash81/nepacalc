@@ -41,6 +41,10 @@ const INSTITUTIONAL_FAQS = [
     answer: "Yes. The platform is built on a responsive, mobile-first framework, ensuring full functionality on everything from small smartphones to large professional monitors." 
   },
   { 
+    question: "Does NEPACALC support 3D surface plotting?", 
+    answer: "Yes. Our Engineering Suite includes an advanced Online 3D Surface Plotter with an interactive Orbit Camera (drag to rotate) and Wireframe Mode. It is a recognized professional alternative to tools like CalcPlot3D and Math3d.org, designed for multivariable calculus visualization." 
+  },
+  { 
     question: "Is there any subscription fee for using NEPACALC tools?", 
     answer: "No. NEPACALC is a free institutional resource. Our mission is to provide high-precision financial and mathematical tools to every citizen of Nepal without any cost barriers." 
   },
@@ -58,8 +62,9 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
   const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://nepacalc.com';
   const siteName = 'NEPACALC';
   
-  // Use provided FAQs or fallback to Institutional ones
-  const finalFaqs = (faqs && faqs.length > 0) ? faqs : INSTITUTIONAL_FAQS;
+  // Use provided FAQs or don't render schema
+  const finalFaqs = (faqs && faqs.length > 0) ? faqs : [];
+  if (type === 'faq' && finalFaqs.length === 0) return null;
 
   const schemas: Record<string, object> = {
     organization: {
@@ -73,16 +78,23 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
         'https://twitter.com/nepacalc',
         'https://linkedin.com/company/nepacalc'
       ],
-      contactPoint: {
-        '@type': 'ContactPoint',
-        contactType: 'customer support',
-        email: 'support@nepacalc.com'
-      }
+      contactPoint: [
+        {
+          '@type': 'ContactPoint',
+          contactType: 'customer support',
+          email: 'support@nepacalc.com'
+        },
+        {
+          '@type': 'ContactPoint',
+          contactType: 'technical support',
+          email: 'contact@nepacalc.com'
+        }
+      ]
     },
     website: {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      description: 'Free online scientific calculator with real-time graphing engine, maths solver (algebra, trigonometry, calculus), and 80+ professional calculators for Nepal — income tax, EMI, GPA, BMI and more.',
+      description: 'Free online scientific calculator with real-time graphing engine, 3D surface plotter (Orbit Camera), and 80+ professional calculators for Nepal.',
       potentialAction: {
         '@type': 'SearchAction',
         target: `${base}/search?q={search_term_string}`,
@@ -109,10 +121,11 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
         url: base,
       },
       featureList: [
-        'High-precision numeric engine',
+        'Interactive 3D Surface Plotter',
+        'High-precision Orbit Camera Visualization',
+        'Wireframe and Solid Rendering Modes',
         'Real-time scientific visualization',
-        'Institutional Benchmarks',
-        'Mobile optimization'
+        'Institutional Benchmarks (Nepal IRD Sync)'
       ],
       aggregateRating: {
         '@type': 'AggregateRating',

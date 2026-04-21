@@ -26,11 +26,12 @@ export function CategorySidebar() {
           </h3>
           <ul className="space-y-2">
             {cat.calculators.slice(0, 4).map((calc) => {
-              const isActive = pathname === `/calculator/${calc.slug}`;
+              const calcPath = calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`;
+              const isActive = pathname === calcPath;
               return (
                 <li key={calc.id}>
                   <Link 
-                    href={`/calculator/${calc.slug}`}
+                    href={calcPath}
                     className={`text-[13px] font-semibold block transition-colors ${
                       isActive 
                         ? 'text-blue-600' 

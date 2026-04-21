@@ -17,7 +17,9 @@ export function Footer() {
         <Link href="/privacy" className="hover:text-[#3c4043] transition-colors">privacy policy</Link>
         <span className="text-[#70757a]">|</span>
         <Link href="/contact" className="hover:text-[#3c4043] transition-colors font-bold">contact us</Link>
-        <span className="ml-2">© {year} nepacalc.com</span>
+        <span className="text-[#70757a]">|</span>
+        <a href="mailto:support@nepacalc.com" className="hover:text-[#3c4043] transition-colors font-bold">support@nepacalc.com</a>
+        <span className="ml-2">© {year} NEPACALC — Official Platform</span>
       </div>
     </footer>
   );

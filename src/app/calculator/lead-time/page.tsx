@@ -39,22 +39,8 @@ export const metadata: Metadata = {
 
 export default function LeadTimeCalculatorPage() {
   return (
-    <>
-      <JsonLd 
-        type="calculator"
-        name="Lead Time Calculator"
-        description={metadata.description as string}
-        url={metadata.alternates?.canonical as string}
-        category="UtilitiesApplication"
-      />
-      <JsonLd type="faq" faqs={faqs} />
-      
-      <div className="hp-container py-12">
-        <Calculator />
-        <div className="mt-16">
-          <CalcFAQ faqs={faqs} />
-        </div>
-      </div>
-    </>
+    <div className="hp-container py-12">
+      <Calculator faqs={faqs} />
+    </div>
   );
 }

@@ -46,7 +46,8 @@ export function HeroSearch() {
       e.preventDefault();
       setActiveIndex(prev => (prev - 1 + results.length) % results.length);
     } else if (e.key === 'Enter' && results[activeIndex]) {
-      router.push(`/calculator/${results[activeIndex].slug}/`);
+      const selected = results[activeIndex];
+      router.push(selected.slug.includes('/') ? `/${selected.slug}/` : `/calculator/${selected.slug}/`);
     } else if (e.key === 'Escape') {
       setIsOpen(false);
     }
@@ -83,7 +84,7 @@ export function HeroSearch() {
               {results.map((calc, i) => (
                 <button
                   key={calc.id}
-                  onClick={() => router.push(`/calculator/${calc.slug}/`)}
+                  onClick={() => router.push(calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`)}
                   onMouseEnter={() => setActiveIndex(i)}
                   className={`w-full flex items-center justify-between p-3.5 rounded-xl transition-all text-left ${
                     i === activeIndex ? 'bg-blue-50 text-blue-700' : 'text-[#202124] hover:bg-slate-50'

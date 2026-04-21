@@ -92,7 +92,7 @@ const globalSchema = {
     {
       "@type": "WebApplication",
       "@id": "https://nepacalc.com/#calculator",
-      "name": "NEPACALC Scientific Calculator & Graphing Engine",
+      "name": "NEPACALC — Professional Mathematical & Engineering Suite",
       "url": "https://nepacalc.com",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Any",
@@ -100,12 +100,12 @@ const globalSchema = {
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "NPR" },
       "featureList": [
         "Scientific calculator with Deg/Rad toggle",
+        "Interactive 3D Surface Plotter with Orbit Camera",
+        "Wireframe Mesh and Solid Rendering Modes",
         "Maths Solver with Algebra, Trigonometry, Calculus tabs",
-        "Advanced 4-tab keyboard (123, f(x), ABC, Symbols)",
         "Real-time interactive Canvas graphing engine",
-        "Infinite pan and zoom on function graphs",
-        "80+ specialized professional calculators",
-        "Nepal income tax, EMI, GPA, BMI, and unit converters"
+        "80+ specialized professional calculators for Nepal",
+        "Institutional IRD-verified tax calculations"
       ],
       "isPartOf": { "@id": "https://nepacalc.com/#website" }
     }

@@ -40,7 +40,7 @@ export function TrendingSidebar({ currentSlug }: { currentSlug?: string }) {
         {suggestions.map((calc) => (
           <Link 
             key={calc.slug}
-            href={`/calculator/${calc.slug}`}
+            href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`}
             className="group flex items-center justify-between p-4 rounded-2xl bg-gray-50 dark:bg-gray-800 border-2 border-transparent hover:border-blue-500 hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-all duration-300"
           >
             <div className="flex flex-col gap-1">

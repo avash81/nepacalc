@@ -3,13 +3,13 @@ import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Engineering & Math Tools — Graphing, 3D & Geometry | NEPACALC',
+  title: 'Engineering Math Suite — 3D Surface Plotter & Graphing | NEPACALC',
   description:
-    'Advanced engineering math suite: graphing calculator, 3D surface plotter, interactive geometry, scientific calculator, formula reference, matrices, statistics, and more. Free, no login.',
+    'Advanced engineering math suite featuring an interactive 3D Surface Plotter with Orbit Camera, Wireframe View, and real-time Graphing Calculator. A professional alternative to CalcPlot3D for Nepal.',
   keywords: [
-    'engineering calculator', 'graphing calculator', '3D graph',
+    'engineering calculator', '3D surface plotter', 'orbit camera graph',
+    '3D wireframe mesh', 'graphing calculator', '3D plotter nepal',
     'math formulas', 'geometry tool', 'math tools',
-    'matrix calculator', 'statistics calculator', 'scientific calculator',
   ],
   alternates: { 
     canonical: 'https://nepacalc.com/engineering',
@@ -19,8 +19,8 @@ export const metadata: Metadata = {
     }
   },
   openGraph: {
-    title: 'Engineering Math Suite | NEPACALC',
-    description: 'Advanced graphing, 3D visualization, geometry, and 80+ math tools.',
+    title: '3D Surface Plotter & Engineering Suite | NEPACALC',
+    description: 'Interactive 3D visualization with orbit camera, wireframe mesh, and 80+ math tools.',
     url: 'https://nepacalc.com/engineering',
   },
 };
@@ -28,15 +28,15 @@ export const metadata: Metadata = {
 const TOOLS = [
   {
     title: 'Graphing Calculator',
-    desc: 'Plot functions, explore equations, add multiple expressions with colors and sliders.',
+    desc: 'Plot high-precision 2D functions with real-time rendering and Pratt-parsing support.',
     href: '/engineering/graphing',
     icon: '📈',
     color: '#4361ee',
     status: 'live',
   },
   {
-    title: '3D Visualizer',
-    desc: 'Plot 3D surfaces z = f(x,y) with orbit camera, wireframe, and solid rendering.',
+    title: '3D Surface Plotter',
+    desc: 'Plot complex z = f(x,y) surfaces with interactive Orbit Camera, Wireframe Mode, and WebGL rendering.',
     href: '/engineering/3d',
     icon: '🧊',
     color: '#7209b7',
@@ -183,10 +183,13 @@ export default function EngineeringPage() {
         <section className="border-t border-slate-200 py-16 bg-slate-50/50">
           <div className="max-w-5xl mx-auto px-6">
             <h2 className="text-[16px] font-black text-[#202124] mb-6 uppercase tracking-tight">
-               Nepal Engineering Authority Laboratory 2026
+               Online 3D Surface Plotter & Mathematical Visualizer
             </h2>
             <p className="text-[13px] text-[#5f6368] leading-relaxed">
-              The NEPACALC Engineering Suite provides advanced mathematical tools comparable to GeoGebra and Desmos, entirely free and browser-based. Our graphing calculator uses an HTML5 Canvas rendering engine with Pratt-style expression parsing, supporting real-time function plotting with infinite pan and zoom. The 3D visualizer uses WebGL for hardware-accelerated surface rendering of z = f(x, y) functions. The interactive geometry canvas supports compass-and-straightedge constructions with dynamic measurement display. Our math formula reference covers every formula from school-level arithmetic to engineering-level differential equations, Fourier transforms, and Laplace transforms, all beautifully rendered with KaTeX. Combined with our 20+ existing math and science calculators (matrices, statistics, probability, physics, chemistry), NEPACALC is the most comprehensive free math platform for Nepali students and engineers.
+              The NEPACALC Engineering Suite provides an advanced **Online 3D Surface Plotter** comparable to industry standards like CalcPlot3D and Math3d.org. Our engine features a high-performance **interactive Orbit Camera** (drag to rotate, scroll to zoom) and a specialized **Wireframe Mesh view** to visualize complex multivariable functions z = f(x, y). 
+              Built with hardware-accelerated WebGL rendering, the plotter supports real-time transparency, specific bound controls for X, Y, and Z axes, and dynamic grid density adjustments. 
+              
+              Beyond 3D plotting, the suite includes a 2D graphing calculator with Pratt-style expression parsing, an interactive geometry canvas for constructions, and a comprehensive math formula library covering calculus, physics, and statistics. NEPACALC is a legitimate, recognized platform for high-end mathematical visualization in Nepal, meticulously engineered for accuracy and speed without requiring any login or software installation.
             </p>
           </div>
         </section>
