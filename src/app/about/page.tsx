@@ -12,12 +12,12 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white">
       <div className="max-w-4xl mx-auto px-4 py-16 sm:py-24">
         
-        <header className="mb-20 text-center">
-           <Link href="/" className="inline-block text-xs font-black text-[#1A73E8] uppercase tracking-widest mb-6 px-4 py-1.5 bg-blue-50 rounded-full">Explore Tools →</Link>
-           <h1 className="text-4xl sm:text-6xl font-black text-gray-900 tracking-tight mb-8">
+        <header className="mb-10 text-center">
+           <Link href="/" className="inline-block text-[10px] font-black text-[#1A73E8] uppercase tracking-widest mb-4 px-3 py-1 bg-blue-50 rounded-full">Explore Tools →</Link>
+           <h1 className="text-[20px] sm:text-[32px] font-black text-gray-900 tracking-tight mb-4">
              Precision Meets <span className="text-[#1A73E8]">Trust.</span>
            </h1>
-           <p className="text-xl text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed">
+           <p className="text-[14px] text-gray-500 font-medium max-w-xl mx-auto leading-relaxed">
              We build advanced tools that empower Nepalese people to make smarter decisions, every single day.
            </p>
         </header>
@@ -39,22 +39,22 @@ export default function AboutPage() {
                  </div>
               </div>
            </div>
-           <div className="bg-gray-50 rounded-[3rem] p-10 flex flex-col justify-center border border-gray-100">
-              <div className="text-4xl font-black text-gray-900 mb-2">75+</div>
-              <div className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-8">Specialized Tools</div>
-              <p className="text-sm text-gray-500 leading-relaxed italic">
-                 &quot;Our goal is to make precision accessible, helping users from Kathmandu to Kanchanpur solve their numeric problems in seconds.&quot;
+           <div className="bg-gray-50 rounded-[2rem] p-8 flex flex-col justify-center border border-gray-100">
+              <div className="text-3xl font-black text-gray-900 mb-1">75+</div>
+              <div className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-4">Specialized Tools</div>
+              <p className="text-xs text-gray-500 leading-relaxed italic">
+                 "Our goal is to make precision accessible, helping users from Kathmandu to Kanchanpur solve their numeric problems in seconds."
               </p>
            </div>
         </section>
 
-        <div className="bg-gray-900 rounded-[2.5rem] p-12 text-white shadow-2xl">
-           <div className="flex flex-col md:flex-row items-center justify-between gap-10">
-              <div className="space-y-4">
-                 <h2 className="text-3xl font-black">Join our mission.</h2>
-                 <p className="text-gray-400 font-medium">We are always looking for feedback to improve our tools.</p>
+        <div className="bg-gray-900 rounded-[1.5rem] p-8 text-white shadow-2xl">
+           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="space-y-2">
+                 <h2 className="text-xl font-black">Join our mission.</h2>
+                 <p className="text-gray-400 text-sm font-medium">We are always looking for feedback to improve our tools.</p>
               </div>
-              <Link href="/contact" className="bg-blue-600 hover:bg-blue-700 text-white font-black px-10 py-5 rounded-3xl shadow-xl shadow-blue-500/20 transition-all">
+              <Link href="/contact" className="bg-blue-600 hover:bg-blue-700 text-white text-[10px] font-black tracking-widest px-8 py-4 rounded-xl shadow-xl shadow-blue-500/20 transition-all">
                 CONTACT US
               </Link>
            </div>

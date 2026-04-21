@@ -27,12 +27,12 @@ function SearchResults() {
   }, [q]);
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="text-center mb-12">
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+    <div className="max-w-2xl mx-auto">
+      <div className="text-center mb-8">
+        <h1 className="text-[20px] sm:text-[28px] font-bold text-gray-900 mb-2">
           Search <span className="text-blue-600">Calculators</span>
         </h1>
-        <p className="text-gray-600">
+        <p className="text-[14px] text-gray-600">
           Find exactly what you need from our library of 80+ tools.
         </p>
       </div>

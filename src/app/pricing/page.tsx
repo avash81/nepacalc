@@ -60,15 +60,15 @@ export default function PricingPage() {
     <div className="min-h-screen bg-cp-bg font-sans py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 mb-6">
-            <Star className="w-4 h-4 text-blue-600" />
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-widest">Pricing Plans</span>
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-4">
+            <Star className="w-3.5 h-3.5 text-blue-600" />
+            <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Pricing Plans</span>
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight mb-6">
+          <h1 className="text-[20px] sm:text-[32px] font-bold text-gray-900 tracking-tight mb-4">
             Simple <span className="text-blue-600">Pricing</span>
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-[14px] text-gray-600 max-w-xl mx-auto">
             Choose the plan that fits your needs. No hidden fees, just precision tools for modern Nepal.
           </p>
 
@@ -131,7 +131,7 @@ export default function PricingPage() {
               <Link 
                 href="/calculators"
                 className={clsx(
-                  "w-full py-3.5 px-4 rounded-xl text-sm font-semibold text-center transition-colors",
+                  "w-full py-2.5 px-4 rounded-xl text-[12px] font-semibold text-center transition-colors",
                   plan.variant === 'primary' 
                     ? "bg-blue-600 text-white hover:bg-blue-700 shadow-sm" 
                     : "bg-white text-gray-900 border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50"

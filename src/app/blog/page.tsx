@@ -93,15 +93,15 @@ export default async function BlogIndexPage() {
       <div className="hp-container py-8 sm:py-20">
 
         {/* --- HEADER --- */}
-        <header className="mb-16 text-center lg:text-left max-w-3xl animate-fade-in">
-          <div className="inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-[var(--primary)] bg-[var(--primary-light)] border border-[var(--primary-light)] rounded-2xl px-6 py-2.5 mb-8 shadow-sm">
-            <span className="w-2 h-2 bg-[var(--primary)] rounded-full animate-pulse shadow-sm shadow-blue-500/50" />
+        <header className="mb-10 text-center lg:text-left max-w-2xl animate-fade-in">
+          <div className="inline-flex items-center gap-3 text-[9px] font-black uppercase tracking-[0.2em] text-[var(--primary)] bg-[var(--primary-light)] border border-[var(--primary-light)] rounded-xl px-4 py-1.5 mb-6 shadow-sm">
+            <span className="w-1.5 h-1.5 bg-[var(--primary)] rounded-full animate-pulse shadow-sm shadow-blue-500/50" />
             Mathematical Insights
           </div>
-          <h1 className="text-4xl sm:text-6xl font-black text-[var(--text-main)] mb-8 tracking-tighter leading-[0.9]">
+          <h1 className="text-[20px] sm:text-[28px] font-black text-[var(--text-main)] mb-4 tracking-tighter leading-tight">
             Scientific <span className="text-[var(--primary)]">Resources</span>
           </h1>
-          <p className="text-[var(--text-secondary)] text-xl leading-relaxed font-medium">
+          <p className="text-[var(--text-secondary)] text-[14px] leading-relaxed font-medium">
              Expert financial guidance, local tax intelligence, and professional calculator tutorials for the latest Nepal fiscal ecosystem.
           </p>
         </header>
@@ -140,42 +140,42 @@ export default async function BlogIndexPage() {
               const isSalaryFocus = item.title.toLowerCase().includes('salary') || item.excerpt.toLowerCase().includes('salary');
 
               return (
-                <Link key={item.id} href={href} className="group relative flex flex-col bg-[var(--bg-surface)] border border-[var(--border)] rounded-[2rem] p-8 transition-all hover:border-[var(--primary)] hover:shadow-xl active:scale-[0.98] shadow-sm">
+                <Link key={item.id} href={href} className="group relative flex flex-col bg-[var(--bg-surface)] border border-[var(--border)] rounded-[1.5rem] p-6 transition-all hover:border-[var(--primary)] hover:shadow-xl active:scale-[0.98] shadow-sm">
                   
                   {/* Badge */}
-                  <div className="flex items-center justify-between mb-8">
-                    <span className={`text-[9px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full border
+                  <div className="flex items-center justify-between mb-6">
+                    <span className={`text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full border
                       ${item.type === 'guide' 
                         ? 'bg-emerald-50 text-emerald-600 border-emerald-100 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800/50' 
                         : 'bg-blue-50 text-blue-600 border-blue-100 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800/50'}`}>
                       {item.type}
                     </span>
                     {isSalaryFocus && (
-                        <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-blue-600 text-white shadow-lg shadow-blue-600/20">
-                            <ArrowRight className="w-4 h-4" />
+                        <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-blue-600 text-white shadow-lg shadow-blue-600/20">
+                            <ArrowRight className="w-3 h-3" />
                         </div>
                     )}
                   </div>
 
-                  <h2 className="text-2xl font-black text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors mb-6 leading-tight">
+                  <h2 className="text-lg font-black text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors mb-4 leading-tight">
                     {item.title}
                   </h2>
 
-                  <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-8 line-clamp-2">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-6 line-clamp-2">
                     {item.excerpt}
                   </p>
 
-                  <div className="mt-auto pt-6 border-t border-gray-50 dark:border-gray-800 flex items-center justify-between">
-                    <div className="flex items-center gap-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                  <div className="mt-auto pt-4 border-t border-gray-50 dark:border-gray-800 flex items-center justify-between">
+                    <div className="flex items-center gap-4 text-[9px] font-black text-gray-400 uppercase tracking-widest">
                        <span className="flex items-center gap-2">
-                          <Calendar className="w-3.5 h-3.5" />
+                          <Calendar className="w-3 h-3" />
                           {item.date && !isNaN(new Date(item.date).getTime()) 
                             ? new Date(item.date).toLocaleDateString('en-NP', { month: 'short', day: 'numeric' })
                             : 'Recent'}
                        </span>
                        <span>·</span>
                        <span className="flex items-center gap-2">
-                          <Clock className="w-3.5 h-3.5" />
+                          <Clock className="w-3 h-3" />
                           {readMins}m
                        </span>
                     </div>
@@ -183,7 +183,7 @@ export default async function BlogIndexPage() {
 
                   {/* Auto-Linking Strategy (Phase 2 SEO) */}
                   {isSalaryFocus && (
-                      <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-blue-600 text-white text-[8px] font-black uppercase px-4 py-2 rounded-2xl translate-y-2 group-hover:translate-y-0 duration-300 pointer-events-none">
+                      <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-blue-600 text-white text-[8px] font-black uppercase px-3 py-1.5 rounded-xl translate-y-2 group-hover:translate-y-0 duration-300 pointer-events-none">
                          Try Salary Calc →
                       </div>
                   )}
@@ -194,13 +194,13 @@ export default async function BlogIndexPage() {
         )}
 
         {/* --- NEWSLETTER CTA --- */}
-         <section className="mt-32 bg-gray-950 dark:bg-white rounded-[4rem] p-12 sm:p-20 text-center relative overflow-hidden">
-            <div className="relative z-10 space-y-8">
-               <h2 className="text-white dark:text-black text-3xl sm:text-5xl font-black tracking-tight">Stay ahead of the <span className="text-blue-500">market.</span></h2>
-               <p className="text-white/60 dark:text-black/60 max-w-xl mx-auto text-lg">Join our growing community of Nepal professionals receiving weekly tax insights and 2082/83 financial alerts.</p>
+         <section className="mt-32 bg-gray-950 dark:bg-white rounded-[2rem] p-8 sm:p-16 text-center relative overflow-hidden">
+            <div className="relative z-10 space-y-6">
+               <h2 className="text-white dark:text-black text-2xl sm:text-4xl font-black tracking-tight">Stay ahead of the <span className="text-blue-500">market.</span></h2>
+               <p className="text-white/60 dark:text-black/60 max-w-xl mx-auto text-sm">Join our growing community of Nepal professionals receiving weekly tax insights and 2082/83 financial alerts.</p>
                <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                  <input type="email" placeholder="Your work email" className="flex-1 bg-white/10 dark:bg-gray-100 border border-white/20 dark:border-gray-200 rounded-2xl px-6 py-4 text-white dark:text-black focus:outline-none focus:border-blue-500 transition-all font-medium" />
-                  <button className="bg-blue-600 text-white font-black text-[10px] uppercase tracking-[0.2em] px-10 py-5 rounded-2xl hover:bg-blue-500 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-blue-600/30">Get Alerts</button>
+                  <input type="email" placeholder="Your work email" className="flex-1 bg-white/10 dark:bg-gray-100 border border-white/20 dark:border-gray-200 rounded-xl px-6 py-3 text-white dark:text-black focus:outline-none focus:border-blue-500 transition-all font-medium text-sm" />
+                  <button className="bg-blue-600 text-white font-black text-[10px] uppercase tracking-[0.2em] px-8 py-4 rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-blue-600/30">Get Alerts</button>
                </div>
             </div>
          </section>
