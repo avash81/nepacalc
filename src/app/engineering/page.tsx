@@ -102,10 +102,10 @@ export default function EngineeringPage() {
               <span className="text-3xl">🧮</span>
               <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#4361ee]">Engineering Suite</span>
             </div>
-            <h1 className="text-[36px] sm:text-[48px] font-black text-[#202124] tracking-tight leading-tight mb-4">
+            <h1 className="text-[18px] sm:text-[24px] font-black text-[#202124] tracking-tight leading-tight mb-2">
               Engineering & Math Tools
             </h1>
-            <p className="text-[16px] text-[#5f6368] max-w-2xl leading-relaxed">
+            <p className="text-[13px] text-[#5f6368] max-w-2xl leading-relaxed">
               Professional-grade graphing, 3D visualization, interactive geometry, and a comprehensive formula library.
               Plus 20+ existing math & science calculators — all free, all instant.
             </p>
@@ -121,25 +121,25 @@ export default function EngineeringPage() {
             {TOOLS.map(tool => (
               <div
                 key={tool.title}
-                className="group relative rounded-2xl border border-slate-200 p-6 hover:border-transparent hover:shadow-xl transition-all duration-300 overflow-hidden"
+                className="group relative rounded-xl border border-slate-200 p-3 hover:border-transparent hover:shadow-lg transition-all duration-300 overflow-hidden"
               >
                 {/* Gradient accent */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ background: `linear-gradient(135deg, ${tool.color}08, ${tool.color}15)` }} />
 
                 <div className="relative z-10">
-                  <div className="text-4xl mb-4">{tool.icon}</div>
-                  <h3 className="text-[18px] font-bold text-[#202124] mb-2">{tool.title}</h3>
-                  <p className="text-[13px] text-[#5f6368] leading-relaxed mb-4">{tool.desc}</p>
+                  <div className="text-xl mb-2">{tool.icon}</div>
+                  <h3 className="text-[13px] font-bold text-[#202124] mb-1">{tool.title}</h3>
+                  <p className="text-[11px] text-[#5f6368] leading-relaxed mb-2">{tool.desc}</p>
 
                   {tool.status === 'coming' ? (
-                    <span className="inline-block px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-widest bg-amber-50 text-amber-600 border border-amber-200">
+                    <span className="inline-block px-2 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-amber-50 text-amber-600 border border-amber-200">
                       Coming Soon
                     </span>
                   ) : (
                     <Link
                       href={tool.href}
-                      className="inline-block px-4 py-2 rounded-full text-[12px] font-bold text-white transition-all hover:opacity-90"
+                      className="inline-block px-3 py-1 rounded-full text-[10px] font-bold text-white transition-all hover:opacity-90"
                       style={{ background: tool.color }}
                     >
                       Open Tool →
