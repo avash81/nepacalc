@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   },
 };
 
+import GoldDashboardClient from './GoldDashboardClient';
+
 export default function Page() {
-  return <Calculator initialAssetId="gold_hallmark_tola" />;
+  return <GoldDashboardClient />;
 }

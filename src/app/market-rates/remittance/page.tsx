@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   },
 };
 
+import RemittanceDashboardClient from './RemittanceDashboardClient';
+
 export default function Page() {
-  return <Calculator />;
+  return <RemittanceDashboardClient />;
 }

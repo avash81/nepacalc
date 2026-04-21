@@ -111,7 +111,7 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
       featureList: [
         'High-precision numeric engine',
         'Real-time scientific visualization',
-        'Authorized Laboratory Standards',
+        'Institutional Benchmarks',
         'Mobile optimization'
       ],
       aggregateRating: {

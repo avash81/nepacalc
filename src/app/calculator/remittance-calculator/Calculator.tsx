@@ -46,7 +46,7 @@ export default function RemittanceCalculator() {
   
   // Resolve base rate: Prefer Live if USD and enabled
   const nrbRate = (currencyCode === 'USD' && useLiveNRB && rates?.forex?.usd) 
-    ? rates.forex.usd 
+    ? rates.forex.usd.current 
     : currency.rate;
 
   const activeRate = useCustomRate ? customRate : nrbRate;

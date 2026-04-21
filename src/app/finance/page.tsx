@@ -1,4 +1,4 @@
-import { CATEGORIES } from '@/data/calculators';
+import { CATEGORIES, CALCULATORS } from '@/data/calculators';
 import Link from 'next/link';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Finance and Tax Calculators | EMI SIP CAGR FD | NEPACALC',
-  description: 'Free finance calculators: Loan EMI, SIP Investment, Compound Interest, CAGR, Fixed Deposit, Currency Converter and more. Professional grade tools for Nepali investors.',
+  description: 'Free finance calculators: Loan EMI, SIP Investment, Compound Interest, CAGR, Fixed Deposit, Currency Converter and more. 11+ professional grade tools for Nepali investors.',
   keywords: ['emi calculator nepal', 'sip calculator', 'loan calculator', 'compound interest calculator', 'fd calculator nepal'],
   alternates: { canonical: 'https://nepacalc.com/finance' },
 };
@@ -26,8 +26,12 @@ const TOP_TOOLS = [
 ];
 
 export default function FinancePillarPage() {
-  const category = CATEGORIES.find(c => c.id === 'finance')!;
-  const existingTools = category.calculators.filter(c => !TOP_TOOLS.some(t => t.slug === c.slug));
+  const financeTools = [
+    ...CATEGORIES.find(c => c.id === 'finance')!.calculators,
+    CALCULATORS.find(c => c.id === 'currency-converter')!
+  ].filter(Boolean);
+  
+  const existingTools = financeTools.filter(c => !TOP_TOOLS.some(t => t.slug === c.slug));
 
   return (
     <>

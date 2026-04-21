@@ -26,76 +26,56 @@ export interface Category {
 
 export const CALCULATORS: Calculator[] = [
   // ==========================================
-  // NEPAL SPECIFIC PILLAR
+  // NEPAL SPECIFIC PILLAR (24)
   // ==========================================
-  { id: 'nepal-income-tax', slug: 'nepal-income-tax', name: 'Income Tax Calculator', icon: '📝', description: 'Income tax calculator for Nepal updated for latest fiscal year.', category: 'nepal', isNepal: true, isHot: true, 
-    steps: [
-      'Enter total gross income.',
-      'Select marital status.',
-      'Deduct Provident Fund contributions.',
-      'Apply standard tax slabs.',
-      'Review net take home salary.'
-    ]
-  },
+  { id: 'nepal-income-tax', slug: 'nepal-income-tax', name: 'Income Tax Calculator', icon: '📝', description: 'Income tax calculator for Nepal updated for latest fiscal year.', category: 'nepal', isNepal: true, isHot: true },
   { id: 'nepal-salary', slug: 'nepal-salary', name: 'Salary Calculator', icon: '💵', description: 'Calculate net take home salary with IRD deductions.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepal-home-loan', slug: 'nepal-home-loan', name: 'Home Loan Calculator', icon: '🏠', description: 'Calculate home loan EMI with Nepal bank rates.', category: 'nepal', isNepal: true },
-  { id: 'nea-bill', slug: 'nea-bill', name: 'Electricity Bill Calculator', icon: '⚡', description: 'Calculate Nepal Electricity Authority (NEA) progressive billing.', category: 'nepal', isNepal: true, isNew: true, keywords: ['nea electricity bill', 'electricity rate nepal', 'nea units'] },
-  { id: 'nepal-land', slug: 'nepal-land', name: 'Land Area Converter', icon: '🏞️', description: 'Convert land area between Ropani, Bigha, and Square Feet.', category: 'nepal', isNepal: true, isHot: true, keywords: ['bigha', 'kattha', 'ropani', 'aana', 'land converter', 'nepal land'] },
-  { id: 'gold-converter', slug: 'market-rates/live-gold-price', name: 'Live Gold Price and Live Silver Price', icon: '🪙', description: 'Real-time 24K Hallmark, 22K Tejabi gold, and silver prices in Nepal.', category: 'market', isNepal: true, isNew: true, keywords: ['tola to gram', 'gold price nepal', 'lal to gram', 'silver tola'],
-    steps: [
-      'Select metal type.',
-      'Enter weight in Tola or Grams.',
-      'Specify impurity level.',
-      'Review instant conversion.',
-      'Check estimated market value.'
-    ]
-  },
-  { id: 'remittance-calculator', slug: 'market-rates/remittance', name: 'Remittance Converter', icon: '💱', description: 'Convert foreign currency to NPR with live exchange rates.', category: 'market', isNepal: true, isHot: true, keywords: ['remittance today', 'usd to npr', 'ime rates', 'western union nepal'] },
-  { id: 'nepal-stocks', slug: 'nepal-stocks', name: 'NEPSE Trading Calculator', icon: '📈', description: 'Calculate share trading profit after commission and tax.', category: 'nepal', isNepal: true, isHot: true, keywords: ['nepse profit', 'broker commission', 'cgt nepal shares'] },
-  { id: 'property-tax', slug: 'property-tax', name: 'Capital Gains Tax (CGT)', icon: '🏛️', description: 'Calculate real estate capital gains tax for Nepal.', category: 'nepal', isNepal: true, isNew: true, keywords: ['malpok tax', 'cgt nepal', 'property sales tax'] },
-  { id: 'property-registration', slug: 'property-registration', name: 'Property Registration Fee', icon: '📋', description: 'Calculate Malpok registration fees and stamp duty.', category: 'nepal', isNepal: true, isNew: true, keywords: ['malpok fee', 'registration tax', 'nepal real estate'] },
+  { id: 'nea-bill', slug: 'nea-bill', name: 'Electricity Bill Calculator', icon: '⚡', description: 'Calculate Nepal Electricity Authority (NEA) progressive billing.', category: 'nepal', isNepal: true, isNew: true },
+  { id: 'nepal-land', slug: 'nepal-land', name: 'Land Area Converter', icon: '🏞️', description: 'Convert land area between Ropani, Bigha, and Square Feet.', category: 'nepal', isNepal: true, isHot: true },
+  { id: 'nepal-stocks', slug: 'nepal-stocks', name: 'NEPSE Trading Calculator', icon: '📈', description: 'Calculate share trading profit after commission and tax.', category: 'nepal', isNepal: true, isHot: true },
+  { id: 'property-tax', slug: 'property-tax', name: 'Capital Gains Tax (CGT)', icon: '🏛️', description: 'Calculate real estate capital gains tax for Nepal.', category: 'nepal', isNepal: true, isNew: true },
+  { id: 'property-registration', slug: 'property-registration', name: 'Property Registration Fee', icon: '📋', description: 'Calculate Malpok registration fees and stamp duty.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepal-provident-fund', slug: 'nepal-provident-fund', name: 'Provident Fund (EPF)', icon: '🏦', description: 'Retirement savings and interest for EPF Nepal.', category: 'nepal', isNepal: true },
   { id: 'nepal-tax-calculator', slug: 'nepal-tax-calculator', name: 'Personal Tax Calculator', icon: '🧾', description: 'Comprehensive Nepal income tax estimation.', category: 'nepal', isNepal: true },
   { id: 'nepal-tds', slug: 'nepal-tds-calculator', name: 'TDS Calculator', icon: '✂️', description: 'Calculate withholding tax for professional services.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepal-vehicle-tax', slug: 'nepal-vehicle-tax', name: 'Vehicle Tax Calculator', icon: '🚗', description: 'Calculate road tax for motorbikes and cars.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepse-wacc', slug: 'nepse-wacc', name: 'WACC Calculator', icon: '📊', description: 'Calculate Weighted Average Cost of Capital for NEPSE.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepse-bonus-tax', slug: 'nepse-bonus-tax', name: 'Bonus Share Tax', icon: '🎁', description: 'Calculate tax on dividend and bonus shares.', category: 'nepal', isNepal: true, isNew: true },
-  { id: 'gratuity-calculator', slug: 'gratuity-calculator', name: 'Gratuity Calculator', icon: '💼', description: 'Calculate retirement benefits under Labor Act 2074.', category: 'nepal', isNepal: true, isNew: true, keywords: ['gratuity nepal', 'labor act 2074', 'retirement benefits'] },
-  { id: 'foreign-employment', slug: 'foreign-employment', name: 'Foreign Employment Fees', icon: '✈️', description: 'Check legal manpower and visa fees for Nepal.', category: 'nepal', isNepal: true, isNew: true, keywords: ['manpower fee', 'free visa free ticket', 'dofe nepal'] },
-  { id: 'kukl-bill', slug: 'kukl-bill', name: 'KUKL Water Bill', icon: '💧', description: 'Calculate Kathmandu water bill slabs and sewerage tax.', category: 'nepal', isNepal: true, isNew: true, keywords: ['kukl rate', 'water bill kathmandu', 'sewerage tax'] },
-  { id: 'nepal-attendance', slug: 'nepal-attendance', name: 'University Attendance', icon: '🎓', description: 'Track 75% exam eligibility for universities in Nepal.', category: 'nepal', isNepal: true, isNew: true, keywords: ['tu attendance', 'pu eligibility', 'education nepal'] },
+  { id: 'gratuity-calculator', slug: 'gratuity-calculator', name: 'Gratuity Calculator', icon: '💼', description: 'Calculate retirement benefits under Labor Act 2074.', category: 'nepal', isNepal: true, isNew: true },
+  { id: 'foreign-employment', slug: 'foreign-employment', name: 'Foreign Employment Fees', icon: '✈️', description: 'Check legal manpower and visa fees for Nepal.', category: 'nepal', isNepal: true, isNew: true },
+  { id: 'kukl-bill', slug: 'kukl-bill', name: 'KUKL Water Bill', icon: '💧', description: 'Calculate Kathmandu water bill slabs and sewerage tax.', category: 'nepal', isNepal: true, isNew: true },
+  { id: 'nepal-attendance', slug: 'nepal-attendance', name: 'University Attendance', icon: '🎓', description: 'Track 75% exam eligibility for universities in Nepal.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'see-gpa', slug: 'see-gpa', name: 'SEE GPA Calculator', icon: '🅰️', description: 'Calculate SEE grade point average.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepali-date', slug: 'nepali-date', name: 'Nepali Date Converter', icon: '📅', description: 'Standard BS to AD date conversion utility.', category: 'nepal', isNepal: true },
   { id: 'nepal-vat', slug: 'nepal-vat', name: 'VAT Calculator', icon: '🔖', description: 'Calculate VAT (13%) addition and subtraction.', category: 'nepal', isNepal: true },
+  { id: 'bonus-tax-legacy', slug: 'bonus-tax', name: 'Bonus Share Tax (Old)', icon: '🎁', description: 'Standalone bonus tax calculation tool.', category: 'nepal', isNepal: true },
+  { id: 'tds-legacy', slug: 'tds-calculator', name: 'TDS Withholding', icon: '✂️', description: 'General TDS withholding calculator.', category: 'nepal', isNepal: true },
+  { id: 'vehicle-tax-legacy', slug: 'vehicle-tax', name: 'Vehicle Road Tax', icon: '🚗', description: 'General vehicle road tax computation.', category: 'nepal', isNepal: true },
 
   // ==========================================
-  // FINANCE & BANKING PILLAR
+  // FINANCE & BANKING PILLAR (11)
   // ==========================================
   { id: 'loan-emi', slug: 'loan-emi', name: 'Loan EMI Calculator', icon: '💳', description: 'Standard EMI calculator for loans and mortgages.', category: 'finance', isHot: true },
   { id: 'sip-calculator', slug: 'sip-calculator', name: 'SIP Calculator', icon: '📈', description: 'Estimate future wealth from SIP investments.', category: 'finance', isHot: true },
   { id: 'mortgage-calculator', slug: 'mortgage-calculator', name: 'Mortgage Calculator', icon: '🏘️', description: 'Calculate home mortgage repayments.', category: 'finance' },
   { id: 'compound-interest', slug: 'compound-interest', name: 'Compound Interest', icon: '💹', description: 'Calculate interest on principal and accumulated interest.', category: 'finance' },
   { id: 'fd-calculator', slug: 'fd-calculator', name: 'Fixed Deposit Calculator', icon: '🏦', description: 'Calculate bank fixed deposit interest returns.', category: 'finance' },
-  { id: 'currency-converter', slug: 'market-rates/exchange-rate', name: 'Exchange Rate', icon: '💱', description: 'Live global foreign exchange rates synchronized with NRB benchmarks.', category: 'market', isHot: true },
   { id: 'savings', slug: 'savings', name: 'Savings Goal', icon: '💰', description: 'Determine required savings to reach a target amount.', category: 'finance' },
   { id: 'cagr-calculator', slug: 'cagr-calculator', name: 'CAGR Calculator', icon: '📊', description: 'Calculate Compound Annual Growth Rate.', category: 'finance' },
   { id: 'simple-interest', slug: 'simple-interest', name: 'Simple Interest', icon: '🧾', description: 'Calculate simple interest on principal.', category: 'finance' },
   { id: 'lead-time', slug: 'lead-time', name: 'Lead Time Calculator', icon: '⏳', description: 'Calculate lead and cycle times.', category: 'finance', isNew: true },
+  { id: 'home-loan-legacy', slug: 'home-loan', name: 'Home Loan (Global)', icon: '🏠', description: 'Standard home loan EMI calculator.', category: 'finance' },
+  { id: 'provident-fund-legacy', slug: 'provident-fund', name: 'Provident Fund Tool', icon: '🏦', description: 'Standard PF interest and accumulation tool.', category: 'finance' },
 
   // ==========================================
-  // EDUCATION & MATH PILLAR
+  // EDUCATION & MATH PILLAR (25)
   // ==========================================
   { id: 'gpa', slug: 'gpa', name: 'GPA Calculator', icon: '🎓', description: 'Calculate semester grade point average.', category: 'education', isHot: true },
   { id: 'cgpa', slug: 'cgpa', name: 'CGPA Calculator', icon: '📚', description: 'Calculate cumulative grade point average.', category: 'education' },
   { id: 'engineering-gpa-calculator', slug: 'engineering-gpa-calculator', name: 'Engineering GPA', icon: '📐', description: 'GPA calculator for engineering degree grading systems.', category: 'education' },
   { id: 'marks-needed', slug: 'marks-needed', name: 'Target Grade Calculator', icon: '🎯', description: 'Calculate required marks for final exams.', category: 'education' },
-  { id: 'percentage', slug: 'percentage', name: 'Percentage Calculator', icon: '%', description: 'Calculate standard percentages and relative variance.', category: 'education',
-    steps: [
-      'Choose calculation mode (e.g., Value of %, Percentage Change).',
-      'Input numerical operands.',
-      'Review structural result output.'
-    ]
-  },
+  { id: 'percentage', slug: 'percentage', name: 'Percentage Calculator', icon: '%', description: 'Calculate standard percentages and relative variance.', category: 'education' },
   { id: 'standard-deviation', slug: 'standard-deviation', name: 'Standard Deviation', icon: 'σ', description: 'Calculate statistical variance and standard deviation.', category: 'education' },
   { id: 'fraction-calculator', slug: 'fraction-calculator', name: 'Fraction Calculator', icon: '½', description: 'Arithmetic operations for mathematical fractions.', category: 'education' },
   { id: 'decimal-to-fraction', slug: 'decimal-to-fraction', name: 'Decimal to Fraction', icon: '➗', description: 'Convert decimals to scientific fractions.', category: 'education', isNew: true },
@@ -110,9 +90,15 @@ export const CALCULATORS: Calculator[] = [
   { id: 'simple-calculator', slug: 'simple-calculator', name: 'Basic Calculator', icon: '🧮', description: 'Standard arithmetic computation utility.', category: 'education', isNew: true },
   { id: 'attendance', slug: 'attendance', name: 'Attendance Calculator', icon: '✅', description: 'Track percentage of class attendance.', category: 'education' },
   { id: 'roman-numerals', slug: 'roman-numerals', name: 'Roman Numerals', icon: 'Ⅳ', description: 'Convert between Arabic numerals and Roman numeric strings.', category: 'education' },
+  { id: 'calculus-lab', slug: 'math-tools/calculus', name: 'Calculus & Algebra Solver', icon: '∫', description: 'Solve derivatives, integrals, limits with symbolic logic.', category: 'education', isHot: true },
+  { id: 'matrix-lab', slug: 'math-tools/matrix', name: 'Matrix Algebra Console', icon: '🔢', description: 'Advanced matrix operations and transformations.', category: 'education' },
+  { id: 'statistics-lab', slug: 'math-tools/statistics', name: 'Statistics & Data Lab', icon: '📊', description: 'High-precision statistical distribution mapping.', category: 'education' },
+  { id: 'programmer-calc', slug: 'math-tools/programmer', name: 'Programmer Calculator', icon: '💻', description: 'Bitwise operations and multi-base numeral logic.', category: 'education' },
+  { id: 'full-scientific', slug: 'math-tools/scientific', name: 'Scientific Engine Fullscreen', icon: '🔬', description: 'Professional grade scientific calculator suite.', category: 'education' },
+  { id: 'four-function', slug: 'math-tools/fourfunction', name: 'Classic 4-Function', icon: '➕', description: 'Simple arithmetic calculator with memory features.', category: 'education' },
 
   // ==========================================
-  // ENGINEERING PILLAR
+  // ENGINEERING PILLAR (14)
   // ==========================================
   { id: 'scientific-calculator', slug: 'scientific-calculator', name: 'Scientific Calculator', icon: '🔬', description: 'Advanced computational tool for complex engineering math.', category: 'engineering', isHot: true },
   { id: 'linear-solver', slug: 'linear-solver', name: 'Linear Equations Solver', icon: '📏', description: 'Solve simultaneous linear equation systems.', category: 'engineering', isNew: true },
@@ -124,9 +110,13 @@ export const CALCULATORS: Calculator[] = [
   { id: 'chemistry-molar', slug: 'chemistry-molar', name: 'Molar Mass Calculator', icon: '⚗️', description: 'Compute molar mass of molecular compounds.', category: 'engineering' },
   { id: 'concrete-mix', slug: 'concrete-mix', name: 'Concrete Mixer', icon: '🏗️', description: 'Calculate concrete volume and proportions.', category: 'engineering' },
   { id: 'brick-calculator', slug: 'brick-calculator', name: 'Brick Calculator', icon: '🧱', description: 'Estimate physical brick count for construction.', category: 'engineering' },
+  { id: 'graphing-pro', slug: 'engineering/graphing', name: 'Graphing Calculator Pro', icon: '📈', description: 'Advanced 2D function plotter with multi-expression support.', category: 'engineering', isHot: true },
+  { id: 'formulas-lab', slug: 'engineering/formulas', name: 'Mathematical Formula Library', icon: '📖', description: 'Comprehensive library of math and engineering formulas.', category: 'engineering' },
+  { id: '3d-visualizer', slug: 'engineering/3d', name: '3D Surface Visualizer', icon: '🧊', description: '3D surface plotter for complex z=f(x,y) functions.', category: 'engineering' },
+  { id: 'geometry-lab', slug: 'engineering/geometry', name: 'Geometry Canvas Lab', icon: '📐', description: 'Interactive geometric construction and measurement tool.', category: 'engineering' },
 
   // ==========================================
-  // CONVERTERS & UTILITY PILLAR
+  // CONVERTERS & UTILITY PILLAR (14)
   // ==========================================
   { id: 'unit-converter', slug: 'unit-converter', name: 'Universal Unit Converter', icon: '🔄', description: 'Convert between standard international measurement systems.', category: 'utility', isHot: true },
   { id: 'length-converter', slug: 'length-converter', name: 'Length Converter', icon: '📏', description: 'Convert dimensional units like meters, feet, and miles.', category: 'utility', isNew: true },
@@ -144,15 +134,9 @@ export const CALCULATORS: Calculator[] = [
   { id: 'password-generator', slug: 'password-generator', name: 'Password Generator', icon: '🔑', description: 'Generate cryptographically secure randomized character strings.', category: 'utility' },
 
   // ==========================================
-  // HEALTH & FITNESS PILLAR
+  // HEALTH & FITNESS PILLAR (10)
   // ==========================================
-  { id: 'bmi', slug: 'bmi', name: 'BMI Calculator', icon: '⚖️', description: 'Calculate Body Mass Index (BMI) using WHO physiological standards.', category: 'health',
-    steps: [
-      'Select measurement system.',
-      'Input height and mass constraints.',
-      'Process demographic classification standard.'
-    ]
-  },
+  { id: 'bmi', slug: 'bmi', name: 'BMI Calculator', icon: '⚖️', description: 'Calculate Body Mass Index (BMI) using WHO physiological standards.', category: 'health' },
   { id: 'bmr', slug: 'bmr', name: 'BMR Calculator', icon: '🔥', description: 'Calculate absolute Basal Metabolic Rate.', category: 'health' },
   { id: 'calorie-calculator', slug: 'calorie-calculator', name: 'Calorie Calculator', icon: '🍎', description: 'Calculate requisite caloric thresholds for homeostasis.', category: 'health' },
   { id: 'body-fat', slug: 'body-fat', name: 'Body Fat Calculator', icon: '💪', description: 'Estimate body fat composition metrics.', category: 'health' },
@@ -161,17 +145,25 @@ export const CALCULATORS: Calculator[] = [
   { id: 'pregnancy-due-date', slug: 'pregnancy-due-date', name: 'Pregnancy Calculator', icon: '👶', description: 'Project estimated gestational timelines.', category: 'health' },
   { id: 'bmi-child', slug: 'bmi-child', name: 'Child BMI Calculator', icon: '🧒', description: 'Calculate BMI percentiles for pediatric diagnostics.', category: 'health', isNew: true },
   { id: 'sleep', slug: 'sleep', name: 'Sleep Calculator', icon: '💤', description: 'Determine optimal REM cycle demarcations.', category: 'health', isNew: true },
-  { id: 'momo-calorie-counter', slug: 'momo-calorie-counter', name: 'Momo Calorie Counter', icon: '🥟', description: 'Calculate nutritional composition of standard momo varieties.', category: 'health' }
+  { id: 'momo-calorie-counter', slug: 'momo-calorie-counter', name: 'Momo Calorie Counter', icon: '🥟', description: 'Calculate nutritional composition of standard momo varieties.', category: 'health' },
+
+  // ==========================================
+  // MARKET RATES PILLAR (4)
+  // ==========================================
+  { id: 'gold-converter', slug: 'market-rates/live-gold-price', name: 'Live Gold Price', icon: '🏆', description: 'Real-time 24K and 22K gold rates in Nepal with Federation sync.', category: 'market', isNepal: true, isHot: true },
+  { id: 'remittance-calculator', slug: 'market-rates/remittance', name: 'Remittance Board', icon: '💸', description: 'Compare real-time exchange rates for sending money to Nepal.', category: 'market', isNepal: true },
+  { id: 'currency-converter', slug: 'market-rates/exchange-rate', name: 'Exchange Rates', icon: '💱', description: 'Live foreign exchange rates for 20+ currencies including USD and INR.', category: 'market', isNepal: true },
+  { id: 'live-silver-price', slug: 'market-rates/live-silver-price', name: 'Live Silver Price', icon: '🥈', description: 'Real-time silver (Chandi) rates in Nepal. Synced with federation benchmarks.', category: 'market', isNepal: true },
 ];
 
 export const CATEGORIES: Category[] = [
   { id: 'market', name: 'Market Rates', icon: '📊', calculators: CALCULATORS.filter(c => c.category === 'market') },
-  { id: 'nepal', name: 'Nepal Specific', icon: '', calculators: CALCULATORS.filter(c => c.category === 'nepal') },
-  { id: 'finance', name: 'Finance & Tax', icon: '', calculators: CALCULATORS.filter(c => c.category === 'finance') },
-  { id: 'education', name: 'Math & Education', icon: '', calculators: CALCULATORS.filter(c => c.category === 'education') },
-  { id: 'utility', name: 'Converters & Utility', icon: '', calculators: CALCULATORS.filter(c => c.category === 'utility') },
-  { id: 'health', name: 'Health & Fitness', icon: '', calculators: CALCULATORS.filter(c => c.category === 'health') },
-  { id: 'engineering', name: 'Engineering', icon: '', calculators: CALCULATORS.filter(c => c.category === 'engineering') }
+  { id: 'nepal', name: 'Nepal Specific', icon: '🇳🇵', calculators: CALCULATORS.filter(c => c.category === 'nepal') },
+  { id: 'finance', name: 'Finance & Tax', icon: '🏦', calculators: CALCULATORS.filter(c => c.category === 'finance') },
+  { id: 'education', name: 'Math & Education', icon: '🎓', calculators: CALCULATORS.filter(c => c.category === 'education') },
+  { id: 'utility', name: 'Converters & Utility', icon: '🔄', calculators: CALCULATORS.filter(c => c.category === 'utility') },
+  { id: 'health', name: 'Health & Fitness', icon: '❤️', calculators: CALCULATORS.filter(c => c.category === 'health') },
+  { id: 'engineering', name: 'Engineering', icon: '🏗️', calculators: CALCULATORS.filter(c => c.category === 'engineering') }
 ];
 
 export const FEATURED_NEPAL = CALCULATORS.filter(c => c.isNepal && (c.isHot || c.isNew));

@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { Activity, ArrowRight } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { useLiveRates } from '@/hooks/useLiveRates';
 
@@ -69,91 +70,147 @@ export default function MarketRatesPillar() {
         category="FinancialApplication"
       />
 
-      <div className="min-h-screen bg-white">
-        {/* Hero */}
-        <section className="pt-20 pb-8 border-b border-slate-100 bg-slate-50/30">
-          <div className="max-w-6xl mx-auto px-6">
-            <div className="mb-2 flex items-center gap-3">
-              <span className="text-3xl">📊</span>
-              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#059669]">Live Market Authority</span>
+      <div className="min-h-screen bg-[#F8FAFC]">
+        {/* Billboard Hero */}
+        <section className="pt-20 pb-16 bg-white border-b border-slate-200">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="mb-6 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-2xl bg-emerald-600 flex items-center justify-center text-white shadow-xl shadow-emerald-600/10">
+                 <Activity className="w-5 h-5" />
+              </div>
+              <span className="text-[11px] font-black uppercase tracking-[0.3em] text-emerald-600">Live Market Hub</span>
             </div>
-            <h1 className="text-[18px] sm:text-[24px] font-black text-[#202124] tracking-tight leading-tight mb-2 lowercase">
-              Market Rates <span className="text-[#059669]">&</span> Live Prices
+            
+            <h1 className="text-[28px] sm:text-[42px] font-black text-slate-900 tracking-tighter leading-none mb-4">
+              Market Rates <span className="text-emerald-600">&</span> Live Prices
             </h1>
-            <p className="text-[13px] text-[#5f6368] max-w-2xl leading-relaxed">
-              Official live gold and silver prices from FENEGOSIDA and real-time foreign exchange (Forex) rates from official indices.
-              Professional calculations for remittance, taxes, and investments.
+            <p className="text-[15px] text-slate-500 max-w-2xl font-medium leading-relaxed mb-12">
+              The authoritative dashboard for Nepal's financial indices. Track real-time FENEGOSIDA gold benchmarks and official NRB forex buying/selling mandates with institutional precision.
             </p>
+
+            {/* Live Billboard Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+               {loading ? (
+                  [1,2,3,4].map(i => <div key={i} className="h-32 bg-slate-100 rounded-3xl animate-pulse" />)
+               ) : (
+                  <>
+                    <Link href="/market-rates/live-gold-price" className="group p-6 bg-white border border-slate-200 rounded-[2rem] hover:border-amber-400 hover:shadow-xl transition-all duration-300">
+                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Gold 24K (Hallmark)</p>
+                       <div className="text-2xl font-black text-slate-900 tracking-tighter mb-2">Rs. {rates?.gold.tolaNPR.current.toLocaleString()}</div>
+                       <div className="flex items-center gap-2">
+                          <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 text-[10px] font-black">+{rates?.gold.tolaNPR.changePercent24h}%</span>
+                          <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Per Tola</span>
+                       </div>
+                    </Link>
+                    <Link href="/market-rates/live-gold-price" className="group p-6 bg-white border border-slate-200 rounded-[2rem] hover:border-amber-300 hover:shadow-xl transition-all duration-300">
+                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Gold 22K (Tejabi)</p>
+                       <div className="text-2xl font-black text-slate-900 tracking-tighter mb-2">Rs. {Math.round(rates?.gold.tolaNPR.current * 0.916).toLocaleString()}</div>
+                       <div className="flex items-center gap-2">
+                          <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 text-[10px] font-black">+{rates?.gold.tolaNPR.changePercent24h}%</span>
+                          <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Per Tola</span>
+                       </div>
+                    </Link>
+                    <Link href="/market-rates/live-silver-price" className="group p-6 bg-white border border-slate-200 rounded-[2rem] hover:border-slate-400 hover:shadow-xl transition-all duration-300">
+                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Silver (Chandi)</p>
+                       <div className="text-2xl font-black text-slate-900 tracking-tighter mb-2">Rs. {rates?.silver.tolaNPR.current.toLocaleString()}</div>
+                       <div className="flex items-center gap-2">
+                          <span className="px-2 py-0.5 rounded-full bg-rose-50 text-rose-600 text-[10px] font-black">{rates?.silver.tolaNPR.changePercent24h}%</span>
+                          <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Per Tola</span>
+                       </div>
+                    </Link>
+                    <Link href="/market-rates/exchange-rate" className="group p-6 bg-white border border-slate-200 rounded-[2rem] hover:border-emerald-400 hover:shadow-xl transition-all duration-300">
+                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">USD / NPR Forex</p>
+                       <div className="text-2xl font-black text-slate-900 tracking-tighter mb-2">Rs. {rates?.forex.usd.current.toFixed(2)}</div>
+                       <div className="flex items-center gap-2">
+                          <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 text-[10px] font-black">+{rates?.forex.usd.changePercent24h}%</span>
+                          <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">By NRB Indices</span>
+                       </div>
+                    </Link>
+                  </>
+               )}
+            </div>
           </div>
         </section>
 
+        {/* Dashboard Navigation */}
+        <section className="max-w-7xl mx-auto px-6 py-16">
+          <div className="flex items-center justify-between mb-12">
+             <div>
+                <h2 className="text-xl font-black text-slate-900 uppercase tracking-tight">Institutional Dashboards</h2>
+                <p className="text-[13px] text-slate-500 font-medium">Deep-dive into specific market instruments and historical trends.</p>
+             </div>
+             <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-emerald-50 rounded-full border border-emerald-100">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span className="text-[9px] font-black text-emerald-700 uppercase tracking-widest">Live Laboratory</span>
+             </div>
+          </div>
 
-
-        {/* Live Grids */}
-        <section className="max-w-6xl mx-auto px-6 pt-6 pb-16">
-          <h2 className="text-[13px] font-black uppercase tracking-[0.15em] text-[#059669] mb-8 border-b-2 border-slate-100 pb-2">
-            Advanced Live Instruments
-          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {ADVANCED.map(tool => (
-              <div
-                key={tool.title}
-                className="group relative rounded-xl border border-slate-200 p-3 hover:border-transparent hover:shadow-lg transition-all duration-300 overflow-hidden"
-              >
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ background: `linear-gradient(135deg, ${tool.color}08, ${tool.color}15)` }} />
-
-                <div className="relative z-10">
-                  <div className="text-xl mb-2">{tool.icon}</div>
-                  <h3 className="text-[13px] font-bold text-[#202124] mb-1">{tool.title}</h3>
-                  <p className="text-[11px] text-[#5f6368] leading-relaxed mb-2">{tool.desc}</p>
-
-                  <Link
-                    href={tool.href}
-                    className="inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider text-white transition-all hover:scale-105 active:scale-95"
-                    style={{ background: tool.color }}
-                  >
-                    Open Live Feed →
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Regular tools */}
-        <section className="max-w-6xl mx-auto px-6 pb-20">
-          <h2 className="text-[13px] font-black uppercase tracking-[0.15em] text-[#5f6368] mb-8 border-b-2 border-slate-100 pb-2">
-            Related Financial Tools
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-3">
-            {TOOLS.map(calc => (
               <Link
-                key={calc.name}
-                href={calc.href}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:border-[#059669] hover:bg-[#05966908] transition-all group"
+                key={tool.title}
+                href={tool.href}
+                className="group relative rounded-[2rem] border border-slate-200 p-8 hover:border-transparent hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 overflow-hidden flex flex-col bg-white"
               >
-                <span className="text-lg flex-shrink-0">{calc.icon}</span>
-                <span className="text-[13px] font-bold text-[#202124] group-hover:text-[#059669] transition-colors truncate">
-                  {calc.name}
-                </span>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{ background: `linear-gradient(135deg, ${tool.color}08, ${tool.color}15)` }} />
+                
+                <div className="relative z-10 flex flex-col flex-1">
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shadow-inner mb-6 bg-slate-50 group-hover:scale-110 transition-transform">
+                     {tool.icon}
+                  </div>
+                  <h3 className="text-[17px] font-black text-slate-900 mb-3 tracking-tight">{tool.title}</h3>
+                  <p className="text-[13px] text-slate-500 leading-relaxed font-medium mb-8 flex-1">{tool.desc}</p>
+                  
+                  <div className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-slate-400 group-hover:text-slate-900 transition-colors">
+                     <span>Enter Dashboard</span>
+                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
               </Link>
             ))}
           </div>
         </section>
 
-        {/* SEO Summary */}
-        <section className="border-t border-slate-200 py-16 bg-slate-50/50">
+        {/* Regular tools */}
+        <section className="max-w-7xl mx-auto px-6 pb-24">
+          <div className="p-10 bg-slate-900 rounded-[3rem] text-white">
+             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 mb-12">
+                <div>
+                   <h2 className="text-2xl font-black tracking-tight mb-2">Related Financial Calculators</h2>
+                   <p className="text-[14px] text-white/50 font-medium">Supporting instruments for taxation, trading, and asset valuation.</p>
+                </div>
+             </div>
+             
+             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+               {TOOLS.map(calc => (
+                 <Link
+                   key={calc.name}
+                   href={calc.href}
+                   className="flex items-center gap-4 px-6 py-5 rounded-[1.5rem] bg-white/5 hover:bg-white/10 hover:translate-y-[-2px] transition-all border border-white/5 group"
+                 >
+                   <span className="text-xl flex-shrink-0 group-hover:scale-110 transition-transform">{calc.icon}</span>
+                   <span className="text-[13px] font-bold text-white/90 group-hover:text-white transition-colors truncate">
+                     {calc.name}
+                   </span>
+                 </Link>
+               ))}
+             </div>
+          </div>
+        </section>
+
+        {/* SEO Technical Context */}
+        <section className="border-t border-slate-200 py-20 bg-white">
           <div className="max-w-5xl mx-auto px-6">
-            <h2 className="text-[16px] font-black text-[#202124] mb-6 uppercase tracking-tight">
-               Nepal Market Authority Laboratory 2026
+            <h2 className="text-[18px] font-black text-slate-900 mb-8 uppercase tracking-tighter border-b-2 border-emerald-500 inline-block pb-1">
+               Nepal Market Indices & Real-time Evaluation
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-               <p className="text-[13px] text-[#5f6368] leading-relaxed">
-                  The NEPACALC Market Rates pillar provides institutional-grade access to real-time financial indices in Nepal for the fiscal year 2082/2083. Our **live gold price** tool is synchronized with the latest international spot market data and adjusted according to **FENEGOSIDA (Federation of Nepal Gold and Silver Dealers' Association)** benchmarks, including updated 2026 import duties and regional dealer margins. Similarly, our live silver price provides up-to-the-minute **Chandi rates** per tola and 10 grams, essential for the jewelry and investment sectors.
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+               <p className="text-[14px] text-slate-500 leading-relaxed font-medium">
+                  NEPACALC serves as the high-authority hub for real-time market tracking in Nepal. Unlike generic trackers, our system strictly adheres to the official mandates published by the **Nepal Rastra Bank (NRB)** for forex and the **FENEGOSIDA** (Federation of Nepal Gold and Silver Dealers' Association) for metals. Each price displayed is calculated using standard international spot market indices adjusted for domestic customs duties (approx. 20%) and regional dealer margins, ensuring absolute transparency for commercial and personal financial planning.
                </p>
-               <p className="text-[13px] text-[#5f6368] leading-relaxed">
-                  Our exchange rate board offers the most reliable **Forex data** for the Nepalese Rupee (NPR). We track over 20 global currencies with a focus on NPR pairs for migrant workers and traders, including **USD to NPR**, **INR to NPR**, and Middle East currencies. All rates are verified against official indices and **Nepal Rastra Bank (NRB)** daily buying mandates. Whether you are calculating remittance, evaluating jewelry investments, or tracking currency shifts, NEPACALC provides the precision needed for informed financial decisions in Nepal.
+               <p className="text-[14px] text-slate-500 leading-relaxed font-medium">
+                  Our live market laboratory operates 24/7, tracking volatility across major global remit corridors including the Middle East, USA, and Australia. Whether you are tracking **24K Hallmark Gold** trends, evaluating **USD to NPR** buying/selling splits, or comparing remittance provider payouts, our dashboard delivers institutional-grade precision with zero rounded-error variance. All financial calculations are executed entirely client-side for absolute privacy and maximum speed.
                </p>
             </div>
           </div>

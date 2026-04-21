@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   },
 };
 
+import ForexDashboardClient from './ForexDashboardClient';
+
 export default function Page() {
-  return <Calculator />;
+  return <ForexDashboardClient />;
 }

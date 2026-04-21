@@ -41,33 +41,7 @@ export default function HTMLSitemap() {
                    <h2 className="text-xl font-black text-slate-900 border-b-2 border-indigo-500 inline-block pb-1 mb-6 uppercase tracking-tight">
                       {cat.name}
                    </h2>
-                   
-                   <ul className="space-y-4 pl-4 border-l-2 border-slate-100 ml-2">
-                      {/* Special injection for Engineering Suite in its category */}
-                      {cat.id === 'engineering' && (
-                        <>
-                          <li className="relative">
-                            <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-indigo-200"></span>
-                            <Link href="/engineering/graphing" className="text-base font-black text-indigo-600 hover:text-indigo-800 hover:underline mr-2 italic">Graphing Calculator Pro</Link>
-                            <span className="text-sm text-slate-500 hidden sm:inline-block">— Advanced 2D function plotter with multi-expression support.</span>
-                          </li>
-                          <li className="relative">
-                            <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-indigo-200"></span>
-                            <Link href="/engineering/3d" className="text-base font-black text-indigo-600 hover:text-indigo-800 hover:underline mr-2 italic">3D Surface Visualizer</Link>
-                            <span className="text-sm text-slate-500 hidden sm:inline-block">— 3D surface plotter for z=f(x,y) functions.</span>
-                          </li>
-                          <li className="relative">
-                            <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-indigo-200"></span>
-                            <Link href="/engineering/geometry" className="text-base font-black text-indigo-600 hover:text-indigo-800 hover:underline mr-2 italic">Geometry Canvas Lab</Link>
-                            <span className="text-sm text-slate-500 hidden sm:inline-block">— Interactive geometric construction and measurement tool.</span>
-                          </li>
-                          <li className="relative">
-                            <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-indigo-200"></span>
-                            <Link href="/engineering/formulas" className="text-base font-black text-indigo-600 hover:text-indigo-800 hover:underline mr-2 italic">Mathematical Formula Library</Link>
-                            <span className="text-sm text-slate-500 hidden sm:inline-block">— Comprehensive library of math and engineering formulas.</span>
-                          </li>
-                        </>
-                      )}
+                                      <ul className="space-y-4 pl-4 border-l-2 border-slate-100 ml-2">
 
                       {cat.calculators.sort((a,b) => a.name.localeCompare(b.name)).map(calc => (
                          <li key={calc.id} className="relative">

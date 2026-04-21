@@ -49,7 +49,7 @@ export default function QRGenerator() {
             {[
               { label: 'Website URL',   val: 'https://nepacalc.com' },
               { label: 'Phone number',  val: 'tel:+9779800000000' },
-              { label: 'Email link',    val: 'mailto:hello@nepacalc.com' },
+              { label: 'Email link',    val: 'mailto:contact@nepacalc.com' },
               { label: 'Wifi access',   val: 'WIFI:T:WPA;S:MyNetwork;P:mypassword;;' },
             ].map(p => (
               <button key={p.label} onClick={() => setText(p.val)}

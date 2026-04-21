@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import { fetchFirestoreCollection } from '@/lib/firestore-rest';
-import { CATEGORIES } from '@/data/calculators';
+import { CATEGORIES, CALCULATORS } from '@/data/calculators';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Use environment variables for the absolute URL or fallback to the provided Verel URL
@@ -15,19 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/contact',
     '/privacy',
     '/terms',
-    '/engineering',
-    '/engineering/graphing',
-    '/engineering/3d',
-    '/engineering/geometry',
-    '/engineering/formulas',
-    '/math-tools/calculator',
-    '/math-tools/scientific',
-    '/math-tools/calculus',
-    '/math-tools/statistics',
-    '/math-tools/matrix',
-    '/math-tools/programmer',
-    '/math-tools/geometry',
-    '/math-tools/3d'
+    '/terms',
   ].map((route) => ({
     url: `${baseUrl}${route}/`,
     lastModified: new Date(),
@@ -44,14 +32,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // 3. Institutional Calculation Hubs (Individual Tools)
-  const calculatorPages = CATEGORIES.flatMap((cat) =>
-    cat.calculators.map((calc) => ({
-      url: `${baseUrl}/calculator/${calc.slug}/`,
+  const calculatorPages = CALCULATORS.map((calc) => {
+    const isDirectRoute = calc.slug.includes('/');
+    return {
+      url: isDirectRoute ? `${baseUrl}/${calc.slug}/` : `${baseUrl}/calculator/${calc.slug}/`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
-    }))
-  );
+    };
+  });
 
   // 4. Dynamic Content (Blogs & Guides)
   let dynamicPages: any[] = [];

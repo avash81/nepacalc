@@ -85,7 +85,7 @@ export function CalculatorLayout({
   const renderCategoryGrid = () => (
     <div className="no-print">
       <h4 className="text-[11px] font-black uppercase text-slate-500 mb-6 tracking-widest text-center">Explore More Calculators</h4>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {CATEGORIES.map(cat => (
             <div key={cat.id} className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
               <Link href={`/calculator/category/${cat.id}`} className="flex items-center gap-2 text-[14px] font-black text-slate-800 hover:text-blue-600 mb-4 transition-colors">
@@ -212,7 +212,7 @@ export function CalculatorLayout({
            </section>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-8 items-start print:flex print:flex-col print:gap-y-6">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-y-8 lg:gap-x-8 items-start print:flex print:flex-col print:gap-y-6">
           {leftPanel && rightPanel ? (
             <>
               {/* Refactored 60/40 Split into 7/5 for wider screens */}
@@ -256,53 +256,7 @@ export function CalculatorLayout({
                 {faqSection}
              </div>
           ) : (
-             <div className="prose prose-slate max-w-none prose-sm">
-                 <h2 className="text-xl font-black text-[#202124] uppercase tracking-tight mb-4">Laboratory Standards: {title}</h2>
-                 <p className="text-slate-600 leading-relaxed font-medium">As part of the <strong>NEPACALC primary precision ecosystem</strong>, this specific <em>{title}</em> is engineered to provide high-fidelity results for professional, academic, and financial workflows. Our <strong>data-driven methodology</strong> ensures that every calculation is performed using the latest mathematical algorithms and verified against current Nepal institutional benchmarks. By removing the complexity of manual estimation, NEPACALC empowers users in Kathmandu and throughout the provinces with professional-grade data analysis.</p>
-                 
-                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6 mb-10">
-                     <div className="p-5 bg-slate-50 border border-slate-100 rounded-2xl">
-                         <h4 className="text-[10px] font-black text-[#1A73E8] uppercase tracking-widest mb-2">Institutional Accuracy</h4>
-                         <p className="text-[11px] text-slate-500 font-bold leading-relaxed">Every tool in the NEPACALC laboratory undergoes rigorous verification. We utilize advanced floating-point arithmetic to match both international SI units and local Nepal standardization mandates for various fiscal and scientific applications.</p>
-                     </div>
-                     <div className="p-5 bg-blue-50/50 border border-blue-100 rounded-2xl">
-                         <h4 className="text-[10px] font-black text-[#1A73E8] uppercase tracking-widest mb-2">Research Documentation</h4>
-                         <p className="text-[11px] text-slate-500 font-bold leading-relaxed">Built for high-performance and regulatory compliance, NEPACALC provides the authoritative digital foundation for decision-critical reports, engineering drafts, and academic research papers across the nation.</p>
-                     </div>
-                 </div>
-
-                 <h3 className="text-lg font-black text-[#202124] uppercase tracking-tight mt-10 mb-5 border-l-4 border-blue-600 pl-4">Methodology & Scientific Rigor</h3>
-                 <p className="text-slate-600 leading-relaxed font-medium mb-6">Our engineering team prioritizes <strong>Semantic Logical Accuracy (SLA)</strong>. This means the <em>{title}</em> doesn&apos;t just calculate numbers; it follows a validated logic path consistent with professional standards. Whether you are calculating financial TDS, engineering load capacities, or academic GPA scores, the underlying formulas are reviewed against the <strong>latest fiscal directives</strong> from the Nepal Inland Revenue Department (IRD) and other presiding governing bodies to maintain topical authority.</p>
-
-                 <h3 className="text-lg font-black text-[#202124] uppercase tracking-tight mt-10 mb-6 border-l-4 border-blue-600 pl-4">Verification & Technical FAQ</h3>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mt-4">
-                    <div className="space-y-2">
-                       <h4 className="text-[13px] font-black text-slate-900 leading-tight">1. How accurate is this calculator for professional use?</h4>
-                       <p className="text-[12px] text-slate-500 leading-relaxed font-medium">NEPACALC uses high-precision arithmetic verified against local Nepal mandates to ensure results are suitable for professional, bank-ready, and academic documentation templates.</p>
-                    </div>
-                    <div className="space-y-2">
-                       <h4 className="text-[13px] font-black text-slate-900 leading-tight">2. Does NEPACALC store my calculation data?</h4>
-                       <p className="text-[12px] text-slate-500 leading-relaxed font-medium">Privacy is paramount. All calculations are performed local-first. NEPACALC does not record or transmit your input data, maintaining absolute user confidentiality and data security.</p>
-                    </div>
-                    <div className="space-y-2">
-                       <h4 className="text-[13px] font-black text-slate-900 leading-tight">3. Is this tool compatible with modern mobile devices?</h4>
-                       <p className="text-[12px] text-slate-500 leading-relaxed font-medium">Yes. The entire NEPACALC laboratory is built on a responsive mobile-first framework designed for high performance on both smartphones and professional workstations.</p>
-                    </div>
-                    <div className="space-y-2">
-                       <h4 className="text-[13px] font-black text-slate-900 leading-tight">4. Are the formulas updated for the latest mandates?</h4>
-                       <p className="text-[12px] text-slate-500 leading-relaxed font-medium">Our research team monitors IRD and Presiding Ministry mandates daily. Formulas are updated as soon as new guidelines are released by authorized bodies in Nepal.</p>
-                    </div>
-                 </div>
-
-                 <div className="mt-12 p-6 bg-slate-900 rounded-3xl text-white">
-                    <h5 className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-400 mb-2">Institutional References</h5>
-                    <div className="flex flex-wrap gap-x-6 gap-y-2 text-[11px] font-bold">
-                       <a href="https://ird.gov.np" target="_blank" rel="nofollow noopener noreferrer" className="hover:text-blue-400 transition-colors flex items-center gap-1.5 underline decoration-blue-500/50">Nepal Inland Revenue Dept →</a>
-                       <a href="https://nrb.org.np" target="_blank" rel="nofollow noopener noreferrer" className="hover:text-blue-400 transition-colors flex items-center gap-1.5 underline decoration-blue-500/50">Nepal Rastra Bank →</a>
-                       <a href="https://nepal.gov.np" target="_blank" rel="nofollow noopener noreferrer" className="hover:text-blue-400 transition-colors flex items-center gap-1.5 underline decoration-blue-500/50">Government of Nepal →</a>
-                    </div>
-                 </div>
-              </div>
+             <div className="hidden" aria-hidden="true" />
           )}
         </section>
 

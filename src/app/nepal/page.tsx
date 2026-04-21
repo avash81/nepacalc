@@ -1,4 +1,4 @@
-import { CATEGORIES } from '@/data/calculators';
+import { CATEGORIES, CALCULATORS } from '@/data/calculators';
 import Link from 'next/link';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -6,12 +6,12 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Nepal Calculators — Tax, EMI, NEPSE & GPA | NEPACALC',
-  description: 'All 23 official Nepal-specific calculators: Income Tax 2082/83, Loan EMI, NEPSE WACC, SEE GPA, Vehicle Tax, Remittance, Gold Price, and more. Free, accurate, institutional-grade.',
+  description: 'All 24 official Nepal-specific calculators: Income Tax 2082/83, Loan EMI, NEPSE WACC, SEE GPA, Vehicle Tax, Remittance, Gold Price, and more. Free, accurate, institutional-grade.',
   keywords: ['nepal calculator', 'income tax calculator nepal', 'nepse calculator', 'see gpa calculator', 'nepal specific tools', 'tds calculator nepal'],
   alternates: { canonical: 'https://nepacalc.com/nepal' },
   openGraph: {
     title: 'Nepal Specific Calculators — NEPACALC',
-    description: 'The most complete suite of Nepal financial, legal, and educational calculators. 23 tools updated for FY 2082/83.',
+    description: 'The most complete suite of Nepal financial, legal, and educational calculators. 24 tools updated for FY 2082/83.',
     url: 'https://nepacalc.com/nepal',
   }
 };
@@ -43,8 +43,8 @@ const NEPAL_FAQS = [
 ];
 
 export default function NepalPillarPage() {
-  const category = CATEGORIES.find(c => c.id === 'nepal')!;
-  const existingTools = category.calculators.filter(c => !TOP_TOOLS.some(t => t.slug === c.slug));
+  const nepalTools = CALCULATORS.filter(c => c.isNepal);
+  const existingTools = nepalTools.filter(c => !TOP_TOOLS.some(t => t.slug === c.slug));
 
   return (
     <>
@@ -75,7 +75,7 @@ export default function NepalPillarPage() {
               Nepal Calculators
             </h1>
             <p className="text-[13px] text-[#5f6368] max-w-2xl leading-relaxed">
-              Free suite of {category.calculators.length} institutional-grade calculators designed for Nepal. High-precision tools natively tailored for local inland revenue taxation, national banking directives, and examination board standards.
+              Free suite of {nepalTools.length} institutional-grade calculators designed for Nepal. High-precision tools natively tailored for local inland revenue taxation, national banking directives, and examination board standards.
             </p>
           </div>
         </section>

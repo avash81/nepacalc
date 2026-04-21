@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   },
 };
 
+import SilverDashboardClient from './SilverDashboardClient';
+
 export default function Page() {
-  return <Calculator initialAssetId="silver_tola" />;
+  return <SilverDashboardClient />;
 }

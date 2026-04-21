@@ -29,9 +29,12 @@ export default function ContactPage() {
                  <Mail className="w-10 h-10 text-blue-600 group-hover:scale-110 transition-transform" />
                  <Sparkles className="w-5 h-5 text-blue-300" />
               </div>
-              <h2 className="text-2xl font-black text-gray-900 mb-2">Support Email</h2>
+              <h2 className="text-2xl font-black text-gray-900 mb-2">Support & Business</h2>
               <p className="text-sm text-gray-400 mb-8 font-black uppercase tracking-widest">Available 24/7</p>
-              <a href="mailto:support@nepacalc.com" className="text-xl font-black text-blue-600 hover:scale-105 inline-block transition-all">support@nepacalc.com</a>
+              <div className="flex flex-col gap-4">
+                 <a href="mailto:support@nepacalc.com" className="text-xl font-black text-blue-600 hover:scale-105 transition-all">support@nepacalc.com</a>
+                 <a href="mailto:contact@nepacalc.com" className="text-xl font-black text-slate-900 hover:scale-105 transition-all">contact@nepacalc.com</a>
+              </div>
            </div>
 
            <div className="bg-gray-900 rounded-[3rem] p-12 text-white shadow-2xl hover:bg-black transition-all">
