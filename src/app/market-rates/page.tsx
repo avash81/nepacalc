@@ -96,7 +96,7 @@ export default function MarketRatesPillar() {
                   <>
                     <Link href="/market-rates/live-gold-price" className="group p-6 bg-white border border-slate-200 rounded-[2rem] hover:border-amber-400 hover:shadow-xl transition-all duration-300">
                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Gold 24K (Hallmark)</p>
-                       <div className="text-2xl font-black text-slate-900 tracking-tighter mb-2">Rs. {rates?.gold.tolaNPR.current.toLocaleString()}</div>
+                       <div className="text-2xl font-black text-slate-900 tracking-tighter mb-2">Rs. {(rates?.gold.tolaNPR.current ?? 0).toLocaleString()}</div>
                        <div className="flex items-center gap-2">
                           <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 text-[10px] font-black">+{rates?.gold.tolaNPR.changePercent24h}%</span>
                           <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Per Tola</span>
@@ -104,7 +104,7 @@ export default function MarketRatesPillar() {
                     </Link>
                     <Link href="/market-rates/live-gold-price" className="group p-6 bg-white border border-slate-200 rounded-[2rem] hover:border-amber-300 hover:shadow-xl transition-all duration-300">
                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Gold 22K (Tejabi)</p>
-                       <div className="text-2xl font-black text-slate-900 tracking-tighter mb-2">Rs. {Math.round(rates?.gold.tolaNPR.current * 0.916).toLocaleString()}</div>
+                       <div className="text-2xl font-black text-slate-900 tracking-tighter mb-2">Rs. {Math.round((rates?.gold.tolaNPR.current ?? 0) * 0.916).toLocaleString()}</div>
                        <div className="flex items-center gap-2">
                           <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 text-[10px] font-black">+{rates?.gold.tolaNPR.changePercent24h}%</span>
                           <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Per Tola</span>
@@ -112,7 +112,7 @@ export default function MarketRatesPillar() {
                     </Link>
                     <Link href="/market-rates/live-silver-price" className="group p-6 bg-white border border-slate-200 rounded-[2rem] hover:border-slate-400 hover:shadow-xl transition-all duration-300">
                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Silver (Chandi)</p>
-                       <div className="text-2xl font-black text-slate-900 tracking-tighter mb-2">Rs. {rates?.silver.tolaNPR.current.toLocaleString()}</div>
+                       <div className="text-2xl font-black text-slate-900 tracking-tighter mb-2">Rs. {(rates?.silver.tolaNPR.current ?? 0).toLocaleString()}</div>
                        <div className="flex items-center gap-2">
                           <span className="px-2 py-0.5 rounded-full bg-rose-50 text-rose-600 text-[10px] font-black">{rates?.silver.tolaNPR.changePercent24h}%</span>
                           <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Per Tola</span>
@@ -120,7 +120,7 @@ export default function MarketRatesPillar() {
                     </Link>
                     <Link href="/market-rates/exchange-rate" className="group p-6 bg-white border border-slate-200 rounded-[2rem] hover:border-emerald-400 hover:shadow-xl transition-all duration-300">
                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">USD / NPR Forex</p>
-                       <div className="text-2xl font-black text-slate-900 tracking-tighter mb-2">Rs. {rates?.forex.usd.current.toFixed(2)}</div>
+                       <div className="text-2xl font-black text-slate-900 tracking-tighter mb-2">Rs. {(rates?.forex.usd.current ?? 0).toFixed(2)}</div>
                        <div className="flex items-center gap-2">
                           <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 text-[10px] font-black">+{rates?.forex.usd.changePercent24h}%</span>
                           <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">By NRB Indices</span>
