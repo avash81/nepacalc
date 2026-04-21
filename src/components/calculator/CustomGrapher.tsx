@@ -4,41 +4,6 @@ import Link from 'next/link';
 import { Settings, Maximize, Minus, Plus, Home, Grid, X } from 'lucide-react';
 
 /* ── Expression evaluator supporting 'x' ─────────────────────── */
-function evalY(rawExpr: string, xVal: number): number | null {
-  try {
-    if (!rawExpr.trim()) return null;
-    let e = rawExpr
-      .replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-')
-      .replace(/π/g, String(Math.PI)).replace(/EXP/g, 'e')
-      .replace(/(\d)([a-df-z])/gi, '$1*$2').replace(/\)([a-df-z])/gi, ')*$1')
-      .replace(/\b[a-df-z]\b/gi, `(${xVal})`);
-
-    const fnSafe = e
-      .replace(/sin\(/g,  'Math.sin(')
-      .replace(/cos\(/g,  'Math.cos(')
-      .replace(/tan\(/g,  'Math.tan(')
-      .replace(/asin\(/g, 'Math.asin(')
-      .replace(/acos\(/g, 'Math.acos(')
-      .replace(/atan\(/g, 'Math.atan(')
-      .replace(/sqrt\(/g, 'Math.sqrt(')
-      .replace(/log\(/g,  'Math.log10(')
-      .replace(/ln\(/g,   'Math.log(')
-      .replace(/abs\(/g,  'Math.abs(')
-      .replace(/\^/g,     '**');
-
-    const open  = (fnSafe.match(/\(/g) || []).length;
-    const close = (fnSafe.match(/\)/g) || []).length;
-    const closedExpr = fnSafe + ')'.repeat(Math.max(0, open - close));
-
-    // eslint-disable-next-line no-new-func
-    const fn = new Function(`"use strict"; return (${closedExpr})`);
-    const result = fn();
-    if (typeof result !== 'number' || !isFinite(result) || isNaN(result)) return null;
-    return result;
-  } catch {
-    return null;
-  }
-}
 
 function isPlottable(expr: string) {
   if (!expr) return false;
@@ -89,6 +54,48 @@ export default function CustomGrapher({ expression }: { expression: string }) {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const rafRef = useRef(0);
+
+  // ── Pre-compile the math function for high performance ──
+  const compiledFn = useMemo(() => {
+    try {
+      if (!expression.trim()) return null;
+      let e = expression
+        .replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-')
+        .replace(/π/g, String(Math.PI)).replace(/EXP/g, 'e')
+        .replace(/(\d)([a-df-z])/gi, '$1*$2').replace(/\)([a-df-z])/gi, ')*$1')
+        .replace(/\b[a-df-z]\b/gi, `x`); // Use 'x' as variable
+
+      const fnSafe = e
+        .replace(/sin\(/g,  'Math.sin(')
+        .replace(/cos\(/g,  'Math.cos(')
+        .replace(/tan\(/g,  'Math.tan(')
+        .replace(/asin\(/g, 'Math.asin(')
+        .replace(/acos\(/g, 'Math.acos(')
+        .replace(/atan\(/g, 'Math.atan(')
+        .replace(/sqrt\(/g, 'Math.sqrt(')
+        .replace(/log\(/g,  'Math.log10(')
+        .replace(/ln\(/g,   'Math.log(')
+        .replace(/abs\(/g,  'Math.abs(')
+        .replace(/\^/g,     '**');
+
+      const open  = (fnSafe.match(/\(/g) || []).length;
+      const close = (fnSafe.match(/\)/g) || []).length;
+      const closedExpr = fnSafe + ')'.repeat(Math.max(0, open - close));
+
+      // eslint-disable-next-line no-new-func
+      return new Function('x', `"use strict"; return (${closedExpr})`);
+    } catch {
+      return null;
+    }
+  }, [expression]);
+
+  const safeEval = useCallback((x: number) => {
+    if (!compiledFn) return null;
+    try {
+      const res = compiledFn(x);
+      return (typeof res === 'number' && isFinite(res) && !isNaN(res)) ? res : null;
+    } catch { return null; }
+  }, [compiledFn]);
 
   /* ─── DRAW (called every frame change) ─────────────────────── */
   const draw = useCallback(() => {
@@ -204,8 +211,8 @@ export default function CustomGrapher({ expression }: { expression: string }) {
     }
 
     /* ── Curve ─────────────────────────────────────────────── */
-    if (isPlottable(expression)) {
-      const SAMPLES = Math.min(Math.round(W * 4.5), 3000);
+    if (compiledFn && isPlottable(expression)) {
+      const SAMPLES = Math.min(Math.round(W * 3.5), 2500);
       const step = xSpan / SAMPLES;
 
       ctx.save();
@@ -220,7 +227,7 @@ export default function CustomGrapher({ expression }: { expression: string }) {
 
       for (let i = 0; i <= SAMPLES; i++) {
         const mx = xMin + i * step;
-        const my = evalY(expression, mx);
+        const my = safeEval(mx);
         if (my === null) { penDown = false; prevY = null; continue; }
         const px = toPixX(mx);
         const py = toPixY(my);
@@ -233,7 +240,7 @@ export default function CustomGrapher({ expression }: { expression: string }) {
       ctx.stroke();
       ctx.restore();
     }
-  }, [expression, showAxes, showGrid, gridStyle]);
+  }, [expression, showAxes, showGrid, gridStyle, compiledFn, safeEval]);
 
   /* Resize and Refresh hooks */
   useEffect(() => {

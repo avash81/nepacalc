@@ -127,15 +127,41 @@ const homepageFaqSchema = {
 export default function HomePage() {
   return (
     <>
-      <JsonLd type="website" />
-      <JsonLd type="organization" />
-
-      {/* Homepage-specific rich schemas */}
+      {/* Institutional SEO Suite — Consolidated for Maximum Performance */}
       <script 
         type="application/ld+json" 
         suppressHydrationWarning 
         dangerouslySetInnerHTML={{ 
           __html: JSON.stringify([
+            {
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              'name': 'NEPACALC',
+              'url': 'https://nepacalc.com',
+              'logo': 'https://nepacalc.com/favicon.png',
+              'sameAs': [
+                'https://facebook.com/nepacalc',
+                'https://twitter.com/nepacalc',
+                'https://linkedin.com/company/nepacalc'
+              ],
+              'contactPoint': {
+                '@type': 'ContactPoint',
+                'contactType': 'customer support',
+                'email': 'support@nepacalc.com'
+              }
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              'url': 'https://nepacalc.com',
+              'name': 'NEPACALC',
+              'description': 'Free online scientific calculator with real-time graphing engine, maths solver, and 80+ professional calculators for Nepal.',
+              'potentialAction': {
+                '@type': 'SearchAction',
+                'target': 'https://nepacalc.com/search?q={search_term_string}',
+                'query-input': 'required name=search_term_string',
+              },
+            },
             homepageCalcSchema,
             homepageItemListSchema,
             homepageFaqSchema
