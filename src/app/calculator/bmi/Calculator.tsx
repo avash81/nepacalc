@@ -71,6 +71,7 @@ export default function BMICalculator() {
         badge="Clinical"
         badgeColor="blue"
         category={{ label: 'Health', href: '/calculator/category/health' }}
+        hideTitle={true}
         leftPanel={
           <div className="space-y-8">
             <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 shadow-inner">
@@ -187,7 +188,7 @@ export default function BMICalculator() {
           </div>
         }
         faqSection={
-          <CalcFAQ faqs={[
+          <CalcFAQ toolName="Clinical BMI Calculator" faqs={[
             { question: 'Is BMI accurate for athletes?', answer: 'BMI does not differentiate between muscle and fat. Athletes with high muscle mass may have a high BMI but low body fat percentage.' },
             { question: 'What is the healthy BMI range?', answer: 'The World Health Organization (WHO) considers a BMI between 18.5 and 24.9 as the "Healthy/Normal" range for adults.' },
             { question: 'Why does height matter in BMI?', answer: 'BMI scales weight by the square of height to account for body volume, assuming body proportions are relatively consistent across different heights.' },

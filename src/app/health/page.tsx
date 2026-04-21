@@ -8,7 +8,13 @@ export const metadata: Metadata = {
   title: 'Health and Fitness Calculators | BMI BMR Calories Body Fat | NEPACALC',
   description: 'Free health calculators: BMI, BMR, Body Fat %, Daily Calories, Ideal Weight, Water Intake, Pregnancy Due Date, and more. Based on WHO standards.',
   keywords: ['bmi calculator nepal', 'bmr calculator', 'body fat calculator', 'calorie calculator', 'health tools nepal'],
-  alternates: { canonical: 'https://nepacalc.com/health' },
+  alternates: { 
+    canonical: 'https://nepacalc.com/health',
+    languages: {
+      'en-NP': 'https://nepacalc.com/health',
+      'x-default': 'https://nepacalc.com/health'
+    }
+  },
 };
 
 const HEALTH_FAQS = [
@@ -78,11 +84,11 @@ export default function HealthPillarPage() {
           <h2 className="text-[13px] font-black uppercase tracking-[0.15em] text-[#f72585] mb-8 border-b-2 border-slate-100 pb-2">
             Regular Calculators
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {existingTools.map(calc => (
-              <Link key={calc.name} href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`} className="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:border-[#f72585] hover:bg-[#f7258508] transition-all group">
+              <Link key={calc.name} href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`} className="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:border-[#f72585] hover:bg-[#f7258508] transition-all group min-h-[56px]">
                 <span className="text-lg flex-shrink-0">{calc.icon}</span>
-                <span className="text-[13px] font-medium text-[#202124] group-hover:text-[#f72585] transition-colors truncate">
+                <span className="text-[12px] sm:text-[13px] font-medium text-[#202124] group-hover:text-[#f72585] transition-colors leading-tight">
                   {calc.name}
                 </span>
               </Link>

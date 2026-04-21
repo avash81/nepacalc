@@ -185,7 +185,7 @@ export default function AgeCalculator() {
         </div>
       }
       faqSection={
-        <CalcFAQ faqs={[
+        <CalcFAQ toolName="Age Calculator" faqs={[
           { question: 'How is leap year accounted for?', answer: 'The calculator uses a high-precision day-of-month check. If you were born on Feb 29, it calculates based on completion of the year regardless of whether the target year is a leap year.' },
           { question: 'What does "Total Months" show?', answer: 'It represents the total number of full monthly cycles since birth, which is different from a simple days/30 calculation.' },
           { question: 'Can I calculate age for historical dates?', answer: 'Yes, as long as the dates are within the Gregorian calendar range (post-1582), historical accuracy is maintained.' },

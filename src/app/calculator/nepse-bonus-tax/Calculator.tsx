@@ -142,7 +142,7 @@ export default function NepseBonusTaxCalculator() {
           </div>
         }
         faqSection={
-          <CalcFAQ faqs={[
+          <CalcFAQ toolName="NEPSE Dividend Tax" faqs={[
             { question: 'Is Bonus Share taxed on Market Price?', answer: 'No. In Nepal, bonus shares are taxed at 5% of their Face Value (usually Rs. 100), not the current market price (LTP).' },
             { question: 'How is the tax paid?', answer: 'Usually, the company deducts the tax amount from your cash dividend. If you only receive bonus shares, you may have to pay the tax through your broker.' },
           ]} />

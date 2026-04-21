@@ -49,9 +49,7 @@ export const CALCULATORS: Calculator[] = [
   { id: 'see-gpa', slug: 'see-gpa', name: 'SEE GPA Calculator', icon: '🅰️', description: 'Calculate SEE grade point average.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepali-date', slug: 'nepali-date', name: 'Nepali Date Converter', icon: '📅', description: 'Standard BS to AD date conversion utility.', category: 'nepal', isNepal: true },
   { id: 'nepal-vat', slug: 'nepal-vat', name: 'VAT Calculator', icon: '🔖', description: 'Calculate VAT (13%) addition and subtraction.', category: 'nepal', isNepal: true },
-  { id: 'bonus-tax-legacy', slug: 'bonus-tax', name: 'Bonus Share Tax (Old)', icon: '🎁', description: 'Standalone bonus tax calculation tool.', category: 'nepal', isNepal: true },
-  { id: 'tds-legacy', slug: 'tds-calculator', name: 'TDS Withholding', icon: '✂️', description: 'General TDS withholding calculator.', category: 'nepal', isNepal: true },
-  { id: 'vehicle-tax-legacy', slug: 'vehicle-tax', name: 'Vehicle Road Tax', icon: '🚗', description: 'General vehicle road tax computation.', category: 'nepal', isNepal: true },
+
 
   // ==========================================
   // FINANCE & BANKING PILLAR (11)
@@ -65,8 +63,7 @@ export const CALCULATORS: Calculator[] = [
   { id: 'cagr-calculator', slug: 'cagr-calculator', name: 'CAGR Calculator', icon: '📊', description: 'Calculate Compound Annual Growth Rate.', category: 'finance' },
   { id: 'simple-interest', slug: 'simple-interest', name: 'Simple Interest', icon: '🧾', description: 'Calculate simple interest on principal.', category: 'finance' },
   { id: 'lead-time', slug: 'lead-time', name: 'Lead Time Calculator', icon: '⏳', description: 'Calculate lead and cycle times.', category: 'finance', isNew: true },
-  { id: 'home-loan-legacy', slug: 'home-loan', name: 'Home Loan (Global)', icon: '🏠', description: 'Standard home loan EMI calculator.', category: 'finance' },
-  { id: 'provident-fund-legacy', slug: 'provident-fund', name: 'Provident Fund Tool', icon: '🏦', description: 'Standard PF interest and accumulation tool.', category: 'finance' },
+
 
   // ==========================================
   // EDUCATION & MATH PILLAR (25)

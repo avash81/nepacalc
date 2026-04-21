@@ -35,3 +35,17 @@ export const CATEGORY_PURPOSE_MAP: Record<string, string> = {
   'construction': 'Engineering & Civil',
   'utility': 'General Utility',
 };
+
+export const CATEGORY_URL_MAP: Record<string, string> = {
+  'nepal': '/nepal',
+  'finance': '/finance',
+  'health': '/health',
+  'education': '/math-tools',
+  'utility': '/converters',
+  'engineering': '/engineering',
+  'market': '/market-rates',
+  'math': '/math-tools',
+  'mathematics': '/math-tools',
+  'construction': '/engineering',
+  'conversion': '/converters'
+};

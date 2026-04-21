@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { CALCULATORS, CATEGORIES } from '@/data/calculators';
 import { Printer, Info, Star } from 'lucide-react';
-import { GLOBAL_CONFIG, CATEGORY_PURPOSE_MAP } from '@/config/GlobalConfig';
+import { GLOBAL_CONFIG, CATEGORY_PURPOSE_MAP, CATEGORY_URL_MAP } from '@/config/GlobalConfig';
 import CalculatorSchema from '@/components/seo/CalculatorSchema';
 import { JsonLd } from '@/components/seo/JsonLd';
 import RelatedCalculators from '@/components/calculator/RelatedCalculators';
@@ -25,6 +25,7 @@ interface CalculatorLayoutProps {
   faqs?: { question: string; answer: string }[];
   focusKeyword?: string;
   slug?: string;
+  hideTitle?: boolean;
 }
 
 export function CalculatorLayout({
@@ -39,11 +40,22 @@ export function CalculatorLayout({
   rightPanel,
   faqSection,
   faqs,
-  slug
+  slug,
+  hideTitle = false
 }: CalculatorLayoutProps) {
   const pathname = usePathname();
   const catLabel = typeof category === 'object' ? category.label : category;
-  const catLink = typeof category === 'object' ? category.href : categoryHref;
+  
+  // Resolve correct pillar link from map or object
+  let catLink = typeof category === 'object' ? category.href : (category ? CATEGORY_URL_MAP[category.toLowerCase()] : categoryHref);
+  
+  // Logic: Intercept legacy category URLs and map them to pillars to avoid 404s
+  if (catLink && catLink.includes('/calculator/category/')) {
+    const categoryId = catLink.split('/').filter(Boolean).pop();
+    if (categoryId && CATEGORY_URL_MAP[categoryId.toLowerCase()]) {
+      catLink = CATEGORY_URL_MAP[categoryId.toLowerCase()];
+    }
+  }
   
   // Auto-resolve slug from path if not provided
   const resolvedSlug = slug || pathname.split('/').pop() || '';
@@ -88,20 +100,20 @@ export function CalculatorLayout({
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {CATEGORIES.map(cat => (
             <div key={cat.id} className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-              <Link href={`/calculator/category/${cat.id}`} className="flex items-center gap-2 text-[14px] font-black text-slate-800 hover:text-blue-600 mb-4 transition-colors">
+              <Link href={CATEGORY_URL_MAP[cat.id.toLowerCase()] || `/calculator/category/${cat.id}`} className="flex items-center gap-2 text-[14px] font-black text-slate-800 hover:text-blue-600 mb-4 transition-colors">
                  <span>{cat.icon}</span> {cat.name}
               </Link>
               <ul className="space-y-3">
                   {cat.calculators.slice(0, 4).map(calc => (
                     <li key={calc.id} className="leading-snug">
-                      <Link href={`/calculator/${calc.slug}`} className="text-[13px] font-medium text-slate-500 hover:text-blue-600 transition-colors flex items-start gap-2 group">
+                      <Link href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`} className="text-[13px] font-medium text-slate-500 hover:text-blue-600 transition-colors flex items-start gap-2 group">
                         <span className="text-slate-300 group-hover:text-blue-400 mt-0.5">•</span>
                         <span>{calc.name}</span>
                       </Link>
                     </li>
                   ))}
                   {cat.calculators.length > 4 && (
-                    <li className="pt-2"><Link href={`/calculator/category/${cat.id}`} className="text-[11px] uppercase tracking-widest text-blue-600 font-bold hover:underline">View All &rarr;</Link></li>
+                    <li className="pt-2"><Link href={CATEGORY_URL_MAP[cat.id.toLowerCase()] || `/calculator/category/${cat.id}`} className="text-[11px] uppercase tracking-widest text-blue-600 font-bold hover:underline">View All &rarr;</Link></li>
                   )}
               </ul>
             </div>
@@ -118,14 +130,14 @@ export function CalculatorLayout({
         breadcrumbItems={[
           { name: 'Home', item: 'https://nepacalc.com' },
           ...(catLabel ? [{ name: catLabel, item: `https://nepacalc.com${catLink || '/directory'}` }] : []),
-          { name: title, item: `https://nepacalc.com/calculator/${resolvedSlug}` }
+          { name: title, item: `https://nepacalc.com${resolvedSlug.includes('/') ? `/${resolvedSlug}` : `/calculator/${resolvedSlug}`}` }
         ]}
       />
       <JsonLd 
         type="calculator"
         name={title}
         description={description}
-        url={`https://nepacalc.com/calculator/${resolvedSlug}`}
+        url={`https://nepacalc.com${resolvedSlug.includes('/') ? `/${resolvedSlug}` : `/calculator/${resolvedSlug}`}`}
       />
       <JsonLd 
         type="faq"
@@ -159,41 +171,43 @@ export function CalculatorLayout({
 
       <main className="hp-container py-2 sm:py-3">
         {/* 2. Professional Header Section */}
-        <header className="mb-3 sm:mb-4 border-b border-slate-200 pb-2.5 flex flex-col sm:flex-row justify-between items-start gap-4">
-          <div className="flex-1">
-            <div className="flex flex-wrap items-center gap-3 mb-1">
-              <h1 className="text-2xl sm:text-2xl lg:text-3xl font-bold text-[#202124] tracking-tight">
-                {title}
-              </h1>
-              {autoPurpose && (
-                <div className="flex items-center gap-1.5 px-4 py-1.5 bg-blue-50 text-[#1A73E8] text-[10px] font-black uppercase tracking-widest rounded-full border border-blue-100 shadow-sm">
-                  <Info className="w-3.5 h-3.5" />
-                  {autoPurpose}
-                </div>
-              )}
+        {!hideTitle && (
+          <header className="mb-3 sm:mb-4 border-b border-slate-200 pb-2.5 flex flex-col sm:flex-row justify-between items-start gap-4">
+            <div className="flex-1">
+              <div className="flex flex-wrap items-center gap-3 mb-1">
+                <h1 className="text-2xl sm:text-2xl lg:text-3xl font-bold text-[#202124] tracking-tight">
+                  {title}
+                </h1>
+                {autoPurpose && (
+                  <div className="flex items-center gap-1.5 px-4 py-1.5 bg-blue-50 text-[#1A73E8] text-[10px] font-black uppercase tracking-widest rounded-full border border-blue-100 shadow-sm">
+                    <Info className="w-3.5 h-3.5" />
+                    {autoPurpose}
+                  </div>
+                )}
+              </div>
+              <p className="text-[13px] sm:text-sm text-slate-500 font-medium leading-relaxed">
+                {description}
+              </p>
             </div>
-            <p className="text-[13px] sm:text-sm text-slate-500 font-medium leading-relaxed">
-              {description}
-            </p>
-          </div>
-          <div className="flex items-center gap-3 shrink-0">
-            <button 
-              onClick={toggleFavorite} 
-              className={`group flex items-center justify-center w-12 h-12 border-2 rounded-xl transition-all duration-300 shadow-sm active:scale-[0.98]
-                ${isFavorite ? 'bg-yellow-50 border-yellow-300 text-yellow-500' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50 hover:border-slate-300 hover:text-yellow-500'}`}
-              title={isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-            >
-              <Star className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
-            </button>
-            <button 
-              onClick={() => window.print()} 
-              className="group flex items-center gap-2.5 px-6 py-3 bg-white border-2 border-slate-200 rounded-xl hover:bg-slate-50 hover:border-slate-300 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-[11px] font-black uppercase tracking-[0.2em] text-slate-700 no-print active:scale-[0.98]"
-            >
-              <Printer className="w-4 h-4 text-slate-500 group-hover:text-blue-600 transition-colors" />
-              Print Report
-            </button>
-          </div>
-        </header>
+            <div className="flex items-center gap-3 shrink-0">
+              <button 
+                onClick={toggleFavorite} 
+                className={`group flex items-center justify-center w-12 h-12 border-2 rounded-xl transition-all duration-300 shadow-sm active:scale-[0.98]
+                  ${isFavorite ? 'bg-yellow-50 border-yellow-300 text-yellow-500' : 'bg-white border-slate-200 text-slate-500 hover:bg-slate-50 hover:border-slate-300 hover:text-yellow-500'}`}
+                title={isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+              >
+                <Star className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
+              </button>
+              <button 
+                onClick={() => window.print()} 
+                className="group flex items-center gap-2.5 px-6 py-3 bg-white border-2 border-slate-200 rounded-xl hover:bg-slate-50 hover:border-slate-300 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-[11px] font-black uppercase tracking-[0.2em] text-slate-700 no-print active:scale-[0.98]"
+              >
+                <Printer className="w-4 h-4 text-slate-500 group-hover:text-blue-600 transition-colors" />
+                Print Report
+              </button>
+            </div>
+          </header>
+        )}
 
         {/* 3. Main Content Area */}
         {/* PRINT ONLY: Top Level Results Stack (Guarantees Results Print First) */}

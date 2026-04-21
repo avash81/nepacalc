@@ -1,272 +1,233 @@
 'use client';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { QuickPresets } from '@/components/calculator/QuickPresets';
-import { TAX_YEARS, DEDUCTIONS } from '@/config/tax-config';
 import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
 import { useSyncState } from '@/hooks/useSyncState';
 import { CalcFAQ } from '@/components/calculator/CalcFAQ';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { Info, Receipt, Wallet, ShieldCheck } from 'lucide-react';
+import { 
+  Receipt, 
+  Wallet, 
+  ShieldCheck, 
+  TrendingDown, 
+  PieChart, 
+  Info, 
+  ArrowRightLeft,
+  ChevronRight,
+  Gem
+} from 'lucide-react';
 import { calculateNepalIncomeTax } from '@/utils/math/country-rules/nepal';
 
 const DEFAULT_STATE = {
-  fiscalYear: 'current' as keyof typeof TAX_YEARS,
-  income: 1500000,
+  income: 1200000,
   married: false,
   gender: 'male' as 'male' | 'female',
-  isSSFContributor: false,
+  isSSFContributor: true,
   lifeInsurance: 40000,
-  homeLoanInterest: 0,
-  educationAllowance: 0,
+  citDeduction: 0,
+  healthInsurance: 0,
+  isMonthly: false
 };
 
 export default function NepalIncomeTaxCalculator() {
-  const [state, setState] = useSyncState('nepal_tax_v2', DEFAULT_STATE);
-  const { fiscalYear, income, married, isSSFContributor, lifeInsurance, homeLoanInterest, educationAllowance } = state;
+  const [state, setState] = useSyncState('nepal_tax_institutional_v1', DEFAULT_STATE);
+  const { income, married, gender, isSSFContributor, lifeInsurance, citDeduction, healthInsurance, isMonthly } = state;
 
-  const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {
-    setState({ ...state, ...updates });
-  };
+  const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
-  const presets = [
-    { name: 'Standard Employee', description: 'Avg income, simple life insurance', icon: 'briefcase', values: { income: 900000, married: false, isSSFContributor: false, lifeInsurance: 25000, homeLoanInterest: 0 } },
-    { name: 'SSF Contributor', description: 'Tax-free first slab via SSF', icon: 'shield', values: { income: 1500000, married: true, isSSFContributor: true, lifeInsurance: 40000, homeLoanInterest: 0 } },
-    { name: 'High Earner', description: 'Maximum deductions applied', icon: 'target', values: { income: 5000000, married: true, isSSFContributor: true, lifeInsurance: 40000, homeLoanInterest: 300000 } },
-  ];
+  // Normalizing to Annual for calculation
+  const annualGross = isMonthly ? income * 12 : income;
 
   const result = useMemo(() => {
-    // Other deductions are subtracted from gross income BEFORE reaching the tax calculation slabs
-    // SSF deduction is handled INSIDE calculateNepalIncomeTax
-    const otherDeductions = Math.min(lifeInsurance, 40000) + homeLoanInterest + educationAllowance;
-    const coreIncome = income - otherDeductions;
-    
-    const calculation = calculateNepalIncomeTax(coreIncome, married, isSSFContributor, state.gender || 'male');
+    // 1. Deductions Cap Check (Actual Nepal IRD Standards)
+    const insDeduction = Math.min(lifeInsurance, 40000);
+    const healthInsDeduction = Math.min(healthInsurance, 20000);
+    // CIT + EPF/SSF combined max is 1/3 of income or 500,000
+    const citMax = Math.min(annualGross / 3, 500000);
+    const actualCit = Math.min(citDeduction, citMax);
+
+    const calculation = calculateNepalIncomeTax(
+      annualGross - (insDeduction + healthInsDeduction + actualCit), 
+      married, 
+      isSSFContributor, 
+      gender
+    );
 
     return {
-      totalTax: Math.round(calculation.totalTax),
-      taxableIncome: calculation.taxableIncome,
-      breakdown: calculation.breakdown.map(b => ({
-        slab: b.slabLabel,
-        income: b.taxableInSlab,
-        tax: b.taxAmount,
-        rate: b.rate
-      })),
-      totalDeductions: otherDeductions + (calculation.grossIncome - calculation.taxableIncome)
+      ...calculation,
+      totalDeductions: insDeduction + healthInsDeduction + actualCit + (annualGross - (annualGross - (insDeduction + healthInsDeduction + actualCit))),
+      netAnnual: annualGross - calculation.totalTax,
+      netMonthly: (annualGross - calculation.totalTax) / 12
     };
-  }, [income, married, isSSFContributor, lifeInsurance, homeLoanInterest, educationAllowance]);
+  }, [annualGross, married, isSSFContributor, gender, lifeInsurance, citDeduction, healthInsurance]);
 
-  const formatNPR = (n: number) =>
-    new Intl.NumberFormat('en-NP', {
-      style: 'currency',
-      currency: 'NPR',
-      maximumFractionDigits: 0,
-    }).format(n);
+  const fmt = (n: number) => 'Rs. ' + Math.round(n).toLocaleString('en-IN');
 
   return (
-    <CalculatorErrorBoundary calculatorName="Income Tax">
+    <CalculatorErrorBoundary calculatorName="Institutional Income Tax">
       <CalculatorLayout
-        title="Nepal Income Tax Calculator"
-        description="Nepal Income Tax Calculator: Calculate personal tax for the latest fiscal mandates based on current IRD Nepal tax slabs, SSF contributions, and legal deductions."
-        badge="Nepal Exclusive"
-        badgeColor="red"
-        category={{ label: 'Nepal Sanchar', href: '/calculator/category/nepal' }}
+        title="Nepal Income Tax Dashboard"
+        description="Institutional-grade tax laboratory for FY 2081/82. Includes SSF SST-waiver logic, female rebates, and comprehensive deduction mapping."
+        category="nepal"
         leftPanel={
           <div className="space-y-8">
-            <QuickPresets presets={presets as any[]} onSelect={(p) => updateState(p.values)} />
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="space-y-3">
-                <label className="text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)]">Fiscal Year</label>
-                <select
-                  value={fiscalYear}
-                  onChange={(e) => updateState({ fiscalYear: e.target.value as keyof typeof TAX_YEARS })}
-                  className="w-full h-12 px-4 border border-[var(--border)] rounded-xl bg-[var(--bg-subtle)] focus:border-[var(--primary)] outline-none text-sm font-bold"
-                >
-                  {Object.values(TAX_YEARS).map((year) => <option key={year.year} value={year.year}>{year.label}</option>)}
-                </select>
-              </div>
-              <ValidatedInput label="Annual Income (NPR)" value={income} onChange={(v) => updateState({ income: v })} min={0} max={100000000} step={100000} />
-            </div>
+            {/* Main Input Block */}
+            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 shadow-sm">
+               <div className="flex items-center justify-between mb-8">
+                  <h3 className="text-[12px] font-black uppercase text-slate-400 tracking-widest">Income Parameters</h3>
+                  <button 
+                    onClick={() => update({ isMonthly: !isMonthly })}
+                    className="flex items-center gap-2 px-4 py-2 bg-slate-50 border border-slate-100 rounded-full text-[10px] font-black uppercase text-blue-600 hover:bg-blue-50 transition-all"
+                  >
+                    <ArrowRightLeft className="w-3 h-3" />
+                    {isMonthly ? 'Switch to Annual' : 'Switch to Monthly'}
+                  </button>
+               </div>
+               
+               <ValidatedInput 
+                 label={isMonthly ? "Monthly Gross Salary" : "Annual Gross Income"} 
+                 value={income} 
+                 onChange={v => update({ income: v })} 
+                 prefix="Rs." 
+                 min={0} 
+                 max={100000000}
+                 withSlider
+               />
 
-            <div className="pt-6 border-t border-[var(--border)] space-y-6">
-               <h3 className="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]">Deductions & Status</h3>
-               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <ValidatedInput 
-                    label="Life Insurance Premium" 
-                    value={lifeInsurance} 
-                    onChange={(v) => updateState({ lifeInsurance: v })} 
-                    min={0} 
-                    max={40000}
-                    hint="Max deductible: NPR 40,000"
-                  />
-                  <ValidatedInput label="Home Loan Interest" value={homeLoanInterest} onChange={(v) => updateState({ homeLoanInterest: v })} min={0} max={1000000} />
+               <div className="grid grid-cols-2 gap-6 mt-10">
                   <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)]">SSF Contributor</label>
-                    <button
-                      onClick={() => updateState({ isSSFContributor: !isSSFContributor })}
-                      className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all ${
-                        isSSFContributor 
-                          ? 'bg-[var(--primary-light)] border-[var(--primary)]/20 text-[var(--primary)] shadow-sm' 
-                          : 'bg-[var(--bg-subtle)] border-[var(--border)] text-[var(--text-muted)]'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <ShieldCheck className={`w-5 h-5 ${isSSFContributor ? 'text-[var(--primary)]' : 'text-slate-400'}`} />
-                        <span className="text-xs font-bold uppercase tracking-wider">Formal Sector (SSF)</span>
-                      </div>
-                      <div className={`w-10 h-5 rounded-full relative transition-colors ${isSSFContributor ? 'bg-[var(--primary)]' : 'bg-slate-300'}`}>
-                        <div className={`absolute top-1 w-3 h-3 bg-white rounded-full transition-all ${isSSFContributor ? 'left-6' : 'left-1'}`} />
-                      </div>
-                    </button>
-                    {isSSFContributor && (
-                      <p className="text-[10px] text-[var(--primary)] font-bold uppercase mt-1">✓ 1% Social Security Tax Waived on first slab</p>
-                    )}
-                  </div>
-
-                   <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)]">Marital Status</label>
-                    <div className="flex p-1 bg-[var(--bg-subtle)] rounded-xl border border-[var(--border)]">
-                      {[{ v: false, l: 'Single' }, { v: true, l: 'Married' }].map((m) => (
-                        <button
-                          key={m.l}
-                          onClick={() => updateState({ married: m.v })}
-                          className={`flex-1 py-2 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all ${
-                            married === m.v ? 'bg-[var(--bg-surface)] text-[var(--primary)] shadow-sm' : 'text-[var(--text-muted)]'
-                          }`}
-                        >
-                          {m.l}
-                        </button>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Marital Status</label>
+                    <div className="flex p-1 bg-slate-100 rounded-2xl border border-slate-200">
+                      {[{ v: false, l: 'Single' }, { v: true, l: 'Married' }].map(m => (
+                        <button key={m.l} onClick={() => update({ married: m.v })} className={`flex-1 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${married === m.v ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500'}`}>{m.l}</button>
                       ))}
                     </div>
                   </div>
-
                   <div className="space-y-3">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)]">Gender Status</label>
-                    <div className="flex p-1 bg-[var(--bg-subtle)] rounded-xl border border-[var(--border)]">
-                      {[{ v: 'male' as const, l: 'Male' }, { v: 'female' as const, l: 'Female' }].map((g) => (
-                        <button
-                          key={g.l}
-                          onClick={() => updateState({ gender: g.v })}
-                          className={`flex-1 py-2 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all ${
-                            (state.gender || 'male') === g.v ? 'bg-[var(--bg-surface)] text-[var(--primary)] shadow-sm' : 'text-[var(--text-muted)]'
-                          }`}
-                        >
-                          {g.l}
-                        </button>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Gender</label>
+                    <div className="flex p-1 bg-slate-100 rounded-2xl border border-slate-200">
+                      {[{ v: 'male' as const, l: 'Male' }, { v: 'female' as const, l: 'Female' }].map(g => (
+                        <button key={g.l} onClick={() => update({ gender: g.v })} className={`flex-1 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${gender === g.v ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500'}`}>{g.l}</button>
                       ))}
                     </div>
-                    {(state.gender || 'male') === 'female' && (
-                      <p className="text-[9px] text-[var(--primary)] font-bold uppercase tracking-tighter mt-1 animate-in fade-in">✓ 10% Tax Rebate Applied (Salary earners only)</p>
-                    )}
                   </div>
                </div>
             </div>
+
+            {/* Deductions Block */}
+            <div className="bg-slate-50/50 border border-slate-200 rounded-[2.5rem] p-8">
+               <div className="flex items-center gap-3 mb-8">
+                  <Gem className="w-5 h-5 text-indigo-600" />
+                  <h3 className="text-sm font-black text-slate-800 uppercase tracking-tight">Legal Deductions (Annual)</h3>
+               </div>
+               
+               <div className="space-y-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                     <ValidatedInput label="Life Insurance" value={lifeInsurance} onChange={v => update({ lifeInsurance: v })} suffix="Rs." max={40000} hint="Max: 40k" />
+                     <ValidatedInput label="Health Insurance" value={healthInsurance} onChange={v => update({ healthInsurance: v })} suffix="Rs." max={20000} hint="Max: 20k" />
+                  </div>
+                  <ValidatedInput label="CIT / Other Deductibles" value={citDeduction} onChange={v => update({ citDeduction: v })} prefix="Rs." hint="Subject to 1/3 income cap" />
+                  
+                  <button 
+                    onClick={() => update({ isSSFContributor: !isSSFContributor })}
+                    className={`w-full flex items-center justify-between p-6 rounded-[2rem] border transition-all ${isSSFContributor ? 'bg-blue-600 border-blue-500 text-white shadow-xl shadow-blue-200' : 'bg-white border-slate-200 text-slate-500'}`}
+                  >
+                    <div className="flex items-center gap-4 text-left">
+                       <ShieldCheck className={`w-8 h-8 ${isSSFContributor ? 'text-white' : 'text-blue-500'}`} />
+                       <div>
+                          <div className={`text-[12px] font-black uppercase tracking-widest ${isSSFContributor ? 'text-blue-100' : 'text-slate-400'}`}>Official Contributor</div>
+                          <div className="text-sm font-bold">Social Security Fund (SSF)</div>
+                       </div>
+                    </div>
+                    <ChevronRight className={`w-5 h-5 opacity-40 ${isSSFContributor ? 'rotate-90' : ''}`} />
+                  </button>
+               </div>
+            </div>
+
           </div>
         }
         rightPanel={
-          <div className="space-y-8">
-            <div className="p-6 bg-[var(--primary-light)]/50 rounded-2xl border border-[var(--primary)]/10 flex gap-4 items-start mb-4">
-              <Info className="w-5 h-5 text-[var(--primary)] shrink-0 mt-0.5" />
-              <p className="text-[11px] text-[var(--primary)] leading-relaxed font-medium">
-                <strong>SSF Benefit:</strong> Contributing to the Social Security Fund waives the 1% SST on your first tax bracket, significantly increasing take-home pay for lower income ranges.
-              </p>
-            </div>
-            {result.totalTax !== undefined ? (
-              <>
-                <div className="text-center p-6 bg-white rounded-2xl border border-[var(--primary)]/10 shadow-sm relative overflow-hidden">
-                  {isSSFContributor && <div className="absolute top-0 right-0 p-2 bg-[var(--primary)] text-white text-[8px] font-black uppercase tracking-widest rounded-bl-lg">SSF Active</div>}
-                  <div className="text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)] mb-1">Estimated Tax Liability</div>
-                  <div className="text-4xl font-black text-[var(--primary)] tracking-tighter mb-1">{formatNPR(result.totalTax)}</div>
-                  <div className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest">Effective Rate: {((result.totalTax / (income || 1)) * 100).toFixed(2)}%</div>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Receipt className="w-4 h-4 text-[var(--primary)]" />
-                    <h4 className="text-[10px] font-black uppercase tracking-widest text-[var(--primary)]">Slab Breakdown</h4>
-                  </div>
-                  <div className="space-y-3">
-                    {result.breakdown?.map((item, i) => (
-                      <div key={i} className="flex flex-col gap-1.5">
-                        <div className="flex justify-between items-center text-[11px] font-bold">
-                          <span className="text-[var(--text-secondary)]">{item.slab} ({item.rate}%)</span>
-                          <span className="text-[var(--text-main)] uppercase">{formatNPR(item.tax)}</span>
-                        </div>
-                        <div className="h-1.5 w-full bg-[var(--primary)]/5 rounded-full overflow-hidden">
-                           <div 
-                            className="h-full bg-[var(--primary)] transition-all duration-1000" 
-                            style={{ width: `${(item.tax / (result.totalTax || 1)) * 100}%` }}
-                           />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-6 border-t border-[var(--primary)]/10 flex justify-between items-center">
-                   <div className="flex items-center gap-2">
-                     <Wallet className="w-4 h-4 text-[var(--success)]" />
-                     <span className="text-[10px] font-black uppercase tracking-widest text-[var(--text-secondary)]">In Hand Income</span>
-                   </div>
-                   <span className="text-xl font-black text-[var(--success)]">{formatNPR(income - result.totalTax)}</span>
-                </div>
-              </>
-            ) : (
-              <div className="p-4 bg-rose-50 text-rose-600 rounded-xl text-xs font-medium border border-rose-100">
-                {(result as any).error}
+          <div className="space-y-6">
+            
+            {/* Master Result Card */}
+            <div className="p-10 bg-slate-900 rounded-[3rem] text-white overflow-hidden relative group shadow-2xl">
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/10 to-transparent pointer-events-none" />
+              <div className="relative z-10 text-center">
+                 <div className="text-[10px] font-black uppercase tracking-[0.4em] text-blue-400 mb-8">Estimated Take-Home (Net)</div>
+                 <div className="text-6xl font-black tracking-tighter mb-4">{Math.round(isMonthly ? result.netMonthly : result.netAnnual).toLocaleString('en-IN')}</div>
+                 <div className="text-lg font-bold text-slate-400 mb-10">{isMonthly ? 'Per Month' : 'Per Annum'}</div>
+                 
+                 <div className="grid grid-cols-2 gap-4 pt-10 border-t border-white/10">
+                    <div className="text-left">
+                       <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Effective Rate</div>
+                       <div className="text-xl font-black text-blue-400">{result.effectiveRate}%</div>
+                    </div>
+                    <div className="text-right">
+                       <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Total Tax</div>
+                       <div className="text-xl font-black text-rose-400">{fmt(isMonthly ? result.totalTax/12 : result.totalTax)}</div>
+                    </div>
+                 </div>
               </div>
-            )}
+            </div>
+
+            {/* Slab Breakdown Dashboard */}
+            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 shadow-sm">
+               <div className="flex items-center justify-between mb-8">
+                  <div className="flex items-center gap-2">
+                    <Receipt className="w-4 h-4 text-slate-400" />
+                    <h4 className="text-[11px] font-black uppercase text-slate-400 tracking-widest">Slab Breakdown</h4>
+                  </div>
+                  <TrendingDown className="w-4 h-4 text-emerald-500" />
+               </div>
+               
+               <div className="space-y-6">
+                  {result.breakdown.map((item, idx) => (
+                    <div key={idx} className="group">
+                       <div className="flex justify-between items-center text-[12px] font-bold text-slate-600 mb-2">
+                          <span className="group-hover:text-blue-600 transition-colors">{item.slabLabel} ({item.rate}%)</span>
+                          <span className="font-mono text-slate-900">{fmt(isMonthly ? item.taxAmount/12 : item.taxAmount)}</span>
+                       </div>
+                       <div className="h-1.5 w-full bg-slate-50 rounded-full overflow-hidden border border-slate-100">
+                          <div 
+                            className={`h-full transition-all duration-1000 ${item.taxAmount < 0 ? 'bg-emerald-400' : 'bg-indigo-600'}`}
+                            style={{ width: `${Math.abs((item.taxAmount / result.totalTax) * 100)}%` }} 
+                          />
+                       </div>
+                    </div>
+                  ))}
+               </div>
+            </div>
+
+            {/* Smart Tip */}
+            <div className="p-8 bg-blue-50 border border-blue-100 rounded-[2rem] flex gap-4 transition-all hover:scale-[1.02]">
+               <Info className="w-6 h-6 text-blue-600 shrink-0" />
+               <p className="text-[11px] text-blue-800 font-medium leading-relaxed">
+                  {isSSFContributor 
+                    ? "✓ You are gaining a 1% SST waiver on your first slab by being an SSF contributor. This is an official IRD mandate for FY 2081/82." 
+                    : "💡 You could save approximately 1% on your first tax bracket by switching to the Social Security Fund (SSF) contribution model."}
+               </p>
+            </div>
+
+            {/* Wealth Breakdown Chart Placeholder */}
+            <div className="flex items-center gap-4 p-6 bg-white border border-slate-200 rounded-3xl">
+               <PieChart className="w-10 h-10 text-slate-200" />
+               <div>
+                  <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Tax Efficiency</div>
+                  <div className="text-sm font-bold text-slate-800">Your Income is {100 - result.effectiveRate}% Tax-Free</div>
+               </div>
+            </div>
+
           </div>
         }
         faqSection={
-           <div className="prose prose-slate max-w-none w-full print-hide mt-16 pt-12 border-t border-slate-200">
-             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-6">Mastering Nepal Income Tax Guide (Latest Slabs)</h2>
-             
-             <p className="text-slate-600 text-sm leading-relaxed mb-6 font-medium">Income Tax in Nepal is regulated by the Inland Revenue Department (IRD). As per the Income Tax Act 2058 (2002), whether you are a salaried employee, a freelancer, or a business owner, understanding exactly how your taxable limits are calculated is crucial for maintaining legal compliance while legally maximizing your take-home pay.</p>
-             
-             <div className="bg-slate-50 p-6 rounded-lg border border-slate-200 mb-8">
-               <h3 className="text-lg font-black text-slate-900 mb-4">Tax Exemptions & Deduction Limits</h3>
-               <p className="text-slate-600 text-xs mb-4">Before applying the progressive tax slabs, the government allows you to deduct specific investments directly from your Gross Salary, significantly lowering your final tax burden:</p>
-               <ul className="list-disc pl-5 space-y-2 text-xs text-slate-700 font-medium">
-                 <li><strong>Provident Fund (EPF/SSF):</strong> Up to 1/3rd of your Gross Income, maxed at NPR 5,00,000 per year.</li>
-                 <li><strong>Citizen Investment Trust (CIT):</strong> Similar bounds apply, often pooled with PF up to the 3 Lakhs mutual threshold.</li>
-                 <li><strong>Life Insurance Premium:</strong> Actual premium paid or NPR 40,000 (whichever is lower).</li>
-                 <li><strong>Health Insurance Premium:</strong> Actual premium paid or NPR 20,000 (whichever is lower).</li>
-               </ul>
-             </div>
-
-             <h3 className="text-xl font-black text-slate-900 mt-8 mb-4">The Progressive Tax Slab System</h3>
-             <p className="text-slate-600 text-sm leading-relaxed mb-4">Nepal utilizes a marginal tax rate system. This means your entire salary is NOT taxed at the highest bracket you fall into. Instead, your income is sliced into chunks, and each chunk is taxed sequentially.</p>
-             
-             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-               <div className="bg-white p-5 border border-slate-200 shadow-sm">
-                 <h4 className="font-bold text-slate-900 uppercase text-xs tracking-wider mb-2">Individual Taxpayer</h4>
-                 <ul className="space-y-1 text-xs text-slate-600 font-mono">
-                   <li>First 5,00,000 : 1% (Social Security Tax)</li>
-                   <li>Next 2,00,000 : 10%</li>
-                   <li>Next 3,00,000 : 20%</li>
-                   <li>Next 10,00,000 : 30%</li>
-                   <li>Above 20,00,000 : 36% (Includes 20% Additional Surcharge)</li>
-                 </ul>
-               </div>
-               <div className="bg-white p-5 border border-slate-200 shadow-sm">
-                 <h4 className="font-bold text-slate-900 uppercase text-xs tracking-wider mb-2">Couple / Married Taxpayer</h4>
-                 <ul className="space-y-1 text-xs text-slate-600 font-mono">
-                   <li>First 6,00,000 : 1% (Social Security Tax)</li>
-                   <li>Next 2,00,000 : 10%</li>
-                   <li>Next 3,00,000 : 20%</li>
-                   <li>Next 9,00,000 : 30%</li>
-                   <li>Above 20,00,000 : 36% (Includes 20% Additional Surcharge)</li>
-                 </ul>
-               </div>
-             </div>
-
-              <div className="bg-blue-50 border-l-4 border-[var(--primary)] p-5 mt-6 mb-10">
-                <h4 className="font-bold text-[var(--primary)] text-sm uppercase tracking-wide mb-1">Tax Loophole: The 1% Exemption</h4>
-                <p className="text-xs text-[var(--primary)] leading-relaxed opacity-80">If you are formally contributing strictly to the Social Security Fund (SSF), you are completely exempt from paying the base 1% Social Security Tax on your primary salary bracket. This is a massive systemic advantage designed to drive SSF adoption across Nepal.</p>
-              </div>
-           </div>
+          <CalcFAQ faqs={[
+            { question: 'What is the SST Waiver?', answer: 'If you are an official contributor to the Social Security Fund (SSF), the first 1% Social Security Tax is completely waived as per IRD regulations.' },
+            { question: 'How much can I deduct for Insurance?', answer: 'You can deduct up to Rs. 40,000 for Life Insurance premiums and up to Rs. 20,000 for Health Insurance premiums annually.' },
+            { question: 'What is the Married Status benefit?', answer: 'The tax-free threshold is higher for individual taxpayers who are registered as Married/Couple (Rs. 6 Lakh vs Rs. 5 Lakh in 2081/82).' },
+            { question: 'Is there a rebate for females?', answer: 'Yes, female salaried employees (remuneration earners) are entitled to a 10% rebate on their total calculated tax liability.' },
+          ]} />
         }
       />
     </CalculatorErrorBoundary>

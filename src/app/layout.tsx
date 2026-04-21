@@ -44,11 +44,11 @@ export const metadata: Metadata = {
     type: 'website',
   },
   alternates: {
+    canonical: '/',
     languages: {
-      'en-NP': 'https://nepacalc.com',
-      'en-US': 'https://nepacalc.com',
-      'x-default': 'https://nepacalc.com',
-    },
+      'en-NP': 'https://nepacalc.com/',
+      'x-default': 'https://nepacalc.com/'
+    }
   },
   twitter: {
     card: 'summary_large_image',

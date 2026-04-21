@@ -3,227 +3,209 @@ import { useMemo } from 'react';
 import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
 import { useSyncState } from '@/hooks/useSyncState';
-import { TAX_YEARS } from '@/config/tax-config';
-import { Wallet, Landmark, TrendingUp, Info, PieChart, Receipt } from 'lucide-react';
+import { Wallet, Landmark, TrendingUp, Info, PieChart, Receipt, ChevronRight, Zap, Target, ShieldCheck } from 'lucide-react';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { calculateNepalIncomeTax } from '@/utils/math/country-rules/nepal';
+import { calculateNepalSalary } from '@/utils/math/country-rules/nepal';
+import { CalcFAQ } from '@/components/calculator/CalcFAQ';
 
 const DEFAULT_STATE = {
-  fiscalYear: '2082/83' as keyof typeof TAX_YEARS,
-  basic: 60000,
-  allowance: 15000,
+  grossSalary: 80000,
   married: false,
   ssf: true,
-  cit: false,
-  citAmount: 5000,
+  cit: true,
+  citAmount: 10000,
+  gender: 'male' as 'male' | 'female',
+  isMonthly: true
 };
 
 export default function NepalSalaryCalculator() {
-  const [state, setState] = useSyncState('nepal_salary_v2', DEFAULT_STATE);
-  const { fiscalYear, basic, allowance, married, ssf, cit, citAmount } = state;
+  const [state, setState] = useSyncState('nepal_salary_institutional_v1', DEFAULT_STATE);
+  const { grossSalary, married, ssf, cit, citAmount, gender, isMonthly } = state;
 
-  const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {
-    setState({ ...state, ...updates });
-  };
+  const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
-  const calculation = useMemo(() => {
-    const grossMonthly = basic + allowance;
-    const grossAnnual = grossMonthly * 12;
-
-    // Deductions
-    const ssfEmployee = ssf ? Math.round(basic * 0.11) : 0;
-    const ssfEmployer = ssf ? Math.round(basic * 0.20) : 0;
+  const result = useMemo(() => {
+    // Assuming 60% Basic for Nepal standards if not specified
+    const allowances = { hra: 0, medical: 0, transport: 0, other: 0 };
+    const salary = calculateNepalSalary(grossSalary, ssf, cit, gender, allowances);
     
-    // CIT Limit: Often restricted to 10% or total (SSF+CIT) restricted to 1/3 of income or 3 lakhs
-    const rawCit = cit ? citAmount : 0;
-    const maxTotalDeduction = Math.min(grossMonthly / 3, 41666); // 1/3 of monthly or 5L/12
-    const finalizedCit = Math.min(rawCit, Math.max(0, maxTotalDeduction - ssfEmployee));
-    
-    const totalMonthlyDeductions = ssfEmployee + finalizedCit;
-    const annualTaxableIncome = (grossMonthly - totalMonthlyDeductions) * 12;
-
-    // Tax Logic (Using centralized rules)
-    const taxResult = calculateNepalIncomeTax(annualTaxableIncome, married, ssf);
-
-    const annualTax = taxResult.totalTax;
-    const monthlyTax = Math.round(annualTax / 12);
-    const netMonthly = grossMonthly - totalMonthlyDeductions - monthlyTax;
-    const ctcMonthly = grossMonthly + ssfEmployer;
-
     return {
-      grossMonthly,
-      grossAnnual,
-      ssfEmployee,
-      ssfEmployer,
-      citDeduction: finalizedCit,
-      monthlyTax,
-      annualTax,
-      netMonthly,
-      ctcMonthly,
-      effectiveTaxRate: (annualTax / (grossAnnual || 1)) * 100
+      ...salary,
+      monthlyTax: salary.incomeTax / 12,
+      totalDeductions: salary.deductions.ssf_employee + salary.deductions.cit_employee + (salary.incomeTax / 12),
+      inHand: salary.netSalary
     };
-  }, [basic, allowance, married, ssf, cit, citAmount]);
+  }, [grossSalary, ssf, cit, gender]);
 
-  const formatNPR = (n: number) =>
-    new Intl.NumberFormat('en-NP', {
-      style: 'currency',
-      currency: 'NPR',
-      maximumFractionDigits: 0,
-    }).format(n);
+  const fmt = (n: number) => 'Rs. ' + Math.round(n).toLocaleString('en-IN');
 
   return (
-    <CalculatorErrorBoundary calculatorName="Nepal Salary">
+    <CalculatorErrorBoundary calculatorName="Institutional Salary Dashboard">
       <CalculatorLayout
-        title="Nepal Take-Home Salary Calculator"
-        description="Calculate your exact in-hand income after SSF, CIT, and Income Tax deductions based on the latest 2082/83 budget."
-        badge="Payroll"
-        badgeColor="emerald"
-        category={{ label: 'Nepal Sanchar', href: '/calculator/category/nepal' }}
+        title="Institutional Salary Dashboard"
+        description="Professional payroll analysis tool for Nepal. Calculate exact take-home pay, SSF/EPF contributions, CIT optimization, and Employer CTC (Cost to Company)."
+        category="nepal"
         leftPanel={
           <div className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <ValidatedInput label="Monthly Basic Salary" value={basic} onChange={(v) => updateState({ basic: v })} prefix="NPR" step={500} required />
-              <ValidatedInput label="Monthly Allowances" value={allowance} onChange={(v) => updateState({ allowance: v })} prefix="NPR" step={500} />
+            
+            {/* 1. Base Pay Input */}
+            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 shadow-sm">
+               <div className="flex items-center justify-between mb-8">
+                  <h3 className="text-[12px] font-black uppercase text-slate-400 tracking-widest px-1">Salary Parameters</h3>
+                  <div className="px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-[10px] font-black uppercase tracking-widest">FY 2081/82</div>
+               </div>
+               
+               <div className="space-y-8">
+                  <ValidatedInput 
+                    label="Gross Monthly Salary" 
+                    value={grossSalary} 
+                    onChange={v => update({ grossSalary: v })} 
+                    prefix="Rs." 
+                    min={0} 
+                    withSlider
+                  />
+                  
+                  <div className="grid grid-cols-2 gap-6">
+                     <div className="space-y-3">
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Marital Status</label>
+                        <div className="flex p-1 bg-slate-100 rounded-xl border border-slate-200">
+                          {[{ v: false, l: 'Single' }, { v: true, l: 'Married' }].map(m => (
+                            <button key={m.l} onClick={() => update({ married: m.v })} className={`flex-1 py-1.5 text-[10px] font-black uppercase rounded-lg transition-all ${married === m.v ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500'}`}>{m.l}</button>
+                          ))}
+                        </div>
+                     </div>
+                     <div className="space-y-3">
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Gender</label>
+                        <div className="flex p-1 bg-slate-100 rounded-xl border border-slate-200">
+                          {[{ v: 'male' as const, l: 'Male' }, { v: 'female' as const, l: 'Female' }].map(g => (
+                            <button key={g.l} onClick={() => update({ gender: g.v })} className={`flex-1 py-1.5 text-[10px] font-black uppercase rounded-lg transition-all ${gender === g.v ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500'}`}>{g.l}</button>
+                          ))}
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
 
-            <div className="pt-6 border-t border-slate-100 space-y-6">
-               <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Retirement & Savings</h3>
+            {/* 2. Deductions Dashboard */}
+            <div className="bg-slate-50/50 border border-slate-200 rounded-[2.5rem] p-8">
+               <div className="flex items-center gap-3 mb-8">
+                  <Landmark className="w-5 h-5 text-indigo-600" />
+                  <h3 className="text-sm font-black text-slate-800 uppercase tracking-tight">Retirement Mapping</h3>
+               </div>
                
                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <button 
-                    onClick={() => updateState({ ssf: !ssf })}
-                    className={`flex items-center justify-between p-5 rounded-2xl border transition-all ${ssf ? 'bg-emerald-50 border-emerald-200 text-emerald-700' : 'bg-slate-50 border-slate-200 text-slate-400'}`}
+                    onClick={() => update({ ssf: !ssf })}
+                    className={`p-6 text-left rounded-3xl border transition-all ${ssf ? 'bg-blue-600 border-blue-500 text-white shadow-xl shadow-blue-50' : 'bg-white border-slate-200 text-slate-500 hover:border-blue-300'}`}
                   >
-                     <div className="flex items-center gap-3">
-                        <Landmark className="w-5 h-5" />
-                        <div className="text-left">
-                           <div className="text-xs font-black uppercase tracking-tight">SSF</div>
-                           <div className="text-[8px] font-bold uppercase tracking-widest">31% Total</div>
-                        </div>
-                     </div>
-                     <div className={`w-8 h-4 rounded-full relative transition-all ${ssf ? 'bg-emerald-600' : 'bg-slate-300'}`}>
-                        <div className={`absolute top-0.5 w-3 h-3 bg-white rounded-full transition-all ${ssf ? 'right-0.5' : 'left-0.5'}`} />
-                     </div>
+                     <ShieldCheck className={`w-6 h-6 mb-4 ${ssf ? 'text-white' : 'text-blue-500'}`} />
+                     <div className="text-[10px] font-black uppercase tracking-widest opacity-60 mb-1">Formal Sector</div>
+                     <div className="text-sm font-bold">Social Security (SSF)</div>
+                     <div className={`mt-4 text-[10px] font-black ${ssf ? 'text-blue-100' : 'text-slate-400'}`}>31% Statutory</div>
                   </button>
 
                   <button 
-                    onClick={() => updateState({ cit: !cit })}
-                    className={`flex items-center justify-between p-5 rounded-2xl border transition-all ${cit ? 'bg-blue-50 border-blue-200 text-blue-700' : 'bg-slate-50 border-slate-200 text-slate-400'}`}
+                    onClick={() => update({ cit: !cit })}
+                    className={`p-6 text-left rounded-3xl border transition-all ${cit ? 'bg-indigo-600 border-indigo-500 text-white shadow-xl shadow-indigo-50' : 'bg-white border-slate-200 text-slate-500 hover:border-indigo-300'}`}
                   >
-                     <div className="flex items-center gap-3">
-                        <Wallet className="w-5 h-5" />
-                        <div className="text-left">
-                           <div className="text-xs font-black uppercase tracking-tight">CIT</div>
-                           <div className="text-[8px] font-bold uppercase tracking-widest">Optional</div>
-                        </div>
-                     </div>
-                     <div className={`w-8 h-4 rounded-full relative transition-all ${cit ? 'bg-blue-600' : 'bg-slate-300'}`}>
-                        <div className={`absolute top-0.5 w-3 h-3 bg-white rounded-full transition-all ${cit ? 'right-0.5' : 'left-0.5'}`} />
-                     </div>
+                     <Target className={`w-6 h-6 mb-4 ${cit ? 'text-white' : 'text-indigo-500'}`} />
+                     <div className="text-[10px] font-black uppercase tracking-widest opacity-60 mb-1">Voluntary Savings</div>
+                     <div className="text-sm font-bold">Citizen Investment (CIT)</div>
+                     <div className={`mt-4 text-[10px] font-black ${cit ? 'text-indigo-100' : 'text-slate-400'}`}>Tax Exempted</div>
                   </button>
                </div>
 
                {cit && (
-                 <div className="p-6 bg-blue-50 rounded-2xl border border-blue-100 animate-in fade-in slide-in-from-top-2">
-                    <ValidatedInput 
-                      label="Monthly CIT Amount" 
-                      value={citAmount} 
-                      onChange={(v) => updateState({ citAmount: v })}
-                      prefix="NPR"
-                      hint="Total monthly regular savings"
-                    />
+                 <div className="mt-6 pt-6 border-t border-slate-200 animate-in fade-in slide-in-from-top-2">
+                    <ValidatedInput label="Monthly CIT Contribution" value={citAmount} onChange={v => update({ citAmount: v })} prefix="Rs." hint="Direct payroll deduction" />
                  </div>
                )}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-slate-100">
-               <div className="space-y-3">
-                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Fiscal Year</label>
-                  <select 
-                    value={fiscalYear}
-                    onChange={(e) => updateState({ fiscalYear: e.target.value as any })}
-                    className="w-full h-12 bg-slate-50 border border-slate-200 rounded-xl px-4 font-bold outline-none focus:border-emerald-500 transition-all text-sm"
-                  >
-                     <option value="2082/83">2082/83 (Latest)</option>
-                     <option value="2083/84">2083/84 (Projected)</option>
-                  </select>
-               </div>
-
-               <div className="space-y-3">
-                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Marital Status</label>
-                  <div className="flex p-1 bg-slate-50 rounded-xl border border-slate-200">
-                     {[ { v: false, l: 'Single' }, { v: true, l: 'Married' } ].map(opt => (
-                       <button
-                        key={opt.l}
-                        onClick={() => updateState({ married: opt.v })}
-                        className={`flex-1 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${married === opt.v ? 'bg-white text-emerald-600 shadow-sm border border-slate-100' : 'text-slate-400'}`}
-                       >
-                         {opt.l}
-                       </button>
-                     ))}
-                  </div>
-               </div>
-            </div>
           </div>
         }
         rightPanel={
           <div className="space-y-6">
-             <div className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
-                <div className="p-10 border-b border-slate-50 text-center">
-                   <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-2">Monthly In-Hand</div>
-                   <div className="text-6xl font-black text-slate-900 tracking-tighter">
-                     {formatNPR(calculation.netMonthly)}
-                   </div>
-                </div>
-                <div className="p-8 bg-emerald-50 space-y-4">
-                   <div className="flex justify-between items-center text-xs font-bold">
-                      <span className="text-emerald-700 uppercase tracking-wider">Gross Monthly</span>
-                      <span className="text-emerald-900">{formatNPR(calculation.grossMonthly)}</span>
-                   </div>
-                   <div className="flex justify-between items-center text-xs font-bold">
-                      <span className="text-emerald-700 uppercase tracking-wider">Monthly Tax</span>
-                      <span className="text-rose-600">-{formatNPR(calculation.monthlyTax)}</span>
-                   </div>
-                   <div className="flex justify-between items-center text-xs font-bold">
-                      <span className="text-emerald-700 uppercase tracking-wider">Deductions (SSF/CIT)</span>
-                      <span className="text-rose-600">-{formatNPR(calculation.ssfEmployee + calculation.citDeduction)}</span>
-                   </div>
-                </div>
-             </div>
+            
+            {/* Master Take-Home Result */}
+            <div className="p-10 bg-slate-900 rounded-[3rem] text-white overflow-hidden relative group shadow-2xl">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-[100px] -mr-32 -mt-32 pointer-events-none group-hover:bg-emerald-500/20 transition-all duration-1000" />
+              <div className="relative z-10 text-center">
+                 <div className="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-400 mb-8">Monthly In-Hand (Net)</div>
+                 <div className="text-6xl font-black tracking-tighter mb-4 text-emerald-400">{Math.round(result.netSalary).toLocaleString('en-IN')}</div>
+                 <div className="text-lg font-bold text-slate-400 mb-10">Rupees Per Month</div>
+                 
+                 <div className="grid grid-cols-2 gap-4 pt-10 border-t border-white/10">
+                    <div className="text-left">
+                       <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Gross CTC</div>
+                       <div className="text-xl font-black text-blue-400">{fmt(result.costToCompany)}</div>
+                    </div>
+                    <div className="text-right">
+                       <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Total Effort</div>
+                       <div className="text-xl font-black text-rose-400">{Math.round((result.totalDeductions / grossSalary) * 100)}% Lost</div>
+                    </div>
+                 </div>
+              </div>
+            </div>
 
-             <div className="bg-slate-900 text-white p-8 rounded-3xl space-y-4 shadow-xl">
-                <div className="flex items-center gap-2 mb-2">
-                   <TrendingUp className="w-5 h-5 text-blue-400" />
-                   <h3 className="text-[10px] font-black uppercase tracking-[0.2em]">Employer Cost (CTC)</h3>
-                </div>
-                <div className="text-4xl font-black tracking-tighter">{formatNPR(calculation.ctcMonthly)}</div>
-                <p className="text-[10px] text-slate-400 font-bold leading-relaxed uppercase tracking-wider">
-                   Includes Gross Monthly + 20% Employer SSF Contribution.
-                </p>
-             </div>
+            {/* Detailed Salary Breakdown */}
+            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 shadow-sm">
+               <div className="flex items-center justify-between mb-8 border-b border-slate-50 pb-6">
+                  <div className="flex items-center gap-2">
+                    <Receipt className="w-4 h-4 text-slate-400" />
+                    <h4 className="text-[11px] font-black uppercase text-slate-400 tracking-widest">Monthly Breakdown</h4>
+                  </div>
+                  <Zap className="w-4 h-4 text-amber-500 fill-amber-500" />
+               </div>
+               
+               <div className="space-y-6">
+                  <div className="flex justify-between items-center text-[11px] font-bold">
+                     <span className="text-slate-500 uppercase">Gross Salary</span>
+                     <span className="text-slate-900 font-mono">{fmt(result.totalGross)}</span>
+                  </div>
+                  
+                  <div className="space-y-4 pt-4 border-t border-slate-50">
+                     <div className="flex justify-between items-center text-[10px] font-black uppercase text-rose-500">
+                        <span>Employee SSF (11%)</span>
+                        <span>-{fmt(result.deductions.ssf_employee)}</span>
+                     </div>
+                     {cit && <div className="flex justify-between items-center text-[10px] font-black uppercase text-rose-500">
+                        <span>CIT Contribution</span>
+                        <span>-{fmt(result.deductions.cit_employee)}</span>
+                     </div>}
+                     <div className="flex justify-between items-center text-[10px] font-black uppercase text-rose-500">
+                        <span>Income Tax (Monthly)</span>
+                        <span>-{fmt(result.monthlyTax)}</span>
+                     </div>
+                  </div>
 
-             <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100 flex gap-4 items-start">
-                 <Info className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
-                 <p className="text-[11px] text-slate-600 leading-relaxed">
-                   <strong>Retirement Limit:</strong> Per IRD rules, your total combined retirement contribution (SSF + CIT) is capped at 1/3 of your gross income or NPR 500,000 annually for tax deduction purposes.
-                 </p>
-             </div>
+                  <div className="pt-6 mt-6 border-t border-slate-900/5">
+                     <div className="flex justify-between items-center text-[10px] font-black uppercase text-blue-600">
+                        <span>Employer SSF (20%)</span>
+                        <span>+{fmt(result.deductions.ssf_employer)}</span>
+                     </div>
+                     <p className="mt-2 text-[9px] text-slate-400 italic">"Employer share is included in CTC but not in your gross."</p>
+                  </div>
+               </div>
+            </div>
+
+            {/* Regulatory Note */}
+            <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 flex gap-4 transition-all hover:bg-white hover:border-blue-200 group">
+               <Info className="w-5 h-5 text-slate-400 group-hover:text-blue-500" />
+               <p className="text-[10px] text-slate-500 leading-relaxed font-bold uppercase tracking-tight">
+                  Calculated based on the **Labor Act 2074** and **Social Security Act** mandates. SSF contributions are applied only on the basic remuneration (60% of Gross).
+               </p>
+            </div>
+
           </div>
         }
         faqSection={
-          <div className="prose prose-slate max-w-none w-full mt-16 pt-12 border-t border-slate-200">
-            <h2 className="text-2xl font-black text-slate-900 tracking-tight">Frequently Asked Questions</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-              <div>
-                <h3 className="text-lg font-bold text-slate-800">How is SSF calculated on basic salary?</h3>
-                <p className="text-sm text-slate-600">According to the Nepal Labor Act, social security contributions are calculated solely on the basic portion of your salary (typically 60% of gross), not including mobile, food, or fuel allowances.</p>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold text-slate-800">Why use a 1/3rd deduction cap?</h3>
-                <p className="text-sm text-slate-600">The Inland Revenue Department allows you to deduct up to one-third of your total income or NPR 300,000 (pooled with CIT/Provident) as tax-exempt savings. Our calculator automatically applies this cap for legal accuracy.</p>
-              </div>
-            </div>
-          </div>
+          <CalcFAQ faqs={[
+            { question: 'What is CTC vs Gross?', answer: 'Gross salary is the amount agreed upon before deductions. CTC (Cost to Company) includes your gross plus the 20% employer contribution to the Social Security Fund (SSF).' },
+            { question: 'Why is SSF only on 60% of salary?', answer: 'In Nepal, employment law typically designates 60% of a gross salary as "Basic Salary" and 40% as "Allowances". Social security contributions are only mandatory on the basic component.' },
+            { question: 'How much CIT is tax-exempt?', answer: 'You can contribute as much as you want to CIT, but only up to 1/3 of your gross income or Rs. 500,000 annually (whichever is lower) is allowed as a tax-free deduction.' },
+            { question: 'Is the 1% SST still applicable?', answer: 'If you contribute to the SSF, the 1% Social Security Tax on the first tax slab is waived. Our calculator automatically applies this waiver for SSF contributors.' }
+          ]} />
         }
       />
     </CalculatorErrorBoundary>

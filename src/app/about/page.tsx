@@ -5,6 +5,9 @@ import { ShieldCheck, Target } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'About NEPACALC | Precision Mathematical Laboratory',
   description: 'NEPACALC is Nepal&apos;s premier destination for high-precision financial, tax, health, and engineering calculators. Built for accuracy, No Ads, 100% Free.',
+  alternates: {
+    canonical: '/about',
+  },
 };
 
 export default function AboutPage() {

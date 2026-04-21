@@ -8,7 +8,13 @@ export const metadata: Metadata = {
   title: 'Nepal Calculators — Tax, EMI, NEPSE & GPA | NEPACALC',
   description: 'All 24 official Nepal-specific calculators: Income Tax 2082/83, Loan EMI, NEPSE WACC, SEE GPA, Vehicle Tax, Remittance, Gold Price, and more. Free, accurate, institutional-grade.',
   keywords: ['nepal calculator', 'income tax calculator nepal', 'nepse calculator', 'see gpa calculator', 'nepal specific tools', 'tds calculator nepal'],
-  alternates: { canonical: 'https://nepacalc.com/nepal' },
+  alternates: { 
+    canonical: 'https://nepacalc.com/nepal',
+    languages: {
+       'en-NP': 'https://nepacalc.com/nepal',
+       'x-default': 'https://nepacalc.com/nepal'
+    }
+  },
   openGraph: {
     title: 'Nepal Specific Calculators — NEPACALC',
     description: 'The most complete suite of Nepal financial, legal, and educational calculators. 24 tools updated for FY 2082/83.',
@@ -115,15 +121,15 @@ export default function NepalPillarPage() {
           <h2 className="text-[13px] font-black uppercase tracking-[0.15em] text-[#059669] mb-8 border-b-2 border-slate-100 pb-2">
             Regular Calculators
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
             {existingTools.map(calc => (
               <Link
                 key={calc.id}
                 href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:border-[#059669] hover:bg-[#05966908] transition-all group"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:border-[#059669] hover:bg-[#05966908] transition-all group min-h-[56px]"
               >
                 <span className="text-lg flex-shrink-0">{calc.icon}</span>
-                <span className="text-[13px] font-medium text-[#202124] group-hover:text-[#059669] transition-colors truncate">
+                <span className="text-[12px] sm:text-[13px] font-medium text-[#202124] group-hover:text-[#059669] transition-colors leading-tight">
                   {calc.name}
                 </span>
               </Link>

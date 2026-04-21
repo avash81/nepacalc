@@ -64,7 +64,7 @@ export default function SIPCalculator() {
     <CalculatorLayout
       title="SIP Investment Calculator"
       description="Calculate Systematic Investment Plan (SIP) returns with annual step-up. Ideal for Nepal mutual fund and NEPSE portfolio planning."
-      category={{ label: 'Finance', href: '/calculator/category/finance' }}
+      category="finance"
       badge="Wealth Builder"
       badgeColor="emerald"
       leftPanel={

@@ -8,9 +8,16 @@ export const metadata: Metadata = {
     'Advanced engineering math suite: graphing calculator, 3D surface plotter, interactive geometry, scientific calculator, formula reference, matrices, statistics, and more. Free, no login.',
   keywords: [
     'engineering calculator', 'graphing calculator', '3D graph',
-    'math formulas', 'geometry tool', 'matrix calculator',
-    'statistics calculator', 'quadratic solver', 'scientific calculator',
+    'math formulas', 'geometry tool', 'math tools',
+    'matrix calculator', 'statistics calculator', 'scientific calculator',
   ],
+  alternates: { 
+    canonical: 'https://nepacalc.com/engineering',
+    languages: {
+       'en-NP': 'https://nepacalc.com/engineering',
+       'x-default': 'https://nepacalc.com/engineering'
+    }
+  },
   openGraph: {
     title: 'Engineering Math Suite | NEPACALC',
     description: 'Advanced graphing, 3D visualization, geometry, and 80+ math tools.',
@@ -156,15 +163,15 @@ export default function EngineeringPage() {
           <h2 className="text-[13px] font-black uppercase tracking-[0.15em] text-[#4361ee] mb-8 border-b-2 border-slate-100 pb-2">
             Math & Science Calculators
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
             {EXISTING.map(calc => (
               <Link
                 key={calc.name}
                 href={calc.href}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:border-[#4361ee] hover:bg-[#4361ee08] transition-all group"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:border-[#4361ee] hover:bg-[#4361ee08] transition-all group min-h-[56px]"
               >
                 <span className="text-lg flex-shrink-0">{calc.icon}</span>
-                <span className="text-[13px] font-medium text-[#202124] group-hover:text-[#4361ee] transition-colors truncate">
+                <span className="text-[12px] sm:text-[13px] font-medium text-[#202124] group-hover:text-[#4361ee] transition-colors leading-tight">
                   {calc.name}
                 </span>
               </Link>

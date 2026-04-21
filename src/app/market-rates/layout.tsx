@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     'silver price nepal 2082', 'gold per tola today', 'remittance rates nepal',
     'nrb exchange rates live', 'fenegosida gold rates today', 'nepalc gold price'
   ],
+  alternates: { canonical: 'https://nepacalc.com/market-rates' },
   openGraph: {
     title: 'Live Market Rates & Gold Price Nepal | NEPACALC',
     description: 'Track live gold, silver, and currency exchange rates in Nepal. Real-time data from official indices.',

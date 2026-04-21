@@ -49,13 +49,19 @@ export default function NotFound() {
              <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Trending Categories</span>
           </div>
           <div className="flex flex-wrap justify-center gap-3">
-            {['Finance', 'Nepal Rules', 'Education', 'Health', 'Engineering'].map(cat => (
+            {[
+              { name: 'Finance', href: '/finance/' },
+              { name: 'Nepal Utilities', href: '/nepal/' },
+              { name: 'Math & Stats', href: '/math-tools/' },
+              { name: 'Health', href: '/health/' },
+              { name: 'Engineering', href: '/engineering/' }
+            ].map(cat => (
               <Link 
-                key={cat} 
-                href={`/calculator?cat=${cat.toLowerCase().replace(' ', '-')}`} 
+                key={cat.name} 
+                href={cat.href} 
                 className="px-6 py-3 bg-gray-50 dark:bg-gray-900 hover:bg-blue-50 dark:hover:bg-blue-900/30 border border-gray-100 dark:border-gray-800 text-gray-900 dark:text-white rounded-[1.2rem] text-[10px] font-black uppercase tracking-widest transition-all hover:-translate-y-1 hover:shadow-md"
               >
-                {cat}
+                {cat.name}
               </Link>
             ))}
           </div>

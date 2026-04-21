@@ -1,0 +1,63 @@
+{
+  "hosting": {
+    "public": "out",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "cleanUrls": true,
+    "trailingSlash": true,
+    "redirects": [
+      { "source": "/calculator/bonus-tax", "destination": "/calculator/nepse-bonus-tax/", "type": 301 },
+      { "source": "/calculator/home-loan", "destination": "/calculator/nepal-home-loan/", "type": 301 },
+      { "source": "/calculator/math-tools/statistics", "destination": "/math-tools/statistics/", "type": 301 },
+      { "source": "/calculator/math-tools/matrix", "destination": "/math-tools/matrix/", "type": 301 },
+      { "source": "/calculator/math-tools/calculus", "destination": "/math-tools/calculus/", "type": 301 },
+      { "source": "/calculator/math-tools/programmer", "destination": "/math-tools/programmer/", "type": 301 },
+      { "source": "/calculator/math-tools/scientific", "destination": "/math-tools/scientific/", "type": 301 },
+      { "source": "/calculator/math-tools/fourfunction", "destination": "/math-tools/fourfunction/", "type": 301 },
+      { "source": "/calculator/market-rates/live-gold-price", "destination": "/market-rates/live-gold-price/", "type": 301 },
+      { "source": "/calculator/market-rates/live-silver-price", "destination": "/market-rates/live-silver-price/", "type": 301 },
+      { "source": "/calculator/market-rates/exchange-rate", "destination": "/market-rates/exchange-rate/", "type": 301 },
+      { "source": "/calculator/market-rates/remittance", "destination": "/market-rates/remittance/", "type": 301 },
+      { "source": "/calculator/engineering/3d", "destination": "/engineering/3d/", "type": 301 },
+      { "source": "/calculator/engineering/geometry", "destination": "/engineering/geometry/", "type": 301 },
+      { "source": "/calculator/engineering/graphing", "destination": "/engineering/graphing/", "type": 301 },
+      { "source": "/calculator/engineering/formulas", "destination": "/engineering/formulas/", "type": 301 },
+      { "source": "/calculator/category/mathematics", "destination": "/math-tools/", "type": 301 },
+      { "source": "/calculator/category/education", "destination": "/math-tools/", "type": 301 },
+      { "source": "/calculator/category/finance", "destination": "/finance/", "type": 301 },
+      { "source": "/calculator/category/tax", "destination": "/nepal/", "type": 301 },
+      { "source": "/calculator/category/health", "destination": "/health/", "type": 301 },
+      { "source": "/calculator/category/utility", "destination": "/converters/", "type": 301 },
+      { "source": "/calculator/category/engineering", "destination": "/engineering/", "type": 301 },
+      { "source": "/calculator/category/construction", "destination": "/engineering/", "type": 301 },
+      { "source": "/calculator/category/nepal", "destination": "/nepal/", "type": 301 }
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
+          { "key": "X-Frame-Options", "value": "DENY" },
+          { "key": "X-Content-Type-Options", "value": "nosniff" },
+          { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+          { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        ]
+      },
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|webp|svg|woff|woff2|ttf|eot)",
+        "headers": [
+          { "key": "Cache-Control", "value": "max-age=31536000" }
+        ]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

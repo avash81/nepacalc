@@ -182,15 +182,15 @@ export default function MarketRatesPillar() {
                 </div>
              </div>
              
-             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+             <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                {TOOLS.map(calc => (
                  <Link
                    key={calc.name}
                    href={calc.href}
-                   className="flex items-center gap-4 px-6 py-5 rounded-[1.5rem] bg-white/5 hover:bg-white/10 hover:translate-y-[-2px] transition-all border border-white/5 group"
+                   className="flex items-center gap-4 px-6 py-5 rounded-[1.5rem] bg-white/5 hover:bg-white/10 hover:translate-y-[-2px] transition-all border border-white/5 group min-h-[72px]"
                  >
                    <span className="text-xl flex-shrink-0 group-hover:scale-110 transition-transform">{calc.icon}</span>
-                   <span className="text-[13px] font-bold text-white/90 group-hover:text-white transition-colors truncate">
+                   <span className="text-[12px] sm:text-[13px] font-bold text-white/90 group-hover:text-white transition-colors leading-tight">
                      {calc.name}
                    </span>
                  </Link>

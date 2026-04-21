@@ -10,12 +10,16 @@ export const SITE_CONFIG = {
 export function calcMeta({ title, description, slug, keywords }: { title: string; description: string; slug: string; keywords: string[] }): Metadata {
   const ogImage = `${SITE_CONFIG.baseUrl}/api/og?title=${encodeURIComponent(title)}`;
   
+  // SEO Truncation Mastery
+  const seoTitle = title.length > 60 ? title.substring(0, 57) + '...' : title;
+  const seoDescription = description.length > 155 ? description.substring(0, 152) + '...' : description;
+
   return {
-    title,
-    description,
+    title: seoTitle,
+    description: seoDescription,
     keywords,
     openGraph: {
-      url: `${SITE_CONFIG.baseUrl}/calculator/${slug}`,
+      url: slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}` : `${SITE_CONFIG.baseUrl}/calculator/${slug}`,
       siteName: SITE_CONFIG.name,
       type: 'website',
       images: [
@@ -34,7 +38,11 @@ export function calcMeta({ title, description, slug, keywords }: { title: string
       images: [ogImage],
     },
     alternates: {
-      canonical: `${SITE_CONFIG.baseUrl}/calculator/${slug}`,
+      canonical: slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}` : `${SITE_CONFIG.baseUrl}/calculator/${slug}`,
+      languages: {
+        'en-NP': slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}` : `${SITE_CONFIG.baseUrl}/calculator/${slug}`,
+        'x-default': slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}` : `${SITE_CONFIG.baseUrl}/calculator/${slug}`
+      }
     },
   };
 }

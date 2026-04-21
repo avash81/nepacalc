@@ -173,6 +173,14 @@ export default function HomePage() {
         {/* 1. Clinical Header & Search */}
         <section className="pt-24 pb-16 border-b border-[#dadce0] bg-[#f8f9fa]">
           <div className="hp-container">
+            <div className="mb-12 max-w-6xl">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#202124] tracking-tight mb-4 leading-[1.1]">
+                Free Online <span className="text-blue-600">Calculators</span> for Nepal.
+              </h1>
+              <p className="text-base sm:text-lg text-slate-500 font-normal leading-relaxed max-w-4xl">
+                Easy-to-use tools for tax, finance, health, and math. 80+ calculators for your daily needs.
+              </p>
+            </div>
 
             {/* Search Focal Point with Graph Engine side-by-side */}
             <div className="w-full mb-0">
@@ -188,7 +196,7 @@ export default function HomePage() {
             {CATEGORIES.filter(c => c.id !== 'market').map(cat => (
               <div key={cat.id} className="space-y-4">
                 <Link href={cat.id === 'education' ? '/math-tools' : cat.id === 'utility' ? '/converters' : `/${cat.id}`}>
-                  <h2 className={`${cat.id === 'engineering' ? 'text-[#4361ee]' : 'text-[#1a73e8]'} text-[13px] font-black uppercase tracking-widest border-b-2 border-slate-100 pb-2 hover:underline`}>
+                  <h2 className={`${cat.id === 'engineering' ? 'text-[#4361ee]' : 'text-[#1a73e8]'} text-[13px] font-bold uppercase tracking-widest border-b-2 border-slate-100 pb-2 hover:underline`}>
                     {cat.name}
                   </h2>
                 </Link>

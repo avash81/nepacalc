@@ -82,7 +82,7 @@ export default function NepalLandCalculator() {
     <CalculatorLayout
       title="Institutional Land Converter"
       description="Professional-grade real-time land unit synchronizer for Ropani, Bigha, Sq.Ft, and international metrics. Verified against Nepal Land Measurement standards."
-      category={{ label: 'Nepal Tools', href: '/calculator/category/nepal' }}
+      category="nepal"
       leftPanel={
         <div className="space-y-6">
           

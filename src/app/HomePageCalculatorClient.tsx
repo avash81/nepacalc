@@ -34,14 +34,14 @@ export function HomePageCalculatorClient() {
   /* Removed mounted check to allow layout SSR */
 
   return (
-    <div className="flex flex-col w-full max-w-7xl mx-auto gap-3">
+    <div className="flex flex-col w-full max-w-6xl mx-auto gap-3">
 
       {/* ── Style toggle ──────────────────────────────────────── */}
       <div className="flex items-center justify-center gap-2 py-1">
-        <p className="text-[12px] text-slate-600 font-medium mr-1">Calculator style:</p>
+        <p className="text-[12px] text-slate-600 font-medium mr-1">Calculator mode:</p>
         {[
-          { id: 'google',   label: '🔵 Scientific Calculator' },
-          { id: 'advanced', label: '🟣 Advanced Graphing' },
+          { id: 'google',   label: 'Scientific' },
+          { id: 'advanced', label: 'Graphing' },
         ].map(opt => (
           <button
             key={opt.id}

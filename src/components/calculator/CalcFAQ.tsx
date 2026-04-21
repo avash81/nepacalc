@@ -3,12 +3,12 @@ import { useState } from 'react';
 
 interface FAQ { question: string; answer: string; }
 
-export function CalcFAQ({ faqs }: { faqs: FAQ[] }) {
+export function CalcFAQ({ faqs, toolName }: { faqs: FAQ[]; toolName?: string }) {
   const [open, setOpen] = useState<number | null>(null);
   return (
     <div className="mt-8 border-t border-gray-100 pt-6">
       <h2 className="text-base font-semibold text-gray-900 mb-4">
-        Frequently Asked Questions
+        {toolName ? `${toolName} FAQ` : 'Frequently Asked Questions'}
       </h2>
       <div className="space-y-1">
         {faqs.map((faq, i) => (

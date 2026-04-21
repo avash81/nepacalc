@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { fetchFirestoreCollection } from '@/lib/firestore-rest';
 import { CATEGORIES, CALCULATORS } from '@/data/calculators';
+import { CATEGORY_URL_MAP } from '@/config/GlobalConfig';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Use environment variables for the absolute URL or fallback to the provided Verel URL
@@ -25,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // 2. Canonical Pillar Pages
   const pillarPages = CATEGORIES.map((cat) => ({
-    url: `${baseUrl}/${cat.id}/`,
+    url: `${baseUrl}${CATEGORY_URL_MAP[cat.id.toLowerCase()] || `/${cat.id}/`}`,
     lastModified: new Date(),
     changeFrequency: 'daily' as const,
     priority: 0.9,

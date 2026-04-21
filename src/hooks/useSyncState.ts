@@ -18,7 +18,7 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 export function useSyncState<T>(
   key: string,
   defaultValue: T,
-  options = { persistent: true, debounce: 300, syncToUrl: true }
+  { persistent = true, debounce = 300, syncToUrl = false } = {}
 ) {
   const router = useRouter();
   const pathname = usePathname();
@@ -36,7 +36,7 @@ export function useSyncState<T>(
       } catch {
         setState(urlValue as unknown as T);
       }
-    } else if (options.persistent) {
+    } else if (persistent) {
       const stored = localStorage.getItem(`cp_${key}`);
       if (stored !== null) {
         try {
@@ -60,22 +60,22 @@ export function useSyncState<T>(
     }
 
     // Push to URL (Next.js Way) - ONLY if enabled
-    if (options.syncToUrl !== false) {
+    if (syncToUrl) {
       const newUrl = `${pathname}?${params.toString()}`;
       router.replace(newUrl, { scroll: false });
     }
 
     // Sync to LocalStorage
-    if (options.persistent) {
+    if (persistent) {
       localStorage.setItem(`cp_${key}`, typeof value === 'object' ? JSON.stringify(value) : String(value));
     }
-  }, [key, pathname, searchParams, options.persistent]);
+  }, [key, pathname, searchParams, persistent]);
 
   // Effect to trigger sync
   useEffect(() => {
-    const handler = setTimeout(() => sync(state), options.debounce);
+    const handler = setTimeout(() => sync(state), debounce);
     return () => clearTimeout(handler);
-  }, [state, sync, options.debounce]);
+  }, [state, sync, debounce]);
 
   return [state, setState] as const;
 }

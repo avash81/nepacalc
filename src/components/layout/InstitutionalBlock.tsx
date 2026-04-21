@@ -6,8 +6,8 @@ export function InstitutionalBlock() {
   return (
     <div className="mt-16 sm:mt-20 pt-8 border-t border-slate-200">
       <div className="w-full">
-        <h2 className="text-[#202124] text-[15px] sm:text-[16px] font-black tracking-tight mb-2">
-          Nepal's Leading Scientific Calculator, Graphing Tool & Digital Laboratory
+        <h2 className="text-[#202124] text-[15px] sm:text-[16px] font-bold tracking-tight mb-2">
+          Simple Math & Finance Tools for Nepal
         </h2>
         <p className="text-[12px] sm:text-[13px] text-[#5f6368] leading-relaxed font-medium mb-5">
           Welcome to <strong>NEPACALC</strong>: your simple yet powerful toolkit for everything from school math to complex financial planning in Nepal. 

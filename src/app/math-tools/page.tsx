@@ -8,7 +8,13 @@ export const metadata: Metadata = {
   title: 'Math Education & Statistics Calculators | NEPACALC',
   description: 'Professional math calculators: Scientific engine, GPA/CGPA tracker, Linear solvers, Matrix computations, and Probability tools for students and engineers.',
   keywords: ['math calculator', 'gpa calculator nepal', 'scientific calculator online', 'statistics tools', 'math solver'],
-  alternates: { canonical: 'https://nepacalc.com/math-tools' },
+  alternates: { 
+    canonical: 'https://nepacalc.com/math-tools',
+    languages: {
+      'en-NP': 'https://nepacalc.com/math-tools',
+      'x-default': 'https://nepacalc.com/math-tools'
+    }
+  },
 };
 
 const MATH_FAQS = [

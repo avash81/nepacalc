@@ -84,7 +84,7 @@ export default function LoanEMICalculator() {
         }
         badge="Pro"
         badgeColor="indigo"
-        category={{ label: 'Finance', href: '/calculator/category/finance' }}
+        category="finance"
         leftPanel={
           <div className="space-y-8">
             <div className="flex bg-slate-900 p-1.5 rounded-2xl shadow-xl">

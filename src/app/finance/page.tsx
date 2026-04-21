@@ -8,7 +8,13 @@ export const metadata: Metadata = {
   title: 'Finance and Tax Calculators | EMI SIP CAGR FD | NEPACALC',
   description: 'Free finance calculators: Loan EMI, SIP Investment, Compound Interest, CAGR, Fixed Deposit, Currency Converter and more. 11+ professional grade tools for Nepali investors.',
   keywords: ['emi calculator nepal', 'sip calculator', 'loan calculator', 'compound interest calculator', 'fd calculator nepal'],
-  alternates: { canonical: 'https://nepacalc.com/finance' },
+  alternates: { 
+    canonical: 'https://nepacalc.com/finance',
+    languages: {
+      'en-NP': 'https://nepacalc.com/finance',
+      'x-default': 'https://nepacalc.com/finance'
+    }
+  },
 };
 
 const FINANCE_FAQS = [
@@ -82,11 +88,11 @@ export default function FinancePillarPage() {
           <h2 className="text-[13px] font-black uppercase tracking-[0.15em] text-[#4361ee] mb-8 border-b-2 border-slate-100 pb-2">
             Regular Calculators
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
             {existingTools.map(calc => (
-              <Link key={calc.name} href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`} className="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:border-[#4361ee] hover:bg-[#4361ee08] transition-all group">
+              <Link key={calc.name} href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`} className="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:border-[#4361ee] hover:bg-[#4361ee08] transition-all group min-h-[56px]">
                 <span className="text-lg flex-shrink-0">{calc.icon}</span>
-                <span className="text-[13px] font-medium text-[#202124] group-hover:text-[#4361ee] transition-colors truncate">
+                <span className="text-[12px] sm:text-[13px] font-medium text-[#202124] group-hover:text-[#4361ee] transition-colors leading-tight">
                   {calc.name}
                 </span>
               </Link>
