@@ -16,6 +16,13 @@ export const metadata: Metadata = {
   },
 };
 
+const TOP_TOOLS = [
+  { slug: 'unit-converter', title: 'Universal Unit Converter', desc: 'Convert between all major international measurement systems — length, weight, speed, temperature, and more.', icon: '🔄', color: '#0891b2' },
+  { slug: 'length-converter', title: 'Length Converter', desc: 'Convert meters, feet, inches, yards, miles, and other dimensional units with full precision.', icon: '📏', color: '#7c3aed' },
+  { slug: 'base-converter', title: 'Base Converter', desc: 'Convert numbers between Binary, Octal, Decimal, and Hexadecimal numeral systems up to 64-bit.', icon: '🔟', color: '#059669' },
+  { slug: 'qr-generator', title: 'QR Code Generator', desc: 'Generate ISO 18004-compliant QR codes instantly from any URL, text, or custom data string.', icon: '📱', color: '#dc2626' },
+];
+
 const CONVERTER_FAQS = [
   {
     question: "How frequently are the currency and unit rates updated?",
@@ -37,6 +44,7 @@ const CONVERTER_FAQS = [
 
 export default function ConvertersPillarPage() {
   const category = CATEGORIES.find(c => c.id === 'utility')!;
+  const existingTools = category.calculators.filter(c => !TOP_TOOLS.some(t => t.slug === c.slug));
 
   return (
     <>
@@ -72,13 +80,43 @@ export default function ConvertersPillarPage() {
           </div>
         </section>
 
-        {/* Tools Grid */}
-        <section className="max-w-6xl mx-auto px-6 pb-16 pt-10">
+        {/* Advanced Tools */}
+        <section className="max-w-6xl mx-auto px-6 pt-6 pb-16">
           <h2 className="text-[13px] font-black uppercase tracking-[0.15em] text-[#0891b2] mb-8 border-b-2 border-slate-100 pb-2">
-            All Converters & Utility Tools
+            Advanced Tools
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {TOP_TOOLS.map(tool => (
+              <Link
+                href={tool.slug.includes('/') ? `/${tool.slug}` : `/calculator/${tool.slug}`}
+                key={tool.title}
+                className="group relative rounded-2xl border border-slate-200 p-6 hover:border-transparent hover:shadow-xl transition-all duration-300 overflow-hidden block"
+              >
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: `linear-gradient(135deg, ${tool.color}08, ${tool.color}15)` }} />
+                <div className="relative z-10">
+                  <div className="text-4xl mb-4">{tool.icon}</div>
+                  <h3 className="text-[18px] font-bold text-[#202124] mb-2">{tool.title}</h3>
+                  <p className="text-[13px] text-[#5f6368] leading-relaxed mb-4">{tool.desc}</p>
+                  <span
+                    className="inline-block px-4 py-2 rounded-full text-[12px] font-bold text-white transition-all hover:opacity-90"
+                    style={{ background: tool.color }}
+                  >
+                    Open Tool →
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* Regular Calculators */}
+        <section className="max-w-6xl mx-auto px-6 pb-12">
+          <h2 className="text-[13px] font-black uppercase tracking-[0.15em] text-[#0891b2] mb-8 border-b-2 border-slate-100 pb-2">
+            Regular Calculators
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-            {category.calculators.map(calc => (
+            {existingTools.map(calc => (
               <Link
                 key={calc.id}
                 href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`}
@@ -93,6 +131,11 @@ export default function ConvertersPillarPage() {
           </div>
         </section>
 
+        {/* FAQs */}
+        <section className="max-w-4xl mx-auto px-6 pb-20">
+          <PillarFAQ faqs={CONVERTER_FAQS} title="Converter Facts" />
+        </section>
+
         {/* SEO text */}
         <section className="border-t border-slate-200 py-12">
           <div className="max-w-5xl mx-auto px-6">
@@ -104,30 +147,6 @@ export default function ConvertersPillarPage() {
             </p>
           </div>
         </section>
-
-        {/* Institutional Authority Block */}
-        <section className="pb-12">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 opacity-80">
-              <div>
-                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">Verification</h3>
-                <p className="text-[11px] text-[#5f6368] leading-relaxed">Measurement constants based on SI standards and international metric/imperial conventions.</p>
-              </div>
-              <div>
-                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">Real-time Data</h3>
-                <p className="text-[11px] text-[#5f6368] leading-relaxed">Currency and exchange rates pull live from central bank APIs to ensure calculation validity.</p>
-              </div>
-              <div>
-                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">System Logic</h3>
-                <p className="text-[11px] text-[#5f6368] leading-relaxed">Base converters and bitwise tools optimized for developer-grade 64-bit precision.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div className="max-w-5xl mx-auto px-6 pb-20">
-          <PillarFAQ faqs={CONVERTER_FAQS} title="Converter Facts" />
-        </div>
       </div>
     </>
   );

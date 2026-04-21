@@ -1,6 +1,5 @@
 import { CATEGORIES } from '@/data/calculators';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 import { JsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
@@ -16,6 +15,13 @@ export const metadata: Metadata = {
     url: 'https://nepacalc.com/nepal',
   }
 };
+
+const TOP_TOOLS = [
+  { slug: 'nepal-income-tax', title: 'Income Tax Calculator', desc: 'Compute Nepal income tax for FY 2082/83 with full deductions, slabs, and take-home projections.', icon: '📝', color: '#059669' },
+  { slug: 'loan-emi', title: 'Home Loan EMI', desc: 'Calculate EMI for NRB-compliant home loans with amortization schedule and total repayment summary.', icon: '🏠', color: '#0891b2' },
+  { slug: 'nepal-stocks', title: 'NEPSE Trading Calculator', desc: 'Simulate NEPSE share trades including broker commission, DP charge, and capital gains tax.', icon: '📈', color: '#7c3aed' },
+  { slug: 'see-gpa', title: 'SEE GPA Calculator', desc: 'Compute SEE result GPA using the latest NEB letter grade conversion scale.', icon: '🅰️', color: '#dc2626' },
+];
 
 const NEPAL_FAQS = [
   {
@@ -38,6 +44,7 @@ const NEPAL_FAQS = [
 
 export default function NepalPillarPage() {
   const category = CATEGORIES.find(c => c.id === 'nepal')!;
+  const existingTools = category.calculators.filter(c => !TOP_TOOLS.some(t => t.slug === c.slug));
 
   return (
     <>
@@ -73,13 +80,43 @@ export default function NepalPillarPage() {
           </div>
         </section>
 
-        {/* Existing calculators */}
-        <section className="max-w-6xl mx-auto px-6 pb-16 pt-10">
+        {/* Advanced Tools */}
+        <section className="max-w-6xl mx-auto px-6 pt-6 pb-16">
           <h2 className="text-[13px] font-black uppercase tracking-[0.15em] text-[#059669] mb-8 border-b-2 border-slate-100 pb-2">
-            Official Nepal Calculators
+            Advanced Tools
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {TOP_TOOLS.map(tool => (
+              <Link
+                href={tool.slug.includes('/') ? `/${tool.slug}` : `/calculator/${tool.slug}`}
+                key={tool.title}
+                className="group relative rounded-2xl border border-slate-200 p-6 hover:border-transparent hover:shadow-xl transition-all duration-300 overflow-hidden block"
+              >
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: `linear-gradient(135deg, ${tool.color}08, ${tool.color}15)` }} />
+                <div className="relative z-10">
+                  <div className="text-4xl mb-4">{tool.icon}</div>
+                  <h3 className="text-[18px] font-bold text-[#202124] mb-2">{tool.title}</h3>
+                  <p className="text-[13px] text-[#5f6368] leading-relaxed mb-4">{tool.desc}</p>
+                  <span
+                    className="inline-block px-4 py-2 rounded-full text-[12px] font-bold text-white transition-all hover:opacity-90"
+                    style={{ background: tool.color }}
+                  >
+                    Open Tool →
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* Regular Calculators */}
+        <section className="max-w-6xl mx-auto px-6 pb-12">
+          <h2 className="text-[13px] font-black uppercase tracking-[0.15em] text-[#059669] mb-8 border-b-2 border-slate-100 pb-2">
+            Regular Calculators
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-            {category.calculators.map(calc => (
+            {existingTools.map(calc => (
               <Link
                 key={calc.id}
                 href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`}
@@ -94,32 +131,22 @@ export default function NepalPillarPage() {
           </div>
         </section>
 
-        {/* Institutional SEO Block */}
+        {/* FAQs */}
+        <section className="max-w-4xl mx-auto px-6 pb-20">
+          <PillarFAQ faqs={NEPAL_FAQS} title="Nepal Tools Facts" />
+        </section>
+
+        {/* SEO Block */}
         <section className="border-t border-slate-200 py-12">
           <div className="max-w-5xl mx-auto px-6">
-            <h2 className="text-[16px] font-black text-[#202124] mb-6">
-              NEPACALC Compliance & Accuracy
+            <h2 className="text-[16px] font-black text-[#202124] mb-3">
+              NEPACALC — Built for Nepal
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 opacity-80">
-              <div>
-                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">Verification</h3>
-                <p className="text-[11px] text-[#5f6368] leading-relaxed">Measurement constants based on SI standards and international metric/imperial conventions.</p>
-              </div>
-              <div>
-                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">Real-time Data</h3>
-                <p className="text-[11px] text-[#5f6368] leading-relaxed">Currency and exchange rates pull live from central bank APIs to ensure calculation validity.</p>
-              </div>
-              <div>
-                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#202124] mb-3">System Logic</h3>
-                <p className="text-[11px] text-[#5f6368] leading-relaxed">Tax, EMI, and GPA systems are meticulously maintained using official institutional formulas from IRD and NRB.</p>
-              </div>
-            </div>
+            <p className="text-[13px] text-[#5f6368] leading-relaxed">
+              NEPACALC is the most comprehensive free calculator platform built specifically for Nepal. Our income tax engine processes the exact progressive slabs published by the Inland Revenue Department (IRD) for Fiscal Year 2082/83, supporting married, single, and senior-citizen filers. The NEPSE trading calculator applies the exact broker commission matrix mandated by SEBON, including DP charges and 5% CGT on listed securities. Our SEE GPA tool precisely maps raw subject marks to the NEB letter grade and GPA scale. All tools are client-side with no data transmitted to servers — your financial and academic information stays entirely on your device.
+            </p>
           </div>
         </section>
-        
-        <div className="max-w-5xl mx-auto px-6 pb-20">
-          <PillarFAQ faqs={NEPAL_FAQS} title="Nepal Tools Facts" />
-        </div>
       </div>
     </>
   );
