@@ -24,11 +24,17 @@ export default function MortgageCalculator() {
     return { loan, downAmt, pAndI, mTax, mInsurance, monthlyTotal: pAndI + mTax + mInsurance };
   }, [pPrice, downPercent, rate, years, taxRate, insurance]);
 
+  const MORTGAGE_FAQS = [
+    { question: 'What does a mortgage payment include?', answer: 'Standard mortgage payments include Principal & Interest (P&I), Property Tax, and Homeowners Insurance (PITI).' },
+    { question: 'How can I lower my monthly mortgage?', answer: 'Increase your down payment, get a lower interest rate, or extend the tenure — though longer tenures increase total interest paid.' },
+  ];
+
   return (
     <CalculatorLayout
       title="Mortgage Calculator"
       description="Full mortgage calculator including Principal & Interest, property tax, and insurance. Based on Nepal bank rate standards."
       category={{ label: 'Finance', href: '/calculator/category/finance' }}
+      faqs={MORTGAGE_FAQS}
       leftPanel={
         <div className="space-y-6">
           <ValidatedInput 
@@ -91,21 +97,6 @@ export default function MortgageCalculator() {
             </div>
           </div>
         </div>
-      }
-  const MORTGAGE_FAQS = [
-    { question: 'What does a mortgage payment include?', answer: 'Standard mortgage payments include Principal & Interest (P&I), Property Tax, and Homeowners Insurance (PITI).' },
-    { question: 'How can I lower my monthly mortgage?', answer: 'Increase your down payment, get a lower interest rate, or extend the tenure — though longer tenures increase total interest paid.' },
-  ];
-
-  return (
-    <CalculatorLayout
-      title="Mortgage Calculator"
-      description="Full mortgage calculator including Principal & Interest, property tax, and insurance. Based on Nepal bank rate standards."
-      category={{ label: 'Finance', href: '/calculator/category/finance' }}
-      faqs={MORTGAGE_FAQS}
-      leftPanel={
-        <div className="space-y-6">
-...
       }
       faqSection={<CalcFAQ faqs={MORTGAGE_FAQS} />}
     />
