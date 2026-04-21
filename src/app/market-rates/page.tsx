@@ -145,7 +145,7 @@ export default function MarketRatesPillar() {
         {/* SEO Summary */}
         <section className="border-t border-slate-200 py-16 bg-slate-50/50">
           <div className="max-w-5xl mx-auto px-6">
-            <h2 className="text-[20px] font-black text-[#202124] mb-6 uppercase tracking-tight">
+            <h2 className="text-[16px] font-black text-[#202124] mb-6 uppercase tracking-tight">
                Nepal Market Authority Laboratory 2026
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">

@@ -173,10 +173,10 @@ export default function EngineeringPage() {
         </section>
 
         {/* SEO text */}
-        <section className="border-t border-slate-200 py-12">
+        <section className="border-t border-slate-200 py-16 bg-slate-50/50">
           <div className="max-w-5xl mx-auto px-6">
-            <h2 className="text-[16px] font-black text-[#202124] mb-3">
-              NEPACALC Engineering Math Laboratory
+            <h2 className="text-[16px] font-black text-[#202124] mb-6 uppercase tracking-tight">
+               Nepal Engineering Authority Laboratory 2026
             </h2>
             <p className="text-[13px] text-[#5f6368] leading-relaxed">
               The NEPACALC Engineering Suite provides advanced mathematical tools comparable to GeoGebra and Desmos, entirely free and browser-based. Our graphing calculator uses an HTML5 Canvas rendering engine with Pratt-style expression parsing, supporting real-time function plotting with infinite pan and zoom. The 3D visualizer uses WebGL for hardware-accelerated surface rendering of z = f(x, y) functions. The interactive geometry canvas supports compass-and-straightedge constructions with dynamic measurement display. Our math formula reference covers every formula from school-level arithmetic to engineering-level differential equations, Fourier transforms, and Laplace transforms, all beautifully rendered with KaTeX. Combined with our 20+ existing math and science calculators (matrices, statistics, probability, physics, chemistry), NEPACALC is the most comprehensive free math platform for Nepali students and engineers.
