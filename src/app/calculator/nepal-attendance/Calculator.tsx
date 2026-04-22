@@ -6,6 +6,7 @@ import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { ResultCard } from '@/components/calculator/ResultCard';
 import { useSyncState } from '@/hooks/useSyncState';
 import { GraduationCap, CheckCircle2, XCircle, AlertCircle, BookOpen, Info } from 'lucide-react';
+import { CalcFAQ } from '@/components/calculator/CalcFAQ';
 
 export default function NepalAttendanceCalculator() {
   const [state, setState] = useSyncState('nepal_att_v2', {
