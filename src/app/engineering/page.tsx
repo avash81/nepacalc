@@ -3,13 +3,15 @@ import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Engineering Math Suite — 3D Surface Plotter & Graphing | NEPACALC',
+  title: '3D Surface Plotter, Graphing Calculator & Engineering Math Tools | NEPACALC',
   description:
-    'Advanced engineering math suite featuring an interactive 3D Surface Plotter with Orbit Camera, Wireframe View, and real-time Graphing Calculator. A professional alternative to CalcPlot3D for Nepal.',
+    'Free online 3D surface plotter (z=f(x,y)) with interactive orbit camera, wireframe mode & WebGL rendering. Also features a graphing calculator, geometry canvas, LCM, matrices, physics, and 20+ math tools.',
   keywords: [
-    'engineering calculator', '3D surface plotter', 'orbit camera graph',
-    '3D wireframe mesh', 'graphing calculator', '3D plotter nepal',
-    'math formulas', 'geometry tool', 'math tools',
+    '3D surface plotter online', 'graphing calculator free', 'orbit camera 3d graph',
+    '3d wireframe plotter', 'engineering calculator online', 'calcplot3d alternative',
+    'math3d alternative', 'online graphing calculator', 'lcm calculator', 'matrix calculator',
+    'quadratic solver', 'logarithm calculator', 'physics calculator', 'statistics calculator',
+    'roman numerals converter', 'z score calculator',
   ],
   alternates: { 
     canonical: 'https://nepacalc.com/engineering',
@@ -19,8 +21,8 @@ export const metadata: Metadata = {
     }
   },
   openGraph: {
-    title: '3D Surface Plotter & Engineering Suite | NEPACALC',
-    description: 'Interactive 3D visualization with orbit camera, wireframe mesh, and 80+ math tools.',
+    title: 'Free 3D Surface Plotter & Online Graphing Calculator | NEPACALC',
+    description: 'Plot z=f(x,y) in 3D with orbit camera & wireframe mode. Free graphing calculator, geometry canvas, matrices, LCM, physics tools and more — no login required.',
     url: 'https://nepacalc.com/engineering',
   },
 };

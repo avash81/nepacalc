@@ -5,9 +5,9 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Converters & Utility Tools — Unit, Length, Weight, Base | NEPACALC',
-  description: 'Free online converters: Unit converter, Length, Weight, Currency, QR Generator, Password Generator, Word Counter and more utility tools. All free, all instant.',
-  keywords: ['unit converter', 'length converter', 'weight converter', 'currency converter nepal', 'base converter', 'utility tools', 'qr code generator'],
+  title: 'Free Online Unit Converter — Length, Weight, Currency, Base & QR Code',
+  description: 'Instantly convert units of length, weight, temperature, speed, and currency. Generate QR codes, convert binary/hex/decimal, create strong passwords — all free, no login.',
+  keywords: ['unit converter online free', 'length converter', 'weight converter kg to lbs', 'currency converter nepal', 'binary to decimal converter', 'qr code generator free', 'password generator', 'word counter'],
   alternates: { 
     canonical: 'https://nepacalc.com/converters',
     languages: {
@@ -16,8 +16,8 @@ export const metadata: Metadata = {
     }
   },
   openGraph: {
-    title: 'Converters & Utility Tools | NEPACALC',
-    description: 'Free precision converters and utility tools for everyday tasks.',
+    title: 'Free Online Unit Converter — Length, Weight, Currency, QR & More | NEPACALC',
+    description: 'Instantly convert units of length, weight, temperature, currency. Generate QR codes, convert binary/hex. All free, no login required.',
     url: 'https://nepacalc.com/converters',
   },
 };

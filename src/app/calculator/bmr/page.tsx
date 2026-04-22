@@ -2,10 +2,10 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: 'BMR Calculator — Basal Metabolic Rate & TDEE',
-  description: 'Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) to understand your daily calorie needs for weight management. Free online tool.',
+  title: 'Metabolic Rate TDEE Calculator — BMR & Daily Calorie Needs',
+  description: 'Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) instantly. Uses the Mifflin-St Jeor formula. Find exact daily calories for weight loss, gain, or maintenance.',
   slug: 'bmr',
-  keywords: ['bmr calculator', 'basal metabolic rate', 'tdee calculator', 'calorie needs', 'weight management'],
+  keywords: ['metabolic rate tdee calculator', 'bmr calculator', 'basal metabolic rate', 'tdee calculator online', 'daily calorie needs', 'mifflin st jeor formula', 'calorie calculator for weight loss'],
 });
 
 export default function Page() {

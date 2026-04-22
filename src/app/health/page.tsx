@@ -5,9 +5,9 @@ import { PillarFAQ } from '@/components/seo/PillarFAQ';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Health and Fitness Calculators | BMI BMR Calories Body Fat | NEPACALC',
-  description: 'Free health calculators: BMI, BMR, Body Fat %, Daily Calories, Ideal Weight, Water Intake, Pregnancy Due Date, and more. Based on WHO standards.',
-  keywords: ['bmi calculator nepal', 'bmr calculator', 'body fat calculator', 'calorie calculator', 'health tools nepal'],
+  title: 'Health Calculators — BMI, BMR, TDEE, Body Fat & Calorie Calculator',
+  description: 'Free WHO-standard health calculators: Calculate BMI, Basal Metabolic Rate (BMR), TDEE, Body Fat %, daily calories, ideal weight, water intake, and pregnancy due date. No login required.',
+  keywords: ['bmi calculator', 'bmr calculator', 'tdee calculator', 'body fat calculator', 'calorie calculator', 'ideal weight calculator', 'water intake calculator', 'health calculator nepal', 'who bmi standard'],
   alternates: { 
     canonical: 'https://nepacalc.com/health',
     languages: {
