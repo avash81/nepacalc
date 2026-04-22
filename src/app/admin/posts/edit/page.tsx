@@ -4,13 +4,13 @@ import AdminLayout from '@/components/layout/AdminLayout';
 import { Save, Eye, Image as ImageIcon, Settings, FileText, ChevronLeft } from 'lucide-react';
 import { getDb, handleFirestoreError, OperationType } from '@/lib/firebase';
 import { doc, getDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
-import { useRouter, useParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
 export default function EditPostPage() {
   const router = useRouter();
-  const params = useParams();
-  const postId = params.slug as string; // in admin/posts/page.tsx it maps to post.id
+  const searchParams = useSearchParams();
+  const postId = searchParams.get('id') as string;
 
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');

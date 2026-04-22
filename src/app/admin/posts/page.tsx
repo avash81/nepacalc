@@ -178,7 +178,7 @@ export default function PostsPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-end gap-2">
-                          <Link href={`/admin/posts/edit/${post.id}`}>
+                          <Link href={`/admin/posts/edit?id=${post.id}`}>
                             <button className="p-2 text-slate-400 hover:text-cp-blue transition-colors">
                               <Edit2 className="w-4 h-4" />
                             </button>
