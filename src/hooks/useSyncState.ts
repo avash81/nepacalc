@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 /**
  * useSyncState — A specialized hook for shared calculator state.
@@ -22,14 +22,16 @@ export function useSyncState<T>(
 ) {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   // 1. Initial State Resolution (SSR Safe)
   const [state, setState] = useState<T>(defaultValue);
 
   // 2. Hydration: Load from URL, then LocalStorage once on mount
   useEffect(() => {
-    const urlValue = searchParams.get(key);
+    // Read from window.location instead of useSearchParams to prevent Next.js from bailing out of SSR.
+    const params = new URLSearchParams(window.location.search);
+    const urlValue = params.get(key);
+
     if (urlValue !== null) {
       try {
         setState(JSON.parse(urlValue) as T);
@@ -50,7 +52,7 @@ export function useSyncState<T>(
 
   // 2. Sync to URL & LocalStorage
   const sync = useCallback((value: T) => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(window.location.search);
     
     if (value === undefined || value === null || value === '') {
       params.delete(key);
@@ -69,7 +71,7 @@ export function useSyncState<T>(
     if (persistent) {
       localStorage.setItem(`cp_${key}`, typeof value === 'object' ? JSON.stringify(value) : String(value));
     }
-  }, [key, pathname, searchParams, persistent]);
+  }, [key, pathname, persistent, syncToUrl]);
 
   // Effect to trigger sync
   useEffect(() => {
