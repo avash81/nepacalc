@@ -9,6 +9,8 @@
     "cleanUrls": true,
     "trailingSlash": true,
     "redirects": [
+      { "source": "/calculator/status-vat", "destination": "/calculator/nepal-vat/", "type": 301 },
+      { "source": "/calculator/nepal-tax-calculator", "destination": "/calculator/nepal-income-tax/", "type": 301 },
       { "source": "/calculator/bonus-tax", "destination": "/calculator/nepse-bonus-tax/", "type": 301 },
       { "source": "/calculator/home-loan", "destination": "/calculator/nepal-home-loan/", "type": 301 },
       { "source": "/calculator/math-tools/statistics", "destination": "/math-tools/statistics/", "type": 301 },
