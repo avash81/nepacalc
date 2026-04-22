@@ -64,12 +64,20 @@ export default function NepalIncomeTaxCalculator() {
 
   const fmt = (n: number) => 'Rs. ' + Math.round(n).toLocaleString('en-IN');
 
+  const faqs = [
+    { question: 'What is the SST Waiver?', answer: 'If you are an official contributor to the Social Security Fund (SSF), the first 1% Social Security Tax is completely waived as per IRD regulations.' },
+    { question: 'How much can I deduct for Insurance?', answer: 'You can deduct up to Rs. 40,000 for Life Insurance premiums and up to Rs. 20,000 for Health Insurance premiums annually.' },
+    { question: 'What is the Married Status benefit?', answer: 'The tax-free threshold is higher for individual taxpayers who are registered as Married/Couple (Rs. 6 Lakh vs Rs. 5 Lakh in 2081/82).' },
+    { question: 'Is there a rebate for females?', answer: 'Yes, female salaried employees (remuneration earners) are entitled to a 10% rebate on their total calculated tax liability.' },
+  ];
+
   return (
     <CalculatorErrorBoundary calculatorName="Institutional Income Tax">
       <CalculatorLayout
         title="Nepal Income Tax Dashboard"
         description="Institutional-grade tax laboratory for FY 2081/82. Includes SSF SST-waiver logic, female rebates, and comprehensive deduction mapping."
-        category="nepal"
+        category={{ label: "Nepal Tools", href: "/calculator/category/nepal" }}
+        faqs={faqs}
         leftPanel={
           <div className="space-y-8">
             
@@ -221,14 +229,7 @@ export default function NepalIncomeTaxCalculator() {
 
           </div>
         }
-        faqSection={
-          <CalcFAQ faqs={[
-            { question: 'What is the SST Waiver?', answer: 'If you are an official contributor to the Social Security Fund (SSF), the first 1% Social Security Tax is completely waived as per IRD regulations.' },
-            { question: 'How much can I deduct for Insurance?', answer: 'You can deduct up to Rs. 40,000 for Life Insurance premiums and up to Rs. 20,000 for Health Insurance premiums annually.' },
-            { question: 'What is the Married Status benefit?', answer: 'The tax-free threshold is higher for individual taxpayers who are registered as Married/Couple (Rs. 6 Lakh vs Rs. 5 Lakh in 2081/82).' },
-            { question: 'Is there a rebate for females?', answer: 'Yes, female salaried employees (remuneration earners) are entitled to a 10% rebate on their total calculated tax liability.' },
-          ]} />
-        }
+        faqSection={<CalcFAQ faqs={faqs} />}
       />
     </CalculatorErrorBoundary>
   );

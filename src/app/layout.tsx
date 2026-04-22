@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { MobileNav } from "@/components/layout/MobileNav";
 
 const inter = Inter({ 
   subsets: ["latin"], 
@@ -18,9 +17,14 @@ export const metadata: Metadata = {
   title: "Free Online Calculators for Nepal | NEPACALC",
   description: "Nepal's trusted free calculator platform for income tax, EMI planning, GPA tracking, unit conversions & 80+ professional tools. No registration needed.",
   icons: {
-    icon: '/favicon.png',
-    apple: '/favicon.png',
+    icon: [
+      { url: '/favicon.png' },
+      { url: '/favicon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
   },
+  manifest: '/manifest.json',
   verification: {
     google: "IoM3eC1OeiymFDD1h8N5MWQlfN-5tUmRxpj-e1BFIT8",
   },
@@ -57,7 +61,9 @@ export const metadata: Metadata = {
   },
 };
 
-import { CookieBanner } from "@/components/layout/CookieBanner";
+import dynamic from 'next/dynamic';
+const MobileNav = dynamic(() => import("@/components/layout/MobileNav").then(mod => mod.MobileNav), { ssr: false });
+const CookieBanner = dynamic(() => import("@/components/layout/CookieBanner").then(mod => mod.CookieBanner), { ssr: false });
 import { GoogleAnalytics } from "@/components/seo/GoogleAnalytics";
 
 const globalSchema = {
@@ -68,7 +74,7 @@ const globalSchema = {
       "@id": "https://nepacalc.com/#organization",
       "name": "NEPACALC",
       "url": "https://nepacalc.com",
-      "logo": "https://nepacalc.com/favicon.png",
+      "logo": "https://nepacalc.com/logo.png",
       "sameAs": [
         "https://www.facebook.com/nepacalc",
         "https://twitter.com/nepacalc"
@@ -119,6 +125,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body className={`${inter.variable} font-sans`}>
         <GoogleAnalytics />
         <script

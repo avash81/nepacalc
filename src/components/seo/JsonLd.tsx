@@ -3,6 +3,7 @@
  * 
  * Provides high-precision structured data for every calculator page to dominate search results.
  * Supports organization, website, software application (calculator), and FAQ schemas.
+ * Now supports 'unified' mode for single-script array injection to prevent duplicates.
  */
 interface FAQItem {
   question: string;
@@ -10,12 +11,12 @@ interface FAQItem {
 }
 
 interface JsonLdProps {
-  type: 'calculator' | 'faq' | 'website' | 'organization' | 'breadcrumb';
+  type: 'calculator' | 'faq' | 'website' | 'organization' | 'breadcrumb' | 'unified';
   name?: string;
   description?: string;
   url?: string;
   faqs?: FAQItem[];
-  category?: string; // e.g., 'FinanceApplication', 'EducationalApplication'
+  category?: any; // e.g., 'FinanceApplication', 'EducationalApplication' or {label, href}
   breadcrumbItems?: { name: string; item: string }[];
 }
 
@@ -27,26 +28,6 @@ const INSTITUTIONAL_FAQS = [
   { 
     question: "Does NEPACALC store my personal calculation data?", 
     answer: "No. Privacy is our priority. All calculations are performed entirely on your device (client-side). Your inputs are never transmitted to our servers or stored in any database." 
-  },
-  { 
-    question: "Is this tool updated for the latest Nepal fiscal year mandates?", 
-    answer: "Yes. Our research team monitors the official Finance Bill and IRD circulars daily. We update our tax slabs, VAT logic, and interest rate methodologies as soon as new regulations are released." 
-  },
-  { 
-    question: "Can I use these results for official legal or bank filings?", 
-    answer: "While our tools provide 99.9% accuracy for planning purposes, we always recommend verifying final figures with a certified Chartered Accountant (CA) or financial advisor for official government filings." 
-  },
-  { 
-    question: "Is NEPACALC compatible with mobile devices and tablets?", 
-    answer: "Yes. The platform is built on a responsive, mobile-first framework, ensuring full functionality on everything from small smartphones to large professional monitors." 
-  },
-  { 
-    question: "Does NEPACALC support 3D surface plotting?", 
-    answer: "Yes. Our Engineering Suite includes an advanced Online 3D Surface Plotter with an interactive Orbit Camera (drag to rotate) and Wireframe Mode. It is a recognized professional alternative to tools like CalcPlot3D and Math3d.org, designed for multivariable calculus visualization." 
-  },
-  { 
-    question: "Is there any subscription fee for using NEPACALC tools?", 
-    answer: "No. NEPACALC is a free institutional resource. Our mission is to provide high-precision financial and mathematical tools to every citizen of Nepal without any cost barriers." 
   },
   { 
     question: "How do I print a report of my calculation?", 
@@ -62,11 +43,12 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
   const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://nepacalc.com';
   const siteName = 'NEPACALC';
   
-  // Use provided FAQs or don't render schema
   const finalFaqs = (faqs && faqs.length > 0) ? faqs : [];
-  if (type === 'faq' && finalFaqs.length === 0) return null;
 
-  const schemas: Record<string, object> = {
+  // Normalize category for schema
+  const schemaCategory = typeof category === 'string' ? category : (category?.label || 'UtilitiesApplication');
+
+  const schemas: Record<string, any> = {
     organization: {
       '@context': 'https://schema.org',
       '@type': 'Organization',
@@ -107,15 +89,14 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
       name: name || 'NEPACALC Laboratory Tool',
       description: description || 'Professional mathematical visualization and calculation tool.',
       url: url || base,
-      applicationCategory: category,
+      applicationCategory: schemaCategory,
       operatingSystem: 'Any',
       offers: {
         '@type': 'Offer',
         price: '0',
         priceCurrency: 'NPR',
       },
-      inLanguage: ['en-NP', 'en-US'],
-      creator: {
+      author: {
         '@type': 'Organization',
         name: 'NEPACALC',
         url: base,
@@ -148,7 +129,7 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
     breadcrumb: {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
-      itemListElement: breadcrumbItems?.map((item, index) => ({
+      itemListElement: (breadcrumbItems || []).map((item, index) => ({
         '@type': 'ListItem',
         position: index + 1,
         name: item.name,
@@ -157,7 +138,25 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
     },
   };
 
+  if (type === 'unified') {
+    const unified = [];
+    if (breadcrumbItems && breadcrumbItems.length > 0) unified.push(schemas.breadcrumb);
+    unified.push(schemas.calculator);
+    if (finalFaqs.length > 0) unified.push(schemas.faq);
+    
+    return (
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(unified),
+        }}
+      />
+    );
+  }
+
   const selectedSchema = schemas[type];
+  if (type === 'faq' && finalFaqs.length === 0) return null;
 
   return (
     <script

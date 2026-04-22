@@ -42,6 +42,7 @@ export default function SIPCalculator() {
       title="SIP Calculator"
       description="Verify the future value of your Systematic Investment Plan (SIP). Plan your long-term wealth growth with precision."
       category={{ label: "Finance", href: "/calculator/category/finance" }}
+      faqs={faqs}
       leftPanel={
         <div className="space-y-6">
           <div className="space-y-4">

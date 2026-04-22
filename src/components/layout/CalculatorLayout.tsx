@@ -126,22 +126,17 @@ export function CalculatorLayout({
   return (
     <div className="min-h-screen bg-[var(--bg-page)] font-sans antialiased lg:pb-0 pt-20">
       {/* 0. SEO Power Injection (Standardized JsonLd Suite) */}
+      {/* High-Performance Unified Schema Engine */}
       <JsonLd 
-        type="breadcrumb"
+        type="unified"
         breadcrumbItems={[
           { name: 'Home', item: 'https://nepacalc.com' },
           ...(catLabel ? [{ name: catLabel, item: `https://nepacalc.com${catLink || '/directory'}` }] : []),
           { name: title, item: `https://nepacalc.com${resolvedSlug.includes('/') ? `/${resolvedSlug}` : `/calculator/${resolvedSlug}`}` }
         ]}
-      />
-      <JsonLd 
-        type="calculator"
         name={title}
         description={description}
         url={`https://nepacalc.com${resolvedSlug.includes('/') ? `/${resolvedSlug}` : `/calculator/${resolvedSlug}`}`}
-      />
-      <JsonLd 
-        type="faq"
         faqs={faqs}
       />
 

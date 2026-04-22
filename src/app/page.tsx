@@ -9,7 +9,7 @@ import type { Metadata } from 'next';
 
 /* ── Homepage-specific metadata (overrides layout.tsx defaults) ── */
 export const metadata: Metadata = {
-  title: 'Free Scientific Calculator & Graphing Tool | NEPACALC',
+  title: '#1 Free Scientific Calculator & Real-Time Graphing | NEPACALC',
   description:
     "NEPACALC: Nepal's free scientific calculator with real-time graphing, income tax, loan EMI, GPA tracking & 80+ professional tools. No sign-up needed.",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     'graphing tool', 'math plotter', 'function grapher',
   ],
   openGraph: {
-    title: 'Free Scientific Calculator & Graphing Tool | NEPACALC',
+    title: '#1 Free Scientific Calculator & Real-Time Graphing | NEPACALC',
     description: 'Nepal\'s free scientific calculator with real-time graphing, maths solver & 80+ professional tools for income tax, EMI, GPA and more.',
     url: 'https://nepacalc.com',
     siteName: 'NEPACALC',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Scientific Calculator & Graph | NEPACALC',
+    title: '#1 Free Scientific Calculator & Real-Time Graphing | NEPACALC',
     description: 'Interactive scientific calculator with real-time graphing, algebra/trig/calculus solver, and 80+ tools.',
   },
 };

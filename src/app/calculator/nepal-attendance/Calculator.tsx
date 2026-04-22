@@ -47,13 +47,27 @@ export default function NepalAttendanceCalculator() {
     return { percentage, isEligible, shortage, requiredClasses, canMissMore, classesToAttend };
   }, [totalClasses, attended, required]);
 
-  const statusColor = results.isEligible ? 'emerald' : 'rose';
+  const faqs = [
+    { 
+      question: "What is the minimum attendance requirement for TU/PU?", 
+      answer: "Under Tribhuvan University (TU) and Pokhara University (PU) regulations, students must maintain a minimum of 75% attendance to be eligible for end-semester examinations." 
+    },
+    { 
+      question: "Does the 75% rule apply to practicals?", 
+      answer: "Yes, the 75% rule applies separately to both Theory and Practical classes. High attendance in one cannot compensate for a shortage in the other." 
+    },
+    { 
+      question: "Can I get a grace (condonation) for low attendance?", 
+      answer: "The Faculty Dean may grant condonation for up to a 5% shortage in extreme cases like illness, but this requires a formal application and is not a guaranteed right." 
+    }
+  ];
 
   return (
     <CalculatorLayout
       title="TU/PU Attendance Tracker"
       description="Calculate your university attendance percentage and eligibility for exams. Based on the mandatory 75% minimum for Tribhuvan University (TU) and Pokhara University (PU)."
       category={{ label: 'Nepal Specific', href: '/calculator/category/nepal' }}
+      faqs={faqs}
       leftPanel={
         <div className="space-y-8">
            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -151,21 +165,7 @@ export default function NepalAttendanceCalculator() {
           </div>
         </div>
       }
-      faqSection={
-        <div className="mt-16 pt-12 border-t border-[var(--border)] prose prose-slate max-w-none">
-           <h2 className="text-2xl font-black text-slate-900 mb-8 italic tracking-tighter">TU/PU Attendance Rules Explained</h2>
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div>
-                 <h4 className="text-[11px] font-black uppercase tracking-widest text-indigo-600 mb-2">Theory vs. Practical</h4>
-                 <p className="text-[13px] text-slate-600 leading-relaxed font-medium">At TU, the 75% rule applies separately to **Theory** and **Practical** classes. You cannot compensate low practical attendance with high theory attendance. Track both separately.</p>
-              </div>
-              <div>
-                 <h4 className="text-[11px] font-black uppercase tracking-widest text-indigo-600 mb-2">Medical Condonation</h4>
-                 <p className="text-[13px] text-slate-600 leading-relaxed font-medium">If you missed classes due to a serious illness or accident, you can apply for condonation of up to 5% with a doctor's certificate. However, attendance below 60% typically cannot be condoned at all.</p>
-              </div>
-           </div>
-        </div>
-      }
+      faqSection={<div className="mt-8"><CalcFAQ faqs={faqs} /></div>}
     />
   );
 }

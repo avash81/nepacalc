@@ -23,11 +23,23 @@ export default function EMICalculator() {
 
   const COLORS = ['#083366', '#006600']; // Navy, Green
 
+  const faqs = [
+    {
+      question: "How is EMI calculated?",
+      answer: "EMI is calculated using a reducing-balance method where interest is only charged on the remaining principal."
+    },
+    {
+      question: "Can I use this for home loans?",
+      answer: "Yes, this tool works for any loan including home, auto, and personal loans."
+    }
+  ];
+
   return (
     <CalculatorLayout
       title="Loan EMI Calculator"
       description="Professional EMI calculator for home, car, and personal loans. Plan your repayment with high precision."
       category={{ label: 'Finance', href: '/calculator/category/finance' }}
+      faqs={faqs}
       leftPanel={
         <div className="space-y-6">
           <div className="space-y-4">
@@ -39,7 +51,7 @@ export default function EMICalculator() {
           <div className="p-5 bg-[var(--primary-light)] border border-[var(--primary)]/10 text-[14px]">
              <h4 className="text-xs font-bold uppercase text-[var(--primary)] mb-2">Calculation Logic</h4>
              <p className="text-[var(--text-secondary)] leading-relaxed">
-               Uses standard reducing balance formula to ensure 100% accuracy with modern banking standards.
+                Uses standard reducing balance formula to ensure 100% accuracy with modern banking standards.
              </p>
           </div>
         </div>
@@ -85,20 +97,7 @@ export default function EMICalculator() {
            </div>
         </div>
       }
-      faqSection={
-        <CalcFAQ
-          faqs={[
-            {
-              question: "How is EMI calculated?",
-              answer: "EMI is calculated using a reducing-balance method where interest is only charged on the remaining principal."
-            },
-            {
-              question: "Can I use this for home loans?",
-              answer: "Yes, this tool works for any loan including home, auto, and personal loans."
-            }
-          ]}
-        />
-      }
+      faqSection={<CalcFAQ faqs={faqs} />}
     />
   );
 }
