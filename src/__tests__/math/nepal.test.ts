@@ -29,7 +29,7 @@ describe('nepal math utils', () => {
   test('calculateNepalIncomeTax - ssfAmountInput is capped to policy max', () => {
     // For annualIncome 800,000 the max allowed SSF deduction is 11% => 88,000
     // Even if caller supplies a larger amount, deduction must be capped.
-    const res = calculateNepalIncomeTax(800000, false, true, 999999);
+    const res = calculateNepalIncomeTax(800000, false, true, 'male', 999999);
     expect(res.taxableIncome).toBe(712000);
     expect(res.totalTax).toBe(22400);
   });

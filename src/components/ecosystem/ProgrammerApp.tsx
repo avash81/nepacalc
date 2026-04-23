@@ -6,7 +6,7 @@ import { Binary, History, Trash2, Zap, Cpu, Settings2, ShieldCheck, ChevronRight
 type BitLength = 8 | 16 | 32 | 64;
 
 export function ProgrammerApp() {
-  const [value, setValue] = useState<bigint>(0n);
+  const [value, setValue] = useState<bigint>(BigInt(0));
   const [bitLength, setBitLength] = useState<BitLength>(64);
   const [signed, setSigned] = useState(false);
 
@@ -19,7 +19,7 @@ export function ProgrammerApp() {
   const handleBaseInput = (val: string, base: number) => {
     try {
       if (!val) {
-        setValue(0n);
+        setValue(BigInt(0));
         return;
       }
       const n = BigInt(parseInt(val, base) || 0);
@@ -30,7 +30,7 @@ export function ProgrammerApp() {
   };
 
   const toggleBit = (idx: number) => {
-    const mask = 1n << BigInt(idx);
+    const mask = BigInt(1) << BigInt(idx);
     setValue(prev => prev ^ mask);
   };
 
