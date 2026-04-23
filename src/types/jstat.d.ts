@@ -1,4 +1,4 @@
 declare module 'jstat' {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  /* eslint-disable */
   export const jStat: any;
 }

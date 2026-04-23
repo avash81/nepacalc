@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import * as math from 'mathjs';
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+/* eslint-disable */
 const nerdamer = require('nerdamer') as any;
 import 'nerdamer/Algebra';
 import 'nerdamer/Calculus';

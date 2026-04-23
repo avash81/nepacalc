@@ -36,11 +36,14 @@ export default function TradingViewWidget({ symbol, theme = 'light', containerId
       "container_id": containerId
     });
 
-    container.current.appendChild(script);
+    const currentContainer = container.current;
+    if (currentContainer) {
+      currentContainer.appendChild(script);
+    }
 
     return () => {
-      if (container.current) {
-        container.current.innerHTML = '';
+      if (currentContainer) {
+        currentContainer.innerHTML = '';
       }
     };
   }, [symbol, theme, containerId]);

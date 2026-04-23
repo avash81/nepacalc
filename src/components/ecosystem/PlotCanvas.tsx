@@ -35,7 +35,7 @@ export function PlotCanvas({ expressions, camera, setCamera }: PlotCanvasProps) 
     window.addEventListener('resize', handleResize);
     handleResize(); // Initial setup
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [renderGraph]);
 
   // Main Render Loop
   const renderGraph = useCallback(() => {

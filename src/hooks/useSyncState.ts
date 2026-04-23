@@ -48,7 +48,7 @@ export function useSyncState<T>(
         }
       }
     }
-  }, []); // Only once on mount
+  }, [key, persistent]); // Run on mount or if key/persistence changes
 
   // 2. Sync to URL & LocalStorage
   const sync = useCallback((value: T) => {
@@ -71,7 +71,7 @@ export function useSyncState<T>(
     if (persistent) {
       localStorage.setItem(`cp_${key}`, typeof value === 'object' ? JSON.stringify(value) : String(value));
     }
-  }, [key, pathname, persistent, syncToUrl]);
+  }, [key, pathname, persistent, syncToUrl, router]);
 
   // Effect to trigger sync
   useEffect(() => {

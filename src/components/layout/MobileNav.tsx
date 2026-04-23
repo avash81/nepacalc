@@ -5,18 +5,18 @@ import { Home, Search, Globe, Grid, BookOpen } from 'lucide-react';
 import { useState } from 'react';
 import { SearchModal } from './SearchModal';
 
+const tabs = [
+  { name: 'Home', path: '/', icon: Home },
+  { name: 'Search', path: '#', icon: Search, isSearch: true },
+  { name: 'Calc', path: '/calculus', isSpecial: true },
+  { name: 'Explore', path: '/explore', icon: Globe },
+  { name: 'Library', path: '/library', icon: BookOpen },
+];
+
 export function MobileNav() {
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
   if (pathname.startsWith('/math-tools')) return null;
-
-  const tabs = [
-    { name: 'Home',   icon: Home,     path: '/' },
-    { name: 'Search', icon: Search,   isSearch: true },
-    { name: 'Nepal',  icon: Globe,    path: '/calculator/nepal-income-tax', isSpecial: true },
-    { name: 'Tools',  icon: Grid,     path: '/directory' },
-  ];
-
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
     <>
