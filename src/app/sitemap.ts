@@ -67,5 +67,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Sitemap dynamic fetch failed:', e);
   }
 
-  return [...staticPages, ...pillarPages, ...calculatorPages, ...dynamicPages];
+  const allEntries = [...staticPages, ...pillarPages, ...calculatorPages, ...dynamicPages];
+  
+  // Deduplicate by URL to ensure a clean sitemap
+  return Array.from(new Map(allEntries.map(item => [item.url, item])).values());
 }

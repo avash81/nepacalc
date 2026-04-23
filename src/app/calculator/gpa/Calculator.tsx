@@ -1,20 +1,19 @@
 'use client';
-import { useState, useMemo } from 'react';
-import { PlusCircle, Trash2, GraduationCap, RotateCcw } from 'lucide-react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+import { useMemo } from 'react';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { GraduationCap, Plus, Trash2, Info, Target, Calculator, PieChart, BookOpen, RotateCcw } from 'lucide-react';
+import { useSyncState } from '@/hooks/useSyncState';
 
 const NEPAL_GRADES = [
-  { grade: 'A+', point: 4.0, desc: 'Outstanding' },
-  { grade: 'A', point: 3.6, desc: 'Excellent' },
-  { grade: 'B+', point: 3.2, desc: 'Very Good' },
-  { grade: 'B', point: 2.8, desc: 'Good' },
-  { grade: 'C+', point: 2.4, desc: 'Satisfactory' },
-  { grade: 'C', point: 2.0, desc: 'Acceptable' },
-  { grade: 'D', point: 1.6, desc: 'Basic' },
-  { grade: 'E', point: 0.8, desc: 'Insufficient' },
-  { grade: 'N', point: 0.0, desc: 'Not Graded' },
+  { grade: 'A+', point: 4.0 },
+  { grade: 'A', point: 3.6 },
+  { grade: 'B+', point: 3.2 },
+  { grade: 'B', point: 2.8 },
+  { grade: 'C+', point: 2.4 },
+  { grade: 'C', point: 2.0 },
+  { grade: 'D', point: 1.6 },
+  { grade: 'E', point: 0.8 },
+  { grade: 'N', point: 0.0 },
 ];
 
 const US_GRADES = [
@@ -32,165 +31,213 @@ const US_GRADES = [
 ];
 
 const INITIAL_SUBJECTS = [
-  { id: 1, name: 'Mathematics', credit: 3, grade: 'A' },
-  { id: 2, name: 'Science', credit: 3, grade: 'A' },
-  { id: 3, name: 'English', credit: 3, grade: 'A' },
+  { id: 1, name: '', credit: 3, grade: 'A' },
+  { id: 2, name: '', credit: 3, grade: 'A' },
+  { id: 3, name: '', credit: 3, grade: 'B+' },
 ];
 
 export default function GPACalculator() {
-  const [system, setSystem] = useState<'nepal' | 'us'>('nepal');
-  const [subjects, setSubjects] = useState(INITIAL_SUBJECTS);
+  const [state, setState] = useSyncState('gpa_v5', {
+    system: 'nepal' as 'nepal' | 'us',
+    subjects: INITIAL_SUBJECTS
+  });
+  const { system, subjects } = state;
 
   const gradesList = system === 'nepal' ? NEPAL_GRADES : US_GRADES;
 
-  const resultInfo = useMemo(() => {
+  const result = useMemo(() => {
     let totalPoints = 0;
     let totalCredits = 0;
     subjects.forEach(sub => {
       const g = gradesList.find(g => g.grade === sub.grade);
-      const creditValue = parseFloat(sub.credit.toString()) || 0;
-      if (g && (g as any).point !== undefined && creditValue > 0) {
-        totalPoints += (g as any).point * creditValue;
-        totalCredits += creditValue;
+      if (g && sub.credit > 0) {
+        totalPoints += g.point * sub.credit;
+        totalCredits += sub.credit;
       }
     });
-    const gpaValue = totalCredits > 0 ? (totalPoints / totalCredits) : 0;
-    const gpa = gpaValue.toFixed(2);
+    const gpa = totalCredits > 0 ? (totalPoints / totalCredits) : 0;
     
-    let classification = '';
+    let classification = 'Passing';
     if (system === 'nepal') {
-      if (gpaValue >= 3.6) classification = 'Outstanding';
-      else if (gpaValue >= 3.2) classification = 'Excellent';
-      else if (gpaValue >= 2.8) classification = 'Very Good';
-      else if (gpaValue >= 2.4) classification = 'Good';
-      else classification = 'Passing';
+      if (gpa >= 3.6) classification = 'Outstanding';
+      else if (gpa >= 3.2) classification = 'Excellent';
+      else if (gpa >= 2.8) classification = 'Very Good';
+      else if (gpa >= 2.4) classification = 'Good';
     }
-    return { gpa, totalCredits, totalPoints: totalPoints.toFixed(2), classification };
+    return { gpa: gpa.toFixed(2), totalCredits, totalPoints: totalPoints.toFixed(2), classification };
   }, [subjects, system, gradesList]);
 
-  const addSubject = () => {
-    setSubjects([...subjects, { id: Date.now(), name: '', credit: 3, grade: gradesList[0].grade }]);
-  };
+  const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
-  const removeSubject = (id: number) => {
-    if (subjects.length > 1) setSubjects(subjects.filter(s => s.id !== id));
-  };
-
+  const addSubject = () => update({ subjects: [...subjects, { id: Date.now(), name: '', credit: 3, grade: gradesList[0].grade }] });
+  const removeSubject = (id: number) => update({ subjects: subjects.filter(s => s.id !== id) });
   const updateSubject = (id: number, field: string, value: any) => {
-    setSubjects(subjects.map(s => s.id === id ? { ...s, [field]: value } : s));
+    update({ subjects: subjects.map(s => s.id === id ? { ...s, [field]: value } : s) });
   };
 
-  const faqs = [
-    { question: 'What is NEB Grading?', answer: 'Nepal Education Board uses a 4.0 scale where A+ (90+) is 4.0, A (80-90) is 3.6, and B+ (70-80) is 3.2.' },
-    { question: 'How is GPA calculated?', answer: 'GPA = Sum(Grade Point * Credits) / Sum(Credits). Each subject is weighted by its credit hours.' }
-  ];
+  const inputCls = "w-full h-11 px-3 border border-[#DADCE0] rounded-md bg-white text-sm font-bold focus:border-[#1A73E8] outline-none";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
 
   return (
-    <CalculatorLayout
-      title="GPA Calculator"
-      description="Advanced GPA calculation for Nepal (NEB/TU) and US academic systems. Professional credit-weighted results with classification."
-      category={{ label: 'Education', href: '/calculator/category/education' }}
-      leftPanel={
+    <ModernCalcLayout
+      crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'GPA Calculator' }]}
+      title="Semester GPA Calculator"
+      description="Calculate your semester Grade Point Average (GPA) instantly. Supports Nepal's NEB/TU grading and international US 4.0 scales."
+      icon={GraduationCap}
+      inputs={
         <div className="space-y-6">
-          {/* System Toggle */}
           <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)] px-1">Grading System</label>
-            <div className="flex bg-[var(--bg-surface)] border border-[var(--border)] p-1">
+            <label className={labelCls}>Grading System</label>
+            <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
               {(['nepal', 'us'] as const).map((s) => (
-                <button
-                  key={s}
-                  onClick={() => setSystem(s)}
-                  className={`flex-1 py-2 text-xs font-bold uppercase transition-all ${
-                    system === s ? 'bg-[var(--primary)] text-white' : 'text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]'
-                  }`}
+                <button 
+                  key={s} 
+                  onClick={() => update({ system: s })}
+                  className={`flex-1 py-2 text-xs font-bold uppercase rounded-md transition-all ${system === s ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}
                 >
-                  {s === 'nepal' ? 'Nepal (NEB / TU)' : 'US System'}
+                  {s === 'nepal' ? 'Nepal' : 'US / Intl'}
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
              {subjects.map((sub, idx) => (
-               <div key={sub.id} className="p-4 bg-white border border-[var(--border)] shadow-sm space-y-4 relative group">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest">Course {idx + 1}</span>
+               <div key={sub.id} className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg space-y-3 group relative">
+                  <div className="flex justify-between items-center">
+                    <span className="text-[10px] font-black text-[#70757A] uppercase">Course #{idx + 1}</span>
                     {subjects.length > 1 && (
-                      <button onClick={() => removeSubject(sub.id)} className="text-red-600 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Trash2 className="w-4 h-4" />
+                      <button onClick={() => removeSubject(sub.id)} className="text-[#D93025] hover:bg-[#FCE8E6] p-1 rounded-full transition-all opacity-0 group-hover:opacity-100">
+                        <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     )}
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
-                    <div className="sm:col-span-6">
-                      <input 
-                        type="text" value={sub.name} 
-                        onChange={e => updateSubject(sub.id, 'name', e.target.value)}
-                        placeholder="Course Name"
-                        className="w-full h-11 px-3 border border-[var(--border)] bg-[var(--bg-surface)] text-sm font-bold focus:border-[var(--primary)] outline-none"
-                      />
-                    </div>
-                    <div className="sm:col-span-3">
-                      <input 
-                        type="number" value={sub.credit} 
-                        onChange={e => updateSubject(sub.id, 'credit', Number(e.target.value))}
-                        className="w-full h-11 px-3 border border-[var(--border)] bg-[var(--bg-surface)] text-sm font-bold text-center"
-                      />
-                    </div>
-                    <div className="sm:col-span-3">
-                      <select 
-                        value={sub.grade} 
-                        onChange={e => updateSubject(sub.id, 'grade', e.target.value)}
-                        className="w-full h-11 px-3 border border-[var(--border)] bg-[var(--bg-surface)] text-sm font-bold text-center cursor-pointer appearance-none"
-                      >
-                        {gradesList.map(g => <option key={g.grade} value={g.grade}>{g.grade}</option>)}
-                      </select>
-                    </div>
+                  <div className="grid grid-cols-12 gap-3">
+                     <div className="col-span-12 sm:col-span-6">
+                        <input type="text" value={sub.name} onChange={e => updateSubject(sub.id, 'name', e.target.value)} placeholder="Course Name (Optional)" className={inputCls} />
+                     </div>
+                     <div className="col-span-6 sm:col-span-3">
+                        <input type="number" value={sub.credit} onChange={e => updateSubject(sub.id, 'credit', Number(e.target.value))} placeholder="Credits" className={inputCls} />
+                     </div>
+                     <div className="col-span-6 sm:col-span-3">
+                        <select value={sub.grade} onChange={e => updateSubject(sub.id, 'grade', e.target.value)} className={inputCls}>
+                           {gradesList.map(g => <option key={g.grade} value={g.grade}>{g.grade}</option>)}
+                        </select>
+                     </div>
                   </div>
                </div>
              ))}
           </div>
 
-          <div className="flex gap-4">
-            <button onClick={addSubject} className="flex-1 py-3 border-2 border-dashed border-[var(--border)] text-[11px] font-bold uppercase tracking-widest text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)] flex items-center justify-center gap-2">
-              <PlusCircle className="w-4 h-4" /> Add Course
+          <div className="flex gap-3">
+            <button onClick={addSubject} className="flex-1 py-3 border-2 border-dashed border-[#DADCE0] rounded-lg text-[#1A73E8] font-bold text-xs uppercase flex items-center justify-center gap-2 hover:bg-[#F8F9FA] transition-all">
+              <Plus className="w-4 h-4" /> Add Course
             </button>
-            <button onClick={() => setSubjects(INITIAL_SUBJECTS)} className="px-6 py-3 border-2 border-dashed border-[var(--border)] text-[11px] font-bold uppercase tracking-widest text-red-600 hover:bg-red-50 flex items-center justify-center gap-2">
+            <button onClick={() => update({ subjects: INITIAL_SUBJECTS })} className="p-3 border border-[#DADCE0] rounded-lg text-[#5F6368] hover:bg-white transition-all">
               <RotateCcw className="w-4 h-4" />
             </button>
           </div>
+
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+            Calculate GPA
+          </button>
         </div>
       }
-      rightPanel={
+      results={
         <div className="space-y-6">
-           <div className="p-8 bg-white border border-[var(--border)] text-center">
-              <div className="text-xs font-bold uppercase tracking-tight text-[var(--text-muted)] mb-2">Calculated GPA</div>
-              <div className="text-7xl font-black text-[var(--primary)] tracking-tighter mb-2">{resultInfo.gpa}</div>
-              <div className="text-sm font-bold text-[var(--success)] uppercase tracking-widest">{resultInfo.classification}</div>
-           </div>
+          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
+            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Semester GPA</div>
+            <div className="text-5xl font-black text-[#1A73E8]">{result.gpa}</div>
+            <div className="text-[11px] font-black text-[#202124] uppercase tracking-widest bg-white/50 px-4 py-1 rounded-full inline-block mt-2 border border-[#1A73E8]/20">{result.classification}</div>
+          </div>
 
-           <div className="space-y-4">
-              <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between items-center">
-                <span className="text-[11px] font-bold text-[var(--text-secondary)] uppercase">Total Credits</span>
-                <span className="text-lg font-black text-[var(--text-main)]">{resultInfo.totalCredits}</span>
-              </div>
-              <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between items-center">
-                <span className="text-[11px] font-bold text-[var(--text-secondary)] uppercase">Total Grade Points</span>
-                <span className="text-lg font-black text-[var(--text-main)]">{resultInfo.totalPoints}</span>
-              </div>
-           </div>
+          <div className="grid grid-cols-2 gap-4">
+             <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center space-y-1">
+               <div className="text-[9px] font-bold text-[#70757A] uppercase">Total Credits</div>
+               <div className="text-sm font-black text-[#202124]">{result.totalCredits}</div>
+             </div>
+             <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center space-y-1">
+               <div className="text-[9px] font-bold text-[#70757A] uppercase">Grade Points</div>
+               <div className="text-sm font-black text-[#188038]">{result.totalPoints}</div>
+             </div>
+          </div>
 
-           <div className="p-6 bg-[var(--primary)] text-white/90 border border-[var(--primary)] flex items-center gap-4">
-              <div className="w-12 h-12 bg-white/10 rounded flex items-center justify-center shrink-0">
-                <GraduationCap className="w-6 h-6 text-white" />
-              </div>
-              <p className="text-[13px] font-medium leading-relaxed">
-                Your performance is categorized as <span className="font-black text-white">{resultInfo.classification || 'Satisfactory'}</span> according to the {system.toUpperCase()} standard.
-              </p>
-           </div>
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+             <div className="px-4 py-2 border-b border-[#DADCE0] bg-[#F8F9FA] flex justify-between items-center">
+               <span className="text-[10px] font-bold text-[#70757A] uppercase">System Reference</span>
+               <BookOpen className="w-3 h-3 text-[#1A73E8]" />
+             </div>
+             <div className="p-4">
+                <table className="w-full text-left">
+                  <thead className="text-[9px] font-bold uppercase text-[#70757A]">
+                    <tr>
+                      <th className="pb-2">Grade</th>
+                      <th className="pb-2">Points</th>
+                      <th className="pb-2">Definition</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#DADCE0]">
+                    {gradesList.slice(0, 5).map(g => (
+                      <tr key={g.grade} className="text-[10px]">
+                        <td className="py-2 font-black">{g.grade}</td>
+                        <td className="py-2">{g.point.toFixed(1)}</td>
+                        <td className="py-2 text-[#5F6368]">{g.point >= 3.6 ? 'Distinction' : 'Excellent'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+             </div>
+          </div>
+
+          <div className="flex gap-2 p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg items-center">
+            <Info className="w-4 h-4 text-[#188038] shrink-0" />
+            <p className="text-[10px] text-[#202124] leading-tight">Your semester GPA is calculated using the credit-weighted average of all courses.</p>
+          </div>
         </div>
       }
-      faqSection={<CalcFAQ faqs={faqs} />}
+      howToUse={{
+        steps: [
+          "Select the grading system used by your institution (Nepal NEB/TU or US/Intl).",
+          "Enter your course name (optional), its credit hours, and the grade you received.",
+          "Add more courses as needed by clicking 'Add Course'.",
+          "The calculator automatically updates your GPA as you input data.",
+          "Check the system reference table for point mapping details."
+        ]
+      }}
+      formula={{
+        title: "Semester GPA Logic",
+        description: "GPA is the sum of (Grade Points × Credits) divided by the total number of credits.",
+        raw: "GPA = Σ (Subject Point × Subject Credit) / Σ (Total Credits)"
+      }}
+      faqs={[
+        {
+          question: "How is A+ different from A in Nepal?",
+          answer: "In the NEB system, A+ corresponds to 4.0 points (90%+ marks), while A corresponds to 3.6 points (80-89% marks)."
+        },
+        {
+          question: "What if I have an 'N' or 'F' grade?",
+          answer: "An 'N' (Not Graded) or 'F' (Fail) carries 0.0 points. While they add to the total credits (denominator), they add zero to total points, significantly lowering your GPA."
+        }
+      ]}
+      sidebar={{
+        title: "Academic Suite",
+        links: [
+          { label: "CGPA Calculator", href: "/calculator/cgpa" },
+          { label: "SEE GPA Calc", href: "/calculator/see-gpa" },
+          { label: "Attendance tool", href: "/calculator/attendance" },
+          { label: "GPA to % Converter", href: "/calculator/gpa-to-percentage" },
+        ],
+        banner: {
+          title: "Track Your Success",
+          description: "Consistent GPA tracking allows you to identify areas of improvement before the final exams.",
+          image: "/images/edu-banner-2.jpg"
+        }
+      }}
+      relatedTools={[
+        { label: "CGPA Calculator", href: "/calculator/cgpa" },
+        { label: "SEE GPA", href: "/calculator/see-gpa" },
+        { label: "Attendance tool", href: "/calculator/attendance" }
+      ]}
     />
   );
 }

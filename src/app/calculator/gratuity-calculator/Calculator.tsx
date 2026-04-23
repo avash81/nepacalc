@@ -1,142 +1,110 @@
 'use client';
-
 import { useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-import { ResultCard } from '@/components/calculator/ResultCard';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { useSyncState } from '@/hooks/useSyncState';
 import { calculateNepalGratuity } from '@/utils/math/country-rules/nepal';
-import { Briefcase, Gavel, ShieldCheck, Info, Wallet } from 'lucide-react';
+import { Briefcase, Gavel, ShieldCheck, Info, ShieldAlert } from 'lucide-react';
 
 export default function GratuityCalculator() {
-  const [state, setState] = useSyncState('gratuity_v1', {
-    basicSalary: 30000,
-    yearsOfService: 10,
-    hasResigned: false
-  });
-
-  const { basicSalary, yearsOfService, hasResigned } = state;
+  const [state, setState] = useSyncState('gratuity_v2', { basicSalary: 30000, yearsOfService: 10, hasResigned: false });
+  const { basicSalary, yearsOfService } = state;
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
-  const result = useMemo(() => {
-    return calculateNepalGratuity(basicSalary, yearsOfService);
-  }, [basicSalary, yearsOfService]);
-
+  const result = useMemo(() => calculateNepalGratuity(basicSalary, yearsOfService), [basicSalary, yearsOfService]);
   const fmt = (n: number) => n.toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
+  const inputCls = "w-full h-12 px-4 pl-12 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider block mb-1.5";
+
   return (
-    <CalculatorLayout
-      title="Gratuity & Retirement Console"
+    <ModernCalcLayout
+      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Gratuity Calculator' }]}
+      title="Gratuity & SSF Retirement Calculator"
       description="Calculate your terminal benefits under Nepal Labor Act 2074. Mandatory 8.33% basic salary accumulation for all formal sector employees."
-      category={{ label: 'Labor & Law', href: '/calculator/category/nepal' }}
-      leftPanel={
-        <div className="space-y-8">
-           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <ValidatedInput 
-                label="Monthly Basic Salary" 
-                value={basicSalary} 
-                onChange={v => update({ basicSalary: v })} 
-                prefix="Rs." 
-                hint="Excluding allowances"
-              />
-              <ValidatedInput 
-                label="Years of Service" 
-                value={yearsOfService} 
-                onChange={v => update({ yearsOfService: v })} 
-                suffix="Years"
-                min={0} 
-                step={0.5}
-              />
-           </div>
-
-           <div className="p-6 bg-slate-900 rounded-3xl text-white space-y-6 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-8 opacity-10">
-                 <Briefcase className="w-24 h-24" />
-              </div>
-              <div className="relative z-10 space-y-6">
-                 <div className="flex items-center gap-3">
-                    <ShieldCheck className={`w-5 h-5 ${result.isEligible ? 'text-emerald-400' : 'text-rose-400'}`} />
-                    <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Statutory Eligibility Status</h3>
-                 </div>
-                 
-                 <div className="flex items-center gap-4">
-                    <div className={`text-2xl font-black ${result.isEligible ? 'text-emerald-400' : 'text-rose-400'}`}>
-                       {result.isEligible ? 'LEGALLY ELIGIBLE' : 'NOT ELIGIBLE YET'}
-                    </div>
-                 </div>
-
-                 <p className="text-[11px] text-slate-400 leading-relaxed font-medium">
-                   {result.isEligible 
-                     ? "You have completed the mandatory 5 years of service. Your employer is legally obligated to pay the accumulated gratuity fund upon termination or resignation."
-                     : "Under the Labor Act 2074, an employee is generally entitled to gratuity after 5 years of continuous service. Monthly contributions (8.33%) however, must begin from day one."}
-                 </p>
-              </div>
-           </div>
-
-           <div className="pt-6 border-t border-[var(--border)] flex gap-4 items-start bg-slate-50 p-6 rounded-2xl">
-              <Gavel className="w-5 h-5 text-slate-600 shrink-0 mt-0.5" />
-              <div className="space-y-1">
-                 <h4 className="text-[10px] font-black uppercase text-slate-900 tracking-widest">Labor Act 2074 (Section 53)</h4>
-                 <p className="text-[11px] text-slate-500 leading-relaxed font-medium">
-                    "Every employer shall deposit an amount equivalent to 8.33% of the basic remuneration of each worker in the Social Security Fund or any other retirement fund."
-                 </p>
-              </div>
-           </div>
-        </div>
-      }
-      rightPanel={
+      icon={Briefcase}
+      inputs={
         <div className="space-y-6">
-          <ResultCard 
-            label="Total Gratuity Fund" 
-            value={fmt(result.totalGratuity)} 
-            unit=" Rs." 
-            color="emerald" 
-            title="Accumulated Payout"
-            copyValue={`My total accumulated gratuity for ${yearsOfService} years is Rs. ${result.totalGratuity}`}
-          />
+           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                 <label className={labelCls}>Monthly Basic Salary</label>
+                 <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-[#70757A]">Rs.</span>
+                    <input type="number" value={basicSalary} min={0} onChange={e => update({ basicSalary: Number(e.target.value) })} className={inputCls} />
+                 </div>
+                 <p className="text-[9px] text-[#70757A] mt-1 italic">Excluding allowances</p>
+              </div>
+              <div>
+                 <label className={labelCls}>Years of Service</label>
+                 <div className="relative">
+                    <input type="number" value={yearsOfService} min={0} step={0.5} onChange={e => update({ yearsOfService: Number(e.target.value) })} className="w-full h-12 px-4 pr-14 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-[#70757A]">Years</span>
+                 </div>
+              </div>
+           </div>
 
-          <div className="bg-white border border-[var(--border)] rounded-2xl overflow-hidden divide-y divide-[var(--border)]">
-             <div className="p-4 bg-slate-50 border-b border-[var(--border)] flex justify-between items-center">
-                <span className="text-[10px] font-black uppercase text-[var(--text-main)]">Benefit Ledger</span>
-                <Wallet className="w-4 h-4 text-emerald-600" />
+           <div className={`p-6 rounded-lg border flex flex-col gap-4 ${result.isEligible ? 'bg-[#E6F4EA] border-[#CEEAD6]' : 'bg-[#FCE8E6] border-[#FAD2CF]'}`}>
+              <div className="flex items-center gap-3">
+                 {result.isEligible ? <ShieldCheck className="w-6 h-6 text-[#188038]" /> : <ShieldAlert className="w-6 h-6 text-[#D93025]" />}
+                 <h3 className={`text-[11px] font-black uppercase tracking-wider ${result.isEligible ? 'text-[#188038]' : 'text-[#D93025]'}`}>
+                    {result.isEligible ? 'Legally Eligible for Payout' : 'Not Eligible Yet (Requires 5+ Years)'}
+                 </h3>
+              </div>
+              <p className={`text-[10px] leading-relaxed font-medium ${result.isEligible ? 'text-[#0F5223]' : 'text-[#B3261E]'}`}>
+                 {result.isEligible ? "You have completed the mandatory 5 years of service. Your employer is legally obligated to pay the accumulated gratuity fund upon termination or resignation." : "Under the Labor Act 2074, an employee is generally entitled to a gratuity payout only after 5 years of continuous service. However, monthly contributions (8.33%) must be deposited from day one."}
+              </p>
+           </div>
+        </div>
+      }
+      results={
+        <div className="space-y-6">
+          <div className="bg-[#1A1A2E] border border-[#DADCE0] rounded-lg p-8 text-center relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-32 h-32 bg-[#34A853] opacity-10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none" />
+             <div className="text-[10px] font-bold uppercase tracking-wider text-white/60 mb-2 relative z-10">Total Accumulated Gratuity Fund</div>
+             <div className="text-5xl font-black text-[#34A853] tracking-tighter mb-2 relative z-10">
+               Rs. {fmt(result.totalGratuity)}
              </div>
-             <div className="p-4 flex justify-between items-center">
-                <span className="text-[11px] font-bold text-slate-500 uppercase">Monthly Contribution</span>
-                <span className="text-sm font-black text-slate-900 font-mono">Rs. {fmt(result.monthlyContribution)}</span>
+             <div className="text-[10px] font-bold text-[#34A853] uppercase tracking-widest bg-white/10 inline-flex px-3 py-1 rounded relative z-10">After {yearsOfService} years of service</div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
+             <div className="px-4 py-2 bg-[#F8F9FA] border-b border-[#DADCE0]">
+                <span className="text-[10px] font-bold text-[#70757A] uppercase">Benefit Ledger (Labor Act 2074)</span>
              </div>
-             <div className="p-4 flex justify-between items-center">
-                <span className="text-[11px] font-bold text-slate-500 uppercase">Tax Exempt Portion</span>
-                <span className="text-sm font-black text-emerald-600 font-mono">Rs. {fmt(result.taxExemptLimit)}</span>
-             </div>
-             <div className="p-4 flex justify-between items-center">
-                <span className="text-[11px] font-bold text-slate-500 uppercase">Taxable Portion</span>
-                <span className="text-sm font-black text-rose-600 font-mono">Rs. {fmt(result.taxableAmount)}</span>
+             <div className="divide-y divide-[#DADCE0]">
+                <div className="p-4 flex justify-between items-center text-xs">
+                   <span className="text-[#5F6368] font-bold uppercase tracking-wider">Monthly Employer Contribution</span>
+                   <span className="font-black text-[#1A73E8] font-mono text-sm">Rs. {fmt(result.monthlyContribution)}</span>
+                </div>
+                <div className="p-4 flex justify-between items-center text-xs">
+                   <span className="text-[#5F6368] font-bold uppercase tracking-wider">Tax Exempt Portion</span>
+                   <span className="font-black text-[#188038] font-mono text-sm">Rs. {fmt(result.taxExemptLimit)}</span>
+                </div>
+                <div className="p-4 flex justify-between items-center text-xs bg-[#FCE8E6]">
+                   <span className="text-[#D93025] font-bold uppercase tracking-wider">Taxable Portion (Subject to 15%)</span>
+                   <span className="font-black text-[#D93025] font-mono text-sm">Rs. {fmt(result.taxableAmount)}</span>
+                </div>
              </div>
           </div>
 
-          <div className="p-5 bg-amber-50 border border-amber-100 rounded-2xl flex gap-3">
-             <Info className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-             <p className="text-[11px] text-amber-800 font-medium leading-relaxed italic">
-                Note: While legal eligibility for payout is **5 years**, the contribution of **8.33%** is mandatory from the first day of employment. If you are under the **SSF**, this amount is automatically managed.
-             </p>
+          <div className="p-5 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg flex gap-3">
+             <Gavel className="w-5 h-5 text-[#70757A] shrink-0 mt-0.5" />
+             <div className="space-y-1">
+                <h5 className="text-[10px] font-bold text-[#202124] uppercase tracking-wider">Labor Act 2074 (Section 53)</h5>
+                <p className="text-[11px] text-[#5F6368] leading-relaxed italic">
+                   "Every employer shall deposit an amount equivalent to 8.33% of the basic remuneration of each worker in the Social Security Fund (SSF) or any other approved retirement fund."
+                </p>
+             </div>
           </div>
         </div>
       }
-      faqSection={
-         <div className="mt-16 pt-12 border-t border-[var(--border)] prose prose-slate max-w-none">
-            <h2 className="text-2xl font-black text-slate-900 mb-8 italic">Mastering Gratuity in Nepal</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-               <div>
-                  <h4 className="text-[11px] font-black uppercase tracking-widest text-emerald-600 mb-2">Statutory Calculation</h4>
-                  <p className="text-[13px] text-slate-600 leading-relaxed font-medium">The Labor Act 2074 (Section 53) states that the employer must contribute 8.33% of the **basic remuneration** every month. For calculation, "Basic Remuneration" includes the basic salary and any earned grades/increments, but excludes dearness allowance or other perks unless specified in the contract.</p>
-               </div>
-               <div>
-                  <h4 className="text-[11px] font-black uppercase tracking-widest text-emerald-600 mb-2">Taxation Rules</h4>
-                  <p className="text-[13px] text-slate-600 leading-relaxed font-medium">According to the Income Tax Act, gratuity received from a retirement fund (like SSF or CIT) is subject to different rules. Generally, for a standard resignation, the first **NPR 5,00,000** of the total gratuity payout is tax-exempt, with amounts exceeding that being taxed at a flat 15% (for private sector).</p>
-               </div>
-            </div>
-         </div>
-      }
+      howToUse={{ steps: ["Enter your monthly BASIC salary. Do not include travel, food, or other allowances.", "Enter the total number of years you have worked for the company.", "The system will verify your eligibility (requires 5 years) and calculate your total accumulated fund.", "Review the tax-exempt and taxable portions of your payout."] }}
+      formula={{ title: "Gratuity Calculation (New Act)", description: "Mandatory 8.33% accumulation.", raw: "Monthly Contribution = Basic Salary × 8.33%\nYearly Gratuity = Basic Salary × (8.33% × 12) = 1 Month Basic Salary\n\nTotal Fund = 1 Month Basic Salary × Years of Service" }}
+      faqs={[
+        { question: "What if I resign before 5 years?", answer: "Under the new Labor Act 2074, employers MUST deposit the 8.33% monthly. If you are registered in the SSF, that money stays in your SSF account even if you leave before 5 years." },
+        { question: "Is Gratuity taxable in Nepal?", answer: "Yes, but there is a tax exemption limit (usually 50% of the total or up to 5 Lakhs). Anything above the exempt amount is taxed at a flat 15% rate." }
+      ]}
+      sidebar={{ title: "Labor & Finance", links: [{ label: "Income Tax Calculator", href: "/calculator/income-tax" }, { label: "Foreign Employment Fee", href: "/calculator/foreign-employment" }], banner: { title: "Know Your Rights", description: "The Labor Act 2074 protects your retirement and termination benefits.", image: "/images/nepal-banner.jpg" } }}
+      relatedTools={[{ label: "Income Tax Calculator", href: "/calculator/income-tax" }]}
     />
   );
 }

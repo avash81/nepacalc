@@ -1,10 +1,8 @@
 'use client';
 import { useMemo } from 'react';
 import { useSyncState } from '@/hooks/useSyncState';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
-import { Plus, Trash2, Flame } from 'lucide-react';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { Plus, Trash2, Flame, Info } from 'lucide-react';
 
 const MOMO_TYPES = [
   { id: 'buff',    name: 'Buff Momo (Steamed)',    cal: 35, protein: 3.2, fat: 1.8, carbs: 3.5 },
@@ -15,7 +13,7 @@ const MOMO_TYPES = [
 ];
 
 export default function MomoCalculator() {
-  const [state, setState] = useSyncState('momo_counter_v3', {
+  const [state, setState] = useSyncState('momo_counter_v4', {
     items: [{ typeId: 'buff', count: 10 }]
   });
   const { items } = state;
@@ -33,102 +31,116 @@ export default function MomoCalculator() {
   const add    = () => setState({ ...state, items: [...items, { typeId: 'buff', count: 10 }] });
   const remove = (i: number) => setState({ ...state, items: items.filter((_, idx) => idx !== i) });
 
+  const selectCls = "w-full h-12 px-3 border border-[#DADCE0] rounded-md bg-[#F8F9FA] text-sm font-bold focus:border-[#1A73E8] outline-none text-[#202124] cursor-pointer";
+  const inputCls = "w-full h-12 px-3 border border-[#DADCE0] rounded-md bg-white text-sm font-bold focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider block mb-1.5";
+
   return (
-    <CalculatorLayout
+    <ModernCalcLayout
+      crumbs={[{ label: 'Health', href: '/health/' }, { label: 'Momo Calorie Counter' }]}
       title="Momo Calorie Counter 🥟"
       description="Track calories and macronutrients for Nepal's favourite dish. Mix varieties and serving sizes for a complete nutritional picture."
-      category={{ label: 'Health', href: '/calculator/category/health' }}
-      leftPanel={
-        <div className="space-y-4">
-          {items.map((item, idx) => (
-            <div key={idx} className="p-4 bg-white border border-[var(--border)] space-y-3 relative">
-              <div className="grid grid-cols-[1fr_120px] gap-3 items-end">
-                <div className="space-y-1">
-                  <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Type</label>
-                  <select value={item.typeId} onChange={e => update(idx, 'typeId', e.target.value)}
-                    className="w-full h-11 px-3 border border-[var(--border)] bg-white font-bold text-sm outline-none focus:border-[var(--primary)] cursor-pointer">
-                    {MOMO_TYPES.map(t => <option key={t.id} value={t.id}>{t.name} ({t.cal} kcal/pc)</option>)}
-                  </select>
+      icon={Flame}
+      inputs={
+        <div className="space-y-6">
+          <div className="space-y-4">
+            {items.map((item, idx) => (
+              <div key={idx} className="p-5 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg relative shadow-sm">
+                <div className="grid grid-cols-[1fr_90px] gap-4 mb-4">
+                  <div>
+                    <label className={labelCls}>Momo Type</label>
+                    <select value={item.typeId} onChange={e => update(idx, 'typeId', e.target.value)} className={selectCls}>
+                      {MOMO_TYPES.map(t => <option key={t.id} value={t.id}>{t.name} ({t.cal} kcal/pc)</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label className={labelCls}>Qty</label>
+                    <input type="number" min={1} max={100} value={item.count} onChange={e => update(idx, 'count', Number(e.target.value))} className={inputCls} />
+                  </div>
                 </div>
-                <ValidatedInput label="Qty (pcs)" value={item.count} onChange={v => update(idx, 'count', v)} min={1} max={100} />
-              </div>
 
-              <div className="flex gap-2">
-                {[5, 10, 20].map(p => (
-                  <button key={p} onClick={() => update(idx, 'count', p)}
-                    className={`px-3 py-1.5 text-[10px] font-black border transition-all ${item.count === p ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'border-[var(--border)] bg-white hover:bg-[var(--bg-subtle)]'}`}>
-                    {p === 5 ? 'Half' : p === 10 ? 'Full' : 'Double'} plate
+                <div className="flex gap-2">
+                  {[5, 10, 20].map(p => (
+                    <button key={p} onClick={() => update(idx, 'count', p)}
+                      className={`flex-1 py-2 text-[10px] font-bold uppercase rounded border transition-all ${item.count === p ? 'bg-white text-[#1A73E8] shadow-sm border border-[#DADCE0]' : 'text-[#70757A] border-[#DADCE0] hover:bg-[#E8F0FE]'}`}>
+                      {p === 5 ? 'Half' : p === 10 ? 'Full' : 'Double'} Plate
+                    </button>
+                  ))}
+                </div>
+
+                {items.length > 1 && (
+                  <button onClick={() => remove(idx)} className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-white border border-[#DADCE0] text-[#D93025] flex items-center justify-center hover:bg-[#FCE8E6] transition-colors shadow-sm">
+                    <Trash2 className="w-4 h-4" />
                   </button>
-                ))}
+                )}
               </div>
+            ))}
+          </div>
 
-              {items.length > 1 && (
-                <button onClick={() => remove(idx)} className="absolute -top-2 -right-2 w-7 h-7 bg-red-500 text-white flex items-center justify-center transition-colors">
-                  <Trash2 className="w-3 h-3" />
-                </button>
-              )}
-            </div>
-          ))}
-
-          <button onClick={add} className="w-full py-3 border border-dashed border-[var(--border)] text-[11px] font-bold text-[var(--primary)] uppercase hover:bg-[var(--bg-surface)] transition-all flex items-center justify-center gap-2">
-            <Plus className="w-4 h-4" /> Add Another Type
+          <button onClick={add} className="w-full py-4 border-2 border-dashed border-[#DADCE0] rounded-lg text-xs font-bold text-[#1A73E8] uppercase hover:bg-[#E8F0FE] hover:border-[#1A73E8] transition-all flex items-center justify-center gap-2">
+            <Plus className="w-4 h-4" /> Add Another Plate/Type
           </button>
 
-          {/* Calorie Reference */}
-          <div className="bg-white border border-[var(--border)]">
-            <div className="px-4 py-2 bg-[var(--bg-surface)] border-b border-[var(--border)]">
-              <h3 className="text-[11px] font-bold uppercase text-[var(--text-main)]">Per Piece Reference</h3>
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden mt-6">
+            <div className="px-4 py-3 bg-[#F8F9FA] border-b border-[#DADCE0]">
+              <h3 className="text-[10px] font-bold uppercase tracking-wider text-[#70757A]">Calorie Database (Per Piece)</h3>
             </div>
-            {MOMO_TYPES.map(t => (
-              <div key={t.id} className="px-4 py-2 border-b border-[var(--border)] flex justify-between hover:bg-[var(--bg-surface)]">
-                <span className="text-[11px] font-bold text-[var(--text-secondary)]">{t.name}</span>
-                <span className="text-[11px] font-black text-[var(--primary)]">{t.cal} kcal</span>
-              </div>
-            ))}
+            <div className="divide-y divide-[#DADCE0]">
+              {MOMO_TYPES.map(t => (
+                <div key={t.id} className="px-4 py-3 flex justify-between items-center hover:bg-[#F8F9FA]">
+                  <span className="text-[11px] font-bold text-[#5F6368]">{t.name}</span>
+                  <span className="text-[11px] font-black text-[#1A73E8] bg-[#E8F0FE] px-2 py-1 rounded">{t.cal} kcal</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       }
-      rightPanel={
+      results={
         <div className="space-y-6">
-          <div className="p-8 bg-white border border-[var(--border)] text-center">
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <Flame className="w-5 h-5 text-orange-500" />
-              <div className="text-xs font-bold uppercase text-[var(--text-muted)]">Total Calories</div>
-            </div>
-            <div className="text-6xl font-black text-orange-500 tracking-tighter mb-2">{result.cals}</div>
-            <div className="text-xs font-bold text-[var(--text-secondary)] uppercase">kcal</div>
+          <div className="p-8 bg-[#1A1A2E] rounded-lg border border-[#DADCE0] text-center shadow-sm relative overflow-hidden">
+            <Flame className="absolute top-0 right-0 p-4 w-32 h-32 opacity-10 text-orange-500 pointer-events-none" />
+            <div className="text-[10px] font-bold uppercase tracking-wider text-white/70 mb-2 relative z-10">Total Caloric Intake</div>
+            <div className="text-7xl font-black text-orange-500 tracking-tighter mb-2 relative z-10">{result.cals}</div>
+            <div className="text-[11px] font-bold text-white/50 uppercase tracking-widest relative z-10">Kilo-Calories (kcal)</div>
           </div>
 
-          {/* Macros */}
-          <div className="grid grid-cols-3 gap-3">
-            {[
-              { label: 'Protein', val: result.protein, unit: 'g', color: 'text-blue-600' },
-              { label: 'Fat',     val: result.fat,     unit: 'g', color: 'text-red-600'  },
-              { label: 'Carbs',   val: result.carbs,   unit: 'g', color: 'text-amber-600'},
-            ].map(({ label, val, unit, color }) => (
-              <div key={label} className="p-4 bg-white border border-[var(--border)] text-center">
-                <div className="text-[9px] font-black uppercase text-[var(--text-muted)] mb-1">{label}</div>
-                <div className={`text-lg font-black ${color}`}>{val}{unit}</div>
-              </div>
-            ))}
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+             <div className="px-4 py-3 bg-[#F8F9FA] border-b border-[#DADCE0]">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#70757A]">Macronutrient Breakdown</span>
+             </div>
+             <div className="grid grid-cols-3 divide-x divide-[#DADCE0]">
+                {[
+                  { label: 'Protein', val: result.protein, unit: 'g', color: 'text-[#1A73E8]' },
+                  { label: 'Fat',     val: result.fat,     unit: 'g', color: 'text-[#D93025]'  },
+                  { label: 'Carbs',   val: result.carbs,   unit: 'g', color: 'text-[#E37400]'},
+                ].map(({ label, val, unit, color }) => (
+                  <div key={label} className="p-5 text-center">
+                    <div className="text-[9px] font-bold uppercase tracking-wider text-[#70757A] mb-1">{label}</div>
+                    <div className={`text-xl font-black font-mono ${color}`}>{val}{unit}</div>
+                  </div>
+                ))}
+             </div>
           </div>
 
-          <div className="p-5 bg-[var(--bg-subtle)] border border-[var(--border)]">
-            <p className="text-[12px] text-[var(--text-secondary)] leading-relaxed">
-              {result.cals > 600
-                ? '⚠️ High calorie meal. Consider a 30–45 min walk (≈300 kcal) to balance your intake.'
-                : '✓ Moderate portion. Steamed momos are one of Nepal\'s healthiest street food choices.'}
-            </p>
+          <div className="p-5 bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg flex items-start gap-3">
+             <Info className="w-5 h-5 text-[#1A73E8] shrink-0 mt-0.5" />
+             <p className="text-[11px] text-[#202124] leading-relaxed font-bold">
+               {result.cals > 600
+                 ? '⚠️ High Calorie Meal: This portion contains significant calories. Consider a 30–45 min brisk walk (burns ≈300 kcal) to help balance your daily intake.'
+                 : '✓ Balanced Portion: Steamed momos, particularly chicken or veg, are a relatively balanced food choice when eaten in moderation.'}
+             </p>
           </div>
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'What is the healthiest momo?', answer: 'Steamed Veg Momos have the fewest calories (~24 kcal/piece), followed by Steamed Chicken (~30 kcal/piece).' },
-          { question: 'Why are Fried Momos higher in calories?', answer: 'Deep frying adds significant fat, nearly doubling the calorie count compared to steamed versions of the same filling.' },
-          { question: 'How accurate is this?', answer: 'These are estimated averages based on typical Kathmandu momo serving sizes. Exact values vary by restaurant and recipe.' },
-        ]} />
-      }
+      howToUse={{ steps: ["Select your momo type (Buff, Chicken, Veg, C-Momo, etc).", "Select the quantity using the quick preset buttons (Half/Full Plate) or enter a custom amount.", "Click 'Add Another Plate' to track mixed orders (e.g. half buff, half veg).", "View your total calories and protein/fat/carb macros instantly."] }}
+      formula={{ title: "Nutritional Estimates", description: "Based on standard Nepali restaurant preparations.", raw: "Calorie estimates assume standard commercial wrappers and meat-to-fat ratios common in Kathmandu.\n\nSteamed Momos ≈ 30-35 kcal/pc\nFried Momos ≈ 60-65 kcal/pc\n\nMacronutrients are approximate. Achar (sauce) adds roughly 30-50 extra calories per plate depending on oil content." }}
+      faqs={[
+        { question: "Does this include the Achar (sauce)?", answer: "No. The standard tomato achar adds about 40 kcal per plate. Oily sauces like peanut or sesame jhol can add over 100 kcal." },
+        { question: "Why are fried momos so high in calories?", answer: "The deep-frying process forces the dough wrapper to absorb a significant amount of cooking oil, nearly doubling the caloric density compared to steaming." }
+      ]}
+      sidebar={{ title: "Health & Fitness", links: [{ label: "BMI Calculator", href: "/calculator/bmi" }, { label: "Blood Pressure", href: "/calculator/blood-pressure" }], banner: { title: "Stay Active", description: "You need to walk about 1 mile to burn off just 3 pieces of Buff Momo.", image: "/images/health-banner.jpg" } }}
+      relatedTools={[{ label: "BMI Calculator", href: "/calculator/bmi" }]}
     />
   );
 }

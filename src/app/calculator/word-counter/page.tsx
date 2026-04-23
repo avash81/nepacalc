@@ -1,62 +1,73 @@
 import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
+import { CalcWrapper } from '@/components/calculator/CalcWrapper';
+import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Word Counter and Character Count Online NepaCal",
-  description: "Count words characters and letters in your text instantly. Free online word counter and character count tool at NepaCal",
+  title: "Word Counter Online | Character & Letter Count Tool Nepal NepaCal",
+  description: "Count words, characters, and sentences in your text instantly. Free online word counter for students, writers, and SEO professionals in Nepal.",
   slug: 'word-counter',
-  keywords: ["word counter", "nepal", "calculator", "free", "online"],
+  keywords: ["word counter nepal", "calculate word count", "character count tool", "essay word counter", "online text analysis", "seo word count tool"],
 });
+
+const WORD_COUNTER_FAQS = [
+  {
+    question: "Why use a word counter for SEO?",
+    answer: "Search engines like Google favor content with specific lengths (e.g., 1,500+ words for deep guides). Our tool helps you track your progress toward these SEO benchmarks."
+  },
+  {
+    question: "How are words counted exactly?",
+    answer: "A word is defined as a sequence of characters separated by spaces. Our engine also tracks character counts (with and without spaces) for precise limit adherence."
+  },
+  {
+    question: "What is the character limit for social media?",
+    answer: "Twitter (X) has a 280-character limit, while meta descriptions for Google should be under 160 characters. Our counter helps you fit these exact constraints."
+  },
+  {
+    question: "Does it count symbols and numbers?",
+    answer: "Yes. Every non-space character is counted toward the 'Character Count', while only space-delimited clusters are counted as 'Words'."
+  },
+  {
+    question: "Is there a limit to how much text I can paste?",
+    answer: "Our engine is optimized to handle large documents up to 50,000+ words instantly, making it suitable for students in Nepal writing long theses or reports."
+  }
+];
 
 export default function Page() {
   return (
-    <>
-      <Calculator />
-    
-      {/* SEO: Competitor-Data Driven FAQ & Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "How to use the Word Counter and Character Count Online NepaCal tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free word counter tool will provide instant results tailored for Nepal." } },
-            { "@type": "Question", "name": "Is this Word Counter and Character Count Online NepaCal free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's Word Counter and Character Count Online NepaCal is 100% free with no registration required." } }
-          ]
-        }) }}
-      />
-      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Word Counter and Character Count Online NepaCal</h2>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
-          Our free <strong>word counter</strong> is optimized for Nepalese users. Whether you need an online word counter or want to calculate accurately — NepaCal is your best tool.
-        </p>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
-          Related: <strong>word counter</strong>, <strong>password generator</strong>, <strong>password generator password generator password generator</strong>, <strong>password gen</strong>, <strong>password generator 14 characters</strong>, <strong>passwordgen</strong>.
-        </p>
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-3">
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
-              <span>How do I use the Word Counter and Character Count Online NepaCal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Enter your values above to get results instantly.
+    <div className="bg-white min-h-screen">
+      <CalcWrapper
+        title="Textual Analysis Engine"
+        description="High-precision utility for auditing word count, character density, and structural metrics of any provided text instantly."
+        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Word Counter' }]}
+        isNepal={true}
+        relatedCalcs={[
+          { name: 'Password Generator', slug: 'password-generator' },
+          { name: 'QR Generator', slug: 'qr-generator' },
+          { name: 'Unit Converter', slug: 'unit-converter' }
+        ]}
+        formula="Word Count = Σ(Space Delimited Tokens)"
+      >
+        <Calculator />
+        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
+              Writing Guide: Mastering Text Constraints
+            </h2>
+            
+            <div className="prose prose-slate max-w-none mb-12">
+              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+                Whether you are writing a university essay, a professional report, or an SEO-optimized blog post, <strong>word count precision</strong> is a critical requirement.
+              </p>
+              <p className="text-slate-700 text-base leading-relaxed mb-6">
+                Our <strong>Textual Analysis Laboratory</strong> provides the tools writers in Nepal need to meet their specific targets. From tracking the 280-character limit of a viral tweet to ensuring your thesis abstract stays under the word limit, our engine provides real-time, <strong>non-latency updates</strong> as you type or paste your content, ensuring you never exceed your constraints.
+              </p>
             </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
-              <span>Is it accurate for Nepal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Yes, our <strong>word counter</strong> is regularly updated to reflect local standards.
-            </div>
-          </details>
+
+            <PillarFAQ faqs={WORD_COUNTER_FAQS} title="Word Count & Text Analysis FAQ" />
+          </div>
         </div>
-      </section>
-    </>
+      </CalcWrapper>
+    </div>
   );
 }

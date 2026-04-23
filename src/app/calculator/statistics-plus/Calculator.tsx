@@ -1,7 +1,8 @@
 'use client';
 import { useState, useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
+import { Calculator } from 'lucide-react';
 
 export default function StatisticsPlus() {
   const [input, setInput] = useState('10, 25, 30, 45, 30, 15, 20, 30');
@@ -23,90 +24,140 @@ export default function StatisticsPlus() {
   }, [input]);
 
   return (
-    <CalculatorLayout
-      title="Mean, Median & Mode Calculator"
-      description="Analyze any dataset for central tendency. Calculate mean, median, mode, and range instantly with sorted data view."
-      category={{ label: 'Math', href: '/calculator/category/math' }}
-      leftPanel={
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Enter Dataset (comma or space separated)</label>
-            <textarea value={input} onChange={e => setInput(e.target.value)}
-              className="w-full h-40 p-4 border border-[var(--border)] bg-white font-mono text-sm font-bold focus:border-[var(--primary)] outline-none resize-none"
-              placeholder="e.g. 10, 20, 30, 20, 40" />
-          </div>
+    <CalculatorErrorBoundary calculatorName="Statistics Plus">
+      <ModernCalcLayout
+      crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Statistics Calculator' }]}
+        title="Mean, Median & Mode Calculator"
+        description="Analyze any dataset for central tendency. Calculate mean, median, mode, and range instantly with sorted data view."
+        icon={Calculator}
+        inputs={
+          <div className="space-y-6">
+            <div className="space-y-3">
+              <label className="text-sm font-bold text-slate-800">Enter Dataset</label>
+              <textarea value={input} onChange={e => setInput(e.target.value)}
+                className="w-full h-40 p-4 rounded-xl border border-slate-300 bg-white font-mono text-sm font-bold focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none resize-none shadow-sm transition-all"
+                placeholder="e.g. 10, 20, 30, 20, 40 (comma or space separated)" />
+              <p className="text-xs text-slate-500">Values can be separated by commas, spaces, or new lines.</p>
+            </div>
 
-          <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Try an Example</label>
-            {[
-              { label: 'Symmetric set',  data: '1, 2, 3, 4, 5' },
-              { label: 'Single mode',    data: '10, 20, 20, 30' },
-              { label: 'Bimodal',        data: '5, 10, 10, 20, 20, 30' },
-              { label: 'Exam scores',    data: '65, 72, 78, 84, 90, 55, 88, 72' },
-            ].map(d => (
-              <button key={d.label} onClick={() => setInput(d.data)}
-                className="w-full p-4 border border-[var(--border)] bg-white hover:bg-[var(--bg-subtle)] text-left flex justify-between items-center transition-all">
-                <span className="text-[12px] font-bold text-[var(--text-main)]">{d.label}</span>
-                <span className="text-[10px] font-mono text-[var(--text-muted)] truncate max-w-[150px]">{d.data}</span>
-              </button>
-            ))}
-          </div>
-
-          {stats && (
-            <div className="p-4 bg-[var(--bg-subtle)] border border-[var(--border)]">
-              <div className="text-[10px] font-black uppercase text-[var(--text-muted)] mb-2">Sorted Data</div>
-              <div className="flex flex-wrap gap-1">
-                {stats.sorted.slice(0, 12).map((n, i) => (
-                  <span key={i} className="bg-white border border-[var(--border)] px-2 py-0.5 text-[10px] font-mono font-bold text-[var(--primary)]">{n}</span>
+            <div className="space-y-3 pt-4 border-t border-slate-200">
+              <label className="text-xs font-bold uppercase tracking-wider text-slate-500">Try an Example</label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  { label: 'Symmetric set',  data: '1, 2, 3, 4, 5' },
+                  { label: 'Single mode',    data: '10, 20, 20, 30' },
+                  { label: 'Bimodal',        data: '5, 10, 10, 20, 20, 30' },
+                  { label: 'Exam scores',    data: '65, 72, 78, 84, 90, 55, 88, 72' },
+                ].map(d => (
+                  <button key={d.label} onClick={() => setInput(d.data)}
+                    className="p-3 border border-slate-200 rounded-xl bg-slate-50 hover:border-indigo-300 hover:bg-indigo-50 text-left transition-all shadow-sm">
+                    <span className="block text-sm font-bold text-slate-800 mb-1">{d.label}</span>
+                    <span className="text-xs font-mono text-slate-500 truncate block">{d.data}</span>
+                  </button>
                 ))}
-                {stats.sorted.length > 12 && <span className="text-[10px] text-[var(--text-muted)]">…{stats.sorted.length - 12} more</span>}
               </div>
             </div>
-          )}
-        </div>
-      }
-      rightPanel={
-        <div className="space-y-4">
-          {stats ? (
-            <>
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { label: 'Mean',   val: stats.mean.toFixed(2), color: 'text-[var(--primary)]' },
-                  { label: 'Median', val: String(stats.median),  color: 'text-[#006600]' },
-                  { label: 'Mode',   val: stats.modes.length > 2 ? 'Multi' : stats.modes.join(', '), color: 'text-amber-700' },
-                ].map(({ label, val, color }) => (
-                  <div key={label} className="p-5 bg-white border border-[var(--border)] text-center">
-                    <div className="text-[9px] font-black uppercase text-[var(--text-muted)] mb-1">{label}</div>
-                    <div className={`text-2xl font-black ${color}`}>{val}</div>
-                  </div>
-                ))}
-              </div>
 
-              {[
-                { label: 'Range',        val: stats.range },
-                { label: 'Min',          val: stats.min },
-                { label: 'Max',          val: stats.max },
-                { label: 'Count (n)',    val: stats.count },
-                { label: 'Sum',          val: stats.sum },
-              ].map(({ label, val }) => (
-                <div key={label} className="p-4 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-                  <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">{label}</span>
-                  <span className="text-sm font-black font-mono text-[var(--text-main)]">{val}</span>
+            {stats && (
+              <div className="p-4 bg-indigo-50 border border-indigo-100 rounded-xl">
+                <div className="text-xs font-bold uppercase tracking-wider text-indigo-800 mb-3">Sorted Data</div>
+                <div className="flex flex-wrap gap-2">
+                  {stats.sorted.slice(0, 15).map((n, i) => (
+                    <span key={i} className="bg-white border border-indigo-200 px-2.5 py-1 rounded-md text-xs font-mono font-bold text-indigo-700 shadow-sm">{n}</span>
+                  ))}
+                  {stats.sorted.length > 15 && <span className="text-xs font-bold text-indigo-500 self-center ml-1">…and {stats.sorted.length - 15} more</span>}
                 </div>
-              ))}
-            </>
-          ) : (
-            <div className="p-5 border border-amber-200 bg-amber-50 text-amber-700 text-sm font-bold">Enter at least one number.</div>
-          )}
-        </div>
-      }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'What is the mean?', answer: 'The arithmetic mean is the average — sum of all values divided by the count.' },
-          { question: 'What is the median?', answer: 'The median is the middle value when data is sorted. For even counts, it is the average of the two middle values.' },
-          { question: 'Can there be more than one mode?', answer: 'Yes. If two or more values appear the same number of times, the data is multimodal.' },
-        ]} />
-      }
-    />
+              </div>
+            )}
+          </div>
+        }
+        results={
+          <div className="space-y-6">
+            {stats ? (
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {[
+                    { label: 'Mean',   val: stats.mean.toFixed(2), bg: 'bg-indigo-600', text: 'text-white' },
+                    { label: 'Median', val: String(stats.median),  bg: 'bg-emerald-600', text: 'text-white' },
+                    { label: 'Mode',   val: stats.modes.length > 2 ? 'Multi' : stats.modes.join(', '), bg: 'bg-amber-600', text: 'text-white' },
+                  ].map(({ label, val, bg, text }) => (
+                    <div key={label} className={`p-6 rounded-2xl shadow-md ${bg} ${text} text-center`}>
+                      <div className="text-[10px] font-black uppercase tracking-widest opacity-80 mb-2">{label}</div>
+                      <div className="text-3xl lg:text-4xl font-black truncate" title={val}>{val}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm divide-y divide-slate-100">
+                  {[
+                    { label: 'Range',        val: stats.range, desc: 'Difference between highest and lowest' },
+                    { label: 'Minimum',          val: stats.min, desc: 'Lowest value in dataset' },
+                    { label: 'Maximum',          val: stats.max, desc: 'Highest value in dataset' },
+                    { label: 'Count (n)',    val: stats.count, desc: 'Total number of values' },
+                    { label: 'Sum',          val: stats.sum, desc: 'All values added together' },
+                  ].map(({ label, val, desc }) => (
+                    <div key={label} className="p-4 flex justify-between items-center hover:bg-slate-50 transition-colors">
+                      <div>
+                        <span className="block text-sm font-bold text-slate-800">{label}</span>
+                        <span className="block text-xs font-medium text-slate-500">{desc}</span>
+                      </div>
+                      <span className="text-xl font-black font-mono text-slate-700">{val}</span>
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="p-6 bg-amber-50 border border-amber-200 rounded-2xl text-amber-700 text-center font-bold">
+                Please enter at least one number to calculate statistics.
+              </div>
+            )}
+          </div>
+        }
+        sidebar={{
+          title: "Related Math Tools",
+          links: [
+            { label: 'Standard Deviation', href: '/calculator/standard-deviation' },
+            { label: 'Z-Score Calculator', href: '/calculator/z-score' },
+            { label: 'Percentage Calculator', href: '/calculator/percentage' },
+          ],
+        }}
+        howToUse={{
+          steps: [
+            "Enter your dataset into the text area. You can separate numbers using commas, spaces, or new lines.",
+            "The calculator automatically cleans your data, removing any non-numeric characters.",
+            "It will immediately sort your data from lowest to highest, which is useful for finding the median.",
+            "The results panel will instantly display the Mean, Median, Mode, Range, Min, Max, and Sum."
+          ]
+        }}
+        faqs={[
+          {
+            question: "What is the difference between Mean, Median, and Mode?",
+            answer: "The Mean is the traditional average (sum of all numbers divided by the count). The Median is the exact middle number when the data is sorted from lowest to highest (great for data with extreme outliers). The Mode is the number that appears most frequently in the dataset."
+          },
+          {
+            question: "What happens if there are multiple modes?",
+            answer: "If two or more numbers tie for the highest frequency, the dataset is considered bimodal or multimodal. Our calculator will display 'Multi' and list them if there are two, or indicate that there are multiple modes."
+          }
+        ]}
+        seoContent={
+          <div>
+            <h2>Understanding Central Tendency in Statistics</h2>
+            <p>In statistics, measures of central tendency are used to describe the center or typical value of a dataset. The three most common measures are the Mean, Median, and Mode. While they all aim to find the 'center', they do so in different ways and are useful in different scenarios.</p>
+            
+            <h3>1. The Mean (Average)</h3>
+            <p>The mean is calculated by adding all the numbers together and dividing by the total number of items. It is the most commonly used measure but has a critical flaw: it is highly sensitive to outliers. For example, if you are looking at average household income and a billionaire moves into the neighborhood, the mean income will skyrocket, even though most people's incomes stayed the same.</p>
+            
+            <h3>2. The Median (Middle)</h3>
+            <p>The median is the exact middle value when a dataset is sorted from smallest to largest. If there is an even number of values, the median is the average of the two middle numbers. The median is incredibly robust against outliers. Using the previous example, the billionaire moving into the neighborhood would barely change the median income, making it a much better representation of the 'typical' household.</p>
+            
+            <h3>3. The Mode (Most Frequent)</h3>
+            <p>The mode is simply the value that appears most often in the dataset. A dataset can have one mode, multiple modes (bimodal or multimodal), or no mode at all if every number appears only once. Mode is particularly useful for categorical data (e.g., finding the most common shoe size sold in a store).</p>
+            
+            <h3>What is Range?</h3>
+            <p>The range is the simplest measure of dispersion (how spread out the data is). It is calculated by subtracting the lowest value (minimum) from the highest value (maximum). While easy to calculate, it only considers the two extreme ends of the dataset.</p>
+          </div>
+        }
+      />
+    </CalculatorErrorBoundary>
   );
 }

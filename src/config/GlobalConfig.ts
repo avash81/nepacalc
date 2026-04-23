@@ -37,15 +37,15 @@ export const CATEGORY_PURPOSE_MAP: Record<string, string> = {
 };
 
 export const CATEGORY_URL_MAP: Record<string, string> = {
-  'nepal': '/nepal',
-  'finance': '/finance',
-  'health': '/health',
-  'education': '/math-tools',
-  'utility': '/converters',
-  'engineering': '/engineering',
-  'market': '/market-rates',
-  'math': '/math-tools',
-  'mathematics': '/math-tools',
-  'construction': '/engineering',
-  'conversion': '/converters'
+  'nepal': '/nepal/',
+  'finance': '/finance/',
+  'health': '/health/',
+  'education': '/math-tools/',
+  'utility': '/converters/',
+  'engineering': '/engineering/',
+  'market': '/market-rates/',
+  'math': '/math-tools/',
+  'mathematics': '/math-tools/',
+  'construction': '/engineering/',
+  'conversion': '/converters/'
 };

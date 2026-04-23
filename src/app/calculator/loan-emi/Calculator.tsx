@@ -1,19 +1,9 @@
 'use client';
-import { useMemo, useState } from 'react';
-import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-import { QuickPresets } from '@/components/calculator/QuickPresets';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+import { useMemo } from 'react';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { Landmark, PieChart, Info, Calendar, Target, Calculator, Table, Activity } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
 import { safeCalculateEMI } from '@/utils/math/safeCalculations';
-import { Target, PieChart, Info, Landmark, Calendar, ChevronRight } from 'lucide-react';
-
-const LOAN_PRESETS: any[] = [
-  { name: 'Personal', description: '5 Lakh @ 12%', icon: 'briefcase', values: { principal: 500000, rate: 12, tenure: 3, method: 'reducing' } },
-  { name: 'Home Loan', description: '50 Lakh @ 9%', icon: 'home', values: { principal: 5000000, rate: 9, tenure: 15, method: 'reducing' } },
-  { name: 'Auto Loan', description: '20 Lakh @ 11%', icon: 'car', values: { principal: 2000000, rate: 11, tenure: 5, method: 'reducing' } },
-];
 
 const DEFAULT_STATE = { 
   principal: 1000000, 
@@ -25,9 +15,13 @@ const DEFAULT_STATE = {
   isReverse: false
 };
 
+function formatNPR(n: number) {
+  return 'Rs. ' + Math.round(n).toLocaleString('en-IN');
+}
+
 export default function LoanEMICalculator() {
   const [state, setState] = useSyncState('emi_v5', DEFAULT_STATE);
-  const { principal, rate, tenure, method, fee, targetEmi, isReverse } = state;
+  const { principal, rate, tenure, method, targetEmi, isReverse } = state;
 
   const updateState = (u: Partial<typeof DEFAULT_STATE>) => setState({ ...state, ...u });
 
@@ -41,15 +35,14 @@ export default function LoanEMICalculator() {
     }
 
     const baseCalc = safeCalculateEMI(activePrincipal, rate, tenure, method);
-    if (!baseCalc.success || !baseCalc.data) return { success: false, error: baseCalc.error };
+    if (!baseCalc.success || !baseCalc.data) return { success: false };
 
     const baseEmi = baseCalc.data.emi;
     const totalInterest = baseCalc.data.totalInterest;
 
-    // Amortization (Brief)
     const schedule = [];
     let balance = activePrincipal;
-    for (let i = 1; i <= Math.min(60, n); i++) {
+    for (let i = 1; i <= Math.min(12, n); i++) {
         const interest = balance * r;
         const principalPaid = baseEmi - interest;
         balance -= principalPaid;
@@ -58,151 +51,215 @@ export default function LoanEMICalculator() {
 
     return { 
       success: true, 
-      activePrincipal: Math.round(activePrincipal),
+      activePrincipal,
       baseEmi, 
-      totalInterest: Math.round(totalInterest),
-      totalPayment: Math.round(activePrincipal + totalInterest),
+      totalInterest,
+      totalPayment: activePrincipal + totalInterest,
       schedule,
       totalMonths: n
     };
   }, [principal, rate, tenure, method, targetEmi, isReverse]);
 
-  const formatNPR = (n: number) => 
-    new Intl.NumberFormat('en-NP', { 
-      style: 'currency', 
-      currency: 'NPR', 
-      maximumFractionDigits: 0 
-    }).format(n);
+  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
 
   return (
-    <CalculatorErrorBoundary calculatorName="Loan EMI">
-      <CalculatorLayout
-        title={isReverse ? "Reverse Loan Affordability" : "Loan EMI Calculator"}
-        description={isReverse 
-          ? "Calculate the maximum loan amount you can support based on your monthly budget." 
-          : "Professional EMI calculator for reducing balance and flat rate loans in Nepal."
-        }
-        badge="Pro"
-        badgeColor="indigo"
-        category="finance"
-        leftPanel={
-          <div className="space-y-8">
-            <div className="flex bg-slate-900 p-1.5 rounded-2xl shadow-xl">
-               <button onClick={() => updateState({ isReverse: false })}
-                 className={`flex-1 py-3 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${!isReverse ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-500 hover:text-white'}`}>
-                 Direct EMI
-               </button>
-               <button onClick={() => updateState({ isReverse: true })}
-                 className={`flex-1 py-3 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${isReverse ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/30' : 'text-slate-500 hover:text-white'}`}>
-                 <Target className="w-3 h-3 inline mr-1 mb-0.5" /> Affordability
-               </button>
+    <ModernCalcLayout
+      crumbs={[{ label: 'Finance', href: '/finance/' }, { label: 'Loan EMI Calculator' }]}
+      title={isReverse ? "Loan Affordability Calculator" : "Loan EMI Calculator"}
+      description={isReverse 
+        ? "Calculate the maximum loan amount you can afford based on your monthly repayment budget." 
+        : "Professional EMI calculator for Home, Auto, and Personal loans in Nepal with amortization."
+      }
+      icon={Landmark}
+      inputs={
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <label className={labelCls}>Calculation Type</label>
+            <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
+              <button 
+                onClick={() => updateState({ isReverse: false })}
+                className={`flex-1 py-2 text-xs font-bold uppercase rounded-md transition-all ${!isReverse ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}
+              >
+                Direct EMI
+              </button>
+              <button 
+                onClick={() => updateState({ isReverse: true })}
+                className={`flex-1 py-2 text-xs font-bold uppercase rounded-md transition-all ${isReverse ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}
+              >
+                Affordability
+              </button>
             </div>
+          </div>
 
-            <QuickPresets presets={LOAN_PRESETS} onSelect={(p: any) => updateState({ ...p.values, isReverse: false })} />
-            
-            <div className="space-y-8">
-              {isReverse ? (
-                <ValidatedInput label="Max Affordable Monthly EMI" value={targetEmi} onChange={(v) => updateState({ targetEmi: v })} min={1000} max={1000000} step={500} required prefix="NPR" withSlider />
-              ) : (
-                <ValidatedInput label="Loan Principal Amount" value={principal} onChange={(v) => updateState({ principal: v })} min={50000} max={100000000} step={50000} required prefix="NPR" withSlider />
-              )}
-              
-              <div className="grid grid-cols-2 gap-6">
-                 <ValidatedInput label="Rate (p.a.)" value={rate} onChange={(v) => updateState({ rate: v })} min={1} max={30} step={0.25} required suffix="%" withSlider />
-                 <ValidatedInput label="Tenure" value={tenure} onChange={(v) => updateState({ tenure: v })} min={1} max={30} required suffix="Yrs" withSlider />
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <label className={labelCls}>{isReverse ? "Monthly Budget (EMI)" : "Loan Amount (Principal)"}</label>
+              <div className="relative">
+                <input 
+                  type="number" 
+                  value={isReverse ? targetEmi : principal} 
+                  onChange={e => updateState(isReverse ? { targetEmi: Number(e.target.value) } : { principal: Number(e.target.value) })} 
+                  className={inputCls} 
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">NPR</span>
               </div>
             </div>
 
-            <div className="flex bg-slate-50 p-1 border border-slate-200 rounded-xl overflow-hidden">
-                {['reducing', 'flat'].map((m) => (
-                  <button key={m} onClick={() => updateState({ method: m as any })}
-                    className={`flex-1 py-3 text-[10px] font-black uppercase tracking-widest transition-all rounded-lg ${method === m ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-400'}`}>
-                    {m} Balance
-                  </button>
-                ))}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className={labelCls}>Interest Rate (%)</label>
+                <div className="relative">
+                  <input 
+                    type="number" 
+                    value={rate} 
+                    onChange={e => updateState({ rate: Number(e.target.value) })} 
+                    className={inputCls} 
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">%</span>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label className={labelCls}>Tenure (Years)</label>
+                <div className="relative">
+                  <input 
+                    type="number" 
+                    value={tenure} 
+                    onChange={e => updateState({ tenure: Number(e.target.value) })} 
+                    className={inputCls} 
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">yrs</span>
+                </div>
+              </div>
             </div>
           </div>
-        }
-        rightPanel={
-          <div className="space-y-6">
-            {result.success && result.activePrincipal ? (
-              <>
-                <div className="p-10 bg-white border border-slate-100 rounded-[2.5rem] text-center shadow-xl shadow-indigo-500/5 group relative overflow-hidden">
-                   <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none group-hover:opacity-10 transition-opacity">
-                      <Landmark className="w-40 h-40" />
-                   </div>
-                   <div className="text-[10px] font-black uppercase text-slate-400 mb-6 tracking-widest">
-                     {isReverse ? 'Borrowing Capacity' : 'Monthly Installment'}
-                   </div>
-                   <div className="text-6xl font-black text-slate-900 tracking-tighter mb-4 font-mono group-hover:scale-105 transition-transform">
-                     {isReverse ? formatNPR(result.activePrincipal) : formatNPR(result.baseEmi!)}
-                   </div>
-                   <div className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest bg-indigo-50 px-6 py-1.5 rounded-full inline-block">
-                     {isReverse ? `${formatNPR(targetEmi)} / mo` : `${tenure} Years Tenure`}
-                   </div>
-                </div>
 
-                <div className="grid grid-cols-1 gap-4">
-                   <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100 flex justify-between items-center group">
-                      <div className="flex items-center gap-3">
-                         <div className="w-10 h-10 bg-white border border-slate-200 rounded-xl flex items-center justify-center text-slate-400 group-hover:text-indigo-500 transition-colors shadow-sm"><Info className="w-5 h-5" /></div>
-                         <div className="text-[10px] font-black uppercase text-slate-500 tracking-widest">Total Interest</div>
-                      </div>
-                      <span className="text-sm font-black text-slate-900">{formatNPR(result.totalInterest!)}</span>
-                   </div>
-                   
-                   <div className="p-6 bg-white border-2 border-slate-50 rounded-3xl flex justify-between items-center group">
-                      <div className="flex items-center gap-3">
-                         <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center text-slate-300"><PieChart className="w-5 h-5" /></div>
-                         <div className="text-[10px] font-black uppercase text-slate-500 tracking-widest">Repayment Value</div>
-                      </div>
-                      <span className="text-sm font-black text-slate-900">{formatNPR(result.totalPayment!)}</span>
-                   </div>
-                </div>
-
-                {/* Amortization Table Snippet */}
-                <div className="bg-slate-900 rounded-[2.5rem] overflow-hidden shadow-2xl">
-                   <div className="bg-white/5 px-8 py-5 border-b border-white/5 flex items-center justify-between">
-                      <h4 className="text-[10px] font-black uppercase text-slate-500 tracking-widest">Initial Schedule</h4>
-                      <Calendar className="w-4 h-4 text-slate-600" />
-                   </div>
-                   <div className="p-2 overflow-x-auto scrollbar-hide">
-                      <table className="w-full text-left">
-                         <thead>
-                           <tr className="text-[9px] font-black uppercase tracking-widest text-slate-600">
-                              <th className="p-4">Month</th>
-                              <th className="p-4 text-right">Principal</th>
-                              <th className="p-4 text-right">Interest</th>
-                              <th className="p-4 text-right">Balance</th>
-                           </tr>
-                         </thead>
-                         <tbody className="text-[10px] font-mono">
-                           {result.schedule!.slice(0, 5).map(row => (
-                             <tr key={row.month} className="border-b border-white/5 text-slate-400 hover:bg-white/5 transition-colors">
-                               <td className="p-4">#{row.month}</td>
-                               <td className="p-4 text-right text-emerald-400">{Math.round(row.principal).toLocaleString()}</td>
-                               <td className="p-4 text-right text-rose-400">{Math.round(row.interest).toLocaleString()}</td>
-                               <td className="p-4 text-right text-white font-black">{Math.round(row.balance).toLocaleString()}</td>
-                             </tr>
-                           ))}
-                         </tbody>
-                      </table>
-                      <div className="p-4 text-center border-t border-white/5 bg-white/5">
-                         <p className="text-[9px] font-bold text-slate-600 uppercase tracking-widest">Showing first 5 of {result.totalMonths} months</p>
-                      </div>
-                   </div>
-                </div>
-              </>
-            ) : null}
+          <div className="space-y-2">
+            <label className={labelCls}>Repayment Method</label>
+            <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
+              {['reducing', 'flat'].map((m) => (
+                <button 
+                  key={m} 
+                  onClick={() => updateState({ method: m as any })}
+                  className={`flex-1 py-2 text-xs font-bold uppercase rounded-md transition-all ${method === m ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}
+                >
+                  {m} balance
+                </button>
+              ))}
+            </div>
           </div>
+
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+            Calculate Repayment
+          </button>
+        </div>
+      }
+      results={
+        <div className="space-y-6">
+          {result.success ? (
+            <>
+              <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
+                <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">{isReverse ? "Max Borrowing Capacity" : "Monthly Installment (EMI)"}</div>
+                <div className="text-3xl font-black text-[#1A73E8]">{isReverse ? formatNPR(result.activePrincipal!) : formatNPR(result.baseEmi!)}</div>
+                <div className="text-[9px] text-[#70757A] font-bold uppercase">{isReverse ? `At ${targetEmi}/mo budget` : `${tenure} years of repayment`}</div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                 <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center space-y-1">
+                   <div className="text-[9px] font-bold text-[#70757A] uppercase">Total Interest</div>
+                   <div className="text-sm font-black text-[#D93025]">{formatNPR(result.totalInterest!)}</div>
+                 </div>
+                 <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center space-y-1">
+                   <div className="text-[9px] font-bold text-[#70757A] uppercase">Total Payable</div>
+                   <div className="text-sm font-black text-[#202124]">{formatNPR(result.totalPayment!)}</div>
+                 </div>
+              </div>
+
+              <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+                 <div className="px-4 py-2 border-b border-[#DADCE0] bg-[#F8F9FA] flex justify-between items-center">
+                   <span className="text-[10px] font-bold text-[#70757A] uppercase">First 12 Months Schedule</span>
+                   <Table className="w-3 h-3 text-[#1A73E8]" />
+                 </div>
+                 <div className="max-h-48 overflow-y-auto">
+                   <table className="w-full text-left">
+                     <thead className="sticky top-0 bg-[#F8F9FA] text-[9px] font-bold uppercase text-[#70757A] border-b border-[#DADCE0]">
+                       <tr>
+                         <th className="px-3 py-2">Month</th>
+                         <th className="px-3 py-2 text-right">Principal</th>
+                         <th className="px-3 py-2 text-right">Interest</th>
+                         <th className="px-3 py-2 text-right">Balance</th>
+                       </tr>
+                     </thead>
+                     <tbody className="divide-y divide-[#DADCE0]">
+                       {result.schedule!.map((row) => (
+                         <tr key={row.month} className="text-[10px] hover:bg-[#F8F9FA]">
+                           <td className="px-3 py-2 font-bold text-[#5F6368]">#{row.month}</td>
+                           <td className="px-3 py-2 text-right text-[#188038] font-mono">{Math.round(row.principal).toLocaleString()}</td>
+                           <td className="px-3 py-2 text-right text-[#D93025] font-mono">{Math.round(row.interest).toLocaleString()}</td>
+                           <td className="px-3 py-2 text-right font-bold font-mono">{Math.round(row.balance).toLocaleString()}</td>
+                         </tr>
+                       ))}
+                     </tbody>
+                   </table>
+                 </div>
+              </div>
+
+              <div className="flex gap-2 p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg items-center">
+                <PieChart className="w-4 h-4 text-[#188038] shrink-0" />
+                <p className="text-[10px] text-[#202124] leading-tight">Interest accounts for <strong>{((result.totalInterest! / result.totalPayment!) * 100).toFixed(1)}%</strong> of your total repayment.</p>
+              </div>
+            </>
+          ) : (
+            <div className="text-center py-10 opacity-30">
+               <Activity className="w-10 h-10 mx-auto mb-2" />
+               <p className="text-sm">Enter loan details to view report</p>
+            </div>
+          )}
+        </div>
+      }
+      howToUse={{
+        steps: [
+          "Choose 'Direct EMI' if you know the loan amount you need.",
+          "Choose 'Affordability' to find how much you can borrow with your monthly budget.",
+          "Enter the annual interest rate (current bank rates in Nepal range from 9% to 14%).",
+          "Set the tenure in years (Home loans typically go up to 15-20 years).",
+          "Select 'Reducing Balance' for standard bank loans or 'Flat Rate' for some finance companies."
+        ]
+      }}
+      formula={{
+        title: "Loan Repayment Logic",
+        description: "The EMI is calculated using the standard formula for Reducing Balance Method.",
+        raw: "EMI = [P × r × (1+r)^n] / [(1+r)^n - 1]\nWhere P = Principal, r = monthly interest rate, n = total months."
+      }}
+      faqs={[
+        {
+          question: "What is the difference between Reducing and Flat rates?",
+          answer: "In Reducing Balance, interest is calculated on the remaining loan amount each month. In Flat Rate, interest is calculated on the original principal for the entire tenure, making it much more expensive."
+        },
+        {
+          question: "How do banks in Nepal calculate EMI?",
+          answer: "Most commercial banks in Nepal (A-Class) use the Reducing Balance Method with monthly compounding for Home, Auto, and Personal loans."
         }
-        faqSection={<CalcFAQ faqs={[
-          { question: "Reducing vs Flat Rate?", answer: "Reducing balance calculates interest on the remaining principal, saving you money. Flat rate calculates interest on the full original principal for the entire duration." },
-          { question: "What is Loan Affordability?", answer: "It is a goal-seek calculation that determines exactly how much you can borrow based on your disposable monthly income." }
-        ]} />}
-      />
-    </CalculatorErrorBoundary>
+      ]}
+      sidebar={{
+        title: "Loan Toolkit",
+        links: [
+          { label: "Home Loan Nepal", href: "/calculator/nepal-home-loan" },
+          { label: "Vehicle Tax Nepal", href: "/calculator/nepal-vehicle-tax" },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax" },
+          { label: "SIP Calculator", href: "/calculator/sip-calculator" },
+        ],
+        banner: {
+          title: "Plan Your Finances",
+          description: "Always compare EIR (Effective Interest Rate) before choosing a loan provider in Nepal.",
+          image: "/images/loan-banner.jpg"
+        }
+      }}
+      relatedTools={[
+        { label: "Home Loan", href: "/calculator/nepal-home-loan" },
+        { label: "Vehicle Tax", href: "/calculator/nepal-vehicle-tax" },
+        { label: "SIP Calculator", href: "/calculator/sip-calculator" }
+      ]}
+    />
   );
 }
-
-function fmt(n: number) { return Math.round(n).toLocaleString('en-IN'); }

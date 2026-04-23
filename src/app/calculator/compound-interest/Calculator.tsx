@@ -1,155 +1,208 @@
 'use client';
-import { useState, useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
-import { useDebounce } from '@/hooks/useDebounce';
+import { useMemo } from 'react';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { TrendingUp, LineChart, PieChart, Info, Calendar, Target, Calculator, Table } from 'lucide-react';
+import { useSyncState } from '@/hooks/useSyncState';
 
 function fmt(n: number) { return Math.round(n).toLocaleString('en-IN'); }
 
 const COMPOUNDING = [
-  { value: 1, label: 'Annually (1×/year)' },
-  { value: 2, label: 'Semi-Annually (2×/year)' },
-  { value: 4, label: 'Quarterly (4×/year)' },
-  { value: 12, label: 'Monthly (12×/year)' },
+  { value: 1, label: 'Annually' },
+  { value: 2, label: 'Semi-Annually' },
+  { value: 4, label: 'Quarterly' },
+  { value: 12, label: 'Monthly' },
 ];
 
 export default function CompoundInterestCalculator() {
-  const [principal, setPrincipal] = useState(100000);
-  const [rate, setRate] = useState(10);
-  const [years, setYears] = useState(10);
-  const [compounding, setCompounding] = useState(1);
+  const [state, setState] = useSyncState('compound_interest_v4', {
+    principal: 100000,
+    rate: 10,
+    years: 10,
+    compounding: 1
+  });
+  const { principal, rate, years, compounding } = state;
 
-  const debP = useDebounce(principal, 300);
-  const debR = useDebounce(rate, 300);
-  const debY = useDebounce(years, 300);
+  const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
   const result = useMemo(() => {
-    const r = debR / 100, n = compounding;
-    const amount = debP * Math.pow(1 + r / n, n * debY);
-    const interest = amount - debP;
-    const schedule = Array.from({ length: debY }, (_, i) => {
+    const r = rate / 100, n = compounding;
+    const amount = principal * Math.pow(1 + r / n, n * years);
+    const totalInterest = amount - principal;
+    const schedule = Array.from({ length: Math.min(years, 30) }, (_, i) => {
       const yr = i + 1;
-      const bal = debP * Math.pow(1 + r / n, n * yr);
-      const prevBal = debP * Math.pow(1 + r / n, n * (yr - 1));
+      const bal = principal * Math.pow(1 + r / n, n * yr);
+      const prevBal = principal * Math.pow(1 + r / n, n * (yr - 1));
       return { year: yr, yearlyInterest: bal - prevBal, balance: bal };
     });
-    return { amount, interest, schedule };
-  }, [debP, debR, debY, compounding]);
+    return { amount, totalInterest, schedule };
+  }, [principal, rate, years, compounding]);
 
-  const pctGrowth = ((result.interest / debP) * 100).toFixed(1);
+  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
 
   return (
-    <CalculatorLayout
+    <ModernCalcLayout
+      crumbs={[{ label: 'Finance', href: '/finance/' }, { label: 'Compound Interest' }]}
       title="Compound Interest Calculator"
-      description="Calculate how your savings or investments grow with compound interest. Supports multiple compounding frequencies with yearly growth schedule."
-      category={{ label: 'Finance', href: '/calculator/category/finance' }}
-      leftPanel={
+      description="Calculate the power of compounding on your savings and investments. See how frequency impacts your total wealth over time."
+      icon={TrendingUp}
+      inputs={
         <div className="space-y-6">
-          {/* Principal */}
           <div className="space-y-2">
-            <div className="flex justify-between">
-              <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Initial Investment</label>
-              <span className="text-[11px] font-black text-[var(--primary)]">NPR {fmt(principal)}</span>
+            <label className={labelCls}>Initial Investment (Principal)</label>
+            <div className="relative">
+              <input 
+                type="number" 
+                value={principal} 
+                onChange={e => update({ principal: Number(e.target.value) })} 
+                className={inputCls} 
+              />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">NPR</span>
             </div>
-            <input type="number" value={principal} onChange={e => setPrincipal(Number(e.target.value))}
-              className="w-full h-11 px-4 border border-[var(--border)] bg-white font-bold text-sm focus:border-[var(--primary)] outline-none" />
-            <input type="range" min={10000} max={10000000} step={10000} value={principal} onChange={e => setPrincipal(Number(e.target.value))}
-              className="w-full accent-[#083366]" />
           </div>
 
-          {/* Rate */}
-          <div className="space-y-2">
-            <div className="flex justify-between">
-              <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Annual Interest Rate</label>
-              <span className="text-[11px] font-black text-[var(--primary)]">{rate}%</span>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className={labelCls}>Annual Rate (%)</label>
+              <div className="relative">
+                <input 
+                  type="number" 
+                  value={rate} 
+                  onChange={e => update({ rate: Number(e.target.value) })} 
+                  className={inputCls} 
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">%</span>
+              </div>
             </div>
-            <input type="number" value={rate} onChange={e => setRate(Number(e.target.value))}
-              className="w-full h-11 px-4 border border-[var(--border)] bg-white font-bold text-sm focus:border-[var(--primary)] outline-none" />
-            <input type="range" min={1} max={30} step={0.1} value={rate} onChange={e => setRate(Number(e.target.value))}
-              className="w-full accent-[#083366]" />
+            <div className="space-y-2">
+              <label className={labelCls}>Period (Years)</label>
+              <div className="relative">
+                <input 
+                  type="number" 
+                  value={years} 
+                  onChange={e => update({ years: Number(e.target.value) })} 
+                  className={inputCls} 
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">yrs</span>
+              </div>
+            </div>
           </div>
 
-          {/* Years */}
           <div className="space-y-2">
-            <div className="flex justify-between">
-              <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Time Period</label>
-              <span className="text-[11px] font-black text-[var(--primary)]">{years} Years</span>
-            </div>
-            <input type="number" value={years} onChange={e => setYears(Number(e.target.value))}
-              className="w-full h-11 px-4 border border-[var(--border)] bg-white font-bold text-sm focus:border-[var(--primary)] outline-none" />
-            <input type="range" min={1} max={50} step={1} value={years} onChange={e => setYears(Number(e.target.value))}
-              className="w-full accent-[#083366]" />
-          </div>
-
-          {/* Compounding Frequency */}
-          <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Compounding Frequency</label>
-            <div className="space-y-1">
+            <label className={labelCls}>Compounding Frequency</label>
+            <div className="grid grid-cols-2 gap-2">
               {COMPOUNDING.map(c => (
-                <button key={c.value} onClick={() => setCompounding(c.value)}
-                  className={`w-full p-3 border text-left text-[12px] font-bold transition-all ${compounding === c.value ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-white border-[var(--border)] text-[var(--text-main)] hover:bg-[var(--bg-subtle)]'}`}>
+                <button 
+                  key={c.value} 
+                  onClick={() => update({ compounding: c.value })}
+                  className={`py-2 text-[10px] font-bold uppercase border rounded-md transition-all ${compounding === c.value ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}
+                >
                   {c.label}
                 </button>
               ))}
             </div>
           </div>
+
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+            Calculate Interest
+          </button>
         </div>
       }
-      rightPanel={
+      results={
         <div className="space-y-6">
-          <div className="p-8 bg-white border border-[var(--border)] text-center">
-            <div className="text-xs font-bold uppercase text-[var(--text-muted)] mb-2">Total Amount</div>
-            <div className="text-5xl font-black text-[#006600] tracking-tighter mb-2">NPR {fmt(result.amount)}</div>
-            <div className="text-xs font-bold text-[var(--text-secondary)] uppercase">grows {pctGrowth}% over {years} yrs</div>
+          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
+            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Total Maturity Value</div>
+            <div className="text-3xl font-black text-[#1A73E8]">NPR {fmt(result.amount)}</div>
+            <div className="text-[9px] text-[#70757A] font-bold uppercase">After {years} years of compounding</div>
           </div>
 
-          <div className="space-y-3">
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Principal Invested</span>
-              <span className="text-sm font-black text-[var(--text-main)]">NPR {fmt(debP)}</span>
-            </div>
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Total Interest Earned</span>
-              <span className="text-sm font-black text-[#006600]">NPR {fmt(result.interest)}</span>
-            </div>
+          <div className="grid grid-cols-2 gap-4">
+             <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center space-y-1">
+               <div className="text-[9px] font-bold text-[#70757A] uppercase">Initial Principal</div>
+               <div className="text-sm font-black text-[#202124]">NPR {fmt(principal)}</div>
+             </div>
+             <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center space-y-1">
+               <div className="text-[9px] font-bold text-[#70757A] uppercase">Total Interest</div>
+               <div className="text-sm font-black text-[#188038]">+ NPR {fmt(result.totalInterest)}</div>
+             </div>
           </div>
 
-          {/* Mini Growth Schedule */}
-          <div className="bg-white border border-[var(--border)]">
-            <div className="px-4 py-3 bg-[var(--bg-surface)] border-b border-[var(--border)]">
-              <h3 className="text-[11px] font-bold uppercase text-[var(--text-main)]">Yearly Growth Schedule</h3>
-            </div>
-            <div className="overflow-x-auto max-h-64 overflow-y-auto">
-              <table className="w-full text-sm whitespace-nowrap">
-                <thead>
-                  <tr className="bg-[var(--bg-surface)] border-b border-[var(--border)] text-[10px] text-[var(--text-muted)] font-bold uppercase">
-                    <th className="px-3 py-2 text-left">Year</th>
-                    <th className="px-3 py-2 text-right">Interest</th>
-                    <th className="px-3 py-2 text-right">Balance</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {result.schedule.map(row => (
-                    <tr key={row.year} className="border-b border-[var(--border)] hover:bg-[var(--bg-surface)]">
-                      <td className="px-3 py-2 font-bold text-[var(--text-secondary)]">{row.year}</td>
-                      <td className="px-3 py-2 text-right font-mono text-[#006600] text-[11px]">+{fmt(row.yearlyInterest)}</td>
-                      <td className="px-3 py-2 text-right font-mono font-black text-[var(--primary)] text-[11px]">{fmt(row.balance)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+             <div className="px-4 py-2 border-b border-[#DADCE0] bg-[#F8F9FA] flex justify-between items-center">
+               <span className="text-[10px] font-bold text-[#70757A] uppercase">Yearly Projection</span>
+               <Table className="w-3 h-3 text-[#1A73E8]" />
+             </div>
+             <div className="max-h-48 overflow-y-auto">
+               <table className="w-full text-left">
+                 <thead className="sticky top-0 bg-[#F8F9FA] text-[9px] font-bold uppercase text-[#70757A] border-b border-[#DADCE0]">
+                   <tr>
+                     <th className="px-3 py-2">Year</th>
+                     <th className="px-3 py-2 text-right">Interest</th>
+                     <th className="px-3 py-2 text-right">Balance</th>
+                   </tr>
+                 </thead>
+                 <tbody className="divide-y divide-[#DADCE0]">
+                   {result.schedule.map((row) => (
+                     <tr key={row.year} className="text-[11px] hover:bg-[#F8F9FA]">
+                       <td className="px-3 py-2 font-bold">{row.year}</td>
+                       <td className="px-3 py-2 text-right text-[#188038] font-mono">+{fmt(row.yearlyInterest)}</td>
+                       <td className="px-3 py-2 text-right font-bold font-mono">NPR {fmt(row.balance)}</td>
+                     </tr>
+                   ))}
+                 </tbody>
+               </table>
+             </div>
+          </div>
+
+          <div className="flex gap-2 p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg items-center">
+            <PieChart className="w-4 h-4 text-[#188038] shrink-0" />
+            <p className="text-[10px] text-[#202124] leading-tight">Your money grows <strong>{((result.totalInterest / principal) * 100).toFixed(1)}%</strong> over the selected period.</p>
           </div>
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'What is compound interest?', answer: 'It\'s interest calculated on both the initial principal and the accumulated interest—"interest on interest"—leading to exponential growth.' },
-          { question: 'How does compounding frequency affect returns?', answer: 'More frequent compounding means more frequent interest additions. Monthly compounding yields slightly more than annual for the same rate.' },
-          { question: 'What is the formula?', answer: 'A = P(1 + r/n)^(nt). P = principal, r = annual rate, n = times compounded/year, t = years.' },
-          { question: 'Where can I earn compound interest in Nepal?', answer: 'Savings accounts, fixed deposits (FD), recurring deposits, and mutual funds in Nepal all compound interest, typically quarterly.' },
-        ]} />
-      }
+      howToUse={{
+        steps: [
+          "Enter your initial deposit amount (Principal).",
+          "Input the annual interest rate offered by your bank or investment.",
+          "Choose the duration (Years) you plan to keep the money invested.",
+          "Select the compounding frequency (e.g., Monthly for savings accounts, Quarterly for FDs).",
+          "Review the maturity value and the yearly interest accumulation table."
+        ]
+      }}
+      formula={{
+        title: "Compound Interest Formula",
+        description: "The formula calculates interest on both the initial principal and the accumulated interest from previous periods.",
+        raw: "A = P(1 + r/n)^(nt)\nWhere A = Total Amount, P = Principal, r = annual rate, n = compounding frequency, t = years."
+      }}
+      faqs={[
+        {
+          question: "How is compounding different from simple interest?",
+          answer: "Simple interest is calculated only on the principal, whereas compound interest is calculated on the principal plus any interest that has already been added."
+        },
+        {
+          question: "Does compounding frequency matter?",
+          answer: "Yes, the more frequently interest is compounded, the higher the final amount. Monthly compounding yields slightly more than annual compounding for the same rate."
+        }
+      ]}
+      sidebar={{
+        title: "Finance Toolkit",
+        links: [
+          { label: "SIP Calculator", href: "/calculator/sip-calculator" },
+          { label: "Lumpsum Plan", href: "/calculator/lumpsum-calculator" },
+          { label: "FD Calculator", href: "/calculator/fd-calculator" },
+          { label: "Simple Interest", href: "/calculator/simple-interest" },
+        ],
+        banner: {
+          title: "Start Compounding Early",
+          description: "The most powerful factor in compounding is time. Starting just a few years earlier can double your results.",
+          image: "/images/finance-banner.jpg"
+        }
+      }}
+      relatedTools={[
+        { label: "SIP Calculator", href: "/calculator/sip-calculator" },
+        { label: "FD Calculator", href: "/calculator/fd-calculator" },
+        { label: "Simple Interest", href: "/calculator/simple-interest" }
+      ]}
     />
   );
 }

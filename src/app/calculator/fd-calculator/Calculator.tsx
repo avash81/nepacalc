@@ -1,145 +1,135 @@
 'use client';
-import { useState, useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
-import { useDebounce } from '@/hooks/useDebounce';
+import { useMemo } from 'react';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { Banknote, TrendingUp, Info, Shield, PiggyBank } from 'lucide-react';
+import { useSyncState } from '@/hooks/useSyncState';
 
-function fmt(n: number) { return 'NPR ' + Math.round(n).toLocaleString('en-IN'); }
+function fmt(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
 
 const COMP_OPTIONS = [
-  { label: 'Monthly (12×)',     value: 12 },
-  { label: 'Quarterly (4×)',    value: 4  },
-  { label: 'Half-Yearly (2×)', value: 2  },
-  { label: 'Yearly (1×)',       value: 1  },
+  { label: 'Monthly', value: 12 },
+  { label: 'Quarterly', value: 4 },
+  { label: 'Half-Yearly', value: 2 },
+  { label: 'Yearly', value: 1 },
 ];
 
 export default function FDCalculator() {
-  const [principal, setPrincipal] = useState(100000);
-  const [rate, setRate] = useState(10);
-  const [time, setTime] = useState(1);
-  const [compounding, setCompounding] = useState(4);
-
-  const dP = useDebounce(principal, 300);
-  const dR = useDebounce(rate, 300);
-  const dT = useDebounce(time, 300);
+  const [state, setState] = useSyncState('fd_v4', { principal: 100000, rate: 10, time: 1, compounding: 4 });
+  const { principal, rate, time, compounding } = state;
+  const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
   const r = useMemo(() => {
-    const amount = dP * Math.pow(1 + dR / 100 / compounding, compounding * dT);
-    const interest = amount - dP;
-    const pctGrowth = ((interest / dP) * 100).toFixed(1);
-    return { maturity: amount, interest, pctGrowth };
-  }, [dP, dR, dT, compounding]);
+    const amount = principal * Math.pow(1 + rate / 100 / compounding, compounding * time);
+    const interest = amount - principal;
+    return { maturity: amount, interest, pctGrowth: ((interest / principal) * 100).toFixed(1) };
+  }, [principal, rate, time, compounding]);
 
-  const RATE_PRESETS = [6, 8, 10, 12];
-  const TIME_PRESETS = [{ label: '6mo', value: 0.5 }, { label: '1yr', value: 1 }, { label: '2yr', value: 2 }, { label: '5yr', value: 5 }];
+  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
 
   return (
-    <CalculatorLayout
+    <ModernCalcLayout
+      crumbs={[{ label: 'Finance', href: '/finance/' }, { label: 'Fixed Deposit Calculator' }]}
       title="Fixed Deposit (FD) Calculator"
-      description="Calculate FD maturity amount and interest earned with Nepal bank compounding rates. Supports quarterly and monthly compounding."
-      category={{ label: 'Finance', href: '/calculator/category/finance' }}
-      leftPanel={
+      description="Calculate FD maturity amount and interest earned with Nepal bank compounding rates. Supports quarterly, monthly, and yearly compounding."
+      icon={Banknote}
+      inputs={
         <div className="space-y-6">
-          {/* Principal */}
           <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Principal Amount</label>
-            <div className="flex">
-              <span className="h-12 px-4 bg-[var(--bg-surface)] border border-r-0 border-[var(--border)] text-[12px] font-black text-[var(--text-muted)] flex items-center">NPR</span>
-              <input type="number" value={principal} onChange={e => setPrincipal(Number(e.target.value))}
-                className="flex-1 h-12 px-4 border border-[var(--border)] bg-white font-bold text-lg focus:border-[var(--primary)] outline-none" />
+            <label className={labelCls}>Principal Amount</label>
+            <div className="relative">
+              <input type="number" value={principal} onChange={e => update({ principal: Number(e.target.value) })} className={inputCls} />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">NPR</span>
             </div>
           </div>
 
-          {/* Rate */}
           <div className="space-y-2">
-            <div className="flex justify-between">
-              <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Annual Interest Rate</label>
-              <span className="text-[11px] font-black text-[var(--primary)]">{rate}%</span>
-            </div>
-            <div className="grid grid-cols-4 gap-2">
-              {RATE_PRESETS.map(v => (
-                <button key={v} onClick={() => setRate(v)}
-                  className={`py-2 text-xs font-black border transition-all ${rate === v ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'border-[var(--border)] bg-[var(--bg-surface)] hover:bg-[var(--bg-subtle)]'}`}>
+            <label className={labelCls}>Annual Interest Rate</label>
+            <div className="grid grid-cols-4 gap-2 mb-2">
+              {[6, 8, 10, 12].map(v => (
+                <button key={v} onClick={() => update({ rate: v })}
+                  className={`py-2 text-xs font-black border rounded-md transition-all ${rate === v ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>
                   {v}%
                 </button>
               ))}
             </div>
-            <input type="number" step={0.5} value={rate} onChange={e => setRate(Number(e.target.value))}
-              className="w-full h-10 px-3 border border-[var(--border)] bg-white text-sm font-bold focus:border-[var(--primary)] outline-none" />
+            <div className="relative">
+              <input type="number" step={0.5} value={rate} onChange={e => update({ rate: Number(e.target.value) })} className={inputCls} />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">% p.a.</span>
+            </div>
           </div>
 
-          {/* Time */}
           <div className="space-y-2">
-            <div className="flex justify-between">
-              <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Duration</label>
-              <span className="text-[11px] font-black text-[var(--primary)]">{time} yr{time !== 1 ? 's' : ''}</span>
-            </div>
-            <div className="grid grid-cols-4 gap-2">
-              {TIME_PRESETS.map(p => (
-                <button key={p.label} onClick={() => setTime(p.value)}
-                  className={`py-2 text-xs font-black border transition-all ${time === p.value ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'border-[var(--border)] bg-[var(--bg-surface)] hover:bg-[var(--bg-subtle)]'}`}>
-                  {p.label}
+            <label className={labelCls}>FD Duration</label>
+            <div className="grid grid-cols-4 gap-2 mb-2">
+              {[{ l: '6mo', v: 0.5 }, { l: '1yr', v: 1 }, { l: '2yr', v: 2 }, { l: '5yr', v: 5 }].map(p => (
+                <button key={p.l} onClick={() => update({ time: p.v })}
+                  className={`py-2 text-xs font-black border rounded-md transition-all ${time === p.v ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>
+                  {p.l}
                 </button>
               ))}
             </div>
-            <input type="number" step={0.5} value={time} onChange={e => setTime(Number(e.target.value))}
-              className="w-full h-10 px-3 border border-[var(--border)] bg-white text-sm font-bold focus:border-[var(--primary)] outline-none" />
+            <div className="relative">
+              <input type="number" step={0.5} value={time} onChange={e => update({ time: Number(e.target.value) })} className={inputCls} />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">years</span>
+            </div>
           </div>
 
-          {/* Compounding */}
           <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Compounding Frequency</label>
+            <label className={labelCls}>Compounding Frequency</label>
             <div className="grid grid-cols-2 gap-2">
               {COMP_OPTIONS.map(opt => (
-                <button key={opt.value} onClick={() => setCompounding(opt.value)}
-                  className={`py-3 text-[11px] font-bold border transition-all ${compounding === opt.value ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'border-[var(--border)] bg-[var(--bg-surface)] hover:bg-[var(--bg-subtle)]'}`}>
+                <button key={opt.value} onClick={() => update({ compounding: opt.value })}
+                  className={`py-2.5 text-xs font-bold border rounded-md transition-all ${compounding === opt.value ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>
                   {opt.label}
                 </button>
               ))}
             </div>
           </div>
+
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+            Calculate Maturity
+          </button>
         </div>
       }
-      rightPanel={
+      results={
         <div className="space-y-6">
-          {/* Maturity Hero */}
-          <div className="p-8 bg-white border border-[var(--border)] text-center">
-            <div className="text-xs font-bold uppercase text-[var(--text-muted)] mb-2">Maturity Amount</div>
-            <div className="text-5xl font-black text-[#006600] tracking-tighter mb-2">{fmt(r.maturity)}</div>
-            <div className="text-xs font-bold text-[var(--text-secondary)] uppercase">Grows {r.pctGrowth}% over {time} yr{time !== 1 ? 's' : ''}</div>
+          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
+            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Maturity Amount</div>
+            <div className="text-3xl font-black text-[#1A73E8]">{fmt(r.maturity)}</div>
+            <div className="text-[9px] text-[#70757A] font-bold uppercase">Grows {r.pctGrowth}% over {time} year{time !== 1 ? 's' : ''}</div>
           </div>
 
-          {/* Breakdown */}
-          <div className="space-y-3">
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Principal Deposited</span>
-              <span className="text-sm font-black text-[var(--text-main)]">{fmt(dP)}</span>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center">
+              <div className="text-[9px] font-bold text-[#70757A] uppercase">Principal</div>
+              <div className="text-sm font-black">{fmt(principal)}</div>
             </div>
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Interest Earned</span>
-              <span className="text-sm font-black text-[#006600]">+ {fmt(r.interest)}</span>
-            </div>
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Compounding</span>
-              <span className="text-sm font-black text-[var(--text-main)]">{COMP_OPTIONS.find(c => c.value === compounding)?.label}</span>
+            <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center">
+              <div className="text-[9px] font-bold text-[#70757A] uppercase">Interest Earned</div>
+              <div className="text-sm font-black text-[#188038]">+{fmt(r.interest)}</div>
             </div>
           </div>
 
-          <div className="p-5 bg-amber-50 border border-amber-200">
-            <p className="text-[12px] text-amber-800 leading-relaxed">
-              ⚠️ <strong>TDS Note:</strong> FD interest in Nepal is subject to <strong>5% withholding tax</strong> deducted at source by the bank.
-            </p>
+          <div className="p-4 bg-white border border-[#DADCE0] rounded-lg flex justify-between items-center">
+            <span className="text-[11px] font-bold text-[#70757A] uppercase">Compounding</span>
+            <span className="text-sm font-black">{COMP_OPTIONS.find(c => c.value === compounding)?.label}</span>
+          </div>
+
+          <div className="flex gap-2 p-3 bg-[#FFF7E0] border border-[#FEEFC3] rounded-lg items-start">
+            <Info className="w-4 h-4 text-[#F29900] shrink-0 mt-0.5" />
+            <p className="text-[10px] text-[#202124] leading-tight"><strong>TDS Note:</strong> FD interest in Nepal is subject to <strong>5% withholding tax</strong> deducted at source by the bank.</p>
           </div>
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'What is a Fixed Deposit (FD)?', answer: 'An FD is a bank instrument that pays a higher interest rate than a savings account. Your money is locked for a fixed duration, and the bank compounds interest at set intervals.' },
-          { question: 'How is FD interest calculated?', answer: 'Most Nepal banks use compound interest: A = P(1 + r/n)^(nt). P=principal, r=rate, n=compounding frequency per year, t=time in years. Quarterly compounding (n=4) is most common.' },
-          { question: 'Is FD interest taxable?', answer: 'Yes. Nepal levies 5% Withholding Tax (TDS) on FD interest, deducted at source by the bank before crediting your account.' },
-          { question: 'Can I withdraw early?', answer: 'Most banks allow premature FD withdrawal with a penalty — typically a 1–2% reduction in the advertised interest rate.' },
-        ]} />
-      }
+      howToUse={{ steps: ["Enter your FD deposit amount (Principal).", "Select or type your bank's annual interest rate.", "Set the FD duration using presets or a custom value.", "Choose the compounding frequency (most Nepal banks use Quarterly).", "Review maturity amount and interest breakdown."] }}
+      formula={{ title: "FD Compound Interest", description: "FD uses compound interest formula with varying compounding frequencies.", raw: "A = P × (1 + r/n)^(n×t)\nWhere P = Principal, r = rate, n = compounding frequency, t = years" }}
+      faqs={[
+        { question: "What is the best compounding frequency for FD in Nepal?", answer: "Most commercial banks in Nepal compound interest quarterly (4×/year). Some banks offer monthly compounding for special FD schemes, which yields slightly more." },
+        { question: "Is FD interest taxable in Nepal?", answer: "Yes. A 5% Tax Deducted at Source (TDS) is applied on FD interest income in Nepal, deducted automatically by the bank." }
+      ]}
+      sidebar={{ title: "Investment Tools", links: [{ label: "Compound Interest", href: "/calculator/compound-interest" }, { label: "SIP Calculator", href: "/calculator/sip-calculator" }, { label: "Simple Interest", href: "/calculator/simple-interest" }, { label: "Nepal TDS", href: "/calculator/nepal-tds-calculator" }], banner: { title: "Grow Your Savings", description: "FDs are one of Nepal's safest investment options. Compare rates across BFIs before locking in.", image: "/images/fd-banner.jpg" } }}
+      relatedTools={[{ label: "SIP Calculator", href: "/calculator/sip-calculator" }, { label: "Compound Interest", href: "/calculator/compound-interest" }, { label: "TDS Tool", href: "/calculator/nepal-tds-calculator" }]}
     />
   );
 }

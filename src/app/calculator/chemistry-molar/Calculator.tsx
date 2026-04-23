@@ -1,9 +1,8 @@
 'use client';
 import { useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { useSyncState } from '@/hooks/useSyncState';
-import { FlaskConical, Atom, CheckCircle2, Info, AlertTriangle } from 'lucide-react';
+import { FlaskConical, Atom, CheckCircle2, AlertTriangle, Info } from 'lucide-react';
 
 const ELEMENTS: Record<string, number> = {
   'H': 1.008, 'He': 4.002, 'Li': 6.941, 'Be': 9.012, 'B': 10.811, 'C': 12.011, 'N': 14.007, 'O': 15.999,
@@ -32,7 +31,7 @@ const COMPOUNDS = [
 ];
 
 export default function MolarMassCalc() {
-  const [state, setState] = useSyncState('molar_mass_v2', { formula: 'H2O' });
+  const [state, setState] = useSyncState('molar_mass_v3', { formula: 'H2O' });
   const { formula } = state;
 
   const res = useMemo(() => {
@@ -48,26 +47,14 @@ export default function MolarMassCalc() {
             const subCounts = parseGroup();
             if (f[i] === ')') i++;
             let multiplier = '';
-            while (i < f.length && /\d/.test(f[i])) {
-              multiplier += f[i];
-              i++;
-            }
+            while (i < f.length && /\d/.test(f[i])) { multiplier += f[i]; i++; }
             const mul = multiplier === '' ? 1 : parseInt(multiplier);
-            for (const el in subCounts) {
-              counts[el] = (counts[el] || 0) + subCounts[el] * mul;
-            }
+            for (const el in subCounts) counts[el] = (counts[el] || 0) + subCounts[el] * mul;
           } else {
-            let el = f[i];
-            i++;
-            if (i < f.length && /[a-z]/.test(f[i])) {
-              el += f[i];
-              i++;
-            }
+            let el = f[i]; i++;
+            if (i < f.length && /[a-z]/.test(f[i])) { el += f[i]; i++; }
             let countStr = '';
-            while (i < f.length && /\d/.test(f[i])) {
-              countStr += f[i];
-              i++;
-            }
+            while (i < f.length && /\d/.test(f[i])) { countStr += f[i]; i++; }
             const count = countStr === '' ? 1 : parseInt(countStr);
             counts[el] = (counts[el] || 0) + count;
           }
@@ -95,117 +82,114 @@ export default function MolarMassCalc() {
 
       return { total: total.toFixed(3), breakdown: breakdown.sort((a,b) => b.n * b.mass - a.n * a.mass) };
     } catch (e) {
-      return { total: 'Error', breakdown: [], error: 'Invalid Formula' };
+      return { total: 'Error', breakdown: [], error: 'Invalid Formula Structure' };
     }
   }, [formula]);
 
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider block mb-1.5";
+
   return (
-    <CalculatorLayout
-      title="Chemistry Molar Mass"
-      description="Professional molecular weight calculator supporting complex formulas with nested parentheses and hydration."
-      badge="Academic"
-      badgeColor="indigo"
-      category={{ label: 'Science', href: '/calculator/category/science' }}
-      leftPanel={
-        <div className="space-y-8">
+    <ModernCalcLayout
+      crumbs={[{ label: 'Engineering', href: '/engineering/' }, { label: 'Molar Mass Calculator' }]}
+      title="Chemistry Molar Mass Calculator"
+      description="Professional molecular weight calculator. Supports complex formulas with nested parentheses and standard IUPAC atomic weights."
+      icon={FlaskConical}
+      inputs={
+        <div className="space-y-6">
           <div className="space-y-3">
-            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Chemical Formula</label>
+            <label className={labelCls}>Chemical Formula (Case Sensitive)</label>
             <div className="relative">
               <input 
                 type="text" 
                 value={formula} 
                 onChange={e => setState({ formula: e.target.value })} 
                 placeholder="e.g. (NH4)2SO4"
-                className="w-full h-20 px-8 border-2 border-slate-100 rounded-3xl bg-slate-50 font-mono text-4xl font-black focus:border-indigo-500 focus:bg-white outline-none transition-all shadow-inner" 
+                className="w-full h-16 pl-6 pr-14 border border-[#DADCE0] rounded-lg bg-white font-mono text-2xl font-black focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all shadow-inner" 
               />
-              <div className="absolute right-6 top-1/2 -translate-y-1/2">
-                <FlaskConical className="w-8 h-8 text-slate-200" />
+              <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                <FlaskConical className="w-6 h-6 text-[#70757A]" />
               </div>
             </div>
-            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider px-2">Support Case Sensitive symbols e.g., NaCl, (NH4)2SO4</p>
+            {(res as any).error && (
+              <div className="flex gap-2 items-center text-[#D93025] px-1 mt-2">
+                <AlertTriangle className="w-4 h-4 shrink-0" />
+                <span className="text-[11px] font-bold uppercase tracking-wider">{(res as any).error}</span>
+              </div>
+            )}
           </div>
 
-          <div className="space-y-4">
-            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4" />
-              Quick Presets
+          <div className="space-y-3">
+            <label className={`${labelCls} flex items-center gap-1.5`}>
+              <CheckCircle2 className="w-3.5 h-3.5" /> Quick Presets
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 gap-2">
               {COMPOUNDS.map(c => (
-                <button 
-                  key={c.formula} 
-                  onClick={() => setState({ formula: c.formula })}
-                  className={`p-4 rounded-2xl border transition-all text-left ${formula === c.formula ? 'bg-indigo-600 border-indigo-600 shadow-lg shadow-indigo-100' : 'bg-white border-slate-100 hover:border-indigo-300 group'}`}
-                >
-                  <div className={`text-[9px] font-black uppercase mb-1 ${formula === c.formula ? 'text-indigo-200' : 'text-slate-400'}`}>{c.label}</div>
-                  <div className={`text-xs font-black font-mono transition-colors ${formula === c.formula ? 'text-white' : 'text-indigo-600 group-hover:text-indigo-700'}`}>{c.formula}</div>
+                <button key={c.formula} onClick={() => setState({ formula: c.formula })}
+                  className={`p-3 border rounded-lg text-left transition-all ${formula === c.formula ? 'bg-[#E8F0FE] border-[#1A73E8]' : 'bg-white border-[#DADCE0] hover:bg-[#F8F9FA] group'}`}>
+                  <div className={`text-[9px] font-bold uppercase mb-1 ${formula === c.formula ? 'text-[#1A73E8]' : 'text-[#70757A]'}`}>{c.label}</div>
+                  <div className={`text-xs font-black font-mono transition-colors ${formula === c.formula ? 'text-[#1A73E8]' : 'text-[#202124] group-hover:text-[#1A73E8]'}`}>{c.formula}</div>
                 </button>
               ))}
             </div>
           </div>
-
-          {(res as any).error && (
-            <div className="p-4 bg-rose-50 border border-rose-100 rounded-2xl flex gap-3 items-center text-rose-600 animate-in fade-in zoom-in">
-              <AlertTriangle className="w-5 h-5 shrink-0" />
-              <span className="text-xs font-bold uppercase tracking-wide">{(res as any).error}</span>
-            </div>
-          )}
         </div>
       }
-      rightPanel={
+      results={
         <div className="space-y-6">
-          <div className="bg-white rounded-3xl border-2 border-indigo-50 shadow-sm overflow-hidden text-center transition-all hover:shadow-xl hover:translate-y-[-4px]">
-            <div className="p-10 border-b border-indigo-50">
-               <div className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-400 mb-3">Molecular Mass</div>
-               <div className="text-6xl font-black text-slate-900 tracking-tighter font-mono flex items-center justify-center gap-2">
-                 {res.total} <span className="text-xl text-slate-400 font-bold">g/mol</span>
-               </div>
-            </div>
-            
-            <div className="p-8 bg-indigo-50/30 flex justify-center gap-8">
-               <div className="flex items-center gap-2">
-                  <Atom className="w-5 h-5 text-indigo-500" />
-                  <span className="text-[10px] font-black text-indigo-900 uppercase tracking-widest">{res.breakdown.length} Elements</span>
-               </div>
-            </div>
+          <div className="bg-[#1A1A2E] rounded-lg border border-[#DADCE0] text-center relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-32 h-32 bg-[#1A73E8] opacity-10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none" />
+             <div className="p-8 border-b border-white/10 relative z-10">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-[#8AB4F8] mb-2">Molecular Mass</div>
+                <div className="text-5xl font-black text-white tracking-tighter font-mono flex items-baseline justify-center gap-2">
+                  {res.total} <span className="text-xl text-white/50 font-bold">g/mol</span>
+                </div>
+             </div>
+             
+             <div className="px-6 py-4 bg-white/5 relative z-10 flex justify-center gap-4">
+                <div className="flex items-center gap-2">
+                   <Atom className="w-4 h-4 text-[#8AB4F8]" />
+                   <span className="text-[10px] font-bold text-white uppercase tracking-wider">{res.breakdown.length} Unique Elements</span>
+                </div>
+             </div>
           </div>
 
-          <div className="space-y-3">
-            <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 px-2 mb-2">Detailed Composition</h4>
-            {res.breakdown.map((item) => (
-              <div key={item.el} className="group p-4 bg-white border border-slate-100 rounded-2xl flex justify-between items-center transition-all hover:border-indigo-200 hover:shadow-sm">
-                <div className="flex items-center gap-4">
-                   <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center font-black text-indigo-600 text-sm group-hover:bg-indigo-600 group-hover:text-white transition-colors">{item.el}</div>
-                   <div className="text-left">
-                      <div className="text-[9px] font-black uppercase text-slate-400 tracking-wider">Atomic Mass</div>
-                      <div className="text-xs font-bold text-slate-700">{item.mass.toFixed(3)}</div>
-                   </div>
-                </div>
-                <div className="text-right">
-                   <div className="text-[9px] font-black uppercase text-slate-400 tracking-wider">Total in Formula</div>
-                   <div className="text-sm font-black font-mono text-indigo-600">{item.n} × {(item.mass * item.n).toFixed(3)}</div>
-                </div>
-              </div>
-            ))}
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
+             <div className="px-4 py-3 bg-[#F8F9FA] border-b border-[#DADCE0]">
+                <span className="text-[10px] font-bold text-[#70757A] uppercase tracking-wider">Detailed Composition Breakdown</span>
+             </div>
+             <div className="divide-y divide-[#DADCE0] max-h-[300px] overflow-y-auto custom-scrollbar">
+                {res.breakdown.map((item) => (
+                  <div key={item.el} className="p-4 flex justify-between items-center bg-white hover:bg-[#F8F9FA] transition-colors">
+                    <div className="flex items-center gap-4">
+                       <div className="w-10 h-10 bg-[#E8F0FE] rounded-lg flex items-center justify-center font-black text-[#1A73E8] text-sm">{item.el}</div>
+                       <div className="text-left">
+                          <div className="text-[9px] font-bold uppercase text-[#70757A] tracking-wider mb-0.5">Atomic Mass</div>
+                          <div className="text-xs font-bold text-[#202124]">{item.mass.toFixed(3)}</div>
+                       </div>
+                    </div>
+                    <div className="text-right">
+                       <div className="text-[9px] font-bold uppercase text-[#70757A] tracking-wider mb-0.5">Total in Formula</div>
+                       <div className="text-sm font-black font-mono text-[#1A73E8]">{item.n} × {(item.mass * item.n).toFixed(3)}</div>
+                    </div>
+                  </div>
+                ))}
+             </div>
           </div>
-
-          <div className="p-6 bg-slate-900 rounded-3xl text-white shadow-xl">
-              <div className="flex gap-4 items-start">
-                  <Info className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
-                  <p className="text-[11px] text-slate-400 leading-relaxed font-medium">
-                    This calculator uses the latest <strong className="text-white">IUPAC Standard Atomic Weights</strong>. Molar mass is essential for stoichiometry and solution preparation in analytical chemistry.
-                  </p>
-              </div>
+          
+          <div className="flex gap-3 p-4 bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg items-start">
+             <Info className="w-5 h-5 text-[#1A73E8] shrink-0 mt-0.5" />
+             <p className="text-[10px] text-[#202124] leading-relaxed">Calculations utilize the latest IUPAC Standard Atomic Weights. Capitalization is strictly enforced (e.g. use 'Co' for Cobalt, 'CO' for Carbon Monoxide).</p>
           </div>
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'Does it support parentheses?', answer: 'Yes! You can enter complex formulas like (NH4)2SO4 or hydrated crystals like CuSO4.5H2O (entered as CuSO4(H2O)5).' },
-          { question: 'Is it case sensitive?', answer: 'Absolutely. Element symbols must match the periodic table. Na represents Sodium, whereas NA or na will trigger an error.' },
-          { question: 'How do I enter water of hydration?', answer: 'For CuSO4 · 5H2O, enter it as CuSO4(H2O)5. The parentheses correctly treat the molecule groups.' },
-        ]} />
-      }
+      howToUse={{ steps: ["Enter the chemical formula in the input box.", "Ensure you use correct capitalization (e.g., NaCl, not nacl or NACL).", "Use parentheses for compound groups (e.g., (NH4)2SO4).", "The tool instantly parses the formula, multiplies atomic weights by their respective counts, and provides the total molar mass in g/mol."] }}
+      formula={{ title: "Molar Mass Calculation", description: "Atomic weight aggregation.", raw: "Molar Mass = (Count_1 × Atomic_Mass_1) + (Count_2 × Atomic_Mass_2) + ...\n\nExample for H2O:\nHydrogen (H): 2 × 1.008 = 2.016 g/mol\nOxygen (O): 1 × 15.999 = 15.999 g/mol\nTotal = 18.015 g/mol" }}
+      faqs={[
+        { question: "What is Molar Mass?", answer: "Molar mass is the mass of a given substance divided by the amount of substance. It is typically expressed in grams per mole (g/mol)." },
+        { question: "Can I use brackets?", answer: "Yes, the calculator fully supports nested parentheses and brackets, automatically multiplying the inner counts by the outer subscript." }
+      ]}
+      sidebar={{ title: "Science & Math Tools", links: [{ label: "Fraction Calculator", href: "/calculator/fraction-calculator" }, { label: "Base Converter", href: "/calculator/base-converter" }], banner: { title: "Academic Utilities", description: "Save time on chemistry homework and lab prep with instant molecular weight analysis.", image: "/images/math-banner.jpg" } }}
+      relatedTools={[{ label: "Fraction Calculator", href: "/calculator/fraction-calculator" }]}
     />
   );
 }

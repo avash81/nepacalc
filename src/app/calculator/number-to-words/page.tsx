@@ -1,55 +1,73 @@
+import { calcMeta } from '@/lib/calcMeta';
+import NumberToWordsCalculator from './Calculator';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
-import Calculator from './Calculator';
+import { PillarFAQ } from '@/components/seo/PillarFAQ';
+
+export const metadata = calcMeta({
+  title: "Number to Words Converter | Lakh & Crore Cheque Writer Nepal NepaCal",
+  description: "Convert numbers to words instantly using the South Asian (Lakh/Crore) or International (Million/Billion) system. Perfect for writing cheques in Nepal.",
+  slug: 'number-to-words',
+  keywords: ["number to words converter nepal", "lakh crore converter", "cheque writing tool", "convert digits to words", "south asian numbering system", "nepal financial tools"],
+});
+
+const WORDS_FAQS = [
+  {
+    question: "Does the calculator support the Lakh and Crore system?",
+    answer: "Yes. Our engine is optimized for the South Asian numbering system (Nepal/India), correctly placing commas at Lakh and Crore intervals rather than just Millions and Billions."
+  },
+  {
+    question: "How do I write large numbers on a cheque in Nepal?",
+    answer: "On a cheque, you should write the amount in words followed by 'Only'. For example: 'NPR One Lakh Fifty Thousand Only'."
+  },
+  {
+    question: "Can I convert decimals to words?",
+    answer: "Yes. Our tool handles fractional values and decimals, converting them into the 'Point' or 'Paisa' equivalent for legal and financial precision."
+  },
+  {
+    question: "Is there a limit to how large the number can be?",
+    answer: "Our engine can process numbers up to 15 digits (up to Nil or Quadrillions), ensuring it covers all common government and corporate financial scales."
+  },
+  {
+    question: "Why use words instead of digits in legal documents?",
+    answer: "Writing numbers in words prevents fraudulent alterations of digits (like adding a zero) on cheques and legal contracts in Nepal."
+  }
+];
 
 export default function Page() {
   return (
-    <>
-      <Calculator />
-    
-      {/* SEO: Competitor-Data Driven FAQ & Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "How to use the Number to Words Converter NepaCal tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free number to words tool will provide instant results tailored for Nepal." } },
-            { "@type": "Question", "name": "Is this Number to Words Converter NepaCal free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's Number to Words Converter NepaCal is 100% free with no registration required." } }
-          ]
-        }) }}
-      />
-      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Number to Words Converter NepaCal</h2>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
-          Our free <strong>number to words</strong> is optimized for Nepalese users. Whether you need an online number to words or want to calculate accurately — NepaCal is your best tool.
-        </p>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
-          Related: <strong>number to words</strong>, <strong>roman number roman number</strong>, <strong>total number of days calculator</strong>, <strong>date number calculator</strong>, <strong>number of days between 2 dates</strong>, <strong>calc number of days</strong>.
-        </p>
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-3">
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
-              <span>How do I use the Number to Words Converter NepaCal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Enter your values above to get results instantly.
+    <div className="bg-white min-h-screen">
+      <CalcWrapper
+        title="Numerical Verbiage Engine"
+        description="High-precision linguistic tool for converting complex digits into formal words using both regional and international numbering standards."
+        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Number to Words' }]}
+        isNepal={true}
+        relatedCalcs={[
+          { name: 'Unit Converter', slug: 'unit-converter' },
+          { name: 'Currency Converter', slug: 'currency-converter' },
+          { name: 'Decimal to Fraction', slug: 'decimal-to-fraction' }
+        ]}
+        formula="Linguistic Translation Logic"
+      >
+        <NumberToWordsCalculator />
+        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
+              Financial Guide: Writing Numbers in Words
+            </h2>
+            
+            <div className="prose prose-slate max-w-none mb-12">
+              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+                In the financial and legal sectors of Nepal, <strong>verbal representation of numbers</strong> is a critical security measure for preventing fraud in documents and cheques.
+              </p>
+              <p className="text-slate-700 text-base leading-relaxed mb-6">
+                Our <strong>Numerical Analysis Laboratory</strong> provides a robust interface for converting digits into formal English or Nepali context words. Whether you are writing an <strong>NPR Lakhs cheque</strong> or drafting a complex contract requiring quadrillion-scale accuracy, our engine ensures that your numerical data is translated into words with 100% linguistic and mathematical consistency.
+              </p>
             </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
-              <span>Is it accurate for Nepal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Yes, our <strong>number to words</strong> is regularly updated to reflect local standards.
-            </div>
-          </details>
+
+            <PillarFAQ faqs={WORDS_FAQS} title="Numbering Systems & Usage FAQ" />
+          </div>
         </div>
-      </section>
-    </>
+      </CalcWrapper>
+    </div>
   );
 }

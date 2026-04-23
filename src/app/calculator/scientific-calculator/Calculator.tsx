@@ -90,7 +90,7 @@ function drawMultiGraph(canvas: HTMLCanvasElement, expressions: string[], deg: b
   });
 }
 
-const VAR_KEYS: Record<string, string> = { '(-)': 'A', '.,,,': 'B', 'hyp': 'C', 'sin': 'D', 'cos': 'E', 'tan': 'F', '(': 'X', ')': 'Y', 'M+': 'M' };
+const VAR_KEYS: Record<string, string> = { '(-)': 'A', '.,,': 'B', 'hyp': 'C', 'sin': 'D', 'cos': 'E', 'tan': 'F', '(': 'X', ')': 'Y', 'M+': 'M' };
 
 const DEFAULT_STATE = {
   expressions: ['', '', ''],
@@ -346,7 +346,7 @@ export default function ScientificCalculator() {
                 <SciBtn key={l} label={l} shift={['b/c','∛','x³','nth√','10ˣ','eˣ'][i]} act={['(','sqrt(','^2','^','log10(','ln('][i]} />
              ))}
              <SciBtn label="(-)" shift="STO" alpha="A" act="(-)" sA="STO" aA="X" /> 
-             <SciBtn label=".,,," shift="←" alpha="B" act="," aA="Y" /> 
+             <SciBtn label=".,," shift="←" alpha="B" act="," aA="Y" /> 
              <SciBtn label="hyp" shift="Abs" alpha="C" /> 
              <SciBtn label="sin" shift="sin⁻¹" alpha="D" act="sin(" sA="asin(" /> 
              <SciBtn label="cos" shift="cos⁻¹" alpha="E" act="cos(" sA="acos(" /> 

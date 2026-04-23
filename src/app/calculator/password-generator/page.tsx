@@ -1,62 +1,73 @@
 import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
+import { CalcWrapper } from '@/components/calculator/CalcWrapper';
+import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Password Generator Secure Random NepaCal",
-  description: "Generate strong secure random passwords online. Create 8 12 or 16 character passwords for free using NepaCal password generator",
+  title: "Secure Password Generator | Strong Random Pwd Online Nepal NepaCal",
+  description: "Generate high-entropy, secure random passwords instantly. Protect your online accounts in Nepal with custom length and special character options.",
   slug: 'password-generator',
-  keywords: ["password generator", "nepal", "calculator", "free", "online"],
+  keywords: ["password generator nepal", "secure random password", "strong password maker", "random string generator", "online security tool", "high entropy passwords"],
 });
+
+const PASSWORD_FAQS = [
+  {
+    question: "What makes a password 'Strong'?",
+    answer: "A strong password is at least 12 characters long and contains a mix of uppercase letters, lowercase letters, numbers, and special symbols (!@#$%^&*)."
+  },
+  {
+    question: "Why should I use a random generator?",
+    answer: "Random generators eliminate human patterns (like birthdays or names) that hackers use in 'Brute Force' and 'Dictionary' attacks, making your accounts much more secure."
+  },
+  {
+    question: "Is it safe to generate passwords online?",
+    answer: "Our tool generates passwords locally in your browser using high-entropy random algorithms. No data is sent to or stored on our servers."
+  },
+  {
+    question: "How often should I change my passwords in Nepal?",
+    answer: "For sensitive accounts (banking, email), security experts recommend updating passwords every 3-6 months and using a unique password for every service."
+  },
+  {
+    question: "Should I write down my generated passwords?",
+    answer: "No. It is best to use a reputable password manager to store your complex, randomly generated credentials securely."
+  }
+];
 
 export default function Page() {
   return (
-    <>
-      <Calculator />
-    
-      {/* SEO: Competitor-Data Driven FAQ & Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "How to use the Password Generator Secure Random NepaCal tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free password generator tool will provide instant results tailored for Nepal." } },
-            { "@type": "Question", "name": "Is this Password Generator Secure Random NepaCal free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's Password Generator Secure Random NepaCal is 100% free with no registration required." } }
-          ]
-        }) }}
-      />
-      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Password Generator Secure Random NepaCal</h2>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
-          Our free <strong>password generator</strong> is optimized for Nepalese users. Whether you need an online password generator or want to calculate accurately — NepaCal is your best tool.
-        </p>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
-          Related: <strong>password generator</strong>, <strong>password generator</strong>, <strong>password generator password generator password generator</strong>, <strong>password gen</strong>, <strong>password generator 14 characters</strong>, <strong>passwordgen</strong>.
-        </p>
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-3">
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
-              <span>How do I use the Password Generator Secure Random NepaCal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Enter your values above to get results instantly.
+    <div className="bg-white min-h-screen">
+      <CalcWrapper
+        title="Cryptographic Password Engine"
+        description="High-entropy security tool for generating non-sequential, pattern-free random passwords for maximum digital protection."
+        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Password Generator' }]}
+        isNepal={true}
+        relatedCalcs={[
+          { name: 'QR Generator', slug: 'qr-generator' },
+          { name: 'Word Counter', slug: 'word-counter' },
+          { name: 'Unit Converter', slug: 'unit-converter' }
+        ]}
+        formula="Random Entropy Logic"
+      >
+        <Calculator />
+        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
+              Security Guide: Protecting Your Identity
+            </h2>
+            
+            <div className="prose prose-slate max-w-none mb-12">
+              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+                In the modern digital landscape, a <strong>strong password</strong> is your first line of defense against cyber threats. Simple passwords based on personal information are easily cracked by automated scripts.
+              </p>
+              <p className="text-slate-700 text-base leading-relaxed mb-6">
+                Our <strong>Cryptographic Security Laboratory</strong> empowers users in Nepal to take control of their online privacy. By utilizing advanced random-number generation, we create <strong>pattern-free passwords</strong> that are virtually impossible to guess. Best of all, our engine processes everything within your browser, ensuring your new credentials never leave your device.
+              </p>
             </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
-              <span>Is it accurate for Nepal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Yes, our <strong>password generator</strong> is regularly updated to reflect local standards.
-            </div>
-          </details>
+
+            <PillarFAQ faqs={PASSWORD_FAQS} title="Online Security & Passwords FAQ" />
+          </div>
         </div>
-      </section>
-    </>
+      </CalcWrapper>
+    </div>
   );
 }

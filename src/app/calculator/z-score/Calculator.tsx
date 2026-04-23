@@ -1,7 +1,7 @@
 'use client';
 import { useState, useMemo } from 'react';
 import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+
 
 export default function ZScoreCalc() {
   const [x, setX]         = useState(85);
@@ -20,6 +20,7 @@ export default function ZScoreCalc() {
 
   return (
     <CalculatorLayout
+      hideHeader={true}
       title="Z-Score Calculator"
       description="Calculate the standard score (Z-score) of any raw value in a normal distribution. Shows how many standard deviations a value is from the mean."
       category={{ label: 'Math', href: '/calculator/category/math' }}
@@ -92,13 +93,7 @@ export default function ZScoreCalc() {
           </div>
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'What is a Z-score?', answer: 'A Z-score (standard score) measures how many standard deviations a value is above or below the population mean. Z=0 means exactly equal to the mean.' },
-          { question: 'Is a higher Z-score better?', answer: 'It depends on context. In exams, higher Z-score = above average. In error tracking, lower/negative Z-score may be better.' },
-          { question: 'What does Z=2 mean?', answer: 'Z=2 means the value is 2 standard deviations above the mean, placing it in approximately the top 2.3% of the distribution.' },
-        ]} />
-      }
+      
     />
   );
 }

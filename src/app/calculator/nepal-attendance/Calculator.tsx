@@ -1,15 +1,11 @@
 'use client';
-
-import React, { useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-import { ResultCard } from '@/components/calculator/ResultCard';
+import { useMemo } from 'react';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { useSyncState } from '@/hooks/useSyncState';
 import { GraduationCap, CheckCircle2, XCircle, AlertCircle, BookOpen, Info } from 'lucide-react';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
 
 export default function NepalAttendanceCalculator() {
-  const [state, setState] = useSyncState('nepal_att_v2', {
+  const [state, setState] = useSyncState('nepal_att_v3', {
     totalClasses: 100,
     attended: 72,
     required: 75
@@ -24,22 +20,11 @@ export default function NepalAttendanceCalculator() {
     const shortage = Math.max(0, requiredClasses - attended);
     const isEligible = percentage >= required;
 
-    // How many more can they miss?
-    // If currently eligible: max_absent = floor(attended / (required/100)) - totalClasses
-    // Simpler: they need (attended / total >= req/100)
-    // Max total they can have: attended / (req/100) => total where they are exactly at threshold
     const maxTotalAllowed = Math.floor(attended / (required / 100));
     const canMissMore = Math.max(0, maxTotalAllowed - totalClasses);
 
-    // Classes to attend to become eligible (if short)
     let classesToAttend = 0;
     if (!isEligible) {
-      // Need to find x such that (attended + x) / (totalClasses + x) >= req/100
-      // attended + x >= req/100 * (totalClasses + x)
-      // attended + x >= req*totalClasses/100 + req*x/100
-      // x - req*x/100 >= req*totalClasses/100 - attended
-      // x(1 - req/100) >= req*totalClasses/100 - attended
-      // x >= (req*totalClasses/100 - attended) / (1 - req/100)
       const numerator = (required * totalClasses / 100) - attended;
       const denominator = 1 - (required / 100);
       classesToAttend = Math.ceil(numerator / denominator);
@@ -48,125 +33,110 @@ export default function NepalAttendanceCalculator() {
     return { percentage, isEligible, shortage, requiredClasses, canMissMore, classesToAttend };
   }, [totalClasses, attended, required]);
 
-  const faqs = [
-    { 
-      question: "What is the minimum attendance requirement for TU/PU?", 
-      answer: "Under Tribhuvan University (TU) and Pokhara University (PU) regulations, students must maintain a minimum of 75% attendance to be eligible for end-semester examinations." 
-    },
-    { 
-      question: "Does the 75% rule apply to practicals?", 
-      answer: "Yes, the 75% rule applies separately to both Theory and Practical classes. High attendance in one cannot compensate for a shortage in the other." 
-    },
-    { 
-      question: "Can I get a grace (condonation) for low attendance?", 
-      answer: "The Faculty Dean may grant condonation for up to a 5% shortage in extreme cases like illness, but this requires a formal application and is not a guaranteed right." 
-    }
-  ];
+  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-lg font-bold focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider block mb-1.5";
 
   return (
-    <CalculatorLayout
-      title="TU/PU Attendance Tracker"
-      description="Calculate your university attendance percentage and eligibility for exams. Based on the mandatory 75% minimum for Tribhuvan University (TU) and Pokhara University (PU)."
-      category={{ label: 'Nepal Specific', href: '/calculator/category/nepal' }}
-      faqs={faqs}
-      leftPanel={
-        <div className="space-y-8">
-           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <ValidatedInput
-                label="Total Classes Held"
-                value={totalClasses}
-                onChange={v => update({ totalClasses: v })}
-                hint="All lectures in the semester"
-              />
-              <ValidatedInput
-                label="Classes Attended"
-                value={attended}
-                onChange={v => update({ attended: v })}
-                hint="Classes you were present for"
-                error={attended > totalClasses ? 'Cannot exceed total classes' : undefined}
-              />
-           </div>
-
-           <div className="space-y-3">
-              <label className="text-[10px] font-black uppercase text-[var(--text-muted)] tracking-widest">Required Minimum (%)</label>
-              <div className="flex p-1 bg-[var(--bg-subtle)] border border-[var(--border)] rounded-2xl">
-                 {[60, 75, 80].map(r => (
-                    <button
-                      key={r}
-                      onClick={() => update({ required: r })}
-                      className={`flex-1 py-3 text-sm font-black rounded-xl transition-all ${required === r ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-400 hover:text-slate-600'}`}
-                    >
-                      {r}%
-                    </button>
-                 ))}
-              </div>
-              <p className="text-[10px] text-slate-400 font-medium italic px-1">TU/PU standard is 75%. Some colleges require 80%.</p>
-           </div>
-
-           <div className="p-6 bg-slate-900 text-white rounded-3xl space-y-3">
-              <div className="flex items-center gap-3">
-                 <BookOpen className="w-5 h-5 text-indigo-400" />
-                 <h3 className="text-[10px] font-black uppercase tracking-widest">University Rule</h3>
-              </div>
-              <p className="text-[11px] text-slate-400 leading-relaxed italic">
-                "Under Tribhuvan University's Academic Calendar, students must maintain a minimum of **75%** attendance in both theory and practical classes to be eligible for the end-semester examination."
-              </p>
-           </div>
-        </div>
-      }
-      rightPanel={
+    <ModernCalcLayout
+      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'University Attendance' }]}
+      title="TU/PU Attendance Eligibility Tracker"
+      description="Calculate your university attendance percentage and eligibility for end-semester exams. Based on the mandatory 75% minimum for Tribhuvan University (TU) and Pokhara University (PU)."
+      icon={GraduationCap}
+      inputs={
         <div className="space-y-6">
-          <ResultCard
-            label="Current Attendance"
-            value={results.percentage.toFixed(1)}
-            unit="%"
-            color={results.isEligible ? 'indigo' : 'rose'}
-            title="Semester Standing"
-            copyValue={`Attendance: ${results.percentage.toFixed(1)}%`}
-          />
-
-          <div className={`rounded-[2.5rem] overflow-hidden border shadow-sm ${results.isEligible ? 'border-emerald-100 bg-emerald-50' : 'border-rose-100 bg-rose-50'}`}>
-             <div className={`p-6 flex items-center gap-4 ${results.isEligible ? 'bg-emerald-600' : 'bg-rose-600'} text-white`}>
-                {results.isEligible
-                  ? <CheckCircle2 className="w-8 h-8" />
-                  : <XCircle className="w-8 h-8" />
-                }
-                <div>
-                   <div className="text-[10px] font-black uppercase tracking-[0.2em] opacity-80">Eligibility Status</div>
-                   <div className="text-2xl font-black">{results.isEligible ? 'ELIGIBLE ✓' : 'NOT ELIGIBLE ✗'}</div>
-                </div>
-             </div>
-             <div className="p-6 divide-y divide-slate-100 space-y-0">
-                <div className="py-4 flex justify-between items-center">
-                   <span className="text-[11px] font-bold text-slate-600 uppercase">Required Classes</span>
-                   <span className="text-sm font-black text-slate-900 font-mono">{results.requiredClasses} / {totalClasses}</span>
-                </div>
-                {results.isEligible ? (
-                  <div className="py-4 flex justify-between items-center">
-                     <span className="text-[11px] font-bold text-emerald-700 uppercase">You Can Still Miss</span>
-                     <span className="text-xl font-black text-emerald-600 font-mono">{results.canMissMore} classes</span>
-                  </div>
-                ) : (
-                  <div className="py-4 flex justify-between items-center">
-                     <span className="text-[11px] font-bold text-rose-700 uppercase">Must Attend Consecutively</span>
-                     <span className="text-xl font-black text-rose-600 font-mono">{results.classesToAttend} classes</span>
-                  </div>
-                )}
-             </div>
+          <div className="space-y-4 p-5 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg">
+            <div>
+              <label className={labelCls}>Total Classes Held</label>
+              <input type="number" value={totalClasses} onChange={e => update({ totalClasses: Number(e.target.value) })} min={1} className={inputCls} />
+              <p className="text-[10px] text-[#70757A] mt-1.5 font-medium px-1">Total lectures/practicals conducted in the semester so far.</p>
+            </div>
+            
+            <div>
+              <label className={labelCls}>Classes You Attended</label>
+              <input type="number" value={attended} onChange={e => update({ attended: Number(e.target.value) })} min={0} max={totalClasses} className={`${inputCls} ${attended > totalClasses ? 'border-[#D93025] focus:border-[#D93025] focus:ring-[#D93025]' : ''}`} />
+              {attended > totalClasses && <p className="text-[10px] text-[#D93025] mt-1.5 font-bold px-1">Cannot exceed total classes held.</p>}
+            </div>
           </div>
 
-          <div className="p-5 bg-amber-50 border border-amber-100 rounded-2xl flex gap-3">
-             <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-             <div className="space-y-1">
-                <h5 className="text-[10px] font-black text-amber-900 uppercase tracking-widest">Condonation Warning</h5>
-                <p className="text-[11px] text-amber-700 font-medium leading-relaxed italic">
-                   "Condonation (grace) may be granted for 5% shortage by the Faculty Dean, but it requires a formal application and is not guaranteed."
+          <div className="space-y-3">
+            <label className={labelCls}>Required Minimum Percentage</label>
+            <div className="flex p-1 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg">
+              {[60, 75, 80].map(r => (
+                <button key={r} onClick={() => update({ required: r })}
+                  className={`flex-1 py-3 text-xs font-bold rounded transition-all ${required === r ? 'bg-white text-[#1A73E8] shadow-sm border border-[#DADCE0]' : 'text-[#70757A] hover:bg-[#E8F0FE]'}`}>
+                  {r}%
+                </button>
+              ))}
+            </div>
+            <p className="text-[10px] text-[#70757A] font-medium px-1">Note: TU/PU standard is 75%. Some private colleges mandate 80%.</p>
+          </div>
+
+          <div className="p-5 bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg flex items-start gap-3">
+             <BookOpen className="w-5 h-5 text-[#1A73E8] shrink-0 mt-0.5" />
+             <div>
+                <h5 className="text-[10px] font-bold uppercase tracking-wider text-[#1A73E8] mb-1">University Mandate</h5>
+                <p className="text-[11px] text-[#202124] leading-relaxed font-medium">
+                  "Under TU/PU Academic Regulations, students must maintain a minimum attendance in both theory and practical classes independently to be eligible for board examinations."
                 </p>
              </div>
           </div>
         </div>
       }
-      faqSection={<div className="mt-8"><CalcFAQ faqs={faqs} /></div>}
+      results={
+        <div className="space-y-6">
+          <div className={`border rounded-lg text-center p-8 relative overflow-hidden shadow-sm ${results.isEligible ? 'bg-white border-[#DADCE0]' : 'bg-[#FCE8E6] border-[#FAD2CF]'}`}>
+            <div className={`text-[10px] font-bold uppercase tracking-wider mb-2 relative z-10 ${results.isEligible ? 'text-[#70757A]' : 'text-[#D93025]'}`}>Current Attendance</div>
+            <div className={`text-6xl font-black tracking-tighter mb-4 font-mono relative z-10 ${results.isEligible ? 'text-[#1A73E8]' : 'text-[#D93025]'}`}>
+              {results.percentage.toFixed(1)}<span className="text-3xl ml-1">%</span>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+             <div className={`px-5 py-4 flex items-center gap-3 border-b ${results.isEligible ? 'bg-[#E6F4EA] border-[#CEEAD6] text-[#188038]' : 'bg-[#FCE8E6] border-[#FAD2CF] text-[#D93025]'}`}>
+                {results.isEligible ? <CheckCircle2 className="w-6 h-6 shrink-0" /> : <XCircle className="w-6 h-6 shrink-0" />}
+                <div>
+                   <div className="text-[9px] font-bold uppercase tracking-widest opacity-80 mb-0.5">Eligibility Status</div>
+                   <div className="text-lg font-black uppercase tracking-wider">{results.isEligible ? 'Eligible for Exams' : 'Not Eligible (Shortage)'}</div>
+                </div>
+             </div>
+             <div className="divide-y divide-[#DADCE0]">
+                <div className="p-4 flex justify-between items-center text-xs">
+                   <span className="text-[#5F6368] font-bold tracking-wider">Target Threshold</span>
+                   <span className="font-black text-[#202124]">{results.requiredClasses} classes ({required}%)</span>
+                </div>
+                {results.isEligible ? (
+                  <div className="p-4 flex justify-between items-center text-xs bg-[#F8F9FA]">
+                     <span className="text-[#188038] font-bold tracking-wider">Buffer (Can Miss)</span>
+                     <span className="font-black text-[#188038]">{results.canMissMore} more classes</span>
+                  </div>
+                ) : (
+                  <div className="p-4 flex justify-between items-center text-xs bg-[#F8F9FA]">
+                     <span className="text-[#D93025] font-bold tracking-wider">Classes Needed</span>
+                     <span className="font-black text-[#D93025]">{results.classesToAttend} consecutive classes</span>
+                  </div>
+                )}
+             </div>
+          </div>
+
+          <div className="p-4 bg-[#FEF7E0] border border-[#FDE293] rounded-lg flex items-start gap-3">
+             <AlertCircle className="w-5 h-5 text-[#E37400] shrink-0 mt-0.5" />
+             <div>
+                <h5 className="text-[10px] font-bold uppercase tracking-wider text-[#E37400] mb-1">Condonation (Grace) Warning</h5>
+                <p className="text-[11px] text-[#202124] leading-relaxed">
+                   Condonation may be granted for a maximum 5% shortage by the Faculty Dean/Campus Chief for extreme cases like illness, but this requires a formal application with medical proof and is never guaranteed.
+                </p>
+             </div>
+          </div>
+        </div>
+      }
+      howToUse={{ steps: ["Find out the total number of classes (lectures or practicals) conducted by your professor so far.", "Enter the number of those classes you were physically present for.", "Select your university's required threshold (usually 75%).", "If you are short, the calculator will tell you exactly how many consecutive classes you must attend to cross the threshold."] }}
+      formula={{ title: "Eligibility Math", description: "Algebraic projection.", raw: "Current % = (Attended / Total) × 100\n\nIf short, classes needed (x) is found by solving:\n(Attended + x) / (Total + x) = Threshold%\n\nx = (Threshold × Total - Attended) / (1 - Threshold)" }}
+      faqs={[
+        { question: "What happens if I fall below 75%?", answer: "Colleges are mandated to send a list of eligible students to the university board. If you are below 75% without an approved condonation, you will receive an NQ (Not Qualified) and be barred from sitting the board exams." },
+        { question: "Do internal assessments count?", answer: "No. Attendance is tracked strictly for physical presence in lectures and practical labs. However, low attendance often correlates with low internal assessment marks." }
+      ]}
+      sidebar={{ title: "Academic Tools", links: [{ label: "SEE GPA Calculator", href: "/calculator/see-gpa" }, { label: "Marks Needed", href: "/calculator/marks-needed" }], banner: { title: "Plan Ahead", description: "Don't let attendance ruin your semester. Track it early.", image: "/images/math-banner.jpg" } }}
+      relatedTools={[{ label: "SEE GPA Calculator", href: "/calculator/see-gpa" }]}
     />
   );
 }

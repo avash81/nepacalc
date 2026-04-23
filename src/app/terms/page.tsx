@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: 'Terms of Service | NEPACALC',
   description: 'Understand the terms of use for NEPACALC. Our high-precision calculators are designed for educational and professional guidance in Nepal.',
   alternates: {
-    canonical: '/terms',
+    canonical: 'https://nepacalc.com/terms/',
   },
 };
 

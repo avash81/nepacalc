@@ -1,68 +1,74 @@
+import { calcMeta } from '@/lib/calcMeta';
 import type { Metadata } from 'next';
 import CalorieCalculator from './Calculator';
-export const metadata: Metadata = {
-  title: 'Calorie Calculator Nepal — Daily Calorie Needs & Goals',
-  description: 'Calculate your daily calorie needs using BMR and activity level. Get calorie goals for weight loss, maintenance, and muscle gain. Free online tool.',
-  alternates: { canonical: 'https://nepacalc.com/calculator/calorie-calculator' },
+import { CalcWrapper } from '@/components/calculator/CalcWrapper';
+import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
-  openGraph: {
-    title: 'Calorie Calculator Nepal — Daily Calorie Needs & Goals',
-    description: 'Calculate your daily calorie needs using BMR and activity level. Get calorie goals for weight loss, maintenance, and muscle gain. Free online tool.',
-    type: 'article',
+export const metadata = calcMeta({
+  title: "Calorie Calculator | Daily Needs & Weight Loss Goals Nepal NepaCal",
+  description: "Calculate your daily calorie needs for weight loss, maintenance, or muscle gain. Tailored for Nepalese lifestyles with BMR and TDEE precision.",
+  slug: 'calorie-calculator',
+  keywords: ["calorie calculator nepal", "daily calorie needs", "calorie deficit for weight loss", "tdee calculator nepal", "how many calories to eat", "fitness nutrition nepal"],
+});
+
+const CALORIE_FAQS = [
+  {
+    question: "How many calories do I need per day in Nepal?",
+    answer: "This depends on your activity level. A sedentary worker in Kathmandu might need 1,800-2,000 calories, while an active trekker could require over 3,000 calories."
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Calorie Calculator Nepal — Daily Calorie Needs & Goals',
-    description: 'Calculate your daily calorie needs using BMR and activity level. Get calorie goals for weight loss, maintenance, and muscle gain. Free online tool.',
+  {
+    question: "How many calories should I cut to lose 1kg a week?",
+    answer: "To lose 1kg of fat, you need a deficit of roughly 7,700 calories. A daily deficit of 500-700 calories is generally recommended for safe, sustainable weight loss."
   },
-};
-export default function CaloriePage() { return (
-    <>
-      <CalorieCalculator />
-    
-      {/* SEO: Competitor-Data Driven FAQ & Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "How to use the Calorie Calculator Daily Intake NepaCal tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free calorie calculator tool will provide instant results tailored for Nepal." } },
-            { "@type": "Question", "name": "Is this Calorie Calculator Daily Intake NepaCal free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's Calorie Calculator Daily Intake NepaCal is 100% free with no registration required." } }
-          ]
-        }) }}
-      />
-      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Calorie Calculator Daily Intake NepaCal</h2>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
-          Our free <strong>calorie calculator</strong> is optimized for Nepalese users. Whether you need an online calorie calculator or want to calculate accurately — NepaCal is your best tool.
-        </p>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
-          Related: <strong>calorie calculator</strong>, <strong>calorie calculator</strong>, <strong>calorie deficit</strong>, <strong>calcul calorie</strong>, <strong>calories expended calculator</strong>, <strong>calories kj calculator</strong>.
-        </p>
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-3">
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
-              <span>How do I use the Calorie Calculator Daily Intake NepaCal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Enter your values above to get results instantly.
+  {
+    question: "Do calories from Dal Bhat count differently?",
+    answer: "A calorie is a unit of energy, but nutritional quality matters. Dal Bhat is a balanced meal providing sustained energy, making it superior to processed snacks."
+  },
+  {
+    question: "Should I track my exercise calories separately?",
+    answer: "Our calculator includes an activity factor (TDEE). While exercise burns calories, most people overestimate the burn; tracking through TDEE is more accurate."
+  },
+  {
+    question: "What is the minimum calories I should eat daily?",
+    answer: "Generally, men should not go below 1,500 and women below 1,200 calories without medical supervision to ensure adequate nutrient intake."
+  }
+];
+
+export default function Page() {
+  return (
+    <div className="bg-white min-h-screen">
+      <CalcWrapper
+        title="Daily Calorie Estimator"
+        description="High-precision nutritional engine for calculating your total daily energy expenditure and setting personalized weight management targets."
+        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Calorie Calculator' }]}
+        isNepal={true}
+        relatedCalcs={[
+          { name: 'BMR Calculator', slug: 'bmr' },
+          { name: 'BMI Calculator', slug: 'bmi' },
+          { name: 'Momo Calories', slug: 'momo-calorie-counter' }
+        ]}
+        formula="Mifflin-St Jeor TDEE Protocol"
+      >
+        <CalorieCalculator />
+        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
+              Nutrition Guide: Caloric Balance
+            </h2>
+            
+            <div className="prose prose-slate max-w-none mb-12">
+              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+                Mastering your <strong>daily calorie intake</strong> is the single most effective way to control your body weight. Whether your goal is fat loss or muscle hypertrophy, the fundamental law of energy balance remains the same.
+              </p>
+              <p className="text-slate-700 text-base leading-relaxed mb-6">
+                Our <strong>Nutritional Intelligence Laboratory</strong> provides a personalized roadmap for your fitness journey. By calculating your <strong>Total Daily Energy Expenditure (TDEE)</strong>, we help you determine the exact calorie targets needed to achieve your specific body goals while maintaining optimal energy levels for your daily life in Nepal.
+              </p>
             </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
-              <span>Is it accurate for Nepal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Yes, our <strong>calorie calculator</strong> is regularly updated to reflect local standards.
-            </div>
-          </details>
+
+            <PillarFAQ faqs={CALORIE_FAQS} title="Calories & Nutrition FAQ" />
+          </div>
         </div>
-      </section>
-    </>
-  ); }
+      </CalcWrapper>
+    </div>
+  );
+}

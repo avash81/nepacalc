@@ -1,106 +1,192 @@
 'use client';
-import { useState, useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
-import { Plus, Trash2 } from 'lucide-react';
+import { useMemo } from 'react';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { GraduationCap, Plus, Trash2, Info, Target, Calculator, PieChart, BookOpen, Star } from 'lucide-react';
+import { useSyncState } from '@/hooks/useSyncState';
 
-export default function CGPACalculator() {
-  const [semesters, setSemesters] = useState([
+const DEFAULT_STATE = {
+  semesters: [
     { gpa: 3.5, credits: 18 },
     { gpa: 3.7, credits: 18 },
-  ]);
+  ]
+};
+
+export default function CGPACalculator() {
+  const [state, setState] = useSyncState('cgpa_v4', DEFAULT_STATE);
+  const { semesters } = state;
+
+  const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
   const r = useMemo(() => {
     let totalPoints = 0, totalCredits = 0;
-    semesters.forEach(s => { totalPoints += s.gpa * s.credits; totalCredits += s.credits; });
-    return { cgpa: totalCredits > 0 ? totalPoints / totalCredits : 0, totalCredits };
+    semesters.forEach(s => { 
+      totalPoints += (s.gpa || 0) * (s.credits || 0); 
+      totalCredits += (s.credits || 0); 
+    });
+    const cgpa = totalCredits > 0 ? totalPoints / totalCredits : 0;
+    return { cgpa, totalCredits };
   }, [semesters]);
 
-  const add    = () => setSemesters([...semesters, { gpa: 0, credits: 18 }]);
-  const remove = (i: number) => setSemesters(semesters.filter((_, idx) => idx !== i));
-  const update = (i: number, field: 'gpa' | 'credits', val: number) => {
-    const next = [...semesters]; next[i][field] = val; setSemesters(next);
+  const addRow = () => update({ semesters: [...semesters, { gpa: 0, credits: 18 }] });
+  const removeRow = (i: number) => update({ semesters: semesters.filter((_, idx) => idx !== i) });
+  const updateRow = (i: number, field: 'gpa' | 'credits', val: number) => {
+    const next = [...semesters];
+    next[i] = { ...next[i], [field]: val };
+    update({ semesters: next });
   };
 
-  const letter = r.cgpa >= 3.6 ? 'A (Distinction)' : r.cgpa >= 3.2 ? 'A− (Excellent)' : r.cgpa >= 2.8 ? 'B+ (Very Good)' : r.cgpa >= 2.4 ? 'B (Good)' : r.cgpa >= 2.0 ? 'C+ (Satisfactory)' : 'Pass/Fail';
+  const getLetter = (gpa: number) => {
+    if (gpa >= 3.6) return 'A (Distinction)';
+    if (gpa >= 3.2) return 'A- (Excellent)';
+    if (gpa >= 2.8) return 'B+ (Very Good)';
+    if (gpa >= 2.4) return 'B (Good)';
+    if (gpa >= 2.0) return 'C+ (Satisfactory)';
+    return 'Pass/Fail';
+  };
+
+  const inputCls = "w-full h-11 px-3 border border-[#DADCE0] rounded bg-white text-sm font-bold focus:border-[#1A73E8] outline-none";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
 
   return (
-    <CalculatorLayout
+    <ModernCalcLayout
+      crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'CGPA Calculator' }]}
       title="CGPA Calculator"
-      description="Calculate your Cumulative GPA across multiple semesters using credit-weighted averaging. Supports all Nepal university GPA scales."
-      category={{ label: 'Education', href: '/calculator/category/education' }}
-      leftPanel={
-        <div className="space-y-4">
-          {/* Table Header */}
-          <div className="grid grid-cols-[1fr_1fr_40px] gap-3 px-2">
-            <span className="text-[11px] font-black uppercase text-[var(--text-secondary)]">Semester GPA</span>
-            <span className="text-[11px] font-black uppercase text-[var(--text-secondary)]">Credit Hours</span>
-            <span />
-          </div>
-
-          {/* Rows */}
-          {semesters.map((s, i) => (
-            <div key={i} className="grid grid-cols-[1fr_1fr_40px] gap-3 items-center">
-              <input type="number" step="0.01" min={0} max={4} value={s.gpa} onChange={e => update(i, 'gpa', Number(e.target.value))}
-                placeholder="0.00" className="h-11 px-3 border border-[var(--border)] bg-white font-bold text-sm focus:border-[var(--primary)] outline-none w-full" />
-              <input type="number" min={0} max={40} value={s.credits} onChange={e => update(i, 'credits', Number(e.target.value))}
-                className="h-11 px-3 border border-[var(--border)] bg-white font-bold text-sm focus:border-[var(--primary)] outline-none w-full" />
-              <button onClick={() => remove(i)} className="h-11 flex items-center justify-center text-red-400 hover:text-red-600 transition-colors">
-                <Trash2 className="w-4 h-4" />
-              </button>
-            </div>
-          ))}
-
-          <button onClick={add} className="w-full py-3 border border-dashed border-[var(--border)] text-[11px] font-bold text-[var(--primary)] uppercase hover:bg-[var(--bg-surface)] transition-all flex items-center justify-center gap-2">
-            <Plus className="w-4 h-4" /> Add Semester
-          </button>
-
-          <div className="p-4 bg-[var(--bg-subtle)] border border-[var(--border)]">
-            <div className="text-[10px] font-black uppercase text-[var(--text-muted)] mb-1">Formula</div>
-            <code className="text-[11px] font-mono text-[var(--primary)]">CGPA = Σ(GPA × Credits) / Σ(Credits)</code>
-          </div>
-        </div>
-      }
-      rightPanel={
+      description="Calculate your Cumulative GPA across all semesters with credit-weighted averaging. Supports TU, KU, PU, and international university standards."
+      icon={GraduationCap}
+      inputs={
         <div className="space-y-6">
-          <div className="p-8 bg-white border border-[var(--border)] text-center">
-            <div className="text-xs font-bold uppercase text-[var(--text-muted)] mb-2">Cumulative GPA</div>
-            <div className="text-7xl font-black text-[var(--primary)] tracking-tighter mb-2">{r.cgpa.toFixed(2)}</div>
-            <div className="inline-block px-4 py-1 bg-[var(--primary)] text-white text-xs font-black uppercase tracking-widest">{letter}</div>
+          <div className="space-y-4">
+             <div className="grid grid-cols-[1fr_1fr_40px] gap-3 px-2">
+                <label className={labelCls}>GPA</label>
+                <label className={labelCls}>Credits</label>
+                <span />
+             </div>
+             <div className="space-y-3">
+                {semesters.map((s, i) => (
+                  <div key={i} className="grid grid-cols-[1fr_1fr_40px] gap-3 items-center group">
+                    <input 
+                      type="number" 
+                      step="0.01" 
+                      value={s.gpa} 
+                      onChange={e => updateRow(i, 'gpa', Number(e.target.value))} 
+                      className={inputCls} 
+                      placeholder="0.00"
+                    />
+                    <input 
+                      type="number" 
+                      value={s.credits} 
+                      onChange={e => updateRow(i, 'credits', Number(e.target.value))} 
+                      className={inputCls} 
+                    />
+                    <button 
+                      onClick={() => removeRow(i)}
+                      className="w-10 h-10 flex items-center justify-center text-[#D93025] hover:bg-[#FCE8E6] rounded-full transition-all opacity-0 group-hover:opacity-100"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                ))}
+             </div>
+             <button 
+               onClick={addRow}
+               className="w-full py-3 border-2 border-dashed border-[#DADCE0] rounded-lg text-[#1A73E8] font-bold text-xs uppercase flex items-center justify-center gap-2 hover:bg-[#F8F9FA] transition-all"
+             >
+               <Plus className="w-4 h-4" /> Add Another Semester
+             </button>
           </div>
 
-          <div className="space-y-3">
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Total Semesters</span>
-              <span className="text-sm font-black text-[var(--text-main)]">{semesters.length}</span>
-            </div>
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Total Credit Hours</span>
-              <span className="text-sm font-black text-[var(--text-main)]">{r.totalCredits}</span>
-            </div>
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Letter Grade</span>
-              <span className="text-sm font-black text-[var(--primary)]">{letter}</span>
-            </div>
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Equiv. Percentage*</span>
-              <span className="text-sm font-black text-[var(--text-main)]">{(r.cgpa * 9.5).toFixed(1)}%</span>
-            </div>
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+            Generate Report
+          </button>
+        </div>
+      }
+      results={
+        <div className="space-y-6">
+          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
+            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Cumulative GPA (CGPA)</div>
+            <div className="text-5xl font-black text-[#1A73E8]">{r.cgpa.toFixed(2)}</div>
+            <div className="text-[11px] font-black text-[#202124] uppercase tracking-widest bg-white/50 px-4 py-1 rounded-full inline-block mt-2 border border-[#1A73E8]/20">{getLetter(r.cgpa)}</div>
           </div>
 
-          <div className="p-4 bg-[var(--bg-subtle)] border border-[var(--border)]">
-            <p className="text-[11px] text-[var(--text-secondary)] italic">* Percentage = CGPA × 9.5 (common formula — verify with your institution).</p>
+          <div className="grid grid-cols-2 gap-4">
+             <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center space-y-1">
+               <div className="text-[9px] font-bold text-[#70757A] uppercase">Total Credits</div>
+               <div className="text-sm font-black text-[#202124]">{r.totalCredits}</div>
+             </div>
+             <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center space-y-1">
+               <div className="text-[9px] font-bold text-[#70757A] uppercase">Avg. Percentage*</div>
+               <div className="text-sm font-black text-[#188038]">{(r.cgpa * 9.5).toFixed(1)}%</div>
+             </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+             <div className="px-4 py-2 border-b border-[#DADCE0] bg-[#F8F9FA] flex justify-between items-center">
+               <span className="text-[10px] font-bold text-[#70757A] uppercase">Scale Breakdown</span>
+               <Star className="w-3 h-3 text-[#1A73E8]" />
+             </div>
+             <div className="p-4 space-y-3">
+                <div className="flex justify-between items-center text-xs">
+                   <span className="text-[#5F6368]">GPA Scale</span>
+                   <span className="font-bold">4.0 / 5.0 Mode</span>
+                </div>
+                <div className="flex justify-between items-center text-xs">
+                   <span className="text-[#5F6368]">Honors Status</span>
+                   <span className={`font-black uppercase ${r.cgpa >= 3.6 ? 'text-[#188038]' : 'text-[#5F6368]'}`}>{r.cgpa >= 3.6 ? 'Distinction' : 'Regular'}</span>
+                </div>
+                <div className="h-px bg-[#DADCE0]" />
+                <p className="text-[9px] text-[#70757A] leading-tight">Percentage conversion is an estimate. Universities like Tribhuvan (TU) or Kathmandu (KU) may use different mapping tables.</p>
+             </div>
+          </div>
+
+          <div className="flex gap-2 p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg items-center">
+            <Info className="w-4 h-4 text-[#188038] shrink-0" />
+            <p className="text-[10px] text-[#202124] leading-tight">Total Points = <strong>{(r.cgpa * r.totalCredits).toFixed(1)}</strong> based on current inputs.</p>
           </div>
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'What is CGPA?', answer: 'Cumulative Grade Point Average — credit-weighted average of all semester GPAs over your entire program.' },
-          { question: 'How is CGPA calculated?', answer: 'CGPA = Σ(Semester GPA × Credits) ÷ Σ(Total Credits).' },
-          { question: 'What is a good CGPA?', answer: 'A CGPA of 3.5+ is considered excellent. Most competitive programs and employers prefer 3.0+.' },
-          { question: 'How to convert CGPA to percentage?', answer: 'A common formula is Percentage = CGPA × 9.5. Verify with your specific university guidelines.' },
-        ]} />
-      }
+      howToUse={{
+        steps: [
+          "Enter your GPA for each semester in the first column.",
+          "Enter the total credit hours for that semester in the second column.",
+          "Click 'Add Another Semester' to include more data points.",
+          "Remove any empty or incorrect rows using the trash icon.",
+          "Review your final Cumulative GPA and the letter grade classification."
+        ]
+      }}
+      formula={{
+        title: "Credit-Weighted Averaging",
+        description: "CGPA is not a simple average. It is weighted by the credit hours of each semester.",
+        raw: "CGPA = Σ (Semester GPA × Semester Credits) / Σ (Semester Credits)"
+      }}
+      faqs={[
+        {
+          question: "Why does my CGPA differ from a simple average?",
+          answer: "Simple average treats every semester equally. Weighted average (CGPA) gives more importance to semesters with higher credit loads, which is the academic standard worldwide."
+        },
+        {
+          question: "How do I convert CGPA to Percentage?",
+          answer: "A common formula used in Nepal is Percentage = CGPA × 9.5. However, check your transcript's reverse side for the official conversion table of your university."
+        }
+      ]}
+      sidebar={{
+        title: "Academic Toolkit",
+        links: [
+          { label: "SEE GPA Calc", href: "/calculator/see-gpa" },
+          { label: "GPA to % Tool", href: "/calculator/gpa-to-percentage" },
+          { label: "Engineering GPA", href: "/calculator/engineering-gpa-calculator" },
+          { label: "Attendance Calc", href: "/calculator/attendance" },
+        ],
+        banner: {
+          title: "Aim for Distinction",
+          description: "Tracking your CGPA regularly helps you stay on top of your academic goals and scholarships.",
+          image: "/images/edu-banner.jpg"
+        }
+      }}
+      relatedTools={[
+        { label: "SEE GPA", href: "/calculator/see-gpa" },
+        { label: "GPA to %", href: "/calculator/gpa-to-percentage" },
+        { label: "Engineering GPA", href: "/calculator/engineering-gpa-calculator" }
+      ]}
     />
   );
 }

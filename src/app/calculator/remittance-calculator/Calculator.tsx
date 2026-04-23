@@ -6,7 +6,7 @@ import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { ResultCard } from '@/components/calculator/ResultCard';
 import { useSyncState } from '@/hooks/useSyncState';
 import { useLiveRates } from '@/hooks/useLiveRates';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+
 import { Globe, ArrowRightLeft, Landmark, Info, Wallet, RefreshCw, Activity } from 'lucide-react';
 
 const CURRENCIES = [
@@ -66,6 +66,7 @@ export default function RemittanceCalculator() {
 
   return (
     <CalculatorLayout
+      hideHeader={true}
       title="Remittance Rate Converter"
       description="Convert foreign currency earnings into NPR. Compare Western Union, IME, and Local rates to maximize your family's remittance income."
       category={{ label: 'Market Rates', href: '/market-rates' }}
@@ -202,30 +203,6 @@ export default function RemittanceCalculator() {
              </p>
           </div>
         </div>
-      }
-      faqSection={
-         <div className="mt-8 pt-8 border-t border-[var(--border)]">
-            <div className="prose prose-slate max-w-none mb-12">
-               <h2 className="text-xl font-black text-slate-900 mb-6 uppercase tracking-tight">Proactive Remittance Governance</h2>
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                  <div>
-                     <h4 className="text-[11px] font-black uppercase tracking-widest text-blue-600 mb-2">Buying vs Selling Rates</h4>
-                     <p className="text-[12px] text-slate-600 leading-relaxed font-medium">When remitting to Nepal, the <strong>Buying Rate</strong> applies. This is the rate banks use to purchase foreign currency from you. Retail rates at counters may be slightly lower (0.5% to 1%) than the mid-market rate shown on Google.</p>
-                  </div>
-                  <div>
-                     <h4 className="text-[11px] font-black uppercase tracking-widest text-blue-600 mb-2">Legal Incentives (IPO Quota)</h4>
-                     <p className="text-[12px] text-slate-600 leading-relaxed font-medium">Using formal channels like IME or Prabhu entitles migrant workers to a <strong>10% reserved IPO quota</strong> in Nepal. Additionally, remittance-savings accounts often offer 1% higher interest than standard savings.</p>
-                  </div>
-               </div>
-            </div>
-
-            <CalcFAQ faqs={[
-               { question: 'Why is the Hundi rate higher?', answer: 'Hundi (illegal) rates are often higher because they bypass taxes and official banking regulations. However, Hundi is a criminal offense in Nepal and provides no legal protection or IPO benefits for workers.' },
-               { question: 'How long does a transfer take?', answer: 'Digital transfers via Wise or IME are often instant or same-day. Bank-to-bank SWIFT transfers may take 2-4 business days depending on the intermediary banks.' },
-               { question: 'Is there a limit on receiving money?', answer: 'While there is no strict limit on receiving "gift" remittances, large or frequent transfers may be flagged by AML (Anti-Money Laundering) systems for verification of source of funds.' },
-               { question: 'What is the best way to send money home?', answer: 'Compare the "Total In-Hand" amount. Sometimes a provider with a lower fee has a worse exchange rate, making the overall transfer more expensive.' },
-            ]} />
-         </div>
       }
     />
   );

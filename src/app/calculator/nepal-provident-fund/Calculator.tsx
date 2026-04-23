@@ -1,100 +1,168 @@
 'use client';
 import { useMemo } from 'react';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { ShieldCheck, TrendingUp, Info, Wallet, Landmark } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
 
-function fmt(n: number) { return 'NPR ' + Math.round(n).toLocaleString('en-IN'); }
+function fmt(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
 
 export default function NepalPFCalculator() {
-  const [state, setState] = useSyncState('nepal_pf_v3', {
-    basic: 50000,
-    years: 10,
-    rate: 8
-  });
+  const [state, setState] = useSyncState('nepal_pf_v3', { basic: 50000, years: 10, rate: 8 });
   const { basic, years, rate } = state;
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
   const r = useMemo(() => {
-    const monthlyPF       = basic * 0.20;
-    const annualGratuity  = basic * 0.0833 * 12;
-    const monthlyRate     = rate / 100 / 12;
+    const monthlyPF = basic * 0.20;
+    const annualGratuity = basic * 0.0833 * 12;
+    const monthlyRate = rate / 100 / 12;
     let totalPF = 0;
     for (let i = 0; i < years * 12; i++) { totalPF = (totalPF + monthlyPF) * (1 + monthlyRate); }
     const totalGratuity = annualGratuity * years;
     return { monthlyPF, totalPF, totalGratuity, total: totalPF + totalGratuity };
   }, [basic, years, rate]);
 
+  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
+
+  const rules = [
+    ['Employee Contribution', '10% of basic'],
+    ['Employer Contribution', '10% of basic'],
+    ['Total Monthly PF', '20% of basic'],
+    ['Gratuity Rate', '8.33%/month'],
+  ];
+
   return (
-    <CalculatorLayout
-      title="Nepal PF (EPF) & Gratuity Calculator"
-      description="Calculate your accumulated Provident Fund (EPF) and Gratuity under Nepal Labor Act 2074. Differentiates between traditional EPF and the private sector Social Security Fund (SSF)."
-      category={{ label: 'Nepal Tools', href: '/calculator/category/nepal' }}
-      leftPanel={
+    <ModernCalcLayout
+      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Provident Fund (EPF)' }]}
+      title="Nepal PF & Gratuity Calculator"
+      description="Calculate accumulated Provident Fund (EPF) and Gratuity under Nepal Labor Act 2074. Shows total retirement corpus with compound interest."
+      icon={ShieldCheck}
+      inputs={
         <div className="space-y-6">
-          <ValidatedInput label="Monthly Basic Salary (NPR)" value={basic} onChange={v => update({ basic: v })} min={10000} prefix="NPR" required />
+          <div className="space-y-2">
+            <label className={labelCls}>Monthly Basic Salary</label>
+            <div className="relative">
+              <input type="number" value={basic} onChange={e => update({ basic: Number(e.target.value) })} className={inputCls} />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">NPR</span>
+            </div>
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
-            <ValidatedInput label="Service Years" value={years} onChange={v => update({ years: v })} min={1} max={40} required />
-            <ValidatedInput label="PF Interest Rate" value={rate} onChange={v => update({ rate: v })} min={1} max={20} step={0.5} suffix="%" required />
-          </div>
-
-          {/* PF Rules summary */}
-          <div className="bg-white border border-[var(--border)]">
-            <div className="px-4 py-3 bg-[var(--bg-surface)] border-b border-[var(--border)]">
-              <h3 className="text-[11px] font-bold uppercase text-[var(--text-main)]">Nepal Labor Act 2074 — PF Rules</h3>
+            <div className="space-y-2">
+              <label className={labelCls}>Service Years</label>
+              <input type="number" value={years} min={1} max={40} onChange={e => update({ years: Number(e.target.value) })} className={inputCls} />
             </div>
-            {[
-              ['Employee Contribution', '10% of basic salary'],
-              ['Employer Contribution', '10% of basic salary'],
-              ['Total Monthly PF',      '20% of basic salary'],
-              ['Gratuity Rate',         '8.33%/month (≈1 mo/yr)'],
-            ].map(([l, v]) => (
-              <div key={l} className="px-4 py-2 border-b border-[var(--border)] flex justify-between last:border-0">
-                <span className="text-[11px] font-bold text-[var(--text-secondary)] uppercase">{l}</span>
-                <span className="text-[11px] font-black text-[var(--primary)]">{v}</span>
+            <div className="space-y-2">
+              <label className={labelCls}>PF Interest Rate</label>
+              <div className="relative">
+                <input type="number" value={rate} min={1} max={20} step={0.5} onChange={e => update({ rate: Number(e.target.value) })} className={inputCls} />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">%</span>
               </div>
-            ))}
+            </div>
           </div>
 
-          <div className="p-4 bg-[var(--bg-subtle)] border border-[var(--border)]">
-            <p className="text-[12px] text-[var(--text-secondary)] leading-relaxed">
-              Monthly PF deduction: <strong>{fmt(r.monthlyPF)}</strong> total (employee + employer).
-            </p>
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
+            <div className="px-4 py-2 bg-[#F8F9FA] border-b border-[#DADCE0]">
+              <span className="text-[10px] font-bold text-[#70757A] uppercase">Nepal Labor Act 2074 — PF Rules</span>
+            </div>
+            <div className="divide-y divide-[#DADCE0]">
+              {rules.map(([l, v]) => (
+                <div key={l} className="px-4 py-2.5 flex justify-between">
+                  <span className="text-[11px] text-[#5F6368]">{l}</span>
+                  <span className="text-[11px] font-black text-[#1A73E8]">{v}</span>
+                </div>
+              ))}
+            </div>
           </div>
+
+          <div className="flex gap-2 p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg items-center">
+            <Info className="w-4 h-4 text-[#188038] shrink-0" />
+            <p className="text-[10px] text-[#202124]">Monthly PF deduction: <strong>{fmt(r.monthlyPF)}</strong> (employee + employer)</p>
+          </div>
+
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+            Calculate Retirement Fund
+          </button>
         </div>
       }
-      rightPanel={
+      results={
         <div className="space-y-6">
-          <div className="p-8 bg-white border border-[var(--border)] text-center">
-            <div className="text-xs font-bold uppercase text-[var(--text-muted)] mb-2">Total Retirement Fund</div>
-            <div className="text-5xl font-black text-[#006600] tracking-tighter mb-2">{fmt(r.total)}</div>
-            <div className="text-xs font-bold text-[var(--text-secondary)] uppercase">after {years} years</div>
+          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
+            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Total Retirement Corpus</div>
+            <div className="text-3xl font-black text-[#188038]">{fmt(r.total)}</div>
+            <div className="text-[9px] text-[#70757A] font-bold uppercase">After {years} years of service</div>
           </div>
 
-          <div className="space-y-3">
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Accumulated PF (with interest)</span>
-              <span className="text-sm font-black text-[var(--primary)]">{fmt(r.totalPF)}</span>
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
+            <div className="px-4 py-2 bg-[#F8F9FA] border-b border-[#DADCE0] flex items-center gap-2">
+              <Wallet className="w-3 h-3 text-[#1A73E8]" />
+              <span className="text-[10px] font-bold text-[#70757A] uppercase">Breakdown</span>
             </div>
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Total Gratuity</span>
-              <span className="text-sm font-black text-[#006600]">{fmt(r.totalGratuity)}</span>
+            <div className="divide-y divide-[#DADCE0]">
+              <div className="p-3 flex justify-between text-xs">
+                <span className="text-[#5F6368]">Accumulated PF (with interest)</span>
+                <span className="font-black text-[#1A73E8]">{fmt(r.totalPF)}</span>
+              </div>
+              <div className="p-3 flex justify-between text-xs">
+                <span className="text-[#5F6368]">Total Gratuity (8.33%)</span>
+                <span className="font-black text-[#188038]">{fmt(r.totalGratuity)}</span>
+              </div>
+              <div className="p-3 flex justify-between text-xs bg-[#F8F9FA]">
+                <span className="font-bold text-[#202124] uppercase">Monthly PF Contribution</span>
+                <span className="font-black">{fmt(r.monthlyPF)}</span>
+              </div>
             </div>
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Monthly PF (20%)</span>
-              <span className="text-sm font-black text-[var(--text-main)]">{fmt(r.monthlyPF)}</span>
-            </div>
+          </div>
+
+          <div className="flex gap-2 p-3 bg-[#FFF7E0] border border-[#FEEFC3] rounded-lg items-start">
+            <Landmark className="w-4 h-4 text-[#F29900] shrink-0 mt-0.5" />
+            <p className="text-[10px] text-[#202124] leading-tight">PF interest rate is set by the government annually. Current rate is approximately 8.5% p.a. Verify with EPFO or your employer.</p>
           </div>
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'What is the PF contribution rate in Nepal?', answer: '10% from employee + 10% from employer = 20% of basic monthly salary, as per Nepal Labor Act 2074.' },
-          { question: 'How is gratuity calculated?', answer: 'Gratuity = 8.33% of basic salary per month, equivalent to approximately 1 month\'s basic salary per year of service.' },
-          { question: 'Where is PF deposited?', answer: 'PF is deposited in the Employees\' Provident Fund (Karmachari Sanchaya Kosh) or Social Security Fund (SSF) for private sector employees.' },
-        ]} />
-      }
+      howToUse={{
+        steps: [
+          "Enter your Monthly Basic Salary (not gross — exclude allowances).",
+          "Enter your total years of planned service.",
+          "Set the PF Interest Rate (typically 8–9% in Nepal).",
+          "Review the breakdown showing PF corpus vs Gratuity separately.",
+          "Use this to plan your total retirement benefit package."
+        ]
+      }}
+      formula={{
+        title: "Nepal PF Calculation",
+        description: "PF accumulates with compound interest monthly. Gratuity is a straight-line calculation.",
+        raw: "Monthly PF = Basic × 20% (10% employee + 10% employer)\nPF Corpus = Monthly PF compounded monthly at rate%\nGratuity = Basic × 8.33% × 12 × Years"
+      }}
+      faqs={[
+        {
+          question: "What is the difference between EPF and SSF in Nepal?",
+          answer: "EPF (Employee Provident Fund) is the traditional government-managed fund. SSF (Social Security Fund) is a newer unified fund that covers PF, gratuity, medical, and accident insurance in one scheme."
+        },
+        {
+          question: "Can I withdraw my PF before retirement?",
+          answer: "Yes, partial withdrawals are allowed for specific purposes (housing, medical) under EPF rules. However, SSF has different and generally stricter withdrawal conditions."
+        }
+      ]}
+      sidebar={{
+        title: "HR & Retirement Tools",
+        links: [
+          { label: "Gratuity Calculator", href: "/calculator/gratuity-calculator" },
+          { label: "Salary Calculator", href: "/calculator/nepal-salary" },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax" },
+          { label: "SIP Calculator", href: "/calculator/sip-calculator" },
+        ],
+        banner: {
+          title: "Plan Your Retirement",
+          description: "Starting PF contributions early and maintaining service continuity significantly boosts your retirement corpus.",
+          image: "/images/retire-banner.jpg"
+        }
+      }}
+      relatedTools={[
+        { label: "Gratuity Calc", href: "/calculator/gratuity-calculator" },
+        { label: "Nepal Salary", href: "/calculator/nepal-salary" },
+        { label: "Income Tax", href: "/calculator/nepal-income-tax" }
+      ]}
     />
   );
 }

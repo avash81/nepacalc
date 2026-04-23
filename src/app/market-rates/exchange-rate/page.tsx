@@ -1,10 +1,12 @@
-import Calculator from '../../calculator/currency-converter/Calculator';
 import { Metadata } from 'next';
+import ForexDashboardClient from './ForexDashboardClient';
+import { CalcWrapper } from '@/components/calculator/CalcWrapper';
+import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata: Metadata = {
-  title: 'Live Exchange Rate Nepal — USD, INR, GBP to NPR Today',
-  description: 'Official foreign exchange rates in Nepal. Real-time USD, INR, EUR, and GBP to NPR conversions synchronized with NRB benchmarks.',
-  keywords: ['exchange rate nepal', 'usd to npr live', 'inr to npr rate', 'forex nepal today', 'nrb exchange rate'],
+  title: 'Live Exchange Rate Nepal Today | USD INR to NPR NepaCal',
+  description: 'Official foreign exchange rates in Nepal. Real-time USD, INR, EUR, and GBP to NPR conversions synchronized with latest NRB benchmarks.',
+  keywords: ['exchange rate nepal today', 'usd to npr live', 'inr to npr rate', 'nrb forex rates', 'nepal currency converter'],
   openGraph: {
     title: 'Live Foreign Exchange Rates Nepal | NEPACALC',
     description: 'Track live currency exchange rates against the Nepalese Rupee (NPR). Official indices and NRB sync.',
@@ -12,57 +14,63 @@ export const metadata: Metadata = {
   },
 };
 
-import ForexDashboardClient from './ForexDashboardClient';
+const FOREX_FAQS = [
+  {
+    question: "Where do these exchange rates come from?",
+    answer: "Our data is synchronized daily with the official benchmarks published by the Nepal Rastra Bank (NRB). We provide accurate Buying and Selling rates for all major global currencies."
+  },
+  {
+    question: "Is the Indian Rupee (INR) rate fixed in Nepal?",
+    answer: "Yes, the exchange rate between the Indian Rupee and the Nepalese Rupee is pegged at 1.60. This means 100 Indian Rupees always equals 160 Nepalese Rupees."
+  },
+  {
+    question: "Why is there a difference between the Buying and Selling rates?",
+    answer: "The Buying Rate is what the bank pays you for your foreign currency, while the Selling Rate is what you pay the bank. The difference, or 'spread', covers operational costs and market risks."
+  },
+  {
+    question: "How often are the forex rates updated on NEPACALC?",
+    answer: "We update our forex indices every morning as soon as the NRB releases the daily official rates, ensuring you have the latest figures for your financial planning."
+  },
+  {
+    question: "Does this include remittance rates from providers like IME?",
+    answer: "This tool shows the official interbank rates. While remittance providers like IME or Western Union use these as a base, their actual rates may vary based on their internal margins."
+  }
+];
 
 export default function Page() {
   return (
-    <>
-      <ForexDashboardClient />
-    
-      {/* SEO: Competitor-Data Driven FAQ & Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "How to use the NPR Exchange Rate Dollar to Nepali Rupees tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free 1 dollars in nepali rupees tool will provide instant results tailored for Nepal." } },
-            { "@type": "Question", "name": "Is this NPR Exchange Rate Dollar to Nepali Rupees free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's NPR Exchange Rate Dollar to Nepali Rupees is 100% free with no registration required." } }
-          ]
-        }) }}
-      />
-      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the NPR Exchange Rate Dollar to Nepali Rupees</h2>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
-          Our free <strong>1 dollars in nepali rupees</strong> is optimized for Nepalese users. Whether you need an online 1 dollars in nepali rupees or want to calculate accurately — NepaCal is your best tool.
-        </p>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
-          Related: <strong>1 dollars in nepali rupees</strong>, <strong>21 days from today</strong>, <strong>14 days from today</strong>, <strong>1 usd indian money</strong>, <strong>1 kilo how many calories</strong>, <strong>120 pounds kilo</strong>.
-        </p>
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-3">
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
-              <span>How do I use the NPR Exchange Rate Dollar to Nepali Rupees?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Enter your values above to get results instantly.
+    <div className="bg-white min-h-screen">
+      <CalcWrapper
+        title="Forex & Exchange Rates"
+        description="Official daily exchange rates for major currencies against the Nepalese Rupee (NPR) as per NRB mandates."
+        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Exchange Rates' }]}
+        isNepal={true}
+        relatedCalcs={[
+          { name: 'Remittance Board', slug: 'market-rates/remittance-rates' },
+          { name: 'Live Gold Price', slug: 'market-rates/gold-price' },
+          { name: 'Income Tax', slug: 'nepal-income-tax' }
+        ]}
+      >
+        <ForexDashboardClient />
+        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-blue-50 px-6 py-3 rounded-2xl inline-block">
+              Market Guide: Foreign Exchange in Nepal
+            </h2>
+            
+            <div className="prose prose-slate max-w-none mb-12">
+              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+                The <strong>Foreign Exchange Market in Nepal</strong> is strictly regulated by the <strong>Nepal Rastra Bank (NRB)</strong>. For businesses, travelers, and non-resident Nepalese, staying updated with the daily 'Buying' and 'Selling' rates is essential for accurate financial transactions.
+              </p>
+              <p className="text-slate-700 text-base leading-relaxed mb-6">
+                Our platform provides a real-time dashboard that fetches the latest NRB benchmarks, allowing you to convert <strong>USD to NPR</strong>, <strong>INR to NPR</strong>, and other major currencies with absolute confidence.
+              </p>
             </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
-              <span>Is it accurate for Nepal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Yes, our <strong>1 dollars in nepali rupees</strong> is regularly updated to reflect local standards.
-            </div>
-          </details>
+
+            <PillarFAQ faqs={FOREX_FAQS} title="Currency & Forex FAQ" />
+          </div>
         </div>
-      </section>
-    </>
+      </CalcWrapper>
+    </div>
   );
 }

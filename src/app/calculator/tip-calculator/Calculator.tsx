@@ -1,17 +1,15 @@
 'use client';
-import { useState, useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
-import { Users } from 'lucide-react';
+import { useMemo } from 'react';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { Users, UtensilsCrossed, Info } from 'lucide-react';
+import { useSyncState } from '@/hooks/useSyncState';
 
-function fmt(n: number) { return 'NPR ' + Math.round(n).toLocaleString('en-IN'); }
-const TIP_PRESETS = [5, 10, 15, 20];
-const PEOPLE_PRESETS = [1, 2, 3, 4, 5, 6];
+function fmt(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
 
 export default function TipCalculator() {
-  const [bill, setBill] = useState(1500);
-  const [tipPercent, setTipPercent] = useState(10);
-  const [people, setPeople] = useState(2);
+  const [state, setState] = useSyncState('tip_v4', { bill: 1500, tipPercent: 10, people: 2 });
+  const { bill, tipPercent, people } = state;
+  const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
   const r = useMemo(() => {
     const totalTip = (bill * tipPercent) / 100;
@@ -21,102 +19,114 @@ export default function TipCalculator() {
     return { totalTip, totalBill, perPerson, tipPerPerson };
   }, [bill, tipPercent, people]);
 
+  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
+
   return (
-    <CalculatorLayout
+    <ModernCalcLayout
+      crumbs={[{ label: 'Converters', href: '/converters/' }, { label: 'Tip Calculator' }]}
       title="Tip & Bill Split Calculator"
-      description="Calculate tip amounts and split bills evenly among any number of people. Perfect for restaurants and group dining in Nepal."
-      category={{ label: 'Finance', href: '/calculator/category/finance' }}
-      leftPanel={
+      description="Calculate tip amounts and split bills evenly among any group. Perfect for restaurants, cafes, and group dining in Nepal."
+      icon={UtensilsCrossed}
+      inputs={
         <div className="space-y-6">
-          {/* Bill Input */}
           <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Total Bill Amount</label>
-            <div className="flex">
-              <span className="h-12 px-4 bg-[var(--bg-surface)] border border-r-0 border-[var(--border)] text-[12px] font-black text-[var(--text-muted)] flex items-center">NPR</span>
-              <input type="number" value={bill} onChange={e => setBill(Number(e.target.value))} min={0}
-                className="flex-1 h-12 px-4 border border-[var(--border)] bg-white font-bold text-lg focus:border-[var(--primary)] outline-none" />
+            <label className={labelCls}>Total Bill Amount</label>
+            <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xs font-bold text-[#70757A]">NPR</span>
+              <input type="number" value={bill} min={0} onChange={e => update({ bill: Number(e.target.value) })} className={`${inputCls} pl-12`} />
             </div>
           </div>
 
-          {/* Tip Selector */}
           <div className="space-y-2">
             <div className="flex justify-between">
-              <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Tip Percentage</label>
-              <span className="text-[11px] font-black text-[var(--primary)]">{tipPercent}%</span>
+              <label className={labelCls}>Tip Percentage</label>
+              <span className="text-[11px] font-black text-[#1A73E8]">{tipPercent}%</span>
             </div>
             <div className="grid grid-cols-4 gap-2">
-              {TIP_PRESETS.map(v => (
-                <button key={v} onClick={() => setTipPercent(v)}
-                  className={`py-3 text-xs font-black border transition-all ${tipPercent === v ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'border-[var(--border)] bg-[var(--bg-surface)] hover:bg-[var(--bg-subtle)]'}`}>
+              {[5, 10, 15, 20].map(v => (
+                <button key={v} onClick={() => update({ tipPercent: v })}
+                  className={`py-2.5 text-xs font-black border rounded-md transition-all ${tipPercent === v ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>
                   {v}%
                 </button>
               ))}
             </div>
-            <input type="range" min={0} max={30} step={1} value={tipPercent} onChange={e => setTipPercent(Number(e.target.value))}
-              className="w-full accent-[#083366] mt-1" />
+            <input type="range" min={0} max={30} step={1} value={tipPercent}
+              onChange={e => update({ tipPercent: Number(e.target.value) })}
+              className="w-full accent-[#1A73E8] mt-1" />
           </div>
 
-          {/* People Selector */}
           <div className="space-y-2">
             <div className="flex justify-between">
-              <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Number of People</label>
-              <span className="text-[11px] font-black text-[var(--primary)]">{people} people</span>
+              <label className={labelCls}>Number of People</label>
+              <span className="text-[11px] font-black text-[#1A73E8]">{people} {people === 1 ? 'person' : 'people'}</span>
             </div>
             <div className="grid grid-cols-6 gap-2">
-              {PEOPLE_PRESETS.map(v => (
-                <button key={v} onClick={() => setPeople(v)}
-                  className={`py-3 text-xs font-black border transition-all ${people === v ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'border-[var(--border)] bg-[var(--bg-surface)] hover:bg-[var(--bg-subtle)]'}`}>
+              {[1, 2, 3, 4, 5, 6].map(v => (
+                <button key={v} onClick={() => update({ people: v })}
+                  className={`py-2 text-xs font-black border rounded-md transition-all ${people === v ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>
                   {v}
                 </button>
               ))}
             </div>
-            <input type="number" value={people} onChange={e => setPeople(Math.max(1, Number(e.target.value)))} min={1}
-              className="w-full h-10 px-4 border border-[var(--border)] bg-white text-sm font-bold focus:border-[var(--primary)] outline-none" />
-          </div>
-        </div>
-      }
-      rightPanel={
-        <div className="space-y-6">
-          {/* Per Person Hero */}
-          <div className="p-8 bg-white border border-[var(--border)] text-center">
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <Users className="w-4 h-4 text-[var(--text-muted)]" />
-              <div className="text-xs font-bold uppercase text-[var(--text-muted)]">Each Person Pays</div>
-            </div>
-            <div className="text-6xl font-black text-[var(--primary)] tracking-tighter mb-2">
-              {Math.round(r.perPerson).toLocaleString('en-IN')}
-            </div>
-            <div className="text-xs font-bold text-[var(--text-secondary)] uppercase">NPR · Split {people} {people === 1 ? 'way' : 'ways'}</div>
+            <input type="number" value={people} min={1}
+              onChange={e => update({ people: Math.max(1, Number(e.target.value)) })} className={inputCls} />
           </div>
 
-          {/* Breakdown */}
-          <div className="space-y-3">
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Original Bill</span>
-              <span className="text-sm font-black">{fmt(bill)}</span>
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+            Split Bill
+          </button>
+        </div>
+      }
+      results={
+        <div className="space-y-6">
+          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
+            <div className="flex items-center justify-center gap-2">
+              <Users className="w-4 h-4 text-[#1A73E8]" />
+              <span className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Each Person Pays</span>
             </div>
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Total Tip ({tipPercent}%)</span>
-              <span className="text-sm font-black text-[#006600]">+ {fmt(r.totalTip)}</span>
+            <div className="text-4xl font-black text-[#1A73E8]">{fmt(r.perPerson)}</div>
+            <div className="text-[9px] text-[#70757A] font-bold uppercase">Split {people} {people === 1 ? 'way' : 'ways'}</div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
+            <div className="px-4 py-2 bg-[#F8F9FA] border-b border-[#DADCE0]">
+              <span className="text-[10px] font-bold text-[#70757A] uppercase">Full Breakdown</span>
             </div>
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Total Bill + Tip</span>
-              <span className="text-sm font-black text-[var(--primary)]">{fmt(r.totalBill)}</span>
+            <div className="divide-y divide-[#DADCE0]">
+              <div className="p-3 flex justify-between text-xs">
+                <span className="text-[#5F6368]">Original Bill</span>
+                <span className="font-black">{fmt(bill)}</span>
+              </div>
+              <div className="p-3 flex justify-between text-xs">
+                <span className="text-[#5F6368]">Total Tip ({tipPercent}%)</span>
+                <span className="font-black text-[#188038]">+ {fmt(r.totalTip)}</span>
+              </div>
+              <div className="p-3 flex justify-between text-xs bg-[#F8F9FA]">
+                <span className="font-bold text-[#202124]">Total Bill + Tip</span>
+                <span className="font-black text-[#1A73E8]">{fmt(r.totalBill)}</span>
+              </div>
+              <div className="p-3 flex justify-between text-xs">
+                <span className="text-[#5F6368]">Tip Per Person</span>
+                <span className="font-black">{fmt(r.tipPerPerson)}</span>
+              </div>
             </div>
-            <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-              <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Tip Per Person</span>
-              <span className="text-sm font-black">{fmt(r.tipPerPerson)}</span>
-            </div>
+          </div>
+
+          <div className="flex gap-2 p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg items-center">
+            <Info className="w-4 h-4 text-[#188038] shrink-0" />
+            <p className="text-[10px] text-[#202124] leading-tight">In Nepal, tipping is optional but appreciated — 10% is standard at restaurants in Kathmandu.</p>
           </div>
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'How do I calculate a tip?', answer: 'Tip = Bill × Tip% / 100. Add it to the original bill for the total. Divide by people for per-person share.' },
-          { question: 'What is the standard tip in Nepal?', answer: 'A 10% service charge is often included at formal restaurants. Where it isn\'t, 5–10% is appreciated but not mandatory.' },
-          { question: 'Should I tip if service charge is included?', answer: 'If the bill shows a 10% service charge, no further tip is expected — though rounding up for exceptional service is kind.' },
-        ]} />
-      }
+      howToUse={{ steps: ["Enter the total restaurant bill amount.", "Select a tip percentage using the preset buttons or the slider.", "Choose the number of people splitting the bill.", "View the per-person amount including tip."] }}
+      formula={{ title: "Tip & Split Formula", description: "Simple percentage-based tip with equal division.", raw: "Total Tip = Bill × (Tip% / 100)\nTotal = Bill + Total Tip\nPer Person = Total / Number of People" }}
+      faqs={[
+        { question: "Is tipping customary in Nepal?", answer: "Tipping is not mandatory in Nepal, but it is appreciated, especially in tourist areas. 10% is a standard tip at mid-range to high-end restaurants in Kathmandu and Pokhara." },
+        { question: "Does VAT affect the tip calculation?", answer: "If your bill already includes 13% VAT, the tip shown is calculated on the full amount including VAT. Some diners prefer to tip only on the pre-VAT subtotal." }
+      ]}
+      sidebar={{ title: "Daily Tools", links: [{ label: "VAT Calculator", href: "/calculator/nepal-vat" }, { label: "Discount Calc", href: "/calculator/discount-calculator" }, { label: "Currency Converter", href: "/calculator/currency-converter" }, { label: "Percentage Tool", href: "/calculator/percentage" }], banner: { title: "Dining Smart", description: "Always check if service charge is already included before adding a tip at restaurants.", image: "/images/dining-banner.jpg" } }}
+      relatedTools={[{ label: "VAT Calculator", href: "/calculator/nepal-vat" }, { label: "Discount Calc", href: "/calculator/discount-calculator" }, { label: "Percentage", href: "/calculator/percentage" }]}
     />
   );
 }

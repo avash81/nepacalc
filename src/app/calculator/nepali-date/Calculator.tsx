@@ -1,71 +1,60 @@
 'use client';
 import { useState, useEffect, useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
 import NepaliDate from 'nepali-date-converter';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
 import { useSyncState } from '@/hooks/useSyncState';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { Calendar, RefreshCw, Clock, MapPin, Info } from 'lucide-react';
 
-const DEFAULT_STATE = {
-  tab: 'ad2bs' as 'ad2bs'|'bs2ad',
-  inputDate: ''
-};
+const DEFAULT_STATE = { tab: 'ad2bs' as 'ad2bs'|'bs2ad', inputDate: '' };
 
 function convertADtoBS(s: string): string | null {
-  try { 
-    const d = new Date(s); 
-    if (isNaN(d.getTime())) return null; 
-    // Fix: Use local time for conversion to avoid UTC day-shifts
-    return new NepaliDate(d).format('YYYY-MM-DD'); 
-  } catch { return null; }
+  try { const d = new Date(s); if (isNaN(d.getTime())) return null; return new NepaliDate(d).format('YYYY-MM-DD'); } catch { return null; }
 }
 
 function convertBStoAD(s: string): string | null {
   try { 
     const [y,m,d] = s.split('-').map(Number); 
     if (isNaN(y)||isNaN(m)||isNaN(d)) return null; 
-    // Fix: Higher precision local date mapping to avoid UTC ISO shifts
-    const nd = new NepaliDate(y, m-1, d);
-    const date = nd.toJsDate();
-    const yr = date.getFullYear();
-    const mo = String(date.getMonth() + 1).padStart(2, '0');
-    const dy = String(date.getDate()).padStart(2, '0');
-    return `${yr}-${mo}-${dy}`;
+    const date = new NepaliDate(y, m-1, d).toJsDate();
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
   } catch { return null; }
 }
 
 const DAYS_EN = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const DAYS_NP = ['आइतबार','सोमबार','मंगलबार','बुधबार','बिहीबार','शुक्रबार','शनिबार'];
+const bsYears = Array.from({ length: 131 }, (_, i) => 1970 + i);
+const adYears = Array.from({ length: 131 }, (_, i) => 1913 + i);
+const bsMonthsList = [
+  { n: 1, label: 'Baisakh' }, { n: 2, label: 'Jestha' }, { n: 3, label: 'Ashar' }, { n: 4, label: 'Shrawan' }, { n: 5, label: 'Bhadra' }, { n: 6, label: 'Ashwin' },
+  { n: 7, label: 'Kartik' }, { n: 8, label: 'Mangsir' }, { n: 9, label: 'Poush' }, { n: 10, label: 'Magh' }, { n: 11, label: 'Falgun' }, { n: 12, label: 'Chaitra' }
+];
+const adMonthsList = [
+  { n: 1, label: 'January' }, { n: 2, label: 'February' }, { n: 3, label: 'March' }, { n: 4, label: 'April' }, { n: 5, label: 'May' }, { n: 6, label: 'June' },
+  { n: 7, label: 'July' }, { n: 8, label: 'August' }, { n: 9, label: 'September' }, { n: 10, label: 'October' }, { n: 11, label: 'November' }, { n: 12, label: 'December' }
+];
 
 export default function NepaliDateConverter() {
   const [state, setState] = useSyncState('nepali_date_v5', DEFAULT_STATE);
   const { tab, inputDate } = state;
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
-  const [todayAD, setTodayAD]   = useState('');
-  const [todayBS, setTodayBS]   = useState('');
+  const [todayAD, setTodayAD] = useState('');
+  const [todayBS, setTodayBS] = useState('');
 
   useEffect(() => {
     const now = new Date();
-    const yr = now.getFullYear();
-    const mo = String(now.getMonth() + 1).padStart(2, '0');
-    const dy = String(now.getDate()).padStart(2, '0');
-    const t = `${yr}-${mo}-${dy}`;
+    const t = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
     const bs = new NepaliDate(now).format('YYYY-MM-DD');
     setTodayAD(t); setTodayBS(bs);
     if (!inputDate) update({ inputDate: t });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleTabChange = (newTab: 'ad2bs' | 'bs2ad') => {
     if (newTab === tab) return;
     let nextDate = inputDate;
-    if (newTab === 'bs2ad') {
-       // Converting current AD input to BS string for the new BS tab
-       nextDate = convertADtoBS(inputDate) || todayBS;
-    } else {
-       // Converting current BS input to AD string for the new AD tab
-       nextDate = convertBStoAD(inputDate) || todayAD;
-    }
+    if (newTab === 'bs2ad') nextDate = convertADtoBS(inputDate) || todayBS;
+    else nextDate = convertBStoAD(inputDate) || todayAD;
     update({ tab: newTab, inputDate: nextDate });
   };
 
@@ -74,15 +63,10 @@ export default function NepaliDateConverter() {
     let converted = '', dayIndex = 0;
     if (tab === 'ad2bs') {
       converted = convertADtoBS(inputDate) || '';
-      const d = new Date(inputDate); 
-      if (!isNaN(d.getTime())) dayIndex = d.getDay();
+      const d = new Date(inputDate); if (!isNaN(d.getTime())) dayIndex = d.getDay();
     } else {
       converted = convertBStoAD(inputDate) || '';
-      try { 
-        // Use the library's day calculation to be precise with BS dates
-        const [y,m,d] = inputDate.split('-').map(Number);
-        dayIndex = new NepaliDate(y, m-1, d).getDay(); 
-      } catch { dayIndex = 0; }
+      try { const [y,m,d] = inputDate.split('-').map(Number); dayIndex = new NepaliDate(y, m-1, d).getDay(); } catch { dayIndex = 0; }
     }
     if (!converted) return null;
     const targetAD = tab === 'ad2bs' ? inputDate : converted;
@@ -90,29 +74,7 @@ export default function NepaliDateConverter() {
     return { date: converted, dayEn: DAYS_EN[dayIndex], dayNp: DAYS_NP[dayIndex], diffDays };
   }, [inputDate, tab, todayAD]);
 
-  const bsYears = Array.from({ length: 131 }, (_, i) => 1970 + i);
-  const adYears = Array.from({ length: 131 }, (_, i) => 1913 + i);
-  const bsMonthsList = [
-    { n: 1, label: 'Baisakh' }, { n: 2, label: 'Jestha' }, { n: 3, label: 'Ashar' },
-    { n: 4, label: 'Shrawan' }, { n: 5, label: 'Bhadra' }, { n: 6, label: 'Ashwin' },
-    { n: 7, label: 'Kartik' }, { n: 8, label: 'Mangsir' }, { n: 9, label: 'Poush' },
-    { n: 10, label: 'Magh' }, { n: 11, label: 'Falgun' }, { n: 12, label: 'Chaitra' }
-  ];
-  const adMonthsList = [
-    { n: 1, label: 'January' }, { n: 2, label: 'February' }, { n: 3, label: 'March' },
-    { n: 4, label: 'April' }, { n: 5, label: 'May' }, { n: 6, label: 'June' },
-    { n: 7, label: 'July' }, { n: 8, label: 'August' }, { n: 9, label: 'September' },
-    { n: 10, label: 'October' }, { n: 11, label: 'November' }, { n: 12, label: 'December' }
-  ];
-
-  const handleBsDatePartChange = (part: 'y'|'m'|'d', val: string) => {
-    const [y, m, d] = inputDate.split('-');
-    if (part === 'y') update({ inputDate: `${val}-${m}-${d}` });
-    if (part === 'm') update({ inputDate: `${y}-${val.padStart(2, '0')}-${d}` });
-    if (part === 'd') update({ inputDate: `${y}-${m}-${val.padStart(2, '0')}` });
-  };
-
-  const handleAdDatePartChange = (part: 'y'|'m'|'d', val: string) => {
+  const handleDatePartChange = (part: 'y'|'m'|'d', val: string) => {
     const [y, m, d] = inputDate.split('-');
     if (part === 'y') update({ inputDate: `${val}-${m}-${d}` });
     if (part === 'm') update({ inputDate: `${y}-${val.padStart(2, '0')}-${d}` });
@@ -124,164 +86,106 @@ export default function NepaliDateConverter() {
     return [parts[0] || '2026', parts[1] || '01', parts[2] || '01'];
   }, [inputDate]);
 
+  const selectCls = "w-full h-12 px-3 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all cursor-pointer";
+
   return (
-    <CalculatorLayout
+    <ModernCalcLayout
+      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Nepali Date Converter' }]}
       title="Nepali Date Converter"
-      description="Professional Gregorian (AD) to Bikram Sambat (BS) converter with astronomical accuracy for Nepal's official calendar."
-      category={{ label: 'Nepal Tools', href: '/calculator/category/nepal' }}
-      badge="Official"
-      badgeColor="red"
-      leftPanel={
-        <div className="space-y-8">
-          <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 shadow-inner">
-            {[
-              { key: 'ad2bs', label: 'AD To BS' },
-              { key: 'bs2ad', label: 'BS To AD' },
-            ].map(t => (
+      description="Gregorian (AD) to Bikram Sambat (BS) converter with astronomical accuracy for Nepal's official calendar. Syncs seamlessly with IRD standards."
+      icon={Calendar}
+      inputs={
+        <div className="space-y-6">
+          <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
+            {[ { key: 'ad2bs', label: 'AD To BS' }, { key: 'bs2ad', label: 'BS To AD' } ].map(t => (
               <button key={t.key} onClick={() => handleTabChange(t.key as any)}
-                className={`flex-1 py-3 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${tab === t.key ? 'bg-white text-blue-600 shadow-md' : 'text-slate-500 hover:text-slate-700'}`}>
+                className={`flex-1 py-2 text-[10px] font-bold uppercase tracking-wider rounded-md transition-all ${tab === t.key ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}>
                 {t.label}
               </button>
             ))}
           </div>
 
           <div className="space-y-4">
-            <div className="flex justify-between items-center px-1">
-               <label className="text-[10px] font-black uppercase text-slate-500 tracking-widest">
-                {tab === 'ad2bs' ? 'Gregorian Date (English)' : 'Bikram Sambat (Nepali)'}
+            <div className="flex justify-between items-center">
+               <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider">
+                {tab === 'ad2bs' ? 'Gregorian Date (AD)' : 'Bikram Sambat (BS)'}
               </label>
-              <button onClick={() => handleTabChange(tab === 'ad2bs' ? 'bs2ad' : 'ad2bs')} className="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-all shadow-sm group">
-                 <RefreshCw className="w-3.5 h-3.5 group-hover:rotate-180 transition-transform duration-500" />
+              <button onClick={() => handleTabChange(tab === 'ad2bs' ? 'bs2ad' : 'ad2bs')} className="p-1.5 bg-[#E8F0FE] text-[#1A73E8] rounded hover:bg-[#D2E3FC] transition-colors group">
+                 <RefreshCw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
               </button>
             </div>
             
-            <div className="relative">
-              {tab === 'ad2bs' ? (
-                <div className="grid grid-cols-3 gap-3">
-                   <select 
-                    value={inputY} 
-                    onChange={e => handleAdDatePartChange('y', e.target.value)}
-                    className="h-16 px-4 border-2 border-slate-100 rounded-2xl bg-slate-50 font-mono text-lg font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner"
-                   >
-                     {adYears.map(y => <option key={y} value={y}>{y}</option>)}
-                   </select>
-                   <select 
-                    value={inputM} 
-                    onChange={e => handleAdDatePartChange('m', e.target.value)}
-                    className="h-16 px-4 border-2 border-slate-100 rounded-2xl bg-slate-50 font-mono text-lg font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner"
-                   >
-                     {adMonthsList.map(m => <option key={m.n} value={String(m.n).padStart(2, '0')}>{m.label}</option>)}
-                   </select>
-                   <select 
-                    value={inputD} 
-                    onChange={e => handleAdDatePartChange('d', e.target.value)}
-                    className="h-16 px-4 border-2 border-slate-100 rounded-2xl bg-slate-50 font-mono text-lg font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner"
-                   >
-                     {Array.from({ length: 31 }, (_, i) => i + 1).map(d => (
-                       <option key={d} value={String(d).padStart(2, '0')}>{d}</option>
-                     ))}
-                   </select>
-                </div>
-              ) : (
-                <div className="grid grid-cols-3 gap-3">
-                   <select 
-                    value={inputY} 
-                    onChange={e => handleBsDatePartChange('y', e.target.value)}
-                    className="h-16 px-4 border-2 border-slate-100 rounded-2xl bg-slate-50 font-mono text-lg font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner"
-                   >
-                     {bsYears.map(y => <option key={y} value={y}>{y}</option>)}
-                   </select>
-                   <select 
-                    value={inputM} 
-                    onChange={e => handleBsDatePartChange('m', e.target.value)}
-                    className="h-16 px-4 border-2 border-slate-100 rounded-2xl bg-slate-50 font-mono text-lg font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner"
-                   >
-                     {bsMonthsList.map(m => <option key={m.n} value={String(m.n).padStart(2, '0')}>{m.label}</option>)}
-                   </select>
-                   <select 
-                    value={inputD} 
-                    onChange={e => handleBsDatePartChange('d', e.target.value)}
-                    className="h-16 px-4 border-2 border-slate-100 rounded-2xl bg-slate-50 font-mono text-lg font-bold focus:border-blue-500 focus:bg-white outline-none transition-all shadow-inner"
-                   >
-                     {Array.from({ length: 32 }, (_, i) => i + 1).map(d => (
-                       <option key={d} value={String(d).padStart(2, '0')}>{d}</option>
-                     ))}
-                   </select>
-                </div>
-              )}
+            <div className="grid grid-cols-3 gap-3">
+               <select value={inputY} onChange={e => handleDatePartChange('y', e.target.value)} className={selectCls}>
+                 {(tab === 'ad2bs' ? adYears : bsYears).map(y => <option key={y} value={y}>{y}</option>)}
+               </select>
+               <select value={inputM} onChange={e => handleDatePartChange('m', e.target.value)} className={selectCls}>
+                 {(tab === 'ad2bs' ? adMonthsList : bsMonthsList).map(m => <option key={m.n} value={String(m.n).padStart(2, '0')}>{m.label}</option>)}
+               </select>
+               <select value={inputD} onChange={e => handleDatePartChange('d', e.target.value)} className={selectCls}>
+                 {Array.from({ length: tab === 'ad2bs' ? 31 : 32 }, (_, i) => i + 1).map(d => (
+                   <option key={d} value={String(d).padStart(2, '0')}>{d}</option>
+                 ))}
+               </select>
             </div>
-            <div className="flex gap-2">
-               <button onClick={() => update({ inputDate: tab === 'ad2bs' ? todayAD : todayBS })}
-                className="flex-1 py-3 bg-white border border-slate-200 rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-700 hover:bg-slate-50 transition-all shadow-sm">
-                Today: {tab === 'ad2bs' ? todayAD : todayBS}
-               </button>
-            </div>
-          </div>
-
-          {/* Today info card */}
-          <div className="bg-slate-900 rounded-3xl p-6 text-white overflow-hidden relative shadow-2xl">
-            <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
-               <MapPin className="w-32 h-32 text-white" />
-            </div>
-            <h3 className="text-[10px] font-black uppercase text-slate-400 mb-6 tracking-widest">Nepal Standard Timezone</h3>
-            <div className="grid grid-cols-2 gap-6 relative z-10">
-              <div className="space-y-1">
-                 <div className="text-[9px] font-bold text-slate-500 flex items-center gap-1"><Clock className="w-3 h-3" /> AD (ENG)</div>
-                 <div className="text-sm font-black tracking-tight">{todayAD}</div>
-              </div>
-              <div className="space-y-1 border-l border-white/10 pl-6">
-                 <div className="text-[9px] font-bold text-slate-500 flex items-center gap-1"><Clock className="w-3 h-3" /> BS (NEP)</div>
-                 <div className="text-sm font-black tracking-tight text-blue-400">{todayBS}</div>
-              </div>
-            </div>
+            <button onClick={() => update({ inputDate: tab === 'ad2bs' ? todayAD : todayBS })}
+              className="w-full py-2 bg-white border border-[#DADCE0] rounded-md text-[10px] font-bold uppercase tracking-wider text-[#70757A] hover:bg-[#F8F9FA] transition-colors">
+              Set to Today
+            </button>
           </div>
         </div>
       }
-      rightPanel={
+      results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-100 rounded-[2.5rem] text-center shadow-lg group relative overflow-hidden">
-            <div className={`absolute top-0 right-0 p-3 text-[8px] font-black uppercase tracking-widest text-white ${tab==='ad2bs' ? 'bg-red-600':'bg-blue-600'}`}>{tab==='ad2bs'?'CONVERTED TO BS':'CONVERTED TO AD'}</div>
-            <div className="text-[10px] font-black uppercase text-slate-400 mb-4 tracking-widest">
-              {tab === 'ad2bs' ? 'Resulting Nepali Date' : 'Resulting English Date'}
+          <div className="p-8 bg-[#1A1A2E] border border-[#DADCE0] rounded-lg text-center text-white relative overflow-hidden">
+            <div className={`absolute top-0 right-0 px-3 py-1 text-[9px] font-black uppercase tracking-wider ${tab==='ad2bs' ? 'bg-[#D93025]':'bg-[#1A73E8]'}`}>
+               {tab==='ad2bs'?'CONVERTED TO BS':'CONVERTED TO AD'}
             </div>
-            <div className="text-5xl font-black text-slate-900 tracking-tighter font-mono mb-4 group-hover:scale-105 transition-transform">{result?.date || '—'}</div>
+            <div className="text-[10px] font-bold uppercase text-white/60 mb-2 tracking-wider">Result</div>
+            <div className="text-4xl sm:text-5xl font-black text-white tracking-tighter mb-4">{result?.date || '—'}</div>
             {result && (
-               <div className="flex flex-col items-center gap-1">
-                  <div className="text-xs font-bold text-blue-600 bg-blue-50 px-4 py-1.5 rounded-full uppercase tracking-widest">{result.dayNp}</div>
-                  <div className="text-[10px] font-bold text-slate-400 uppercase">{result.dayEn}</div>
+               <div className="flex justify-center items-center gap-3">
+                  <div className="text-[11px] font-black text-[#1A73E8] bg-[#E8F0FE] px-3 py-1 rounded uppercase tracking-wider">{result.dayNp}</div>
+                  <div className="text-[11px] font-bold text-white/80 uppercase">{result.dayEn}</div>
                </div>
             )}
           </div>
 
-          {result && (
-            <div className="grid grid-cols-1 gap-3">
-              <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100 flex justify-between items-center group">
-                <div className="flex items-center gap-3">
-                   <div className="w-10 h-10 bg-white border border-slate-200 rounded-xl flex items-center justify-center text-slate-400 group-hover:text-blue-500 transition-colors shadow-sm"><RefreshCw className="w-5 h-5" /></div>
-                   <div className="text-[10px] font-black uppercase text-slate-500 tracking-widest">Relative Context</div>
-                </div>
-                <span className="text-sm font-black text-slate-900">
-                  {result.diffDays === 0 ? 'Exactly Today' : result.diffDays > 0 ? `In ${result.diffDays} days` : `${Math.abs(result.diffDays)} days ago`}
-                </span>
-              </div>
-              
-              <div className="p-6 bg-white border border-blue-100 rounded-3xl flex items-center gap-4">
-                 <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl"><Info className="w-5 h-5" /></div>
-                 <p className="text-[10px] text-slate-500 leading-relaxed font-medium italic">
-                   Bikram Sambat is approximately 56 years and 8 months ahead. This tool utilizes official IRD & Panchanga algorithms.
-                 </p>
-              </div>
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-4 flex justify-between items-center">
+            <div className="flex items-center gap-2">
+               <Clock className="w-4 h-4 text-[#70757A]" />
+               <div className="text-[10px] font-bold uppercase text-[#70757A] tracking-wider">Relative Time</div>
             </div>
-          )}
+            <span className="text-sm font-black text-[#202124]">
+              {result?.diffDays === 0 ? 'Today' : result && result.diffDays > 0 ? `In ${result.diffDays} days` : result ? `${Math.abs(result.diffDays)} days ago` : '—'}
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg p-4 text-center">
+              <div className="text-[9px] font-bold text-[#1A73E8] uppercase tracking-wider mb-1">Today (AD)</div>
+              <div className="text-sm font-black text-[#202124]">{todayAD}</div>
+            </div>
+            <div className="bg-[#FCE8E6] border border-[#FAD2CF] rounded-lg p-4 text-center">
+              <div className="text-[9px] font-bold text-[#D93025] uppercase tracking-wider mb-1">Today (BS)</div>
+              <div className="text-sm font-black text-[#202124]">{todayBS}</div>
+            </div>
+          </div>
+          
+          <div className="flex gap-2 p-3 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg items-start">
+             <Info className="w-4 h-4 text-[#1A73E8] shrink-0 mt-0.5" />
+             <p className="text-[10px] text-[#202124] leading-tight italic">Bikram Sambat is approximately 56 years and 8.5 months ahead of the Gregorian calendar. This calculation relies on precise Panchanga data.</p>
+          </div>
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'What is Bikram Sambat (BS)?', answer: 'BS is Nepal\'s official calendar, approximately 56 years and 8 months ahead of the Gregorian calendar (AD). 1 Baisakh BS ≈ mid-April AD.' },
-          { question: 'When does the Nepali New Year start?', answer: 'Nepali New Year begins on 1 Baisakh, which usually falls in mid-April in the Gregorian calendar.' },
-          { question: 'Is this conversion officially accurate?', answer: 'Yes, it uses the standard nepali-date-converter algorithm recognized by most financial and educational institutions in Nepal.' },
-        ]} />
-      }
+      howToUse={{ steps: ["Select the conversion direction (AD to BS or BS to AD).", "Choose the Year, Month, and Day from the dropdown menus.", "The equivalent date will instantly appear on the right panel alongside the day of the week."] }}
+      formula={{ title: "Date Conversion Standard", description: "This tool maps Gregorian dates directly to Bikram Sambat limits.", raw: "Offset Difference ≈ +56 Years, 8.5 Months\nLeap years and varying month lengths in the BS calendar (ranging from 29 to 32 days) make simple arithmetic conversion inaccurate without standard Panchanga mapping." }}
+      faqs={[
+        { question: "Why do Nepali months have varying numbers of days?", answer: "The BS calendar is solar-based but culturally tied to astrological events, causing months to fluctuate between 29 and 32 days depending on the year." },
+        { question: "Can I find my exact Nepali birth date?", answer: "Yes! Switch to 'AD To BS', enter your English birth date, and the tool will show your precise Bikram Sambat birthday and the day of the week you were born." }
+      ]}
+      sidebar={{ title: "Daily Utility", links: [{ label: "Unit Converter", href: "/calculator/unit-converter" }, { label: "Age Calculator", href: "/calculator/age" }], banner: { title: "Tithi Planner", description: "Plan your cultural events ahead by checking exact date alignments.", image: "/images/date-banner.jpg" } }}
+      relatedTools={[{ label: "Age Calculator", href: "/calculator/age" }, { label: "Unit Converter", href: "/calculator/unit-converter" }]}
     />
   );
 }

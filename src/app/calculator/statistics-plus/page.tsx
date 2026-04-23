@@ -1,62 +1,73 @@
 import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
+import { CalcWrapper } from '@/components/calculator/CalcWrapper';
+import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Average Calculator Mean Formula NepaCal",
-  description: "Calculate the average or arithmetic mean of a set of numbers. Free mean calculator with formula and step by step solution at NepaCal",
-  keywords: ["average calculator", "nepal", "calculator", "free", "online"],
+  title: "Statistics Plus | Mean, Median, Mode & Range Nepal NepaCal",
+  description: "Calculate descriptive statistics instantly. Find the mean, median, mode, and range for any dataset with our professional math tool for students in Nepal.",
   slug: 'statistics-plus',
+  keywords: ["statistics calculator nepal", "calculate mean median mode", "descriptive statistics tool", "range calculator", "average calculator nepal", "math solver"],
 });
+
+const STATS_PLUS_FAQS = [
+  {
+    question: "What are the measures of Central Tendency?",
+    answer: "They include Mean (average), Median (middle value), and Mode (most frequent value). Together, they describe the 'center' of a dataset."
+  },
+  {
+    question: "When should I use the Median instead of the Mean?",
+    answer: "The median is better when a dataset has outliers (extreme values), as the mean can be heavily skewed. For example, median income often gives a more realistic picture than mean income."
+  },
+  {
+    question: "What is 'Range' in statistics?",
+    answer: "The range is the difference between the highest and lowest values in a dataset. It is the simplest measure of statistical dispersion."
+  },
+  {
+    question: "What is the difference between Discrete and Continuous data?",
+    answer: "Discrete data consists of distinct, countable values (e.g., number of students), while continuous data can take any value within a range (e.g., height or temperature)."
+  },
+  {
+    question: "Does this calculator provide a full descriptive analysis?",
+    answer: "Yes. Our engine calculates mean, median, mode, range, and sum, providing a comprehensive statistical snapshot of any provided dataset in Nepal."
+  }
+];
 
 export default function Page() {
   return (
-    <>
-      <Calculator />
-    
-      {/* SEO: Competitor-Data Driven FAQ & Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "How to use the Average Calculator Mean Formula NepaCal tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free average calculator tool will provide instant results tailored for Nepal." } },
-            { "@type": "Question", "name": "Is this Average Calculator Mean Formula NepaCal free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's Average Calculator Mean Formula NepaCal is 100% free with no registration required." } }
-          ]
-        }) }}
-      />
-      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Average Calculator Mean Formula NepaCal</h2>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
-          Our free <strong>average calculator</strong> is optimized for Nepalese users. Whether you need an online average calculator or want to calculate accurately — NepaCal is your best tool.
-        </p>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
-          Related: <strong>average calculator</strong>, <strong>calculate average calculator</strong>, <strong>average calculator</strong>, <strong>average calories burned per day</strong>, <strong>average weight</strong>, <strong>percentage calculator average</strong>.
-        </p>
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-3">
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
-              <span>How do I use the Average Calculator Mean Formula NepaCal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Enter your values above to get results instantly.
+    <div className="bg-white min-h-screen">
+      <CalcWrapper
+        title="Descriptive Statistics Suite"
+        description="Comprehensive analytical engine for calculating measures of central tendency and dispersion for any numerical dataset."
+        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Statistics Plus' }]}
+        isNepal={true}
+        relatedCalcs={[
+          { name: 'Standard Deviation', slug: 'standard-deviation' },
+          { name: 'Z-Score Calc', slug: 'z-score' },
+          { name: 'Percentage Calc', slug: 'percentage' }
+        ]}
+        formula="Statistical Descriptive Logic"
+      >
+        <Calculator />
+        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
+              Analytical Guide: Descriptive Statistics
+            </h2>
+            
+            <div className="prose prose-slate max-w-none mb-12">
+              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+                Descriptive statistics are the <strong>foundation of data interpretation</strong>, allowing us to summarize complex datasets into meaningful insights.
+              </p>
+              <p className="text-slate-700 text-base leading-relaxed mb-6">
+                Our <strong>Analytical Suite</strong> provides a detailed snapshot of your data's characteristics. Whether you are a student in Nepal summarizing research findings or a business analyst reviewing <strong>sales distributions</strong>, our engine computes the mean, median, mode, and range with absolute accuracy, ensuring your analysis is grounded in mathematical truth.
+              </p>
             </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
-              <span>Is it accurate for Nepal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Yes, our <strong>average calculator</strong> is regularly updated to reflect local standards.
-            </div>
-          </details>
+
+            <PillarFAQ faqs={STATS_PLUS_FAQS} title="Descriptive Statistics FAQ" />
+          </div>
         </div>
-      </section>
-    </>
+      </CalcWrapper>
+    </div>
   );
 }

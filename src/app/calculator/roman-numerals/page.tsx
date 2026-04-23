@@ -1,62 +1,73 @@
 import { calcMeta } from '@/lib/calcMeta';
-import Calculator from './Calculator';
+import RomanCalculator from './Calculator';
+import { CalcWrapper } from '@/components/calculator/CalcWrapper';
+import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Number to Roman Numerals Converter NepaCal",
-  description: "Convert any number to Roman numerals instantly. Free number to Roman numeral converter and translator online at NepaCal",
+  title: "Roman Numerals Converter | Date & Number Translator Nepal NepaCal",
+  description: "Convert numbers to Roman numerals and vice versa instantly. Fast, accurate translator for dates, chapters, and formal numbering in Nepal.",
   slug: 'roman-numerals',
-  keywords: ["number to roman numerals", "nepal", "calculator", "free", "online"],
+  keywords: ["roman numerals converter nepal", "convert numbers to roman", "roman numeral date converter", "latin numbers tool", "math solver nepal", "roman numeral symbols"],
 });
+
+const ROMAN_FAQS = [
+  {
+    question: "What are the basic symbols of Roman Numerals?",
+    answer: "The basic symbols are I (1), V (5), X (10), L (50), C (100), D (500), and M (1000)."
+  },
+  {
+    question: "How does the subtraction rule work?",
+    answer: "If a smaller numeral appears before a larger one, it is subtracted (e.g., IV = 4, IX = 9, XL = 40). Our converter handles these rules automatically."
+  },
+  {
+    question: "Is there a Roman Numeral for Zero?",
+    answer: "No. The Roman numeral system does not have a representation for zero. It was primarily used for counting and measuring physical quantities."
+  },
+  {
+    question: "What is the largest number I can convert?",
+    answer: "Standard Roman numerals go up to 3,999 (MMMCMXCIX). For numbers larger than 4,000, a bar (vinculum) is placed over the numeral to multiply it by 1,000."
+  },
+  {
+    question: "Where are Roman numerals still used in Nepal today?",
+    answer: "They are commonly used in clock faces, chapter titles in books, formal dates on monuments, and for denoting grades or classes in schools."
+  }
+];
 
 export default function Page() {
   return (
-    <>
-      <Calculator />
-    
-      {/* SEO: Competitor-Data Driven FAQ & Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "How to use the Number to Roman Numerals Converter NepaCal tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free number to roman numerals tool will provide instant results tailored for Nepal." } },
-            { "@type": "Question", "name": "Is this Number to Roman Numerals Converter NepaCal free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's Number to Roman Numerals Converter NepaCal is 100% free with no registration required." } }
-          ]
-        }) }}
-      />
-      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Number to Roman Numerals Converter NepaCal</h2>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
-          Our free <strong>number to roman numerals</strong> is optimized for Nepalese users. Whether you need an online number to roman numerals or want to calculate accurately — NepaCal is your best tool.
-        </p>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
-          Related: <strong>number to roman numerals</strong>, <strong>roman number roman number</strong>, <strong>total number of days calculator</strong>, <strong>date number calculator</strong>, <strong>number of days between 2 dates</strong>, <strong>calc number of days</strong>.
-        </p>
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-3">
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
-              <span>How do I use the Number to Roman Numerals Converter NepaCal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Enter your values above to get results instantly.
+    <div className="bg-white min-h-screen">
+      <CalcWrapper
+        title="Roman Numeral Engine"
+        description="Classical numbering tool for converting between modern Arabic digits and traditional Roman alphanumeric systems with absolute accuracy."
+        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Roman Numerals' }]}
+        isNepal={true}
+        relatedCalcs={[
+          { name: 'Unit Converter', slug: 'unit-converter' },
+          { name: 'Number to Words', slug: 'number-to-words' },
+          { name: 'Simple Calculator', slug: 'simple-calculator' }
+        ]}
+        formula="Additive/Subtractive Roman Logic"
+      >
+        <RomanCalculator />
+        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
+              Historical Guide: Roman Numbering
+            </h2>
+            
+            <div className="prose prose-slate max-w-none mb-12">
+              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+                The <strong>Roman numeral system</strong> is an ancient numbering method that remains a staple of formal design, historical dating, and academic categorization.
+              </p>
+              <p className="text-slate-700 text-base leading-relaxed mb-6">
+                Our <strong>Chronological Translation Laboratory</strong> provides an intuitive way to map these classical symbols to modern digits. Whether you are a student in Nepal decoding <strong>historical inscriptions</strong> or a designer creating formal certificates, our engine applies rigorous additive and subtractive logic to provide instant, error-free conversions for any valid numerical range.
+              </p>
             </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
-              <span>Is it accurate for Nepal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Yes, our <strong>number to roman numerals</strong> is regularly updated to reflect local standards.
-            </div>
-          </details>
+
+            <PillarFAQ faqs={ROMAN_FAQS} title="Roman Numerals & History FAQ" />
+          </div>
         </div>
-      </section>
-    </>
+      </CalcWrapper>
+    </div>
   );
 }

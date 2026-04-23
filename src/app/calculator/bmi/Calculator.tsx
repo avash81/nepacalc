@@ -1,13 +1,10 @@
 'use client';
 import { useMemo } from 'react';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-import { safeCalculateBMI } from '@/utils/math/safeCalculations';
-import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { Scale, Heart, Info, History, Trash2, Activity, Target } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
-import { Info, History, Trash2, Heart, Scale, User } from 'lucide-react';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { safeCalculateBMI } from '@/utils/math/safeCalculations';
 
 interface BMIReading {
   date: string;
@@ -19,7 +16,7 @@ interface BMIReading {
 const DEFAULT_STATE = {
   unit: 'metric' as 'metric' | 'imperial',
   weight: 70,
-  height: 170, // cm
+  height: 170,
   feet: 5,
   inches: 7,
   lbs: 154,
@@ -41,7 +38,7 @@ export default function BMICalculator() {
       const totalInches = feet * 12 + inches;
       return safeCalculateBMI(lbs, totalInches, 'imperial');
     }
-  }, [unit, weight, height, feet, inches, lbs, state]);
+  }, [unit, weight, height, feet, inches, lbs]);
 
   const saveReading = () => {
     if (result.success && result.data) {
@@ -57,143 +54,182 @@ export default function BMICalculator() {
 
   const getStatusColor = (status: string) => {
      const s = status.toLowerCase();
-     if (s.includes('underweight')) return 'text-blue-500 bg-blue-50';
-     if (s.includes('normal')) return 'text-emerald-500 bg-emerald-50';
-     if (s.includes('overweight')) return 'text-amber-500 bg-amber-50';
-     return 'text-rose-500 bg-rose-50';
+     if (s.includes('underweight')) return 'text-[#1A73E8]';
+     if (s.includes('normal')) return 'text-[#188038]';
+     if (s.includes('overweight')) return 'text-[#F29900]';
+     return 'text-[#D93025]';
   };
 
+  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
+
   return (
-    <CalculatorErrorBoundary calculatorName="BMI">
-      <CalculatorLayout
-        title="Clinical BMI Calculator"
-        description="Verify your Body Mass Index (BMI) based on global WHO standards. High-precision screening for clinicians and health enthusiasts."
-        badge="Clinical"
-        badgeColor="blue"
-        category={{ label: 'Health', href: '/calculator/category/health' }}
-        leftPanel={
-          <div className="space-y-8">
-            <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 shadow-inner">
+    <ModernCalcLayout
+      crumbs={[{ label: 'Health', href: '/health/' }, { label: 'BMI Calculator' }]}
+      title="BMI Calculator"
+      description="Check your Body Mass Index (BMI) based on global WHO standards. A quick tool to assess your weight relative to height."
+      icon={Scale}
+      inputs={
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <label className={labelCls}>System of Unit</label>
+            <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
               {['metric', 'imperial'].map((u) => (
-                <button
-                  key={u}
+                <button 
+                  key={u} 
                   onClick={() => updateState({ unit: u as any })}
-                  className={`flex-1 py-3 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${
-                    unit === u ? 'bg-white text-blue-600 shadow-md' : 'text-slate-500 hover:text-slate-700'
-                  }`}
+                  className={`flex-1 py-2 text-xs font-bold uppercase rounded-md transition-all ${unit === u ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}
                 >
                   {u}
                 </button>
               ))}
             </div>
-
-            <div className="space-y-8">
-              {unit === 'metric' ? (
-                <>
-                  <ValidatedInput label="Body Weight (kg)" value={weight} onChange={(v) => updateState({ weight: v })} min={2} max={300} required withSlider />
-                  <ValidatedInput label="Stature Height (cm)" value={height} onChange={(v) => updateState({ height: v })} min={30} max={250} required withSlider />
-                </>
-              ) : (
-                <>
-                  <ValidatedInput label="Body Weight (lbs)" value={lbs} onChange={(v) => updateState({ lbs: v })} min={5} max={650} required withSlider />
-                  <div className="grid grid-cols-2 gap-6">
-                    <ValidatedInput label="Feet" value={feet} onChange={(v) => updateState({ feet: v })} min={1} max={8} required withSlider />
-                    <ValidatedInput label="Inches" value={inches} onChange={(v) => updateState({ inches: v })} min={0} max={11.9} step={0.1} required withSlider />
-                  </div>
-                </>
-              )}
-            </div>
-
-            <div className="p-8 bg-slate-50 rounded-[2.5rem] border border-slate-100 relative group">
-              <div className="absolute top-0 right-0 p-8 opacity-5">
-                 <Scale className="w-24 h-24" />
-              </div>
-              <div className="flex items-center gap-2 mb-4 text-slate-400 text-[10px] font-black uppercase tracking-widest">
-                <Info className="w-4 h-4" />
-                <span>Reference Ranges (WHO)</span>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                 {[
-                   { label: 'Underweight', range: '< 18.5', color: 'bg-blue-400' },
-                   { label: 'Healthy', range: '18.5 - 24.9', color: 'bg-emerald-400' },
-                   { label: 'Overweight', range: '25.0 - 29.9', color: 'bg-amber-400' },
-                   { label: 'Obese', range: '≥ 30.0', color: 'bg-rose-400' },
-                 ].map(r => (
-                   <div key={r.label} className="flex items-center gap-2">
-                      <div className={`w-2 h-2 rounded-full ${r.color}`} />
-                      <div className="text-[11px] font-bold text-slate-700">{r.label}: <span className="text-slate-400 font-mono">{r.range}</span></div>
-                   </div>
-                 ))}
-              </div>
-            </div>
           </div>
-        }
-        rightPanel={
-          <div className="space-y-6">
-            {result.success && result.data ? (
+
+          <div className="space-y-4">
+            {unit === 'metric' ? (
               <>
-                <div className="p-12 bg-white border border-slate-100 rounded-[3rem] text-center shadow-2xl shadow-blue-500/5 group relative overflow-hidden">
-                   <div className="absolute inset-x-0 top-0 h-2 bg-slate-50">
-                      <div className={`h-full transition-all duration-1000 ${
-                        result.data.bmi < 18.5 ? 'bg-blue-500 w-[20%]' : 
-                        result.data.bmi < 25 ? 'bg-emerald-500 w-[50%]' : 
-                        result.data.bmi < 30 ? 'bg-amber-500 w-[75%]' : 'bg-rose-500 w-full'
-                      }`} />
-                   </div>
-                   <div className="text-[10px] font-black uppercase text-slate-400 mb-6 tracking-widest mt-4">Current BMI Metric</div>
-                   <div className="text-8xl font-black text-slate-900 tracking-tighter mb-4 group-hover:scale-105 transition-transform font-mono">
-                     {result.data.bmi.toFixed(1)}
-                   </div>
-                   <div className={`px-6 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] inline-block ${getStatusColor(result.data.status)}`}>
-                     {result.data.status}
-                   </div>
+                <div className="space-y-2">
+                  <label className={labelCls}>Weight (kg)</label>
+                  <input type="number" value={weight} onChange={e => updateState({ weight: Number(e.target.value) })} className={inputCls} />
                 </div>
-
-                <button
-                  onClick={saveReading}
-                  className="w-full py-5 bg-blue-600 text-white text-[11px] font-black uppercase tracking-[0.3em] hover:bg-slate-900 transition-all shadow-xl shadow-blue-500/20 rounded-[2rem] active:scale-95 flex items-center justify-center gap-2"
-                >
-                  <History className="w-4 h-4" /> Save Record
-                </button>
-
-                {readings.length > 0 && (
-                  <div className="bg-white border border-slate-100 rounded-[2.5rem] overflow-hidden">
-                    <div className="px-8 py-4 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
-                       <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">History Log</h3>
-                       <button onClick={() => setReadings([])} className="p-2 hover:bg-rose-50 rounded-lg text-rose-400 transition-colors" aria-label="Clear all readings"><Trash2 className="w-4 h-4" /></button>
-                    </div>
-                    <div className="divide-y divide-slate-50 max-h-60 overflow-y-auto scrollbar-hide">
-                      {readings.map((r, i) => (
-                        <div key={i} className="px-8 py-4 flex justify-between items-center hover:bg-slate-50/50 transition-colors group">
-                           <div className="space-y-0.5">
-                              <p className="text-[13px] font-black text-slate-900">{r.bmi.toFixed(1)}</p>
-                              <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{r.date}</p>
-                           </div>
-                           <div className={`text-[10px] font-bold uppercase tracking-tighter px-3 py-1 rounded-full ${getStatusColor(r.status)}`}>
-                              {r.status}
-                           </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                <div className="space-y-2">
+                  <label className={labelCls}>Height (cm)</label>
+                  <input type="number" value={height} onChange={e => updateState({ height: Number(e.target.value) })} className={inputCls} />
+                </div>
               </>
             ) : (
-              <div className="p-10 bg-amber-50 border-2 border-dashed border-amber-200 rounded-[2.5rem] text-center space-y-3">
-                 <Info className="w-8 h-8 text-amber-500 mx-auto" />
-                 <p className="text-sm font-bold text-amber-700">Enter your dimensions to begin assessment.</p>
-              </div>
+              <>
+                <div className="space-y-2">
+                  <label className={labelCls}>Weight (lbs)</label>
+                  <input type="number" value={lbs} onChange={e => updateState({ lbs: Number(e.target.value) })} className={inputCls} />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className={labelCls}>Height (ft)</label>
+                    <input type="number" value={feet} onChange={e => updateState({ feet: Number(e.target.value) })} className={inputCls} />
+                  </div>
+                  <div className="space-y-2">
+                    <label className={labelCls}>Height (in)</label>
+                    <input type="number" value={inches} onChange={e => updateState({ inches: Number(e.target.value) })} className={inputCls} />
+                  </div>
+                </div>
+              </>
             )}
           </div>
+
+          <button 
+            onClick={saveReading}
+            className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm flex items-center justify-center gap-2"
+          >
+            Calculate & Save
+          </button>
+        </div>
+      }
+      results={
+        <div className="space-y-6">
+          {result.success && result.data ? (
+            <>
+              <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
+                <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Your BMI Score</div>
+                <div className="text-5xl font-black text-[#202124]">{result.data.bmi.toFixed(1)}</div>
+                <div className={`text-xs font-black uppercase tracking-widest ${getStatusColor(result.data.status)}`}>
+                  {result.data.status}
+                </div>
+              </div>
+
+              <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
+                 <div className="px-4 py-2 border-b border-[#DADCE0] bg-[#F8F9FA]">
+                   <span className="text-[10px] font-bold text-[#70757A] uppercase">WHO Classification</span>
+                 </div>
+                 <div className="p-3 space-y-2">
+                    {[
+                      { label: 'Underweight', range: '< 18.5', color: 'bg-[#1A73E8]' },
+                      { label: 'Normal Weight', range: '18.5 - 24.9', color: 'bg-[#188038]' },
+                      { label: 'Overweight', range: '25.0 - 29.9', color: 'bg-[#F29900]' },
+                      { label: 'Obese', range: '≥ 30.0', color: 'bg-[#D93025]' },
+                    ].map((r) => (
+                      <div key={r.label} className={`flex justify-between items-center text-[11px] p-1.5 rounded ${result.data?.status.includes(r.label.split(' ')[0]) ? 'bg-[#F1F3F4] font-bold' : ''}`}>
+                        <div className="flex items-center gap-2">
+                          <div className={`w-2 h-2 rounded-full ${r.color}`} />
+                          <span>{r.label}</span>
+                        </div>
+                        <span className="font-mono text-[#70757A]">{r.range}</span>
+                      </div>
+                    ))}
+                 </div>
+              </div>
+
+              {readings.length > 0 && (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center px-1">
+                    <span className={labelCls}>History</span>
+                    <button onClick={() => setReadings([])} className="text-[9px] font-bold text-[#D93025] uppercase">Clear</button>
+                  </div>
+                  <div className="space-y-2">
+                    {readings.map((r, i) => (
+                      <div key={i} className="p-3 bg-white border border-[#DADCE0] rounded-lg flex justify-between items-center text-xs">
+                        <div>
+                          <span className="font-bold">{r.bmi.toFixed(1)}</span>
+                          <span className="text-[#70757A] ml-2 text-[10px]">{r.date}</span>
+                        </div>
+                        <span className={`font-bold ${getStatusColor(r.status)}`}>{r.status}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="text-center py-10 opacity-40">
+              <Activity className="w-10 h-10 mx-auto mb-2" />
+              <p className="text-sm">Enter stats to see classification</p>
+            </div>
+          )}
+        </div>
+      }
+      howToUse={{
+        steps: [
+          "Choose between Metric (kg/cm) or Imperial (lbs/ft) units.",
+          "Enter your weight and height accurately.",
+          "Click 'Calculate' to see your BMI score and WHO health category.",
+          "Use the 'Save' feature to track your BMI progress over time."
+        ]
+      }}
+      formula={{
+        title: "BMI Calculation Formula",
+        description: "BMI is a simple index of weight-for-height that is commonly used to classify underweight, overweight and obesity in adults.",
+        raw: "Metric: BMI = weight (kg) / height² (m²)\nImperial: BMI = 703 × weight (lbs) / height² (in²)"
+      }}
+      faqs={[
+        {
+          question: "Is BMI a reliable health indicator?",
+          answer: "BMI is a useful screening tool for the general population, but it does not account for muscle mass, bone density, or overall body composition. Athletes may have a high BMI but low body fat."
+        },
+        {
+          question: "What is a healthy BMI for adults?",
+          answer: "For most adults, a healthy BMI is between 18.5 and 24.9. Staying within this range reduces the risk of weight-related health issues."
         }
-        faqSection={
-          <CalcFAQ toolName="Clinical BMI Calculator" faqs={[
-            { question: 'Is BMI accurate for athletes?', answer: 'BMI does not differentiate between muscle and fat. Athletes with high muscle mass may have a high BMI but low body fat percentage.' },
-            { question: 'What is the healthy BMI range?', answer: 'The World Health Organization (WHO) considers a BMI between 18.5 and 24.9 as the "Healthy/Normal" range for adults.' },
-            { question: 'Why does height matter in BMI?', answer: 'BMI scales weight by the square of height to account for body volume, assuming body proportions are relatively consistent across different heights.' },
-          ]} />
+      ]}
+      sidebar={{
+        title: "Health Tools",
+        links: [
+          { label: "Calorie Calculator", href: "/calculator/calorie-calculator" },
+          { label: "Ideal Weight", href: "/calculator/ideal-weight" },
+          { label: "Body Fat %", href: "/calculator/body-fat" },
+          { label: "BMR Calculator", href: "/calculator/bmr" },
+        ],
+        banner: {
+          title: "Focus on Health",
+          description: "BMI is just one metric. Combine it with healthy eating and regular exercise for a holistic wellness approach.",
+          image: "/images/health-banner.jpg"
         }
-      />
-    </CalculatorErrorBoundary>
+      }}
+      relatedTools={[
+        { label: "Calorie Calculator", href: "/calculator/calorie-calculator" },
+        { label: "Ideal Weight", href: "/calculator/ideal-weight" },
+        { label: "BMR Calculator", href: "/calculator/bmr" }
+      ]}
+    />
   );
 }

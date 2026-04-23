@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { ResultCard } from '@/components/calculator/ResultCard';
 import { useSyncState } from '@/hooks/useSyncState';
-import { BookOpen, GraduationCap, AlertCircle, CheckCircle2, Info } from 'lucide-react';
+import { BookOpen, GraduationCap, AlertCircle, Info } from 'lucide-react';
 
 const SUBJECTS = [
   { id: 'eng', name: 'English', credit: 4 },
@@ -82,21 +82,29 @@ export default function SEEGPACalculator() {
   };
 
   return (
-    <CalculatorLayout
+    <ModernCalcLayout
+      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'SEE GPA Calculator' }]}
       title="SEE GPA Calculator (2081 System)"
-      description="Official grading logic based on Nepal's Letter Grading Directive 2078. Includes the mandatory 35% theory pass rule and credit-weighted GPA calculation."
-      category={{ label: 'Education', href: '/calculator/category/nepal' }}
-      leftPanel={
-        <div className="space-y-6">
+      description="Calculate your Secondary Education Examination (SEE) GPA using the official Nepal Letter Grading Directive 2078/2081 rules."
+      icon={GraduationCap}
+      inputs={
+        <div className="space-y-4">
+           <div className="p-4 bg-indigo-50 border border-indigo-100 rounded-xl flex gap-3">
+              <Info className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
+              <p className="text-sm text-indigo-800 font-medium leading-relaxed">
+                Enter your marks out of <strong>75 for Theory</strong> and <strong>25 for Practical</strong>. You must score at least 26.25 in Theory to pass.
+              </p>
+           </div>
+           
            <div className="grid grid-cols-1 gap-4">
               {results.detailedResults.map(s => (
-                <div key={s.id} className="p-5 bg-white border border-[var(--border)] rounded-2xl shadow-sm space-y-4">
+                <div key={s.id} className="p-5 bg-white border border-slate-200 rounded-2xl shadow-sm space-y-4 hover:border-indigo-200 transition-colors">
                    <div className="flex justify-between items-center">
                       <div className="flex items-center gap-2">
-                        <BookOpen className="w-4 h-4 text-indigo-600" />
-                        <span className="text-xs font-black text-slate-900 uppercase tracking-tight">{s.name}</span>
+                        <BookOpen className="w-5 h-5 text-indigo-600" />
+                        <span className="text-sm font-black text-slate-800 uppercase tracking-tight">{s.name}</span>
                       </div>
-                      <div className={`px-4 py-1 rounded-full text-[10px] font-black uppercase ${s.pass ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}`}>
+                      <div className={`px-4 py-1 rounded-full text-xs font-black uppercase ${s.pass ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'}`}>
                          Grade: {s.grade}
                       </div>
                    </div>
@@ -121,7 +129,7 @@ export default function SEEGPACalculator() {
            </div>
         </div>
       }
-      rightPanel={
+      results={
         <div className="space-y-6">
           <ResultCard 
             label="Cumulative GPA" 
@@ -132,50 +140,85 @@ export default function SEEGPACalculator() {
             copyValue={`GPA: ${results.gpa.toFixed(2)}, Grade: ${results.overallGrade}`}
           />
 
-          <div className="bg-slate-900 text-white rounded-[2rem] p-8 space-y-6 shadow-2xl relative overflow-hidden">
+          <div className="bg-slate-900 text-white rounded-[2rem] p-8 space-y-6 shadow-xl relative overflow-hidden">
+             <div className="absolute right-0 top-0 opacity-10 pointer-events-none">
+                <GraduationCap className="w-48 h-48 -mr-10 -mt-10" />
+             </div>
              <div className="relative z-10 space-y-4">
                 <div className="flex items-center gap-3">
                    <GraduationCap className="w-6 h-6 text-indigo-400" />
-                   <div className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-400">Official Report Digest</div>
+                   <div className="text-xs font-black uppercase tracking-widest text-indigo-400">Official Report Digest</div>
                 </div>
-                <div className="bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
-                   <div className="text-4xl font-black mb-1">{results.overallGrade}</div>
-                   <div className="text-[10px] font-bold text-white/50 uppercase tracking-widest">Aggregate Grade</div>
+                <div className="bg-white/5 p-6 rounded-2xl border border-white/10 text-center backdrop-blur-sm">
+                   <div className="text-6xl font-black mb-2">{results.overallGrade}</div>
+                   <div className="text-xs font-bold text-white/60 uppercase tracking-widest">Aggregate Final Grade</div>
                 </div>
                 {results.hasNG && (
-                  <div className="p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl flex gap-3 text-rose-400">
-                     <AlertCircle className="w-4 h-4 shrink-0" />
-                     <p className="text-[10px] font-bold leading-tight uppercase">NON-GRADED: You failed to secure 35% in one or more subjects. Grade boost exam is required.</p>
+                  <div className="p-4 bg-rose-500/20 border border-rose-500/30 rounded-xl flex gap-3 text-rose-300">
+                     <AlertCircle className="w-5 h-5 shrink-0" />
+                     <p className="text-xs font-bold leading-relaxed uppercase">NON-GRADED: You failed to secure 35% in one or more theory subjects. Grade boost exam is required.</p>
                   </div>
                 )}
              </div>
           </div>
 
-          <div className="p-5 bg-indigo-50 border border-indigo-100 rounded-2xl flex gap-3">
-             <Info className="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" />
-             <div className="space-y-1">
-                <h5 className="text-[10px] font-black text-indigo-900 uppercase">2081 directive</h5>
-                <p className="text-[11px] text-indigo-700 font-medium leading-relaxed italic">
-                   "As per the new system, students must score at least **26.25/75** in theory to receive a grade. Internal (practical) pass mark is 10/25."
-                </p>
-             </div>
+          <div className="p-5 bg-white border border-slate-200 rounded-2xl space-y-3 shadow-sm">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700 border-b border-slate-100 pb-2">Grading Scale Reference</h3>
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="flex justify-between p-2 bg-slate-50 rounded"><span>90-100%</span><span className="font-bold text-emerald-600">A+ (4.0)</span></div>
+              <div className="flex justify-between p-2 bg-slate-50 rounded"><span>80-89%</span><span className="font-bold text-emerald-500">A (3.6)</span></div>
+              <div className="flex justify-between p-2 bg-slate-50 rounded"><span>70-79%</span><span className="font-bold text-blue-600">B+ (3.2)</span></div>
+              <div className="flex justify-between p-2 bg-slate-50 rounded"><span>60-69%</span><span className="font-bold text-blue-500">B (2.8)</span></div>
+              <div className="flex justify-between p-2 bg-slate-50 rounded"><span>50-59%</span><span className="font-bold text-amber-600">C+ (2.4)</span></div>
+              <div className="flex justify-between p-2 bg-slate-50 rounded"><span>40-49%</span><span className="font-bold text-amber-500">C (2.0)</span></div>
+              <div className="flex justify-between p-2 bg-slate-50 rounded"><span>35-39%</span><span className="font-bold text-orange-500">D (1.6)</span></div>
+              <div className="flex justify-between p-2 bg-rose-50 rounded text-rose-600"><span>Below 35%</span><span className="font-bold">NG (0)</span></div>
+            </div>
           </div>
         </div>
       }
-      faqSection={
-         <div className="mt-16 pt-12 border-t border-[var(--border)] prose prose-slate max-w-none">
-            <h2 className="text-2xl font-black text-slate-900 mb-8 italic tracking-tighter">Understanding the New SEE Grading</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-               <div>
-                  <h4 className="text-[11px] font-black uppercase tracking-widest text-indigo-600 mb-2">The "Non-Graded" (NG) Rule</h4>
-                  <p className="text-[13px] text-slate-600 leading-relaxed font-medium">The most significant change in 2081 is the mandatory pass mark for theory. Previously, a combined score was used. Now, if you fail the theory component (below 35%), you receive an **NG** regardless of how well you did in practicals.</p>
-               </div>
-               <div>
-                  <h4 className="text-[11px] font-black uppercase tracking-widest text-indigo-600 mb-2">GPA Calculation Method</h4>
-                  <p className="text-[13px] text-slate-600 leading-relaxed font-medium">Your GPA is calculated using a **weighted average**. Each subject has a set number of "Credit Hours" (usually 4 for main subjects). The grade point of each subject is multiplied by its credit, summed up, and then divided by the total credits.</p>
-               </div>
-            </div>
-         </div>
+      sidebar={{
+        title: "Education Tools",
+        links: [
+          { label: '+2 NEB GPA Calculator', href: '/calculator/nepal-neb-gpa' },
+          { label: 'Percentage Calculator', href: '/calculator/percentage' },
+        ],
+      }}
+      howToUse={{
+        steps: [
+          "For each of the 7 subjects, enter your expected or actual marks.",
+          "Input your Theory marks (out of 75). Ensure it is at least 26.25 to pass.",
+          "Input your Practical marks (out of 25).",
+          "The calculator instantly determines the letter grade for each subject.",
+          "The final cumulative GPA and overall aggregate grade are calculated automatically."
+        ]
+      }}
+      faqs={[
+        {
+          question: "What does 'NG' mean?",
+          answer: "'NG' stands for Non-Graded. Under the 2078/2081 guidelines, if a student scores below 35% in the theory portion of any subject, they will receive an NG. They will not receive a final GPA and must take a supplementary exam."
+        },
+        {
+          question: "How is the final GPA calculated?",
+          answer: "The final GPA is a weighted average. Each subject's Grade Point (GP) is multiplied by its credit hours. The sum of these values is then divided by the total credit hours."
+        }
+      ]}
+      seoContent={
+        <div>
+          <h2>Understanding the SEE GPA System in Nepal</h2>
+          <p>The Secondary Education Examination (SEE) is the final examination in the secondary school system of Nepal. Recently, the National Examination Board (NEB) updated the grading system to enforce stricter quality controls via the Letter Grading Directive 2078 (implemented fully in 2081 BS).</p>
+          
+          <h3>The 35% Theory Rule</h3>
+          <p>The most significant change in the new directive is the separation of Theory and Practical marks. Previously, students could pass by combining high practical marks with low theory marks. Now, students <strong>must secure a minimum of 35% in the theory examination</strong> independently.</p>
+          <ul>
+            <li>For a standard 75-mark theory exam, a student must score at least <strong>26.25 marks</strong>.</li>
+            <li>For a standard 25-mark practical exam, a student must score at least <strong>10 marks</strong> (40%).</li>
+          </ul>
+          <p>If a student fails to meet the theory threshold, they receive an 'NG' (Non-Graded) regardless of their practical score. Students with an NG cannot enroll in higher secondary education (Class 11) until they pass the grade increment (supplementary) exams.</p>
+          
+          <h3>Grade Points and Credits</h3>
+          <p>The GPA is not a simple average. Each subject is assigned a specific number of Credit Hours (usually 4 for core subjects). The Grade Point (GP) earned in a subject is multiplied by its Credit Hours. The sum of all these weighted points is divided by the total number of credit hours to determine the final Cumulative GPA.</p>
+        </div>
       }
     />
   );

@@ -1,13 +1,9 @@
 'use client';
 import { useState, useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
-import { Terminal, Cpu } from 'lucide-react';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { Terminal, Cpu, Braces } from 'lucide-react';
 
-interface ConversionResult {
-  dec: string; bin: string; hex: string; oct: string; char: string | null;
-  logic: { and: string; or: string; xor: string };
-}
+interface ConversionResult { dec: string; bin: string; hex: string; oct: string; char: string | null; logic: { and: string; or: string; xor: string }; }
 interface ErrorResult { error: string; }
 type BaseResult = ConversionResult | ErrorResult | null;
 
@@ -35,127 +31,100 @@ export default function BaseConverter() {
   }, [val, val2, base]);
 
   const d = useMemo(() => {
-    if (res && 'dec' in res) {
-      const r = res as ConversionResult;
-      return { dec: r.dec, bin: r.bin, hex: r.hex, oct: r.oct, char: r.char, logic: r.logic };
-    }
-    return { dec: '---', bin: '---', hex: '---', oct: '---', char: null, logic: { and: '0', or: '0', xor: '0' } };
+    if (res && 'dec' in res) { const r = res as ConversionResult; return { dec: r.dec, bin: r.bin, hex: r.hex, oct: r.oct, char: r.char, logic: r.logic }; }
+    return { dec: '—', bin: '—', hex: '—', oct: '—', char: null, logic: { and: '0', or: '0', xor: '0' } };
   }, [res]);
 
   const BASES = [{ id: 10, l: 'Decimal' }, { id: 2, l: 'Binary' }, { id: 16, l: 'Hex' }, { id: 8, l: 'Octal' }];
-  const CONVERSIONS = [
-    { l: 'Binary (Base 2)', v: d.bin, color: 'text-[var(--primary)]' },
-    { l: 'Hexadecimal (Base 16)', v: d.hex !== '---' ? `0x${d.hex}` : '---', color: 'text-[var(--accent)]' },
-    { l: 'Octal (Base 8)', v: d.oct, color: 'text-[#006600]' },
-    { l: 'Decimal (Base 10)', v: d.dec, color: 'text-[var(--text-main)]' },
-  ];
+
+  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider block mb-1.5";
 
   return (
-    <CalculatorLayout
+    <ModernCalcLayout
+      crumbs={[{ label: 'Converters', href: '/converters/' }, { label: 'Base Converter' }]}
       title="Number Base Converter"
-      description="Convert numbers instantly between Decimal, Binary, Hexadecimal, and Octal. Includes ASCII preview and bitwise logic operations."
-      category={{ label: 'Math', href: '/calculator/category/math' }}
-      leftPanel={
+      description="Convert numbers instantly between Decimal, Binary, Hexadecimal, and Octal formats. Includes bitwise logic operations and ASCII preview."
+      icon={Braces}
+      inputs={
         <div className="space-y-6">
-          {/* Base Selector */}
-          <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Input Base</label>
-            <div className="flex bg-[var(--bg-surface)] border border-[var(--border)] p-1">
+          <div className="space-y-3">
+            <label className={labelCls}>Input Base System</label>
+            <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
               {BASES.map(b => (
-                <button key={b.id} onClick={() => setBase(b.id)}
-                  className={`flex-1 py-2 text-xs font-bold uppercase transition-all ${base === b.id ? 'bg-[var(--primary)] text-white' : 'text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]'}`}>
+                <button key={b.id} onClick={() => setBase(b.id)} className={`flex-1 py-2 text-[10px] font-bold uppercase tracking-wider rounded-md transition-all ${base === b.id ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}>
                   {b.l}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Main Input */}
-          <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">
-              Enter {base === 10 ? 'Decimal' : base === 2 ? 'Binary' : base === 16 ? 'Hexadecimal' : 'Octal'} Value
-            </label>
-            <input
-              type="text" value={val}
-              onChange={e => setVal(e.target.value.toUpperCase())}
-              className="w-full h-14 px-4 border-2 border-[var(--border)] bg-white font-mono text-2xl font-bold focus:border-[var(--primary)] outline-none tracking-widest"
-              placeholder="255" maxLength={64}
-            />
-            {res && 'error' in res && (
-              <p className="text-xs text-red-600 font-bold px-1">{(res as ErrorResult).error}</p>
-            )}
+          <div className="space-y-3">
+            <label className={labelCls}>Enter {BASES.find(b => b.id === base)?.l} Value</label>
+            <input type="text" value={val} onChange={e => setVal(e.target.value.toUpperCase())} maxLength={64} className={`${inputCls} font-mono text-lg tracking-widest uppercase`} placeholder="255" />
+            {res && 'error' in res && <p className="text-[10px] text-[#D93025] font-bold mt-1 px-1">{(res as ErrorResult).error}</p>}
           </div>
 
-          {/* Quick Presets */}
-          <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Common Values</label>
+          <div className="space-y-3">
+            <label className={labelCls}>Common Value Presets</label>
             <div className="grid grid-cols-4 gap-2">
               {['255', '1024', '65535', '16777215'].map(pv => (
-                <button key={pv} onClick={() => { setBase(10); setVal(pv); }}
-                  className="py-3 text-[11px] font-bold border border-[var(--border)] bg-[var(--bg-surface)] hover:bg-[var(--bg-subtle)] hover:border-[var(--primary)] transition-all">
-                  {parseInt(pv).toLocaleString()}
-                </button>
+                <button key={pv} onClick={() => { setBase(10); setVal(pv); }} className="py-2 bg-white border border-[#DADCE0] text-[#70757A] rounded font-mono text-[10px] font-bold hover:bg-[#F8F9FA] transition-colors">{parseInt(pv).toLocaleString()}</button>
               ))}
             </div>
           </div>
 
-          {/* Bitwise Logic */}
-          <div className="space-y-2 p-5 bg-[var(--bg-surface)] border border-[var(--border)]">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Bitwise Operations (vs. Value 2)</label>
-            <input type="number" value={val2} onChange={e => setVal2(e.target.value)}
-              className="w-full h-10 px-3 border border-[var(--border)] bg-white text-sm font-bold outline-none focus:border-[var(--primary)]"
-              placeholder="Second operand" />
-            <div className="grid grid-cols-3 gap-2 mt-3">
-              {[['AND', d.logic.and], ['OR', d.logic.or], ['XOR', d.logic.xor]].map(([op, val]) => (
-                <div key={op} className="p-3 bg-white border border-[var(--border)] text-center">
-                  <div className="text-[9px] font-black uppercase text-[var(--text-muted)] mb-1">{op}</div>
-                  <div className="text-sm font-black text-[var(--primary)] font-mono">{val}</div>
-                </div>
-              ))}
+          <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg space-y-4">
+             <label className={labelCls}>Bitwise Logic Test (Operand 2)</label>
+             <input type="number" value={val2} onChange={e => setVal2(e.target.value)} className={inputCls} placeholder="Enter Decimal Operand 2" />
+             
+             <div className="grid grid-cols-3 gap-2">
+               {[['AND', d.logic.and], ['OR', d.logic.or], ['XOR', d.logic.xor]].map(([op, v]) => (
+                 <div key={op} className="bg-white border border-[#DADCE0] rounded p-2 text-center">
+                    <div className="text-[9px] font-bold text-[#70757A] uppercase mb-1">{op}</div>
+                    <div className="text-sm font-black text-[#1A73E8] font-mono">{v}</div>
+                 </div>
+               ))}
+             </div>
+          </div>
+        </div>
+      }
+      results={
+        <div className="space-y-4">
+          {[
+            { l: 'Binary (Base 2)', v: d.bin, color: 'text-[#1A73E8]', bg: 'bg-[#E8F0FE]', border: 'border-[#C5D9F7]' },
+            { l: 'Hexadecimal (Base 16)', v: d.hex !== '—' ? `0x${d.hex}` : '—', color: 'text-[#E37400]', bg: 'bg-[#FFF7E0]', border: 'border-[#FEEFC3]' },
+            { l: 'Octal (Base 8)', v: d.oct, color: 'text-[#188038]', bg: 'bg-[#E6F4EA]', border: 'border-[#CEEAD6]' },
+            { l: 'Decimal (Base 10)', v: d.dec, color: 'text-[#202124]', bg: 'bg-white', border: 'border-[#DADCE0]' },
+          ].map(item => (
+            <div key={item.l} className={`p-5 ${item.bg} border ${item.border} rounded-lg flex flex-col gap-1`}>
+               <span className="text-[10px] font-bold text-[#70757A] uppercase tracking-wider">{item.l}</span>
+               <span className={`text-lg sm:text-xl font-black font-mono tracking-tight break-all ${item.color}`}>{item.v}</span>
+            </div>
+          ))}
+
+          <div className="grid grid-cols-2 gap-4 pt-4">
+            <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center flex flex-col items-center justify-center gap-2">
+              <Terminal className="w-5 h-5 text-[#70757A]" />
+              <div className="text-[9px] font-bold uppercase text-[#70757A] tracking-wider">ASCII Char</div>
+              <div className="text-2xl font-black text-[#1A73E8] font-mono">{d.char || '—'}</div>
+            </div>
+            <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center flex flex-col items-center justify-center gap-2">
+              <Cpu className="w-5 h-5 text-[#70757A]" />
+              <div className="text-[9px] font-bold uppercase text-[#70757A] tracking-wider">Memory Size</div>
+              <div className="text-2xl font-black text-[#188038] font-mono">{d.hex !== '—' ? Math.ceil(d.hex.length / 2) : '0'}b</div>
             </div>
           </div>
         </div>
       }
-      rightPanel={
-        <div className="space-y-6">
-          {/* All Bases Result */}
-          <div className="space-y-3">
-            {CONVERSIONS.map(item => (
-              <div key={item.l} className="p-5 bg-white border border-[var(--border)] flex justify-between items-center group hover:border-[var(--primary)] transition-all">
-                <span className="text-[11px] font-bold text-[var(--text-muted)] uppercase">{item.l}</span>
-                <span className={`text-sm font-black font-mono tracking-tight ${item.color}`}>{item.v}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* ASCII & Memory */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="p-5 bg-white border border-[var(--border)] text-center">
-              <Terminal className="w-5 h-5 text-[var(--text-muted)] mx-auto mb-2" />
-              <div className="text-[9px] font-black uppercase text-[var(--text-muted)] mb-1">ASCII Char</div>
-              <div className="text-xl font-black text-[var(--primary)] font-mono">{d.char || 'N/A'}</div>
-            </div>
-            <div className="p-5 bg-white border border-[var(--border)] text-center">
-              <Cpu className="w-5 h-5 text-[var(--text-muted)] mx-auto mb-2" />
-              <div className="text-[9px] font-black uppercase text-[var(--text-muted)] mb-1">Memory Size</div>
-              <div className="text-xl font-black text-[#006600]">{d.hex !== '---' ? Math.ceil(d.hex.length / 2) : '0'} bytes</div>
-            </div>
-          </div>
-
-          <div className="p-5 bg-[var(--bg-subtle)] border border-[var(--border)]">
-            <p className="text-[12px] text-[var(--text-secondary)] leading-relaxed italic">
-              * Binary shown with 8-bit padding. Hexadecimal uses uppercase letters (A–F).
-            </p>
-          </div>
-        </div>
-      }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'What is Hexadecimal?', answer: 'Hex (Base-16) uses digits 0–9 and A–F. It\'s compact and widely used in computing, color codes, and memory addresses.' },
-          { question: 'Why is Binary important?', answer: 'All digital electronics use binary (1s and 0s) as their base language because transistors have two states: on and off.' },
-          { question: 'What is Octal used for?', answer: 'Octal (Base-8) is used in UNIX file permissions and some programming contexts as a shorter representation of binary.' },
-        ]} />
-      }
+      howToUse={{ steps: ["Select your starting numeral system (Decimal, Binary, Hex, or Octal).", "Input the value to convert. The system automatically rejects invalid characters for that base.", "All output bases update instantly.", "Optional: Test bitwise operations (AND, OR, XOR) against a secondary decimal value."] }}
+      formula={{ title: "Base Mathematics", description: "Standard radix conversions.", raw: "Base 10 (Decimal): Standard human counting (0-9)\nBase 2 (Binary): Computer logical bits (0-1)\nBase 16 (Hexadecimal): Byte shorthand (0-9, A-F)\nBase 8 (Octal): Older computing shorthand (0-7)" }}
+      faqs={[
+        { question: "Why is Hexadecimal important?", answer: "Hexadecimal (Base 16) is a very compact way to represent binary data. One hex digit perfectly represents 4 binary bits (a nibble). It is standard in programming for color codes and memory addresses." },
+        { question: "What does the Memory Size mean?", answer: "Memory size estimates the minimum number of bytes required to store the entered number in a computer's RAM, calculated based on the hexadecimal length." }
+      ]}
+      sidebar={{ title: "Computer Science", links: [{ label: "Number to Words", href: "/calculator/number-to-words" }, { label: "Password Generator", href: "/calculator/password-generator" }], banner: { title: "Programmer Setup", description: "Use Hex and Binary for bitmasking and flag configuration.", image: "/images/math-banner.jpg" } }}
+      relatedTools={[{ label: "Number to Words", href: "/calculator/number-to-words" }]}
     />
   );
 }

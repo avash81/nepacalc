@@ -1,7 +1,7 @@
 'use client';
 import { useState, useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { Grid3X3, Lightbulb, AlertCircle } from 'lucide-react';
 
 export default function MatrixCalc() {
   const [size, setSize] = useState<2|3>(2);
@@ -40,7 +40,6 @@ export default function MatrixCalc() {
           (m[0][0]*m[1][1] - m[0][1]*m[1][0])
         ]
       ];
-      // Transpose of cofactor matrix (adjugate) / determinant
       inverse = [
         [c[0][0]/det, c[1][0]/det, c[2][0]/det],
         [c[0][1]/det, c[1][1]/det, c[2][1]/det],
@@ -56,32 +55,31 @@ export default function MatrixCalc() {
     setMatrix(n);
   };
 
-  const inputC = "w-full h-14 text-center border border-[var(--border)] bg-white font-mono text-lg font-black focus:border-[var(--primary)] outline-none";
+  const inputC = "w-full h-14 text-center border border-[#DADCE0] rounded-md bg-white font-mono text-lg font-black focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all shadow-inner";
 
   return (
-    <CalculatorLayout
+    <ModernCalcLayout
+      crumbs={[{ label: 'Engineering', href: '/engineering/' }, { label: 'Matrix Calculator' }]}
       title="Matrix Calculator"
-      description="Calculate determinant, trace, and inverse of 2×2 and 3×3 matrices. Essential for linear algebra, physics, and engineering."
-      category={{ label: 'Math', href: '/calculator/category/math' }}
-      leftPanel={
+      description="Compute determinant, trace, and inverse of 2×2 and 3×3 matrices. Essential tool for linear algebra, physics, and engineering students."
+      icon={Grid3X3}
+      inputs={
         <div className="space-y-6">
-          <div className="grid grid-cols-2 gap-2">
+          <div className="flex p-1 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg">
             {([2,3] as const).map(s => (
               <button key={s} onClick={() => setSize(s)}
-                className={`py-4 font-black border transition-all text-sm ${size===s ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'border-[var(--border)] bg-white hover:bg-[var(--bg-subtle)]'}`}>
+                className={`flex-1 py-3 text-xs font-bold uppercase rounded transition-all ${size === s ? 'bg-white text-[#1A73E8] shadow-sm border border-[#DADCE0]' : 'text-[#70757A] hover:bg-[#E8F0FE]'}`}>
                 {s}×{s} Matrix
               </button>
             ))}
           </div>
 
-          {/* Matrix grid */}
-          <div className="p-6 bg-white border border-[var(--border)]">
-            <div className="text-[10px] font-bold uppercase text-[var(--text-secondary)] mb-4">Enter Matrix Values</div>
-            {/* overflow-x-auto prevents layout break on 375px phones with 3×3 matrices */}
-            <div className="overflow-x-auto">
-              <div className={`grid gap-2`} style={{ gridTemplateColumns: `repeat(${size}, minmax(60px, 1fr))` }}>
-                {Array.from({ length:size }).map((_, r) =>
-                  Array.from({ length:size }).map((_, c) => (
+          <div className="p-6 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg">
+            <div className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider mb-4">Enter Matrix Values</div>
+            <div className="overflow-x-auto pb-2">
+              <div className="grid gap-3" style={{ gridTemplateColumns: `repeat(${size}, minmax(70px, 1fr))` }}>
+                {Array.from({ length: size }).map((_, r) =>
+                  Array.from({ length: size }).map((_, c) => (
                     <input key={`${r}-${c}`} type="number" inputMode="decimal" value={matrix[r][c]}
                       onChange={e => upd(r, c, Number(e.target.value))}
                       className={inputC} />
@@ -91,63 +89,78 @@ export default function MatrixCalc() {
             </div>
           </div>
 
-          {/* Load identity */}
-          <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Load Preset</label>
-            <div className="grid grid-cols-2 gap-2">
+          <div className="space-y-3">
+            <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider block">Load Quick Preset</label>
+            <div className="grid grid-cols-2 gap-3">
               <button onClick={() => setMatrix([[1,0,0],[0,1,0],[0,0,1]])}
-                className="p-3 border border-[var(--border)] bg-white hover:bg-[var(--bg-subtle)] text-[11px] font-bold transition-all">
-                Identity Matrix
+                className="p-3 border border-[#DADCE0] bg-white rounded-lg hover:border-[#1A73E8] text-[#5F6368] hover:text-[#1A73E8] text-xs font-bold transition-all text-center">
+                Identity Matrix (I)
               </button>
               <button onClick={() => setMatrix([[2,1,0],[1,3,1],[0,1,2]])}
-                className="p-3 border border-[var(--border)] bg-white hover:bg-[var(--bg-subtle)] text-[11px] font-bold transition-all">
-                Example Matrix
+                className="p-3 border border-[#DADCE0] bg-white rounded-lg hover:border-[#1A73E8] text-[#5F6368] hover:text-[#1A73E8] text-xs font-bold transition-all text-center">
+                Random Example
               </button>
             </div>
           </div>
         </div>
       }
-      rightPanel={
+      results={
         <div className="space-y-6">
-          <div className="p-8 bg-white border border-[var(--border)] text-center">
-            <div className="text-xs font-bold uppercase text-[var(--text-muted)] mb-2">Determinant |A|</div>
-            <div className="text-6xl font-black text-[var(--primary)] tracking-tighter font-mono mb-1">{results.det.toFixed(2)}</div>
-            {results.det === 0 && <div className="text-xs font-bold text-red-600 mt-1">Singular matrix — no inverse</div>}
-          </div>
-
-          <div className="p-5 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-            <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Trace tr(A)</span>
-            <span className="text-xl font-black font-mono text-[#006600]">{results.trace}</span>
-          </div>
-
-          {results.inverse && (
-            <div className="bg-white border border-[var(--border)]">
-              <div className="px-4 py-3 bg-[var(--bg-surface)] border-b border-[var(--border)]">
-                <h3 className="text-[11px] font-bold uppercase text-[var(--text-main)]">Inverse Matrix A⁻¹</h3>
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 text-center shadow-sm relative overflow-hidden">
+            <div className="text-[10px] font-bold uppercase tracking-wider text-[#70757A] mb-2 relative z-10">Determinant |A|</div>
+            <div className="text-6xl font-black text-[#1A73E8] tracking-tighter font-mono relative z-10">{results.det.toFixed(2).replace(/\.?0+$/, '')}</div>
+            {results.det === 0 && (
+              <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 bg-[#FCE8E6] text-[#D93025] rounded text-xs font-bold uppercase tracking-wider relative z-10">
+                 <AlertCircle className="w-3.5 h-3.5" /> Singular Matrix (No Inverse)
               </div>
-              <div className="p-4 grid gap-2" style={{ gridTemplateColumns: `repeat(${size}, 1fr)` }}>
+            )}
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
+            <div className="px-4 py-3 bg-[#F8F9FA] border-b border-[#DADCE0] flex justify-between items-center">
+               <span className="text-[10px] font-bold uppercase tracking-wider text-[#70757A]">Trace tr(A)</span>
+               <span className="text-lg font-black font-mono text-[#188038]">{results.trace}</span>
+            </div>
+          </div>
+
+          {results.inverse ? (
+            <div className="bg-[#1A1A2E] border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+              <div className="px-4 py-3 bg-[#1A73E8] border-b border-[#1A73E8]">
+                <h3 className="text-[11px] font-bold uppercase tracking-wider text-white">Inverse Matrix A⁻¹</h3>
+              </div>
+              <div className="p-6 grid gap-3" style={{ gridTemplateColumns: `repeat(${size}, 1fr)` }}>
                 {results.inverse.map((row, r) => row.map((v, c) => (
-                  <div key={`${r}-${c}`} className="p-3 bg-[var(--bg-surface)] border border-[var(--border)] text-center font-mono font-black text-sm text-[var(--primary)] overflow-hidden text-ellipsis">
-                    {v.toFixed(4)}
+                  <div key={`${r}-${c}`} className="p-3 bg-white/10 rounded border border-white/20 text-center font-mono font-bold text-sm text-white overflow-hidden text-ellipsis shadow-inner">
+                    {Number.isInteger(v) ? v : v.toFixed(3)}
                   </div>
                 )))}
               </div>
             </div>
+          ) : (
+            <div className="p-6 border border-[#DADCE0] border-dashed rounded-lg bg-[#F8F9FA] text-center">
+               <p className="text-sm font-bold text-[#70757A]">Inverse matrix cannot be calculated when determinant is zero.</p>
+            </div>
           )}
 
-          <div className="p-4 bg-[var(--bg-subtle)] border border-[var(--border)]">
-            <div className="text-[10px] font-black uppercase text-[var(--text-muted)] mb-1">Determinant Formula</div>
-            <code className="text-[11px] font-mono text-[var(--primary)]">{size===2 ? '|A| = ad − bc' : '|A| = a(ei−fh) − b(di−fg) + c(dh−eg)'}</code>
+          <div className="p-4 bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg flex items-start gap-3">
+             <Lightbulb className="w-5 h-5 text-[#1A73E8] shrink-0 mt-0.5" />
+             <div>
+                <h5 className="text-[10px] font-bold uppercase tracking-wider text-[#1A73E8] mb-1">Determinant Formula</h5>
+                <code className="text-xs font-mono font-bold text-[#202124]">
+                  {size===2 ? '|A| = ad − bc' : '|A| = a(ei−fh) − b(di−fg) + c(dh−eg)'}
+                </code>
+             </div>
           </div>
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'What is a matrix determinant?', answer: 'A scalar value encoding properties of the linear transformation the matrix represents. Non-zero determinant = invertible matrix.' },
-          { question: 'What is the matrix trace?', answer: 'The sum of the diagonal elements (top-left to bottom-right). For a 2×2 matrix [[a,b],[c,d]], trace = a+d.' },
-          { question: 'When does the inverse not exist?', answer: 'When the determinant is 0 (singular matrix). A singular matrix cannot be inverted.' },
-        ]} />
-      }
+      howToUse={{ steps: ["Select your matrix size (2x2 or 3x3) using the top toggle.", "Enter the numerical values into the matrix grid.", "The calculator will instantly compute the Determinant, Trace, and the Inverse matrix if it exists.", "Use the quick presets to quickly load an Identity matrix to test concepts."] }}
+      formula={{ title: "Matrix Concepts", description: "Core linear algebra definitions.", raw: "Trace: The sum of the main diagonal elements (top-left to bottom-right).\n\nDeterminant: A scalar value that is a function of the entries of a square matrix.\n\nInverse: A matrix that, when multiplied by the original matrix, yields the identity matrix. It only exists if the determinant is non-zero." }}
+      faqs={[
+        { question: "What is a Singular Matrix?", answer: "A singular matrix is a square matrix that does not have an inverse. This occurs when its determinant is exactly zero." },
+        { question: "Why is the trace important?", answer: "The trace is an invariant under changes of basis. In quantum mechanics and linear algebra, it equals the sum of the eigenvalues of the matrix." }
+      ]}
+      sidebar={{ title: "Algebra Tools", links: [{ label: "Linear Solver", href: "/calculator/linear-solver" }, { label: "Quadratic Formula", href: "/calculator/quadratic-formula" }], banner: { title: "Matrix Math", description: "Matrices are the mathematical foundation of 3D computer graphics.", image: "/images/math-banner.jpg" } }}
+      relatedTools={[{ label: "Linear Solver", href: "/calculator/linear-solver" }]}
     />
   );
 }

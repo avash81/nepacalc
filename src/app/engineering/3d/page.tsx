@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: '3D surface plotter: visualize z=f(x,y) functions with orbit camera, rotation, zoom, wireframe & solid rendering modes. Supports sin, cos, tan, log and more. Free, no login.',
   keywords: ['3d graphing calculator', '3d surface plotter', 'plot z=f(x,y)', '3d math visualizer', '3d function graph'],
   alternates: {
-    canonical: '/engineering/3d',
+    canonical: '/engineering/3d/',
   },
   openGraph: { title: 'Free 3D Calculator | NEPACALC', description: '3D surface plotter with orbit camera and wireframe rendering.', url: 'https://nepacalc.com/engineering/3d' },
 };

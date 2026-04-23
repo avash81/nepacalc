@@ -151,7 +151,7 @@ export default function RootLayout({
         </a>
         <Navbar />
         {/* Add bottom padding on mobile so content is not hidden behind MobileNav */}
-        <main id="main-content">
+        <main id="main-content" className="pt-16">
           <div className="lg:pb-0">
             {children}
             <Footer />

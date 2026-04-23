@@ -1,9 +1,6 @@
 'use client';
-
 import { useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-import { ResultCard } from '@/components/calculator/ResultCard';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { useSyncState } from '@/hooks/useSyncState';
 import { Zap, Info, Receipt, UtilityPole } from 'lucide-react';
 
@@ -18,7 +15,7 @@ const NEA_DOMESTIC_SLABS = [
 ];
 
 export default function NEABillCalculator() {
-  const [state, setState] = useSyncState('nea_bill_v1', {
+  const [state, setState] = useSyncState('nea_bill_v2', {
     units: 150,
     connectionAmps: '5A' as '5A' | '15A' | '30A',
   });
@@ -38,8 +35,7 @@ export default function NEABillCalculator() {
       const slabRange = limit - prevLimit;
       const consumedInSlab = Math.max(0, Math.min(remaining, slabRange));
 
-      // Calculate fixed charge based on the highest slab reached
-      if (units > prevLimit) {
+      if (units >= prevLimit) {
         currentFixed = slab[`fixed${connectionAmps}` as keyof typeof slab] as number;
       }
 
@@ -67,123 +63,124 @@ export default function NEABillCalculator() {
   }, [units, connectionAmps]);
 
   const fmt = (n: number) => n.toLocaleString('en-IN', { maximumFractionDigits: 2 });
+  
+  const inputCls = "w-full h-12 pl-12 pr-16 border border-[#DADCE0] rounded-md bg-white text-sm font-bold focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider block mb-1.5";
 
   return (
-    <CalculatorLayout
+    <ModernCalcLayout
+      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Electricity Bill Calculator' }]}
       title="NEA Electricity Bill Calculator"
-      description="Professional slab-based bill estimation for Nepal Electricity Authority (NEA) domestic consumers. Updated for latest 2081/82 tariff schedules."
-      category={{ label: 'Nepal Tools', href: '/calculator/category/nepal' }}
-      leftPanel={
-        <div className="space-y-8">
-           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <ValidatedInput 
-                label="Total Units Consumed" 
-                value={units} 
-                onChange={v => update({ units: v })} 
-                suffix="Units"
-                hint="Units = Current - Previous reading"
-              />
-              <div className="space-y-2">
-                 <label className="text-[10px] font-black uppercase text-[var(--text-muted)] tracking-widest">Connection Capacity</label>
-                 <div className="flex p-1 bg-[var(--bg-subtle)] border border-[var(--border)] rounded-xl">
-                    {(['5A', '15A', '30A'] as const).map(amp => (
-                       <button 
-                         key={amp} 
-                         onClick={() => update({ connectionAmps: amp })}
-                        className={`flex-1 py-2 text-[10px] font-black uppercase transition-all rounded-lg ${connectionAmps === amp ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500'}`}
-                       >
-                         {amp}
-                       </button>
-                    ))}
-                 </div>
-              </div>
-           </div>
-
-           <div className="pt-6 border-t border-[var(--border)] space-y-4">
-              <div className="flex items-center gap-2 mb-2">
-                 <Receipt className="w-4 h-4 text-blue-600" />
-                 <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-900">Progressive Slab Breakdown</h3>
-              </div>
-              <div className="space-y-4">
-                 {result.breakdown.map((b, i) => (
-                    <div key={i} className="space-y-1.5">
-                       <div className="flex justify-between items-center text-[11px] font-bold">
-                          <span className="text-slate-600 font-mono italic">{b.label} <span className="text-[9px] opacity-60">(@ Rs. {b.rate})</span></span>
-                          <span className="text-slate-900">Rs. {fmt(b.amount)}</span>
-                       </div>
-                       <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
-                          <div 
-                            className="h-full bg-blue-500 transition-all duration-1000" 
-                            style={{ width: `${(b.amount / (result.energyCharge || 1)) * 100}%` }} 
-                          />
-                       </div>
-                    </div>
-                 ))}
-                 <div className="flex justify-between items-center pt-3 border-t border-slate-100 text-[11px] font-black uppercase">
-                    <span className="text-slate-400">Total Energy Charge</span>
-                    <span className="text-blue-700">Rs. {fmt(result.energyCharge)}</span>
-                 </div>
-              </div>
-           </div>
-        </div>
-      }
-      rightPanel={
+      description="Professional slab-based bill estimation for Nepal Electricity Authority (NEA) domestic consumers. Accurate for the latest 2081/82 tariff schedules."
+      icon={Zap}
+      inputs={
         <div className="space-y-6">
-          <ResultCard 
-            label="Estimated Total Bill" 
-            value={fmt(result.finalTotal)} 
-            unit=" Rs." 
-            color="blue" 
-            title="Monthly Invoice"
-            copyValue={`Total Units: ${units}, Total Bill: Rs. ${result.finalTotal}`}
-          />
+          <div className="space-y-4">
+            <div>
+              <label className={labelCls}>Total Units Consumed</label>
+              <div className="relative">
+                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#70757A]">
+                    <Zap className="w-4 h-4 text-[#FABB05]" />
+                 </span>
+                 <input type="number" value={units} onChange={e => update({ units: Number(e.target.value) })} min={0} className={inputCls} />
+                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-[#70757A]">Units</span>
+              </div>
+              <p className="text-[10px] text-[#70757A] mt-1.5 font-medium px-1">Tip: Calculate by subtracting your previous meter reading from your current reading.</p>
+            </div>
 
-          <div className="bg-white border border-[var(--border)] divide-y divide-[var(--border)]">
-             <div className="p-4 flex justify-between items-center bg-slate-50 border-b border-[var(--border)]">
-                <span className="text-[10px] font-black uppercase text-[var(--text-main)] font-mono">Bill Summary</span>
-                <span className="text-[9px] font-black text-blue-600 bg-blue-50 px-2 py-1 uppercase rounded">Institutional Rate</span>
-             </div>
-             <div className="p-4 flex justify-between text-[11px] font-bold">
-                <span className="text-slate-600">Fixed/Service Charge</span>
-                <span className="text-slate-900">Rs. {fmt(result.currentFixed)}</span>
-             </div>
-             <div className="p-4 flex justify-between text-[11px] font-bold">
-                <span className="text-slate-600">Energy Charge</span>
-                <span className="text-slate-900">Rs. {fmt(result.energyCharge)}</span>
-             </div>
-             <div className="p-4 flex justify-between text-[11px] font-bold">
-                <span className="text-slate-600">VAT (13%)</span>
-                <span className="text-primary font-black">+ Rs. {fmt(result.vatAmount)}</span>
-             </div>
-             <div className="p-4 flex justify-between bg-blue-50/20">
-                <span className="text-[11px] font-black uppercase text-blue-900">Payable Amount</span>
-                <span className="text-xl font-black text-blue-700 font-mono">Rs. {fmt(result.finalTotal)}</span>
-             </div>
+            <div>
+              <label className={labelCls}>Connection Capacity (Amperes)</label>
+              <div className="flex p-1 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg">
+                {(['5A', '15A', '30A'] as const).map(amp => (
+                  <button key={amp} onClick={() => update({ connectionAmps: amp })}
+                    className={`flex-1 py-2 text-[11px] font-bold uppercase transition-all rounded ${connectionAmps === amp ? 'bg-white text-[#1A73E8] shadow-sm border border-[#DADCE0]' : 'text-[#70757A] hover:bg-[#E8F0FE]'}`}>
+                    {amp}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className="p-5 bg-amber-50 border border-amber-100 rounded-2xl flex gap-3">
-             <Info className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-             <p className="text-[11px] text-amber-800 font-medium leading-relaxed italic">
-                Note: The <strong>0-20 unit slab</strong> has a Rs. 0 energy charge but requires a mandatory minimum service charge (Rs. 30-75) depending on your connection capacity.
-             </p>
+          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg overflow-hidden mt-6">
+             <div className="px-4 py-3 bg-white border-b border-[#DADCE0] flex items-center gap-2">
+                <Receipt className="w-4 h-4 text-[#1A73E8]" />
+                <h3 className="text-[10px] font-bold uppercase tracking-wider text-[#70757A]">Progressive Slab Breakdown</h3>
+             </div>
+             <div className="p-4 space-y-4">
+                {result.breakdown.map((b, i) => (
+                   <div key={i} className="space-y-1.5">
+                      <div className="flex justify-between items-center text-[11px] font-bold">
+                         <span className="text-[#5F6368]">{b.label} <span className="opacity-60 font-normal">({b.units}U @ Rs. {b.rate})</span></span>
+                         <span className="text-[#202124] font-mono">Rs. {fmt(b.amount)}</span>
+                      </div>
+                      <div className="h-1.5 w-full bg-[#E8F0FE] rounded-full overflow-hidden">
+                         <div className="h-full bg-[#1A73E8] transition-all duration-1000" style={{ width: `${(b.amount / (result.energyCharge || 1)) * 100}%` }} />
+                      </div>
+                   </div>
+                ))}
+                <div className="flex justify-between items-center pt-3 border-t border-[#DADCE0] text-[11px] font-bold uppercase tracking-wider">
+                   <span className="text-[#70757A]">Total Energy Charge</span>
+                   <span className="text-[#1A73E8] font-mono font-black">Rs. {fmt(result.energyCharge)}</span>
+                </div>
+             </div>
           </div>
         </div>
       }
-      faqSection={
-         <div className="mt-16 pt-12 border-t border-[var(--border)] prose prose-slate max-w-none">
-            <h2 className="tracking-tighter font-black text-slate-900 mb-8">Mastering Your NEA Electricity Bill</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-               <div>
-                  <h4 className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-4">Connection Capacity (Amps)</h4>
-                  <p className="text-[13px] text-slate-600 leading-relaxed">Your fixed monthly charge is determined by the size of your connection. Most residential houses use **5A or 15A**. Larger homes with multiple ACs or water heaters typically use **30A**. The higher the Ampere, the higher the minimum service charge.</p>
-               </div>
-               <div>
-                  <h4 className="text-[10px] font-black uppercase tracking-widest text-blue-600 mb-4">How Slabs Work</h4>
-                  <p className="text-[13px] text-slate-600 leading-relaxed">NEA uses a "Marginal Pricing" system. If you consume 150 units, you don't pay one single rate. Your first 20 units are free (exclusive of fixed charge), and the remaining units are taxed in increasing layers. This system is designed to reward energy conservation.</p>
-               </div>
-            </div>
-         </div>
+      results={
+        <div className="space-y-6">
+          <div className="bg-[#1A1A2E] rounded-lg border border-[#DADCE0] overflow-hidden text-white shadow-sm relative">
+             <UtilityPole className="absolute -bottom-4 -right-4 w-32 h-32 text-white/5 pointer-events-none" />
+             
+             <div className="p-6 bg-[#1A73E8] flex justify-between items-center relative z-10">
+                <div className="space-y-1">
+                   <div className="text-[10px] font-bold uppercase tracking-widest text-white/80">Estimated Total Bill</div>
+                   <div className="text-xl font-black">{units} Units</div>
+                </div>
+                <div className="text-right">
+                   <div className="text-[10px] font-bold uppercase tracking-widest text-white/80">Monthly Invoice</div>
+                   <div className="text-3xl font-black tracking-tighter font-mono">Rs. {fmt(result.finalTotal)}</div>
+                </div>
+             </div>
+             
+             <div className="p-6 divide-y divide-white/10 relative z-10">
+                <div className="py-3 flex justify-between items-center text-xs">
+                   <span className="text-white/70 font-bold uppercase tracking-wider">Fixed / Service Charge</span>
+                   <span className="font-black font-mono">Rs. {fmt(result.currentFixed)}</span>
+                </div>
+                <div className="py-3 flex justify-between items-center text-xs">
+                   <span className="text-white/70 font-bold uppercase tracking-wider">Energy Charge</span>
+                   <span className="font-black font-mono">Rs. {fmt(result.energyCharge)}</span>
+                </div>
+                <div className="py-3 flex justify-between items-center text-xs">
+                   <span className="text-[#8AB4F8] font-bold uppercase tracking-wider">VAT (13%)</span>
+                   <span className="font-black text-[#8AB4F8] font-mono">+ Rs. {fmt(result.vatAmount)}</span>
+                </div>
+                <div className="py-4 flex justify-between items-baseline border-t border-white/20 mt-2">
+                   <span className="text-[11px] font-bold uppercase tracking-widest text-white">Total Payable</span>
+                   <span className="text-xl font-black text-[#FABB05] font-mono">Rs. {fmt(result.finalTotal)}</span>
+                </div>
+             </div>
+          </div>
+
+          <div className="p-4 bg-[#FEF7E0] border border-[#FDE293] rounded-lg flex gap-3 items-start">
+             <Info className="w-5 h-5 text-[#E37400] shrink-0 mt-0.5" />
+             <div>
+                <h5 className="text-[10px] font-bold uppercase tracking-wider text-[#E37400] mb-1">Lifeline Slab Notice</h5>
+                <p className="text-[11px] text-[#202124] leading-relaxed font-medium">
+                   The 0-20 unit slab has a Rs. 0 energy charge but requires a mandatory minimum service charge depending on your connection capacity (e.g. Rs. 30 for 5A).
+                </p>
+             </div>
+          </div>
+        </div>
       }
+      howToUse={{ steps: ["Check your electricity meter. Subtract last month's reading from this month's reading to get total consumed units.", "Enter the total units consumed in the calculator.", "Select your household connection capacity (most typical households in Nepal use a 5A or 15A connection).", "The calculator automatically processes the progressive billing slabs, fixed service charges, and applies the 13% VAT."] }}
+      formula={{ title: "NEA Billing Logic", description: "Progressive tariff blocks.", raw: "Energy Charge = Sum of (Units in Slab × Rate for Slab)\nFixed Charge = Determined by highest slab reached and connection capacity (Amps).\n\nSubtotal = Energy Charge + Fixed Charge\nVAT = Subtotal × 13%\n\nTotal Bill = Subtotal + VAT" }}
+      faqs={[
+        { question: "Why is there a fixed charge even if I didn't use electricity?", answer: "The NEA applies a minimum fixed monthly service charge to maintain the grid connection to your house, regardless of energy usage." },
+        { question: "Do these rates apply to businesses?", answer: "No, this calculator uses the domestic (residential) tariff structure. Commercial and industrial rates have different slab structures and fixed charges." }
+      ]}
+      sidebar={{ title: "Nepal Utilities", links: [{ label: "KUKL Water Bill", href: "/calculator/kukl-bill" }, { label: "Income Tax Nepal", href: "/calculator/income-tax" }], banner: { title: "Energy Conservation", description: "Switching to LED bulbs can reduce your electricity lighting costs by up to 80%.", image: "/images/nepal-banner.jpg" } }}
+      relatedTools={[{ label: "KUKL Water Bill", href: "/calculator/kukl-bill" }]}
     />
   );
 }

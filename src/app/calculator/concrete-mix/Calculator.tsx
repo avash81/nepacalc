@@ -1,12 +1,11 @@
 'use client';
-import { useState, useMemo } from 'react';
-import { CalcWrapper } from '@/components/calculator/CalcWrapper';
-import { JsonLd } from '@/components/seo/JsonLd';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
-import { Calculator, Info, Ruler } from 'lucide-react';
+import { useMemo } from 'react';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { useSyncState } from '@/hooks/useSyncState';
+import { Calculator as CalcIcon, Droplets, Info } from 'lucide-react';
 
 const GRADES = [
-  { name: 'M5', ratio: [1, 5, 10], desc: '1:5:10 (Cement:Sand:Aggregate)' },
+  { name: 'M5', ratio: [1, 5, 10], desc: '1:5:10' },
   { name: 'M7.5', ratio: [1, 4, 8], desc: '1:4:8' },
   { name: 'M10', ratio: [1, 3, 6], desc: '1:3:6' },
   { name: 'M15', ratio: [1, 2, 4], desc: '1:2:4' },
@@ -14,175 +13,140 @@ const GRADES = [
   { name: 'M25', ratio: [1, 1, 2], desc: '1:1:2' },
 ];
 
-function fmt(n: number) {
-  return n.toLocaleString('en-IN', { maximumFractionDigits: 3 });
-}
+function fmt(n: number) { return n.toLocaleString('en-IN', { maximumFractionDigits: 3 }); }
 
-import { useSyncState } from '@/hooks/useSyncState';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-
-const DEFAULT_STATE = {
-  unit: 'm' as 'm' | 'ft',
-  volume: 10,
-  gradeName: 'M20',
-  wastage: 5,
-  dryFactor: 1.54,
-};
+const DEFAULT_STATE = { unit: 'm' as 'm' | 'ft', volume: 10, gradeName: 'M20', wastage: 5, dryFactor: 1.54 };
 
 export default function ConcreteMixCalculator() {
-  const [state, setState] = useSyncState('concrete_mix_v2', DEFAULT_STATE);
+  const [state, setState] = useSyncState('concrete_mix_v3', DEFAULT_STATE);
   const { unit, volume, gradeName, wastage, dryFactor } = state;
 
   const updateState = (u: Partial<typeof DEFAULT_STATE>) => setState({ ...state, ...u });
-
   const grade = useMemo(() => GRADES.find(g => g.name === gradeName) || GRADES[4], [gradeName]);
 
   const result = useMemo(() => {
     const totalVolume = volume * (1 + wastage / 100);
     const dryVolume = totalVolume * dryFactor;
-    
-    // Sum of ratio = 1 + sand + aggregate
     const sum = grade.ratio[0] + grade.ratio[1] + grade.ratio[2];
     
-    // Cement calculation
     const cementVol = (grade.ratio[0] / sum) * dryVolume;
-    const cementBags = cementVol / 0.0347; // 1 Bag = 0.0347 m3 approx
+    const cementBags = cementVol / 0.0347;
     const cementKg = cementBags * 50;
 
-    // Sand calculation
     const sandVol = (grade.ratio[1] / sum) * dryVolume;
     const sandCft = sandVol * 35.3147;
 
-    // Aggregate calculation
     const aggregateVol = (grade.ratio[2] / sum) * dryVolume;
     const aggregateCft = aggregateVol * 35.3147;
 
-    return { 
-      cementBags, 
-      cementKg, 
-      sandVol, 
-      sandCft, 
-      aggregateVol, 
-      aggregateCft,
-      dryVolume,
-      totalVolume
-    };
+    return { cementBags, cementKg, sandVol, sandCft, aggregateVol, aggregateCft, dryVolume, totalVolume };
   }, [volume, grade, wastage, dryFactor]);
 
+  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider block mb-1.5";
+
   return (
-    <CalculatorLayout
+    <ModernCalcLayout
+      crumbs={[{ label: 'Engineering', href: '/engineering/' }, { label: 'Concrete Mixer' }]}
       title="Concrete Mix & Quantity Calculator"
       description="Professional civil engineering tool for estimating cement, sand, and aggregate requirements for various concrete grades (M5 to M25)."
-      category={{ label: 'Education & Engineering', href: '/calculator/category/education' }}
-      leftPanel={
-        <div className="space-y-8">
-          <div className="flex bg-gray-100 p-1.5 rounded-2xl border border-gray-200">
-            {[
-              { id: 'm', l: 'Metric (m³)' },
-              { id: 'ft', l: 'Imperial (ft³)' },
-            ].map(u => (
-              <button key={u.id}
-                onClick={() => updateState({ unit: u.id as any })}
-                className={`flex-1 py-3 text-[10px] font-black uppercase rounded-xl transition-all ${unit === u.id ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-400'}`}
-              >
-                {u.l}
-              </button>
-            ))}
-          </div>
-
-          <div className="space-y-6">
-            <ValidatedInput 
-              label={`Total Wet Volume (${unit === 'm' ? 'm³' : 'ft³'})`} 
-              value={volume} 
-              onChange={v => updateState({ volume: v })} 
-              min={0}
-              suffix={unit === 'm' ? 'm³' : 'ft³'}
-            />
-
-            <div className="space-y-4">
-              <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
-                <Calculator className="w-3.5 h-3.5" /> Select Concrete Grade
-              </label>
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
-                {GRADES.map(g => (
-                  <button
-                    key={g.name}
-                    onClick={() => updateState({ gradeName: g.name })}
-                    className={`p-4 rounded-2xl border-2 transition-all text-left ${gradeName === g.name ? 'border-primary bg-primary/5' : 'border-gray-100 hover:border-gray-200'}`}
-                  >
-                    <div className="text-sm font-black text-gray-900">{g.name}</div>
-                    <div className="text-[9px] text-gray-400 font-bold uppercase mt-1">{g.desc}</div>
+      icon={Droplets}
+      inputs={
+        <div className="space-y-6">
+          <div className="flex justify-end">
+             <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
+                {[ { id: 'm', l: 'Metric (m³)' }, { id: 'ft', l: 'Imperial (ft³)' } ].map(u => (
+                  <button key={u.id} onClick={() => updateState({ unit: u.id as any })}
+                    className={`px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider rounded-md transition-all ${unit === u.id ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}>
+                    {u.l}
                   </button>
                 ))}
-              </div>
-            </div>
+             </div>
+          </div>
 
-            <div className="grid grid-cols-2 gap-6">
-               <ValidatedInput label="Wastage (%)" value={wastage} onChange={v => updateState({ wastage: v })} min={0} max={100} />
-               <ValidatedInput label="Dry Factor" value={dryFactor} onChange={v => updateState({ dryFactor: v })} step={0.01} min={1} />
-            </div>
+          <div>
+             <label className={labelCls}>Total Wet Volume Required</label>
+             <div className="relative">
+                <input type="number" value={volume} min={0} onChange={e => updateState({ volume: Number(e.target.value) })} className={inputCls} />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-[#70757A]">{unit === 'm' ? 'm³' : 'ft³'}</span>
+             </div>
+          </div>
+
+          <div className="space-y-3">
+             <label className={labelCls}>Concrete Grade (Ratio)</label>
+             <div className="grid grid-cols-2 gap-2">
+                {GRADES.map(g => (
+                  <button key={g.name} onClick={() => updateState({ gradeName: g.name })}
+                    className={`p-3 border rounded-lg text-left transition-all ${gradeName === g.name ? 'bg-[#E8F0FE] border-[#1A73E8]' : 'bg-white border-[#DADCE0] hover:bg-[#F8F9FA]'}`}>
+                     <div className={`text-[11px] font-black uppercase ${gradeName === g.name ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>{g.name}</div>
+                     <div className="text-[9px] text-[#70757A] font-bold mt-0.5">{g.desc}</div>
+                  </button>
+                ))}
+             </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#DADCE0]">
+             <div><label className={labelCls}>Wastage (%)</label><input type="number" value={wastage} min={0} max={100} onChange={e => updateState({ wastage: Number(e.target.value) })} className={inputCls} /></div>
+             <div><label className={labelCls}>Dry Volume Factor</label><input type="number" value={dryFactor} min={1} step={0.01} onChange={e => updateState({ dryFactor: Number(e.target.value) })} className={inputCls} /></div>
           </div>
         </div>
       }
-      rightPanel={
+      results={
         <div className="space-y-6">
-          <div className="bg-gray-900 rounded-[2.5rem] p-10 text-white shadow-2xl relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:rotate-12 transition-transform">
-               <Calculator className="w-24 h-24" />
-            </div>
-            <div className="relative z-10">
-               <div className="text-[10px] font-black text-blue-400 uppercase tracking-[0.3em] mb-8">Estimated Material</div>
-               
-               <div className="space-y-10">
-                 <div>
-                   <div className="text-6xl font-black text-white flex items-baseline gap-3 tracking-tighter">
-                     {fmt(Math.ceil(result.cementBags))} <span className="text-sm font-bold text-blue-400/50 uppercase tracking-widest">Bags</span>
+          <div className="p-8 bg-[#1A1A2E] border border-[#DADCE0] rounded-lg relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:rotate-12 transition-transform duration-500">
+                <CalcIcon className="w-32 h-32 text-white" />
+             </div>
+             
+             <div className="relative z-10 space-y-6">
+                <div>
+                   <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider mb-1">Cement Required</div>
+                   <div className="text-5xl font-black text-white tracking-tighter flex items-baseline gap-2">
+                     {fmt(Math.ceil(result.cementBags))} <span className="text-base text-white/50 uppercase tracking-widest">Bags</span>
                    </div>
-                   <div className="text-[10px] text-gray-500 font-black uppercase mt-2">Cement Required (approx {fmt(result.cementKg)} kg)</div>
-                 </div>
+                   <div className="text-[10px] text-[#70757A] font-bold uppercase mt-1 tracking-wider">Approx {fmt(result.cementKg)} kg</div>
+                </div>
 
-                 <div className="grid grid-cols-2 gap-8 pt-6 border-t border-white/5">
-                    <div>
-                       <div className="text-2xl font-black text-white">{fmt(result.sandVol)} m³</div>
-                       <div className="text-[9px] text-orange-400 font-bold uppercase mt-1 tracking-widest">Sand ({fmt(result.sandCft)} cft)</div>
-                    </div>
-                    <div>
-                       <div className="text-2xl font-black text-white">{fmt(result.aggregateVol)} m³</div>
-                       <div className="text-[9px] text-emerald-400 font-bold uppercase mt-1 tracking-widest">Aggregate ({fmt(result.aggregateCft)} cft)</div>
-                    </div>
-                 </div>
-               </div>
-            </div>
+                <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/10">
+                   <div>
+                      <div className="text-[10px] font-bold text-[#E37400] uppercase tracking-wider mb-1">Sand</div>
+                      <div className="text-2xl font-black text-white">{fmt(result.sandVol)} m³</div>
+                      <div className="text-[9px] text-white/40 uppercase mt-0.5 font-bold">{fmt(result.sandCft)} cft</div>
+                   </div>
+                   <div>
+                      <div className="text-[10px] font-bold text-[#188038] uppercase tracking-wider mb-1">Aggregate</div>
+                      <div className="text-2xl font-black text-white">{fmt(result.aggregateVol)} m³</div>
+                      <div className="text-[9px] text-white/40 uppercase mt-0.5 font-bold">{fmt(result.aggregateCft)} cft</div>
+                   </div>
+                </div>
+             </div>
           </div>
 
-          <div className="p-6 bg-slate-50 border border-slate-100 rounded-3xl space-y-3">
-             {[
-               { l: 'Wet Volume', v: `${fmt(volume)} ${unit === 'm' ? 'm³' : 'ft³'}` },
-               { l: 'Dry Volume', v: `${fmt(result.dryVolume)} ${unit === 'm' ? 'm³' : 'ft³'}` },
-               { l: 'Ratio Sum', v: grade.ratio.reduce((a, b) => a + b, 0).toString() },
-             ].map(i => (
-               <div key={i.l} className="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest">
-                  <span className="text-gray-400">{i.l}</span>
-                  <span className="text-slate-900">{i.v}</span>
-               </div>
-             ))}
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
+             <div className="px-4 py-2 bg-[#F8F9FA] border-b border-[#DADCE0]">
+                <span className="text-[10px] font-bold text-[#70757A] uppercase">Calculation Parameters</span>
+             </div>
+             <div className="divide-y divide-[#DADCE0]">
+                <div className="p-3 flex justify-between text-xs"><span className="text-[#5F6368]">Wet Volume</span><span className="font-black text-[#202124]">{fmt(volume)} {unit === 'm' ? 'm³' : 'ft³'}</span></div>
+                <div className="p-3 flex justify-between text-xs"><span className="text-[#5F6368]">Dry Volume (Factor x1.54)</span><span className="font-black text-[#1A73E8]">{fmt(result.dryVolume)} {unit === 'm' ? 'm³' : 'ft³'}</span></div>
+                <div className="p-3 flex justify-between text-xs"><span className="text-[#5F6368]">Ratio Sum</span><span className="font-black text-[#202124]">{grade.ratio.reduce((a, b) => a + b, 0)}</span></div>
+             </div>
+          </div>
+
+          <div className="flex gap-3 p-4 bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg items-start">
+             <Info className="w-5 h-5 text-[#1A73E8] shrink-0 mt-0.5" />
+             <p className="text-[10px] text-[#202124] leading-relaxed">Wet concrete shrinks when dry materials are mixed with water. The Dry Volume Factor (typically 1.54) accounts for this compaction, ensuring you order enough raw materials.</p>
           </div>
         </div>
       }
-
-      faqSection={
-        <CalcFAQ faqs={[
-          {
-            question: 'What is Dry Volume Factor in concrete?',
-            answer: 'When water is added to dry cement, sand, and aggregate, the air voids are filled and the volume decreases. To get 1m³ of wet concrete, you need approx 1.54m³ of dry ingredients. This 1.54 is the dry volume factor.'
-          },
-          {
-            question: 'What is M20 concrete mix ratio?',
-            answer: 'M20 is a nominal mix where "M" stands for Mix and "20" represents the characteristic compressive strength after 28 days in N/mm². The standard ratio is 1 : 1.5 : 3 (Cement : Sand : Aggregate).'
-          }
-        ]} />
-      }
+      howToUse={{ steps: ["Select your preferred measurement unit (Metric m³ or Imperial ft³).", "Enter the total wet volume of concrete required for your project.", "Select the concrete grade (M20 is standard for most residential construction).", "Adjust the wastage and dry factor if your site conditions require different tolerances."] }}
+      formula={{ title: "Concrete Quantity Estimation", description: "Standard civil calculation method.", raw: "Dry Volume = Wet Volume × 1.54\nSum of Ratio = Cement + Sand + Aggregate\n\nCement Vol = (Cement Ratio / Sum) × Dry Volume\nCement Bags = Cement Vol / 0.0347 m³ (Standard 50kg bag)\n\nSand Vol = (Sand Ratio / Sum) × Dry Volume\nAggregate Vol = (Aggregate Ratio / Sum) × Dry Volume" }}
+      faqs={[
+        { question: "What does M20 mean?", answer: "The 'M' stands for Mix, and '20' stands for the characteristic compressive strength (20 N/mm²) of the concrete block after 28 days of curing. It uses a 1:1.5:3 ratio." },
+        { question: "Why is the dry volume factor 1.54?", answer: "Dry materials contain air voids. When mixed with water, these voids are filled and the mixture compacts. You need 54% more dry volume to achieve 1 unit of wet concrete." }
+      ]}
+      sidebar={{ title: "Civil Engineering", links: [{ label: "Brick Calculator", href: "/calculator/brick-calculator" }, { label: "Paint Estimator", href: "/calculator/paint-cost" }], banner: { title: "Mix Precision", description: "Always maintain the correct water-cement ratio to ensure structural integrity.", image: "/images/construction-banner.jpg" } }}
+      relatedTools={[{ label: "Brick Calculator", href: "/calculator/brick-calculator" }, { label: "Paint Cost", href: "/calculator/paint-cost" }]}
     />
   );
 }

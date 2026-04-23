@@ -1,7 +1,7 @@
 'use client';
 import { useState, useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { Activity, Apple, Info, Sigma, User, Target } from 'lucide-react';
 
 const ACTIVITY_LEVELS = [
   { id: 'sedentary',  label: 'Sedentary',          desc: 'Little/no exercise',     mult: 1.2   },
@@ -13,7 +13,7 @@ const ACTIVITY_LEVELS = [
 
 export default function CalorieCalculator() {
   const [weight, setWeight] = useState(70);
-  const [height, setHeight] = useState(170);
+  const [height, setHeight] = useState(175);
   const [age, setAge]       = useState(25);
   const [male, setMale]     = useState(true);
   const [activity, setActivity] = useState('moderate');
@@ -26,117 +26,161 @@ export default function CalorieCalculator() {
     const mult = ACTIVITY_LEVELS.find(a => a.id === activity)!.mult;
     const tdee = Math.round(bmr * mult);
     return {
-      bmr: Math.round(bmr), tdee,
-      lose1:  Math.max(1200, tdee - 1000),
+      bmr: Math.round(bmr), 
+      tdee,
       lose05: Math.max(1200, tdee - 500),
-      gain:   tdee + 500,
+      lose10: Math.max(1200, tdee - 1000),
+      gain05: tdee + 500,
     };
   }, [weight, height, age, male, activity]);
 
-  const GOALS = result
-    ? [
-        { label: 'Lose 1 kg/week',   cal: result.lose1,  color: 'text-red-600'  },
-        { label: 'Lose 0.5 kg/week', cal: result.lose05, color: 'text-amber-600'},
-        { label: 'Maintain Weight',  cal: result.tdee,   color: 'text-[#006600]'},
-        { label: 'Gain 0.5 kg/week', cal: result.gain,   color: 'text-[var(--primary)]' },
-      ]
-    : [];
+  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
 
   return (
-    <CalculatorLayout
-      title="Daily Calorie Calculator"
-      description="Calculate your daily calorie needs (TDEE) using the Mifflin-St Jeor equation. Get personalized targets for weight loss, maintenance, and gain."
-      category={{ label: 'Health', href: '/calculator/category/health' }}
-      leftPanel={
+    <ModernCalcLayout
+      crumbs={[{ label: 'Health', href: '/health/' }, { label: 'Calorie Calculator' }]}
+      title="Calorie Calculator"
+      description="Determine your daily caloric needs for maintenance or weight goals using the Mifflin-St Jeor equation."
+      icon={Apple}
+      inputs={
         <div className="space-y-6">
-          {/* Gender */}
           <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Biological Sex</label>
-            <div className="flex border border-[var(--border)] p-1 bg-[var(--bg-surface)]">
+            <label className={labelCls}>Biological Sex</label>
+            <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
               {[{ v: true, l: 'Male' }, { v: false, l: 'Female' }].map(({ v, l }) => (
-                <button key={l} onClick={() => setMale(v)}
-                  className={`flex-1 py-2 text-xs font-bold uppercase transition-all ${male === v ? 'bg-[var(--primary)] text-white' : 'text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]'}`}>
+                <button 
+                  key={l} 
+                  onClick={() => setMale(v)}
+                  className={`flex-1 py-2 text-xs font-bold uppercase rounded-md transition-all ${male === v ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368] hover:text-[#1A73E8]'}`}
+                >
                   {l}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Stats inputs */}
-          <div className="grid grid-cols-3 gap-3">
-            {[
-              { label: 'Age', value: age, setter: setAge, unit: 'yrs', min: 10, max: 100 },
-              { label: 'Weight', value: weight, setter: setWeight, unit: 'kg', min: 30, max: 200 },
-              { label: 'Height', value: height, setter: setHeight, unit: 'cm', min: 100, max: 250 },
-            ].map(({ label, value, setter, unit, min, max }) => (
-              <div key={label} className="space-y-1">
-                <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">{label}</label>
-                <div className="relative">
-                  <input type="number" value={value} onChange={e => setter(Number(e.target.value))} min={min} max={max}
-                    className="w-full h-11 px-2 pr-7 border border-[var(--border)] bg-white font-bold text-sm focus:border-[var(--primary)] outline-none" />
-                  <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[9px] text-[var(--text-muted)] font-bold">{unit}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Activity Level */}
           <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Activity Level</label>
-            <div className="space-y-1">
-              {ACTIVITY_LEVELS.map(a => (
-                <button key={a.id} onClick={() => setActivity(a.id)}
-                  className={`w-full p-4 border text-left flex justify-between items-center transition-all ${activity === a.id ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'bg-white border-[var(--border)] hover:bg-[var(--bg-subtle)]'}`}>
-                  <span className="text-[12px] font-bold">{a.label}</span>
-                  <span className={`text-[10px] font-medium ${activity === a.id ? 'text-white/70' : 'text-[var(--text-muted)]'}`}>{a.desc}</span>
-                </button>
-              ))}
+            <label className={labelCls}>Age</label>
+            <div className="relative">
+              <input type="number" value={age} onChange={e => setAge(Number(e.target.value))} className={inputCls} />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">years</span>
             </div>
           </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className={labelCls}>Weight</label>
+              <div className="relative">
+                <input type="number" value={weight} onChange={e => setWeight(Number(e.target.value))} className={inputCls} />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">kg</span>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label className={labelCls}>Height</label>
+              <div className="relative">
+                <input type="number" value={height} onChange={e => setHeight(Number(e.target.value))} className={inputCls} />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">cm</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <label className={labelCls}>Activity Level</label>
+            <select 
+              value={activity} 
+              onChange={e => setActivity(e.target.value)} 
+              className={inputCls}
+            >
+              {ACTIVITY_LEVELS.map(a => (
+                <option key={a.id} value={a.id}>{a.label} ({a.desc})</option>
+              ))}
+            </select>
+          </div>
+
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+            Calculate Calories
+          </button>
         </div>
       }
-      rightPanel={
+      results={
         <div className="space-y-6">
           {result ? (
             <>
-              {/* TDEE Hero */}
-              <div className="p-8 bg-white border border-[var(--border)] text-center">
-                <div className="text-xs font-bold uppercase text-[var(--text-muted)] mb-2">Maintenance Calories (TDEE)</div>
-                <div className="text-6xl font-black text-[#006600] tracking-tighter mb-2">{result.tdee.toLocaleString()}</div>
-                <div className="text-xs font-bold text-[var(--text-secondary)] uppercase">kcal / day</div>
-                <div className="text-[11px] text-[var(--text-muted)] mt-2">BMR: {result.bmr.toLocaleString()} kcal</div>
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-sm font-bold text-[#202124]">Daily Results</h3>
+                <Info className="w-4 h-4 text-[#1A73E8]" />
               </div>
-
-              {/* Goal Targets */}
-              <div className="bg-white border border-[var(--border)]">
-                <div className="px-4 py-3 bg-[var(--bg-surface)] border-b border-[var(--border)]">
-                  <h3 className="text-[11px] font-bold uppercase text-[var(--text-main)]">Calorie Targets by Goal</h3>
-                </div>
-                <div className="divide-y divide-[var(--border)]">
-                  {GOALS.map(g => (
-                    <div key={g.label} className="px-4 py-3 flex justify-between items-center hover:bg-[var(--bg-surface)]">
-                      <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">{g.label}</span>
-                      <span className={`text-sm font-black font-mono ${g.color}`}>{g.cal.toLocaleString()} cal</span>
+              
+              <div className="space-y-3">
+                {[
+                  { label: 'Maintenance', sub: 'Keep current weight', val: result.tdee, color: 'text-[#188038]', bg: 'bg-[#E6F4EA]' },
+                  { label: 'Weight Loss', sub: '0.5 kg / week', val: result.lose05, color: 'text-[#1A73E8]', bg: 'bg-[#E8F0FE]' },
+                  { label: 'Extreme Loss', sub: '1 kg / week', val: result.lose10, color: 'text-[#D93025]', bg: 'bg-[#FCE8E6]' },
+                ].map((goal) => (
+                  <div key={goal.label} className={`p-4 ${goal.bg} border border-[#DADCE0] rounded-lg flex justify-between items-center group hover:shadow-md transition-all`}>
+                    <div>
+                      <div className="text-sm font-bold text-[#202124]">{goal.label}</div>
+                      <div className="text-[10px] text-[#5F6368]">{goal.sub}</div>
                     </div>
-                  ))}
-                </div>
+                    <div className="text-right">
+                      <div className={`text-xl font-black ${goal.color}`}>{goal.val.toLocaleString()}</div>
+                      <div className="text-[9px] font-bold text-[#70757A] uppercase tracking-tighter">kcal/day</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </>
           ) : (
-            <div className="p-6 border border-[var(--border)] text-[var(--text-secondary)] text-sm">
-              Enter your details to see results.
+            <div className="text-center py-10 opacity-40">
+              <Target className="w-10 h-10 mx-auto mb-2" />
+              <p className="text-sm">Enter stats to see caloric goals</p>
             </div>
           )}
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'How are daily calories calculated?', answer: 'We use the Mifflin-St Jeor BMR equation, then multiply by the Harris-Benedict activity factor to get your TDEE (Total Daily Energy Expenditure).' },
-          { question: 'What is BMR?', answer: 'Basal Metabolic Rate — the calories your body needs at complete rest to maintain organ function. Typically 60–75% of total energy expenditure.' },
-          { question: 'How many calories to lose weight?', answer: 'A 500 kcal/day deficit leads to ~0.5 kg/week loss. Never go below 1200 cal/day (women) or 1500 cal/day (men) without medical supervision.' },
-          { question: 'Is this accurate?', answer: 'The Mifflin-St Jeor formula is accurate within ±10% for most people. Use this as a starting point and adjust based on real-world results.' },
-        ]} />
-      }
+      howToUse={{
+        steps: [
+          "Choose your biological sex (Male/Female) for baseline metabolic rates.",
+          "Enter your current age, weight, and height accurately.",
+          "Select your typical weekly activity level to account for energy expenditure.",
+          "Click 'Calculate Calories' to see personalized daily targets."
+        ]
+      }}
+      formula={{
+        title: "Calculation Formula",
+        description: "We use the Mifflin-St Jeor Equation, considered the gold standard for metabolic rate calculation:",
+        raw: "BMR = 10*weight + 6.25*height - 5*age + 5 (Male)\nBMR = 10*weight + 6.25*height - 5*age - 161 (Female)"
+      }}
+      faqs={[
+        {
+          question: "How accurate is this calculator?",
+          answer: "While the Mifflin-St Jeor equation is highly accurate for most adults (within 10%), individual metabolism can vary based on muscle mass, hormones, and genetics."
+        },
+        {
+          question: "Should I eat below 1,200 calories?",
+          answer: "We recommend consulting a professional before dropping below 1,200 (women) or 1,500 (men) calories to ensure you get adequate micronutrients."
+        }
+      ]}
+      sidebar={{
+        title: "Health & Fitness Tools",
+        links: [
+          { label: "BMI Calculator", href: "/calculator/bmi" },
+          { label: "BMR Calculator", href: "/calculator/bmr" },
+          { label: "Ideal Weight", href: "/calculator/ideal-weight" },
+          { label: "Body Fat %", href: "/calculator/body-fat" },
+        ],
+        banner: {
+          title: "Track your macros",
+          description: "Balance your protein, fats, and carbs for optimal health.",
+          image: "/images/macros-banner.jpg"
+        }
+      }}
+      relatedTools={[
+        { label: "BMI Calculator", href: "/calculator/bmi" },
+        { label: "BMR Calculator", href: "/calculator/bmr" },
+        { label: "Ideal Weight", href: "/calculator/ideal-weight" }
+      ]}
     />
   );
 }

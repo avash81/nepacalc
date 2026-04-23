@@ -1,62 +1,73 @@
 import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
+import { CalcWrapper } from '@/components/calculator/CalcWrapper';
+import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Z Score Calculator Normal Distribution NepaCal",
-  description: "Calculate z score and find probability using the standard normal distribution. Free z score calculator with z table at NepaCal",
-  keywords: ["z score calculator", "nepal", "calculator", "free", "online"],
+  title: "Z-Score Calculator | Normal Distribution & Probability Nepal NepaCal",
+  description: "Calculate Z-scores and find probabilities using the standard normal distribution. Professional statistical tool for students and researchers in Nepal.",
   slug: 'z-score',
+  keywords: ["z-score calculator nepal", "calculate standard score", "normal distribution calculator", "p-value from z-score", "statistics tool nepal", "z-table calculator"],
 });
+
+const ZSCORE_FAQS = [
+  {
+    question: "What is a Z-Score?",
+    answer: "A Z-score (or standard score) indicates how many standard deviations a data point is from the mean of its distribution. A Z-score of 0 is exactly at the mean."
+  },
+  {
+    question: "How do I calculate a Z-score?",
+    answer: "The formula is z = (x - μ) / σ, where 'x' is the value, 'μ' is the mean, and 'σ' is the standard deviation."
+  },
+  {
+    question: "What does a negative Z-score mean?",
+    answer: "A negative Z-score indicates that the data point is below the average. For example, a z = -1.5 means the value is 1.5 standard deviations less than the mean."
+  },
+  {
+    question: "How is the Z-score used in Normal Distribution?",
+    answer: "It is used to determine the probability (p-value) of an observation occurring within a standard normal distribution, often used in hypothesis testing in Nepal's academic research."
+  },
+  {
+    question: "Is a high Z-score always better?",
+    answer: "Not necessarily. In some contexts (like blood pressure or error rates), a lower Z-score is better. In others (like exam results), a higher Z-score indicates superior performance relative to the group."
+  }
+];
 
 export default function Page() {
   return (
-    <>
-      <Calculator />
-    
-      {/* SEO: Competitor-Data Driven FAQ & Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "How to use the Z Score Calculator Normal Distribution NepaCal tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free z score calculator tool will provide instant results tailored for Nepal." } },
-            { "@type": "Question", "name": "Is this Z Score Calculator Normal Distribution NepaCal free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's Z Score Calculator Normal Distribution NepaCal is 100% free with no registration required." } }
-          ]
-        }) }}
-      />
-      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Z Score Calculator Normal Distribution NepaCal</h2>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
-          Our free <strong>z score calculator</strong> is optimized for Nepalese users. Whether you need an online z score calculator or want to calculate accurately — NepaCal is your best tool.
-        </p>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
-          Related: <strong>z score calculator</strong>, <strong>time converter time zones</strong>, <strong>time zone zone converter</strong>, <strong>timeline zone</strong>, <strong>chart of boob sizes</strong>, <strong>timezone converter</strong>.
-        </p>
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-3">
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
-              <span>How do I use the Z Score Calculator Normal Distribution NepaCal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Enter your values above to get results instantly.
+    <div className="bg-white min-h-screen">
+      <CalcWrapper
+        title="Z-Score Normalization Engine"
+        description="High-precision statistical tool for calculating standard scores and determining positioning within a normal distribution curve."
+        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Z-Score Calc' }]}
+        isNepal={true}
+        relatedCalcs={[
+          { name: 'Standard Deviation', slug: 'standard-deviation' },
+          { name: 'Probability Calc', slug: 'probability' },
+          { name: 'Scientific Calc', slug: 'scientific-calculator' }
+        ]}
+        formula="z = (x - μ) / σ"
+      >
+        <Calculator />
+        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
+              Statistical Guide: Data Normalization
+            </h2>
+            
+            <div className="prose prose-slate max-w-none mb-12">
+              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+                In <strong>statistical analysis</strong>, comparing data from different distributions requires a common scale. The Z-score is the primary tool for this normalization.
+              </p>
+              <p className="text-slate-700 text-base leading-relaxed mb-6">
+                Our <strong>Gaussian Analysis Laboratory</strong> allows researchers in Nepal to quickly determine the relative standing of any observation. By converting raw data into <strong>standardized scores</strong>, you can accurately assess outliers, calculate percentiles, and perform rigorous hypothesis testing with absolute mathematical certainty.
+              </p>
             </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
-              <span>Is it accurate for Nepal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Yes, our <strong>z score calculator</strong> is regularly updated to reflect local standards.
-            </div>
-          </details>
+
+            <PillarFAQ faqs={ZSCORE_FAQS} title="Z-Scores & Normal Distribution FAQ" />
+          </div>
         </div>
-      </section>
-    </>
+      </CalcWrapper>
+    </div>
   );
 }

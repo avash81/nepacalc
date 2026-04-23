@@ -5,7 +5,7 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Contact Us | NEPACALC Support',
   description: 'Need help or have a feature request? Contact the NEPACALC research team for support or business inquiries.',
-  alternates: { canonical: 'https://nepacalc.com/contact' },
+  alternates: { canonical: 'https://nepacalc.com/contact/' },
 };
 
 export default function ContactPage() {

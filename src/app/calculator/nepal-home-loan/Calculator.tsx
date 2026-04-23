@@ -1,10 +1,8 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useSyncState } from '@/hooks/useSyncState';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
-import { Landmark, TrendingDown, PieChart, ShieldCheck, Info } from 'lucide-react';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { Landmark, TrendingDown, ShieldCheck, Info } from 'lucide-react';
 
 const KTM_BANKS = [
   { name: 'NIC Asia Bank', base: 8.25, premium: '1.5 - 3.5' },
@@ -15,7 +13,7 @@ const KTM_BANKS = [
 ];
 
 export default function NepalHomeLoanCalculator() {
-  const [state, setState] = useSyncState('nepal_home_loan_institutional_v1', {
+  const [state, setState] = useSyncState('nepal_home_loan_v2', {
     principal: 5000000,
     baseRate: 8.25,
     premium: 2.5,
@@ -38,166 +36,153 @@ export default function NepalHomeLoanCalculator() {
   }, [principal, effectiveRate, tenureYears]);
 
   const fmt = (n: number) => 'Rs. ' + Math.round(n).toLocaleString('en-IN');
+  
+  const inputCls = "w-full h-12 pl-4 pr-12 border border-[#DADCE0] rounded-md bg-white text-sm font-bold focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider block mb-1.5";
 
   return (
-    <CalculatorLayout
-      title="Institutional Home Loan Dashboard"
-      description="Professional banking calculator for Nepal. Uses the 'Base Rate + Premium' model mandated by NRB for commercial bank loans."
-      category="nepal"
-      leftPanel={
+    <ModernCalcLayout
+      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Home Loan Calculator' }]}
+      title="Nepal Institutional Home Loan"
+      description="Professional banking EMI calculator for Nepal. Calculates using the 'Base Rate + Premium' model mandated by NRB for all commercial bank floating-rate loans."
+      icon={Landmark}
+      inputs={
         <div className="space-y-8">
-          
-          <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 shadow-sm">
-             <h3 className="text-[12px] font-black uppercase text-slate-400 tracking-widest mb-8">Loan Parameters</h3>
-             <div className="space-y-10">
-                <ValidatedInput 
-                  label="Loan Principal Amount" 
-                  value={principal} 
-                  onChange={v => update({ principal: v })} 
-                  prefix="Rs." 
-                  min={100000} 
-                  max={100000000}
-                />
+          <div className="p-6 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg shadow-sm space-y-6">
+            <div>
+              <label className={labelCls}>Loan Principal Amount</label>
+              <div className="relative">
+                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-[#70757A]">Rs.</span>
+                 <input type="number" value={principal} onChange={e => update({ principal: Number(e.target.value) })} min={100000} className={`${inputCls} pl-10 pr-4 font-mono`} />
+              </div>
+            </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                   <ValidatedInput 
-                     label="Bank Base Rate" 
-                     value={baseRate} 
-                     onChange={v => update({ baseRate: v })} 
-                     suffix="%" 
-                     step={0.01}
-                   />
-                   <ValidatedInput 
-                     label="Premium over Base" 
-                     value={premium} 
-                     onChange={v => update({ premium: v })} 
-                     suffix="%" 
-                     step={0.25}
-                   />
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+               <div>
+                  <label className={labelCls}>Bank Base Rate</label>
+                  <div className="relative">
+                     <input type="number" value={baseRate} onChange={e => update({ baseRate: Number(e.target.value) })} step={0.01} className={inputCls} />
+                     <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-[#70757A]">%</span>
+                  </div>
+               </div>
+               <div>
+                  <label className={labelCls}>Premium over Base</label>
+                  <div className="relative">
+                     <input type="number" value={premium} onChange={e => update({ premium: Number(e.target.value) })} step={0.25} className={inputCls} />
+                     <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-[#70757A]">%</span>
+                  </div>
+               </div>
+            </div>
 
-                <ValidatedInput 
-                  label="Repayment Tenure" 
-                  value={tenureYears} 
-                  onChange={v => update({ tenureYears: v })} 
-                  suffix="Years" 
-                  min={1} 
-                  max={30}
-                />
-             </div>
-          </div>
-
-          {/* Bank Comparison Grid */}
-          <div className="bg-slate-50/50 border border-slate-200 rounded-[2.5rem] p-10">
-             <div className="flex items-center gap-3 mb-8">
-                <Landmark className="w-5 h-5 text-blue-600" />
-                <h3 className="text-sm font-black text-slate-800 uppercase tracking-tight">Interest Rate Benchmarks (2081/82)</h3>
-             </div>
-             
-             <div className="grid grid-cols-1 gap-3">
-                {KTM_BANKS.map(bank => (
-                  <button 
-                    key={bank.name}
-                    onClick={() => update({ baseRate: bank.base })}
-                    className="flex items-center justify-between p-5 bg-white border border-slate-100 rounded-3xl hover:border-blue-500 transition-all group shadow-sm"
-                  >
-                    <div className="flex flex-col items-start">
-                       <span className="text-[12px] font-black text-slate-900">{bank.name}</span>
-                       <span className="text-[10px] font-bold text-slate-400">Premium: {bank.premium}%</span>
-                    </div>
-                    <div className="text-right">
-                       <div className="text-sm font-black text-blue-600 font-mono">{bank.base}%</div>
-                       <div className="text-[9px] font-bold text-slate-400 uppercase">Base Rate</div>
-                    </div>
-                  </button>
-                ))}
-             </div>
-             
-             <div className="mt-8 p-5 bg-blue-50 border border-blue-100 rounded-3xl flex gap-4">
-                <Info className="w-5 h-5 text-blue-600 shrink-0" />
-                <p className="text-[11px] text-blue-700 font-medium leading-relaxed italic">
-                   "Base rates are updated quarterly by banks. Fixed-rate home loans are also available but typically carry a higher premium (up to 12.5%)."
-                </p>
-             </div>
-          </div>
-
-        </div>
-      }
-      rightPanel={
-        <div className="space-y-6">
-          
-          {/* Main Visualized Result */}
-          <div className="p-10 bg-slate-900 rounded-[3rem] text-white overflow-hidden relative group shadow-2xl">
-            <div className="absolute top-0 right-0 w-48 h-48 bg-indigo-500/20 rounded-full blur-[80px] -mr-24 -mt-24 group-hover:bg-indigo-500/40 transition-all duration-1000" />
-            <div className="relative z-10 text-center">
-              <div className="text-[10px] font-black uppercase tracking-[0.4em] text-indigo-400 mb-8">Estimated Monthly Installment</div>
-              <div className="text-6xl font-black tracking-tighter mb-4">{Math.round(results.emi).toLocaleString('en-IN')}</div>
-              <div className="text-lg font-bold text-slate-400 mb-10">Rupees Per Month</div>
-              
-              <div className="grid grid-cols-2 gap-4 pt-10 border-t border-white/10">
-                 <div className="text-left">
-                    <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Effective Rate</div>
-                    <div className="text-xl font-black text-indigo-400">{effectiveRate.toFixed(2)}% <span className="text-xs">p.a</span></div>
-                 </div>
-                 <div className="text-right">
-                    <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Total Savings</div>
-                    <div className="text-xl font-black text-emerald-400">---</div>
-                 </div>
+            <div>
+              <label className={labelCls}>Repayment Tenure (Years)</label>
+              <div className="relative">
+                 <input type="number" value={tenureYears} onChange={e => update({ tenureYears: Number(e.target.value) })} min={1} max={30} className={inputCls} />
+                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-[#70757A]">Years</span>
               </div>
             </div>
           </div>
 
-          <div className="space-y-4">
-             <div className="p-8 bg-white border border-slate-200 rounded-[2.5rem] shadow-sm italic transition-all hover:shadow-md">
-                <div className="flex justify-between items-center mb-6">
-                   <h4 className="text-[11px] font-black uppercase text-slate-400 tracking-[0.2em]">Interest Exposure</h4>
-                   <TrendingDown className="w-4 h-4 text-rose-500" />
-                </div>
-                <div className="space-y-5">
-                   <div className="flex justify-between items-center">
-                      <span className="text-sm font-bold text-slate-600">Total Interest Payable</span>
-                      <span className="text-sm font-black text-rose-600 font-mono">{fmt(results.totalInterest)}</span>
-                   </div>
-                   <div className="flex justify-between items-center">
-                      <span className="text-sm font-bold text-slate-600">Total Repayment Amount</span>
-                      <span className="text-sm font-black text-slate-900 font-mono">{fmt(results.totalPayment)}</span>
-                   </div>
-                   <div className="pt-4 mt-4 border-t border-slate-50">
-                      <div className="flex justify-between text-[10px] font-black uppercase text-slate-400 mb-2">
-                         <span>Principal</span>
-                         <span>Interest</span>
-                      </div>
-                      <div className="h-4 bg-slate-100 rounded-full overflow-hidden flex">
-                         <div 
-                           className="bg-indigo-600 h-full transition-all duration-1000" 
-                           style={{ width: `${(principal/results.totalPayment)*100}%` }} 
-                         />
-                      </div>
-                   </div>
-                </div>
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden mt-6">
+             <div className="px-5 py-4 bg-[#F8F9FA] border-b border-[#DADCE0] flex items-center gap-3">
+                <Landmark className="w-5 h-5 text-[#1A73E8]" />
+                <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#202124]">A-Class Benchmarks (2081/82)</h3>
+             </div>
+             <div className="divide-y divide-[#DADCE0]">
+                {KTM_BANKS.map(bank => (
+                  <button key={bank.name} onClick={() => update({ baseRate: bank.base })}
+                    className="w-full px-5 py-4 flex justify-between items-center hover:bg-[#F8F9FA] transition-colors text-left group">
+                    <div>
+                       <div className="text-[12px] font-bold text-[#202124]">{bank.name}</div>
+                       <div className="text-[10px] text-[#70757A] font-medium">Premium: {bank.premium}%</div>
+                    </div>
+                    <div className="text-right">
+                       <div className="text-sm font-black text-[#1A73E8] font-mono group-hover:underline">{bank.base}%</div>
+                       <div className="text-[9px] font-bold uppercase tracking-wider text-[#70757A]">Base Rate</div>
+                    </div>
+                  </button>
+                ))}
+             </div>
+          </div>
+
+          <div className="p-4 bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg flex items-start gap-3">
+             <Info className="w-5 h-5 text-[#1A73E8] shrink-0 mt-0.5" />
+             <p className="text-[11px] text-[#202124] leading-relaxed font-medium">
+               Base rates are updated quarterly by NRB. Fixed-rate home loans (up to 7 years) are also available at banks but typically carry a higher premium rate.
+             </p>
+          </div>
+        </div>
+      }
+      results={
+        <div className="space-y-6">
+          <div className="bg-[#1A1A2E] rounded-lg border border-[#DADCE0] overflow-hidden text-center shadow-sm relative">
+             <div className="absolute top-0 right-0 w-32 h-32 bg-[#1A73E8] opacity-20 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none" />
+             
+             <div className="p-8 relative z-10">
+               <div className="text-[10px] font-bold uppercase tracking-widest text-[#8AB4F8] mb-4">Estimated Monthly Installment (EMI)</div>
+               <div className="text-5xl font-black text-white tracking-tighter mb-2 font-mono">
+                 {Math.round(results.emi).toLocaleString('en-IN')}
+               </div>
+               <div className="text-xs font-bold text-white/70 uppercase tracking-widest">NPR Per Month</div>
              </div>
 
-             <div className="p-6 bg-emerald-50 border border-emerald-100 rounded-3xl flex gap-4">
-                <ShieldCheck className="w-6 h-6 text-emerald-600 shrink-0" />
-                <div>
-                   <h5 className="text-[11px] font-black text-emerald-900 uppercase tracking-widest mb-1">Tax Benefit Eligibility</h5>
-                   <p className="text-[11px] text-emerald-800 font-medium leading-[1.6]">
-                      You may be eligible for an annual income tax deduction of up to <strong>Rs. 25,000</strong> on interest paid for your primary residence.
-                   </p>
+             <div className="grid grid-cols-2 divide-x divide-white/10 border-t border-white/10 relative z-10 bg-white/5">
+                <div className="p-4">
+                   <div className="text-[9px] font-bold uppercase tracking-wider text-white/60 mb-1">Effective Rate</div>
+                   <div className="text-lg font-black text-[#8AB4F8] font-mono">{effectiveRate.toFixed(2)}%</div>
+                </div>
+                <div className="p-4">
+                   <div className="text-[9px] font-bold uppercase tracking-wider text-white/60 mb-1">Total Savings</div>
+                   <div className="text-lg font-black text-[#81C995] font-mono">---</div>
                 </div>
              </div>
           </div>
 
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+             <div className="px-5 py-4 bg-[#F8F9FA] border-b border-[#DADCE0] flex justify-between items-center">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#70757A]">Interest Exposure</span>
+                <TrendingDown className="w-4 h-4 text-[#D93025]" />
+             </div>
+             <div className="p-5 space-y-4">
+                <div className="flex justify-between items-center text-xs">
+                   <span className="text-[#5F6368] font-bold">Total Interest Payable</span>
+                   <span className="font-black text-[#D93025] font-mono">{fmt(results.totalInterest)}</span>
+                </div>
+                <div className="flex justify-between items-center text-xs">
+                   <span className="text-[#5F6368] font-bold">Total Repayment Amount</span>
+                   <span className="font-black text-[#202124] font-mono">{fmt(results.totalPayment)}</span>
+                </div>
+                <div className="pt-4 border-t border-[#DADCE0]">
+                   <div className="flex justify-between text-[9px] font-bold uppercase text-[#70757A] mb-2 tracking-wider">
+                      <span>Principal</span>
+                      <span>Interest</span>
+                   </div>
+                   <div className="h-2.5 bg-[#FCE8E6] rounded-full overflow-hidden flex">
+                      <div className="bg-[#1A73E8] h-full transition-all duration-1000" style={{ width: `${(principal/results.totalPayment)*100}%` }} />
+                   </div>
+                </div>
+             </div>
+          </div>
+
+          <div className="p-5 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg flex items-start gap-3">
+             <ShieldCheck className="w-6 h-6 text-[#188038] shrink-0" />
+             <div>
+                <h5 className="text-[10px] font-bold uppercase tracking-wider text-[#188038] mb-1">Tax Benefit Eligibility</h5>
+                <p className="text-[11px] text-[#202124] leading-relaxed font-medium">
+                   You may be eligible for an annual income tax deduction of up to <strong>Rs. 25,000</strong> under Nepal Inland Revenue Department (IRD) rules for interest paid on your primary residential home loan.
+                </p>
+             </div>
+          </div>
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'What is the LTV ratio in Nepal?', answer: 'For residential home loans, the Loan-to-Value (LTV) ratio is typically 70% inside Kathmandu Valley and 80% outside.' },
-          { question: 'How is the effective rate calculated?', answer: 'Banks use a "Base Rate + Premium" model. The premium remains fixed, while the base rate can change quarterly depending on market conditions.' },
-          { question: 'Can I repay my home loan early?', answer: 'Yes, but most banks in Nepal charge a "Pre-payment Fee" ranging from 0.5% to 2% of the settled amount.' },
-          { question: 'What documents are required?', answer: 'Standard requirements include Property Lalpurja, Blue Print, Tax Clearance, Salary Certificate/Audit Report, and 4-generation family details.' },
-        ]} />
-      }
+      howToUse={{ steps: ["Enter the total principal amount you wish to borrow.", "Check the latest Base Rate of your chosen bank (updated quarterly on their website).", "Enter the Premium rate quoted to you by the bank officer.", "Enter the loan tenure in years. Max tenure in Nepal is generally 25-30 years depending on borrower age."] }}
+      formula={{ title: "EMI Formula", description: "Standard Amortization.", raw: "Effective Rate = Base Rate + Premium\nr = (Effective Rate / 100) / 12\nn = Tenure in Years × 12\n\nEMI = P × r × (1 + r)^n / ((1 + r)^n - 1)" }}
+      faqs={[
+        { question: "What is the Base Rate?", answer: "The Base Rate is the minimum interest rate mandated by Nepal Rastra Bank (NRB) below which commercial banks are not allowed to lend. It covers the bank's cost of funds." },
+        { question: "Why does my EMI change every quarter?", answer: "Because your loan is tied to the Base Rate. If the bank's cost of funds changes, the Base Rate changes. Your premium remains fixed, but the Base Rate fluctuates." }
+      ]}
+      sidebar={{ title: "Finance Tools", links: [{ label: "Income Tax Calculator", href: "/calculator/income-tax" }, { label: "Remittance Calculator", href: "/calculator/remittance-calculator" }], banner: { title: "Compare Rates", description: "Even a 0.5% difference in premium can save you lakhs of rupees over a 20-year loan.", image: "/images/finance-banner.jpg" } }}
+      relatedTools={[{ label: "Income Tax Calculator", href: "/calculator/income-tax" }]}
     />
   );
 }

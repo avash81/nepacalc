@@ -1,10 +1,8 @@
 'use client';
 import { useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { TrendingUp, PieChart, Info, BarChart3, LineChart, Target, Calculator } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
-import { TrendingUp, PieChart, Info, BarChart3, LineChart } from 'lucide-react';
 
 const DEFAULT_STATE = { 
   monthly: 5000, 
@@ -29,187 +27,178 @@ export default function SIPCalculator() {
     let fv = 0, totalInvested = 0, currentMonthly = monthly;
     const schedule: { year: number; invested: number; returns: number; balance: number }[] = [];
     for (let year = 1; year <= years; year++) {
-      for (let m = 1; m <= 12; m++) { fv = (fv + currentMonthly) * (1 + r); totalInvested += currentMonthly; }
+      for (let m = 1; m <= 12; m++) { 
+        fv = (fv + currentMonthly) * (1 + r); 
+        totalInvested += currentMonthly; 
+      }
       schedule.push({ year, invested: totalInvested, returns: fv - totalInvested, balance: fv });
       currentMonthly = currentMonthly * (1 + s);
     }
-    const returns = fv - totalInvested;
-    const wealthGainedPct = totalInvested > 0 ? (returns / totalInvested) * 100 : 0;
-    
-    // What-If Scenarios (LibreOffice Style)
-    const baseP = monthly;
-    const calcScenario = (scenarioRate: number) => {
-        let scFv = 0, scInv = 0, scM = baseP;
-        const sr = scenarioRate / 12 / 100;
-        const sStep = stepUp / 100;
-        for (let year = 1; year <= years; year++) {
-          for (let m = 1; m <= 12; m++) { scFv = (scFv + scM) * (1 + sr); scInv += scM; }
-          scM = scM * (1 + sStep);
-        }
-        return { rate: scenarioRate, fv: scFv };
-    };
-
-    const scenarios = [
-      calcScenario(Math.max(1, rate - 4)),
-      calcScenario(rate), // Current
-      calcScenario(rate + 4)
-    ];
-
-    return { fv, totalInvested, returns, wealthGainedPct, schedule, scenarios };
+    return { fv, totalInvested, returns: fv - totalInvested, schedule };
   }, [monthly, rate, years, stepUp]);
 
-  const invPct = result.fv > 0 ? (result.totalInvested / result.fv) * 100 : 0;
+  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
 
   return (
-    <CalculatorLayout
+    <ModernCalcLayout
+      crumbs={[{ label: 'Finance', href: '/finance/' }, { label: 'SIP Calculator' }]}
       title="SIP Investment Calculator"
-      description="Calculate Systematic Investment Plan (SIP) returns with annual step-up. Ideal for Nepal mutual fund and NEPSE portfolio planning."
-      category="finance"
-      badge="Wealth Builder"
-      badgeColor="emerald"
-      leftPanel={
-        <div className="space-y-8">
-          <ValidatedInput label="Monthly Investment (NPR)" value={monthly} onChange={v => updateState({ monthly: v })} min={500} max={100000} prefix="NPR" step={500} required withSlider />
-
-          <div className="grid grid-cols-2 gap-6">
-            <ValidatedInput label="Return Rate (p.a.)" value={rate} onChange={v => updateState({ rate: v })} min={1} max={30} suffix="%" step={0.5} required withSlider />
-            <ValidatedInput label="Period (Years)" value={years} onChange={v => updateState({ years: v })} min={1} max={40} required withSlider />
-          </div>
-
-          <ValidatedInput label="Annual Step-Up (%)" value={stepUp} onChange={v => updateState({ stepUp: v })} min={0} max={50} suffix="%" hint="Increase investment each year" withSlider />
-
-          <div className="bg-white border border-[var(--border)] rounded-3xl overflow-hidden shadow-sm">
-            <div className="px-8 py-4 bg-[var(--bg-surface)] border-b border-[var(--border)] flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                 <BarChart3 className="w-4 h-4 text-[var(--primary)]" />
-                 <h3 className="text-[10px] font-black uppercase text-[var(--text-secondary)] tracking-widest">Growth Schedule</h3>
-              </div>
-              <span className="text-[10px] font-bold text-[var(--text-muted)]">ANNUAL BREAKDOWN</span>
-            </div>
-            <div className="overflow-y-auto max-h-60 scrollbar-hide">
-              <table className="w-full">
-                <thead>
-                  <tr className="bg-white border-b border-slate-50 text-[9px] text-slate-400 font-black uppercase tracking-widest">
-                    <th className="px-6 py-3 text-left">Year</th>
-                    <th className="px-6 py-3 text-right">Total Invested</th>
-                    <th className="px-6 py-3 text-right">Est. Balance</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-50">
-                  {result.schedule.map(row => (
-                    <tr key={row.year} className="hover:bg-[var(--bg-subtle)] transition-colors">
-                      <td className="px-6 py-4 font-black text-[var(--text-main)] text-xs">Year {row.year}</td>
-                      <td className="px-6 py-4 text-right font-mono text-[11px] text-[var(--text-secondary)]">{fmt(row.invested)}</td>
-                      <td className="px-6 py-4 text-right font-mono font-black text-xs text-[var(--primary)]">{fmt(row.balance)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      }
-      rightPanel={
+      description="Plan your wealth with Systematic Investment Plans (SIP) and annual step-ups for maximum growth in Nepal's markets."
+      icon={TrendingUp}
+      inputs={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-[var(--border)] rounded-3xl text-center shadow-sm group relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-               <TrendingUp className="w-40 h-40 text-[var(--primary)]" />
-            </div>
-            <div className="text-[10px] font-black uppercase text-[var(--text-muted)] mb-4 tracking-widest relative z-10">Maturity Value at {years} Years</div>
-            <div className="text-6xl font-black text-[var(--primary)] tracking-tighter mb-2 relative z-10 font-mono">NPR {fmt(result.fv)}</div>
-            <div className="text-[10px] font-bold text-[var(--primary)] uppercase tracking-widest bg-[var(--primary-light)] py-1.5 rounded-full inline-block px-6 relative z-10">
-               Wealth Multiplier: {(result.fv / (result.totalInvested || 1)).toFixed(2)}x
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4">
-            <div className="p-6 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)] flex justify-between items-center group">
-               <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-white border border-[var(--border)] rounded-xl flex items-center justify-center text-[var(--text-muted)] group-hover:text-[var(--primary)] transition-colors shadow-sm"><LineChart className="w-5 h-5" /></div>
-                  <div className="text-[10px] font-black uppercase text-[var(--text-secondary)] tracking-widest">Investment Basis</div>
-               </div>
-               <span className="text-sm font-black text-[var(--text-main)]">NPR {fmt(result.totalInvested)}</span>
-            </div>
-            
-            <div className="p-6 bg-white border-2 border-[var(--primary-light)] rounded-2xl flex justify-between items-center group">
-               <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-[var(--primary-light)] border border-[var(--primary)]/10 rounded-xl flex items-center justify-center text-[var(--primary)] transition-colors shadow-sm"><TrendingUp className="w-5 h-5" /></div>
-                  <div className="text-[10px] font-black uppercase text-[var(--primary)] tracking-widest font-mono">Total Profit</div>
-               </div>
-               <span className="text-sm font-black text-[var(--primary)]">+ NPR {fmt(result.returns)}</span>
+          <div className="space-y-2">
+            <label className={labelCls}>Monthly Investment (NPR)</label>
+            <div className="relative">
+              <input 
+                type="number" 
+                value={monthly} 
+                onChange={e => updateState({ monthly: Number(e.target.value) })} 
+                className={inputCls} 
+              />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">NPR</span>
             </div>
           </div>
 
-          <div className="p-8 bg-white border border-[var(--border)] rounded-3xl shadow-sm">
-            <div className="flex justify-between items-center mb-4">
-               <div className="text-[10px] font-black uppercase text-[var(--text-muted)] tracking-widest">Asset Allocation</div>
-               <PieChart className="w-4 h-4 text-[var(--text-muted)] opacity-30" />
-            </div>
-            <div className="h-6 flex overflow-hidden w-full rounded-full border-2 border-white shadow-inner bg-[var(--bg-subtle)]">
-              <div className="bg-[var(--primary)] transition-all duration-1000 relative" style={{ width: `${invPct}%` }}>
-                 <div className="absolute inset-0 bg-white/10 animate-pulse" />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className={labelCls}>Return Rate (p.a.)</label>
+              <div className="relative">
+                <input 
+                  type="number" 
+                  value={rate} 
+                  onChange={e => updateState({ rate: Number(e.target.value) })} 
+                  className={inputCls} 
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">%</span>
               </div>
-              <div className="bg-emerald-500 flex-1" />
             </div>
-            <div className="flex justify-between mt-3 px-1">
-               <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-[var(--primary)]" />
-                  <span className="text-[9px] font-black text-[var(--text-muted)] uppercase tracking-widest">Capital ({invPct.toFixed(0)}%)</span>
-               </div>
-               <div className="flex items-center gap-1.5">
-                  <span className="text-[9px] font-black text-[var(--text-muted)] uppercase tracking-widest">Gains ({(100 - invPct).toFixed(0)}%)</span>
-                  <div className="w-2 h-2 rounded-full bg-emerald-500" />
-               </div>
+            <div className="space-y-2">
+              <label className={labelCls}>Period (Years)</label>
+              <div className="relative">
+                <input 
+                  type="number" 
+                  value={years} 
+                  onChange={e => updateState({ years: Number(e.target.value) })} 
+                  className={inputCls} 
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">yrs</span>
+              </div>
             </div>
           </div>
 
-          <div className="bg-white border border-[var(--border)] rounded-3xl overflow-hidden shadow-sm">
-             <div className="bg-[var(--bg-surface)] px-8 py-5 border-b border-[var(--border)] flex items-center justify-between">
-                <h4 className="text-[10px] font-black uppercase text-[var(--text-secondary)] tracking-widest">Market What-If Scenarios</h4>
-                <div className="flex gap-1">
-                   <div className="w-1.5 h-1.5 rounded-full bg-[var(--error)]" />
-                   <div className="w-1.5 h-1.5 rounded-full bg-[var(--primary)]" />
-                   <div className="w-1.5 h-1.5 rounded-full bg-[var(--success)]" />
-                </div>
+          <div className="space-y-2">
+            <label className={labelCls}>Annual Step-Up (%)</label>
+            <div className="relative">
+              <input 
+                type="number" 
+                value={stepUp} 
+                onChange={e => updateState({ stepUp: Number(e.target.value) })} 
+                className={inputCls} 
+              />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">%</span>
+            </div>
+            <p className="text-[10px] text-[#70757A]">Increase your monthly investment by this % every year.</p>
+          </div>
+
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+            Calculate Returns
+          </button>
+        </div>
+      }
+      results={
+        <div className="space-y-6">
+          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
+            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Estimated Maturity Value</div>
+            <div className="text-3xl font-black text-[#1A73E8]">NPR {fmt(result.fv)}</div>
+            <div className="text-[9px] text-[#70757A] font-bold uppercase">After {years} years of investing</div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+             <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center space-y-1">
+               <div className="text-[9px] font-bold text-[#70757A] uppercase">Total Invested</div>
+               <div className="text-sm font-black text-[#202124]">NPR {fmt(result.totalInvested)}</div>
              </div>
-             <div className="p-2">
-               <table className="w-full text-left">
-                  <thead>
-                    <tr className="text-[9px] font-black uppercase tracking-widest text-[var(--text-muted)]">
-                      <th className="p-4">Condition</th>
-                      <th className="p-4 text-center">Rate</th>
-                      <th className="p-4 text-right">Value</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-[11px]">
-                    <tr className="border-b border-[var(--border)] text-[var(--text-secondary)]">
-                      <td className="p-4">Conservative</td>
-                      <td className="p-4 text-center text-[var(--error)]">{result.scenarios[0].rate}%</td>
-                      <td className="p-4 text-right font-mono">{fmt(result.scenarios[0].fv)}</td>
-                    </tr>
-                    <tr className="bg-[var(--primary-light)]/50 text-[var(--primary)] font-black">
-                      <td className="p-4">Target (Yours)</td>
-                      <td className="p-4 text-center text-[var(--primary)]">{result.scenarios[1].rate}%</td>
-                      <td className="p-4 text-right font-mono text-[var(--primary)]">{fmt(result.scenarios[1].fv)}</td>
-                    </tr>
-                    <tr className="text-[var(--text-secondary)]">
-                      <td className="p-4">Aggressive</td>
-                      <td className="p-4 text-center text-[var(--success)]">{result.scenarios[2].rate}%</td>
-                      <td className="p-4 text-right font-mono">{fmt(result.scenarios[2].fv)}</td>
-                    </tr>
-                  </tbody>
-               </table>
+             <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center space-y-1">
+               <div className="text-[9px] font-bold text-[#70757A] uppercase">Total Gains</div>
+               <div className="text-sm font-black text-[#188038]">+ NPR {fmt(result.returns)}</div>
              </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+             <div className="px-4 py-2 border-b border-[#DADCE0] bg-[#F8F9FA] flex justify-between items-center">
+               <span className="text-[10px] font-bold text-[#70757A] uppercase">Growth Projection</span>
+               <LineChart className="w-3 h-3 text-[#1A73E8]" />
+             </div>
+             <div className="p-4 space-y-4">
+               {result.schedule.filter((_, i) => i === 0 || i === Math.floor(years/2) || i === years-1).map((item) => (
+                 <div key={item.year} className="space-y-1">
+                   <div className="flex justify-between text-[10px] font-bold">
+                     <span className="text-[#3C4043]">Year {item.year}</span>
+                     <span className="text-[#1A73E8]">NPR {fmt(item.balance)}</span>
+                   </div>
+                   <div className="h-1.5 w-full bg-[#F1F3F4] rounded-full overflow-hidden">
+                     <div className="h-full bg-[#1A73E8]" style={{ width: `${(item.balance / result.fv) * 100}%` }} />
+                   </div>
+                 </div>
+               ))}
+             </div>
+          </div>
+
+          <div className="flex gap-2 p-3 bg-[#FFF7E0] border border-[#FEEFC3] rounded-lg items-center">
+            <Target className="w-4 h-4 text-[#F29900] shrink-0" />
+            <p className="text-[10px] text-[#202124] leading-tight">Wealth Multiplier: <strong>{(result.fv / (result.totalInvested || 1)).toFixed(2)}x</strong></p>
           </div>
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'What is Rupee Cost Averaging?', answer: 'It is a technique where you invest a fixed amount of money at regular intervals. This means you buy more units when the NAV is low and fewer when it is high, bringing down the average cost over time.' },
-          { question: 'How much should I step up annually?', answer: 'A common benchmark is 10%, aligning with average salary appraisals. This significantly combats inflation over long durations.' },
-          { question: 'Is SIP better than Lumpsum?', answer: 'For most retail investors in Nepal, SIP is better as it removes the psychological risk of timing the highly volatile NEPSE index.' },
-        ]} />
-      }
+      howToUse={{
+        steps: [
+          "Enter your initial Monthly SIP amount.",
+          "Set your expected annual return rate (average for mutual funds is 12-15%).",
+          "Choose your investment time horizon in years.",
+          "Optional: Set an 'Annual Step-Up %' to reflect yearly salary increments.",
+          "Review the maturity value and growth projection for your future wealth."
+        ]
+      }}
+      formula={{
+        title: "SIP Calculation Formula",
+        description: "The calculator uses the compound interest formula applied monthly with an annual increase in principal.",
+        raw: "FV = P × ({[1 + i]^n - 1} / i) × (1 + i)\nWhere i = r/12/100 and n = months."
+      }}
+      faqs={[
+        {
+          question: "What is an SIP Step-Up?",
+          answer: "Step-up SIP allows you to increase your monthly investment by a fixed percentage every year. This significantly boosts your final corpus due to the power of compounding."
+        },
+        {
+          question: "Are returns from SIP guaranteed?",
+          answer: "No, mutual fund and stock market investments are subject to market risks. SIP return rates used here are estimates for planning purposes."
+        },
+        {
+          question: "Is SIP better than Lumpsum?",
+          answer: "SIP is often preferred as it averages out the cost of investment (Rupee Cost Averaging) and helps build a disciplined saving habit."
+        }
+      ]}
+      sidebar={{
+        title: "Investment Toolkit",
+        links: [
+          { label: "Lumpsum Calculator", href: "/calculator/lumpsum-calculator" },
+          { label: "FD Calculator (Nepal)", href: "/calculator/fd-calculator" },
+          { label: "SWP Calculator", href: "/calculator/swp-calculator" },
+          { label: "Retirement Planner", href: "/calculator/retirement" },
+        ],
+        banner: {
+          title: "Build Generational Wealth",
+          description: "Even small amounts invested consistently via SIP can grow into substantial wealth over 15-20 years.",
+          image: "/images/investment-banner.jpg"
+        }
+      }}
+      relatedTools={[
+        { label: "Lumpsum Calculator", href: "/calculator/lumpsum-calculator" },
+        { label: "FD Calculator", href: "/calculator/fd-calculator" },
+        { label: "Income Tax", href: "/calculator/nepal-income-tax" }
+      ]}
     />
   );
 }

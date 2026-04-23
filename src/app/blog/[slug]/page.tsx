@@ -107,7 +107,7 @@ export async function generateMetadata({
       ...(post.ogImage ? { images: [{ url: post.ogImage }] } : {}),
     },
     alternates: {
-      canonical: `https://nepacalc.com/blog/${post.slug}`,
+      canonical: `https://nepacalc.com/blog/${post.slug}/`,
     },
   };
 }

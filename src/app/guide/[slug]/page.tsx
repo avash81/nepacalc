@@ -111,7 +111,7 @@ export async function generateMetadata({
       ...(page.ogImage ? { images: [{ url: page.ogImage }] } : {}),
     },
     alternates: {
-      canonical: `https://nepacalc.com/guide/${page.slug}`,
+      canonical: `https://nepacalc.com/guide/${page.slug}/`,
     },
   };
 }

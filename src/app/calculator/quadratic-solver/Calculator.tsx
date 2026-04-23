@@ -5,8 +5,9 @@ import { ResultCard } from '@/components/calculator/ResultCard';
 import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
 import { useSyncState } from '@/hooks/useSyncState';
 import { FunctionSquare, Binary, Sigma, Info, Activity } from 'lucide-react';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+
 import { solveQuadratic } from '@/utils/math/safeCalculations';
+import { CalcFAQ } from '@/components/calculator/CalcFAQ';
 
 const DEFAULT_STATE = {
   a: 1,
@@ -199,7 +200,6 @@ export default function QuadraticSolver() {
         <div className="pt-8">
            <CalcFAQ
               faqs={[
-                { question: 'What is the Discriminant?', answer: 'D = b² - 4ac. It determines the nature of roots: D > 0 (2 real), D = 0 (1 real), D < 0 (2 complex).' },
                 { question: 'What is the "Vertex"?', answer: 'The vertex is the peak or lowest point of the parabola, given by x = -b/2a.' },
               ]}
            />

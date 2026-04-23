@@ -1,72 +1,73 @@
+import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
-import { Metadata } from 'next';
+import { CalcWrapper } from '@/components/calculator/CalcWrapper';
+import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
-export const metadata: Metadata = {
-  title: 'Probability Calculator | NEPACALC',
-  description: 'Free online probability calculator. Convert favorable outcomes and sample space into percentage, decimal, and odds values instantly.',
-  keywords: ['probability', 'odds', 'statistics', 'likelihood', 'chance', 'math calculator'],
+export const metadata = calcMeta({
+  title: "Probability Calculator | Odds & Statistical Likelihood Nepal NepaCal",
+  description: "Calculate the probability of independent and dependent events instantly. Convert odds to percentages and solve complex statistical problems in Nepal.",
+  slug: 'probability',
+  keywords: ["probability calculator nepal", "calculate odds", "statistical probability tool", "independent events calculator", "theoretical probability nepal", "math solver"],
+});
 
-  openGraph: {
-    title: 'Probability Calculator | NEPACALC',
-    description: 'Free online probability calculator. Convert favorable outcomes and sample space into percentage, decimal, and odds values instantly.',
-    type: 'article',
+const PROBABILITY_FAQS = [
+  {
+    question: "What is the difference between Theoretical and Experimental Probability?",
+    answer: "Theoretical probability is based on reasoning (e.g., a 1/6 chance of rolling a 4 on a die), while experimental probability is based on the actual results of trials or experiments."
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Probability Calculator | NEPACALC',
-    description: 'Free online probability calculator. Convert favorable outcomes and sample space into percentage, decimal, and odds values instantly.',
+  {
+    question: "How do I calculate the probability of multiple independent events?",
+    answer: "Multiply the probabilities of each individual event. For example, the probability of flipping two heads in a row is 1/2 × 1/2 = 1/4 (25%)."
   },
-};
+  {
+    question: "What are 'Odds' and how do they differ from Probability?",
+    answer: "Probability measures the ratio of favorable outcomes to total outcomes. Odds measure the ratio of favorable to unfavorable outcomes. A 20% probability equals 1:4 odds."
+  },
+  {
+    question: "What is a 'Sample Space'?",
+    answer: "The sample space is the set of all possible outcomes of a probability experiment. For a coin flip, the sample space is {Heads, Tails}."
+  },
+  {
+    question: "Can probability be greater than 100%?",
+    answer: "No. Probability always ranges from 0 (impossible) to 1 (certainty), often expressed as a percentage from 0% to 100%."
+  }
+];
 
 export default function Page() {
   return (
-    <>
-      <Calculator />
-    
-      {/* SEO: Competitor-Data Driven FAQ & Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "How to use the Probability Calculator Formula NepaCal tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free probability calculator tool will provide instant results tailored for Nepal." } },
-            { "@type": "Question", "name": "Is this Probability Calculator Formula NepaCal free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's Probability Calculator Formula NepaCal is 100% free with no registration required." } }
-          ]
-        }) }}
-      />
-      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Probability Calculator Formula NepaCal</h2>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
-          Our free <strong>probability calculator</strong> is optimized for Nepalese users. Whether you need an online probability calculator or want to calculate accurately — NepaCal is your best tool.
-        </p>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
-          Related: <strong>probability calculator</strong>, <strong>probability</strong>, <strong>probability probability</strong>, <strong>theoretical probability</strong>, <strong>independent probability</strong>, <strong>experimental probability</strong>.
-        </p>
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-3">
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
-              <span>How do I use the Probability Calculator Formula NepaCal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Enter your values above to get results instantly.
+    <div className="bg-white min-h-screen">
+      <CalcWrapper
+        title="Probability Logic Engine"
+        description="High-precision statistical engine for determining the likelihood of events and converting between odds, ratios, and percentages."
+        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Probability' }]}
+        isNepal={true}
+        relatedCalcs={[
+          { name: 'Standard Deviation', slug: 'standard-deviation' },
+          { name: 'Z-Score Calc', slug: 'z-score' },
+          { name: 'Scientific Calc', slug: 'scientific-calculator' }
+        ]}
+        formula="P(A) = Favorable Outcomes / Total Outcomes"
+      >
+        <Calculator />
+        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
+              Statistical Guide: Probability Theory
+            </h2>
+            
+            <div className="prose prose-slate max-w-none mb-12">
+              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+                Understanding <strong>risk and likelihood</strong> is essential for data science, finance, and everyday decision-making. Probability provides the mathematical framework for quantifying uncertainty.
+              </p>
+              <p className="text-slate-700 text-base leading-relaxed mb-6">
+                Our <strong>Probability Analysis Laboratory</strong> simplifies complex statistical queries. Whether you are a student in Nepal calculating independent event outcomes or a professional analyzing risk ratios, our engine provides instant conversions between <strong>odds, decimals, and percentages</strong> with absolute mathematical certainty.
+              </p>
             </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
-              <span>Is it accurate for Nepal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Yes, our <strong>probability calculator</strong> is regularly updated to reflect local standards.
-            </div>
-          </details>
+
+            <PillarFAQ faqs={PROBABILITY_FAQS} title="Probability & Statistics FAQ" />
+          </div>
         </div>
-      </section>
-    </>
+      </CalcWrapper>
+    </div>
   );
 }

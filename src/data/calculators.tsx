@@ -37,7 +37,6 @@ export const CALCULATORS: Calculator[] = [
   { id: 'property-tax', slug: 'property-tax', name: 'Capital Gains Tax (CGT)', icon: '🏛️', description: 'Calculate real estate capital gains tax for Nepal.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'property-registration', slug: 'property-registration', name: 'Property Registration Fee', icon: '📋', description: 'Calculate Malpok registration fees and stamp duty.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepal-provident-fund', slug: 'nepal-provident-fund', name: 'Provident Fund (EPF)', icon: '🏦', description: 'Retirement savings and interest for EPF Nepal.', category: 'nepal', isNepal: true },
-  { id: 'nepal-tax-calculator', slug: 'nepal-tax-calculator', name: 'Personal Tax Calculator', icon: '🧾', description: 'Comprehensive Nepal income tax estimation.', category: 'nepal', isNepal: true },
   { id: 'nepal-tds', slug: 'nepal-tds-calculator', name: 'TDS Calculator', icon: '✂️', description: 'Calculate withholding tax for professional services.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepal-vehicle-tax', slug: 'nepal-vehicle-tax', name: 'Vehicle Tax Calculator', icon: '🚗', description: 'Calculate road tax for motorbikes and cars.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepse-wacc', slug: 'nepse-wacc', name: 'WACC Calculator', icon: '📊', description: 'Calculate Weighted Average Cost of Capital for NEPSE.', category: 'nepal', isNepal: true, isNew: true },

@@ -1,62 +1,73 @@
 import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
+import { CalcWrapper } from '@/components/calculator/CalcWrapper';
+import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Rounding Calculator Round Off Numbers NepaCal",
-  description: "Round numbers to nearest whole tenth hundredth or any decimal place. Free rounding calculator online at NepaCal",
+  title: "Rounding Calculator | Round Off Decimals & Significant Figures Nepal NepaCal",
+  description: "Round any number to the nearest whole, tenth, hundredth, or specified decimal place instantly. Professional precision tool for students in Nepal.",
   slug: 'rounding',
-  keywords: ["rounding calculator", "nepal", "calculator", "free", "online"]
+  keywords: ["rounding calculator nepal", "round off numbers", "round to nearest tenth", "significant figures calculator", "math precision tool", "decimal rounding calculator"],
 });
+
+const ROUNDING_FAQS = [
+  {
+    question: "What are the basic rules for rounding?",
+    answer: "The general rule is: if the digit after the rounding point is 5 or greater, round up. If it is 4 or less, keep the digit the same (round down)."
+  },
+  {
+    question: "How do I round to the nearest tenth or hundredth?",
+    answer: "To round to the nearest tenth, look at the hundredths digit. To round to the nearest hundredth, look at the thousandths digit, and apply the standard rounding rule."
+  },
+  {
+    question: "What is 'Rounding to Significant Figures'?",
+    answer: "Significant figures represent the digits in a number that carry meaningful information. Rounding to them ensures your result doesn't imply more precision than the data supports."
+  },
+  {
+    question: "Why is rounding important in accounting and science?",
+    answer: "In accounting, rounding ensures currency balances align. In science, it prevents 'false precision' in experimental results, adhering to the limits of measurement tools."
+  },
+  {
+    question: "Does this calculator support 'Banker's Rounding'?",
+    answer: "Our standard engine uses the common 'Half Up' method, which is the academic standard in Nepal. For specific engineering needs, we provide high-precision decimal controls."
+  }
+];
 
 export default function Page() {
   return (
-    <>
-      <Calculator />
-    
-      {/* SEO: Competitor-Data Driven FAQ & Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "How to use the Rounding Calculator Round Off Numbers NepaCal tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free rounding calculator tool will provide instant results tailored for Nepal." } },
-            { "@type": "Question", "name": "Is this Rounding Calculator Round Off Numbers NepaCal free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's Rounding Calculator Round Off Numbers NepaCal is 100% free with no registration required." } }
-          ]
-        }) }}
-      />
-      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Rounding Calculator Round Off Numbers NepaCal</h2>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
-          Our free <strong>rounding calculator</strong> is optimized for Nepalese users. Whether you need an online rounding calculator or want to calculate accurately — NepaCal is your best tool.
-        </p>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
-          Related: <strong>rounding calculator</strong>, <strong>rounding to decimals</strong>, <strong>definition rounding</strong>, <strong>rounding calculator</strong>, <strong>rounding nearest 100</strong>, <strong>rounding the nearest 100</strong>.
-        </p>
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-3">
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
-              <span>How do I use the Rounding Calculator Round Off Numbers NepaCal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Enter your values above to get results instantly.
+    <div className="bg-white min-h-screen">
+      <CalcWrapper
+        title="Numerical Rounding Engine"
+        description="High-precision mathematical tool for rounding numbers to any decimal place or significant figure using standardized academic protocols."
+        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Rounding Calculator' }]}
+        isNepal={true}
+        relatedCalcs={[
+          { name: 'Decimal to Fraction', slug: 'decimal-to-fraction' },
+          { name: 'Significant Figures', slug: 'significant-figures' },
+          { name: 'Simple Calculator', slug: 'simple-calculator' }
+        ]}
+        formula="Round Half-Up [Mathematical Standard]"
+      >
+        <Calculator />
+        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
+              Precision Guide: Numerical Rounding
+            </h2>
+            
+            <div className="prose prose-slate max-w-none mb-12">
+              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+                In <strong>mathematics and data analysis</strong>, maintaining the correct level of precision is vital for the integrity of your results.
+              </p>
+              <p className="text-slate-700 text-base leading-relaxed mb-6">
+                Our <strong>Numerical Precision Laboratory</strong> provides a robust interface for managing decimal approximations. Whether you are a student in Nepal simplifying physics problems or a professional preparing <strong>financial statements</strong>, our engine applies standard rounding laws with absolute consistency, ensuring your data is both accurate and presentation-ready.
+              </p>
             </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
-              <span>Is it accurate for Nepal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Yes, our <strong>rounding calculator</strong> is regularly updated to reflect local standards.
-            </div>
-          </details>
+
+            <PillarFAQ faqs={ROUNDING_FAQS} title="Rounding & Precision FAQ" />
+          </div>
         </div>
-      </section>
-    </>
+      </CalcWrapper>
+    </div>
   );
 }

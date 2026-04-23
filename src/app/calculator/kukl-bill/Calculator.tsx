@@ -1,144 +1,112 @@
 'use client';
-
 import { useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-import { ResultCard } from '@/components/calculator/ResultCard';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { useSyncState } from '@/hooks/useSyncState';
 import { calculateKUKLBill } from '@/utils/math/country-rules/nepal';
-import { Droplets, Waves, Receipt, Info, MapPin } from 'lucide-react';
+import { Droplets, Waves, Info, MapPin } from 'lucide-react';
 
 export default function KUKLCalculator() {
-  const [state, setState] = useSyncState('kukl_v1', {
-    units: 15,
-    pipeSize: '0.5' as '0.5' | '0.75'
-  });
-
+  const [state, setState] = useSyncState('kukl_v2', { units: 15, pipeSize: '0.5' as '0.5' | '0.75' });
   const { units, pipeSize } = state;
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
-  const result = useMemo(() => {
-    return calculateKUKLBill(units, pipeSize);
-  }, [units, pipeSize]);
-
+  const result = useMemo(() => calculateKUKLBill(units, pipeSize), [units, pipeSize]);
   const fmt = (n: number) => n.toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
+  const inputCls = "w-full h-12 pl-12 pr-14 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider block mb-1.5";
+
   return (
-    <CalculatorLayout
-      title="KUKL Water Bill Analyzer"
-      description="Estimate your monthly water bill from Kathmandu Upatyaka Khanepani Limited (KUKL). Calculate slab-based charges and the mandatory 50% sewerage tax."
-      category={{ label: 'Utility', href: '/calculator/category/nepal' }}
-      leftPanel={
-        <div className="space-y-8">
-           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <ValidatedInput 
-                label="Total Consumption" 
-                value={units} 
-                onChange={v => update({ units: v })} 
-                suffix="Units"
-                hint="1 Unit = 1,000 Liters"
-              />
-              <div className="space-y-3">
-                 <label className="text-[10px] font-black uppercase text-[var(--text-muted)] tracking-widest">Pipe Connection Size</label>
-                 <div className="flex p-1 bg-[var(--bg-subtle)] border border-[var(--border)] rounded-xl">
+    <ModernCalcLayout
+      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'KUKL Water Bill' }]}
+      title="KUKL Water Bill Calculator"
+      description="Estimate your monthly water bill from Kathmandu Upatyaka Khanepani Limited (KUKL). Automatically calculates slab-based charges and the mandatory 50% sewerage tax."
+      icon={Droplets}
+      inputs={
+        <div className="space-y-6">
+           <div className="space-y-4">
+              <div>
+                 <label className={labelCls}>Total Monthly Consumption</label>
+                 <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#70757A]">
+                       <Droplets className="w-4 h-4" />
+                    </span>
+                    <input type="number" value={units} min={0} onChange={e => update({ units: Number(e.target.value) })} className={inputCls} />
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-bold text-[#70757A]">Units</span>
+                 </div>
+                 <p className="text-[10px] text-[#70757A] mt-1.5 font-bold px-1">Note: 1 Unit = 1,000 Liters</p>
+              </div>
+
+              <div>
+                 <label className={labelCls}>Pipe Connection Size</label>
+                 <div className="flex p-1 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg">
                     {(['0.5', '0.75'] as const).map(size => (
-                       <button 
-                         key={size} 
-                         onClick={() => update({ pipeSize: size })}
-                         className={`flex-1 py-2 text-[10px] font-black uppercase transition-all rounded-lg ${pipeSize === size ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500'}`}
-                       >
-                         {size}" Inch
+                       <button key={size} onClick={() => update({ pipeSize: size })}
+                         className={`flex-1 py-2 text-[11px] font-black uppercase transition-all rounded ${pipeSize === size ? 'bg-white text-[#1A73E8] shadow-sm border border-[#DADCE0]' : 'text-[#70757A] hover:bg-[#E8F0FE]'}`}>
+                         {size} Inch
                        </button>
                     ))}
                  </div>
               </div>
            </div>
 
-           <div className="p-6 bg-slate-100 rounded-3xl border border-slate-200 space-y-4">
+           <div className="p-5 bg-[#F8F9FA] rounded-lg border border-[#DADCE0] space-y-2">
               <div className="flex items-center gap-2">
-                 <MapPin className="w-4 h-4 text-blue-600" />
-                 <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-900">Kathmandu Valley Logic</h3>
+                 <MapPin className="w-4 h-4 text-[#1A73E8]" />
+                 <h3 className="text-[10px] font-bold uppercase tracking-wider text-[#202124]">Kathmandu Valley Base Logic</h3>
               </div>
-              <p className="text-[11px] text-slate-600 leading-relaxed font-medium">
-                KUKL billing in Kathmandu is based on the meter reading. The minimum monthly charge covers up to <strong>10,000 Liters (10 Units)</strong>. Any consumption above this is charged at a progressive volumetric rate.
+              <p className="text-[11px] text-[#5F6368] leading-relaxed">
+                The minimum monthly charge covers up to <strong>10 Units (10,000 Liters)</strong>. Any consumption above this threshold is charged at a progressive volumetric rate per extra unit.
               </p>
            </div>
-
-           <div className="pt-6 border-t border-[var(--border)] space-y-4">
-              <div className="flex items-center gap-2 mb-2">
-                 <Waves className="w-4 h-4 text-blue-500" />
-                 <h4 className="text-[10px] font-black uppercase text-slate-900 tracking-widest">Sewerage & Sanitation Tax</h4>
-              </div>
-              <div className="p-5 bg-blue-50 border border-blue-100 rounded-2xl flex gap-4 animate-in fade-in zoom-in-95">
-                 <Info className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
-                 <p className="text-[11px] text-blue-800 font-bold leading-relaxed">
-                   Note: A standard <strong>50% Sewerage Charge</strong> is added automatically to your total water consumption amount. This covers city-wide drainage and waste management services.
-                 </p>
-              </div>
-           </div>
         </div>
       }
-      rightPanel={
+      results={
         <div className="space-y-6">
-          <ResultCard 
-            label="Estimated Total Bill" 
-            value={fmt(result.totalBill)} 
-            unit=" Rs." 
-            color="blue" 
-            title="Monthly Invoice"
-            copyValue={`Rs. ${result.totalBill}`}
-          />
-
-          <div className="bg-white border border-[var(--border)] rounded-[2rem] overflow-hidden shadow-sm">
-             <div className="p-6 bg-blue-600 text-white flex justify-between items-center">
-                <div className="space-y-1">
-                   <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-200">KUKL Invoice</div>
-                   <div className="text-xl font-black">{units} Units ({units * 1000}L)</div>
+          <div className="bg-[#1A1A2E] rounded-lg overflow-hidden border border-[#DADCE0]">
+             <div className="p-6 bg-[#1A73E8] flex justify-between items-center relative overflow-hidden">
+                <div className="relative z-10 space-y-1">
+                   <div className="text-[10px] font-bold uppercase tracking-widest text-white/70">Estimated Monthly Invoice</div>
+                   <div className="text-xl font-black text-white">{units} Units ({units * 1000}L)</div>
                 </div>
-                <Droplets className="w-8 h-8 text-blue-300 opacity-50" />
+                <Droplets className="w-12 h-12 text-white/20 absolute -right-2 -bottom-2" />
              </div>
-             <div className="p-6 divide-y divide-slate-100">
-                <div className="py-4 flex justify-between items-center">
-                   <span className="text-[11px] font-bold text-slate-500 uppercase">Water Consumption Charge</span>
-                   <span className="text-sm font-black text-slate-900 font-mono">Rs. {fmt(result.waterCharge)}</span>
+             
+             <div className="p-6 space-y-4">
+                <div className="flex justify-between items-center pb-3 border-b border-white/10">
+                   <span className="text-xs text-white/70 uppercase tracking-wider font-bold">Water Consumption Charge</span>
+                   <span className="text-sm font-black text-white font-mono">Rs. {fmt(result.waterCharge)}</span>
                 </div>
-                <div className="py-4 flex justify-between items-center">
-                   <span className="text-[11px] font-bold text-blue-500 uppercase italic">Sewerage Tax (50%)</span>
-                   <span className="text-sm font-black text-blue-600 font-mono italic">+ Rs. {fmt(result.sewerageTax)}</span>
+                <div className="flex justify-between items-center pb-3 border-b border-white/10">
+                   <div className="flex items-center gap-2">
+                      <Waves className="w-3.5 h-3.5 text-[#8AB4F8]" />
+                      <span className="text-xs text-[#8AB4F8] uppercase tracking-wider font-bold">Sewerage Tax (50%)</span>
+                   </div>
+                   <span className="text-sm font-black text-[#8AB4F8] font-mono">+ Rs. {fmt(result.sewerageTax)}</span>
                 </div>
-                <div className="py-5 flex justify-between items-center border-t-2 border-slate-900/5">
-                   <span className="text-[11px] font-black text-slate-900 uppercase">Final Total Bill</span>
-                   <span className="text-xl font-black text-blue-600 font-mono">Rs. {fmt(result.totalBill)}</span>
+                <div className="pt-2 flex justify-between items-baseline">
+                   <span className="text-[11px] font-bold text-white uppercase tracking-wider">Final Total Bill</span>
+                   <span className="text-4xl font-black text-white tracking-tighter font-mono">Rs. {fmt(result.totalBill)}</span>
                 </div>
              </div>
           </div>
 
-          <div className="p-5 bg-amber-50 border border-amber-100 rounded-2xl flex gap-3">
-             <Receipt className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-             <div className="space-y-1">
-                <h5 className="text-[10px] font-black text-amber-900 uppercase tracking-widest">Billing Logic</h5>
-                <p className="text-[11px] text-amber-700 font-medium leading-relaxed italic">
-                   "Minimum charge = Rs. 100 (for 10 units/10k Liters). Every unit exceeded is charged at approximately Rs. 32-35 depending on latest WTFC notifications."
-                </p>
-             </div>
+          <div className="p-4 bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg flex gap-3 items-start">
+             <Info className="w-5 h-5 text-[#1A73E8] shrink-0 mt-0.5" />
+             <p className="text-[10px] text-[#202124] leading-relaxed font-bold">
+               A standard 50% Sewerage Charge is added automatically to your total water consumption amount. This covers city-wide drainage and waste management services across the valley.
+             </p>
           </div>
         </div>
       }
-      faqSection={
-         <div className="mt-16 pt-12 border-t border-[var(--border)] prose prose-slate max-w-none">
-            <h2 className="text-2xl font-black text-slate-900 mb-8 italic tracking-tighter">Water Utility Insights</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-               <div>
-                  <h4 className="text-[11px] font-black uppercase tracking-widest text-blue-600 mb-2">Reading the Meter</h4>
-                  <p className="text-[13px] text-slate-600 leading-relaxed font-medium">To calculate your usage, subtract the "Previous Reading" from the "Current Reading" shown on your water meter. Each 1 unit on the meter represents 1,000 liters. KUKL meter readers usually visit once every two months, but your bill is calculated monthly based on the average.</p>
-               </div>
-               <div>
-                  <h4 className="text-[11px] font-black uppercase tracking-widest text-blue-600 mb-2">Sewerage Calculations</h4>
-                  <p className="text-[13px] text-slate-600 leading-relaxed font-medium">The sewerage charge is a service fee for the maintenance of drainage systems in the city. It is strictly tied to your water usage (50% of the water charge). This means the more water you use, the higher your sewerage bill will be.</p>
-               </div>
-            </div>
-         </div>
-      }
+      howToUse={{ steps: ["Check your KUKL water meter and find the total units consumed for the month.", "Select your pipe connection size (most residential homes use 0.5 Inch).", "The calculator instantly computes your base charge, extra unit charge, and the mandatory sewerage tax.", "Note: 1 Unit on the meter equals 1,000 liters of water."] }}
+      formula={{ title: "KUKL Tariff Structure (0.5 Inch)", description: "Based on official KUKL rates.", raw: "Minimum Charge (Up to 10 Units) = Rs. 100\nExtra Unit Rate (Above 10) = ~Rs. 32 per unit\n\nBase Water Charge = Minimum Charge + (Extra Units × Rate)\nSewerage Tax = Base Water Charge × 50%\n\nTotal Bill = Base Water Charge + Sewerage Tax" }}
+      faqs={[
+        { question: "Why is the bill so high even with low usage?", answer: "Because of the mandatory 50% sewerage tax. Even if you use only the minimum 10 units (Rs. 100), your final bill will be Rs. 150." },
+        { question: "What if my meter is broken?", answer: "KUKL will charge you an average bill based on your historical usage until the meter is replaced." }
+      ]}
+      sidebar={{ title: "Nepal Utilities", links: [{ label: "NEA Electricity Bill", href: "/calculator/nea-bill" }, { label: "Income Tax Calculator", href: "/calculator/income-tax" }], banner: { title: "Save Water", description: "Promptly repair leaks. A dripping tap wastes over 5,000 liters a year.", image: "/images/nepal-banner.jpg" } }}
+      relatedTools={[{ label: "NEA Electricity Bill", href: "/calculator/nea-bill" }]}
     />
   );
 }

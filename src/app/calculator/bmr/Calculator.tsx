@@ -1,10 +1,8 @@
 'use client';
 import { useMemo } from 'react';
-import { Flame } from 'lucide-react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { Flame, Activity, Info, Target, Calculator, PieChart, Heart, Scale } from 'lucide-react';
+import { useSyncState } from '@/hooks/useSyncState';
 
 const DEFAULT_STATE = {
   gender: 'male' as 'male' | 'female',
@@ -23,12 +21,10 @@ const ACTIVITY_MULTIPLIERS = {
 };
 
 export default function BMRCalculator() {
-  const [state, setState] = useLocalStorage('NEPACALC_bmr_v2', DEFAULT_STATE);
+  const [state, setState] = useSyncState('bmr_v4', DEFAULT_STATE);
   const { gender, age, weight, height, activity } = state;
 
-  const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {
-    setState({ ...state, ...updates });
-  };
+  const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
   const analysis = useMemo(() => {
     let bmr = (10 * weight) + (6.25 * height) - (5 * age);
@@ -37,131 +33,171 @@ export default function BMRCalculator() {
     return { bmr: Math.round(bmr), tdee };
   }, [gender, age, weight, height, activity]);
 
+  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
+
   return (
-    <CalculatorLayout
+    <ModernCalcLayout
+      crumbs={[{ label: 'Health', href: '/health/' }, { label: 'BMR Calculator' }]}
       title="BMR Calculator"
-      description="Professional Basal Metabolic Rate (BMR) and TDEE engine. Calculate your daily calorie requirements for weight management."
-      category={{ label: 'Health', href: '/calculator/category/health' }}
-      leftPanel={
+      description="Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE). Find the exact calories you need to maintain, lose, or gain weight."
+      icon={Flame}
+      inputs={
         <div className="space-y-6">
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                 <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)] px-1">Biological Gender</label>
-                 <div className="flex bg-[var(--bg-surface)] border border-[var(--border)] p-1">
-                    {['male', 'female'].map((g) => (
-                      <button
-                        key={g}
-                        onClick={() => updateState({ gender: g as 'male' | 'female' })}
-                        className={`flex-1 py-2 text-xs font-bold uppercase transition-all ${gender === g ? 'bg-[var(--primary)] text-white shadow-sm' : 'text-[var(--text-secondary)]'}`}
-                      >
-                        {g}
-                      </button>
-                    ))}
-                 </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className={labelCls}>Gender</label>
+              <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
+                {['male', 'female'].map((g) => (
+                  <button 
+                    key={g} 
+                    onClick={() => update({ gender: g as any })}
+                    className={`flex-1 py-2 text-xs font-bold uppercase rounded-md transition-all ${gender === g ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}
+                  >
+                    {g}
+                  </button>
+                ))}
               </div>
-              <ValidatedInput label="Age" value={age} onChange={(v) => updateState({ age: v })} min={5} max={110} required withSlider />
-           </div>
+            </div>
+            <div className="space-y-2">
+              <label className={labelCls}>Age</label>
+              <input type="number" value={age} onChange={e => update({ age: Number(e.target.value) })} className={inputCls} />
+            </div>
+          </div>
 
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <ValidatedInput label="Weight (kg)" value={weight} onChange={(v) => updateState({ weight: v })} min={10} max={300} step={0.1} required withSlider />
-              <ValidatedInput label="Height (cm)" value={height} onChange={(v) => updateState({ height: v })} min={50} max={250} step={0.1} required withSlider />
-           </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className={labelCls}>Weight (kg)</label>
+              <input type="number" value={weight} onChange={e => update({ weight: Number(e.target.value) })} className={inputCls} />
+            </div>
+            <div className="space-y-2">
+              <label className={labelCls}>Height (cm)</label>
+              <input type="number" value={height} onChange={e => update({ height: Number(e.target.value) })} className={inputCls} />
+            </div>
+          </div>
 
-           <div className="pt-6 border-t border-[var(--border)] space-y-4">
-              <h3 className="text-[11px] font-bold uppercase text-[var(--text-secondary)] px-1">Activity Intensity</h3>
-              <div className="space-y-2">
-                 {Object.entries(ACTIVITY_MULTIPLIERS).map(([key, data]) => (
-                   <button
-                      key={key}
-                      onClick={() => updateState({ activity: key as any })}
-                      className={`w-full p-4 border border-[var(--border)] text-left transition-all ${activity === key ? 'bg-[var(--bg-subtle)] border-[var(--primary)]' : 'bg-white hover:bg-gray-50'}`}
-                   >
-                      <div className="flex justify-between items-center">
-                        <span className={`text-[12px] font-bold uppercase tracking-tight ${activity === key ? 'text-[var(--primary)]' : 'text-[var(--text-main)]'}`}>{data.label}</span>
-                        {activity === key && <div className="w-2 h-2 rounded-full bg-[var(--primary)]" />}
-                      </div>
-                      <p className="text-[10px] text-[var(--text-muted)] font-medium">{data.desc}</p>
-                   </button>
-                 ))}
-              </div>
-           </div>
+          <div className="space-y-2">
+            <label className={labelCls}>Activity Level</label>
+            <div className="space-y-2">
+              {Object.entries(ACTIVITY_MULTIPLIERS).map(([key, data]) => (
+                <button 
+                  key={key} 
+                  onClick={() => update({ activity: key as any })}
+                  className={`w-full p-3 border rounded-lg text-left transition-all ${activity === key ? 'bg-[#E8F0FE] border-[#1A73E8]' : 'bg-white border-[#DADCE0]'}`}
+                >
+                  <div className="flex justify-between items-center">
+                    <span className={`text-[12px] font-bold uppercase ${activity === key ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>{data.label}</span>
+                    <span className="text-[10px] text-[#70757A]">{data.factor}x</span>
+                  </div>
+                  <p className="text-[10px] text-[#5F6368]">{data.desc}</p>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+            Calculate Metabolism
+          </button>
         </div>
       }
-      rightPanel={
-        <div className="space-y-8">
-           <div className="text-center p-8 bg-white border border-[var(--border)]">
-              <div className="text-xs font-bold uppercase tracking-tight text-[var(--text-muted)] mb-2">Daily Maintenance Calories</div>
-              <div className="text-7xl font-black text-[#006600] tracking-tighter mb-2">{analysis.tdee}</div>
-              <div className="text-xs font-bold text-[var(--text-secondary)] uppercase tracking-widest">KCAL / Day</div>
-           </div>
+      results={
+        <div className="space-y-6">
+          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
+            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Maintenance Calories (TDEE)</div>
+            <div className="text-4xl font-black text-[#1A73E8]">{analysis.tdee} kcal</div>
+            <div className="text-[9px] text-[#70757A] font-bold uppercase">To maintain current weight</div>
+          </div>
 
-           <div className="space-y-4">
-              <div className="p-4 border border-[var(--border)] bg-gray-50 flex justify-between items-center">
-                 <span className="text-[11px] font-bold text-[var(--text-secondary)] uppercase">Basal Metabolic Rate (BMR)</span>
-                 <span className="text-sm font-black text-[var(--text-main)]">{analysis.bmr} kcal</span>
-              </div>
-              
-              <div className="p-6 bg-white border border-[var(--border)] space-y-5">
-                 <div className="flex items-center gap-2 mb-2">
-                    <Flame className="w-4 h-4 text-orange-600" />
-                    <h4 className="text-[11px] font-black uppercase text-[var(--text-main)]">Weight Goal Targets</h4>
-                 </div>
-                 <div className="space-y-3">
-                    <div className="flex justify-between items-center text-xs">
-                       <span className="text-[var(--text-muted)] font-bold uppercase text-[9px]">Fat Loss (-0.5kg/wk)</span>
-                       <span className="font-black text-[var(--primary)]">{analysis.tdee - 500} kcal</span>
-                    </div>
-                    <div className="flex justify-between items-center text-xs">
-                       <span className="text-[var(--text-muted)] font-bold uppercase text-[9px]">Weight Gain (+0.5kg/wk)</span>
-                       <span className="font-black text-orange-600">{analysis.tdee + 500} kcal</span>
-                    </div>
-                 </div>
-              </div>
-           </div>
+          <div className="grid grid-cols-1 gap-4">
+             <div className="p-4 bg-white border border-[#DADCE0] rounded-lg flex justify-between items-center">
+               <div className="flex items-center gap-2">
+                 <Heart className="w-4 h-4 text-[#D93025]" />
+                 <span className="text-[11px] font-bold text-[#70757A] uppercase">Basal Metabolic Rate (BMR)</span>
+               </div>
+               <span className="text-sm font-black text-[#202124]">{analysis.bmr} kcal</span>
+             </div>
+          </div>
 
-           <div className="p-5 border border-[var(--border)] bg-[var(--bg-subtle)]">
-              <p className="text-[12px] text-[var(--text-secondary)] leading-relaxed italic">
-                * Based on the Mifflin-St Jeor Equation, the most accurate clinical standard for BMR calculation.
-              </p>
-           </div>
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+             <div className="px-4 py-2 border-b border-[#DADCE0] bg-[#F8F9FA] flex justify-between items-center">
+               <span className="text-[10px] font-bold text-[#70757A] uppercase">Calorie Targets by Goal</span>
+               <Target className="w-3 h-3 text-[#1A73E8]" />
+             </div>
+             <div className="p-4 space-y-4">
+                <div className="flex justify-between items-center">
+                   <div className="space-y-0.5">
+                     <div className="text-xs font-bold">Mild Weight Loss</div>
+                     <div className="text-[9px] text-[#5F6368] uppercase">-0.25 kg/week</div>
+                   </div>
+                   <div className="text-sm font-black text-[#1A73E8]">{analysis.tdee - 250} kcal</div>
+                </div>
+                <div className="flex justify-between items-center">
+                   <div className="space-y-0.5">
+                     <div className="text-xs font-bold text-[#D93025]">Weight Loss</div>
+                     <div className="text-[9px] text-[#5F6368] uppercase">-0.5 kg/week</div>
+                   </div>
+                   <div className="text-sm font-black text-[#D93025]">{analysis.tdee - 500} kcal</div>
+                </div>
+                <div className="h-px bg-[#DADCE0]" />
+                <div className="flex justify-between items-center">
+                   <div className="space-y-0.5">
+                     <div className="text-xs font-bold text-[#188038]">Weight Gain</div>
+                     <div className="text-[9px] text-[#5F6368] uppercase">+0.5 kg/week</div>
+                   </div>
+                   <div className="text-sm font-black text-[#188038]">{analysis.tdee + 500} kcal</div>
+                </div>
+             </div>
+          </div>
+
+          <div className="flex gap-2 p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg items-center">
+            <Info className="w-4 h-4 text-[#188038] shrink-0" />
+            <p className="text-[10px] text-[#202124] leading-tight">Calculated using the <strong>Mifflin-St Jeor Equation</strong>, currently the clinical standard for accuracy.</p>
+          </div>
         </div>
       }
-      faqSection={
-        <div className="prose prose-slate max-w-none w-full print-hide mt-16 pt-12 border-t border-slate-200">
-             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-6">Mastering BMR & TDEE Core Concepts</h2>
-             
-             <p className="text-slate-600 text-sm leading-relaxed mb-6 font-medium">Your Basal Metabolic Rate (BMR) defines the absolute minimum number of calories (energy) your body requires to survive and maintain critical somatic functions—like breathing, circulating blood, and cellular reproduction—if you were resting in bed for 24 hours.</p>
-
-             <h3 className="text-xl font-black text-slate-900 mt-8 mb-4">The Clinical Standard: Mifflin-St Jeor Equation</h3>
-             <p className="text-slate-600 text-sm leading-relaxed mb-6">Historically, nutritionists used the Harris-Benedict equation (formulated in 1919). Total modern consensus, however, dictates the <strong>Mifflin-St. Jeor equation (1990)</strong>, which is mathematically proven to be significantly more accurate in calculating modern metabolic rates, particularly in non-obese populations.</p>
-             
-             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 mt-4">
-               <div className="bg-slate-50 p-5 border border-slate-200 shadow-sm rounded-lg">
-                 <h4 className="font-bold text-slate-900 uppercase text-xs tracking-wider mb-2">Biological Male BMR</h4>
-                 <p className="text-xs text-slate-600 leading-normal font-mono font-bold tracking-tight">(10 × Weight in kg) + (6.25 × Height in cm) - (5 × Age in yrs) + 5</p>
-               </div>
-               <div className="bg-slate-50 p-5 border border-slate-200 shadow-sm rounded-lg">
-                 <h4 className="font-bold text-slate-900 uppercase text-xs tracking-wider mb-2">Biological Female BMR</h4>
-                 <p className="text-xs text-slate-600 leading-normal font-mono font-bold tracking-tight">(10 × Weight in kg) + (6.25 × Height in cm) - (5 × Age in yrs) - 161</p>
-               </div>
-             </div>
-
-             <h3 className="text-xl font-black text-slate-900 mt-8 mb-4">From BMR to TDEE (Total Daily Energy Expenditure)</h3>
-             <p className="text-slate-600 text-sm leading-relaxed mb-4">Because you are not bedridden, your BMR must be multiplied by an Activity Factor (the Thermic Effect of Activity) to find your TDEE—the total amount of calories you actually burn in a 24-hour cycle. The metabolic multipliers are uniformly scaled:</p>
-             
-             <ul className="list-disc pl-5 space-y-2 text-sm text-slate-600 mb-8">
-                <li><strong>Sedentary (BMR × 1.2):</strong> Office job, zero exercise.</li>
-                <li><strong>Lightly Active (BMR × 1.375):</strong> Casual walking or light sports 1-3 times a week.</li>
-                <li><strong>Moderately Active (BMR × 1.55):</strong> Standard gym/cardio 3-5 times a week.</li>
-                <li><strong>Highly Active (BMR × 1.725):</strong> Daily intense training or physical labor.</li>
-             </ul>
-
-             <div className="bg-emerald-50 border-l-4 border-emerald-500 p-5 mt-6 mb-10">
-               <h4 className="font-bold text-emerald-900 text-sm uppercase tracking-wide mb-1">Applying the Caloric Deficit / Surplus</h4>
-               <p className="text-xs text-emerald-800 leading-relaxed">Once you know your TDEE, human thermodynamics dictates weight manipulation: To lose exactly 0.5kg per week, consume exactly <strong>500 calories less</strong> than your TDEE daily. To gain 0.5kg, consume <strong>500 calories more</strong>. A deficit larger than 1000 calories/day heavily risks permanent metabolic adaptation and muscle catabolism.</p>
-             </div>
-           </div>
-      }
+      howToUse={{
+        steps: [
+          "Select your biological gender and enter your current age.",
+          "Input your current weight in kilograms and height in centimeters.",
+          "Choose an activity level that best describes your weekly exercise routine.",
+          "Click 'Calculate Metabolism' to see your BMR and TDEE results.",
+          "Review the weight goal targets to understand your daily calorie needs for loss or gain."
+        ]
+      }}
+      formula={{
+        title: "Mifflin-St Jeor Equation",
+        description: "BMR is the energy your body needs at rest. TDEE is BMR multiplied by your activity factor.",
+        raw: "Male: BMR = (10 × weight) + (6.25 × height) - (5 × age) + 5\nFemale: BMR = (10 × weight) + (6.25 × height) - (5 × age) - 161"
+      }}
+      faqs={[
+        {
+          question: "What is BMR?",
+          answer: "Basal Metabolic Rate (BMR) is the number of calories your body burns at rest to maintain basic life functions like breathing and heartbeat."
+        },
+        {
+          question: "How is TDEE different from BMR?",
+          answer: "TDEE (Total Daily Energy Expenditure) accounts for both your BMR and the energy burned through physical activity and exercise."
+        }
+      ]}
+      sidebar={{
+        title: "Health Toolkit",
+        links: [
+          { label: "BMI Calculator", href: "/calculator/bmi" },
+          { label: "Calorie Calculator", href: "/calculator/calorie-calculator" },
+          { label: "Ideal Weight", href: "/calculator/ideal-weight" },
+          { label: "Water Intake", href: "/calculator/water-intake" },
+        ],
+        banner: {
+          title: "Fuel Your Body Right",
+          description: "Knowing your numbers is the first step toward a healthier lifestyle. Use these metrics to plan your nutrition.",
+          image: "/images/health-banner.jpg"
+        }
+      }}
+      relatedTools={[
+        { label: "BMI Calculator", href: "/calculator/bmi" },
+        { label: "Calorie Tool", href: "/calculator/calorie-calculator" },
+        { label: "Water Intake", href: "/calculator/water-intake" }
+      ]}
     />
   );
 }

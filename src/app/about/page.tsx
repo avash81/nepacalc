@@ -6,7 +6,7 @@ import { ShieldCheck, Target } from 'lucide-react';
   title: 'About NEPACALC | Recognized Mathematical Authority & 3D Engineering',
   description: 'NEPACALC is a recognized professional mathematical platform specializing in high-precision 3D surface plotting, financial modeling, and scientific calculations for Nepal.',
   alternates: {
-    canonical: '/about',
+    canonical: 'https://nepacalc.com/about/',
   },
 };
 

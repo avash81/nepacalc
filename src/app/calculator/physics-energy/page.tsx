@@ -1,72 +1,73 @@
+import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
-import { Metadata } from 'next';
+import { CalcWrapper } from '@/components/calculator/CalcWrapper';
+import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
-export const metadata: Metadata = {
-  title: 'Kinetic Energy Calculator (1/2mv²) | NEPACALC',
-  description: 'Free online physics calculator for kinetic energy (KE = ½mv²). Solve for energy, mass, or velocity instantly.',
-  keywords: ['kinetic energy', 'physics calculator', 'energy', 'velocity', 'mass', '1/2mv2'],
+export const metadata = calcMeta({
+  title: "Kinetic Energy Calculator | Physics (1/2mv²) Nepal NepaCal",
+  description: "Calculate kinetic energy, mass, or velocity instantly using the KE = ½mv² formula. Professional physics tool for students and researchers in Nepal.",
+  slug: 'physics-energy',
+  keywords: ["kinetic energy calculator nepal", "calculate physics energy", "1/2mv2 formula", "physics solver nepal", "energy mass velocity calc", "academic physics tool"],
+});
 
-  openGraph: {
-    title: 'Kinetic Energy Calculator (1/2mv²) | NEPACALC',
-    description: 'Free online physics calculator for kinetic energy (KE = ½mv²). Solve for energy, mass, or velocity instantly.',
-    type: 'article',
+const ENERGY_FAQS = [
+  {
+    question: "What is Kinetic Energy?",
+    answer: "Kinetic energy is the energy an object possesses due to its motion. It is defined as the work needed to accelerate a body of a given mass from rest to its stated velocity."
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Kinetic Energy Calculator (1/2mv²) | NEPACALC',
-    description: 'Free online physics calculator for kinetic energy (KE = ½mv²). Solve for energy, mass, or velocity instantly.',
+  {
+    question: "What is the formula for Kinetic Energy?",
+    answer: "The formula is KE = ½mv², where m is the mass in kilograms and v is the velocity in meters per second. Our calculator computes this instantly for any input."
   },
-};
+  {
+    question: "How does velocity affect energy?",
+    answer: "Since velocity is squared (v²) in the formula, doubling the speed of an object quadruples its kinetic energy, making speed a critical factor in energy calculations."
+  },
+  {
+    question: "What units are used for energy?",
+    answer: "The standard SI unit for energy is the Joule (J). One Joule is equal to one kilogram-meter squared per second squared (kg·m²/s²)."
+  },
+  {
+    question: "Can kinetic energy be negative?",
+    answer: "No. Since mass is positive and the square of velocity is always positive, kinetic energy must always be zero or a positive value."
+  }
+];
 
 export default function Page() {
   return (
-    <>
-      <Calculator />
-    
-      {/* SEO: Competitor-Data Driven FAQ & Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "How to use the Kinetic Energy Calculator Physics NepaCal tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free kinetic energy formula tool will provide instant results tailored for Nepal." } },
-            { "@type": "Question", "name": "Is this Kinetic Energy Calculator Physics NepaCal free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's Kinetic Energy Calculator Physics NepaCal is 100% free with no registration required." } }
-          ]
-        }) }}
-      />
-      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Kinetic Energy Calculator Physics NepaCal</h2>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
-          Our free <strong>kinetic energy formula</strong> is optimized for Nepalese users. Whether you need an online kinetic energy formula or want to calculate accurately — NepaCal is your best tool.
-        </p>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
-          Related: <strong>kinetic energy formula</strong>, <strong>kinetic energy formula</strong>, <strong>what is kinetic energy</strong>, <strong>kinetic energy calculator</strong>.
-        </p>
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-3">
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
-              <span>How do I use the Kinetic Energy Calculator Physics NepaCal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Enter your values above to get results instantly.
+    <div className="bg-white min-h-screen">
+      <CalcWrapper
+        title="Kinetic Energy Engine"
+        description="High-precision physics laboratory tool for calculating kinetic energy, mass-energy relationships, and velocity variables using SI standards."
+        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Kinetic Energy' }]}
+        isNepal={true}
+        relatedCalcs={[
+          { name: 'Force Calc', slug: 'physics-force' },
+          { name: 'Scientific Calc', slug: 'scientific-calculator' },
+          { name: 'Unit Converter', slug: 'unit-converter' }
+        ]}
+        formula="KE = ½mv² [Classical Mechanics]"
+      >
+        <Calculator />
+        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
+              Physics Guide: Dynamics & Energy
+            </h2>
+            
+            <div className="prose prose-slate max-w-none mb-12">
+              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+                Understanding <strong>mechanical energy</strong> is a cornerstone of physics and engineering. It describes the capacity of a moving body to perform work, a concept vital for everything from vehicle safety to renewable energy systems.
+              </p>
+              <p className="text-slate-700 text-base leading-relaxed mb-6">
+                Our <strong>Kinetic Dynamics Laboratory</strong> provides a precise interface for classical mechanics. Whether you are a student in Nepal analyzing laboratory experiments or a researcher calculating the impact forces of moving objects, our engine ensures 100% mathematical accuracy using standard SI units and <strong>relativistic-grade numerical logic</strong>.
+              </p>
             </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
-              <span>Is it accurate for Nepal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Yes, our <strong>kinetic energy formula</strong> is regularly updated to reflect local standards.
-            </div>
-          </details>
+
+            <PillarFAQ faqs={ENERGY_FAQS} title="Energy & Physics FAQ" />
+          </div>
         </div>
-      </section>
-    </>
+      </CalcWrapper>
+    </div>
   );
 }

@@ -37,7 +37,7 @@ export function calcMeta({ title, description, slug, keywords = [] }: { title: s
     description: seoDescription,
     keywords: globalKeywords,
     openGraph: {
-      url: slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}` : `${SITE_CONFIG.baseUrl}/calculator/${slug}`,
+      url: slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}/` : `${SITE_CONFIG.baseUrl}/calculator/${slug}/`,
       siteName: 'NepaCal Nepal',
       title: seoTitle,
       description: seoDescription,
@@ -59,10 +59,10 @@ export function calcMeta({ title, description, slug, keywords = [] }: { title: s
       images: [ogImage],
     },
     alternates: {
-      canonical: slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}` : `${SITE_CONFIG.baseUrl}/calculator/${slug}`,
+      canonical: slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}/` : `${SITE_CONFIG.baseUrl}/calculator/${slug}/`,
       languages: {
-        'en-NP': slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}` : `${SITE_CONFIG.baseUrl}/calculator/${slug}`,
-        'x-default': slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}` : `${SITE_CONFIG.baseUrl}/calculator/${slug}`
+        'en-NP': slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}/` : `${SITE_CONFIG.baseUrl}/calculator/${slug}/`,
+        'x-default': slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}/` : `${SITE_CONFIG.baseUrl}/calculator/${slug}/`
       }
     },
     robots: {

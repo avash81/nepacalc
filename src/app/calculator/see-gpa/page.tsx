@@ -1,62 +1,73 @@
 import { calcMeta } from '@/lib/calcMeta';
-import Calculator from './Calculator';
+import SEEGPACalculator from './Calculator';
+import { CalcWrapper } from '@/components/calculator/CalcWrapper';
+import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Grade Calculator Marks to Grade NepaCal",
-  description: "Convert your marks and scores to letter grades and percentages. Free grade calculator for students using all grading systems at NepaCal",
-  keywords: ["grade calculator", "nepal", "calculator", "free", "online"],
+  title: "SEE GPA Calculator | Calculate SEE Results Nepal NepaCal",
+  description: "Calculate your SEE (Secondary Education Examination) GPA accurately. Convert marks to letter grades and see your overall performance as per NEB Nepal standards.",
   slug: 'see-gpa',
+  keywords: ["see gpa calculator", "calculate see results", "see grading system nepal", "neb see gpa", "convert see marks to gpa", "secondary education examination"],
 });
+
+const SEE_FAQS = [
+  {
+    question: "How is the SEE GPA calculated in Nepal?",
+    answer: "The SEE GPA is calculated by averaging the grade points of all subjects. Each letter grade (A+, A, B+, etc.) is assigned a point value (4.0, 3.6, 3.2, etc.) as per the National Examination Board (NEB) standards."
+  },
+  {
+    question: "What is the minimum grade required to pass the SEE?",
+    answer: "As per current NEB regulations, students must secure at least 35% marks (Grade D) in each subject's theoretical component to be eligible for admission into Grade 11 (+2)."
+  },
+  {
+    question: "How do internal (practical) marks affect the final SEE GPA?",
+    answer: "Final grades are composed of 75% external examination and 25% internal assessment. High internal/practical scores can significantly improve your subject grade and overall GPA."
+  },
+  {
+    question: "Can I use this tool for both regular and technical streams?",
+    answer: "Yes, our engine supports the standard subjects for both the general and technical SEE streams, allowing all students across Nepal to estimate their results with precision."
+  },
+  {
+    question: "How many subjects are included in the SEE GPA calculation?",
+    answer: "Typically, the GPA is calculated across 8 subjects, including compulsory subjects (English, Nepali, Math, Science, Social Studies) and your chosen optional subjects."
+  }
+];
 
 export default function Page() {
   return (
-    <>
-      <Calculator />
-    
-      {/* SEO: Competitor-Data Driven FAQ & Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            { "@type": "Question", "name": "How to use the Grade Calculator Marks to Grade NepaCal tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free grade calculator tool will provide instant results tailored for Nepal." } },
-            { "@type": "Question", "name": "Is this Grade Calculator Marks to Grade NepaCal free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's Grade Calculator Marks to Grade NepaCal is 100% free with no registration required." } }
-          ]
-        }) }}
-      />
-      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Grade Calculator Marks to Grade NepaCal</h2>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
-          Our free <strong>grade calculator</strong> is optimized for Nepalese users. Whether you need an online grade calculator or want to calculate accurately — NepaCal is your best tool.
-        </p>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
-          Related: <strong>grade calculator</strong>, <strong>mean grades</strong>, <strong>what is the percentages for grades</strong>, <strong>c grade</strong>, <strong>gpa calculator with weighted grades</strong>, <strong>c grade percentage</strong>.
-        </p>
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-3">
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
-              <span>How do I use the Grade Calculator Marks to Grade NepaCal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Enter your values above to get results instantly.
+    <div className="bg-white min-h-screen">
+      <CalcWrapper
+        title="SEE GPA Calculator"
+        description="The most accurate tool for calculating Secondary Education Examination (SEE) results based on latest NEB grading mandates."
+        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'SEE GPA' }]}
+        isNepal={true}
+        relatedCalcs={[
+          { name: 'GPA Calculator', slug: 'gpa' },
+          { name: 'Marks to Percentage', slug: 'marks-percentage' },
+          { name: 'University GPA', slug: 'university-gpa' }
+        ]}
+        formula="Final GPA = Average(Subject Grade Points)"
+      >
+        <SEEGPACalculator />
+        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-green-50 px-6 py-3 rounded-2xl inline-block">
+              Student Guide: SEE Grading in Nepal
+            </h2>
+            
+            <div className="prose prose-slate max-w-none mb-12">
+              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+                The <strong>Secondary Education Examination (SEE)</strong> is the gateway to higher education in Nepal. Understanding how your marks translate into the <strong>Letter Grading System</strong> is crucial for choosing your stream in Grade 11, whether it's Science, Management, or Humanities.
+              </p>
+              <p className="text-slate-700 text-base leading-relaxed mb-6">
+                Our calculator is updated with the latest <strong>NEB (National Examination Board)</strong> grading scheme, providing students and parents with a fast, reliable way to estimate performance before or after the official result declaration.
+              </p>
             </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
-              <span>Is it accurate for Nepal?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              Yes, our <strong>grade calculator</strong> is regularly updated to reflect local standards.
-            </div>
-          </details>
+
+            <PillarFAQ faqs={SEE_FAQS} title="SEE Results & Grading FAQ" />
+          </div>
         </div>
-      </section>
-    </>
+      </CalcWrapper>
+    </div>
   );
 }

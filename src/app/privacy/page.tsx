@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: 'Privacy Policy | NEPACALC',
   description: 'Learn how NEPACALC handles your data. We prioritize your privacy: zero data collection, local browser calculations, and no registration required.',
   alternates: {
-    canonical: '/privacy',
+    canonical: 'https://nepacalc.com/privacy/',
   },
 };
 

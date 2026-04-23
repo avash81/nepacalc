@@ -1,224 +1,151 @@
 'use client';
 import { useMemo, useState } from 'react';
 import { useSyncState } from '@/hooks/useSyncState';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
-import { Info, LayoutGrid, Map, Ruler, Layers } from 'lucide-react';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { Map, Layers, Ruler, Info } from 'lucide-react';
 
 const SQFT_PER_ROPANI = 5476;
 const SQFT_PER_BIGHA  = 72900;
 const SQM_PER_SQFT    = 0.09290304;
 
 export default function NepalLandCalculator() {
-  const [activeUnit, setActiveUnit] = useState<string | null>(null);
-  
-  const [state, setState] = useSyncState('nepal_land_pro_v1', {
-    totalSqft: 5476 // Default 1 Ropani
-  });
-
+  const [state, setState] = useSyncState('nepal_land_pro_v1', { totalSqft: 5476 });
   const { totalSqft } = state;
 
-  // ── Conversion Logic ──
   const values = useMemo(() => {
-    let s = totalSqft;
-    let m = s * SQM_PER_SQFT;
-
-    // Hill Logic
+    let s = totalSqft, m = s * SQM_PER_SQFT;
     let rh = s;
     const ropani = Math.floor(rh / SQFT_PER_ROPANI); rh %= SQFT_PER_ROPANI;
-    const aana   = Math.floor(rh / (SQFT_PER_ROPANI/16)); rh %= (SQFT_PER_ROPANI/16);
-    const paisa  = Math.floor(rh / (SQFT_PER_ROPANI/64)); rh %= (SQFT_PER_ROPANI/64);
-    const daam   = rh / (SQFT_PER_ROPANI/256);
+    const aana = Math.floor(rh / (SQFT_PER_ROPANI/16)); rh %= (SQFT_PER_ROPANI/16);
+    const paisa = Math.floor(rh / (SQFT_PER_ROPANI/64)); rh %= (SQFT_PER_ROPANI/64);
+    const daam = rh / (SQFT_PER_ROPANI/256);
 
-    // Terai Logic
     let rt = s;
-    const bigha  = Math.floor(rt / SQFT_PER_BIGHA); rt %= SQFT_PER_BIGHA;
+    const bigha = Math.floor(rt / SQFT_PER_BIGHA); rt %= SQFT_PER_BIGHA;
     const kattha = Math.floor(rt / (SQFT_PER_BIGHA/20)); rt %= (SQFT_PER_BIGHA/20);
-    const dhur   = rt / (SQFT_PER_BIGHA/400);
+    const dhur = rt / (SQFT_PER_BIGHA/400);
 
-    return {
-      sqft: s, sqm: m,
-      ropani, aana, paisa, daam,
-      bigha, kattha, dhur,
-      acres: s / 43560,
-      hectares: m / 10000
-    };
+    return { sqft: s, sqm: m, ropani, aana, paisa, daam, bigha, kattha, dhur, acres: s / 43560, hectares: m / 10000 };
   }, [totalSqft]);
 
   const updateFrom = (unit: string, val: number) => {
-    let newSqft = 0;
-    const v = values;
-
+    let newSqft = 0; const v = values;
     switch(unit) {
       case 'ropani': newSqft = val * SQFT_PER_ROPANI + v.aana*(SQFT_PER_ROPANI/16) + v.paisa*(SQFT_PER_ROPANI/64) + v.daam*(SQFT_PER_ROPANI/256); break;
       case 'aana':   newSqft = v.ropani * SQFT_PER_ROPANI + val*(SQFT_PER_ROPANI/16) + v.paisa*(SQFT_PER_ROPANI/64) + v.daam*(SQFT_PER_ROPANI/256); break;
       case 'paisa':  newSqft = v.ropani * SQFT_PER_ROPANI + v.aana*(SQFT_PER_ROPANI/16) + val*(SQFT_PER_ROPANI/64) + v.daam*(SQFT_PER_ROPANI/256); break;
       case 'daam':   newSqft = v.ropani * SQFT_PER_ROPANI + v.aana*(SQFT_PER_ROPANI/16) + v.paisa*(SQFT_PER_ROPANI/64) + val*(SQFT_PER_ROPANI/256); break;
-      
       case 'bigha':  newSqft = val * SQFT_PER_BIGHA + v.kattha*(SQFT_PER_BIGHA/20) + v.dhur*(SQFT_PER_BIGHA/400); break;
       case 'kattha': newSqft = v.bigha * SQFT_PER_BIGHA + val*(SQFT_PER_BIGHA/20) + v.dhur*(SQFT_PER_BIGHA/400); break;
       case 'dhur':   newSqft = v.bigha * SQFT_PER_BIGHA + v.kattha*(SQFT_PER_BIGHA/20) + val*(SQFT_PER_BIGHA/400); break;
-      
       case 'sqft':   newSqft = val; break;
       case 'sqm':    newSqft = val / SQM_PER_SQFT; break;
     }
     setState({ totalSqft: Math.max(0, newSqft) });
   };
 
-  const InputGroup = ({ title, icon: Icon, children, color }: any) => (
-    <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm transition-all hover:shadow-md">
-      <div className={`px-5 py-3 ${color} border-b border-slate-100 flex items-center gap-2.5`}>
-        <Icon className="w-4 h-4 opacity-70" />
-        <h3 className="text-[10px] font-black uppercase tracking-widest">{title}</h3>
+  const inputCls = "w-full h-10 px-3 border border-[#DADCE0] rounded bg-white text-xs font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const labelCls = "text-[10px] font-bold uppercase text-[#70757A] tracking-wider block mb-1";
+
+  const InputGroup = ({ title, icon: Icon, colorCls, children }: any) => (
+    <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
+      <div className={`px-4 py-2 flex items-center gap-2 ${colorCls}`}>
+        <Icon className="w-3 h-3 opacity-80" />
+        <h3 className="text-[10px] font-bold uppercase tracking-wider">{title}</h3>
       </div>
-      <div className="p-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div className="p-4 grid grid-cols-2 sm:grid-cols-4 gap-3">
         {children}
       </div>
     </div>
   );
 
   return (
-    <CalculatorLayout
-      title="Institutional Land Converter"
-      description="Professional-grade real-time land unit synchronizer for Ropani, Bigha, Sq.Ft, and international metrics. Verified against Nepal Land Measurement standards."
-      category="nepal"
-      leftPanel={
+    <ModernCalcLayout
+      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Land Area Converter' }]}
+      title="Nepal Land Converter"
+      description="Convert Ropani, Bigha, Kattha, Dhur, and global metrics instantly. Bidirectional mapping between Hilly and Terai measurement systems."
+      icon={Map}
+      inputs={
         <div className="space-y-6">
-          
-          {/* 1. Hill System (Hills/Valley) */}
-          <InputGroup title="Hilly Region (Ropani System)" icon={Map} color="bg-blue-50/50 text-blue-700">
-            <ValidatedInput label="Ropani" value={values.ropani} onChange={v => updateFrom('ropani', v)} min={0} />
-            <ValidatedInput label="Aana"   value={values.aana}   onChange={v => updateFrom('aana', v)}   min={0} max={15} />
-            <ValidatedInput label="Paisa"  value={values.paisa}  onChange={v => updateFrom('paisa', v)}  min={0} max={3}  />
-            <ValidatedInput label="Daam"   value={values.daam}   onChange={v => updateFrom('daam', v)}   min={0} max={3.99} />
+          <InputGroup title="Hilly Region (Ropani System)" icon={Map} colorCls="bg-[#E8F0FE] text-[#1A73E8] border-b border-[#C5D9F7]">
+            <div><label className={labelCls}>Ropani</label><input type="number" value={values.ropani} onChange={e => updateFrom('ropani', Number(e.target.value))} className={inputCls} min={0} /></div>
+            <div><label className={labelCls}>Aana</label><input type="number" value={values.aana} onChange={e => updateFrom('aana', Number(e.target.value))} className={inputCls} min={0} max={15} /></div>
+            <div><label className={labelCls}>Paisa</label><input type="number" value={values.paisa} onChange={e => updateFrom('paisa', Number(e.target.value))} className={inputCls} min={0} max={3} /></div>
+            <div><label className={labelCls}>Daam</label><input type="number" value={Number(values.daam.toFixed(2))} onChange={e => updateFrom('daam', Number(e.target.value))} className={inputCls} min={0} max={3.99} /></div>
           </InputGroup>
 
-          {/* 2. Terai System (Plains) */}
-          <InputGroup title="Terai Region (Bigha System)" icon={Layers} color="bg-emerald-50/50 text-emerald-700">
-            <ValidatedInput label="Bigha"  value={values.bigha}  onChange={v => updateFrom('bigha', v)}  min={0} />
-            <ValidatedInput label="Kattha" value={values.kattha} onChange={v => updateFrom('kattha', v)} min={0} max={19} />
-            <div className="col-span-2">
-              <ValidatedInput label="Dhur"   value={values.dhur}   onChange={v => updateFrom('dhur', v)}   min={0} max={19.99} />
-            </div>
+          <InputGroup title="Terai Region (Bigha System)" icon={Layers} colorCls="bg-[#E6F4EA] text-[#188038] border-b border-[#CEEAD6]">
+            <div><label className={labelCls}>Bigha</label><input type="number" value={values.bigha} onChange={e => updateFrom('bigha', Number(e.target.value))} className={inputCls} min={0} /></div>
+            <div><label className={labelCls}>Kattha</label><input type="number" value={values.kattha} onChange={e => updateFrom('kattha', Number(e.target.value))} className={inputCls} min={0} max={19} /></div>
+            <div className="col-span-2"><label className={labelCls}>Dhur</label><input type="number" value={Number(values.dhur.toFixed(2))} onChange={e => updateFrom('dhur', Number(e.target.value))} className={inputCls} min={0} max={19.99} /></div>
           </InputGroup>
 
-          {/* 3. Global Standards */}
-          <InputGroup title="Universal Metrics (Area)" icon={Ruler} color="bg-slate-50 text-slate-700">
-            <div className="col-span-2">
-              <ValidatedInput label="Square Feet (sq.ft)" value={Math.round(values.sqft)} onChange={v => updateFrom('sqft', v)} min={0} suffix="ft²" />
-            </div>
-            <div className="col-span-2">
-              <ValidatedInput label="Square Meters (sq.m)" value={values.sqm.toFixed(2)} onChange={v => updateFrom('sqm', parseFloat(String(v)))} min={0} suffix="m²" />
-            </div>
+          <InputGroup title="Universal Area Metrics" icon={Ruler} colorCls="bg-[#F8F9FA] text-[#202124] border-b border-[#DADCE0]">
+            <div className="col-span-2"><label className={labelCls}>Square Feet (ft²)</label><input type="number" value={Math.round(values.sqft)} onChange={e => updateFrom('sqft', Number(e.target.value))} className={inputCls} min={0} /></div>
+            <div className="col-span-2"><label className={labelCls}>Square Meters (m²)</label><input type="number" value={Number(values.sqm.toFixed(2))} onChange={e => updateFrom('sqm', Number(e.target.value))} className={inputCls} min={0} /></div>
           </InputGroup>
 
-          {/* Quick Benchmark Reference */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {[
-              { label: '1 Ropani', desc: '74 ft × 74 ft', sqft: 5476 },
-              { label: '1 Bigha',  desc: '13.31 Ropani', sqft: 72900 },
-              { label: '1 Kattha', desc: '442.2 sq.yards', sqft: 3645 },
-            ].map(b => (
-              <button 
-                key={b.label}
-                onClick={() => setState({ totalSqft: b.sqft })}
-                className="p-5 border-2 border-slate-100 rounded-3xl bg-white hover:border-blue-500 hover:shadow-xl transition-all text-center group"
-              >
-                <div className="text-sm font-black text-slate-900 group-hover:text-blue-600 mb-1">{b.label}</div>
-                <div className="text-[10px] font-bold text-slate-400 group-hover:text-blue-400 uppercase tracking-widest">{b.desc}</div>
-              </button>
-            ))}
+          <div className="space-y-2">
+            <label className="text-[10px] font-bold uppercase text-[#70757A] tracking-wider">Quick Benchmarks</label>
+            <div className="grid grid-cols-3 gap-2">
+              {[{ label: '1 Ropani', sqft: 5476 }, { label: '1 Bigha', sqft: 72900 }, { label: '1 Kattha', sqft: 3645 }].map(b => (
+                <button key={b.label} onClick={() => setState({ totalSqft: b.sqft })}
+                  className="py-2 bg-white border border-[#DADCE0] hover:bg-[#F8F9FA] rounded text-[10px] font-bold uppercase transition-colors">
+                  {b.label}
+                </button>
+              ))}
+            </div>
           </div>
-
         </div>
       }
-      rightPanel={
+      results={
         <div className="space-y-6">
-          
-          {/* Main Visualized Result */}
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white overflow-hidden relative group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-blue-500/40 transition-all duration-700" />
-            <div className="relative z-10">
-              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400 mb-6 drop-shadow-sm">Consolidated Area Analysis</div>
-              <div className="text-6xl font-black tracking-tighter mb-2">{Math.round(values.sqft).toLocaleString()} <span className="text-2xl text-blue-400">ft²</span></div>
-              <div className="text-xl font-bold text-slate-400">{values.sqm.toFixed(2).toLocaleString()} sq.meters</div>
-              
-              <div className="mt-8 pt-6 border-t border-white/10 space-y-4">
-                <div className="flex justify-between items-center">
-                   <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Total Acres</span>
-                   <span className="text-sm font-black text-blue-400">{values.acres.toFixed(4)} ac</span>
-                </div>
-                <div className="flex justify-between items-center">
-                   <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">Total Hectares</span>
-                   <span className="text-sm font-black text-blue-400">{values.hectares.toFixed(4)} ha</span>
-                </div>
+          <div className="p-6 bg-[#1A1A2E] border border-[#DADCE0] rounded-lg text-center space-y-2 text-white">
+            <div className="text-[10px] font-bold text-blue-400 uppercase tracking-wider">Consolidated Area Base</div>
+            <div className="text-4xl font-black">{Math.round(values.sqft).toLocaleString()} <span className="text-lg text-blue-400">ft²</span></div>
+            <div className="text-[11px] font-bold text-white/60 uppercase">{values.sqm.toFixed(2).toLocaleString()} sq.meters</div>
+            
+            <div className="pt-4 mt-4 border-t border-white/10 flex justify-around">
+               <div><div className="text-[9px] text-white/40 uppercase">Total Acres</div><div className="font-bold text-sm">{values.acres.toFixed(4)}</div></div>
+               <div><div className="text-[9px] text-white/40 uppercase">Total Hectares</div><div className="font-bold text-sm">{values.hectares.toFixed(4)}</div></div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg p-4 text-center">
+              <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider mb-3">Hill Breakdown</div>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div><span className="font-black text-lg">{values.ropani}</span><div className="text-[9px] text-[#70757A] uppercase">Ropani</div></div>
+                <div><span className="font-black text-lg">{values.aana}</span><div className="text-[9px] text-[#70757A] uppercase">Aana</div></div>
+                <div><span className="font-black text-lg">{values.paisa}</span><div className="text-[9px] text-[#70757A] uppercase">Paisa</div></div>
+                <div><span className="font-black text-lg">{values.daam.toFixed(1)}</span><div className="text-[9px] text-[#70757A] uppercase">Daam</div></div>
+              </div>
+            </div>
+            
+            <div className="bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg p-4 text-center">
+              <div className="text-[10px] font-bold text-[#188038] uppercase tracking-wider mb-3">Terai Breakdown</div>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div><span className="font-black text-lg">{values.bigha}</span><div className="text-[9px] text-[#70757A] uppercase">Bigha</div></div>
+                <div><span className="font-black text-lg">{values.kattha}</span><div className="text-[9px] text-[#70757A] uppercase">Kattha</div></div>
+                <div className="col-span-2"><span className="font-black text-lg">{values.dhur.toFixed(1)}</span><div className="text-[9px] text-[#70757A] uppercase">Dhur</div></div>
               </div>
             </div>
           </div>
 
-          {/* Unit Information at a Glance (Hilly Area) */}
-          <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 shadow-sm">
-             <div className="flex items-center gap-2 mb-6">
-               <Info className="w-4 h-4 text-blue-500" />
-               <h3 className="text-[13px] font-black text-slate-800">Hilly Area Benchmarks</h3>
-             </div>
-             <div className="grid grid-cols-3 gap-y-6 text-center">
-                <div>
-                   <div className="text-lg font-black text-slate-900 italic">16</div>
-                   <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Aana</div>
-                </div>
-                <div>
-                   <div className="text-lg font-black text-slate-900 italic">64</div>
-                   <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Paisa</div>
-                </div>
-                <div>
-                   <div className="text-lg font-black text-slate-900 italic">256</div>
-                   <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Daam</div>
-                </div>
-                <div className="col-span-3 pt-4 border-t border-slate-50 flex justify-around">
-                   <div className="text-[11px] font-bold text-slate-500">1 Ropani = 5476 ft²</div>
-                   <div className="text-[11px] font-bold text-slate-500">1 Aana = 342.25 ft²</div>
-                </div>
-             </div>
+          <div className="flex gap-2 p-3 bg-[#FFF7E0] border border-[#FEEFC3] rounded-lg items-start">
+            <Info className="w-4 h-4 text-[#F29900] shrink-0 mt-0.5" />
+            <p className="text-[10px] text-[#202124] leading-tight">These conversions follow standard Nepal Survey Department formulas. Be aware that traditional local measures (e.g. Haath) may vary slightly from region to region.</p>
           </div>
-
-          {/* Unit Information at a Glance (Terai Area) */}
-          <div className="bg-white border border-slate-200 rounded-[2.5rem] p-8 shadow-sm">
-             <div className="flex items-center gap-2 mb-6">
-               <Info className="w-4 h-4 text-emerald-500" />
-               <h3 className="text-[13px] font-black text-slate-800">Terai Area Benchmarks</h3>
-             </div>
-             <div className="grid grid-cols-3 gap-y-6 text-center">
-                <div>
-                   <div className="text-lg font-black text-slate-900 italic">20</div>
-                   <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Kattha</div>
-                </div>
-                <div>
-                   <div className="text-lg font-black text-slate-900 italic">400</div>
-                   <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Dhur</div>
-                </div>
-                <div>
-                   <div className="text-lg font-black text-slate-900 italic">13.31</div>
-                   <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">Ropani</div>
-                </div>
-                <div className="col-span-3 pt-4 border-t border-slate-50 flex justify-around">
-                   <div className="text-[11px] font-bold text-slate-500">1 Bigha = 72900 ft²</div>
-                   <div className="text-[11px] font-bold text-slate-500">1 Kattha = 3645 ft²</div>
-                </div>
-             </div>
-          </div>
-
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: 'What is the Hills Land System?', answer: 'The Hill system (Kathmandu Valley and hilly regions) is based on the Ropani. 1 Ropani = 16 Aana = 64 Paisa = 256 Daam = 5,476 square feet.' },
-          { question: 'What is the Terai Land System?', answer: 'The Terai system (plains) is based on the Bigha. 1 Bigha = 20 Kattha = 400 Dhur = 72,900 square feet.' },
-          { question: 'How is the cross-conversion calculated?', answer: 'Calculations use the fixed Square Feet mapping as the pivot. 1 Bigha is equivalent to approximately 13.31 Ropani.' },
-          { question: 'Are these units official?', answer: 'Yes, these measurements follow the standards used by the Nepal Department of Land Management and Archive (DOLMA).' },
-        ]} />
-      }
+      howToUse={{ steps: ["Choose the section matching your source data (Hilly, Terai, or Universal).", "Enter your area value in the respective input field.", "All other fields instantly sync. For example, editing 'Kattha' updates 'Aana', 'SqFt', and 'Acres' automatically."] }}
+      formula={{ title: "Nepal Land Conversions", description: "Standard conversions between systems.", raw: "1 Ropani = 16 Aana = 5476 SqFt\n1 Aana = 4 Paisa = 342.25 SqFt\n1 Paisa = 4 Daam = 85.56 SqFt\n\n1 Bigha = 20 Kattha = 72900 SqFt = 13.31 Ropani\n1 Kattha = 20 Dhur = 3645 SqFt\n1 Dhur = 182.25 SqFt" }}
+      faqs={[
+        { question: "Are Ropani and Bigha used everywhere in Nepal?", answer: "No. The Ropani system (Ropani, Aana, Paisa, Daam) is primarily used in the Hilly and Mountainous regions, including Kathmandu Valley. The Bigha system (Bigha, Kattha, Dhur) is used in the Terai plains." },
+        { question: "How many Ropani makes 1 Bigha?", answer: "1 Bigha is equivalent to approximately 13.31 Ropani." }
+      ]}
+      sidebar={{ title: "Real Estate Tools", links: [{ label: "Property Registration", href: "/calculator/property-registration" }, { label: "Property Tax", href: "/calculator/property-tax" }, { label: "Mortgage Calculator", href: "/calculator/mortgage-calculator" }, { label: "EMI Calculator", href: "/calculator/loan-emi" }], banner: { title: "Land Survey", description: "Always consult a registered surveyor for precise boundary demarcations.", image: "/images/land-banner.jpg" } }}
+      relatedTools={[{ label: "Property Registration", href: "/calculator/property-registration" }, { label: "Property Tax", href: "/calculator/property-tax" }, { label: "Mortgage", href: "/calculator/mortgage-calculator" }]}
     />
   );
 }

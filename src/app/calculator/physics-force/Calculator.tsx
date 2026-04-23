@@ -1,7 +1,7 @@
 'use client';
 import { useState, useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { Activity } from 'lucide-react';
 
 type Mode = 'force' | 'work' | 'power' | 'pressure';
 
@@ -22,83 +22,113 @@ export default function ForceCalc() {
     if (isNaN(n1) || isNaN(n2)) return null;
     const m = MODES.find(m => m.key === mode)!;
     const val = ['force','work'].includes(mode) ? n1 * n2 : n1 / n2;
-    return { val: val.toFixed(4), unit: m.u, formula: m.formula };
+    return { val: val.toFixed(4).replace(/\.0000$/, ''), unit: m.u, formula: m.formula };
   }, [v1, v2, mode]);
 
   const current = MODES.find(m => m.key === mode)!;
 
   return (
-    <CalculatorLayout
-      title="Physics Force Calculator"
-      description="Calculate Force (F=ma), Work (W=Fd), Power (P=W/t), and Pressure (P=F/A) using Newton's laws of motion."
-      category={{ label: 'Math', href: '/calculator/category/math' }}
-      leftPanel={
+    <ModernCalcLayout
+      crumbs={[{ label: 'Engineering', href: '/engineering/' }, { label: 'Physics Force Calculator' }]}
+      title="Physics Force & Work Calculator"
+      description="Calculate Newtonian mechanics including Force (F=ma), Work (W=Fd), Power (P=W/t), and Pressure (P=F/A)."
+      icon={Activity}
+      inputs={
         <div className="space-y-6">
           <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">Calculation Mode</label>
-            <div className="grid grid-cols-2 gap-2">
+            <label className="text-sm font-bold text-slate-800">Calculation Target</label>
+            <div className="grid grid-cols-2 gap-3">
               {MODES.map(m => (
                 <button key={m.key} onClick={() => setMode(m.key)}
-                  className={`py-3 text-xs font-black border transition-all uppercase ${mode === m.key ? 'bg-[var(--primary)] text-white border-[var(--primary)]' : 'border-[var(--border)] bg-white hover:bg-[var(--bg-subtle)]'}`}>
-                  {m.label}
-                  <span className="block text-[9px] font-mono mt-0.5 opacity-60">{m.formula}</span>
+                  className={`py-3 px-4 rounded-lg flex flex-col items-center justify-center border transition-all ${mode === m.key ? 'bg-blue-600 text-white border-blue-600 shadow-md' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}>
+                  <span className="font-bold text-sm">{m.label}</span>
+                  <span className={`text-[10px] font-mono mt-1 ${mode === m.key ? 'text-blue-200' : 'text-slate-400'}`}>{m.formula}</span>
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-4 pt-4 border-t border-slate-100">
             <div className="space-y-2">
-              <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">{current.l1}</label>
+              <label className="text-sm font-bold text-slate-800">{current.l1}</label>
               <input type="number" value={v1} onChange={e => setV1(e.target.value)}
-                className="w-full h-12 px-4 border border-[var(--border)] bg-white font-mono font-bold text-xl focus:border-[var(--primary)] outline-none" />
+                className="w-full px-4 py-3 border border-slate-200 rounded-lg bg-slate-50 font-mono text-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" />
             </div>
             <div className="space-y-2">
-              <label className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">{current.l2}</label>
+              <label className="text-sm font-bold text-slate-800">{current.l2}</label>
               <input type="number" value={v2} onChange={e => setV2(e.target.value)}
-                className="w-full h-12 px-4 border border-[var(--border)] bg-white font-mono font-bold text-xl focus:border-[var(--primary)] outline-none" />
+                className="w-full px-4 py-3 border border-slate-200 rounded-lg bg-slate-50 font-mono text-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all" />
             </div>
-          </div>
-
-          <div className="p-4 bg-[var(--bg-subtle)] border border-[var(--border)]">
-            <div className="text-[10px] font-black uppercase text-[var(--text-muted)] mb-1">Active Formula</div>
-            <code className="text-[14px] font-mono font-black text-[var(--primary)]">{current.formula}</code>
           </div>
         </div>
       }
-      rightPanel={
+      results={
         <div className="space-y-6">
-          <div className="p-8 bg-white border border-[var(--border)] text-center">
-            <div className="text-xs font-bold uppercase text-[var(--text-muted)] mb-2">{current.label} Result</div>
+          <div className="p-8 bg-blue-50 border border-blue-100 rounded-xl text-center shadow-inner">
+            <div className="text-xs font-bold uppercase text-blue-600 mb-2">{current.label} Result</div>
             {res ? (
-              <>
-                <div className="text-6xl font-black text-[var(--primary)] tracking-tighter font-mono mb-2">{res.val}</div>
-                <div className="text-xl font-black text-[var(--text-secondary)] uppercase">{res.unit}</div>
-              </>
+              <div className="flex flex-col items-center justify-center">
+                <div className="text-5xl font-black text-slate-900 tracking-tighter font-mono mb-1">{res.val}</div>
+                <div className="text-lg font-bold text-slate-500">{res.unit}</div>
+              </div>
             ) : (
-              <div className="text-lg font-bold text-[var(--text-muted)]">Enter valid values</div>
+              <div className="text-base font-medium text-slate-400 py-4">Enter valid numerical values</div>
             )}
           </div>
 
-          <div className="space-y-2">
-            {[
-              { label: 'Input 1', val: `${v1} ${current.l1.split('(')[1]?.replace(')','') || ''}` },
-              { label: 'Input 2', val: `${v2} ${current.l2.split('(')[1]?.replace(')','') || ''}` },
-            ].map(({ label, val }) => (
-              <div key={label} className="p-4 bg-[var(--bg-surface)] border border-[var(--border)] flex justify-between">
-                <span className="text-[11px] font-bold uppercase text-[var(--text-secondary)]">{label}</span>
-                <span className="text-sm font-black font-mono text-[var(--text-main)]">{val}</span>
-              </div>
-            ))}
+          <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
+            <div className="px-4 py-2 bg-slate-50 border-b border-slate-200">
+               <span className="text-xs font-bold text-slate-500 uppercase">Input Summary</span>
+            </div>
+            <div className="divide-y divide-slate-100">
+              {[
+                { label: current.l1.split('(')[0].trim(), val: `${v1} ${current.l1.split('(')[1]?.replace(')','') || ''}` },
+                { label: current.l2.split('(')[0].trim(), val: `${v2} ${current.l2.split('(')[1]?.replace(')','') || ''}` },
+                { label: 'Equation Used', val: current.formula }
+              ].map(({ label, val }) => (
+                <div key={label} className="p-4 flex justify-between items-center">
+                  <span className="text-sm font-medium text-slate-600">{label}</span>
+                  <span className="text-sm font-bold font-mono text-slate-900">{val}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       }
-      faqSection={
-        <CalcFAQ faqs={[
-          { question: "What is Newton's Second Law?", answer: "F = ma: the force acting on an object equals its mass times its acceleration. SI unit of force is the Newton (N = kg·m/s²)." },
-          { question: 'What is work in physics?', answer: 'Work = Force × Distance. Work is done when a force causes displacement. Unit: Joules (J).' },
-          { question: 'What is pressure?', answer: 'Pressure = Force / Area. It measures force per unit area. SI unit: Pascal (Pa = N/m²).' },
-        ]} />
+      sidebar={{
+        title: "Physics & Engineering",
+        links: [
+          { label: 'Kinetic Energy', href: '/calculator/physics-energy' },
+          { label: 'Geometry Calculator', href: '/calculator/geometry-3d' },
+          { label: 'Scientific Calculator', href: '/calculator/scientific-calculator' },
+        ],
+      }}
+      howToUse={{
+        steps: [
+          "Select the physical property you want to calculate: Force, Work, Power, or Pressure.",
+          "Note the formula displayed for the selected property (e.g., F = m × a).",
+          "Enter the first parameter in the specified unit (e.g., Mass in kg).",
+          "Enter the second parameter in the specified unit (e.g., Acceleration in m/s²).",
+          "The calculation updates instantly and displays the correct SI unit (Newtons, Joules, Watts, or Pascals)."
+        ]
+      }}
+      seoContent={
+        <div>
+          <h2>Understanding Classical Mechanics and Force</h2>
+          <p>Classical mechanics, heavily influenced by Sir Isaac Newton, forms the foundation of our understanding of how objects move and interact. This calculator simplifies the four most common physical quantities encountered in introductory physics and engineering.</p>
+          
+          <h3>1. Force (Newton's Second Law)</h3>
+          <p>Newton's Second Law states that the force acting on an object is equal to the mass of that object times its acceleration (<strong>F = ma</strong>). Force is a vector quantity, meaning it has both magnitude and direction. It is measured in Newtons (N), where 1 N = 1 kg·m/s².</p>
+          
+          <h3>2. Work (Energy Transfer)</h3>
+          <p>In physics, work is done when a force acts upon an object causing a displacement (<strong>W = Fd</strong>). If you push a heavy box, the work done is the force you applied multiplied by the distance the box moved. It is measured in Joules (J).</p>
+          
+          <h3>3. Power (Rate of Work)</h3>
+          <p>Power measures how quickly work is done or energy is transferred (<strong>P = W/t</strong>). A high-power engine does the same amount of work in less time than a low-power engine. Power is measured in Watts (W), where 1 W = 1 Joule per second.</p>
+          
+          <h3>4. Pressure (Force over Area)</h3>
+          <p>Pressure is defined as the physical force exerted on an object per unit area (<strong>P = F/A</strong>). This explains why a sharp knife cuts better than a dull one—the same force is concentrated over a much smaller area, creating immense pressure. It is measured in Pascals (Pa), where 1 Pa = 1 N/m².</p>
+        </div>
       }
     />
   );

@@ -17,7 +17,7 @@ import { fetchFirestoreCollection } from '@/lib/firestore-rest';
 export const metadata: Metadata = {
   title: 'Blog & Financial Guides | NEPACALC Precision',
   description: 'Expert tips on Nepal income tax, salary planning, SSF, home loans, and professional calculator tutorials. Stay financially informed with the latest updates.',
-  alternates: { canonical: 'https://nepacalc.com/blog' },
+  alternates: { canonical: 'https://nepacalc.com/blog/' },
   openGraph: {
     title: 'NEPACALC Blog — Expert Nepal Calculation Guides',
     description: 'Expert financial advice and calculator walkthroughs for Nepal.',

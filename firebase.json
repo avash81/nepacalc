@@ -35,7 +35,8 @@
       { "source": "/calculator/category/utility", "destination": "/converters/", "type": 301 },
       { "source": "/calculator/category/engineering", "destination": "/engineering/", "type": 301 },
       { "source": "/calculator/category/construction", "destination": "/engineering/", "type": 301 },
-      { "source": "/calculator/category/nepal", "destination": "/nepal/", "type": 301 }
+      { "source": "/calculator/category/nepal", "destination": "/nepal/", "type": 301 },
+      { "regex": "^/(.*)__$", "destination": "/$1/", "type": 301 }
     ],
     "headers": [
       {
@@ -71,7 +72,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "/404.html"
       }
     ]
   }

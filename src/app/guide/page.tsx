@@ -5,7 +5,7 @@ import { BookOpen } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Nepal Calculator Guides — Free Financial & Academic Resources | NEPACALC',
   description: 'Free guides on Nepal income tax, EMI, Nepali date conversion, GPA, and more. Written by the NEPACALC research team.',
-  alternates: { canonical: 'https://nepacalc.com/guide' },
+  alternates: { canonical: 'https://nepacalc.com/guide/' },
 };
 
 export default function GuidesPage() {
