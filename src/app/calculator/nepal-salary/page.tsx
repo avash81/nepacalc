@@ -2,10 +2,10 @@ import { calcMeta } from '@/lib/calcMeta';
 import NepalSalaryCalculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: 'Nepal Salary Calculator — Net Take-Home Pay',
-  description: 'Calculate your net take-home salary in Nepal after SSF, CIT, and Income Tax deductions. Updated for the latest fiscal mandates. Free online tool.',
+  title: "Salary Calculator Net Pay Nepal NepaCal",
+  description: "Calculate your monthly net salary and take home pay in Nepal. Free salary calculator with tax and deduction breakdown at NepaCal",
   slug: 'nepal-salary',
-  keywords: ['nepal salary calculator', 'net salary nepal', 'ssf calculator nepal', 'cit calculator nepal', 'take home salary nepal'],
+  keywords: ["salary calculator", "nepal", "calculator", "free", "online"],
 });
 
 export default function Page() {
@@ -54,6 +54,51 @@ export default function Page() {
           </div>
         </div>
       </div>
+    
+      {/* SEO: Competitor-Data Driven FAQ & Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "How to use the Salary Calculator Net Pay Nepal NepaCal tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free salary calculator tool will provide instant results tailored for Nepal." } },
+            { "@type": "Question", "name": "Is this Salary Calculator Net Pay Nepal NepaCal free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's Salary Calculator Net Pay Nepal NepaCal is 100% free with no registration required." } }
+          ]
+        }) }}
+      />
+      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Salary Calculator Net Pay Nepal NepaCal</h2>
+        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
+          Our free <strong>salary calculator</strong> is optimized for Nepalese users. Whether you need an online salary calculator or want to calculate accurately — NepaCal is your best tool.
+        </p>
+        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
+          Related: <strong>salary calculator</strong>, <strong>whats the salary</strong>, <strong>annual salary rate</strong>, <strong>hourly to salary calculator</strong>, <strong>monthly salary payment calculator</strong>, <strong>annual salary and hourly rate</strong>.
+        </p>
+        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-3">
+          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
+            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
+              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
+              <span>How do I use the Salary Calculator Net Pay Nepal NepaCal?</span>
+            </summary>
+            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
+              Enter your values above to get results instantly.
+            </div>
+          </details>
+          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
+            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
+              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
+              <span>Is it accurate for Nepal?</span>
+            </summary>
+            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
+              Yes, our <strong>salary calculator</strong> is regularly updated to reflect local standards.
+            </div>
+          </details>
+        </div>
+      </section>
     </div>
   );
 }

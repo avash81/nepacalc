@@ -14,8 +14,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nepacalc.com'),
-  title: "Free Online Calculators for Nepal | NEPACALC",
-  description: "Nepal's trusted free calculator platform for income tax, EMI planning, GPA tracking, unit conversions & 80+ professional tools. No registration needed.",
+  title: "Free Online Calculators for Nepal NepaCal",
+  description: "Nepals trusted free calculator platform for income tax EMI planning GPA tracking unit conversions and 80 plus professional tools. Try NepaCal now",
   icons: {
     icon: [
       { url: '/favicon.png' },
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Free Online Calculators for Nepal | NEPACALC",
-    description: "75+ Professional-grade online calculators for Nepal income tax, EMI, GPA, and engineering. Engineered for academic and financial precision.",
+    title: "Free Online Calculators for Nepal NepaCal",
+    description: "Use professional online calculators for Nepal income tax EMI GPA and engineering. Engineered for academic and financial precision. Try NepaCal now",
     url: 'https://nepacalc.com',
     siteName: 'NEPACALC',
     locale: 'en_NP',
@@ -56,8 +56,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Free Online Calculators for Nepal | NEPACALC",
-    description: "Nepal's leading utility laboratory for high-precision mathematical tools and financial planning.",
+    title: "Free Online Calculators for Nepal NepaCal",
+    description: "Nepals leading utility laboratory for high precision mathematical tools and financial planning. Try NepaCal now",
   },
 };
 
@@ -72,9 +72,16 @@ const globalSchema = {
     {
       "@type": "Organization",
       "@id": "https://nepacalc.com/#organization",
-      "name": "NEPACALC",
+      "name": "NepaCal",
+      "alternateName": ["NEPACALC", "NepaCalc.com"],
       "url": "https://nepacalc.com",
-      "logo": "https://nepacalc.com/logo.png",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nepacalc.com/apple-touch-icon.png",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://nepacalc.com/apple-touch-icon.png",
       "sameAs": [
         "https://www.facebook.com/nepacalc",
         "https://twitter.com/nepacalc"

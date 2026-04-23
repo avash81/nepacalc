@@ -1,26 +1,36 @@
 import { Metadata } from 'next';
 
 export const SITE_CONFIG = {
-  name: 'NEPACALC',
+  name: 'NepaCal',
   domain: 'nepacalc.com',
   baseUrl: 'https://nepacalc.com',
   twitter: '@nepacalcnp',
 };
 
+/**
+ * SEO Generator — Strictly follows "No Special Characters" Rule
+ * No pipes, no dashes, no ampersands, no colons.
+ */
 export function calcMeta({ title, description, slug, keywords = [] }: { title: string; description: string; slug: string; keywords?: string[] }): Metadata {
   const ogImage = `${SITE_CONFIG.baseUrl}/api/og?title=${encodeURIComponent(title)}`;
   
-  // SEO Truncation & Brand Enforcement Mastery
-  let displayTitle = title;
-  if (!displayTitle.includes(SITE_CONFIG.name)) {
-    displayTitle = `${title} | ${SITE_CONFIG.name}`;
+  // Clean Title — Brand enforced at end with a space, NO symbols
+  let seoTitle = title;
+  if (!seoTitle.toLowerCase().includes(SITE_CONFIG.name.toLowerCase())) {
+    seoTitle = `${title} ${SITE_CONFIG.name}`;
   }
   
-  const seoTitle = displayTitle.length > 60 ? displayTitle.substring(0, 57) + '...' : displayTitle;
-  const seoDescription = description.length > 155 ? description.substring(0, 152) + '...' : description;
+  // Clean Description — Must end with Brand reference or CTA
+  let seoDescription = description;
+  if (!seoDescription.toLowerCase().includes('nepacal')) {
+    seoDescription = `${description} Try NepaCal now`;
+  }
 
-  // Force Brand Keywords Globally
-  const globalKeywords = [...new Set([...keywords, 'NEPACALC', 'Official NEPACALC', 'Nepal Calculator Platform', 'Interactive 3D Plotter'])];
+  // Length Control
+  seoTitle = seoTitle.length > 60 ? seoTitle.substring(0, 60) : seoTitle;
+  seoDescription = seoDescription.length > 160 ? seoDescription.substring(0, 160) : seoDescription;
+
+  const globalKeywords = [...new Set([...keywords, 'NepaCal', 'Nepal Calculator', 'Free Online Tools'])];
 
   return {
     title: seoTitle,
@@ -28,7 +38,7 @@ export function calcMeta({ title, description, slug, keywords = [] }: { title: s
     keywords: globalKeywords,
     openGraph: {
       url: slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}` : `${SITE_CONFIG.baseUrl}/calculator/${slug}`,
-      siteName: 'NEPACALC — Official Mathematical Platform',
+      siteName: 'NepaCal Nepal',
       title: seoTitle,
       description: seoDescription,
       type: 'website',

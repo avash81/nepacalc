@@ -5,9 +5,9 @@ import { PillarFAQ } from '@/components/seo/PillarFAQ';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Health Calculators — BMI, BMR, TDEE, Body Fat & Calorie Calculator',
-  description: 'Free WHO-standard health calculators: Calculate BMI, Basal Metabolic Rate (BMR), TDEE, Body Fat %, daily calories, ideal weight, water intake, and pregnancy due date. No login required.',
-  keywords: ['bmi calculator', 'bmr calculator', 'tdee calculator', 'body fat calculator', 'calorie calculator', 'ideal weight calculator', 'water intake calculator', 'health calculator nepal', 'who bmi standard'],
+  title: 'Health and Fitness Calculators BMI BMR Calorie NepaCal',
+  description: 'Free WHO standard health calculators for Nepal. Calculate BMI BMR TDEE body fat daily calories ideal weight and water intake. Try NepaCal now',
+  keywords: ['bmi calculator nepal', 'bmr calculator', 'tdee calculator', 'calorie calculator', 'health tracker nepal'],
   alternates: { 
     canonical: 'https://nepacalc.com/health',
     languages: {
@@ -49,7 +49,7 @@ export default function HealthPillarPage() {
               <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#f72585]">Health Suite</span>
             </div>
             <h1 className="text-[18px] sm:text-[24px] font-black text-[#202124] tracking-tight leading-tight mb-2">
-              Health & Fitness Tools
+              Health and Fitness Tools Nepal
             </h1>
             <p className="text-[13px] text-[#5f6368] max-w-2xl leading-relaxed">
               Standardized biometric calculators mapped to global WHO and CDC guidelines. Calculate your absolute body mass, target weight goals, and optimum daily hydration.
@@ -112,7 +112,60 @@ export default function HealthPillarPage() {
             </p>
           </div>
         </section>
-      </div>
+      
+      
+    
+
+      
+    
+
+      
+    </div>
+    
+      {/* SEO: Competitor-Data Driven FAQ & Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "How to use the Health Calculators Free BMI and Calorie Tools tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free health calculator tool will provide instant results tailored for Nepal." } },
+            { "@type": "Question", "name": "Is this Health Calculators Free BMI and Calorie Tools free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's Health Calculators Free BMI and Calorie Tools is 100% free with no registration required." } }
+          ]
+        }) }}
+      />
+      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Health Calculators Free BMI and Calorie Tools</h2>
+        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
+          Our free <strong>health calculator</strong> is optimized for Nepalese users. Whether you need an online health calculator or want to calculate accurately — NepaCal is your best tool.
+        </p>
+        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
+          Related: <strong>health calculator</strong>, <strong>healthy weight range</strong>, <strong>healthy fat percentage female</strong>, <strong>what body fat percentage is healthy</strong>, <strong>healthy body fat percentage male</strong>, <strong>what is a healthy male body fat percentage</strong>.
+        </p>
+        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-3">
+          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
+            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
+              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
+              <span>How do I use the Health Calculators Free BMI and Calorie Tools?</span>
+            </summary>
+            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
+              Enter your values above to get results instantly.
+            </div>
+          </details>
+          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
+            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
+              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
+              <span>Is it accurate for Nepal?</span>
+            </summary>
+            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
+              Yes, our <strong>health calculator</strong> is regularly updated to reflect local standards.
+            </div>
+          </details>
+        </div>
+      </section>
     </>
   );
 }

@@ -9,9 +9,9 @@ import type { Metadata } from 'next';
 
 /* ── Homepage-specific metadata (overrides layout.tsx defaults) ── */
 export const metadata: Metadata = {
-  title: '#1 Free Scientific Calculator & Real-Time Graphing | NEPACALC',
+  title: 'Free Online Calculator NepaCal Nepal',
   description:
-    "NEPACALC: Nepal's free scientific calculator with real-time graphing, income tax, loan EMI, GPA tracking & 80+ professional tools. No sign-up needed.",
+    'Use free online calculators for math finance health conversions and more. Nepals best calculator site with 100 plus tools. Try NepaCal now',
   keywords: [
     'online calculator', 'scientific calculator', 'graphing calculator',
     'maths solver', 'algebra solver', 'trigonometry calculator',
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
     'graphing tool', 'math plotter', 'function grapher',
   ],
   openGraph: {
-    title: '#1 Free Scientific Calculator & Real-Time Graphing | NEPACALC',
-    description: 'Nepal\'s free scientific calculator with real-time graphing, maths solver & 80+ professional tools for income tax, EMI, GPA and more.',
+    title: 'Free Online Calculator NepaCal Nepal',
+    description: 'Use free online calculators for math finance health conversions and more. Nepals best calculator site with 100 plus tools. Try NepaCal now',
     url: 'https://nepacalc.com',
     siteName: 'NEPACALC',
     locale: 'en_NP',
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '#1 Free Scientific Calculator & Real-Time Graphing | NEPACALC',
-    description: 'Interactive scientific calculator with real-time graphing, algebra/trig/calculus solver, and 80+ tools.',
+    title: 'Free Online Calculator NepaCal Nepal',
+    description: 'Use free online calculators for math finance health conversions and more. Nepals best calculator site with 100 plus tools. Try NepaCal now',
   },
 };
 
@@ -146,7 +146,7 @@ export default function HomePage() {
           <div className="hp-container">
             <div className="mb-12 max-w-6xl">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#202124] tracking-tight mb-4 leading-[1.1]">
-                Free Online <span className="text-blue-600">Calculators</span> for Nepal.
+                Free Online <span className="text-blue-600">Calculator</span> for Nepal.
               </h1>
               <p className="text-base sm:text-lg text-slate-500 font-normal leading-relaxed max-w-4xl">
                 Easy-to-use tools for tax, finance, health, and math. 80+ calculators for your daily needs.
@@ -205,8 +205,64 @@ export default function HomePage() {
 
           {/* Full-Width SEO & Institutional Footer Block */}
           <InstitutionalBlock />
-        </main>
+        
+      {/* SEO Authority Layer */}
+      <section className="mt-12 bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">About the Home</h2>
+        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+          Welcome to the ultimate guide on the <strong>Home</strong>. If you've been looking for an accurate <strong>calculator</strong> or need help with a reliable <strong>online calculator</strong>, you've come to the right place. Our suite of tools is designed specifically for the Nepal market, ensuring your <strong>free calculator</strong> calculations are exact and up-to-date.
+        </p>
+        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+          From complex calculations to simple daily conversions, leveraging a free <strong>calc</strong> can save you time and provide peace of mind. NepaCal's <strong>calculator</strong> is fast, responsive, and completely free to use online. Explore our platform for all your calculation needs!
+        </p>
+      </section>
+    </main>
       </div>
+    
+      {/* SEO: Competitor-Data Driven FAQ & Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "How to use the Free Online Calculator NepaCal Nepal tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free calculator tool will provide instant results tailored for Nepal." } },
+            { "@type": "Question", "name": "Is this Free Online Calculator NepaCal Nepal free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's Free Online Calculator NepaCal Nepal is 100% free with no registration required." } }
+          ]
+        }) }}
+      />
+      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Free Online Calculator NepaCal Nepal</h2>
+        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
+          Our free <strong>calculator</strong> is optimized for Nepalese users. Whether you need an online calculator or want to calculate accurately — NepaCal is your best tool.
+        </p>
+        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
+          Related: <strong>calculator</strong>, <strong>calculator</strong>, <strong>calorie calculator</strong>, <strong>online calculator</strong>, <strong>calculator with dates</strong>, <strong>percentage increase calculator</strong>.
+        </p>
+        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-3">
+          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
+            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
+              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
+              <span>How do I use the Free Online Calculator NepaCal Nepal?</span>
+            </summary>
+            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
+              Enter your values above to get results instantly.
+            </div>
+          </details>
+          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
+            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
+              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
+              <span>Is it accurate for Nepal?</span>
+            </summary>
+            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
+              Yes, our <strong>calculator</strong> is regularly updated to reflect local standards.
+            </div>
+          </details>
+        </div>
+      </section>
     </>
   );
 }

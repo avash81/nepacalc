@@ -3,16 +3,9 @@ import type { Metadata } from 'next';
 import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
-  title: '3D Surface Plotter, Graphing Calculator & Engineering Math Tools | NEPACALC',
-  description:
-    'Free online 3D surface plotter (z=f(x,y)) with interactive orbit camera, wireframe mode & WebGL rendering. Also features a graphing calculator, geometry canvas, LCM, matrices, physics, and 20+ math tools.',
-  keywords: [
-    '3D surface plotter online', 'graphing calculator free', 'orbit camera 3d graph',
-    '3d wireframe plotter', 'engineering calculator online', 'calcplot3d alternative',
-    'math3d alternative', 'online graphing calculator', 'lcm calculator', 'matrix calculator',
-    'quadratic solver', 'logarithm calculator', 'physics calculator', 'statistics calculator',
-    'roman numerals converter', 'z score calculator',
-  ],
+  title: '3D Surface Plotter and Graphing Calculator Engineering NepaCal',
+  description: 'Free online 3D surface plotter and graphing calculator for engineering. Features interactive orbit camera wireframe mode geometry canvas and 20 plus math tools. Try NepaCal now',
+  keywords: ['3d surface plotter', 'graphing calculator online', 'engineering tools nepal', 'math visualizer'],
   alternates: { 
     canonical: 'https://nepacalc.com/engineering',
     languages: {
@@ -112,7 +105,7 @@ export default function EngineeringPage() {
               <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#4361ee]">Engineering Suite</span>
             </div>
             <h1 className="text-[18px] sm:text-[24px] font-black text-[#202124] tracking-tight leading-tight mb-2">
-              Engineering & Math Tools
+              Engineering and Math Tools Nepal
             </h1>
             <p className="text-[13px] text-[#5f6368] max-w-2xl leading-relaxed">
               Professional-grade graphing, 3D visualization, interactive geometry, and a comprehensive formula library.
@@ -195,7 +188,57 @@ export default function EngineeringPage() {
             </p>
           </div>
         </section>
-      </div>
+      
+      
+    
+
+      
+    </div>
+    
+      {/* SEO: Competitor-Data Driven FAQ & Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "How to use the Engineering Calculators Free Tools NepaCal tool?", "acceptedAnswer": { "@type": "Answer", "text": "Simply enter your data and our free engineering calculator tool will provide instant results tailored for Nepal." } },
+            { "@type": "Question", "name": "Is this Engineering Calculators Free Tools NepaCal free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, NepaCal's Engineering Calculators Free Tools NepaCal is 100% free with no registration required." } }
+          ]
+        }) }}
+      />
+      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Engineering Calculators Free Tools NepaCal</h2>
+        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
+          Our free <strong>engineering calculator</strong> is optimized for Nepalese users. Whether you need an online engineering calculator or want to calculate accurately — NepaCal is your best tool.
+        </p>
+        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
+          Related: <strong>engineering calculator</strong>, <strong>calc engineering</strong>, <strong>best scientific calculator for engineering students</strong>, <strong>best calculator for engineering</strong>, <strong>engineering percentage calculator</strong>, <strong>engineering calculator</strong>.
+        </p>
+        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-3">
+          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
+            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
+              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
+              <span>How do I use the Engineering Calculators Free Tools NepaCal?</span>
+            </summary>
+            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
+              Enter your values above to get results instantly.
+            </div>
+          </details>
+          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
+            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
+              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
+              <span>Is it accurate for Nepal?</span>
+            </summary>
+            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
+              Yes, our <strong>engineering calculator</strong> is regularly updated to reflect local standards.
+            </div>
+          </details>
+        </div>
+      </section>
     </>
   );
 }
