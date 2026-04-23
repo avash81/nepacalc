@@ -32,5 +32,9 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./out/
-          server-dir: /public_html/  # Adjust this to your specific cPanel folder
-          dangerous-clean-slate: false # Set to true ONLY if you want to delete existing files in public_html that are not in the repo
+          server-dir: public_html/
+          exclude: |
+            **/_next/cache/**
+            .git*
+            .node_modules*
+          dangerous-clean-slate: false
