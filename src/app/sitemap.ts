@@ -40,7 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return {
       url: isDirectRoute ? `${baseUrl}/${calc.slug}/` : `${baseUrl}/calculator/${calc.slug}/`,
       lastModified: isMarketRate ? new Date() : new Date('2026-04-24T12:00:00Z'),
-      changeFrequency: (isMarketRate ? 'daily' : 'monthly') as const,
+      changeFrequency: isMarketRate ? ('daily' as const) : ('monthly' as const),
       priority: 0.7,
     };
   });
