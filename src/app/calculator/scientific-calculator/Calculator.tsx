@@ -212,7 +212,11 @@ export default function ScientificCalculator() {
           {sL && <span className="text-yellow-400 text-[9px] font-bold uppercase">{sL}</span>}
           {aL && <span className="text-pink-300 text-[9px] font-bold uppercase">{aL}</span>}
        </div>
-       <button onClick={()=>press(act||label, sA, aA)} className={`w-full py-2 rounded-md transition-all font-bold text-[13px] border-b-4 active:border-b-0 active:translate-y-[2px] ${cls || 'bg-white text-black border-slate-300 hove  return (
+       <button onClick={()=>press(act||label, sA, aA)} className={`w-full py-2 rounded-md transition-all font-bold text-[13px] border-b-4 active:border-b-0 active:translate-y-[2px] ${cls || 'bg-white text-black border-slate-300 hover:bg-slate-50 shadow-lg'}`}>{label}</button>
+    </div>
+  );
+
+  return (
     <ModernCalcLayout
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Scientific Calculator' }]}
       title="Scientific Calculator"
