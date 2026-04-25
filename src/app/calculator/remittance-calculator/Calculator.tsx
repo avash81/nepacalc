@@ -1,5 +1,7 @@
 'use client';
 
+import { useMemo } from 'react';
+
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
 import { ValidatedInput } from '@/components/calculator/ValidatedInput';
