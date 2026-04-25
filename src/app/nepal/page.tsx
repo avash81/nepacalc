@@ -85,24 +85,28 @@ export default function NepalPillarPage() {
           {/* Quick Access Grid */}
           <section>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {TOP_TOOLS.map((tool, i) => (
-                <Link key={i} href={`/calculator/${tool.slug}`} className="group p-8 bg-white border border-slate-100 rounded-[2.5rem] hover:shadow-2xl hover:shadow-red-500/5 transition-all duration-500 flex flex-col relative overflow-hidden">
-                   <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:scale-125 group-hover:rotate-12 transition-transform">
-                      {tool.icon}
-                   </div>
-                   <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center mb-6 group-hover:bg-red-50 transition-colors">
-                      <div className="text-slate-400 group-hover:text-red-600 transition-colors">
+              {TOP_TOOLS.map((tool, i) => {
+                const isDirectRoute = tool.slug.includes('/');
+                const href = isDirectRoute ? `/${tool.slug}/` : `/calculator/${tool.slug}/`;
+                return (
+                  <Link key={i} href={href} className="group p-8 bg-white border border-slate-100 rounded-[2.5rem] hover:shadow-2xl hover:shadow-red-500/5 transition-all duration-500 flex flex-col relative overflow-hidden">
+                     <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:scale-125 group-hover:rotate-12 transition-transform">
                         {tool.icon}
-                      </div>
-                   </div>
-                   <h3 className="text-lg font-black text-slate-800 mb-2 tracking-tight">{tool.title}</h3>
-                   <p className="text-[13px] text-slate-400 font-medium mb-8 flex-1 leading-relaxed">{tool.desc}</p>
-                   <div className="flex items-center justify-between">
-                     <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest border-b-2 border-red-500 pb-1">Open Tool</span>
-                     <ArrowRight className="w-4 h-4 text-slate-300 group-hover:translate-x-1 group-hover:text-red-500 transition-all" />
-                   </div>
-                </Link>
-              ))}
+                     </div>
+                     <div className="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center mb-6 group-hover:bg-red-50 transition-colors">
+                        <div className="text-slate-400 group-hover:text-red-600 transition-colors">
+                          {tool.icon}
+                        </div>
+                     </div>
+                     <h3 className="text-lg font-black text-slate-800 mb-2 tracking-tight">{tool.title}</h3>
+                     <p className="text-[13px] text-slate-400 font-medium mb-8 flex-1 leading-relaxed">{tool.desc}</p>
+                     <div className="flex items-center justify-between">
+                       <span className="text-[10px] font-black text-slate-900 uppercase tracking-widest border-b-2 border-red-500 pb-1">Open Tool</span>
+                       <ArrowRight className="w-4 h-4 text-slate-300 group-hover:translate-x-1 group-hover:text-red-500 transition-all" />
+                     </div>
+                  </Link>
+                );
+              })}
             </div>
           </section>
 
@@ -136,11 +140,14 @@ export default function NepalPillarPage() {
                </div>
 
                <div className="lg:w-2/3">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {regularTools.map(calc => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {regularTools.map(calc => {
+                    const isDirectRoute = calc.slug.includes('/');
+                    const href = isDirectRoute ? `/${calc.slug}/` : `/calculator/${calc.slug}/`;
+                    return (
                       <Link
                         key={calc.id}
-                        href={`/calculator/${calc.slug}`}
+                        href={href}
                         className="flex items-center gap-4 p-6 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10 transition-all group"
                       >
                         <div className="text-2xl opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all">{calc.icon}</div>
@@ -148,8 +155,9 @@ export default function NepalPillarPage() {
                           {calc.name}
                         </span>
                       </Link>
-                    ))}
-                  </div>
+                    );
+                  })}
+                </div>
                </div>
             </div>
           </section>

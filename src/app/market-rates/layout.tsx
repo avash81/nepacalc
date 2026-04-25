@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Live Market Rates Nepal — Gold, Silver & Exchange Rate Today',
+  title: 'Live Market Rates Nepal Gold Silver and Exchange Rate Today',
   description:
     'Real-time financial dashboard for Nepal: Live gold price per tola, silver chandi rates, and current USD/INR to NPR exchange rates. Official federation & NRB sync.',
   keywords: [

@@ -115,7 +115,7 @@ export function Navbar() {
 
       {/* Mobile Drawer */}
       <aside className={`fixed top-0 right-0 bottom-0 w-[300px] bg-white text-[#202124] z-[301] shadow-2xl transform transition-transform duration-300 ease-out border-l border-[#e8eaed] ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        <div className="flex flex-col h-full uppercase tracking-widest font-black text-[10px]">
+        <nav className="flex flex-col h-full uppercase tracking-widest font-black text-[10px]" aria-label="Mobile Navigation">
           <div className="p-6 flex items-center justify-between border-b border-[#e8eaed] bg-[#f8f9fa]">
             <Logo size="sm" theme="indigo" />
             <button onClick={() => setIsMenuOpen(false)} className="p-2 hover:bg-black/5 rounded-xl text-[#5F6368]" aria-label="Close menu">
@@ -125,13 +125,13 @@ export function Navbar() {
 
           <div className="flex-1 overflow-y-auto p-6 space-y-3">
             {[
-               { name: 'Nepal Specific', href: '/nepal', icon: <Star className="w-5 h-5" /> },
-               { name: 'Finance & Tax', href: '/finance', icon: <Wallet className="w-5 h-5" /> },
-               { name: 'Math Tools', href: '/math-tools', icon: <Sparkles className="w-5 h-5" /> },
-               { name: 'Converters', href: '/converters', icon: <Globe className="w-5 h-5" /> },
-               { name: 'Health & Fitness', href: '/health', icon: <Heart className="w-5 h-5" /> },
-               { name: 'Engineering', href: '/engineering', icon: <Sparkles className="w-5 h-5" /> },
-               // { name: 'Market Rates', href: '/market-rates', icon: <Activity className="w-5 h-5" /> },
+               { name: 'Nepal Specific', href: '/nepal/', icon: <Star className="w-5 h-5" /> },
+               { name: 'Finance & Tax', href: '/finance/', icon: <Wallet className="w-5 h-5" /> },
+               { name: 'Math Tools', href: '/math-tools/', icon: <Sparkles className="w-5 h-5" /> },
+               { name: 'Converters', href: '/converters/', icon: <Globe className="w-5 h-5" /> },
+               { name: 'Health & Fitness', href: '/health/', icon: <Heart className="w-5 h-5" /> },
+               { name: 'Engineering', href: '/engineering/', icon: <Sparkles className="w-5 h-5" /> },
+               // { name: 'Market Rates', href: '/market-rates/', icon: <Activity className="w-5 h-5" /> },
             ].map((link) => (
               <Link
                 key={link.href}
@@ -151,7 +151,7 @@ export function Navbar() {
             <div className="text-[#FFC107] mb-2 bg-black py-2 rounded-md mx-4">Nepal Academic Edition</div>
             <div className="text-[#5F6368]">© NEPACALC Laboratory</div>
           </div>
-        </div>
+        </nav>
       </aside>
     </>
   );

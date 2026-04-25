@@ -131,16 +131,19 @@ export default function HomePage() {
                   </h2>
                 </Link>
                 <ul className="space-y-1.5 flex-grow">
-                  {cat.calculators.slice(0, 8).map(calc => (
-                    <li key={calc.id}>
-                      <Link 
-                         href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`} 
-                         className="text-[13px] text-[#3c4043] hover:text-[#1a73e8] hover:underline truncate block"
-                      >
-                         {calc.name}
-                      </Link>
-                    </li>
-                  ))}
+                  {cat.calculators.slice(0, 8).map(calc => {
+                    const href = calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`;
+                    return (
+                      <li key={calc.id}>
+                        <Link 
+                           href={href} 
+                           className="text-[13px] text-[#3c4043] hover:text-[#1a73e8] hover:underline truncate block"
+                        >
+                           {calc.name}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
                 <div className="mt-3 pt-2 border-t border-[#f1f3f4]">
                   <Link href={cat.id === 'education' ? '/math-tools' : cat.id === 'utility' ? '/converters' : `/${cat.id}`} className="text-[9px] font-bold text-[#1a73e8] hover:underline uppercase tracking-widest flex items-center gap-1">

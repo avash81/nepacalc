@@ -233,6 +233,22 @@ export default function BMICalculator() {
         {
           question: "What is a healthy BMI for adults?",
           answer: "For most adults, a healthy BMI is between 18.5 and 24.9. Staying within this range reduces the risk of weight-related health issues."
+        },
+        {
+          question: "Can I use this calculator for children?",
+          answer: "No, BMI calculation for children and teens is interpreted differently using age-and-sex-specific percentiles. This calculator is designed for adults aged 20 and older."
+        },
+        {
+          question: "Does BMI measure body fat directly?",
+          answer: "No, BMI does not measure body fat directly. It is a measure of excess weight rather than excess body fat. However, it is moderately correlated with direct measures of body fat."
+        },
+        {
+          question: "Why does the South Asian population have different risk thresholds?",
+          answer: "Research indicates that South Asians often have a higher percentage of body fat and increased metabolic risk at lower BMI levels compared to other populations. Some experts suggest using 23.0 as the overweight threshold for this region."
+        },
+        {
+          question: "How often should I check my BMI?",
+          answer: "Checking your BMI every few months as part of a general health routine is usually sufficient. Focus more on long-term trends and lifestyle habits rather than daily fluctuations."
         }
       ]}
       sidebar={{

@@ -67,19 +67,23 @@ export default function FinancePillarPage() {
             Advanced Tools
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {TOP_TOOLS.map(tool => (
-              <Link href={tool.slug.includes('/') ? `/${tool.slug}` : `/calculator/${tool.slug}`} key={tool.title} className="group relative rounded-xl border border-slate-200 p-3 hover:border-transparent hover:shadow-lg transition-all duration-300 overflow-hidden block">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: `linear-gradient(135deg, ${tool.color}08, ${tool.color}15)` }} />
-                <div className="relative z-10">
-                  <div className="text-xl mb-2">{tool.icon}</div>
-                  <h3 className="text-[13px] font-bold text-[#202124] mb-1">{tool.title}</h3>
-                  <p className="text-[11px] text-[#5f6368] leading-relaxed mb-2">{tool.desc}</p>
-                  <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold text-white transition-all hover:opacity-90" style={{ background: tool.color }}>
-                    Open Tool →
-                  </span>
-                </div>
-              </Link>
-            ))}
+            {TOP_TOOLS.map(tool => {
+              const isDirectRoute = tool.slug.includes('/');
+              const href = isDirectRoute ? `/${tool.slug}/` : `/calculator/${tool.slug}/`;
+              return (
+                <Link href={href} key={tool.title} className="group relative rounded-xl border border-slate-200 p-3 hover:border-transparent hover:shadow-lg transition-all duration-300 overflow-hidden block">
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: `linear-gradient(135deg, ${tool.color}08, ${tool.color}15)` }} />
+                  <div className="relative z-10">
+                    <div className="text-xl mb-2">{tool.icon}</div>
+                    <h3 className="text-[13px] font-bold text-[#202124] mb-1">{tool.title}</h3>
+                    <p className="text-[11px] text-[#5f6368] leading-relaxed mb-2">{tool.desc}</p>
+                    <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold text-white transition-all hover:opacity-90" style={{ background: tool.color }}>
+                      Open Tool →
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </section>
 
@@ -89,14 +93,18 @@ export default function FinancePillarPage() {
             Regular Calculators
           </h2>
           <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-            {existingTools.map(calc => (
-              <Link key={calc.name} href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`} className="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:border-[#4361ee] hover:bg-[#4361ee08] transition-all group min-h-[56px]">
-                <span className="text-lg flex-shrink-0">{calc.icon}</span>
-                <span className="text-[12px] sm:text-[13px] font-medium text-[#202124] group-hover:text-[#4361ee] transition-colors leading-tight">
-                  {calc.name}
-                </span>
-              </Link>
-            ))}
+            {existingTools.map(calc => {
+              const isDirectRoute = calc.slug.includes('/');
+              const href = isDirectRoute ? `/${calc.slug}/` : `/calculator/${calc.slug}/`;
+              return (
+                <Link key={calc.name} href={href} className="flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 hover:border-[#4361ee] hover:bg-[#4361ee08] transition-all group min-h-[56px]">
+                  <span className="text-lg flex-shrink-0">{calc.icon}</span>
+                  <span className="text-[12px] sm:text-[13px] font-medium text-[#202124] group-hover:text-[#4361ee] transition-colors leading-tight">
+                    {calc.name}
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </section>
 

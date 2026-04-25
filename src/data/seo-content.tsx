@@ -91,6 +91,18 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       {
         question: "What are the deductible expenses for income tax?",
         answer: "You can deduct life insurance premiums (up to Rs. 40,000), health insurance (up to Rs. 20,000), and contributions to provident funds or CIT (up to 1/3 of income or Rs. 3,00,000)."
+      },
+      {
+        question: "Is there a penalty for late tax filing in Nepal?",
+        answer: "Yes, the Inland Revenue Department (IRD) imposes interest and late fees if you fail to file your tax return (D01/D03) within the designated deadline (usually Ashwin end)."
+      },
+      {
+        question: "Can I deduct my home loan interest from taxable income?",
+        answer: "No, currently the Nepal tax law does not allow individuals to deduct home loan interest from their taxable income, unlike in some other countries."
+      },
+      {
+        question: "How is tax calculated for part-time or freelance work in Nepal?",
+        answer: "Freelance or consultancy income is generally subject to a 15% TDS (Tax Deducted at Source) in Nepal, which is treated as an advance tax against your total annual liability."
       }
     ]
   },
@@ -246,6 +258,18 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       {
         question: "Is it better to choose a longer tenure?",
         answer: "A longer tenure makes the EMI affordable but significantly increases the total interest. It is best to choose the shortest tenure your budget can comfortably accommodate."
+      },
+      {
+        question: "How do prepayments affect my loan EMI?",
+        answer: "Prepayments reduce the principal balance directly. This usually allows you to either reduce your monthly EMI amount or shorten the remaining loan tenure, saving you interest."
+      },
+      {
+        question: "Can I use this calculator for a business loan in Nepal?",
+        answer: "Yes, while business loans often have different terms, the basic monthly EMI calculation using the reducing balance method remains the same as shown here."
+      },
+      {
+        question: "What is a 'Floating' interest rate in Nepal?",
+        answer: "Most loans in Nepal are on a floating rate, meaning the interest changes when the bank's Base Rate changes (usually reviewed every quarter by the NRB)."
       }
     ]
   },
@@ -601,16 +625,28 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
     ),
     faqs: [
       {
-        question: "What is the current broker commission in Nepal?",
-        answer: "The broker commission is slab-based: 0.40% for transactions up to Rs. 50,000, 0.37% up to Rs. 5 Lakhs, and decreasing further for larger volumes."
+        question: "What is the broker commission for NEPSE?",
+        answer: "Broker commissions in Nepal are slab-based, ranging from 0.40% for small trades down to 0.27% for trades above Rs. 1 Crore."
       },
       {
-        question: "How is CGT calculated for bonus shares?",
-        answer: "For bonus shares, the base price is usually taken as Rs. 100, and CGT is calculated on the difference between the selling price and this base price."
+        question: "How much is the DP fee per company?",
+        answer: "The Depository Participant (DP) fee is a flat Rs. 25 per company per day, regardless of how many shares you sell of that company."
       },
       {
-        question: "Is there a tax on dividends in Nepal?",
-        answer: "Yes, cash dividends are subject to a 5% dividend tax, which is usually deducted at the source (TDS)."
+        question: "What is the Capital Gains Tax (CGT) rate?",
+        answer: "For individual investors, CGT is 5% if you hold shares for more than a year (long-term) and 7.5% if you sell within a year (short-term)."
+      },
+      {
+        question: "What is SEBON commission?",
+        answer: "SEBON (Securities Board of Nepal) charges a flat 0.015% on the total transaction amount as a regulatory fee."
+      },
+      {
+        question: "Do I have to pay tax if I sell at a loss?",
+        answer: "No, Capital Gains Tax is only applied to the profit. If you sell at a loss, you don't pay CGT, but you still pay broker commission and DP fees."
+      },
+      {
+        question: "How is the purchase cost calculated in WACC?",
+        answer: "The purchase cost includes the price you paid for the shares plus the broker commission and SEBON fee paid during the purchase."
       }
     ]
   },

@@ -15,15 +15,23 @@ export function calcMeta({ title, description, slug, keywords = [] }: { title: s
   const ogImage = `${SITE_CONFIG.baseUrl}/api/og?title=${encodeURIComponent(title)}`;
   
   // Clean Title — Brand enforced at end with a space, NO symbols
-  let seoTitle = title;
+  let seoTitle = title
+    .replace(/[|&—\-_:]/g, ' ') // Remove symbols
+    .replace(/\s+/g, ' ')       // Normalize spaces
+    .trim();
+
   if (!seoTitle.toLowerCase().includes(SITE_CONFIG.name.toLowerCase())) {
-    seoTitle = `${title} ${SITE_CONFIG.name}`;
+    seoTitle = `${seoTitle} ${SITE_CONFIG.name}`;
   }
   
   // Clean Description — Must end with Brand reference or CTA
-  let seoDescription = description;
+  let seoDescription = description
+    .replace(/[|&—\-_:]/g, ' ') // Remove symbols
+    .replace(/\s+/g, ' ')       // Normalize spaces
+    .trim();
+
   if (!seoDescription.toLowerCase().includes('nepacal')) {
-    seoDescription = `${description} Try NepaCal now`;
+    seoDescription = `${seoDescription} Try NepaCal now`;
   }
 
   // Length Control
@@ -32,12 +40,17 @@ export function calcMeta({ title, description, slug, keywords = [] }: { title: s
 
   const globalKeywords = [...new Set([...keywords, 'NepaCal', 'Nepal Calculator', 'Free Online Tools'])];
 
+  // Fix slug formatting for canonical (ensure no double slashes and ends with slash)
+  const cleanSlug = slug.startsWith('/') ? slug.substring(1) : slug;
+  const canonicalPath = cleanSlug.includes('/') ? `/${cleanSlug}/` : `/calculator/${cleanSlug}/`;
+  const canonicalUrl = `${SITE_CONFIG.baseUrl}${canonicalPath.replace(/\/+/g, '/')}`;
+
   return {
     title: seoTitle,
     description: seoDescription,
     keywords: globalKeywords,
     openGraph: {
-      url: slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}/` : `${SITE_CONFIG.baseUrl}/calculator/${slug}/`,
+      url: canonicalUrl,
       siteName: 'NepaCal Nepal',
       title: seoTitle,
       description: seoDescription,
@@ -59,10 +72,10 @@ export function calcMeta({ title, description, slug, keywords = [] }: { title: s
       images: [ogImage],
     },
     alternates: {
-      canonical: slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}/` : `${SITE_CONFIG.baseUrl}/calculator/${slug}/`,
+      canonical: canonicalUrl,
       languages: {
-        'en-NP': slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}/` : `${SITE_CONFIG.baseUrl}/calculator/${slug}/`,
-        'x-default': slug.includes('/') ? `${SITE_CONFIG.baseUrl}/${slug}/` : `${SITE_CONFIG.baseUrl}/calculator/${slug}/`
+        'en-NP': canonicalUrl,
+        'x-default': canonicalUrl
       }
     },
     robots: {

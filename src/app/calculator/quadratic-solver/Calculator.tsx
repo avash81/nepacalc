@@ -59,9 +59,9 @@ export default function QuadraticSolver() {
              <Activity className="w-3 h-3 animate-pulse" />
              Interactive Graphing
           </div>
-          <h1 className="text-4xl sm:text-6xl font-black text-gray-900 tracking-tight">
+          <h2 className="text-4xl sm:text-6xl font-black text-gray-900 tracking-tight">
             Quadratic <span className="text-purple-600">Solver</span>
-          </h1>
+          </h2>
           <p className="max-w-2xl mx-auto text-base text-gray-500 font-medium leading-relaxed">
              Solve <span className="font-mono italic font-bold text-gray-900">ax² + bx + c = 0</span> with step-by-step discriminant analysis and visual curve plotting.
           </p>
