@@ -115,11 +115,6 @@ export default function HomePage() {
           </div>
         </section>
         
-        {/* 1.5 Top Priority Tools (SEO Signaling) */}
-        <div className="border-b border-[#dadce0]">
-           <TopCalculators />
-        </div>
-
         {/* 2. Structured Directory */}
         <main className="hp-container py-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
