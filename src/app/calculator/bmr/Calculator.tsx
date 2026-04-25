@@ -155,6 +155,38 @@ export default function BMRCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering Metabolism with our BMR Calculator Nepal</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Your Basal Metabolic Rate (BMR) represents the absolute minimum amount of energy your body requires to maintain vital functions while at complete rest. In the context of Nepal's diverse geography—ranging from the humid Terai to the high-altitude Himalayan regions—understanding your <strong className="text-[#202124]">bmr calculator nepal</strong> results is the cornerstone of effective weight management. Our tool utilizes the clinically validated <strong className="text-[#202124]">Mifflin-St Jeor Equation</strong>, which is widely considered the most accurate formula for modern populations.
+              </p>
+              <p>
+                Scientific studies indicate that metabolic rates can be influenced by environmental factors such as altitude and climate. For those living in high-altitude zones of Nepal, the basal metabolic demand can be slightly higher due to increased respiratory and cardiovascular effort. This calculator provides the baseline necessary to architect a nutritional plan that respects these physiological nuances.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">From BMR to TDEE: The Science of Daily Energy</h3>
+            <div className="space-y-4 text-sm text-[#5F6368]">
+              <p>
+                While BMR is your "resting" burn rate, your <strong className="text-[#202124]">Total Daily Energy Expenditure (TDEE)</strong> is the metric that governs weight loss or gain. It is calculated by applying a physical activity multiplier to your BMR.
+              </p>
+              <ul className="space-y-2 list-disc pl-5">
+                <li><strong className="text-[#202124]">Sedentary:</strong> Best for office workers in Kathmandu or Pokhara with minimal exercise.</li>
+                <li><strong className="text-[#202124]">Active:</strong> Suited for those engaged in labor-intensive occupations or dedicated daily training.</li>
+                <li><strong className="text-[#202124]">Metabolic Flex:</strong> Understanding these numbers allows you to create a precise <strong className="text-[#202124]">calorie deficit</strong> for weight loss or a <strong className="text-[#202124]">surplus</strong> for muscle gain without guesswork.</li>
+              </ul>
+              <p className="pt-2 italic border-t border-[#F1F3F4]">
+                Note: For the most accurate results, ensure you update your weight and activity level monthly, as these factors directly impact your daily caloric ceiling.
+              </p>
+            </div>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
           "Select your biological gender and enter your current age.",

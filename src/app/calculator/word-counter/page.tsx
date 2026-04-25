@@ -35,39 +35,6 @@ const WORD_COUNTER_FAQS = [
 
 export default function Page() {
   return (
-    <div className="bg-white min-h-screen">
-      <CalcWrapper
-        title="Textual Analysis Engine"
-        description="High-precision utility for auditing word count, character density, and structural metrics of any provided text instantly."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Word Counter' }]}
-        isNepal={true}
-        relatedCalcs={[
-          { name: 'Password Generator', slug: 'password-generator' },
-          { name: 'QR Generator', slug: 'qr-generator' },
-          { name: 'Unit Converter', slug: 'unit-converter' }
-        ]}
-        formula="Word Count = Σ(Space Delimited Tokens)"
-      >
-        <Calculator />
-        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
-              Writing Guide: Mastering Text Constraints
-            </h2>
-            
-            <div className="prose prose-slate max-w-none mb-12">
-              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-                Whether you are writing a university essay, a professional report, or an SEO-optimized blog post, <strong>word count precision</strong> is a critical requirement.
-              </p>
-              <p className="text-slate-700 text-base leading-relaxed mb-6">
-                Our <strong>Textual Analysis Laboratory</strong> provides the tools writers in Nepal need to meet their specific targets. From tracking the 280-character limit of a viral tweet to ensuring your thesis abstract stays under the word limit, our engine provides real-time, <strong>non-latency updates</strong> as you type or paste your content, ensuring you never exceed your constraints.
-              </p>
-            </div>
-
-            <PillarFAQ faqs={WORD_COUNTER_FAQS} title="Word Count & Text Analysis FAQ" />
-          </div>
-        </div>
-      </CalcWrapper>
-    </div>
+    <Calculator />
   );
 }

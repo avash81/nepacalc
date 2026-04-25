@@ -90,6 +90,7 @@ export default function NepaliDateConverter() {
 
   return (
     <ModernCalcLayout
+      slug="nepali-date"
       crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Nepali Date Converter' }]}
       title="Nepali Date Converter"
       description="Gregorian (AD) to Bikram Sambat (BS) converter with astronomical accuracy for Nepal's official calendar. Syncs seamlessly with IRD standards."
@@ -175,6 +176,30 @@ export default function NepaliDateConverter() {
           <div className="flex gap-2 p-3 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg items-start">
              <Info className="w-4 h-4 text-[#1A73E8] shrink-0 mt-0.5" />
              <p className="text-[10px] text-[#202124] leading-tight italic">Bikram Sambat is approximately 56 years and 8.5 months ahead of the Gregorian calendar. This calculation relies on precise Panchanga data.</p>
+          </div>
+        </div>
+      }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Precision Date Conversion for Nepal</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Bridging the gap between the internationally recognized Gregorian calendar and Nepal's official Bikram Sambat requires algorithmic precision. Our <strong className="text-[#202124]">nepali date converter</strong> is engineered to map absolute chronological data accurately, eliminating the errors common in standard +56 year arithmetic. Whether you are performing an <strong className="text-[#202124]">ad to bs converter</strong> lookup for citizenship documentation or translating corporate timelines, the engine ensures 100% fidelity.
+              </p>
+              <p>
+                In the context of the <strong className="text-[#202124]">nepali calendar 2081</strong> and beyond, structural anomalies—such as months that dynamically fluctuate between 29 and 32 days depending on solar astrology (Panchanga)—necessitate a strict dictionary-based lookup system rather than simple math. This makes translating an <strong className="text-[#202124]">english to nepali date</strong> a complex operation that this engine handles instantaneously.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Astrological and Financial Utility</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Fiscal Year Alignment:</strong> Nepal's tax year (e.g., Shrawan to Ashar) operates strictly on the Bikram Sambat timeline. A reliable <strong className="text-[#202124]">bikram sambat converter</strong> is essential for accountants aligning Gregorian software receipts with local Inland Revenue Department (IRD) audits.</li>
+              <li><strong className="text-[#188038]">Visa & Emigration:</strong> International embassies in Nepal require absolute parity between local citizenship cards (BS) and passport data (AD). Even a one-day discrepancy caused by leap year miscalculations can result in visa rejection.</li>
+              <li><strong className="text-[#D93025]">Astrological Accuracy:</strong> Because BS is a lunisolar hybrid influenced by astrological events, our conversion strictly adheres to the official Nepal Panchanga Nirnayak Samiti data, ensuring your relative Tithi translations remain intact.</li>
+            </ul>
           </div>
         </div>
       }

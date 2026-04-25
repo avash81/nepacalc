@@ -35,39 +35,6 @@ const SCIENTIFIC_FAQS = [
 
 export default function Page() {
   return (
-    <div className="bg-white min-h-screen">
-      <CalcWrapper
-        title="Scientific Logic Suite"
-        description="Industrial-grade mathematical engine for advanced algebraic, trigonometric, and logarithmic calculations with absolute precision."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Scientific' }]}
-        isNepal={true}
-        relatedCalcs={[
-          { name: 'Matrices', slug: 'matrices' },
-          { name: 'Quadratic Solver', slug: 'quadratic-solver' },
-          { name: 'Logarithm Calc', slug: 'logarithm-calculator' }
-        ]}
-        formula="y = f(x) [Scientific Notation Engine]"
-      >
-        <Calculator />
-        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
-              Scientific Guide: Advanced Computing
-            </h2>
-            
-            <div className="prose prose-slate max-w-none mb-12">
-              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-                Advanced mathematics requires more than simple arithmetic—it requires a <strong>robust computational framework</strong> that respects universal laws of priority and precision.
-              </p>
-              <p className="text-slate-700 text-base leading-relaxed mb-6">
-                Our <strong>Advanced Computing Laboratory</strong> is built for the high-rigor environments of university-level science and engineering in Nepal. From <strong>trigonometric modeling</strong> to solving complex power series, our cloud-based engine provides a responsive, error-free alternative to traditional handheld scientific hardware.
-              </p>
-            </div>
-
-            <PillarFAQ faqs={SCIENTIFIC_FAQS} title="Computing & Mathematics FAQ" />
-          </div>
-        </div>
-      </CalcWrapper>
-    </div>
+    <Calculator />
   );
 }

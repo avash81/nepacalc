@@ -35,39 +35,6 @@ const STATS_PLUS_FAQS = [
 
 export default function Page() {
   return (
-    <div className="bg-white min-h-screen">
-      <CalcWrapper
-        title="Descriptive Statistics Suite"
-        description="Comprehensive analytical engine for calculating measures of central tendency and dispersion for any numerical dataset."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Statistics Plus' }]}
-        isNepal={true}
-        relatedCalcs={[
-          { name: 'Standard Deviation', slug: 'standard-deviation' },
-          { name: 'Z-Score Calc', slug: 'z-score' },
-          { name: 'Percentage Calc', slug: 'percentage' }
-        ]}
-        formula="Statistical Descriptive Logic"
-      >
-        <Calculator />
-        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
-              Analytical Guide: Descriptive Statistics
-            </h2>
-            
-            <div className="prose prose-slate max-w-none mb-12">
-              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-                Descriptive statistics are the <strong>foundation of data interpretation</strong>, allowing us to summarize complex datasets into meaningful insights.
-              </p>
-              <p className="text-slate-700 text-base leading-relaxed mb-6">
-                Our <strong>Analytical Suite</strong> provides a detailed snapshot of your data's characteristics. Whether you are a student in Nepal summarizing research findings or a business analyst reviewing <strong>sales distributions</strong>, our engine computes the mean, median, mode, and range with absolute accuracy, ensuring your analysis is grounded in mathematical truth.
-              </p>
-            </div>
-
-            <PillarFAQ faqs={STATS_PLUS_FAQS} title="Descriptive Statistics FAQ" />
-          </div>
-        </div>
-      </CalcWrapper>
-    </div>
+    <Calculator />
   );
 }

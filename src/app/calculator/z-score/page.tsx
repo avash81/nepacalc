@@ -35,39 +35,6 @@ const ZSCORE_FAQS = [
 
 export default function Page() {
   return (
-    <div className="bg-white min-h-screen">
-      <CalcWrapper
-        title="Z-Score Normalization Engine"
-        description="High-precision statistical tool for calculating standard scores and determining positioning within a normal distribution curve."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Z-Score Calc' }]}
-        isNepal={true}
-        relatedCalcs={[
-          { name: 'Standard Deviation', slug: 'standard-deviation' },
-          { name: 'Probability Calc', slug: 'probability' },
-          { name: 'Scientific Calc', slug: 'scientific-calculator' }
-        ]}
-        formula="z = (x - μ) / σ"
-      >
-        <Calculator />
-        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
-              Statistical Guide: Data Normalization
-            </h2>
-            
-            <div className="prose prose-slate max-w-none mb-12">
-              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-                In <strong>statistical analysis</strong>, comparing data from different distributions requires a common scale. The Z-score is the primary tool for this normalization.
-              </p>
-              <p className="text-slate-700 text-base leading-relaxed mb-6">
-                Our <strong>Gaussian Analysis Laboratory</strong> allows researchers in Nepal to quickly determine the relative standing of any observation. By converting raw data into <strong>standardized scores</strong>, you can accurately assess outliers, calculate percentiles, and perform rigorous hypothesis testing with absolute mathematical certainty.
-              </p>
-            </div>
-
-            <PillarFAQ faqs={ZSCORE_FAQS} title="Z-Scores & Normal Distribution FAQ" />
-          </div>
-        </div>
-      </CalcWrapper>
-    </div>
+    <Calculator />
   );
 }

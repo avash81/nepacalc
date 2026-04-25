@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { CATEGORIES } from '@/data/calculators';
 import { InstitutionalBlock } from '@/components/layout/InstitutionalBlock';
+import { TopCalculators } from '@/components/layout/TopCalculators';
 import { HomePageCalculatorClient } from './HomePageCalculatorClient';
 import type { Metadata } from 'next';
 
@@ -95,15 +96,15 @@ export default function HomePage() {
         }} 
       />
       
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen bg-[#F1F3F4]">
         {/* 1. Header & Calculator */}
-        <section className="pt-24 pb-16 border-b border-[#dadce0] bg-[#f8f9fa]">
+        <section className="pt-1 pb-8 border-b border-[#dadce0] bg-[#F1F3F4]">
           <div className="hp-container">
-            <div className="mb-12 max-w-6xl">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#202124] tracking-tight mb-4 leading-[1.1]">
+            <div className="mb-4 max-w-6xl">
+              <h1 className="text-2xl sm:text-3xl font-bold text-[#202124] tracking-tight mb-2 leading-[1.1]">
                 Free Online <span className="text-blue-600">Calculator</span> for Nepal.
               </h1>
-              <p className="text-base sm:text-lg text-slate-500 font-normal leading-relaxed max-w-4xl">
+              <p className="text-[13px] sm:text-sm text-slate-500 font-normal leading-relaxed max-w-4xl">
                 Easy-to-use tools for tax, finance, health, and math. 80+ calculators for your daily needs.
               </p>
             </div>
@@ -113,40 +114,47 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+        
+        {/* 1.5 Top Priority Tools (SEO Signaling) */}
+        <div className="border-b border-[#dadce0]">
+           <TopCalculators />
+        </div>
 
         {/* 2. Structured Directory */}
-        <main className="hp-container py-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-x-8 gap-y-16">
+        <main className="hp-container py-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
             {CATEGORIES.filter(c => c.id !== 'market').map(cat => (
-              <div key={cat.id} className="space-y-4">
+              <div key={cat.id} className="bg-white p-4 border border-[#dadce0] rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col h-full min-h-[340px]">
                 <Link href={cat.id === 'education' ? '/math-tools' : cat.id === 'utility' ? '/converters' : `/${cat.id}`}>
-                  <h2 className={`${cat.id === 'engineering' ? 'text-[#4361ee]' : 'text-[#1a73e8]'} text-[13px] font-bold uppercase tracking-widest border-b-2 border-slate-100 pb-2 hover:underline`}>
+                  <h2 className={`${cat.id === 'engineering' ? 'text-[#4361ee]' : 'text-[#1a73e8]'} text-[11px] font-black uppercase tracking-wider border-b border-[#f1f3f4] pb-2 hover:underline mb-3`}>
                     {cat.name}
                   </h2>
                 </Link>
-                <ul className="space-y-2">
-                  {cat.calculators.slice(0, cat.id === 'nepal' ? 10 : 7).map(calc => (
-                    <li key={calc.id} className="h-[21px]">
+                <ul className="space-y-1.5 flex-grow">
+                  {cat.calculators.slice(0, 8).map(calc => (
+                    <li key={calc.id}>
                       <Link 
                          href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`} 
-                         className="text-[14px] text-[#202124] hover:text-blue-600 hover:underline truncate block"
+                         className="text-[13px] text-[#3c4043] hover:text-[#1a73e8] hover:underline truncate block"
                       >
                          {calc.name}
                       </Link>
                     </li>
                   ))}
-                  <li className="pt-2">
-                    <Link href={cat.id === 'education' ? '/math-tools' : cat.id === 'utility' ? '/converters' : `/${cat.id}`} className="text-[11px] font-black text-blue-600 hover:underline uppercase tracking-widest">
-                      All {cat.name} &rarr;
-                    </Link>
-                  </li>
                 </ul>
+                <div className="mt-3 pt-2 border-t border-[#f1f3f4]">
+                  <Link href={cat.id === 'education' ? '/math-tools' : cat.id === 'utility' ? '/converters' : `/${cat.id}`} className="text-[9px] font-bold text-[#1a73e8] hover:underline uppercase tracking-widest flex items-center gap-1">
+                    View All <span className="text-[12px] leading-none">&rarr;</span>
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
 
           {/* New Optimized Institutional Footer */}
-          <InstitutionalBlock />
+          <div className="mt-12">
+             <InstitutionalBlock />
+          </div>
         </main>
       </div>
     </>

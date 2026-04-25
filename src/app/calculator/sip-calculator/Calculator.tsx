@@ -152,6 +152,30 @@ export default function SIPCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering Systematic Investments in Nepal</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                In the evolving Nepalese capital market, Systematic Investment Plans (SIP) offered by mutual funds regulated by the Securities Board of Nepal (SEBON) have become the premier wealth accumulation vehicle for retail investors. Our <strong className="text-[#202124]">sip calculator nepal</strong> is designed to project long-term capital appreciation by modeling regular capital injections against expected annualized market returns, factoring in the critical mechanics of Rupee Cost Averaging.
+              </p>
+              <p>
+                Unlike static fixed deposits, a <strong className="text-[#202124]">mutual fund sip nepal</strong> thrives on market volatility. By mathematically maintaining a constant investment cadence, investors accumulate more units when the NEPSE index is low and fewer when it is high. This engine also integrates advanced Step-Up algorithms, allowing you to model a <strong className="text-[#202124]">step up sip calculator</strong> scenario where your investment amounts grow synchronously with your annual salary increments.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Mechanics of Wealth Compounding</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Compound Interest Engine:</strong> The algorithm calculates Future Value (FV) using discrete monthly compounding formulas. Every generated return is automatically reinvested into the principal pool, triggering a snowball effect where you earn "interest on your interest" over extended 10 to 20-year horizons.</li>
+              <li><strong className="text-[#188038]">The Step-Up Multiplier:</strong> Incorporating an annual step-up (e.g., a 10% yearly increase in your monthly SIP) dramatically alters the maturity trajectory. This mitigates long-term inflation impacts and significantly boosts the final corpus without straining your initial monthly cash flow constraints.</li>
+              <li><strong className="text-[#D93025]">SEBON Tax Implications:</strong> While the gross maturity value is calculated here, investors must account for Capital Gains Tax (CGT) upon redemption. Under current Inland Revenue Department (IRD) directives, mutual fund capital gains are subject to specific CGT slabs (typically 5% for long-term holdings), which will slightly adjust your net-in-hand realization.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
           "Enter your initial Monthly SIP amount.",

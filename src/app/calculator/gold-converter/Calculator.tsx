@@ -168,6 +168,30 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Navigating the Precious Metals Market in Nepal</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Investing in precious metals remains a cornerstone of financial security and cultural heritage in Nepal. Our <strong className="text-[#202124]">gold price today nepal</strong> engine is synchronized with the latest benchmarks set by the <strong>Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)</strong>. Understanding the distinction between <strong>Hallmark (Chhapawal)</strong> and <strong>Tejabi</strong> gold is essential for accurate valuation; Hallmark represents 24-karat purity (99.9%), while Tejabi typically refers to 22-karat (91.6%) gold often used in traditional jewelry.
+              </p>
+              <p>
+                For silver investors, the <strong className="text-[#202124]">silver rate nepal</strong> is equally volatile and influenced by international market fluctuations (LBMA) and local import duties. This calculator provides a professional-grade audit of your holdings by converting complex market rates into actionable valuation data, including precise <strong>tola to gram conversion</strong> metrics specific to the Nepalese standard of 11.6638 grams per tola.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Valuation Mechanics: Jyala, Jarti, and Market Logic</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Making Charges (Jyala):</strong> When purchasing jewelry, the total price exceeds the raw metal value. "Jyala" covers the labor and craftsmanship. This calculator allows you to input these charges as a flat fee or a percentage to see the final "all-in" cost.</li>
+              <li><strong className="text-[#188038]">Wastage (Jarti) Considerations:</strong> Traditional Nepalese jewelry making often involves "Jarti" (gold lost during the soldering and shaping process). While not explicitly listed as a separate field, you should include any wastage weight in your "Total Weight" or factor its cost into the "Making Charges" percentage for an accurate buy-back or purchase simulation.</li>
+              <li><strong className="text-[#D93025]">The Lal Measurement:</strong> Small quantities of gold are measured in "Lal" (1/100th of a Tola). Our engine supports granular Lal-based calculations, which is critical for verifying the weight of smaller ornaments like rings or nose pins against official receipts.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Select weight unit (Tola/Lal or Grams).", "Enter the gold or silver weight.", "Enter making charges (Jarti/Jyala) as a flat Rs. amount or percentage.", "View the total estimated valuation including current live rates."] }}
       formula={{ title: "Jewelry Valuation", description: "Standard valuation calculation using current live Nepal market rate.", raw: "Base Value = (Weight in Tola) × (Live Rate per Tola)\nMaking Charge = Fixed or (% of Base Value)\nTotal Value = Base Value + Making Charge" }}
       faqs={[

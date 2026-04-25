@@ -35,39 +35,6 @@ const SIMPLE_FAQS = [
 
 export default function Page() {
   return (
-    <div className="bg-white min-h-screen">
-      <CalcWrapper
-        title="Standard Arithmetic Engine"
-        description="Low-latency mathematical interface for rapid addition, subtraction, and multi-step basic arithmetic calculations."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Simple Calc' }]}
-        isNepal={true}
-        relatedCalcs={[
-          { name: 'Scientific Calc', slug: 'scientific-calculator' },
-          { name: 'Percentage Calc', slug: 'percentage' },
-          { name: 'Discount Calc', slug: 'discount-calculator' }
-        ]}
-        formula="Basic Arithmetic [BODMAS Logic]"
-      >
-        <SimpleCalculator />
-        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
-              Utility Guide: Standard Arithmetic
-            </h2>
-            
-            <div className="prose prose-slate max-w-none mb-12">
-              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-                Sometimes, the most powerful tool is the <strong>simplest one</strong>. Whether you are balancing daily expenses or double-checking a retail invoice, a reliable basic calculator is an essential utility.
-              </p>
-              <p className="text-slate-700 text-base leading-relaxed mb-6">
-                Our <strong>Standard Calculation Laboratory</strong> provides a clean, distraction-free environment for your daily arithmetic. Designed to follow the <strong>BODMAS order of operations</strong>, our engine ensures that even simple equations are handled with the same rigor and precision as our most advanced engineering tools.
-              </p>
-            </div>
-
-            <PillarFAQ faqs={SIMPLE_FAQS} title="Basic Arithmetic & Usage FAQ" />
-          </div>
-        </div>
-      </CalcWrapper>
-    </div>
+    <SimpleCalculator />
   );
 }

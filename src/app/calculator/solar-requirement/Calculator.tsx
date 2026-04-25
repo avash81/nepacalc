@@ -204,6 +204,14 @@ export default function SolarCalculator() {
           <div>
             <h2>How to Size a Solar Power System</h2>
             <p>Moving to solar energy is a major investment. Before purchasing panels or inverters, it is critical to properly size your system so that it generates enough power for your needs without overspending on excess capacity.</p>
+
+            <h2>Energy Guide: Solar Power in Nepal</h2>
+            <p className="font-medium">
+              With increasing electricity tariffs and a focus on renewable energy, solar power has become a mainstream solution for homes and businesses in Nepal. Accurate <strong>load calculation</strong> is the first step toward energy independence.
+            </p>
+            <p>
+              Our <strong>Solar Requirement Laboratory</strong> helps you size your system correctly. By analyzing your daily wattage consumption and desired backup hours, our engine provides a clear recommendation for <strong>Photovoltaic (PV) panel wattage</strong> and battery Ampere-hour (Ah) capacity, ensuring you never run out of light.
+            </p>
             
             <h3>Understanding Peak Sun Hours</h3>
             <p>A "peak sun hour" is not the total hours the sun is up; it represents an hour when the intensity of sunlight reaches 1,000 watts per square meter. Even if the sun is visible for 12 hours, you may only get 4 to 5 peak sun hours per day. Nepal is generally an excellent location for solar, averaging around 4.5 peak sun hours.</p>

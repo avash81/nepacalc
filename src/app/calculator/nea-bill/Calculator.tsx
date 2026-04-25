@@ -69,6 +69,7 @@ export default function NEABillCalculator() {
 
   return (
     <ModernCalcLayout
+      slug="nea-bill"
       crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Electricity Bill Calculator' }]}
       title="NEA Electricity Bill Calculator"
       description="Professional slab-based bill estimation for Nepal Electricity Authority (NEA) domestic consumers. Accurate for the latest 2081/82 tariff schedules."
@@ -170,6 +171,30 @@ export default function NEABillCalculator() {
                    The 0-20 unit slab has a Rs. 0 energy charge but requires a mandatory minimum service charge depending on your connection capacity (e.g. Rs. 30 for 5A).
                 </p>
              </div>
+          </div>
+        </div>
+      }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Precision Electricity Tariff Analytics</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Unlike a financial <strong className="text-[#202124]">treasury bill calculator</strong> that tracks bond yields, our NEA domestic tariff engine maps the highly progressive physical consumption slabs enforced by the Nepal Electricity Authority. The algorithm processes discrete unit blocks (0-20, 21-30, up to 400+) to generate what our users often call a <strong className="text-[#202124]">big beautiful bill calculator</strong> due to its exact accuracy matching the official NEA printed invoices.
+              </p>
+              <p>
+                When dealing with massive infrastructure scales where energy outputs can range from kilowatts up to theoretical levels reaching a <strong className="text-[#202124]">million billion trillion quintillion septillion octillion</strong> joules on the national grid, individual consumer billing demands high-precision floating-point math. When calculating the final 13% VAT, the system must <strong className="text-[#202124]">round to the nearest tenth</strong> or <strong className="text-[#202124]">round to the nearest hundredth</strong> precisely as the NEA billing software dictates, ensuring zero discrepancy between your estimated and actual liability.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Rounding & Service Charges</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Decimal Precision:</strong> When you compute the 13% Value Added Tax on top of progressive slabs, the fractional paisa amounts require <strong className="text-[#202124]">rounding to the nearest tenth</strong> and <strong className="text-[#202124]">rounding to the nearest hundredth</strong>. The engine mirrors the NEA's exact rounding policy for financial compliance.</li>
+              <li><strong className="text-[#188038]">Connection-Linked Fixed Charges:</strong> Your base cost shifts mathematically based on your Amperage (5A, 15A, 30A). This is not a percentage but a flat integer threshold that steps up dynamically based on the highest consumption slab breached.</li>
+              <li><strong className="text-[#D93025]">Piecewise Linear Functions:</strong> The tariff is not a simple multiplication but a piecewise linear function. Crossing from 150 to 151 units doesn't re-rate all your previous units; it only subjects the 151st unit to the higher rate.</li>
+            </ul>
           </div>
         </div>
       }

@@ -99,6 +99,30 @@ export default function KUKLCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Decoding KUKL Water Tariffs</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Navigating monthly utilities in the Kathmandu Valley requires understanding the specific tariff structures set by Kathmandu Upatyaka Khanepani Limited. Our <strong className="text-[#202124]">kukl water bill calculation nepal</strong> engine is designed to instantly parse these fixed and variable costs. Whether you are using a standard 0.5-inch residential connection or a high-capacity 0.75-inch pipe, the algorithm automatically maps your meter units against the exact <strong className="text-[#202124]">kukl tariff rate 2081</strong> limits.
+              </p>
+              <p>
+                Unlike standard power utilities, water billing includes mandatory civic overheads. Before you attempt a <strong className="text-[#202124]">khanepani bill check online</strong>, this tool allows you to pre-audit your expected invoice by projecting both the baseline water consumption charge and the strictly enforced <strong className="text-[#202124]">sewerage tax nepal water bill</strong> additions.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The Billing Architecture</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Volumetric Minimums:</strong> The KUKL matrix establishes a base protection floor. For 0.5-inch connections, the minimum monthly charge covers up to 10,000 liters (10 units). Dropping below this usage does not reduce the base fee.</li>
+              <li><strong className="text-[#188038]">The 50% Sewerage Mandate:</strong> The most significant friction cost in the final bill is the civic sewerage tax. The algorithm strictly applies a mathematical 50% multiplier to the raw water charge to account for city drainage maintenance.</li>
+              <li><strong className="text-[#D93025]">Pipe Capacity Penalties:</strong> Upgrading from a 0.5-inch to a 0.75-inch connection fundamentally alters the base matrix. The minimum charge floor rises exponentially to account for the increased volumetric flow potential, regardless of actual usage.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Check your KUKL water meter and find the total units consumed for the month.", "Select your pipe connection size (most residential homes use 0.5 Inch).", "The calculator instantly computes your base charge, extra unit charge, and the mandatory sewerage tax.", "Note: 1 Unit on the meter equals 1,000 liters of water."] }}
       formula={{ title: "KUKL Tariff Structure (0.5 Inch)", description: "Based on official KUKL rates.", raw: "Minimum Charge (Up to 10 Units) = Rs. 100\nExtra Unit Rate (Above 10) = ~Rs. 32 per unit\n\nBase Water Charge = Minimum Charge + (Extra Units × Rate)\nSewerage Tax = Base Water Charge × 50%\n\nTotal Bill = Base Water Charge + Sewerage Tax" }}
       faqs={[

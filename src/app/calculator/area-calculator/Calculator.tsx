@@ -103,6 +103,30 @@ export default function AreaCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering Geometric Surface Calculations</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Surface area is one of the most fundamental measurements in both theoretical mathematics and practical engineering. Our <strong className="text-[#202124]">area calculator</strong> is an all-in-one geometry engine designed to compute the exact footprint of 2D shapes. Whether you are a student solving a geometry proof or a contractor in Kathmandu estimating the number of tiles required for a project, precision is non-negotiable.
+              </p>
+              <p>
+                A common pitfall in surface calculation is unit inconsistency. This <strong className="text-[#202124]">shape area calculator</strong> assumes that all inputs are provided in the same linear unit (e.g., all meters or all feet). The resulting output will always be in "square units," which represents the total 2D space occupied by the shape on a flat plane.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Shape-Specific Mathematical Insights</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Circles & The Pi Constant:</strong> Calculating the <strong>area of a circle</strong> requires the irrational number Pi (~3.14159). Our engine uses a high-precision constant to ensure that for everything from piping diameter to circular architectural elements, your results are mathematically robust.</li>
+              <li><strong className="text-[#188038]">Triangles & Trapezoids:</strong> These shapes are frequently encountered in irregular land plots in Nepal. Using the <strong>base and height method</strong>, we provide a quick way to decompose complex 2D landscapes into manageable geometric segments.</li>
+              <li><strong className="text-[#D93025]">Practical Application:</strong> In construction and tailoring, area estimation directly correlates to cost. By using a <strong>standard area formula</strong> for rectangles and squares, users can minimize waste and optimize material procurement, saving significant resources in long-term projects.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Select the 2D shape you want to analyze from the toggle grid.", "Enter the required dimensions (side, radius, base, height).", "The area calculates instantly based on standard geometric formulas."] }}
       formula={{ title: "Geometric Area Formulas", description: "Standard surface area formulas.", raw: "Square: Area = side × side\nRectangle: Area = width × height\nCircle: Area = π × radius²\nTriangle: Area = 0.5 × base × height\nTrapezoid: Area = 0.5 × (base1 + base2) × height" }}
       faqs={[

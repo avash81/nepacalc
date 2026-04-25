@@ -44,6 +44,14 @@ export const metadata: Metadata = {
     description: "Use professional online calculators for Nepal income tax EMI GPA and engineering. Engineered for academic and financial precision. Try NepaCal now",
     url: 'https://nepacalc.com',
     siteName: 'NEPACALC',
+    images: [
+      {
+        url: '/logo.png',
+        width: 800,
+        height: 800,
+        alt: 'NepaCal Logo',
+      },
+    ],
     locale: 'en_NP',
     type: 'website',
   },
@@ -58,6 +66,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Free Online Calculators for Nepal NepaCal",
     description: "Nepals leading utility laboratory for high precision mathematical tools and financial planning. Try NepaCal now",
+    images: ['/logo.png'],
   },
 };
 

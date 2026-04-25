@@ -129,6 +129,30 @@ export default function NepalAttendanceCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering the 75% Academic Mandate</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                In the highly structured academic environments of Nepalese institutions, meeting the mandatory attendance threshold is not optional. Our <strong className="text-[#202124]">tu attendance calculator nepal</strong> is specifically tailored for the stringent rules of Tribhuvan University, Pokhara University (PU), and Kathmandu University (KU), where physical presence is deeply tied to exam eligibility.
+              </p>
+              <p>
+                As a precise <strong className="text-[#202124]">pu attendance percentage calculator</strong>, this engine moves beyond simple fractions. By calculating exactly how many consecutive future classes you need to attend, it acts as a strategic <strong className="text-[#202124]">university attendance tracker nepal</strong>, allowing you to mathematically recover from absences before the semester ends.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The NQ (Not Qualified) Penalty</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Absolute Thresholds:</strong> Most faculties enforce a strict <strong className="text-[#202124]">minimum 75 attendance nq</strong> rule. Falling to 74.9% mathematically disqualifies you from receiving your admit card for final board examinations, forcing a year back or a semester repeat.</li>
+              <li><strong className="text-[#188038]">Predictive Buffers:</strong> If you are currently above the threshold, the algorithm reverses the equation to calculate your "buffer"—the exact number of future classes you can safely skip without breaking the 75% baseline.</li>
+              <li><strong className="text-[#D93025]">Condonation Limits:</strong> While Deans have the authority to condone up to a 5% shortage (reducing the requirement to 70%), this is strictly reserved for documented emergencies (e.g., hospitalization) and cannot be relied upon as a standard academic buffer.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Find out the total number of classes (lectures or practicals) conducted by your professor so far.", "Enter the number of those classes you were physically present for.", "Select your university's required threshold (usually 75%).", "If you are short, the calculator will tell you exactly how many consecutive classes you must attend to cross the threshold."] }}
       formula={{ title: "Eligibility Math", description: "Algebraic projection.", raw: "Current % = (Attended / Total) × 100\n\nIf short, classes needed (x) is found by solving:\n(Attended + x) / (Total + x) = Threshold%\n\nx = (Threshold × Total - Attended) / (1 - Threshold)" }}
       faqs={[

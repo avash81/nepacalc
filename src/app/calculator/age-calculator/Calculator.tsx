@@ -162,6 +162,30 @@ export default function AgeCalculator() {
           )}
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Precision Age Calculation for Documentation & Milestones</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                In the administrative landscape of Nepal, chronological precision is often a prerequisite for critical milestones. Whether you are applying for <strong>Lok Sewa Aayog</strong> examinations, verifying eligibility for a driving license, or processing citizenship and passport documentation, our <strong className="text-[#202124]">age calculator</strong> provides a legally reliable breakdown of years, months, and days. It eliminates the margin of error associated with manual subtraction.
+              </p>
+              <p>
+                While the <strong>Bikram Sambat (B.S.)</strong> calendar is our primary national standard, official age is frequently required in the <strong>Gregorian (A.D.)</strong> format for international opportunities and digital platforms. This tool acts as a bridge, ensuring that your chronological data is consistent across all your professional and personal profiles.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Life Statistics & Biological Insights</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Total Lifecycle Breakdown:</strong> Beyond just years, knowing your age in total months, weeks, and days offers a unique perspective on your journey. For researchers and health professionals, this <strong className="text-[#202124]">age in days calculator</strong> is vital for clinical assessments and longitudinal studies.</li>
+              <li><strong className="text-[#188038]">Astronomical Identity:</strong> Your date of birth anchors your zodiac sign. We integrate these traditional identifiers to provide a holistic view of your birth chart, blending Western astronomical data with modern chronological precision.</li>
+              <li><strong className="text-[#D93025]">Retirement & Eligibility Tracking:</strong> In the context of civil service and corporate policies in Nepal, the difference of a single day can determine retirement eligibility or exam participation. This tool serves as an audit engine for human resources and administrative planning.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
           "Select your Date of Birth using the calendar picker.",

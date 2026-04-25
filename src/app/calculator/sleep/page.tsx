@@ -35,39 +35,6 @@ const SLEEP_FAQS = [
 
 export default function Page() {
   return (
-    <div className="bg-white min-h-screen">
-      <CalcWrapper
-        title="Sleep Cycle Projector"
-        description="Advanced circadian rhythm engine for calculating optimal bedtime and wake-up windows based on standardized 90-minute REM cycles."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Sleep Calculator' }]}
-        isNepal={true}
-        relatedCalcs={[
-          { name: 'BMI Calculator', slug: 'bmi' },
-          { name: 'Water Intake', slug: 'water-intake' },
-          { name: 'Age Calculator', slug: 'age-calculator' }
-        ]}
-        formula="90-Minute Ultradian REM Cycle Protocol"
-      >
-        <SleepCalculator />
-        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-indigo-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
-              Recovery Guide: Sleep Optimization
-            </h2>
-            
-            <div className="prose prose-slate max-w-none mb-12">
-              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-                Sleep is the most powerful <strong>recovery tool</strong> for the human body. It's not just about how long you stay in bed, but how many complete sleep cycles you experience.
-              </p>
-              <p className="text-slate-700 text-base leading-relaxed mb-6">
-                Our <strong>Circadian Analytics Laboratory</strong> leverages the science of <strong>ultradian rhythms</strong>. By calculating the precise moments your brain naturally shifts between sleep cycles, we help you find the 'perfect' wake-up time, ensuring you start your day in Nepal feeling energized rather than groggy.
-              </p>
-            </div>
-
-            <PillarFAQ faqs={SLEEP_FAQS} title="Sleep Science & Health FAQ" />
-          </div>
-        </div>
-      </CalcWrapper>
-    </div>
+    <SleepCalculator />
   );
 }

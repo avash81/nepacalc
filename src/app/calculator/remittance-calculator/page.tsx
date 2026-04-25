@@ -35,39 +35,6 @@ const REMITTANCE_FAQS = [
 
 export default function Page() {
   return (
-    <div className="bg-white min-h-screen">
-      <CalcWrapper
-        title="Global Remittance Tracker"
-        description="High-authority comparison engine for exchange rates and remittance fees, ensuring the Nepalese diaspora maximizes their family's income."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Remittance' }]}
-        isNepal={true}
-        relatedCalcs={[
-          { name: 'Exchange Rates', slug: 'exchange-rate' },
-          { name: 'Income Tax', slug: 'nepal-income-tax' },
-          { name: 'Foreign Employment', slug: 'foreign-employment' }
-        ]}
-        formula="Net NPR = (Foreign Amount × Exchange Rate) - Service Fees"
-      >
-        <RemittanceCalculator />
-        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-blue-600 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
-              Diaspora Guide: Remitting to Nepal
-            </h2>
-            
-            <div className="prose prose-slate max-w-none mb-12">
-              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-                Remittance is the backbone of the Nepalese economy. For the millions of Nepalese working in the <strong>Gulf, Malaysia, and the West</strong>, finding the best exchange rate is the most direct way to support their families.
-              </p>
-              <p className="text-slate-700 text-base leading-relaxed mb-6">
-                Our <strong>Remittance Intelligence Laboratory</strong> compares the latest market rates from major providers. Beyond just conversion, we highlight the legal benefits of using formal channels—such as the <strong>10% reserved IPO quota</strong> and higher interest rates on remittance-specific savings accounts.
-              </p>
-            </div>
-
-            <PillarFAQ faqs={REMITTANCE_FAQS} title="Remittance & Banking FAQ" />
-          </div>
-        </div>
-      </CalcWrapper>
-    </div>
+    <RemittanceCalculator />
   );
 }

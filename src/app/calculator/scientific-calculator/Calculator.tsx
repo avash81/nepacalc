@@ -212,178 +212,217 @@ export default function ScientificCalculator() {
           {sL && <span className="text-yellow-400 text-[9px] font-bold uppercase">{sL}</span>}
           {aL && <span className="text-pink-300 text-[9px] font-bold uppercase">{aL}</span>}
        </div>
-       <button onClick={()=>press(act||label, sA, aA)} className={`w-full py-2 rounded-md transition-all font-bold text-[13px] border-b-4 active:border-b-0 active:translate-y-[2px] ${cls || 'bg-white text-black border-slate-300 hover:bg-slate-100 shadow-md'}`}>{label}</button>
-    </div>
-  );
-  return (
-    <div className="w-full min-h-screen pb-24 lg:pb-0">
-      {/* ── MOBILE LAYOUT (phones < lg) ─────────────────────────────────── */}
-      <div className="lg:hidden flex flex-col bg-slate-200 min-h-screen px-4 py-6">
-        <div className="text-center mb-4">
-          <div className="text-slate-700 font-black italic text-2xl tracking-tighter">CASIO <span className="text-xs font-normal not-italic tracking-widest opacity-60">SCIENTIFIC</span></div>
-          <div className="mt-2 inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
-            🖥️ Full scientific mode available on desktop
-          </div>
-        </div>
+       <button onClick={()=>press(act||label, sA, aA)} className={`w-full py-2 rounded-md transition-all font-bold text-[13px] border-b-4 active:border-b-0 active:translate-y-[2px] ${cls || 'bg-white text-black border-slate-300 hove  return (
+    <ModernCalcLayout
+      crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Scientific Calculator' }]}
+      title="Scientific Calculator"
+      description="Professional online scientific calculator with trigonometry, logs, and power functions. Industrial-grade mathematical engine for advanced algebraic calculations."
+      icon={Calculator}
+      fullWidth={true}
+      inputs={
+        <div className="w-full">
+          {/* ── MOBILE LAYOUT (phones < lg) ─────────────────────────────────── */}
+          <div className="lg:hidden flex flex-col bg-slate-200 min-h-screen px-4 py-6">
+            <div className="text-center mb-4">
+              <div className="text-slate-700 font-black italic text-2xl tracking-tighter">CASIO <span className="text-xs font-normal not-italic tracking-widest opacity-60">SCIENTIFIC</span></div>
+              <div className="mt-2 inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
+                🖥️ Full scientific mode available on desktop
+              </div>
+            </div>
 
-        {/* Mobile Display */}
-        <div className="bg-[#151c14] rounded-2xl border-4 border-black p-5 mb-4 font-mono">
-          <div className="flex justify-between text-[10px] text-green-500/60 font-bold uppercase mb-3">
-            <span className={shift ? 'text-yellow-400 font-black' : ''}>SHIFT</span>
-            <span className={alpha ? 'text-pink-400 font-black' : ''}>ALPHA</span>
-            <span>{angleMode}</span>
-          </div>
-          <div className="text-green-400 text-sm overflow-hidden whitespace-nowrap mb-1 opacity-70">{expressions[activeIndex] || '0'}</div>
-          <div className="text-green-400 text-4xl font-black text-right leading-none">{display}</div>
-        </div>
+            {/* Mobile Display */}
+            <div className="bg-[#151c14] rounded-2xl border-4 border-black p-5 mb-4 font-mono">
+              <div className="flex justify-between text-[10px] text-green-500/60 font-bold uppercase mb-3">
+                <span className={shift ? 'text-yellow-400 font-black' : ''}>SHIFT</span>
+                <span className={alpha ? 'text-pink-400 font-black' : ''}>ALPHA</span>
+                <span>{angleMode}</span>
+              </div>
+              <div className="text-green-400 text-sm overflow-hidden whitespace-nowrap mb-1 opacity-70">{expressions[activeIndex] || '0'}</div>
+              <div className="text-green-400 text-4xl font-black text-right leading-none">{display}</div>
+            </div>
 
-        {/* Mobile Key Rows */}
-        <div className="bg-[#1e2024] rounded-3xl p-5 flex flex-col gap-3">
-          {/* Utility row */}
-          <div className="grid grid-cols-4 gap-2">
-            {[
-              ['SHIFT','bg-amber-500 text-white border-amber-800','SHIFT'],
-              ['ALPHA','bg-purple-600 text-white border-purple-900','ALPHA'],
-              ['DEL','bg-red-600 text-white border-red-900','DEL'],
-              ['AC','bg-red-600 text-white border-red-900','AC'],
-            ].map(([l,c,a]) => (
-              <button key={l} onClick={() => exec(a)} className={`py-3 rounded-lg font-black text-xs border-b-4 active:border-b-0 active:translate-y-[2px] transition-all ${c}`}>{l}</button>
-            ))}
-          </div>
-          {/* Trig row */}
-          <div className="grid grid-cols-4 gap-2">
-            {[['sin','sin('],['cos','cos('],['tan','tan('],['√','sqrt(']].map(([l,a]) => (
-              <button key={l} onClick={() => exec(a)} className="py-3 rounded-lg font-bold text-sm bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0 active:translate-y-[2px]">{l}</button>
-            ))}
-          </div>
-          {/* Log / power row */}
-          <div className="grid grid-cols-4 gap-2">
-            {[['log10','log10('],['ln','ln('],['x²','^2'],['( )','(']].map(([l,a]) => (
-              <button key={l} onClick={() => exec(a)} className="py-3 rounded-lg font-bold text-sm bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0 active:translate-y-[2px]">{l}</button>
-            ))}
-          </div>
-          {/* Number pad */}
-          {[[7,8,9],[4,5,6],[1,2,3]].map(row => (
-            <div key={row[0]} className="grid grid-cols-5 gap-2">
-              {row.map(n => (
-                <button key={n} onClick={() => exec(String(n))} className="col-span-1 py-4 rounded-lg font-black text-lg bg-white text-black border-b-4 border-slate-300 active:border-b-0 active:translate-y-[2px]">{n}</button>
+            {/* Mobile Key Rows */}
+            <div className="bg-[#1e2024] rounded-3xl p-5 flex flex-col gap-3">
+              {/* Utility row */}
+              <div className="grid grid-cols-4 gap-2">
+                {[
+                  ['SHIFT','bg-amber-500 text-white border-amber-800','SHIFT'],
+                  ['ALPHA','bg-purple-600 text-white border-purple-900','ALPHA'],
+                  ['DEL','bg-red-600 text-white border-red-900','DEL'],
+                  ['AC','bg-red-600 text-white border-red-900','AC'],
+                ].map(([l,c,a]) => (
+                  <button key={l} onClick={() => exec(a)} className={`py-3 rounded-lg font-black text-xs border-b-4 active:border-b-0 active:translate-y-[2px] transition-all ${c}`}>{l}</button>
+                ))}
+              </div>
+              {/* Trig row */}
+              <div className="grid grid-cols-4 gap-2">
+                {[['sin','sin('],['cos','cos('],['tan','tan('],['√','sqrt(']].map(([l,a]) => (
+                  <button key={l} onClick={() => exec(a)} className="py-3 rounded-lg font-bold text-sm bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0 active:translate-y-[2px]">{l}</button>
+                ))}
+              </div>
+              {/* Log / power row */}
+              <div className="grid grid-cols-4 gap-2">
+                {[['log10','log10('],['ln','ln('],['x²','^2'],['( )','(']].map(([l,a]) => (
+                  <button key={l} onClick={() => exec(a)} className="py-3 rounded-lg font-bold text-sm bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0 active:translate-y-[2px]">{l}</button>
+                ))}
+              </div>
+              {/* Number pad */}
+              {[[7,8,9],[4,5,6],[1,2,3]].map(row => (
+                <div key={row[0]} className="grid grid-cols-5 gap-2">
+                  {row.map(n => (
+                    <button key={n} onClick={() => exec(String(n))} className="col-span-1 py-4 rounded-lg font-black text-lg bg-white text-black border-b-4 border-slate-300 active:border-b-0 active:translate-y-[2px]">{n}</button>
+                  ))}
+                  {row[0] === 7 && <><button onClick={() => exec('÷')} className="py-4 rounded-lg font-black text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">÷</button><button onClick={() => exec('×')} className="py-4 rounded-lg font-black text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">×</button></>}
+                  {row[0] === 4 && <><button onClick={() => exec('-')} className="py-4 rounded-lg font-black text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">−</button><button onClick={() => exec('+')} className="py-4 rounded-lg font-black text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">+</button></>}
+                  {row[0] === 1 && <><button onClick={() => exec('.')} className="py-4 rounded-lg font-black text-lg bg-white text-black border-b-4 border-slate-300 active:border-b-0">.</button><button onClick={() => exec('=')} className="py-4 rounded-lg font-black text-lg bg-blue-600 text-white border-b-4 border-blue-900 active:border-b-0">=</button></>}
+                </div>
               ))}
-              {row[0] === 7 && <><button onClick={() => exec('÷')} className="py-4 rounded-lg font-black text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">÷</button><button onClick={() => exec('×')} className="py-4 rounded-lg font-black text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">×</button></>}
-              {row[0] === 4 && <><button onClick={() => exec('-')} className="py-4 rounded-lg font-black text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">−</button><button onClick={() => exec('+')} className="py-4 rounded-lg font-black text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">+</button></>}
-              {row[0] === 1 && <><button onClick={() => exec('.')} className="py-4 rounded-lg font-black text-lg bg-white text-black border-b-4 border-slate-300 active:border-b-0">.</button><button onClick={() => exec('=')} className="py-4 rounded-lg font-black text-lg bg-blue-600 text-white border-b-4 border-blue-900 active:border-b-0">=</button></>}
+              <div className="grid grid-cols-3 gap-2 mt-1">
+                <button onClick={() => exec('0')} className="col-span-1 py-4 rounded-lg font-black text-lg bg-white text-black border-b-4 border-slate-300 active:border-b-0">0</button>
+                <button onClick={() => exec('(')} className="py-4 rounded-lg font-bold text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">(</button>
+                <button onClick={() => exec(')')} className="py-4 rounded-lg font-bold text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">)</button>
+              </div>
             </div>
-          ))}
-          <div className="grid grid-cols-3 gap-2 mt-1">
-            <button onClick={() => exec('0')} className="col-span-1 py-4 rounded-lg font-black text-lg bg-white text-black border-b-4 border-slate-300 active:border-b-0">0</button>
-            <button onClick={() => exec('(')} className="py-4 rounded-lg font-bold text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">(</button>
-            <button onClick={() => exec(')')} className="py-4 rounded-lg font-bold text-lg bg-slate-700 text-white border-b-4 border-slate-900 active:border-b-0">)</button>
-          </div>
-        </div>
-      </div>
-
-      {/* ── DESKTOP LAYOUT (≥ lg only) ────────────────────────────────────── */}
-      <div className="hidden lg:flex justify-center py-10 bg-slate-200 px-4 overflow-auto">
-        <div className="flex flex-row w-full max-w-[1240px] bg-[#1e2024] rounded-[4rem] overflow-hidden border-[16px] border-[#2d2f34] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] relative">
-        
-        {/* HARWARE INTERFACE */}
-        <div className="w-full lg:w-[600px] p-8 sm:p-14 lg:p-16 border-b-8 lg:border-b-0 lg:border-r-8 border-black/20 flex flex-col relative z-10">
-          
-          <div className="flex justify-between items-end px-2 mb-6">
-            <div className="text-white font-black italic text-3xl tracking-tighter drop-shadow-md">CASIO <span className="text-[12px] font-normal not-italic opacity-50 ml-1 tracking-widest">SCIENTIFIC MASTER</span></div>
-            <div className="text-slate-400 text-[10px] uppercase tracking-widest hidden lg:block border-l border-white/10 pl-3">TI-Nspire CAS Mode</div>
           </div>
 
-          <div className="bg-[#151c14] min-h-[200px] p-8 rounded-2xl border-[8px] border-[#16181b] shadow-[inset_0_20px_50px_rgba(0,0,0,0.8)] flex flex-col font-mono text-green-500 relative overflow-hidden">
-            {!isOff && (
-               <>
-                <div className="flex justify-between items-center text-[11px] border-b border-green-500/20 pb-1 mb-4 font-black uppercase tracking-tighter">
-                  <div className="flex gap-4">
-                    <span className={shift?'bg-green-500 text-black px-1.5 rounded-sm':''}>S</span>
-                    <span className={alpha?'bg-green-500 text-black px-1.5 rounded-sm':''}>A</span>
-                    <span className={stoMode?'bg-blue-500 text-white px-1.5 rounded-sm':''}>STO</span>
-                    <span>f{activeIndex+1}</span>
-                  </div>
-                  <div>{angleMode}</div>
+          {/* ── DESKTOP LAYOUT (≥ lg only) ────────────────────────────────────── */}
+          <div className="hidden lg:flex justify-center py-1 bg-slate-200 px-4 overflow-hidden">
+            <div className="flex flex-row w-full max-w-[1240px] bg-[#1e2024] rounded-[2rem] overflow-hidden border-[8px] border-[#2d2f34] shadow-2xl relative">
+            
+            {/* HARWARE INTERFACE */}
+            <div className="w-full lg:w-[500px] p-8 border-b-8 lg:border-b-0 lg:border-r-8 border-black/20 flex flex-col relative z-10">
+              
+              <div className="flex justify-between items-end px-2 mb-6">
+                <div className="text-white font-black italic text-2xl tracking-tighter drop-shadow-md">CASIO <span className="text-[10px] font-normal not-italic opacity-50 ml-1 tracking-widest">SCIENTIFIC</span></div>
+              </div>
+
+              <div className="bg-[#151c14] min-h-[160px] p-6 rounded-xl border-[6px] border-[#16181b] shadow-[inset_0_10px_30px_rgba(0,0,0,0.8)] flex flex-col font-mono text-green-500 relative overflow-hidden">
+                {!isOff && (
+                   <>
+                    <div className="flex justify-between items-center text-[10px] border-b border-green-500/20 pb-1 mb-3 font-black uppercase tracking-tighter">
+                      <div className="flex gap-4">
+                        <span className={shift?'bg-green-500 text-black px-1.5 rounded-sm':''}>S</span>
+                        <span className={alpha?'bg-green-500 text-black px-1.5 rounded-sm':''}>A</span>
+                        <span className={stoMode?'bg-blue-500 text-white px-1.5 rounded-sm':''}>STO</span>
+                        <span>f{activeIndex+1}</span>
+                      </div>
+                      <div>{angleMode}</div>
+                    </div>
+                    <div className="text-2xl mt-1 overflow-hidden whitespace-nowrap flex items-center">
+                       {expressions[activeIndex].slice(0, cursorIndex)}<span className="w-0.5 h-6 bg-green-500 animate-pulse" />{expressions[activeIndex].slice(cursorIndex) || '0'}
+                    </div>
+                    <div className="mt-auto text-6xl font-black text-right leading-none tracking-tighter drop-shadow-[0_0_10px_rgba(34,197,94,0.4)]">{display}</div>
+                   </>
+                )}
+                {qrBlob && <div className="absolute inset-0 bg-black/90 flex flex-col items-center justify-center animate-in fade-in transition-all"><img src={qrBlob} className="w-24 h-24 mb-2 p-2 bg-white rounded-lg shadow-xl" alt="QR Code"/><span className="text-[8px] uppercase font-black text-white px-2 py-1 bg-green-600 rounded">Shared Link Ready</span></div>}
+              </div>
+
+              {/* D-PAD */}
+              <div className="flex justify-between items-center mt-8 gap-4">
+                <div className="flex flex-col gap-2 flex-1">
+                   <SciBtn label="SHIFT" act="SHIFT" cls="bg-[#fb923c] text-white border-[#9a3412] h-10 rounded-lg" />
+                   <SciBtn label="ALPHA" alpha="A-LOCK" act="ALPHA" cls="bg-[#db2777] text-white border-[#831843] h-10 rounded-lg" />
                 </div>
-                <div className="text-3xl mt-1 overflow-hidden whitespace-nowrap flex items-center">
-                   {expressions[activeIndex].slice(0, cursorIndex)}<span className="w-0.5 h-6 bg-green-500 animate-pulse" />{expressions[activeIndex].slice(cursorIndex) || '0'}
+
+                <div className="w-[120px] h-[120px] relative bg-gradient-to-tr from-[#64748b] via-[#cbd5e1] to-[#f8fafc] rounded-full border-[4px] border-[#1e293b] shadow-xl flex items-center justify-center">
+                   <button onClick={()=>exec('UP')} className="absolute top-0 w-full h-[35%] flex items-center justify-center"><div className="w-0 h-0 border-l-[6px] border-r-[6px] border-b-[8px] border-[#1e293b]" /></button>
+                   <button onClick={()=>exec('DOWN')} className="absolute bottom-0 w-full h-[35%] flex items-center justify-center"><div className="w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-[#1e293b]" /></button>
+                   <button onClick={()=>exec('LEFT')} className="absolute left-0 h-full w-[35%] flex items-center justify-center"><div className="w-0 h-0 border-t-[6px] border-b-[6px] border-r-[8px] border-[#1e293b]" /></button>
+                   <button onClick={()=>exec('RIGHT')} className="absolute right-0 h-full w-[35%] flex items-center justify-center"><div className="w-0 h-0 border-t-[6px] border-b-[6px] border-l-[8px] border-[#1e293b]" /></button>
+                   <div className="w-10 h-10 bg-[#1e293b]/5 rounded-full border border-black/10 flex items-center justify-center"><div className="text-[8px] font-black text-[#1e293b]/30 tracking-widest uppercase">OK</div></div>
                 </div>
-                <div className="mt-auto text-7xl font-black text-right leading-none tracking-tighter drop-shadow-[0_0_10px_rgba(34,197,94,0.4)]">{display}</div>
-               </>
-            )}
-            {qrBlob && <div className="absolute inset-0 bg-black/90 flex flex-col items-center justify-center animate-in fade-in transition-all"><img src={qrBlob} className="w-32 h-32 mb-2 p-2 bg-white rounded-lg shadow-xl" alt="QR Code"/><span className="text-[10px] uppercase font-black text-white px-2 py-1 bg-green-600 rounded">Shared Link Ready</span></div>}
-          </div>
 
-          {/* D-PAD */}
-          <div className="flex justify-between items-center mt-12 gap-4">
-            <div className="flex flex-col gap-3 flex-1">
-               <SciBtn label="SHIFT" act="SHIFT" cls="bg-[#fb923c] text-white border-[#9a3412] h-12 rounded-xl" />
-               <SciBtn label="ALPHA" alpha="A-LOCK" act="ALPHA" cls="bg-[#db2777] text-white border-[#831843] h-12 rounded-xl" />
+                <div className="flex flex-col gap-2 flex-1 text-right">
+                   <button onClick={()=>press('MODE')} className="bg-slate-300 text-black border-b-[3px] border-slate-500 h-10 rounded-lg text-[9px] font-black uppercase">Setup</button>
+                   <button onClick={()=>press('ON')} className="bg-slate-300 text-black border-b-[3px] border-slate-500 h-10 rounded-lg text-[9px] font-black">ON</button>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-6 gap-x-2 gap-y-4 mt-8 px-1">
+                 <SciBtn label="OPTN" shift="QR" act="OPTN" sA="QR" /> 
+                 <SciBtn label="CALC" shift="SOLVE" sA="SIMPLIFY" /> 
+                 <SciBtn label="∫dx" shift="d/dx" act="∫" sA="DIFF" /> 
+                 <SciBtn label="x⁻¹" shift="x!" act="^-1" /> 
+                 <SciBtn label="log" shift="Σ" act="log10(" /> 
+                 <SciBtn label="ln" shift="eˣ" act="ln(" />
+                 {['(',')','x²','x^','log','ln'].map((l, i) => (
+                    <SciBtn key={i} label={l} shift={['b/c','∛','x³','nth√','10ˣ','eˣ'][i]} act={['(','sqrt(','^2','^','log10(','ln('][i]} />
+                 ))}
+                 <SciBtn label="(-)" shift="STO" alpha="A" act="(-)" sA="STO" aA="X" /> 
+                 <SciBtn label=".,," shift="←" alpha="B" act="," aA="Y" /> 
+                 <SciBtn label="hyp" shift="Abs" alpha="C" /> 
+                 <SciBtn label="sin" shift="sin⁻¹" alpha="D" act="sin(" sA="asin(" /> 
+                 <SciBtn label="cos" shift="cos⁻¹" alpha="E" act="cos(" sA="acos(" /> 
+                 <SciBtn label="tan" shift="tan⁻¹" alpha="F" act="tan(" sA="atan(" />
+              </div>
+
+              <div className="grid grid-cols-5 gap-x-3 gap-y-5 mt-8 px-1 pb-4">
+                 {[7,8,9].map(n => <NumBtn key={n} label={String(n)} />)}
+                 <NumBtn label="DEL" cls="bg-red-600 text-white border-red-900 h-12 rounded-lg" act="DEL" />
+                 <NumBtn label="AC" cls="bg-red-600 text-white border-red-900 h-12 rounded-lg" shift="OFF" act="AC" />
+                 {[4,5,6].map(n => <NumBtn key={n} label={String(n)} />)}
+                 <NumBtn label="×" act="×" /> <NumBtn label="÷" act="÷" />
+                 {[1,2,3].map(n => <NumBtn key={n} label={String(n)} />)}
+                 <NumBtn label="+" act="+" /> <NumBtn label="-" act="-" />
+                 <NumBtn label="0" /> <NumBtn label="." act="." /> 
+                 <NumBtn label="x10ˣ" shift="π" alpha="e" act="*10^" sA="pi" aA="e" /> 
+                 <NumBtn label="Ans" shift="DRG▶" act="ANS" sA="ANGLE" /> 
+                 <NumBtn label="=" act="=" cls="bg-blue-600 text-white border-blue-900 h-12 rounded-lg" />
+              </div>
             </div>
 
-            <div className="w-[160px] h-[160px] relative bg-gradient-to-tr from-[#64748b] via-[#cbd5e1] to-[#f8fafc] rounded-full border-[6px] border-[#1e293b] shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex items-center justify-center">
-               <button onClick={()=>exec('UP')} className="absolute top-0 w-full h-[35%] flex items-center justify-center"><div className="w-0 h-0 border-l-[8px] border-r-[8px] border-b-[10px] border-[#1e293b]" /></button>
-               <button onClick={()=>exec('DOWN')} className="absolute bottom-0 w-full h-[35%] flex items-center justify-center"><div className="w-0 h-0 border-l-[8px] border-r-[8px] border-t-[10px] border-[#1e293b]" /></button>
-               <button onClick={()=>exec('LEFT')} className="absolute left-0 h-full w-[35%] flex items-center justify-center"><div className="w-0 h-0 border-t-[8px] border-b-[8px] border-r-[10px] border-[#1e293b]" /></button>
-               <button onClick={()=>exec('RIGHT')} className="absolute right-0 h-full w-[35%] flex items-center justify-center"><div className="w-0 h-0 border-t-[8px] border-b-[8px] border-l-[10px] border-[#1e293b]" /></button>
-               <div className="w-16 h-16 bg-[#1e293b]/5 rounded-full border border-black/10 flex items-center justify-center"><div className="text-[10px] font-black text-[#1e293b]/30 tracking-widest uppercase">Select</div></div>
+            {/* MASTER VISUAL ENGINE */}
+            <div className="flex-1 bg-[#0f172a] relative overflow-hidden min-h-[500px] flex flex-col shadow-[inset_20px_0_60px_rgba(0,0,0,0.8)]">
+              <canvas ref={canvasRef} width={1000} height={1200} className="w-full h-full object-cover opacity-90" />
+              <div className="absolute top-6 right-6 flex flex-col items-end gap-2 pointer-events-none">
+                 <div className="px-3 py-1.5 border-r-4 border-blue-500 bg-blue-500/5 backdrop-blur-xl">
+                    <div className="text-blue-500 font-mono text-[10px] tracking-[4px] uppercase font-black">STEM_ENGINE_ACTIVE</div>
+                 </div>
+                 <div className="flex gap-3">
+                    {PLOT_COLORS.map((c, i) => <div key={c} className="flex items-center gap-2 px-2 py-0.5 bg-black/40 rounded border border-white/5"><div className="w-1.5 h-1.5 rounded-full" style={{backgroundColor:c}}/><span className="text-[8px] text-white/40 font-mono">f{i+1}</span></div>)}
+                 </div>
+              </div>
             </div>
 
-            <div className="flex flex-col gap-3 flex-1 text-right">
-               <button onClick={()=>press('MODE')} className="bg-slate-300 text-black border-b-[4px] border-slate-500 h-12 rounded-xl text-[10px] font-black uppercase">Setup</button>
-               <button onClick={()=>press('ON')} className="bg-slate-300 text-black border-b-[4px] border-slate-500 h-12 rounded-xl text-[10px] font-black">ON</button>
-            </div>
           </div>
-
-          <div className="grid grid-cols-6 gap-x-3 gap-y-6 mt-12 px-1">
-             <SciBtn label="OPTN" shift="QR" act="OPTN" sA="QR" /> 
-             <SciBtn label="CALC" shift="SOLVE" sA="SIMPLIFY" /> 
-             <SciBtn label="∫dx" shift="d/dx" act="∫" sA="DIFF" /> 
-             <SciBtn label="x⁻¹" shift="x!" act="^-1" /> 
-             <SciBtn label="log10" shift="Σ" act="log10(" /> 
-             <SciBtn label="ln" shift="eˣ" act="ln(" />
-             {['ab/c','√','x²','x^','log','ln'].map((l, i) => (
-                <SciBtn key={l} label={l} shift={['b/c','∛','x³','nth√','10ˣ','eˣ'][i]} act={['(','sqrt(','^2','^','log10(','ln('][i]} />
-             ))}
-             <SciBtn label="(-)" shift="STO" alpha="A" act="(-)" sA="STO" aA="X" /> 
-             <SciBtn label=".,," shift="←" alpha="B" act="," aA="Y" /> 
-             <SciBtn label="hyp" shift="Abs" alpha="C" /> 
-             <SciBtn label="sin" shift="sin⁻¹" alpha="D" act="sin(" sA="asin(" /> 
-             <SciBtn label="cos" shift="cos⁻¹" alpha="E" act="cos(" sA="acos(" /> 
-             <SciBtn label="tan" shift="tan⁻¹" alpha="F" act="tan(" sA="atan(" />
-          </div>
-
-          <div className="grid grid-cols-5 gap-x-4 gap-y-7 mt-12 px-1 pb-10">
-             {[7,8,9].map(n => <NumBtn key={n} label={String(n)} />)}
-             <NumBtn label="DEL" cls="bg-red-600 text-white border-red-900 h-14 rounded-xl" act="DEL" />
-             <NumBtn label="AC" cls="bg-red-600 text-white border-red-900 h-14 rounded-xl" shift="OFF" act="AC" />
-             {[4,5,6].map(n => <NumBtn key={n} label={String(n)} />)}
-             <NumBtn label="×" act="×" /> <NumBtn label="÷" act="÷" />
-             {[1,2,3].map(n => <NumBtn key={n} label={String(n)} />)}
-             <NumBtn label="+" act="+" /> <NumBtn label="-" act="-" />
-             <NumBtn label="0" /> <NumBtn label="." act="." /> 
-             <NumBtn label="x10ˣ" shift="π" alpha="e" act="*10^" sA="pi" aA="e" /> 
-             <NumBtn label="Ans" shift="DRG▶" act="ANS" sA="ANGLE" /> 
-             <NumBtn label="=" act="=" cls="bg-blue-600 text-white border-blue-900 h-14 rounded-xl" />
           </div>
         </div>
+      }
+      results={null}
+      howToUse={{
+        steps: [
+          "Desktop: Use the interactive Casio interface to enter complex expressions. The right panel will plot functions containing 'x' automatically.",
+          "Mobile: A streamlined interface is provided for quick calculations. Switch to desktop for full CAS and graphing capabilities.",
+          "Functions: Supports sin, cos, tan, log, ln, sqrt, and exponents. Use SHIFT to access secondary functions in yellow.",
+          "Graphing: Type expressions like 'sin(x)' or 'x^2' to see the real-time visual plot in the engine."
+        ]
+      }}
+      faqs={[
+        {
+          question: "What advanced functions are supported by this calculator?",
+          answer: "Our engine supports full trigonometry (sin, cos, tan), logarithmic functions (log, ln), exponents (x^y), square roots, and basic algebraic parsing."
+        },
+        {
+          question: "How do I use trigonometric functions correctly?",
+          answer: "You can toggle between Degree and Radian modes using the ANGLE button (SHIFT + ANS). Ensure your input matches the mode selected for accurate results in geometry and calculus."
+        }
+      ]}
+      seoContent={
+        <div>
+           <h2>Scientific Guide: Advanced Computing</h2>
+           <p>
+             Advanced mathematics requires more than simple arithmetic—it requires a <strong>robust computational framework</strong> that respects universal laws of priority and precision.
+             Our <strong>Advanced Computing Laboratory</strong> is built for the high-rigor environments of university-level science and engineering in Nepal. From <strong>trigonometric modeling</strong> to solving complex power series, our cloud-based engine provides a responsive, error-free alternative to traditional handheld scientific hardware.
+           </p>
 
-        {/* MASTER VISUAL ENGINE */}
-        <div className="flex-1 bg-[#0f172a] relative overflow-hidden min-h-[600px] flex flex-col shadow-[inset_30px_0_100px_rgba(0,0,0,0.8)]">
-          <canvas ref={canvasRef} width={1000} height={1200} className="w-full h-full object-cover opacity-90" />
-          <div className="absolute top-10 right-10 flex flex-col items-end gap-3 pointer-events-none">
-             <div className="px-4 py-2 border-r-4 border-blue-500 bg-blue-500/5 backdrop-blur-xl">
-                <div className="text-blue-500 font-mono text-xs tracking-[6px] uppercase font-black">MASTER_STEM_ENGINE_ACTIVE</div>
-                <div className="text-white/20 font-mono text-[8px] uppercase tracking-widest mt-1">Symbolic Logic: TI-Nspire CAS Mode</div>
-             </div>
-             <div className="flex gap-4">
-                {PLOT_COLORS.map((c, i) => <div key={c} className="flex items-center gap-2 px-2 py-1 bg-black/40 rounded border border-white/5"><div className="w-2 h-2 rounded-full" style={{backgroundColor:c}}/><span className="text-[9px] text-white/40 font-mono">f{i+1}</span></div>)}
-             </div>
-          </div>
+           <h2>Professional STEM Engine</h2>
+           <p>
+             Our scientific calculator uses a Computer Algebra System (CAS) inspired engine to provide symbolic results where possible. 
+             It is designed to follow PEMDAS/BODMAS rules strictly, ensuring that nested operations are handled correctly. 
+             Whether you are preparing for IOE entrance exams or working on civil engineering designs, this tool provides the accuracy you need.
+           </p>
         </div>
-
-      </div>
-      </div>
-    </div>
+      }
+    />
   );
 }

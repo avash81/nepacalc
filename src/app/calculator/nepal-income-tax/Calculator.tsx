@@ -52,6 +52,7 @@ export default function NepalIncomeTaxCalculator() {
 
   return (
     <ModernCalcLayout
+      slug="nepal-income-tax"
       crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Income Tax Calculator' }]}
       title="Nepal Income Tax Dashboard"
       description="Professional tax laboratory for FY 2081/82. Includes SSF SST-waiver, female rebates, and deduction mapping."
@@ -174,6 +175,30 @@ export default function NepalIncomeTaxCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Precision Net Income Calculator & Tax Engine 2024/2025</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Navigating the complexities of Nepal's Inland Revenue Department (IRD) taxation logic requires more than a simple percentage check. Our <strong className="text-[#202124]">tax calculator 2024</strong> and <strong className="text-[#202124]">tax calculator 2025</strong> algorithms are engineered to process exact progressive bracket mathematics. As a definitive <strong className="text-[#202124]">net income calculator</strong> for Nepalese professionals, this tool maps your gross salary through the 1%, 10%, 20%, 30%, 36%, and 39% brackets with absolute precision.
+              </p>
+              <p>
+                Whether you need a reliable <strong className="text-[#202124]">monthly income calculator</strong> to forecast your take-home pay or a comprehensive annual audit, the underlying mathematical model dynamically applies the Social Security Fund (SSF) exemptions, shifting the base 1% Social Security Tax liability to zero for verified contributors.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Framework & Rebate Logic</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Section 11 Rebates:</strong> Female professionals receive a mathematical 10% reduction on total tax liability, calculated <span className="italic">after</span> the bracket accumulation.</li>
+              <li><strong className="text-[#188038]">Deduction Ceiling Logic:</strong> The engine caps CIT (Citizen Investment Trust) deductions at the mathematical minimum of either Rs. 500,000 or 1/3rd of total assessable income.</li>
+              <li><strong className="text-[#D93025]">Marginal Tax Smoothing:</strong> As income crosses the Rs. 500,000 (Single) or Rs. 600,000 (Married) thresholds, the algorithm applies continuous piecewise functions to prevent abrupt jumps in effective tax rates.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
           "Enter your gross income (Monthly or Annual) into the salary field.",
@@ -205,10 +230,10 @@ export default function NepalIncomeTaxCalculator() {
       sidebar={{
         title: "Related Finance Tools",
         links: [
-          { label: "Salary Calculator", href: "/calculator/nepal-salary" },
-          { label: "TDS Calculator", href: "/calculator/nepal-tds-calculator" },
-          { label: "VAT Calculator", href: "/calculator/nepal-vat" },
-          { label: "Investment (SIP)", href: "/calculator/sip-calculator" },
+          { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
+          { label: "TDS Calculator", href: "/calculator/nepal-tds-calculator/" },
+          { label: "VAT Calculator", href: "/calculator/nepal-vat/" },
+          { label: "Investment (SIP)", href: "/calculator/sip-calculator/" },
         ],
         banner: {
           title: "Maximize Your Savings",
@@ -217,9 +242,9 @@ export default function NepalIncomeTaxCalculator() {
         }
       }}
       relatedTools={[
-        { label: "Salary Calculator", href: "/calculator/nepal-salary" },
-        { label: "TDS Calculator", href: "/calculator/nepal-tds-calculator" },
-        { label: "VAT Calculator", href: "/calculator/nepal-vat" }
+        { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
+        { label: "TDS Calculator", href: "/calculator/nepal-tds-calculator/" },
+        { label: "VAT Calculator", href: "/calculator/nepal-vat/" }
       ]}
     />
   );

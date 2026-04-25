@@ -97,6 +97,30 @@ export default function GratuityCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Precision Terminal Benefits Engine</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Navigating end-of-service entitlements requires absolute precision to ensure compliance with the Department of Labor. Our <strong className="text-[#202124]">gratuity calculator nepal</strong> is specifically modeled around the <strong className="text-[#202124]">labor act 2074 gratuity</strong> provisions. It programmatically enforces the statutory requirement that an employer must accrue exactly 8.33% of an employee's Basic Salary for every month worked from day one.
+              </p>
+              <p>
+                A critical feature of this tool is its evaluation of <strong className="text-[#202124]">gratuity eligibility nepal</strong>. While the fund begins accumulating immediately, actual legal entitlement to withdraw the accumulated corpus generally requires the completion of 5 continuous years of service. If you are enrolled in the <strong className="text-[#202124]">ssf gratuity nepal</strong> scheme, the logic differs slightly as the funds are locked within the state-run Social Security Fund rather than an internal corporate ledger.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Framework & Taxation</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">The 8.33% Constant:</strong> The algorithm mathematically defines a year's gratuity as exactly 1 month of your basic salary (since 8.33% × 12 months = ~100%). It operates strictly on the Basic component, excluding allowances.</li>
+              <li><strong className="text-[#188038]">Fractional Years:</strong> The engine accepts decimal inputs (e.g., 5.5 years) to ensure that mid-year resignations are accurately prorated according to the exact number of months worked.</li>
+              <li><strong className="text-[#D93025]">Tax Exemptions:</strong> When computing <strong className="text-[#202124]">gratuity tax nepal</strong>, the system isolates the tax-exempt threshold (typically 50% of the total or up to NPR 5 Lakhs, depending on the fund's approval status with the IRD). Any accumulated value exceeding this threshold is automatically subjected to a flat 15% withholding tax.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Enter your monthly BASIC salary. Do not include travel, food, or other allowances.", "Enter the total number of years you have worked for the company.", "The system will verify your eligibility (requires 5 years) and calculate your total accumulated fund.", "Review the tax-exempt and taxable portions of your payout."] }}
       formula={{ title: "Gratuity Calculation (New Act)", description: "Mandatory 8.33% accumulation.", raw: "Monthly Contribution = Basic Salary × 8.33%\nYearly Gratuity = Basic Salary × (8.33% × 12) = 1 Month Basic Salary\n\nTotal Fund = 1 Month Basic Salary × Years of Service" }}
       faqs={[

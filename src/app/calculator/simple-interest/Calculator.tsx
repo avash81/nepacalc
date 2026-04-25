@@ -159,6 +159,30 @@ export default function SimpleInterestCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Understanding Simple Interest in Financial Planning</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Simple interest remains the most fundamental building block of financial literacy. Unlike complex compounding models, our <strong className="text-[#202124]">simple interest calculator</strong> utilizes the standard linear formula to project growth where the principal remains static. This is essential for evaluating short-term credit facilities, pawnshop valuations, and certain types of treasury instruments where interest is paid out rather than reinvested.
+              </p>
+              <p>
+                In the Nepalese market, while most commercial banks (A-Class) utilize compounding for savings, many local <strong>Cooperatives (Sahakari)</strong> and informal lending arrangements still rely on simple interest for quick calculations. This tool provides a professional-grade audit for such transactions, ensuring that both lenders and borrowers have a clear, mathematically verified understanding of their total liability.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Practical Applications & Linear Growth</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">The P×R×T Formula:</strong> The core logic represents the direct relationship between Principal (P), Rate (R), and Time (T). Because the interest doesn't earn further interest, the growth is linear, making it easy to predict exactly how much you will owe or earn at any point in the future.</li>
+              <li><strong className="text-[#188038]">Informal Lending & Sahakari:</strong> Many small-scale businesses in Nepal utilize "Month-to-Month" simple interest for working capital. This <strong className="text-[#202124]">si calculator</strong> allows you to input these rates (often expressed as percentages per month) to see the long-term annual impact.</li>
+              <li><strong className="text-[#D93025]">Academic & Curriculum Support:</strong> For students following the CDC Nepal curriculum, this tool serves as a verification engine for mathematical problems involving simple interest, providing step-by-step clarity on how the total maturity value is derived from the base interest.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
           "Enter the initial Principal amount you are investing or borrowing.",

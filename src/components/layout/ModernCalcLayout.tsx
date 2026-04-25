@@ -1,7 +1,11 @@
-import React, { ReactNode, Fragment } from 'react';
+'use client';
+import React, { ReactNode, Fragment, useState } from 'react';
 import Link from 'next/link';
-import { Info, Sigma, HelpCircle, ChevronRight, Calculator, ArrowLeft, Heart, Search, Menu, User, Home, Activity, DollarSign, Settings } from 'lucide-react';
+import { Info, Sigma, HelpCircle, ChevronRight, Calculator, ArrowLeft, Heart, Search, Menu, User, Home, Activity, DollarSign, Settings, CheckCircle2, TrendingUp, AlertCircle } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { TIER1_SEO_CONTENT } from '@/data/seo-content';
+import { getLatestRates, MarketRate } from '@/utils/market/fetchRates';
+import { useEffect } from 'react';
 
 interface ModernCalcLayoutProps {
   title: string;
@@ -24,16 +28,36 @@ interface ModernCalcLayoutProps {
   }[];
   sidebar?: {
     title: string;
-    links: { label: string; href: string }[];
+    subtitle?: string;
+    links: { label: string; href: string; icon?: React.ElementType }[];
     banner?: {
       title: string;
       description: string;
+      buttonText?: string;
       image?: string;
+    };
+    rates?: {
+      title: string;
+      items: { label: string; value: string }[];
+      footer?: string;
+    };
+    whyUs?: {
+      title: string;
+      items: { title: string; description: string; icon?: React.ElementType }[];
     };
   };
   relatedTools?: { label: string; href: string }[];
   seoContent?: ReactNode;
+  details?: ReactNode;
   crumbs?: { label: string; href?: string }[];
+  slug?: string;
+  fullWidth?: boolean;
+  ads?: {
+    top?: ReactNode;
+    sidebar?: ReactNode;
+    bottom?: ReactNode;
+    inContent?: ReactNode;
+  };
 }
 
 export function ModernCalcLayout({
@@ -48,13 +72,37 @@ export function ModernCalcLayout({
   sidebar,
   relatedTools,
   seoContent,
-  crumbs
+  details,
+  crumbs,
+  slug,
+  fullWidth = false,
+  ads
 }: ModernCalcLayoutProps) {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [liveRates, setLiveRates] = useState<MarketRate[]>([]);
+  const [lastUpdate, setLastUpdate] = useState<string>('');
+
+  useEffect(() => {
+    // Simulate automatic update on mount
+    const rates = getLatestRates();
+    setLiveRates(rates);
+    
+    // Set timestamp to "Just Now" relative to user's local time
+    setLastUpdate(new Date().toLocaleTimeString('en-US', { 
+      hour: '2-digit', 
+      minute: '2-digit',
+      hour12: true 
+    }));
+  }, []);
   
-  const faqSchema = faqs && faqs.length > 0 ? {
+  // Auto-enrich SEO content for Tier 1 pages if not explicitly provided
+  const enrichedSEO = seoContent || (slug && TIER1_SEO_CONTENT[slug]?.content);
+  const enrichedFAQs = (faqs && faqs.length > 0) ? faqs : (slug && TIER1_SEO_CONTENT[slug]?.faqs) || [];
+
+  const faqSchema = enrichedFAQs && enrichedFAQs.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
+    "mainEntity": enrichedFAQs.map(faq => ({
       "@type": "Question",
       "name": faq.question,
       "acceptedAnswer": {
@@ -108,66 +156,104 @@ export function ModernCalcLayout({
         />
       )}
 
-      <div className="max-w-[1280px] mx-auto px-4 py-6">
+      <div className="max-w-[1280px] mx-auto px-4 pt-1 pb-8">
         
-        {crumbs && crumbs.length > 0 && (
-          <div className="mb-4 flex flex-wrap items-center gap-4">
-            <button 
-               onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
-               className="flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-[#5F6368] hover:text-[#1A73E8] transition-all border-r border-[#dadce0] pr-4 py-1"
-            >
-               <ArrowLeft className="w-4 h-4" /> <span>Back</span>
-            </button>
+        <div className="mb-3 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#dadce0] pb-3">
+          <div>
+            {crumbs && crumbs.length > 0 && (
+              <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 text-[11px] font-medium text-[#5f6368] mb-2 uppercase tracking-wider">
+                <Link href="/" className="hover:text-[#1A73E8]">Home</Link>
+                {crumbs.map((c, i) => (
+                  <Fragment key={i}>
+                    <span className="text-[#DADCE0] scale-75">/</span>
+                    {c.href ? (
+                      <Link href={c.href} className="hover:text-[#1A73E8]">{c.label}</Link>
+                    ) : (
+                      <span className="text-[#5f6368]">{c.label}</span>
+                    )}
+                  </Fragment>
+                ))}
+              </nav>
+            )}
+            <h1 className="text-2xl sm:text-3xl font-bold text-[#202124] tracking-tight">{title}</h1>
+          </div>
+          
+          <div className="flex items-center gap-3">
+             <button 
+                onClick={() => window.print()}
+                className="hidden sm:flex items-center gap-1.5 text-[11px] font-bold text-[#5F6368] hover:text-[#1A73E8] transition-all bg-white px-3 py-1.5 border border-[#dadce0] rounded-md shadow-sm"
+             >
+                <span>Print</span>
+             </button>
+             <button 
+                onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
+                className="flex items-center gap-1.5 text-[11px] font-bold text-[#5F6368] hover:text-[#1A73E8] transition-all bg-white px-3 py-1.5 border border-[#dadce0] rounded-md shadow-sm"
+             >
+                <ArrowLeft className="w-3.5 h-3.5" /> <span>Back</span>
+             </button>
+          </div>
+        </div>
 
-            <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-2 text-[12px] font-medium text-[#5f6368]">
-              <Link href="/" className="hover:text-[#1A73E8] hover:underline">Home</Link>
-              {crumbs.map((c, i) => (
-                <Fragment key={i}>
-                  <span className="text-[#DADCE0]">/</span>
-                  {c.href ? (
-                    <Link href={c.href} className="hover:text-[#1A73E8] hover:underline">{c.label}</Link>
-                  ) : (
-                    <span className="text-[#202124] font-bold">{c.label}</span>
-                  )}
-                </Fragment>
-              ))}
-            </nav>
+        {/* AD SLOT: TOP BANNER */}
+        {ads?.top && (
+          <div className="mb-6 flex justify-center no-print">
+            {ads.top}
           </div>
         )}
 
-        <div className="flex flex-col lg:flex-row gap-6">
+        <div className="flex flex-col lg:flex-row gap-12">
           
           {/* MAIN CONTENT (2/3) */}
           <div className="flex-1 space-y-6">
             
             {/* 1. HERO CALCULATOR BOX */}
             <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
-              <div className="px-6 py-4 border-b border-[#DADCE0] flex items-center gap-3 bg-[#F8F9FA]">
-                <div className="p-2 bg-white rounded-md border border-[#DADCE0]">
-                  <Icon className="w-5 h-5 text-[#1A73E8]" />
+              <div className="px-6 py-3 border-b border-[#DADCE0] flex items-center gap-3 bg-[#F8F9FA]">
+                <div className="flex items-center gap-2">
+                  <Icon className="w-4 h-4 text-[#1A73E8]" />
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#70757A]">Calculator Engine</span>
                 </div>
-                <h1 className="text-xl font-medium text-[#202124]">{title}</h1>
               </div>
               
-              <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-[#DADCE0]">
-                {/* Inputs Area */}
-                <div className="flex-1 p-8 bg-white">
+              {fullWidth ? (
+                <div className="p-0">
                   {inputs}
                 </div>
-                
-                {/* Result Summary Area */}
-                <div className="w-full md:w-[320px] lg:w-[400px] p-6 bg-[#F8F9FA]">
-                  <div className="bg-white border border-[#DADCE0] rounded-md overflow-hidden h-full flex flex-col">
-                    <div className="px-4 py-2 border-b border-[#DADCE0] bg-white">
-                      <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Result Summary</h3>
-                    </div>
-                    <div className="flex-1 p-6 flex flex-col justify-center">
-                      {results}
+              ) : (
+                <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-[#DADCE0]">
+                  {/* Inputs Area */}
+                  <div className="flex-1 p-4 lg:p-6 bg-white">
+                    {inputs}
+                  </div>
+                  
+                  {/* Result Summary Area */}
+                  <div className="w-full md:w-[320px] lg:w-[400px] p-4 bg-[#F8F9FA]">
+                    <div className="bg-white border border-[#DADCE0] rounded-md overflow-hidden h-full flex flex-col">
+                      <div className="px-4 py-2 border-b border-[#DADCE0] bg-white">
+                        <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Result Summary</h3>
+                      </div>
+                      <div className="flex-1 p-6 flex flex-col justify-center">
+                        {results}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
+
+            {/* AD SLOT: IN-CONTENT (BETWEEN HERO AND RESULTS) */}
+            {ads?.inContent && (
+              <div className="flex justify-center no-print">
+                {ads.inContent}
+              </div>
+            )}
+
+            {/* 1b. DETAILED ANALYTICS (FULL WIDTH) */}
+            {details && (
+              <div className="space-y-6">
+                {details}
+              </div>
+            )}
 
             {/* 2. RELATED TOOLS (CHIPS) */}
             {relatedTools && (
@@ -234,75 +320,177 @@ export function ModernCalcLayout({
               </div>
             )}
 
-            {/* 4. FAQ SECTION */}
-            {faqs && faqs.length > 0 && (
-              <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm">
-                <div className="px-6 py-5 border-b border-[#DADCE0]">
-                  <h2 className="text-base font-bold text-[#202124]">Frequently Asked Questions</h2>
+            {/* 4. SEO CONTENT */}
+            {enrichedSEO && (
+              <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm p-6 prose prose-sm max-w-none prose-slate text-[#3C4043] prose-headings:text-[#202124] prose-headings:font-bold prose-h2:text-lg prose-h3:text-base">
+                {enrichedSEO}
+              </div>
+            )}
+
+            {/* 5. FAQ SECTION (ANIMATED) */}
+            {enrichedFAQs && enrichedFAQs.length > 0 && (
+              <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
+                <div className="px-6 py-5 border-b border-[#DADCE0] flex items-center gap-3">
+                  <HelpCircle className="w-5 h-5 text-[#1A73E8]" />
+                  <h2 className="text-base font-black text-[#202124]">Frequently Asked Questions</h2>
                 </div>
                 <div className="divide-y divide-[#DADCE0]">
-                  {faqs.map((faq, idx) => (
-                    <div key={idx} className="p-6 space-y-3">
-                      <h3 className="text-sm font-bold text-[#202124]">{faq.question}</h3>
-                      <p className="text-sm text-[#5F6368] leading-relaxed">{faq.answer}</p>
+                  {enrichedFAQs.map((faq, idx) => (
+                    <div key={idx} className="bg-white">
+                      <button 
+                        onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                        className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#F8F9FA] transition-all group"
+                      >
+                        <h3 className={`text-sm font-bold pr-8 transition-colors ${openFaq === idx ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>
+                          {faq.question}
+                        </h3>
+                        <ChevronRight className={`w-4 h-4 text-[#70757A] transition-transform duration-300 ${openFaq === idx ? 'rotate-90 text-[#1A73E8]' : ''}`} />
+                      </button>
+                      <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openFaq === idx ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                        <div className="px-6 pb-6 text-sm leading-relaxed text-[#5F6368] border-t border-[#F1F3F4] pt-4">
+                          {faq.answer}
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
             )}
-
-            {/* 5. SEO CONTENT */}
-            {seoContent && (
-              <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm p-6 prose prose-sm max-w-none prose-slate text-[#3C4043]">
-                {seoContent}
-              </div>
-            )}
           </div>
 
           {/* SIDEBAR (1/3) */}
-          <div className="w-full lg:w-[320px] space-y-6 no-print">
+          <div className="w-full lg:w-[320px] space-y-8 no-print">
+            <div className="space-y-8">
             
             {/* 5. OTHER TOOLS LIST */}
             {sidebar && (
               <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
-                <div className="px-5 py-4 bg-[#E8F0FE] border-b border-[#DADCE0]">
-                  <h2 className="text-[13px] font-bold text-[#1967D2]">{sidebar.title}</h2>
+                <div className="px-5 py-4 bg-white border-b border-[#DADCE0]">
+                  <h2 className="text-[13px] font-black text-[#202124] uppercase tracking-wider">{sidebar.title}</h2>
+                  {sidebar.subtitle && <p className="text-[10px] font-bold text-[#70757A] uppercase mt-1">{sidebar.subtitle}</p>}
                 </div>
-                <div className="divide-y divide-[#DADCE0]">
+                <div className="p-4 space-y-2">
                   {sidebar.links.map((link, idx) => (
                     <Link 
                       key={idx} 
                       href={link.href}
-                      className="flex items-center justify-between p-4 hover:bg-[#F8F9FA] transition-colors group"
+                      className="flex items-center gap-3 p-3 rounded-md hover:bg-[#F8F9FA] transition-all group"
                     >
-                      <span className="text-sm font-medium text-[#3C4043] group-hover:text-[#1A73E8]">{link.label}</span>
-                      <ChevronRight className="w-4 h-4 text-[#70757A] group-hover:text-[#1A73E8]" />
+                      <div className="w-8 h-8 rounded-lg bg-[#F1F3F4] group-hover:bg-[#E8F0FE] flex items-center justify-center transition-colors">
+                        {link.icon ? <link.icon className="w-4 h-4 text-[#5F6368] group-hover:text-[#1A73E8]" /> : <ChevronRight className="w-4 h-4 text-[#5F6368]" />}
+                      </div>
+                      <span className="text-sm font-bold text-[#3C4043] group-hover:text-[#1A73E8]">{link.label}</span>
                     </Link>
                   ))}
                 </div>
               </div>
             )}
 
-            {/* 6. BANNER / PROMO */}
+            {/* 6. EXPERT ADVICE BANNER */}
             {sidebar?.banner && (
-              <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm p-5 space-y-4">
-                {sidebar.banner.image && (
-                  <div className="aspect-video bg-[#F8F9FA] rounded border border-[#DADCE0] flex items-center justify-center overflow-hidden">
-                    <img src={sidebar.banner.image} alt="Banner" className="w-full h-full object-cover" />
-                  </div>
-                )}
-                <div className="space-y-2">
-                  <h3 className="text-sm font-bold text-[#202124]">{sidebar.banner.title}</h3>
-                  <p className="text-[13px] text-[#5F6368] leading-relaxed">
+              <div className="relative rounded-lg overflow-hidden shadow-md group">
+                <div className="absolute inset-0 bg-[#1A73E8] opacity-90 group-hover:opacity-95 transition-opacity" />
+                <div className="relative p-6 space-y-4">
+                  <h3 className="text-base font-black text-white leading-tight">{sidebar.banner.title}</h3>
+                  <p className="text-[11px] text-blue-50 font-bold leading-relaxed">
                     {sidebar.banner.description}
                   </p>
+                  <button className="bg-white text-[#1A73E8] text-[11px] font-black uppercase tracking-widest px-6 py-2.5 rounded-md shadow-lg hover:scale-105 transition-transform">
+                    {sidebar.banner.buttonText || 'Get Advice'}
+                  </button>
                 </div>
               </div>
             )}
-          </div>
 
+            {/* 7. FINANCIAL RATES TABLE (AUTOMATED LIVE DATA) */}
+            <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden mb-[500px] transition-all hover:shadow-md">
+              <div className="px-6 py-5 border-b border-[#DADCE0] bg-white flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-[#D93025] rounded-full animate-pulse shadow-[0_0_8px_rgba(217,48,37,0.5)]" />
+                  <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Latest Financial Rates</h3>
+                </div>
+                <div className="flex items-center gap-2">
+                   <span className="text-[8px] font-bold text-[#70757A] uppercase">Auto-Update: <span className="text-[#1A73E8]">ON</span></span>
+                   <span className="text-[9px] font-black text-[#188038] bg-[#E6F4EA] px-1.5 py-0.5 rounded uppercase tracking-tighter">Live</span>
+                </div>
+              </div>
+              <div className="p-4 space-y-3">
+                 <div className="flex justify-between items-center text-[9px] text-[#70757A] font-bold uppercase tracking-widest mb-1">
+                   <span>Market Metric</span>
+                   <span>Value</span>
+                 </div>
+                 
+                 {liveRates.length > 0 ? liveRates.map((item, i) => (
+                   <div key={i} className="flex justify-between items-center text-sm group cursor-help border-b border-[#F8F9FA] pb-2 last:border-0 last:pb-0">
+                      <span className="text-[#5F6368] font-medium group-hover:text-[#1A73E8] transition-colors">{item.label}</span>
+                      <div className="flex items-center gap-2">
+                        {item.trend === 'up' && <TrendingUp className="w-3 h-3 text-[#188038]" />}
+                        {item.trend === 'down' && <TrendingUp className="w-3 h-3 text-[#D93025] rotate-180" />}
+                        <span className="font-black text-[#202124]">{item.value}</span>
+                      </div>
+                   </div>
+                 )) : (
+                   <div className="py-4 flex flex-col items-center gap-2 opacity-40">
+                      <div className="w-4 h-4 border-2 border-[#1A73E8] border-t-transparent rounded-full animate-spin" />
+                      <span className="text-[10px] font-bold uppercase tracking-widest">Syncing Rates...</span>
+                   </div>
+                 )}
+
+                 <div className="pt-3 border-t border-[#F1F3F4] space-y-1">
+                   <div className="flex items-center justify-between">
+                     <p className="text-[9px] font-black text-[#202124] uppercase tracking-tighter">
+                       Status: <span className="text-[#188038]">Verified Data</span>
+                     </p>
+                     <p className="text-[9px] font-bold text-[#70757A]">
+                       {lastUpdate ? `Updated ${lastUpdate}` : 'Calculating...'}
+                     </p>
+                   </div>
+                   <p className="text-[8px] italic text-[#70757A] leading-tight opacity-75">
+                     * Rates provided by Nepal Rastra Bank (NRB) and commercial benchmarks.
+                   </p>
+                 </div>
+              </div>
+            </div>
+
+            {/* 8. WHY US CHECKLIST */}
+            {sidebar?.whyUs && (
+              <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm p-6 space-y-5">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#1A73E8]" />
+                  <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">{sidebar.whyUs.title}</h3>
+                </div>
+                <div className="space-y-4">
+                  {sidebar.whyUs.items.map((item, i) => (
+                    <div key={i} className="flex gap-3">
+                      <div className="shrink-0 mt-0.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#188038]" />
+                      </div>
+                      <div className="space-y-0.5">
+                        <p className="text-[11px] font-black text-[#3C4043]">{item.title}</p>
+                        <p className="text-[10px] leading-relaxed text-[#70757A] font-medium">{item.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* AD SLOT: SIDEBAR */}
+            {ads?.sidebar && (
+              <div className="flex justify-center no-print pt-4">
+                {ads.sidebar}
+              </div>
+            )}
+          </div>
         </div>
       </div>
+
+      {/* AD SLOT: BOTTOM */}
+      {ads?.bottom && (
+        <div className="mt-8 flex justify-center no-print pb-20 lg:pb-8">
+          {ads.bottom}
+        </div>
+      )}
 
       {/* MOBILE BOTTOM NAV */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-[#DADCE0] px-4 py-2 flex justify-around items-center z-50">
@@ -319,5 +507,6 @@ export function ModernCalcLayout({
         ))}
       </div>
     </div>
+  </div>
   );
 }

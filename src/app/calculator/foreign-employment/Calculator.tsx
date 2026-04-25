@@ -139,6 +139,30 @@ export default function ForeignEmploymentFee() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">DOFE Compliance & Financial Security</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Navigating the financial requirements for overseas work requires strict adherence to Department of Foreign Employment (DOFE) guidelines. Our <strong className="text-[#202124]">foreign employment fee nepal</strong> calculator is engineered as a defensive compliance tool, instantly flagging if a recruitment agency is demanding illegal overcharges.
+              </p>
+              <p>
+                For major Gulf Cooperation Council (GCC) countries and Malaysia, the Nepal Government strictly enforces the <strong className="text-[#202124]">free visa free ticket nepal</strong> policy. This mandate explicitly caps the <strong className="text-[#202124]">manpower agency fee limit nepal</strong> at a maximum of NPR 10,000 as a service charge, legally requiring the foreign employer to absorb the costs of the visa and airfare.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Destinations & Legal Tiers</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">GCC & Malaysia (Free Visa/Ticket):</strong> Recruitment agencies can only legally charge NPR 10,000 for their services. Workers are responsible for statutory costs (Medical, Insurance, Orientation, and Welfare Fund), which generally total between NPR 15,000 and 20,000. Any demand exceeding this total structure should trigger a <strong className="text-[#202124]">dofe nepal complaint</strong>.</li>
+              <li><strong className="text-[#188038]">Government-to-Government (EPS):</strong> The <strong className="text-[#202124]">eps korea cost nepal</strong> operates outside the private manpower system entirely. Costs are strictly regulated by government entities, encompassing language test fees, specialized health checkups, and centralized processing fees, typically avoiding the extreme overcharging seen in private channels.</li>
+              <li><strong className="text-[#D93025]">Regulated Sectors (Japan SSW):</strong> Unlike the GCC, Japan's Specified Skilled Worker (SSW) program involves higher processing and language training limits allowed by DOFE, requiring detailed receipt tracking for transparency.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Select the target destination country.", "Enter the manpower/agency fee you are being asked to pay.", "Enter your auxiliary statutory fees like medical tests, insurance, and pre-departure orientation.", "The system will automatically flag if the manpower fee exceeds the government-mandated cap for that specific country."] }}
       formula={{ title: "Free Visa Free Ticket Policy (Nepal)", description: "DOFE regulations.", raw: "For Gulf countries & Malaysia:\nMax Manpower Fee = Rs. 10,000\nVisa = Paid by Employer\nTicket = Paid by Employer\n\nWorkers are responsible for statutory costs (Medical, Insurance, Orientation, Welfare Fund)." }}
       faqs={[

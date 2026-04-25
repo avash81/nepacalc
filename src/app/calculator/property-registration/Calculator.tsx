@@ -108,6 +108,30 @@ export default function PropertyRegistration() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">The Complete Property Registration Fee Analytics</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Transferring real estate ownership in Nepal requires exact calculation of government levies before executing the Lalpurja transfer. Our <strong className="text-[#202124]">property registration fee nepal</strong> calculator is engineered to parse the latest provincial budget directives, applying the exact municipal tax tiers (2% to 5%) based on the official asset classification (Metropolitan, Sub-Metropolitan, Municipality, or Rural).
+              </p>
+              <p>
+                When determining the final <strong className="text-[#202124]">land registration cost nepal</strong>, this tool dynamically adjusts for demographic exemptions. It operates as a highly precise <strong className="text-[#202124]">malpot fee calculator</strong>, modeling the rigorous mathematical ledger used by district land revenue offices to establish the baseline tax before applying targeted discounts.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Discounts & Rebates</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Gender-Based Affirmative Action:</strong> A core feature of the <strong className="text-[#202124]">stamp duty calculator nepal</strong> is its automatic integration of the <strong className="text-[#202124]">female ownership discount nepal</strong>. The algorithm reduces the gross registry fee by exactly 25% for urban zones and 30% for rural Gaunpalika sectors when the buyer is female.</li>
+              <li><strong className="text-[#188038]">Joint Ownership Optimization:</strong> To encourage joint property holdings between spouses, the system overrides the percentage-based formula with a nominal flat <strong className="text-[#202124]">lalpurja pass charge</strong> of NPR 100 for Joint (Husband/Wife) registrations.</li>
+              <li><strong className="text-[#D93025]">Valuation Floor Enforcement:</strong> The calculation is strictly bound to the official government minimum valuation or the transaction price declared on the deed, whichever is mathematically greater.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Enter the declared property price from the Lalpurja.", "Select the location category of the property.", "Select buyer type — female buyers get 25-30% rebate.", "Review the Malpok invoice showing base fee, discount, and total."] }}
       formula={{ title: "Nepal Property Registration", description: "Registry fee is a percentage of declared value, with gender-based rebates.", raw: "Metropolitan: 5% | Sub-Metro: 4.5% | Municipality: 4% | Rural: 2%\nFemale Discount: 25% (urban) / 30% (rural)\nJoint H/W: Flat Rs. 100" }}
       faqs={[

@@ -42,6 +42,7 @@ export default function NepalHomeLoanCalculator() {
 
   return (
     <ModernCalcLayout
+      slug="nepal-home-loan"
       crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Home Loan Calculator' }]}
       title="Nepal Institutional Home Loan"
       description="Professional banking EMI calculator for Nepal. Calculates using the 'Base Rate + Premium' model mandated by NRB for all commercial bank floating-rate loans."
@@ -172,6 +173,30 @@ export default function NepalHomeLoanCalculator() {
                    You may be eligible for an annual income tax deduction of up to <strong>Rs. 25,000</strong> under Nepal Inland Revenue Department (IRD) rules for interest paid on your primary residential home loan.
                 </p>
              </div>
+          </div>
+        </div>
+      }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">The Definitive Loan Amortization Calculator for Nepal</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                When planning a real estate purchase in Nepal, relying on a generic <strong className="text-[#202124]">loan calculator home</strong> tool isn't enough. The Nepalese banking sector operates on a strictly regulated "Base Rate + Premium" model governed by Nepal Rastra Bank (NRB). Our advanced <strong className="text-[#202124]">loan amortization calculator</strong> accurately models this dynamic interest structure, allowing you to visualize exactly how your EMI changes as base rates fluctuate quarterly.
+              </p>
+              <p>
+                Whether you are evaluating a <strong className="text-[#202124]">payment calculator home equity line</strong> or assessing long-term residential financing, understanding your exact interest exposure is critical. Unlike fixed-rate structures common abroad—such as an <strong className="text-[#202124]">fha loan</strong> or tracking <strong className="text-[#202124]">current va home loan rates</strong> in the US—Nepal's floating rate requires a robust amortization engine to forecast potential long-term costs accurately.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Multi-Asset Financial Planning</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Equity Optimization:</strong> Similar to evaluating a <strong className="text-[#202124]">home equity loan calculator</strong>, homeowners in Nepal can use their existing property valuation (often up to 60-70% Loan-to-Value) to unlock capital for business expansion or secondary investments.</li>
+              <li><strong className="text-[#188038]">Automotive & Secondary Loans:</strong> The core mathematical amortization engine used here applies universally. While optimized for housing, the same reducing-balance logic dictates EMI for <strong className="text-[#202124]">car loans</strong> and personal overdrafts.</li>
+              <li><strong className="text-[#D93025]">Premium Negotiation:</strong> The "Premium" component is the only negotiable factor in a Nepalese mortgage. A 0.5% reduction in premium can result in millions of rupees saved over a 20-year tenure.</li>
+            </ul>
           </div>
         </div>
       }

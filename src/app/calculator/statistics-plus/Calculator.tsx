@@ -141,6 +141,13 @@ export default function StatisticsPlus() {
         ]}
         seoContent={
           <div>
+            <h2>Professional Analytical Suite</h2>
+            <p>
+              Descriptive statistics are the <strong>foundation of data interpretation</strong>, allowing us to summarize complex datasets into meaningful insights. 
+              Our analytical suite provides a detailed snapshot of your data's characteristics. Whether you are a student in Nepal summarizing research findings 
+              or a business analyst reviewing <strong>sales distributions</strong>, our engine computes the mean, median, mode, and range with absolute accuracy.
+            </p>
+
             <h2>Understanding Central Tendency in Statistics</h2>
             <p>In statistics, measures of central tendency are used to describe the center or typical value of a dataset. The three most common measures are the Mean, Median, and Mode. While they all aim to find the 'center', they do so in different ways and are useful in different scenarios.</p>
             

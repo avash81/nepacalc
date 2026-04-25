@@ -61,7 +61,8 @@ export default function NepalLandCalculator() {
 
   return (
     <ModernCalcLayout
-      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Land Area Converter' }]}
+      slug="nepal-land"
+      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Land Measurement' }]}
       title="Nepal Land Converter"
       description="Convert Ropani, Bigha, Kattha, Dhur, and global metrics instantly. Bidirectional mapping between Hilly and Terai measurement systems."
       icon={Map}
@@ -135,6 +136,30 @@ export default function NepalLandCalculator() {
           <div className="flex gap-2 p-3 bg-[#FFF7E0] border border-[#FEEFC3] rounded-lg items-start">
             <Info className="w-4 h-4 text-[#F29900] shrink-0 mt-0.5" />
             <p className="text-[10px] text-[#202124] leading-tight">These conversions follow standard Nepal Survey Department formulas. Be aware that traditional local measures (e.g. Haath) may vary slightly from region to region.</p>
+          </div>
+        </div>
+      }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">The Standardized Nepal Land Measurement Converter</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Navigating real estate metrics in Nepal requires an exact <strong className="text-[#202124]">nepal land measurement converter</strong> capable of bridging the gap between two distinct regional systems. Our algorithm standardizes inputs against an immutable absolute base: square feet. By dynamically parsing inputs through this base, it operates as a flawless <strong className="text-[#202124]">ropani to bigha calculator</strong>, ensuring zero data loss during bidirectional conversions.
+              </p>
+              <p>
+                The mathematical logic handles both fractional and whole constraints. When processing an <strong className="text-[#202124]">aana paisa daam conversion</strong> in the Hilly system, the limits are strictly modulo-enforced (16 Aana = 1 Ropani, 4 Paisa = 1 Aana). Similarly, for the Terai plains, <strong className="text-[#202124]">square feet to kattha dhur</strong> calculations utilize the standard denominator where 1 Bigha perfectly equates to 72,900 sq.ft.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Algorithmic Conversion Logic</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Continuous State Syncing:</strong> Unlike a static <strong className="text-[#202124]">land area conversion tool nepal</strong>, modifying a single sub-unit (like adding 2 Dhur) instantly recalculates the absolute square footage, triggering a cascading update across Ropani, Acres, and Hectares simultaneously.</li>
+              <li><strong className="text-[#188038]">Fractional Precision:</strong> The lowest viable units in both systems (Daam and Dhur) are allowed to exist as floating-point decimals to preserve absolute mathematical integrity.</li>
+              <li><strong className="text-[#D93025]">Global Normalization:</strong> The engine provides simultaneous translation into universal standards (Acres, Hectares, Sq.Meters), utilizing the strict ISO conversion factor of 0.09290304 for square footage to metric translation.</li>
+            </ul>
           </div>
         </div>
       }

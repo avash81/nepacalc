@@ -35,39 +35,6 @@ const SOLAR_FAQS = [
 
 export default function Page() {
   return (
-    <div className="bg-white min-h-screen">
-      <CalcWrapper
-        title="Solar Requirement Estimator"
-        description="Comprehensive load calculation engine for determining solar panel capacity and battery storage needs for Nepalese households."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Solar Requirement' }]}
-        isNepal={true}
-        relatedCalcs={[
-          { name: 'NEA Bill Calc', slug: 'nea-bill' },
-          { name: 'Unit Converter', slug: 'unit-converter' },
-          { name: 'Inverter Calculator', slug: 'scientific-calculator' }
-        ]}
-        formula="System Size = (Total Daily Load / Peak Sun Hours) × Efficiency Factor"
-      >
-        <SolarCalculator />
-        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-yellow-50 px-6 py-3 rounded-2xl inline-block border border-yellow-100">
-              Energy Guide: Solar Power in Nepal
-            </h2>
-            
-            <div className="prose prose-slate max-w-none mb-12">
-              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-                With increasing electricity tariffs and a focus on renewable energy, solar power has become a mainstream solution for homes and businesses in Nepal. Accurate <strong>load calculation</strong> is the first step toward energy independence.
-              </p>
-              <p className="text-slate-700 text-base leading-relaxed mb-6">
-                Our <strong>Solar Requirement Laboratory</strong> helps you size your system correctly. By analyzing your daily wattage consumption and desired backup hours, our engine provides a clear recommendation for <strong>Photovoltaic (PV) panel wattage</strong> and battery Ampere-hour (Ah) capacity, ensuring you never run out of light.
-              </p>
-            </div>
-
-            <PillarFAQ faqs={SOLAR_FAQS} title="Solar Energy & Backup FAQ" />
-          </div>
-        </div>
-      </CalcWrapper>
-    </div>
+    <SolarCalculator />
   );
 }

@@ -119,6 +119,30 @@ export default function NepseBonusTaxCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering NEPSE Corporate Actions & Taxation</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                When publicly traded companies on the Nepal Stock Exchange (NEPSE) declare corporate actions, the Inland Revenue Department (IRD) imposes a mandatory 5% Withholding Tax (WHT) on all payouts. Our <strong className="text-[#202124]">nepse bonus tax calculator</strong> is engineered to decouple the often-confusing <strong className="text-[#202124]">bonus share tax calculation nepal</strong> from standard capital gains models. It allows retail and institutional investors to exactly project their net-in-hand dividend yield before the book closure date.
+              </p>
+              <p>
+                Unlike standard <strong className="text-[#202124]">capital gains tax nepal</strong> (which fluctuates between 5% and 7.5% based on the holding period of sold shares), the <strong className="text-[#202124]">withholding tax on dividend nepal 2081</strong> is a flat 5% deduction at the source. This engine accurately parses both stock dividend (bonus shares) and cash dividend inputs to generate a unified liability report.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The Face Value Mathematics</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Bonus Share Valuation:</strong> The IRD strictly dictates that bonus shares are taxed based on their <span className="italic">Face Value</span> (typically NPR 100 per share in Nepal), not their current market traded price (LTP). Our algorithm uses this absolute constant to calculate your exact liability.</li>
+              <li><strong className="text-[#188038]">Cash Dividend Dynamics:</strong> For <strong className="text-[#202124]">cash dividend tax nepal</strong> calculations, the 5% is simply deducted from the gross declared cash amount. In many cases, companies declare just enough cash dividend to cover the tax liability of the bonus shares, ensuring investors do not have to pay tax out-of-pocket to their Depository Participant (DP).</li>
+              <li><strong className="text-[#D93025]">Final Withholding Status:</strong> For individual retail investors, this 5% dividend tax is considered the final tax liability on that specific income stream, requiring no further declaration in your annual income tax returns.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Select investor type (Individual or Institutional).", "Enter the number of bonus shares received from the company.", "Enter the face value per share (usually Rs. 100 for Nepal).", "Enter the gross cash dividend amount.", "View total tax, per-category breakdown, and net in-hand amount."] }}
       formula={{ title: "Nepal Dividend WHT Formula", description: "5% Withholding Tax applies to both bonus shares and cash dividends from listed companies.", raw: "Bonus Share Tax = (No. of Shares × Face Value) × 5%\nCash Dividend Tax = Cash Dividend Amount × 5%\nTotal Tax = Bonus Tax + Cash Tax" }}
       faqs={[

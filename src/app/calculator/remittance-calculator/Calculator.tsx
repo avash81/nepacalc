@@ -1,13 +1,12 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { CalculatorLayout } from '@/components/layout/CalculatorLayout';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
 import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-import { ResultCard } from '@/components/calculator/ResultCard';
 import { useSyncState } from '@/hooks/useSyncState';
 import { useLiveRates } from '@/hooks/useLiveRates';
 
-import { Globe, ArrowRightLeft, Landmark, Info, Wallet, RefreshCw, Activity } from 'lucide-react';
+import { Globe, ArrowRightLeft, Landmark, Info, Wallet, RefreshCw, Activity, Heart, DollarSign } from 'lucide-react';
 
 const CURRENCIES = [
   { code: 'USD', name: 'US Dollar', rate: 133.50, flag: '🇺🇸' },
@@ -65,145 +64,193 @@ export default function RemittanceCalculator() {
   const fmt = (n: number) => n.toLocaleString('en-IN', { maximumFractionDigits: 1 });
 
   return (
-    <CalculatorLayout
-      hideHeader={true}
-      title="Remittance Rate Converter"
-      description="Convert foreign currency earnings into NPR. Compare Western Union, IME, and Local rates to maximize your family's remittance income."
-      category={{ label: 'Market Rates', href: '/market-rates' }}
-      leftPanel={
-        <div className="space-y-8">
-           <div className="p-6 bg-slate-900 rounded-3xl text-white space-y-6 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-8 opacity-10">
-                 <Globe className="w-32 h-32" />
-              </div>
-              <div className="relative z-10 space-y-6">
-                <div className="flex justify-between items-center px-1">
-                   <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/30">
-                        <span className="text-xl">{currency.flag}</span>
-                      </div>
-                      <div>
-                        <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-400">Source Currency</h3>
-                        <select 
-                          value={currencyCode} 
-                          onChange={e => update({ currencyCode: e.target.value })}
-                          className="bg-transparent text-xl font-black outline-none border-b border-white/20 pb-1 mt-1 cursor-pointer hover:border-blue-400 transition-all"
-                        >
-                          {CURRENCIES.map(c => <option key={c.code} value={c.code} className="bg-slate-900">{c.code} - {c.name}</option>)}
-                        </select>
-                      </div>
-                   </div>
+    <CalculatorErrorBoundary calculatorName="Remittance Calculator">
+      <ModernCalcLayout
+        crumbs={[{ label: 'Finance', href: '/finance/' }, { label: 'Remittance Calculator' }]}
+        title="Global Remittance Tracker"
+        description="High-authority comparison engine for exchange rates and remittance fees, ensuring the Nepalese diaspora maximizes their family's income."
+        icon={DollarSign}
+        inputs={
+          <div className="space-y-8">
+            <div className="p-6 bg-slate-900 rounded-3xl text-white space-y-6 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-8 opacity-10">
+                  <Globe className="w-32 h-32" />
                 </div>
+                <div className="relative z-10 space-y-6">
+                  <div className="flex justify-between items-center px-1">
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/30">
+                          <span className="text-xl">{currency.flag}</span>
+                        </div>
+                        <div>
+                          <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-400">Source Currency</h3>
+                          <select 
+                            value={currencyCode} 
+                            onChange={e => update({ currencyCode: e.target.value })}
+                            className="bg-transparent text-xl font-black outline-none border-b border-white/20 pb-1 mt-1 cursor-pointer hover:border-blue-400 transition-all w-full"
+                          >
+                            {CURRENCIES.map(c => <option key={c.code} value={c.code} className="bg-slate-900">{c.code} - {c.name}</option>)}
+                          </select>
+                        </div>
+                    </div>
+                  </div>
 
-                <ValidatedInput 
-                  label={`Transfer Amount (${currencyCode})`} 
-                  value={amount} 
-                  onChange={v => update({ amount: v })} 
-                  variant="minimal" 
-                />
+                  <ValidatedInput 
+                    label={`Transfer Amount (${currencyCode})`} 
+                    value={amount} 
+                    onChange={v => update({ amount: v })} 
+                    variant="minimal" 
+                  />
+                </div>
+            </div>
+
+            {useCustomRate && (
+              <div className="p-6 bg-blue-50 border border-blue-200 rounded-3xl animate-in fade-in slide-in-from-top-4">
+                  <ValidatedInput 
+                    label="Manual Agency Rate (NPR)" 
+                    value={customRate} 
+                    onChange={v => update({ customRate: v })} 
+                    prefix="Rs."
+                    hint="Remittance counters often vary by ±Rs. 1.50 from official NRB rates."
+                  />
               </div>
-           </div>
+            )}
 
-           {useCustomRate && (
-             <div className="p-6 bg-blue-50 border border-blue-200 rounded-3xl animate-in fade-in slide-in-from-top-4">
-                <ValidatedInput 
-                  label="Manual Agency Rate (NPR)" 
-                  value={customRate} 
-                  onChange={v => update({ customRate: v })} 
-                  prefix="Rs."
-                  hint="Remittance counters often vary by ±Rs. 1.50 from official NRB rates."
-                />
-             </div>
-           )}
-
-           <div className="p-6 border border-slate-200 rounded-3xl space-y-4">
-              <div className="flex items-center gap-2">
-                 <Landmark className="w-4 h-4 text-slate-400" />
-                 <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500 font-mono">Institutional Guidance</h3>
+            <div className="p-6 border border-slate-200 rounded-3xl space-y-4">
+                <div className="flex items-center gap-2">
+                  <Landmark className="w-4 h-4 text-slate-400" />
+                  <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500 font-mono">Institutional Guidance</h3>
+                </div>
+                <p className="text-[11px] text-slate-500 leading-relaxed font-medium">
+                  Exchange rates in Nepal are regulated by <strong>Nepal Rastra Bank (NRB)</strong>. While agencies like IME or Western Union may offer different rates, they are typically based on the NRB buying rate with a fixed margin.
+                </p>
+            </div>
+          </div>
+        }
+        results={
+          <div className="space-y-6">
+            <div className="p-5 bg-slate-50 border border-slate-200 rounded-3xl space-y-3">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                    <Activity className="w-4 h-4 text-blue-600" />
+                    <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-900">Exchange Standard</h3>
+                </div>
+                {currencyCode === 'USD' && (
+                    <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[9px] font-black uppercase tracking-widest ${useLiveNRB ? 'bg-emerald-100 border-emerald-200 text-emerald-700' : 'bg-slate-200 border-slate-300 text-slate-600'}`}>
+                      <div className={`w-1.5 h-1.5 rounded-full ${useLiveNRB ? 'bg-emerald-500 animate-pulse' : 'bg-slate-400'}`} />
+                      {loading ? 'Syncing...' : useLiveNRB ? 'Live NRB' : 'Static'}
+                    </div>
+                )}
               </div>
-              <p className="text-[11px] text-slate-500 leading-relaxed font-medium">
-                Exchange rates in Nepal are regulated by <strong>Nepal Rastra Bank (NRB)</strong>. While agencies like IME or Western Union may offer different rates, they are typically based on the NRB buying rate with a fixed margin.
+
+              <div className="flex items-end justify-between">
+                <div>
+                    <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Base Buying Rate</div>
+                    <div className="text-2xl font-black text-slate-900 tracking-tighter">Rs. {fmt(activeRate)}</div>
+                </div>
+                <div className="flex flex-col gap-1.5 items-end">
+                    <button 
+                      onClick={() => update({ useCustomRate: !useCustomRate })}
+                      className="text-[9px] font-black uppercase tracking-widest bg-blue-600 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-all shadow-sm"
+                    >
+                      {useCustomRate ? 'Use NRB' : 'Edit Rate'}
+                    </button>
+                </div>
+              </div>
+              <div className="text-[10px] font-medium text-slate-500 leading-tight">
+                Calculated per 1 {currencyCode}.
+              </div>
+            </div>
+
+            <div className="p-6 bg-indigo-600 rounded-3xl text-center shadow-lg text-white">
+                <div className="text-xs font-bold uppercase tracking-widest text-indigo-200 mb-2">Highest In-Hand</div>
+                <div className="text-4xl font-black tracking-tighter font-mono">Rs. {fmt(bestProvider.netNPR)}</div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 px-1">
+                  <ArrowRightLeft className="w-4 h-4 text-slate-400" />
+                  <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Service Provider Index</h3>
+              </div>
+              
+              <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden divide-y divide-slate-100 shadow-sm">
+                  {results.map((r, i) => (
+                    <div key={i} className="p-3.5 flex justify-between items-center hover:bg-slate-50 transition-colors group">
+                      <div>
+                        <div className="text-[11px] font-black text-slate-900 flex items-center gap-2">
+                            {r.name}
+                            {r.name === bestProvider.name && <span className="text-[7px] bg-green-500 text-white px-1.5 py-0.5 rounded uppercase font-black">Best</span>}
+                        </div>
+                        <div className="text-[8.5px] font-bold text-slate-400 uppercase tracking-tighter">Fee: Rs. {fmt(r.feeNPR)}</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-[13px] font-black text-slate-900 font-mono">Rs. {fmt(r.netNPR)}</div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+
+            <div className="p-5 bg-amber-50 border border-amber-100 rounded-2xl flex gap-3">
+              <Info className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+              <p className="text-[11px] text-amber-800 font-medium leading-relaxed italic">
+                  Note: <strong>Remittance Service Charges</strong> vary by amount. Always verify current service fees at the counter.
               </p>
-           </div>
-        </div>
-      }
-      rightPanel={
-        <div className="space-y-6">
-          {/* Market Price Box - Moved to Right Side */}
-          <div className="p-5 bg-slate-50 border border-slate-200 rounded-3xl space-y-3">
-            <div className="flex justify-between items-center">
-               <div className="flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-blue-600" />
-                  <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-900">Exchange Standard</h3>
-               </div>
-               {currencyCode === 'USD' && (
-                  <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-[9px] font-black uppercase tracking-widest ${useLiveNRB ? 'bg-emerald-100 border-emerald-200 text-emerald-700' : 'bg-slate-200 border-slate-300 text-slate-600'}`}>
-                     <div className={`w-1.5 h-1.5 rounded-full ${useLiveNRB ? 'bg-emerald-500 animate-pulse' : 'bg-slate-400'}`} />
-                     {loading ? 'Syncing...' : useLiveNRB ? 'Live NRB' : 'Static'}
-                  </div>
-               )}
-            </div>
-
-            <div className="flex items-end justify-between">
-               <div>
-                  <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Base Buying Rate</div>
-                  <div className="text-2xl font-black text-slate-900 tracking-tighter">Rs. {fmt(activeRate)}</div>
-               </div>
-               <div className="flex flex-col gap-1.5 items-end">
-                  <button 
-                    onClick={() => update({ useCustomRate: !useCustomRate })}
-                    className="text-[9px] font-black uppercase tracking-widest bg-blue-600 text-white px-3 py-1.5 rounded-lg hover:bg-blue-700 transition-all shadow-sm"
-                  >
-                    {useCustomRate ? 'Use NRB' : 'Edit Rate'}
-                  </button>
-               </div>
-            </div>
-            <div className="text-[10px] font-medium text-slate-500 leading-tight">
-               Calculated per 1 {currencyCode}.
             </div>
           </div>
+        }
+        details={
+          <div className="space-y-8">
+            <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+              <h2 className="text-xl font-black text-slate-900 mb-4">Official Exchange Rate & Transfer Analytics</h2>
+              <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
+                <p>
+                  Maximizing the value of your hard-earned foreign income requires more than a simple currency conversion. Our <strong className="text-slate-900">remittance calculator nepal</strong> is engineered to provide precise, real-time analytics based on the official Nepal Rastra Bank (NRB) buying rates. It allows the diaspora to project the exact Net NPR their families will receive by comparing various provider fees.
+                </p>
+                <p>
+                  As an authoritative <strong className="text-slate-900">nrb exchange rate calculator</strong>, this tool dynamically accounts for both flat-fee providers (like IME or Prabhu) and percentage-based agencies (like Wise). This ensures that when you <strong className="text-slate-900">send money to nepal</strong>, you are mathematically optimized for the lowest possible friction cost.
+                </p>
+              </div>
+            </div>
 
-          <ResultCard 
-            label="Highest In-Hand (NPR)" 
-            value={fmt(bestProvider.netNPR)} 
-            unit=" Rs." 
-            color="blue" 
-            title="Max Remittance"
-            copyValue={`Rs. ${bestProvider.netNPR}`}
-          />
-
-          <div className="space-y-4">
-             <div className="flex items-center gap-2 px-1">
-                <ArrowRightLeft className="w-4 h-4 text-slate-400" />
-                <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Service Provider Index</h3>
-             </div>
-             
-             <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden divide-y divide-slate-100 shadow-sm">
-                {results.map((r, i) => (
-                  <div key={i} className="p-3.5 flex justify-between items-center hover:bg-slate-50 transition-colors group">
-                    <div>
-                       <div className="text-[11px] font-black text-slate-900 flex items-center gap-2">
-                          {r.name}
-                          {r.name === bestProvider.name && <span className="text-[7px] bg-green-500 text-white px-1.5 py-0.5 rounded uppercase font-black">Best</span>}
-                       </div>
-                       <div className="text-[8.5px] font-bold text-slate-400 uppercase tracking-tighter">Fee: Rs. {fmt(r.feeNPR)}</div>
-                    </div>
-                    <div className="text-right">
-                       <div className="text-[13px] font-black text-slate-900 font-mono">Rs. {fmt(r.netNPR)}</div>
-                    </div>
-                  </div>
-                ))}
-             </div>
+            <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-bold text-slate-900 mb-4 border-b border-slate-100 pb-2">The Strategic Value of Formal Remittance</h3>
+              <ul className="space-y-3 text-sm text-slate-600 list-disc pl-5">
+                <li><strong className="text-blue-600">The 10% IPO Advantage:</strong> Utilizing formal banking channels unlocks the mandatory 10% <strong className="text-slate-900">remittance ipo quota nepal</strong>. This state-mandated incentive reserves a highly lucrative share block exclusively for migrant workers, significantly amplifying your long-term wealth creation beyond standard interest rates.</li>
+                <li><strong className="text-emerald-600">Premium Interest Rates:</strong> Banks in Nepal are instructed by the NRB to provide a minimum 1% premium interest rate on Fixed Deposits and Savings accounts explicitly funded through formal <strong className="text-slate-900">foreign employment remittance</strong> channels.</li>
+                <li><strong className="text-rose-600">Hundi Risk Matrix:</strong> Illegal shadow-banking (Hundi) may sometimes advertise slightly higher spot rates, but it disqualifies the sender from the IPO quota, the 1% interest premium, and social security benefits, while carrying severe legal risks under anti-money laundering (AML) laws.</li>
+              </ul>
+            </div>
           </div>
-
-          <div className="p-5 bg-amber-50 border border-amber-100 rounded-2xl flex gap-3">
-             <Info className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-             <p className="text-[11px] text-amber-800 font-medium leading-relaxed italic">
-                Note: <strong>Remittance Service Charges</strong> vary by amount. For example, Western Union often charges a percentage, while IME has fixed slabs. Always verify current service fees at the counter.
-             </p>
-          </div>
-        </div>
-      }
-    />
+        }
+        sidebar={{
+          title: "Related Financial Tools",
+          links: [
+            { label: 'Income Tax Calc', href: '/calculator/nepal-income-tax' },
+            { label: 'Gold Price Converter', href: '/calculator/weight-converter' },
+            { label: 'Exchange Rates', href: '/exchange-rates' },
+          ],
+        }}
+        howToUse={{
+          steps: [
+            "Select your sending currency (e.g., USD, SAR, MYR).",
+            "Enter the amount you wish to remit to Nepal.",
+            "Toggle between 'Live NRB' rates (for USD) or manual rates if you have a specific quote.",
+            "Compare the net NPR received across different service providers.",
+            "The tool automatically identifies the 'Best' provider based on the highest net payout after fees."
+          ]
+        }}
+        faqs={[
+          {
+            question: "Why is the IPO quota important for remittances?",
+            answer: "The 10% IPO quota is a significant benefit for migrant workers, providing them with a reserved allocation of shares in profitable Nepalese companies, which is often a better long-term investment than just keeping cash."
+          },
+          {
+            question: "Do different banks offer different rates?",
+            answer: "Yes, while they all follow the NRB base rate, commercial banks add their own margin. Our tracker helps you compare these variants to find the most favorable rate for your family."
+          }
+        ]}
+      />
+    </CalculatorErrorBoundary>
   );
 }

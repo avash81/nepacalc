@@ -200,6 +200,14 @@ export default function WeightConverter() {
           <div>
             <h2>Understanding Weight and Mass Conversions</h2>
             <p>Whether you are cooking, traveling, dealing with international shipping, or buying jewelry, understanding how to convert weight is an essential skill. The world primarily uses two systems: the Metric system (kilograms, grams) and the Imperial system (pounds, ounces).</p>
+
+            <h2>Measurement Guide: Mass & Weight</h2>
+            <p className="font-medium">
+              Accurate <strong>mass determination</strong> is a pillar of international trade, scientific research, and daily consumer life in Nepal.
+            </p>
+            <p>
+              Our <strong>Gravimetric Analysis Laboratory</strong> provides the precision required for high-stakes conversions. Whether you are a merchant in Nepal converting <strong>kilograms to metric tons</strong> for freight or a cook converting grams to ounces, our engine applies internationally verified mass constants to ensure every conversion is flawless and instantaneous.
+            </p>
             
             <h3>Metric vs. Imperial System</h3>
             <p>The <strong>Metric system</strong> is based on multiples of 10, making it incredibly easy to scale. For instance, there are 1,000 milligrams in a gram, and 1,000 grams in a kilogram. It is the standard system used in science and by almost every country globally.</p>

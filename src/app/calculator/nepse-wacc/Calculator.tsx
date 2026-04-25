@@ -107,6 +107,30 @@ export default function WACCCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Precision Portfolio Averaging for CDSC Compliance</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                In the modern NEPSE trading ecosystem, maintaining an accurate baseline cost for your holdings is a mandatory compliance requirement. Our <strong className="text-[#202124]">wacc calculator nepal</strong> is engineered to perfectly mirror the internal CDSC algorithms used for your <strong className="text-[#202124]">meroshare wacc calculation</strong>. By establishing an exact mathematical baseline, it ensures you are not overpaying Capital Gains Tax (CGT) when executing a sell order.
+              </p>
+              <p>
+                For active traders who accumulate stocks over time through Secondary Market buys, IPOs, or FPOs, computing the <strong className="text-[#202124]">average cost of shares nepal</strong> can become highly complex. This tool simplifies the process by allowing infinite "purchase clusters", dynamically weighting your exact capital outlay against your total held units.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Advanced Stock Averaging Logic</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Zero-Cost Adjustments:</strong> The most critical feature for long-term investors is the ability to <strong className="text-[#202124]">calculate wacc with bonus share</strong> issuance. Since bonus shares carry a functional acquisition cost of NPR 0, adding them to the cluster immediately and mathematically dilutes (lowers) your overall WACC, accurately reflecting your new profit threshold.</li>
+              <li><strong className="text-[#188038]">Right Share Inclusions:</strong> Similarly, when subscribing to Right Shares (typically at NPR 100 par value), this engine treats them as a distinct purchase cluster, seamlessly averaging the nominal right share cost against your higher-priced secondary market acquisitions.</li>
+              <li><strong className="text-[#D93025]">CGT Ramifications:</strong> As an essential <strong className="text-[#202124]">nepse portfolio tracker</strong> utility, remember that your finalized WACC directly dictates your taxable profit. A lower WACC mathematically yields a higher apparent profit, which increases your absolute CGT liability upon sale.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Enter the quantity and price for your first batch of stock purchases.", "Click 'Add Purchase' for any subsequent buys of the same stock at a different price.", "Add bonus shares (if any) with a price of Rs. 0.", "The system will instantly output your exact Weighted Average Cost of Capital."] }}
       formula={{ title: "WACC Formula", description: "Averaging out total expenditure.", raw: "WACC = (Total Capital Invested) / (Total Number of Shares)\n\nCapital Invested = (Q1 × P1) + (Q2 × P2) ...\nBonus Shares always count as P = 0." }}
       faqs={[

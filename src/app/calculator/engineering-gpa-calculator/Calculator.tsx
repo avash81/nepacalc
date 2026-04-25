@@ -122,6 +122,30 @@ export default function EngineeringGPACalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Strategic Academic Planning for Nepali Engineers</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Surviving a rigorous 4-year engineering program requires more than just studying; it demands strict mathematical management of your cumulative credits. Specifically designed as an <strong className="text-[#202124]">ioe gpa calculator</strong> for Tribhuvan University students, this tool algorithmically projects exactly what semester grades are required to achieve your final graduation target. 
+              </p>
+              <p>
+                Unlike basic high-school grading, a <strong className="text-[#202124]">tu engineering cgpa calculator</strong> must account for uneven credit loads—where a 4-credit core subject exponentially impacts your average more than a 1-credit lab. By inputting your completed ledger, the engine instantly solves the algebraic equation to reveal your minimum required performance floor.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">University Standards & Margin of Error</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Pokhara University Variations:</strong> When using this as a <strong className="text-[#202124]">pokhara university gpa calculator</strong>, keep in mind that PU's credit hour distributions differ slightly from TU. You must accurately log your "completed credits" against PU's specific syllabus weighting to prevent prediction drift.</li>
+              <li><strong className="text-[#188038]">Kathmandu University (KU) Specs:</strong> The <strong className="text-[#202124]">ku gpa system</strong> maintains a strict 4.0 scale but places heavy emphasis on internal assessments. Use the "Semester Ledger" to verify your current standing before attempting to predict your required final-year thesis grades.</li>
+              <li><strong className="text-[#D93025]">The Mathematical Impossibility Alert:</strong> Because the maximum theoretical GPA is capped at 4.0, a student in their 7th semester with a 2.5 CGPA physically cannot reach a 3.5 final graduation target, regardless of their final year performance. The algorithm will automatically red-flag these impossible targets.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Select your university standard (TU IOE, KU, PU).", "Enter your current cumulative CGPA and the credits you've completed so far.", "Set your target graduation CGPA and the credits remaining in your degree.", "Optional: Log individual past semesters in the ledger for a precise actual CGPA audit.", "The tool will instantly show you exactly what GPA you need in future exams to hit your target."] }}
       formula={{ title: "CGPA Prediction Algorithm", description: "Credit-weighted averaging.", raw: "Target Points = Target CGPA × (Completed Credits + Remaining Credits)\nCurrent Points = Current CGPA × Completed Credits\n\nPoints Needed = Target Points - Current Points\nRequired Average GPA = Points Needed / Remaining Credits" }}
       faqs={[

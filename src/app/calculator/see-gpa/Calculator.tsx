@@ -83,7 +83,8 @@ export default function SEEGPACalculator() {
 
   return (
     <ModernCalcLayout
-      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'SEE GPA Calculator' }]}
+      slug="see-gpa"
+      crumbs={[{ label: 'Education', href: '/education/' }, { label: 'SEE GPA Calculator' }]}
       title="SEE GPA Calculator (2081 System)"
       description="Calculate your Secondary Education Examination (SEE) GPA using the official Nepal Letter Grading Directive 2078/2081 rules."
       icon={GraduationCap}
@@ -203,21 +204,28 @@ export default function SEEGPACalculator() {
           answer: "The final GPA is a weighted average. Each subject's Grade Point (GP) is multiplied by its credit hours. The sum of these values is then divided by the total credit hours."
         }
       ]}
-      seoContent={
-        <div>
-          <h2>Understanding the SEE GPA System in Nepal</h2>
-          <p>The Secondary Education Examination (SEE) is the final examination in the secondary school system of Nepal. Recently, the National Examination Board (NEB) updated the grading system to enforce stricter quality controls via the Letter Grading Directive 2078 (implemented fully in 2081 BS).</p>
-          
-          <h3>The 35% Theory Rule</h3>
-          <p>The most significant change in the new directive is the separation of Theory and Practical marks. Previously, students could pass by combining high practical marks with low theory marks. Now, students <strong>must secure a minimum of 35% in the theory examination</strong> independently.</p>
-          <ul>
-            <li>For a standard 75-mark theory exam, a student must score at least <strong>26.25 marks</strong>.</li>
-            <li>For a standard 25-mark practical exam, a student must score at least <strong>10 marks</strong> (40%).</li>
-          </ul>
-          <p>If a student fails to meet the theory threshold, they receive an 'NG' (Non-Graded) regardless of their practical score. Students with an NG cannot enroll in higher secondary education (Class 11) until they pass the grade increment (supplementary) exams.</p>
-          
-          <h3>Grade Points and Credits</h3>
-          <p>The GPA is not a simple average. Each subject is assigned a specific number of Credit Hours (usually 4 for core subjects). The Grade Point (GP) earned in a subject is multiplied by its Credit Hours. The sum of all these weighted points is divided by the total number of credit hours to determine the final Cumulative GPA.</p>
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-slate-800 mb-4">Mastering the SEE GPA System & NEB Grading Directives</h2>
+            <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
+              <p>
+                The Secondary Education Examination (SEE) is a critical academic milestone in Nepal. To maintain international educational standards, the National Examination Board (NEB) enforces the <strong>Letter Grading Directive 2078</strong> (fully implemented in 2081 BS). Unlike a standard <strong className="text-slate-800">college gpa calculator</strong> or a simple <strong className="text-slate-800">weighted gpa calculator</strong>, our SEE grading engine strictly decouples theoretical and practical scores to ensure absolute compliance with Ministry of Education algorithms.
+              </p>
+              <p>
+                Navigating the modern <strong className="text-slate-800">gpa scale</strong> requires precise mathematical thresholding. Before converting raw marks, the algorithm performs a mandatory Boolean check against the 35% theory requirement. This ensures our <strong className="text-slate-800">gpa converter</strong> accurately reflects whether a student is mathematically eligible for grade sheet certification or if they require supplementary grade increment exams.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-slate-800 mb-4 border-b border-slate-100 pb-2">Mathematical Grading Mechanics & The 35% Threshold</h3>
+            <ul className="space-y-3 text-sm text-slate-600 list-disc pl-5">
+              <li><strong className="text-indigo-600">The 35% Theory Floor:</strong> The most drastic shift in the 2081 BS grading system is the absolute decoupling of passing marks. You can no longer combine high practical scores with low theory scores to pass. A student must score a minimum of 26.25 out of 75 (exactly 35%) in the theory component alone. Failure to mathematically clear this threshold triggers an automatic 'NG' (Non-Graded) status.</li>
+              <li><strong className="text-emerald-600">Weighted Grade Points (GP):</strong> Once the NG threshold is cleared, the system converts total marks (Theory + Practical) into a Grade Point ranging from 1.6 (D) to 4.0 (A+). This is not a simple average. The final Cumulative GPA is calculated by multiplying each subject's GP by its designated Credit Hours (typically 4 for core subjects), summing the results, and dividing by the total credit hours.</li>
+              <li><strong className="text-rose-600">The NG Restriction:</strong> Receiving an 'NG' in any subject halts the GPA calculation entirely. The <strong className="text-slate-800">gpa meaning</strong> in this context is strict: you do not receive a final aggregate grade or cumulative GPA, and you are mathematically barred from enrolling in Class 11 until the supplementary exam is cleared.</li>
+            </ul>
+          </div>
         </div>
       }
     />

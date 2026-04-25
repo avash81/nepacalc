@@ -143,6 +143,14 @@ export default function WordCounter() {
             <h2>The Ultimate Online Word Counter Tool</h2>
             <p>Whether you are a student writing an essay, a professional crafting an important email, or a digital marketer optimizing SEO content, keeping track of your word and character count is crucial. Our free, real-time word counter provides deep insights into your text instantly.</p>
             
+            <h2>Writing Guide: Mastering Text Constraints</h2>
+            <p className="font-medium">
+              Whether you are writing a university essay, a professional report, or an SEO-optimized blog post, <strong>word count precision</strong> is a critical requirement.
+            </p>
+            <p>
+              Our <strong>Textual Analysis Laboratory</strong> provides the tools writers in Nepal need to meet their specific targets. From tracking the 280-character limit of a viral tweet to ensuring your thesis abstract stays under the word limit, our engine provides real-time, <strong>non-latency updates</strong> as you type or paste your content, ensuring you never exceed your constraints.
+            </p>
+
             <h3>Beyond Basic Word Counting</h3>
             <p>Most word processors provide a simple word count, but professional writing often requires deeper metrics:</p>
             <ul>

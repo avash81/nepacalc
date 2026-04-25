@@ -29,6 +29,7 @@ export default function NEPSECalculator() {
 
   return (
     <ModernCalcLayout
+      slug="nepal-stocks"
       crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'NEPSE Trading Calculator' }]}
       title="NEPSE Share Trading Calculator"
       description="Calculate net profit, broker commission, SEBON fees, and CGT for your stock transactions in the Nepal Stock Exchange."
@@ -167,26 +168,28 @@ export default function NEPSECalculator() {
           answer: "Besides the broker commission, you also pay a SEBON fee (0.015%), a DP charge (Rs. 25 per transaction), and the Capital Gains Tax on profits."
         }
       ]}
-      seoContent={
-        <div>
-          <h2>Understanding NEPSE Share Trading Costs in Nepal</h2>
-          <p>Trading in the Nepal Stock Exchange (NEPSE) involves several transaction costs that can significantly impact your overall return on investment. It is crucial for investors to understand these costs to calculate their exact break-even point and net profit.</p>
-          
-          <h3>Brokerage Commission</h3>
-          <p>The broker commission in Nepal is structured in tiers based on the transaction volume. The rates typically range from 0.40% for smaller trades to as low as 0.27% for very large volumes. This fee is charged on both the buy and sell sides of the transaction.</p>
-          
-          <h3>SEBON Fee and DP Charge</h3>
-          <p>The Securities Board of Nepal (SEBON) levies a regulatory fee of 0.015% on the transaction amount. Additionally, a Depository Participant (DP) charge of NPR 25 is applied every time shares are debited from your demat account (i.e., during a sale).</p>
-          
-          <h3>Capital Gains Tax (CGT)</h3>
-          <p>CGT is charged only on the net profit made from the sale of shares. If you incur a loss, no CGT is applicable. The CGT structure for individual investors was revised to encourage long-term investing:</p>
-          <ul>
-            <li><strong>Short-Term Capital Gains:</strong> 7.5% tax on profit if shares are held for less than 365 days.</li>
-            <li><strong>Long-Term Capital Gains:</strong> 5% tax on profit if shares are held for 365 days or more.</li>
-          </ul>
-          
-          <h3>Why Calculating the Break-Even Price is Important</h3>
-          <p>The break-even price is the exact price at which you must sell your shares to cover all costs (purchase cost, broker commissions, SEBON fees, and DP charges) without making a profit or a loss. Knowing this figure allows traders to set realistic target prices and stop-loss levels, improving overall trading strategy and risk management.</p>
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Precision NEPSE Trading & Share Calculator</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Trading on the Nepal Stock Exchange requires exact cost analysis before executing orders. Our <strong className="text-[#202124]">nepse calculator</strong> is an advanced financial algorithm that evaluates the complete friction cost of trading. Unlike generic tools, this <strong className="text-[#202124]">share calculator nepal</strong> integrates the latest 2081/82 tiered broker commission rates (0.40% to 0.27%), strict SEBON regulatory fees (0.015%), and mandatory DP charges to determine your absolute net profit.
+              </p>
+              <p>
+                A crucial component of equity trading is tax compliance. This engine functions as a definitive <strong className="text-[#202124]">cgt calculator nepal</strong>, applying the piecewise temporal logic of Capital Gains Tax: 7.5% for short-term holds (&lt;365 days) and 5% for long-term investments. By establishing a rigorous <strong className="text-[#202124]">nepal stock exchange return calculator</strong>, traders can pinpoint the exact break-even tick price required to exit a position without realizing a net loss.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Cost Distribution</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Tiered Brokerage:</strong> As a dedicated <strong className="text-[#202124]">broker commission calculator nepal</strong>, the system dynamically shifts its percentage multiplier based on total volume. High-volume trades automatically trigger the lower 0.27% threshold, maximizing net yield.</li>
+              <li><strong className="text-[#188038]">WACC Integration:</strong> While serving as a gross transaction model, traders should couple this with a <strong className="text-[#202124]">wacc calculator nepal</strong> to determine the true weighted average cost of accumulated shares across multiple dips.</li>
+              <li><strong className="text-[#D93025]">Loss Absorption Logic:</strong> Capital Gains Tax is strictly applied to <span className="italic">Net Realizable Profit</span>. If the total friction cost (buy fees + sell fees) exceeds the gross price difference, the engine mathematically prevents CGT deduction.</li>
+            </ul>
+          </div>
         </div>
       }
     />

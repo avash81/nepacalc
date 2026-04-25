@@ -137,6 +137,30 @@ export default function NepalTdsCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Precision Tax Deducted at Source (TDS) Analytics</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Compliance with the Inland Revenue Department (IRD) requires exact withholding tax calculations on all corporate and institutional payments. Our <strong className="text-[#202124]">tds calculator nepal</strong> is engineered to parse the latest <strong className="text-[#202124]">tds rate in nepal</strong> schedules set by the Income Tax Act 2058. It mathematically computes the exact withholding amount before disbursing net payments to vendors, landlords, and consultants.
+              </p>
+              <p>
+                The platform dynamically adjusts to piecewise regulatory logic. For example, when calculating <strong className="text-[#202124]">rent tds nepal</strong>, the system applies a strict 10% multiplier. However, for professional services, the engine branches its logic based on the recipient's tax status, enforcing a 1.5% rate for VAT-registered firms while defaulting to 15% for non-registered entities.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Category-Specific Rate Matrix (FY 2081/82)</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Professional Services:</strong> Standard <strong className="text-[#202124]">consultancy tds nepal</strong> is fixed at 15%. This rate must be withheld by the paying institution unless the consultant presents a valid VAT registration, which dramatically reduces the withholding requirement to 1.5%.</li>
+              <li><strong className="text-[#188038]">Investment Yields:</strong> When executing a <strong className="text-[#202124]">dividend tds nepal 2081</strong> calculation, the algorithm applies a flat 5% final withholding tax. This signifies that the recipient has no further income tax liability on that specific dividend payout.</li>
+              <li><strong className="text-[#D93025]">Gross Evaluation:</strong> A critical accounting rule enforced by this engine is that TDS is strictly calculated on the <span className="italic">Gross Amount excluding VAT</span>. The calculator assumes the input amount is the pure base price before any secondary taxes are added.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
           "Select the type of payment you are making (Rent, Consultancy, Dividend, etc.)",

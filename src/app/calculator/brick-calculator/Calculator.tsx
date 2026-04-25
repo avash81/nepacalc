@@ -112,6 +112,30 @@ export default function BrickCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Precision Masonry Estimation for Nepal</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Accurate material estimation is the cornerstone of cost-effective construction in Nepal. Our <strong className="text-[#202124]">brick calculator nepal</strong> engine is specifically calibrated to local manufacturing standards. By default, it processes the standard Nepalese brick dimensions (9" x 4.5" x 3") while mathematically accounting for the volumetric displacement of a standard 0.5-inch mortar joint.
+              </p>
+              <p>
+                A frequent query among civil engineering students and contractors is <strong className="text-[#202124]">how many bricks in 1 square feet in nepal</strong>. Instead of relying on rough rules of thumb (which often ignore mortar ratios and site wastage), this tool runs a precise 3D volumetric analysis. It divides the total wall volume by the effective volume of a single brick (including its mortar shell) to prevent both material shortages and costly over-ordering.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Wall Thickness and Wastage Metrics</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Load-Bearing Structures (Double Layer):</strong> For exterior perimeters and primary load-bearing partitions, a <strong className="text-[#202124]">9 inch wall brick calculation</strong> is mandatory. This doubles the volumetric requirement and alters the mortar ratio, which the algorithm handles automatically.</li>
+              <li><strong className="text-[#188038]">Partition Walls (Single Layer):</strong> Interior room dividers typically utilize a <strong className="text-[#202124]">4.5 inch wall brick calculation</strong>. Because the wall thickness equals the width of a single brick, the mathematical volume drops significantly, yielding higher area coverage per thousand bricks.</li>
+              <li><strong className="text-[#D93025]">The 5% Wastage Mandate:</strong> Theoretical mathematics must account for real-world friction. During transport, unloading, and site cutting, breakage is inevitable. The calculator strictly applies a 5% inflation factor to the raw brick count to ensure you have enough unbroken materials to finish the span.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Enter the total length and height of the wall in feet.", "Select whether the wall is single layer (4.5 inch) or double layer (9 inch).", "The tool uses standard Nepali brick dimensions (9x4.5x3 inches). You can modify this in the advanced section if using custom bricks.", "View the final estimate which automatically accounts for mortar joints and 5% breakage wastage."] }}
       formula={{ title: "Volume Constraint Formula", description: "Calculating total volume ratio.", raw: "Wall Volume = Length × Height × Thickness\nBrick Volume (with mortar) = (L + mortar) × (W + mortar) × (H + mortar)\nBase Bricks = Wall Volume / Brick Volume\nTotal Required = Base Bricks × 1.05 (5% Wastage)" }}
       faqs={[

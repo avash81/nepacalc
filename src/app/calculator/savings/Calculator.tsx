@@ -125,6 +125,30 @@ export default function SavingsCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">The Strategic Power of Consistent Savings in Nepal</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                In the context of Nepal's inflationary environment, passive saving is rarely enough to build generational wealth. Our <strong className="text-[#202124]">monthly savings calculator</strong> is an institutional-grade projection engine designed to show how regular capital injections grow through the mathematical phenomenon of compound interest. By shifting from a simple savings mindset to a target-oriented investment strategy, users can effectively outpace inflation.
+              </p>
+              <p>
+                This tool utilizes the <strong>Future Value of Annuity Due</strong> model, which assumes deposits are made at the beginning of each period. This is the most accurate way to model habit-based saving. Whether you are planning for a down payment on a property in Kathmandu or building an emergency fund, understanding the mathematical trajectory of your <strong className="text-[#202124]">savings goal</strong> is the first step toward financial sovereignty.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Optimizing Interest Tiers & Tax Impact</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Interest Rate Hierarchy:</strong> In the Nepalese banking sector, 'A' Class commercial banks offer distinct tiers. While a standard savings account might offer 4–6%, shifting those regular savings into a <strong>Recurring Deposit (RD)</strong> or <strong>Fixed Deposit (FD)</strong> can often secure 7–10% yields, drastically altering the 10-year maturity value.</li>
+              <li><strong className="text-[#188038]">The 5% WHT Reality:</strong> Investors must remember that the Inland Revenue Department (IRD) mandates a 5% Withholding Tax (WHT) on interest earned by individuals. Our <strong className="text-[#202124]">bank interest calculator</strong> provides the gross projection, but savvy planners should mentally account for this small friction cost during their redemption phase.</li>
+              <li><strong className="text-[#D93025]">Compounding Frequency:</strong> While the calculator uses monthly compounding to match standard banking cycles, the frequency of compounding significantly impacts the final result. Consistently hitting your monthly savings target ensures that the "interest on interest" cycle never breaks, maximizing your wealth multiplier.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Enter your planned monthly savings amount.", "Select an interest rate matching your account type.", "Use Nepal Rate Guide for realistic benchmarks.", "Set your investment time horizon.", "Review the principal vs interest breakdown chart."] }}
       formula={{ title: "Future Value of Annuity Due", description: "Monthly savings growing with compound interest (beginning-of-month deposits).", raw: "FV = PMT × [((1+r)^n − 1) / r] × (1+r)\nWhere PMT = monthly amount, r = monthly rate, n = total months" }}
       faqs={[

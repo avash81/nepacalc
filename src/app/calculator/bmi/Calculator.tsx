@@ -188,6 +188,30 @@ export default function BMICalculator() {
           )}
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Understanding BMI in the Nepal Health Context</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                In Nepal, as urbanization and lifestyle shifts accelerate, monitoring metabolic health has become a critical public health priority. Our <strong className="text-[#202124]">bmi calculator nepal</strong> is calibrated to the global World Health Organization (WHO) standards, providing an immediate screening metric for adults. By analyzing the ratio of your body mass to the square of your height, this tool helps identify potential risks for non-communicable diseases (NCDs) such as hypertension and Type 2 diabetes, which are increasingly prevalent in Nepalese cities.
+              </p>
+              <p>
+                While the <strong className="text-[#202124]">body mass index</strong> is a powerful statistical proxy for body fatness, it is important to interpret results within our regional physiological context. Health professionals in Nepal often use BMI as an entry-point for deeper nutritional counseling, especially when identifying the 'double burden' of malnutrition—where both undernutrition and obesity coexist in different demographic segments.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Technical Slabs & WHO Classification Mechanics</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">The Underweight Threshold (&lt;18.5):</strong> Falling below this slab may indicate nutritional deficiencies or underlying health conditions. In Nepal, this often correlates with food security challenges or high physical labor without adequate caloric intake.</li>
+              <li><strong className="text-[#188038]">The Optimal Healthy Range (18.5–24.9):</strong> This is the target metabolic zone associated with the lowest risk of cardiovascular complications. Maintaining a <strong className="text-[#202124]">healthy weight nepal</strong> status requires a balance of locally sourced nutrient-dense foods and consistent physical activity.</li>
+              <li><strong className="text-[#F29900]">The Overweight & Obese Warning (≥25.0):</strong> Entering these higher categories mathematically increases the pressure on joints and the internal vascular system. For the South Asian population, some studies suggest that health risks may begin at slightly lower BMI points than the global 25.0 threshold, making regular monitoring even more vital.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
           "Choose between Metric (kg/cm) or Imperial (lbs/ft) units.",

@@ -137,6 +137,30 @@ export default function MortgageCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Navigating Nepal's Mortgage & Real Estate Market</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Purchasing residential property in Nepal requires strict adherence to banking regulations and a deep understanding of amortization mechanics. Our comprehensive <strong className="text-[#202124]">mortgage calculator nepal</strong> goes beyond standard EMI equations by integrating holistic homeownership costs, including mandated insurance premiums and local municipal property taxes.
+              </p>
+              <p>
+                A critical factor in real estate financing is the <strong className="text-[#202124]">nrb ltv ratio</strong> (Loan-to-Value). Currently, the Nepal Rastra Bank (NRB) strictly regulates the maximum permissible loan amount against real estate collateral, often capping residential home loans at specific percentages (e.g., 50% to 70%) depending on the property location (inside vs. outside Kathmandu Valley). An accurate <strong className="text-[#202124]">home loan emi</strong> projection must account for this required upfront equity (down payment) to ensure bank compliance.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Mechanics of Mortgage Amortization</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Reducing Balance Principle:</strong> Nepal's banking sector operates entirely on reducing balance amortization for long-term mortgages. This means your interest burden is calculated strictly on the remaining principal each month. Early in a 15-year tenure, your monthly EMI heavily services the interest component; however, this ratio flips mathematically in the later years.</li>
+              <li><strong className="text-[#188038]">Total Cost of Ownership Matrix:</strong> Many borrowers fail to account for hidden holding costs. This calculator integrates local <strong className="text-[#202124]">property tax calculator</strong> metrics and annual fire/earthquake insurance mandates. When these variables are amortized into a single monthly figure, you gain an institutional-grade view of your actual monthly liquidity requirements.</li>
+              <li><strong className="text-[#D93025]">Base Rate Volatility:</strong> Mortgage rates in Nepal are rarely fixed. They are calculated as the bank's Base Rate plus a fixed premium. Because the Base Rate fluctuates quarterly based on the bank's cost of funds, your total interest paid can vary significantly. Borrowers should run this simulation using historical high and low interest rate margins to stress-test their affordability.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Enter the total home/property price.", "Set the down payment percentage (Nepal banks require 20-25% minimum).", "Enter the current home loan interest rate from your bank.", "Select the loan tenure in years.", "Add annual property tax and insurance if known.", "Review total monthly cost including all components."] }}
       formula={{ title: "Mortgage EMI Formula", description: "Standard reducing-balance EMI formula used by all Nepalese banks.", raw: "EMI = [P × r × (1+r)^n] / [(1+r)^n − 1]\nWhere P = Loan Amount, r = Monthly Rate, n = Total Months" }}
       faqs={[

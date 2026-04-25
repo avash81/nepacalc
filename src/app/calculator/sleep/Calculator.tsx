@@ -168,6 +168,14 @@ export default function SleepCalculator() {
           <div>
             <h2>Understanding the 90-Minute Sleep Cycle</h2>
             <p>Good sleep is not just about the total hours you spend in bed; it is about how many complete sleep cycles you achieve. The human brain naturally cycles through different stages of sleep—ranging from light sleep to deep sleep and REM sleep—roughly every 90 minutes.</p>
+
+            <h2>Recovery Guide: Sleep Optimization</h2>
+            <p className="font-medium">
+              Sleep is the most powerful <strong>recovery tool</strong> for the human body. It's not just about how long you stay in bed, but how many complete sleep cycles you experience.
+            </p>
+            <p>
+              Our <strong>Circadian Analytics Laboratory</strong> leverages the science of <strong>ultradian rhythms</strong>. By calculating the precise moments your brain naturally shifts between sleep cycles, we help you find the 'perfect' wake-up time, ensuring you start your day in Nepal feeling energized rather than groggy.
+            </p>
             
             <h3>What Happens if You Interrupt a Cycle?</h3>
             <p>If your alarm goes off while you are in the middle of deep sleep (stage 3 or 4), you experience a phenomenon known as <strong>sleep inertia</strong>. This leaves you feeling groggy, disoriented, and fatigued, regardless of whether you slept for 6 hours or 10 hours. Conversely, waking up at the end of a cycle (during light sleep) makes you feel naturally refreshed and alert.</p>

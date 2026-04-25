@@ -133,6 +133,30 @@ export default function MomoCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">The Nutritional Mathematics of Nepal's Staple</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Momos are undeniably deeply ingrained in Nepalese culture, but for fitness enthusiasts and individuals monitoring their macronutrients, tracking exactly how many <strong className="text-[#202124]">calories in one plate momo in nepal</strong> is crucial. Our algorithm analyzes standard Kathmandu restaurant serving sizes (typically 10 pieces per plate) to provide a granular macronutrient breakdown, shifting dietary guesswork into precise mathematical accounting.
+              </p>
+              <p>
+                From calculating exactly <strong className="text-[#202124]">1 plate chicken momo calories</strong> to analyzing the carbohydrate density of flour wrappers, this tool allows users to safely incorporate their favorite street food into their daily Basal Metabolic Rate (BMR) allowance without breaking their caloric deficit or bulking goals.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Preparation Methods and Caloric Friction</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Steamed vs. Fried:</strong> The cooking method exponentially impacts the energy density. While baseline <strong className="text-[#202124]">veg momo calories</strong> are low (approx. 24 kcal per steamed piece), deep-frying them forces the refined flour wrapper to absorb lipids, nearly tripling the fat content and caloric density.</li>
+              <li><strong className="text-[#188038]">Protein Ratios:</strong> Buff and Chicken fillings provide a respectable protein-to-calorie ratio, making steamed variants a viable post-workout meal when tracked accurately against daily protein targets.</li>
+              <li><strong className="text-[#D93025]">The Achar/Jhol Variable:</strong> It is critical to account for accompaniments. While the calculator focuses on the dumplings, users must be aware that <strong className="text-[#202124]">jhol momo calories</strong> (sesame/peanut-based liquid broths) add a highly concentrated source of invisible fats, often adding 100-150 uncounted calories to the total meal.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Select your momo type (Buff, Chicken, Veg, C-Momo, etc).", "Select the quantity using the quick preset buttons (Half/Full Plate) or enter a custom amount.", "Click 'Add Another Plate' to track mixed orders (e.g. half buff, half veg).", "View your total calories and protein/fat/carb macros instantly."] }}
       formula={{ title: "Nutritional Estimates", description: "Based on standard Nepali restaurant preparations.", raw: "Calorie estimates assume standard commercial wrappers and meat-to-fat ratios common in Kathmandu.\n\nSteamed Momos ≈ 30-35 kcal/pc\nFried Momos ≈ 60-65 kcal/pc\n\nMacronutrients are approximate. Achar (sauce) adds roughly 30-50 extra calories per plate depending on oil content." }}
       faqs={[

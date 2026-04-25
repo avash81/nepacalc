@@ -165,6 +165,14 @@ export default function SimpleCalculator() {
           <div>
             <h2>The Essential Online Calculator</h2>
             <p>Our simple online calculator is designed to provide a clean, distraction-free environment for everyday mathematical tasks. Whether you are balancing a checkbook, calculating a quick tip at a restaurant, or helping with basic homework, this tool provides instant, accurate results without the clutter of advanced scientific functions.</p>
+
+            <h2>Utility Guide: Standard Arithmetic</h2>
+            <p className="font-medium">
+              Sometimes, the most powerful tool is the <strong>simplest one</strong>. Whether you are balancing daily expenses or double-checking a retail invoice, a reliable basic calculator is an essential utility.
+            </p>
+            <p>
+              Our <strong>Standard Calculation Laboratory</strong> provides a clean, distraction-free environment for your daily arithmetic. Designed to follow the <strong>BODMAS order of operations</strong>, our engine ensures that even simple equations are handled with the same rigor and precision as our most advanced engineering tools.
+            </p>
             
             <h3>Core Functions</h3>
             <ul>

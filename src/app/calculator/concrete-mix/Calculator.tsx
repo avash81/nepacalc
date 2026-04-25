@@ -139,6 +139,30 @@ export default function ConcreteMixCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering the Concrete Calculator Algorithm</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                In civil engineering, accurate raw material estimation is paramount. A standard <strong className="text-[#202124]">concrete calculator</strong> must account for the physical compaction that occurs when water is added to dry materials. Our engine uses the industry-standard Dry Volume Factor of 1.54, which mathematically scales your wet volume requirement to ensure you purchase the correct amount of raw cement, sand, and aggregate.
+              </p>
+              <p>
+                Whether you are searching for a highly precise <strong className="text-[#202124]">concrete calculater</strong> for a massive M25 slab or simply trying to figure out <strong className="text-[#202124]">how many bags of concrete in a yard</strong> for a small patio, this tool translates complex ratio mathematics into actionable purchase orders, converting theoretical m³ into exact 50kg bag counts.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Yield Mathematics & Pre-mixed Bags</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Volumetric Yields:</strong> A common homeowner question is: <strong className="text-[#202124]">1 80 lb bag of concrete how many yards</strong> does it cover? A standard 80 lb pre-mixed bag yields approximately 0.60 cubic feet. Since there are 27 cubic feet in a cubic yard, it takes exactly 45 bags (80 lbs each) to form one full cubic yard.</li>
+              <li><strong className="text-[#188038]">Grade Ratios (M15 vs M20):</strong> The tool automatically recalculates the material split based on the grade. M20 (1:1.5:3) requires significantly more cement per cubic meter than an M15 (1:2:4) mix, directly impacting your budget.</li>
+              <li><strong className="text-[#D93025]">The Wastage Buffer:</strong> Construction sites are prone to material loss during transit, mixing, and pouring. The calculator includes a customizable wastage parameter (defaulting to 5%) to ensure you do not run short mid-pour.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Select your preferred measurement unit (Metric m³ or Imperial ft³).", "Enter the total wet volume of concrete required for your project.", "Select the concrete grade (M20 is standard for most residential construction).", "Adjust the wastage and dry factor if your site conditions require different tolerances."] }}
       formula={{ title: "Concrete Quantity Estimation", description: "Standard civil calculation method.", raw: "Dry Volume = Wet Volume × 1.54\nSum of Ratio = Cement + Sand + Aggregate\n\nCement Vol = (Cement Ratio / Sum) × Dry Volume\nCement Bags = Cement Vol / 0.0347 m³ (Standard 50kg bag)\n\nSand Vol = (Sand Ratio / Sum) × Dry Volume\nAggregate Vol = (Aggregate Ratio / Sum) × Dry Volume" }}
       faqs={[

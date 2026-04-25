@@ -35,39 +35,6 @@ const STATS_FAQS = [
 
 export default function Page() {
   return (
-    <div className="bg-white min-h-screen">
-      <CalcWrapper
-        title="Statistical Variance Engine"
-        description="Professional data analysis tool for calculating mean, variance, and standard deviation for both population and sample datasets."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Standard Deviation' }]}
-        isNepal={true}
-        relatedCalcs={[
-          { name: 'Z-Score Calc', slug: 'z-score' },
-          { name: 'Probability Calc', slug: 'probability' },
-          { name: 'Scientific Calc', slug: 'scientific-calculator' }
-        ]}
-        formula="σ = √[Σ(x - μ)² / N] [Population SD]"
-      >
-        <Calculator />
-        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
-              Statistical Guide: Variance Analysis
-            </h2>
-            
-            <div className="prose prose-slate max-w-none mb-12">
-              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-                In <strong>data science and academic research</strong>, understanding the spread of your data is just as important as knowing the average.
-              </p>
-              <p className="text-slate-700 text-base leading-relaxed mb-6">
-                Our <strong>Statistical Analysis Laboratory</strong> provides the precision required for rigorous data interpretation. Whether you are a student in Nepal analyzing survey results or a researcher tracking <strong>market volatility</strong>, our engine handles both population and sample standard deviations with industrial-grade accuracy, providing a clear window into your data's consistency.
-              </p>
-            </div>
-
-            <PillarFAQ faqs={STATS_FAQS} title="Statistics & Data Analysis FAQ" />
-          </div>
-        </div>
-      </CalcWrapper>
-    </div>
+    <Calculator />
   );
 }

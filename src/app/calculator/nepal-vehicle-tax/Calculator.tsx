@@ -60,6 +60,7 @@ export default function NepalVehicleTaxCalculator() {
 
   return (
     <ModernCalcLayout
+      slug="nepal-vehicle-tax"
       crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Vehicle Tax Calculator' }]}
       title="Nepal Vehicle Tax Calculator"
       description="Calculate your annual blue-book renewal tax for motorbikes and cars in Nepal. Based on the latest Bagmati Province tax slabs for FY 2081/82."
@@ -153,6 +154,30 @@ export default function NepalVehicleTaxCalculator() {
           <div className="flex gap-2 p-3 bg-[#FFF7E0] border border-[#FEEFC3] rounded-lg items-start">
             <AlertCircle className="w-4 h-4 text-[#F29900] shrink-0 mt-0.5" />
             <p className="text-[10px] text-[#202124] leading-tight">Insurance estimate is approximate. Actual insurance premium depends on the insurer and vehicle age.</p>
+          </div>
+        </div>
+      }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">The Definitive Vehicle Tax & Bluebook Engine</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Navigating the Department of Transport Management (Yatayat) regulations requires strict adherence to engine-capacity-based tax brackets. Our <strong className="text-[#202124]">vehicle tax nepal</strong> calculator is engineered to parse the latest <strong className="text-[#202124]">bagmati province vehicle tax</strong> slabs introduced in the FY 2081/82 economic act. It eliminates the guesswork from determining your exact statutory liability before visiting the revenue office.
+              </p>
+              <p>
+                Unlike generic cost estimators, this system functions as a highly precise <strong className="text-[#202124]">yatayat tax calculator</strong>. It calculates the <strong className="text-[#202124]">bluebook renewal fee nepal</strong> by mathematically matching your vehicle's engine displacement (CC) against the official governmental matrices for both private and public transportation modalities.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Framework for Motor Vehicles</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Two-Wheeler Dynamics:</strong> When calculating <strong className="text-[#202124]">bike tax nepal 2081 2082</strong>, the algorithm segments the market into 6 distinct tiers. An entry-level 125cc commuter is taxed at NPR 3,000, while hyper-bikes exceeding 650cc face a maximum threshold tax of NPR 35,000.</li>
+              <li><strong className="text-[#188038]">Four-Wheeler Evaluation:</strong> The <strong className="text-[#202124]">car tax nepal</strong> logic is bifurcated by ownership classification. Private cars are subject to steep, progressive taxation (ranging from NPR 22,000 to NPR 65,000+), whereas public utility vehicles are heavily subsidized (capped at NPR 5,000) to support mass transit.</li>
+              <li><strong className="text-[#D93025]">Third-Party Liability:</strong> While the calculator outputs the exact government tax, it intentionally separates the mandatory third-party insurance premium (estimated at ~NPR 2,200 for bikes and ~NPR 8,000 for cars) to ensure total transparency of your final out-of-pocket expense.</li>
+            </ul>
           </div>
         </div>
       }

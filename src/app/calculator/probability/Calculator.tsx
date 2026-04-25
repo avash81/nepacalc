@@ -132,6 +132,14 @@ export default function ProbabilityCalc() {
       ]}
       seoContent={
         <div>
+          <h2>Probability Analysis Laboratory</h2>
+          <p>
+            Understanding <strong>risk and likelihood</strong> is essential for data science, finance, and everyday decision-making. 
+            Probability provides the mathematical framework for quantifying uncertainty. Our analysis laboratory simplifies complex statistical queries. 
+            Whether you are a student in Nepal calculating independent event outcomes or a professional analyzing risk ratios, 
+            our engine provides instant conversions between <strong>odds, decimals, and percentages</strong> with absolute mathematical certainty.
+          </p>
+
           <h2>Understanding Basic Statistical Probability</h2>
           <p>Probability is a branch of mathematics that deals with calculating the likelihood that a given event will occur. Whether you are analyzing risk in finance, calculating odds in gaming, or just trying to understand the chances of rain, understanding basic probability is essential for making informed decisions.</p>
           

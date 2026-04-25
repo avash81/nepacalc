@@ -98,6 +98,30 @@ export default function PropertyTaxCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering the Property Tax Framework in Nepal</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Selling real estate involves strict regulatory overhead. Our <strong className="text-[#202124]">nepal property tax calculator</strong> is engineered to parse the exact mandates of the Inland Revenue Department (IRD). Unlike a standard income <strong className="text-[#202124]">tax calculator 2024</strong> or <strong className="text-[#202124]">tax calculator 2025</strong>, the Capital Gains Tax (CGT) on property is an exclusive levy triggered only during the transfer of ownership at the Malpot (Land Revenue) office.
+              </p>
+              <p>
+                The fundamental logic dictating the <strong className="text-[#202124]">capital gains tax nepal</strong> rate relies entirely on the holding period. Rather than applying a blanket percentage, the algorithm calculates whether the asset was held for a short-term duration (&lt; 5 years) or a long-term duration (≥ 5 years). This dynamic <strong className="text-[#202124]">cgt on property sale nepal</strong> logic mathematically mirrors the exact ledger calculations performed by government tax officers.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Deductions & Exemptions</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Net Taxable Profit:</strong> A critical error users make is calculating tax on the gross selling price. As a definitive <strong className="text-[#202124]">land tax calculator nepal</strong>, this tool strictly subtracts the original cost price and legally verified deductible expenses from the final selling price before applying the multiplier.</li>
+              <li><strong className="text-[#188038]">The Rs. 10 Lakh Exemption:</strong> To protect lower-income citizens, the algorithm enforces a hard Boolean check. If the gross selling transaction evaluates to less than NPR 1,000,000, the effective <strong className="text-[#202124]">property tax rate nepal</strong> is immediately reduced to 0%.</li>
+              <li><strong className="text-[#D93025]">Negative Gain Immunity:</strong> If the asset depreciates and the transaction results in a mathematical loss (Selling Price &lt; Cost Price), the CGT liability is nullified.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{ steps: ["Enter the selling price (declared on Lalpurja).", "Enter the original purchase price and any deductible expenses.", "Select how long you held the property.", "Review the taxable gain and CGT amount."] }}
       formula={{ title: "Nepal Property CGT", description: "Tax applies on net profit. Rate depends on holding period.", raw: "Profit = Selling Price − Cost Price − Expenses\nCGT (5+ years held) = Profit × 5%\nCGT (< 5 years held) = Profit × 7.5%\nExemption: Selling price < Rs. 10,00,000" }}
       faqs={[

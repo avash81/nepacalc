@@ -40,6 +40,7 @@ export default function NepalSalaryCalculator() {
 
   return (
     <ModernCalcLayout
+      slug="nepal-salary"
       crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Salary Calculator' }]}
       title="Nepal Salary Calculator"
       description="Professional payroll analysis tool for Nepal. Calculate exact take-home pay, SSF contributions, CIT optimization, and Employer CTC."
@@ -165,6 +166,30 @@ export default function NepalSalaryCalculator() {
           <div className="flex gap-2 p-3 bg-[#FFF7E0] border border-[#FEEFC3] rounded-lg items-start">
             <Info className="w-4 h-4 text-[#F29900] shrink-0 mt-0.5" />
             <p className="text-[10px] text-[#202124] leading-tight">SSF contributions are calculated on <strong>60% of Gross</strong> (assumed Basic) as per standard Nepal corporate practice.</p>
+          </div>
+        </div>
+      }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering the Salary to Hourly Conversion in Nepal</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                In the modern professional landscape, understanding the direct translation from <strong className="text-[#202124]">salary to hourly</strong> rates is crucial. Nepalese employment contracts typically stipulate a monthly gross, but to truly gauge your earning power, you must <strong className="text-[#202124]">figure out hourly salary</strong> equivalents. Standard Nepalese labor law assumes a 48-hour workweek (yielding approximately 208 working hours per month). 
+              </p>
+              <p>
+                By factoring in mandatory Social Security Fund (SSF) and voluntary Citizen Investment Trust (CIT) deductions, this engine functions as an advanced <strong className="text-[#202124]">salary increase calculator</strong>, allowing you to project exact net changes when negotiating a raise. Whether you are transitioning from freelance contracts (<strong className="text-[#202124]">hourly to salary</strong>) or evaluating an international remote offer, knowing your exact baseline in NPR is the mathematical foundation of your financial security.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The Architecture of Your Paycheck</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Basic vs Allowance Split:</strong> Most corporate payrolls in Nepal enforce a 60/40 mathematical split. SSF (11% employee, 20% employer) is strictly calculated on the 60% Basic component to optimize tax liability while ensuring compliance.</li>
+              <li><strong className="text-[#188038]">The CTC Discrepancy:</strong> If you are tasked to <strong className="text-[#202124]">find hourly from salary</strong> based on CTC (Cost to Company), remember that CTC includes the employer's 20% SSF contribution, artificially inflating the gross figure before deductions.</li>
+              <li><strong className="text-[#D93025]">Marginal Rate Impact:</strong> When utilizing this as a <span className="italic">salary increase calculator</span>, be aware that pushing into a higher tax bracket (e.g., crossing from 10% to 20%) will yield diminishing marginal returns on your net take-home pay.</li>
+            </ul>
           </div>
         </div>
       }

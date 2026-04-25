@@ -113,6 +113,14 @@ export default function RoundingCalc() {
         <div>
           <h2>Understanding Number Rounding</h2>
           <p>Rounding numbers makes them simpler and easier to use while keeping their value close to what it was. This is especially useful in finance, science, and everyday math where extreme precision (like having 10 decimal places) isn't necessary or practical.</p>
+
+          <h2>Precision Guide: Numerical Rounding</h2>
+          <p className="font-medium">
+            In <strong>mathematics and data analysis</strong>, maintaining the correct level of precision is vital for the integrity of your results.
+          </p>
+          <p>
+            Our <strong>Numerical Precision Laboratory</strong> provides a robust interface for managing decimal approximations. Whether you are a student in Nepal simplifying physics problems or a professional preparing <strong>financial statements</strong>, our engine applies standard rounding laws with absolute consistency, ensuring your data is both accurate and presentation-ready.
+          </p>
           
           <h3>Common Rounding Methods</h3>
           <ul>

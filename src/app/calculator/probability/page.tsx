@@ -35,39 +35,6 @@ const PROBABILITY_FAQS = [
 
 export default function Page() {
   return (
-    <div className="bg-white min-h-screen">
-      <CalcWrapper
-        title="Probability Logic Engine"
-        description="High-precision statistical engine for determining the likelihood of events and converting between odds, ratios, and percentages."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Probability' }]}
-        isNepal={true}
-        relatedCalcs={[
-          { name: 'Standard Deviation', slug: 'standard-deviation' },
-          { name: 'Z-Score Calc', slug: 'z-score' },
-          { name: 'Scientific Calc', slug: 'scientific-calculator' }
-        ]}
-        formula="P(A) = Favorable Outcomes / Total Outcomes"
-      >
-        <Calculator />
-        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-900 text-white px-6 py-3 rounded-2xl inline-block shadow-lg">
-              Statistical Guide: Probability Theory
-            </h2>
-            
-            <div className="prose prose-slate max-w-none mb-12">
-              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-                Understanding <strong>risk and likelihood</strong> is essential for data science, finance, and everyday decision-making. Probability provides the mathematical framework for quantifying uncertainty.
-              </p>
-              <p className="text-slate-700 text-base leading-relaxed mb-6">
-                Our <strong>Probability Analysis Laboratory</strong> simplifies complex statistical queries. Whether you are a student in Nepal calculating independent event outcomes or a professional analyzing risk ratios, our engine provides instant conversions between <strong>odds, decimals, and percentages</strong> with absolute mathematical certainty.
-              </p>
-            </div>
-
-            <PillarFAQ faqs={PROBABILITY_FAQS} title="Probability & Statistics FAQ" />
-          </div>
-        </div>
-      </CalcWrapper>
-    </div>
+    <Calculator />
   );
 }
