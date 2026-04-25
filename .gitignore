@@ -39,3 +39,9 @@ firebase-blueprint.json
 # Tool Analysis & Documentation
 /graphify-out/
 
+
+# Firebase
+.firebase/
+
+# Scratch
+scratch/
