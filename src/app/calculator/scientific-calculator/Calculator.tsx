@@ -3,6 +3,8 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import * as math from 'mathjs';
 import * as QRCode from 'qrcode';
 import { useSyncState } from '@/hooks/useSyncState';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { Calculator } from 'lucide-react';
 
 /* ── Professional Factorial ───────────────── */
 function factorial(n: number): number {
