@@ -88,17 +88,17 @@ export default function BlogPostContent({ post, related }: { post: any; related:
   const seoNudge = isSalaryPost ? {
     title: 'Precision Salary Planning',
     desc: 'Calculate your exact net salary with SSF, CIT, and 2082 tax slabs.',
-    href: '/calculator/nepal-salary',
+    href: '/calculator/nepal-salary/',
     label: 'Salary Calculator'
   } : isTaxPost ? {
     title: 'Tax Season Readiness',
     desc: 'Calculate your personal income tax liability with latest 2082/83 slabs.',
-    href: '/calculator/nepal-income-tax',
+    href: '/calculator/nepal-income-tax/',
     label: 'Tax Optimizer'
   } : isGPAPost ? {
       title: 'Academic Goal Tracker',
       desc: 'Predict your final CGPA and track semester progress with TU/KU scales.',
-      href: '/calculator/engineering-gpa-calculator',
+      href: '/calculator/engineering-gpa-calculator/',
       label: 'GPA Planner'
   } : null;
 

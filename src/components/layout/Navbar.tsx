@@ -44,13 +44,13 @@ export function Navbar() {
   useEffect(() => setIsMenuOpen(false), [path]);
 
   const navLinks = [
-    { name: 'Nepal Specific', href: '/nepal' },
-    { name: 'Finance & Tax', href: '/finance' },
-    { name: 'Math Tools', href: '/math-tools' },
-    { name: 'Converters', href: '/converters' },
-    { name: 'Health', href: '/health' },
-    { name: 'Engineering', href: '/engineering' },
-    // { name: 'Market Rates', href: '/market-rates' },
+    { name: 'Nepal Specific', href: '/nepal/' },
+    { name: 'Finance & Tax', href: '/finance/' },
+    { name: 'Math Tools', href: '/math-tools/' },
+    { name: 'Converters', href: '/converters/' },
+    { name: 'Health', href: '/health/' },
+    { name: 'Engineering', href: '/engineering/' },
+    // { name: 'Market Rates', href: '/market-rates/' },
   ];
 
   return (

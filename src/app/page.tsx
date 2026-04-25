@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     title: 'Free Online Calculator NepaCal Nepal',
     description: 'Use free online calculators for math finance health conversions and more. Nepals best calculator site with 100 plus tools. Try NepaCal now',
   },
+  alternates: {
+    canonical: 'https://nepacalc.com/',
+  }
 };
 
 /* ── Homepage-specific JSON-LD schemas ── */
@@ -120,7 +123,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
             {CATEGORIES.filter(c => c.id !== 'market').map(cat => (
               <div key={cat.id} className="bg-white p-4 border border-[#dadce0] rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col h-full min-h-[340px]">
-                <Link href={cat.id === 'education' ? '/math-tools' : cat.id === 'utility' ? '/converters' : `/${cat.id}`}>
+                <Link href={cat.id === 'education' ? '/math-tools/' : cat.id === 'utility' ? '/converters/' : `/${cat.id}/`}>
                   <h2 className={`${cat.id === 'engineering' ? 'text-[#4361ee]' : 'text-[#1a73e8]'} text-[11px] font-black uppercase tracking-wider border-b border-[#f1f3f4] pb-2 hover:underline mb-3`}>
                     {cat.name}
                   </h2>
@@ -141,7 +144,7 @@ export default function HomePage() {
                   })}
                 </ul>
                 <div className="mt-3 pt-2 border-t border-[#f1f3f4]">
-                  <Link href={cat.id === 'education' ? '/math-tools' : cat.id === 'utility' ? '/converters' : `/${cat.id}`} className="text-[9px] font-bold text-[#1a73e8] hover:underline uppercase tracking-widest flex items-center gap-1">
+                  <Link href={cat.id === 'education' ? '/math-tools/' : cat.id === 'utility' ? '/converters/' : `/${cat.id}/`} className="text-[9px] font-bold text-[#1a73e8] hover:underline uppercase tracking-widest flex items-center gap-1">
                     View All <span className="text-[12px] leading-none">&rarr;</span>
                   </Link>
                 </div>

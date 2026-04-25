@@ -121,49 +121,70 @@ export default function StatisticsPlus() {
             { label: 'Percentage Calculator', href: '/calculator/percentage' },
           ],
         }}
+        details={
+          <div className="space-y-8">
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h2 className="text-xl font-black text-[#202124] mb-4">Measures of Central Tendency & Data Topology</h2>
+              <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+                <p>
+                  Descriptive statistics form the backbone of modern data science, allowing researchers to compress massive datasets into singular, comprehensible metrics. Our <strong className="text-[#202124]">central tendency calculator</strong> acts as a primary diagnostic tool, instantly deriving the Mean, Median, Mode, and Range to reveal the true 'center' and spread of any statistical distribution.
+                </p>
+                <p>
+                  While the Mean (average) is the most universally recognized metric, it is notoriously fragile when exposed to extreme outliers. For asymmetrical data distributions (such as wealth inequality or housing prices), the mathematical Median provides a far more robust anchor. Our engine computes these contrasting metrics simultaneously, empowering analysts to detect underlying skewness in their data.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Analysis of Statistical Metrics</h3>
+              <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+                <li><strong className="text-[#1A73E8]">The Mean (Arithmetic Average):</strong> Calculated by dividing the sum of all values by the total count. It represents the perfect center of gravity for the dataset but is easily distorted by anomalies.</li>
+                <li><strong className="text-[#188038]">The Median (Absolute Middle):</strong> The engine automatically sorts the data from lowest to highest and extracts the exact middle value. Because it relies on positional rank rather than magnitude, it ignores extreme outliers entirely.</li>
+                <li><strong className="text-[#D93025]">The Mode (Highest Frequency):</strong> The value that appears most often. Unlike Mean and Median, the Mode is uniquely capable of analyzing categorical, non-numerical data (e.g., determining the most popular shoe size sold in a retail store).</li>
+              </ul>
+            </div>
+          </div>
+        }
         howToUse={{
           steps: [
-            "Enter your dataset into the text area. You can separate numbers using commas, spaces, or new lines.",
-            "The calculator automatically cleans your data, removing any non-numeric characters.",
-            "It will immediately sort your data from lowest to highest, which is useful for finding the median.",
-            "The results panel will instantly display the Mean, Median, Mode, Range, Min, Max, and Sum."
+            "Paste your raw data string into the primary matrix. The parser accepts spaces, commas, or line breaks as valid separators.",
+            "The engine will automatically strip non-numeric characters and sort your data chronologically.",
+            "Review the primary output panels for the Mean, Median, and Mode.",
+            "Check the 'Sorted Data' preview block to visually verify the mathematical order and detect clustering.",
+            "Utilize the lower matrix to analyze total variance (Range), dataset boundaries (Min/Max), and the absolute summation."
           ]
+        }}
+        formula={{
+          title: "Descriptive Statistical Algorithms",
+          description: "The mathematical procedures utilized to define dataset topology.",
+          raw: "Mean (μ or x̄) = ( Σ xi ) / n\n\nMedian (Odd n) = Value at position (n + 1) / 2\nMedian (Even n) = Average of values at (n/2) and (n/2 + 1)\n\nMode = The value(s) with the highest frequency count.\n\nRange = Maximum Value − Minimum Value"
         }}
         faqs={[
           {
-            question: "What is the difference between Mean, Median, and Mode?",
-            answer: "The Mean is the traditional average (sum of all numbers divided by the count). The Median is the exact middle number when the data is sorted from lowest to highest (great for data with extreme outliers). The Mode is the number that appears most frequently in the dataset."
+            question: "Why is the Median often preferred over the Mean for income data?",
+            answer: "The Mean is highly susceptible to extreme outliers. If nine people make $50,000 and one person makes $10,000,000, the Mean average becomes heavily skewed upward, misrepresenting the group. The Median simply looks at the middle person, ignoring the millionaire, providing a truer reflection of 'average' income."
           },
           {
-            question: "What happens if there are multiple modes?",
-            answer: "If two or more numbers tie for the highest frequency, the dataset is considered bimodal or multimodal. Our calculator will display 'Multi' and list them if there are two, or indicate that there are multiple modes."
+            question: "What happens if a dataset has an even number of values?",
+            answer: "To calculate the median of an even dataset, the engine locates the two absolute center values and averages them together. For example, in the set [2, 4, 6, 8], the median is the average of 4 and 6, which is 5."
+          },
+          {
+            question: "Can a dataset have more than one Mode?",
+            answer: "Yes. If two different numbers share the highest frequency (e.g., both 10 and 20 appear three times), the dataset is 'Bimodal'. If more than two numbers tie, it is 'Multimodal'. If every single number appears exactly once, there is no mode at all."
+          },
+          {
+            question: "What exactly does the 'Range' tell me?",
+            answer: "The Range is the simplest measure of statistical dispersion. By subtracting the absolute minimum value from the absolute maximum value, it tells you exactly how wide the entire dataset is from end to end."
+          },
+          {
+            question: "Does the order I input the numbers matter?",
+            answer: "No. Our computational engine automatically parses your input and re-sorts all numerical values in ascending order (lowest to highest) in the background before running the Median algorithms."
+          },
+          {
+            question: "How does the engine handle negative numbers and decimals?",
+            answer: "The engine uses robust floating-point parsing. Negative numbers and decimals are fully supported and will be sorted and calculated perfectly according to standard numerical logic."
           }
         ]}
-        seoContent={
-          <div>
-            <h2>Professional Analytical Suite</h2>
-            <p>
-              Descriptive statistics are the <strong>foundation of data interpretation</strong>, allowing us to summarize complex datasets into meaningful insights. 
-              Our analytical suite provides a detailed snapshot of your data's characteristics. Whether you are a student in Nepal summarizing research findings 
-              or a business analyst reviewing <strong>sales distributions</strong>, our engine computes the mean, median, mode, and range with absolute accuracy.
-            </p>
-
-            <h2>Understanding Central Tendency in Statistics</h2>
-            <p>In statistics, measures of central tendency are used to describe the center or typical value of a dataset. The three most common measures are the Mean, Median, and Mode. While they all aim to find the 'center', they do so in different ways and are useful in different scenarios.</p>
-            
-            <h3>1. The Mean (Average)</h3>
-            <p>The mean is calculated by adding all the numbers together and dividing by the total number of items. It is the most commonly used measure but has a critical flaw: it is highly sensitive to outliers. For example, if you are looking at average household income and a billionaire moves into the neighborhood, the mean income will skyrocket, even though most people's incomes stayed the same.</p>
-            
-            <h3>2. The Median (Middle)</h3>
-            <p>The median is the exact middle value when a dataset is sorted from smallest to largest. If there is an even number of values, the median is the average of the two middle numbers. The median is incredibly robust against outliers. Using the previous example, the billionaire moving into the neighborhood would barely change the median income, making it a much better representation of the 'typical' household.</p>
-            
-            <h3>3. The Mode (Most Frequent)</h3>
-            <p>The mode is simply the value that appears most often in the dataset. A dataset can have one mode, multiple modes (bimodal or multimodal), or no mode at all if every number appears only once. Mode is particularly useful for categorical data (e.g., finding the most common shoe size sold in a store).</p>
-            
-            <h3>What is Range?</h3>
-            <p>The range is the simplest measure of dispersion (how spread out the data is). It is calculated by subtracting the lowest value (minimum) from the highest value (maximum). While easy to calculate, it only considers the two extreme ends of the dataset.</p>
-          </div>
-        }
       />
     </CalculatorErrorBoundary>
   );

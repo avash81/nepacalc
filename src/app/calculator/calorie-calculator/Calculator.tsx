@@ -139,27 +139,68 @@ export default function CalorieCalculator() {
           )}
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Thermodynamics & Daily Energy Expenditure</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                At its core, weight management is governed by the laws of thermodynamics: energy in versus energy out. Our <strong className="text-[#202124]">calorie calculator</strong> serves as your personalized metabolic architect, utilizing the clinically validated Mifflin-St Jeor equation to map exactly how much energy your body requires daily. This calculation is vital whether you are aiming to shed excess fat, build lean muscle mass, or simply maintain your current physique.
+              </p>
+              <p>
+                The calculator determines your <strong className="text-[#202124]">Total Daily Energy Expenditure (TDEE)</strong> by first calculating your resting metabolism and then applying an activity multiplier based on your lifestyle. By identifying this exact maintenance ceiling, the engine can accurately prescribe specific caloric deficits or surpluses to trigger reliable, mathematically predictable body composition changes.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Metabolic Protocols & Goal Trajectories</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Maintenance Protocol (TDEE):</strong> The exact number of calories required to keep your body weight entirely static. If you eat this amount daily, you will neither gain nor lose weight.</li>
+              <li><strong className="text-[#188038]">Hypertrophy (Weight Gain):</strong> To build muscle tissue, the body requires an anabolic state. The engine prescribes a safe, controlled 500-calorie surplus, providing the biological building blocks for muscle synthesis without excessive fat spillover.</li>
+              <li><strong className="text-[#D93025]">Fat Oxidation (Weight Loss):</strong> To burn stored adipose tissue, you must force a biological energy deficit. The calculator provides targets for a mild deficit (-500 kcal/day for 0.5kg weekly loss) and an aggressive deficit (-1000 kcal/day for 1kg weekly loss).</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
-          "Choose your biological sex (Male/Female) for baseline metabolic rates.",
-          "Enter your current age, weight, and height accurately.",
-          "Select your typical weekly activity level to account for energy expenditure.",
-          "Click 'Calculate Calories' to see personalized daily targets."
+          "Select your biological sex. This dictates the specific metabolic baseline constants utilized in the equation.",
+          "Enter your current age, weight (in kg), and height (in cm) with absolute precision.",
+          "Select your Activity Level. Be honest—overestimating your activity level will artificially inflate your daily calorie allowance and stall weight loss.",
+          "Review the 'Daily Results' matrix to see your exact Maintenance ceiling.",
+          "Follow the specific caloric target that aligns with your personal goal (Maintenance, Weight Loss, or Extreme Loss)."
         ]
       }}
       formula={{
-        title: "Calculation Formula",
-        description: "We use the Mifflin-St Jeor Equation, considered the gold standard for metabolic rate calculation:",
-        raw: "BMR = 10*weight + 6.25*height - 5*age + 5 (Male)\nBMR = 10*weight + 6.25*height - 5*age - 161 (Female)"
+        title: "The Mifflin-St Jeor Metabolic Algorithm",
+        description: "The clinical gold standard for predicting resting metabolic rate, widely adopted by global dietitians for its superior accuracy.",
+        raw: "BMR (Male) = (10 × weight) + (6.25 × height) - (5 × age) + 5\nBMR (Female) = (10 × weight) + (6.25 × height) - (5 × age) - 161\n\nTotal Daily Energy Expenditure (TDEE) = BMR × Activity Multiplier"
       }}
       faqs={[
         {
-          question: "How accurate is this calculator?",
-          answer: "While the Mifflin-St Jeor equation is highly accurate for most adults (within 10%), individual metabolism can vary based on muscle mass, hormones, and genetics."
+          question: "Why is the Mifflin-St Jeor equation used instead of Harris-Benedict?",
+          answer: "The original Harris-Benedict equation was created in 1919 and tends to overestimate caloric needs by about 5-10%. The Mifflin-St Jeor equation, developed in 1990, accounts for modern lifestyle changes and is clinically proven to be the most accurate predictive formula for today's population."
         },
         {
-          question: "Should I eat below 1,200 calories?",
-          answer: "We recommend consulting a professional before dropping below 1,200 (women) or 1,500 (men) calories to ensure you get adequate micronutrients."
+          question: "Can I eat less than the 'Extreme Loss' recommendation?",
+          answer: "No. Dropping below 1,200 calories per day for women or 1,500 for men is medically classified as a very-low-calorie diet (VLCD). It can cause severe muscle catabolism, gallstones, malnutrition, and a long-term slowing of your basal metabolic rate."
+        },
+        {
+          question: "Should I recalculate my calories as I lose weight?",
+          answer: "Yes. As your body mass decreases, the amount of energy required to sustain it also decreases. You should recalculate your TDEE for every 3 to 5 kilograms of weight lost to ensure your caloric deficit remains mathematically intact."
+        },
+        {
+          question: "Do I need to eat back the calories I burn during exercise?",
+          answer: "No. If you accurately selected your 'Activity Level' (e.g., 'Moderately Active'), the calculator has already factored your exercise into the final number. 'Eating back' exercise calories on top of this will erase your fat-loss deficit."
+        },
+        {
+          question: "Why does biological sex impact the calorie calculation?",
+          answer: "Due to hormonal differences, men naturally carry a higher percentage of metabolically active lean muscle mass and lower essential fat percentages than women. Muscle tissue burns significantly more calories at rest, which is reflected in the differing mathematical constants."
+        },
+        {
+          question: "How long will it take to see results on a 500-calorie deficit?",
+          answer: "A 500-calorie daily deficit equals a 3,500-calorie weekly deficit. Since 1 kilogram of body fat contains roughly 7,700 calories, this protocol mathematically forces your body to burn exactly 0.45 kg (1 pound) of pure fat every week."
         }
       ]}
       sidebar={{

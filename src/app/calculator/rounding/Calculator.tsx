@@ -15,6 +15,7 @@ export default function RoundingCalc() {
 
   return (
     <ModernCalcLayout
+      slug="rounding"
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Rounding Utility' }]}
       title="Rounding Calculator"
       description="Round numbers to the nearest whole number, specify decimal places, or calculate ceiling and floor values instantly."
@@ -88,51 +89,74 @@ export default function RoundingCalc() {
       sidebar={{
         title: "Math Tools",
         links: [
-          { label: 'Ratio & Proportion', href: '/calculator/ratio-proportion' },
-          { label: 'Percentage Calculator', href: '/calculator/percentage' },
+          { label: 'Ratio & Proportion', href: '/calculator/ratio-proportion/' },
+          { label: 'Percentage Calculator', href: '/calculator/percentage/' },
         ],
       }}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Precision Management & Numerical Rounding</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                In computational mathematics, rounding is the practice of substituting an exact numerical value with an approximation that is shorter, simpler, or more appropriate for a given physical or financial context. Our <strong className="text-[#202124]">rounding calculator</strong> is a high-precision engine designed to instantly resolve complex floating-point decimals into manageable numbers across five distinct mathematical modalities.
+              </p>
+              <p>
+                Whether you are executing standard half-up rounding for tax reporting, applying a mathematical floor to determine integer capacity, or isolating significant figures for scientific notation, preserving the correct magnitude is vital. This tool strictly adheres to IEEE 754 arithmetic standards, ensuring zero computational drift when terminating infinite decimal sequences.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Analysis of Rounding Methodologies</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Standard Rounding (Half-Up):</strong> The universal academic standard. The engine evaluates the digit immediately following the target decimal place. If it is 5 or greater, the target digit is incremented by 1. If it is 4 or less, the target digit remains static.</li>
+              <li><strong className="text-[#188038]">Mathematical Floor & Ceiling:</strong> A 'Floor' operation forcefully rounds down to the nearest integer, regardless of the decimal value (e.g., 4.9 becomes 4). This is used when calculating physical capacity. A 'Ceiling' operation forcefully rounds up (e.g., 4.1 becomes 5), used when calculating material requirements.</li>
+              <li><strong className="text-[#D93025]">Significant Figures (Sig-Figs):</strong> Used strictly in chemistry, physics, and engineering to express the precision of a measurement. Unlike decimal places (which count from the decimal point), significant figures count from the first non-zero digit in the entire number.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
-          "Enter the number you want to round in the 'Input Number' field.",
-          "Use the slider or the quick-select buttons to set your desired decimal precision.",
-          "The calculator will instantly generate multiple rounding types (Standard, Floor, Ceiling, Fixed decimal, and Significant Figures)."
+          "Enter your raw numerical data into the 'Input Number' field. You can paste numbers with infinite decimals.",
+          "Use the precision slider (or the quick-select buttons) to define the exact number of decimal places or significant figures you require.",
+          "The engine will instantly compute and display the number across all five rounding modalities.",
+          "Review the results: Standard Round, Floor, Ceiling, Fixed Decimal, and Significant Figures.",
+          "Use the 'Quick Examples' buttons to test the engine against famous mathematical constants like Pi or Euler's number."
         ]
+      }}
+      formula={{
+        title: "Algorithmic Operations",
+        description: "The JavaScript arithmetic methods powering the engine.",
+        raw: "Standard Round: Math.round(n)\nFloor: Math.floor(n)\nCeiling: Math.ceil(n)\nFixed Decimal: n.toFixed(precision)\nSignificant Figures: n.toPrecision(precision)"
       }}
       faqs={[
         {
-          question: "What is the difference between Floor and Standard Rounding?",
-          answer: "Standard rounding looks at the fractional part: if it is .5 or higher, it rounds up; if it is less than .5, it rounds down. Floor rounding ALWAYS rounds down to the next lowest whole number, regardless of the decimal value. For example, the floor of 2.9 is 2."
+          question: "What is the mathematical difference between Floor and Standard Rounding?",
+          answer: "Standard rounding evaluates the decimal fraction; if it is .5 or higher, it increments the integer. Floor rounding ignores the decimal entirely and ALWAYS forces the number down to the next lowest integer. Therefore, the floor of 2.9 is exactly 2."
         },
         {
-          question: "What are significant figures?",
-          answer: "Significant figures are the meaningful digits in a number. For example, 0.00456 has three significant figures (4, 5, and 6) because leading zeros are just placeholders."
+          question: "What are significant figures and when are they used?",
+          answer: "Significant figures represent the meaningful digits in a scientific measurement, starting from the first non-zero number. For example, 0.00456 has three significant figures (4, 5, 6). They are used in physics to ensure calculated results do not imply false precision."
+        },
+        {
+          question: "Why does the Ceiling of 4.0001 equal 5?",
+          answer: "Because the mathematical ceiling operation defines the absolute smallest integer that is greater than or equal to the input. Since 4.0001 is greater than 4, the engine must jump to the next available whole number, which is 5."
+        },
+        {
+          question: "How does the 'Fixed' decimal method work?",
+          answer: "The 'Fixed' method pads or truncates the number to exactly match your requested decimal places. If you input 5.1 and request 3 decimal places, the engine outputs 5.100. This is the global standard for rendering financial currency."
+        },
+        {
+          question: "Why do some decimal calculations seem slightly off in JavaScript?",
+          answer: "Because computers use base-2 binary floating-point arithmetic (IEEE 754), they cannot perfectly represent certain base-10 decimals (like 0.1 + 0.2). Our calculator utilizes robust internal rounding logic to correct these microscopic binary artifacts."
+        },
+        {
+          question: "How do I round a negative number?",
+          answer: "The rules apply symmetrically, but require careful thought regarding Floor and Ceiling. For negative numbers, smaller means more negative. Therefore, the Floor of -2.3 is -3, and the Ceiling of -2.3 is -2."
         }
       ]}
-      seoContent={
-        <div>
-          <h2>Understanding Number Rounding</h2>
-          <p>Rounding numbers makes them simpler and easier to use while keeping their value close to what it was. This is especially useful in finance, science, and everyday math where extreme precision (like having 10 decimal places) isn't necessary or practical.</p>
-
-          <h2>Precision Guide: Numerical Rounding</h2>
-          <p className="font-medium">
-            In <strong>mathematics and data analysis</strong>, maintaining the correct level of precision is vital for the integrity of your results.
-          </p>
-          <p>
-            Our <strong>Numerical Precision Laboratory</strong> provides a robust interface for managing decimal approximations. Whether you are a student in Nepal simplifying physics problems or a professional preparing <strong>financial statements</strong>, our engine applies standard rounding laws with absolute consistency, ensuring your data is both accurate and presentation-ready.
-          </p>
-          
-          <h3>Common Rounding Methods</h3>
-          <ul>
-            <li><strong>Standard Rounding:</strong> The most common method. You look at the digit to the right of your target rounding place. If it's 5 or more, you round up. If it's 4 or less, you round down (keep the number the same). For example, rounding 3.14159 to two decimal places gives 3.14.</li>
-            <li><strong>Ceiling (Round Up):</strong> This method always rounds the number UP to the nearest integer, no matter what the decimal is. The ceiling of 4.1 is 5.</li>
-            <li><strong>Floor (Round Down):</strong> This method always rounds the number DOWN to the nearest integer. The floor of 4.9 is 4.</li>
-          </ul>
-          
-          <h3>When to Use Different Rounding Types</h3>
-          <p>If you are calculating currency, you almost always round to exactly two decimal places (Fixed Rounding). If you are estimating how many full buses you need for 100 students and a bus holds 30, 100/30 = 3.33, but you must use the Ceiling method to realize you need 4 buses. Conversely, if you are calculating how many complete items you can buy with a set amount of money, you use the Floor method.</p>
-        </div>
-      }
     />
   );
 }

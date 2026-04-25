@@ -153,11 +153,69 @@ export default function MatrixCalc() {
           </div>
         </div>
       }
-      howToUse={{ steps: ["Select your matrix size (2x2 or 3x3) using the top toggle.", "Enter the numerical values into the matrix grid.", "The calculator will instantly compute the Determinant, Trace, and the Inverse matrix if it exists.", "Use the quick presets to quickly load an Identity matrix to test concepts."] }}
-      formula={{ title: "Matrix Concepts", description: "Core linear algebra definitions.", raw: "Trace: The sum of the main diagonal elements (top-left to bottom-right).\n\nDeterminant: A scalar value that is a function of the entries of a square matrix.\n\nInverse: A matrix that, when multiplied by the original matrix, yields the identity matrix. It only exists if the determinant is non-zero." }}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Advanced Matrix Algebra & Linear Transformations</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                In linear algebra, a matrix is a rectangular array of numbers arranged in rows and columns that represents a linear transformation in multi-dimensional space. Our <strong className="text-[#202124]">matrix calculator</strong> is an advanced computational tool designed to evaluate the foundational scalar properties and inverses of square matrices (2x2 and 3x3), which are heavily utilized in computer graphics, quantum mechanics, and cryptography.
+              </p>
+              <p>
+                The calculator instantly computes the <strong className="text-[#202124]">Determinant (|A|)</strong>, a scaling factor representing how much a transformation expands or compresses space; the <strong className="text-[#202124]">Trace (tr A)</strong>, the sum of the main diagonal elements; and the <strong className="text-[#202124]">Inverse Matrix (A⁻¹)</strong>, which mathematically reverses the linear transformation applied by the original matrix.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Computational Algorithms Used</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Determinant Expansion:</strong> For 2x2 matrices, the determinant is calculated simply as (ad - bc). For 3x3 matrices, the engine utilizes the <span className="italic">Rule of Sarrus</span> or Laplace expansion, expanding minors along the first row to calculate the absolute scalar volume multiplier.</li>
+              <li><strong className="text-[#188038]">Inverse via Adjugate Matrix:</strong> To find the inverse, the engine calculates the matrix of cofactors, transposes it to form the adjugate matrix, and then divides every resulting term by the original determinant. This ensures exact, analytic fractional outputs where possible.</li>
+              <li><strong className="text-[#D93025]">Singularity Detection:</strong> If the calculated determinant is exactly zero, the matrix is mathematically "Singular". The engine will immediately flag this state, halting the inverse calculation, as a zero determinant implies the transformation collapses space into a lower dimension (e.g., a 3D space flattened into a 2D plane), rendering it mathematically irreversible.</li>
+            </ul>
+          </div>
+        </div>
+      }
+      howToUse={{
+        steps: [
+          "Select the dimensionality of your square matrix using the top toggle (2x2 or 3x3).",
+          "Input your numerical values into the grid. The calculator supports negative numbers and decimals.",
+          "As you type, the engine evaluates the grid instantly. The Determinant and Trace will appear on the right.",
+          "If the determinant is non-zero, the Inverse Matrix block will populate. If it is zero, a 'Singular Matrix' warning will appear.",
+          "Use the 'Quick Preset' buttons to instantly load common arrays like the Identity Matrix for testing."
+        ]
+      }}
+      formula={{
+        title: "Matrix Theorems & Rules",
+        description: "The core algebraic definitions defining the engine's behavior.",
+        raw: "1. Trace (tr A): Sum of main diagonal elements (a + e + i)\n\n2. Determinant (2x2): |A| = (ad - bc)\n\n3. Determinant (3x3): |A| = a(ei - fh) - b(di - fg) + c(dh - eg)\n\n4. Matrix Inverse (A⁻¹): (1 / |A|) × Adjugate(A)\n\n*Condition: A matrix A is invertible if and only if |A| ≠ 0."
+      }}
       faqs={[
-        { question: "What is a Singular Matrix?", answer: "A singular matrix is a square matrix that does not have an inverse. This occurs when its determinant is exactly zero." },
-        { question: "Why is the trace important?", answer: "The trace is an invariant under changes of basis. In quantum mechanics and linear algebra, it equals the sum of the eigenvalues of the matrix." }
+        {
+          question: "What does the Determinant actually mean geometrically?",
+          answer: "Geometrically, the determinant represents the volume scaling factor of a linear transformation. If a 3x3 matrix has a determinant of 5, it means applying that matrix to any 3D object will stretch its volume to be exactly 5 times larger."
+        },
+        {
+          question: "What is a Singular Matrix?",
+          answer: "A singular matrix is a square matrix whose determinant is exactly zero. Because finding the inverse requires dividing by the determinant, a singular matrix mathematically cannot have an inverse."
+        },
+        {
+          question: "Why do I get an inverse error when the determinant is zero?",
+          answer: "A determinant of zero means the transformation has 'squished' the space into a lower dimension (like flattening a 3D cube into a 2D square). Once flattened, you lose spatial information, meaning you cannot mathematically 'reverse' the process to get the cube back."
+        },
+        {
+          question: "What is the Identity Matrix?",
+          answer: "The Identity Matrix (usually denoted as I) is a square matrix with 1s on the main diagonal and 0s everywhere else. It acts like the number '1' in matrix algebra; multiplying any matrix by the Identity Matrix leaves it unchanged."
+        },
+        {
+          question: "What is the significance of the Trace?",
+          answer: "The trace is the sum of the main diagonal elements. In advanced linear algebra and quantum mechanics, the trace is incredibly important because it is 'invariant'—meaning even if you change the basis of the matrix, the trace remains exactly the same."
+        },
+        {
+          question: "Does this calculator handle matrix multiplication?",
+          answer: "This specific tool is optimized for analyzing the properties of a single square matrix (Determinant, Trace, Inverse). Solving multiple equations using matrices should be done in our Linear Equation Solver tool."
+        }
       ]}
       sidebar={{ title: "Algebra Tools", links: [{ label: "Linear Solver", href: "/calculator/linear-solver" }, { label: "Quadratic Formula", href: "/calculator/quadratic-formula" }], banner: { title: "Matrix Math", description: "Matrices are the mathematical foundation of 3D computer graphics.", image: "/images/math-banner.jpg" } }}
       relatedTools={[{ label: "Linear Solver", href: "/calculator/linear-solver" }]}

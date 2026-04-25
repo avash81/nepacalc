@@ -50,7 +50,7 @@ export function InternalLinks({
         {calcs.map(c => (
           <Link
             key={c.slug}
-            href={c.slug.includes('/') ? `/${c.slug}` : `/calculator/${c.slug}`}
+            href={c.slug.includes('/') ? `/${c.slug}/` : `/calculator/${c.slug}/`}
             className="flex items-center gap-3 bg-white border border-blue-100
                        rounded-xl px-3 py-2.5 hover:border-blue-400
                        hover:shadow-sm transition-all group"
@@ -93,7 +93,7 @@ export function CalcLink({
   if (!calc) return null;
   return (
     <Link
-      href={slug.includes('/') ? `/${slug}` : `/calculator/${slug}`}
+      href={slug.includes('/') ? `/${slug}/` : `/calculator/${slug}/`}
       className="text-blue-600 hover:text-blue-800 underline
                  underline-offset-2 font-medium"
     >

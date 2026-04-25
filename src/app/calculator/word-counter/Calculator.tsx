@@ -128,41 +128,51 @@ export default function WordCounter() {
             "Check the 'Keyword Density' panel (appears once you start typing) to see which words you are using most frequently (words over 3 letters)."
           ]
         }}
+        details={
+          <div className="space-y-8">
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h2 className="text-xl font-black text-[#202124] mb-4">Text Analytics & Content Measurement Science</h2>
+              <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+                <p>Our <strong className="text-[#202124]">word and character counter</strong> provides a professional-grade textual analysis suite beyond a simple word tally. Every piece of content—from academic dissertations and legal contracts to social media posts and SEO blog articles—operates within strict quantitative constraints. This tool gives you real-time, zero-latency visibility into all critical text metrics as you write.</p>
+                <p>The tool analyzes your text across 6 dimensions simultaneously: word count, character count (with and without spaces), sentence count, paragraph count, reading time estimate, and keyword frequency density. All computations are client-side, meaning your text never leaves your browser.</p>
+              </div>
+            </div>
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Platform Character Limits Reference</h3>
+              <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+                <li><strong className="text-[#1A73E8]">X (Twitter): 280 characters</strong> per post. Thread posts also 280 each. Character count includes spaces, punctuation, and URLs (URLs count as 23 characters regardless of actual length).</li>
+                <li><strong className="text-[#188038]">Google Meta Title: 50–60 characters</strong> is the optimal range before truncation in search results. Meta descriptions should be 150–160 characters for full display.</li>
+                <li><strong className="text-[#D93025]">SMS Text: 160 characters</strong> per standard SMS segment. Messages above 160 characters are split into multiple segments and billed accordingly by carriers.</li>
+              </ul>
+            </div>
+          </div>
+        }
         faqs={[
           {
-            question: "Why does character count matter?",
-            answer: "Many platforms have strict character limits. For example, SMS text messages are typically limited to 160 characters, X (formerly Twitter) allows 280 characters, and SEO meta descriptions should ideally be around 150-160 characters to display properly on Google."
+            question: "Why does character count matter for SEO?",
+            answer: "Google's search results truncate page titles longer than ~60 characters and meta descriptions longer than ~160 characters. If your title is too long, the end is cut off with an ellipsis, potentially hiding your most important keywords and CTAs."
           },
           {
             question: "How is reading time calculated?",
-            answer: "The average adult reading speed is approximately 200 to 250 words per minute. Our calculator uses a conservative estimate of 200 words per minute to calculate the estimated reading time of your document."
+            answer: "The average adult reads at approximately 200–250 words per minute for normal comprehension. We use 200 WPM as a conservative benchmark, appropriate for academic or technical content. A 1,000-word blog post takes approximately 5 minutes to read."
+          },
+          {
+            question: "What is keyword density and why does it matter?",
+            answer: "Keyword density is the percentage frequency a specific word appears in your total text. For SEO, targeting 1–2% density for your primary keyword ensures prominence without 'keyword stuffing', which search engines penalize. Our tool shows the top 5 most-repeated words over 3 characters."
+          },
+          {
+            question: "What counts as a 'sentence' in this calculator?",
+            answer: "The counter detects sentence boundaries using terminal punctuation: periods (.), exclamation marks (!), and question marks (?). Ellipses (...) and abbreviations (e.g., Dr., Inc.) may slightly affect the count since they also contain periods."
+          },
+          {
+            question: "Does character count include spaces?",
+            answer: "Yes, the primary character count includes all characters including spaces. We also separately show 'Characters (No Spaces)' which excludes all whitespace. Academic assignments often specify 'no-space' character limits for this reason."
+          },
+          {
+            question: "Can I use this tool to check if a Nepali or Hindi text fits platform limits?",
+            answer: "Yes. This tool counts characters in any script including Devanagari. However, be aware that many social platforms count non-ASCII characters (like Nepali/Hindi text) differently—some platforms count each Unicode code point as 2 characters. Always verify against the platform's own counter for multilingual content."
           }
         ]}
-        seoContent={
-          <div>
-            <h2>The Ultimate Online Word Counter Tool</h2>
-            <p>Whether you are a student writing an essay, a professional crafting an important email, or a digital marketer optimizing SEO content, keeping track of your word and character count is crucial. Our free, real-time word counter provides deep insights into your text instantly.</p>
-            
-            <h2>Writing Guide: Mastering Text Constraints</h2>
-            <p className="font-medium">
-              Whether you are writing a university essay, a professional report, or an SEO-optimized blog post, <strong>word count precision</strong> is a critical requirement.
-            </p>
-            <p>
-              Our <strong>Textual Analysis Laboratory</strong> provides the tools writers in Nepal need to meet their specific targets. From tracking the 280-character limit of a viral tweet to ensuring your thesis abstract stays under the word limit, our engine provides real-time, <strong>non-latency updates</strong> as you type or paste your content, ensuring you never exceed your constraints.
-            </p>
-
-            <h3>Beyond Basic Word Counting</h3>
-            <p>Most word processors provide a simple word count, but professional writing often requires deeper metrics:</p>
-            <ul>
-              <li><strong>Characters without Spaces:</strong> Essential for academic assignments and specific web forms that strictly limit actual typed characters.</li>
-              <li><strong>Sentence and Paragraph Counts:</strong> Helps you evaluate the readability of your text. If your paragraph count is very low compared to your sentence count, your text may be too dense and hard to read.</li>
-              <li><strong>Reading Time:</strong> Crucial for blog posts and speeches. Knowing exactly how long it takes an average person to read your text helps optimize user engagement.</li>
-            </ul>
-            
-            <h3>SEO and Keyword Density</h3>
-            <p>For bloggers and SEO professionals, repeating a keyword is necessary, but "keyword stuffing" can result in search engine penalties. Our built-in Keyword Density analyzer automatically extracts words longer than 3 letters and displays the most frequently used terms. This allows you to ensure your target keywords are prominent without being overwhelmingly repetitive.</p>
-          </div>
-        }
       />
     </CalculatorErrorBoundary>
   );

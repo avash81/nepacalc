@@ -65,6 +65,7 @@ export default function BMICalculator() {
 
   return (
     <ModernCalcLayout
+      slug="bmi"
       crumbs={[{ label: 'Health', href: '/health/' }, { label: 'BMI Calculator' }]}
       title="BMI Calculator"
       description="Check your Body Mass Index (BMI) based on global WHO standards. A quick tool to assess your weight relative to height."
@@ -254,10 +255,10 @@ export default function BMICalculator() {
       sidebar={{
         title: "Health Tools",
         links: [
-          { label: "Calorie Calculator", href: "/calculator/calorie-calculator" },
-          { label: "Ideal Weight", href: "/calculator/ideal-weight" },
-          { label: "Body Fat %", href: "/calculator/body-fat" },
-          { label: "BMR Calculator", href: "/calculator/bmr" },
+          { label: "Calorie Calculator", href: "/calculator/calorie-calculator/" },
+          { label: "Ideal Weight", href: "/calculator/ideal-weight/" },
+          { label: "Body Fat %", href: "/calculator/body-fat/" },
+          { label: "BMR Calculator", href: "/calculator/bmr/" },
         ],
         banner: {
           title: "Focus on Health",
@@ -266,9 +267,9 @@ export default function BMICalculator() {
         }
       }}
       relatedTools={[
-        { label: "Calorie Calculator", href: "/calculator/calorie-calculator" },
-        { label: "Ideal Weight", href: "/calculator/ideal-weight" },
-        { label: "BMR Calculator", href: "/calculator/bmr" }
+        { label: "Calorie Calculator", href: "/calculator/calorie-calculator/" },
+        { label: "Ideal Weight", href: "/calculator/ideal-weight/" },
+        { label: "BMR Calculator", href: "/calculator/bmr/" }
       ]}
     />
   );

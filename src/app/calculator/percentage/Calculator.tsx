@@ -43,6 +43,7 @@ export default function PercentageCalculator() {
 
   return (
     <ModernCalcLayout
+      slug="percentage"
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Percentage Calculator' }]}
       title="Percentage Calculator"
       description="Calculate percentages, growth rates, original values, and common math problems instantly with precision."
@@ -172,37 +173,77 @@ export default function PercentageCalculator() {
           )}
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">The Mathematics of Proportional Scaling</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                A percentage is mathematically defined as a dimensionless number (a pure ratio) expressed as a fraction of 100. Originating from the Latin <span className="italic">per centum</span> ("by a hundred"), it is the universal standard for comparing fractional quantities. Our <strong className="text-[#202124]">percentage calculator</strong> is a comprehensive mathematical engine designed to solve the five most common algebraic permutations of the percentage equation: <code className="bg-[#F1F3F4] px-1 rounded">Part = (Percent / 100) × Whole</code>.
+              </p>
+              <p>
+                Whether you are calculating financial markups, scientific error margins, or statistical growth vectors, understanding the strict algebraic relationship between the Base Value (denominator) and the Subject Value (numerator) is critical. This <strong className="text-[#202124]">percent change calculator</strong> dynamically shifts the algebraic subject of the equation based on the calculation mode you select, ensuring absolute precision without requiring manual algebra.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Analysis of Calculation Modes</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Forward Extrapolation (X% of Y):</strong> The most common operation. It multiplies the total 'Y' by the decimal equivalent of 'X' (e.g., 20% becomes 0.20). Essential for determining tax amounts or flat discounts.</li>
+              <li><strong className="text-[#188038]">Percentage Change (Δ%):</strong> Critical in finance and physics. It calculates the delta between a Final and Initial state, then divides strictly by the <span className="italic">Initial</span> state. A common mathematical error is dividing by the Final state, which yields an incorrect growth metric.</li>
+              <li><strong className="text-[#D93025]">Reverse Engineering (Original Value):</strong> Used when you know the final outcome and the percentage applied, but need the original number. If 500 is 20% of a number, the engine divides 500 by 0.20 to reveal the base of 2500. This is frequently used to reverse-calculate prices before VAT was applied.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
-          "Select the mode that matches your math problem (e.g., 'X% of Y' for common percentages).",
-          "Enter your numbers in the input fields provided.",
-          "Use 'Quick Percentages' for common rates like 5%, 10%, or 13% (VAT).",
-          "For Percentage Change, enter the initial and final values to see the increase/decrease.",
-          "Review the final result and the visual scale display."
+          "Select your mathematical objective from the 'Calculation Mode' grid (e.g., to find a tax amount, select 'X% of Y').",
+          "Input your known variables into the numeric fields. The labels will automatically update to reflect the chosen mode.",
+          "For rapid financial calculations like VAT or standard tips, click the Quick Percentage buttons (5%, 10%, 13%, etc.) to instantly lock in the rate.",
+          "Review the bold numerical result. If you selected 'Value ± %', both the addition and subtraction vectors will be displayed simultaneously.",
+          "Check the visual intensity bar to grasp the relative magnitude of the percentage in a graphical format."
         ]
       }}
       formula={{
-        title: "Percentage Formulas",
-        description: "Standard algebraic formulas used for each calculation mode.",
-        raw: "X% of Y: (X / 100) × Y\n% Change: ((Final - Initial) / Initial) × 100\nOriginal Value: Y / (X / 100)"
+        title: "Algebraic Percentage Permutations",
+        description: "The core equations driving the 5 calculation modes.",
+        raw: "1. X% of Y: (X / 100) × Y\n2. X is ?% of Y: (X / Y) × 100\n3. X is Y% of ?: X / (Y / 100)\n4. Value ± %: Base ± (Base × (Percent / 100))\n5. % Change: ((Final - Initial) / Initial) × 100"
       }}
       faqs={[
         {
-          question: "How do I calculate a discount?",
-          answer: "Use the 'Value ± %' mode. Enter the original price as the Base Value and the discount percentage. The 'Subtract' result will be your discounted price."
+          question: "How do I reverse calculate a price before 13% VAT?",
+          answer: "Do not simply subtract 13% from the final price; this is mathematically incorrect. Instead, use the 'X is Y% of ?' mode. Enter your final price as X, and 113 as Y (representing 100% base + 13% VAT). The result is the exact pre-VAT price."
         },
         {
-          question: "What is percentage change?",
-          answer: "Percentage change measures the relative difference between an old value and a new value, expressed as a percentage of the old value."
+          question: "Why does an 80% drop require a 400% gain to recover?",
+          answer: "Because percentages are relative to their immediate base. If a $100 stock drops 80%, it is now $20. To get back to $100, the stock must gain $80. An $80 gain on a $20 base is mathematically a 400% increase ((80/20)*100)."
+        },
+        {
+          question: "What is the difference between percentage change and percentage point difference?",
+          answer: "Percentage change is a relative ratio, while a percentage point difference is absolute. If an interest rate goes from 4% to 5%, that is a 1 percentage point increase, but it is a 25% relative change ((5-4)/4)."
+        },
+        {
+          question: "How do I calculate a standard compound markup?",
+          answer: "To markup a product by 20%, use the 'Value ± %' mode. Enter your cost as the Base Value, and 20 as the Percentage. The 'Add (+20%)' block will show your final retail price."
+        },
+        {
+          question: "Can percentage change be greater than 100%?",
+          answer: "Yes, an increase can be infinite. If a company's revenue grows from $10,000 to $50,000, that is a 400% increase. However, a decrease cannot exceed 100% unless the value drops into negative numbers."
+        },
+        {
+          question: "Why do I get a 'Division by zero' error?",
+          answer: "In mathematics, you cannot divide by zero. If you are calculating 'X is ?% of Y', Y is the denominator. If Y is 0, the equation mathematically breaks down because you cannot find a fraction of 'nothing'."
         }
       ]}
       sidebar={{
         title: "Math Toolkit",
         links: [
-          { label: "Fraction Calculator", href: "/calculator/fraction-calculator" },
-          { label: "Ratio & Proportion", href: "/calculator/ratio-proportion" },
-          { label: "Scientific Calculator", href: "/calculator/scientific-calculator" },
-          { label: "GPA Calculator", href: "/calculator/gpa" },
+          { label: "Fraction Calculator", href: "/calculator/fraction-calculator/" },
+          { label: "Ratio & Proportion", href: "/calculator/ratio-proportion/" },
+          { label: "Scientific Calculator", href: "/calculator/scientific-calculator/" },
+          { label: "GPA Calculator", href: "/calculator/gpa/" },
         ],
         banner: {
           title: "Master Your Numbers",
@@ -211,9 +252,9 @@ export default function PercentageCalculator() {
         }
       }}
       relatedTools={[
-        { label: "Fraction Calc", href: "/calculator/fraction-calculator" },
-        { label: "Ratio Tool", href: "/calculator/ratio-proportion" },
-        { label: "Scientific Calc", href: "/calculator/scientific-calculator" }
+        { label: "Fraction Calc", href: "/calculator/fraction-calculator/" },
+        { label: "Ratio Tool", href: "/calculator/ratio-proportion/" },
+        { label: "Scientific Calc", href: "/calculator/scientific-calculator/" }
       ]}
     />
   );

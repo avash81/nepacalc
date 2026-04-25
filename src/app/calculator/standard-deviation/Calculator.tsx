@@ -110,57 +110,70 @@ export default function StandardDeviationCalculator() {
             { label: 'Rounding Calculator', href: '/calculator/rounding' },
           ],
         }}
+        details={
+          <div className="space-y-8">
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h2 className="text-xl font-black text-[#202124] mb-4">Statistical Dispersion & Variance Analysis</h2>
+              <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+                <p>
+                  In data science and inferential statistics, calculating the mean (average) provides only half the picture. To truly understand a dataset, one must measure its dispersion—how tightly or loosely the individual data points cluster around the center. Our <strong className="text-[#202124]">standard deviation calculator</strong> is a high-precision analytical engine designed to quantify this exact variance, outputting crucial metrics required for quality control, financial risk assessment, and academic research.
+                </p>
+                <p>
+                  A low standard deviation indicates that the data points are highly consistent and tightly bound to the mean. Conversely, a high standard deviation reveals extreme variability and data spread. For instance, in financial portfolios, a high standard deviation translates directly to higher market volatility and increased investment risk.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Sample vs. Population Mathematics</h3>
+              <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+                <li><strong className="text-[#1A73E8]">Sample Standard Deviation (s):</strong> This calculator utilizes Bessel's Correction, dividing the squared variance by <code className="bg-[#F1F3F4] px-1 rounded">n - 1</code> rather than <code className="bg-[#F1F3F4] px-1 rounded">n</code>. This is the universal standard for experimental research, as it provides an unbiased statistical estimate when you only have access to a subset of data rather than the entire population.</li>
+                <li><strong className="text-[#188038]">Variance (s²):</strong> Variance is the direct precursor to standard deviation. It represents the average of the squared mathematical differences from the Mean. Because variance is squared, it heavily penalizes extreme outliers in your dataset.</li>
+                <li><strong className="text-[#D93025]">Dataset Range:</strong> The engine automatically isolates the absolute minimum and maximum floating-point values within your dataset, instantly outputting the total statistical spread.</li>
+              </ul>
+            </div>
+          </div>
+        }
         howToUse={{
           steps: [
-            "Type or paste your data set into the text box.",
-            "You can separate numbers using commas, spaces, or new lines. The calculator handles them all automatically.",
-            "Ensure you enter at least two valid numbers.",
-            "The calculator automatically computes the Sample Standard Deviation, Mean, Variance, and Range instantly."
+            "Input your numerical dataset into the primary text matrix. You can use spaces, commas, or new lines to separate the numbers.",
+            "The engine handles decimal points and negative numbers automatically.",
+            "Review the primary output: The Sample Standard Deviation (s).",
+            "Examine the detailed breakdown matrix to analyze the Dataset Mean (Average), total Variance, and minimum/maximum boundaries.",
+            "Use the 'Quick Datasets' panel to inject pre-configured arrays to see how data clustering affects the final standard deviation."
           ]
+        }}
+        formula={{
+          title: "Sample Standard Deviation Logic",
+          description: "The algorithmic path to determining statistical dispersion utilizing Bessel's Correction.",
+          raw: "Mean (x̄) = ( Σ xi ) / n\n\nSample Variance (s²) = Σ (xi - x̄)² / (n - 1)\n\nSample Standard Deviation (s) = √ s²\n\nWhere:\nΣ = Summation of all points\nxi = Each individual data point\nx̄ = The Mean average\nn = Total number of data points"
         }}
         faqs={[
           {
-            question: "Does this calculate Sample or Population standard deviation?",
-            answer: "This calculator computes the Sample Standard Deviation (dividing by n-1 instead of n). This is the standard in most scientific and statistical applications because it provides an unbiased estimate of a population's variance based on a sample."
+            question: "Why does the formula divide by (n - 1) instead of just 'n'?",
+            answer: "Dividing by (n - 1) is known as Bessel's correction. In statistics, when you only have a sample of data (not the entire global population), dividing by 'n' consistently underestimates the true variance. Subtracting 1 artificially inflates the result to mathematically compensate for this bias."
           },
           {
-            question: "What does a high standard deviation mean?",
-            answer: "A high standard deviation indicates that the numbers are spread out over a wider range from the mean (average). A low standard deviation means the numbers are tightly clustered closely around the mean."
+            question: "What is the physical difference between Standard Deviation and Variance?",
+            answer: "Variance is standard deviation squared. The problem with variance is that the units are also squared (e.g., if you are measuring meters, variance is in meters-squared). Standard deviation takes the square root, returning the metric back to the original unit (meters) so it is physically comprehensible."
+          },
+          {
+            question: "How does an outlier impact the standard deviation?",
+            answer: "Outliers massively impact standard deviation. Because the mathematical formula requires squaring the distance from the mean, an extreme outlier will exponentially increase the final variance and resulting standard deviation of the dataset."
+          },
+          {
+            question: "What is the Empirical Rule (68-95-99.7)?",
+            answer: "In a perfectly normal distribution (a bell curve), 68% of all data points will fall within one standard deviation of the mean. 95% will fall within two standard deviations, and 99.7% will fall within three standard deviations."
+          },
+          {
+            question: "Can standard deviation ever be a negative number?",
+            answer: "No. Standard deviation is an absolute measure of physical spread or distance. Because the internal formula requires squaring the numbers (which makes all negatives positive) and then taking the principal square root, the lowest possible result is exactly 0."
+          },
+          {
+            question: "What does a standard deviation of 0 indicate?",
+            answer: "A standard deviation of exactly zero means there is absolutely no statistical variance in the dataset. Every single number inputted is exactly the same (e.g., 5, 5, 5, 5, 5)."
           }
         ]}
-        seoContent={
-          <div>
-            <h2>Professional Statistical Analysis Laboratory</h2>
-            <p>
-              In <strong>data science and academic research</strong>, understanding the spread of your data is just as important as knowing the average. 
-              Our statistical engine provides the precision required for rigorous data interpretation. Whether you are a student in Nepal analyzing survey results 
-              or a researcher tracking <strong>market volatility</strong>, this tool handles both population and sample standard deviations with industrial-grade accuracy.
-            </p>
-
-            <h2>Understanding Standard Deviation</h2>
-            <p>Standard deviation is a core concept in statistics that measures the amount of variation or dispersion within a set of values. While the average (mean) tells you where the center of the data is, the standard deviation tells you how spread out the data points are around that center.</p>
-            
-            <h3>Why is Standard Deviation Important?</h3>
-            <p>If two classes take the same exam, they might both have an average score of 75%. However, in Class A, everyone scored between 70% and 80%. In Class B, scores ranged from 40% to 100%. Class A has a <em>low</em> standard deviation, indicating consistency. Class B has a <em>high</em> standard deviation, indicating extreme variability.</p>
-            <p>Standard deviation is critical in fields like finance (measuring investment risk/volatility), manufacturing (quality control), and scientific research (determining error margins).</p>
-            
-            <h3>Sample vs. Population</h3>
-            <ul>
-              <li><strong>Population Standard Deviation (σ):</strong> Used when you have data for every single member of the entire population. You divide the sum of squared differences by <strong>n</strong>.</li>
-              <li><strong>Sample Standard Deviation (s):</strong> Used when your data is just a subset (sample) of the whole population. You divide by <strong>(n - 1)</strong>. This calculator uses the sample formula, as it is the most common use case in practical statistics and provides an unbiased estimate.</li>
-            </ul>
-            
-            <h3>The Calculation Steps</h3>
-            <p>To calculate standard deviation manually, the formula follows these steps:</p>
-            <ol>
-              <li>Find the mean (average) of the dataset.</li>
-              <li>For each number, subtract the mean and square the result (this is the squared difference).</li>
-              <li>Calculate the sum of all those squared differences.</li>
-              <li>Divide by (n - 1) to find the variance.</li>
-              <li>Take the square root of the variance to get the final Standard Deviation.</li>
-            </ol>
-          </div>
-        }
       />
     </CalculatorErrorBoundary>
   );

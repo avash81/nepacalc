@@ -161,11 +161,27 @@ export default function NEPSECalculator() {
       faqs={[
         {
           question: "What is the Capital Gains Tax (CGT) rate in Nepal?",
-          answer: "For individual investors, the CGT is 7.5% for short-term trades (held for less than 365 days) and 5% for long-term trades (held for 365 days or more). For institutional investors, the rate differs."
+          answer: "For individual investors, the CGT is 7.5% for short-term trades (held for less than 365 days) and 5% for long-term trades (held for 365 days or more). For institutional investors, the rate is typically 10% regardless of the holding period."
         },
         {
           question: "What are the additional charges when trading on NEPSE?",
-          answer: "Besides the broker commission, you also pay a SEBON fee (0.015%), a DP charge (Rs. 25 per transaction), and the Capital Gains Tax on profits."
+          answer: "Besides the broker commission, you also pay a SEBON fee (0.015%), a DP charge (Rs. 25 per transaction), and the Capital Gains Tax on your net profits. These friction costs are deducted automatically from your settlement amount."
+        },
+        {
+          question: "How is the broker commission calculated?",
+          answer: "NEPSE uses a tiered brokerage system ranging from 0.40% to 0.27%. The commission decreases as your total transaction volume increases. For example, trades up to Rs. 50,000 incur a 0.40% commission, while trades above Rs. 1 Crore incur only 0.27%."
+        },
+        {
+          question: "How do I calculate the 365-day holding period for CGT?",
+          answer: "The holding period is calculated from the date the shares were credited to your DEMAT account (EDIS/Purchase settlement date) to the exact date you execute the sell order on the TMS."
+        },
+        {
+          question: "Do I pay CGT if I sell shares at a loss?",
+          answer: "No. Capital Gains Tax is only applied to the Net Profit. If you sell at a loss, or if the profit is so small that the broker commission and SEBON fees negate it, you pay zero CGT. You still pay the broker and SEBON fees."
+        },
+        {
+          question: "Is the DP charge applied per share or per transaction?",
+          answer: "The DP (Depository Participant) charge of Rs. 25 is applied per transaction (per stock/scrip) on the sell side, regardless of whether you are selling 10 shares or 10,000 shares of that specific company on that day."
         }
       ]}
       details={

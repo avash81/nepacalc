@@ -114,11 +114,57 @@ export default function LengthConverter() {
           </div>
         </div>
       }
-      howToUse={{ steps: ["Enter the numerical length or distance value you wish to convert.", "Select the starting unit from the 'From' dropdown.", "Select the desired unit from the 'To' dropdown.", "Use the swap button to instantly reverse the conversion direction."] }}
-      formula={{ title: "Conversion Algorithm", description: "Standardized SI Base scaling.", raw: "All length metrics are first converted internally to the SI standard Base Unit (Meters), then multiplied by the inverse factor of the target unit.\n\nResult = (Input × From_Base_Factor) / To_Base_Factor" }}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">The Metric & Imperial Systems: A History of Incompatibility</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                The global coexistence of two distinct length measurement systems—the Metric (SI) and the Imperial—creates a constant need for high-precision <strong className="text-[#202124]">length conversion</strong>. The Metric system, anchored by the Meter (m), was formalized by the French Academy of Sciences in 1795 and is based on powers of 10, making arithmetic operations intuitive. Our <strong className="text-[#202124]">length converter</strong> handles all conversions with engineering-grade precision using the official NIST-defined equivalence factors.
+              </p>
+              <p>
+                The Imperial system, still in official use only in the USA, Myanmar, and Liberia, originated from historical physical body measurements (foot, hand, inch) with no consistent decimal structure. The exact equivalence between the two systems is defined by international treaty: exactly 1 inch = 25.4 mm, making all Imperial-to-SI conversions mathematically exact, not approximations.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Key Reference Conversion Equivalencies</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">1 Kilometer = 1,000 Meters = 0.621371 Miles:</strong> The most common long-distance conversion. Note that a 5K race (5 km) is approximately 3.1 miles. Marathon distance of 42.195 km equals 26.219 miles.</li>
+              <li><strong className="text-[#188038]">1 Foot = 12 Inches = 30.48 Centimeters:</strong> The foundational Imperial-to-Metric bridge. Human height conversions (e.g., 5'11" = 180.34 cm) are computed entirely through this anchor.</li>
+              <li><strong className="text-[#D93025]">1 Mile = 1.60934 Kilometers (Exactly):</strong> The International Mile is defined as exactly 1,609.344 meters, making all road distance conversions between the US and metric countries perfectly precise.</li>
+            </ul>
+          </div>
+        </div>
+      }
+      howToUse={{ steps: ["Enter the numerical length or distance value you wish to convert.", "Select the starting unit from the 'From' dropdown.", "Select the desired target unit from the 'To' dropdown.", "Use the ⇄ swap button to instantly reverse the conversion direction.", "Use Quick Pre-set buttons for the most common global conversions."] }}
+      formula={{ title: "SI-Anchored Length Conversion Algorithm", description: "Standardized SI Base scaling ensures maximum precision across all unit combinations.", raw: "All length units are first normalized to the SI base unit (Meters):\n  Base_Meters = Input × From_Base_Factor\n\nThen scaled to the target unit:\n  Result = Base_Meters / To_Base_Factor" }}
       faqs={[
-        { question: "What is an SI Unit?", answer: "The International System of Units (SI) is the modern form of the metric system. For length, the standard base unit is the Meter (m)." },
-        { question: "Why is the factor decimal long?", answer: "Imperial units (miles, feet, inches) do not convert to metric (meters) using clean round numbers. For instance, 1 inch is precisely defined as exactly 25.4 millimeters." }
+        {
+          question: "How many centimeters are in an inch exactly?",
+          answer: "Exactly 2.54 centimeters. This is not an approximation—it is defined by international treaty. Therefore, 1 foot is exactly 30.48 cm, and 1 yard is exactly 91.44 cm."
+        },
+        {
+          question: "What is the difference between a nautical mile and a land mile?",
+          answer: "A land mile (International Mile) is 1,609.344 meters. A nautical mile is 1,852 meters exactly. The nautical mile is based on the circumference of the Earth and is used globally in aviation and maritime navigation."
+        },
+        {
+          question: "Why does Nepal officially use the Metric system?",
+          answer: "Nepal adopted the SI Metric system as its official measurement standard in 1968. While traditional land units (Ropani, Dhur) persist in practice, all official scientific, medical, and engineering measurements use the Metric system."
+        },
+        {
+          question: "How do I convert height from feet to centimeters?",
+          answer: "Multiply the total height in inches (feet × 12 + remaining inches) by exactly 2.54. Example: 5'11\" = (5×12 + 11) × 2.54 = 71 × 2.54 = 180.34 cm."
+        },
+        {
+          question: "Is a mile longer than a kilometer?",
+          answer: "Yes. One mile equals approximately 1.609 kilometers. So if you run a 5-mile race, you have covered approximately 8.045 kilometers."
+        },
+        {
+          question: "What is the smallest unit of length available?",
+          answer: "In this converter, the smallest standard unit is the Millimeter (mm), equal to 0.001 meters or 0.0394 inches. For sub-millimeter precision in scientific applications, specialized converters handle micrometers (μm) and nanometers (nm)."
+        }
       ]}
       sidebar={{ title: "Conversion Tools", links: [{ label: "Weight Converter", href: "/calculator/weight-converter" }, { label: "Temperature Converter", href: "/calculator/temperature-converter" }], banner: { title: "Global Standards", description: "Only three countries in the world still officially use the Imperial system.", image: "/images/math-banner.jpg" } }}
       relatedTools={[{ label: "Weight Converter", href: "/calculator/weight-converter" }]}

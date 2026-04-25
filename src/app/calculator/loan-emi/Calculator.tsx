@@ -387,6 +387,10 @@ export default function LoanEMICalculator() {
         {
           question: "Does tenure affect the total interest?",
           answer: "Yes, significantly. A longer tenure reduces your monthly EMI but increases the total interest you pay over the life of the loan. Aim for the shortest tenure you can comfortably afford."
+        },
+        {
+          question: "What is the maximum loan tenure offered by banks in Nepal?",
+          answer: "In Nepal: Home loans — up to 20-25 years. Vehicle loans — up to 7 years. Personal loans — up to 5 years. Education loans — up to 7 years (with moratorium during studies). Business loans — 3-10 years depending on the project. NRB regulations periodically cap maximum tenures, so always verify with your specific bank."
         }
       ]}
       sidebar={{

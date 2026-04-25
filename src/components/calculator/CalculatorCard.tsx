@@ -12,7 +12,7 @@ export function CalculatorCard({ calc, compact = false }: Props) {
     <Link
       href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`}
       className={`
-        group flex items-start gap-4 px-5 py-6 bg-white
+        group flex items-start gap-4 px-4 py-4 bg-white
         border border-[var(--border)] rounded-3xl hover:border-[var(--primary)] hover:shadow-md transition-all
         cursor-pointer text-left no-underline h-full
         ${calc.isNepal ? 'border-l-4 border-l-red-500' : ''}

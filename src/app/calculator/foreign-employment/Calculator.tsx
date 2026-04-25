@@ -163,11 +163,46 @@ export default function ForeignEmploymentFee() {
           </div>
         </div>
       }
-      howToUse={{ steps: ["Select the target destination country.", "Enter the manpower/agency fee you are being asked to pay.", "Enter your auxiliary statutory fees like medical tests, insurance, and pre-departure orientation.", "The system will automatically flag if the manpower fee exceeds the government-mandated cap for that specific country."] }}
-      formula={{ title: "Free Visa Free Ticket Policy (Nepal)", description: "DOFE regulations.", raw: "For Gulf countries & Malaysia:\nMax Manpower Fee = Rs. 10,000\nVisa = Paid by Employer\nTicket = Paid by Employer\n\nWorkers are responsible for statutory costs (Medical, Insurance, Orientation, Welfare Fund)." }}
+      howToUse={{
+        steps: [
+          "Select the Destination Country you are applying to from the dropdown grid.",
+          "Enter the exact Manpower Fee (Service Charge) the recruitment agency is demanding.",
+          "Input your statutory medical evaluation fee (GAMCA or equivalent).",
+          "Input your DOFE Term Life Insurance premium.",
+          "Input your Pre-Departure Orientation Training fee.",
+          "Check the compliance banner. If the total manpower fee exceeds the legal limit, the system will calculate the exact illegal overcharge."
+        ]
+      }}
+      formula={{
+        title: "Nepal DOFE Statutory Model",
+        description: "Standard model used to differentiate between legal limits and total out-of-pocket costs.",
+        raw: "1. Legal Limit = Max Manpower Fee allowed for destination\n2. Overcharge = (Demanded Manpower Fee) - (Legal Limit)\n3. Total Process Cost = Demanded Manpower Fee + Medical + Insurance + Orientation\n\n*If Overcharge > 0, the agency is violating DOFE regulations."
+      }}
       faqs={[
-        { question: "What is 'Free Visa, Free Ticket'?", answer: "A Nepal Government policy dictating that employers in Gulf countries and Malaysia must bear the cost of the worker's visa and airfare. Manpower agencies can charge a maximum service fee of Rs. 10,000 only." },
-        { question: "Are EPS Korea and Japan SSW different?", answer: "Yes. EPS Korea is a Government-to-Government process so there are no private manpower agencies involved, just government processing fees. Japan's SSW involves regulated sending organizations with higher training and processing caps." }
+        {
+          question: "What exactly does 'Free Visa, Free Ticket' mean in Nepal?",
+          answer: "It is a Nepal Government mandate dictating that foreign employers in the Gulf (Qatar, Saudi Arabia, UAE, etc.) and Malaysia must bear the cost of the worker's visa and airfare. Local manpower agencies can only charge a maximum service fee of Rs. 10,000."
+        },
+        {
+          question: "Can agencies charge me extra for medical tests or insurance?",
+          answer: "No, agencies should not mark up these fees. You are legally required to pay for GAMCA medicals, Term Life Insurance, Foreign Employment Welfare Fund, and Orientation directly to the authorized centers or banks. Manpower agencies cannot bundle these into a 'package' and overcharge."
+        },
+        {
+          question: "What should I do if an agency demands Rs. 1.5 Lakhs for Qatar?",
+          answer: "This is completely illegal under the Free Visa/Free Ticket policy. You should demand a bank account to deposit the funds (never pay cash). If they refuse or demand cash without receipts, you can file a formal complaint with DOFE."
+        },
+        {
+          question: "Why is the EPS Korea limit so much higher?",
+          answer: "The EPS (Employment Permit System) for South Korea is a Government-to-Government process. The higher limit (approx Rs. 1.1 Lakhs) covers standardized flight costs, intensive language test (TOPIK) fees, and specialized training, ensuring zero exploitation by private middlemen."
+        },
+        {
+          question: "Does the manpower fee cover my air ticket?",
+          answer: "Under the Free Visa/Free Ticket policy, the employer pays for the ticket. The Rs. 10,000 manpower fee is strictly a service charge for the agency processing your documents."
+        },
+        {
+          question: "Is the welfare fund fee included in the calculator?",
+          answer: "We recommend adding your Foreign Employment Welfare Fund deposit (usually Rs. 1,500 or Rs. 2,500 depending on tenure) into the 'Insurance' or 'Orientation' box to see your total out-of-pocket expense accurately."
+        }
       ]}
       sidebar={{ title: "Public Service", links: [{ label: "Passport Status Checker", href: "/calculator/passport-status" }, { label: "Remittance Calculator", href: "/calculator/remittance-calculator" }], banner: { title: "Migrant Safety", description: "Report illegal fee demands to the Department of Foreign Employment.", image: "/images/nepal-banner.jpg" } }}
       relatedTools={[{ label: "Remittance Calculator", href: "/calculator/remittance-calculator" }]}

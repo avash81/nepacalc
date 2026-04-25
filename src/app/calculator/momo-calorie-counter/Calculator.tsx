@@ -160,8 +160,30 @@ export default function MomoCalculator() {
       howToUse={{ steps: ["Select your momo type (Buff, Chicken, Veg, C-Momo, etc).", "Select the quantity using the quick preset buttons (Half/Full Plate) or enter a custom amount.", "Click 'Add Another Plate' to track mixed orders (e.g. half buff, half veg).", "View your total calories and protein/fat/carb macros instantly."] }}
       formula={{ title: "Nutritional Estimates", description: "Based on standard Nepali restaurant preparations.", raw: "Calorie estimates assume standard commercial wrappers and meat-to-fat ratios common in Kathmandu.\n\nSteamed Momos ≈ 30-35 kcal/pc\nFried Momos ≈ 60-65 kcal/pc\n\nMacronutrients are approximate. Achar (sauce) adds roughly 30-50 extra calories per plate depending on oil content." }}
       faqs={[
-        { question: "Does this include the Achar (sauce)?", answer: "No. The standard tomato achar adds about 40 kcal per plate. Oily sauces like peanut or sesame jhol can add over 100 kcal." },
-        { question: "Why are fried momos so high in calories?", answer: "The deep-frying process forces the dough wrapper to absorb a significant amount of cooking oil, nearly doubling the caloric density compared to steaming." }
+        {
+          question: "Are momos healthy for weight loss?",
+          answer: "Steamed chicken or veg momos can absolutely fit into a weight loss diet if portion-controlled. Because a single steamed momo is around 30-35 calories, a half plate (5 pieces) serves as a reasonable 150-170 calorie snack that is high in protein and satiety."
+        },
+        {
+          question: "Why are fried momos so much higher in calories?",
+          answer: "The white flour dough used for momo wrappers acts like a sponge when deep-fried. The wrapper absorbs dense cooking oil during the frying process, which nearly doubles the caloric density and severely spikes the saturated fat content compared to steaming."
+        },
+        {
+          question: "Does the calorie count include the typical tomato achar?",
+          answer: "No. The calculator focuses strictly on the dumplings. A standard side of tomato-based achar adds approximately 30-50 calories per plate. However, heavily oiled sauces like peanut/sesame 'jhol' can add over 100-150 unaccounted calories."
+        },
+        {
+          question: "Which type of momo has the most protein?",
+          answer: "Buff momos typically provide the highest protein-to-calorie ratio, offering about 3.2 grams of protein per piece. Chicken momos follow closely behind. Veg momos, while lower in calories, offer very little protein (under 1g per piece)."
+        },
+        {
+          question: "What exactly is a 'C-Momo' and why is it calorically dense?",
+          answer: "C-Momo (Chilli Momo) involves first frying the momos, and then heavily tossing them in a thick, sweet-and-spicy sauce made from oil, soy, and chili paste. You are consuming the calories of fried momos plus the heavy sugar and oil from the thick sauce."
+        },
+        {
+          question: "Is it bad to eat a full plate of momos every day?",
+          answer: "While momos are delicious, a daily full plate of steamed buff momos (10 pieces) equates to about 350 calories. If this fits within your Total Daily Energy Expenditure (TDEE), you won't gain weight. However, relying on refined white flour daily may lack necessary dietary fiber."
+        }
       ]}
       sidebar={{ title: "Health & Fitness", links: [{ label: "BMI Calculator", href: "/calculator/bmi" }, { label: "Blood Pressure", href: "/calculator/blood-pressure" }], banner: { title: "Stay Active", description: "You need to walk about 1 mile to burn off just 3 pieces of Buff Momo.", image: "/images/health-banner.jpg" } }}
       relatedTools={[{ label: "BMI Calculator", href: "/calculator/bmi" }]}

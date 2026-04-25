@@ -114,18 +114,52 @@ export default function GratuityCalculator() {
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
             <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Framework & Taxation</h3>
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">The 8.33% Constant:</strong> The algorithm mathematically defines a year's gratuity as exactly 1 month of your basic salary (since 8.33% × 12 months = ~100%). It operates strictly on the Basic component, excluding allowances.</li>
+              <li><strong className="text-[#1A73E8]">The 8.33% Constant:</strong> The algorithm mathematically defines a year's gratuity as exactly 1 month of your basic salary (since 8.33% × 12 months ≈ 100%). It operates strictly on the Basic component, excluding allowances.</li>
               <li><strong className="text-[#188038]">Fractional Years:</strong> The engine accepts decimal inputs (e.g., 5.5 years) to ensure that mid-year resignations are accurately prorated according to the exact number of months worked.</li>
               <li><strong className="text-[#D93025]">Tax Exemptions:</strong> When computing <strong className="text-[#202124]">gratuity tax nepal</strong>, the system isolates the tax-exempt threshold (typically 50% of the total or up to NPR 5 Lakhs, depending on the fund's approval status with the IRD). Any accumulated value exceeding this threshold is automatically subjected to a flat 15% withholding tax.</li>
             </ul>
           </div>
         </div>
       }
-      howToUse={{ steps: ["Enter your monthly BASIC salary. Do not include travel, food, or other allowances.", "Enter the total number of years you have worked for the company.", "The system will verify your eligibility (requires 5 years) and calculate your total accumulated fund.", "Review the tax-exempt and taxable portions of your payout."] }}
-      formula={{ title: "Gratuity Calculation (New Act)", description: "Mandatory 8.33% accumulation.", raw: "Monthly Contribution = Basic Salary × 8.33%\nYearly Gratuity = Basic Salary × (8.33% × 12) = 1 Month Basic Salary\n\nTotal Fund = 1 Month Basic Salary × Years of Service" }}
+      howToUse={{
+        steps: [
+          "Enter your monthly BASIC salary. Do not include travel, food, medical, or other allowances. Check your payslip for the exact 'Basic' breakdown.",
+          "Enter the total number of years you have worked for the company. You can use decimals (e.g., 5.5 for 5 years and 6 months).",
+          "The system will immediately verify your eligibility. Note that standard eligibility requires 5 full years of continuous service.",
+          "Review your 'Total Accumulated Gratuity Fund'. This is the gross amount you are entitled to.",
+          "Check the 'Benefit Ledger' to understand how much of your payout is tax-exempt versus how much is subject to the 15% IRD tax."
+        ]
+      }}
+      formula={{
+        title: "Labor Act Calculation Rule",
+        description: "The calculation mandates an 8.33% monthly accumulation on the base salary alone.",
+        raw: "1. Monthly Employer Contribution = Basic Salary × 8.33%\n2. Yearly Gratuity Accrual = Basic Salary × (8.33% × 12) = 1 Month Basic Salary\n\nTotal Gross Fund = 1 Month Basic Salary × Total Years of Service\n\nTaxation: 15% Flat Rate on the Taxable Portion (Total Fund - Exempt Amount)."
+      }}
       faqs={[
-        { question: "What if I resign before 5 years?", answer: "Under the new Labor Act 2074, employers MUST deposit the 8.33% monthly. If you are registered in the SSF, that money stays in your SSF account even if you leave before 5 years." },
-        { question: "Is Gratuity taxable in Nepal?", answer: "Yes, but there is a tax exemption limit (usually 50% of the total or up to 5 Lakhs). Anything above the exempt amount is taxed at a flat 15% rate." }
+        {
+          question: "Am I eligible for Gratuity if I resign before 5 years?",
+          answer: "Under the new Labor Act 2074, employers MUST deposit the 8.33% monthly into a designated fund from day one. If you are registered in the Social Security Fund (SSF), that money stays in your SSF account and continues to grow, even if you leave the employer before 5 years."
+        },
+        {
+          question: "Is my Gratuity payout taxable in Nepal?",
+          answer: "Yes, but it is heavily subsidized. There is a tax exemption limit—usually 50% of the total amount or up to Rs. 5,00,000 (whichever is lower), provided the fund is approved by the IRD. Only the amount exceeding this exempt limit is taxed at a flat 15%."
+        },
+        {
+          question: "Does Gratuity include my allowances?",
+          answer: "No. Gratuity is calculated strictly on your 'Basic Salary'. Allowances for housing, transportation, or food are excluded from the 8.33% calculation. Always check your payslip to identify your true Basic Salary."
+        },
+        {
+          question: "What is the difference between SSF and traditional Gratuity?",
+          answer: "Traditionally, companies held the gratuity fund internally and paid it out upon resignation. Now, under the Social Security Fund (SSF) scheme, the company must deposit the 8.33% monthly directly to the government SSF, meaning your fund is managed centrally and follows you from job to job."
+        },
+        {
+          question: "Can an employer refuse to pay Gratuity if I am fired?",
+          answer: "Under the Labor Act 2074, gratuity is a statutory right. Even if an employee is terminated for misconduct, the employer cannot forfeit the accumulated gratuity. It must be paid out to the employee or transferred to their SSF account."
+        },
+        {
+          question: "How are fractional years (e.g., 5 years and 4 months) calculated?",
+          answer: "The law requires prorated calculations. For 5 years and 4 months, the calculation would be 5.33 years. You are entitled to the exact 8.33% accumulation for those additional 4 months worked."
+        }
       ]}
       sidebar={{ title: "Labor & Finance", links: [{ label: "Income Tax Calculator", href: "/calculator/income-tax" }, { label: "Foreign Employment Fee", href: "/calculator/foreign-employment" }], banner: { title: "Know Your Rights", description: "The Labor Act 2074 protects your retirement and termination benefits.", image: "/images/nepal-banner.jpg" } }}
       relatedTools={[{ label: "Income Tax Calculator", href: "/calculator/income-tax" }]}

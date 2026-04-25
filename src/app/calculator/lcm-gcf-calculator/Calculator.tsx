@@ -119,11 +119,69 @@ export default function LcmGcfCalculator() {
           )}
         </div>
       }
-      howToUse={{ steps: ["Enter two or more positive numbers in the input box, separated by commas or spaces.", "The calculator instantly processes the data as you type.", "View the Least Common Multiple (LCM) at the top.", "View the Greatest Common Factor (GCF/HCF) immediately below.", "Check the prime factorization breakdown on the left to understand how the numbers are composed."] }}
-      formula={{ title: "Euclidean Algorithm", description: "Standard recursive logic for GCF.", raw: "GCF(a, 0) = a\nGCF(a, b) = GCF(b, a mod b)\n\nLCM Calculation:\nLCM(a, b) = (a × b) / GCF(a, b)\n\nFor multiple numbers, the algorithm is applied iteratively: LCM(a,b,c) = LCM(LCM(a,b), c)." }}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Number Theory: Understanding LCM and GCF</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                In fundamental number theory, understanding the relationships between integers relies heavily on two primary metrics: the Least Common Multiple (LCM) and the Greatest Common Factor (GCF), also known as the Highest Common Factor (HCF). Our <strong className="text-[#202124]">lcm and gcf calculator</strong> is designed not only to output the final mathematical result but to expose the underlying prime factorization mechanics that drive these calculations.
+              </p>
+              <p>
+                The <strong className="text-[#202124]">Greatest Common Factor</strong> is the largest positive integer that divides each of the numbers without leaving a remainder. It is the building block for simplifying fractions. Conversely, the <strong className="text-[#202124]">Least Common Multiple</strong> is the smallest positive integer that is uniformly divisible by each of the numbers in the set. LCM is critical when finding common denominators in fraction arithmetic or aligning cyclic schedules.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Algorithmic Computation Methods</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">The Euclidean Algorithm:</strong> To compute the GCF rapidly, this calculator utilizes the Euclidean Algorithm. Instead of factoring both numbers (which is computationally expensive for large integers), it recursively divides the larger number by the smaller number until the remainder is zero. The last non-zero remainder is the definitive GCF.</li>
+              <li><strong className="text-[#188038]">The LCM Identity:</strong> Once the GCF is established, calculating the LCM for two numbers is a direct algebraic derivation: <code className="bg-[#F1F3F4] px-1 rounded">LCM(a,b) = (|a × b|) / GCF(a,b)</code>. This method guarantees absolute precision without needing to generate long lists of multiples.</li>
+              <li><strong className="text-[#D93025]">Prime Factorization Decomposition:</strong> The calculator also breaks down every input integer into its fundamental prime components. According to the Fundamental Theorem of Arithmetic, every integer greater than 1 is either a prime itself or can be uniquely represented as a product of prime numbers. The visual breakdown helps students cross-verify the LCM/GCF logically.</li>
+            </ul>
+          </div>
+        </div>
+      }
+      howToUse={{
+        steps: [
+          "Enter your numbers in the large text area. You can separate them using commas or spaces.",
+          "As you type, the engine instantly computes the Least Common Multiple (LCM) in the blue card.",
+          "The Greatest Common Factor (GCF/HCF) is displayed simultaneously in the green card.",
+          "Check the left panel to view the exact Prime Factorization tree for every valid integer you entered.",
+          "If you entered exactly two numbers, review the 'Mathematical Identity Proof' block to see how the numbers geometrically relate."
+        ]
+      }}
+      formula={{
+        title: "Euclidean Algorithm & LCM Derivation",
+        description: "The core recursive logic used by computational engines.",
+        raw: "GCF Calculation (Recursive):\nGCF(a, 0) = a\nGCF(a, b) = GCF(b, a mod b)\n\nLCM Calculation:\nLCM(a, b) = (a × b) / GCF(a, b)\n\nIterative Application (for multiple inputs):\nLCM(a, b, c) = LCM(LCM(a, b), c)"
+      }}
       faqs={[
-        { question: "What is the difference between GCF and HCF?", answer: "Nothing. Greatest Common Factor (GCF) and Highest Common Factor (HCF) are two different names for the exact same mathematical concept." },
-        { question: "Why does the mathematical proof only show for two numbers?", answer: "The identity rule 'LCM × GCF = Product of Numbers' is strictly true only for two numbers. It mathematically breaks down when applied to three or more numbers." }
+        {
+          question: "What is the difference between GCF and HCF?",
+          answer: "There is absolutely no mathematical difference. Greatest Common Factor (GCF) and Highest Common Factor (HCF) are simply regional naming variations for the exact same mathematical concept."
+        },
+        {
+          question: "Why does the mathematical proof block only appear for two numbers?",
+          answer: "The identity theorem stating that 'LCM(a,b) × GCF(a,b) = a × b' is strictly true only for a pair of numbers. If you apply this rule to three or more numbers, the algebra breaks down and the equation is no longer valid."
+        },
+        {
+          question: "How does the calculator handle prime numbers?",
+          answer: "If you input a set of prime numbers (e.g., 7, 13, 19), the calculator will immediately identify that they have no common divisors other than 1. Thus, their GCF will be 1, and their LCM will simply be the product of all the numbers."
+        },
+        {
+          question: "What is Prime Factorization?",
+          answer: "Prime factorization is the process of breaking a composite number down into the set of prime numbers that, when multiplied together, yield the original number. For example, the prime factorization of 12 is 2 × 2 × 3."
+        },
+        {
+          question: "Can I calculate the LCM of negative numbers?",
+          answer: "Mathematically, the LCM and GCF are defined exclusively for positive integers. Our algorithm automatically filters out negative inputs and non-integers (decimals) to ensure mathematical integrity."
+        },
+        {
+          question: "Why is the LCM used in adding fractions?",
+          answer: "To add fractions with different denominators (like 1/4 and 1/6), you must find a common base. The LCM of the denominators (which is 12) provides the smallest, most efficient common base (the Lowest Common Denominator) to perform the addition."
+        }
       ]}
       sidebar={{ title: "Pure Mathematics", links: [{ label: "Fraction Calculator", href: "/calculator/fraction-calculator" }, { label: "Decimal to Fraction", href: "/calculator/decimal-to-fraction" }], banner: { title: "Math Fact", description: "Prime factorization is the foundation of modern cryptography.", image: "/images/math-banner.jpg" } }}
       relatedTools={[{ label: "Fraction Calculator", href: "/calculator/fraction-calculator" }]}

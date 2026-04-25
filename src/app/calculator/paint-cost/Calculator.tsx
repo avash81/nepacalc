@@ -122,39 +122,51 @@ export default function PaintCostCalculator() {
           description: "The formula to calculate the number of paint liters needed is based on the total surface area and the paint's coverage rating.",
           raw: "Total Area (All Coats) = Wall Area × Number of Coats\nLiters Needed = Ceiling(Total Area / Coverage per Liter)\nTotal Cost = Liters Needed × Price per Liter"
         }}
+        details={
+          <div className="space-y-8">
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h2 className="text-xl font-black text-[#202124] mb-4">Paint Coverage Science: How Volume, Surface & Coats Interact</h2>
+              <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+                <p>Accurate paint estimation is the difference between a seamless renovation and a frustrating mid-project color mismatch. Paint batches vary slightly between production runs, so running out mid-wall is a critical problem. Our <strong className="text-[#202124]">paint calculator</strong> uses the standard volumetric coverage formula (Area &divide; Coverage Rate = Liters) with ceiling rounding to ensure you always purchase enough paint without excessive waste.</p>
+                <p>The key variable is <strong className="text-[#202124]">coverage rate</strong>—the area a given volume of paint covers at adequate opacity. This varies by paint quality (premium paints cover 10–15% more), wall texture, and application method. We recommend using the rate printed on your specific paint can for the most accurate estimate.</p>
+              </div>
+            </div>
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Factors Affecting Paint Coverage in Nepal's Climate</h3>
+              <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+                <li><strong className="text-[#1A73E8]">Surface Porosity:</strong> Raw concrete and exposed brick (common in Nepal construction) are highly porous and may require a primer coat plus a 20–30% increase in paint volume compared to smooth, pre-painted drywall.</li>
+                <li><strong className="text-[#188038]">Monsoon Humidity:</strong> High humidity during Nepal's monsoon season (June–September) extends drying time and can require thinner coats, potentially increasing the number of passes needed for full coverage.</li>
+                <li><strong className="text-[#D93025]">Color Transition:</strong> Painting a light color over a dark wall (or vice versa) typically requires 3 coats instead of the standard 2 to achieve a uniform finish without bleed-through.</li>
+              </ul>
+            </div>
+          </div>
+        }
         faqs={[
           {
             question: "How much area does 1 liter of paint cover?",
-            answer: "On average, 1 liter of standard acrylic emulsion paint covers about 100 to 120 square feet for a single coat. However, rough surfaces or highly porous walls may absorb more paint, reducing coverage to 80-90 square feet per liter."
+            answer: "On average, 1 liter of standard acrylic emulsion paint covers about 100 to 120 square feet per coat. Premium paints may cover 130+ sq. ft. Rough or porous surfaces (like raw concrete or textured stucco) reduce coverage to 80–90 sq. ft. per liter. Always refer to the coverage rate on the paint can for precision."
           },
           {
-            question: "Should I subtract doors and windows?",
-            answer: "Yes, to get an accurate estimate, you should calculate the area of doors and windows and subtract it from your total wall area before using the calculator. An average door is about 21 sq. ft., and an average window is 15 sq. ft."
+            question: "Should I subtract windows and doors from my wall area?",
+            answer: "Yes, for maximum accuracy. Measure each door (~21 sq. ft. average) and window (~15 sq. ft. average) and subtract their combined area from the total wall surface before entering the value into the calculator."
+          },
+          {
+            question: "How many coats of paint do I typically need?",
+            answer: "Standard interior painting: 2 coats. New/unprimed walls or drastic color changes: 3 coats. Exterior painting (sun and rain exposure): 2-3 coats with a primer. Using a primer as your first coat is recommended for all new construction."
+          },
+          {
+            question: "Why does the calculator round up (ceiling function)?",
+            answer: "We use ceiling rounding because you cannot purchase a fraction of a liter. If the calculation shows 11.2 liters, you need to buy 12 liters. Running short of paint mid-project risks color-match issues between different batches, so it's always better to buy slightly more."
+          },
+          {
+            question: "What is primer and do I need to include it in this calculation?",
+            answer: "Primer is a preparatory coating applied before the main paint to improve adhesion and reduce porosity. Primer typically has a lower coverage rate than finish paint (80–90 sq. ft. per liter). Run a separate calculation for the primer coat by setting 'Number of Coats' to 1 and adjusting the coverage rate accordingly."
+          },
+          {
+            question: "What is the standard coverage for Berger, Asian, or Nippon paints sold in Nepal?",
+            answer: "Most mid-range acrylic interior paints sold in Nepal (including Berger WeatherCoat, Asian Apcolite, and Nippon Vinilex) specify approximately 100–130 sq. ft. per liter at standard dilution. Check the back of the specific product can as coverage varies by product line (matt vs. silk vs. gloss)."
           }
         ]}
-        seoContent={
-          <div>
-            <h2>How to Estimate Paint Required for Your Home</h2>
-            <p>Estimating the right amount of paint is essential for any renovation or construction project. Buying too little paint leads to frustrating mid-project delays and potential color-matching issues across different batches. Buying too much wastes money and leaves you with hazardous materials to dispose of. This calculator ensures you purchase the exact quantity needed.</p>
-            
-            <h3>Understanding Paint Coverage</h3>
-            <p>Paint coverage refers to how much area a specific volume of paint can cover effectively. This metric is usually printed on the paint can. Several factors affect coverage:</p>
-            <ul>
-              <li><strong>Surface Texture:</strong> Smooth, primed drywall requires less paint than porous surfaces like raw stucco or textured concrete.</li>
-              <li><strong>Paint Quality:</strong> Premium paints have higher volume solids, meaning they cover better and require fewer coats.</li>
-              <li><strong>Application Method:</strong> Spraying paint uses more volume than rolling, as some paint is lost to overspray.</li>
-            </ul>
-            
-            <h3>Why Multiple Coats Are Necessary</h3>
-            <p>A single coat of paint rarely provides adequate protection or a uniform finish. Here is why multiple coats are standard practice:</p>
-            <ul>
-              <li><strong>First Coat (Primer/Base):</strong> Seals the wall and provides a uniform surface for the topcoat to adhere to.</li>
-              <li><strong>Second Coat (Topcoat):</strong> Develops the true color, sheen, and durability of the paint.</li>
-              <li><strong>Third Coat:</strong> Often required when making drastic color changes (e.g., painting a light color over a dark wall).</li>
-            </ul>
-            <p>Always calculate your paint volume based on the total number of coats you intend to apply.</p>
-          </div>
-        }
       />
     </CalculatorErrorBoundary>
   );

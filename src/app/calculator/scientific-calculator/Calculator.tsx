@@ -395,40 +395,70 @@ export default function ScientificCalculator() {
         </div>
       }
       results={null}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Advanced Scientific Computation Architecture</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                A scientific calculator differs from a standard arithmetic tool by incorporating a <strong className="text-[#202124]">Computer Algebra System (CAS)</strong> and adhering strictly to established order-of-operations protocols (PEMDAS/BODMAS). This computational engine evaluates holistic mathematical strings rather than executing sequential, single-step operations, ensuring absolute mathematical integrity when parsing complex, multi-layered polynomials.
+              </p>
+              <p>
+                Our scientific laboratory utilizes an industrial-grade expression evaluation engine powered by dynamic parsing trees. This permits seamless integration of trigonometric modeling, logarithmic expansion, and advanced calculus operations (differentiation and simplification). The integrated <strong className="text-[#202124]">Multi-Plot Visualizer</strong> simultaneously translates these algebraic expressions into real-time Cartesian geometry.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Core Computational Modules</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Trigonometric Modality:</strong> Instantly process sine, cosine, and tangent functions across Degrees, Radians, and Gradians. Critical for civil engineering, surveying, and physics vectors.</li>
+              <li><strong className="text-[#188038]">Symbolic Differentiation (d/dx):</strong> Unlike standard calculators, our engine can symbolically process mathematical derivatives, instantly yielding the instantaneous rate of change of a given function.</li>
+              <li><strong className="text-[#D93025]">Base-10 & Natural Logarithms:</strong> Execute exponential decay algorithms and compute pH balances utilizing absolute precision logarithms (log) and natural logarithms (ln) based on Euler's number.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
-          "Desktop: Use the interactive Casio interface to enter complex expressions. The right panel will plot functions containing 'x' automatically.",
-          "Mobile: A streamlined interface is provided for quick calculations. Switch to desktop for full CAS and graphing capabilities.",
-          "Functions: Supports sin, cos, tan, log, ln, sqrt, and exponents. Use SHIFT to access secondary functions in yellow.",
-          "Graphing: Type expressions like 'sin(x)' or 'x^2' to see the real-time visual plot in the engine."
+          "Desktop Interface: Use the interactive Casio-style hardware interface or your physical keyboard to enter expressions into the display.",
+          "Trigonometry: Ensure your Angle Mode (DEG/RAD) matches your data before executing sin, cos, or tan operations.",
+          "Secondary Functions: Press 'SHIFT' or 'ALPHA' to access the secondary operations (labeled in yellow or pink above the primary keys).",
+          "Graphing Engine: Type algebraic expressions containing the variable 'x' (e.g., 'sin(x)' or 'x^2'). The system will automatically map the curve on the right-hand visualizer.",
+          "Calculus Operations: Use the SHIFT menu to access d/dx (Differentiation) or SIMPLIFY for algebraic reduction."
         ]
+      }}
+      formula={{
+        title: "Order of Operations Protocol",
+        description: "The engine strictly parses mathematical strings based on the universal hierarchy.",
+        raw: "Priority 1: Parentheses / Brackets ()\nPriority 2: Exponents & Roots (x², √)\nPriority 3: Multiplication & Division (×, ÷)\nPriority 4: Addition & Subtraction (+, −)\n\nNote: Trigonometric and logarithmic functions are evaluated prior to multiplication."
       }}
       faqs={[
         {
-          question: "What advanced functions are supported by this calculator?",
-          answer: "Our engine supports full trigonometry (sin, cos, tan), logarithmic functions (log, ln), exponents (x^y), square roots, and basic algebraic parsing."
+          question: "What is the difference between DEG, RAD, and GRA modes?",
+          answer: "These dictate how the engine interprets angles. A full circle is 360 Degrees (DEG), 2π Radians (RAD), or 400 Gradians (GRA). In calculus and advanced physics, Radians are the mandatory universal standard."
         },
         {
-          question: "How do I use trigonometric functions correctly?",
-          answer: "You can toggle between Degree and Radian modes using the ANGLE button (SHIFT + ANS). Ensure your input matches the mode selected for accurate results in geometry and calculus."
+          question: "How does the 'simplify' function work?",
+          answer: "The simplify function uses the internal Computer Algebra System (CAS) to analytically reduce complex algebraic strings. For example, entering 'simplify(2x + 3x)' will return '5x' rather than attempting to calculate a numerical value."
+        },
+        {
+          question: "Can I store numerical values in variables?",
+          answer: "Yes. Use the STO function followed by a variable key (A, B, C, D, E, F, X, Y, M). You can then use the ALPHA key to inject those saved values back into new equations."
+        },
+        {
+          question: "Why do I get a 'SYNTAX ERROR'?",
+          answer: "Syntax errors occur when the mathematical string violates parsing rules. Common causes include mismatched parentheses (e.g., '(2+3'), missing operators, or attempting to divide by zero."
+        },
+        {
+          question: "What does the 'd/dx' button do?",
+          answer: "It executes symbolic differentiation. By entering 'diff(x^2)', the engine analytically derives the function with respect to 'x' and returns '2x', which represents the slope of the curve at any given point."
+        },
+        {
+          question: "How does the live graphing visualizer operate?",
+          answer: "The visualizer actively scans the current expression line. If it detects the variable 'x', it intercepts the expression, substitutes 'x' with sequential pixel coordinates, and maps the resulting y-values onto the Cartesian grid in real-time."
         }
       ]}
-      seoContent={
-        <div>
-           <h2>Scientific Guide: Advanced Computing</h2>
-           <p>
-             Advanced mathematics requires more than simple arithmetic—it requires a <strong>robust computational framework</strong> that respects universal laws of priority and precision.
-             Our <strong>Advanced Computing Laboratory</strong> is built for the high-rigor environments of university-level science and engineering in Nepal. From <strong>trigonometric modeling</strong> to solving complex power series, our cloud-based engine provides a responsive, error-free alternative to traditional handheld scientific hardware.
-           </p>
-
-           <h2>Professional STEM Engine</h2>
-           <p>
-             Our scientific calculator uses a Computer Algebra System (CAS) inspired engine to provide symbolic results where possible. 
-             It is designed to follow PEMDAS/BODMAS rules strictly, ensuring that nested operations are handled correctly. 
-             Whether you are preparing for IOE entrance exams or working on civil engineering designs, this tool provides the accuracy you need.
-           </p>
-        </div>
-      }
     />
   );
 }

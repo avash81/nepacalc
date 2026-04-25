@@ -6,6 +6,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { TIER1_SEO_CONTENT } from '@/data/seo-content';
 import { getLatestRates, MarketRate } from '@/utils/market/fetchRates';
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 interface ModernCalcLayoutProps {
   title: string;
@@ -95,9 +96,25 @@ export function ModernCalcLayout({
     }));
   }, []);
   
+  const pathname = usePathname();
+  
+  // Determine the effective slug: prioritize prop, then infer from pathname
+  // Pathname example: "/calculator/age-calculator/" -> "age-calculator"
+  const effectiveSlug = slug || pathname?.split('/').filter(Boolean).pop();
+
   // Auto-enrich SEO content for Tier 1 pages if not explicitly provided
-  const enrichedSEO = seoContent || (slug && TIER1_SEO_CONTENT[slug]?.content);
-  const enrichedFAQs = (faqs && faqs.length > 0) ? faqs : (slug && TIER1_SEO_CONTENT[slug]?.faqs) || [];
+  const enrichedSEO = seoContent || (effectiveSlug && TIER1_SEO_CONTENT[effectiveSlug]?.content);
+  const enrichedFAQs = (faqs && faqs.length > 0) ? faqs : (effectiveSlug && TIER1_SEO_CONTENT[effectiveSlug]?.faqs) || [];
+  
+  const normalizeLink = (href: string | undefined) => {
+    if (!href) return href;
+    // Keep absolute external links as is
+    if (href.startsWith('http')) return href;
+    
+    let normalized = href.startsWith('/') ? href : `/${href}`;
+    if (!normalized.endsWith('/')) normalized += '/';
+    return normalized;
+  };
 
   const faqSchema = enrichedFAQs && enrichedFAQs.length > 0 ? {
     "@context": "https://schema.org",
@@ -150,7 +167,7 @@ export function ModernCalcLayout({
             { name: 'Home', item: 'https://nepacalc.com' },
             ...crumbs.map(c => ({
                 name: c.label,
-                item: c.href ? `https://nepacalc.com${c.href}` : undefined
+                item: c.href ? `https://nepacalc.com${normalizeLink(c.href)}` : undefined
             })).filter((x): x is { name: string, item: string } => !!x.item)
           ]}
         />
@@ -167,7 +184,7 @@ export function ModernCalcLayout({
                   <Fragment key={i}>
                     <span className="text-[#DADCE0] scale-75">/</span>
                     {c.href ? (
-                      <Link href={c.href} className="hover:text-[#1A73E8]">{c.label}</Link>
+                      <Link href={normalizeLink(c.href) as string} className="hover:text-[#1A73E8]">{c.label}</Link>
                     ) : (
                       <span className="text-[#5f6368]">{c.label}</span>
                     )}
@@ -262,7 +279,7 @@ export function ModernCalcLayout({
                 {relatedTools.map((tool, idx) => (
                   <Link 
                     key={idx} 
-                    href={tool.href}
+                    href={normalizeLink(tool.href) as string}
                     className="px-4 py-1.5 bg-white border border-[#DADCE0] rounded-full text-sm font-medium text-[#1A73E8] hover:bg-[#E8F0FE] hover:border-[#1A73E8] transition-all"
                   >
                     {tool.label}
@@ -373,11 +390,11 @@ export function ModernCalcLayout({
                   {sidebar.links.map((link, idx) => (
                     <Link 
                       key={idx} 
-                      href={link.href}
+                      href={normalizeLink(link.href) as string}
                       className="flex items-center gap-3 p-3 rounded-md hover:bg-[#F8F9FA] transition-all group"
                     >
                       <div className="w-8 h-8 rounded-lg bg-[#F1F3F4] group-hover:bg-[#E8F0FE] flex items-center justify-center transition-colors">
-                        {link.icon ? <link.icon className="w-4 h-4 text-[#5F6368] group-hover:text-[#1A73E8]" /> : <ChevronRight className="w-4 h-4 text-[#5F6368]" />}
+                        {link.icon ? <link.icon className="w-4 h-4 text-[#5F6368] group-hover:text-[#1A73E8]" /> : <ChevronRight className="w-4 h-4 text-[#5F6368] font-black" />}
                       </div>
                       <span className="text-sm font-bold text-[#3C4043] group-hover:text-[#1A73E8]">{link.label}</span>
                     </Link>
@@ -500,10 +517,13 @@ export function ModernCalcLayout({
           { label: 'Math', icon: Calculator },
           { label: 'Convert', icon: Home },
         ].map((item) => (
-          <button key={item.label} className="flex flex-col items-center gap-1 p-2">
-            <item.icon className={`w-5 h-5 ${item.active ? 'text-[#1A73E8]' : 'text-[#5F6368]'}`} />
-            <span className={`text-[10px] font-medium ${item.active ? 'text-[#1A73E8]' : 'text-[#5F6368]'}`}>{item.label}</span>
-          </button>
+          <React.Fragment key={item.label}>
+            <button className="flex flex-col items-center gap-1 p-2">
+              <item.icon className={`w-5 h-5 ${item.active ? 'text-[#1A73E8]' : 'text-[#5F6368]'}`} />
+              <span className={`text-[10px] font-medium ${item.active ? 'text-[#1A73E8]' : 'text-[#5F6368]'}`}>{item.label}</span>
+            </button>
+            <span className="sr-only"> | </span>
+          </React.Fragment>
         ))}
       </div>
     </div>

@@ -154,42 +154,58 @@ export default function SleepCalculator() {
             "Important: Do NOT set your alarm for these times if using 'Wake up at'; these are the times you should physically get into bed."
           ]
         }}
-        faqs={[
-          {
-            question: "Why do I feel tired even after 8 hours of sleep?",
-            answer: "If you wake up in the middle of a deep sleep cycle, you will feel groggy (sleep inertia). It is often better to sleep for slightly less time (e.g., 7.5 hours) if it means waking up at the end of a natural cycle."
-          },
-          {
-            question: "How long is a sleep cycle?",
-            answer: "A standard sleep cycle lasts about 90 minutes. During this time, you move through light sleep, deep sleep, and REM (Rapid Eye Movement) sleep before starting the cycle over."
-          }
-        ]}
-        seoContent={
-          <div>
-            <h2>Understanding the 90-Minute Sleep Cycle</h2>
-            <p>Good sleep is not just about the total hours you spend in bed; it is about how many complete sleep cycles you achieve. The human brain naturally cycles through different stages of sleep—ranging from light sleep to deep sleep and REM sleep—roughly every 90 minutes.</p>
+        details={
+          <div className="space-y-8">
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h2 className="text-xl font-black text-[#202124] mb-4">Circadian Rhythm & Ultradian Sleep Cycle Science</h2>
+              <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+                <p>
+                  Sleep is the human body's most powerful biological recovery mechanism. Far from a passive state, your brain cycles through five distinct stages of sleep—Stages 1, 2, 3, 4 (collectively non-REM sleep), and REM (Rapid Eye Movement)—in a recurring 90-minute ultradian rhythm. Our <strong className="text-[#202124]">sleep cycle calculator</strong> maps these rhythms to your specific schedule, identifying the mathematically optimal moments to wake up naturally at the boundary between cycles.
+                </p>
+                <p>
+                  The scientific principle at work is straightforward: waking up during Stage 3 or Stage 4 deep sleep (slow-wave sleep) triggers a neurological state called <strong className="text-[#202124]">sleep inertia</strong>—a transient cognitive impairment that can last 30-60 minutes. By calculating and targeting the light-sleep window at the end of each cycle, this tool eliminates sleep inertia, allowing you to begin your day with maximum mental clarity.
+                </p>
+              </div>
+            </div>
 
-            <h2>Recovery Guide: Sleep Optimization</h2>
-            <p className="font-medium">
-              Sleep is the most powerful <strong>recovery tool</strong> for the human body. It's not just about how long you stay in bed, but how many complete sleep cycles you experience.
-            </p>
-            <p>
-              Our <strong>Circadian Analytics Laboratory</strong> leverages the science of <strong>ultradian rhythms</strong>. By calculating the precise moments your brain naturally shifts between sleep cycles, we help you find the 'perfect' wake-up time, ensuring you start your day in Nepal feeling energized rather than groggy.
-            </p>
-            
-            <h3>What Happens if You Interrupt a Cycle?</h3>
-            <p>If your alarm goes off while you are in the middle of deep sleep (stage 3 or 4), you experience a phenomenon known as <strong>sleep inertia</strong>. This leaves you feeling groggy, disoriented, and fatigued, regardless of whether you slept for 6 hours or 10 hours. Conversely, waking up at the end of a cycle (during light sleep) makes you feel naturally refreshed and alert.</p>
-            
-            <h3>How to Use Sleep Cycles to Your Advantage</h3>
-            <p>To optimize your rest, you should aim to sleep in multiples of 90 minutes. For example:</p>
-            <ul>
-              <li><strong>4 Cycles (6 Hours):</strong> The minimum threshold for a functional day.</li>
-              <li><strong>5 Cycles (7.5 Hours):</strong> The recommended optimal duration for most adults.</li>
-              <li><strong>6 Cycles (9 Hours):</strong> Ideal for recovery, teens, or individuals who are sick.</li>
-            </ul>
-            <p>Our calculator accounts for these 90-minute blocks and automatically adds 14 minutes—the average time it takes a healthy adult to transition from wakefulness to stage 1 sleep—so you know exactly when to turn off the lights.</p>
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The Five Stages of Sleep Architecture</h3>
+              <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+                <li><strong className="text-[#1A73E8]">Stage 1 (Light Sleep, ~5 min):</strong> The transition from wakefulness. Muscle activity decreases, and you can be easily awakened. This is where hypnic jerks (sudden muscle twitches) often occur.</li>
+                <li><strong className="text-[#188038]">Stage 2 (True Sleep, ~25 min):</strong> Heart rate and body temperature drop. The brain begins producing sleep spindles—bursts of brain activity that prevent you from waking. This is the stage you want to wake up in.</li>
+                <li><strong className="text-[#D93025]">Stages 3 & 4 (Deep Slow-Wave Sleep, ~30 min):</strong> The most physically restorative phase. Growth hormone is released, and the body performs tissue repair and immune system reinforcement. Waking here causes severe sleep inertia.</li>
+                <li><strong className="text-[#F29900]">REM Sleep (~20 min, growing longer each cycle):</strong> The brain is highly active. Memory consolidation, emotional processing, and creative problem-solving all occur here. Dreaming is most vivid during REM.</li>
+              </ul>
+            </div>
           </div>
         }
+        faqs={[
+          {
+            question: "Why do I feel tired even after sleeping 8 full hours?",
+            answer: "Because 8 hours doesn't align perfectly with 90-minute cycles. If you sleep from midnight to 8am (480 minutes), that is 5.33 cycles. You likely wake up mid-cycle, deep in slow-wave sleep, triggering severe sleep inertia. Sleeping 7.5 hours (5 exact cycles) would leave you feeling far more refreshed."
+          },
+          {
+            question: "Why is a sleep cycle exactly 90 minutes?",
+            answer: "The 90-minute duration is a biological constant of the human brain's ultradian rhythm—the internal oscillation governing sleep architecture. It is regulated by the interplay of adenosine (sleep pressure) and the circadian clock driven by the suprachiasmatic nucleus in the hypothalamus."
+          },
+          {
+            question: "What is sleep inertia and how long does it last?",
+            answer: "Sleep inertia is the transient cognitive grogginess felt immediately upon waking from deep (slow-wave) sleep. Neurologically, it reflects a rapid but incomplete transition from sleep to wakefulness. It typically lasts 15-60 minutes but can persist for several hours in cases of severe sleep deprivation."
+          },
+          {
+            question: "Why does the calculator add 14 minutes to every sleep time?",
+            answer: "The 14-minute offset accounts for the average sleep onset latency—the time a healthy adult takes to transition from lying in bed to the onset of Stage 1 sleep. If you set an alarm for 7:00 AM, the calculator tells you to get into bed at the calculated time, not to fall asleep at it."
+          },
+          {
+            question: "How many sleep cycles should I be getting per night?",
+            answer: "For most adults, 5-6 complete cycles (7.5 to 9 hours) is optimal. Research consistently shows that adults who regularly achieve fewer than 4 cycles per night have significantly elevated risks of cardiovascular disease, impaired immune function, and metabolic disorders."
+          },
+          {
+            question: "Is it better to sleep less but wake at the right time vs. sleep more but wake mid-cycle?",
+            answer: "Yes. The quality of your awakening is often more impactful on daytime performance than raw hours. Waking up at the end of 5 cycles (7.5 hours) typically produces better cognitive outcomes than waking up mid-cycle after 8 hours, because sleep inertia's neurological cost is significant."
+          }
+        ]}
+
       />
     </CalculatorErrorBoundary>
   );

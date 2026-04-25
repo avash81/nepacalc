@@ -115,6 +115,8 @@ function readingTime(wordCount: number): string {
 
 /** JSON-LD schema for the page */
 function buildSchema(page: GuidePageData): object {
+  const images = [page.imageTop, page.imageMiddle, page.imageBottom, page.ogImage].filter(Boolean);
+  
   const base = {
     '@context': 'https://schema.org',
     '@type': page.schemaType || 'Article',
@@ -134,7 +136,7 @@ function buildSchema(page: GuidePageData): object {
       url: 'https://nepacalc.com',
     },
     inLanguage: 'en-NP',
-    ...(page.ogImage ? { image: page.ogImage } : {}),
+    ...(images.length > 0 ? { image: images } : {}),
   };
 
   if (page.schemaType === 'HowTo') {

@@ -142,30 +142,52 @@ export default function NumberToWords() {
           "Click the Copy button to copy the generated text to your clipboard."
         ]
       }}
-      seoContent={
-        <div>
-          <h2>How the Number to Words Converter Works</h2>
-          <p>Converting large numbers into written words is often required for writing checks, filling out legal contracts, and drafting official documents where accuracy is paramount and numerical digits can easily be tampered with. This converter supports two primary number systems used globally.</p>
-          
-          <h3>The South Asian Numbering System</h3>
-          <p>Widely used in Nepal, India, Pakistan, and Bangladesh, this system groups numbers differently after the thousands place.</p>
-          <ul>
-            <li><strong>Lakh:</strong> Represents 100,000 (One Hundred Thousand). Written as 1,00,000.</li>
-            <li><strong>Crore:</strong> Represents 10,000,000 (Ten Million). Written as 1,00,00,000.</li>
-          </ul>
-          
-          <h3>The International Numbering System</h3>
-          <p>This is the standard Western numbering system, where large numbers are grouped into periods of three digits separated by commas.</p>
-          <ul>
-            <li><strong>Million:</strong> Represents 1,000,000 (Ten Lakhs).</li>
-            <li><strong>Billion:</strong> Represents 1,000,000,000 (One Hundred Crores).</li>
-            <li><strong>Trillion:</strong> Represents 1,000,000,000,000.</li>
-          </ul>
-          
-          <h3>Why Spell Out Numbers?</h3>
-          <p>In financial and legal contexts, spelling out numbers prevents fraud. For instance, the number "500" can easily be altered to "5000" by adding a zero. However, altering "Five Hundred Only" is significantly more difficult without leaving clear evidence of tampering. Always use the "Format as Currency" feature when dealing with financial instruments.</p>
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">South Asian vs. International Numeral Systems</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>The <strong className="text-[#202124]">number-to-words converter</strong> supports both major global numeral grouping systems. The core difference lies in how numbers are grouped after the thousands place. In the International system, grouping is always in powers of 1,000 (Thousand, Million, Billion). In the South Asian system, grouping is in powers of 100 after 1,000 (Thousand, Lakh, Crore).</p>
+              <p>For financial documents in Nepal—bank checks, legal contracts, property deeds—the South Asian Lakh/Crore system with the "Rupees ... Only" suffix is standard practice. Writing amounts in words prevents fraudulent alteration of numerical figures.</p>
+            </div>
+          </div>
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Cross-System Equivalence Reference</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">1 Lakh = 100,000:</strong> Used universally in Nepal for real estate, salaries, and business.</li>
+              <li><strong className="text-[#188038]">1 Crore = 10,000,000:</strong> The standard scale for large corporate and government figures in Nepal.</li>
+              <li><strong className="text-[#D93025]">1 Arab = 1,000,000,000:</strong> One Billion International = One Arab (100 Crore) South Asian, though "100 Crore" is the preferred form in Nepal.</li>
+            </ul>
+          </div>
         </div>
       }
+      faqs={[
+        {
+          question: "Why are numbers spelled out on bank checks in Nepal?",
+          answer: "Spelling out the amount in words (e.g., 'Rupees Fifty Thousand Only') prevents fraud. A numerical amount like '50,000' can be altered to '500,000' by inserting a digit. The written word form cannot be altered without obvious tampering, making it a legal fraud-prevention standard."
+        },
+        {
+          question: "What is the difference between Lakh and Million?",
+          answer: "1 Lakh = 100,000 = 0.1 Million. 10 Lakhs = 1 Million. Nepal officially uses the South Asian system (Lakh/Crore) for all financial and governmental purposes."
+        },
+        {
+          question: "How many Crore is 1 Billion?",
+          answer: "1 Billion (International) = 100 Crore (South Asian). This is a critical conversion for understanding large corporate valuations, GDP figures, or government budgets reported in different systems."
+        },
+        {
+          question: "Does the converter support negative numbers?",
+          answer: "Yes. If you enter a negative number (e.g., -5000), the converter prepends 'Minus' to the word form: 'Minus Five Thousand'. The currency format ('Rupees ... Only') does not apply a 'Minus' prefix."
+        },
+        {
+          question: "What is the maximum number this converter supports?",
+          answer: "This converter supports numbers up to 9,999,999,999. Numbers above this threshold display an error message prompting you to use a shorter value."
+        },
+        {
+          question: "Why does the South Asian system write numbers like 12,34,567?",
+          answer: "The first comma separates thousands (after 3 digits from the right), and subsequent commas separate every 2 digits, reflecting the Lakh (100,000) and Crore (10,000,000) grouping. So 1,234,567 internationally becomes 12,34,567 in South Asian notation."
+        }
+      ]}
+
     />
   );
 }

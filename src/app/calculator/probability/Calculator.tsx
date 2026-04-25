@@ -112,54 +112,70 @@ export default function ProbabilityCalc() {
           { label: 'Ratio Calculator', href: '/calculator/ratio-proportion' },
         ],
       }}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Statistical Probability & Risk Analysis</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Probability is the fundamental branch of mathematics concerned with quantifying uncertainty. Whether assessing financial risk models, actuarial life tables, or simple casino game mechanics, calculating the exact likelihood of an event is crucial. Our <strong className="text-[#202124]">probability calculator</strong> functions as a high-speed inference engine, designed to instantly compute the theoretical probability of a single independent event occurring within a defined sample space.
+              </p>
+              <p>
+                By dividing the number of <span className="italic">Favorable Outcomes</span> (the specific events you want to measure) by the <span className="italic">Total Possible Outcomes</span> (the entire universe of possibilities), the engine derives the primary probability ratio. Furthermore, it automatically extrapolates this raw ratio into the three universal statistical formats: percentage, decimal distribution, and traditional betting odds.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Output Formats</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Decimal Probability (P):</strong> The standard format used in advanced academic mathematics and machine learning algorithms. It is strictly bounded between 0.0 (absolute impossibility) and 1.0 (absolute certainty).</li>
+              <li><strong className="text-[#188038]">Betting Odds (Success:Failure):</strong> Unlike probability which compares favorable outcomes to the total, <strong className="text-[#202124]">odds calculator</strong> metrics compare favorable outcomes directly against <span className="italic">unfavorable</span> outcomes. If you have 1 winning ticket in a 10-ticket lottery, the probability is 10%, but the odds are 1:9.</li>
+              <li><strong className="text-[#D93025]">The Complement Rule (P'):</strong> In statistical theory, the complement represents the probability that the event will NOT happen. Because the sum of all possible probabilities in a sample space must equal 100%, the complement is always exactly (100% - P). Our visual bar instantly graphs this dichotomy.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
-          "Determine the number of favorable outcomes (how many ways the specific event you want can happen).",
-          "Determine the total sample space (the total number of all possible outcomes).",
-          "Enter these two numbers into the calculator.",
-          "Review the results: Probability is presented as a percentage, a decimal, and in traditional odds formatting."
+          "Identify your 'Favorable Outcomes'. This is the number of ways your desired event can occur (e.g., drawing any of the 4 Aces in a deck).",
+          "Identify your 'Total Possible Outcomes'. This is the absolute maximum number of events that could happen (e.g., the 52 cards in a deck).",
+          "Input these values into the top fields. For common scenarios like dice or coin flips, simply click the 'Quick Presets' buttons.",
+          "The engine instantly calculates the success probability in the main display.",
+          "Review the breakdown grid for the decimal equivalent, the exact ratio odds, and the complement (failure) percentage."
         ]
+      }}
+      formula={{
+        title: "Theoretical Probability Formula",
+        description: "The core statistical ratio defining independent events.",
+        raw: "P(Event) = (Favorable Outcomes) / (Total Possible Outcomes)\n\nComplement Rule:\nP(Not Event) = 1 - P(Event)\n\nOdds Calculation:\nOdds = (Favorable Outcomes) : (Total Outcomes - Favorable Outcomes)"
       }}
       faqs={[
         {
-          question: "What is the difference between probability and odds?",
-          answer: "Probability compares favorable outcomes to the TOTAL possible outcomes (e.g., rolling a 6 is 1 in 6). Odds compare favorable outcomes to UNFAVORABLE outcomes (e.g., rolling a 6 is 1 to 5 odds)."
+          question: "What is the mathematical difference between probability and odds?",
+          answer: "Probability compares favorable outcomes to the TOTAL possible outcomes (e.g., rolling a 6 on a die is 1 in 6). Odds compare favorable outcomes directly to UNFAVORABLE outcomes (e.g., rolling a 6 is 1 to 5 odds)."
         },
         {
-          question: "What is the complement probability?",
-          answer: "The complement is the probability that the event will NOT happen. Mathematically, it is 1 minus the probability of the event (or 100% - P%)."
+          question: "What does a probability of 0 or 1 mean?",
+          answer: "In statistics, a probability of 0 (or 0%) means the event is absolutely impossible. A probability of 1 (or 100%) means the event is an absolute mathematical certainty."
+        },
+        {
+          question: "How does the Complement Rule work?",
+          answer: "The complement is the probability that the event will NOT happen. Mathematically, it is 1 minus the probability of the event. If there is a 30% chance of rain, the complement (chance of no rain) is exactly 70%."
+        },
+        {
+          question: "Does this calculator handle multiple independent events?",
+          answer: "This specific tool computes the probability of a single event. To calculate multiple independent events (like rolling a 6 AND flipping Heads), you must calculate their individual probabilities and multiply them together."
+        },
+        {
+          question: "Why do my odds look different from sports betting odds?",
+          answer: "Sports betting odds (like +150 or 2/1) have a 'vig' or 'juice' (the bookmaker's profit margin) baked into them, so they never reflect true mathematical probability. This calculator outputs pure mathematical odds."
+        },
+        {
+          question: "What is an independent vs dependent event?",
+          answer: "A coin flip is independent—getting Heads on the first flip does not change the 50% probability of getting Heads on the second flip. Drawing cards without replacing them is dependent, as the total sample space changes after each draw."
         }
       ]}
-      seoContent={
-        <div>
-          <h2>Probability Analysis Laboratory</h2>
-          <p>
-            Understanding <strong>risk and likelihood</strong> is essential for data science, finance, and everyday decision-making. 
-            Probability provides the mathematical framework for quantifying uncertainty. Our analysis laboratory simplifies complex statistical queries. 
-            Whether you are a student in Nepal calculating independent event outcomes or a professional analyzing risk ratios, 
-            our engine provides instant conversions between <strong>odds, decimals, and percentages</strong> with absolute mathematical certainty.
-          </p>
-
-          <h2>Understanding Basic Statistical Probability</h2>
-          <p>Probability is a branch of mathematics that deals with calculating the likelihood that a given event will occur. Whether you are analyzing risk in finance, calculating odds in gaming, or just trying to understand the chances of rain, understanding basic probability is essential for making informed decisions.</p>
-          
-          <h3>How to Calculate Probability</h3>
-          <p>Theoretical probability is calculated using a very simple ratio:</p>
-          <p><strong>P(Event) = Number of Favorable Outcomes / Total Number of Possible Outcomes</strong></p>
-          <p>For example, a standard deck of cards has 52 cards, and there are 4 Aces. The probability of drawing an Ace at random is 4 (favorable outcomes) divided by 52 (total outcomes), which simplifies to 1/13, or approximately 7.69%.</p>
-          
-          <h3>Understanding Probability Formats</h3>
-          <p>Probability can be expressed in several ways, and our calculator provides all of them instantly:</p>
-          <ul>
-            <li><strong>Percentage:</strong> The most common way people understand chance, ranging from 0% (impossible) to 100% (certain).</li>
-            <li><strong>Decimal:</strong> Used primarily in advanced mathematics and statistics, ranging from 0.0 to 1.0.</li>
-            <li><strong>Odds:</strong> Commonly used in betting. It represents the ratio of successes to failures (e.g., 1:5 means one success for every five failures).</li>
-          </ul>
-          
-          <h3>Independent vs. Dependent Events</h3>
-          <p>This calculator is designed for single, simple events. It is important to note whether multiple events are independent or dependent. A coin flip is independent—getting "Heads" on the first flip does not change the 50% probability of getting "Heads" on the second flip. However, drawing cards from a deck without replacing them is a dependent event, as the total sample space changes after each draw.</p>
-        </div>
-      }
     />
   );
 }

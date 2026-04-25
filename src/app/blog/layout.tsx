@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     siteName: 'NEPACALC',
     type: 'website',
   },
+  alternates: {
+    canonical: 'https://nepacalc.com/blog/',
+  }
 };
 
 export default function BlogLayout({ children }: { children: React.ReactNode }) {

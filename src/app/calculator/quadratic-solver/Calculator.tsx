@@ -1,13 +1,9 @@
 'use client';
 import { useMemo } from 'react';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
-import { ResultCard } from '@/components/calculator/ResultCard';
-import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
+import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { useSyncState } from '@/hooks/useSyncState';
-import { FunctionSquare, Binary, Sigma, Info, Activity } from 'lucide-react';
-
+import { FunctionSquare, Binary, Activity, Lightbulb } from 'lucide-react';
 import { solveQuadratic } from '@/utils/math/safeCalculations';
-import { CalcFAQ } from '@/components/calculator/CalcFAQ';
 
 const DEFAULT_STATE = {
   a: 1,
@@ -16,7 +12,7 @@ const DEFAULT_STATE = {
 };
 
 export default function QuadraticSolver() {
-  const [state, setState] = useSyncState('quadratic_solver_v3', DEFAULT_STATE);
+  const [state, setState] = useSyncState('quadratic_solver_v4', DEFAULT_STATE);
   const { a, b, c } = state;
 
   const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {
@@ -27,12 +23,9 @@ export default function QuadraticSolver() {
     return solveQuadratic(a, b, c);
   }, [a, b, c]);
 
-  const applyPreset = (pa: number, pb: number, pc: number) => {
-    updateState({ a: pa, b: pb, c: pc });
-  };
-
   // Graphing logic
   const graphData = useMemo(() => {
+    if (a === 0) return '';
     const points: string[] = [];
     const h = -b / (2 * a);
     const k = (a * h * h) + (b * h) + c;
@@ -41,7 +34,6 @@ export default function QuadraticSolver() {
     
     for (let xNum = h - range; xNum <= h + range; xNum += step) {
       const yNum = (a * xNum * xNum) + (b * xNum) + c;
-      // Map to 100x100 SVG space
       const sx = 50 + (xNum - h) * (100 / (range * 2));
       const sy = 50 - (yNum - k) * (100 / (range * 2));
       points.push(`${sx},${sy}`);
@@ -49,162 +41,200 @@ export default function QuadraticSolver() {
     return points.join(' ');
   }, [a, b, c]);
 
+  const inputCls = "w-full h-12 text-center border border-[#DADCE0] rounded-md bg-white font-mono text-lg font-black focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all shadow-inner";
+
   return (
-    <CalculatorErrorBoundary calculatorName="Quadratic Solver">
-      <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in duration-700">
-        
-        {/* Header */}
-        <div className="text-center space-y-4 py-8">
-          <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-600 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border border-purple-100 mb-2">
-             <Activity className="w-3 h-3 animate-pulse" />
-             Interactive Graphing
-          </div>
-          <h2 className="text-4xl sm:text-6xl font-black text-gray-900 tracking-tight">
-            Quadratic <span className="text-purple-600">Solver</span>
-          </h2>
-          <p className="max-w-2xl mx-auto text-base text-gray-500 font-medium leading-relaxed">
-             Solve <span className="font-mono italic font-bold text-gray-900">ax² + bx + c = 0</span> with step-by-step discriminant analysis and visual curve plotting.
-          </p>
-        </div>
-
-        {/* Eq Display */}
-        <div className="flex justify-center">
-            <div className="inline-block px-10 py-5 bg-white rounded-[2rem] border-2 border-dashed border-gray-200 shadow-sm relative group overflow-hidden">
-                <div className="absolute inset-0 bg-purple-50 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="text-4xl font-black text-purple-600 font-mono tracking-tighter italic relative z-10">
-                {a}x² {b >= 0 ? '+' : '−'} {Math.abs(b)}x {c >= 0 ? '+' : '−'} {Math.abs(c)} = 0
+    <ModernCalcLayout
+      crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Quadratic Equation Solver' }]}
+      title="Quadratic Equation Solver"
+      description="Calculate the roots of any quadratic equation. Instantly compute the discriminant, identify real or complex roots, and visualize the parabolic curve."
+      icon={FunctionSquare}
+      inputs={
+        <div className="space-y-6">
+          <div className="flex justify-center mb-4">
+             <div className="inline-block px-8 py-4 bg-[#F8F9FA] rounded-xl border border-[#DADCE0] shadow-inner text-center">
+                <div className="text-[10px] font-bold uppercase tracking-wider text-[#70757A] mb-1">Standard Form Equation</div>
+                <span className="text-2xl sm:text-3xl font-black text-[#1A73E8] font-mono tracking-tighter">
+                   {a}x² {b >= 0 ? '+' : '−'} {Math.abs(b)}x {c >= 0 ? '+' : '−'} {Math.abs(c)} = 0
                 </span>
-            </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-6">
-            <div className="bg-white p-8 sm:p-10 rounded-[2.5rem] border border-gray-100 shadow-xl shadow-gray-200/20">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <ValidatedInput label="Coeff. a" value={a} onChange={(v) => updateState({ a: v })} required hint="x² multiplier" />
-                <ValidatedInput label="Coeff. b" value={b} onChange={(v) => updateState({ b: v })} required hint="x multiplier" />
-                <ValidatedInput label="Coeff. c" value={c} onChange={(v) => updateState({ c: v })} required hint="constant" />
-              </div>
-            </div>
-
-            {/* Visual Graph Section */}
-            <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-lg shadow-gray-200/10">
-               <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-2">
-                    <Sigma className="w-5 h-5 text-purple-600" />
-                    <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Parabola Visualization</h3>
-                  </div>
-                  <div className="text-[10px] font-bold text-purple-500 uppercase tracking-widest bg-purple-50 px-3 py-1 rounded-full border border-purple-100">Relative Curve</div>
-               </div>
-               
-               <div className="aspect-[16/9] bg-slate-50 border border-slate-100 rounded-3xl overflow-hidden relative group">
-                  <svg viewBox="0 0 100 100" className="w-full h-full p-10 overflow-visible">
-                    {/* Grid */}
-                    <line x1="0" y1="50" x2="100" y2="50" stroke="#cbd5e1" strokeWidth="0.2" strokeDasharray="1,1" />
-                    <line x1="50" y1="0" x2="50" y2="100" stroke="#cbd5e1" strokeWidth="0.2" strokeDasharray="1,1" />
-                    
-                    {/* Vertex point */}
-                    <circle cx="50" cy="50" r="1.5" fill="#a855f7" className="animate-bounce" />
-                    
-                    {/* Parabola Path */}
-                    <polyline
-                      points={graphData}
-                      fill="none"
-                      stroke="#8b5cf6"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="transition-all duration-500"
-                    />
-                  </svg>
-                  <div className="absolute bottom-4 left-6 flex gap-4 text-[9px] font-black uppercase tracking-widest text-slate-400">
-                    <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-purple-500" /> Vertex</span>
-                    <span>∪ Trend</span>
-                  </div>
-               </div>
-            </div>
-
-            {result.success && result.data && (
-              <div className="p-8 bg-gray-900 rounded-[2.5rem] text-white space-y-6">
-                 <div className="flex items-center gap-2">
-                    <Binary className="w-5 h-5 text-purple-400" />
-                    <h3 className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Mathematical Steps</h3>
-                 </div>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                        <p className="text-[9px] font-black text-purple-400 uppercase tracking-widest mb-1">Step 1: Discriminant</p>
-                        <p className="text-lg font-black font-mono">Δ = {result.data.discriminant}</p>
-                    </div>
-                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                        <p className="text-[9px] font-black text-purple-400 uppercase tracking-widest mb-1">Step 2: Nature</p>
-                        <p className="text-sm font-bold truncate">
-                            {result.data.discriminant > 0 ? 'Distinct Real' : result.data.discriminant === 0 ? 'Repeated Real' : 'Complex Pair'}
-                        </p>
-                    </div>
-                 </div>
-              </div>
-            )}
+             </div>
           </div>
 
-          <div className="space-y-6 lg:sticky lg:top-8 h-fit">
-            {result.success && result.data ? (
-              <>
-                <ResultCard
-                  label="Root x₁"
-                  value={result.data.roots[0].display}
-                  color="purple"
-                  title="Primary Point"
-                  copyValue={`x1 = ${result.data.roots[0].display}`}
-                />
+          <div className="grid grid-cols-3 gap-3">
+            <div className="space-y-2">
+              <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider text-center block">Coefficient A</label>
+              <input type="number" value={a} onChange={e => updateState({ a: Number(e.target.value) })} className={inputCls} />
+            </div>
+            <div className="space-y-2">
+              <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider text-center block">Coefficient B</label>
+              <input type="number" value={b} onChange={e => updateState({ b: Number(e.target.value) })} className={inputCls} />
+            </div>
+            <div className="space-y-2">
+              <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider text-center block">Constant C</label>
+              <input type="number" value={c} onChange={e => updateState({ c: Number(e.target.value) })} className={inputCls} />
+            </div>
+          </div>
 
-                {result.data.roots.length > 1 && (
-                  <ResultCard
-                    label="Root x₂"
-                    value={result.data.roots[1].display}
-                    color="purple"
-                    title="Secondary Point"
-                    copyValue={`x2 = ${result.data.roots[1].display}`}
-                  />
-                )}
+          <div className="space-y-3 pt-4 border-t border-[#F1F3F4]">
+            <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider block">Algebraic Presets</label>
+            <div className="grid grid-cols-2 gap-3">
+              <button onClick={() => updateState({ a: 1, b: -5, c: 6 })} className="p-3 border border-[#DADCE0] bg-white rounded-lg hover:border-[#1A73E8] hover:text-[#1A73E8] transition-all text-xs font-bold font-mono">x² − 5x + 6 = 0</button>
+              <button onClick={() => updateState({ a: 1, b: 2, c: 5 })} className="p-3 border border-[#DADCE0] bg-white rounded-lg hover:border-[#1A73E8] hover:text-[#1A73E8] transition-all text-xs font-bold font-mono">x² + 2x + 5 = 0</button>
+            </div>
+          </div>
+        </div>
+      }
+      results={
+        <div className="space-y-6">
+          {result.success && result.data ? (
+            <>
+              <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+                 <div className="px-6 py-4 bg-[#F8F9FA] border-b border-[#DADCE0] flex items-center justify-between">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#1A73E8]">Mathematical Roots</span>
+                    <Binary className="w-4 h-4 text-[#1A73E8]" />
+                 </div>
+                 <div className="divide-y divide-[#DADCE0]">
+                    {result.data.roots.map((root, i) => (
+                      <div key={i} className="p-6 text-center">
+                         <div className="text-xs font-bold text-[#70757A] mb-2 font-mono">Root x{i + 1}</div>
+                         <div className="text-3xl font-black text-[#202124] font-mono tracking-tighter break-all">{root.display}</div>
+                      </div>
+                    ))}
+                 </div>
+              </div>
 
-                <div className="bg-white p-8 rounded-[2rem] border border-gray-100 space-y-4 shadow-sm">
-                   {[
-                     { l: 'Parabola', v: a > 0 ? 'Concave Up (∪)' : 'Concave Down (∩)' },
-                     { l: 'Vertex', v: `(${(-b / (2 * a)).toFixed(2)}, ${(result.data.discriminant / (-4 * a)).toFixed(2)})` },
-                     { l: 'Y-Intercept', v: `(0, ${c})` },
-                   ].map(item => (
-                     <div key={item.l} className="flex justify-between items-center text-[10px]">
-                        <span className="font-bold text-gray-400 uppercase tracking-widest">{item.l}</span>
-                        <span className="font-black text-gray-900 uppercase tracking-widest">{item.v}</span>
-                     </div>
-                   ))}
-                </div>
+              <div className="grid grid-cols-2 gap-4">
+                 <div className="bg-[#E8F0FE] p-4 rounded-lg border border-[#C5D9F7] text-center">
+                    <div className="text-[9px] font-bold uppercase text-[#1A73E8] tracking-wider mb-1">Discriminant (Δ)</div>
+                    <div className="text-lg font-black text-[#1A73E8] font-mono">{result.data.discriminant}</div>
+                 </div>
+                 <div className="bg-[#E6F4EA] p-4 rounded-lg border border-[#CEEAD6] text-center">
+                    <div className="text-[9px] font-bold uppercase text-[#188038] tracking-wider mb-1">Root Nature</div>
+                    <div className="text-sm font-black text-[#188038] truncate">
+                      {result.data.discriminant > 0 ? 'Distinct Real' : result.data.discriminant === 0 ? 'Repeated Real' : 'Complex Pair'}
+                    </div>
+                 </div>
+              </div>
 
-                <div className="bg-slate-900 text-white p-8 rounded-[2rem] space-y-4">
-                   <h4 className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Algebraic Presets</h4>
-                   <div className="grid grid-cols-2 gap-3">
-                      <button onClick={() => applyPreset(1, -5, 6)} className="text-[10px] p-3 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-all font-bold">x²−5x+6</button>
-                      <button onClick={() => applyPreset(1, 2, 5)} className="text-[10px] p-3 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-all font-bold">x²+2x+5</button>
+              {a !== 0 && (
+                <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+                   <div className="flex items-center justify-between mb-4">
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-[#70757A]">Parabola Visualization</div>
+                      <Activity className="w-4 h-4 text-[#1A73E8]" />
+                   </div>
+                   <div className="aspect-[16/9] bg-[#F8F9FA] border border-[#DADCE0] rounded-lg overflow-hidden relative group">
+                      <svg viewBox="0 0 100 100" className="w-full h-full p-4 overflow-visible">
+                        <line x1="0" y1="50" x2="100" y2="50" stroke="#DADCE0" strokeWidth="0.5" strokeDasharray="2,2" />
+                        <line x1="50" y1="0" x2="50" y2="100" stroke="#DADCE0" strokeWidth="0.5" strokeDasharray="2,2" />
+                        <circle cx="50" cy="50" r="1.5" fill="#D93025" />
+                        <polyline
+                          points={graphData}
+                          fill="none"
+                          stroke="#1A73E8"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                      <div className="absolute bottom-2 left-2 text-[8px] font-bold text-[#70757A] uppercase bg-white/80 px-2 py-1 rounded">
+                        Vertex: ({(-b / (2 * a)).toFixed(2)}, {(result.data.discriminant / (-4 * a)).toFixed(2)})
+                      </div>
                    </div>
                 </div>
-              </>
-            ) : (
-              <div className="p-8 bg-rose-50 border-2 border-rose-100 rounded-[2.5rem] text-rose-600 text-center space-y-2">
-                <p className="font-black uppercase tracking-widest text-xs tracking-tighter">Coefficient Error</p>
-                <p className="text-sm font-bold">{result.error}</p>
-              </div>
-            )}
+              )}
+            </>
+          ) : (
+            <div className="p-6 bg-[#FCE8E6] border border-[#FAD2CF] rounded-lg text-center space-y-2">
+              <p className="font-black uppercase tracking-widest text-[#D93025] text-[10px]">Mathematical Error</p>
+              <p className="text-xs font-bold text-[#D93025]">{result.error}</p>
+            </div>
+          )}
+        </div>
+      }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Algebraic Resolution of Quadratic Polynomials</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                In mathematics, a quadratic equation is a second-degree polynomial equation. The prefix "quad" signifies that the variable is squared (raised to the power of 2). Geometrically, this equation plots a U-shaped curve known as a <strong className="text-[#202124]">parabola</strong>. Solving a quadratic equation determines its "roots"—the exact coordinate locations where the parabolic curve crosses the horizontal x-axis.
+              </p>
+              <p>
+                Our computational <strong className="text-[#202124]">quadratic formula calculator</strong> utilizes the standard universal formula to provide exact root derivations. Unlike traditional factoring methods (which fail on equations with non-integer roots), the quadratic formula analytically parses the equation's coefficients to yield the precise geometric intersections, even evaluating complex (imaginary) numbers seamlessly.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Understanding The Discriminant (Δ)</h3>
+            <p className="text-sm text-[#5F6368] mb-3">
+              The nature of the parabolic curve is dictated entirely by a sub-formula known as the Discriminant (b² - 4ac). This number "discriminates" between the three possible geometric realities:
+            </p>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Positive Discriminant (Δ &gt; 0):</strong> The parabola crosses the x-axis twice. The equation possesses two distinct, real mathematical roots.</li>
+              <li><strong className="text-[#188038]">Zero Discriminant (Δ = 0):</strong> The parabola perfectly kisses the x-axis with its vertex. The equation possesses exactly one distinct, repeated real root.</li>
+              <li><strong className="text-[#D93025]">Negative Discriminant (Δ &lt; 0):</strong> The parabola "floats" above or below the x-axis, never touching it. The roots do not exist in real Cartesian space; they are defined entirely by Complex/Imaginary numbers (<span className="italic">i</span>).</li>
+            </ul>
           </div>
         </div>
-
-        <div className="pt-8">
-           <CalcFAQ
-              faqs={[
-                { question: 'What is the "Vertex"?', answer: 'The vertex is the peak or lowest point of the parabola, given by x = -b/2a.' },
-              ]}
-           />
-        </div>
-      </div>
-    </CalculatorErrorBoundary>
+      }
+      howToUse={{
+        steps: [
+          "Ensure your equation is organized into standard form: ax² + bx + c = 0.",
+          "Input the integer or decimal coefficient for A (the x² multiplier). Note: 'a' cannot be 0, otherwise it is just a linear equation.",
+          "Input the coefficients for B and C. If your equation is missing a term, enter 0.",
+          "The engine instantly calculates the Discriminant to determine root feasibility.",
+          "Review the exact roots and explore the interactive Parabola Visualization map."
+        ]
+      }}
+      formula={{
+        title: "The Quadratic Formula",
+        description: "The universal analytic algebraic solution.",
+        raw: "Standard Form:\nax² + bx + c = 0\n\nThe Formula:\nx = (-b ± √(b² - 4ac)) / 2a\n\nThe Discriminant (Δ):\nΔ = b² - 4ac\n\nThe Parabola Vertex:\nx = -b / 2a\ny = -Δ / 4a"
+      }}
+      faqs={[
+        {
+          question: "What happens if coefficient 'a' is zero?",
+          answer: "If 'a' is exactly zero, the x² term is eliminated. The equation mathematically ceases to be quadratic and becomes a standard linear equation (bx + c = 0). The engine will return an error."
+        },
+        {
+          question: "What are 'Complex Pair' roots?",
+          answer: "When the discriminant is negative, taking the square root requires calculating the root of a negative number, which is impossible in real mathematics. Thus, the solution utilizes 'i' (imaginary numbers). These always occur in conjugate pairs."
+        },
+        {
+          question: "How do I calculate the highest or lowest point of the curve?",
+          answer: "That point is called the vertex. The exact x-coordinate is found using (-b / 2a). If 'a' is positive, the parabola opens upwards and the vertex is the absolute minimum. If 'a' is negative, it opens downwards and the vertex is the peak."
+        },
+        {
+          question: "Why use the formula instead of factoring?",
+          answer: "Factoring is a mental shortcut that only works effectively when roots are clean, whole numbers. The quadratic formula is an analytical sledgehammer that solves 100% of quadratic equations, regardless of how messy the decimals or fractions get."
+        },
+        {
+          question: "What does the 'c' constant represent on the graph?",
+          answer: "The 'c' term dictates exactly where the parabola intersects the vertical y-axis. Regardless of the 'a' or 'b' values, the curve will always cross the y-axis at the coordinate (0, c)."
+        },
+        {
+          question: "Why does a zero discriminant only have one root?",
+          answer: "Mathematically, the formula uses a ± (plus or minus) sign. If the discriminant is zero, you are adding and subtracting zero, which results in the exact same number. Geometrically, it means the tip of the U-curve perfectly balances on the x-axis."
+        }
+      ]}
+      sidebar={{
+        title: "Algebra toolkit",
+        links: [
+          { label: "Linear Equation Solver", href: "/calculator/linear-solver" },
+          { label: "Matrix Calculator", href: "/calculator/matrices" },
+          { label: "Fraction Calculator", href: "/calculator/fraction-calculator" },
+        ],
+        banner: {
+          title: "Graphing Reality",
+          description: "Quadratic equations model the physical trajectory of objects, from thrown baseballs to rocket launches.",
+          image: "/images/math-banner.jpg"
+        }
+      }}
+      relatedTools={[
+        { label: "Linear Solver", href: "/calculator/linear-solver" },
+        { label: "Matrices", href: "/calculator/matrices" }
+      ]}
+    />
   );
 }

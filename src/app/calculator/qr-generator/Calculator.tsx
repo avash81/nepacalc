@@ -116,32 +116,51 @@ export default function QRGenerator() {
           "Click 'Download PNG' to save the generated image to your device."
         ]
       }}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">QR Code Technology: How 2D Matrix Barcodes Work</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>A QR (Quick Response) code is a two-dimensional matrix barcode invented by Denso Wave (Japan) in 1994 for automotive parts tracking. Unlike linear barcodes that encode data in one horizontal dimension, QR codes encode data in both dimensions using a grid of black and white squares, enabling storage of up to 4,296 alphanumeric characters or 7,089 numeric characters in a single compact image. Our <strong className="text-[#202124]">QR code generator</strong> creates static, permanent codes using the QR Code Version 1-40 standard.</p>
+              <p>All codes generated here are <strong className="text-[#202124]">static QR codes</strong>—the destination data is hard-encoded directly into the pattern of the squares. This means no server is involved after generation, the code works indefinitely without any subscription, and your data never leaves your browser.</p>
+            </div>
+          </div>
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Static vs. Dynamic QR Codes</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Static QR Codes (This Tool):</strong> The URL or text is directly encoded into the pixel pattern. Free, permanent, zero maintenance. Downside: cannot be edited after printing—a typo requires regenerating and reprinting.</li>
+              <li><strong className="text-[#188038]">Dynamic QR Codes:</strong> Encode a short redirect URL. The actual destination can be changed after printing via a dashboard. Supports scan tracking/analytics. Typically requires a paid subscription ($5–$30/month).</li>
+              <li><strong className="text-[#D93025]">Error Correction:</strong> QR codes include Reed-Solomon error correction, allowing them to remain scannable even when up to 30% of the pattern is damaged, covered by a logo, or torn.</li>
+            </ul>
+          </div>
+        </div>
+      }
       faqs={[
         {
           question: "Do these QR codes expire?",
-          answer: "No. This tool generates static QR codes. Because the data is encoded directly into the image itself rather than relying on a redirect link, the code will work forever as long as the underlying URL or text remains valid."
+          answer: "No. Static QR codes generated here are permanent. The data is encoded directly into the pixel pattern of the image, not through a redirect server. As long as the underlying URL exists, the QR code will work forever."
         },
         {
-          question: "Can I track how many times the QR code is scanned?",
-          answer: "Because these are static QR codes that do not pass through a tracking server, scan analytics are not supported. If you are linking to your own website, you can add UTM parameters to the URL before generating the code to track traffic in Google Analytics."
+          question: "Can I track how many times my QR code is scanned?",
+          answer: "Static QR codes do not support scan tracking. To track scans, add UTM parameters to your URL before generating (e.g., ?utm_source=qr&utm_medium=print) and monitor traffic in Google Analytics. For full scan count tracking, use a dynamic QR code service."
+        },
+        {
+          question: "What size should I export for print quality?",
+          answer: "For business cards, a minimum of 250×250 pixels is sufficient. For A4 flyers, use 400×400 pixels or higher. For banners and large-format print (scanning from 3+ meters away), use 600×600 pixels at minimum. A good rule: 1 inch of print size requires at least 150px of QR image size."
+        },
+        {
+          question: "What types of data can I encode in a QR code?",
+          answer: "This generator supports any text string including: website URLs (https://), phone numbers (tel:+977...), email links (mailto:), WiFi credentials (WIFI:T:WPA;S:SSID;P:password;;), geographic coordinates (geo:lat,lng), and plain text. Each format uses standard URI schemes recognized by mobile cameras."
+        },
+        {
+          question: "Can I put a logo in the center of the QR code?",
+          answer: "Yes, because QR codes have built-in error correction (up to 30% of the pattern can be obscured). You can overlay a logo over the center of the QR image after downloading, provided it doesn't cover more than ~25-30% of the total code area. Always test that the final code scans correctly."
+        },
+        {
+          question: "Why does my QR code not scan from the screen?",
+          answer: "Common reasons: (1) Screen glare or reflection interfering with the camera. (2) The code is too small on screen—increase the export size to 350px+. (3) The content box is empty. (4) Browser camera permissions blocked. Try darkening the screen brightness slightly and ensuring adequate contrast."
         }
       ]}
-      seoContent={
-        <div>
-          <h2>How QR Codes Work</h2>
-          <p>A QR (Quick Response) code is a type of two-dimensional matrix barcode invented in 1994. Unlike traditional barcodes that store information horizontally, QR codes store data both horizontally and vertically. This allows them to hold significantly more information—up to 4,296 alphanumeric characters in a single square.</p>
-          
-          <h3>Static vs. Dynamic QR Codes</h3>
-          <p>It is important to understand the difference between the two main types of QR codes:</p>
-          <ul>
-            <li><strong>Static QR Codes (Generated Here):</strong> The actual target data (like the URL or text string) is hard-coded directly into the pattern of the squares. They are free, permanent, and do not expire. However, if you make a typo in the URL, you must generate an entirely new code.</li>
-            <li><strong>Dynamic QR Codes:</strong> These codes contain a short URL that redirects the user to the actual destination. This allows the creator to change the destination later without reprinting the QR code, and allows for scan tracking. These typically require paid subscriptions from marketing services.</li>
-          </ul>
-          
-          <h3>Best Practices for Printing</h3>
-          <p>When generating a QR code for physical print (like flyers, menus, or business cards), ensure you export it at a high enough resolution (at least 300x300 px). Maintain a high contrast ratio—always print dark codes on light backgrounds. Furthermore, ensure there is an adequate "quiet zone" (blank space) around the edges of the QR code so scanners can easily identify its borders.</p>
-        </div>
-      }
     />
   );
 }

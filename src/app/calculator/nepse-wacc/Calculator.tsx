@@ -131,11 +131,45 @@ export default function WACCCalculator() {
           </div>
         </div>
       }
-      howToUse={{ steps: ["Enter the quantity and price for your first batch of stock purchases.", "Click 'Add Purchase' for any subsequent buys of the same stock at a different price.", "Add bonus shares (if any) with a price of Rs. 0.", "The system will instantly output your exact Weighted Average Cost of Capital."] }}
-      formula={{ title: "WACC Formula", description: "Averaging out total expenditure.", raw: "WACC = (Total Capital Invested) / (Total Number of Shares)\n\nCapital Invested = (Q1 × P1) + (Q2 × P2) ...\nBonus Shares always count as P = 0." }}
+      howToUse={{
+        steps: [
+          "Enter the Quantity and Purchase Price (Rate) for your first batch of stock acquisitions.",
+          "If you bought the same stock again at a different price, click 'Add Purchase' to create a new cluster.",
+          "For IPOs, input your allotted quantity with a Rate of exactly Rs. 100.",
+          "For Bonus Shares, input the received bonus quantity and set the Rate to Rs. 0.",
+          "The system instantly aggregates your total capital invested and divides it by the total units to reveal your exact WACC."
+        ]
+      }}
+      formula={{
+        title: "Meroshare WACC Algorithm",
+        description: "The mathematical formula CDSC uses to average out your total expenditure over total volume.",
+        raw: "WACC = Total Capital Invested / Total Number of Shares Held\n\nWhere:\nTotal Capital Invested = (Qty1 × Price1) + (Qty2 × Price2) + ...\n\n*Note: Bonus shares increase 'Total Number of Shares' but add 0 to 'Total Capital Invested'."
+      }}
       faqs={[
-        { question: "Why is WACC important in NEPSE?", answer: "Capital Gains Tax (CGT) is calculated on your net profit. Meroshare uses your WACC to determine your baseline cost. If your WACC is incorrect, you may pay higher taxes than required." },
-        { question: "Do Right Shares affect WACC?", answer: "Yes, Right Shares should be added as a separate purchase cluster. Usually, the rate for Right Shares is Rs. 100 per share." }
+        {
+          question: "Why is updating my WACC mandatory in Meroshare?",
+          answer: "The CDSC system requires a verified baseline cost to accurately calculate your Capital Gains Tax (CGT). If you attempt to sell shares through your broker without updating 'My Purchase Update' in Meroshare, the transaction will fail."
+        },
+        {
+          question: "How do I calculate WACC for Bonus Shares?",
+          answer: "Bonus shares are technically free. Add a new purchase cluster in the calculator, input the exact number of bonus shares you received, and set the Rate to 0. This will average down your WACC."
+        },
+        {
+          question: "How do I calculate WACC for Right Shares?",
+          answer: "Right shares usually have a fixed par value (almost always Rs. 100 in Nepal). Add a new purchase cluster with your Right Share quantity and set the Rate to 100."
+        },
+        {
+          question: "Does the WACC include broker commission and SEBON fees?",
+          answer: "In the CDSC Meroshare system, the exact WACC slightly incorporates the purchase broker commission and DP fees. Our calculator gives you the pure mathematical average, which may differ from the Meroshare final decimal by a fraction of a rupee."
+        },
+        {
+          question: "What happens if I calculate WACC incorrectly?",
+          answer: "If you artificially inflate your WACC to show lower profits, you are committing tax fraud. If your WACC is too low, you will end up paying higher Capital Gains Tax (CGT) than you actually owe."
+        },
+        {
+          question: "Do I need to recalculate WACC after selling partial shares?",
+          answer: "No. Selling shares does not change the average cost of the shares you still hold. WACC only changes when you ACQUIRE new shares of the same company at a different price point."
+        }
       ]}
       sidebar={{ title: "Stock & Market Tools", links: [{ label: "NEPSE Bonus Tax", href: "/calculator/nepse-bonus-tax" }, { label: "Nepal CGT Calculator", href: "/calculator/nepal-tax-calculator" }], banner: { title: "Maximize Profit", description: "Accurate cost baselining ensures you don't overpay capital gains taxes.", image: "/images/nepse-banner.jpg" } }}
       relatedTools={[{ label: "Nepal CGT", href: "/calculator/nepal-tax-calculator" }, { label: "NEPSE Bonus Tax", href: "/calculator/nepse-bonus-tax" }]}

@@ -68,6 +68,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   alternates: {
+    canonical: 'https://nepacalc.com/',
     languages: {
       'en-NP': 'https://nepacalc.com/',
       'x-default': 'https://nepacalc.com/'

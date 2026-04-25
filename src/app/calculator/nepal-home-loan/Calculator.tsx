@@ -179,35 +179,105 @@ export default function NepalHomeLoanCalculator() {
       details={
         <div className="space-y-8">
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">The Definitive Loan Amortization Calculator for Nepal</h2>
+            <h2 className="text-xl font-black text-[#202124] mb-4">The Definitive Home Loan Amortization Calculator for Nepal</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>
-                When planning a real estate purchase in Nepal, relying on a generic <strong className="text-[#202124]">loan calculator home</strong> tool isn't enough. The Nepalese banking sector operates on a strictly regulated "Base Rate + Premium" model governed by Nepal Rastra Bank (NRB). Our advanced <strong className="text-[#202124]">loan amortization calculator</strong> accurately models this dynamic interest structure, allowing you to visualize exactly how your EMI changes as base rates fluctuate quarterly.
+                When planning a real estate purchase in Nepal, relying on a generic <strong className="text-[#202124]">loan calculator home</strong> tool isn't enough to secure your financial future. The Nepalese banking sector, regulated by Nepal Rastra Bank (NRB), operates predominantly on a dynamic "Base Rate + Premium" model. Our advanced <strong className="text-[#202124]">loan amortization calculator</strong> is specifically engineered to model this local interest structure, allowing you to accurately project your Equated Monthly Installment (EMI) and visualize how your principal shrinks over time.
               </p>
               <p>
-                Whether you are evaluating a <strong className="text-[#202124]">payment calculator home equity line</strong> or assessing long-term residential financing, understanding your exact interest exposure is critical. Unlike fixed-rate structures common abroad—such as an <strong className="text-[#202124]">fha loan</strong> or tracking <strong className="text-[#202124]">current va home loan rates</strong> in the US—Nepal's floating rate requires a robust amortization engine to forecast potential long-term costs accurately.
+                Whether you are evaluating a <strong className="text-[#202124]">payment calculator home equity line</strong> for renovation, or assessing long-term residential financing for a new plot in Kathmandu, understanding your exact interest exposure is critical. Unlike fixed-rate structures common in Western markets—such as an <strong className="text-[#202124]">fha loan</strong> or tracking <strong className="text-[#202124]">current va home loan rates</strong> in the US—Nepal's floating rate mechanism requires a robust amortization engine to forecast potential long-term costs and navigate quarterly rate fluctuations.
               </p>
             </div>
           </div>
 
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Multi-Asset Financial Planning</h3>
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The Architecture of a Nepalese Mortgage</h3>
+            <p className="text-sm text-[#5F6368] mb-4">A housing loan in Nepal consists of specific components that dictate your monthly financial commitment. Our calculator processes these variables to generate your amortization schedule.</p>
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Equity Optimization:</strong> Similar to evaluating a <strong className="text-[#202124]">home equity loan calculator</strong>, homeowners in Nepal can use their existing property valuation (often up to 60-70% Loan-to-Value) to unlock capital for business expansion or secondary investments.</li>
-              <li><strong className="text-[#188038]">Automotive & Secondary Loans:</strong> The core mathematical amortization engine used here applies universally. While optimized for housing, the same reducing-balance logic dictates EMI for <strong className="text-[#202124]">car loans</strong> and personal overdrafts.</li>
-              <li><strong className="text-[#D93025]">Premium Negotiation:</strong> The "Premium" component is the only negotiable factor in a Nepalese mortgage. A 0.5% reduction in premium can result in millions of rupees saved over a 20-year tenure.</li>
+              <li><strong className="text-[#202124]">Loan Principal:</strong> The actual amount borrowed from the A-Class Commercial Bank or Development Bank. In Nepal, the Loan-to-Value (LTV) ratio typically caps at 60% within the Kathmandu Valley and 70% outside, meaning you must provide a substantial down payment.</li>
+              <li><strong className="text-[#202124]">Base Rate:</strong> This is the minimum interest rate mandated by NRB, reflecting the bank's actual cost of funds. It fluctuates quarterly. By law, banks cannot lend below their Base Rate.</li>
+              <li><strong className="text-[#202124]">Premium Rate:</strong> This is the profit margin the bank charges on top of the Base Rate. While the Base Rate fluctuates, the Premium is generally locked in during the loan agreement (though some banks review it annually). <span className="text-[#D93025] font-medium">Negotiating a lower premium is the single most effective way to reduce your lifetime loan cost.</span></li>
+              <li><strong className="text-[#202124]">Tenure:</strong> The duration over which the loan must be repaid, typically ranging from 5 to 30 years depending on the borrower's age and income stability.</li>
+            </ul>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Costs Associated with Home Ownership</h3>
+            <p className="text-sm text-[#5F6368] mb-4">Your EMI is the largest recurring cost, but prospective homeowners in Nepal must account for peripheral expenses that affect the total cost of ownership.</p>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Processing Fees:</strong> Banks charge a one-time loan processing or management fee, typically ranging from 0.5% to 1.5% of the total approved loan amount.</li>
+              <li><strong className="text-[#1A73E8]">Property Valuation (Engineer) Fees:</strong> Before loan approval, an NRB-certified engineer must evaluate the collateral property. This incurs a flat fee payable to the evaluator.</li>
+              <li><strong className="text-[#1A73E8]">Insurance Premiums:</strong> Banks mandate comprehensive property insurance (against earthquake, fire, etc.) for the duration of the loan. The premium is calculated based on the building's valuation and must be renewed annually.</li>
+            </ul>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Early Repayment and Prepayment Strategies</h3>
+            <p className="text-sm text-[#5F6368] mb-4">Most borrowers aim to clear their mortgage ahead of the scheduled tenure to save on the massive interest accumulation. Nepal Rastra Bank guidelines regulate how banks handle prepayment.</p>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#188038]">Partial Prepayment:</strong> If you receive a bonus or sell an asset, injecting a lump sum into your loan principal drastically reduces future interest. However, banks may charge a "Prepayment Penalty" (often 1% to 2%) if the partial payment exceeds a certain percentage of the outstanding principal within a single fiscal year.</li>
+              <li><strong className="text-[#188038]">Loan Swapping / Refinancing:</strong> If another bank's Base Rate drops significantly below your current bank's rate, you might consider swapping the loan. The new bank takes over the principal. Note that your current bank will likely levy a swap charge or exit fee.</li>
             </ul>
           </div>
         </div>
       }
-      howToUse={{ steps: ["Enter the total principal amount you wish to borrow.", "Check the latest Base Rate of your chosen bank (updated quarterly on their website).", "Enter the Premium rate quoted to you by the bank officer.", "Enter the loan tenure in years. Max tenure in Nepal is generally 25-30 years depending on borrower age."] }}
-      formula={{ title: "EMI Formula", description: "Standard Amortization.", raw: "Effective Rate = Base Rate + Premium\nr = (Effective Rate / 100) / 12\nn = Tenure in Years × 12\n\nEMI = P × r × (1 + r)^n / ((1 + r)^n - 1)" }}
+      howToUse={{
+        steps: [
+          "Enter the Total Principal Amount you wish to borrow from the bank.",
+          "Find your bank's latest 'Base Rate' (published quarterly on their official website or national dailies) and enter it.",
+          "Enter the 'Premium' percentage quoted by your loan officer. The effective interest rate is the sum of the Base Rate and Premium.",
+          "Input your desired Repayment Tenure in years. Remember, longer tenures mean lower EMIs but significantly higher total interest paid.",
+          "Review the generated EMI, the lifetime interest exposure, and the visual principal-vs-interest distribution bar."
+        ]
+      }}
+      formula={{
+        title: "The Standard EMI Amortization Formula",
+        description: "The calculator uses the universal reducing-balance method to compute the exact monthly installment.",
+        raw: "1. Effective Annual Rate (R) = Base Rate + Premium Rate\n2. Monthly Interest Rate (r) = (R / 100) / 12\n3. Total Number of Months (n) = Tenure in Years × 12\n\nEquated Monthly Installment (EMI) = [P × r × (1 + r)^n] / [(1 + r)^n - 1]\n\nWhere 'P' is the principal loan amount."
+      }}
       faqs={[
-        { question: "What is the Base Rate?", answer: "The Base Rate is the minimum interest rate mandated by Nepal Rastra Bank (NRB) below which commercial banks are not allowed to lend. It covers the bank's cost of funds." },
-        { question: "Why does my EMI change every quarter?", answer: "Because your loan is tied to the Base Rate. If the bank's cost of funds changes, the Base Rate changes. Your premium remains fixed, but the Base Rate fluctuates." }
+        {
+          question: "What is the Base Rate in Nepalese banking?",
+          answer: "The Base Rate is the minimum interest rate formulated by Nepal Rastra Bank (NRB). It represents the actual cost incurred by the bank to acquire funds (deposits). Commercial banks are strictly prohibited from issuing loans at an interest rate lower than their declared Base Rate."
+        },
+        {
+          question: "Why does my Home Loan EMI change every quarter?",
+          answer: "Because most home loans in Nepal are 'floating rate' loans tied to the Base Rate. Banks recalculate and publish their Base Rates every quarter (Ashoj, Poush, Chaitra, Asadh). If the bank's cost of funds drops, the Base Rate drops, and your EMI (or loan tenure) will decrease. Conversely, if it rises, your EMI increases."
+        },
+        {
+          question: "Can I negotiate a fixed interest rate for a Home Loan in Nepal?",
+          answer: "Yes, NRB recently introduced guidelines allowing banks to offer fixed-rate loans for certain tenures (often up to 5 or 7 years). However, the bank takes on the interest rate risk, so fixed rates are usually quoted significantly higher than the current floating rate."
+        },
+        {
+          question: "What happens if I want to pay off my loan early?",
+          answer: "You can pay off your loan early (prepayment). However, if you are moving the loan to another bank (loan swap) or paying it off using an external loan before a specified period (usually 2 years), banks will charge a prepayment or swap penalty, typically ranging from 0.5% to 2% of the outstanding principal."
+        },
+        {
+          question: "What is the maximum Loan-to-Value (LTV) ratio in Nepal?",
+          answer: "As per NRB directives, the maximum LTV ratio for residential home loans inside the Kathmandu Valley is generally restricted to 50% - 60%. Outside the valley, banks may finance up to 70% of the property's 'Fair Market Value' as evaluated by their engineer."
+        },
+        {
+          question: "Are there any tax benefits on Home Loans in Nepal?",
+          answer: "Currently, Nepal does not offer the extensive tax deductions on home loan interest seen in countries like the US or India. Salaried individuals generally cannot deduct housing interest from their assessable income, making it even more crucial to secure the lowest possible premium."
+        }
       ]}
-      sidebar={{ title: "Finance Tools", links: [{ label: "Income Tax Calculator", href: "/calculator/income-tax" }, { label: "Remittance Calculator", href: "/calculator/remittance-calculator" }], banner: { title: "Compare Rates", description: "Even a 0.5% difference in premium can save you lakhs of rupees over a 20-year loan.", image: "/images/finance-banner.jpg" } }}
-      relatedTools={[{ label: "Income Tax Calculator", href: "/calculator/income-tax" }]}
+      sidebar={{
+        title: "Finance Tools",
+        links: [
+          { label: "Income Tax Calculator", href: "/calculator/nepal-income-tax/" },
+          { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
+          { label: "Land Area Converter", href: "/calculator/nepal-land/" }
+        ],
+        banner: {
+          title: "Compare Rates Carefully",
+          description: "Even a 0.5% difference in your negotiated premium can save you lakhs of rupees over a 20-year loan tenure.",
+          image: "/images/finance-banner.jpg"
+        }
+      }}
+      relatedTools={[
+        { label: "Income Tax Calculator", href: "/calculator/nepal-income-tax/" },
+        { label: "Land Area Converter", href: "/calculator/nepal-land/" }
+      ]}
     />
   );
 }

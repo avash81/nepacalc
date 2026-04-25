@@ -196,14 +196,12 @@ export default function NepalVehicleTaxCalculator() {
         raw: "Bike (up to 125cc): Rs. 3,000 | 126-150cc: Rs. 5,000\nCar Private (up to 1000cc): Rs. 22,000 | 1001-1500cc: Rs. 25,000\nLate payment penalty: +20% of base tax"
       }}
       faqs={[
-        {
-          question: "Where do I pay vehicle tax in Nepal?",
-          answer: "You can pay at the District Revenue Office (Rajaswa Karyalay) in person, or through the NRB-approved online payment portals like Connect IPS and internet banking of major commercial banks."
-        },
-        {
-          question: "What happens if I miss the 3-month deadline?",
-          answer: "A 20% penalty is added to your base tax amount. For example, if your tax is Rs. 5,000, the total becomes Rs. 6,000. Further delays can result in additional fines and vehicle impoundment."
-        }
+        { question: "Where do I pay vehicle tax in Nepal?", answer: "You can pay at the District Revenue Office (Rajaswa Karyalay) in person, or through NRB-approved online payment portals like Connect IPS, internet banking of major commercial banks (NIC Asia, Nabil, Everest Bank, etc.), and the official Sajhedari portal. Renewal is done annually, typically within the first 3 months of the Nepali fiscal year (Shrawan–Ashwin)." },
+        { question: "What happens if I miss the 3-month tax renewal deadline?", answer: "A 20% penalty is added to your base tax amount. For example, if your base tax is Rs. 5,000, you pay Rs. 6,000 after the deadline. Further delays can result in additional fines (1.5% per month after the penalty period), vehicle impoundment during traffic checks, and inability to pass vehicle inspection (locus) for insurance renewal." },
+        { question: "What documents are needed for vehicle tax renewal (bluebook renewal) in Nepal?", answer: "Required documents: (1) Original Bluebook (vehicle registration certificate / Naapi Kitab). (2) Previous year's paid tax receipt. (3) Valid third-party insurance certificate. (4) Pollution Under Control (PUC) certificate from an approved test center. (5) Vehicle fitness/inspection certificate if applicable. Bring both originals and photocopies." },
+        { question: "Does electric vehicle (EV) tax differ from petrol/diesel vehicles in Nepal?", answer: "Yes. Nepal's government significantly subsidizes EVs. Electric two-wheelers and four-wheelers are taxed at specially reduced rates, often 50-80% lower than equivalent combustion engine vehicles. However, EV tax slabs are based on motor wattage (kW) rather than engine CC. This calculator covers combustion engine vehicles — check the latest EV tax schedule from your provincial government for electric vehicles." },
+        { question: "How does Bagmati Province vehicle tax differ from other provinces?", answer: "Each of Nepal's 7 provinces sets its own vehicle tax rates independently. Bagmati Province (which includes Kathmandu Valley) typically has the highest rates due to higher vehicle density and urban infrastructure costs. Provinces like Karnali and Sudurpashchim often have lower rates. This calculator uses the latest Bagmati Province FY 2081/82 schedule — if your vehicle is registered elsewhere, verify local rates." },
+        { question: "What is third-party insurance (Tritiya Paksha Bima) and is it mandatory?", answer: "Yes, third-party vehicle insurance is legally mandatory in Nepal under the Motor Vehicles and Transport Management Act. It covers damage/injury caused to third parties (other vehicles, pedestrians) in accidents — but NOT damage to your own vehicle. The premium varies by vehicle type and CC. This calculator provides an estimate (~Rs. 2,200 for bikes, ~Rs. 8,000 for cars). Actual premium depends on your insurer and vehicle age." }
       ]}
       sidebar={{
         title: "Nepal Finance Tools",

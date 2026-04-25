@@ -83,9 +83,9 @@ export default async function BlogIndexPage() {
 
   // Tab filtering handled server-side for initial static build (default: all)
   const tabs = [
-    { id: 'all',    label: 'All Content', count: posts.length + guides.length, href: '/blog' },
-    { id: 'posts',  label: 'Blog Posts',  count: posts.length, href: '/blog?type=posts' },
-    { id: 'guides', label: 'Guides',      count: guides.length, href: '/blog?type=guides' },
+    { id: 'all',    label: 'All Content', count: posts.length + guides.length, href: '/blog/' },
+    { id: 'posts',  label: 'Blog Posts',  count: posts.length, href: '/blog/?type=posts' },
+    { id: 'guides', label: 'Guides',      count: guides.length, href: '/blog/?type=guides' },
   ];
 
   return (
@@ -135,7 +135,7 @@ export default async function BlogIndexPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {items.map((item) => {
-              const href = item.type === 'guide' ? `/guide/${item.slug}` : `/blog/${item.slug}`;
+              const href = item.type === 'guide' ? `/guide/${item.slug}/` : `/blog/${item.slug}/`;
               const readMins = Math.max(1, Math.round((item.wordCount || 800) / 200));
               const isSalaryFocus = item.title.toLowerCase().includes('salary') || item.excerpt.toLowerCase().includes('salary');
 

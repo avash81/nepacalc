@@ -153,11 +153,69 @@ export default function FractionCalculator() {
           )}
         </div>
       }
-      howToUse={{ steps: ["Enter the first fraction. Use the 'Whole' box if dealing with mixed numbers.", "Select the mathematical operator (Add, Subtract, Multiply, Divide).", "Enter the second fraction.", "The calculator instantly computes the exact simplified fraction, decimal equivalent, and percentage."] }}
-      formula={{ title: "Fraction Arithmetic Rules", description: "Standard common denominator logic.", raw: "Addition: a/b + c/d = (ad + bc) / bd\nSubtraction: a/b - c/d = (ad - bc) / bd\nMultiplication: a/b × c/d = (ac) / (bd)\nDivision: a/b ÷ c/d = (ad) / (bc)\n\nSimplification: Divide final numerator and denominator by their GCD." }}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering Rational Numbers & Fraction Arithmetic</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                In mathematics, a fraction represents a part of a whole or, more generally, any number of equal parts. It is fundamentally a division operation where the numerator (top number) is divided by the denominator (bottom number). Our <strong className="text-[#202124]">fraction calculator</strong> is designed not just to compute the final answer, but to process inputs exactly as they are taught in academic arithmetic, including seamless handling of mixed numbers and improper fractions.
+              </p>
+              <p>
+                Unlike standard digital calculators that immediately convert fractions into floating-point decimals—often losing precision in cases involving infinite repeating decimals (like 1/3)—this engine maintains exact rational arithmetic. It performs cross-multiplication, finds common denominators, and applies the Euclidean algorithm to guarantee the final <strong className="text-[#202124]">fraction simplified</strong> result is absolutely precise without rounding errors.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The Algorithmic Mechanics of Simplification</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Euclidean Algorithm (GCD):</strong> To reduce a fraction to its lowest terms, the system calculates the Greatest Common Divisor (GCD) of both the numerator and denominator. For example, the result 24/36 shares a GCD of 12. Dividing both by 12 yields the irreducible fraction 2/3.</li>
+              <li><strong className="text-[#188038]">Mixed Number Parsing:</strong> When a user inputs a whole number alongside a fraction (e.g., 2 1/4), the engine first converts it into an improper fraction. It multiplies the whole number by the denominator and adds the numerator (2 × 4 + 1 = 9), resulting in 9/4. This ensures multiplication and division operations remain mathematically sound.</li>
+              <li><strong className="text-[#D93025]">Common Denominator Logic:</strong> For addition and subtraction, fractions must share a common base. The engine calculates the product of the two denominators (d1 × d2) to serve as a universal common base, cross-multiplies the numerators, performs the operation, and then simplifies the result.</li>
+            </ul>
+          </div>
+        </div>
+      }
+      howToUse={{
+        steps: [
+          "Locate the first input block. If you have a mixed number, enter the integer in the 'Whole' box. Otherwise, leave it at 0.",
+          "Enter the top number (Numerator) and bottom number (Denominator) for the first fraction.",
+          "Select the desired mathematical operator: Addition (+), Subtraction (-), Multiplication (×), or Division (÷).",
+          "Enter your second fraction (and whole number, if applicable) in the right-side input block.",
+          "The calculator will instantly display the mathematically exact simplified fraction, alongside its decimal and percentage equivalents."
+        ]
+      }}
+      formula={{
+        title: "Fundamental Fraction Arithmetic",
+        description: "The core mathematical theorems used by the computation engine.",
+        raw: "1. Addition: (a/b) + (c/d) = (ad + bc) / bd\n2. Subtraction: (a/b) - (c/d) = (ad - bc) / bd\n3. Multiplication: (a/b) × (c/d) = (ac) / (bd)\n4. Division: (a/b) ÷ (c/d) = (a/b) × (d/c) = (ad) / (bc)\n\nSimplification requires dividing the final numerator and denominator by their Greatest Common Divisor: GCD(Numerator, Denominator)."
+      }}
       faqs={[
-        { question: "How are mixed numbers handled?", answer: "Mixed numbers (like 1 ½) are first converted to improper fractions (3/2) internally before the math operation is performed, ensuring absolute accuracy." },
-        { question: "Why is denominator 0 an error?", answer: "In mathematics, division by zero is undefined. A fraction represents a part of a whole, and you cannot divide something into zero parts." }
+        {
+          question: "How does the calculator simplify fractions?",
+          answer: "It uses the Euclidean Algorithm to find the Greatest Common Divisor (GCD) between the numerator and denominator. It then divides both numbers by that GCD to reduce the fraction to its absolute simplest form."
+        },
+        {
+          question: "Why is a denominator of zero invalid?",
+          answer: "In mathematics, division by zero is strictly undefined. A fraction represents dividing a whole into equal parts; it is logically impossible to divide a whole into 'zero' parts."
+        },
+        {
+          question: "What is an improper fraction vs a mixed number?",
+          answer: "An improper fraction has a numerator that is larger than its denominator (e.g., 7/4). A mixed number expresses the same value as an integer plus a proper fraction (e.g., 1 3/4). This calculator automatically converts between both formats."
+        },
+        {
+          question: "How does fraction division work?",
+          answer: "To divide two fractions, the calculator uses the 'Keep-Change-Flip' rule. It keeps the first fraction, changes division to multiplication, flips the numerator and denominator of the second fraction (the reciprocal), and then multiplies straight across."
+        },
+        {
+          question: "Why do decimals sometimes look different from fractions?",
+          answer: "Some fractions, like 1/3, cannot be expressed as a finite decimal; they result in a repeating decimal (0.333...). While the decimal output is rounded for display, the fractional output remains 100% mathematically precise."
+        },
+        {
+          question: "Does the calculator find the Least Common Multiple (LCM)?",
+          answer: "While human students are taught to find the LCM for the lowest common denominator during addition, computational algorithms cross-multiply denominators (d1 × d2) to get a guaranteed common base, perform the math, and then simplify via GCD at the very end. The mathematical result is identical."
+        }
       ]}
       sidebar={{ title: "Core Math Tools", links: [{ label: "Decimal to Fraction", href: "/calculator/decimal-to-fraction" }, { label: "Percentage Calculator", href: "/calculator/percentage" }], banner: { title: "Math Foundation", description: "Mastering fractions is the key to algebra and higher-level mathematics.", image: "/images/math-banner.jpg" } }}
       relatedTools={[{ label: "Decimal to Fraction", href: "/calculator/decimal-to-fraction" }]}

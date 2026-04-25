@@ -211,12 +211,28 @@ export default function GPACalculator() {
       }}
       faqs={[
         {
-          question: "How is A+ different from A in Nepal?",
-          answer: "In the NEB system, A+ corresponds to 4.0 points (90%+ marks), while A corresponds to 3.6 points (80-89% marks)."
+          question: "How is A+ different from A in Nepal's NEB system?",
+          answer: "In Nepal's NEB grading system, A+ corresponds to 4.0 grade points (90–100% marks, 'Outstanding'). A corresponds to 3.6 points (80–89%, 'Excellent'). B+ = 3.2 (70–79%), B = 2.8 (60–69%), C+ = 2.4 (50–59%), C = 2.0 (40–49%), D = 1.6 (30–39%), E = 0.8 (20–29%), and N = 0.0 (Not Graded/Fail)."
         },
         {
           question: "What if I have an 'N' or 'F' grade?",
-          answer: "An 'N' (Not Graded) or 'F' (Fail) carries 0.0 points. While they add to the total credits (denominator), they add zero to total points, significantly lowering your GPA."
+          answer: "An 'N' (Not Graded) or 'F' (Fail) carries 0.0 points. These grades still count in the total credits denominator, significantly dragging your GPA down. Example: 3 subjects at A (3.6) and 1 N (0.0), each 3 credits → GPA = (3×3.6 + 0) / 12 = 0.9 instead of 3.6."
+        },
+        {
+          question: "What is the minimum GPA to pass in Tribhuvan University (TU)?",
+          answer: "In TU's semester system, students must maintain a minimum GPA of 2.0 (C grade, 40%) to pass. Falling below 2.0 may result in academic probation. For engineering programs under IOE, the minimum passing grade is D (1.6 GPA per course) with an overall GPA of 2.0 required for the degree."
+        },
+        {
+          question: "How do I convert Nepal GPA to percentage?",
+          answer: "A common approximate formula used by TU and NEB is: Percentage = GPA × 25. So a 3.6 GPA ≈ 90%. However, this is an approximation—exact conversion depends on the actual marks scored, not just the GPA. For official conversions (for visa or university applications), request a transcript with both GPA and percentage from your institution."
+        },
+        {
+          question: "Does retaking a course replace the old grade in the GPA?",
+          answer: "In most Nepali university policies (TU, PU, KU), when you retake a course, only the most recent grade is counted in GPA calculation. However, both grades typically appear on the transcript. Always confirm with your specific institution's academic regulations as policies vary between programs."
+        },
+        {
+          question: "What is the difference between semester GPA and CGPA?",
+          answer: "Semester GPA is calculated only from the courses in a single semester. CGPA (Cumulative GPA) is the credit-weighted average across all completed semesters. CGPA is the figure used on your final degree certificate and for job/further study applications. Use our CGPA Calculator to track your cumulative standing."
         }
       ]}
       sidebar={{

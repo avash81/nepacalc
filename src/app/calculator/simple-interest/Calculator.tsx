@@ -168,7 +168,7 @@ export default function SimpleInterestCalculator() {
                 Simple interest remains the most fundamental building block of financial literacy. Unlike complex compounding models, our <strong className="text-[#202124]">simple interest calculator</strong> utilizes the standard linear formula to project growth where the principal remains static. This is essential for evaluating short-term credit facilities, pawnshop valuations, and certain types of treasury instruments where interest is paid out rather than reinvested.
               </p>
               <p>
-                In the Nepalese market, while most commercial banks (A-Class) utilize compounding for savings, many local <strong>Cooperatives (Sahakari)</strong> and informal lending arrangements still rely on simple interest for quick calculations. This tool provides a professional-grade audit for such transactions, ensuring that both lenders and borrowers have a clear, mathematically verified understanding of their total liability.
+                In the Nepalese market, while most commercial banks (A-Class) utilize compounding for savings, many local <strong>Cooperatives (Sahakari)</strong> and informal lending arrangements still rely on simple interest for quick calculations. This tool provides a professional-grade audit for such transactions, ensuring that both lenders and borrowers have a clear, mathematically verified understanding of their total liability over time.
               </p>
             </div>
           </div>
@@ -185,26 +185,42 @@ export default function SimpleInterestCalculator() {
       }
       howToUse={{
         steps: [
-          "Enter the initial Principal amount you are investing or borrowing.",
-          "Input the Annual Interest Rate (%).",
-          "Set the Time period in years.",
-          "Use the 'Quick Presets' to instantly set common time periods or bank rates.",
-          "Review the total maturity value and the interest breakdown."
+          "Enter the initial Principal Amount. This is the amount you are investing or borrowing.",
+          "Input the Annual Interest Rate (%). Ensure this is the yearly rate, not the monthly rate.",
+          "Set the Time period in years. For months, use a decimal (e.g., 6 months = 0.5 years).",
+          "Use the 'Quick Presets' to instantly set common time periods or standard Nepal bank rates.",
+          "Review the total maturity value and analyze the Growth Summary to understand your total percentage gain."
         ]
       }}
       formula={{
-        title: "Simple Interest Formula",
+        title: "Simple Interest (SI) Mathematical Logic",
         description: "The most basic way to calculate interest, where the principal remains constant over the entire period.",
-        raw: "Simple Interest (SI) = (P × R × T) / 100\nTotal Amount (A) = P + SI"
+        raw: "Simple Interest (I) = (P × R × T) / 100\nTotal Amount (A) = P + I\n\nWhere:\nP = Principal Amount\nR = Annual Rate of Interest (%)\nT = Time Period (in Years)"
       }}
       faqs={[
         {
-          question: "When is simple interest typically used?",
-          answer: "Simple interest is often used for short-term loans, some personal loans, and basic savings accounts where interest is not reinvested."
+          question: "When is simple interest typically used instead of compound interest?",
+          answer: "Simple interest is often used for short-term personal loans, auto loans, and basic savings accounts where interest is not reinvested into the principal balance. It is also common in informal lending."
         },
         {
-          question: "How is it different from compound interest?",
-          answer: "In simple interest, you only earn interest on the principal. In compound interest, you earn interest on both the principal and the accumulated interest from previous periods."
+          question: "How do I calculate interest for months instead of years?",
+          answer: "Since the standard formula uses 'Years', you must divide the number of months by 12. For example, 6 months becomes 0.5 years, and 3 months becomes 0.25 years."
+        },
+        {
+          question: "Does the interest generated earn interest itself?",
+          answer: "No. That is the defining difference between simple and compound interest. In simple interest, the principal remains static, meaning you earn the exact same flat amount of interest every single year."
+        },
+        {
+          question: "How do Cooperatives (Sahakaris) in Nepal calculate interest?",
+          answer: "Many Sahakaris use a flat simple interest method for short-term business loans, calculating the total interest upfront for the entire loan period, which is then divided into equal installments."
+        },
+        {
+          question: "If I borrow Rs. 100,000 at 10% for 2 years, how much do I owe?",
+          answer: "Using the formula (100,000 × 10 × 2) / 100, the total interest is Rs. 20,000. Therefore, your total repayment amount (Principal + Interest) would be Rs. 120,000."
+        },
+        {
+          question: "Why do banks prefer compound interest over simple interest?",
+          answer: "Banks prefer compounding because it allows money to grow exponentially. For borrowers, it means they owe more over time if they don't pay. For savers, it means their wealth grows faster as their interest earns interest."
         }
       ]}
       sidebar={{

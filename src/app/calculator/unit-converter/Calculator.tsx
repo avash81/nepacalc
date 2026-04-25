@@ -75,6 +75,7 @@ export default function UnitConverter() {
 
   return (
     <ModernCalcLayout
+      slug="unit-converter"
       crumbs={[{ label: 'Converters', href: '/converters/' }, { label: 'Universal Unit Converter' }]}
       title="Universal Unit Converter"
       description="Professional, high-precision converter for length, weight, volume, and area. Instantly swap between Metric and Imperial systems."
@@ -170,13 +171,71 @@ export default function UnitConverter() {
           </div>
         </div>
       }
-      howToUse={{ steps: ["Select the physical category you want to convert (e.g. Length, Weight).", "Set your starting value and select its unit.", "Select your target unit. The conversion is instant.", "Alternatively, use the matrix below to see all unit conversions for your base value at a glance."] }}
-      formula={{ title: "Conversion Engine", description: "Standard relative factor alignment.", raw: "Base Metric Value = Input Value / Input Factor\nResult Value = Base Metric Value × Target Factor" }}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Dimensional Analysis & SI Unit Architecture</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Our <strong className="text-[#202124]">unit converter</strong> is built on the principles of <strong className="text-[#202124]">dimensional analysis</strong>—the mathematical process of converting any quantity expressed in one unit to its equivalent in another, while preserving the underlying physical magnitude. The engine internally anchors every conversion to an SI (International System of Units) base unit (e.g., Meters for length, Kilograms for mass), ensuring that cross-category chains of conversion remain arithmetically exact.
+              </p>
+              <p>
+                The International System of Units defines 7 base units from which all other derived units are constructed. This architecture guarantees absolute global consistency: a meter measured in Kathmandu is physically identical to a meter measured in London or New York. Our conversion factors are sourced from the official NIST (National Institute of Standards and Technology) definitions.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Supported Physical Dimensions & Reference Units</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Length:</strong> SI Base Unit: Meter (m). Covers the full spectrum from nanometer-scale engineering to interstellar megaparsecs. Imperial units (feet, miles) are derived from exact SI equivalents.</li>
+              <li><strong className="text-[#188038]">Weight/Mass:</strong> SI Base Unit: Kilogram (kg). The kilogram is the only SI base unit still defined by a physical artifact (the International Prototype Kilogram). All other mass units are mathematically proportional.</li>
+              <li><strong className="text-[#D93025]">Volume:</strong> SI Derived Unit: Cubic Meter (m³). The Liter (L) is a non-SI unit accepted for use, defined exactly as 0.001 m³. All culinary and industrial measurements trace back to this anchor.</li>
+              <li><strong className="text-[#F29900]">Area:</strong> SI Derived Unit: Square Meter (m²). All area metrics—from real estate (square feet) to agriculture (hectares, acres)—are computed as proportional scaling of this base.</li>
+            </ul>
+          </div>
+        </div>
+      }
+      howToUse={{ steps: ["Select the physical category (Length, Weight, Volume, or Area) from the tab selector.", "Enter your source value and select its starting unit from the dropdown.", "Select your target unit. The conversion result updates instantly in real-time.", "Click 'Swap Units' to immediately reverse the conversion direction.", "Use the search bar in the Conversion Matrix below to filter units by name or symbol."] }}
+      formula={{ title: "SI-Anchored Relative Factor Conversion", description: "All quantities are normalized through an SI base unit before being scaled to the target, guaranteeing precision across all unit pairings.", raw: "Step 1: Convert input to SI Base Unit\n  Base Value = Input Value / Source_Factor\n\nStep 2: Scale from SI Base to Target Unit\n  Result = Base Value × Target_Factor" }}
       faqs={[
-        { question: "Where is Ropani, Bigha, or Aana?", answer: "Nepali land measurement units are highly specialized and vary between the Terai and Hilly regions. We have built a dedicated 'Nepal Land Converter' specifically for these metrics." }
+        {
+          question: "Why does this converter use SI base units internally?",
+          answer: "Anchoring to SI base units (Meters, Kilograms, etc.) allows the engine to convert between any two units in a category without needing a direct pair-specific conversion factor. Instead of needing N² factors for N units, we only need N factors, with the SI base as the universal pivot."
+        },
+        {
+          question: "Are the conversion factors exact or rounded?",
+          answer: "The vast majority of SI-to-SI conversions (e.g., km to m) are exact by definition. SI-to-Imperial conversions (e.g., meters to feet) use the official NIST-defined exact equivalents (e.g., 1 inch = exactly 25.4 mm, making 1 foot = 0.3048 m exactly)."
+        },
+        {
+          question: "Why is the Kilogram the only base unit still physically defined?",
+          answer: "Until 2019, the Kilogram was uniquely defined by the mass of a physical platinum-iridium artifact stored in France. In May 2019, its definition was redefined in terms of the Planck constant (h), making it fully reproducible from fundamental physical constants."
+        },
+        {
+          question: "Where are Nepali units like Ropani, Bigha, and Aana?",
+          answer: "Nepali land measurement units are highly specialized and geographically variant (differing between Hilly and Terai regions). They are handled by the dedicated 'Nepal Land Converter' tool on this platform, which is specifically calibrated for these units."
+        },
+        {
+          question: "Can I chain multiple conversions together?",
+          answer: "For chained conversions, perform each step sequentially. For example, to go from km to inches: convert km to meters first (×1000), then convert meters to inches (×39.3701). The precision is maintained at each step as long as you avoid premature rounding."
+        },
+        {
+          question: "Why do some results display in scientific notation (e.g., 1.2e-7)?",
+          answer: "For extremely small values (below 0.0001), the calculator automatically switches to scientific notation to preserve the full precision of the result. For example, 1 millimeter expressed in kilometers (0.000001 km) is displayed as 1e-6 km for clarity."
+        }
       ]}
-      sidebar={{ title: "Utility Tools", links: [{ label: "Nepal Land Converter", href: "/calculator/nepal-land" }, { label: "Currency Converter", href: "/calculator/currency-converter" }], banner: { title: "Specialized Conversion", description: "Working with real estate in Nepal? Use our dedicated Land Converter.", image: "/images/land-banner.jpg" } }}
-      relatedTools={[{ label: "Nepal Land Converter", href: "/calculator/nepal-land" }]}
+      sidebar={{ 
+        title: "Utility Tools", 
+        links: [
+          { label: "Nepal Land Converter", href: "/calculator/nepal-land/" }, 
+          { label: "Currency Converter", href: "/market-rates/exchange-rate/" }
+        ], 
+        banner: { title: "Specialized Conversion", description: "Working with real estate in Nepal? Use our dedicated Land Converter.", image: "/images/land-banner.jpg" } 
+      }}
+      relatedTools={[
+        { label: "Nepal Land Converter", href: "/calculator/nepal-land/" },
+        { label: "Currency Converter", href: "/market-rates/exchange-rate/" }
+      ]}
     />
   );
 }

@@ -195,14 +195,12 @@ export default function SEEGPACalculator() {
         ]
       }}
       faqs={[
-        {
-          question: "What does 'NG' mean?",
-          answer: "'NG' stands for Non-Graded. Under the 2078/2081 guidelines, if a student scores below 35% in the theory portion of any subject, they will receive an NG. They will not receive a final GPA and must take a supplementary exam."
-        },
-        {
-          question: "How is the final GPA calculated?",
-          answer: "The final GPA is a weighted average. Each subject's Grade Point (GP) is multiplied by its credit hours. The sum of these values is then divided by the total credit hours."
-        }
+        { question: "What does 'NG' mean in the SEE grading system?", answer: "'NG' stands for Non-Graded. Under the 2078/2081 NEB guidelines, if a student scores below 35% (26.25/75) in the theory portion of any subject, they receive NG in that subject. An NG in any subject blocks the entire final GPA calculation, and the student cannot enroll in Class 11 without passing a supplementary grade increment examination." },
+        { question: "How is the final SEE GPA calculated?", answer: "The final GPA is a credit-weighted average: (1) For each subject, convert the total marks (Theory + Practical out of 100) to a Grade Point using the NEB scale. (2) Multiply each subject's Grade Point by its credit hours (typically 4 per subject). (3) Sum all the weighted grade points. (4) Divide by the total credit hours (28 for 7 subjects × 4 credits). This gives the final CGPA." },
+        { question: "What is the minimum score to pass a subject in SEE 2081?", answer: "A student must score a minimum of 26.25 out of 75 in the theory paper (exactly 35%). There is no minimum for practical marks. However, even if you score 100% in practicals, failing the theory threshold (scoring below 26.25) automatically gives you NG for that subject. The combined total (theory + practical) determines your letter grade once the threshold is cleared." },
+        { question: "What Grade Point is needed for Science stream admission in +2?", answer: "For Science stream (+2 Science) in most colleges in Nepal: minimum 2.4 GPA (C+) is required. Top colleges require 3.2+ (A) or above. For Management stream: typically 1.6+ (D). For Humanities: 1.6+ (D). Government (community) colleges have lower cut-offs. Private colleges and Kathmandu-based institutions often set higher thresholds due to competition." },
+        { question: "How do the 2081 SEE grading rules differ from the old SLC percentage system?", answer: "The old SLC used a pass/fail percentage model — you needed 32% in each subject and 40% overall to pass. The new SEE Letter Grading System (implemented from 2075, updated 2081) removes the concept of 'pass/fail' — students are graded A+ to D, and only NG is equivalent to a failure. This means even weak students get a grade (not 'failed'), reducing dropout stress while maintaining academic standards." },
+        { question: "Can I improve my SEE grade after receiving the results?", answer: "Yes. Nepal's NEB offers a Grade Increment Examination (Shreni Sudhar Pariksha) for students who receive NG or want to improve their existing grades. You can appear in the Grade Increment Exam for up to 2 subjects. The exam covers the full syllabus and the better of your original and increment exam scores is used for the final grade sheet. This exam is typically held 3-4 months after SEE results." }
       ]}
       details={
         <div className="space-y-8">

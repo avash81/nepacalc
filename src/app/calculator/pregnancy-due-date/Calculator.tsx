@@ -123,37 +123,57 @@ export default function PregnancyDueDateCalculator() {
           "Review your progress bar, current week of pregnancy, and days remaining until birth."
         ]
       }}
-      faqs={[
-        {
-          question: "How accurate is this due date calculation?",
-          answer: "The calculator uses Naegele's rule, which is the standard method used by OB/GYNs. However, only about 4-5% of babies are actually born on their exact due date. It is an estimate; normal term deliveries happen anywhere between 37 and 42 weeks."
-        },
-        {
-          question: "What is Naegele's rule?",
-          answer: "Naegele's rule calculates the expected date of delivery (EDD) by adding one year, subtracting three months, and adding seven days to the first day of a woman's last menstrual period (LMP). This effectively adds 280 days (40 weeks) to the LMP."
-        }
-      ]}
-      seoContent={
-        <div>
-          <h2>Understanding Your Estimated Due Date (EDD)</h2>
-          <p>Finding out you are pregnant is an exciting time, and one of the first questions expecting parents have is: "When is the baby due?" Our Pregnancy Due Date Calculator uses standard medical formulas to help you estimate when you will meet your little one.</p>
-          
-          <h3>How Due Dates are Calculated</h3>
-          <p>Most pregnancies last around 40 weeks (or 280 days). The standard medical approach to calculating a due date is called <strong>Naegele's Rule</strong>.</p>
-          <p>Interestingly, this calculation does not start from the date of conception. Because the exact date of ovulation and conception is difficult to pinpoint for most women, the medical community standardized counting from the first day of your Last Menstrual Period (LMP). This means that during the first two weeks of your calculated "40-week pregnancy," you aren't actually pregnant yet!</p>
-          
-          <h3>The Trimesters of Pregnancy</h3>
-          <p>A 40-week pregnancy is divided into three trimesters, each marking significant developmental milestones for the baby and physical changes for the mother:</p>
-          <ul>
-            <li><strong>First Trimester (Weeks 1 to 13):</strong> This is a period of rapid development. The baby's brain, spinal cord, and organs begin to form. Mothers often experience early pregnancy symptoms like morning sickness and fatigue.</li>
-            <li><strong>Second Trimester (Weeks 14 to 26):</strong> Often called the "honeymoon phase" of pregnancy, many early symptoms subside. The baby's sex can usually be determined, and the mother may start to feel the baby move (quickening).</li>
-            <li><strong>Third Trimester (Weeks 27 to 40):</strong> The baby gains significant weight and matures in preparation for birth. Mothers may experience physical discomfort as the baby grows larger.</li>
-          </ul>
-          
-          <h3>Are Due Dates Exact?</h3>
-          <p>It is crucial to understand that an Estimated Due Date is just that—an estimate. Only about 5% of babies are born on their exact due date. A pregnancy is considered "full-term" if the baby is born anywhere between 37 weeks and 42 weeks. Always rely on ultrasound measurements and your healthcare provider's guidance for the most accurate assessment of your pregnancy timeline.</p>
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Obstetric Dating & Naegele's Rule Methodology</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Our <strong className="text-[#202124]">pregnancy due date calculator</strong> employs Naegele's Rule—the universally accepted obstetric formula, published by Franz Karl Naegele in 1812 and still used by obstetricians worldwide. The formula adds exactly 280 days (40 weeks) to the first day of your Last Menstrual Period (LMP). This standardized 280-day figure assumes a 28-day menstrual cycle and counts from the LMP rather than the date of conception.
+              </p>
+              <p>
+                It is critical to understand that during the first two weeks of this calculated 40-week pregnancy, you are not yet technically pregnant—conception typically occurs around week 2-3. The medical community uses the LMP as the starting reference point simply because it is an objectively verifiable date, whereas the precise date of ovulation and conception can rarely be confirmed without clinical monitoring.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Trimester Milestones & Developmental Stages</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">1st Trimester (Weeks 1–13):</strong> The period of most rapid embryonic development. The heart begins beating (week 6), the neural tube closes (week 7), and all major organ systems are established. The risk of miscarriage is highest during this phase.</li>
+              <li><strong className="text-[#188038]">2nd Trimester (Weeks 14–26):</strong> Often called the 'honeymoon phase'—most early symptoms like nausea subside. The fetus begins responding to sound (week 18), and fetal movement (quickening) is typically felt by the mother between weeks 18-20. Anatomy scans are performed.</li>
+              <li><strong className="text-[#D93025]">3rd Trimester (Weeks 27–40):</strong> Final growth and organ maturation. The baby gains approximately 50% of its birth weight during this phase. The lungs mature last. Labor is considered full-term between 37–42 weeks.</li>
+            </ul>
+          </div>
         </div>
       }
+      faqs={[
+        {
+          question: "How accurate is a due date calculated from LMP?",
+          answer: "Naegele's Rule is the clinical gold standard, but it assumes a perfect 28-day cycle. In reality, only about 4-5% of babies are born on their exact EDD. A normal, healthy delivery can occur anywhere between 37 weeks (early-term) and 42 weeks (late-term)."
+        },
+        {
+          question: "What is Naegele's Rule and why is it used?",
+          answer: "Naegele's Rule calculates the Estimated Due Date (EDD) by adding 280 days (40 weeks) to the first day of the Last Menstrual Period. It was standardized in the 19th century and persists because LMP is an objective, reliably known date—unlike the actual date of conception."
+        },
+        {
+          question: "Why does my OB/GYN's due date differ from this calculator?",
+          answer: "Your doctor may adjust the EDD based on an early ultrasound, which measures the fetal crown-rump length (CRL). This measurement provides a highly accurate gestational age estimate during the first trimester. An ultrasound-corrected EDD is considered more accurate than an LMP-based one."
+        },
+        {
+          question: "What does 'Full-Term' actually mean?",
+          answer: "A pregnancy is classified as 'full-term' between 39 weeks 0 days and 40 weeks 6 days. 37-38 weeks is 'early-term', and 41 weeks+ is 'late-term'. Babies born before 37 weeks are classified as premature (preterm)."
+        },
+        {
+          question: "Can I use this calculator if I have irregular periods?",
+          answer: "Not accurately. Naegele's Rule assumes a standard 28-day menstrual cycle. If your cycle is shorter (e.g., 21 days) or longer (e.g., 35 days), your ovulation date and therefore conception date shifts significantly. In these cases, a first-trimester ultrasound is the most reliable dating method."
+        },
+        {
+          question: "What happens if I go past my due date?",
+          answer: "Going past the EDD is common. Most OB/GYNs will monitor pregnancies closely after 40 weeks and typically recommend inducing labor by 41-42 weeks to prevent complications such as placental degradation and meconium aspiration."
+        }
+      ]}
+
     />
   );
 }

@@ -23,77 +23,35 @@ export default function GeometryPage() {
       <JsonLd type="calculator" name="NEPACALC Geometry Canvas" description="Interactive geometry construction tool with points, lines, circles, polygons and measurements." url="https://nepacalc.com/engineering/geometry" category="EducationalApplication" />
       <GeometryCanvasClient />
     
-      {/* SEO: Competitor-Data Driven FAQ & Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify([{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I use the Geometry Hub Calculator accurately?","acceptedAnswer":{"@type":"Answer","text":"Enter your values into our free nepacalc.com/math-tools/geometry tool and get instant results. Our engine is designed specifically for Nepalese users — no manual calculations needed. Popular search: \"geometry\" with 1,000+ monthly searches in Nepal."}},{"@type":"Question","name":"Is this Geometry Hub Calculator completely free?","acceptedAnswer":{"@type":"Answer","text":"Yes, NepaCal's Geometry Hub Calculator is 100% free — no sign-up, no hidden charges. We make reliable tools like this geometry calc accessible to everyone in Nepal."}},{"@type":"Question","name":"What is the formula used by this nepacalc.com/math-tools/geometry?","acceptedAnswer":{"@type":"Answer","text":"Our Geometry Hub Calculator uses globally verified standard formulas for maximum accuracy. It handles all variables automatically so you can geometry calculator instantly without manual errors."}},{"@type":"Question","name":"Can I use this geometry on my phone?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. Our nepacalc.com/math-tools/geometry is fully responsive for mobile devices and desktops. Whether you search \"calculator geometry box\" or \"geometry\" on Google, NepaCal gives you the best tool for Nepal."}},{"@type":"Question","name":"Why is NepaCal's Geometry Hub Calculator better than other tools?","acceptedAnswer":{"@type":"Answer","text":"NepaCal is built specifically for Nepal. Our pyramid geometry calculator uses local rates and Nepal-specific data, supports NPR, and is regularly updated. Unlike generic calculators, we target \"geometry\" and \"geometry angles\" with precision."}},{"@type":"Question","name":"What is \"nepacalc.com/math-tools/geometry\" and why do people search for it?","acceptedAnswer":{"@type":"Answer","text":"\"nepacalc.com/math-tools/geometry\" is one of the most searched terms with 1,000+ monthly searches in Nepal in Nepal. Our Geometry Hub Calculator helps you get accurate results for \"geometry calculator\", \"calculator geometry box\", and \"calculator geometry\" — all in one free tool."}}]},{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Geometry Hub Calculator - NepaCal","url":"https://nepacalc.com/engineering/geometry","applicationCategory":"UtilityApplication","operatingSystem":"All","offers":{"@type":"Offer","price":"0","priceCurrency":"NPR"},"description":"1000","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","ratingCount":119}}]) }}
-      />
-      <section className="mt-12 bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-sm">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3">About the Geometry Hub Calculator</h2>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-3">
-          Looking for a free <strong>nepacalc.com/math-tools/geometry</strong> for Nepal? NepaCal&apos;s Geometry Hub Calculator is the most accurate and locally optimized tool available. Whether you need to <strong>geometry calculator</strong>, find a reliable <strong>calculator geometry box</strong>, or simply understand <strong>pyramid geometry calculator</strong> — we have you covered with real Nepal data.
+      <section className="mt-12 bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl shadow-slate-200/40">
+        <h2 className="text-2xl font-black text-slate-900 mb-6 tracking-tight">Interactive Euclidean Constructions</h2>
+        <p className="text-slate-600 text-base leading-relaxed mb-6 font-medium">
+          The Interactive Geometry Canvas by NepaCal is a digital laboratory for Euclidean constructions. Built specifically for the Nepalese curriculum (SEE and NEB), this tool allows you to construct points, lines, circles, and complex polygons with millimeter precision.
         </p>
-        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8">
-          Trusted by thousands of users across Nepal, our <strong>nepacalc.com/math-tools/geometry</strong> supports all your needs from daily calculations to professional use. Related searches our users find helpful: <strong>geometry</strong>, <strong>geometry calc</strong>, <strong>geometry calculator</strong>, <strong>calculator geometry box</strong>, <strong>pyramid geometry calculator</strong>.
+        <p className="text-slate-600 text-base leading-relaxed mb-10">
+          Features include real-time angle measurement, distance tracking, and object snapping, making it the perfect companion for geometry assignments, architectural sketching, and mathematical proofs. Explore the world of shapes with a tool that feels as natural as a compass and straightedge but with digital accuracy.
         </p>
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 tracking-tight border-t border-slate-100 dark:border-slate-800 pt-8">
-          Frequently Asked Questions — Geometry Hub Calculator
-        </h2>
-        <div className="space-y-3">
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q1.</span>
-              <span>How do I use the Geometry Hub Calculator accurately?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              <span className="font-bold text-slate-800 dark:text-slate-200">A: </span>Enter your values into our free <strong>nepacalc.com/math-tools/geometry</strong> tool and get instant results. Our engine is designed specifically for Nepalese users — no manual calculations needed. Popular search: "geometry" with 1,000+ monthly searches in Nepal.
-            </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" open>
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q2.</span>
-              <span>Is this Geometry Hub Calculator completely free?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              <span className="font-bold text-slate-800 dark:text-slate-200">A: </span>Yes, NepaCal's Geometry Hub Calculator is 100% free — no sign-up, no hidden charges. We make reliable tools like this <strong>geometry calc</strong> accessible to everyone in Nepal.
-            </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" >
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q3.</span>
-              <span>What is the formula used by this nepacalc.com/math-tools/geometry?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              <span className="font-bold text-slate-800 dark:text-slate-200">A: </span>Our Geometry Hub Calculator uses globally verified standard formulas for maximum accuracy. It handles all variables automatically so you can <strong>geometry calculator</strong> instantly without manual errors.
-            </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" >
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q4.</span>
-              <span>Can I use this geometry on my phone?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              <span className="font-bold text-slate-800 dark:text-slate-200">A: </span>Absolutely. Our <strong>nepacalc.com/math-tools/geometry</strong> is fully responsive for mobile devices and desktops. Whether you search "calculator geometry box" or "geometry" on Google, NepaCal gives you the best tool for Nepal.
-            </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" >
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q5.</span>
-              <span>Why is NepaCal's Geometry Hub Calculator better than other tools?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              <span className="font-bold text-slate-800 dark:text-slate-200">A: </span>NepaCal is built specifically for Nepal. Our <strong>pyramid geometry calculator</strong> uses local rates and Nepal-specific data, supports NPR, and is regularly updated. Unlike generic calculators, we target "geometry" and "geometry angles" with precision.
-            </div>
-          </details>
-          <details className="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50 overflow-hidden" >
-            <summary className="flex items-center gap-3 p-5 cursor-pointer font-semibold text-slate-900 dark:text-white text-sm list-none select-none">
-              <span className="text-blue-600 font-black text-base flex-shrink-0">Q6.</span>
-              <span>What is "nepacalc.com/math-tools/geometry" and why do people search for it?</span>
-            </summary>
-            <div className="px-5 pb-5 text-slate-600 dark:text-slate-400 text-sm leading-relaxed border-t border-slate-100 dark:border-slate-700/50 pt-4">
-              <span className="font-bold text-slate-800 dark:text-slate-200">A: </span>"nepacalc.com/math-tools/geometry" is one of the most searched terms with 1,000+ monthly searches in Nepal in Nepal. Our Geometry Hub Calculator helps you get accurate results for "geometry calculator", "calculator geometry box", and "calculator geometry" — all in one free tool.
-            </div>
-          </details>
+        
+        <h3 className="text-xl font-bold text-slate-900 mb-6 border-t border-slate-100 pt-8">
+          Geometry Canvas FAQs
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+            <h4 className="font-bold text-slate-900 mb-2">How do I measure an angle between two lines?</h4>
+            <p className="text-sm text-slate-500 leading-relaxed">Select the &apos;Angle&apos; tool from the toolbar and click on three points (or two intersecting lines). The interior angle will be displayed and updated in real-time as you drag the objects.</p>
+          </div>
+          <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+            <h4 className="font-bold text-slate-900 mb-2">Can I construct a circle with a specific radius?</h4>
+            <p className="text-sm text-slate-500 leading-relaxed">Yes, choose the &apos;Circle&apos; tool, define your center point, and drag to the desired radius. You can also view the exact radius in the properties panel for precise adjustments.</p>
+          </div>
+          <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+            <h4 className="font-bold text-slate-900 mb-2">Is this tool suitable for engineering drawings?</h4>
+            <p className="text-sm text-slate-500 leading-relaxed">While optimized for education, its high-precision snapping and measurement features make it excellent for conceptual engineering sketches and basic CAD-like drafting.</p>
+          </div>
+          <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+            <h4 className="font-bold text-slate-900 mb-2">Does it support area calculations?</h4>
+            <p className="text-sm text-slate-500 leading-relaxed">Yes, when you construct a closed polygon, the tool automatically calculates and displays the internal area in square units based on the current grid scale.</p>
+          </div>
         </div>
       </section>
     </>

@@ -126,14 +126,12 @@ export default function DateDuration() {
         raw: "Δt = (Y₂ - Y₁) + (M₂ - M₁) + (D₂ - D₁)\nLeap Year Adjustment: IF (Month > Feb) AND\n(Year % 4 == 0) THEN D + 1"
       }}
       faqs={[
-        {
-          question: "How does the calculator handle leap years?",
-          answer: "The calculator automatically identifies leap years (years divisible by 4, except for century years not divisible by 400) and adds February 29th into the total day count where applicable."
-        },
-        {
-          question: "Is the 'End Date' included by default?",
-          answer: "By default, the end date is not included in the total duration (exclusive calculation). You can check the 'Include end day' box to make it an inclusive calculation."
-        }
+        { question: "How does the calculator handle leap years?", answer: "Leap years (366 days, with February 29) are automatically handled by the JavaScript Date object used in this calculator. A year is a leap year if it is divisible by 4, EXCEPT century years (divisible by 100) unless also divisible by 400. Example: 2000 was a leap year, but 1900 was not." },
+        { question: "Is the End Date included by default?", answer: "By default, the end date is not counted (exclusive calculation). For example, from January 1 to January 31 = 30 days exclusive, 31 days inclusive. Check 'Include end day' for inclusive counting, which is needed for things like counting total days in a billing period." },
+        { question: "How do I calculate the number of days between two dates in Nepal?", answer: "Enter your start and end dates using the Gregorian calendar (A.D.). For Bikram Sambat (B.S.) dates, first use our Nepali Date Converter to convert them to A.D. format, then use this tool. For example, to find how many days between Baisakh 1, 2082 and Ashar 15, 2082, convert both to A.D. first." },
+        { question: "What is the difference between calendar days and business days?", answer: "Calendar days count every day including weekends and holidays (e.g., January 1–31 = 31 days). Business days exclude weekends (Saturday & Sunday) and typically public holidays. For financial and legal deadlines in Nepal, 'working days' usually means business days. Use our Lead Time Calculator for business-day-aware date calculations." },
+        { question: "How many days are in a year for date duration calculations?", answer: "A non-leap Gregorian year has 365 days. A leap year has 366 days. When calculating 'years' in the duration breakdown, the calculator uses exact calendar arithmetic (year → month → day subtraction) rather than dividing by 365.25, which gives the most accurate human-readable breakdown." },
+        { question: "Can I calculate my age using this tool?", answer: "Yes, by entering your date of birth as the start date and today as the end date. However, for a full age breakdown with zodiac signs, heartbeat count, and next birthday countdown, use the dedicated Age Calculator which is purpose-built for life stats." }
       ]}
       sidebar={{
         title: "Other Date Tools",

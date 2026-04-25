@@ -146,26 +146,42 @@ export default function NepalPFCalculator() {
       }
       howToUse={{
         steps: [
-          "Enter your Monthly Basic Salary (not gross — exclude allowances).",
-          "Enter your total years of planned service.",
-          "Set the PF Interest Rate (typically 8–9% in Nepal).",
-          "Review the breakdown showing PF corpus vs Gratuity separately.",
-          "Use this to plan your total retirement benefit package."
+          "Input your 'Monthly Basic Salary'. Do not enter your gross salary; ensure allowances are excluded.",
+          "Set the 'Service Years' indicating how long you plan to remain in the corporate sector contributing to the fund.",
+          "Verify the 'PF Interest Rate'. The default is 8%, but the government updates this rate annually.",
+          "Review the Total Retirement Corpus to see your unified end-of-career value.",
+          "Check the Breakdown box to see exactly how much of that total is PF (with compound interest) versus your accumulated Gratuity."
         ]
       }}
       formula={{
-        title: "Nepal PF Calculation",
-        description: "PF accumulates with compound interest monthly. Gratuity is a straight-line calculation.",
-        raw: "Monthly PF = Basic × 20% (10% employee + 10% employer)\nPF Corpus = Monthly PF compounded monthly at rate%\nGratuity = Basic × 8.33% × 12 × Years"
+        title: "Nepal Statutory Retirement Formula",
+        description: "Models both the compounded PF curve and the linear Gratuity accumulation.",
+        raw: "1. Monthly PF Input = Basic Salary × 20% (10% Employee + 10% Employer)\n2. Total PF = Monthly PF compounded monthly at the prevailing annual rate\n3. Total Gratuity = Basic Salary × 8.33% × 12 months × Total Years\n\nTotal Corpus = Total PF + Total Gratuity"
       }}
       faqs={[
         {
           question: "What is the difference between EPF and SSF in Nepal?",
-          answer: "EPF (Employee Provident Fund) is the traditional government-managed fund. SSF (Social Security Fund) is a newer unified fund that covers PF, gratuity, medical, and accident insurance in one scheme."
+          answer: "The Employee Provident Fund (EPF / Karmachari Sanchaya Kosh) is the traditional government-managed retirement fund. The Social Security Fund (SSF) is a newer, mandatory unified fund that bundles PF, Gratuity, Medical Insurance, and Accident Insurance into a single 31% deduction scheme."
         },
         {
-          question: "Can I withdraw my PF before retirement?",
-          answer: "Yes, partial withdrawals are allowed for specific purposes (housing, medical) under EPF rules. However, SSF has different and generally stricter withdrawal conditions."
+          question: "Is Provident Fund calculated on gross or basic salary?",
+          answer: "Under the Labor Act 2074, both Provident Fund (10% + 10%) and Gratuity (8.33%) are calculated strictly on your Basic Salary. Allowances like Dearness Allowance, Travel, or Communication are not included in the calculation base."
+        },
+        {
+          question: "Can I withdraw my PF before retirement in Nepal?",
+          answer: "Under EPF rules, yes. You can take specific 'Special Loans' (up to 80% of your accumulated amount) for purposes like buying a house, marriage, or medical emergencies. SSF, however, has much stricter rules regarding early withdrawal."
+        },
+        {
+          question: "Is the interest earned on PF taxable in Nepal?",
+          answer: "No. Currently, the interest accrued within the EPF is tax-free while it remains in the fund. However, at the time of final withdrawal, a 5% tax is levied on the 'gain' (Total Amount - Total Contributions)."
+        },
+        {
+          question: "Do contract or temporary employees get PF and Gratuity?",
+          answer: "Yes. The Labor Act 2074 makes it mandatory for employers to deposit PF and Gratuity for all workers from the very first day of employment, regardless of whether they are permanent, temporary, or on a contract."
+        },
+        {
+          question: "What happens to my PF if I change jobs?",
+          answer: "Your EPF account is tied to your identity (via KYC), not your employer. When you change jobs, your new employer simply begins depositing their 10% matching contribution into your existing EPF account number."
         }
       ]}
       sidebar={{

@@ -112,24 +112,57 @@ export default function ForceCalc() {
           "The calculation updates instantly and displays the correct SI unit (Newtons, Joules, Watts, or Pascals)."
         ]
       }}
-      seoContent={
-        <div>
-          <h2>Understanding Classical Mechanics and Force</h2>
-          <p>Classical mechanics, heavily influenced by Sir Isaac Newton, forms the foundation of our understanding of how objects move and interact. This calculator simplifies the four most common physical quantities encountered in introductory physics and engineering.</p>
-          
-          <h3>1. Force (Newton's Second Law)</h3>
-          <p>Newton's Second Law states that the force acting on an object is equal to the mass of that object times its acceleration (<strong>F = ma</strong>). Force is a vector quantity, meaning it has both magnitude and direction. It is measured in Newtons (N), where 1 N = 1 kg·m/s².</p>
-          
-          <h3>2. Work (Energy Transfer)</h3>
-          <p>In physics, work is done when a force acts upon an object causing a displacement (<strong>W = Fd</strong>). If you push a heavy box, the work done is the force you applied multiplied by the distance the box moved. It is measured in Joules (J).</p>
-          
-          <h3>3. Power (Rate of Work)</h3>
-          <p>Power measures how quickly work is done or energy is transferred (<strong>P = W/t</strong>). A high-power engine does the same amount of work in less time than a low-power engine. Power is measured in Watts (W), where 1 W = 1 Joule per second.</p>
-          
-          <h3>4. Pressure (Force over Area)</h3>
-          <p>Pressure is defined as the physical force exerted on an object per unit area (<strong>P = F/A</strong>). This explains why a sharp knife cuts better than a dull one—the same force is concentrated over a much smaller area, creating immense pressure. It is measured in Pascals (Pa), where 1 Pa = 1 N/m².</p>
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Newtonian Mechanics: The Four Fundamental Equations</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Isaac Newton's laws of classical mechanics, published in his <em>Principia Mathematica</em> (1687), form the bedrock of all macroscopic physics and engineering. Our <strong className="text-[#202124]">physics calculator</strong> consolidates the four most foundational derived equations into a single precision engine: Newton's Second Law (Force), the Work-Energy theorem (Work), the rate of energy transfer (Power), and the surface concentration of force (Pressure).
+              </p>
+              <p>
+                Every equation in this tool operates within the International System of Units (SI), ensuring that inputs and outputs are directly compatible with all global physics, engineering, and academic standards. The engine performs exact floating-point arithmetic, displaying results to 4 decimal places before stripping trailing zeros for clarity.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Deep Dive: The Four Physical Laws</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Force (F = ma):</strong> Newton's Second Law. A net force applied to an object produces an acceleration proportional to the force and inversely proportional to the object's mass. 1 Newton = 1 kg·m/s². Example: pushing a 10 kg box with 20 N of force produces 2 m/s² of acceleration.</li>
+              <li><strong className="text-[#188038]">Work (W = Fd):</strong> Energy transferred to or from an object via an applied force over a displacement. Only the component of force parallel to displacement does work. 1 Joule = 1 N·m. Example: lifting a 10 N box by 3 meters requires 30 J of work.</li>
+              <li><strong className="text-[#D93025]">Power (P = W/t):</strong> The rate at which energy is transferred or work is done. A 100W light bulb consumes 100 Joules of energy per second. Human peak mechanical power output is approximately 1-2 kilowatts during intense bursts.</li>
+              <li><strong className="text-[#F29900]">Pressure (P = F/A):</strong> Force distributed over an area. This is why sharp needles pierce skin with minimal force (tiny area = massive pressure) while snowshoes prevent sinking (large area = minimal pressure).</li>
+            </ul>
+          </div>
         </div>
       }
+      faqs={[
+        {
+          question: "What is the SI unit of Force and what does it represent?",
+          answer: "The SI unit of force is the Newton (N), named after Isaac Newton. One Newton is defined as the force required to accelerate a mass of 1 kilogram at a rate of 1 meter per second squared (1 N = 1 kg·m/s²). Earth's gravity exerts approximately 9.81 N on a 1 kg object."
+        },
+        {
+          question: "What is the difference between Work and Energy?",
+          answer: "In physics, Work is the process of energy transfer—it describes an action (applying force over distance). Energy is the capacity to do work. Work done ON a system increases its energy; work done BY a system decreases it. Both are measured in Joules, making them numerically equivalent despite being conceptually distinct."
+        },
+        {
+          question: "What is the difference between Power and Energy?",
+          answer: "Energy (Joules) is the total amount of work done or transferred. Power (Watts) is the rate at which that energy is used. A 100W motor running for 10 seconds uses the same energy (1000 J) as a 1000W motor running for 1 second—but they have very different power ratings."
+        },
+        {
+          question: "Why does Pressure depend on Area and not just Force?",
+          answer: "Pressure measures how concentrated a force is. The same 100 N force applied to a 1 cm² area creates 1 MPa of pressure—enough to pierce metal. Applied to a 100 cm² area, it creates only 10 kPa—barely enough to dent foam. This principle is used in hydraulic presses, needles, and pneumatic systems."
+        },
+        {
+          question: "What is a Joule in everyday terms?",
+          answer: "One Joule is roughly the energy needed to lift a 100-gram apple 1 meter upward against gravity. A 2,000-calorie daily diet provides about 8,400,000 Joules of energy. A single AA battery stores approximately 10,000 Joules."
+        },
+        {
+          question: "Can I use this calculator for rotational motion?",
+          answer: "No. This calculator covers linear (translational) Newtonian mechanics. For rotational mechanics, the analogous formulas are: Torque (τ = Iα), Rotational Work (W = τθ), and Rotational Power (P = τω), where I is moment of inertia, α is angular acceleration, θ is angle, and ω is angular velocity."
+        }
+      ]}
     />
   );
 }

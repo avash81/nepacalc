@@ -49,6 +49,7 @@ export default function EngineeringGPACalculator() {
 
   return (
     <ModernCalcLayout
+      slug="engineering-gpa"
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Engineering GPA' }]}
       title="Engineering Target CGPA Calculator"
       description="Professional grade predictor for engineering students (TU IOE, PU, KU). Calculate the exact GPA needed in upcoming semesters to hit your graduation targets."
@@ -149,11 +150,25 @@ export default function EngineeringGPACalculator() {
       howToUse={{ steps: ["Select your university standard (TU IOE, KU, PU).", "Enter your current cumulative CGPA and the credits you've completed so far.", "Set your target graduation CGPA and the credits remaining in your degree.", "Optional: Log individual past semesters in the ledger for a precise actual CGPA audit.", "The tool will instantly show you exactly what GPA you need in future exams to hit your target."] }}
       formula={{ title: "CGPA Prediction Algorithm", description: "Credit-weighted averaging.", raw: "Target Points = Target CGPA × (Completed Credits + Remaining Credits)\nCurrent Points = Current CGPA × Completed Credits\n\nPoints Needed = Target Points - Current Points\nRequired Average GPA = Points Needed / Remaining Credits" }}
       faqs={[
-        { question: "Why does it say mathematically impossible?", answer: "Because grading systems cap at 4.0. If you have too few credits remaining, even scoring a perfect 4.0 in every remaining class won't bring your average up to your target." },
-        { question: "Are TU IOE credit weights different?", answer: "IOE uses standard credit weight calculations for GPA. Just ensure your 'completed credits' accurately reflects only the subjects you passed." }
+        { question: "Why does the calculator say mathematically impossible?", answer: "Because GPA systems are capped at a maximum of 4.0. If the formula (Target Points - Current Points) / Remaining Credits results in a required GPA above 4.0, no amount of perfect future performance can achieve your target. Example: If you need a 3.8 CGPA but only have 10 credits left out of 120, and your current CGPA is 2.5, it is statistically impossible." },
+        { question: "Are TU IOE credit weights different from PU or KU?", answer: "IOE (Tribhuvan University - Institute of Engineering) uses a standard 4.0 credit-weighted GPA. PU (Pokhara University) also uses a 4.0 scale. KU (Kathmandu University) similarly uses 4.0. The key difference is how each university distributes credit hours across courses — IOE engineering programs typically have 156–168 total credits over 4 years." },
+        { question: "What is the minimum CGPA to pass in IOE engineering?", answer: "At TU IOE, students must maintain at least 2.0 CGPA to graduate. Additionally, you must pass each subject individually — you cannot compensate for a failed subject with high grades elsewhere. Students with CGPA between 2.0 and 2.5 are in academic probation and may face restrictions on course enrollment." },
+        { question: "How do I use this to plan my final year thesis grade?", answer: "In IOE, the final year project/thesis typically carries 12 credit hours — the largest single credit block in the program. Enter your current CGPA and completed credits, set your target CGPA, and remaining credits including the 12-credit thesis. The calculator shows exactly what GPA you need in remaining courses, which helps you prioritize the thesis." },
+        { question: "What GPA is needed for graduate school admission from Nepal?", answer: "For most master's programs abroad (USA, Australia, UK): minimum 2.7/4.0 for consideration, 3.0+ for competitive programs, 3.5+ for top universities. For Fulbright scholarship from Nepal: typically 3.2+ required. For ADB-Japan scholarship: minimum 3.0 with exceptional work experience. Plan your target CGPA based on your admission goals from the start." },
+        { question: "Can this calculator work for non-engineering programs?", answer: "Yes, it works for any credit-weighted GPA system. For business, science, or arts programs at TU, PU, or KU — simply enter your current CGPA, completed credits, target CGPA, and remaining credits. The math is identical regardless of your faculty. The 'Past Semester Ledger' helps you verify your actual CGPA against your official transcript." }
       ]}
-      sidebar={{ title: "Student Life", links: [{ label: "SEE GPA Calculator", href: "/calculator/see-gpa" }, { label: "Standard Deviation", href: "/calculator/standard-deviation" }], banner: { title: "Academic Planning", description: "Don't leave graduation to chance. Plan your exam targets early.", image: "/images/math-banner.jpg" } }}
-      relatedTools={[{ label: "SEE GPA Calculator", href: "/calculator/see-gpa" }, { label: "Standard Deviation", href: "/calculator/standard-deviation" }]}
+      sidebar={{ 
+        title: "Student Life", 
+        links: [
+          { label: "SEE GPA Calculator", href: "/calculator/see-gpa/" }, 
+          { label: "Standard Deviation", href: "/calculator/standard-deviation/" }
+        ], 
+        banner: { title: "Academic Planning", description: "Don't leave graduation to chance. Plan your exam targets early.", image: "/images/math-banner.jpg" } 
+      }}
+      relatedTools={[
+        { label: "SEE GPA Calculator", href: "/calculator/see-gpa/" }, 
+        { label: "Standard Deviation", href: "/calculator/standard-deviation/" }
+      ]}
     />
   );
 }

@@ -203,12 +203,28 @@ export default function BMRCalculator() {
       }}
       faqs={[
         {
-          question: "What is BMR?",
-          answer: "Basal Metabolic Rate (BMR) is the number of calories your body burns at rest to maintain basic life functions like breathing and heartbeat."
+          question: "What is BMR and why does it matter?",
+          answer: "Basal Metabolic Rate (BMR) is the total number of calories your body burns at complete rest just to maintain basic life functions (breathing, circulation, cell production). It matters because it represents the absolute baseline of your caloric needs before adding any physical activity."
         },
         {
           question: "How is TDEE different from BMR?",
-          answer: "TDEE (Total Daily Energy Expenditure) accounts for both your BMR and the energy burned through physical activity and exercise."
+          answer: "TDEE (Total Daily Energy Expenditure) accounts for both your BMR and the energy burned through daily physical activity and exercise. While BMR is your resting baseline, TDEE is the actual number of calories you burn in a typical 24-hour period."
+        },
+        {
+          question: "Which equation does this calculator use?",
+          answer: "This calculator utilizes the Mifflin-St Jeor Equation. Clinical studies have proven it to be the most accurate predictive metabolic formula for modern populations, consistently outperforming older models like the Harris-Benedict equation."
+        },
+        {
+          question: "How many calories should I cut to lose weight?",
+          answer: "A safe, sustainable rate of weight loss is about 0.5 kg (1 lb) per week. Because 1 kg of body fat contains roughly 7,700 calories, creating a daily caloric deficit of 500 calories below your TDEE will reliably yield this result."
+        },
+        {
+          question: "Does building muscle increase my BMR?",
+          answer: "Yes. Muscle tissue is highly metabolically active compared to fat tissue. The more lean muscle mass you carry, the more calories your body will passively burn at rest, permanently increasing your baseline BMR."
+        },
+        {
+          question: "Why does BMR decrease as I get older?",
+          answer: "As we age, we naturally lose muscle mass (sarcopenia) and our internal cellular processes slow down. This biological shift means the body requires less baseline energy to function, which is why older adults must often eat less to avoid weight gain."
         }
       ]}
       sidebar={{

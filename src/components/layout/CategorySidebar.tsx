@@ -9,7 +9,8 @@ const PILLAR_LINKS: Record<string, string> = {
   finance: '/finance',
   health: '/health',
   utility: '/converters',
-  education: '/math-tools'
+  education: '/math-tools',
+  engineering: '/engineering'
 };
 
 export function CategorySidebar() {

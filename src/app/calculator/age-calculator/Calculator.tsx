@@ -64,6 +64,7 @@ export default function AgeCalculator() {
 
   return (
     <ModernCalcLayout
+      slug="age-calculator"
       crumbs={[{ label: 'Converters', href: '/converters/' }, { label: 'Age Calculator' }]}
       title="Age & Life Stats"
       description="Calculate your exact age in years, months, and days. Discover your zodiac sign, birth day, and upcoming birthday countdown."
@@ -201,21 +202,37 @@ export default function AgeCalculator() {
       }}
       faqs={[
         {
-          question: "How accurate is the heartrate estimation?",
-          answer: "The heartrate is a statistical estimation based on an average resting heart rate of 80 beats per minute (BPM) over the total days lived."
+          question: "How accurate is the heartbeat estimation?",
+          answer: "The heartbeat count is a statistical estimation based on an average resting heart rate of 80 beats per minute (BPM) multiplied by the total minutes lived. This is a fun approximation — actual lifetime beats vary based on your fitness, age, and health history."
         },
         {
           question: "Does this account for leap years?",
-          answer: "Yes, our algorithm uses the JavaScript Date object which automatically handles leap years and different month lengths for 100% precision."
+          answer: "Yes, our algorithm uses the JavaScript Date object which automatically handles leap years (366 days) and varying month lengths (28–31 days). The result is accurate to the exact day."
+        },
+        {
+          question: "What is the minimum age to apply for a Lok Sewa Aayog exam in Nepal?",
+          answer: "For most Lok Sewa (Public Service Commission) positions, the minimum age is 18 years. The maximum age varies by position — typically 35 years for most posts, 40 years for higher positions, and up to 45 years for specialized or higher-class posts. Always verify with the PSC notice."
+        },
+        {
+          question: "At what age can I apply for a driving license in Nepal?",
+          answer: "In Nepal, you must be at least 16 years old for a motorcycle license and 18 years old for a car/vehicle license. The application requires a citizenship certificate (Nagarikta) which itself requires you to be at least 16 years of age. Our age calculator helps confirm you meet the exact date requirement."
+        },
+        {
+          question: "How do I find my age in the Bikram Sambat (B.S.) calendar?",
+          answer: "The Nepali Bikram Sambat calendar is approximately 56 years and 8.5 months ahead of the Gregorian calendar. To find your age in B.S., use our Nepali Date Converter to convert your A.D. birth date to B.S., then subtract from today's B.S. date. This tool works in A.D. — use the companion Nepali Date tool for B.S. calculations."
+        },
+        {
+          question: "What zodiac sign does this calculator use?",
+          answer: "This calculator uses Western tropical astrology zodiac signs (Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces), which are based on the Gregorian calendar. Hindu/Vedic astrology uses a different system (sidereal) with different date ranges — this tool does not reflect Vedic rashi."
         }
       ]}
       sidebar={{
         title: "Useful Tools",
         links: [
-          { label: "Nepali Date Converter", href: "/calculator/nepali-date" },
-          { label: "Date Duration", href: "/calculator/date-duration" },
-          { label: "Pregnancy Due Date", href: "/calculator/pregnancy-due-date" },
-          { label: "Sleep Calculator", href: "/calculator/sleep" },
+          { label: "Nepali Date Converter", href: "/calculator/nepali-date/" },
+          { label: "Date Duration", href: "/calculator/date-duration/" },
+          { label: "Pregnancy Due Date", href: "/calculator/pregnancy-due-date/" },
+          { label: "Sleep Calculator", href: "/calculator/sleep/" },
         ],
         banner: {
           title: "Cherish Every Moment",
@@ -224,9 +241,9 @@ export default function AgeCalculator() {
         }
       }}
       relatedTools={[
-        { label: "Nepali Date", href: "/calculator/nepali-date" },
-        { label: "Date Duration", href: "/calculator/date-duration" },
-        { label: "Sleep Calculator", href: "/calculator/sleep" }
+        { label: "Nepali Date", href: "/calculator/nepali-date/" },
+        { label: "Date Duration", href: "/calculator/date-duration/" },
+        { label: "Sleep Calculator", href: "/calculator/sleep/" }
       ]}
     />
   );

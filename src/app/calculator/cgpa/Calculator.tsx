@@ -49,6 +49,7 @@ export default function CGPACalculator() {
 
   return (
     <ModernCalcLayout
+      slug="cgpa"
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'CGPA Calculator' }]}
       title="CGPA Calculator"
       description="Calculate your Cumulative GPA across all semesters with credit-weighted averaging. Supports TU, KU, PU, and international university standards."
@@ -160,21 +161,37 @@ export default function CGPACalculator() {
       }}
       faqs={[
         {
-          question: "Why does my CGPA differ from a simple average?",
-          answer: "Simple average treats every semester equally. Weighted average (CGPA) gives more importance to semesters with higher credit loads, which is the academic standard worldwide."
+          question: "Why does my CGPA differ from a simple average of my semester GPAs?",
+          answer: "Simple average treats every semester equally regardless of credit load. CGPA is credit-weighted — a semester with 24 credits counts more than one with 12 credits. This is the academic standard globally because it reflects the actual proportion of work done in each semester."
         },
         {
-          question: "How do I convert CGPA to Percentage?",
-          answer: "A common formula used in Nepal is Percentage = CGPA × 9.5. However, check your transcript's reverse side for the official conversion table of your university."
+          question: "How do I convert CGPA to Percentage for Nepali universities?",
+          answer: "Different universities use different conversion formulas. Tribhuvan University (TU): Percentage ≈ CGPA × 25. Kathmandu University (KU): Percentage ≈ CGPA × 20 + 20 (approximate). Pokhara University (PU): Typically CGPA × 10 on a 10-point scale. Always verify with your specific university's official conversion table on the transcript."
+        },
+        {
+          question: "What CGPA do I need for a scholarship or foreign university admission?",
+          answer: "Most competitive scholarships and master's programs (USA, Australia, UK) require a minimum CGPA of 3.0/4.0 (Good) or above. Prestigious programs at top-ranked universities typically require 3.5+/4.0 (Distinction level). The Fulbright, Chevening, and ADB scholarships generally require 3.2+/4.0 and strong academic records."
+        },
+        {
+          question: "What is the difference between GPA and CGPA?",
+          answer: "GPA (Grade Point Average) is the weighted average for a single semester. CGPA (Cumulative GPA) accumulates all semesters, weighted by credit hours. Your CGPA on your final degree certificate reflects your entire academic journey and is the figure used by employers and graduate schools for evaluation."
+        },
+        {
+          question: "Can I improve my CGPA in the final semesters?",
+          answer: "Yes, but improvement depends on how many credits remain. The higher your total completed credits, the harder it is to move the CGPA needle. Example: With 100 completed credits and CGPA 3.0, you'd need to score 4.0 in all remaining 20 credits to reach just 3.17. Use this calculator to model 'what-if' scenarios by adjusting future semester GPAs."
+        },
+        {
+          question: "How does credit hour impact CGPA in Tribhuvan University?",
+          answer: "In TU's semester system, courses typically carry 3 credit hours (theory) plus 1 credit (lab or tutorial). A higher-credit course like a 6-credit Thesis contributes much more to CGPA. Getting an A+ (4.0) in a 6-credit Thesis improves CGPA significantly more than getting A+ in a 3-credit elective. Strategic planning of heavy-credit courses is key."
         }
       ]}
       sidebar={{
         title: "Academic Toolkit",
         links: [
-          { label: "SEE GPA Calc", href: "/calculator/see-gpa" },
-          { label: "GPA to % Tool", href: "/calculator/gpa-to-percentage" },
-          { label: "Engineering GPA", href: "/calculator/engineering-gpa-calculator" },
-          { label: "Attendance Calc", href: "/calculator/attendance" },
+          { label: "SEE GPA Calc", href: "/calculator/see-gpa/" },
+          { label: "GPA to % Tool", href: "/calculator/gpa-to-percentage/" },
+          { label: "Engineering GPA", href: "/calculator/engineering-gpa/" },
+          { label: "Attendance Calc", href: "/calculator/attendance/" },
         ],
         banner: {
           title: "Aim for Distinction",
@@ -183,9 +200,9 @@ export default function CGPACalculator() {
         }
       }}
       relatedTools={[
-        { label: "SEE GPA", href: "/calculator/see-gpa" },
-        { label: "GPA to %", href: "/calculator/gpa-to-percentage" },
-        { label: "Engineering GPA", href: "/calculator/engineering-gpa-calculator" }
+        { label: "SEE GPA", href: "/calculator/see-gpa/" },
+        { label: "GPA to %", href: "/calculator/gpa-to-percentage/" },
+        { label: "Engineering GPA", href: "/calculator/engineering-gpa/" }
       ]}
     />
   );

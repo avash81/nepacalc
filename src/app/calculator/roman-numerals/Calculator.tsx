@@ -128,54 +128,54 @@ export default function RomanNumeralsCalculator() {
           "The calculator is bidirectional—updating one field will instantly update the other."
         ]
       }}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Ancient Rome's Number System: Additive & Subtractive Logic</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>Roman numerals originated in ancient Rome, derived from tally marks carved into wood or stone. The system uses 7 Latin letter symbols (I, V, X, L, C, D, M) to represent values using two mathematical rules: <strong className="text-[#202124]">additive notation</strong> (placing larger values before smaller ones to sum them) and <strong className="text-[#202124]">subtractive notation</strong> (placing a smaller value before a larger one to indicate subtraction). Our converter implements both rules with full bidirectional accuracy.</p>
+              <p>Despite the dominance of Hindu-Arabic numerals (0–9) in all modern mathematics, Roman numerals remain a living convention in film/TV production credits, clock faces, book prefaces, sports events, and monarchical/papal succession naming.</p>
+            </div>
+          </div>
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The 6 Subtractive Notation Rules</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">IV = 4 (not IIII):</strong> I before V subtracts 1 from 5.</li>
+              <li><strong className="text-[#1A73E8]">IX = 9 (not VIIII):</strong> I before X subtracts 1 from 10.</li>
+              <li><strong className="text-[#188038]">XL = 40 (not XXXX):</strong> X before L subtracts 10 from 50.</li>
+              <li><strong className="text-[#188038]">XC = 90 (not LXXXX):</strong> X before C subtracts 10 from 100.</li>
+              <li><strong className="text-[#D93025]">CD = 400 (not CCCC):</strong> C before D subtracts 100 from 500.</li>
+              <li><strong className="text-[#D93025]">CM = 900 (not DCCCC):</strong> C before M subtracts 100 from 1000.</li>
+            </ul>
+          </div>
+        </div>
+      }
       faqs={[
         {
-          question: "Why is the limit 3,999?",
-          answer: "In standard Roman numerals, the largest individual symbol is M (1000). To represent 4,000 and above, standard notation requires a line drawn over the symbol (vinculum) to indicate multiplication by 1,000, which cannot be easily typed on a standard keyboard."
+          question: "Why is the maximum number 3,999 in standard Roman notation?",
+          answer: "The largest symbol is M (1,000). To write 4,000, you'd need MMMM, but the rule prohibits more than 3 identical symbols consecutively. The extended system uses a vinculum (overline) to denote ×1,000, but this is not typeable on standard keyboards. Thus, 3,999 (MMMCMXCIX) is the practical maximum."
         },
         {
           question: "How do subtractive notation rules work?",
-          answer: "Normally, symbols are placed from largest to smallest and added together (e.g., VI = 5 + 1 = 6). However, to avoid four identical characters in a row, subtractive notation is used. A smaller symbol placed before a larger one is subtracted (e.g., IV = 5 - 1 = 4)."
+          answer: "Only powers of 10 (I, X, C) can be used subtractively, and only before the next two higher values. I can precede V and X. X can precede L and C. C can precede D and M. Symbols V, L, and D are never used subtractively."
+        },
+        {
+          question: "What year is MMXXVI in Roman numerals?",
+          answer: "MM = 2000, XX = 20, VI = 6. Therefore MMXXVI = 2026. Our calculator confirms this instantly in the bidirectional input."
+        },
+        {
+          question: "Why don't Roman numerals have a zero?",
+          answer: "The Roman numeral system evolved from tally marks and was a counting system, not a positional numeral system. The concept of zero as a placeholder was developed independently by Indian mathematicians and introduced to Europe via Arab scholars in the Middle Ages, long after Roman numerals were established."
+        },
+        {
+          question: "Where are Roman numerals still used today?",
+          answer: "Common modern uses include: clock faces (I-XII), film and TV production years in credits (e.g., © MMXXVI), Super Bowl numbering (Super Bowl LVIII), royal succession (King Charles III), papal names (Pope Francis I), book preface page numbering, and movie/music sequel titling."
+        },
+        {
+          question: "What does MCMXCIX mean?",
+          answer: "M = 1000, CM = 900, XC = 90, IX = 9. Total: 1000 + 900 + 90 + 9 = 1999. This is how the year 1999 is written in Roman numerals, as seen on many late-20th century buildings and films."
         }
       ]}
-      seoContent={
-        <div>
-          <h2>Understanding Roman Numerals</h2>
-          <p>Roman numerals originated in ancient Rome and remained the usual way of writing numbers throughout Europe well into the Late Middle Ages. Numbers in this system are represented by combinations of letters from the Latin alphabet. Today, they are still widely used for clock faces, book chapters, movie sequels, and formal naming.</p>
-
-          <h2>Historical Guide: Roman Numbering</h2>
-          <p className="font-medium">
-            The <strong>Roman numeral system</strong> is an ancient numbering method that remains a staple of formal design, historical dating, and academic categorization.
-          </p>
-          <p>
-            Our <strong>Chronological Translation Laboratory</strong> provides an intuitive way to map these classical symbols to modern digits. Whether you are a student in Nepal decoding <strong>historical inscriptions</strong> or a designer creating formal certificates, our engine applies rigorous additive and subtractive logic to provide instant, error-free conversions for any valid numerical range.
-          </p>
-          
-          <h3>The Core Symbols</h3>
-          <p>The Roman numeral system is based on seven core symbols:</p>
-          <ul>
-            <li><strong>I</strong> = 1</li>
-            <li><strong>V</strong> = 5</li>
-            <li><strong>X</strong> = 10</li>
-            <li><strong>L</strong> = 50</li>
-            <li><strong>C</strong> = 100</li>
-            <li><strong>D</strong> = 500</li>
-            <li><strong>M</strong> = 1000</li>
-          </ul>
-          
-          <h3>Rules of Roman Numerals</h3>
-          <p>Reading and writing Roman numerals requires following a few basic rules:</p>
-          <ol>
-            <li><strong>Addition:</strong> When a larger symbol is followed by a smaller symbol, you add their values. For example, <strong>XII</strong> is 10 + 1 + 1 = 12.</li>
-            <li><strong>Subtraction:</strong> To prevent placing four of the same character in a row (like IIII for 4), a smaller symbol placed before a larger one means subtraction. Therefore, <strong>IV</strong> is 5 - 1 = 4, and <strong>IX</strong> is 10 - 1 = 9.</li>
-            <li><strong>Repetition Limit:</strong> You cannot put more than three identical symbols together. For instance, 30 is <strong>XXX</strong>, but 40 is <strong>XL</strong>, not XXXX.</li>
-            <li><strong>V, L, and D are never subtracted.</strong> Only powers of 10 (I, X, C) can be used as subtractive modifiers.</li>
-          </ol>
-          
-          <h3>Modern Usage</h3>
-          <p>While Arabic numerals (0-9) replaced Roman numerals in mathematics and everyday use due to the lack of a zero concept and the difficulty of calculating with letters, Roman numerals still carry a sense of formality and tradition. You will often see them used to denote centuries (the XX Century), Super Bowls (Super Bowl LVIII), and monarchs (King Charles III).</p>
-        </div>
-      }
     />
   );
 }

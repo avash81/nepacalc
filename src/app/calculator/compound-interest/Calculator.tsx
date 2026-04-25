@@ -160,34 +160,73 @@ export default function CompoundInterestCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">The Mathematics of Wealth Generation</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Often referred to as the "eighth wonder of the world," compound interest is the fundamental mathematical engine driving long-term wealth creation. Our <strong className="text-[#202124]">compound interest calculator</strong> goes beyond simple arithmetic, utilizing the standard exponential formula <code className="bg-[#F1F3F4] px-1 rounded">A = P(1 + r/n)^(nt)</code> to project exactly how an initial principal generates interest, and more importantly, how that generated interest begins to generate its own interest.
+              </p>
+              <p>
+                Whether you are analyzing a high-yield savings account, projecting mutual fund growth, or forecasting the maturity of a fixed-term bond, understanding the <strong className="text-[#202124]">daily compound interest calculator</strong> mechanics is crucial. The tool models how varying compounding frequencies—from annual to daily—impact the effective Annual Percentage Yield (APY) of your investment vehicle.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Key Compounding Variables</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">The Power of 'n' (Frequency):</strong> While the nominal interest rate is important, the frequency at which interest is added to your principal (<strong className="text-[#202124]">monthly compound interest calculator</strong> vs. annual) dictates your true yield. More frequent compounding periods result in a marginally higher total return.</li>
+              <li><strong className="text-[#188038]">The Time Horizon (t):</strong> Exponentiation means that time is the most powerful variable in the formula. Due to the exponential curve, the interest generated in year 20 will dwarf the interest generated in year 2, making early capital deployment critical.</li>
+              <li><strong className="text-[#D93025]">The Rule of 72:</strong> A popular mental shortcut in finance. Divide the number 72 by your annual interest rate to estimate exactly how many years it will take to double your money. For example, at a 10% rate, your money will double in approximately 7.2 years.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
-          "Enter your initial deposit amount (Principal).",
-          "Input the annual interest rate offered by your bank or investment.",
-          "Choose the duration (Years) you plan to keep the money invested.",
-          "Select the compounding frequency (e.g., Monthly for savings accounts, Quarterly for FDs).",
-          "Review the maturity value and the yearly interest accumulation table."
+          "Enter your Initial Investment (Principal). This is the lump sum amount you are starting with.",
+          "Input the Annual Rate (%), representing the nominal annual interest rate or expected yearly return.",
+          "Specify the Period in Years. This determines how long the capital will remain invested and compound.",
+          "Select the Compounding Frequency. Use 'Monthly' for typical savings accounts or 'Quarterly' for most fixed deposits.",
+          "Review the 'Total Maturity Value' and examine the 'Yearly Projection' ledger to track your year-over-year exponential growth."
         ]
       }}
       formula={{
-        title: "Compound Interest Formula",
-        description: "The formula calculates interest on both the initial principal and the accumulated interest from previous periods.",
-        raw: "A = P(1 + r/n)^(nt)\nWhere A = Total Amount, P = Principal, r = annual rate, n = compounding frequency, t = years."
+        title: "Exponential Compounding Formula",
+        description: "The universally accepted formula used by financial institutions to calculate compound returns.",
+        raw: "A = P(1 + r/n)^(nt)\n\nWhere:\nA = Total Accrued Amount (Principal + Interest)\nP = Initial Principal Balance\nr = Annual Interest Rate (as a decimal, e.g., 10% = 0.10)\nn = Number of times interest is compounded per year\nt = Number of years the amount is deposited/invested"
       }}
       faqs={[
         {
-          question: "How is compounding different from simple interest?",
-          answer: "Simple interest is calculated only on the principal, whereas compound interest is calculated on the principal plus any interest that has already been added."
+          question: "What is the difference between simple and compound interest?",
+          answer: "Simple interest is calculated only on the original principal amount. Compound interest is calculated on the original principal PLUS all accumulated interest from previous periods. Over time, compounding produces significantly higher returns."
         },
         {
-          question: "Does compounding frequency matter?",
-          answer: "Yes, the more frequently interest is compounded, the higher the final amount. Monthly compounding yields slightly more than annual compounding for the same rate."
+          question: "Which compounding frequency gives the best return?",
+          answer: "The more frequent the compounding, the higher your total return. Daily compounding yields slightly more than monthly, which yields more than quarterly, which yields more than annual compounding—assuming the nominal interest rate is identical."
+        },
+        {
+          question: "How do I calculate effective Annual Percentage Yield (APY)?",
+          answer: "APY takes the compounding frequency into account to give you the 'true' annual rate. If your nominal rate is 10% compounded monthly, your APY is actually 10.47%. The formula is APY = (1 + r/n)^n - 1."
+        },
+        {
+          question: "What is the Rule of 72?",
+          answer: "The Rule of 72 is a quick mental math formula used to estimate how long it takes an investment to double in value. You divide 72 by the annual interest rate. For example, at a 12% return, your money doubles in roughly 6 years (72 / 12 = 6)."
+        },
+        {
+          question: "Can I use this to calculate inflation?",
+          answer: "Yes, you can use the compound interest formula in reverse to calculate the degrading power of inflation. If inflation is 5% annually, an item that costs Rs. 100 today will cost Rs. 162 in 10 years, calculated identically to compounding."
+        },
+        {
+          question: "Should I focus on a higher interest rate or a longer time period?",
+          answer: "While a higher rate accelerates growth, time is mathematically the most powerful variable due to its position as the exponent (nt) in the formula. Starting 10 years earlier with a moderate rate often beats starting late with a high rate."
         }
       ]}
       sidebar={{
         title: "Finance Toolkit",
         links: [
-          { label: "SIP Calculator", href: "/calculator/sip-calculator" },
           { label: "Lumpsum Plan", href: "/calculator/lumpsum-calculator" },
           { label: "FD Calculator", href: "/calculator/fd-calculator" },
           { label: "Simple Interest", href: "/calculator/simple-interest" },

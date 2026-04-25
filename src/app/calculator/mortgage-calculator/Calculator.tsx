@@ -161,11 +161,46 @@ export default function MortgageCalculator() {
           </div>
         </div>
       }
-      howToUse={{ steps: ["Enter the total home/property price.", "Set the down payment percentage (Nepal banks require 20-25% minimum).", "Enter the current home loan interest rate from your bank.", "Select the loan tenure in years.", "Add annual property tax and insurance if known.", "Review total monthly cost including all components."] }}
-      formula={{ title: "Mortgage EMI Formula", description: "Standard reducing-balance EMI formula used by all Nepalese banks.", raw: "EMI = [P × r × (1+r)^n] / [(1+r)^n − 1]\nWhere P = Loan Amount, r = Monthly Rate, n = Total Months" }}
+      howToUse={{
+        steps: [
+          "Enter the total negotiated Home Price in NPR. This is the absolute cost of the property.",
+          "Set the Down Payment percentage. In Nepal, banks generally require at least a 30-40% down payment (equating to a 60-70% Loan-to-Value limit).",
+          "Input the Annual Interest Rate provided by your commercial bank (Base Rate + Premium).",
+          "Select your desired Loan Tenure. Standard residential home loans in Nepal range from 10 to 25 years.",
+          "Add your estimated Annual Property Tax percentage and Annual Home Insurance cost. These are amortized into your monthly total.",
+          "Review the Total Monthly Payment, which combines your bank EMI, monthly tax reserve, and monthly insurance reserve."
+        ]
+      }}
+      formula={{
+        title: "Comprehensive Mortgage Formula",
+        description: "Calculates the exact monthly financial obligation including P&I, Tax, and Insurance.",
+        raw: "1. EMI = [P × r × (1+r)^n] / [(1+r)^n − 1]\n2. Monthly Tax = (Property Value × Annual Tax Rate) / 12\n3. Monthly Insurance = Annual Insurance Premium / 12\n\nTotal Monthly Payment = EMI + Monthly Tax + Monthly Insurance"
+      }}
       faqs={[
-        { question: "What is the minimum down payment for home loans in Nepal?", answer: "Most commercial banks in Nepal require a minimum down payment of 20-25% of the property value. NRB regulations cap home loans at 60% LTV (Loan-to-Value) for residential properties in some categories." },
-        { question: "Are home loan rates fixed or floating in Nepal?", answer: "Most Nepal BFI home loans use a floating rate linked to the base rate. Rates are typically reviewed quarterly and can change over the loan tenure." }
+        {
+          question: "What is the minimum down payment required in Nepal?",
+          answer: "Inside the Kathmandu valley, Nepal Rastra Bank (NRB) generally restricts home loans to a 50% - 60% Loan-to-Value (LTV) ratio, meaning you need a 40% to 50% down payment. Outside the valley, you can often secure up to 70% LTV, requiring a 30% down payment."
+        },
+        {
+          question: "Why should I include property tax and insurance in this calculator?",
+          answer: "While you pay the bank for Principal and Interest, you must also pay municipal property taxes annually and maintain mandatory fire/earthquake insurance. Factoring these into a monthly 'reserve' gives you a true picture of your monthly housing affordability."
+        },
+        {
+          question: "Are mortgage rates in Nepal fixed or floating?",
+          answer: "The vast majority of home loans in Nepal are floating rate, tied to the bank's Base Rate. However, some banks offer fixed-rate packages for terms up to 5 or 7 years, after which they revert to the floating Base Rate + Premium model."
+        },
+        {
+          question: "How is the total interest calculated over 15 years?",
+          answer: "We use standard reducing-balance amortization. Each month, the interest is calculated on the remaining principal. As you pay down the principal, the interest portion of your EMI decreases, and the principal repayment portion increases."
+        },
+        {
+          question: "Does this calculator account for processing fees?",
+          answer: "No. Banks generally charge a 0.5% to 1.5% upfront Loan Processing Fee, along with engineering valuation and CIC (Credit Information Center) charges. You must pay these out-of-pocket during the loan approval phase."
+        },
+        {
+          question: "Can I pay off my mortgage early to save on interest?",
+          answer: "Yes, making lump-sum prepayment injections directly reduces your principal, massively cutting down your lifetime interest burden. However, commercial banks may charge a 1% to 2% prepayment penalty depending on the terms of your offer letter."
+        }
       ]}
       sidebar={{ title: "Finance Tools", links: [{ label: "Loan EMI", href: "/calculator/loan-emi" }, { label: "Property Tax", href: "/calculator/property-tax" }, { label: "Property Registration", href: "/calculator/property-registration" }, { label: "Savings Calc", href: "/calculator/savings" }], banner: { title: "Home Ownership", description: "Plan your mortgage wisely — total interest paid can exceed the property value over long tenures.", image: "/images/home-banner.jpg" } }}
       relatedTools={[{ label: "Loan EMI", href: "/calculator/loan-emi" }, { label: "Property Tax", href: "/calculator/property-tax" }, { label: "Savings", href: "/calculator/savings" }]}

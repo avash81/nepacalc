@@ -176,47 +176,66 @@ export default function WeightConverter() {
             { label: 'Percentage Calculator', href: '/calculator/percentage' },
           ],
         }}
+        details={
+          <div className="space-y-8">
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h2 className="text-xl font-black text-[#202124] mb-4">Mass Metrology: Metric, Imperial & the Tola Standard</h2>
+              <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+                <p>
+                  The world operates on two primary mass measurement systems in daily life. The <strong className="text-[#202124]">Metric (SI) system</strong>, anchored by the Kilogram, is the global scientific and commercial standard used by 195 countries. It is based on powers of 10, making scaling (grams to kilograms to metric tons) intuitive and computationally clean. Our <strong className="text-[#202124]">weight converter</strong> handles all conversions through a centralized Gram-based pivot for mathematical precision.
+                </p>
+                <p>
+                  Uniquely for Nepal and South Asia, our tool also integrates the <strong className="text-[#202124]">Tola</strong>—a traditional precious metal measurement still universally used in jewelry markets across Nepal, India, and Pakistan. The Tola is now legally defined as exactly 11.6638 grams, bridging the traditional and modern worlds of mass measurement seamlessly.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Structural Differences Between Weight Systems</h3>
+              <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+                <li><strong className="text-[#1A73E8]">Metric (SI) System:</strong> Powers of 10 architecture. 1 kg = 1,000 g = 1,000,000 mg. Used exclusively in all scientific, medical, and officially international commercial applications globally.</li>
+                <li><strong className="text-[#188038]">Imperial System (UK/US):</strong> Non-decimal structure. 1 pound (lb) = 16 ounces (oz). 2,000 lbs = 1 short ton (US). Used commercially in the USA and in everyday UK life. All values are anchored to: 1 lb = exactly 453.59237 grams by international treaty.</li>
+                <li><strong className="text-[#D93025]">The Tola (South Asian Standard):</strong> The Tola predates both modern systems, originating from the mass of a silver rupee coin during the Mughal era. Its current value of 11.6638 grams was standardized under British India. Today, all gold pricing in Nepal (e.g., 'price per tola') references this exact definition.</li>
+              </ul>
+            </div>
+          </div>
+        }
+        faqs={[
+          {
+            question: "What exactly is a Tola and why is it used for gold in Nepal?",
+            answer: "The Tola is a traditional South Asian unit of mass standardized as exactly 11.6638038 grams. It has been the universal precious metals standard in Nepal, India, and Pakistan for centuries because gold and silver merchants historically kept their scales calibrated in Tola. All gold prices quoted in Nepal (e.g., daily rates from the Nepal Gold & Silver Dealers' Association) are per Tola."
+          },
+          {
+            question: "What is the difference between a weight ounce and a fluid ounce?",
+            answer: "A weight ounce (oz) is a unit of mass (approximately 28.35 grams), used for weighing solids like food or precious metals. A fluid ounce (fl oz) is a unit of volume (approximately 29.57 mL), used for measuring liquids. They are completely different dimensions and should never be confused."
+          },
+          {
+            question: "Why does 1 kilogram = 2.20462 pounds and not a round number?",
+            answer: "Because the kilogram and pound systems were developed independently in different countries without a coordinated mathematical relationship. The exact equivalence (1 lb = 0.45359237 kg) was defined by international treaty in 1959 to standardize conversions globally."
+          },
+          {
+            question: "How many kilograms is one metric ton?",
+            answer: "One metric ton (tonne) is exactly 1,000 kilograms or 1,000,000 grams. This differs from the US Short Ton (2,000 lbs ≈ 907 kg) and the UK Long Ton (2,240 lbs ≈ 1,016 kg). The metric ton is the standard for international trade and scientific use."
+          },
+          {
+            question: "Can I use the Gold Value Estimator for silver as well?",
+            answer: "Yes. The estimator calculates the value of any entered weight at the rate you input per Tola. Simply enter the current silver price per Tola (available from the Nepal Gold & Silver Dealers' Association) to get an accurate silver valuation."
+          },
+          {
+            question: "Is weight the same as mass?",
+            answer: "Technically, no. Mass is the amount of matter in an object (measured in kg) and is constant everywhere in the universe. Weight is the gravitational force acting on that mass (measured in Newtons) and would differ on the Moon. However, in everyday usage, both terms are used interchangeably to refer to what a scale measures on Earth."
+          }
+        ]}
         howToUse={{
           steps: [
             "Enter the numerical weight or mass value you want to convert.",
             "Select the starting unit from the 'From' dropdown.",
             "Select your desired target unit from the 'To' dropdown.",
-            "The calculator will instantly display the converted result.",
-            "Use the 'Swap' button (arrows) to quickly reverse the conversion direction.",
-            "If you are converting gold or silver, you can input today's market rate in the Gold Value Estimator to see its total worth."
+            "The result is displayed instantly in real-time.",
+            "Use the Swap button to reverse the conversion direction.",
+            "Input today's gold price per Tola (NPR) to estimate the precious metal value."
           ]
         }}
-        faqs={[
-          {
-            question: "What is a Tola?",
-            answer: "The Tola is a traditional South Asian unit of mass, now standardized as exactly 11.6638038 grams. It is the standard unit used for weighing and pricing gold and silver in countries like Nepal, India, and Pakistan."
-          },
-          {
-            question: "What is the difference between an ounce and a fluid ounce?",
-            answer: "An ounce (oz) is a unit of weight or mass (used for solids), while a fluid ounce (fl oz) is a unit of volume (used for liquids). This calculator converts standard weight ounces. 1 pound equals 16 weight ounces."
-          }
-        ]}
-        seoContent={
-          <div>
-            <h2>Understanding Weight and Mass Conversions</h2>
-            <p>Whether you are cooking, traveling, dealing with international shipping, or buying jewelry, understanding how to convert weight is an essential skill. The world primarily uses two systems: the Metric system (kilograms, grams) and the Imperial system (pounds, ounces).</p>
-
-            <h2>Measurement Guide: Mass & Weight</h2>
-            <p className="font-medium">
-              Accurate <strong>mass determination</strong> is a pillar of international trade, scientific research, and daily consumer life in Nepal.
-            </p>
-            <p>
-              Our <strong>Gravimetric Analysis Laboratory</strong> provides the precision required for high-stakes conversions. Whether you are a merchant in Nepal converting <strong>kilograms to metric tons</strong> for freight or a cook converting grams to ounces, our engine applies internationally verified mass constants to ensure every conversion is flawless and instantaneous.
-            </p>
-            
-            <h3>Metric vs. Imperial System</h3>
-            <p>The <strong>Metric system</strong> is based on multiples of 10, making it incredibly easy to scale. For instance, there are 1,000 milligrams in a gram, and 1,000 grams in a kilogram. It is the standard system used in science and by almost every country globally.</p>
-            <p>The <strong>Imperial system</strong> is used primarily in the United States and a few other nations. In this system, 16 ounces make up a pound, and 2,000 pounds make up a ton. Converting between Metric and Imperial requires specific multiplication factors (e.g., 1 kg = 2.20462 lbs).</p>
-            
-            <h3>The South Asian Tola</h3>
-            <p>If you are buying gold or silver in Nepal, India, or Pakistan, you will encounter the <strong>Tola</strong>. Historically based on the weight of 100 Ratti seeds, the Tola was officially standardized under British rule to exactly 180 troy grains, which equals <strong>11.6638 grams</strong>. Our calculator features a dedicated Tola conversion tool alongside a live market value estimator, making it the perfect tool for jewelry shoppers.</p>
-          </div>
-        }
       />
     </CalculatorErrorBoundary>
   );

@@ -19,18 +19,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/terms',
   ].map((route) => ({
     url: `${baseUrl}${route}/`,
-    lastModified: lastModDate,
+    lastModified: route === '' ? new Date() : lastModDate,
     changeFrequency: 'weekly' as const,
     priority: route === '' ? 1.0 : 0.8,
   }));
 
   // 2. Canonical Pillar Pages (Hubs)
-  const pillarPages = CATEGORIES.map((cat) => ({
-    url: `${baseUrl}${CATEGORY_URL_MAP[cat.id.toLowerCase()] || `/${cat.id}/`}`,
-    lastModified: new Date('2026-04-22T08:30:00Z'),
-    changeFrequency: 'daily' as const,
-    priority: 0.9,
-  }));
+  const pillarPages = CATEGORIES.map((cat) => {
+    let path = CATEGORY_URL_MAP[cat.id.toLowerCase()] || `/${cat.id}/`;
+    if (!path.endsWith('/')) path += '/';
+    return {
+      url: `${baseUrl}${path}`,
+      lastModified: new Date('2026-04-22T08:30:00Z'),
+      changeFrequency: 'daily' as const,
+      priority: 0.9,
+    };
+  });
 
   // 3. Institutional Calculation Hubs (Individual Tools)
   const calculatorPages = CALCULATORS.map((calc) => {
@@ -40,7 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return {
       url: isDirectRoute ? `${baseUrl}/${calc.slug}/` : `${baseUrl}/calculator/${calc.slug}/`,
       lastModified: isMarketRate ? new Date() : new Date('2026-04-24T12:00:00Z'),
-      changeFrequency: isMarketRate ? ('daily' as const) : ('monthly' as const),
+      changeFrequency: isMarketRate ? ('hourly' as const) : ('monthly' as const),
       priority: 0.7,
     };
   });

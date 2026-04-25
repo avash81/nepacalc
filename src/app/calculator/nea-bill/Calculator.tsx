@@ -177,35 +177,104 @@ export default function NEABillCalculator() {
       details={
         <div className="space-y-8">
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Precision Electricity Tariff Analytics</h2>
+            <h2 className="text-xl font-black text-[#202124] mb-4">Understanding Nepal Electricity Authority (NEA) Tariffs</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>
-                Unlike a financial <strong className="text-[#202124]">treasury bill calculator</strong> that tracks bond yields, our NEA domestic tariff engine maps the highly progressive physical consumption slabs enforced by the Nepal Electricity Authority. The algorithm processes discrete unit blocks (0-20, 21-30, up to 400+) to generate what our users often call a <strong className="text-[#202124]">big beautiful bill calculator</strong> due to its exact accuracy matching the official NEA printed invoices.
+                Unlike basic utility bills, calculating your exact electricity expense in Nepal requires mapping consumption against highly progressive physical slabs enforced by the Nepal Electricity Authority (NEA). Our advanced <strong className="text-[#202124]">NEA Bill Calculator</strong> functions as a definitive <strong className="text-[#202124]">big beautiful bill calculator</strong>, faithfully reproducing the exact mathematical logic used by NEA's internal billing software to generate your monthly invoice.
               </p>
               <p>
-                When dealing with massive infrastructure scales where energy outputs can range from kilowatts up to theoretical levels reaching a <strong className="text-[#202124]">million billion trillion quintillion septillion octillion</strong> joules on the national grid, individual consumer billing demands high-precision floating-point math. When calculating the final 13% VAT, the system must <strong className="text-[#202124]">round to the nearest tenth</strong> or <strong className="text-[#202124]">round to the nearest hundredth</strong> precisely as the NEA billing software dictates, ensuring zero discrepancy between your estimated and actual liability.
+                Energy consumption is measured in Kilowatt-Hours (kWh), commonly referred to as "Units." In Nepal, as your unit consumption crosses specific thresholds, the rate per unit increases dramatically to encourage energy conservation. Whether you are dealing with a standard 5-Ampere household connection or managing a high-capacity 30-Ampere setup for heavy appliances, this tool processes discrete unit blocks to ensure absolute precision, factoring in both energy charges and fixed service fees.
               </p>
             </div>
           </div>
 
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Rounding & Service Charges</h3>
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The Components of Your NEA Bill</h3>
+            <p className="text-sm text-[#5F6368] mb-4">Your final electricity invoice is not a simple multiplication of units by a single rate. It consists of three primary mathematical components.</p>
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Decimal Precision:</strong> When you compute the 13% Value Added Tax on top of progressive slabs, the fractional paisa amounts require <strong className="text-[#202124]">rounding to the nearest tenth</strong> and <strong className="text-[#202124]">rounding to the nearest hundredth</strong>. The engine mirrors the NEA's exact rounding policy for financial compliance.</li>
-              <li><strong className="text-[#188038]">Connection-Linked Fixed Charges:</strong> Your base cost shifts mathematically based on your Amperage (5A, 15A, 30A). This is not a percentage but a flat integer threshold that steps up dynamically based on the highest consumption slab breached.</li>
-              <li><strong className="text-[#D93025]">Piecewise Linear Functions:</strong> The tariff is not a simple multiplication but a piecewise linear function. Crossing from 150 to 151 units doesn't re-rate all your previous units; it only subjects the 151st unit to the higher rate.</li>
+              <li><strong className="text-[#202124]">Energy Charge:</strong> This is the variable cost derived from your actual physical consumption. It is calculated using a piecewise linear function through the progressive slabs (e.g., 0-20 units, 21-30 units, up to Above 400 units). For instance, crossing from 150 to 151 units doesn't re-rate all previous units; it only subjects the 151st unit to the higher rate.</li>
+              <li><strong className="text-[#202124]">Fixed / Service Charge:</strong> Also known as the minimum demand charge, this fee is dictated by two factors: your connection capacity (Amperage) and the highest consumption slab you breach during the month. This charge is mandatory even if your energy consumption is zero, as it covers the infrastructural cost of maintaining your grid connection.</li>
+              <li><strong className="text-[#202124]">Value Added Tax (VAT):</strong> A standard 13% VAT is applied to the sum of the Energy Charge and the Fixed Charge. When calculating this tax, the system must perform exact <strong className="text-[#202124]">rounding to the nearest tenth</strong> or <strong className="text-[#202124]">rounding to the nearest hundredth</strong> to match the official printed receipt.</li>
+            </ul>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Understanding Connection Capacities (Amperage)</h3>
+            <p className="text-sm text-[#5F6368] mb-4">The physical capacity of your meter heavily influences your base Fixed Charges. The NEA provides different connection tiers for domestic users based on load requirements.</p>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">5A (Ampere) Connection:</strong> The standard lifeline connection for small households. It carries the lowest fixed charges. For consumption below 20 units, the energy charge is Rs. 0, and the consumer only pays a nominal fixed charge of Rs. 30.</li>
+              <li><strong className="text-[#1A73E8]">15A (Ampere) Connection:</strong> The recommended connection for modern households utilizing moderate appliances such as refrigerators, washing machines, and televisions. The fixed charges step up significantly compared to the 5A tier.</li>
+              <li><strong className="text-[#1A73E8]">30A to 60A Connections:</strong> High-capacity connections required for households running multiple high-drain appliances simultaneously, such as Air Conditioners, Geysers, and Induction Cookers. The base fixed charges for these connections are the highest.</li>
+            </ul>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Billing Penalties and Rebates</h3>
+            <p className="text-sm text-[#5F6368] mb-4">The timeline of your payment drastically affects your final bill due to the NEA's strict penalty and rebate system.</p>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#188038]">Early Payment Rebate:</strong> If the bill is paid within 7 days of the meter reading date, the NEA provides a 2% rebate on the total bill amount.</li>
+              <li><strong className="text-[#D93025]">Late Payment Penalties:</strong> Payments made between the 8th and 15th day incur no penalty. Between the 16th and 30th day, a 5% penalty is applied. Between the 31st and 40th day, a 10% penalty is applied. Beyond 40 days, a severe 25% penalty is added, and the line is subject to immediate disconnection.</li>
             </ul>
           </div>
         </div>
       }
-      howToUse={{ steps: ["Check your electricity meter. Subtract last month's reading from this month's reading to get total consumed units.", "Enter the total units consumed in the calculator.", "Select your household connection capacity (most typical households in Nepal use a 5A or 15A connection).", "The calculator automatically processes the progressive billing slabs, fixed service charges, and applies the 13% VAT."] }}
-      formula={{ title: "NEA Billing Logic", description: "Progressive tariff blocks.", raw: "Energy Charge = Sum of (Units in Slab × Rate for Slab)\nFixed Charge = Determined by highest slab reached and connection capacity (Amps).\n\nSubtotal = Energy Charge + Fixed Charge\nVAT = Subtotal × 13%\n\nTotal Bill = Subtotal + VAT" }}
+      howToUse={{
+        steps: [
+          "Check your physical electricity meter. Subtract last month's recorded reading from this month's current reading to find the 'Total Units Consumed'.",
+          "Enter this unit value into the primary input field of the calculator.",
+          "Select your household connection capacity (5A, 15A, or 30A). This information is usually printed on your previous NEA bills or the meter box itself.",
+          "Review the 'Progressive Slab Breakdown' section to see exactly how your units were distributed across the different tariff rates.",
+          "The 'Estimated Total Bill' panel will display the final payable amount, including the derived Fixed Charge and the mandatory 13% VAT."
+        ]
+      }}
+      formula={{
+        title: "NEA Piecewise Tariff Logic",
+        description: "The calculation utilizes a piecewise progressive sum rather than flat multiplication.",
+        raw: "1. Energy Charge = Sum of (Units within Slab × Rate for that Slab)\n2. Fixed Charge = Determined by the highest slab reached and the Ampere connection.\n\n3. Subtotal = Energy Charge + Fixed Charge\n4. VAT Amount = Subtotal × 13%\n\n5. Final Payable Bill = Subtotal + VAT Amount"
+      }}
       faqs={[
-        { question: "Why is there a fixed charge even if I didn't use electricity?", answer: "The NEA applies a minimum fixed monthly service charge to maintain the grid connection to your house, regardless of energy usage." },
-        { question: "Do these rates apply to businesses?", answer: "No, this calculator uses the domestic (residential) tariff structure. Commercial and industrial rates have different slab structures and fixed charges." }
+        {
+          question: "Why is there a fixed service charge even if I didn't consume any electricity?",
+          answer: "The NEA applies a minimum fixed monthly service charge to all active meters. This fee covers the infrastructural cost of maintaining the grid connection, transformers, and distribution lines to your house, regardless of your actual energy usage."
+        },
+        {
+          question: "How does the 'Lifeline' 0-20 unit slab work?",
+          answer: "To support low-income households, the NEA provides the first 20 units at an Energy Rate of Rs. 0. If your consumption is 20 units or less on a 5A connection, you will only pay the minimum fixed service charge (Rs. 30), resulting in an extremely low monthly bill."
+        },
+        {
+          question: "Do these tariff rates apply to commercial businesses?",
+          answer: "No, this calculator utilizes the 'Domestic (Residential)' tariff structure. Commercial entities, industrial factories, and agricultural pumps have completely different slab structures, time-of-day (ToD) metering, and demand charges."
+        },
+        {
+          question: "Why did my bill suddenly spike after crossing 150 units?",
+          answer: "Nepal's tariff system is highly progressive. The rate jumps from Rs. 9.50 per unit (for the 51-150 slab) to Rs. 10.50 per unit for consumption above 150 units. Additionally, breaching the 150-unit threshold triggers a higher base Fixed Charge for the entire month."
+        },
+        {
+          question: "Can I change my connection capacity from 5A to 15A?",
+          answer: "Yes, if you are adding heavy appliances like ACs or Induction Cookers, you must officially apply to your local NEA distribution center to upgrade your load capacity from 5A to 15A or 30A to prevent meter tripping and electrical fire hazards."
+        },
+        {
+          question: "Is VAT applied on the Fixed Charge as well?",
+          answer: "Yes, the 13% Value Added Tax (VAT) is calculated on the aggregate subtotal, which means it is applied to both your total Energy Charge and your Fixed Service Charge combined."
+        }
       ]}
-      sidebar={{ title: "Nepal Utilities", links: [{ label: "KUKL Water Bill", href: "/calculator/kukl-bill" }, { label: "Income Tax Nepal", href: "/calculator/income-tax" }], banner: { title: "Energy Conservation", description: "Switching to LED bulbs can reduce your electricity lighting costs by up to 80%.", image: "/images/nepal-banner.jpg" } }}
-      relatedTools={[{ label: "KUKL Water Bill", href: "/calculator/kukl-bill" }]}
+      sidebar={{
+        title: "Nepal Utilities",
+        links: [
+          { label: "KUKL Water Bill", href: "/calculator/kukl-bill/" },
+          { label: "Income Tax Nepal", href: "/calculator/nepal-income-tax/" },
+          { label: "Land Area Converter", href: "/calculator/nepal-land/" }
+        ],
+        banner: {
+          title: "Energy Conservation",
+          description: "Switching to LED bulbs and energy-efficient appliances can reduce your electricity lighting costs by up to 80% and keep you in a lower tariff slab.",
+          image: "/images/nepal-banner.jpg"
+        }
+      }}
+      relatedTools={[
+        { label: "KUKL Water Bill", href: "/calculator/kukl-bill/" },
+        { label: "Income Tax Calculator", href: "/calculator/nepal-income-tax/" }
+      ]}
     />
   );
 }

@@ -117,16 +117,50 @@ export default function PropertyTaxCalculator() {
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
               <li><strong className="text-[#1A73E8]">Net Taxable Profit:</strong> A critical error users make is calculating tax on the gross selling price. As a definitive <strong className="text-[#202124]">land tax calculator nepal</strong>, this tool strictly subtracts the original cost price and legally verified deductible expenses from the final selling price before applying the multiplier.</li>
               <li><strong className="text-[#188038]">The Rs. 10 Lakh Exemption:</strong> To protect lower-income citizens, the algorithm enforces a hard Boolean check. If the gross selling transaction evaluates to less than NPR 1,000,000, the effective <strong className="text-[#202124]">property tax rate nepal</strong> is immediately reduced to 0%.</li>
-              <li><strong className="text-[#D93025]">Negative Gain Immunity:</strong> If the asset depreciates and the transaction results in a mathematical loss (Selling Price &lt; Cost Price), the CGT liability is nullified.</li>
+              <li><strong className="text-[#D93025]">Negative Gain Immunity:</strong> If the asset depreciates and the transaction results in a mathematical loss (Selling Price &lt; Cost Price), the CGT liability is nullified. Note, however, that you must provide sufficient proof of original cost to the Malpot office to claim a negative gain.</li>
             </ul>
           </div>
         </div>
       }
-      howToUse={{ steps: ["Enter the selling price (declared on Lalpurja).", "Enter the original purchase price and any deductible expenses.", "Select how long you held the property.", "Review the taxable gain and CGT amount."] }}
-      formula={{ title: "Nepal Property CGT", description: "Tax applies on net profit. Rate depends on holding period.", raw: "Profit = Selling Price − Cost Price − Expenses\nCGT (5+ years held) = Profit × 5%\nCGT (< 5 years held) = Profit × 7.5%\nExemption: Selling price < Rs. 10,00,000" }}
+      howToUse={{
+        steps: [
+          "Enter the final Selling Price. Ensure this matches the amount you will officially declare on the Lalpurja transfer document at the Malpot office.",
+          "Enter the Original Cost Price. This is what you originally paid to acquire the property.",
+          "Input Deductible Expenses. This includes previous registration fees, documented renovation costs, or taxes already paid during ownership.",
+          "Select the holding period (Less than 5 Years or More than 5 Years) to determine the accurate CGT tier (7.5% vs 5%).",
+          "Review the 'Taxable Profit' to ensure your gain is calculated correctly before the tax multiplier is applied."
+        ]
+      }}
+      formula={{
+        title: "Capital Gains Tax (CGT) Accounting Logic",
+        description: "CGT is levied strictly on the net profit (gain) generated from the sale, not the gross transaction value.",
+        raw: "1. Calculate Taxable Profit:\n   Profit = Selling Price - (Cost Price + Deductible Expenses)\n\n2. Apply Holding Period Multiplier:\n   If Held ≥ 5 Years: CGT Amount = Profit × 5%\n   If Held < 5 Years: CGT Amount = Profit × 7.5%\n\n3. Evaluate Exemption Constraint:\n   If Selling Price < 1,000,000 NPR, CGT Amount = 0."
+      }}
       faqs={[
-        { question: "What is the CGT rate for property in Nepal?", answer: "5% if held more than 5 years, 7.5% if held less than 5 years. Properties sold for under Rs. 10 lakh are fully exempt." },
-        { question: "What expenses can be deducted?", answer: "Deductible expenses include the original purchase price, previous registration fees, renovation costs with receipts, and taxes paid during ownership." }
+        {
+          question: "What is the Capital Gains Tax (CGT) rate for property in Nepal?",
+          answer: "As per the current fiscal laws in Nepal, the CGT rate is 5% if you have held the property for more than 5 years. If you sell the property within 5 years of acquiring it, the rate increases to 7.5%."
+        },
+        {
+          question: "Is property tax calculated on the total selling price?",
+          answer: "No. Capital Gains Tax is calculated strictly on the 'profit' or 'capital gain.' You must subtract your original purchase price and any allowable expenses from the final selling price to find the taxable amount."
+        },
+        {
+          question: "What expenses can be deducted to lower the taxable profit?",
+          answer: "You can deduct the original purchase price, any registration fees paid during your initial purchase, documented and officially receipted renovation or construction costs, and localized land taxes paid during your ownership period."
+        },
+        {
+          question: "Are there any exemptions to the property CGT in Nepal?",
+          answer: "Yes. If the total selling price of the property is less than Rs. 10,00,000 (10 Lakhs), the transaction is fully exempt from Capital Gains Tax."
+        },
+        {
+          question: "Where and when do I pay the Capital Gains Tax?",
+          answer: "The CGT must be paid at the Land Revenue Office (Malpot Karyalaya) during the official transfer of the property deed (Pass). The transfer cannot be finalized until the tax voucher is cleared."
+        },
+        {
+          question: "What happens if I sell the property at a loss?",
+          answer: "If your selling price is lower than your original cost price (resulting in a negative gain), you have zero taxable profit and therefore no Capital Gains Tax liability. However, you still have to pay standard registration processing fees."
+        }
       ]}
       sidebar={{ title: "Real Estate Tools", links: [{ label: "Property Registration", href: "/calculator/property-registration" }, { label: "Mortgage Calc", href: "/calculator/mortgage-calculator" }, { label: "Nepal Land", href: "/calculator/nepal-land" }, { label: "Income Tax", href: "/calculator/nepal-income-tax" }], banner: { title: "Plan Your Sale", description: "Factor in CGT before finalizing any property deal. It directly impacts your net proceeds.", image: "/images/property-banner.jpg" } }}
       relatedTools={[{ label: "Property Registration", href: "/calculator/property-registration" }, { label: "Mortgage", href: "/calculator/mortgage-calculator" }, { label: "Income Tax", href: "/calculator/nepal-income-tax" }]}

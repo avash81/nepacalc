@@ -190,44 +190,51 @@ export default function SolarCalculator() {
             "The calculator will instantly provide your required system size (kW), the number of panels needed, and the required battery capacity (Ah)."
           ]
         }}
-        faqs={[
-          {
-            question: "Why does the calculator assume 80% efficiency?",
-            answer: "Solar systems never operate at 100% efficiency. Energy is lost as heat, during DC to AC conversion in the inverter, through wiring resistance, and due to dust on the panels. An 80% efficiency factor provides a realistic, real-world estimate."
-          },
-          {
-            question: "Should I choose 12V, 24V, or 48V for my battery?",
-            answer: "For small setups (under 1kW), 12V is fine. For medium systems (1kW - 3kW), 24V is standard. For whole-home setups (3kW+), 48V is highly recommended as it uses thinner wires, handles more power safely, and is the standard for modern lithium/hybrid inverters."
-          }
-        ]}
-        seoContent={
-          <div>
-            <h2>How to Size a Solar Power System</h2>
-            <p>Moving to solar energy is a major investment. Before purchasing panels or inverters, it is critical to properly size your system so that it generates enough power for your needs without overspending on excess capacity.</p>
-
-            <h2>Energy Guide: Solar Power in Nepal</h2>
-            <p className="font-medium">
-              With increasing electricity tariffs and a focus on renewable energy, solar power has become a mainstream solution for homes and businesses in Nepal. Accurate <strong>load calculation</strong> is the first step toward energy independence.
-            </p>
-            <p>
-              Our <strong>Solar Requirement Laboratory</strong> helps you size your system correctly. By analyzing your daily wattage consumption and desired backup hours, our engine provides a clear recommendation for <strong>Photovoltaic (PV) panel wattage</strong> and battery Ampere-hour (Ah) capacity, ensuring you never run out of light.
-            </p>
-            
-            <h3>Understanding Peak Sun Hours</h3>
-            <p>A "peak sun hour" is not the total hours the sun is up; it represents an hour when the intensity of sunlight reaches 1,000 watts per square meter. Even if the sun is visible for 12 hours, you may only get 4 to 5 peak sun hours per day. Nepal is generally an excellent location for solar, averaging around 4.5 peak sun hours.</p>
-            
-            <h3>The Calculation Logic</h3>
-            <p>This calculator determines your system size through a few steps:</p>
-            <ol>
-              <li><strong>Calculate Daily Units:</strong> We divide your monthly bill by the average cost per unit (approx NPR 10) to find your monthly consumption in kWh, then divide by 30 for the daily average.</li>
-              <li><strong>Factor in Sunlight:</strong> We divide your daily need by the number of peak sun hours. If you need 10kWh and get 5 sun hours, you need a system that generates 2kW per hour.</li>
-              <li><strong>Apply Efficiency Loss:</strong> Because of system losses, we divide the requirement by 0.8 (80% efficiency). In the previous example, a 2kW requirement becomes a 2.5kW recommended system size.</li>
-            </ol>
-            
-            <h3>Battery Sizing (Ah)</h3>
-            <p>Batteries are sized in Amp-Hours (Ah). To determine this, we calculate the total Watt-Hours (Wh) needed during your backup period and divide it by the voltage of your battery bank. A higher voltage bank (48V vs 12V) means you need fewer Amp-Hours to store the same amount of total energy, which is safer and more efficient for wiring.</p>
+        details={
+          <div className="space-y-8">
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h2 className="text-xl font-black text-[#202124] mb-4">Nepal's Solar Resource & System Sizing Methodology</h2>
+              <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+                <p>Nepal is exceptionally well-positioned for solar energy. With an average of <strong className="text-[#202124]">4.5–5.0 peak sun hours per day</strong> across most of the country (6+ in high-altitude Mustang and Humla), the country receives a solar irradiance of approximately 3.6–6.2 kWh/m²/day. Our <strong className="text-[#202124]">solar calculator</strong> converts your monthly electricity bill into a precise system specification using the standard photovoltaic sizing methodology.</p>
+                <p>The calculation chain: Bill → kWh/month → kWh/day → System kW (adjusting for peak sun hours and 80% real-world efficiency) → Panel count (based on 400W panels, current market standard) → Battery capacity (Ah) for the desired backup duration.</p>
+              </div>
+            </div>
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Battery Voltage Selection Guide for Nepal</h3>
+              <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+                <li><strong className="text-[#1A73E8]">12V Systems:</strong> Small off-grid setups under 500W. Simple, low-cost. Common for basic lighting and phone charging in remote areas. Not suitable for modern inverters or whole-home backup.</li>
+                <li><strong className="text-[#188038]">24V Systems:</strong> Medium setups 1–3kW. Handles most appliances. Standard for many residential solar installations in Nepal with lead-acid batteries.</li>
+                <li><strong className="text-[#D93025]">48V Systems (Recommended):</strong> Modern standard for whole-home solar (3kW+). Thinner wiring, higher efficiency, compatible with lithium iron phosphate (LiFePO4) batteries. Best option for new installations in 2025+.</li>
+              </ul>
+            </div>
           </div>
         }
+        faqs={[
+          {
+            question: "Why does the calculator assume 80% system efficiency?",
+            answer: "Solar systems lose energy through: inverter conversion (DC to AC, ~5–10% loss), cable/wiring resistance (~2–3% loss), temperature derating (panels produce less at high temperatures), and dust accumulation. Cumulatively, 80% is the standard industry real-world efficiency factor used for sizing calculations."
+          },
+          {
+            question: "Should I choose 12V, 24V, or 48V for my battery bank?",
+            answer: "For small setups (under 1kW), 12V is acceptable. For medium systems (1–3kW), 24V is standard. For whole-home setups (3kW+), 48V is strongly recommended—it allows thinner wiring, handles more power safely, and is compatible with all modern hybrid/lithium inverters available in Nepal."
+          },
+          {
+            question: "How many peak sun hours does Nepal get?",
+            answer: "Nepal averages 4.5–5.0 peak sun hours per day in the Terai and hilly regions. High-altitude districts like Mustang, Humla, and Dolpa receive 6+ hours, making them ideal for solar. Coastal/valley locations like Kathmandu average about 4.5 hours due to monsoon cloud cover (June–September)."
+          },
+          {
+            question: "How much does a solar system cost in Nepal?",
+            answer: "As of 2025, a complete 3kW grid-tie solar system in Nepal costs approximately NPR 4–6 lakh, depending on panel brand, inverter type, and installation complexity. A 5kW system with lithium battery backup costs NPR 8–12 lakh. Payback period is typically 5–8 years given rising NEA tariffs."
+          },
+          {
+            question: "Do I need government approval to install solar in Nepal?",
+            answer: "For grid-tie systems (systems connected to the NEA grid) above 5kW, approval from the Nepal Electricity Authority (NEA) and your local distribution center is required. Off-grid systems and small on-grid systems under 5kW can typically be installed without prior government approval, though local bylaws may vary."
+          },
+          {
+            question: "What is the difference between on-grid and off-grid solar?",
+            answer: "On-grid (grid-tie) systems feed surplus power back to the NEA grid and draw from it at night. They do not require batteries but provide no backup during outages. Off-grid systems use battery banks for 24/7 independent power. Hybrid systems combine both—grid-connected with battery backup for outages, which is the most popular option in Nepal today."
+          }
+        ]}
       />
     </CalculatorErrorBoundary>
   );

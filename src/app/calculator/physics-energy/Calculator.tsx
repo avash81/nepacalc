@@ -124,27 +124,56 @@ export default function EnergyCalc() {
           "The calculator automatically rearranges the formula and computes the exact value for the blank field."
         ]
       }}
-      seoContent={
-        <div>
-          <h2>Understanding Kinetic Energy</h2>
-          <p>Kinetic energy is the energy that an object possesses due to its motion. It is defined as the work needed to accelerate a body of a given mass from rest to its stated velocity. Having gained this energy during its acceleration, the body maintains this kinetic energy unless its speed changes.</p>
-          
-          <h3>The Formula: KE = ½mv²</h3>
-          <p>The standard equation for kinetic energy in classical mechanics is <strong>KE = ½mv²</strong>, where:</p>
-          <ul>
-            <li><strong>KE (Kinetic Energy):</strong> Measured in Joules (J). One Joule is the energy transferred when applying a force of one Newton through a distance of one meter.</li>
-            <li><strong>m (Mass):</strong> Measured in kilograms (kg).</li>
-            <li><strong>v (Velocity):</strong> The speed of the object in a specific direction, measured in meters per second (m/s).</li>
-          </ul>
-          
-          <h3>The Non-Linear Effect of Velocity</h3>
-          <p>Looking at the formula, you'll notice that velocity is squared (v²). This has profound implications in physics and real-world safety. If you double the mass of an object, its kinetic energy doubles (a linear relationship). However, if you <strong>double the velocity</strong> of an object, its kinetic energy <strong>quadruples</strong>.</p>
-          <p>This explains why car accidents at high speeds are exponentially more destructive than at low speeds. A car traveling at 60 mph has four times the kinetic energy (and requires four times the braking distance) as the same car traveling at 30 mph.</p>
-          
-          <h3>Applications in Engineering</h3>
-          <p>Understanding kinetic energy is crucial in various fields: calculating the impact force of a projectile, designing braking systems for vehicles and rollercoasters, and converting motion into electricity via wind or hydroelectric turbines.</p>
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Classical Mechanics: The Kinetic Energy Theorem</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                <strong className="text-[#202124]">Kinetic energy (KE)</strong> is the energy possessed by any object in motion. Formally defined by the Work-Energy Theorem, KE is the net work required to accelerate an object of mass <em>m</em> from rest to velocity <em>v</em>. Our <strong className="text-[#202124]">kinetic energy calculator</strong> implements the full algebraic system, allowing you to solve for any one of the three variables (E, m, or v) by leaving its field blank.
+              </p>
+              <p>
+                The most critical insight from the formula <strong className="text-[#202124]">KE = ½mv²</strong> is the quadratic relationship with velocity: doubling velocity does not double energy—it <strong className="text-[#202124]">quadruples</strong> it. This non-linear scaling has profound real-world implications in vehicle safety, projectile physics, and structural engineering, where impact forces at high speeds are exponentially more destructive.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Real-World Kinetic Energy Applications</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Vehicle Safety (Crash Physics):</strong> A car at 60 km/h has 4× the kinetic energy of the same car at 30 km/h. This quadratic relationship is why high-speed collisions are exponentially more fatal—braking distance also scales with v², not v.</li>
+              <li><strong className="text-[#188038]">Renewable Energy (Wind Turbines):</strong> A wind turbine's power output scales with the cube of wind velocity (since power = energy/time, and KE ∝ v²). Doubling wind speed produces 8× the energy—the primary reason turbine placement is so critical.</li>
+              <li><strong className="text-[#D93025]">Projectile & Ballistic Physics:</strong> The terminal kinetic energy of a bullet or projectile upon impact determines penetration depth and structural damage. Forensic engineers use KE calculations to reconstruct accident and ballistic scenarios.</li>
+            </ul>
+          </div>
         </div>
       }
+      faqs={[
+        {
+          question: "What is the unit of Kinetic Energy and why?",
+          answer: "Kinetic Energy is measured in Joules (J). One Joule is defined as the energy transferred when a force of one Newton is applied through one meter of displacement (1 J = 1 N·m = 1 kg·m²/s²). It is named after physicist James Prescott Joule."
+        },
+        {
+          question: "Why does doubling velocity quadruple the kinetic energy?",
+          answer: "Because kinetic energy is proportional to v² (velocity squared). If you substitute 2v into the formula: KE = ½m(2v)² = ½m(4v²) = 4 × ½mv². This quadratic relationship is why speed limits in physics and road safety are so critical."
+        },
+        {
+          question: "How do I use this calculator to find velocity from kinetic energy?",
+          answer: "Clear the Velocity (v) input field, leaving it blank (you will see a '?' placeholder). Enter the known Energy (E) in Joules and Mass (m) in kilograms. The calculator will automatically rearrange the formula to v = √(2E/m) and compute the result."
+        },
+        {
+          question: "What is the difference between Kinetic Energy and Potential Energy?",
+          answer: "Kinetic Energy is the energy of motion (an object currently moving). Potential Energy is stored energy due to position or state (e.g., a ball held at height has gravitational PE). The Law of Conservation of Energy states that the total energy (KE + PE) in a closed system remains constant—as KE increases, PE decreases, and vice versa."
+        },
+        {
+          question: "Does this formula apply to relativistic speeds (near speed of light)?",
+          answer: "No. The formula KE = ½mv² is the Newtonian (classical) approximation, valid only for speeds significantly below the speed of light (~3×10⁸ m/s). At relativistic speeds, Einstein's special relativity formula must be used: KE = (γ-1)mc², where γ is the Lorentz factor."
+        },
+        {
+          question: "What is the kinetic energy of a moving car in Nepal at highway speed?",
+          answer: "A typical car (~1,500 kg) traveling at 80 km/h (22.2 m/s) has a kinetic energy of: KE = ½ × 1500 × (22.2)² ≈ 370,000 Joules (370 kJ). This energy must be fully dissipated by the braking system to bring the vehicle to a stop."
+        }
+      ]}
     />
   );
 }

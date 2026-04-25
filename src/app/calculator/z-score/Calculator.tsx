@@ -114,40 +114,70 @@ export default function ZScoreCalc() {
             { label: 'Statistics Plus', href: '/calculator/statistics-plus' },
           ],
         }}
+        details={
+          <div className="space-y-8">
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h2 className="text-xl font-black text-[#202124] mb-4">Gaussian Normalization & Z-Score Analytics</h2>
+              <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+                <p>
+                  In advanced inferential statistics, comparing raw data points across divergent distributions is mathematically impossible without a unified scaling metric. Our <strong className="text-[#202124]">Z-Score Calculator</strong> acts as a primary Gaussian normalization engine, converting any raw observation into a standard score. This score explicitly defines the observation's exact distance from the population mean, measured in units of standard deviation.
+                </p>
+                <p>
+                  This standardization process maps raw data onto the Standard Normal Distribution Curve (where μ = 0 and σ = 1). This is an essential procedure for risk analysts, biometric researchers, and psychometricians who must determine if a specific data point is statistically significant or merely an expected variation within the bounds of standard probability.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Analytical Framework Applications</h3>
+              <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+                <li><strong className="text-[#1A73E8]">Comparative Metric Standardization:</strong> Z-scores allow analysts to compare "apples to oranges". For example, comparing a student's score on a highly difficult Physics exam to an easy English exam by analyzing their Z-scores relative to the class averages.</li>
+                <li><strong className="text-[#188038]">Outlier Isolation & Detection:</strong> Any Z-score extending beyond ±3.0 indicates the raw value sits outside 99.7% of the normal distribution. These points are flagged as severe statistical anomalies requiring immediate investigation.</li>
+                <li><strong className="text-[#D93025]">Probability & P-Value Derivation:</strong> Calculating the Z-score is the mandatory first step before utilizing a Z-table to determine the cumulative probability (p-value) of an event occurring in predictive modeling.</li>
+              </ul>
+            </div>
+          </div>
+        }
         howToUse={{
           steps: [
-            "Enter your raw value (x) — this is the specific number you want to analyze.",
-            "Enter the population mean (μ) — the average value of the entire group.",
-            "Enter the standard deviation (σ) — the measure of spread in the dataset.",
-            "The calculator will instantly solve for 'z' and show you where the value sits on a standard normal distribution curve."
+            "Input the Raw Value (x). This is the specific data point you want to test.",
+            "Input the Population Mean (μ). This is the total average of the dataset you are comparing against.",
+            "Input the Standard Deviation (σ). This represents the statistical spread of the baseline population.",
+            "Review the generated Z-Score. A positive number means it is above the average; a negative number means it is below.",
+            "Check the 'Statistical Interpretation' panel to instantly see what percentile band your data falls into based on the Empirical Rule."
           ]
+        }}
+        formula={{
+          title: "Standard Score Logic",
+          description: "The mathematical algorithm for dataset normalization.",
+          raw: "z = (x − μ) / σ\n\nWhere:\nz = The resulting Standard Score\nx = The raw observation value\nμ = The Population Mean\nσ = The Population Standard Deviation"
         }}
         faqs={[
           {
-            question: "What is a Z-Score?",
-            answer: "A Z-score (or standard score) indicates how many standard deviations a data point is from the mean. A score of 0 means the value is exactly at the mean, while +1 means it is one standard deviation above the mean."
+            question: "What exactly does a Z-score of 0 mean?",
+            answer: "A Z-score of exactly 0 means the raw data point is identical to the population mean. It sits perfectly dead-center on the normal distribution curve."
           },
           {
-            question: "Why use Z-scores instead of raw values?",
-            answer: "Z-scores allow you to compare data points from different datasets. For example, you can use Z-scores to compare a student's performance in Math vs. English, even if the exams had different difficulty levels and grading scales."
+            question: "Why is a Z-score superior to just comparing raw percentages?",
+            answer: "Raw percentages don't account for difficulty or variance. Scoring 80% on an incredibly hard exam where the class average is 40% (high Z-score) is vastly superior to scoring 90% on an easy exam where the class average is 95% (negative Z-score). Z-scores reveal true relative performance."
+          },
+          {
+            question: "At what point is a Z-score considered an 'outlier'?",
+            answer: "In standard statistical methodology, any Z-score greater than +3 or less than -3 is considered an extreme outlier. According to the Empirical Rule, 99.7% of all normal data should fall between -3 and +3."
+          },
+          {
+            question: "Can standard deviation (σ) ever be zero in this formula?",
+            answer: "No. If standard deviation is 0, it means all numbers in the population are exactly the same. Attempting to divide by a standard deviation of 0 will result in a mathematical 'undefined' error."
+          },
+          {
+            question: "How do Z-scores relate to percentiles?",
+            answer: "Z-scores map directly to percentiles via the standard normal distribution table. For example, a Z-score of +1.0 always corresponds to the 84th percentile, meaning the value is higher than 84% of the population."
+          },
+          {
+            question: "What is the difference between a Z-score and a T-score?",
+            answer: "Z-scores are used when you know the population standard deviation and have a large sample size (n > 30). T-scores are used for smaller sample sizes where the true population standard deviation is unknown."
           }
         ]}
-        seoContent={
-          <div>
-            <h2>Gaussian Analysis Laboratory</h2>
-            <p>
-              In <strong>statistical analysis</strong>, comparing data from different distributions requires a common scale. The Z-score is the primary tool for this normalization. 
-              Our analysis laboratory allows researchers in Nepal to quickly determine the relative standing of any observation. By converting raw data into <strong>standardized scores</strong>, 
-              you can accurately assess outliers, calculate percentiles, and perform rigorous hypothesis testing with absolute mathematical certainty.
-            </p>
-
-            <h2>Understanding Z-Scores</h2>
-            <p>A Z-score tells you how far a value is from the average. If a Z-score is 1, it's 1 standard deviation above the average. If it's -2, it's 2 standard deviations below the average.</p>
-            
-            <h3>Real-World Applications</h3>
-            <p>Z-scores are used in everything from banking (predicting defaults) to academia (standardizing test scores). In Nepal, they are frequently used in scientific research and economic data analysis to normalize varying data sets.</p>
-          </div>
-        }
       />
     </CalculatorErrorBoundary>
   );

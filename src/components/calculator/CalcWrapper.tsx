@@ -53,10 +53,10 @@ export function CalcWrapper({
         }}
       />
 
-      <div className="max-w-[94%] mx-auto px-4 sm:px-6 pt-24">
+      <div className="max-w-[94%] mx-auto px-4 sm:px-6 pt-6">
         
         {/* Breadcrumb Path & Back Button */}
-        <div className="mb-6 flex flex-wrap items-center gap-4">
+        <div className="mb-4 flex flex-wrap items-center gap-4">
           <button 
              onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
              className="flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-[#5F6368] hover:text-blue-600 transition-all border-r border-[#dadce0] pr-4 py-1"
@@ -88,7 +88,7 @@ export function CalcWrapper({
 
           {/* 2. Main Content Area */}
           <main className="flex-1 min-w-0">
-            <header className="mb-10 pb-8 border-b border-[#dadce0]">
+            <header className="mb-4 pb-3 border-b border-[#dadce0]">
               <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-4 lowercase first-letter:uppercase">
                 {title}
               </h1>
@@ -103,7 +103,7 @@ export function CalcWrapper({
 
             {/* Static Content / Strategy Layer */}
             {formula && (
-               <section className="mt-16 pt-12 border-t border-[#dadce0]">
+               <section className="mt-10 pt-10 border-t border-[#dadce0]">
                   <h2 className="text-xl font-black text-[#202124] tracking-tight mb-6">How it works</h2>
                   <div className="bg-[#f8f9fa] p-6 rounded-2xl border border-[#dadce0] font-mono text-sm text-[#5f6368] overflow-x-auto">
                     {formula}
@@ -113,13 +113,13 @@ export function CalcWrapper({
 
             {/* Related Tools Discovery */}
             {relatedCalcs && relatedCalcs.length > 0 && (
-              <section className="mt-16 pt-12 border-t border-[#dadce0]">
-                <h2 className="text-xl font-black text-[#202124] tracking-tight mb-8">Related Calculators</h2>
+              <section className="mt-10 pt-10 border-t border-[#dadce0]">
+                <h2 className="text-xl font-black text-[#202124] tracking-tight mb-6">Related Calculators</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {relatedCalcs.map((calc, i) => (
                     <Link 
                       key={i} 
-                      href={`/calculator/${calc.slug}`}
+                      href={calc.slug.startsWith('/') ? (calc.slug.endsWith('/') ? calc.slug : `${calc.slug}/`) : `/calculator/${calc.slug}/`}
                       className="p-5 bg-white border border-[#dadce0] rounded-2xl hover:border-blue-500 hover:bg-blue-50/50 transition-all flex items-center justify-between group"
                     >
                       <span className="text-[14px] font-bold text-[#202124] group-hover:text-blue-600 transition-colors">
@@ -131,7 +131,7 @@ export function CalcWrapper({
                 </div>
               </section>
             )}
-            <div className="mt-16 sm:mt-20 pt-8 border-t border-slate-200" aria-hidden="true" />
+            <div className="mt-10 sm:mt-12 pt-8 border-t border-slate-200" aria-hidden="true" />
           </main>
         </div>
       </div>

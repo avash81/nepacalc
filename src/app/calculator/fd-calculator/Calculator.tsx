@@ -128,10 +128,10 @@ export default function FDCalculator() {
             <h2 className="text-xl font-black text-[#202124] mb-4">Optimizing Fixed Deposit Returns in Nepal</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>
-                Fixed Deposits (Muddati Khata) remain the foundation of risk-free capital preservation in Nepal's banking sector. Our advanced <strong className="text-[#202124]">fd calculator nepal</strong> is engineered to replicate the exact compounding algorithms utilized by 'A' class commercial banks and national financial institutions, allowing you to project precise maturity values against current <strong className="text-[#202124]">fixed deposit interest rates nepal</strong>.
+                Fixed Deposits (Muddati Khata) remain the absolute foundation of risk-free capital preservation in Nepal's banking sector. Our advanced <strong className="text-[#202124]">fd calculator nepal</strong> is engineered to replicate the exact compounding algorithms utilized by 'A' class commercial banks, development banks, and finance companies, allowing you to project precise maturity values against the ever-fluctuating <strong className="text-[#202124]">fixed deposit interest rates nepal</strong>.
               </p>
               <p>
-                Unlike simple interest vehicles, modern FD accounts accelerate wealth generation through compounding. Depending on the banking institution and specific promotional schemes, interest may be reinvested on a monthly, quarterly, or annual basis. This calculator dynamically adjusts the Annual Percentage Yield (APY) based on your selected frequency, ensuring your projections align perfectly with institutional payouts.
+                Unlike simple interest vehicles, modern FD accounts accelerate wealth generation through continuous compounding. Depending on the specific Banking and Financial Institution (BFI) and their promotional schemes, accrued interest may be reinvested on a monthly, quarterly, or annual basis. This calculator dynamically adjusts the effective Annual Percentage Yield (APY) based on your selected frequency, ensuring your projections align perfectly with institutional payouts.
               </p>
             </div>
           </div>
@@ -139,18 +139,52 @@ export default function FDCalculator() {
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
             <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Mechanics of Term Deposits</h3>
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Quarterly Compounding Dominance:</strong> The overwhelming majority of Nepalese banks employ quarterly compounding (4 compounding periods per year). Mathematically, this yields a slightly higher effective annual rate than nominal rates, compounding your interest at the end of Ashoj, Poush, Chaitra, and Asadh.</li>
-              <li><strong className="text-[#188038]">The 5% TDS Mandate:</strong> As mandated by the Inland Revenue Department (IRD), all interest generated from personal fixed deposits is subject to a 5% Tax Deducted at Source (<strong className="text-[#202124]">tds on fixed deposit</strong>). While this calculator models the gross compounding trajectory, investors must deduct this 5% withholding tax to determine absolute net-in-hand maturity.</li>
-              <li><strong className="text-[#D93025]">Liquidity & Penalty Considerations:</strong> Premature withdrawal of a fixed deposit in Nepal generally incurs a penalty (often a 1-2% reduction from the contracted rate). Borrowing against the FD (up to 90% of the principal) is usually a more mathematically sound strategy if short-term liquidity is required.</li>
+              <li><strong className="text-[#1A73E8]">Quarterly Compounding Dominance:</strong> The overwhelming majority of Nepalese banks employ quarterly compounding (4 compounding periods per year). Mathematically, this yields a higher effective annual rate than nominal rates, compounding your interest at the end of the fiscal quarters (Ashoj, Poush, Chaitra, and Asadh).</li>
+              <li><strong className="text-[#188038]">The 5% TDS Mandate:</strong> As mandated by the Inland Revenue Department (IRD), all interest generated from personal fixed deposits is subject to a 5% Tax Deducted at Source (<strong className="text-[#202124]">tds on fixed deposit</strong>). While this calculator models the gross compounding trajectory, investors must manually deduct this 5% withholding tax to determine absolute net-in-hand maturity.</li>
+              <li><strong className="text-[#D93025]">Liquidity & Penalty Considerations:</strong> Premature withdrawal of a fixed deposit in Nepal generally incurs a penalty (often a 1-2% reduction from the contracted rate). If short-term liquidity is required, borrowing against the FD (taking an FD Loan up to 90% of the principal) is usually a more mathematically sound strategy than breaking the deposit early.</li>
             </ul>
           </div>
         </div>
       }
-      howToUse={{ steps: ["Enter your FD deposit amount (Principal).", "Select or type your bank's annual interest rate.", "Set the FD duration using presets or a custom value.", "Choose the compounding frequency (most Nepal banks use Quarterly).", "Review maturity amount and interest breakdown."] }}
-      formula={{ title: "FD Compound Interest", description: "FD uses compound interest formula with varying compounding frequencies.", raw: "A = P × (1 + r/n)^(n×t)\nWhere P = Principal, r = rate, n = compounding frequency, t = years" }}
+      howToUse={{
+        steps: [
+          "Enter your initial deposit amount in the 'Principal Amount' field.",
+          "Select a standard annual interest rate using the preset buttons or manually type your bank's exact offered rate.",
+          "Set the FD duration using the preset buttons (6 months, 1 year, etc.) or input a custom decimal value (e.g., 1.5 for 18 months).",
+          "Choose the Compounding Frequency. If you are unsure, select 'Quarterly', as this is the standard for 95% of Nepalese banks.",
+          "Review the final 'Maturity Amount' to see the gross projected payout."
+        ]
+      }}
+      formula={{
+        title: "Standard Compound Interest Formula",
+        description: "Banks utilize the exponential compounding formula to determine your final maturity amount.",
+        raw: "A = P × (1 + r/n)^(n×t)\n\nWhere:\nA = Total Maturity Amount\nP = Principal Deposit Amount\nr = Annual Interest Rate (decimal)\nn = Number of compounding periods per year (e.g., 4 for Quarterly)\nt = Time in years"
+      }}
       faqs={[
-        { question: "What is the best compounding frequency for FD in Nepal?", answer: "Most commercial banks in Nepal compound interest quarterly (4×/year). Some banks offer monthly compounding for special FD schemes, which yields slightly more." },
-        { question: "Is FD interest taxable in Nepal?", answer: "Yes. A 5% Tax Deducted at Source (TDS) is applied on FD interest income in Nepal, deducted automatically by the bank." }
+        {
+          question: "What is the best compounding frequency for FDs in Nepal?",
+          answer: "Most commercial banks in Nepal compound interest quarterly (4 times a year). However, some cooperative banks or special promotional schemes offer monthly compounding, which yields slightly more mathematically over the same time period."
+        },
+        {
+          question: "Is FD interest taxable in Nepal?",
+          answer: "Yes. For individual depositors, a 5% Tax Deducted at Source (TDS) is applied on the generated FD interest. The bank automatically deducts this tax before crediting the interest to your account. For corporate FDs, the TDS rate is 15%."
+        },
+        {
+          question: "Can I break my Fixed Deposit before maturity?",
+          answer: "Yes, you can break an FD prematurely, but banks will penalize you. Typically, they will recalculate your interest at 1% to 2% lower than the published savings account rate, meaning you lose a significant portion of your expected returns."
+        },
+        {
+          question: "What is an FD Loan and is it better than breaking the FD?",
+          answer: "If you need emergency cash, banks allow you to take a loan against your FD (usually up to 90% of the principal value). The loan interest rate is usually the FD rate + 2%. This is often much better than breaking the FD and losing your compounded interest."
+        },
+        {
+          question: "Are Fixed Deposits safe in Nepal?",
+          answer: "Yes. Deposits in 'A' class commercial banks, 'B' class development banks, and 'C' class finance companies are insured by the Deposit and Credit Guarantee Fund (DCGF) up to Rs. 500,000 per depositor per institution."
+        },
+        {
+          question: "How does the Remittance FD rate work?",
+          answer: "Nepal Rastra Bank (NRB) mandates that all commercial banks must offer at least 1% higher interest rate on fixed deposits that are funded directly through formal foreign employment remittance channels."
+        }
       ]}
       sidebar={{ title: "Investment Tools", links: [{ label: "Compound Interest", href: "/calculator/compound-interest" }, { label: "SIP Calculator", href: "/calculator/sip-calculator" }, { label: "Simple Interest", href: "/calculator/simple-interest" }, { label: "Nepal TDS", href: "/calculator/nepal-tds-calculator" }], banner: { title: "Grow Your Savings", description: "FDs are one of Nepal's safest investment options. Compare rates across BFIs before locking in.", image: "/images/fd-banner.jpg" } }}
       relatedTools={[{ label: "SIP Calculator", href: "/calculator/sip-calculator" }, { label: "Compound Interest", href: "/calculator/compound-interest" }, { label: "TDS Tool", href: "/calculator/nepal-tds-calculator" }]}

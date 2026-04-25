@@ -172,62 +172,93 @@ export default function NepalSalaryCalculator() {
       details={
         <div className="space-y-8">
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering the Salary to Hourly Conversion in Nepal</h2>
+            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering Salary Architecture and Take-Home Pay in Nepal</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>
-                In the modern professional landscape, understanding the direct translation from <strong className="text-[#202124]">salary to hourly</strong> rates is crucial. Nepalese employment contracts typically stipulate a monthly gross, but to truly gauge your earning power, you must <strong className="text-[#202124]">figure out hourly salary</strong> equivalents. Standard Nepalese labor law assumes a 48-hour workweek (yielding approximately 208 working hours per month). 
+                In the Nepalese corporate landscape, understanding the mathematical translation from a gross offer to your actual bank credit is vital. A job offer stating a "gross monthly salary" does not directly reflect the cash you will have available for living expenses. Our <strong className="text-[#202124]">Salary Calculator Nepal</strong> is designed to demystify this process, acting as an exact <strong className="text-[#202124]">net salary calculator</strong> that factors in the Labor Act 2074 and the Contribution Based Social Security Act.
               </p>
               <p>
-                By factoring in mandatory Social Security Fund (SSF) and voluntary Citizen Investment Trust (CIT) deductions, this engine functions as an advanced <strong className="text-[#202124]">salary increase calculator</strong>, allowing you to project exact net changes when negotiating a raise. Whether you are transitioning from freelance contracts (<strong className="text-[#202124]">hourly to salary</strong>) or evaluating an international remote offer, knowing your exact baseline in NPR is the mathematical foundation of your financial security.
+                Whether you are trying to <strong className="text-[#202124]">figure out hourly salary</strong> for a freelance contract, or calculating the exact Cost to Company (CTC) for your business, this tool bridges the gap between gross expectations and net reality. It dynamically accounts for the 60/40 Basic-to-Allowance split, mandatory Social Security Fund (SSF) deductions, voluntary Citizen Investment Trust (CIT) contributions, and progressive income tax slabs.
               </p>
             </div>
           </div>
 
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The Architecture of Your Paycheck</h3>
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The Anatomy of a Nepalese Payslip</h3>
+            <p className="text-sm text-[#5F6368] mb-4">A standard corporate payslip in Nepal is divided into several mathematical components. Understanding these parts is essential when using a <strong className="text-[#202124]">take home pay calculator</strong>.</p>
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Basic vs Allowance Split:</strong> Most corporate payrolls in Nepal enforce a 60/40 mathematical split. SSF (11% employee, 20% employer) is strictly calculated on the 60% Basic component to optimize tax liability while ensuring compliance.</li>
-              <li><strong className="text-[#188038]">The CTC Discrepancy:</strong> If you are tasked to <strong className="text-[#202124]">find hourly from salary</strong> based on CTC (Cost to Company), remember that CTC includes the employer's 20% SSF contribution, artificially inflating the gross figure before deductions.</li>
-              <li><strong className="text-[#D93025]">Marginal Rate Impact:</strong> When utilizing this as a <span className="italic">salary increase calculator</span>, be aware that pushing into a higher tax bracket (e.g., crossing from 10% to 20%) will yield diminishing marginal returns on your net take-home pay.</li>
+              <li><strong className="text-[#202124]">Basic Salary vs Allowances:</strong> By convention and legal precedent in Nepal, Gross Salary is typically split into 60% Basic Salary and 40% Allowances (which may include Dearness, House Rent, or Transport allowances). This split is crucial because statutory deductions like SSF and Provident Fund are calculated strictly on the Basic component, not the Gross.</li>
+              <li><strong className="text-[#202124]">Employee SSF Contribution (11%):</strong> Under the Social Security scheme, an employee is mandated to contribute 11% of their Basic Salary. This amount is mathematically deducted from your gross pay before tax calculation.</li>
+              <li><strong className="text-[#202124]">Employer SSF Contribution (20%):</strong> Your employer contributes an additional 20% of your Basic Salary to your SSF account (comprising Provident Fund, Gratuity, and Insurance coverage). While this does not reduce your monthly take-home, it is a critical component of your overall Cost to Company (CTC) and long-term wealth accumulation.</li>
+            </ul>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Navigating Deductions and Taxes</h3>
+            <p className="text-sm text-[#5F6368] mb-4">Before arriving at your net pay, your gross salary must pass through voluntary deductions and statutory tax gates.</p>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#D93025]">Citizen Investment Trust (CIT):</strong> Employees can opt to channel a portion of their income into a CIT account. This is a highly effective tax-saving strategy, as CIT contributions (up to Rs. 500,000 or 1/3rd of assessable income) are fully deductible from your taxable income base.</li>
+              <li><strong className="text-[#D93025]">Progressive Income Tax (TDS):</strong> After deducting SSF and CIT, the remaining amount is your Taxable Income. Employers in Nepal are required to calculate your projected annual tax liability using the progressive slabs (1%, 10%, 20%, 30%, 36%, 39%) and divide it by 12. This monthly Tax Deducted at Source (TDS) is subtracted directly from your paycheck.</li>
+            </ul>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Salary Negotiation and "Cost to Company"</h3>
+            <p className="text-sm text-[#5F6368] mb-4">When evaluating a job offer, identifying whether the quoted figure is Gross Salary or Cost to Company (CTC) changes the mathematical reality of your negotiation.</p>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#188038]">Gross vs CTC Negotiation:</strong> If an employer offers a CTC of Rs. 100,000, your actual Gross Salary is significantly lower because the CTC includes the employer's 20% SSF contribution. Always negotiate based on Gross Salary to ensure your monthly cash flow meets your expectations.</li>
+              <li><strong className="text-[#188038]">Using the Salary Increase Calculator:</strong> If you are offered a 15% raise, your net take-home will likely increase by less than 15%. This occurs because the higher gross salary may push a portion of your income into a higher marginal tax bracket (e.g., from the 10% slab to the 20% slab). Understanding this marginal rate impact is key to effective financial planning.</li>
             </ul>
           </div>
         </div>
       }
       howToUse={{
         steps: [
-          "Enter your gross monthly salary as mentioned in your offer letter.",
-          "Select your marital status and gender for accurate tax threshold mapping.",
-          "Toggle SSF if your company is registered with the Social Security Fund.",
-          "Toggle CIT and enter your voluntary contribution if you have a CIT account.",
-          "Review the breakdown to see exactly how much goes to tax, SSF, and your bank."
+          "Enter your agreed-upon Gross Monthly Salary in the primary input field.",
+          "Select your Marital Status and Gender, as these determine your annual tax-free thresholds and potential rebates.",
+          "Toggle the SSF button if your organization is registered with the Social Security Fund (standard for most modern companies).",
+          "If you voluntarily contribute to the Citizen Investment Trust (CIT), toggle the CIT button and input your monthly contribution amount.",
+          "Review the Monthly Breakdown card to see the exact flow of funds: from Gross, minus SSF, minus CIT, minus Tax, to your final Net In-Hand."
         ]
       }}
       formula={{
-        title: "Nepal Payroll Logic",
-        description: "Payroll in Nepal follows the Labor Act 2074 and Social Security Act mandates.",
-        raw: "Taxable Income = Gross - (Employee SSF + CIT)\nMonthly Tax = Annual Tax Calculation / 12\nNet Pay = Gross - (Employee SSF + CIT + Monthly Tax)"
+        title: "Nepalese Payroll Mathematics",
+        description: "The underlying logic assumes the standard Nepalese corporate structure defined by the Labor Act.",
+        raw: "1. Basic Salary = Gross Monthly Salary × 60%\n2. Employee SSF = Basic Salary × 11%\n3. Employer SSF = Basic Salary × 20%\n4. Cost To Company (CTC) = Gross Monthly Salary + Employer SSF\n5. Taxable Base = Gross Monthly - (Employee SSF + CIT Contribution)\n6. Monthly Tax = (Annual Tax on Projected Taxable Base) ÷ 12\n7. Net Take-Home Pay = Gross Monthly Salary - (Employee SSF + CIT Contribution + Monthly Tax)"
       }}
       faqs={[
         {
-          question: "How is Basic Salary determined in Nepal?",
-          answer: "In most private organizations in Nepal, Basic Salary is considered to be 60% of the Gross Salary, with the remaining 40% categorized as Allowances."
+          question: "What is the difference between Gross Salary and Net Salary in Nepal?",
+          answer: "Gross Salary is the total amount you earn before any deductions. Net Salary (or take-home pay) is the actual amount credited to your bank account after mandatory deductions like SSF, CIT, and Income Tax (TDS) have been subtracted."
         },
         {
-          question: "Is SSF mandatory for everyone?",
-          answer: "Yes, for the formal sector in Nepal, contribution to the Social Security Fund (SSF) is a legal requirement for both employers and employees."
+          question: "How is the 11% SSF contribution calculated?",
+          answer: "By standard Nepalese corporate practice, the 11% employee contribution to the Social Security Fund is calculated on your Basic Salary, which is typically fixed at 60% of your total Gross Salary."
         },
         {
-          question: "What are the tax slabs for 2081/82?",
-          answer: "Tax slabs start at 1% (SST) for the first 5 Lakhs (Single) or 6 Lakhs (Married), and progress up to 39% for high earners."
+          question: "Does the employer's 20% SSF contribution get deducted from my pay?",
+          answer: "No. The employer's 20% SSF contribution is paid by the company on top of your Gross Salary. It does not reduce your monthly take-home pay, but it is included in your overall Cost to Company (CTC) package."
+        },
+        {
+          question: "Can I choose not to participate in the SSF?",
+          answer: "For organizations registered as formal entities under the Labor Act 2074 and the Contribution Based Social Security Act, participation in the SSF is mandatory for both the employer and the employee. It cannot be legally opted out of."
+        },
+        {
+          question: "How much can I deduct using the Citizen Investment Trust (CIT)?",
+          answer: "You can deduct up to Rs. 500,000 annually, or one-third (33.33%) of your total assessable income, whichever is lower. This amount is subtracted before calculating your tax liability, making it a highly effective tax-saving tool."
+        },
+        {
+          question: "How do I calculate my hourly rate from my monthly salary?",
+          answer: "Nepal's labor law assumes a standard 48-hour workweek. To find your hourly rate, you can divide your monthly gross salary by 208 (the approximate number of working hours in a month: 48 hours/week × 52 weeks / 12 months)."
         }
       ]}
       sidebar={{
         title: "Career & Finance",
         links: [
-          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax" },
-          { label: "TDS Calculator", href: "/calculator/nepal-tds-calculator" },
-          { label: "Gratuity Calculator", href: "/calculator/nepal-gratuity" },
-          { label: "Bonus Calculator", href: "/calculator/nepal-bonus" },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" },
+          { label: "TDS Calculator", href: "/calculator/nepal-tds/" },
+          { label: "Gratuity Calculator", href: "/calculator/gratuity-calculator/" },
+          { label: "Provident Fund", href: "/calculator/nepal-provident-fund/" },
         ],
         banner: {
           title: "Optimize Your Pay",
@@ -236,9 +267,9 @@ export default function NepalSalaryCalculator() {
         }
       }}
       relatedTools={[
-        { label: "Income Tax", href: "/calculator/nepal-income-tax" },
-        { label: "TDS Calculator", href: "/calculator/nepal-tds-calculator" },
-        { label: "VAT Calculator", href: "/calculator/nepal-vat" }
+        { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
+        { label: "TDS Calculator", href: "/calculator/nepal-tds/" },
+        { label: "EPF Calculator", href: "/calculator/nepal-provident-fund/" }
       ]}
     />
   );

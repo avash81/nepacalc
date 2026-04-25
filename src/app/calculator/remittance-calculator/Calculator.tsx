@@ -210,7 +210,7 @@ export default function RemittanceCalculator() {
                   Maximizing the value of your hard-earned foreign income requires more than a simple currency conversion. Our <strong className="text-slate-900">remittance calculator nepal</strong> is engineered to provide precise, real-time analytics based on the official Nepal Rastra Bank (NRB) buying rates. It allows the diaspora to project the exact Net NPR their families will receive by comparing various provider fees.
                 </p>
                 <p>
-                  As an authoritative <strong className="text-slate-900">nrb exchange rate calculator</strong>, this tool dynamically accounts for both flat-fee providers (like IME or Prabhu) and percentage-based agencies (like Wise). This ensures that when you <strong className="text-slate-900">send money to nepal</strong>, you are mathematically optimized for the lowest possible friction cost.
+                  As an authoritative <strong className="text-slate-900">nrb exchange rate calculator</strong>, this tool dynamically accounts for both flat-fee providers (like IME or Prabhu) and percentage-based agencies (like Wise). This ensures that when you <strong className="text-slate-900">send money to nepal</strong>, you are mathematically optimized for the lowest possible friction cost, keeping more money in your family's hands.
                 </p>
               </div>
             </div>
@@ -223,35 +223,65 @@ export default function RemittanceCalculator() {
                 <li><strong className="text-rose-600">Hundi Risk Matrix:</strong> Illegal shadow-banking (Hundi) may sometimes advertise slightly higher spot rates, but it disqualifies the sender from the IPO quota, the 1% interest premium, and social security benefits, while carrying severe legal risks under anti-money laundering (AML) laws.</li>
               </ul>
             </div>
+
+            <div className="bg-white border border-slate-200 rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-bold text-slate-900 mb-4 border-b border-slate-100 pb-2">Understanding NRB Buying vs. Selling Rates</h3>
+              <p className="text-sm text-slate-600 mb-4">When checking exchange rates, you will always see two numbers: Buying and Selling. It is crucial to know which one applies to you.</p>
+              <ul className="space-y-3 text-sm text-slate-600 list-disc pl-5">
+                <li><strong className="text-slate-900">Buying Rate (What you get):</strong> This is the rate at which the bank "buys" foreign currency from you. If you are sending USD or Gulf currencies to Nepal, the bank buys that currency and gives your family NPR. Therefore, <strong className="text-slate-900">remittance calculations always use the Buying Rate.</strong></li>
+                <li><strong className="text-slate-900">Selling Rate (What you pay):</strong> This is the rate at which the bank "sells" foreign currency. You only look at this rate if you are in Nepal and need to buy USD to travel abroad or pay for an international university fee.</li>
+              </ul>
+            </div>
           </div>
         }
-        sidebar={{
-          title: "Related Financial Tools",
-          links: [
-            { label: 'Income Tax Calc', href: '/calculator/nepal-income-tax' },
-            { label: 'Gold Price Converter', href: '/calculator/weight-converter' },
-            { label: 'Exchange Rates', href: '/exchange-rates' },
-          ],
-        }}
         howToUse={{
           steps: [
-            "Select your sending currency (e.g., USD, SAR, MYR).",
-            "Enter the amount you wish to remit to Nepal.",
-            "Toggle between 'Live NRB' rates (for USD) or manual rates if you have a specific quote.",
-            "Compare the net NPR received across different service providers.",
-            "The tool automatically identifies the 'Best' provider based on the highest net payout after fees."
+            "Select your sending currency (e.g., USD, SAR, MYR) from the dropdown list.",
+            "Enter the total amount of foreign currency you wish to remit to Nepal.",
+            "Toggle between 'Live NRB' rates (for USD) or manual rates if you received a specific quote from your local exchange house.",
+            "Compare the net NPR received across different service providers in the Service Provider Index.",
+            "The tool automatically identifies the 'Best' provider based on the highest net payout after deducting specific provider fees."
           ]
+        }}
+        formula={{
+          title: "Remittance Math",
+          description: "Calculating the exact payout requires factoring in the provider's specific fee structure.",
+          raw: "Gross NPR = Foreign Amount × NRB Buying Rate\n\nIf Flat Fee: Net Payout = Gross NPR - Fixed Fee Amount\nIf Percentage Fee: Net Payout = Gross NPR - (Gross NPR × Fee %)"
         }}
         faqs={[
           {
             question: "Why is the IPO quota important for remittances?",
-            answer: "The 10% IPO quota is a significant benefit for migrant workers, providing them with a reserved allocation of shares in profitable Nepalese companies, which is often a better long-term investment than just keeping cash."
+            answer: "The 10% IPO quota is a significant wealth-building benefit. The Securities Board of Nepal (SEBON) mandates that 10% of all public share issues be reserved for Nepalese migrant workers who send money through formal channels. This guarantees share allotment in highly oversubscribed IPOs."
           },
           {
-            question: "Do different banks offer different rates?",
-            answer: "Yes, while they all follow the NRB base rate, commercial banks add their own margin. Our tracker helps you compare these variants to find the most favorable rate for your family."
+            question: "Do different remittance agencies offer different exchange rates?",
+            answer: "Yes. While the Nepal Rastra Bank (NRB) sets the official reference rate, commercial agencies (like IME, Prabhu, or Western Union) add their own margin. This is why you must compare the final 'Net Payout' rather than just the advertised exchange rate."
+          },
+          {
+            question: "What is Hundi and why should I avoid it?",
+            answer: "Hundi is an illegal, unregulated money transfer system. Using Hundi is a financial crime in Nepal. Furthermore, money received via Hundi is not recognized as formal remittance, meaning your family cannot claim the 1% extra bank interest or apply for the 10% IPO quota."
+          },
+          {
+            question: "Should I look at the Buying Rate or Selling Rate?",
+            answer: "When you are sending money to Nepal, you must always look at the Buying Rate. This is the rate at which Nepalese banks will 'buy' your foreign currency to give your family Nepalese Rupees."
+          },
+          {
+            question: "Is there tax on remittance income in Nepal?",
+            answer: "No. The Government of Nepal does not levy income tax on personal remittance sent by migrant workers to their families, provided the money comes through legal banking or recognized remittance channels."
+          },
+          {
+            question: "Why do some providers charge a percentage while others charge a flat fee?",
+            answer: "Digital-first providers (like Wise) often charge a percentage fee, which is cheaper for small amounts. Traditional physical agencies (like Western Union) often charge a flat fee or tiered flat fees, which can be more cost-effective when sending very large sums."
           }
         ]}
+        sidebar={{
+          title: "Related Financial Tools",
+          links: [
+            { label: 'Income Tax Calc', href: '/calculator/nepal-income-tax/' },
+            { label: 'Salary Calculator', href: '/calculator/nepal-salary/' },
+            { label: 'Exchange Rates', href: '/exchange-rates/' },
+          ],
+        }}
       />
     </CalculatorErrorBoundary>
   );

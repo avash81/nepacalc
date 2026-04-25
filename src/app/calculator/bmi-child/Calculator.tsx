@@ -101,10 +101,68 @@ export default function BmiChildCalculator() {
           </div>
         </div>
       }
-      howToUse={{ steps: ["Select the child's biological sex.", "Enter the child's age in years (between 2 and 19).", "Input current weight in kg and height in cm.", "Check the BMI result and the corresponding estimated health category."] }}
-      formula={{ title: "Pediatric BMI Logistics", description: "Calculation maps to percentile midpoints.", raw: "BMI = Weight (kg) / [Height (m)]²\n\nUnlike adults, children's BMI results must be mapped against age-specific percentile grids. Percentiles under 5% indicate underweight, 85%-95% indicate overweight, and over 95% is obese." }}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Pediatric Growth Trajectory & Percentile Analytics</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                Unlike adult BMI, which relies on fixed, static thresholds (e.g., exactly 25.0 for overweight), pediatric physiology is in a state of constant flux. As children grow, their body fat percentages shift radically depending on their age, sex, and stage of puberty. Therefore, our <strong className="text-[#202124]">child bmi calculator</strong> does not simply calculate a raw number; it plots that number against established global growth curves to determine a precise age-and-sex-specific percentile.
+              </p>
+              <p>
+                In the context of pediatric health, determining a <strong className="text-[#202124]">healthy weight for kids</strong> involves identifying where they sit compared to their peers. A BMI value that represents obesity for a 5-year-old might be completely normal for a 15-year-old. This diagnostic tool utilizes normalized percentile data derived from the CDC and WHO to provide a clinically aligned assessment of a child's developmental trajectory.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Understanding Pediatric Percentile Categories</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Underweight (&lt; 5th Percentile):</strong> Indicates the child weighs less than 95% of children of the same age and sex. This can be a flag for potential malnutrition, malabsorption disorders, or metabolic conditions requiring pediatric review.</li>
+              <li><strong className="text-[#188038]">Healthy Weight (5th to &lt; 85th Percentile):</strong> The optimal growth zone. Maintaining a <strong className="text-[#202124]">healthy weight</strong> in this band significantly reduces the risk of early-onset cardiovascular and metabolic issues.</li>
+              <li><strong className="text-[#D93025]">Overweight & Obese (≥ 85th Percentile):</strong> Falling above the 85th percentile (Overweight) or 95th percentile (Obese) flags excessive adiposity. This requires immediate nutritional intervention to prevent long-term complications like childhood Type 2 Diabetes.</li>
+            </ul>
+          </div>
+        </div>
+      }
+      howToUse={{
+        steps: [
+          "Select the child's biological sex. This is mandatory because boys and girls follow entirely different growth charts.",
+          "Enter the child's exact age in years (between 2 and 19).",
+          "Input the current weight in kilograms and height in centimeters.",
+          "Check the calculated BMI result and review the corresponding estimated health percentile category."
+        ]
+      }}
+      formula={{
+        title: "Pediatric BMI Logistics",
+        description: "Calculation maps to percentile midpoints.",
+        raw: "BMI = Weight (kg) / [Height (m)]²\n\nUnlike adults, children's BMI results must be mapped against age-specific percentile grids. Percentiles under 5% indicate underweight, 85%-95% indicate overweight, and over 95% is obese."
+      }}
       faqs={[
-        { question: "Why is Child BMI different from Adult BMI?", answer: "While the formula is the same, children are actively growing. Their body fat percentages change constantly, meaning a static BMI range (like 18.5 - 24.9 for adults) is completely inaccurate for kids." }
+        {
+          question: "Why is Child BMI calculated differently than Adult BMI?",
+          answer: "While the raw math (weight divided by height squared) is identical, the interpretation is completely different. Because children are actively growing, their body fat percentages change constantly. A static BMI range (like 18.5 - 24.9 for adults) is completely inaccurate for kids. Instead, a child's BMI is ranked as a percentile against other children of the exact same age and biological sex."
+        },
+        {
+          question: "What does '85th Percentile' actually mean?",
+          answer: "If a child is in the 85th percentile, it means their BMI is higher than 85% of children of the same age and sex, and lower than 15%. In pediatric medicine, the 85th percentile is the threshold where a child is officially classified as 'Overweight'."
+        },
+        {
+          question: "Can this calculator be used for toddlers under 2 years old?",
+          answer: "No. For infants and toddlers under 24 months, doctors use specialized 'Weight-for-Length' growth charts rather than BMI. BMI calculations are only medically validated for children aged 2 through 19."
+        },
+        {
+          question: "How often should I check my child's BMI?",
+          answer: "Pediatricians generally recommend checking a child's BMI once a year during their annual physical exam. Checking it too frequently can cause unnecessary anxiety, as children often experience rapid height growth spurts right before or after weight gain."
+        },
+        {
+          question: "My child is muscular from sports. Does this affect the result?",
+          answer: "Yes. BMI cannot distinguish between fat mass and muscle mass. A highly athletic teen (like a football player or gymnast) might have a heavy weight due to dense muscle, resulting in a 'High BMI' despite having low body fat. Always consult a doctor for a holistic assessment."
+        },
+        {
+          question: "What should I do if my child is categorized as Obese?",
+          answer: "Do not attempt to put a growing child on a restrictive diet without medical supervision. Focus on lifestyle changes for the entire family—increasing physical activity, reducing sugary drinks, and consulting a pediatrician or registered dietitian."
+        }
       ]}
       sidebar={{ title: "Health Tools", links: [{ label: "Adult BMI Calculator", href: "/calculator/bmi-calculator" }, { label: "Pregnancy Due Date", href: "/calculator/pregnancy-due-date" }], banner: { title: "Pediatric Health", description: "Ensure your child maintains a balanced diet and regular physical activity.", image: "/images/health-banner.jpg" } }}
       relatedTools={[{ label: "BMI Calculator", href: "/calculator/bmi-calculator" }]}

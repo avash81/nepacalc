@@ -142,50 +142,70 @@ export default function SimpleCalculator() {
             { label: 'Scientific Calculator', href: '/calculator/scientific' },
           ],
         }}
+        details={
+          <div className="space-y-8">
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h2 className="text-xl font-black text-[#202124] mb-4">Standard Arithmetic Computation Engine</h2>
+              <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+                <p>
+                  While advanced mathematics relies on complex algebraic structures, the foundation of all numerical analysis is <strong className="text-[#202124]">standard arithmetic</strong>. Our simple calculator is engineered not just for basic addition and subtraction, but as a robust digital ledger capable of parsing continuous operational chains without succumbing to the floating-point precision errors that plague standard operating system calculators.
+                </p>
+                <p>
+                  This computational engine is built on a <strong className="text-[#202124]">safe-evaluation parser</strong>. Unlike standard JavaScript which famously evaluates <code className="bg-[#F1F3F4] px-1 rounded">0.1 + 0.2</code> as <code className="bg-[#F1F3F4] px-1 rounded text-[#D93025]">0.30000000000000004</code>, our engine intercepts the operation, scales the decimals to integers via exponentiation, executes the arithmetic perfectly, and downscales the result back to true decimal form.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Core Algorithmic Modalities</h3>
+              <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+                <li><strong className="text-[#1A73E8]">Addition & Subtraction (+, −):</strong> Linear accumulation and reduction algorithms. Essential for accounting, inventory management, and basic physical modeling.</li>
+                <li><strong className="text-[#188038]">Multiplication & Division (×, ÷):</strong> Rapid scalar operations. Used for exponential growth estimation, geometric area derivation, and ratio reduction.</li>
+                <li><strong className="text-[#D93025]">Decimal & Percentage Scaling (%, .):</strong> Instantly shift the decimal radix point to compute tax margins, tip rates, and financial discounts.</li>
+              </ul>
+            </div>
+          </div>
+        }
         howToUse={{
           steps: [
-            "Click or tap the numbers to input your first value.",
-            "Select an operation (+, -, ×, ÷).",
-            "Input your second value.",
-            "Press the '=' button to see your result.",
-            "Use the 'C' button to clear the entire calculation, or 'DEL' to remove the last typed digit."
+            "Use the visual keypad or your physical keyboard to enter the primary number.",
+            "Select an arithmetic operator (Addition, Subtraction, Multiplication, Division).",
+            "Enter subsequent numbers to build out the computational chain.",
+            "Press the Equals (=) button or hit Enter to execute the internal evaluation parser.",
+            "Use the 'C' key to completely flush the memory, or 'DEL' to retroactively remove the last keystroke."
           ]
+        }}
+        formula={{
+          title: "Order of Operations Protocol",
+          description: "The engine strictly parses mathematical strings based on universal hierarchy.",
+          raw: "Rule 1: Division & Multiplication are evaluated first (Left to Right).\nRule 2: Addition & Subtraction are evaluated last (Left to Right).\n\nExample:\n2 + 3 × 4 = 14 (Not 20)\nThe engine correctly evaluates (3×4) prior to adding 2."
         }}
         faqs={[
           {
-            question: "How does the percentage (%) button work?",
-            answer: "The percent button divides the current display number by 100. For example, if you type 50 and press %, it becomes 0.5."
+            question: "How does the engine handle floating-point precision errors?",
+            answer: "Standard computer processors use Base-2 binary to calculate, which cannot perfectly represent certain Base-10 decimals. Our engine uses a specialized 'safeEval' parser that temporarily converts decimals to whole numbers, calculates them cleanly, and then returns the exact decimal."
           },
           {
-            question: "Is there a limit to how large a number I can calculate?",
-            answer: "The calculator supports up to standard JavaScript safe integer limits (up to 16 digits of precision). Beyond that, it will utilize scientific notation (e.g., 1.5e+20)."
+            question: "Does this calculator respect PEMDAS/BODMAS?",
+            answer: "Yes. If you string multiple operations together before pressing equals (e.g., 5 + 5 × 2), the internal parser will correctly evaluate the multiplication first, yielding 15, not 20."
+          },
+          {
+            question: "What is the maximum number of digits I can calculate?",
+            answer: "The engine utilizes standard JavaScript safe integer limits, allowing for absolute precision up to 15-16 digits. Exceeding this boundary will result in the engine outputting scientific notation (e.g., 1.5e+20) to prevent overflow errors."
+          },
+          {
+            question: "How exactly does the Percentage (%) button operate?",
+            answer: "The percent button acts as a rapid scaling modifier. It takes the current number in the display matrix and divides it by 100. For instance, typing 50 and hitting % immediately converts the display to 0.5."
+          },
+          {
+            question: "What happens if I attempt to divide by zero?",
+            answer: "In mathematics, division by zero is undefined. If attempted, the engine's internal safety protocols will intercept the calculation and return an error state (Infinity or NaN) to prevent a localized crash."
+          },
+          {
+            question: "Can I use my physical computer keyboard?",
+            answer: "Yes. The interface is designed to map standard numpad keystrokes (0-9, +, -, *, /, Enter, Backspace) directly to the computational engine for maximum operational speed."
           }
         ]}
-        seoContent={
-          <div>
-            <h2>The Essential Online Calculator</h2>
-            <p>Our simple online calculator is designed to provide a clean, distraction-free environment for everyday mathematical tasks. Whether you are balancing a checkbook, calculating a quick tip at a restaurant, or helping with basic homework, this tool provides instant, accurate results without the clutter of advanced scientific functions.</p>
-
-            <h2>Utility Guide: Standard Arithmetic</h2>
-            <p className="font-medium">
-              Sometimes, the most powerful tool is the <strong>simplest one</strong>. Whether you are balancing daily expenses or double-checking a retail invoice, a reliable basic calculator is an essential utility.
-            </p>
-            <p>
-              Our <strong>Standard Calculation Laboratory</strong> provides a clean, distraction-free environment for your daily arithmetic. Designed to follow the <strong>BODMAS order of operations</strong>, our engine ensures that even simple equations are handled with the same rigor and precision as our most advanced engineering tools.
-            </p>
-            
-            <h3>Core Functions</h3>
-            <ul>
-              <li><strong>Addition (+):</strong> Combine two or more numbers together.</li>
-              <li><strong>Subtraction (-):</strong> Find the difference between numbers.</li>
-              <li><strong>Multiplication (×):</strong> Scale numbers rapidly.</li>
-              <li><strong>Division (÷):</strong> Split amounts into equal parts.</li>
-            </ul>
-            
-            <h3>Why Use a Web Calculator?</h3>
-            <p>While most smartphones have built-in calculators, accessing a web-based calculator is often faster when you are already working on a computer. It integrates seamlessly into your workflow, allowing you to quickly copy and paste values from spreadsheets, emails, or financial documents directly into the interface.</p>
-          </div>
-        }
       />
     </CalculatorErrorBoundary>
   );

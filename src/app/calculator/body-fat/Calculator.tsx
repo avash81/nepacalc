@@ -156,29 +156,69 @@ export default function BodyFatCalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Body Composition Analysis via Anthropometry</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                While the Body Mass Index (BMI) is useful for sweeping population studies, it fails on an individual level because it cannot differentiate between bone, muscle, and adipose tissue (fat). Our <strong className="text-[#202124]">body fat calculator</strong> solves this by utilizing the clinically validated U.S. Navy Circumference Method. By analyzing specific anthropometric measurements (neck, waist, and hips), it isolates fat mass from lean body mass with a high degree of statistical reliability.
+              </p>
+              <p>
+                Understanding your true body fat percentage is the ultimate metric for metabolic health and fitness tracking. A person can have a "normal" BMI but still carry an unhealthy amount of visceral fat around their organs (a condition known as Normal Weight Obesity or "Skinny Fat"). Conversely, a bodybuilder might be classified as "Obese" on a BMI chart but possess an exceptionally lean, healthy body fat percentage.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Diagnostic Ranges & Health Implications</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Essential Fat (2-5% Men, 10-13% Women):</strong> The absolute minimum fat required for basic physical and physiological health. Dipping below these numbers can cause severe hormonal disruption and organ failure.</li>
+              <li><strong className="text-[#188038]">Athletic & Fitness (6-17% Men, 14-24% Women):</strong> This optimal zone is characterized by visible muscle definition and peak cardiovascular performance. It is the target range for athletes and highly active individuals.</li>
+              <li><strong className="text-[#D93025]">Obese (25%+ Men, 32%+ Women):</strong> Elevated fat levels, particularly visceral fat stored in the abdominal cavity, significantly increase the risk of Type 2 diabetes, systemic inflammation, and cardiovascular disease.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
-          "Select your gender to apply the correct U.S. Navy formula.",
-          "Measure your height in centimeters accurately.",
-          "Measure your neck circumference just below the Adam's apple.",
-          "Measure your waist circumference at the navel (men) or narrowest point (women).",
-          "For women, also measure the hip circumference at its widest point.",
-          "Click 'Estimate Body Fat' to see your percentage and health category."
+          "Select your biological gender to ensure the algorithm applies the correct physiological fat distribution models.",
+          "Measure your height in centimeters. Stand straight without shoes.",
+          "Measure your neck circumference exactly below the larynx (Adam's apple), keeping the tape perfectly horizontal.",
+          "Measure your waist circumference. For men, measure exactly at the navel. For women, measure at the narrowest point of the abdomen.",
+          "For women only: Measure hip circumference at the widest horizontal point of the buttocks.",
+          "Ensure the tape is taut but not compressing the skin for maximum algorithmic accuracy."
         ]
       }}
       formula={{
-        title: "U.S. Navy Circumference Method",
-        description: "A clinically validated method used by the Navy to estimate body composition based on body dimensions.",
-        raw: "Male: 495 / (1.0324 - 0.19077×log10(waist-neck) + 0.15456×log10(height)) - 450\nFemale: 495 / (1.29579 - 0.35004×log10(waist+hip-neck) + 0.221×log10(height)) - 450"
+        title: "The U.S. Navy Anthropometric Equation",
+        description: "A specialized logarithmic algorithm designed to estimate body density and body fat percentage based on circumferential water displacement theories.",
+        raw: "For Men:\n% Fat = 495 / (1.0324 - 0.19077×log10(Waist-Neck) + 0.15456×log10(Height)) - 450\n\nFor Women:\n% Fat = 495 / (1.29579 - 0.35004×log10(Waist+Hip-Neck) + 0.221×log10(Height)) - 450"
       }}
       faqs={[
         {
-          question: "How accurate is the Navy Method?",
-          answer: "The U.S. Navy Method is highly regarded for its simplicity and reasonable accuracy (typically within ±3% of hydrostatic weighing) for the general population."
+          question: "How accurate is the U.S. Navy Body Fat Method?",
+          answer: "The U.S. Navy Circumference method is highly regarded for its balance of simplicity and accuracy. When measurements are taken correctly, it is generally accurate to within ±3-4% of hydrostatic weighing (the clinical gold standard)."
         },
         {
-          question: "What is a healthy body fat percentage?",
-          answer: "Healthy ranges vary by gender and age. Generally, 14-24% for men and 21-31% for women are considered healthy/fitness ranges."
+          question: "Why do women naturally have a higher body fat percentage?",
+          answer: "Women require more essential body fat (10-13% vs men's 2-5%) for reproductive health and hormonal balance. Falling below this essential threshold can lead to severe health issues like amenorrhea (loss of menstruation) and osteoporosis."
+        },
+        {
+          question: "Why does the calculator need my neck measurement?",
+          answer: "The neck measurement is used as a proxy to estimate your total lean body mass. The algorithm assumes that a larger neck correlates with larger overall bone structure and muscle mass. It subtracts the neck value from the waist value to isolate the true fat mass."
+        },
+        {
+          question: "Is this calculator better than a standard BMI calculator?",
+          answer: "Yes, significantly. BMI only looks at total weight versus height. It cannot tell if that weight is fat or muscle. The Body Fat calculator actively attempts to isolate your adipose tissue, providing a much truer picture of your actual metabolic health."
+        },
+        {
+          question: "When is the best time of day to take these measurements?",
+          answer: "For maximum consistency, you should take your measurements first thing in the morning, after using the restroom and before eating or drinking anything. This prevents daily bloating or hydration levels from skewing the results."
+        },
+        {
+          question: "What is visceral fat versus subcutaneous fat?",
+          answer: "Subcutaneous fat is the 'pinchable' fat located just beneath the skin. Visceral fat is the hard fat stored deep inside the abdominal cavity around your organs. A high waist measurement directly correlates with dangerous levels of visceral fat."
         }
       ]}
       sidebar={{

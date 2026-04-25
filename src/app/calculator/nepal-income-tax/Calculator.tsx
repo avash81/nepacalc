@@ -178,60 +178,104 @@ export default function NepalIncomeTaxCalculator() {
       details={
         <div className="space-y-8">
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Precision Net Income Calculator & Tax Engine 2024/2025</h2>
+            <h2 className="text-xl font-black text-[#202124] mb-4">Understanding Nepal Income Tax (FY 2081/82)</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>
-                Navigating the complexities of Nepal's Inland Revenue Department (IRD) taxation logic requires more than a simple percentage check. Our <strong className="text-[#202124]">tax calculator 2024</strong> and <strong className="text-[#202124]">tax calculator 2025</strong> algorithms are engineered to process exact progressive bracket mathematics. As a definitive <strong className="text-[#202124]">net income calculator</strong> for Nepalese professionals, this tool maps your gross salary through the 1%, 10%, 20%, 30%, 36%, and 39% brackets with absolute precision.
+                The Nepal Income Tax Calculator helps estimate your monthly and annual tax liabilities based on the prevailing tax laws governed by the Inland Revenue Department (IRD) of Nepal. Taxation in Nepal follows a progressive slab system, meaning your income is divided into segments, and higher segments are taxed at progressively higher rates. This tool is designed primarily for resident individuals earning remuneration (salary) and provides a highly accurate <strong className="text-[#202124]">net income calculator</strong> for financial planning.
               </p>
               <p>
-                Whether you need a reliable <strong className="text-[#202124]">monthly income calculator</strong> to forecast your take-home pay or a comprehensive annual audit, the underlying mathematical model dynamically applies the Social Security Fund (SSF) exemptions, shifting the base 1% Social Security Tax liability to zero for verified contributors.
+                A core principle of the Nepalese tax system is the distinction between gross income and taxable income. By legally utilizing available deductions and understanding the thresholds associated with your marital status, you can optimize your tax burden. The calculator automatically integrates the latest provisions for the fiscal year 2081/82 (2024/2025), including the 1% Social Security Tax (SST) and its corresponding waivers for contributing members.
               </p>
             </div>
           </div>
 
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Framework & Rebate Logic</h3>
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Core Components of the Tax Calculation</h3>
+            <p className="text-sm text-[#5F6368] mb-4">A standard income tax calculation in Nepal involves several key components. Understanding these inputs will help you navigate your payslip and our <strong className="text-[#202124]">tax calculator nepal</strong>.</p>
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Section 11 Rebates:</strong> Female professionals receive a mathematical 10% reduction on total tax liability, calculated <span className="italic">after</span> the bracket accumulation.</li>
-              <li><strong className="text-[#188038]">Deduction Ceiling Logic:</strong> The engine caps CIT (Citizen Investment Trust) deductions at the mathematical minimum of either Rs. 500,000 or 1/3rd of total assessable income.</li>
-              <li><strong className="text-[#D93025]">Marginal Tax Smoothing:</strong> As income crosses the Rs. 500,000 (Single) or Rs. 600,000 (Married) thresholds, the algorithm applies continuous piecewise functions to prevent abrupt jumps in effective tax rates.</li>
+              <li><strong className="text-[#202124]">Assessable Income (Gross Salary):</strong> This is the total remuneration earned from your employment before any deductions or taxes are applied. It includes your basic salary, dearness allowance, Dashain bonus, and any other taxable allowances provided by your employer.</li>
+              <li><strong className="text-[#202124]">Marital Status Assessment:</strong> Nepal provides different initial tax-free thresholds depending on whether an individual elects to be assessed as "Single" or as a "Couple" (Married). For the current fiscal year, the threshold is Rs. 500,000 for single individuals and Rs. 600,000 for married couples. Married individuals whose spouses also earn income must carefully choose whether joint or separate assessment is mathematically beneficial.</li>
+              <li><strong className="text-[#202124]">Social Security Fund (SSF):</strong> The SSF is a government-mandated retirement and welfare fund. Salaried professionals who are formally enrolled and contribute to the SSF are granted a waiver on the baseline 1% Social Security Tax on their first tax slab. This is mathematically applied by dropping the 1% slab rate to 0% for SSF contributors.</li>
+            </ul>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Allowable Deductions and Exemptions</h3>
+            <p className="text-sm text-[#5F6368] mb-4">Before applying the tax slabs, the IRD allows taxpayers to deduct specific investments and expenses from their gross income, thereby reducing their overall Taxable Income.</p>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Citizen Investment Trust (CIT) & Approved Retirement Funds:</strong> Contributions made to approved retirement funds (like CIT or EPF) are tax-deductible. The maximum allowable deduction is the lowest of three limits: the actual contribution amount, 33% of your assessable income, or a flat ceiling of Rs. 500,000 per annum.</li>
+              <li><strong className="text-[#1A73E8]">Life Insurance Premiums:</strong> Taxpayers who have purchased life insurance policies can deduct the premium amounts paid during the fiscal year. The maximum allowable deduction for life insurance is capped at Rs. 40,000 per year.</li>
+              <li><strong className="text-[#1A73E8]">Health Insurance Premiums:</strong> Similar to life insurance, premiums paid for health insurance policies are deductible. The maximum allowable deduction under this category is capped at Rs. 20,000 per year.</li>
+            </ul>
+          </div>
+          
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The Progressive Tax Slab System</h3>
+            <p className="text-sm text-[#5F6368] mb-4">Once your Taxable Income is determined (Gross Income minus Deductions), it is filtered through progressive tax brackets. Here is how the brackets generally function for a single individual in FY 2081/82:</p>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#D93025]">First Slab (0 to 5 Lakhs):</strong> Taxed at 1% (Social Security Tax). If you are an SSF contributor, this 1% is waived, making it 0%.</li>
+              <li><strong className="text-[#D93025]">Second Slab (Next 2 Lakhs):</strong> The income between 5 Lakhs and 7 Lakhs is taxed at 10%.</li>
+              <li><strong className="text-[#D93025]">Third Slab (Next 3 Lakhs):</strong> The income between 7 Lakhs and 10 Lakhs is taxed at 20%.</li>
+              <li><strong className="text-[#D93025]">Fourth Slab (Next 10 Lakhs):</strong> The income between 10 Lakhs and 20 Lakhs is taxed at 30%.</li>
+              <li><strong className="text-[#D93025]">Additional Surcharges:</strong> Income exceeding 20 Lakhs is subject to an additional 20% surcharge on the standard 30% rate, creating an effective marginal rate of 36%. For extreme incomes exceeding 50 Lakhs, further surcharges apply, pushing the top marginal rate to 39%.</li>
+            </ul>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Special Tax Rebates</h3>
+            <p className="text-sm text-[#5F6368] mb-4">Certain demographic groups receive final rebates calculated against their total tax liability.</p>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#188038]">Female Tax Rebate:</strong> Under Section 11 of the Income Tax Act, female professionals whose solely sourced income is remuneration are entitled to a 10% rebate on their total calculated tax liability. This acts as a direct discount on the final tax bill.</li>
             </ul>
           </div>
         </div>
       }
       howToUse={{
         steps: [
-          "Enter your gross income (Monthly or Annual) into the salary field.",
-          "Select your marital status and gender to apply the correct tax-free thresholds.",
-          "Input your legal deductions like Life Insurance (Max Rs. 40,000) and CIT.",
-          "Enable the SSF toggle if you are a contributor to gain the 1% SST waiver.",
-          "Review the detailed slab breakdown and effective tax rate in the results panel."
+          "Toggle between 'Monthly' or 'Annual' to specify your gross salary format.",
+          "Enter your Gross Income in the primary input field.",
+          "Select your Marital Status (Single or Married) to apply the correct baseline threshold (5L vs 6L).",
+          "Select your Gender. If 'Female' is selected, the algorithm automatically applies the 10% Section 11 tax rebate.",
+          "Expand the 'Legal Deductions' section. Input any Life Insurance premiums (max 40k), CIT/EPF contributions (max 500k), and check the SSF box if your employer contributes to the Social Security Fund.",
+          "Review the generated report, which includes your Net Take-Home Pay, a detailed slab-by-slab breakdown, and your effective tax rate."
         ]
       }}
       formula={{
-        title: "Income Tax Slab Logic",
-        description: "Nepal uses a progressive tax slab system. For FY 2081/82, thresholds vary based on marital status.",
-        raw: "Taxable Income = Gross Income - Allowable Deductions\nTax = ∑ (Slab Amount × Slab Rate) - Rebates\nFemale Rebate: 10% reduction on total tax liability."
+        title: "Income Tax Calculation Mathematics",
+        description: "The core engine runs a piecewise continuous function based on the Inland Revenue Department's progressive brackets.",
+        raw: "1. Taxable Income (TI) = Gross Income - (CIT Deduction + Life Insurance Deduction + Health Insurance Deduction)\n\n2. Tax Calculation (Single Assessment Example):\nIf TI ≤ 5,00,000: Tax = TI × 1% (or 0% if SSF)\nIf 5,00,000 < TI ≤ 7,00,000: Tax = (5,00,000 × 1%) + ((TI - 5,00,000) × 10%)\nIf 7,00,000 < TI ≤ 10,00,000: Tax = Base_Previous + ((TI - 7,00,000) × 20%)\nIf 10,00,000 < TI ≤ 20,00,000: Tax = Base_Previous + ((TI - 10,00,000) × 30%)\nIf TI > 20,00,000: Tax = Base_Previous + ((TI - 20,00,000) × 36%)\n\n3. Final Liability = Tax - (Tax × 10% if Female)"
       }}
       faqs={[
         {
-          question: "What is the tax-free threshold for 2081/82?",
-          answer: "For individuals, the threshold is Rs. 500,000. For married couples, it is Rs. 600,000. These apply to remuneration earners."
+          question: "What is the tax-free threshold in Nepal for 2081/82?",
+          answer: "For the fiscal year 2081/82, the initial tax slab (often referred to as the tax-free threshold, though it technically carries a 1% SST) is Rs. 500,000 for unmarried individuals and Rs. 600,000 for married couples."
         },
         {
-          question: "How does the SSF waiver work?",
-          answer: "Salaried employees contributing to the SSF are exempt from the 1% Social Security Tax on the first tax slab, saving approximately Rs. 5,000 to Rs. 6,000 annually."
+          question: "How does the Social Security Fund (SSF) waiver affect my tax?",
+          answer: "If you and your employer contribute to the SSF, the government waives the 1% Social Security Tax on your first income slab (up to 5 Lakhs for single, 6 Lakhs for married). This effectively saves you Rs. 5,000 to Rs. 6,000 per year."
         },
         {
-          question: "Can I deduct mortgage interest?",
-          answer: "Currently, Nepal's Income Tax Act does not allow deduction of home loan interest for salaried individuals, unlike some other jurisdictions."
+          question: "What is the maximum limit for CIT or EPF deductions?",
+          answer: "The maximum allowable deduction for approved retirement funds like CIT (Citizen Investment Trust) and EPF (Employees Provident Fund) is capped at Rs. 500,000 per year, or 33% of your assessable income, whichever is lower."
+        },
+        {
+          question: "Are both husband and wife required to file jointly if they are married?",
+          answer: "No. Married individuals have the legal right to elect whether they want to be assessed as a 'Couple' (jointly) or as 'Single' (separately). Usually, if both spouses earn significant incomes, it is mathematically advantageous to be assessed separately to maximize the lower tax brackets."
+        },
+        {
+          question: "How does the 10% rebate for women work?",
+          answer: "According to the Income Tax Act, a female resident whose income is derived solely from employment remuneration is eligible for a 10% rebate on her total tax liability. For example, if the calculated tax is Rs. 20,000, she will receive a discount of Rs. 2,000, making her final tax Rs. 18,000."
+        },
+        {
+          question: "Is Dashain bonus fully taxable?",
+          answer: "Yes, in Nepal, the Dashain bonus (usually equivalent to one month's basic salary) is considered part of your annual remuneration and is fully taxable. It is added to your gross assessable income before applying the tax slabs."
         }
       ]}
       sidebar={{
         title: "Related Finance Tools",
         links: [
           { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
-          { label: "TDS Calculator", href: "/calculator/nepal-tds-calculator/" },
+          { label: "TDS Calculator", href: "/calculator/nepal-tds/" },
           { label: "VAT Calculator", href: "/calculator/nepal-vat/" },
           { label: "Investment (SIP)", href: "/calculator/sip-calculator/" },
         ],
@@ -243,7 +287,7 @@ export default function NepalIncomeTaxCalculator() {
       }}
       relatedTools={[
         { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
-        { label: "TDS Calculator", href: "/calculator/nepal-tds-calculator/" },
+        { label: "TDS Calculator", href: "/calculator/nepal-tds/" },
         { label: "VAT Calculator", href: "/calculator/nepal-vat/" }
       ]}
     />

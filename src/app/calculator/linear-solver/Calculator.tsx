@@ -178,11 +178,69 @@ export default function LinearSolver() {
           )}
         </div>
       }
-      howToUse={{ steps: ["Select the system size (2 variables or 3 variables).", "Input the coefficients (a, b, c) and the constant (d) for each linear equation.", "The system will instantly evaluate the determinant matrix.", "If a unique solution exists, the exact X, Y (and Z) coordinates will be displayed."] }}
-      formula={{ title: "Cramer's Rule", description: "Determinant matrix methodology.", raw: "For 2 variables (ax + by = c):\nΔ = (a1 × b2) - (a2 × b1)\nΔx = (c1 × b2) - (c2 × b1)\nΔy = (a1 × c2) - (a2 × c1)\n\nx = Δx / Δ\ny = Δy / Δ\n\nIf Δ = 0, the system is singular (no unique solution)." }}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">Linear Algebra: System Resolution via Cramer's Rule</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                In advanced algebra and engineering mathematics, a system of linear equations involves multiple algebraic equations that share the same set of variables. Our <strong className="text-[#202124]">linear equation solver</strong> is a highly optimized computational matrix engine designed to find the exact, simultaneous solution for these variables—which, geometrically, represents the precise spatial coordinate where intersecting lines (in 2D space) or intersecting planes (in 3D space) perfectly cross.
+              </p>
+              <p>
+                Rather than relying on basic substitution or elimination methods, this engine leverages <strong className="text-[#202124]">Cramer's Rule</strong>. This theorem utilizes mathematical determinants of square matrices to generate an exact solution. Because it fundamentally relies on determinant calculations rather than iterative algebraic manipulation, it is mathematically immune to substitution drift, delivering absolute precision instantly.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The Mathematics of Matrices & Singularity</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Determinants (Δ):</strong> The engine first extracts all coefficients into a main matrix and calculates its determinant (Δ). If the system involves two variables, this is a 2x2 matrix; for three variables, it's a 3x3 matrix computed using Sarrus' rule.</li>
+              <li><strong className="text-[#188038]">Vector Isolation (Δx, Δy, Δz):</strong> To solve for a specific variable (e.g., X), the system temporarily replaces the X column in the matrix with the 'constants' column from the right side of the equals sign, generating a new determinant (Δx). The final value for X is simply Δx / Δ.</li>
+              <li><strong className="text-[#D93025]">Matrix Singularity (Δ = 0):</strong> If the main determinant (Δ) evaluates to exactly zero, Cramer's rule dictates that division by zero is mathematically impossible. The engine will instantly abort the calculation and throw a <span className="italic">Singular Matrix Error</span>. Geometrically, a zero determinant proves that the lines or planes are either perfectly parallel (meaning they will never intersect) or they are lying exactly on top of each other (meaning there are infinite solutions, not one unique intersection).</li>
+            </ul>
+          </div>
+        </div>
+      }
+      howToUse={{
+        steps: [
+          "Select the dimensionality of your system using the top toggle: '2 Variables (X, Y)' or '3 Variables (X, Y, Z)'.",
+          "For each equation row, input the coefficients (the numbers attached to the variables) and the constant (the number on the right side of the equals sign).",
+          "Ensure your equations are written in standard form: ax + by = c. If an equation is y = 2x + 4, you must mentally rearrange it to -2x + 1y = 4 before inputting the numbers.",
+          "As you input values, the engine automatically calculates the determinant. If a valid intersection exists, the exact Solution Vector will populate on the right.",
+          "For 2-variable systems, review the Visual Intersection Map to see exactly how your two lines cross in Cartesian space."
+        ]
+      }}
+      formula={{
+        title: "Cramer's Determinant Theorem",
+        description: "The core matrix algebra used to resolve 2x2 and 3x3 systems.",
+        raw: "Standard Form (2 Variables):\na1x + b1y = c1\na2x + b2y = c2\n\nMain Determinant:\nΔ = (a1 × b2) - (a2 × b1)\n\nSub-Determinants:\nΔx = (c1 × b2) - (c2 × b1)\nΔy = (a1 × c2) - (a2 × c1)\n\nFinal Solution Vector:\nx = Δx / Δ\ny = Δy / Δ\n\n*If Δ = 0, the matrix is singular and no unique vector exists."
+      }}
       faqs={[
-        { question: "What does 'Singular Matrix' mean?", answer: "A singular matrix means the equations are not independent. Geometrically, this means the lines are either perfectly parallel (never touch) or are the exact same line (infinite points of contact)." },
-        { question: "How accurate are the fractional results?", answer: "Calculations are performed using double-precision floating-point format. For visual clarity, outputs are rounded to 4 decimal places if they are not whole numbers." }
+        {
+          question: "What exactly does 'Singular Matrix Error' mean?",
+          answer: "A singular matrix means the system determinant (Δ) is zero. In practical terms, it means your equations do not cross at a single unique point. They are either parallel lines (no solution) or the exact same line written differently (infinite solutions)."
+        },
+        {
+          question: "Do I have to enter '0' if a variable is missing?",
+          answer: "Yes. If your equation is 'x + z = 5' (meaning there is no 'y'), you must enter 0 in the 'y' box for the matrix calculation to compute correctly."
+        },
+        {
+          question: "Why use Cramer's Rule instead of substitution?",
+          answer: "Substitution is great for humans solving simple algebra on paper. For computational engines solving complex 3x3 matrices, Cramer's Rule allows the computer to process exact determinants directly, avoiding the cascading rounding errors that can occur during programmatic substitution."
+        },
+        {
+          question: "Can this calculator solve systems with 4 or more variables?",
+          answer: "Currently, this engine is optimized specifically for 2-variable (2D) and 3-variable (3D) systems. Systems with 4 or more variables require Gaussian elimination or advanced inverse matrix computation tools."
+        },
+        {
+          question: "What happens if my constant is on the left side of the equation?",
+          answer: "You must rearrange your equation algebraically. The calculator explicitly expects standard form (ax + by = c). If your equation is 3x + 2y - 5 = 0, you must move the 5 to the right side so it becomes 3x + 2y = 5."
+        },
+        {
+          question: "Why are some results displayed with decimals while others are whole numbers?",
+          answer: "The solution vector generates the absolute mathematical truth. If the lines cross perfectly at an integer coordinate (like 3, 4), it displays integers. If they cross in the middle of the grid, it uses double-precision floating-point logic, rounding to 4 decimal places for UI clarity."
+        }
       ]}
       sidebar={{ title: "Algebra Utilities", links: [{ label: "Quadratic Formula", href: "/calculator/quadratic-formula" }, { label: "Logarithm Calculator", href: "/calculator/logarithm-calculator" }], banner: { title: "Geometry In Algebra", description: "Solving linear equations is the same as finding where lines cross on a graph.", image: "/images/math-banner.jpg" } }}
       relatedTools={[{ label: "Quadratic Formula", href: "/calculator/quadratic-formula" }]}

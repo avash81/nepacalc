@@ -37,7 +37,7 @@ export const CALCULATORS: Calculator[] = [
   { id: 'property-tax', slug: 'property-tax', name: 'Capital Gains Tax (CGT)', icon: '🏛️', description: 'Calculate real estate capital gains tax for Nepal.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'property-registration', slug: 'property-registration', name: 'Property Registration Fee', icon: '📋', description: 'Calculate Malpok registration fees and stamp duty.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepal-provident-fund', slug: 'nepal-provident-fund', name: 'Provident Fund (EPF)', icon: '🏦', description: 'Retirement savings and interest for EPF Nepal.', category: 'nepal', isNepal: true },
-  { id: 'nepal-tds', slug: 'nepal-tds-calculator', name: 'TDS Calculator', icon: '✂️', description: 'Calculate withholding tax for professional services.', category: 'nepal', isNepal: true, isNew: true },
+  { id: 'nepal-tds', slug: 'nepal-tds', name: 'TDS Calculator', icon: '✂️', description: 'Calculate withholding tax for professional services.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepal-vehicle-tax', slug: 'nepal-vehicle-tax', name: 'Vehicle Tax Calculator', icon: '🚗', description: 'Calculate road tax for motorbikes and cars.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepse-wacc', slug: 'nepse-wacc', name: 'WACC Calculator', icon: '📊', description: 'Calculate Weighted Average Cost of Capital for NEPSE.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepse-bonus-tax', slug: 'nepse-bonus-tax', name: 'Bonus Share Tax', icon: '🎁', description: 'Calculate tax on dividend and bonus shares.', category: 'nepal', isNepal: true, isNew: true },
@@ -69,7 +69,7 @@ export const CALCULATORS: Calculator[] = [
   // ==========================================
   { id: 'gpa', slug: 'gpa', name: 'GPA Calculator', icon: '🎓', description: 'Calculate semester grade point average.', category: 'education', isHot: true },
   { id: 'cgpa', slug: 'cgpa', name: 'CGPA Calculator', icon: '📚', description: 'Calculate cumulative grade point average.', category: 'education' },
-  { id: 'engineering-gpa-calculator', slug: 'engineering-gpa-calculator', name: 'Engineering GPA', icon: '📐', description: 'GPA calculator for engineering degree grading systems.', category: 'education' },
+  { id: 'engineering-gpa', slug: 'engineering-gpa', name: 'Engineering GPA', icon: '📐', description: 'GPA calculator for engineering degree grading systems.', category: 'education' },
   { id: 'marks-needed', slug: 'marks-needed', name: 'Target Grade Calculator', icon: '🎯', description: 'Calculate required marks for final exams.', category: 'education' },
   { id: 'percentage', slug: 'percentage', name: 'Percentage Calculator', icon: '%', description: 'Calculate standard percentages and relative variance.', category: 'education' },
   { id: 'standard-deviation', slug: 'standard-deviation', name: 'Standard Deviation', icon: 'σ', description: 'Calculate statistical variance and standard deviation.', category: 'education' },

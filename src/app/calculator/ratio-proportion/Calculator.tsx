@@ -110,44 +110,70 @@ export default function RatioProportion() {
           { label: 'Geometry 3D', href: '/calculator/geometry-3d' },
         ],
       }}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h2 className="text-xl font-black text-[#202124] mb-4">The Mathematical Theory of Proportional Scaling</h2>
+            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+              <p>
+                A <strong className="text-[#202124]">ratio</strong> is a fundamental mathematical comparison between two quantities, expressing the relative size of one quantity compared to another. When two separate ratios are mathematically equal, they form a <strong className="text-[#202124]">proportion</strong> (A:B = C:D). Our ratio calculator is a specialized proportional engine designed to instantly solve the missing variable in any equivalent fractional relationship.
+              </p>
+              <p>
+                This engine operates on the foundational algebraic law of cross-multiplication. Because proportional fractions are strictly equivalent (<code className="bg-[#F1F3F4] px-1 rounded text-[#D93025]">A/B = C/D</code>), the mathematical product of the extremes (A and D) must always equal the product of the means (B and C). By leveraging this unshakeable rule, the calculator instantly isolates and computes any single missing variable with floating-point precision, making it an essential tool for chemical mixtures, architectural scale models, and financial allocations.
+              </p>
+            </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Practical Applications of Proportions</h3>
+            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
+              <li><strong className="text-[#1A73E8]">Geometric Scaling (Aspect Ratios):</strong> Used extensively in digital design and photography to maintain the integrity of an image when resizing. If an image is 1920x1080 (16:9), the calculator instantly determines the correct height if the width is reduced to 800 pixels.</li>
+              <li><strong className="text-[#188038]">Cartographic Map Scaling:</strong> Crucial for translating physical world distances to a scaled map. If a map's scale is 1 inch to 50,000 inches, the engine instantly solves how far 3.5 inches on the paper represents in the real world.</li>
+              <li><strong className="text-[#D93025]">Stoichiometry & Recipe Scaling:</strong> Essential for scaling up chemical reactions or culinary recipes proportionally without altering the fundamental physical state or flavor profile.</li>
+            </ul>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
-          "Identify the known ratio (e.g., A and B).",
-          "Identify the one part of the target ratio you know (e.g., C or D).",
-          "Enter these three numbers into the corresponding boxes.",
-          "Clear the box for the value you want to find so it shows '?'.",
-          "The calculator automatically cross-multiplies and solves for the blank box."
+          "Establish your known ratio (e.g., Value A and Value B). These two numbers set the foundational proportion.",
+          "Identify the one part of the target ratio you know (either Value C or Value D).",
+          "Enter these three known numbers into the grid.",
+          "Critically: Delete the number in the box you want to solve for so it displays a '?' symbol.",
+          "The computational engine instantly cross-multiplies and solves for the empty box."
         ]
+      }}
+      formula={{
+        title: "Cross-Multiplication Theorem",
+        description: "The algebraic foundation of proportional equivalency.",
+        raw: "Standard Form:\nA : B = C : D\n\nFractional Equivalency:\nA / B = C / D\n\nCross-Multiplication Isolation:\nA × D = B × C\n\nSolving for Unknowns:\nUnknown A = (B × C) / D\nUnknown B = (A × D) / C\nUnknown C = (A × D) / B\nUnknown D = (B × C) / A"
       }}
       faqs={[
         {
-          question: "What is a proportion?",
-          answer: "A proportion is a mathematical statement equating two ratios. When we write A:B = C:D, we are saying that the relationship between A and B is exactly the same as the relationship between C and D."
+          question: "What is the mathematical difference between a ratio and a proportion?",
+          answer: "A ratio strictly compares the size of two numbers (e.g., 2 apples to 3 oranges). A proportion is an algebraic equation stating that two independent ratios are exactly equivalent to each other (e.g., 2:3 = 4:6)."
         },
         {
-          question: "How does cross-multiplication work?",
-          answer: "If A/B = C/D, then mathematically A × D must equal B × C. If one of these variables is missing, you can isolate it. For example, if D is missing, D = (B × C) / A."
+          question: "How does the cross-multiplication formula actually work?",
+          answer: "If A/B = C/D, then mathematically the extremes multiplied (A × D) must equal the means multiplied (B × C). If any one of these four variables is missing, standard algebra allows us to isolate it by dividing the known product by the remaining known variable."
+        },
+        {
+          question: "Can I use decimals or fractions in a ratio?",
+          answer: "Yes. While ratios are traditionally expressed as whole numbers, proportional mathematics works perfectly with decimals and fractions. Our engine utilizes floating-point arithmetic to process non-integers seamlessly."
+        },
+        {
+          question: "Why do I get a '?' result?",
+          answer: "The engine requires exactly three known variables to solve for the fourth. If you leave two boxes blank, the equation becomes unsolvable. If you fill all four boxes, there is no unknown to solve for."
+        },
+        {
+          question: "What is an Aspect Ratio?",
+          answer: "An aspect ratio describes the proportional relationship between the width and height of an image or screen. A standard HD television has an aspect ratio of 16:9, meaning for every 16 units of width, there must be exactly 9 units of height."
+        },
+        {
+          question: "How do I calculate a three-part ratio (A:B:C)?",
+          answer: "This specific calculator operates on two-part proportional equivalency (A:B = C:D). To calculate a three-part ratio, you must break the problem down into multiple independent two-part proportions and solve them sequentially."
         }
       ]}
-      seoContent={
-        <div>
-          <h2>Understanding Ratios and Proportions</h2>
-          <p>Ratios and proportions are fundamental mathematical concepts used to compare quantities and scale them accurately. Whether you are baking, reading a map, or mixing chemicals, understanding proportions ensures you maintain the correct balance between different ingredients or dimensions.</p>
-          
-          <h3>What is a Ratio?</h3>
-          <p>A ratio is simply a comparison of two numbers indicating how many times the first number contains the second. It can be written with a colon (A:B), as a fraction (A/B), or in words ("A to B"). For example, if a recipe calls for 2 cups of flour for every 1 cup of sugar, the ratio of flour to sugar is 2:1.</p>
-          
-          <h3>What is a Proportion?</h3>
-          <p>A proportion is an equation stating that two ratios are equal. The format is <strong>A:B = C:D</strong> (read as "A is to B as C is to D"). If you know that a car travels 100 miles on 4 gallons of gas, you have the ratio 100:4. If you want to know how far it can travel on 10 gallons, you set up the proportion: 100:4 = X:10. Using this calculator, you would enter A=100, B=4, C=blank, D=10, and it would solve for X (250 miles).</p>
-          
-          <h3>Real-World Applications</h3>
-          <ul>
-            <li><strong>Recipe Scaling:</strong> Easily scale a recipe up or down. If a recipe for 4 people requires 200g of pasta, how much is needed for 6 people? (4:200 = 6:X)</li>
-            <li><strong>Map Reading:</strong> Determine actual distances using the map's scale. If a map's scale is 1 inch = 5 miles, how far is 3.5 inches on the map? (1:5 = 3.5:X)</li>
-            <li><strong>Photography and Screens:</strong> Resizing images to maintain aspect ratios (like 16:9 or 4:3) so the image does not stretch or warp.</li>
-          </ul>
-        </div>
-      }
     />
   );
 }
