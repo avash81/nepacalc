@@ -6,6 +6,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import { TIER1_SEO_CONTENT } from '@/data/seo-content';
 import { getLatestRates, MarketRate } from '@/utils/market/fetchRates';
 import { usePathname } from 'next/navigation';
+import { RecentSidebar } from './RecentSidebar';
 
 interface ModernCalcLayoutProps {
   title: string;
@@ -51,6 +52,20 @@ export function ModernCalcLayout({
   const effectiveSlug = slug || pathname?.split('/').filter(Boolean).pop();
   const enrichedSEO = seoContent || (effectiveSlug && TIER1_SEO_CONTENT[effectiveSlug]?.content);
   const enrichedFAQs = (faqs && faqs.length > 0) ? faqs : (effectiveSlug && TIER1_SEO_CONTENT[effectiveSlug]?.faqs) || [];
+
+  // Track History
+  useEffect(() => {
+    if (!title || !pathname || typeof window === 'undefined') return;
+    try {
+      const history = JSON.parse(localStorage.getItem('cp_recent') || '[]');
+      const current = { label: title, href: pathname };
+      const filtered = history.filter((h: any) => h.href !== pathname);
+      const newHistory = [current, ...filtered].slice(0, 12);
+      localStorage.setItem('cp_recent', JSON.stringify(newHistory));
+    } catch (e) {
+      console.warn('Failed to save history', e);
+    }
+  }, [title, pathname]);
 
   const normalizeLink = (href: string | undefined) => {
     if (!href) return href;
@@ -208,6 +223,7 @@ export function ModernCalcLayout({
           </div>
           <div className="w-full lg:w-[320px] space-y-8 no-print">
             <div className="space-y-8">
+            <RecentSidebar />
             {sidebar && (
               <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
                 <div className="px-5 py-4 bg-white border-b border-[#DADCE0]">

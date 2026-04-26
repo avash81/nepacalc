@@ -3,6 +3,7 @@ import { CATEGORIES } from '@/data/calculators';
 import { InstitutionalBlock } from '@/components/layout/InstitutionalBlock';
 import { TopCalculators } from '@/components/layout/TopCalculators';
 import { HomePageCalculatorClient } from './HomePageCalculatorClient';
+import { RecentCalculators } from '@/components/layout/RecentCalculators';
 import type { Metadata } from 'next';
 
 /* ── Homepage-specific metadata (overrides layout.tsx defaults) ── */
@@ -120,6 +121,7 @@ export default function HomePage() {
         
         {/* 2. Structured Directory */}
         <main className="hp-container py-6">
+          <RecentCalculators />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
             {CATEGORIES.filter(c => c.id !== 'market').map(cat => (
               <div key={cat.id} className="bg-white p-4 border border-[#dadce0] rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col h-full min-h-[340px]">
