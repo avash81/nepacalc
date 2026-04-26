@@ -2867,5 +2867,267 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         answer: "Yes, gratuity payouts are subject to a 15% final withholding tax on the total accumulated interest and profit, handled under retirement fund taxation rules."
       }
     ]
+  },
+  'foreign-employment': {
+    title: "Foreign Employment Fees & Salary Calculator Nepal",
+    description: "Check the official DoFE visa fees, manpower service charges, and calculate your exact foreign salary in Nepalese Rupees.",
+    content: (
+      <>
+        <h2>Going Abroad: The Costs of Foreign Employment</h2>
+        <p>
+          Hundreds of thousands of Nepalese workers travel abroad for employment every year. Unfortunately, many are scammed by unauthorized manpower agencies charging illegal fees. It is crucial to know the official fees set by the Department of Foreign Employment (DoFE).
+        </p>
+        <h3>The 'Free Visa, Free Ticket' Policy</h3>
+        <p>
+          For major Gulf countries and Malaysia, the Government of Nepal enforces a "Free Visa, Free Ticket" provision. This means employers must bear the cost of the visa and airfare. Manpower agencies are legally only allowed to charge a maximum service fee of Rs. 10,000 for these destinations.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the cost of the mandatory medical test?",
+        answer: "The government-approved rate for the pre-departure medical examination is typically around Rs. 4,500, which is non-refundable."
+      },
+      {
+        question: "How do I calculate my foreign salary into NPR?",
+        answer: "Our calculator automatically fetches the daily exchange rate (e.g., Qatari Riyal, UAE Dirham, Malaysian Ringgit) from the Nepal Rastra Bank to convert your basic salary into Nepalese Rupees."
+      }
+    ]
+  },
+  'kukl-bill': {
+    title: "KUKL Water Bill Calculator | Kathmandu Upatyaka",
+    description: "Calculate your monthly KUKL water bill and sewerage tax. Supports both tap connections and metered consumption in Kathmandu.",
+    content: (
+      <>
+        <h2>Calculating Kathmandu's Water Tariffs</h2>
+        <p>
+          The Kathmandu Upatyaka Khanepani Limited (KUKL) manages water distribution across the Kathmandu Valley. Because water is a scarce resource, KUKL utilizes a tiered tariff structure to discourage waste while maintaining affordable minimums for all households.
+        </p>
+        <h3>Tap Size and Metering</h3>
+        <p>
+          Your baseline bill depends heavily on the diameter of your water pipe (e.g., 1/2 inch vs. 3/4 inch). Larger pipes allow for significantly higher water pressure and flow, and therefore have a much higher minimum monthly charge regardless of actual usage.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the sewerage tax?",
+        answer: "If your house is connected to the government sewerage system, KUKL automatically adds an additional 50% surcharge to your base water bill to cover wastewater treatment and maintenance."
+      },
+      {
+        question: "What if my meter is broken?",
+        answer: "If your meter is damaged, KUKL will bill you based on an estimated average consumption or a flat rate depending on your tap size until the meter is replaced."
+      }
+    ]
+  },
+  'nepal-attendance': {
+    title: "University Attendance Calculator Nepal | 75% Rule",
+    description: "Track your university attendance for TU, KU, and PU. Calculate exactly how many classes you can afford to skip before failing.",
+    content: (
+      <>
+        <h2>The Strict 75% Attendance Rule</h2>
+        <p>
+          Major universities in Nepal, including Tribhuvan University (TU), Kathmandu University (KU), and Pokhara University (PU), enforce a strict attendance policy. If your total attendance falls below 75% (or 80% for some medical/engineering programs), you will be barred from sitting for final board examinations.
+        </p>
+        <h3>Strategic Class Bunking</h3>
+        <p>
+          Our calculator helps you mathematically manage your schedule. If you have an important family event or illness, you can input your total conducted classes and attended classes to see exactly how many upcoming lectures you can safely skip while staying in the safe zone.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How do medical leaves work?",
+        answer: "Even with a valid doctor's certificate, universities usually only provide a small grace margin (e.g., reducing the requirement to 65%). You cannot miss half the semester, even if sick."
+      },
+      {
+        question: "Do practical labs count?",
+        answer: "Yes, and often, practical labs have an even stricter attendance requirement (often 100% or mandatory makeup sessions) compared to theoretical lectures."
+      }
+    ]
+  },
+  'see-gpa': {
+    title: "SEE GPA Calculator | Secondary Education Examination",
+    description: "Calculate your exact SEE GPA based on the latest National Examination Board (NEB) grading system in Nepal.",
+    content: (
+      <>
+        <h2>The NEB Letter Grading System</h2>
+        <p>
+          The Secondary Education Examination (SEE) is the most critical academic milestone for Nepalese students. The National Examination Board (NEB) transitioned from percentage scores to a Letter Grading system to reduce student stress and align with international academic standards.
+        </p>
+        <h3>Understanding Grade Points</h3>
+        <p>
+          Instead of an exact percentage, students are awarded a Grade (A+, A, B+, etc.) and a corresponding Grade Point (4.0, 3.6, 3.2). Your final SEE GPA is the weighted average of these grade points across all your compulsory and optional subjects.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is an 'A+' in the SEE grading system?",
+        answer: "An 'A+' (Outstanding) is awarded to students scoring 90% and above in a subject, which translates to a Grade Point of 4.0."
+      },
+      {
+        question: "What happens if I get a 'NG'?",
+        answer: "'NG' stands for Not Graded. If you fail to secure the minimum passing marks in the theoretical exam, you will receive an NG and cannot enroll in Class 11 until you pass the supplementary exam."
+      }
+    ]
+  },
+  'nepali-date': {
+    title: "Nepali Date Converter | BS to AD | AD to BS",
+    description: "Convert dates between Bikram Sambat (BS) and Gregorian (AD) instantly. The most accurate Nepali calendar tool.",
+    content: (
+      <>
+        <h2>The Bikram Sambat (BS) Calendar</h2>
+        <p>
+          Bikram Sambat (BS) is the official solar calendar of Nepal, established by Emperor Vikramaditya. It is approximately 56 years and 8.5 months ahead of the Gregorian (AD) calendar. Understanding how to convert between the two is essential for official documentation, visas, and historical research.
+        </p>
+        <h3>Why Conversion is Complex</h3>
+        <p>
+          Unlike the Gregorian calendar where months have a fixed number of days (with February leap years), the Nepali calendar is determined by complex astrological calculations. The number of days in a BS month can vary from 29 to 32 days, and this changes every single year, making manual calculation nearly impossible.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Is BS a lunar or solar calendar?",
+        answer: "Bikram Sambat is a strictly solar calendar based on ancient Hindu traditions, which is why it stays relatively aligned with the seasons compared to pure lunar calendars."
+      },
+      {
+        question: "How accurate is the date converter?",
+        answer: "Our tool relies on official data matrices provided by the Nepal Panchanga Nirnayak Samiti, ensuring 100% precision for historical and future dates."
+      }
+    ]
+  },
+  'loan-emi': {
+    title: "Universal Loan EMI Calculator | Personal & Auto Loans",
+    description: "Calculate standard EMIs for personal loans, auto loans, and education loans. Generate complete repayment schedules and interest charts.",
+    content: (
+      <>
+        <h2>What is an Equated Monthly Installment (EMI)?</h2>
+        <p>
+          An EMI is the fixed payment amount made by a borrower to a lender on a specific date each calendar month. EMIs are used to pay off both the principal amount and the accrued interest over the lifespan of a loan.
+        </p>
+        <h3>The Hidden Cost of Long-Term Loans</h3>
+        <p>
+          While stretching a loan over 10 or 15 years dramatically reduces your monthly EMI, it massively increases the total interest you pay to the bank. Use our tool to compare a 5-year auto loan vs. a 7-year auto loan to see the exact difference in total cost.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Does EMI change if interest rates rise?",
+        answer: "If you have a fixed-rate loan, your EMI never changes. If you have a floating/variable rate loan, the bank may either increase your EMI amount or extend your loan tenure when rates rise."
+      },
+      {
+        question: "What is a reducing balance method?",
+        answer: "It means interest is calculated only on the remaining loan principal. As you pay off the loan, the interest portion of your EMI shrinks, while the principal repayment portion grows."
+      }
+    ]
+  },
+  'lead-time': {
+    title: "Lead Time & Cycle Time Calculator | Supply Chain",
+    description: "Calculate manufacturing lead times, cycle times, and takt time. Optimize your inventory and supply chain management.",
+    content: (
+      <>
+        <h2>Optimizing Your Supply Chain</h2>
+        <p>
+          In manufacturing and retail, "Lead Time" is the total time elapsed between the placement of an order and the delivery of the finished goods. Reducing lead time is the primary goal of lean manufacturing systems (like Toyota's Just-In-Time model) to minimize warehouse inventory costs.
+        </p>
+        <h3>Lead Time vs. Cycle Time</h3>
+        <p>
+          <strong>Lead Time</strong> is measured from the customer's perspective (from order to delivery).
+          <br/><strong>Cycle Time</strong> is measured from the factory's perspective (how long it takes to actively produce one unit from start to finish).
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is Takt Time?",
+        answer: "Takt time is the maximum acceptable time to meet customer demand. If a customer orders 10 units a day and you work 10 hours, your Takt time is 1 hour per unit."
+      },
+      {
+        question: "How do I account for shipping delays?",
+        answer: "When calculating standard lead time for inventory reordering, you should always add a safety margin (buffer time) to account for transit delays or supplier shortages."
+      }
+    ]
+  },
+  'pythagorean-theorem': {
+    title: "Pythagorean Theorem Calculator | Find the Hypotenuse",
+    description: "Instantly solve for the hypotenuse or any side of a right-angled triangle. Essential geometric math tool.",
+    content: (
+      <>
+        <h2>The Most Famous Formula in Geometry</h2>
+        <p>
+          The Pythagorean Theorem states that in a right-angled triangle, the square of the longest side (the hypotenuse) is equal to the sum of the squares of the other two sides.
+        </p>
+        <h3>Practical Applications</h3>
+        <p>
+          While it seems like pure math, a² + b² = c² is used constantly in the real world. Carpenters use it to ensure walls form perfect 90-degree corners (the 3-4-5 rule). Navigators use it to find the shortest straight-line distance between two points on a map.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Does the Pythagorean theorem work on any triangle?",
+        answer: "No. The theorem strictly applies only to right-angled triangles (where one angle is exactly 90 degrees)."
+      },
+      {
+        question: "What is a Pythagorean Triple?",
+        answer: "It is a set of three positive integers that perfectly fit the formula, meaning there are no decimals. The most famous examples are (3, 4, 5) and (5, 12, 13)."
+      }
+    ]
+  },
+  'surface-area-calculator': {
+    title: "Surface Area Calculator | 3D Geometric Shapes",
+    description: "Calculate the total surface area of cylinders, spheres, cones, and rectangular prisms. Vital for manufacturing and design.",
+    content: (
+      <>
+        <h2>What is Surface Area?</h2>
+        <p>
+          Surface Area is the total area that the surface of a 3D object occupies. Unlike volume (which measures the inside), surface area measures the outside wrapper. If you were wrapping a box in gift paper, the surface area tells you exactly how much paper you need.
+        </p>
+        <h3>Lateral vs. Total Surface Area</h3>
+        <p>
+          <strong>Lateral Surface Area</strong> only includes the sides of the object, ignoring the top and bottom bases.
+          <br/><strong>Total Surface Area</strong> includes every single face of the object. Our calculator lets you compute both instantly.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How do you find the surface area of a cylinder?",
+        answer: "The formula is 2πr² (for the top and bottom circles) + 2πrh (for the curved side wrapping around it)."
+      },
+      {
+        question: "Why is surface-area-to-volume ratio important?",
+        answer: "In biology and chemistry, a high surface-area-to-volume ratio drastically increases the speed of reactions, heat loss, and cellular absorption."
+      }
+    ]
+  },
+  'volume-calculator': {
+    title: "Volume Calculator | 3D Space & Liquid Capacity",
+    description: "Calculate the volume of spheres, cylinders, cubes, and cones. Convert cubic meters to liters and gallons instantly.",
+    content: (
+      <>
+        <h2>Understanding 3D Volume</h2>
+        <p>
+          Volume is the quantification of the three-dimensional space enclosed by a closed surface. It determines the holding capacity of an object. If you are filling a swimming pool with water, or pouring concrete for a foundation, volume is the metric you need.
+        </p>
+        <h3>The Base-Times-Height Rule</h3>
+        <p>
+          For uniform 3D shapes like cylinders or rectangular prisms, the volume formula is simply the <strong>Area of the Base × Height</strong>. For shapes that taper to a point (like cones and pyramids), you calculate the uniform volume and then divide by 3.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How do I convert cubic meters to liters?",
+        answer: "One cubic meter (m³) is exactly equal to 1,000 liters. This makes metric conversions incredibly simple."
+      },
+      {
+        question: "What is the formula for the volume of a sphere?",
+        answer: "The formula is V = 4/3 × π × r³, where r is the radius from the center of the sphere."
+      }
+    ]
   }
 };
