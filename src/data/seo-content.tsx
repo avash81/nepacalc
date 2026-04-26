@@ -2597,1064 +2597,304 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       }
     ]
   },
+
   'calculus-lab': {
     title: "Calculus & Algebra Solver | Derivatives & Integrals",
-    description: "Solve complex calculus problems instantly. Calculate derivatives, integrals, and limits with step-by-step symbolic logic.",
-    content: (
-      <>
-        <h2>The Power of a Calculus Solver</h2>
-        <p>
-          Calculus forms the foundation of modern engineering, physics, and economics. However, manually computing complex derivatives or indefinite integrals is highly error-prone. Our Calculus Lab provides instantaneous symbolic computation, ensuring 100% mathematical accuracy.
-        </p>
-        <h3>Derivatives vs. Integrals</h3>
-        <p>
-          <strong>Derivatives</strong> measure the instantaneous rate of change of a function (the slope of a curve).
-          <br/><strong>Integrals</strong> measure the total accumulation of a quantity, mathematically representing the area under a curve. Together, they form the Fundamental Theorem of Calculus.
-        </p>
-      </>
-    ),
+    description: "Solve derivatives, integrals, and limits instantly. Symbolic calculus engine for students and professionals.",
+    content: null,
     faqs: [
-      {
-        question: "Does the calculator support chain rule differentiation?",
-        answer: "Yes, the symbolic engine automatically applies the chain rule, product rule, and quotient rule where necessary."
-      },
-      {
-        question: "Can it solve definite integrals?",
-        answer: "Yes, you can input upper and lower bounds to calculate the exact numerical value of a definite integral."
-      }
+      { question: "Does the calculator support chain rule differentiation?", answer: "Yes, the symbolic engine automatically applies the chain rule, product rule, and quotient rule where necessary." },
+      { question: "Can it solve definite integrals?", answer: "Yes, you can input upper and lower bounds to calculate the exact numerical value of a definite integral." }
     ]
   },
-  'nepal-salary': {
-    title: "Salary Calculator Nepal | Net Take-Home Pay & IRD Tax",
-    description: "Calculate your exact take-home salary in Nepal. Accurately deducts SSF, CIT, EPF, and the latest IRD income tax slabs.",
-    content: (
-      <>
-        <h2>Gross Salary vs. Net Pay in Nepal</h2>
-        <p>
-          When accepting a job offer in Nepal, the quoted "Gross Salary" is not what deposits into your bank account. The Inland Revenue Department (IRD) mandates several deductions that significantly reduce your final take-home pay.
-        </p>
-        <h3>Standard Deductions Explained</h3>
-        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-          <li><strong>Social Security Fund (SSF):</strong> 11% of basic salary deducted from the employee.</li>
-          <li><strong>Employees Provident Fund (EPF):</strong> Typically 10% deduction.</li>
-          <li><strong>Income Tax (TDS):</strong> Deducted according to your marital status slab (1% social security tax up to 39% maximum slab).</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Is the 1% Social Security Tax mandatory?",
-        answer: "Yes, all salaried employees not enrolled in the formal SSF scheme must pay a flat 1% tax on their base exemption limit."
-      },
-      {
-        question: "How does CIT investment affect my salary tax?",
-        answer: "Investing in the Citizen Investment Trust (CIT) allows you to claim tax deductions up to Rs. 300,000 or 1/3rd of your assessable income, drastically lowering your tax liability."
-      }
-    ]
-  },
-  'nepal-home-loan': {
-    title: "Home Loan EMI Calculator Nepal | Mortgage Rates",
-    description: "Calculate your Home Loan EMI based on current Nepal bank interest rates. Generate complete amortization schedules for housing loans.",
-    content: (
-      <>
-        <h2>Planning a Home Loan in Nepal</h2>
-        <p>
-          Purchasing real estate in Kathmandu or other major cities requires substantial capital, making Home Loans the most common path to property ownership. Calculating your Equated Monthly Installment (EMI) helps you understand if a loan fits your monthly budget.
-        </p>
-        <h3>How Nepal Banks Calculate EMI</h3>
-        <p>
-          Commercial banks in Nepal (like Nabil, Global IME, or NIC Asia) use a standard reducing-balance method. Your monthly EMI remains fixed, but the portion of the EMI going toward interest decreases over time, while the portion going toward the principal increases.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is a typical Home Loan interest rate in Nepal?",
-        answer: "Rates fluctuate based on the NRB's base rate, but typically range between 9% to 13% depending on liquidity and bank policies."
-      },
-      {
-        question: "What is a prepayment penalty?",
-        answer: "If you pay off your home loan early (before maturity), Nepali banks usually charge a prepayment penalty of 1% to 2% on the outstanding amount."
-      }
-    ]
-  },
-  'nea-bill': {
-    title: "NEA Electricity Bill Calculator Nepal",
-    description: "Calculate your exact Nepal Electricity Authority (NEA) bill. Supports 5 Amp to 60 Amp single-phase progressive block tariffs.",
-    content: (
-      <>
-        <h2>Understanding NEA Progressive Billing</h2>
-        <p>
-          The Nepal Electricity Authority (NEA) uses a "progressive block tariff" system. This means that electricity becomes more expensive per unit the more you consume. The goal is to provide heavily subsidized rates to low-income households while charging premium rates for heavy usage.
-        </p>
-        <h3>Ampere Capacity Matters</h3>
-        <p>
-          Your billing structure changes entirely based on your meter's capacity. A standard 5 Amp meter has different slab limits and energy charges compared to a 15 Amp, 30 Amp, or 60 Amp meter. Always check your meter type before calculating!
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is the minimum charge for a 5 Amp meter?",
-        answer: "For a 5 Amp meter, the minimum monthly demand charge is currently Rs. 30, which includes a few units of free electricity."
-      },
-      {
-        question: "Why did my bill suddenly double?",
-        answer: "If you cross a tariff slab (e.g., jumping from 150 units to 151 units), the rate for the excess units increases significantly under the progressive billing system."
-      }
-    ]
-  },
-  'nepal-stocks': {
-    title: "NEPSE Share Trading Calculator | Profit & Broker Commission",
-    description: "Calculate your exact NEPSE share trading profit. Automatically deducts broker commissions, SEBON fees, DP charges, and Capital Gains Tax.",
-    content: (
-      <>
-        <h2>The Hidden Costs of Trading in NEPSE</h2>
-        <p>
-          When you sell shares at a profit on the Nepal Stock Exchange (NEPSE), the difference between the buy and sell price is not your final profit. You must account for several mandatory fees that eat into your margins.
-        </p>
-        <h3>Mandatory Trading Deductions</h3>
-        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-          <li><strong>Broker Commission:</strong> Ranging from 0.40% to 0.27% depending on transaction volume.</li>
-          <li><strong>SEBON Fee:</strong> A flat regulatory fee of 0.015%.</li>
-          <li><strong>DP Charge:</strong> Rs. 25 levied by your Depository Participant per transaction.</li>
-          <li><strong>Capital Gains Tax (CGT):</strong> 5% or 7.5% depending on holding period.</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      {
-        question: "How is NEPSE Capital Gains Tax (CGT) calculated?",
-        answer: "If you hold the stock for less than 365 days (short-term), the CGT is 7.5% of your net profit. If held for more than 365 days (long-term), the CGT drops to 5%."
-      },
-      {
-        question: "Does the broker commission apply to both buying and selling?",
-        answer: "Yes, you pay broker commissions both when purchasing the shares and when selling them."
-      }
-    ]
-  },
+
   'property-tax': {
     title: "Capital Gains Tax (CGT) Calculator Real Estate Nepal",
-    description: "Calculate Capital Gains Tax for real estate and land sales in Nepal. Find out your exact tax liability before visiting Malpot office.",
-    content: (
-      <>
-        <h2>Capital Gains Tax on Property in Nepal</h2>
-        <p>
-          When you sell land or a house at a profit in Nepal, the government levies a Capital Gains Tax (CGT). This tax is strictly calculated on the profit margin (Selling Price minus the official Purchase Price), not the total sale value.
-        </p>
-        <h3>Holding Period Tax Slabs</h3>
-        <p>
-          The Inland Revenue Department enforces different rates based on how long you owned the property:
-          <br/><strong>Short-Term (Less than 5 Years):</strong> Taxed at 7.5% of the total profit.
-          <br/><strong>Long-Term (More than 5 Years):</strong> Taxed at a reduced rate of 5% to encourage long-term investment.
-        </p>
-      </>
-    ),
+    description: "Calculate Capital Gains Tax for real estate and land sales in Nepal. Find your exact tax liability before visiting Malpot office.",
+    content: null,
     faqs: [
-      {
-        question: "What happens if I sell the property at a loss?",
-        answer: "If the selling price (official valuation) is less than your purchase price, there is no capital gain, and therefore, no Capital Gains Tax is payable."
-      },
-      {
-        question: "Who pays the CGT, buyer or seller?",
-        answer: "Legally, the Capital Gains Tax is the liability of the seller who made the profit, though actual payment arrangements are often negotiated during the sale."
-      }
+      { question: "What happens if I sell the property at a loss?", answer: "If the selling price is less than your purchase price, there is no capital gain and therefore no CGT is payable." },
+      { question: "Who pays the CGT, buyer or seller?", answer: "Legally, the Capital Gains Tax is the liability of the seller who made the profit." }
     ]
   },
+
   'property-registration': {
-    title: "Property Registration & Malpot Fee Calculator",
-    description: "Calculate land and house registration fees (Rajiinama pass) for Nepal Malpot offices. Includes municipal discounts and stamp duties.",
-    content: (
-      <>
-        <h2>Understanding Malpot Registration Fees</h2>
-        <p>
-          Transferring property ownership in Nepal requires paying a Registration Fee to the local Land Revenue Office (Malpot). This fee is a significant closing cost and is calculated as a percentage of the property's official government valuation.
-        </p>
-        <h3>Female Ownership Discounts</h3>
-        <p>
-          To encourage women's property ownership, the Government of Nepal offers substantial discounts on registration fees if the land is registered in a woman's name. These discounts range from 25% to 50% depending on whether the property is in an urban municipality or rural municipality.
-        </p>
-      </>
-    ),
+    title: "Property Registration & Malpot Fee Calculator Nepal",
+    description: "Calculate land and house registration fees for Nepal Malpot offices. Includes municipal discounts and stamp duties.",
+    content: null,
     faqs: [
-      {
-        question: "Is the fee based on the market price or government valuation?",
-        answer: "Registration fees are calculated based on the official 'Thaili' (minimum government valuation) of the land, which is often lower than the actual market trading price."
-      },
-      {
-        question: "What is the Bagmati Civilization Tax?",
-        answer: "Properties located within the Kathmandu Valley are subject to an additional 0.5% Bagmati Civilization Fund tax on top of standard registration fees."
-      }
+      { question: "Is the fee based on market price or government valuation?", answer: "Registration fees are calculated based on the official government minimum valuation (Thaili), which is often lower than the actual market price." },
+      { question: "What is the Bagmati Civilization Tax?", answer: "It is an additional surcharge levied on property transactions in the Bagmati Province area on top of the standard registration fee." }
     ]
   },
+
   'nepal-tds': {
-    title: "TDS Calculator Nepal | Tax Deducted at Source",
-    description: "Calculate Tax Deducted at Source (TDS) for contracts, rent, consultancy, and dividends according to Nepal's Income Tax Act.",
-    content: (
-      <>
-        <h2>What is Tax Deducted at Source (TDS)?</h2>
-        <p>
-          TDS is an advance tax collection mechanism utilized by the Inland Revenue Department (IRD). Under the Income Tax Act of Nepal, whenever a business makes a payment for rent, consultancy, or contracts, they must withhold a specific percentage and deposit it directly to the government.
-        </p>
-        <h3>Common TDS Rates in Nepal</h3>
-        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-          <li><strong>Consultancy/Professional Services:</strong> 15% (PAN registered).</li>
-          <li><strong>House Rent:</strong> 10% (collected by local municipality).</li>
-          <li><strong>Dividends:</strong> 5% final withholding tax.</li>
-          <li><strong>Contracts/Procurement:</strong> 1.5% for local goods and services.</li>
-        </ul>
-      </>
-    ),
+    title: "Nepal TDS Calculator | Tax Deducted at Source",
+    description: "Calculate TDS on rent, service fees, and contracts in Nepal per IRD rules for FY 2080/81.",
+    content: null,
     faqs: [
-      {
-        question: "What happens if a consultant does not have a PAN?",
-        answer: "If a service provider does not provide a PAN (Permanent Account Number), the TDS rate is usually penalized and increased (often to 15% even for standard contracts)."
-      },
-      {
-        question: "Can I claim a refund on TDS?",
-        answer: "Yes, TDS is an advance tax. When you file your annual tax return (D03), you can adjust the TDS against your total tax liability, potentially resulting in a tax refund."
-      }
+      { question: "What is the TDS rate on house rent in Nepal?", answer: "The TDS rate on rental income in Nepal is 10% of the gross rent amount paid." },
+      { question: "Who is responsible for deducting TDS?", answer: "The payer (tenant or client) is legally responsible for deducting TDS and depositing it to the IRD." }
     ]
   },
+
   'nepse-bonus-tax': {
-    title: "Bonus Share Tax Calculator | NEPSE Dividends",
-    description: "Calculate the exact tax you must pay on bonus shares and cash dividends distributed by Nepalese companies.",
-    content: (
-      <>
-        <h2>Taxation on Dividends in Nepal</h2>
-        <p>
-          When a company in NEPSE distributes profits to its shareholders, it does so via Cash Dividends or Bonus Shares. In Nepal, these distributions are subject to a 5% final withholding tax.
-        </p>
-        <h3>The 'Bonus Share Tax Issue'</h3>
-        <p>
-          When a company issues Bonus Shares (stock dividends) but does not distribute enough Cash Dividend to cover the tax liability, the shareholder is forced to deposit the 5% tax directly into the company's bank account out of their own pocket before the shares are credited to their Demat account.
-        </p>
-      </>
-    ),
+    title: "NEPSE Bonus Share & Dividend Tax Calculator",
+    description: "Calculate tax on bonus shares and cash dividends received from NEPSE-listed companies in Nepal.",
+    content: null,
     faqs: [
-      {
-        question: "What is the tax rate on cash dividends?",
-        answer: "Both cash dividends and bonus shares are taxed at a flat rate of 5% in Nepal."
-      },
-      {
-        question: "Why did my Demat account not receive the bonus shares?",
-        answer: "If the company did not issue a cash dividend, your bonus shares are frozen until you manually deposit the 5% tax amount into the specific bank account designated by the company's share registrar."
-      }
+      { question: "What is the tax rate on bonus shares in Nepal?", answer: "Bonus shares are taxed at a flat rate of 5% on the face value (par value) of the shares received." },
+      { question: "Is cash dividend also taxed?", answer: "Yes, cash dividends from listed companies are subject to a 5% withholding tax deducted at source by the company." }
     ]
   },
+
   'gratuity-calculator': {
     title: "Gratuity Calculator Nepal | Labor Act 2074",
-    description: "Calculate your retirement and resignation gratuity benefits according to the provisions of the Nepal Labor Act 2074.",
-    content: (
-      <>
-        <h2>Understanding Gratuity under Labor Act 2074</h2>
-        <p>
-          In Nepal, Gratuity is a statutory benefit provided by an employer to an employee in gratitude for their continuous service. Following the implementation of the Labor Act 2074 and the Social Security Fund (SSF), the rules for gratuity accumulation have been modernized.
-        </p>
-        <h3>The 8.33% Rule</h3>
-        <p>
-          Under current labor laws, employers are required to allocate 8.33% of the employee's basic salary every month toward a Gratuity fund (equivalent to 1 month of basic salary per year). This money must be deposited into the SSF or an approved retirement fund.
-        </p>
-      </>
-    ),
+    description: "Calculate your end-of-service gratuity entitlement under Nepal's Labor Act 2074. Find out exactly what your employer owes you.",
+    content: null,
     faqs: [
-      {
-        question: "Am I eligible for gratuity if I resign?",
-        answer: "Yes. Unlike the old Labor Act which required 3 years of continuous service, the new Labor Act 2074 entitles employees to gratuity benefits from the very first month of employment, regardless of resignation or termination."
-      },
-      {
-        question: "Is gratuity taxable in Nepal?",
-        answer: "Yes, gratuity payouts are subject to a 15% final withholding tax on the total accumulated interest and profit, handled under retirement fund taxation rules."
-      }
+      { question: "How many years of service qualify for gratuity?", answer: "Under Nepal's Labor Act 2074, an employee qualifies for gratuity after completing at least one year of continuous service." },
+      { question: "What is the gratuity rate per year in Nepal?", answer: "The standard rate is one month's basic salary for each completed year of service." }
     ]
   },
+
   'foreign-employment': {
-    title: "Foreign Employment Fees & Salary Calculator Nepal",
-    description: "Check the official DoFE visa fees, manpower service charges, and calculate your exact foreign salary in Nepalese Rupees.",
-    content: (
-      <>
-        <h2>Going Abroad: The Costs of Foreign Employment</h2>
-        <p>
-          Hundreds of thousands of Nepalese workers travel abroad for employment every year. Unfortunately, many are scammed by unauthorized manpower agencies charging illegal fees. It is crucial to know the official fees set by the Department of Foreign Employment (DoFE).
-        </p>
-        <h3>The 'Free Visa, Free Ticket' Policy</h3>
-        <p>
-          For major Gulf countries and Malaysia, the Government of Nepal enforces a "Free Visa, Free Ticket" provision. This means employers must bear the cost of the visa and airfare. Manpower agencies are legally only allowed to charge a maximum service fee of Rs. 10,000 for these destinations.
-        </p>
-      </>
-    ),
+    title: "Foreign Employment Cost & Salary Calculator Nepal",
+    description: "Calculate total cost of going abroad for work from Nepal. Includes agency fees, visa, insurance, and expected net savings.",
+    content: null,
     faqs: [
-      {
-        question: "What is the cost of the mandatory medical test?",
-        answer: "The government-approved rate for the pre-departure medical examination is typically around Rs. 4,500, which is non-refundable."
-      },
-      {
-        question: "How do I calculate my foreign salary into NPR?",
-        answer: "Our calculator automatically fetches the daily exchange rate (e.g., Qatari Riyal, UAE Dirham, Malaysian Ringgit) from the Nepal Rastra Bank to convert your basic salary into Nepalese Rupees."
-      }
+      { question: "What is the maximum agency fee allowed in Nepal?", answer: "The Department of Foreign Employment (DoFE) caps recruitment agency fees. For most Gulf countries, the fee is capped at a maximum of NPR 10,000." },
+      { question: "Is foreign employment income taxable in Nepal?", answer: "Remittances sent back to Nepal are not directly taxed, but any interest earned on savings in Nepal is subject to standard income tax." }
     ]
   },
+
   'kukl-bill': {
-    title: "KUKL Water Bill Calculator | Kathmandu Upatyaka",
-    description: "Calculate your monthly KUKL water bill and sewerage tax. Supports both tap connections and metered consumption in Kathmandu.",
-    content: (
-      <>
-        <h2>Calculating Kathmandu's Water Tariffs</h2>
-        <p>
-          The Kathmandu Upatyaka Khanepani Limited (KUKL) manages water distribution across the Kathmandu Valley. Because water is a scarce resource, KUKL utilizes a tiered tariff structure to discourage waste while maintaining affordable minimums for all households.
-        </p>
-        <h3>Tap Size and Metering</h3>
-        <p>
-          Your baseline bill depends heavily on the diameter of your water pipe (e.g., 1/2 inch vs. 3/4 inch). Larger pipes allow for significantly higher water pressure and flow, and therefore have a much higher minimum monthly charge regardless of actual usage.
-        </p>
-      </>
-    ),
+    title: "KUKL Water Bill Calculator | Kathmandu Upatyaka Khanepani",
+    description: "Calculate your exact KUKL monthly water bill for Kathmandu Valley based on meter size and consumption units.",
+    content: null,
     faqs: [
-      {
-        question: "What is the sewerage tax?",
-        answer: "If your house is connected to the government sewerage system, KUKL automatically adds an additional 50% surcharge to your base water bill to cover wastewater treatment and maintenance."
-      },
-      {
-        question: "What if my meter is broken?",
-        answer: "If your meter is damaged, KUKL will bill you based on an estimated average consumption or a flat rate depending on your tap size until the meter is replaced."
-      }
+      { question: "How does KUKL calculate the water bill?", answer: "KUKL uses a progressive block tariff system. Low consumption households pay subsidized rates, while higher consumption is charged at premium rates per kiloliter." },
+      { question: "What is the minimum monthly charge?", answer: "There is a minimum monthly demand charge regardless of consumption, which varies based on your meter connection size (15mm, 20mm, 25mm etc.)." }
     ]
   },
+
   'nepal-attendance': {
-    title: "University Attendance Calculator Nepal | 75% Rule",
-    description: "Track your university attendance for TU, KU, and PU. Calculate exactly how many classes you can afford to skip before failing.",
-    content: (
-      <>
-        <h2>The Strict 75% Attendance Rule</h2>
-        <p>
-          Major universities in Nepal, including Tribhuvan University (TU), Kathmandu University (KU), and Pokhara University (PU), enforce a strict attendance policy. If your total attendance falls below 75% (or 80% for some medical/engineering programs), you will be barred from sitting for final board examinations.
-        </p>
-        <h3>Strategic Class Bunking</h3>
-        <p>
-          Our calculator helps you mathematically manage your schedule. If you have an important family event or illness, you can input your total conducted classes and attended classes to see exactly how many upcoming lectures you can safely skip while staying in the safe zone.
-        </p>
-      </>
-    ),
+    title: "Attendance Calculator | Nepal University 75% Rule",
+    description: "Calculate your university attendance percentage. Find out exactly how many more classes you can miss before being barred from exams.",
+    content: null,
     faqs: [
-      {
-        question: "How do medical leaves work?",
-        answer: "Even with a valid doctor's certificate, universities usually only provide a small grace margin (e.g., reducing the requirement to 65%). You cannot miss half the semester, even if sick."
-      },
-      {
-        question: "Do practical labs count?",
-        answer: "Yes, and often, practical labs have an even stricter attendance requirement (often 100% or mandatory makeup sessions) compared to theoretical lectures."
-      }
+      { question: "What is the minimum attendance required in Nepal?", answer: "Most universities in Nepal (TU, KU, PU) require a minimum of 75% attendance to sit for final exams. Some medical/engineering programs require 80%." },
+      { question: "Do practical labs count separately?", answer: "Yes, practical labs often have a stricter separate attendance requirement, sometimes requiring 100% attendance or mandatory makeup sessions." }
     ]
   },
-  'see-gpa': {
-    title: "SEE GPA Calculator | Secondary Education Examination",
-    description: "Calculate your exact SEE GPA based on the latest National Examination Board (NEB) grading system in Nepal.",
-    content: (
-      <>
-        <h2>The NEB Letter Grading System</h2>
-        <p>
-          The Secondary Education Examination (SEE) is the most critical academic milestone for Nepalese students. The National Examination Board (NEB) transitioned from percentage scores to a Letter Grading system to reduce student stress and align with international academic standards.
-        </p>
-        <h3>Understanding Grade Points</h3>
-        <p>
-          Instead of an exact percentage, students are awarded a Grade (A+, A, B+, etc.) and a corresponding Grade Point (4.0, 3.6, 3.2). Your final SEE GPA is the weighted average of these grade points across all your compulsory and optional subjects.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is an 'A+' in the SEE grading system?",
-        answer: "An 'A+' (Outstanding) is awarded to students scoring 90% and above in a subject, which translates to a Grade Point of 4.0."
-      },
-      {
-        question: "What happens if I get a 'NG'?",
-        answer: "'NG' stands for Not Graded. If you fail to secure the minimum passing marks in the theoretical exam, you will receive an NG and cannot enroll in Class 11 until you pass the supplementary exam."
-      }
-    ]
-  },
-  'nepali-date': {
-    title: "Nepali Date Converter | BS to AD | AD to BS",
-    description: "Convert dates between Bikram Sambat (BS) and Gregorian (AD) instantly. The most accurate Nepali calendar tool.",
-    content: (
-      <>
-        <h2>The Bikram Sambat (BS) Calendar</h2>
-        <p>
-          Bikram Sambat (BS) is the official solar calendar of Nepal, established by Emperor Vikramaditya. It is approximately 56 years and 8.5 months ahead of the Gregorian (AD) calendar. Understanding how to convert between the two is essential for official documentation, visas, and historical research.
-        </p>
-        <h3>Why Conversion is Complex</h3>
-        <p>
-          Unlike the Gregorian calendar where months have a fixed number of days (with February leap years), the Nepali calendar is determined by complex astrological calculations. The number of days in a BS month can vary from 29 to 32 days, and this changes every single year, making manual calculation nearly impossible.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Is BS a lunar or solar calendar?",
-        answer: "Bikram Sambat is a strictly solar calendar based on ancient Hindu traditions, which is why it stays relatively aligned with the seasons compared to pure lunar calendars."
-      },
-      {
-        question: "How accurate is the date converter?",
-        answer: "Our tool relies on official data matrices provided by the Nepal Panchanga Nirnayak Samiti, ensuring 100% precision for historical and future dates."
-      }
-    ]
-  },
-  'loan-emi': {
-    title: "Universal Loan EMI Calculator | Personal & Auto Loans",
-    description: "Calculate standard EMIs for personal loans, auto loans, and education loans. Generate complete repayment schedules and interest charts.",
-    content: (
-      <>
-        <h2>What is an Equated Monthly Installment (EMI)?</h2>
-        <p>
-          An EMI is the fixed payment amount made by a borrower to a lender on a specific date each calendar month. EMIs are used to pay off both the principal amount and the accrued interest over the lifespan of a loan.
-        </p>
-        <h3>The Hidden Cost of Long-Term Loans</h3>
-        <p>
-          While stretching a loan over 10 or 15 years dramatically reduces your monthly EMI, it massively increases the total interest you pay to the bank. Use our tool to compare a 5-year auto loan vs. a 7-year auto loan to see the exact difference in total cost.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Does EMI change if interest rates rise?",
-        answer: "If you have a fixed-rate loan, your EMI never changes. If you have a floating/variable rate loan, the bank may either increase your EMI amount or extend your loan tenure when rates rise."
-      },
-      {
-        question: "What is a reducing balance method?",
-        answer: "It means interest is calculated only on the remaining loan principal. As you pay off the loan, the interest portion of your EMI shrinks, while the principal repayment portion grows."
-      }
-    ]
-  },
+
   'lead-time': {
     title: "Lead Time & Cycle Time Calculator | Supply Chain",
     description: "Calculate manufacturing lead times, cycle times, and takt time. Optimize your inventory and supply chain management.",
-    content: (
-      <>
-        <h2>Optimizing Your Supply Chain</h2>
-        <p>
-          In manufacturing and retail, "Lead Time" is the total time elapsed between the placement of an order and the delivery of the finished goods. Reducing lead time is the primary goal of lean manufacturing systems (like Toyota's Just-In-Time model) to minimize warehouse inventory costs.
-        </p>
-        <h3>Lead Time vs. Cycle Time</h3>
-        <p>
-          <strong>Lead Time</strong> is measured from the customer's perspective (from order to delivery).
-          <br/><strong>Cycle Time</strong> is measured from the factory's perspective (how long it takes to actively produce one unit from start to finish).
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "What is Takt Time?",
-        answer: "Takt time is the maximum acceptable time to meet customer demand. If a customer orders 10 units a day and you work 10 hours, your Takt time is 1 hour per unit."
-      },
-      {
-        question: "How do I account for shipping delays?",
-        answer: "When calculating standard lead time for inventory reordering, you should always add a safety margin (buffer time) to account for transit delays or supplier shortages."
-      }
+      { question: "What is Takt Time?", answer: "Takt time is the maximum acceptable time to meet customer demand. If a customer orders 10 units a day and you work 10 hours, your Takt time is 1 hour per unit." },
+      { question: "How do I account for shipping delays?", answer: "Always add a safety margin (buffer time) to account for transit delays or supplier shortages when calculating lead time for inventory reordering." }
     ]
   },
+
   'pythagorean-theorem': {
     title: "Pythagorean Theorem Calculator | Find the Hypotenuse",
-    description: "Instantly solve for the hypotenuse or any side of a right-angled triangle. Essential geometric math tool.",
-    content: (
-      <>
-        <h2>The Most Famous Formula in Geometry</h2>
-        <p>
-          The Pythagorean Theorem states that in a right-angled triangle, the square of the longest side (the hypotenuse) is equal to the sum of the squares of the other two sides.
-        </p>
-        <h3>Practical Applications</h3>
-        <p>
-          While it seems like pure math, a² + b² = c² is used constantly in the real world. Carpenters use it to ensure walls form perfect 90-degree corners (the 3-4-5 rule). Navigators use it to find the shortest straight-line distance between two points on a map.
-        </p>
-      </>
-    ),
+    description: "Instantly solve for the hypotenuse or any side of a right-angled triangle using a² + b² = c².",
+    content: null,
     faqs: [
-      {
-        question: "Does the Pythagorean theorem work on any triangle?",
-        answer: "No. The theorem strictly applies only to right-angled triangles (where one angle is exactly 90 degrees)."
-      },
-      {
-        question: "What is a Pythagorean Triple?",
-        answer: "It is a set of three positive integers that perfectly fit the formula, meaning there are no decimals. The most famous examples are (3, 4, 5) and (5, 12, 13)."
-      }
+      { question: "Does the Pythagorean theorem work on any triangle?", answer: "No. The theorem strictly applies only to right-angled triangles where one angle is exactly 90 degrees." },
+      { question: "What is a Pythagorean Triple?", answer: "A set of three positive integers that perfectly fit the formula with no decimals. The most famous are (3, 4, 5) and (5, 12, 13)." }
     ]
   },
+
   'surface-area-calculator': {
     title: "Surface Area Calculator | 3D Geometric Shapes",
     description: "Calculate the total surface area of cylinders, spheres, cones, and rectangular prisms. Vital for manufacturing and design.",
-    content: (
-      <>
-        <h2>What is Surface Area?</h2>
-        <p>
-          Surface Area is the total area that the surface of a 3D object occupies. Unlike volume (which measures the inside), surface area measures the outside wrapper. If you were wrapping a box in gift paper, the surface area tells you exactly how much paper you need.
-        </p>
-        <h3>Lateral vs. Total Surface Area</h3>
-        <p>
-          <strong>Lateral Surface Area</strong> only includes the sides of the object, ignoring the top and bottom bases.
-          <br/><strong>Total Surface Area</strong> includes every single face of the object. Our calculator lets you compute both instantly.
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "How do you find the surface area of a cylinder?",
-        answer: "The formula is 2πr² (for the top and bottom circles) + 2πrh (for the curved side wrapping around it)."
-      },
-      {
-        question: "Why is surface-area-to-volume ratio important?",
-        answer: "In biology and chemistry, a high surface-area-to-volume ratio drastically increases the speed of reactions, heat loss, and cellular absorption."
-      }
+      { question: "What is the difference between lateral and total surface area?", answer: "Lateral surface area covers only the sides (excluding the top and bottom bases). Total surface area includes the bases as well." },
+      { question: "What is the surface area formula for a sphere?", answer: "The surface area of a sphere is 4 × π × r², where r is the radius." }
     ]
   },
+
   'volume-calculator': {
-    title: "Volume Calculator | 3D Space & Liquid Capacity",
-    description: "Calculate the volume of spheres, cylinders, cubes, and cones. Convert cubic meters to liters and gallons instantly.",
-    content: (
-      <>
-        <h2>Understanding 3D Volume</h2>
-        <p>
-          Volume is the quantification of the three-dimensional space enclosed by a closed surface. It determines the holding capacity of an object. If you are filling a swimming pool with water, or pouring concrete for a foundation, volume is the metric you need.
-        </p>
-        <h3>The Base-Times-Height Rule</h3>
-        <p>
-          For uniform 3D shapes like cylinders or rectangular prisms, the volume formula is simply the <strong>Area of the Base × Height</strong>. For shapes that taper to a point (like cones and pyramids), you calculate the uniform volume and then divide by 3.
-        </p>
-      </>
-    ),
+    title: "Volume Calculator | Cylinders, Spheres & Cones",
+    description: "Calculate the volume of any 3D geometric shape instantly. Supports cones, cylinders, spheres, and rectangular prisms.",
+    content: null,
     faqs: [
-      {
-        question: "How do I convert cubic meters to liters?",
-        answer: "One cubic meter (m³) is exactly equal to 1,000 liters. This makes metric conversions incredibly simple."
-      },
-      {
-        question: "What is the formula for the volume of a sphere?",
-        answer: "The formula is V = 4/3 × π × r³, where r is the radius from the center of the sphere."
-      }
+      { question: "What is the formula for the volume of a cylinder?", answer: "Volume of a cylinder = π × r² × h, where r is the radius of the circular base and h is the height." },
+      { question: "What is the formula for the volume of a sphere?", answer: "The formula is V = 4/3 × π × r³, where r is the radius from the center of the sphere." }
     ]
   },
+
   'market-rates/live-gold-price': {
     title: "Live Gold Price in Nepal Today | Fine & Tejabi Sun",
     description: "Check the exact, official daily gold rates in Nepal (Fine 24K and Tejabi 22K). Prices synced with the Nepal Gold and Silver Dealers' Association.",
-    content: (
-      <>
-        <h2>The Nepali Gold Market</h2>
-        <p>
-          In Nepal, gold (Sun) is not just an investment; it is deeply embedded in the culture, particularly during weddings and festivals like Tihar. The daily price is strictly regulated and published every morning at 10:00 AM by the Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA).
-        </p>
-        <h3>Tola vs. Gram</h3>
-        <p>
-          While international markets trade gold in Ounces and Grams, the local Nepalese market still relies heavily on the traditional "Tola" system. One Tola is precisely equal to 11.66 grams.
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "What is the difference between Fine Gold and Tejabi Gold?",
-        answer: "Fine Gold (Chhapawal) is 24-karat, 99.99% pure gold. Tejabi Gold is 22-karat gold, slightly less pure, mixed with other metals to make it harder for jewelry making, and is therefore slightly cheaper."
-      },
-      {
-        question: "Does the listed price include jewelry making charges (Jarti)?",
-        answer: "No. The published FENEGOSIDA price is only the raw material cost. Jewelers will add Jarti (wastage) and making charges on top of this base price when you buy a finished ornament."
-      }
+      { question: "What is the difference between Fine Gold and Tejabi Gold?", answer: "Fine Gold (Chhapawal) is 24-karat, 99.99% pure gold. Tejabi Gold is 22-karat gold, slightly less pure, mixed with other metals to make it harder for jewelry making." },
+      { question: "Does the listed price include jewelry making charges (Jarti)?", answer: "No. The FENEGOSIDA price is only the raw material cost. Jewelers add Jarti (wastage) and making charges on top of this base price." }
     ]
   },
+
   'market-rates/remittance': {
     title: "Nepal Remittance Board | Compare Live Money Transfer Rates",
     description: "Compare real-time exchange rates from top remit companies (IME, Western Union, Prabhu) for sending money to Nepal from abroad.",
-    content: (
-      <>
-        <h2>Maximizing Your Remittance to Nepal</h2>
-        <p>
-          Remittance forms the backbone of Nepal's economy. When sending money home from the Gulf, Malaysia, USA, or Australia, the exchange rate offered by different money transfer operators can vary wildly. A seemingly small difference in the rate can result in thousands of missing Rupees.
-        </p>
-        <h3>Exchange Rate vs. Transfer Fees</h3>
-        <p>
-          Always look at the total "Landed Cost." A remit company might offer a phenomenally high exchange rate, but charge a massive flat fee for the transfer. Conversely, some offer "zero-fee" transfers but hide their profit in a terrible exchange rate.
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "Is it better to send money to a bank account or for cash pickup?",
-        answer: "Direct bank account transfers generally offer slightly better exchange rates and lower fees compared to instant cash pickup services."
-      },
-      {
-        question: "Are remittance exchange rates updated daily?",
-        answer: "Yes, remittance rates are highly volatile and are updated multiple times a day based on the international forex market and the Nepal Rastra Bank guidelines."
-      }
+      { question: "Is it better to send money to a bank account or for cash pickup?", answer: "Direct bank account transfers generally offer slightly better exchange rates and lower fees compared to instant cash pickup services." },
+      { question: "Are remittance exchange rates updated daily?", answer: "Yes, remittance rates are highly volatile and are updated multiple times a day based on the international forex market and NRB guidelines." }
     ]
   },
+
   'market-rates/exchange-rate': {
     title: "Live Foreign Exchange Rates Nepal | USD, AUD, INR to NPR",
     description: "View real-time, official Nepal Rastra Bank (NRB) foreign exchange reference rates for USD, AUD, EUR, and GBP to Nepalese Rupees.",
-    content: (
-      <>
-        <h2>Nepal Rastra Bank (NRB) Official Rates</h2>
-        <p>
-          The value of the Nepalese Rupee (NPR) fluctuates daily against major global currencies. The Nepal Rastra Bank (NRB) publishes the official reference exchange rate every morning, which dictates the rates used by commercial banks and customs offices.
-        </p>
-        <h3>The INR-NPR Peg</h3>
-        <p>
-          Unlike other currencies, the Nepalese Rupee is permanently pegged to the Indian Rupee (INR) at a fixed rate of 1 INR = 1.60 NPR. Therefore, whenever the Indian Rupee strengthens or weakens against the US Dollar, the Nepalese Rupee automatically follows suit.
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "What is the difference between the Buying Rate and Selling Rate?",
-        answer: "The Buying Rate is what the bank will pay YOU if you give them foreign currency. The Selling Rate is what the bank charges YOU if you want to buy foreign currency from them."
-      },
-      {
-        question: "Can I get the exact NRB rate at a money exchange counter?",
-        answer: "No. Money changers and commercial banks add their own spread (profit margin) on top of the NRB reference rate."
-      }
+      { question: "What is the difference between the Buying Rate and Selling Rate?", answer: "The Buying Rate is what the bank pays YOU if you give them foreign currency. The Selling Rate is what the bank charges YOU if you want to buy foreign currency." },
+      { question: "Can I get the exact NRB rate at a money exchange counter?", answer: "No. Money changers and commercial banks add their own spread (profit margin) on top of the NRB reference rate." }
     ]
   },
+
   'market-rates/live-silver-price': {
     title: "Live Silver Price in Nepal | Chandi Rates Today",
     description: "Check the official daily Silver (Chandi) rates in Nepal per Tola and per Gram, authorized by FENEGOSIDA.",
-    content: (
-      <>
-        <h2>The Silver (Chandi) Market in Nepal</h2>
-        <p>
-          Silver (locally known as Chandi) is heavily used in Nepal for traditional jewelry, religious idols, and utensils for pooja. Just like gold, the price of silver is standardized daily across the country by the Federation of Nepal Gold and Silver Dealers' Association.
-        </p>
-        <h3>Silver as an Investment</h3>
-        <p>
-          While gold is the primary precious metal investment, silver offers a lower barrier to entry. However, silver is highly volatile and is heavily influenced by industrial demand alongside investment demand.
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "Is the price of silver the same across all of Nepal?",
-        answer: "The base price of raw silver is uniform. However, local jewelers may adjust making charges depending on the region and the complexity of the jewelry design."
-      },
-      {
-        question: "How many grams are in one Tola of Silver?",
-        answer: "Just like gold, one Tola of silver is equal to 11.66 grams."
-      }
+      { question: "Is the price of silver the same across all of Nepal?", answer: "The base price of raw silver is uniform nationally. However, local jewelers may adjust making charges depending on the region." },
+      { question: "How many grams are in one Tola of Silver?", answer: "Just like gold, one Tola of silver is equal to 11.66 grams." }
     ]
   },
+
   'bmi-child': {
     title: "Child BMI Percentile Calculator | Pediatric Growth",
     description: "Calculate your child's BMI percentile accurately based on CDC and WHO growth charts for age and gender.",
-    content: (
-      <>
-        <h2>Why Child BMI is Calculated Differently</h2>
-        <p>
-          You cannot use a standard adult BMI calculator for children or teenagers. Because children are constantly growing, their body fat composition changes significantly with age and differs entirely between boys and girls.
-        </p>
-        <h3>Understanding Percentiles</h3>
-        <p>
-          Child BMI is expressed as a "Percentile" rather than a raw number. If your child is in the 75th percentile, it means their BMI is higher than 75% of children of the exact same age and biological sex.
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "What is considered a healthy percentile range for a child?",
-        answer: "A healthy weight is typically defined as falling between the 5th and 85th percentiles on the CDC growth charts."
-      },
-      {
-        question: "Is BMI accurate for athletic teenagers?",
-        answer: "Like adults, heavily muscular teens may have a high BMI that categorizes them as overweight, even if their body fat is very low. Always consult a pediatrician for a full assessment."
-      }
+      { question: "What is considered a healthy percentile range for a child?", answer: "A healthy weight is typically defined as falling between the 5th and 85th percentiles on the CDC growth charts." },
+      { question: "Is BMI accurate for athletic teenagers?", answer: "Heavily muscular teens may have a high BMI categorizing them as overweight, even if their body fat is very low. Always consult a pediatrician for a full assessment." }
     ]
   },
+
   'sleep': {
     title: "Sleep Cycle Calculator | Find Your Optimal Wake Time",
     description: "Calculate the exact time you should go to bed or wake up to avoid grogginess. Based on 90-minute human REM sleep cycles.",
-    content: (
-      <>
-        <h2>The Science of Sleep Cycles</h2>
-        <p>
-          Human sleep is not uniform; it consists of 90-minute cycles transitioning between light sleep, deep sleep, and REM (Rapid Eye Movement) sleep. If your alarm clock wakes you up right in the middle of deep sleep, you will experience "sleep inertia"—that heavy, groggy feeling that ruins your morning.
-        </p>
-        <h3>Timing is Better Than Duration</h3>
-        <p>
-          Getting exactly 7.5 hours of sleep (5 full cycles) or even 6 hours of sleep (4 full cycles) will often leave you feeling far more refreshed than getting 8 hours of sleep and waking up mid-cycle.
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "How long does it take the average person to fall asleep?",
-        answer: "It takes the average human about 14 to 20 minutes to fall asleep. Our calculator automatically factors this buffer time into your bedtime."
-      },
-      {
-        question: "What is the optimal number of sleep cycles per night?",
-        answer: "Most adults need 5 full sleep cycles (about 7.5 hours) per night to achieve optimal cognitive performance."
-      }
+      { question: "How long does it take the average person to fall asleep?", answer: "It takes the average human about 14 to 20 minutes to fall asleep. Our calculator automatically factors this buffer time into your bedtime." },
+      { question: "What is the optimal number of sleep cycles per night?", answer: "Most adults need 5 full sleep cycles (about 7.5 hours) per night to achieve optimal cognitive performance." }
     ]
   },
+
   'momo-calorie-counter': {
     title: "Momo Calorie Counter | Nepalese Food Nutrition",
     description: "Calculate the exact calories and macros in your plate of Momo (Chicken, Buff, Veg). Don't break your diet in Kathmandu!",
-    content: (
-      <>
-        <h2>The Caloric Cost of Nepal's Favorite Food</h2>
-        <p>
-          Momo is the undisputed king of Nepalese street food. However, if you are tracking your macros or trying to lose weight, a quick plate of Jhol Momo can quietly destroy your daily caloric deficit.
-        </p>
-        <h3>Steamed vs. Fried (Kothey / C)</h3>
-        <p>
-          A standard steamed chicken momo has about 35-40 calories. However, deep-frying the momo or tossing it in a heavy, oil-based 'C-Momo' chili sauce can easily double the caloric density of the dish.
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "Which type of momo has the lowest calories?",
-        answer: "Steamed vegetable momo (filled primarily with cabbage and carrots) is the lowest in calories, typically hovering around 25-30 calories per piece."
-      },
-      {
-        question: "Does the Momo Achar (Sauce) add a lot of calories?",
-        answer: "Yes! While tomato-based achars are relatively light, peanut-based or heavy oil-based sauces can add an extra 100-200 calories to your meal."
-      }
+      { question: "Which type of momo has the lowest calories?", answer: "Steamed vegetable momo (filled primarily with cabbage and carrots) is the lowest in calories, typically around 25-30 calories per piece." },
+      { question: "Does the Momo Achar (Sauce) add a lot of calories?", answer: "Yes! Peanut-based or heavy oil-based sauces can add an extra 100-200 calories to your meal." }
     ]
   },
+
   'solar-requirement': {
     title: "Solar Panel & Inverter Calculator | Home Load Capacity",
     description: "Calculate the total wattage required for your home. Size your solar panels, battery bank, and inverter accurately.",
-    content: (
-      <>
-        <h2>Sizing a Home Solar System</h2>
-        <p>
-          With unpredictable grid reliability, moving to solar power is highly beneficial. However, installing a system that is too small will leave you in the dark, and installing one that is too large wastes money. You must calculate your exact total watt-hour load.
-        </p>
-        <h3>The Battery Bank Factor</h3>
-        <p>
-          Solar panels only generate power during the day. If you plan to run heavy appliances (like a fridge or TV) at night, your battery bank must have enough Amp-Hour (Ah) capacity to store the day's energy and discharge it safely without dropping below 50% depth-of-discharge.
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "How do I calculate my daily energy consumption?",
-        answer: "Multiply the wattage of each appliance by the number of hours you run it per day. Add them all together to get your total daily Watt-Hours."
-      },
-      {
-        question: "What is an inverter's continuous rating vs. surge rating?",
-        answer: "Continuous rating is what the inverter can handle indefinitely. Surge rating is the massive, momentary spike of power required to start a motor (like a water pump or refrigerator)."
-      }
+      { question: "How do I calculate my daily energy consumption?", answer: "Multiply the wattage of each appliance by the number of hours you run it per day. Add them all together to get your total daily Watt-Hours." },
+      { question: "What is an inverter's continuous rating vs. surge rating?", answer: "Continuous rating is what the inverter can handle indefinitely. Surge rating is the momentary spike of power required to start a motor like a water pump." }
     ]
   },
+
   'paint-cost': {
     title: "House Painting Cost & Volume Calculator",
     description: "Estimate exactly how many liters of paint you need for a room or house. Calculate total costs based on primer, coats, and square footage.",
-    content: (
-      <>
-        <h2>Never Overbuy Paint Again</h2>
-        <p>
-          Buying too much paint is a waste of money, but running out of paint halfway through a wall leads to inconsistent color matching. By calculating the exact square footage of your walls (and subtracting windows and doors), you can purchase the perfect volume.
-        </p>
-        <h3>Understanding Coverage Rates</h3>
-        <p>
-          A standard liter of interior latex paint typically covers about 10 to 12 square meters for a single coat. However, highly textured walls or porous drywall might require a heavy layer of primer first to prevent the paint from soaking in.
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "How many coats of paint are necessary?",
-        answer: "For most interior walls, especially if changing colors, you will need one coat of primer and two coats of the finish paint for an even, durable look."
-      },
-      {
-        question: "Do I need to paint the ceiling?",
-        answer: "Ceilings require specific 'ceiling paint' which is designed to scatter light and hide imperfections, and it usually requires separate volume calculations."
-      }
+      { question: "How many coats of paint are necessary?", answer: "For most interior walls, you will need one coat of primer and two coats of finish paint for an even, durable look." },
+      { question: "How much area does one liter of paint cover?", answer: "A standard liter of interior latex paint typically covers about 10 to 12 square meters per single coat." }
     ]
   },
+
   'word-counter': {
     title: "Advanced Word & Character Counter | Reading Time",
     description: "Instantly count words, characters (with/without spaces), paragraphs, and estimate reading time for essays and SEO articles.",
-    content: (
-      <>
-        <h2>The Importance of Word Counts</h2>
-        <p>
-          Whether you are writing a 500-word university essay, a 280-character tweet, or a 2000-word SEO-optimized blog post, hitting exact length constraints is crucial. Our tool provides instantaneous, real-time metrics as you paste or type your text.
-        </p>
-        <h3>Characters with vs. without Spaces</h3>
-        <p>
-          Many government forms, SMS gateways, and API limits count absolute characters (including the blank spaces between words). Our tool separates these metrics so you never exceed strict database or form limits.
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "How is reading time calculated?",
-        answer: "We estimate reading time based on the universal average reading speed of an adult, which is roughly 200 to 250 words per minute."
-      },
-      {
-        question: "Does the tool store my text?",
-        answer: "No. All counting is done locally in your browser using JavaScript. We do not upload or save your sensitive documents to our servers."
-      }
+      { question: "How is reading time calculated?", answer: "We estimate reading time based on the universal average reading speed of an adult, which is roughly 200 to 250 words per minute." },
+      { question: "Does the tool store my text?", answer: "No. All counting is done locally in your browser using JavaScript. We do not upload or save your documents to our servers." }
     ]
   },
-  'length-converter': {
-    title: "Length & Distance Converter | Meters, Feet, Miles",
-    description: "Convert length and distance instantly between metric and imperial units. Convert kilometers to miles, meters to feet, and centimeters to inches.",
-    content: (
-      <>
-        <h2>The Two Measurement Systems</h2>
-        <p>
-          Navigating between the Metric system (used by 95% of the world) and the Imperial system (used primarily by the US) is a daily necessity in engineering, construction, and travel. Our tool provides instantaneous, high-precision conversions.
-        </p>
-        <h3>Common Conversion Factors</h3>
-        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-          <li><strong>1 Mile</strong> = 1.60934 Kilometers</li>
-          <li><strong>1 Meter</strong> = 3.28084 Feet</li>
-          <li><strong>1 Inch</strong> = 2.54 Centimeters</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is a nautical mile?",
-        answer: "A nautical mile is based on the circumference of the earth, equal to one minute of latitude. It is slightly longer than a standard (statute) mile, measuring exactly 1.852 kilometers."
-      },
-      {
-        question: "How accurate is the conversion?",
-        answer: "Our converter uses standard international scientific conversion factors, providing accuracy up to 6 decimal places."
-      }
-    ]
-  },
-  'date-duration': {
-    title: "Date Duration Calculator | Days Between Dates",
-    description: "Calculate the exact number of days, months, and years between two calendar dates. Perfect for contract lengths, project timelines, and visa tracking.",
-    content: (
-      <>
-        <h2>Why Calculate Date Durations?</h2>
-        <p>
-          Whether you are tracking the remaining validity of a passport, calculating a project deadline, or counting down to a major life event, calculating the exact time delta between two dates manually is error-prone due to leap years and varying month lengths.
-        </p>
-        <h3>Inclusive vs. Exclusive Dates</h3>
-        <p>
-          When calculating duration, you must decide whether to "include the end date." For example, if a hotel booking is from Monday to Wednesday, it is mathematically 2 days duration, but you are physically there for parts of 3 calendar days.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Does the calculator account for Leap Years?",
-        answer: "Yes, our algorithm automatically detects leap years and adds the extra day (February 29th) into the duration calculation when applicable."
-      },
-      {
-        question: "Can I subtract dates to find a past date?",
-        answer: "Yes, you can input a negative duration (e.g., 'subtract 90 days from today') to instantly find a specific past calendar date."
-      }
-    ]
-  },
-  'age-calculator': {
-    title: "Exact Age Calculator | Chronological Age in Years & Days",
-    description: "Calculate your exact age down to the day. Find out how many months, weeks, and days you have been alive based on your date of birth.",
-    content: (
-      <>
-        <h2>Calculating Chronological Age</h2>
-        <p>
-          While most people know their age in years, many official documents (like pediatric medical records, visa applications, and life insurance policies) require your exact chronological age in months or days at the time of application.
-        </p>
-        <h3>The Mathematics of Aging</h3>
-        <p>
-          Because months vary from 28 to 31 days and leap years shift the calendar, simply dividing your age in days by 365 will not give an accurate result. Our calculator uses precise native Date objects to compute the exact biological delta from your birthdate to today.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "How is a 'half birthday' calculated?",
-        answer: "A half birthday is exactly 6 months from your birth date. If you were born on January 15th, your half birthday is July 15th."
-      },
-      {
-        question: "Is my age calculated differently in some cultures?",
-        answer: "Yes. In the traditional East Asian age reckoning system (like in Korea historically), you are considered 1 year old at birth, and you gain a year every New Year's Day, rather than on your birthday."
-      }
-    ]
-  },
+
   'qr-generator': {
     title: "Free QR Code Generator | Make Custom QR Codes",
     description: "Generate high-density, machine-readable QR codes for URLs, text, WiFi passwords, and contact cards instantly and for free.",
-    content: (
-      <>
-        <h2>The Power of Quick Response (QR) Codes</h2>
-        <p>
-          QR codes are 2D matrix barcodes that can store massive amounts of data compared to traditional 1D barcodes. They are read instantly by smartphone cameras, bridging the physical world with the digital world.
-        </p>
-        <h3>Error Correction Levels</h3>
-        <p>
-          Our generator utilizes Reed-Solomon error correction. This means that even if a part of your QR code is damaged, dirty, or covered by a logo, a smartphone camera can still perfectly reconstruct the data and scan the code successfully.
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "Do QR codes expire?",
-        answer: "No, a standard 'static' QR code contains the actual data embedded in its pixels. It will never expire as long as the destination URL or text remains active."
-      },
-      {
-        question: "Can I put a WiFi password in a QR code?",
-        answer: "Yes! You can generate a specific WiFi QR code. When someone scans it with their phone camera, it will automatically connect them to your network without needing to type the password."
-      }
+      { question: "Do QR codes expire?", answer: "No, a standard static QR code contains the actual data embedded in its pixels. It will never expire as long as the destination URL or text remains active." },
+      { question: "Can I put a WiFi password in a QR code?", answer: "Yes! You can generate a WiFi QR code. When someone scans it, it will automatically connect them to your network without typing the password." }
     ]
   },
+
   'number-to-words': {
     title: "Number to Words Converter | Check Writing Utility",
-    description: "Convert large numerical integers (e.g., 1,500) into written English words (One Thousand Five Hundred). Essential for writing checks and legal contracts.",
-    content: (
-      <>
-        <h2>Why Convert Numbers to Words?</h2>
-        <p>
-          In the financial and legal sectors, simply writing "Rs. 1,000,000" on a contract or a check is dangerous, as a single extra zero can change the value dramatically. Writing the number in full text ("One Million Rupees") prevents tampering and ensures absolute clarity.
-        </p>
-        <h3>Millions vs. Lakhs/Crores</h3>
-        <p>
-          The International numbering system groups numbers by thousands (Thousands, Millions, Billions). The South Asian numbering system (used in Nepal and India) groups by hundreds after the first thousand (Lakhs, Crores). Our tool supports standard international formatting.
-        </p>
-      </>
-    ),
+    description: "Convert large numerical integers into written English words. Essential for writing checks and legal contracts.",
+    content: null,
     faqs: [
-      {
-        question: "How do you write out decimals on a check?",
-        answer: "Usually, decimals are written as fractions of 100. For example, Rs. 150.50 is written as 'One Hundred Fifty and 50/100'."
-      },
-      {
-        question: "What is the biggest number the tool can convert?",
-        answer: "Our engine can safely convert numbers up into the trillions without losing precision."
-      }
+      { question: "How do you write out decimals on a check?", answer: "Decimals are written as fractions of 100. For example, Rs. 150.50 is written as 'One Hundred Fifty and 50/100'." },
+      { question: "What is the biggest number the tool can convert?", answer: "Our engine can safely convert numbers up into the trillions without losing precision." }
     ]
   },
+
   'password-generator': {
     title: "Secure Password Generator | Cryptographic Random Strings",
     description: "Generate highly secure, randomized passwords utilizing uppercase, lowercase, numbers, and special symbols to defeat brute-force attacks.",
-    content: (
-      <>
-        <h2>The Danger of Weak Passwords</h2>
-        <p>
-          Using dictionary words, birth dates, or sequential numbers (like 'password123') makes your accounts highly vulnerable to "dictionary attacks" and "brute-force" botnets. A strong password must be long, complex, and completely unpredictable.
-        </p>
-        <h3>Length over Complexity</h3>
-        <p>
-          In modern cybersecurity, the length of the password is often more important than the complexity. A 16-character password using only lowercase letters is mathematically harder for a computer to crack than an 8-character password using symbols and numbers.
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "Does this tool save my generated passwords?",
-        answer: "Absolutely not. All passwords are generated locally on your device using your browser's secure crypto random number generator. Nothing is ever sent to a server."
-      },
-      {
-        question: "How often should I change my password?",
-        answer: "Modern security guidelines recommend changing your password immediately if there is a known data breach, rather than changing it on an arbitrary schedule (which often leads to people picking weaker, easier-to-remember passwords)."
-      }
+      { question: "Does this tool save my generated passwords?", answer: "Absolutely not. All passwords are generated locally on your device using your browser's secure crypto random number generator. Nothing is sent to a server." },
+      { question: "How often should I change my password?", answer: "Modern security guidelines recommend changing your password immediately if there is a known data breach, rather than on an arbitrary schedule." }
     ]
   },
+
   'concrete-mix': {
     title: "Concrete Mix Calculator | Volume & Material Estimator",
-    description: "Calculate exactly how much cement, sand, and aggregate (gravel) you need for your construction project based on the mix ratio.",
-    content: (
-      <>
-        <h2>Understanding Concrete Mix Ratios</h2>
-        <p>
-          Concrete is not just cement; it is a composite material made of a binder (cement), fine aggregate (sand), and coarse aggregate (gravel/stones) mixed with water. The strength of the concrete depends entirely on the ratio of these materials.
-        </p>
-        <h3>Common Mix Grades</h3>
-        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-          <li><strong>M15 (1:2:4):</strong> Used for normal, non-load-bearing foundation work.</li>
-          <li><strong>M20 (1:1.5:3):</strong> The standard mix for house slabs, columns, and beams.</li>
-          <li><strong>M25 (1:1:2):</strong> High strength mix for heavy-duty load-bearing structures.</li>
-        </ul>
-      </>
-    ),
+    description: "Calculate exactly how much cement, sand, and aggregate you need for your construction project based on the mix ratio.",
+    content: null,
     faqs: [
-      {
-        question: "What is the 'Dry Volume' multiplier?",
-        answer: "When water is added to dry cement, sand, and gravel, the mixture shrinks. Therefore, you must multiply your calculated 'wet volume' by 1.54 to find the actual 'dry volume' of raw materials you need to purchase."
-      },
-      {
-        question: "How many bags of cement are in a cubic meter?",
-        answer: "One standard 50kg bag of cement has a volume of approximately 0.0347 cubic meters. Therefore, roughly 28.8 bags of cement make up one cubic meter."
-      }
+      { question: "What is the 'Dry Volume' multiplier?", answer: "When water is added to dry materials, the mixture shrinks. Multiply your 'wet volume' by 1.54 to find the actual 'dry volume' of raw materials needed." },
+      { question: "How many bags of cement are in a cubic meter?", answer: "One standard 50kg bag of cement has a volume of approximately 0.0347 cubic meters, so roughly 28.8 bags make up one cubic meter." }
     ]
   },
+
   'brick-calculator': {
     title: "Brick Calculator | Estimate Wall Construction Materials",
     description: "Calculate the total number of bricks required to build a wall. Accurately factors in mortar joint thickness and wall dimensions.",
-    content: (
-      <>
-        <h2>Estimating Brickwork Quantities</h2>
-        <p>
-          Before beginning masonry work, you must estimate the number of bricks required to avoid multiple delivery fees or running short mid-project. Because a wall is not just bricks—it includes the mortar holding them together—simple division won't work.
-        </p>
-        <h3>The Importance of Mortar Joints</h3>
-        <p>
-          A standard mortar joint is typically 10mm thick. This means that a standard 230x110x70mm brick actually occupies 240x120x80mm of space in the wall. Our calculator automatically adjusts the volume to account for this mortar space.
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "Should I buy extra bricks for wastage?",
-        answer: "Yes. Due to breakage during transport, cutting bricks for edges, and general construction waste, it is an industry standard to add a 5% to 10% wastage allowance to your final calculated number."
-      },
-      {
-        question: "Does the calculator account for windows and doors?",
-        answer: "To get an accurate result, you must subtract the square footage of any windows, doors, or open arches from the total area of the wall before calculating the brick count."
-      }
+      { question: "Should I buy extra bricks for wastage?", answer: "Yes. It is industry standard to add a 5% to 10% wastage allowance to your final calculated number for breakage during transport and cutting." },
+      { question: "Does the calculator account for windows and doors?", answer: "You must subtract the square footage of any windows, doors, or open arches from the total wall area before calculating the brick count." }
     ]
   },
+
   'chemistry-molar': {
     title: "Molar Mass Calculator | Molecular Weight Finder",
     description: "Calculate the exact molar mass and molecular weight of any chemical compound. Essential chemistry tool for students and lab technicians.",
-    content: (
-      <>
-        <h2>What is Molar Mass?</h2>
-        <p>
-          Molar mass is a physical property defined as the mass of a given substance (chemical element or chemical compound) divided by the amount of substance. It is essentially the weight of one 'mole' (Avogadro's number: 6.022 × 10²³) of molecules of that substance, typically expressed in grams per mole (g/mol).
-        </p>
-        <h3>How to Compute It</h3>
-        <p>
-          To find the molar mass of Water (H₂O), you look at the periodic table:
-          <br/>Hydrogen (H) = 1.008 g/mol × 2 atoms = 2.016
-          <br/>Oxygen (O) = 15.999 g/mol × 1 atom = 15.999
-          <br/><strong>Total Molar Mass of H₂O = 18.015 g/mol</strong>
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "What is the difference between Molar Mass and Molecular Weight?",
-        answer: "In practical chemistry, they are used interchangeably and have the same numerical value. However, strictly speaking, molecular weight is a dimensionless quantity (relative to Carbon-12), while molar mass has units (g/mol)."
-      },
-      {
-        question: "Does the calculator support complex bracketed formulas?",
-        answer: "Yes, standard parsers can handle nested compounds like Iron(III) Sulfate: Fe2(SO4)3 by multiplying the subscript values accordingly."
-      }
+      { question: "What is the difference between Molar Mass and Molecular Weight?", answer: "In practical chemistry they are used interchangeably. Strictly speaking, molecular weight is dimensionless while molar mass has units of g/mol." },
+      { question: "Does the calculator support complex bracketed formulas?", answer: "Yes, standard parsers handle nested compounds like Fe2(SO4)3 by multiplying subscript values accordingly." }
     ]
   },
+
   'linear-solver': {
     title: "Linear Equations Solver | Algebra Systems",
     description: "Solve systems of simultaneous linear equations instantly. Supports multiple variables (x, y, z) using matrix substitution and elimination.",
-    content: (
-      <>
-        <h2>Solving Simultaneous Equations</h2>
-        <p>
-          A linear equation is an equation for a straight line. When you have two or more unknown variables (like x and y), you need multiple intersecting lines to find the exact point where they meet. This is the foundation of linear algebra.
-        </p>
-        <h3>Cramer's Rule and Matrix Math</h3>
-        <p>
-          While simple 2-variable equations can be solved using substitution, solving a system of 3 or 4 variables (x, y, z, w) manually is incredibly tedious. Our calculator uses advanced matrix determinant logic (like Cramer's Rule or Gaussian elimination) to find the precise floating-point roots instantly.
-        </p>
-      </>
-    ),
+    content: null,
     faqs: [
-      {
-        question: "What does it mean if the equations have 'no solution'?",
-        answer: "If the calculator returns 'no solution', it means the lines are perfectly parallel and will never intersect (e.g., 2x + y = 5 and 4x + 2y = 20)."
-      },
-      {
-        question: "What if there are 'infinite solutions'?",
-        answer: "This happens when both equations actually describe the exact same line, meaning they intersect at every single point."
-      }
+      { question: "What does it mean if the equations have 'no solution'?", answer: "It means the lines are perfectly parallel and will never intersect, e.g., 2x + y = 5 and 4x + 2y = 20." },
+      { question: "What if there are 'infinite solutions'?", answer: "This happens when both equations actually describe the exact same line, meaning they intersect at every single point." }
     ]
   }
 };
