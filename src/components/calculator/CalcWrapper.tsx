@@ -5,7 +5,7 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { ChevronRight, ArrowLeft } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { CategorySidebar } from '@/components/layout/CategorySidebar';
+
 
 interface Props {
   title: string;
@@ -79,15 +79,10 @@ export function CalcWrapper({
           </nav>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 items-start">
-          
-          {/* 1. Left Sidebar (Scaled Category Navigator) */}
-          <aside className="hidden lg:block w-[260px] shrink-0 sticky top-24">
-            <CategorySidebar />
-          </aside>
+        <div>
 
-          {/* 2. Main Content Area */}
-          <main className="flex-1 min-w-0">
+          {/* Main Content Area */}
+          <main className="w-full">
             <header className="mb-4 pb-3 border-b border-[#dadce0]">
               <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-4 lowercase first-letter:uppercase">
                 {title}
