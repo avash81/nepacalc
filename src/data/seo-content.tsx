@@ -73,9 +73,12 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
           Total Tax: Rs. 45,000.
         </p>
 
-        <h2>Who should use this calculator?</h2>
+        <h2>IRD Tax Calculator & Tax Refunds in Nepal</h2>
         <p>
-          This tool is essential for salaried employees in Nepal, business owners calculating their personal income tax, and HR professionals managing payroll. It accounts for Social Security Fund (SSF) contributions, which can waive the initial 1% tax, and provides a 10% rebate for female taxpayers on their final tax amount.
+          This IRD Tax Calculator is essential for salaried employees in Nepal, business owners calculating their personal income tax, and HR professionals managing payroll. It accurately follows the latest Inland Revenue Department (IRD) directives.
+        </p>
+        <p className="mt-4">
+          <strong>Tax Refund Calculator Nepal:</strong> If too much TDS (Tax Deducted at Source) was deducted from your salary or investment income throughout the year, you might be eligible for a tax refund from the IRD. By calculating your exact annual tax liability here and comparing it to what was actually deducted, you can easily find out if you are owed a refund when filing your D03 return!
         </p>
       </>
     ),
@@ -726,9 +729,12 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
     description: "Calculate annual vehicle tax and bluebook renewal fees for cars, bikes, and heavy vehicles in Nepal for FY 2081/82.",
     content: (
       <>
-        <h2>Annual Vehicle Tax in Nepal (2081/82 Update)</h2>
+        <h2>Blue Book Renew Price in Nepal (2081/82 Update)</h2>
         <p>
-          Every vehicle owner in Nepal must pay an annual tax to the provincial government to renew their bluebook. The tax amount depends on the vehicle type, engine capacity (CC), and the province where the vehicle is registered (e.g., Bagmati, Gandaki, Lumbini).
+          Every vehicle owner in Nepal must pay an annual tax to the provincial government to renew their bluebook. The exact <strong>blue book renew price in Nepal</strong> depends on your vehicle type, engine capacity (CC), and the province where it is registered (e.g., Bagmati, Gandaki, Lumbini). 
+        </p>
+        <p className="mt-2">
+          Use our calculator below to instantly find out your exact blue book renewal cost before visiting the Yatayat office.
         </p>
         
         <h3>Bike Tax Slabs (Bagmati Province 2081/82)</h3>
@@ -855,6 +861,654 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       {
         question: "Are there any hidden charges in home loans?",
         answer: "Besides interest, you should account for service fees (0.25% to 1%), insurance premiums, and legal valuation fees."
+      }
+    ]
+  },
+  'nepal-vat': {
+    title: "VAT Calculator Nepal | Calculate 13% Value Added Tax",
+    description: "Free online VAT calculator for Nepal. Calculate 13% Value Added Tax (VAT) amounts instantly. Add or remove VAT from any price.",
+    content: (
+      <>
+        <h2>How to Calculate 13% VAT in Nepal</h2>
+        <p>
+          Value Added Tax (VAT) is a consumption tax placed on a product whenever value is added at each stage of the supply chain. In Nepal, the standard VAT rate is <strong>13%</strong>, governed by the Inland Revenue Department (IRD).
+        </p>
+        
+        <h3>Adding VAT to a Price (Exclusive to Inclusive)</h3>
+        <p>
+          If a product costs Rs. 1,000 (excluding VAT), you must add 13% to find the final selling price.
+          <br/><strong>Formula:</strong> <code>Price + (Price × 0.13)</code>
+          <br/><strong>Example:</strong> Rs. 1,000 + Rs. 130 = Rs. 1,130
+        </p>
+
+        <h3>Removing VAT from a Price (Inclusive to Exclusive)</h3>
+        <p>
+          If a product is sold for Rs. 1,130 (including VAT) and you need to find the base price before tax:
+          <br/><strong>Formula:</strong> <code>Total Price / 1.13</code>
+          <br/><strong>Example:</strong> Rs. 1,130 / 1.13 = Rs. 1,000
+        </p>
+
+        <h2>Who Needs to Register for VAT in Nepal?</h2>
+        <p>
+          According to the IRD, businesses must register for VAT if their annual turnover exceeds the threshold limits (e.g., Rs. 50 Lakhs for goods, Rs. 20 Lakhs for services). Once registered, businesses must issue VAT invoices and file their VAT returns electronically on a monthly or trimester basis.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the current VAT rate in Nepal?",
+        answer: "The standard VAT rate in Nepal is 13%. However, certain essential goods and services are exempt from VAT."
+      },
+      {
+        question: "How do I remove 13% VAT from a total amount?",
+        answer: "Divide the total amount by 1.13. The result is your base price before VAT."
+      },
+      {
+        question: "Is VAT mandatory for all businesses in Nepal?",
+        answer: "No, small businesses with an annual turnover below the IRD threshold (e.g., Rs. 50 Lakhs for trading goods) can operate under PAN without registering for VAT."
+      }
+    ]
+  },
+  'calorie-calculator': {
+    title: "Calorie Calculator | Ideal Daily Calorie Intake & TDEE",
+    description: "Calculate your ideal daily calorie intake for weight loss, maintenance, or muscle gain. Accurate TDEE calculator based on your BMI, age, and activity level.",
+    content: (
+      <>
+        <h2>What is Your Ideal Daily Calorie Intake?</h2>
+        <p>
+          Your ideal daily calorie intake depends entirely on your Total Daily Energy Expenditure (TDEE). TDEE is the total number of calories you burn in a day, which is calculated using your Basal Metabolic Rate (BMR) and your physical activity level.
+        </p>
+        
+        <h3>Calorie Intake by BMI</h3>
+        <p>
+          Many people ask: <em>"What is the ideal daily calorie intake for BMI 23.2?"</em> 
+          <br/><br/>
+          Your BMI (Body Mass Index) tells you if you are at a healthy weight, but it does <strong>not</strong> determine your calorie needs by itself. Two people with a BMI of 23.2 might need vastly different calories if one is an athlete and the other sits at a desk all day. To find your exact number, our calculator uses the Mifflin-St Jeor equation to find your BMR, then multiplies it by your activity level.
+        </p>
+
+        <h2>How to Use Your TDEE for Weight Management</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
+             <h4 className="font-bold text-[#1a73e8] m-0">1. Maintain Weight</h4>
+             <p className="text-sm mt-2 text-[#5f6368]">Consume exactly your TDEE calories per day.</p>
+          </div>
+          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
+             <h4 className="font-bold text-[#d93025] m-0">2. Lose Weight</h4>
+             <p className="text-sm mt-2 text-[#5f6368]">Subtract 500 calories from your TDEE (Caloric Deficit) to lose about 0.5kg per week.</p>
+          </div>
+          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
+             <h4 className="font-bold text-[#188038] m-0">3. Gain Muscle</h4>
+             <p className="text-sm mt-2 text-[#5f6368]">Add 300-500 calories to your TDEE (Caloric Surplus) combined with resistance training.</p>
+          </div>
+        </div>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How many calories should I eat to lose weight?",
+        answer: "A general rule is to consume 500 fewer calories than your TDEE. This creates a deficit of 3,500 calories per week, leading to about 0.5kg (1 lb) of fat loss."
+      },
+      {
+        question: "Is the Mifflin-St Jeor equation accurate?",
+        answer: "Yes, the Mifflin-St Jeor equation is widely considered by health professionals to be the most accurate formula for estimating resting metabolic rate."
+      },
+      {
+        question: "What is the difference between BMR and TDEE?",
+        answer: "BMR is the calories you burn just staying alive (if you stayed in bed all day). TDEE includes your BMR plus the calories burned through daily movement and exercise."
+      }
+    ]
+  },
+  'bmi': {
+    title: "BMI Calculator | Check Your Body Mass Index Online",
+    description: "Calculate your Body Mass Index (BMI) instantly. Find out your healthy weight range and check if you are underweight, normal, overweight, or obese.",
+    content: (
+      <>
+        <h2>Understanding Your Body Mass Index (BMI)</h2>
+        <p>
+          The Body Mass Index (BMI) is a simple mathematical formula used to classify whether a person has a healthy body weight for their height. While it doesn't measure body fat directly, it is a widely used screening tool by doctors and health professionals worldwide.
+        </p>
+
+        <h3>BMI Classification Chart (WHO Guidelines)</h3>
+        <div className="overflow-x-auto my-6">
+          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
+            <thead className="bg-[#f8f9fa]">
+              <tr>
+                <th className="border border-[#dadce0] px-4 py-2 text-left">BMI Score</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left">Weight Status</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left">Health Risk</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-[#dadce0] px-4 py-2 font-medium">Below 18.5</td>
+                <td className="border border-[#dadce0] px-4 py-2 text-blue-600 font-bold">Underweight</td>
+                <td className="border border-[#dadce0] px-4 py-2">Possible nutritional deficiency</td>
+              </tr>
+              <tr>
+                <td className="border border-[#dadce0] px-4 py-2 font-medium">18.5 - 24.9</td>
+                <td className="border border-[#dadce0] px-4 py-2 text-green-600 font-bold">Normal Weight</td>
+                <td className="border border-[#dadce0] px-4 py-2">Low Risk (Healthy)</td>
+              </tr>
+              <tr>
+                <td className="border border-[#dadce0] px-4 py-2 font-medium">25.0 - 29.9</td>
+                <td className="border border-[#dadce0] px-4 py-2 text-yellow-600 font-bold">Overweight</td>
+                <td className="border border-[#dadce0] px-4 py-2">Moderate risk of heart disease</td>
+              </tr>
+              <tr>
+                <td className="border border-[#dadce0] px-4 py-2 font-medium">30.0 and Above</td>
+                <td className="border border-[#dadce0] px-4 py-2 text-red-600 font-bold">Obese</td>
+                <td className="border border-[#dadce0] px-4 py-2">High risk of diabetes & hypertension</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Next Steps After Calculating BMI</h2>
+        <p>
+          If your BMI is <strong>23.2</strong>, you are in the healthy "Normal" weight category! However, remember that BMI is just an indicator. For a complete health assessment, you should also calculate your <strong>ideal daily calorie intake</strong> based on your physical activity, and track your body fat percentage, as muscular athletes may have a high BMI but low body fat.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Is BMI accurate for bodybuilders?",
+        answer: "No. Because muscle weighs more than fat, athletes and bodybuilders often have a high BMI (classifying them as overweight or obese) even if their body fat percentage is extremely low."
+      },
+      {
+        question: "What is a healthy BMI for a woman?",
+        answer: "The healthy BMI range is the same for adult men and women, which is between 18.5 and 24.9."
+      },
+      {
+        question: "How can I lower my BMI?",
+        answer: "To lower your BMI, you need to lose weight. This is best achieved by eating in a caloric deficit (calculating your TDEE and eating less calories than you burn) and engaging in regular exercise."
+      }
+    ]
+  },
+  'weight-converter': {
+    title: "Weight Converter | Convert kg to lbs, grams, ounces online",
+    description: "Free and highly accurate weight converter tool. Instantly convert kilograms (kg) to pounds (lbs), grams to ounces, and more.",
+    content: (
+      <>
+        <h2>How the Weight Converter Works</h2>
+        <p>
+          Whether you are following a cooking recipe from a different country, measuring your body weight at the gym, or calculating shipping costs, converting weights between the Metric system (kg, grams) and the Imperial system (lbs, ounces) is a daily necessity.
+        </p>
+
+        <h3>Common Weight Conversions</h3>
+        <p>
+          Here are some of the most common conversion factors used worldwide:
+          <br/><strong>1 Kilogram (kg)</strong> = 2.20462 Pounds (lbs)
+          <br/><strong>1 Pound (lb)</strong> = 16 Ounces (oz)
+          <br/><strong>1 Gram (g)</strong> = 0.035274 Ounces (oz)
+        </p>
+
+        <h2>Why Accuracy Matters</h2>
+        <p>
+          Our weight converter uses up to 6 decimal places of precision. This is critical in fields like baking, chemistry, and international shipping where even a fraction of a gram can make a massive difference. 
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How many pounds are in a kilogram?",
+        answer: "There are approximately 2.20462 pounds in one kilogram."
+      },
+      {
+        question: "Is ounce a measure of weight or volume?",
+        answer: "An 'ounce' (oz) measures weight, whereas a 'fluid ounce' (fl oz) measures volume. This converter is for weight ounces."
+      },
+      {
+        question: "How many grams in one pound?",
+        answer: "There are exactly 453.592 grams in one standard pound."
+      }
+    ]
+  },
+  'length-converter': {
+    title: "Length Converter | Convert meters, feet, inches, cm",
+    description: "Accurate length and distance converter. Convert meters to feet, centimeters to inches, kilometers to miles instantly online.",
+    content: (
+      <>
+        <h2>Understanding Length Conversions</h2>
+        <p>
+          The world uses two primary systems for measuring length: the Metric System (Meters, Centimeters, Kilometers) and the Imperial System (Feet, Inches, Miles). Our length converter allows seamless transitions between these systems for construction, sewing, engineering, and travel.
+        </p>
+
+        <h3>Essential Length Formulas</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
+             <h4 className="font-bold text-[#1a73e8] m-0">Metric to Imperial</h4>
+             <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+               <li>1 Meter = 3.28084 Feet</li>
+               <li>1 Centimeter = 0.3937 Inches</li>
+               <li>1 Kilometer = 0.621371 Miles</li>
+             </ul>
+          </div>
+          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
+             <h4 className="font-bold text-[#1a73e8] m-0">Imperial to Metric</h4>
+             <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+               <li>1 Foot = 0.3048 Meters</li>
+               <li>1 Inch = 2.54 Centimeters</li>
+               <li>1 Mile = 1.60934 Kilometers</li>
+             </ul>
+          </div>
+        </div>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How many inches are in a foot?",
+        answer: "There are exactly 12 inches in one foot."
+      },
+      {
+        question: "What is the difference between a meter and a yard?",
+        answer: "A meter is slightly longer than a yard. 1 yard is exactly 0.9144 meters, or 3 feet."
+      },
+      {
+        question: "How many centimeters in an inch?",
+        answer: "One inch is exactly equal to 2.54 centimeters."
+      }
+    ]
+  },
+  'lcm-gcf-calculator': {
+    title: "Calculator for LCM and GCF | Least Common Multiple & Factor",
+    description: "Fast online calculator for LCM and GCF. Find the Least Common Multiple and Greatest Common Factor for two or more numbers instantly.",
+    content: (
+      <>
+        <h2>How the LCM and GCF Calculator Works</h2>
+        <p>
+          Whether you are solving complex fractions, simplifying algebraic expressions, or working on scheduling problems, finding the Least Common Multiple (LCM) and Greatest Common Factor (GCF) is a foundational math skill.
+        </p>
+
+        <h3>What is LCM?</h3>
+        <p>
+          The <strong>Least Common Multiple (LCM)</strong> of two numbers is the smallest number (not zero) that is a multiple of both. 
+          <br/><em>Example:</em> For 4 and 6, the multiples of 4 are (4, 8, 12, 16...) and the multiples of 6 are (6, 12, 18...). The lowest matching number is 12. So, LCM = 12.
+        </p>
+
+        <h3>What is GCF?</h3>
+        <p>
+          The <strong>Greatest Common Factor (GCF)</strong>, also known as the Greatest Common Divisor (GCD), is the largest number that divides both numbers without leaving a remainder.
+          <br/><em>Example:</em> For 12 and 18, the factors of 12 are (1, 2, 3, 4, 6, 12) and the factors of 18 are (1, 2, 3, 6, 9, 18). The largest common factor is 6. So, GCF = 6.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How is LCM used in fractions?",
+        answer: "When adding or subtracting fractions with different denominators, you must find the LCM of the denominators to create a common base."
+      },
+      {
+        question: "What is the relationship between LCM and GCF?",
+        answer: "For any two numbers 'a' and 'b', the product of the numbers is equal to the product of their LCM and GCF (a × b = LCM × GCF)."
+      },
+      {
+        question: "Can I find the LCM of three or more numbers?",
+        answer: "Yes, this calculator allows you to input multiple numbers separated by commas to find their collective LCM and GCF."
+      }
+    ]
+  },
+  'attendance': {
+    title: "Attendance Calculator | Find out how many classes you can skip",
+    description: "University attendance calculator. Enter your current attendance percentage and total classes to find out how many classes you need to attend to reach your goal.",
+    content: (
+      <>
+        <h2>The Ultimate College Attendance Calculator</h2>
+        <p>
+          Maintaining the mandatory attendance limit (usually 75% or 80%) is one of the most stressful parts of university life. Our Attendance Calculator helps you strategically plan your schedule so you never fall below the required threshold.
+        </p>
+
+        <h3>How to Calculate Required Attendance</h3>
+        <p>
+          If your current attendance is below your target (e.g., you are at 65% but need 75%), the calculator uses the formula:
+          <br/><code>Required Classes = (Target% × Total Classes - Attended) / (1 - Target%)</code>
+          <br/>This tells you exactly how many consecutive classes you must attend to pull your average up.
+        </p>
+
+        <h3>How Many Classes Can You Bunk?</h3>
+        <p>
+          If you are above your target (e.g., you are at 90% and only need 75%), the tool calculates your 'bunk buffer'. It tells you exactly how many upcoming classes you can safely miss without dropping below your mandatory threshold.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What happens if my attendance is below 75%?",
+        answer: "In most universities, falling below the mandatory 75% attendance mark makes you ineligible to sit for the final semester examinations."
+      },
+      {
+        question: "How is attendance percentage calculated?",
+        answer: "It is calculated as: (Number of Classes Attended ÷ Total Number of Classes Held) × 100."
+      },
+      {
+        question: "Can this calculator predict future attendance?",
+        answer: "Yes, by entering your current stats and target percentage, it predicts exactly how many future classes you need to attend or can afford to miss."
+      }
+    ]
+  },
+  'percentage': {
+    title: "Percentage Calculator | Find % Increase, Decrease & Discounts",
+    description: "Free online percentage calculator. Calculate percentage increases, decreases, discounts, and find out what percentage one number is of another.",
+    content: (
+      <>
+        <h2>Mastering the Percentage Calculator</h2>
+        <p>
+          Percentages are everywhere—from calculating a store discount during a sale to determining your profit margin, or figuring out your test scores. This calculator provides a suite of tools to handle any percentage-based math problem instantly.
+        </p>
+
+        <h3>The Three Core Percentage Formulas</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
+             <h4 className="font-bold text-[#1a73e8] m-0">1. What is X% of Y?</h4>
+             <p className="text-sm mt-2 text-[#5f6368]">Formula: <code>(X / 100) × Y</code><br/>Used for finding the exact value of a percentage (e.g., 20% of 500 is 100).</p>
+          </div>
+          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
+             <h4 className="font-bold text-[#d93025] m-0">2. X is what % of Y?</h4>
+             <p className="text-sm mt-2 text-[#5f6368]">Formula: <code>(X / Y) × 100</code><br/>Used for finding test scores (e.g., getting 45 out of 60 is 75%).</p>
+          </div>
+          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
+             <h4 className="font-bold text-[#188038] m-0">3. Percentage Change</h4>
+             <p className="text-sm mt-2 text-[#5f6368]">Formula: <code>((New - Old) / Old) × 100</code><br/>Used for calculating growth, inflation, or discounts.</p>
+          </div>
+        </div>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How do I calculate a 20% discount?",
+        answer: "To calculate a 20% discount, multiply the original price by 0.20 to find the discount amount, then subtract it from the original price. Or simply multiply the price by 0.80."
+      },
+      {
+        question: "How do I reverse calculate a percentage?",
+        answer: "If you know the final amount after a 13% tax was added, divide the final amount by 1.13 to find the original pre-tax amount."
+      },
+      {
+        question: "What does percent actually mean?",
+        answer: "Percent literally means 'per hundred'. So 50 percent (50%) simply means 50 out of every 100."
+      }
+    ]
+  },
+  'mortgage-calculator': {
+    title: "Mortgage Calculator | Home Loan EMI & Amortization",
+    description: "Calculate your monthly mortgage payments with taxes and insurance. Get a detailed amortization schedule for your home loan.",
+    content: (
+      <>
+        <h2>How a Mortgage Calculator Works</h2>
+        <p>
+          A mortgage is likely the largest financial commitment you will ever make. Our mortgage calculator helps you determine exactly how much your monthly payments will be, breaking down the principal and interest components over the entire life of the loan.
+        </p>
+        <h3>The Impact of Down Payments</h3>
+        <p>
+          Making a larger down payment directly reduces your principal loan amount. This not only lowers your monthly EMI but also drastically reduces the total interest you will pay to the bank over 15 or 20 years. Always aim for at least a 20% down payment to avoid mandatory mortgage insurance (PMI) in many jurisdictions.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is an amortization schedule?",
+        answer: "It is a complete table of periodic loan payments, showing the amount of principal and the amount of interest that comprise each payment until the loan is paid off."
+      },
+      {
+        question: "Does this calculator include property tax?",
+        answer: "Yes, advanced mortgage calculations often require you to input estimated annual property taxes and home insurance to give you your true monthly housing cost (PITI)."
+      }
+    ]
+  },
+  'compound-interest': {
+    title: "Compound Interest Calculator | See Your Wealth Grow",
+    description: "Free compound interest calculator. Find out how your investments and savings will grow over time with the power of compounding.",
+    content: (
+      <>
+        <h2>The Power of Compound Interest</h2>
+        <p>
+          Albert Einstein reportedly called compound interest the "eighth wonder of the world." Unlike simple interest, which only pays interest on the initial principal, compound interest pays interest on the principal <strong>and</strong> on the accumulated interest from previous periods.
+        </p>
+        <h3>Daily vs. Monthly vs. Annual Compounding</h3>
+        <p>
+          The frequency of compounding drastically changes your final return.
+          <br/><strong>Annual:</strong> Interest is calculated once a year.
+          <br/><strong>Monthly:</strong> Interest is calculated 12 times a year (Standard for bank accounts).
+          <br/><strong>Daily:</strong> Interest is calculated 365 times a year (Maximizes growth).
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the formula for compound interest?",
+        answer: "The formula is A = P(1 + r/n)^(nt), where A is the final amount, P is the principal, r is the annual interest rate, n is the compounding frequency, and t is time in years."
+      },
+      {
+        question: "How is compound interest different from simple interest?",
+        answer: "Simple interest is only calculated on the principal amount. Compound interest is calculated on the principal amount AND the accumulated interest of previous periods."
+      }
+    ]
+  },
+  'sip-calculator': {
+    title: "SIP Calculator | Systematic Investment Plan Returns",
+    description: "Calculate the future value of your monthly SIP investments in mutual funds. Plan your retirement and wealth creation goals easily.",
+    content: (
+      <>
+        <h2>What is a Systematic Investment Plan (SIP)?</h2>
+        <p>
+          A Systematic Investment Plan (SIP) allows you to invest a fixed amount regularly (usually monthly) into mutual funds or stocks. It is one of the most effective ways to build long-term wealth because it enforces financial discipline and utilizes the power of compound interest.
+        </p>
+        <h3>Rupee Cost Averaging</h3>
+        <p>
+          By investing a fixed amount every month, you buy more units when the market is down and fewer units when the market is up. This averages out the cost of your investments over time, protecting you from market volatility.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Can I stop my SIP at any time?",
+        answer: "Yes, SIPs are highly flexible. You can pause, stop, or increase your SIP amount at any time without facing heavy penalties from the mutual fund."
+      },
+      {
+        question: "What is an expected return on a mutual fund SIP?",
+        answer: "While market returns vary, long-term equity mutual funds historically generate an average annualized return of 10% to 15%."
+      }
+    ]
+  },
+  'age-calculator': {
+    title: "Age Calculator | Calculate Exact Age in Years, Months, Days",
+    description: "Find out exactly how old you are today. Calculate your exact age in years, months, weeks, and days between any two dates.",
+    content: (
+      <>
+        <h2>How the Exact Age Calculator Works</h2>
+        <p>
+          Calculating your age isn't just about knowing your birth year. In many legal, medical, and astrological scenarios, you need to know your exact age down to the day. Our calculator handles leap years and different month lengths automatically to give you perfect precision.
+        </p>
+        <h3>Use Cases for Exact Age</h3>
+        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+          <li><strong>Government Forms:</strong> Visa and passport applications require age verification.</li>
+          <li><strong>Medical Dosages:</strong> Pediatric medicine requires exact age in months and days.</li>
+          <li><strong>Milestones:</strong> Find out exactly when you will turn 10,000 days old!</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Does this calculator account for leap years?",
+        answer: "Yes, our algorithm automatically detects leap years (like 2020 and 2024) and adjusts the day count perfectly."
+      },
+      {
+        question: "Can I calculate the age of a historical event?",
+        answer: "Absolutely. Just enter the date of the event as the 'Date of Birth' to see exactly how much time has passed."
+      }
+    ]
+  },
+  'gpa': {
+    title: "GPA Calculator | College & High School Grade Point Average",
+    description: "Free online GPA calculator for college and high school students. Calculate your semester GPA and cumulative CGPA instantly.",
+    content: (
+      <>
+        <h2>How to Calculate Your GPA</h2>
+        <p>
+          Your Grade Point Average (GPA) is the standardized metric used by schools and universities to measure your academic performance. It is calculated by dividing the total number of grade points earned by the total number of credit hours attempted.
+        </p>
+        <h3>The 4.0 Grading Scale</h3>
+        <p>
+          Most universities use the standard 4.0 scale:
+          <br/><strong>A = 4.0</strong> (Excellent)
+          <br/><strong>B = 3.0</strong> (Good)
+          <br/><strong>C = 2.0</strong> (Average)
+          <br/><strong>D = 1.0</strong> (Passing)
+          <br/><strong>F = 0.0</strong> (Failing)
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is a weighted GPA?",
+        answer: "A weighted GPA takes the difficulty of the class into account. For example, an 'A' in an AP or Honors class might be worth 5.0 points instead of the standard 4.0."
+      },
+      {
+        question: "How do credit hours affect my GPA?",
+        answer: "Classes with more credit hours have a bigger impact on your GPA. An 'A' in a 4-credit class boosts your GPA much more than an 'A' in a 1-credit class."
+      }
+    ]
+  },
+  'standard-deviation': {
+    title: "Standard Deviation Calculator | Population & Sample Stats",
+    description: "Calculate standard deviation, variance, and mean for a dataset. Supports both population and sample data calculations instantly.",
+    content: (
+      <>
+        <h2>Understanding Standard Deviation</h2>
+        <p>
+          In statistics, standard deviation is a measure of the amount of variation or dispersion of a set of values. A low standard deviation indicates that the values tend to be close to the mean, while a high standard deviation indicates that the values are spread out over a wider range.
+        </p>
+        <h3>Population vs. Sample</h3>
+        <p>
+          It is critical to choose the correct formula based on your data:
+          <br/><strong>Population:</strong> Use this when your dataset includes every single member of the group you are studying (Divide by N).
+          <br/><strong>Sample:</strong> Use this when your data is just a random sample of a larger group (Divide by N-1, known as Bessel's correction).
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What does the variance mean?",
+        answer: "Variance is simply the square of the standard deviation. It represents the average of the squared differences from the Mean."
+      },
+      {
+        question: "Why do we divide by N-1 for a sample?",
+        answer: "Dividing by N-1 (Bessel's correction) corrects the bias in the estimation of the population variance, providing a more accurate estimate."
+      }
+    ]
+  },
+  'probability': {
+    title: "Probability Calculator | Calculate Odds & Statistics",
+    description: "Free probability calculator. Find the probability of single events, multiple events, independent events, and conditional probabilities.",
+    content: (
+      <>
+        <h2>The Basics of Probability</h2>
+        <p>
+          Probability is the mathematical measure of the likelihood that an event will occur. It is always a number between 0 (impossible) and 1 (certainty), often expressed as a percentage from 0% to 100%.
+        </p>
+        <h3>Types of Probability Scenarios</h3>
+        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+          <li><strong>Independent Events:</strong> The outcome of one event does not affect the other (e.g., flipping a coin twice).</li>
+          <li><strong>Dependent Events:</strong> The outcome of the first event affects the second (e.g., drawing two cards from a deck without replacement).</li>
+          <li><strong>Mutually Exclusive:</strong> Two events that cannot occur at the same time (e.g., rolling a 2 and a 3 on a single die).</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How do you calculate the probability of two independent events?",
+        answer: "Multiply the probability of the first event by the probability of the second event: P(A and B) = P(A) × P(B)."
+      },
+      {
+        question: "What is the probability of an event NOT happening?",
+        answer: "The probability of an event not happening (the complement) is 1 minus the probability that it will happen: P(not A) = 1 - P(A)."
+      }
+    ]
+  },
+  'scientific-calculator': {
+    title: "Scientific Calculator Online | Trigonometry, Logs, Exponents",
+    description: "Advanced online scientific calculator. Solve complex math problems including trigonometry (sin, cos, tan), logarithms, and exponential functions.",
+    content: (
+      <>
+        <h2>The Power of a Scientific Calculator</h2>
+        <p>
+          Unlike a standard four-function calculator, a scientific calculator is designed to handle engineering, physics, and advanced mathematics. It includes dedicated functions for trigonometry, logarithms, probability, and complex exponentiation.
+        </p>
+        <h3>Key Functions Explained</h3>
+        <p>
+          <strong>Trigonometry (Sin, Cos, Tan):</strong> Used for calculating angles and distances in geometry and physics. Ensure your calculator is set to the correct mode (Degrees or Radians).
+          <br/><strong>Logarithms (Log, Ln):</strong> Used in scaling variables, calculating pH levels in chemistry, and measuring earthquake intensity (Richter scale).
+          <br/><strong>Factorials (n!):</strong> Essential for calculating combinations and permutations in statistics.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Should I use Degrees or Radians?",
+        answer: "It depends on your math problem. High school geometry typically uses Degrees, while advanced calculus and physics often require Radians."
+      },
+      {
+        question: "What does the 'e' button do?",
+        answer: "The 'e' button represents Euler's number (approximately 2.718), which is the base of the natural logarithm, widely used in calculus and compound interest."
+      }
+    ]
+  },
+  'unit-converter': {
+    title: "Universal Unit Converter | Convert Everything Instantly",
+    description: "The ultimate universal unit converter. Convert length, weight, temperature, volume, area, and speed instantly online.",
+    content: (
+      <>
+        <h2>The Universal Unit Converter</h2>
+        <p>
+          Our universal unit converter eliminates the need to memorize complex conversion factors. Whether you are an engineer calculating torque, a chef converting recipe volumes, or a traveler converting temperatures, this tool handles it all.
+        </p>
+        <h3>Most Common Conversions</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
+             <h4 className="font-bold text-[#1a73e8] m-0">Temperature</h4>
+             <p className="text-sm mt-2 text-[#5f6368]">Celsius to Fahrenheit: <code>(°C × 9/5) + 32 = °F</code></p>
+          </div>
+          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
+             <h4 className="font-bold text-[#1a73e8] m-0">Volume</h4>
+             <p className="text-sm mt-2 text-[#5f6368]">1 Gallon (US) = 3.78541 Liters</p>
+          </div>
+        </div>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How do you convert Celsius to Kelvin?",
+        answer: "To convert Celsius to Kelvin, simply add 273.15 to the Celsius temperature."
+      },
+      {
+        question: "What is the difference between a US Gallon and a UK Gallon?",
+        answer: "A US liquid gallon is roughly 3.785 liters, whereas a UK (Imperial) gallon is larger, at exactly 4.54609 liters."
+      }
+    ]
+  },
+  'date-duration': {
+    title: "Date Duration Calculator | Days Between Two Dates",
+    description: "Calculate the exact duration between two dates. Find out how many days, weeks, months, or years are between a start date and an end date.",
+    content: (
+      <>
+        <h2>Calculating Time Between Dates</h2>
+        <p>
+          Finding the exact duration between two dates is surprisingly complicated due to leap years, varying month lengths (28, 30, or 31 days), and daylight saving time changes. Our duration calculator handles these complexities automatically.
+        </p>
+        <h3>Common Uses for Date Calculators</h3>
+        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+          <li><strong>Project Management:</strong> Calculate the exact number of days remaining until a deadline.</li>
+          <li><strong>Legal & Contracts:</strong> Determine the precise length of a lease agreement or warranty period.</li>
+          <li><strong>Event Planning:</strong> Find out exactly how many weeks are left until a wedding or vacation.</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Does the calculator include the end date?",
+        answer: "By default, duration calculators calculate the difference between the days. If you want to include both the start AND end date in your count, you must add 1 to the final result."
+      },
+      {
+        question: "How does it handle leap years?",
+        answer: "The algorithm automatically checks if a year is divisible by 4 (and handles the century rules) to accurately add February 29th to the day count when applicable."
       }
     ]
   }
