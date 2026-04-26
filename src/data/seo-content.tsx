@@ -3389,5 +3389,272 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         answer: "No. All counting is done locally in your browser using JavaScript. We do not upload or save your sensitive documents to our servers."
       }
     ]
+  },
+  'length-converter': {
+    title: "Length & Distance Converter | Meters, Feet, Miles",
+    description: "Convert length and distance instantly between metric and imperial units. Convert kilometers to miles, meters to feet, and centimeters to inches.",
+    content: (
+      <>
+        <h2>The Two Measurement Systems</h2>
+        <p>
+          Navigating between the Metric system (used by 95% of the world) and the Imperial system (used primarily by the US) is a daily necessity in engineering, construction, and travel. Our tool provides instantaneous, high-precision conversions.
+        </p>
+        <h3>Common Conversion Factors</h3>
+        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+          <li><strong>1 Mile</strong> = 1.60934 Kilometers</li>
+          <li><strong>1 Meter</strong> = 3.28084 Feet</li>
+          <li><strong>1 Inch</strong> = 2.54 Centimeters</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is a nautical mile?",
+        answer: "A nautical mile is based on the circumference of the earth, equal to one minute of latitude. It is slightly longer than a standard (statute) mile, measuring exactly 1.852 kilometers."
+      },
+      {
+        question: "How accurate is the conversion?",
+        answer: "Our converter uses standard international scientific conversion factors, providing accuracy up to 6 decimal places."
+      }
+    ]
+  },
+  'date-duration': {
+    title: "Date Duration Calculator | Days Between Dates",
+    description: "Calculate the exact number of days, months, and years between two calendar dates. Perfect for contract lengths, project timelines, and visa tracking.",
+    content: (
+      <>
+        <h2>Why Calculate Date Durations?</h2>
+        <p>
+          Whether you are tracking the remaining validity of a passport, calculating a project deadline, or counting down to a major life event, calculating the exact time delta between two dates manually is error-prone due to leap years and varying month lengths.
+        </p>
+        <h3>Inclusive vs. Exclusive Dates</h3>
+        <p>
+          When calculating duration, you must decide whether to "include the end date." For example, if a hotel booking is from Monday to Wednesday, it is mathematically 2 days duration, but you are physically there for parts of 3 calendar days.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Does the calculator account for Leap Years?",
+        answer: "Yes, our algorithm automatically detects leap years and adds the extra day (February 29th) into the duration calculation when applicable."
+      },
+      {
+        question: "Can I subtract dates to find a past date?",
+        answer: "Yes, you can input a negative duration (e.g., 'subtract 90 days from today') to instantly find a specific past calendar date."
+      }
+    ]
+  },
+  'age-calculator': {
+    title: "Exact Age Calculator | Chronological Age in Years & Days",
+    description: "Calculate your exact age down to the day. Find out how many months, weeks, and days you have been alive based on your date of birth.",
+    content: (
+      <>
+        <h2>Calculating Chronological Age</h2>
+        <p>
+          While most people know their age in years, many official documents (like pediatric medical records, visa applications, and life insurance policies) require your exact chronological age in months or days at the time of application.
+        </p>
+        <h3>The Mathematics of Aging</h3>
+        <p>
+          Because months vary from 28 to 31 days and leap years shift the calendar, simply dividing your age in days by 365 will not give an accurate result. Our calculator uses precise native Date objects to compute the exact biological delta from your birthdate to today.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How is a 'half birthday' calculated?",
+        answer: "A half birthday is exactly 6 months from your birth date. If you were born on January 15th, your half birthday is July 15th."
+      },
+      {
+        question: "Is my age calculated differently in some cultures?",
+        answer: "Yes. In the traditional East Asian age reckoning system (like in Korea historically), you are considered 1 year old at birth, and you gain a year every New Year's Day, rather than on your birthday."
+      }
+    ]
+  },
+  'qr-generator': {
+    title: "Free QR Code Generator | Make Custom QR Codes",
+    description: "Generate high-density, machine-readable QR codes for URLs, text, WiFi passwords, and contact cards instantly and for free.",
+    content: (
+      <>
+        <h2>The Power of Quick Response (QR) Codes</h2>
+        <p>
+          QR codes are 2D matrix barcodes that can store massive amounts of data compared to traditional 1D barcodes. They are read instantly by smartphone cameras, bridging the physical world with the digital world.
+        </p>
+        <h3>Error Correction Levels</h3>
+        <p>
+          Our generator utilizes Reed-Solomon error correction. This means that even if a part of your QR code is damaged, dirty, or covered by a logo, a smartphone camera can still perfectly reconstruct the data and scan the code successfully.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Do QR codes expire?",
+        answer: "No, a standard 'static' QR code contains the actual data embedded in its pixels. It will never expire as long as the destination URL or text remains active."
+      },
+      {
+        question: "Can I put a WiFi password in a QR code?",
+        answer: "Yes! You can generate a specific WiFi QR code. When someone scans it with their phone camera, it will automatically connect them to your network without needing to type the password."
+      }
+    ]
+  },
+  'number-to-words': {
+    title: "Number to Words Converter | Check Writing Utility",
+    description: "Convert large numerical integers (e.g., 1,500) into written English words (One Thousand Five Hundred). Essential for writing checks and legal contracts.",
+    content: (
+      <>
+        <h2>Why Convert Numbers to Words?</h2>
+        <p>
+          In the financial and legal sectors, simply writing "Rs. 1,000,000" on a contract or a check is dangerous, as a single extra zero can change the value dramatically. Writing the number in full text ("One Million Rupees") prevents tampering and ensures absolute clarity.
+        </p>
+        <h3>Millions vs. Lakhs/Crores</h3>
+        <p>
+          The International numbering system groups numbers by thousands (Thousands, Millions, Billions). The South Asian numbering system (used in Nepal and India) groups by hundreds after the first thousand (Lakhs, Crores). Our tool supports standard international formatting.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How do you write out decimals on a check?",
+        answer: "Usually, decimals are written as fractions of 100. For example, Rs. 150.50 is written as 'One Hundred Fifty and 50/100'."
+      },
+      {
+        question: "What is the biggest number the tool can convert?",
+        answer: "Our engine can safely convert numbers up into the trillions without losing precision."
+      }
+    ]
+  },
+  'password-generator': {
+    title: "Secure Password Generator | Cryptographic Random Strings",
+    description: "Generate highly secure, randomized passwords utilizing uppercase, lowercase, numbers, and special symbols to defeat brute-force attacks.",
+    content: (
+      <>
+        <h2>The Danger of Weak Passwords</h2>
+        <p>
+          Using dictionary words, birth dates, or sequential numbers (like 'password123') makes your accounts highly vulnerable to "dictionary attacks" and "brute-force" botnets. A strong password must be long, complex, and completely unpredictable.
+        </p>
+        <h3>Length over Complexity</h3>
+        <p>
+          In modern cybersecurity, the length of the password is often more important than the complexity. A 16-character password using only lowercase letters is mathematically harder for a computer to crack than an 8-character password using symbols and numbers.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Does this tool save my generated passwords?",
+        answer: "Absolutely not. All passwords are generated locally on your device using your browser's secure crypto random number generator. Nothing is ever sent to a server."
+      },
+      {
+        question: "How often should I change my password?",
+        answer: "Modern security guidelines recommend changing your password immediately if there is a known data breach, rather than changing it on an arbitrary schedule (which often leads to people picking weaker, easier-to-remember passwords)."
+      }
+    ]
+  },
+  'concrete-mix': {
+    title: "Concrete Mix Calculator | Volume & Material Estimator",
+    description: "Calculate exactly how much cement, sand, and aggregate (gravel) you need for your construction project based on the mix ratio.",
+    content: (
+      <>
+        <h2>Understanding Concrete Mix Ratios</h2>
+        <p>
+          Concrete is not just cement; it is a composite material made of a binder (cement), fine aggregate (sand), and coarse aggregate (gravel/stones) mixed with water. The strength of the concrete depends entirely on the ratio of these materials.
+        </p>
+        <h3>Common Mix Grades</h3>
+        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+          <li><strong>M15 (1:2:4):</strong> Used for normal, non-load-bearing foundation work.</li>
+          <li><strong>M20 (1:1.5:3):</strong> The standard mix for house slabs, columns, and beams.</li>
+          <li><strong>M25 (1:1:2):</strong> High strength mix for heavy-duty load-bearing structures.</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the 'Dry Volume' multiplier?",
+        answer: "When water is added to dry cement, sand, and gravel, the mixture shrinks. Therefore, you must multiply your calculated 'wet volume' by 1.54 to find the actual 'dry volume' of raw materials you need to purchase."
+      },
+      {
+        question: "How many bags of cement are in a cubic meter?",
+        answer: "One standard 50kg bag of cement has a volume of approximately 0.0347 cubic meters. Therefore, roughly 28.8 bags of cement make up one cubic meter."
+      }
+    ]
+  },
+  'brick-calculator': {
+    title: "Brick Calculator | Estimate Wall Construction Materials",
+    description: "Calculate the total number of bricks required to build a wall. Accurately factors in mortar joint thickness and wall dimensions.",
+    content: (
+      <>
+        <h2>Estimating Brickwork Quantities</h2>
+        <p>
+          Before beginning masonry work, you must estimate the number of bricks required to avoid multiple delivery fees or running short mid-project. Because a wall is not just bricks—it includes the mortar holding them together—simple division won't work.
+        </p>
+        <h3>The Importance of Mortar Joints</h3>
+        <p>
+          A standard mortar joint is typically 10mm thick. This means that a standard 230x110x70mm brick actually occupies 240x120x80mm of space in the wall. Our calculator automatically adjusts the volume to account for this mortar space.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Should I buy extra bricks for wastage?",
+        answer: "Yes. Due to breakage during transport, cutting bricks for edges, and general construction waste, it is an industry standard to add a 5% to 10% wastage allowance to your final calculated number."
+      },
+      {
+        question: "Does the calculator account for windows and doors?",
+        answer: "To get an accurate result, you must subtract the square footage of any windows, doors, or open arches from the total area of the wall before calculating the brick count."
+      }
+    ]
+  },
+  'chemistry-molar': {
+    title: "Molar Mass Calculator | Molecular Weight Finder",
+    description: "Calculate the exact molar mass and molecular weight of any chemical compound. Essential chemistry tool for students and lab technicians.",
+    content: (
+      <>
+        <h2>What is Molar Mass?</h2>
+        <p>
+          Molar mass is a physical property defined as the mass of a given substance (chemical element or chemical compound) divided by the amount of substance. It is essentially the weight of one 'mole' (Avogadro's number: 6.022 × 10²³) of molecules of that substance, typically expressed in grams per mole (g/mol).
+        </p>
+        <h3>How to Compute It</h3>
+        <p>
+          To find the molar mass of Water (H₂O), you look at the periodic table:
+          <br/>Hydrogen (H) = 1.008 g/mol × 2 atoms = 2.016
+          <br/>Oxygen (O) = 15.999 g/mol × 1 atom = 15.999
+          <br/><strong>Total Molar Mass of H₂O = 18.015 g/mol</strong>
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the difference between Molar Mass and Molecular Weight?",
+        answer: "In practical chemistry, they are used interchangeably and have the same numerical value. However, strictly speaking, molecular weight is a dimensionless quantity (relative to Carbon-12), while molar mass has units (g/mol)."
+      },
+      {
+        question: "Does the calculator support complex bracketed formulas?",
+        answer: "Yes, standard parsers can handle nested compounds like Iron(III) Sulfate: Fe2(SO4)3 by multiplying the subscript values accordingly."
+      }
+    ]
+  },
+  'linear-solver': {
+    title: "Linear Equations Solver | Algebra Systems",
+    description: "Solve systems of simultaneous linear equations instantly. Supports multiple variables (x, y, z) using matrix substitution and elimination.",
+    content: (
+      <>
+        <h2>Solving Simultaneous Equations</h2>
+        <p>
+          A linear equation is an equation for a straight line. When you have two or more unknown variables (like x and y), you need multiple intersecting lines to find the exact point where they meet. This is the foundation of linear algebra.
+        </p>
+        <h3>Cramer's Rule and Matrix Math</h3>
+        <p>
+          While simple 2-variable equations can be solved using substitution, solving a system of 3 or 4 variables (x, y, z, w) manually is incredibly tedious. Our calculator uses advanced matrix determinant logic (like Cramer's Rule or Gaussian elimination) to find the precise floating-point roots instantly.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What does it mean if the equations have 'no solution'?",
+        answer: "If the calculator returns 'no solution', it means the lines are perfectly parallel and will never intersect (e.g., 2x + y = 5 and 4x + 2y = 20)."
+      },
+      {
+        question: "What if there are 'infinite solutions'?",
+        answer: "This happens when both equations actually describe the exact same line, meaning they intersect at every single point."
+      }
+    ]
   }
 };
