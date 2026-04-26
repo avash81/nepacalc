@@ -24,7 +24,7 @@ const nextConfig = {
       'clsx',
       'tailwind-merge'
     ],
-    optimizeCss: true,
+    optimizeCss: false,
   },
 
   eslint: {
