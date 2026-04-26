@@ -22,6 +22,7 @@ export default function RatioProportion() {
 
   return (
     <ModernCalcLayout
+      hideH1={true}
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Ratio Calculator' }]}
       title="Ratio & Proportion Calculator"
       description="Solve proportions (A:B = C:D) for any unknown value by leaving exactly one field empty. Ideal for scaling recipes, maps, and geometric shapes."

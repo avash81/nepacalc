@@ -38,7 +38,7 @@ export default function CalorieCalculator() {
   const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
 
   return (
-    <ModernCalcLayout
+    <ModernCalcLayout hideH1={true}
       crumbs={[{ label: 'Health', href: '/health/' }, { label: 'Calorie Calculator' }]}
       title="Calorie Calculator"
       description="Determine your daily caloric needs for maintenance or weight goals using the Mifflin-St Jeor equation."
@@ -225,3 +225,4 @@ export default function CalorieCalculator() {
     />
   );
 }
+

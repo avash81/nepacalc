@@ -11,8 +11,9 @@ export const metadata: Metadata = {
 
 export default function MatrixCalculatorPage() {
   return (
-    <>
+    <div className="w-full h-full flex flex-col bg-white overflow-hidden">
+      <h1 className="sr-only">Advanced Matrix Laboratory — Operations, Inverse & Rank</h1>
       <MatrixApp />
-        </>
+    </div>
   );
 }

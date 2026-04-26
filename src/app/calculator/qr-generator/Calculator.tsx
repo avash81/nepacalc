@@ -14,7 +14,7 @@ export default function QRGenerator() {
   );
 
   return (
-    <ModernCalcLayout
+    <ModernCalcLayout hideH1={true}
       crumbs={[{ label: 'Converters', href: '/converters/' }, { label: 'QR Code Generator' }]}
       title="Free QR Code Generator"
       description="Create custom, static QR codes instantly for URLs, text, phone numbers, or WiFi passwords. Download high-quality PNGs with no signup required."
@@ -164,3 +164,4 @@ export default function QRGenerator() {
     />
   );
 }
+

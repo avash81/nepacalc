@@ -44,7 +44,7 @@ export default function QuadraticSolver() {
   const inputCls = "w-full h-12 text-center border border-[#DADCE0] rounded-md bg-white font-mono text-lg font-black focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all shadow-inner";
 
   return (
-    <ModernCalcLayout
+    <ModernCalcLayout hideH1={true}
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Quadratic Equation Solver' }]}
       title="Quadratic Equation Solver"
       description="Calculate the roots of any quadratic equation. Instantly compute the discriminant, identify real or complex roots, and visualize the parabolic curve."
@@ -238,3 +238,4 @@ export default function QuadraticSolver() {
     />
   );
 }
+

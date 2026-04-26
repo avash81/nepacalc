@@ -25,7 +25,7 @@ export default function StatisticsPlus() {
 
   return (
     <CalculatorErrorBoundary calculatorName="Statistics Plus">
-      <ModernCalcLayout
+      <ModernCalcLayout hideH1={true}
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Statistics Calculator' }]}
         title="Mean, Median & Mode Calculator"
         description="Analyze any dataset for central tendency. Calculate mean, median, mode, and range instantly with sorted data view."
@@ -189,3 +189,4 @@ export default function StatisticsPlus() {
     </CalculatorErrorBoundary>
   );
 }
+

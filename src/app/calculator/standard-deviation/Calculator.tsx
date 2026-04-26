@@ -18,7 +18,7 @@ export default function StandardDeviationCalculator() {
 
   return (
     <CalculatorErrorBoundary calculatorName="Standard Deviation">
-      <ModernCalcLayout
+      <ModernCalcLayout hideH1={true}
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Standard Deviation' }]}
         title="Standard Deviation Calculator"
         description="Calculate the sample standard deviation, variance, mean, and range for any dataset. Useful for statistics, quality control, and data analysis."
@@ -178,3 +178,4 @@ export default function StandardDeviationCalculator() {
     </CalculatorErrorBoundary>
   );
 }
+

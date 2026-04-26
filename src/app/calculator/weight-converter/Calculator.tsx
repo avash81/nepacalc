@@ -43,7 +43,7 @@ export default function WeightConverter() {
 
   return (
     <CalculatorErrorBoundary calculatorName="Weight Converter">
-      <ModernCalcLayout
+      <ModernCalcLayout hideH1={true}
       crumbs={[{ label: 'Converters', href: '/converters/' }, { label: 'Weight Converter' }]}
         title="Weight & Mass Converter"
         description="Convert seamlessly between kilograms, pounds, grams, ounces, metric tons, and Nepal's unique gold Tola standard with high precision."
@@ -240,3 +240,4 @@ export default function WeightConverter() {
     </CalculatorErrorBoundary>
   );
 }
+

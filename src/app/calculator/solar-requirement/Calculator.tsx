@@ -50,7 +50,7 @@ export default function SolarCalculator() {
 
   return (
     <CalculatorErrorBoundary calculatorName="Solar Requirement">
-      <ModernCalcLayout
+      <ModernCalcLayout hideH1={true}
       crumbs={[{ label: 'Converters', href: '/converters/' }, { label: 'Solar Calculator' }]}
         title="Solar Power Requirement Calculator"
         description="Estimate the ideal solar panel size, battery backup, and required capacity for your home based on your monthly electricity bill."
@@ -239,3 +239,4 @@ export default function SolarCalculator() {
     </CalculatorErrorBoundary>
   );
 }
+

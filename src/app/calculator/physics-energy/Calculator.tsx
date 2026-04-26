@@ -20,7 +20,7 @@ export default function EnergyCalc() {
     `w-full px-4 py-3 rounded-lg border font-mono text-xl transition-all outline-none ${empty ? 'border-dashed border-blue-400 bg-blue-50/50 placeholder-blue-300 focus:border-blue-500 focus:bg-blue-50 focus:ring-1 focus:ring-blue-500 text-blue-900' : 'border-slate-200 bg-slate-50 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-slate-900'}`;
 
   return (
-    <ModernCalcLayout
+    <ModernCalcLayout hideH1={true}
       crumbs={[{ label: 'Engineering', href: '/engineering/' }, { label: 'Energy Calculator' }]}
       title="Kinetic Energy Calculator"
       description="Calculate kinetic energy (KE = ½mv²), mass, or velocity. Leave exactly one field blank to solve for it automatically."
@@ -177,3 +177,4 @@ export default function EnergyCalc() {
     />
   );
 }
+

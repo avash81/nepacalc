@@ -4,25 +4,79 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# 1.1 Redirect old sitemap.html to new /sitemap/ directory
+# ============================================================
+# 2. BING 404 FIX — 301 Redirects for all broken URLs
+# ============================================================
+
+# Market rates wrong path (Bing indexed /calculator/market-rates/...)
+RewriteRule ^calculator/market-rates/live-silver-price/?$ /market-rates/live-silver-price/ [L,R=301]
+RewriteRule ^calculator/market-rates/live-gold-price/?$ /market-rates/live-gold-price/ [L,R=301]
+RewriteRule ^calculator/market-rates/exchange-rate/?$ /market-rates/exchange-rate/ [L,R=301]
+RewriteRule ^calculator/market-rates/remittance/?$ /market-rates/remittance/ [L,R=301]
+
+# Math tools wrong path (Bing indexed /calculator/math-tools/...)
+RewriteRule ^calculator/math-tools/programmer/?$ /math-tools/programmer/ [L,R=301]
+RewriteRule ^calculator/math-tools/statistics/?$ /math-tools/statistics/ [L,R=301]
+RewriteRule ^calculator/math-tools/calculus/?$ /math-tools/calculus/ [L,R=301]
+RewriteRule ^calculator/math-tools/scientific/?$ /math-tools/scientific/ [L,R=301]
+RewriteRule ^calculator/math-tools/fourfunction/?$ /math-tools/fourfunction/ [L,R=301]
+RewriteRule ^calculator/math-tools/matrix/?$ /math-tools/matrix/ [L,R=301]
+
+# Engineering wrong path (Bing indexed /calculator/engineering/...)
+RewriteRule ^calculator/engineering/graphing/?$ /engineering/graphing/ [L,R=301]
+RewriteRule ^calculator/engineering/3d/?$ /engineering/3d/ [L,R=301]
+RewriteRule ^calculator/engineering/formulas/?$ /engineering/formulas/ [L,R=301]
+RewriteRule ^calculator/engineering/geometry/?$ /engineering/geometry/ [L,R=301]
+
+# Wrong slug names → correct slugs
+RewriteRule ^calculator/nepal-tax-calculator/?$ /calculator/nepal-income-tax/ [L,R=301]
+RewriteRule ^calculator/income-tax/?$ /calculator/nepal-income-tax/ [L,R=301]
+RewriteRule ^calculator/age/?$ /calculator/age-calculator/ [L,R=301]
+RewriteRule ^calculator/bmi-calculator/?$ /calculator/bmi/ [L,R=301]
+RewriteRule ^calculator/child-bmi/?$ /calculator/bmi-child/ [L,R=301]
+RewriteRule ^calculator/scientific/?$ /calculator/scientific-calculator/ [L,R=301]
+RewriteRule ^calculator/fraction/?$ /calculator/fraction-calculator/ [L,R=301]
+RewriteRule ^calculator/date-add-subtract/?$ /calculator/date-duration/ [L,R=301]
+RewriteRule ^calculator/nepal-tds-calculator/?$ /calculator/nepal-tds/ [L,R=301]
+RewriteRule ^calculator/nepal-neb-gpa/?$ /calculator/gpa/ [L,R=301]
+RewriteRule ^calculator/gpa-to-percentage/?$ /calculator/cgpa/ [L,R=301]
+RewriteRule ^calculator/quadratic-formula/?$ /calculator/logarithm-calculator/ [L,R=301]
+RewriteRule ^calculator/temperature-converter/?$ /calculator/unit-converter/ [L,R=301]
+RewriteRule ^calculator/swp-calculator/?$ /calculator/sip-calculator/ [L,R=301]
+RewriteRule ^calculator/lumpsum-calculator/?$ /calculator/sip-calculator/ [L,R=301]
+RewriteRule ^calculator/retirement/?$ /calculator/savings/ [L,R=301]
+RewriteRule ^calculator/period-calculator/?$ /calculator/age-calculator/ [L,R=301]
+RewriteRule ^calculator/ovulation-calculator/?$ /calculator/age-calculator/ [L,R=301]
+RewriteRule ^calculator/blood-pressure/?$ /calculator/bmi/ [L,R=301]
+RewriteRule ^calculator/passport-status/?$ /nepal/ [L,R=301]
+RewriteRule ^calculator/time-until/?$ /calculator/date-duration/ [L,R=301]
+RewriteRule ^calculator/business-days/?$ /calculator/date-duration/ [L,R=301]
+
+# Wrong top-level paths
+RewriteRule ^exchange-rates/?$ /market-rates/exchange-rate/ [L,R=301]
+RewriteRule ^education/?$ /math-tools/ [L,R=301]
+RewriteRule ^calculator/sitemap\.html$ /sitemap/ [L,R=301]
+
+# Old sitemap redirect
 RewriteRule ^sitemap\.html$ /sitemap/ [L,R=301]
 
-# 2. Force Trailing Slash (matches Next.js trailingSlash: true)
+# ============================================================
+# 3. Force Trailing Slash (matches Next.js trailingSlash: true)
+# ============================================================
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !(.*)/$
 RewriteCond %{REQUEST_URI} !^/404
 RewriteCond %{REQUEST_URI} !^/_next/
-RewriteCond %{REQUEST_URI} !\.(js|css|json|txt|rsc|png|jpg|jpeg|gif|svg|ico)$ [NC]
+RewriteCond %{REQUEST_URI} !\.(js|css|json|txt|rsc|png|jpg|jpeg|gif|svg|ico|woff|woff2|webp)$ [NC]
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1/ [L,R=301]
 
-# 3. Handle Clean URLs (Serve index.html for directories)
-# Apache does this by default if DirectoryIndex is index.html, but we enforce it
+# 4. Handle Clean URLs
 DirectoryIndex index.html
 
-# 4. Error Handling
+# 5. Error Handling
 ErrorDocument 404 /404/index.html
 
-# 5. Browser Caching for static assets
+# 6. Browser Caching
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresDefault "access plus 1 month"
@@ -32,6 +86,14 @@ ErrorDocument 404 /404/index.html
   ExpiresByType image/png "access plus 1 month"
   ExpiresByType image/jpg "access plus 1 month"
   ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
   ExpiresByType text/css "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+</IfModule>
+
+# 7. Compression (saves bandwidth)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json font/woff font/woff2
 </IfModule>

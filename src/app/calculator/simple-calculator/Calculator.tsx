@@ -72,7 +72,7 @@ export default function SimpleCalculator() {
 
   return (
     <CalculatorErrorBoundary calculatorName="Simple Calculator">
-      <ModernCalcLayout
+      <ModernCalcLayout hideH1={true}
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Basic Calculator' }]}
         title="Simple Online Calculator"
         description="A fast, clean, and responsive digital calculator for everyday mathematical operations. Supports addition, subtraction, multiplication, division, and percentages."
@@ -210,3 +210,4 @@ export default function SimpleCalculator() {
     </CalculatorErrorBoundary>
   );
 }
+

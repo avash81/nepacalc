@@ -61,66 +61,66 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
   const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
   const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
 
-  if (!rates?.gold || !rates?.silver || loading) {
-    return (
-      <div className="p-12 flex flex-col items-center justify-center gap-4 bg-slate-50 rounded-3xl border border-[#DADCE0]">
-        <div className="w-8 h-8 border-4 border-[#1A73E8] border-t-transparent rounded-full animate-spin"></div>
-        <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#70757A]">Syncing Engine</div>
-      </div>
-    );
-  }
-
   const mainContent = (
     <div className="space-y-6">
-      <div className="space-y-4">
-        <label className={labelCls}>{content.label} Weight</label>
-        <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
-          {['gram', 'tola'].map(mode => (
-            <button key={mode} onClick={() => update({ unitMode: mode as any })}
-              className={`flex-1 py-2 text-[10px] font-bold uppercase rounded-md transition-all ${unitMode === mode ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}>
-              {mode}
-            </button>
-          ))}
+      {(!rates?.gold || !rates?.silver || loading) ? (
+        <div className="p-12 flex flex-col items-center justify-center gap-4 bg-slate-50 rounded-3xl border border-[#DADCE0]">
+          <div className="w-8 h-8 border-4 border-[#1A73E8] border-t-transparent rounded-full animate-spin"></div>
+          <div className="text-[10px] font-black uppercase tracking-[0.2em] text-[#70757A]">Syncing Engine</div>
         </div>
-        {unitMode === 'gram' ? (
-          <div className="space-y-2">
-            <input type="number" value={manualGrams} min={0} onChange={e => update({ manualGrams: Number(e.target.value) })} className={inputCls} />
+      ) : (
+        <>
+          <div className="space-y-4">
+            <label className={labelCls}>{content.label} Weight</label>
+            <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
+              {['gram', 'tola'].map(mode => (
+                <button key={mode} onClick={() => update({ unitMode: mode as any })}
+                  className={`flex-1 py-2 text-[10px] font-bold uppercase rounded-md transition-all ${unitMode === mode ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}>
+                  {mode}
+                </button>
+              ))}
+            </div>
+            {unitMode === 'gram' ? (
+              <div className="space-y-2">
+                <input type="number" value={manualGrams} min={0} onChange={e => update({ manualGrams: Number(e.target.value) })} className={inputCls} />
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2"><label className="text-[10px] text-[#70757A]">Tola</label><input type="number" value={quantityTola} min={0} onChange={e => update({ quantityTola: Number(e.target.value) })} className={inputCls} /></div>
+                <div className="space-y-2"><label className="text-[10px] text-[#70757A]">Lal</label><input type="number" value={quantityLal} min={0} max={99} onChange={e => update({ quantityLal: Number(e.target.value) })} className={inputCls} /></div>
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2"><label className="text-[10px] text-[#70757A]">Tola</label><input type="number" value={quantityTola} min={0} onChange={e => update({ quantityTola: Number(e.target.value) })} className={inputCls} /></div>
-            <div className="space-y-2"><label className="text-[10px] text-[#70757A]">Lal</label><input type="number" value={quantityLal} min={0} max={99} onChange={e => update({ quantityLal: Number(e.target.value) })} className={inputCls} /></div>
-          </div>
-        )}
-      </div>
 
-      <div className="space-y-4">
-        <label className={labelCls}>Making Charges</label>
-        <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
-          {['fixed', 'percent'].map(type => (
-            <button key={type} onClick={() => update({ makingChargeType: type as any })}
-              className={`flex-1 py-2 text-[10px] font-bold uppercase rounded-md transition-all ${makingChargeType === type ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}>
-              {type}
-            </button>
-          ))}
-        </div>
-        <div className="relative">
-          <input type="number" value={makingChargeValue} min={0} onChange={e => update({ makingChargeValue: Number(e.target.value) })} className={inputCls} />
-          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">{makingChargeType === 'fixed' ? 'Rs.' : '%'}</span>
-        </div>
-      </div>
-      
-      {isEmbed && (
-        <div className="pt-6 border-t border-[#DADCE0] space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="p-3 bg-[#F8F9FA] rounded-md text-center"><div className="text-[9px] text-[#70757A] uppercase">Base Price</div><div className="font-bold">Rs. {fmt(result.basePrice)}</div></div>
-            <div className="p-3 bg-[#F8F9FA] rounded-md text-center"><div className="text-[9px] text-[#70757A] uppercase">Charges</div><div className="font-bold">Rs. {fmt(result.makingCharges)}</div></div>
+          <div className="space-y-4">
+            <label className={labelCls}>Making Charges</label>
+            <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
+              {['fixed', 'percent'].map(type => (
+                <button key={type} onClick={() => update({ makingChargeType: type as any })}
+                  className={`flex-1 py-2 text-[10px] font-bold uppercase rounded-md transition-all ${makingChargeType === type ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}>
+                  {type}
+                </button>
+              ))}
+            </div>
+            <div className="relative">
+              <input type="number" value={makingChargeValue} min={0} onChange={e => update({ makingChargeValue: Number(e.target.value) })} className={inputCls} />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">{makingChargeType === 'fixed' ? 'Rs.' : '%'}</span>
+            </div>
           </div>
-          <div className="p-4 bg-[#1A1A2E] rounded-md text-center text-white">
-            <div className="text-[9px] text-white/60 uppercase">Estimated Valuation</div>
-            <div className="text-xl font-black">Rs. {fmt(result.totalPrice)}</div>
-          </div>
-        </div>
+          
+          {isEmbed && (
+            <div className="pt-6 border-t border-[#DADCE0] space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="p-3 bg-[#F8F9FA] rounded-md text-center"><div className="text-[9px] text-[#70757A] uppercase">Base Price</div><div className="font-bold">Rs. {fmt(result.basePrice)}</div></div>
+                <div className="p-3 bg-[#F8F9FA] rounded-md text-center"><div className="text-[9px] text-[#70757A] uppercase">Charges</div><div className="font-bold">Rs. {fmt(result.makingCharges)}</div></div>
+              </div>
+              <div className="p-4 bg-[#1A1A2E] rounded-md text-center text-white">
+                <div className="text-[9px] text-white/60 uppercase">Estimated Valuation</div>
+                <div className="text-xl font-black">Rs. {fmt(result.totalPrice)}</div>
+              </div>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
@@ -128,7 +128,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
   if (isEmbed) return mainContent;
 
   return (
-    <ModernCalcLayout
+    <ModernCalcLayout hideH1={true}
       title={content.title}
       description={content.desc}
       icon={Landmark}

@@ -29,6 +29,7 @@ export default function NEPSECalculator() {
 
   return (
     <ModernCalcLayout
+      hideH1={true}
       slug="nepal-stocks"
       crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'NEPSE Trading Calculator' }]}
       title="NEPSE Share Trading Calculator"
