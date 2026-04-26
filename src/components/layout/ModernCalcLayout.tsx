@@ -252,7 +252,7 @@ export function ModernCalcLayout({
                 </div>
               </div>
             )}
-            <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden mb-[500px] transition-all hover:shadow-md">
+            <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden mb-8 transition-all hover:shadow-md">
               <div className="px-6 py-5 border-b border-[#DADCE0] bg-white flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-[#D93025] rounded-full animate-pulse shadow-[0_0_8px_rgba(217,48,37,0.5)]" />
