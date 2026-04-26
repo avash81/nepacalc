@@ -2596,5 +2596,276 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         answer: "Using standard Roman symbols, the highest easily written number is 3,999 (MMMCMXCIX). To write higher numbers, the Romans used a 'vinculum' (an overline) to multiply the value by 1,000."
       }
     ]
+  },
+  'calculus-lab': {
+    title: "Calculus & Algebra Solver | Derivatives & Integrals",
+    description: "Solve complex calculus problems instantly. Calculate derivatives, integrals, and limits with step-by-step symbolic logic.",
+    content: (
+      <>
+        <h2>The Power of a Calculus Solver</h2>
+        <p>
+          Calculus forms the foundation of modern engineering, physics, and economics. However, manually computing complex derivatives or indefinite integrals is highly error-prone. Our Calculus Lab provides instantaneous symbolic computation, ensuring 100% mathematical accuracy.
+        </p>
+        <h3>Derivatives vs. Integrals</h3>
+        <p>
+          <strong>Derivatives</strong> measure the instantaneous rate of change of a function (the slope of a curve).
+          <br/><strong>Integrals</strong> measure the total accumulation of a quantity, mathematically representing the area under a curve. Together, they form the Fundamental Theorem of Calculus.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Does the calculator support chain rule differentiation?",
+        answer: "Yes, the symbolic engine automatically applies the chain rule, product rule, and quotient rule where necessary."
+      },
+      {
+        question: "Can it solve definite integrals?",
+        answer: "Yes, you can input upper and lower bounds to calculate the exact numerical value of a definite integral."
+      }
+    ]
+  },
+  'nepal-salary': {
+    title: "Salary Calculator Nepal | Net Take-Home Pay & IRD Tax",
+    description: "Calculate your exact take-home salary in Nepal. Accurately deducts SSF, CIT, EPF, and the latest IRD income tax slabs.",
+    content: (
+      <>
+        <h2>Gross Salary vs. Net Pay in Nepal</h2>
+        <p>
+          When accepting a job offer in Nepal, the quoted "Gross Salary" is not what deposits into your bank account. The Inland Revenue Department (IRD) mandates several deductions that significantly reduce your final take-home pay.
+        </p>
+        <h3>Standard Deductions Explained</h3>
+        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+          <li><strong>Social Security Fund (SSF):</strong> 11% of basic salary deducted from the employee.</li>
+          <li><strong>Employees Provident Fund (EPF):</strong> Typically 10% deduction.</li>
+          <li><strong>Income Tax (TDS):</strong> Deducted according to your marital status slab (1% social security tax up to 39% maximum slab).</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Is the 1% Social Security Tax mandatory?",
+        answer: "Yes, all salaried employees not enrolled in the formal SSF scheme must pay a flat 1% tax on their base exemption limit."
+      },
+      {
+        question: "How does CIT investment affect my salary tax?",
+        answer: "Investing in the Citizen Investment Trust (CIT) allows you to claim tax deductions up to Rs. 300,000 or 1/3rd of your assessable income, drastically lowering your tax liability."
+      }
+    ]
+  },
+  'nepal-home-loan': {
+    title: "Home Loan EMI Calculator Nepal | Mortgage Rates",
+    description: "Calculate your Home Loan EMI based on current Nepal bank interest rates. Generate complete amortization schedules for housing loans.",
+    content: (
+      <>
+        <h2>Planning a Home Loan in Nepal</h2>
+        <p>
+          Purchasing real estate in Kathmandu or other major cities requires substantial capital, making Home Loans the most common path to property ownership. Calculating your Equated Monthly Installment (EMI) helps you understand if a loan fits your monthly budget.
+        </p>
+        <h3>How Nepal Banks Calculate EMI</h3>
+        <p>
+          Commercial banks in Nepal (like Nabil, Global IME, or NIC Asia) use a standard reducing-balance method. Your monthly EMI remains fixed, but the portion of the EMI going toward interest decreases over time, while the portion going toward the principal increases.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is a typical Home Loan interest rate in Nepal?",
+        answer: "Rates fluctuate based on the NRB's base rate, but typically range between 9% to 13% depending on liquidity and bank policies."
+      },
+      {
+        question: "What is a prepayment penalty?",
+        answer: "If you pay off your home loan early (before maturity), Nepali banks usually charge a prepayment penalty of 1% to 2% on the outstanding amount."
+      }
+    ]
+  },
+  'nea-bill': {
+    title: "NEA Electricity Bill Calculator Nepal",
+    description: "Calculate your exact Nepal Electricity Authority (NEA) bill. Supports 5 Amp to 60 Amp single-phase progressive block tariffs.",
+    content: (
+      <>
+        <h2>Understanding NEA Progressive Billing</h2>
+        <p>
+          The Nepal Electricity Authority (NEA) uses a "progressive block tariff" system. This means that electricity becomes more expensive per unit the more you consume. The goal is to provide heavily subsidized rates to low-income households while charging premium rates for heavy usage.
+        </p>
+        <h3>Ampere Capacity Matters</h3>
+        <p>
+          Your billing structure changes entirely based on your meter's capacity. A standard 5 Amp meter has different slab limits and energy charges compared to a 15 Amp, 30 Amp, or 60 Amp meter. Always check your meter type before calculating!
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the minimum charge for a 5 Amp meter?",
+        answer: "For a 5 Amp meter, the minimum monthly demand charge is currently Rs. 30, which includes a few units of free electricity."
+      },
+      {
+        question: "Why did my bill suddenly double?",
+        answer: "If you cross a tariff slab (e.g., jumping from 150 units to 151 units), the rate for the excess units increases significantly under the progressive billing system."
+      }
+    ]
+  },
+  'nepal-stocks': {
+    title: "NEPSE Share Trading Calculator | Profit & Broker Commission",
+    description: "Calculate your exact NEPSE share trading profit. Automatically deducts broker commissions, SEBON fees, DP charges, and Capital Gains Tax.",
+    content: (
+      <>
+        <h2>The Hidden Costs of Trading in NEPSE</h2>
+        <p>
+          When you sell shares at a profit on the Nepal Stock Exchange (NEPSE), the difference between the buy and sell price is not your final profit. You must account for several mandatory fees that eat into your margins.
+        </p>
+        <h3>Mandatory Trading Deductions</h3>
+        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+          <li><strong>Broker Commission:</strong> Ranging from 0.40% to 0.27% depending on transaction volume.</li>
+          <li><strong>SEBON Fee:</strong> A flat regulatory fee of 0.015%.</li>
+          <li><strong>DP Charge:</strong> Rs. 25 levied by your Depository Participant per transaction.</li>
+          <li><strong>Capital Gains Tax (CGT):</strong> 5% or 7.5% depending on holding period.</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How is NEPSE Capital Gains Tax (CGT) calculated?",
+        answer: "If you hold the stock for less than 365 days (short-term), the CGT is 7.5% of your net profit. If held for more than 365 days (long-term), the CGT drops to 5%."
+      },
+      {
+        question: "Does the broker commission apply to both buying and selling?",
+        answer: "Yes, you pay broker commissions both when purchasing the shares and when selling them."
+      }
+    ]
+  },
+  'property-tax': {
+    title: "Capital Gains Tax (CGT) Calculator Real Estate Nepal",
+    description: "Calculate Capital Gains Tax for real estate and land sales in Nepal. Find out your exact tax liability before visiting Malpot office.",
+    content: (
+      <>
+        <h2>Capital Gains Tax on Property in Nepal</h2>
+        <p>
+          When you sell land or a house at a profit in Nepal, the government levies a Capital Gains Tax (CGT). This tax is strictly calculated on the profit margin (Selling Price minus the official Purchase Price), not the total sale value.
+        </p>
+        <h3>Holding Period Tax Slabs</h3>
+        <p>
+          The Inland Revenue Department enforces different rates based on how long you owned the property:
+          <br/><strong>Short-Term (Less than 5 Years):</strong> Taxed at 7.5% of the total profit.
+          <br/><strong>Long-Term (More than 5 Years):</strong> Taxed at a reduced rate of 5% to encourage long-term investment.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What happens if I sell the property at a loss?",
+        answer: "If the selling price (official valuation) is less than your purchase price, there is no capital gain, and therefore, no Capital Gains Tax is payable."
+      },
+      {
+        question: "Who pays the CGT, buyer or seller?",
+        answer: "Legally, the Capital Gains Tax is the liability of the seller who made the profit, though actual payment arrangements are often negotiated during the sale."
+      }
+    ]
+  },
+  'property-registration': {
+    title: "Property Registration & Malpot Fee Calculator",
+    description: "Calculate land and house registration fees (Rajiinama pass) for Nepal Malpot offices. Includes municipal discounts and stamp duties.",
+    content: (
+      <>
+        <h2>Understanding Malpot Registration Fees</h2>
+        <p>
+          Transferring property ownership in Nepal requires paying a Registration Fee to the local Land Revenue Office (Malpot). This fee is a significant closing cost and is calculated as a percentage of the property's official government valuation.
+        </p>
+        <h3>Female Ownership Discounts</h3>
+        <p>
+          To encourage women's property ownership, the Government of Nepal offers substantial discounts on registration fees if the land is registered in a woman's name. These discounts range from 25% to 50% depending on whether the property is in an urban municipality or rural municipality.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Is the fee based on the market price or government valuation?",
+        answer: "Registration fees are calculated based on the official 'Thaili' (minimum government valuation) of the land, which is often lower than the actual market trading price."
+      },
+      {
+        question: "What is the Bagmati Civilization Tax?",
+        answer: "Properties located within the Kathmandu Valley are subject to an additional 0.5% Bagmati Civilization Fund tax on top of standard registration fees."
+      }
+    ]
+  },
+  'nepal-tds': {
+    title: "TDS Calculator Nepal | Tax Deducted at Source",
+    description: "Calculate Tax Deducted at Source (TDS) for contracts, rent, consultancy, and dividends according to Nepal's Income Tax Act.",
+    content: (
+      <>
+        <h2>What is Tax Deducted at Source (TDS)?</h2>
+        <p>
+          TDS is an advance tax collection mechanism utilized by the Inland Revenue Department (IRD). Under the Income Tax Act of Nepal, whenever a business makes a payment for rent, consultancy, or contracts, they must withhold a specific percentage and deposit it directly to the government.
+        </p>
+        <h3>Common TDS Rates in Nepal</h3>
+        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+          <li><strong>Consultancy/Professional Services:</strong> 15% (PAN registered).</li>
+          <li><strong>House Rent:</strong> 10% (collected by local municipality).</li>
+          <li><strong>Dividends:</strong> 5% final withholding tax.</li>
+          <li><strong>Contracts/Procurement:</strong> 1.5% for local goods and services.</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What happens if a consultant does not have a PAN?",
+        answer: "If a service provider does not provide a PAN (Permanent Account Number), the TDS rate is usually penalized and increased (often to 15% even for standard contracts)."
+      },
+      {
+        question: "Can I claim a refund on TDS?",
+        answer: "Yes, TDS is an advance tax. When you file your annual tax return (D03), you can adjust the TDS against your total tax liability, potentially resulting in a tax refund."
+      }
+    ]
+  },
+  'nepse-bonus-tax': {
+    title: "Bonus Share Tax Calculator | NEPSE Dividends",
+    description: "Calculate the exact tax you must pay on bonus shares and cash dividends distributed by Nepalese companies.",
+    content: (
+      <>
+        <h2>Taxation on Dividends in Nepal</h2>
+        <p>
+          When a company in NEPSE distributes profits to its shareholders, it does so via Cash Dividends or Bonus Shares. In Nepal, these distributions are subject to a 5% final withholding tax.
+        </p>
+        <h3>The 'Bonus Share Tax Issue'</h3>
+        <p>
+          When a company issues Bonus Shares (stock dividends) but does not distribute enough Cash Dividend to cover the tax liability, the shareholder is forced to deposit the 5% tax directly into the company's bank account out of their own pocket before the shares are credited to their Demat account.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the tax rate on cash dividends?",
+        answer: "Both cash dividends and bonus shares are taxed at a flat rate of 5% in Nepal."
+      },
+      {
+        question: "Why did my Demat account not receive the bonus shares?",
+        answer: "If the company did not issue a cash dividend, your bonus shares are frozen until you manually deposit the 5% tax amount into the specific bank account designated by the company's share registrar."
+      }
+    ]
+  },
+  'gratuity-calculator': {
+    title: "Gratuity Calculator Nepal | Labor Act 2074",
+    description: "Calculate your retirement and resignation gratuity benefits according to the provisions of the Nepal Labor Act 2074.",
+    content: (
+      <>
+        <h2>Understanding Gratuity under Labor Act 2074</h2>
+        <p>
+          In Nepal, Gratuity is a statutory benefit provided by an employer to an employee in gratitude for their continuous service. Following the implementation of the Labor Act 2074 and the Social Security Fund (SSF), the rules for gratuity accumulation have been modernized.
+        </p>
+        <h3>The 8.33% Rule</h3>
+        <p>
+          Under current labor laws, employers are required to allocate 8.33% of the employee's basic salary every month toward a Gratuity fund (equivalent to 1 month of basic salary per year). This money must be deposited into the SSF or an approved retirement fund.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Am I eligible for gratuity if I resign?",
+        answer: "Yes. Unlike the old Labor Act which required 3 years of continuous service, the new Labor Act 2074 entitles employees to gratuity benefits from the very first month of employment, regardless of resignation or termination."
+      },
+      {
+        question: "Is gratuity taxable in Nepal?",
+        answer: "Yes, gratuity payouts are subject to a 15% final withholding tax on the total accumulated interest and profit, handled under retirement fund taxation rules."
+      }
+    ]
   }
 };
