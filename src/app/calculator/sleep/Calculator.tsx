@@ -50,7 +50,7 @@ export default function SleepCalculator() {
 
   return (
     <CalculatorErrorBoundary calculatorName="Sleep Calculator">
-      <ModernCalcLayout hideH1={true}
+      <ModernCalcLayout hideH1={false}
       crumbs={[{ label: 'Health', href: '/health/' }, { label: 'Sleep Calculator' }]}
         title="Sleep Cycle Calculator"
         description="Optimize your sleep by waking up between 90-minute sleep cycles. Avoid grogginess and wake up feeling refreshed and energized."

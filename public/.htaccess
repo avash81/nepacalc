@@ -5,52 +5,36 @@ RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # ============================================================
-# 2. BING 404 FIX — 301 Redirects for all broken URLs
+# 2. BING 404 FIX — 301 Redirects for moved tools
 # ============================================================
 
-# Market rates wrong path (Bing indexed /calculator/market-rates/...)
+# Structural Category Changes
 RewriteRule ^calculator/market-rates/live-silver-price/?$ /market-rates/live-silver-price/ [L,R=301]
 RewriteRule ^calculator/market-rates/live-gold-price/?$ /market-rates/live-gold-price/ [L,R=301]
 RewriteRule ^calculator/market-rates/exchange-rate/?$ /market-rates/exchange-rate/ [L,R=301]
 RewriteRule ^calculator/market-rates/remittance/?$ /market-rates/remittance/ [L,R=301]
 
-# Math tools wrong path (Bing indexed /calculator/math-tools/...)
 RewriteRule ^calculator/math-tools/programmer/?$ /math-tools/programmer/ [L,R=301]
 RewriteRule ^calculator/math-tools/statistics/?$ /math-tools/statistics/ [L,R=301]
 RewriteRule ^calculator/math-tools/calculus/?$ /math-tools/calculus/ [L,R=301]
 RewriteRule ^calculator/math-tools/scientific/?$ /math-tools/scientific/ [L,R=301]
-RewriteRule ^calculator/math-tools/fourfunction/?$ /math-tools/fourfunction/ [L,R=301]
 RewriteRule ^calculator/math-tools/matrix/?$ /math-tools/matrix/ [L,R=301]
 
-# Engineering wrong path (Bing indexed /calculator/engineering/...)
 RewriteRule ^calculator/engineering/graphing/?$ /engineering/graphing/ [L,R=301]
 RewriteRule ^calculator/engineering/3d/?$ /engineering/3d/ [L,R=301]
-RewriteRule ^calculator/engineering/formulas/?$ /engineering/formulas/ [L,R=301]
-RewriteRule ^calculator/engineering/geometry/?$ /engineering/geometry/ [L,R=301]
 
-# Wrong slug names → correct slugs
+# Specific Tool Renames (Same content, different slug)
 RewriteRule ^calculator/nepal-tax-calculator/?$ /calculator/nepal-income-tax/ [L,R=301]
-RewriteRule ^calculator/income-tax/?$ /calculator/nepal-income-tax/ [L,R=301]
 RewriteRule ^calculator/age/?$ /calculator/age-calculator/ [L,R=301]
-RewriteRule ^calculator/bmi-calculator/?$ /calculator/bmi/ [L,R=301]
-RewriteRule ^calculator/child-bmi/?$ /calculator/bmi-child/ [L,R=301]
 RewriteRule ^calculator/scientific/?$ /calculator/scientific-calculator/ [L,R=301]
 RewriteRule ^calculator/fraction/?$ /calculator/fraction-calculator/ [L,R=301]
 RewriteRule ^calculator/date-add-subtract/?$ /calculator/date-duration/ [L,R=301]
 RewriteRule ^calculator/nepal-tds-calculator/?$ /calculator/nepal-tds/ [L,R=301]
 RewriteRule ^calculator/nepal-neb-gpa/?$ /calculator/gpa/ [L,R=301]
 RewriteRule ^calculator/gpa-to-percentage/?$ /calculator/cgpa/ [L,R=301]
-RewriteRule ^calculator/quadratic-formula/?$ /calculator/logarithm-calculator/ [L,R=301]
-RewriteRule ^calculator/temperature-converter/?$ /calculator/unit-converter/ [L,R=301]
-RewriteRule ^calculator/swp-calculator/?$ /calculator/sip-calculator/ [L,R=301]
-RewriteRule ^calculator/lumpsum-calculator/?$ /calculator/sip-calculator/ [L,R=301]
-RewriteRule ^calculator/retirement/?$ /calculator/savings/ [L,R=301]
-RewriteRule ^calculator/period-calculator/?$ /calculator/age-calculator/ [L,R=301]
-RewriteRule ^calculator/ovulation-calculator/?$ /calculator/age-calculator/ [L,R=301]
-RewriteRule ^calculator/blood-pressure/?$ /calculator/bmi/ [L,R=301]
-RewriteRule ^calculator/passport-status/?$ /nepal/ [L,R=301]
-RewriteRule ^calculator/time-until/?$ /calculator/date-duration/ [L,R=301]
-RewriteRule ^calculator/business-days/?$ /calculator/date-duration/ [L,R=301]
+
+# Sitemap Fix
+RewriteRule ^sitemap\.html$ /sitemap/ [L,R=301]
 
 # Wrong top-level paths
 RewriteRule ^exchange-rates/?$ /market-rates/exchange-rate/ [L,R=301]

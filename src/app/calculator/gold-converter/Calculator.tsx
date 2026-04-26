@@ -128,7 +128,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
   if (isEmbed) return mainContent;
 
   return (
-    <ModernCalcLayout hideH1={true}
+    <ModernCalcLayout hideH1={false}
       title={content.title}
       description={content.desc}
       icon={Landmark}

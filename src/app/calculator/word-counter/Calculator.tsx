@@ -24,7 +24,7 @@ export default function WordCounter() {
 
   return (
     <CalculatorErrorBoundary calculatorName="Word Counter">
-      <ModernCalcLayout hideH1={true}
+      <ModernCalcLayout hideH1={false}
       crumbs={[{ label: 'Converters', href: '/converters/' }, { label: 'Word Counter' }]}
         title="Word & Character Counter"
         description="Count words, characters, sentences, and paragraphs in real-time. Get reading time estimates and keyword density analysis for SEO."

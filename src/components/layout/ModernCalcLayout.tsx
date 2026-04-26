@@ -102,7 +102,7 @@ export function ModernCalcLayout({
                 ))}
               </nav>
             )}
-            {hideH1 ? <h1 className="sr-only">{title}</h1> : <h1 className="text-2xl sm:text-3xl font-bold text-[#202124] tracking-tight">{title}</h1>}
+            {!hideH1 && <h1 className="text-2xl sm:text-3xl font-bold text-[#202124] tracking-tight">{title}</h1>}
           </div>
           <div className="flex items-center gap-3">
              <button onClick={() => window.print()} className="hidden sm:flex items-center gap-1.5 text-[11px] font-bold text-[#5F6368] hover:text-[#1A73E8] transition-all bg-white px-3 py-1.5 border border-[#dadce0] rounded-md shadow-sm">

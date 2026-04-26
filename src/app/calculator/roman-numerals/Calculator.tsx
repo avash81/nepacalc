@@ -38,7 +38,7 @@ export default function RomanNumeralsCalculator() {
   };
 
   return (
-    <ModernCalcLayout hideH1={true}
+    <ModernCalcLayout hideH1={false}
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Roman Numerals' }]}
       title="Roman Numerals Converter"
       description="Convert modern Arabic numbers to Roman numerals and vice versa. Supports bidirectional conversion for numbers up to 3,999."

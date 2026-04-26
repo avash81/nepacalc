@@ -218,7 +218,7 @@ export default function ScientificCalculator() {
 
   return (
     <ModernCalcLayout
-      hideH1={true}
+      hideH1={false}
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Scientific Calculator' }]}
       title="Scientific Calculator"
       description="Professional online scientific calculator with trigonometry, logs, and power functions. Industrial-grade mathematical engine for advanced algebraic calculations."

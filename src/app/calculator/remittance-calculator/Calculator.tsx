@@ -67,7 +67,7 @@ export default function RemittanceCalculator() {
 
   return (
     <CalculatorErrorBoundary calculatorName="Remittance Calculator">
-      <ModernCalcLayout hideH1={true}
+      <ModernCalcLayout hideH1={false}
         crumbs={[{ label: 'Finance', href: '/finance/' }, { label: 'Remittance Calculator' }]}
         title="Global Remittance Tracker"
         description="High-authority comparison engine for exchange rates and remittance fees, ensuring the Nepalese diaspora maximizes their family's income."

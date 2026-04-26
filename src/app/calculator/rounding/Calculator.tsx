@@ -14,7 +14,7 @@ export default function RoundingCalc() {
   }, [val, precision]);
 
   return (
-    <ModernCalcLayout hideH1={true}
+    <ModernCalcLayout hideH1={false}
       slug="rounding"
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Rounding Utility' }]}
       title="Rounding Calculator"

@@ -21,7 +21,7 @@ export default function ZScoreCalc() {
 
   return (
     <CalculatorErrorBoundary calculatorName="Z-Score">
-      <ModernCalcLayout hideH1={true}
+      <ModernCalcLayout hideH1={false}
         crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Z-Score Calculator' }]}
         title="Z-Score Calculator"
         description="Calculate the standard score (Z-score) of any raw value in a normal distribution. Essential for statistics, probability analysis, and comparing different datasets."

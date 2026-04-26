@@ -23,7 +23,7 @@ export default function ProbabilityCalc() {
   const inputCls = "w-full px-4 py-3 rounded-lg border border-slate-200 bg-slate-50 font-bold text-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:bg-white outline-none transition-all";
 
   return (
-    <ModernCalcLayout hideH1={true}
+    <ModernCalcLayout hideH1={false}
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Probability Calculator' }]}
       title="Probability & Odds Calculator"
       description="Calculate the statistical probability of any event. Enter favorable outcomes and total possible outcomes to instantly see the percentage, decimal, and odds."
