@@ -10,7 +10,8 @@ const LoadingSkeleton = () => (
 
 const AllInOneCalculator = dynamic(() => import('@/components/calculator/AllInOneCalculator'), { ssr: false, loading: LoadingSkeleton });
 const AdvancedCalculator  = dynamic(() => import('@/components/calculator/AdvancedCalculator'), { ssr: false, loading: LoadingSkeleton });
-const CustomGrapher       = dynamic(() => import('@/components/calculator/CustomGrapher'), { ssr: false, loading: () => <div className="h-full w-full bg-slate-50 animate-pulse" /> });
+// Grapher is deferred — loaded ONLY after user interaction to protect desktop LCP
+const CustomGrapher       = dynamic(() => import('@/components/calculator/CustomGrapher'), { ssr: false, loading: () => <div className="h-full w-full bg-slate-50 rounded-[1.5rem] border border-slate-200" /> });
 
 const PURPLE = '#5b5ea6';
 

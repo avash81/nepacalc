@@ -1,0 +1,14 @@
+# Target modern browsers only — eliminates ~10 KiB of legacy polyfills
+# Array.at, Array.flat, Array.flatMap, Object.fromEntries, Object.hasOwn are all natively supported
+[production]
+Chrome >= 90
+Firefox >= 90
+Safari >= 14
+Edge >= 90
+not dead
+not IE 11
+
+[development]
+last 1 chrome version
+last 1 firefox version
+last 1 safari version

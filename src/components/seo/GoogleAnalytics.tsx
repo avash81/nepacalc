@@ -1,100 +1,71 @@
 /**
- * GoogleAnalytics — Performance-First Analytics Bridge
+ * GoogleAnalytics — Performance-First Analytics
  * 
- * Strategy: Smart Delayed Hydration.
- * We avoid loading the heavy GTM script until the user actually interacts with the page 
- * (scroll, click, or mouse move). This ensures a 100/100 Lighthouse Performance score 
- * by keeping the main thread clear for initial LCP and FCP.
+ * Loads GA ONLY after the window 'load' event fires AND the browser
+ * is idle (requestIdleCallback). This keeps the main thread clear
+ * during LCP/FCP and removes it from PSI's critical path analysis.
  */
 'use client';
 
-import Script from 'next/script';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { useEffect, useState, Suspense } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, Suspense } from 'react';
 
-function GoogleAnalyticsInner({ gaId }: { gaId: string }) {
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-G78ED8CZ3D';
+
+function GAPageTracker() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
-    if (pathname && gaId) {
-      // @ts-ignore
-      if (typeof window.gtag === 'function') {
-        const url = pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '');
-        // @ts-ignore
-        window.gtag('config', gaId, {
-          page_path: url,
-        });
-      }
+    if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
+      (window as any).gtag('config', GA_ID, { page_path: pathname });
     }
-  }, [pathname, searchParams, gaId]);
+  }, [pathname]);
 
   return null;
 }
 
+function injectGA() {
+  if (typeof window === 'undefined' || (window as any).__ga_loaded) return;
+  (window as any).__ga_loaded = true;
+
+  const script1 = document.createElement('script');
+  script1.async = true;
+  script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  document.head.appendChild(script1);
+
+  const script2 = document.createElement('script');
+  script2.innerHTML = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${GA_ID}', { page_path: window.location.pathname });
+  `;
+  document.head.appendChild(script2);
+}
+
 export function GoogleAnalytics() {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID || 'G-G78ED8CZ3D';
-  const [loadAnalytics, setLoadAnalytics] = useState(false);
-
   useEffect(() => {
-    // Delay loading analytics until first user interaction
-    const handleInteraction = () => {
-      setLoadAnalytics(true);
-      removeListeners();
+    // Load after window is fully loaded and browser is idle
+    const load = () => {
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(injectGA, { timeout: 5000 });
+      } else {
+        setTimeout(injectGA, 3000);
+      }
     };
 
-    const removeListeners = () => {
-      window.removeEventListener('scroll', handleInteraction);
-      window.removeEventListener('mousemove', handleInteraction);
-      window.removeEventListener('touchstart', handleInteraction);
-      window.removeEventListener('keydown', handleInteraction);
-    };
+    if (document.readyState === 'complete') {
+      load();
+    } else {
+      window.addEventListener('load', load, { once: true });
+    }
 
-    window.addEventListener('scroll', handleInteraction, { passive: true });
-    window.addEventListener('mousemove', handleInteraction, { passive: true });
-    window.addEventListener('touchstart', handleInteraction, { passive: true });
-    window.addEventListener('keydown', handleInteraction, { passive: true });
-
-    // Fallback: Load anyway after 6 seconds if no interaction
-    const timer = setTimeout(() => {
-      setLoadAnalytics(true);
-    }, 6000);
-
-    return () => {
-      removeListeners();
-      clearTimeout(timer);
-    };
+    return () => window.removeEventListener('load', load);
   }, []);
 
-  if (!gaId) return null;
-
   return (
-    <>
-      <Suspense fallback={null}>
-        <GoogleAnalyticsInner gaId={gaId} />
-      </Suspense>
-      {loadAnalytics && (
-        <>
-          <Script
-            src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-            strategy="afterInteractive"
-          />
-          <Script
-            id="google-analytics"
-            strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${gaId}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-            }}
-          />
-        </>
-      )}
-    </>
+    <Suspense fallback={null}>
+      <GAPageTracker />
+    </Suspense>
   );
 }
