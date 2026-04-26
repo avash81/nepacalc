@@ -3129,5 +3129,265 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         answer: "The formula is V = 4/3 × π × r³, where r is the radius from the center of the sphere."
       }
     ]
+  },
+  'market-rates/live-gold-price': {
+    title: "Live Gold Price in Nepal Today | Fine & Tejabi Sun",
+    description: "Check the exact, official daily gold rates in Nepal (Fine 24K and Tejabi 22K). Prices synced with the Nepal Gold and Silver Dealers' Association.",
+    content: (
+      <>
+        <h2>The Nepali Gold Market</h2>
+        <p>
+          In Nepal, gold (Sun) is not just an investment; it is deeply embedded in the culture, particularly during weddings and festivals like Tihar. The daily price is strictly regulated and published every morning at 10:00 AM by the Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA).
+        </p>
+        <h3>Tola vs. Gram</h3>
+        <p>
+          While international markets trade gold in Ounces and Grams, the local Nepalese market still relies heavily on the traditional "Tola" system. One Tola is precisely equal to 11.66 grams.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the difference between Fine Gold and Tejabi Gold?",
+        answer: "Fine Gold (Chhapawal) is 24-karat, 99.99% pure gold. Tejabi Gold is 22-karat gold, slightly less pure, mixed with other metals to make it harder for jewelry making, and is therefore slightly cheaper."
+      },
+      {
+        question: "Does the listed price include jewelry making charges (Jarti)?",
+        answer: "No. The published FENEGOSIDA price is only the raw material cost. Jewelers will add Jarti (wastage) and making charges on top of this base price when you buy a finished ornament."
+      }
+    ]
+  },
+  'market-rates/remittance': {
+    title: "Nepal Remittance Board | Compare Live Money Transfer Rates",
+    description: "Compare real-time exchange rates from top remit companies (IME, Western Union, Prabhu) for sending money to Nepal from abroad.",
+    content: (
+      <>
+        <h2>Maximizing Your Remittance to Nepal</h2>
+        <p>
+          Remittance forms the backbone of Nepal's economy. When sending money home from the Gulf, Malaysia, USA, or Australia, the exchange rate offered by different money transfer operators can vary wildly. A seemingly small difference in the rate can result in thousands of missing Rupees.
+        </p>
+        <h3>Exchange Rate vs. Transfer Fees</h3>
+        <p>
+          Always look at the total "Landed Cost." A remit company might offer a phenomenally high exchange rate, but charge a massive flat fee for the transfer. Conversely, some offer "zero-fee" transfers but hide their profit in a terrible exchange rate.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Is it better to send money to a bank account or for cash pickup?",
+        answer: "Direct bank account transfers generally offer slightly better exchange rates and lower fees compared to instant cash pickup services."
+      },
+      {
+        question: "Are remittance exchange rates updated daily?",
+        answer: "Yes, remittance rates are highly volatile and are updated multiple times a day based on the international forex market and the Nepal Rastra Bank guidelines."
+      }
+    ]
+  },
+  'market-rates/exchange-rate': {
+    title: "Live Foreign Exchange Rates Nepal | USD, AUD, INR to NPR",
+    description: "View real-time, official Nepal Rastra Bank (NRB) foreign exchange reference rates for USD, AUD, EUR, and GBP to Nepalese Rupees.",
+    content: (
+      <>
+        <h2>Nepal Rastra Bank (NRB) Official Rates</h2>
+        <p>
+          The value of the Nepalese Rupee (NPR) fluctuates daily against major global currencies. The Nepal Rastra Bank (NRB) publishes the official reference exchange rate every morning, which dictates the rates used by commercial banks and customs offices.
+        </p>
+        <h3>The INR-NPR Peg</h3>
+        <p>
+          Unlike other currencies, the Nepalese Rupee is permanently pegged to the Indian Rupee (INR) at a fixed rate of 1 INR = 1.60 NPR. Therefore, whenever the Indian Rupee strengthens or weakens against the US Dollar, the Nepalese Rupee automatically follows suit.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the difference between the Buying Rate and Selling Rate?",
+        answer: "The Buying Rate is what the bank will pay YOU if you give them foreign currency. The Selling Rate is what the bank charges YOU if you want to buy foreign currency from them."
+      },
+      {
+        question: "Can I get the exact NRB rate at a money exchange counter?",
+        answer: "No. Money changers and commercial banks add their own spread (profit margin) on top of the NRB reference rate."
+      }
+    ]
+  },
+  'market-rates/live-silver-price': {
+    title: "Live Silver Price in Nepal | Chandi Rates Today",
+    description: "Check the official daily Silver (Chandi) rates in Nepal per Tola and per Gram, authorized by FENEGOSIDA.",
+    content: (
+      <>
+        <h2>The Silver (Chandi) Market in Nepal</h2>
+        <p>
+          Silver (locally known as Chandi) is heavily used in Nepal for traditional jewelry, religious idols, and utensils for pooja. Just like gold, the price of silver is standardized daily across the country by the Federation of Nepal Gold and Silver Dealers' Association.
+        </p>
+        <h3>Silver as an Investment</h3>
+        <p>
+          While gold is the primary precious metal investment, silver offers a lower barrier to entry. However, silver is highly volatile and is heavily influenced by industrial demand alongside investment demand.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Is the price of silver the same across all of Nepal?",
+        answer: "The base price of raw silver is uniform. However, local jewelers may adjust making charges depending on the region and the complexity of the jewelry design."
+      },
+      {
+        question: "How many grams are in one Tola of Silver?",
+        answer: "Just like gold, one Tola of silver is equal to 11.66 grams."
+      }
+    ]
+  },
+  'bmi-child': {
+    title: "Child BMI Percentile Calculator | Pediatric Growth",
+    description: "Calculate your child's BMI percentile accurately based on CDC and WHO growth charts for age and gender.",
+    content: (
+      <>
+        <h2>Why Child BMI is Calculated Differently</h2>
+        <p>
+          You cannot use a standard adult BMI calculator for children or teenagers. Because children are constantly growing, their body fat composition changes significantly with age and differs entirely between boys and girls.
+        </p>
+        <h3>Understanding Percentiles</h3>
+        <p>
+          Child BMI is expressed as a "Percentile" rather than a raw number. If your child is in the 75th percentile, it means their BMI is higher than 75% of children of the exact same age and biological sex.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is considered a healthy percentile range for a child?",
+        answer: "A healthy weight is typically defined as falling between the 5th and 85th percentiles on the CDC growth charts."
+      },
+      {
+        question: "Is BMI accurate for athletic teenagers?",
+        answer: "Like adults, heavily muscular teens may have a high BMI that categorizes them as overweight, even if their body fat is very low. Always consult a pediatrician for a full assessment."
+      }
+    ]
+  },
+  'sleep': {
+    title: "Sleep Cycle Calculator | Find Your Optimal Wake Time",
+    description: "Calculate the exact time you should go to bed or wake up to avoid grogginess. Based on 90-minute human REM sleep cycles.",
+    content: (
+      <>
+        <h2>The Science of Sleep Cycles</h2>
+        <p>
+          Human sleep is not uniform; it consists of 90-minute cycles transitioning between light sleep, deep sleep, and REM (Rapid Eye Movement) sleep. If your alarm clock wakes you up right in the middle of deep sleep, you will experience "sleep inertia"—that heavy, groggy feeling that ruins your morning.
+        </p>
+        <h3>Timing is Better Than Duration</h3>
+        <p>
+          Getting exactly 7.5 hours of sleep (5 full cycles) or even 6 hours of sleep (4 full cycles) will often leave you feeling far more refreshed than getting 8 hours of sleep and waking up mid-cycle.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How long does it take the average person to fall asleep?",
+        answer: "It takes the average human about 14 to 20 minutes to fall asleep. Our calculator automatically factors this buffer time into your bedtime."
+      },
+      {
+        question: "What is the optimal number of sleep cycles per night?",
+        answer: "Most adults need 5 full sleep cycles (about 7.5 hours) per night to achieve optimal cognitive performance."
+      }
+    ]
+  },
+  'momo-calorie-counter': {
+    title: "Momo Calorie Counter | Nepalese Food Nutrition",
+    description: "Calculate the exact calories and macros in your plate of Momo (Chicken, Buff, Veg). Don't break your diet in Kathmandu!",
+    content: (
+      <>
+        <h2>The Caloric Cost of Nepal's Favorite Food</h2>
+        <p>
+          Momo is the undisputed king of Nepalese street food. However, if you are tracking your macros or trying to lose weight, a quick plate of Jhol Momo can quietly destroy your daily caloric deficit.
+        </p>
+        <h3>Steamed vs. Fried (Kothey / C)</h3>
+        <p>
+          A standard steamed chicken momo has about 35-40 calories. However, deep-frying the momo or tossing it in a heavy, oil-based 'C-Momo' chili sauce can easily double the caloric density of the dish.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Which type of momo has the lowest calories?",
+        answer: "Steamed vegetable momo (filled primarily with cabbage and carrots) is the lowest in calories, typically hovering around 25-30 calories per piece."
+      },
+      {
+        question: "Does the Momo Achar (Sauce) add a lot of calories?",
+        answer: "Yes! While tomato-based achars are relatively light, peanut-based or heavy oil-based sauces can add an extra 100-200 calories to your meal."
+      }
+    ]
+  },
+  'solar-requirement': {
+    title: "Solar Panel & Inverter Calculator | Home Load Capacity",
+    description: "Calculate the total wattage required for your home. Size your solar panels, battery bank, and inverter accurately.",
+    content: (
+      <>
+        <h2>Sizing a Home Solar System</h2>
+        <p>
+          With unpredictable grid reliability, moving to solar power is highly beneficial. However, installing a system that is too small will leave you in the dark, and installing one that is too large wastes money. You must calculate your exact total watt-hour load.
+        </p>
+        <h3>The Battery Bank Factor</h3>
+        <p>
+          Solar panels only generate power during the day. If you plan to run heavy appliances (like a fridge or TV) at night, your battery bank must have enough Amp-Hour (Ah) capacity to store the day's energy and discharge it safely without dropping below 50% depth-of-discharge.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How do I calculate my daily energy consumption?",
+        answer: "Multiply the wattage of each appliance by the number of hours you run it per day. Add them all together to get your total daily Watt-Hours."
+      },
+      {
+        question: "What is an inverter's continuous rating vs. surge rating?",
+        answer: "Continuous rating is what the inverter can handle indefinitely. Surge rating is the massive, momentary spike of power required to start a motor (like a water pump or refrigerator)."
+      }
+    ]
+  },
+  'paint-cost': {
+    title: "House Painting Cost & Volume Calculator",
+    description: "Estimate exactly how many liters of paint you need for a room or house. Calculate total costs based on primer, coats, and square footage.",
+    content: (
+      <>
+        <h2>Never Overbuy Paint Again</h2>
+        <p>
+          Buying too much paint is a waste of money, but running out of paint halfway through a wall leads to inconsistent color matching. By calculating the exact square footage of your walls (and subtracting windows and doors), you can purchase the perfect volume.
+        </p>
+        <h3>Understanding Coverage Rates</h3>
+        <p>
+          A standard liter of interior latex paint typically covers about 10 to 12 square meters for a single coat. However, highly textured walls or porous drywall might require a heavy layer of primer first to prevent the paint from soaking in.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How many coats of paint are necessary?",
+        answer: "For most interior walls, especially if changing colors, you will need one coat of primer and two coats of the finish paint for an even, durable look."
+      },
+      {
+        question: "Do I need to paint the ceiling?",
+        answer: "Ceilings require specific 'ceiling paint' which is designed to scatter light and hide imperfections, and it usually requires separate volume calculations."
+      }
+    ]
+  },
+  'word-counter': {
+    title: "Advanced Word & Character Counter | Reading Time",
+    description: "Instantly count words, characters (with/without spaces), paragraphs, and estimate reading time for essays and SEO articles.",
+    content: (
+      <>
+        <h2>The Importance of Word Counts</h2>
+        <p>
+          Whether you are writing a 500-word university essay, a 280-character tweet, or a 2000-word SEO-optimized blog post, hitting exact length constraints is crucial. Our tool provides instantaneous, real-time metrics as you paste or type your text.
+        </p>
+        <h3>Characters with vs. without Spaces</h3>
+        <p>
+          Many government forms, SMS gateways, and API limits count absolute characters (including the blank spaces between words). Our tool separates these metrics so you never exceed strict database or form limits.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How is reading time calculated?",
+        answer: "We estimate reading time based on the universal average reading speed of an adult, which is roughly 200 to 250 words per minute."
+      },
+      {
+        question: "Does the tool store my text?",
+        answer: "No. All counting is done locally in your browser using JavaScript. We do not upload or save your sensitive documents to our servers."
+      }
+    ]
   }
 };
