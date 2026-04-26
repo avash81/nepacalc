@@ -2053,5 +2053,276 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         answer: "You can optimize your take-home pay by claiming all legal tax deductions, maximizing tax-saving investments, or restructuring your salary components with your HR department."
       }
     ]
+  },
+  'time-calculator': {
+    title: "Time Calculator | Add, Subtract, & Multiply Time",
+    description: "Add or subtract hours, minutes, and seconds easily. Perfect for payroll, running times, and scheduling tasks.",
+    content: (
+      <>
+        <h2>How the Time Calculator Works</h2>
+        <p>
+          Calculating time is notoriously difficult because it relies on a Base-60 system (60 seconds in a minute, 60 minutes in an hour) rather than the standard Base-10 decimal system used in regular math. Our calculator automatically handles these conversions for you.
+        </p>
+        <h3>Common Uses</h3>
+        <p>
+          <strong>Payroll & Timesheets:</strong> Add up the exact number of hours and minutes worked over a week to calculate total pay.
+          <br/><strong>Athletics:</strong> Calculate pace and total running times for marathons or interval training.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How do you add times together?",
+        answer: "To add time, you add the hours, minutes, and seconds separately. If the seconds exceed 60, you add 1 to the minutes and keep the remainder. If minutes exceed 60, you add 1 to the hours."
+      },
+      {
+        question: "Can I subtract a later time from an earlier time?",
+        answer: "Yes, this is common when calculating a time difference across midnight. The calculator automatically adjusts for 24-hour cycles."
+      }
+    ]
+  },
+  'speed-distance-time': {
+    title: "Speed, Distance & Time Calculator",
+    description: "Calculate speed, distance, or time. Enter any two values to instantly find the missing variable using standard physics formulas.",
+    content: (
+      <>
+        <h2>The Speed, Distance, and Time Triangle</h2>
+        <p>
+          The relationship between speed, distance, and time is one of the most fundamental concepts in physics. If you know any two of these variables, you can easily calculate the third.
+        </p>
+        <h3>The Core Formulas</h3>
+        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+          <li><strong>Speed:</strong> Distance ÷ Time. (e.g., How fast are you going?)</li>
+          <li><strong>Distance:</strong> Speed × Time. (e.g., How far will you travel?)</li>
+          <li><strong>Time:</strong> Distance ÷ Speed. (e.g., How long will the trip take?)</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the difference between speed and velocity?",
+        answer: "Speed is a scalar quantity (how fast you are moving), while velocity is a vector quantity (how fast you are moving AND in what specific direction)."
+      },
+      {
+        question: "How do I convert km/h to mph?",
+        answer: "To convert kilometers per hour to miles per hour, divide the speed by 1.60934."
+      }
+    ]
+  },
+  'acceleration-calculator': {
+    title: "Acceleration Calculator | Find Change in Velocity",
+    description: "Calculate the acceleration of an object. Instantly find the rate of change in velocity over time using standard kinematics equations.",
+    content: (
+      <>
+        <h2>What is Acceleration?</h2>
+        <p>
+          Acceleration is the rate at which an object changes its velocity. If you are driving a car and press the gas pedal, you are accelerating because your speed is increasing over time. Conversely, hitting the brakes is a form of negative acceleration (deceleration).
+        </p>
+        <h3>The Acceleration Formula</h3>
+        <p>
+          The standard formula is: <strong>a = (v_f - v_i) / t</strong>
+          <br/>Where <strong>v_f</strong> is the final velocity, <strong>v_i</strong> is the initial velocity, and <strong>t</strong> is the time taken for the change.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the unit of acceleration?",
+        answer: "The standard SI unit for acceleration is meters per second squared (m/s²)."
+      },
+      {
+        question: "What is the acceleration due to gravity?",
+        answer: "On Earth, the acceleration due to gravity is approximately 9.81 m/s²."
+      }
+    ]
+  },
+  'kinetic-energy-calculator': {
+    title: "Kinetic Energy Calculator | Mass and Velocity",
+    description: "Calculate the kinetic energy of a moving object. Enter mass and velocity to find the energy in Joules instantly.",
+    content: (
+      <>
+        <h2>Understanding Kinetic Energy</h2>
+        <p>
+          Kinetic energy is the energy that an object possesses due to its motion. The heavier an object is and the faster it moves, the more kinetic energy it has. This is why a fast-moving truck causes significantly more damage in a collision than a slow-moving bicycle.
+        </p>
+        <h3>The Kinetic Energy Formula</h3>
+        <p>
+          The physics formula is: <strong>KE = 1/2 × m × v²</strong>
+          <br/>Where <strong>m</strong> is the mass (in kilograms) and <strong>v</strong> is the velocity (in meters per second). Notice that velocity is squared, meaning speed has a much greater impact on kinetic energy than mass.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the unit of Kinetic Energy?",
+        answer: "The standard SI unit for any form of energy, including kinetic energy, is the Joule (J)."
+      },
+      {
+        question: "Can kinetic energy be negative?",
+        answer: "No. Because mass is always positive and velocity is squared (making it positive), kinetic energy is always a positive value or zero."
+      }
+    ]
+  },
+  'potential-energy-calculator': {
+    title: "Potential Energy Calculator | Gravitational Energy",
+    description: "Calculate the gravitational potential energy of an object. Enter mass and height to find the stored energy in Joules.",
+    content: (
+      <>
+        <h2>What is Potential Energy?</h2>
+        <p>
+          Potential energy is the stored energy an object has because of its position or state. The most common type is Gravitational Potential Energy—the energy an object holds because of its height above the ground.
+        </p>
+        <h3>The Potential Energy Formula</h3>
+        <p>
+          The standard formula is: <strong>PE = m × g × h</strong>
+          <br/>Where <strong>m</strong> is mass (in kg), <strong>g</strong> is the acceleration due to gravity (9.81 m/s² on Earth), and <strong>h</strong> is the height (in meters).
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What happens to potential energy when an object falls?",
+        answer: "As an object falls, its height decreases, meaning it loses potential energy. According to the conservation of energy, this lost potential energy is converted directly into kinetic energy."
+      },
+      {
+        question: "Does potential energy depend on the path taken?",
+        answer: "No. Gravitational potential energy only depends on the vertical height, not the path taken to reach that height."
+      }
+    ]
+  },
+  'force-calculator': {
+    title: "Force Calculator | Newton's Second Law",
+    description: "Calculate force, mass, or acceleration using Newton's Second Law of Motion (F = m × a). Fast and accurate physics calculator.",
+    content: (
+      <>
+        <h2>Understanding Newton's Second Law</h2>
+        <p>
+          Force is a push or pull upon an object resulting from its interaction with another object. According to Sir Isaac Newton's Second Law of Motion, the force applied to an object is equal to the mass of that object multiplied by its acceleration.
+        </p>
+        <h3>The Force Formula</h3>
+        <p>
+          The foundational physics equation is: <strong>F = m × a</strong>
+          <br/>Where <strong>F</strong> is Force (in Newtons), <strong>m</strong> is mass (in kg), and <strong>a</strong> is acceleration (in m/s²).
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is a Newton?",
+        answer: "A Newton (N) is the standard SI unit of force. One Newton is equal to the force required to accelerate a 1-kilogram mass at a rate of 1 meter per second squared."
+      },
+      {
+        question: "Is force a vector or scalar?",
+        answer: "Force is a vector quantity, meaning it has both a magnitude (how strong the push/pull is) and a specific direction."
+      }
+    ]
+  },
+  'pressure-calculator': {
+    title: "Pressure Calculator | Force and Area",
+    description: "Calculate pressure, force, or area. Understand how force is distributed over a surface using standard physics formulas.",
+    content: (
+      <>
+        <h2>The Physics of Pressure</h2>
+        <p>
+          Pressure is defined as the physical force exerted on an object. The force applied is perpendicular to the surface of objects per unit area. This explains why a sharp knife cuts easily (the force is concentrated on a tiny area, creating massive pressure).
+        </p>
+        <h3>The Pressure Formula</h3>
+        <p>
+          The formula is: <strong>P = F / A</strong>
+          <br/>Where <strong>P</strong> is Pressure (in Pascals), <strong>F</strong> is Force (in Newtons), and <strong>A</strong> is the Area (in square meters).
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is a Pascal?",
+        answer: "A Pascal (Pa) is the standard SI unit of pressure. It is defined as one Newton of force applied over one square meter of area (N/m²)."
+      },
+      {
+        question: "How does area affect pressure?",
+        answer: "Pressure is inversely proportional to area. If you apply the exact same force to a smaller area, the pressure drastically increases."
+      }
+    ]
+  },
+  'work-calculator': {
+    title: "Work Calculator | Force and Displacement",
+    description: "Calculate the mechanical work done when a force is applied over a distance. Free online physics calculator for work and energy.",
+    content: (
+      <>
+        <h2>What is Work in Physics?</h2>
+        <p>
+          In everyday language, 'work' means any physical or mental effort. However, in physics, Work is strictly defined as the measure of energy transfer that occurs when an object is moved over a distance by an external, parallel force.
+        </p>
+        <h3>The Work Formula</h3>
+        <p>
+          The formula is: <strong>W = F × d × cos(θ)</strong>
+          <br/>Where <strong>W</strong> is Work (in Joules), <strong>F</strong> is the force applied, <strong>d</strong> is the displacement, and <strong>θ</strong> is the angle of the force. If the force is applied in the exact direction of movement, the angle is 0, and the formula simplifies to W = F × d.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "If I push a wall and it doesn't move, did I do work?",
+        answer: "In physics, no. Because the displacement (distance moved) is zero, the total mechanical work done is zero, regardless of how tired you feel."
+      },
+      {
+        question: "What is the unit of Work?",
+        answer: "Work is a form of energy transfer, so it is measured in Joules (J)."
+      }
+    ]
+  },
+  'power-calculator': {
+    title: "Power Calculator | Work and Time",
+    description: "Calculate power output. Find out the rate at which work is done or energy is transferred using our free physics calculator.",
+    content: (
+      <>
+        <h2>Understanding Power Output</h2>
+        <p>
+          While 'Work' measures the total amount of energy transferred, 'Power' measures how <em>fast</em> that work is done. A weak engine and a powerful engine can both do the same amount of work (e.g., move a car 1 mile), but the powerful engine does it in much less time.
+        </p>
+        <h3>The Power Formula</h3>
+        <p>
+          The formula is: <strong>P = W / t</strong>
+          <br/>Where <strong>P</strong> is Power (in Watts), <strong>W</strong> is the Work done (in Joules), and <strong>t</strong> is the time taken (in seconds).
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is a Watt?",
+        answer: "A Watt (W) is the standard SI unit of power. It is defined as one Joule of work performed per second (1 J/s)."
+      },
+      {
+        question: "How do Watts relate to Horsepower?",
+        answer: "Horsepower is an imperial unit of power. One mechanical horsepower is equivalent to approximately 745.7 Watts."
+      }
+    ]
+  },
+  'density-calculator': {
+    title: "Density Calculator | Mass and Volume",
+    description: "Calculate the density of an object. Enter mass and volume to instantly find the density in standard units.",
+    content: (
+      <>
+        <h2>What is Density?</h2>
+        <p>
+          Density is a measurement that compares the amount of matter an object has (its mass) to its size (its volume). It explains why a handful of lead feels much heavier than a handful of feathers, even though they take up the same amount of space.
+        </p>
+        <h3>The Density Formula</h3>
+        <p>
+          The formula is: <strong>ρ = m / V</strong>
+          <br/>Where <strong>ρ (rho)</strong> is Density, <strong>m</strong> is mass, and <strong>V</strong> is volume. Objects with a density lower than water (1,000 kg/m³) will float, while objects with a higher density will sink.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What are the common units for density?",
+        answer: "In the metric system, density is usually expressed as kilograms per cubic meter (kg/m³) or grams per cubic centimeter (g/cm³)."
+      },
+      {
+        question: "Does temperature affect density?",
+        answer: "Yes. For most substances, as temperature increases, the substance expands, increasing its volume and thereby decreasing its density."
+      }
+    ]
   }
 };
