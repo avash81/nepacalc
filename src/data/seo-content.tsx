@@ -1511,5 +1511,280 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         answer: "The algorithm automatically checks if a year is divisible by 4 (and handles the century rules) to accurately add February 29th to the day count when applicable."
       }
     ]
+  },
+  'fd-calculator': {
+    title: "Fixed Deposit Calculator | FD Maturity & Interest Returns",
+    description: "Calculate your Fixed Deposit (FD) maturity amount and total interest earned. Plan your safe investments with our free FD calculator.",
+    content: (
+      <>
+        <h2>How a Fixed Deposit (FD) Works</h2>
+        <p>
+          A Fixed Deposit is one of the safest investment options available, offering a guaranteed rate of return over a specific tenure. When you open an FD, you lock in a sum of money for a set period, and the bank pays you interest, usually compounded quarterly.
+        </p>
+        <h3>Understanding FD Compounding</h3>
+        <p>
+          Most banks calculate FD interest using <strong>Quarterly Compounding</strong>. This means that every three months, the interest earned is added to your principal amount, and the next quarter's interest is calculated on this new, larger amount. This yields a slightly higher return than simple annual interest.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Can I withdraw my FD before maturity?",
+        answer: "Yes, premature withdrawal is possible, but banks usually levy a penalty (often 1% to 2% reduction in the applicable interest rate)."
+      },
+      {
+        question: "Is FD interest taxable?",
+        answer: "Yes, the interest earned on Fixed Deposits is subject to Tax Deducted at Source (TDS), which the bank deducts before paying out your maturity amount."
+      }
+    ]
+  },
+  'savings': {
+    title: "Savings Goal Calculator | Plan Your Financial Future",
+    description: "Set a financial goal and calculate exactly how much you need to save daily, weekly, or monthly to reach your savings target.",
+    content: (
+      <>
+        <h2>Reaching Your Savings Goals</h2>
+        <p>
+          Whether you are saving for a vacation, a down payment on a house, or an emergency fund, breaking down a massive goal into smaller, manageable chunks is the key to financial success. 
+        </p>
+        <h3>The 50/30/20 Rule</h3>
+        <p>
+          A popular budgeting strategy is to divide your after-tax income into three categories: 50% for needs (rent, groceries), 30% for wants (entertainment), and <strong>20% strictly for savings</strong>. Use our calculator to see if your monthly savings target aligns with this rule!
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Does this calculator account for interest?",
+        answer: "This is a pure savings calculator focused on principal accumulation. For growth with interest, use our Compound Interest or SIP calculator."
+      },
+      {
+        question: "Why is an emergency fund important?",
+        answer: "Financial experts recommend saving 3 to 6 months of living expenses in a highly liquid account to protect against unexpected job loss or medical emergencies."
+      }
+    ]
+  },
+  'cagr-calculator': {
+    title: "CAGR Calculator | Compound Annual Growth Rate",
+    description: "Calculate the Compound Annual Growth Rate (CAGR) of your investments. Measure the exact yearly return of your portfolio.",
+    content: (
+      <>
+        <h2>What is CAGR?</h2>
+        <p>
+          The Compound Annual Growth Rate (CAGR) is the most accurate way to measure and compare the past performance of investments over time. It represents the smooth, annualized rate of return of an investment, pretending that it grew at a steady rate every year.
+        </p>
+        <h3>Why CAGR is Better Than Absolute Return</h3>
+        <p>
+          If your investment grows from $100 to $150 over 5 years, the absolute return is 50%. However, this doesn't account for the time it took. CAGR accounts for the time value of money, revealing that the actual annualized growth rate is 8.45% per year.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the formula for CAGR?",
+        answer: "CAGR = [(Ending Value / Beginning Value) ^ (1 / Number of Years)] - 1"
+      },
+      {
+        question: "Does CAGR account for investment risk?",
+        answer: "No, CAGR only measures past growth. It assumes a smooth, steady growth rate and completely ignores the volatility and risk that happened in between."
+      }
+    ]
+  },
+  'simple-interest': {
+    title: "Simple Interest Calculator | Principal, Rate, Time",
+    description: "Calculate simple interest on loans and savings. Easily find the total interest and final amount with our free online calculator.",
+    content: (
+      <>
+        <h2>Understanding Simple Interest</h2>
+        <p>
+          Simple interest is the most basic way of calculating interest. Unlike compound interest, simple interest is calculated <strong>only on the principal amount</strong>, ignoring any accumulated interest from previous periods.
+        </p>
+        <h3>The Simple Interest Formula</h3>
+        <p>
+          The formula is straightforward: <strong>I = P × R × T</strong>
+          <br/><strong>P (Principal):</strong> The initial amount of money.
+          <br/><strong>R (Rate):</strong> The annual interest rate (in decimal form).
+          <br/><strong>T (Time):</strong> The time the money is invested or borrowed for, in years.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Where is simple interest used in real life?",
+        answer: "Simple interest is commonly used for short-term personal loans, auto loans, and some types of short-term bonds or certificates of deposit."
+      },
+      {
+        question: "Is simple interest better for the borrower or lender?",
+        answer: "Simple interest is generally better for the borrower because they don't pay 'interest on interest,' resulting in a lower total payout compared to compounding loans."
+      }
+    ]
+  },
+  'cgpa': {
+    title: "CGPA Calculator | Cumulative Grade Point Average",
+    description: "Calculate your Cumulative Grade Point Average (CGPA) across multiple semesters. Track your university academic progress easily.",
+    content: (
+      <>
+        <h2>How to Calculate CGPA</h2>
+        <p>
+          Your Cumulative Grade Point Average (CGPA) is the overall average of your grades across all semesters of your degree. It provides a single metric that represents your entire academic journey, which is crucial for university admissions and job applications.
+        </p>
+        <h3>Semester GPA vs. CGPA</h3>
+        <p>
+          Your <strong>Semester GPA</strong> is the average for just one specific term. Your <strong>CGPA</strong> combines all your semester GPAs, but it must be weighted by the number of credit hours you took in each semester. You cannot simply take the average of two semester GPAs if they have different credit hours!
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Can I convert my CGPA to a percentage?",
+        answer: "Many universities provide a specific formula, but a common standard is to multiply your CGPA by 9.5 or use a direct multiplier like 25 (if on a 4.0 scale), though this varies globally."
+      },
+      {
+        question: "How do credit hours affect my CGPA?",
+        answer: "A semester where you took 18 credit hours will pull your CGPA much harder than a semester where you only took 12 credit hours."
+      }
+    ]
+  },
+  'fraction-calculator': {
+    title: "Fraction Calculator | Add, Subtract, Multiply, Divide",
+    description: "Free online fraction calculator. Add, subtract, multiply, and divide fractions easily. Get answers in simplified and mixed fraction formats.",
+    content: (
+      <>
+        <h2>Mastering Fraction Mathematics</h2>
+        <p>
+          Fractions represent parts of a whole, but calculating them manually can be tricky. Our fraction calculator handles all four basic operations and automatically simplifies the result to its lowest terms.
+        </p>
+        <h3>The Rules of Fractions</h3>
+        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+          <li><strong>Addition/Subtraction:</strong> You must first find a common denominator before adding the numerators.</li>
+          <li><strong>Multiplication:</strong> Multiply the numerators together, then multiply the denominators together.</li>
+          <li><strong>Division:</strong> Flip the second fraction upside down (reciprocal) and then multiply them.</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is an improper fraction?",
+        answer: "An improper fraction is one where the numerator (top number) is larger than the denominator (bottom number), such as 7/4."
+      },
+      {
+        question: "Does the calculator simplify fractions?",
+        answer: "Yes, the calculator automatically finds the Greatest Common Factor (GCF) to reduce the final answer to its simplest form."
+      }
+    ]
+  },
+  'decimal-to-fraction': {
+    title: "Decimal to Fraction Converter | Simplify Decimals Instantly",
+    description: "Convert any decimal number into a simplified fraction. Fast, accurate, and includes steps for converting repeating decimals.",
+    content: (
+      <>
+        <h2>Converting Decimals to Fractions</h2>
+        <p>
+          While decimals are easy to use in calculators, fractions are often required in carpentry, recipe measurements, and advanced algebra. Our converter instantly translates any decimal value into its exact fractional equivalent.
+        </p>
+        <h3>How the Conversion Works</h3>
+        <p>
+          To convert a decimal like <code>0.75</code> to a fraction:
+          <br/>1. Write it over 1: <code>0.75 / 1</code>
+          <br/>2. Multiply top and bottom by 100 to remove the decimal: <code>75 / 100</code>
+          <br/>3. Simplify by dividing by the Greatest Common Factor (25): <code>3 / 4</code>
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How do you convert a repeating decimal?",
+        answer: "Repeating decimals (like 0.333...) require an algebraic formula, but as a rule of thumb, a single repeating digit is placed over a 9 (e.g., 0.333... = 3/9 = 1/3)."
+      },
+      {
+        question: "Can I convert whole numbers with decimals?",
+        answer: "Yes, numbers like 2.5 will be converted into a mixed fraction (2 1/2) as well as an improper fraction (5/2)."
+      }
+    ]
+  },
+  'base-converter': {
+    title: "Base Converter | Binary, Hexadecimal, Octal, Decimal",
+    description: "Convert numbers between Decimal, Binary, Hexadecimal, and Octal bases. Essential tool for computer science and programming.",
+    content: (
+      <>
+        <h2>Understanding Number Bases</h2>
+        <p>
+          While humans count in Base-10 (Decimal) because we have 10 fingers, computers operate entirely differently. Our base converter allows programmers and computer scientists to seamlessly translate data between different digital formats.
+        </p>
+        <h3>The Core Computer Bases</h3>
+        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+          <li><strong>Binary (Base-2):</strong> Uses only 0 and 1. The fundamental language of all computer hardware.</li>
+          <li><strong>Octal (Base-8):</strong> Uses digits 0-7. Often used in Unix file permissions.</li>
+          <li><strong>Hexadecimal (Base-16):</strong> Uses digits 0-9 and letters A-F. Used extensively for color codes (HTML) and memory addresses.</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Why do programmers use Hexadecimal?",
+        answer: "Hexadecimal is a highly compact way to represent binary data. One Hex digit perfectly represents four binary bits (a nibble), making it much easier for humans to read memory dumps or color codes."
+      },
+      {
+        question: "What is the highest number in Base-2?",
+        answer: "In Base-2 (Binary), the highest single digit is 1. To count higher than 1, you must add another column (e.g., the decimal number 2 is written as 10 in binary)."
+      }
+    ]
+  },
+  'discount-calculator': {
+    title: "Discount Calculator | Find the Final Sale Price",
+    description: "Calculate the final price after a percentage discount is applied. Quickly figure out your exact savings during sales and promotions.",
+    content: (
+      <>
+        <h2>How the Discount Calculator Works</h2>
+        <p>
+          During major sales events like Black Friday or holiday clearances, stores often advertise massive percentage discounts. Our calculator helps you instantly figure out the exact cash amount you save, and the final price you will pay at the register.
+        </p>
+        <h3>The Discount Formula</h3>
+        <p>
+          Calculating a discount manually is easy:
+          <br/><strong>Step 1:</strong> Convert the discount percentage to a decimal (20% = 0.20).
+          <br/><strong>Step 2:</strong> Multiply the original price by the decimal to find the savings amount.
+          <br/><strong>Step 3:</strong> Subtract the savings from the original price to get the final cost.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How do I calculate a double discount?",
+        answer: "If a store offers '20% off plus an extra 10% off', do NOT add them to 30%. You must calculate the 20% discount first, and then apply the 10% discount to the new, lower price."
+      },
+      {
+        question: "Does the calculator include sales tax?",
+        answer: "By default, this tool calculates the pre-tax discounted price. If sales tax applies, it is usually added to the final discounted price, not the original price."
+      }
+    ]
+  },
+  'tip-calculator': {
+    title: "Tip Calculator | Calculate Gratuity and Split the Bill",
+    description: "Easily calculate the tip for a restaurant bill and split the total cost among multiple people. Free online gratuity calculator.",
+    content: (
+      <>
+        <h2>The Stress-Free Tip Calculator</h2>
+        <p>
+          Figuring out how much to tip the waiter and how to split the bill fairly among friends can ruin the end of a great meal. Our tip calculator does the math instantly, allowing you to focus on the conversation, not the receipt.
+        </p>
+        <h3>Tipping Etiquette Worldwide</h3>
+        <p>
+          Tipping rules vary wildly depending on where you are:
+          <br/><strong>United States:</strong> 15% to 20% is the standard expectation for decent service.
+          <br/><strong>Europe & Asia:</strong> Tipping is often included as a 'service charge', or a smaller 5-10% tip is given as a compliment.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Should I tip before or after tax?",
+        answer: "Standard etiquette suggests calculating your tip based on the pre-tax total, though many people simply tip on the final bill amount for convenience."
+      },
+      {
+        question: "How does splitting the bill work?",
+        answer: "Our tool calculates the total bill (Cost + Tip) and then divides that final number equally by the number of people in your party, so everyone pays an exact, fair share."
+      }
+    ]
   }
 };
