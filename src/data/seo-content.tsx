@@ -2324,5 +2324,277 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         answer: "Yes. For most substances, as temperature increases, the substance expands, increasing its volume and thereby decreasing its density."
       }
     ]
+  },
+  'engineering-gpa': {
+    title: "Engineering GPA Calculator | Tech Degree Grading",
+    description: "Calculate your Engineering GPA accurately. Custom weighting for heavy credit-hour labs and technical subjects.",
+    content: (
+      <>
+        <h2>Why an Engineering GPA Calculator?</h2>
+        <p>
+          Engineering degrees often feature highly variable credit hours (e.g., 4-credit calculus courses vs. 1-credit lab sessions). A standard GPA calculator might incorrectly weigh these, destroying your actual grade representation. This tool correctly applies credit-hour weighting standard to most tech degrees.
+        </p>
+        <h3>The Importance of Major GPA</h3>
+        <p>
+          When applying for tech internships, recruiters often look at your "Major GPA" (the GPA of only your core engineering and math classes) rather than your Cumulative GPA (which includes general education electives).
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How do credit hours affect my GPA?",
+        answer: "A class worth 4 credits impacts your GPA four times as much as a 1-credit class. Doing well in heavy-credit core classes is essential for a high engineering GPA."
+      },
+      {
+        question: "Should I list my Major GPA on my resume?",
+        answer: "Yes, especially if your Major GPA is significantly higher than your Cumulative GPA. Just ensure you clearly label it as 'Major GPA' to avoid misleading recruiters."
+      }
+    ]
+  },
+  'marks-needed': {
+    title: "Target Grade Calculator | What Do I Need on My Final?",
+    description: "Calculate exactly what score you need on your final exam to keep your A, or pass the class. Relieve your end-of-semester anxiety instantly.",
+    content: (
+      <>
+        <h2>The 'Final Grade' Anxiety</h2>
+        <p>
+          As finals week approaches, the most common question students ask is: <em>"What do I need to score on the final exam to pass the class?"</em> Our calculator uses the exact weighting of your syllabus to give you a precise target score.
+        </p>
+        <h3>How the Math Works</h3>
+        <p>
+          If you have an 85% in the class going into a final that is worth 20% of your grade, and you want a final grade of 90%, the formula must reverse-engineer the weighted average: <strong>Target = (Desired Grade - (Current Grade × (1 - Final Weight))) / Final Weight</strong>.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What if the calculator says I need over 100%",
+        answer: "If the required score is over 100%, it means it is mathematically impossible to achieve your desired final grade with the remaining weight of the final exam, unless extra credit is offered."
+      },
+      {
+        question: "Can I use this if my class uses a point system instead of percentages?",
+        answer: "Yes, you can simply convert your total points earned and total points possible into a percentage before using the calculator."
+      }
+    ]
+  },
+  'statistics-plus': {
+    title: "Statistics Calculator | Mean, Median, Mode, Variance",
+    description: "Advanced descriptive statistics calculator. Instantly find the mean, median, mode, variance, and standard deviation of any data set.",
+    content: (
+      <>
+        <h2>Understanding Descriptive Statistics</h2>
+        <p>
+          Descriptive statistics provide a summary that quantitatively describes or summarizes features from a collection of information. Rather than looking at raw data (like thousands of individual test scores), statistics give you a "big picture" view of the central tendency and dispersion.
+        </p>
+        <h3>Key Metrics Explained</h3>
+        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+          <li><strong>Mean (Average):</strong> The sum of all numbers divided by the count. Sensitive to extreme outliers.</li>
+          <li><strong>Median:</strong> The exact middle value when data is sorted. Highly robust against outliers.</li>
+          <li><strong>Variance:</strong> A measure of how spread out the data points are from the mean.</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      {
+        question: "When should I use the median instead of the mean?",
+        answer: "Use the median when your data set has massive outliers (like income distribution) because extreme high/low values will artificially drag the mean up or down."
+      },
+      {
+        question: "What is a bimodal distribution?",
+        answer: "It is a data set that has two distinct peaks (modes), meaning there are two most-frequent values rather than just one."
+      }
+    ]
+  },
+  'z-score': {
+    title: "Z-Score Calculator | Standard Normal Distribution",
+    description: "Calculate the Z-score for any data point. Determine exactly how many standard deviations a value is away from the mean.",
+    content: (
+      <>
+        <h2>What is a Z-Score?</h2>
+        <p>
+          In statistics, a Z-score (or standard score) tells you how far a data point is from the mean of a data set, measured in terms of standard deviations. It allows you to compare results from completely different tests or surveys on a level playing field.
+        </p>
+        <h3>The Empirical Rule (68-95-99.7)</h3>
+        <p>
+          In a normal distribution (a bell curve):
+          <br/><strong>68%</strong> of data falls within a Z-score of -1 to 1.
+          <br/><strong>95%</strong> falls within a Z-score of -2 to 2.
+          <br/><strong>99.7%</strong> falls within a Z-score of -3 to 3. If you have a Z-score of 3.5, you are in the extreme upper percentile!
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the Z-score formula?",
+        answer: "Z = (X - μ) / σ, where X is the raw score, μ is the population mean, and σ is the population standard deviation."
+      },
+      {
+        question: "Can a Z-score be negative?",
+        answer: "Yes. A negative Z-score simply means the data point is below the average (mean), while a positive Z-score means it is above the average."
+      }
+    ]
+  },
+  'ratio-proportion': {
+    title: "Ratio & Proportion Calculator | Scale and Simplify",
+    description: "Solve proportions, find missing values in ratios, and simplify complex ratios instantly. Essential for baking, geometry, and scaling.",
+    content: (
+      <>
+        <h2>Mastering Ratios and Proportions</h2>
+        <p>
+          A ratio compares the relationship between two amounts (e.g., 2 cups of flour for every 1 cup of sugar). A proportion is simply an equation stating that two ratios are equal (e.g., 2/1 = 4/2).
+        </p>
+        <h3>Cross-Multiplication Made Easy</h3>
+        <p>
+          If you are trying to scale up a recipe or resize an image while maintaining its aspect ratio, you must find a missing value in a proportion (A/B = C/X). Our calculator uses algebraic cross-multiplication to solve for the missing variable instantly.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How do you simplify a ratio?",
+        answer: "To simplify a ratio like 15:20, you find the Greatest Common Factor (GCF) of both numbers, which is 5. Divide both sides by 5 to get the simplified ratio of 3:4."
+      },
+      {
+        question: "What is the 'Golden Ratio'?",
+        answer: "The Golden Ratio is an irrational mathematical constant, approximately 1.618. It frequently appears in geometry, art, and architecture as the most aesthetically pleasing proportion."
+      }
+    ]
+  },
+  'area-calculator': {
+    title: "Area Calculator | Square Footage & Geometric Shapes",
+    description: "Calculate the area of a circle, square, rectangle, or triangle. Get instant measurements in square feet, meters, and acres.",
+    content: (
+      <>
+        <h2>Why Do We Calculate Area?</h2>
+        <p>
+          Area is a measurement of the 2D surface enclosed within a boundary. Whether you are buying paint for a wall, fertilizer for a lawn, or carpet for a bedroom, calculating the exact square footage is the first step to knowing how much material to buy.
+        </p>
+        <h3>Common Area Formulas</h3>
+        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+          <li><strong>Rectangle:</strong> Length × Width</li>
+          <li><strong>Triangle:</strong> 1/2 × Base × Height</li>
+          <li><strong>Circle:</strong> π × Radius²</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How do I calculate the area of an irregular room?",
+        answer: "The easiest method is to divide the irregular shape into smaller, standard shapes (like multiple rectangles), calculate the area of each separately, and then add them together."
+      },
+      {
+        question: "What is the difference between Area and Perimeter?",
+        answer: "Perimeter is the 1D length of the OUTSIDE boundary (like a fence). Area is the 2D space on the INSIDE (like the grass inside the fence)."
+      }
+    ]
+  },
+  'logarithm-calculator': {
+    title: "Logarithm Calculator | Base 10, Natural Log (ln)",
+    description: "Calculate logarithms and inverse logarithms for any base. Instantly solve complex exponential equations.",
+    content: (
+      <>
+        <h2>Understanding Logarithms</h2>
+        <p>
+          A logarithm is simply the inverse operation to exponentiation. It answers the question: <em>"To what power must a base number be raised to produce a specific given number?"</em> For example, if 10² = 100, then the base-10 logarithm of 100 is 2.
+        </p>
+        <h3>Common vs. Natural Logarithms</h3>
+        <p>
+          In mathematics, you will encounter two primary types:
+          <br/><strong>Common Log (log):</strong> Uses base 10. Heavily used in engineering and defining the Richter Scale for earthquakes.
+          <br/><strong>Natural Log (ln):</strong> Uses the mathematical constant <em>e</em> (approx 2.718) as its base. It is the fundamental backbone of calculus and compounding growth formulas.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Can you take the logarithm of a negative number?",
+        answer: "No, in the realm of real numbers, logarithms are undefined for negative numbers and zero. An exponent applied to a positive base will never result in a negative number."
+      },
+      {
+        question: "How do I change the base of a logarithm?",
+        answer: "You can use the Change of Base Formula: log_b(x) = log_k(x) / log_k(b), allowing you to convert any base to a standard base-10 calculation."
+      }
+    ]
+  },
+  'rounding': {
+    title: "Rounding Number Utility | Significant Figures",
+    description: "Round any decimal number to the nearest tenth, hundredth, or a specific number of significant figures. Mathematical precision tool.",
+    content: (
+      <>
+        <h2>The Rules of Rounding Numbers</h2>
+        <p>
+          Rounding is used to make numbers simpler and easier to use while keeping their value close to what it originally was. The fundamental rule is: If the digit you are rounding is followed by 5, 6, 7, 8, or 9, round the number UP. If it is 0, 1, 2, 3, or 4, round DOWN.
+        </p>
+        <h3>What are Significant Figures?</h3>
+        <p>
+          In science and engineering, "sig-figs" indicate the precision of a measurement. You cannot report an answer to 8 decimal places if your original measuring tool only had precision to 1 decimal place! Our calculator helps you truncate numbers to their valid scientific precision.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is 'Banker's Rounding'?",
+        answer: "Banker's rounding (or Round-Half-To-Even) is a statistical tie-breaking rule. If a number ends exactly in 5, it rounds to the nearest EVEN number (e.g., 2.5 becomes 2, but 3.5 becomes 4). This prevents massive upward drift in large datasets."
+      },
+      {
+        question: "How do I round to the nearest hundredth?",
+        answer: "Look at the third decimal place (the thousandths). If it's 5 or higher, increase the second decimal place by 1. Otherwise, leave it as is."
+      }
+    ]
+  },
+  'simple-calculator': {
+    title: "Basic Calculator | Standard Online Arithmetic Tool",
+    description: "A fast, free online basic calculator for standard addition, subtraction, multiplication, and division. Perfect for quick daily math.",
+    content: (
+      <>
+        <h2>The Standard Daily Calculator</h2>
+        <p>
+          While we offer dozens of advanced engineering and financial tools, sometimes you just need to do basic math quickly without hunting for an app on your phone. This lightweight, high-speed standard calculator handles all primary arithmetic operations instantly.
+        </p>
+        <h3>Order of Operations (PEMDAS)</h3>
+        <p>
+          Our calculator engine strictly follows standard algebraic rules: <strong>P</strong>arentheses, <strong>E</strong>xponents, <strong>M</strong>ultiplication/<strong>D</strong>ivision (left to right), and <strong>A</strong>ddition/<strong>S</strong>ubtraction (left to right).
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What happens if I divide by zero?",
+        answer: "In mathematics, division by zero is undefined. Our calculator will return an error or 'Infinity' depending on the exact computation constraint."
+      },
+      {
+        question: "Does this calculator support keyboard input?",
+        answer: "Yes, for maximum speed on a desktop, you can use your numeric keypad to enter numbers and operations directly."
+      }
+    ]
+  },
+  'roman-numerals': {
+    title: "Roman Numerals Converter | Translate to Arabic Numbers",
+    description: "Convert Roman Numerals (e.g., XIV, MMXXIV) to standard decimal numbers and vice versa. Learn the rules of ancient Roman counting.",
+    content: (
+      <>
+        <h2>The Ancient Roman Numeral System</h2>
+        <p>
+          Originating in ancient Rome, this numeric system remained the standard way of writing numbers throughout Europe well into the Late Middle Ages. Today, they are still used in clock faces, movie copyright dates, and the Super Bowl.
+        </p>
+        <h3>The Core Symbols</h3>
+        <p>
+          Roman numerals use seven distinct letters from the Latin alphabet: <strong>I (1), V (5), X (10), L (50), C (100), D (500), and M (1000).</strong>
+        </p>
+        <p className="mt-2">
+          <strong>The Subtraction Rule:</strong> If a smaller number is placed BEFORE a larger number, it is subtracted. For example, IV is 4 (5 - 1), but VI is 6 (5 + 1).
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Is there a Roman Numeral for zero?",
+        answer: "No, the Romans did not have a numeral or concept for zero as a standalone number. They simply left a blank space or used the Latin word 'nulla'."
+      },
+      {
+        question: "What is the highest number you can write?",
+        answer: "Using standard Roman symbols, the highest easily written number is 3,999 (MMMCMXCIX). To write higher numbers, the Romans used a 'vinculum' (an overline) to multiply the value by 1,000."
+      }
+    ]
   }
 };
