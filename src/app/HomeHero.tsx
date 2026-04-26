@@ -1,0 +1,48 @@
+'use client';
+import { useState } from 'react';
+import dynamic from 'next/dynamic';
+import { Calculator } from 'lucide-react';
+
+const HomePageCalculatorClient = dynamic(() => import('./HomePageCalculatorClient'), { ssr: false });
+
+const PURPLE = '#5b5ea6';
+
+export function HomeHero() {
+  const [activated, setActivated] = useState(false);
+
+  if (activated) {
+    return <HomePageCalculatorClient />;
+  }
+
+  return (
+    <div className="flex flex-col w-full max-w-6xl mx-auto gap-3">
+      <div
+        className="w-full h-[420px] lg:h-[560px] bg-white border border-slate-200 rounded-2xl shadow-sm flex flex-col items-center justify-center gap-6 cursor-pointer group hover:border-blue-300 hover:shadow-md transition-all duration-300"
+        onClick={() => setActivated(true)}
+        role="button"
+        aria-label="Launch Calculator"
+      >
+        <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#5b5ea6] to-[#3b3e8a] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+          <Calculator className="w-10 h-10 text-white" />
+        </div>
+        <div className="text-center space-y-2 px-4">
+          <p className="text-lg font-black text-[#202124] tracking-tight">Scientific & Graphing Calculator</p>
+          <p className="text-sm text-slate-500 font-medium">Click to launch — Deg/Rad · Trig · Graphing Engine</p>
+        </div>
+        <button
+          className="px-8 py-3 rounded-full text-sm font-black uppercase tracking-widest text-white shadow-md transition-all duration-300 hover:scale-105 active:scale-100"
+          style={{ background: PURPLE }}
+        >
+          Launch Calculator
+        </button>
+        <div className="flex items-center gap-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+          <span>80+ Tools</span>
+          <span>•</span>
+          <span>Free Forever</span>
+          <span>•</span>
+          <span>No Ads</span>
+        </div>
+      </div>
+    </div>
+  );
+}

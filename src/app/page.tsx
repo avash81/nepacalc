@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { CATEGORIES } from '@/data/calculators';
 import { InstitutionalBlock } from '@/components/layout/InstitutionalBlock';
 import { TopCalculators } from '@/components/layout/TopCalculators';
-import { HomePageCalculatorClient } from './HomePageCalculatorClient';
+import { HomeHero } from './HomeHero';
 import { RecentCalculators } from '@/components/layout/RecentCalculators';
 import type { Metadata } from 'next';
 
@@ -113,9 +113,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="w-full mb-0">
-               <HomePageCalculatorClient />
-            </div>
+               <HomeHero />
           </div>
         </section>
         
