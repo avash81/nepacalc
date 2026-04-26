@@ -1786,5 +1786,272 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         answer: "Our tool calculates the total bill (Cost + Tip) and then divides that final number equally by the number of people in your party, so everyone pays an exact, fair share."
       }
     ]
+  },
+  'bmr-calculator': {
+    title: "BMR Calculator | Basal Metabolic Rate",
+    description: "Calculate your Basal Metabolic Rate (BMR). Find out exactly how many calories your body burns at rest every day.",
+    content: (
+      <>
+        <h2>What is Basal Metabolic Rate (BMR)?</h2>
+        <p>
+          Your Basal Metabolic Rate (BMR) represents the total number of calories your body needs to perform basic, life-sustaining functions (like breathing, blood circulation, and cell production) if you were to rest in bed all day.
+        </p>
+        <h3>Why BMR is Crucial for Weight Loss</h3>
+        <p>
+          You cannot create a healthy weight loss plan without knowing your BMR. It acts as the baseline for your daily calorie needs. Once you know your BMR, you multiply it by an activity factor to find your Total Daily Energy Expenditure (TDEE). Eating below your TDEE results in weight loss.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Is BMR the same as resting metabolic rate (RMR)?",
+        answer: "They are very similar. BMR is measured under strict laboratory conditions (fasted, fully rested), while RMR is a slightly less strict measurement of resting calorie burn. For practical purposes, they are often used interchangeably."
+      },
+      {
+        question: "How can I increase my BMR?",
+        answer: "Muscle tissue burns more calories at rest than fat tissue. Therefore, the most effective way to increase your BMR is by building muscle through resistance training."
+      }
+    ]
+  },
+  'body-fat': {
+    title: "Body Fat Calculator | Estimate Your Body Fat Percentage",
+    description: "Calculate your body fat percentage using the U.S. Navy Method. Enter your height, waist, and neck measurements for an accurate estimate.",
+    content: (
+      <>
+        <h2>Understanding Body Fat Percentage</h2>
+        <p>
+          Body Fat Percentage is a much better indicator of overall health than Body Mass Index (BMI). While BMI only looks at your total weight, your body fat percentage distinguishes between heavy muscle mass and actual fat tissue.
+        </p>
+        <h3>The U.S. Navy Method</h3>
+        <p>
+          Our calculator uses the U.S. Navy algorithm, which estimates body fat based on the circumference of your waist, neck, and (for women) hips. It is one of the most accurate methods available outside of a clinical setting like a DEXA scan.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is a healthy body fat percentage?",
+        answer: "For men, a healthy range is typically 10-20%. For women, it is naturally higher, generally between 20-30%."
+      },
+      {
+        question: "Why do I need to measure my neck?",
+        answer: "The Navy method uses the neck measurement as a proxy for lean body mass. The difference between your waist (which holds fat) and your neck helps estimate total body fat."
+      }
+    ]
+  },
+  'ideal-weight': {
+    title: "Ideal Weight Calculator | Find Your Healthy Target",
+    description: "Calculate your ideal body weight based on your height, age, and gender using multiple scientifically validated formulas.",
+    content: (
+      <>
+        <h2>Finding Your Ideal Body Weight (IBW)</h2>
+        <p>
+          "What should I weigh?" is one of the most common health questions. Our calculator uses multiple scientifically validated formulas (such as the Devine, Robinson, and Miller formulas) to give you a highly accurate target weight range.
+        </p>
+        <h3>Why Your Ideal Weight is a Range</h3>
+        <p>
+          There is no single "perfect" number. Your ideal weight depends on your bone density, muscle mass, and body frame size. Therefore, our tool provides a healthy <em>range</em>, giving you a realistic and achievable health goal rather than a strict, single number.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Which IBW formula is the most accurate?",
+        answer: "The Devine formula (1974) is widely used in medicine for calculating drug dosages, but the Robinson formula is often preferred for general health and fitness goals."
+      },
+      {
+        question: "Does this calculator account for muscle mass?",
+        answer: "No, standard IBW formulas do not distinguish between fat and muscle. Highly muscular athletes may naturally weigh more than their predicted 'ideal' weight."
+      }
+    ]
+  },
+  'margin-calculator': {
+    title: "Margin Calculator | Gross Profit & Sales Margin",
+    description: "Calculate gross profit margin, markup, and determine your optimal selling price. Free online calculator for business owners and retailers.",
+    content: (
+      <>
+        <h2>Margin vs. Markup</h2>
+        <p>
+          In retail and business, understanding the difference between Margin and Markup is the key to profitability. If a product costs $100 and you sell it for $150, your profit is $50.
+        </p>
+        <h3>The Mathematical Difference</h3>
+        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+          <li><strong>Margin:</strong> Profit divided by Sales Price. ($50 / $150 = 33.3% Margin)</li>
+          <li><strong>Markup:</strong> Profit divided by Cost. ($50 / $100 = 50% Markup)</li>
+        </ul>
+        <p className="mt-2">Always set your prices based on Margin to ensure your business remains profitable after operating expenses.</p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is a good gross profit margin?",
+        answer: "It varies heavily by industry. Grocery stores operate on razor-thin margins (1-3%), while software and digital products often have margins exceeding 70%."
+      },
+      {
+        question: "How do I calculate a selling price from a desired margin?",
+        answer: "Selling Price = Cost / (1 - Desired Margin Percentage). For example, to get a 20% margin on a $50 item: 50 / (1 - 0.20) = $62.50."
+      }
+    ]
+  },
+  'roi-calculator': {
+    title: "ROI Calculator | Return on Investment",
+    description: "Calculate the Return on Investment (ROI) of any business venture, stock, or real estate property. Find out your exact profit percentage.",
+    content: (
+      <>
+        <h2>What is Return on Investment (ROI)?</h2>
+        <p>
+          Return on Investment (ROI) is a universal financial metric used to evaluate the efficiency and profitability of an investment. It tells you exactly how much profit you made for every dollar you invested, expressed as a percentage.
+        </p>
+        <h3>How to Calculate ROI</h3>
+        <p>
+          The formula is incredibly simple: <strong>ROI = (Net Profit / Cost of Investment) × 100</strong>.
+          <br/>If you spend $1,000 on a marketing campaign and it generates $1,500 in total sales, your Net Profit is $500. Your ROI is ($500 / $1000) × 100 = <strong>50%</strong>.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is an annualized ROI?",
+        answer: "Standard ROI ignores time. An Annualized ROI factors in how long it took to generate that return, giving you a percentage that represents the yearly growth rate (similar to CAGR)."
+      },
+      {
+        question: "Can ROI be negative?",
+        answer: "Yes, if your investment loses money (your final return is less than your initial cost), your Net Profit is negative, resulting in a negative ROI."
+      }
+    ]
+  },
+  'inflation-calculator': {
+    title: "Inflation Calculator | Future Value of Money",
+    description: "Calculate how inflation affects the purchasing power of your money over time. See what your savings will be worth in the future.",
+    content: (
+      <>
+        <h2>The Silent Thief: Inflation</h2>
+        <p>
+          Inflation is the rate at which the general level of prices for goods and services is rising, causing purchasing power to fall. If the inflation rate is 3%, a $100 grocery bill today will cost $103 next year.
+        </p>
+        <h3>Protecting Your Wealth</h3>
+        <p>
+          This calculator demonstrates why leaving money sitting in a zero-interest checking account is dangerous. Over 10 or 20 years, inflation can destroy half the value of your savings. To combat inflation, your money must be invested in assets that yield a return higher than the annual inflation rate.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How is inflation calculated?",
+        answer: "Governments calculate inflation using a Consumer Price Index (CPI), which tracks the average change over time in the prices paid by urban consumers for a market basket of consumer goods and services."
+      },
+      {
+        question: "What is hyperinflation?",
+        answer: "Hyperinflation is extremely rapid or out of control inflation, typically defined as an inflation rate exceeding 50% per month."
+      }
+    ]
+  },
+  'vat-calculator': {
+    title: "Global VAT Calculator | Add or Remove Value Added Tax",
+    description: "Universal VAT calculator. Instantly add or remove Value Added Tax from prices. Supports standard rates for the UK, EU, and globally.",
+    content: (
+      <>
+        <h2>The Universal Value Added Tax (VAT) Calculator</h2>
+        <p>
+          Value Added Tax (VAT) is a consumption tax assessed on the value added to goods and services. It is utilized in over 160 countries around the world, particularly in the European Union and the United Kingdom.
+        </p>
+        <h3>How to Extract VAT from a Total Price</h3>
+        <p>
+          If you have a receipt with a total price and need to find out how much of that was VAT, you cannot simply multiply the total by the VAT percentage. Instead, you must use division: <strong>Base Price = Total Price / (1 + VAT Rate)</strong>.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "Is VAT the same as Sales Tax?",
+        answer: "No. Sales tax is only collected once, at the final point of sale to the consumer. VAT is collected at every stage of the supply chain whenever value is added."
+      },
+      {
+        question: "How do I add 20% UK VAT?",
+        answer: "To add 20% VAT to a net amount, simply multiply the net amount by 1.20."
+      }
+    ]
+  },
+  'gst-calculator': {
+    title: "GST Calculator | Goods and Services Tax",
+    description: "Calculate GST (Goods and Services Tax) instantly. Add or reverse calculate GST for India, Australia, Canada, and New Zealand.",
+    content: (
+      <>
+        <h2>Calculating Goods and Services Tax (GST)</h2>
+        <p>
+          GST is an indirect, broad-based consumption tax applied to the cost of most goods and services. It is heavily utilized in countries like India (which has multiple tax slabs: 5%, 12%, 18%, 28%), Australia (10%), and Canada.
+        </p>
+        <h3>Inclusive vs. Exclusive GST</h3>
+        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+          <li><strong>GST Exclusive:</strong> The price before tax. You must add the GST percentage to find the final selling price.</li>
+          <li><strong>GST Inclusive:</strong> The final retail price including tax. Use our reverse-calculator to extract the base price for accounting and tax returns.</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      {
+        question: "How do you reverse calculate 18% GST?",
+        answer: "If the final price is $118, divide it by 1.18 to get the base pre-tax price of $100."
+      },
+      {
+        question: "What is the difference between CGST and SGST in India?",
+        answer: "In India, intra-state sales are split equally between the Central Government (CGST) and the State Government (SGST). An 18% GST item will have 9% CGST and 9% SGST."
+      }
+    ]
+  },
+  'ppf-calculator': {
+    title: "PPF Calculator | Public Provident Fund Returns",
+    description: "Calculate your Public Provident Fund (PPF) maturity amount, total investment, and tax-free interest earned over 15 years.",
+    content: (
+      <>
+        <h2>Why Invest in a Public Provident Fund (PPF)?</h2>
+        <p>
+          The Public Provident Fund (PPF) is one of the most popular long-term saving schemes in India, favored for its safety, attractive interest rates, and incredible tax benefits under the EEE (Exempt-Exempt-Exempt) category.
+        </p>
+        <h3>The Magic of 15-Year Compounding</h3>
+        <p>
+          A PPF account has a mandatory lock-in period of 15 years. While this seems long, it allows your money to experience massive growth through annual compounding. The interest earned is completely tax-free, making it superior to standard bank Fixed Deposits for long-term goals like retirement.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is the maximum I can invest in PPF?",
+        answer: "The current maximum limit for PPF investments in India is Rs. 1.5 Lakh per financial year to claim Section 80C tax deductions."
+      },
+      {
+        question: "Can I extend my PPF account after 15 years?",
+        answer: "Yes, upon maturity after 15 years, you can extend your PPF account in blocks of 5 years, with or without making further contributions."
+      }
+    ]
+  },
+  'salary-calculator': {
+    title: "Salary Calculator | Gross vs. Net Take-Home Pay",
+    description: "Calculate your exact take-home pay. Deduct taxes, insurance, and provident fund contributions to find your true monthly net salary.",
+    content: (
+      <>
+        <h2>Gross Salary vs. Net Take-Home Pay</h2>
+        <p>
+          When you accept a job offer, the company quotes your Gross Salary (your total pay before any deductions). However, what you actually receive in your bank account is your Net Take-Home Pay, which can be significantly lower.
+        </p>
+        <h3>Common Salary Deductions</h3>
+        <p>
+          To find your net salary, you must subtract several mandatory and voluntary deductions from your gross pay:
+          <br/><strong>Income Tax (TDS):</strong> Deducted by your employer and paid to the government.
+          <br/><strong>Retirement Funds:</strong> Contributions to Provident Funds (PF), SSF, or 401(k)s.
+          <br/><strong>Health Insurance:</strong> Premiums for company-sponsored medical coverage.
+        </p>
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is Cost to Company (CTC)?",
+        answer: "CTC is the total amount a company spends on an employee. It includes the gross salary PLUS employer contributions to retirement funds, bonuses, and perks."
+      },
+      {
+        question: "How can I increase my take-home pay?",
+        answer: "You can optimize your take-home pay by claiming all legal tax deductions, maximizing tax-saving investments, or restructuring your salary components with your HR department."
+      }
+    ]
   }
 };
