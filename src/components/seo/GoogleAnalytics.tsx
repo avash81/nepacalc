@@ -45,22 +45,26 @@ function injectGA() {
 
 export function GoogleAnalytics() {
   useEffect(() => {
-    // Load after window is fully loaded and browser is idle
+    let timer: any;
     const load = () => {
-      if ('requestIdleCallback' in window) {
-        (window as any).requestIdleCallback(injectGA, { timeout: 5000 });
-      } else {
-        setTimeout(injectGA, 3000);
-      }
+      injectGA();
+      ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(evt => 
+        window.removeEventListener(evt, load)
+      );
     };
 
-    if (document.readyState === 'complete') {
-      load();
-    } else {
-      window.addEventListener('load', load, { once: true });
-    }
+    ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(evt => 
+      window.addEventListener(evt, load, { passive: true, once: true })
+    );
 
-    return () => window.removeEventListener('load', load);
+    timer = setTimeout(load, 8000);
+
+    return () => {
+      ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(evt => 
+        window.removeEventListener(evt, load)
+      );
+      clearTimeout(timer);
+    };
   }, []);
 
   return (

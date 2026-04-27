@@ -1,0 +1,10 @@
+const fs = require('fs');
+const content = fs.readFileSync('.next/static/chunks/1264-120d2967a92ce081.js', 'utf8');
+console.log('lucide:', content.includes('lucide'));
+console.log('mathjs:', content.includes('mathjs'));
+console.log('recharts:', content.includes('recharts'));
+console.log('firebase:', content.includes('firebase'));
+console.log('framer-motion:', content.includes('framer-motion'));
+console.log('three:', content.includes('three'));
+console.log('katex:', content.includes('katex'));
+console.log('date-fns:', content.includes('date-fns'));

@@ -108,7 +108,7 @@ export default function HomePage() {
               <h1 className="text-2xl sm:text-3xl font-bold text-[#202124] tracking-tight mb-2 leading-[1.1]">
                 Free Online <span className="text-blue-600">Calculator</span> for Nepal.
               </h1>
-              <p className="text-[13px] sm:text-sm text-slate-500 font-normal leading-relaxed max-w-4xl">
+              <p className="text-[13px] sm:text-sm text-slate-600 font-normal leading-relaxed max-w-4xl">
                 Easy-to-use tools for tax, finance, health, and math. 80+ calculators for your daily needs.
               </p>
             </div>
@@ -123,19 +123,19 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
             {CATEGORIES.filter(c => c.id !== 'market').map(cat => (
               <div key={cat.id} className="bg-white p-4 border border-[#dadce0] rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col h-full min-h-[340px]">
-                <Link href={cat.id === 'education' ? '/math-tools/' : cat.id === 'utility' ? '/converters/' : `/${cat.id}/`}>
-                  <h2 className={`${cat.id === 'engineering' ? 'text-[#4361ee]' : 'text-[#1a73e8]'} text-[11px] font-black uppercase tracking-wider border-b border-[#f1f3f4] pb-2 hover:underline mb-3`}>
+                <Link href={cat.id === 'education' ? '/math-tools/' : cat.id === 'utility' ? '/converters/' : `/${cat.id}/`} className="block pb-2 mb-3">
+                  <h2 className={`${cat.id === 'engineering' ? 'text-[#4361ee]' : 'text-[#1a73e8]'} text-[11px] font-black uppercase tracking-wider border-b border-[#f1f3f4] pb-2 hover:underline`}>
                     {cat.name}
                   </h2>
                 </Link>
-                <ul className="space-y-1.5 flex-grow">
+                <ul className="flex-grow">
                   {cat.calculators.slice(0, 8).map(calc => {
                     const href = calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`;
                     return (
                       <li key={calc.id}>
                         <Link 
                            href={href} 
-                           className="text-[13px] text-[#3c4043] hover:text-[#1a73e8] hover:underline truncate block"
+                           className="text-[13px] text-[#3c4043] hover:text-[#1a73e8] hover:underline truncate block py-1.5"
                         >
                            {calc.name}
                         </Link>

@@ -8,8 +8,28 @@ export function CookieBanner() {
   useEffect(() => {
     const consent = localStorage.getItem('cp_cookie_consent');
     if (consent) return;
-    const timer = setTimeout(() => setShow(true), 2000);
-    return () => clearTimeout(timer);
+    
+    let timer: any;
+    const showBanner = () => {
+      setShow(true);
+      ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(evt => 
+        window.removeEventListener(evt, showBanner)
+      );
+    };
+
+    ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(evt => 
+      window.addEventListener(evt, showBanner, { passive: true, once: true })
+    );
+
+    // Fallback if no interaction
+    timer = setTimeout(showBanner, 8000);
+
+    return () => {
+      ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(evt => 
+        window.removeEventListener(evt, showBanner)
+      );
+      clearTimeout(timer);
+    };
   }, []);
 
   const accept = () => {
@@ -52,7 +72,7 @@ export function CookieBanner() {
           </button>
           <a
             href="/privacy"
-            className="text-[10px] font-black uppercase tracking-widest text-white/70 hover:text-white transition-colors px-2 underline decoration-white/20 underline-offset-4"
+            className="text-[10px] font-black uppercase tracking-widest text-blue-200 hover:text-white transition-colors px-2 underline decoration-blue-200/50 underline-offset-4"
             aria-label="Read our privacy policy"
           >
             Policy &rarr;

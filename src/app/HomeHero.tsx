@@ -1,24 +1,34 @@
 'use client';
-import { useState } from 'react';
-import dynamic from 'next/dynamic';
+import React, { useState, useEffect } from 'react';
 import { Calculator } from 'lucide-react';
-
-const HomePageCalculatorClient = dynamic(() => import('./HomePageCalculatorClient'), { ssr: false });
 
 const PURPLE = '#5b5ea6';
 
 export function HomeHero() {
-  const [activated, setActivated] = useState(false);
+  const [CalculatorComponent, setCalculatorComponent] = useState<React.ComponentType | null>(null);
+  const [isActivating, setIsActivating] = useState(false);
 
-  if (activated) {
-    return <HomePageCalculatorClient />;
+  const handleActivate = async () => {
+    setIsActivating(true);
+    try {
+      const mod = await import('./HomePageCalculatorClient');
+      setCalculatorComponent(() => mod.default);
+    } catch (err) {
+      console.error('Failed to load calculator', err);
+    } finally {
+      setIsActivating(false);
+    }
+  };
+
+  if (CalculatorComponent) {
+    return <CalculatorComponent />;
   }
 
   return (
     <div className="flex flex-col w-full max-w-6xl mx-auto gap-3">
       <div
         className="w-full h-[420px] lg:h-[560px] bg-white border border-slate-200 rounded-2xl shadow-sm flex flex-col items-center justify-center gap-6 cursor-pointer group hover:border-blue-300 hover:shadow-md transition-all duration-300"
-        onClick={() => setActivated(true)}
+        onClick={handleActivate}
         role="button"
         aria-label="Launch Calculator"
       >
@@ -30,12 +40,13 @@ export function HomeHero() {
           <p className="text-sm text-slate-500 font-medium">Click to launch — Deg/Rad · Trig · Graphing Engine</p>
         </div>
         <button
-          className="px-8 py-3 rounded-full text-sm font-black uppercase tracking-widest text-white shadow-md transition-all duration-300 hover:scale-105 active:scale-100"
+          className={`px-8 py-3 rounded-full text-sm font-black uppercase tracking-widest text-white shadow-md transition-all duration-300 ${isActivating ? 'opacity-80 cursor-wait' : 'hover:scale-105 active:scale-100'}`}
           style={{ background: PURPLE }}
+          disabled={isActivating}
         >
-          Launch Calculator
+          {isActivating ? 'Loading Engine...' : 'Launch Calculator'}
         </button>
-        <div className="flex items-center gap-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+        <div className="flex items-center gap-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
           <span>80+ Tools</span>
           <span>•</span>
           <span>Free Forever</span>

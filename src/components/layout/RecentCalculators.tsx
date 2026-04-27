@@ -41,6 +41,7 @@ export function RecentCalculators() {
             <div key={idx} className="group relative">
               <Link
                 href={item.href}
+                prefetch={false}
                 className="flex items-center gap-2 pl-3 pr-8 py-2 bg-white border border-[#DADCE0] rounded-full text-[12px] font-bold text-[#3C4043] hover:bg-[#E8F0FE] hover:text-[#1A73E8] hover:border-[#1A73E8] transition-all"
               >
                 <ChevronRight className="w-3 h-3 text-[#DADCE0] group-hover:text-[#1A73E8]" />

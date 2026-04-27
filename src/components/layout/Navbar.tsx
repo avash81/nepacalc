@@ -7,7 +7,9 @@ import {
   Sparkles, Folder, Wallet, Heart, BookOpen, Info, Globe, Activity
 } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
-import { SearchModal } from './SearchModal';
+import dynamic from 'next/dynamic';
+
+const SearchModal = dynamic(() => import('./SearchModal').then(mod => mod.SearchModal), { ssr: false });
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -106,7 +108,7 @@ export function Navbar() {
         </div>
       </nav>
 
-      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+      {isSearchOpen && <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />}
 
       {/* Mobile Drawer Overlay */}
       {isMenuOpen && (
