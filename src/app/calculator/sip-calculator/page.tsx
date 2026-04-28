@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 

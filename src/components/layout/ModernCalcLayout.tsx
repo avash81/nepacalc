@@ -7,6 +7,7 @@ import { TIER1_SEO_CONTENT } from '@/data/seo-content';
 import { getLatestRates, MarketRate } from '@/utils/market/fetchRates';
 import { usePathname } from 'next/navigation';
 import { RecentSidebar } from './RecentSidebar';
+import { CALCULATORS } from '@/data/calculators';
 
 interface ModernCalcLayoutProps {
   title: string;
