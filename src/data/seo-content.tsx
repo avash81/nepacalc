@@ -2599,109 +2599,288 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
   },
 
   'calculus-lab': {
-    title: "Calculus & Algebra Solver | Derivatives & Integrals",
-    description: "Solve derivatives, integrals, and limits instantly. Symbolic calculus engine for students and professionals.",
-    content: null,
+    title: "Calculus & Algebra Solver | Derivatives & Integrals Online",
+    description: "Solve derivatives, integrals, and limits instantly. Symbolic calculus engine for students and professionals. Step-by-step logic for complex equations.",
+    content: (
+      <>
+        <h2>Mastering Higher Mathematics: Calculus Lab</h2>
+        <p>
+          Calculus is the mathematical study of continuous change. Whether you are a student at **TU/KU** or an engineer in the field, our <strong>Calculus Solver</strong> helps you verify complex derivations and integrations instantly.
+        </p>
+
+        <h3>Core Features</h3>
+        <ul>
+          <li><strong>Differentiation:</strong> Find the rate of change for any function (Chain rule, Power rule).</li>
+          <li><strong>Integration:</strong> Calculate the area under a curve (Definite and Indefinite).</li>
+          <li><strong>Limits:</strong> Analyze the behavior of functions as they approach a specific value.</li>
+        </ul>
+      </>
+    ),
     faqs: [
-      { question: "Does the calculator support chain rule differentiation?", answer: "Yes, the symbolic engine automatically applies the chain rule, product rule, and quotient rule where necessary." },
-      { question: "Can it solve definite integrals?", answer: "Yes, you can input upper and lower bounds to calculate the exact numerical value of a definite integral." }
+      { question: "Can it solve multi-variable calculus?", answer: "The current version focuses on single-variable calculus, which covers 90% of undergraduate requirements." },
+      { question: "Is this tool useful for physics?", answer: "Absolutely. Calculus is the language of physics, used to calculate velocity, acceleration, and electromagnetic fields." }
     ]
   },
 
   'property-tax': {
-    title: "Capital Gains Tax (CGT) Calculator Real Estate Nepal",
-    description: "Calculate Capital Gains Tax for real estate and land sales in Nepal. Find your exact tax liability before visiting Malpot office.",
-    content: null,
+    title: "Capital Gains Tax (CGT) Calculator Real Estate Nepal | Malpot Guide",
+    description: "Calculate Capital Gains Tax for real estate and land sales in Nepal. Find your exact tax liability before visiting the Malpot office.",
+    content: (
+      <>
+        <h2>Selling Property in Nepal: The CGT Breakdown</h2>
+        <p>
+          When you sell land or a house in Nepal at a profit, you are liable to pay <strong>Capital Gains Tax (CGT)</strong>. This tax is collected by the **Malpot Office** at the time of registration transfer.
+        </p>
+
+        <h3>CGT Rates for FY 2080/81</h3>
+        <ul>
+          <li><strong>Property held for > 5 years:</strong> 5% on the gain.</li>
+          <li><strong>Property held for < 5 years:</strong> 7.5% on the gain.</li>
+        </ul>
+
+        <div className="bg-[#f1f8e9] border border-[#33691e] rounded-lg p-6 my-8">
+           <h4 className="font-bold mb-2">Exemption Tip</h4>
+           <p className="text-sm leading-relaxed mb-0">
+             If the property has been owned for more than 10 years and the transaction value is below 10 Lakhs, you might be eligible for certain exemptions. Always consult with a professional accountant for the latest IRD circulars.
+           </p>
+        </div>
+      </>
+    ),
     faqs: [
-      { question: "What happens if I sell the property at a loss?", answer: "If the selling price is less than your purchase price, there is no capital gain and therefore no CGT is payable." },
-      { question: "Who pays the CGT, buyer or seller?", answer: "Legally, the Capital Gains Tax is the liability of the seller who made the profit." }
+      { question: "How is 'Gain' calculated?", answer: "Gain = Selling Price - Purchase Price - Registered Expenses. The Malpot office uses the government valuation if it is higher than your stated price." },
+      { question: "Who pays the CGT?", answer: "In Nepal, the seller is legally responsible for paying the Capital Gains Tax on the profit earned from the sale." }
     ]
   },
 
   'property-registration': {
-    title: "Property Registration & Malpot Fee Calculator Nepal",
-    description: "Calculate land and house registration fees for Nepal Malpot offices. Includes municipal discounts and stamp duties.",
-    content: null,
+    title: "Property Registration & Malpot Fee Calculator | Nepal Land Tax",
+    description: "Calculate land and house registration fees for Nepal Malpot offices. Includes municipal discounts and stamp duties for all provinces.",
+    content: (
+      <>
+        <h2>Understanding Property Registration Fees in Nepal</h2>
+        <p>
+          Buying property (Lekhapadi) involves more than just the purchase price. The <strong>Registration Fee</strong> is a significant cost paid to the government. This fee varies depending on whether the property is in a <strong>Municipality (Nagarpalika)</strong> or a <strong>Rural Municipality (Gaunpalika)</strong>.
+        </p>
+
+        <h3>Key Fee Components</h3>
+        <ul>
+          <li><strong>Registration Fee:</strong> Typically 2% to 5% of the valuation.</li>
+          <li><strong>Service Charge:</strong> A small fixed fee for the administrative work.</li>
+          <li><strong>Bagmati Civilization Tax:</strong> Applicable for transactions within the Bagmati watershed area.</li>
+        </ul>
+      </>
+    ),
     faqs: [
-      { question: "Is the fee based on market price or government valuation?", answer: "Registration fees are calculated based on the official government minimum valuation (Thaili), which is often lower than the actual market price." },
-      { question: "What is the Bagmati Civilization Tax?", answer: "It is an additional surcharge levied on property transactions in the Bagmati Province area on top of the standard registration fee." }
+      { question: "Are there discounts for female ownership?", answer: "Yes! To encourage land ownership among women, the government offers significant discounts (often 25-30%) on registration fees if the property is registered in a woman's name." },
+      { question: "What is 'Thaili'?", answer: "'Thaili' refers to the official transaction amount mentioned in the registration deed, which must be equal to or higher than the government's minimum valuation." }
     ]
   },
 
   'nepal-tds': {
-    title: "Nepal TDS Calculator | Tax Deducted at Source",
-    description: "Calculate TDS on rent, service fees, and contracts in Nepal per IRD rules for FY 2080/81.",
-    content: null,
+    title: "Nepal TDS Calculator | Tax Deducted at Source IRD",
+    description: "Calculate TDS on rent, service fees, and contracts in Nepal per IRD rules for FY 2080/81. Ensure legal compliance for your business.",
+    content: (
+      <>
+        <h2>Mastering TDS in Nepal: A Guide for Businesses</h2>
+        <p>
+          <strong>Tax Deducted at Source (TDS)</strong> is a method of collecting income tax in Nepal where the person responsible for making a payment is required to deduct tax and deposit it with the <strong>Inland Revenue Department (IRD)</strong>.
+        </p>
+
+        <h3>Common TDS Rates in Nepal</h3>
+        <ul>
+          <li><strong>House Rent:</strong> 10%</li>
+          <li><strong>Service Fees (Natural Person):</strong> 15%</li>
+          <li><strong>Bank Interest:</strong> 5%</li>
+          <li><strong>Meeting Fees:</strong> 15%</li>
+        </ul>
+      </>
+    ),
     faqs: [
-      { question: "What is the TDS rate on house rent in Nepal?", answer: "The TDS rate on rental income in Nepal is 10% of the gross rent amount paid." },
-      { question: "Who is responsible for deducting TDS?", answer: "The payer (tenant or client) is legally responsible for deducting TDS and depositing it to the IRD." }
+      { question: "What is the deadline for depositing TDS?", answer: "TDS must be deposited to the IRD within 25 days from the end of the month in which the deduction was made." },
+      { question: "Can I claim a refund for TDS?", answer: "TDS is an advance tax. If your final tax liability at the end of the year is lower than the total TDS deducted, you can claim a refund or carry it forward." }
     ]
   },
 
   'nepse-bonus-tax': {
-    title: "NEPSE Bonus Share & Dividend Tax Calculator",
-    description: "Calculate tax on bonus shares and cash dividends received from NEPSE-listed companies in Nepal.",
-    content: null,
+    title: "NEPSE Bonus Share & Dividend Tax Calculator | Share Market Nepal",
+    description: "Calculate tax on bonus shares and cash dividends received from NEPSE-listed companies. Essential tool for share market investors in Nepal.",
+    content: (
+      <>
+        <h2>Share Market Investing: Understanding Dividend Taxes</h2>
+        <p>
+          Investing in the <strong>Nepal Stock Exchange (NEPSE)</strong> can be rewarding through dividends and bonus shares. However, investors must understand the tax implications of these corporate actions to calculate their true net returns.
+        </p>
+
+        <h3>Taxation on Dividends</h3>
+        <p>
+          - <strong>Cash Dividend:</strong> Taxed at 5% (withheld by the company).
+          - <strong>Bonus Shares:</strong> Taxed at 5% of the par value (usually NPR 100).
+        </p>
+      </>
+    ),
     faqs: [
-      { question: "What is the tax rate on bonus shares in Nepal?", answer: "Bonus shares are taxed at a flat rate of 5% on the face value (par value) of the shares received." },
-      { question: "Is cash dividend also taxed?", answer: "Yes, cash dividends from listed companies are subject to a 5% withholding tax deducted at source by the company." }
+      { question: "Do I need to pay tax on bonus shares separately?", answer: "Usually, the company deducts the tax from your cash dividend to pay for the bonus share tax. If no cash dividend is announced, you may need to deposit the tax amount to the company's account." },
+      { question: "Is share trading profit also taxed?", answer: "Yes, Capital Gains Tax on share trading is 5% for long-term investors (held > 1 year) and 7.5% for short-term investors." }
     ]
   },
 
   'gratuity-calculator': {
-    title: "Gratuity Calculator Nepal | Labor Act 2074",
-    description: "Calculate your end-of-service gratuity entitlement under Nepal's Labor Act 2074. Find out exactly what your employer owes you.",
-    content: null,
+    title: "Gratuity Calculator Nepal | Labor Act 2074 Entitlements",
+    description: "Calculate your end-of-service gratuity entitlement under Nepal's Labor Act 2074. Find out exactly what your employer owes you after resignation or retirement.",
+    content: (
+      <>
+        <h2>Know Your Rights: Gratuity Under Nepal's Labor Act 2074</h2>
+        <p>
+          In Nepal, the **Labor Act 2074** mandates that every employee who has completed at least one year of service is entitled to a gratuity upon leaving their job. Whether you have resigned, retired, or been laid off, understanding how your "End-of-Service" benefits are calculated is crucial.
+        </p>
+
+        <h3>How Gratuity is Calculated in Nepal</h3>
+        <p>
+          The standard formula for gratuity is:
+          - <strong>1 Month's Basic Salary</strong> for every year of completed service.
+          The basic salary is defined as the amount you were earning at the time of your departure, excluding allowances and overtime.
+        </p>
+
+        <div className="bg-[#e8f0fe] border border-[#1a73e8] rounded-xl p-6 my-8">
+           <h3 className="text-[#1967d2] font-black mt-0 mb-3 uppercase text-xs tracking-widest">Legal Notice</h3>
+           <p className="text-sm leading-relaxed mb-0">
+             Your employer is legally required to deposit your gratuity into a social security fund or a separate bank account. If they refuse to pay, you can file a complaint with the **Department of Labor and Occupational Safety**.
+           </p>
+        </div>
+      </>
+    ),
     faqs: [
       { question: "How many years of service qualify for gratuity?", answer: "Under Nepal's Labor Act 2074, an employee qualifies for gratuity after completing at least one year of continuous service." },
-      { question: "What is the gratuity rate per year in Nepal?", answer: "The standard rate is one month's basic salary for each completed year of service." }
+      { question: "Can I receive gratuity if I resign?", answer: "Yes. As long as you have completed the minimum service period, you are entitled to gratuity regardless of whether you resign or retire." }
     ]
   },
 
   'foreign-employment': {
-    title: "Foreign Employment Cost & Salary Calculator Nepal",
-    description: "Calculate total cost of going abroad for work from Nepal. Includes agency fees, visa, insurance, and expected net savings.",
-    content: null,
+    title: "Foreign Employment Cost & Salary Calculator Nepal | DoFE Fees",
+    description: "Calculate total cost of going abroad for work from Nepal. Includes agency fees, visa, insurance, and expected net savings for Gulf and European jobs.",
+    content: (
+      <>
+        <h2>Planning for Foreign Employment: The Real Costs</h2>
+        <p>
+          Each year, hundreds of thousands of Nepalese workers seek opportunities in countries like the **UAE, Qatar, Japan, and Romania**. However, many fall into debt due to unregulated agency fees. Our <strong>Foreign Employment Calculator</strong> helps you estimate the legal and hidden costs of your migration.
+        </p>
+
+        <h3>Legal Caps on Recruitment Fees</h3>
+        <p>
+          The **Department of Foreign Employment (DoFE)** has set strict caps on how much a recruitment agency can charge:
+          - <strong>Free Visa Free Ticket:</strong> For many Gulf countries and Malaysia, the employer must bear the cost.
+          - <strong>NPR 10,000 Cap:</strong> For countries where "Free Visa" isn't applicable, the agency fee is often capped at NPR 10,000.
+        </p>
+      </>
+    ),
     faqs: [
-      { question: "What is the maximum agency fee allowed in Nepal?", answer: "The Department of Foreign Employment (DoFE) caps recruitment agency fees. For most Gulf countries, the fee is capped at a maximum of NPR 10,000." },
-      { question: "Is foreign employment income taxable in Nepal?", answer: "Remittances sent back to Nepal are not directly taxed, but any interest earned on savings in Nepal is subject to standard income tax." }
+      { question: "What is the importance of the DoFE Labor Permit?", answer: "The labor permit ensures that your employment is legal and that you are covered by the Foreign Employment Insurance in case of injury or death." },
+      { question: "Is income from abroad taxable in Nepal?", answer: "Remittance income sent via formal banking channels is generally not taxed in Nepal. However, always check the latest Finance Act for updates." }
     ]
   },
 
   'kukl-bill': {
-    title: "KUKL Water Bill Calculator | Kathmandu Upatyaka Khanepani",
-    description: "Calculate your exact KUKL monthly water bill for Kathmandu Valley based on meter size and consumption units.",
-    content: null,
+    title: "KUKL Water Bill Calculator | Kathmandu Water Tariffs 2081",
+    description: "Calculate your exact KUKL monthly water bill for Kathmandu Valley based on meter size and consumption units. Find your bill before the meter reader arrives.",
+    content: (
+      <>
+        <h2>Kathmandu Water Bills: Understanding KUKL Tariffs</h2>
+        <p>
+          Managing your monthly expenses in Kathmandu requires tracking your water consumption. The **Kathmandu Upatyaka Khanepani Limited (KUKL)** uses a tiered pricing system where the more you use, the higher the rate per unit.
+        </p>
+
+        <h3>Meter Size and Minimum Charges</h3>
+        <p>
+          Your bill consists of a minimum monthly charge (determined by your meter size, e.g., 1/2 inch, 1 inch) and a consumption-based charge.
+          - <strong>Minimum Consumption:</strong> Usually the first 10,000 liters (10 units) are included in the base charge.
+          - <strong>Sewage Charge:</strong> KUKL also adds a sewage service fee, typically 50% of your water bill.
+        </p>
+      </>
+    ),
     faqs: [
-      { question: "How does KUKL calculate the water bill?", answer: "KUKL uses a progressive block tariff system. Low consumption households pay subsidized rates, while higher consumption is charged at premium rates per kiloliter." },
-      { question: "What is the minimum monthly charge?", answer: "There is a minimum monthly demand charge regardless of consumption, which varies based on your meter connection size (15mm, 20mm, 25mm etc.)." }
+      { question: "Where can I pay my KUKL bill online?", answer: "You can pay your KUKL bill via digital wallets like Esewa, Khalti, or mobile banking apps." },
+      { question: "What should I do if my bill is unusually high?", answer: "Check for leaks in your internal plumbing first. If no leaks are found, you can request a meter testing at your local KUKL branch office." }
     ]
   },
 
   'nepal-attendance': {
-    title: "Attendance Calculator | Nepal University 75% Rule",
-    description: "Calculate your university attendance percentage. Find out exactly how many more classes you can miss before being barred from exams.",
-    content: null,
+    title: "Attendance Calculator | Nepal University 75% Rule Guide",
+    description: "Calculate your university attendance percentage. Find out exactly how many more classes you can miss before being barred from exams at TU, KU, or PU.",
+    content: (
+      <>
+        <h2>Staying Eligible: The 75% Attendance Rule in Nepal</h2>
+        <p>
+          For students in Nepal, maintaining a minimum attendance of <strong>75%</strong> is a mandatory requirement set by major universities like <strong>Tribhuvan University (TU), Kathmandu University (KU), and Pokhara University (PU)</strong>. Falling below this threshold can lead to being barred from sitting for final board examinations.
+        </p>
+
+        <h3>How to Use the Attendance Tracker</h3>
+        <p>
+          Simply enter the total number of classes held and the number of classes you have attended. Our tool will tell you:
+          1. Your current attendance percentage.
+          2. How many more classes you can miss while staying above 75%.
+          3. How many consecutive classes you must attend to reach your target percentage if you are currently below it.
+        </p>
+
+        <div className="bg-[#fef7e0] border border-[#fbbc04] rounded-lg p-5 my-6">
+           <h4 className="text-sm font-black text-[#b06000] uppercase mb-2">Academic Tip</h4>
+           <p className="text-xs leading-relaxed mb-0 text-[#3c4043]">
+             In many professional courses like MBBS or Engineering, the requirement might be as high as 80%. Always check your specific department's policy before planning any leaves!
+           </p>
+        </div>
+      </>
+    ),
     faqs: [
-      { question: "What is the minimum attendance required in Nepal?", answer: "Most universities in Nepal (TU, KU, PU) require a minimum of 75% attendance to sit for final exams. Some medical/engineering programs require 80%." },
-      { question: "Do practical labs count separately?", answer: "Yes, practical labs often have a stricter separate attendance requirement, sometimes requiring 100% attendance or mandatory makeup sessions." }
+      { question: "Can I get a waiver for low attendance?", answer: "Waivers are extremely rare and usually require official medical documentation or proof of an emergency, approved by the Dean's office." },
+      { question: "Do internal marks depend on attendance?", answer: "Yes, many colleges in Nepal allocate a portion of internal assessment marks (usually 5-10%) based on your attendance record." }
     ]
   },
 
   'lead-time': {
-    title: "Lead Time & Cycle Time Calculator | Supply Chain",
-    description: "Calculate manufacturing lead times, cycle times, and takt time. Optimize your inventory and supply chain management.",
-    content: null,
+    title: "Lead Time & Cycle Time Calculator | Business Efficiency",
+    description: "Calculate manufacturing lead times, cycle times, and takt time. Essential for optimizing inventory and supply chain for Nepalese businesses.",
+    content: (
+      <>
+        <h2>Optimizing Your Business Workflow</h2>
+        <p>
+          Efficiency is the key to profit for any manufacturing or service business in Nepal. Our <strong>Lead Time Calculator</strong> helps you identify where time is being wasted in your delivery or production process.
+        </p>
+
+        <h3>Lead Time vs. Cycle Time</h3>
+        <ul>
+          <li><strong>Lead Time:</strong> The total time from the moment a customer places an order until the product is delivered.</li>
+          <li><strong>Cycle Time:</strong> The internal time it takes to actually produce the item.</li>
+        </ul>
+      </>
+    ),
     faqs: [
-      { question: "What is Takt Time?", answer: "Takt time is the maximum acceptable time to meet customer demand. If a customer orders 10 units a day and you work 10 hours, your Takt time is 1 hour per unit." },
-      { question: "How do I account for shipping delays?", answer: "Always add a safety margin (buffer time) to account for transit delays or supplier shortages when calculating lead time for inventory reordering." }
+      { question: "How can I reduce my business lead time?", answer: "Reducing lead time involves optimizing supplier lead times, reducing internal processing delays, and improving logistics." },
+      { question: "Why is Lead Time important for SEO content writing?", answer: "In content marketing, lead time is the time between planning and publishing. Faster lead times allow you to respond to trends before your competitors." }
     ]
   },
 
   'pythagorean-theorem': {
-    title: "Pythagorean Theorem Calculator | Find the Hypotenuse",
-    description: "Instantly solve for the hypotenuse or any side of a right-angled triangle using a² + b² = c².",
-    content: null,
+    title: "Pythagorean Theorem Calculator | Solve Triangles Instantly",
+    description: "Instantly solve for the hypotenuse or any side of a right-angled triangle using a² + b² = c². Essential for students, architects, and engineers.",
+    content: (
+      <>
+        <h2>The Foundation of Geometry: Pythagoras' Theorem</h2>
+        <p>
+          The <strong>Pythagorean Theorem</strong> is one of the most famous principles in mathematics. It describes the relationship between the three sides of a right-angled triangle. Our <strong>Triangle Solver</strong> allows you to find any missing side (a, b, or c) with 100% precision.
+        </p>
+
+        <h3>The Mathematical Formula</h3>
+        <p>
+          The theorem states that in a right triangle, the square of the hypotenuse (the side opposite the right angle) is equal to the sum of the squares of the other two sides: <code>a² + b² = c²</code>.
+        </p>
+
+        <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg my-8">
+           <h4 className="font-bold mb-2">Real-World Application</h4>
+           <p className="text-sm leading-relaxed mb-0">
+             Architects and carpenters in Nepal use this formula every day to ensure corners are perfectly square (90 degrees). If you measure 3 feet on one wall and 4 feet on another, the diagonal distance between them must be exactly 5 feet—this is a "Pythagorean Triple" (3-4-5).
+           </p>
+        </div>
+      </>
+    ),
     faqs: [
       { question: "Does the Pythagorean theorem work on any triangle?", answer: "No. The theorem strictly applies only to right-angled triangles where one angle is exactly 90 degrees." },
       { question: "What is a Pythagorean Triple?", answer: "A set of three positive integers that perfectly fit the formula with no decimals. The most famous are (3, 4, 5) and (5, 12, 13)." }
@@ -2709,42 +2888,104 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
   },
 
   'surface-area-calculator': {
-    title: "Surface Area Calculator | 3D Geometric Shapes",
-    description: "Calculate the total surface area of cylinders, spheres, cones, and rectangular prisms. Vital for manufacturing and design.",
-    content: null,
+    title: "Surface Area Calculator | 3D Geometric Shapes & Formulas",
+    description: "Calculate the total surface area of cylinders, spheres, cones, and rectangular prisms. Essential for construction and material estimation.",
+    content: (
+      <>
+        <h2>Mastering 3D Geometry: Surface Area Guide</h2>
+        <p>
+          Surface area is the total area occupied by the surface of a 3D object. Whether you are calculating how much paint you need for a cylindrical water tank or the amount of wrapping paper for a gift box, our <strong>Surface Area Calculator</strong> provides instant results using standard geometric formulas.
+        </p>
+
+        <h3>Common Surface Area Formulas</h3>
+        <ul>
+          <li><strong>Sphere:</strong> 4 × π × r²</li>
+          <li><strong>Cylinder:</strong> 2πrh + 2πr² (includes both bases)</li>
+          <li><strong>Cube:</strong> 6 × a² (where 'a' is the side length)</li>
+        </ul>
+      </>
+    ),
     faqs: [
       { question: "What is the difference between lateral and total surface area?", answer: "Lateral surface area covers only the sides (excluding the top and bottom bases). Total surface area includes the bases as well." },
-      { question: "What is the surface area formula for a sphere?", answer: "The surface area of a sphere is 4 × π × r², where r is the radius." }
+      { question: "Why do we use 'square units' for surface area?", answer: "Since surface area measures a 2D surface on a 3D object, it is always expressed in square units (e.g., cm², m², sq. ft.)." }
     ]
   },
 
   'volume-calculator': {
-    title: "Volume Calculator | Cylinders, Spheres & Cones",
-    description: "Calculate the volume of any 3D geometric shape instantly. Supports cones, cylinders, spheres, and rectangular prisms.",
-    content: null,
+    title: "Volume Calculator | 3D Space & Capacity Estimator",
+    description: "Calculate the volume of any 3D geometric shape instantly. Supports cones, cylinders, spheres, and rectangular prisms for industrial and home use.",
+    content: (
+      <>
+        <h2>How Much Can It Hold? Volume Calculation Explained</h2>
+        <p>
+          Volume is the amount of 3D space a substance or shape occupies or contains. In Nepal, understanding volume is critical for everything from sizing a <strong>water tank</strong> to calculating the engine displacement (cc) of a motorcycle.
+        </p>
+
+        <h3>Practical Volume Conversions</h3>
+        <p>
+          - 1 Cubic Meter (m³) = 1000 Liters
+          - 1 Cubic Foot (ft³) ≈ 28.31 Liters
+          - 1 Gallon (US) ≈ 3.78 Liters
+        </p>
+      </>
+    ),
     faqs: [
       { question: "What is the formula for the volume of a cylinder?", answer: "Volume of a cylinder = π × r² × h, where r is the radius of the circular base and h is the height." },
-      { question: "What is the formula for the volume of a sphere?", answer: "The formula is V = 4/3 × π × r³, where r is the radius from the center of the sphere." }
+      { question: "How do I convert volume to weight?", answer: "You must know the density of the material. For water, 1 liter = 1 kilogram. For concrete or soil, the weight is much higher per unit of volume." }
     ]
   },
 
   'market-rates/live-gold-price': {
     title: "Live Gold Price in Nepal Today | Fine & Tejabi Sun",
     description: "Check the exact, official daily gold rates in Nepal (Fine 24K and Tejabi 22K). Prices synced with the Nepal Gold and Silver Dealers' Association.",
-    content: null,
+    content: (
+      <>
+        <h2>Gold Market in Nepal: A Heritage of Investment</h2>
+        <p>
+          In Nepal, gold (Sun) is not just jewelry; it is a primary form of savings and a symbol of cultural heritage, especially during the wedding season. The <strong>Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)</strong> sets the daily benchmark price for the entire country.
+        </p>
+
+        <h3>Understanding Gold Types in Nepal</h3>
+        <ul>
+          <li><strong>Fine Gold (24K):</strong> 99.99% pure gold, primarily used for investment bars and coins.</li>
+          <li><strong>Tejabi Gold (22K):</strong> Approximately 91.6% pure gold, mixed with other metals to provide the durability needed for intricate jewelry designs.</li>
+        </ul>
+
+        <div className="bg-[#fef7e0] border border-[#fbbc04] rounded-lg p-6 my-8">
+           <h3 className="text-[#b06000] font-black mt-0 mb-3 uppercase text-xs tracking-widest">Pricing Tip</h3>
+           <p className="text-sm leading-relaxed mb-0 text-[#3c4043]">
+             When you buy jewelry, the "Rate" you pay is: <strong>Market Rate + Making Charges + Jarti (Wastage)</strong>. Always ask your jeweler for a complete breakdown of these costs!
+           </p>
+        </div>
+      </>
+    ),
     faqs: [
-      { question: "What is the difference between Fine Gold and Tejabi Gold?", answer: "Fine Gold (Chhapawal) is 24-karat, 99.99% pure gold. Tejabi Gold is 22-karat gold, slightly less pure, mixed with other metals to make it harder for jewelry making." },
-      { question: "Does the listed price include jewelry making charges (Jarti)?", answer: "No. The FENEGOSIDA price is only the raw material cost. Jewelers add Jarti (wastage) and making charges on top of this base price." }
+      { question: "Why is the gold price higher in Nepal than in the international market?", answer: "Nepal imposes an import duty (tax) on gold, which adds to the international base price. Additionally, local demand and currency fluctuations play a role." },
+      { question: "How many grams are in 1 Tola of gold?", answer: "In Nepal, 1 Tola is equivalent to exactly 11.66 grams." }
     ]
   },
 
   'market-rates/remittance': {
     title: "Nepal Remittance Board | Compare Live Money Transfer Rates",
     description: "Compare real-time exchange rates from top remit companies (IME, Western Union, Prabhu) for sending money to Nepal from abroad.",
-    content: null,
+    content: (
+      <>
+        <h2>The Remittance Lifeline of Nepal</h2>
+        <p>
+          Remittance is a critical pillar of the Nepalese economy, supporting millions of households. Whether you are sending money from the <strong>Gulf, Malaysia, or South Korea</strong>, finding the best exchange rate can make a significant difference in the amount your family receives in NPR.
+        </p>
+
+        <h3>How to Choose a Remittance Service</h3>
+        <p>
+          - <strong>Compare Rates:</strong> Use our tool to compare IME, Prabhu, and City Express rates side-by-side.
+          - <strong>Hidden Fees:</strong> Some companies offer high rates but charge high fixed service fees.
+          - <strong>Digital Wallets:</strong> Services like <strong>Esewa</strong> and <strong>Khalti</strong> often have partnerships for direct-to-wallet transfers with extra bonuses.
+        </p>
+      </>
+    ),
     faqs: [
-      { question: "Is it better to send money to a bank account or for cash pickup?", answer: "Direct bank account transfers generally offer slightly better exchange rates and lower fees compared to instant cash pickup services." },
-      { question: "Are remittance exchange rates updated daily?", answer: "Yes, remittance rates are highly volatile and are updated multiple times a day based on the international forex market and NRB guidelines." }
+      { question: "Which is the fastest way to send money to Nepal?", answer: "Direct digital transfers to bank accounts or wallets like IME Pay are usually the fastest, often reflecting within minutes." },
+      { question: "What documents are needed for remittance?", answer: "The sender needs a valid ID and proof of address in their host country. The receiver in Nepal usually needs their Citizenship card for cash pickup." }
     ]
   },
 
@@ -2810,42 +3051,108 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
   },
 
   'bmi-child': {
-    title: "Child BMI Percentile Calculator | Pediatric Growth",
-    description: "Calculate your child's BMI percentile accurately based on CDC and WHO growth charts for age and gender.",
-    content: null,
+    title: "Child BMI Percentile Calculator | Pediatric Growth Tracking Nepal",
+    description: "Calculate your child's BMI percentile accurately based on CDC and WHO growth charts. Essential for monitoring childhood development and nutrition in Nepal.",
+    content: (
+      <>
+        <h2>Monitoring Childhood Growth: Understanding BMI Percentiles</h2>
+        <p>
+          Unlike adults, a child's body fat changes significantly as they grow. Therefore, a single BMI number isn't enough. Our <strong>Child BMI Calculator</strong> uses "BMI-for-age" percentiles to show how your child's weight compares to other children of the same age and gender in Nepal and globally.
+        </p>
+
+        <h3>How to Interpret the Results</h3>
+        <p>
+          - <strong>5th to 85th Percentile:</strong> Healthy weight range.
+          - <strong>85th to 95th Percentile:</strong> Overweight category.
+          - <strong>Above 95th Percentile:</strong> Obese category.
+        </p>
+
+        <div className="p-6 bg-green-50 border border-green-200 rounded-lg my-8">
+           <h4 className="text-sm font-bold text-green-900 mb-2">Pediatrician Tip</h4>
+           <p className="text-xs leading-relaxed text-green-800 mb-0">
+             If your child falls outside the "Healthy" range, don't panic. Growth spurts can temporarily shift percentiles. In Nepal, focus on providing a balanced diet of "Dal Bhat," vegetables, and proteins while encouraging active play.
+           </p>
+        </div>
+      </>
+    ),
     faqs: [
-      { question: "What is considered a healthy percentile range for a child?", answer: "A healthy weight is typically defined as falling between the 5th and 85th percentiles on the CDC growth charts." },
-      { question: "Is BMI accurate for athletic teenagers?", answer: "Heavily muscular teens may have a high BMI categorizing them as overweight, even if their body fat is very low. Always consult a pediatrician for a full assessment." }
+      { question: "Is BMI accurate for athletic children?", answer: "Heavily muscular children may have a higher BMI even with low body fat. Always consult a doctor for a full assessment." },
+      { question: "What is a healthy percentile range for a child?", answer: "A healthy weight is typically defined as falling between the 5th and 85th percentiles." }
     ]
   },
 
   'sleep': {
-    title: "Sleep Cycle Calculator | Find Your Optimal Wake Time",
+    title: "Sleep Cycle Calculator | Optimize Wake Time & REM Sleep",
     description: "Calculate the exact time you should go to bed or wake up to avoid grogginess. Based on 90-minute human REM sleep cycles.",
-    content: null,
+    content: (
+      <>
+        <h2>Wake Up Refreshed: The Science of Sleep Cycles</h2>
+        <p>
+          Have you ever woken up after 8 hours of sleep feeling exhausted? This often happens because you were woken up in the middle of a **Deep Sleep** cycle. Our <strong>Sleep Calculator</strong> uses 90-minute cycle logic to find the perfect window for you to wake up or go to bed.
+        </p>
+
+        <h3>The 90-Minute Rule</h3>
+        <p>
+          The human brain goes through several stages of sleep every night. A complete cycle takes approximately 90 minutes. Waking up at the end of a cycle (during Light Sleep) makes you feel alert and energized.
+        </p>
+      </>
+    ),
     faqs: [
-      { question: "How long does it take the average person to fall asleep?", answer: "It takes the average human about 14 to 20 minutes to fall asleep. Our calculator automatically factors this buffer time into your bedtime." },
-      { question: "What is the optimal number of sleep cycles per night?", answer: "Most adults need 5 full sleep cycles (about 7.5 hours) per night to achieve optimal cognitive performance." }
+      { question: "How long does it take to fall asleep?", answer: "The average person takes about 14 minutes to fall asleep. Our calculator automatically adds this buffer to your bedtime." },
+      { question: "Is 6 hours of sleep enough?", answer: "For some, 4 full cycles (6 hours) is enough, but most adults perform best with 5 or 6 cycles (7.5 to 9 hours)." }
     ]
   },
 
   'momo-calorie-counter': {
-    title: "Momo Calorie Counter | Nepalese Food Nutrition",
-    description: "Calculate the exact calories and macros in your plate of Momo (Chicken, Buff, Veg). Don't break your diet in Kathmandu!",
-    content: null,
+    title: "Momo Calorie Counter | Nepalese Food Nutrition Guide",
+    description: "Calculate the exact calories and macros in your plate of Momo (Chicken, Buff, Veg). Essential for fitness enthusiasts in Kathmandu.",
+    content: (
+      <>
+        <h2>Counting Calories in Nepal's Favorite Dish: Momo</h2>
+        <p>
+          Momo is the unofficial national dish of Nepal. However, if you are on a fitness journey or tracking your macros in Kathmandu, you need to know what's inside your plate. Our <strong>Momo Calorie Counter</strong> provides a breakdown for Steamed, Fried, and Jhol Momos.
+        </p>
+
+        <h3>Calorie Breakdown (Per Plate - 10 Pieces)</h3>
+        <ul>
+          <li><strong>Veg Steamed Momo:</strong> ~250 - 300 Calories</li>
+          <li><strong>Chicken Steamed Momo:</strong> ~350 - 450 Calories</li>
+          <li><strong>Buff Steamed Momo:</strong> ~450 - 550 Calories</li>
+          <li><strong>Fried Momo:</strong> Add an extra 150 - 200 calories due to oil absorption.</li>
+        </ul>
+
+        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-6">
+           <p className="text-sm italic mb-0">"The secret calories are often in the Achar (sauce). Nut-based sauces can add 100+ calories per serving!"</p>
+        </div>
+      </>
+    ),
     faqs: [
-      { question: "Which type of momo has the lowest calories?", answer: "Steamed vegetable momo (filled primarily with cabbage and carrots) is the lowest in calories, typically around 25-30 calories per piece." },
-      { question: "Does the Momo Achar (Sauce) add a lot of calories?", answer: "Yes! Peanut-based or heavy oil-based sauces can add an extra 100-200 calories to your meal." }
+      { question: "Which momo is best for weight loss?", answer: "Steamed vegetable or chicken momo is the best choice for those watching their weight." },
+      { question: "Is momo healthy?", answer: "Steamed momos are a good source of protein and carbs. The healthiness depends largely on the quality of meat and the amount of oil used in the filling." }
     ]
   },
 
   'solar-requirement': {
-    title: "Solar Panel & Inverter Calculator | Home Load Capacity",
-    description: "Calculate the total wattage required for your home. Size your solar panels, battery bank, and inverter accurately.",
-    content: null,
+    title: "Solar Panel & Inverter Calculator | Home Load Capacity Nepal",
+    description: "Calculate the total wattage required for your home. Size your solar panels, battery bank, and inverter accurately for load-shedding backup.",
+    content: (
+      <>
+        <h2>Sizing Your Solar System for Nepalese Homes</h2>
+        <p>
+          With electricity rates rising and the need for reliable backup power, many Nepalese households are switching to solar. Our <strong>Solar Requirement Calculator</strong> helps you determine exactly how many panels and what battery capacity you need based on your daily appliance usage.
+        </p>
+
+        <h3>Step-by-Step Load Calculation</h3>
+        <ol>
+          <li><strong>List Appliances:</strong> Count all LED bulbs, fans, TVs, and computers.</li>
+          <li><strong>Calculate Watt-Hours:</strong> Multiply the wattage by the hours of use per day.</li>
+          <li><strong>Size the Battery:</strong> Factor in "Days of Autonomy" (cloudy days in Nepal).</li>
+        </ol>
+      </>
+    ),
     faqs: [
-      { question: "How do I calculate my daily energy consumption?", answer: "Multiply the wattage of each appliance by the number of hours you run it per day. Add them all together to get your total daily Watt-Hours." },
-      { question: "What is an inverter's continuous rating vs. surge rating?", answer: "Continuous rating is what the inverter can handle indefinitely. Surge rating is the momentary spike of power required to start a motor like a water pump." }
+      { question: "What is the difference between Off-Grid and On-Grid solar?", answer: "Off-Grid systems use batteries to store power for nighttime use. On-Grid systems sell excess power back to the NEA (Net Metering)." },
+      { question: "How long do solar batteries last in Nepal?", answer: "Lead-acid batteries typically last 3-5 years, while modern Lithium-Ion batteries can last 10+ years with proper maintenance." }
     ]
   },
 
@@ -3104,20 +3411,49 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
   'chemistry-molar': {
     title: "Molar Mass Calculator | Molecular Weight Finder",
     description: "Calculate the exact molar mass and molecular weight of any chemical compound. Essential chemistry tool for students and lab technicians.",
-    content: null,
+    content: (
+      <>
+        <h2>Precision Chemistry: Calculating Molar Mass</h2>
+        <p>
+          Molar mass is a fundamental property of chemical elements and compounds. It is defined as the mass of one mole of a substance, usually expressed in <strong>grams per mole (g/mol)</strong>. Our <strong>Molar Mass Calculator</strong> uses the latest atomic weights to provide 100% accurate results.
+        </p>
+
+        <h3>How to Calculate Manually</h3>
+        <p>
+          To find the molar mass of a compound like H₂O:
+          1. Identify the atomic mass of each element (H ≈ 1.01, O ≈ 16.00).
+          2. Multiply by the number of atoms (2 × 1.01 + 1 × 16.00).
+          3. Total = 18.02 g/mol.
+        </p>
+      </>
+    ),
     faqs: [
-      { question: "What is the difference between Molar Mass and Molecular Weight?", answer: "In practical chemistry they are used interchangeably. Strictly speaking, molecular weight is dimensionless while molar mass has units of g/mol." },
-      { question: "Does the calculator support complex bracketed formulas?", answer: "Yes, standard parsers handle nested compounds like Fe2(SO4)3 by multiplying subscript values accordingly." }
+      { question: "What is Avogadro's Number?", answer: "Avogadro's number (6.022 × 10²³) is the number of particles in one mole of a substance." },
+      { question: "Does this tool support organic compounds?", answer: "Yes, you can enter complex formulas like C₆H₁₂O₆ (Glucose) and the engine will parse each element accurately." }
     ]
   },
 
   'linear-solver': {
     title: "Linear Equations Solver | Algebra Systems",
     description: "Solve systems of simultaneous linear equations instantly. Supports multiple variables (x, y, z) using matrix substitution and elimination.",
-    content: null,
+    content: (
+      <>
+        <h2>Algebra Made Simple: Linear System Solver</h2>
+        <p>
+          Linear equations are the foundation of algebra, physics, and engineering. Solving a system of two or three variables manually can be time-consuming. Our <strong>Linear Solver</strong> uses matrix-based algorithms to find the values of X, Y, and Z in seconds.
+        </p>
+
+        <h3>Methods for Solving Linear Systems</h3>
+        <ol>
+          <li><strong>Substitution:</strong> Solving for one variable and plugging it into the other equation.</li>
+          <li><strong>Elimination:</strong> Adding or subtracting equations to remove a variable.</li>
+          <li><strong>Matrix Method:</strong> Using Cramer's Rule or Gaussian Elimination.</li>
+        </ol>
+      </>
+    ),
     faqs: [
-      { question: "What does it mean if the equations have 'no solution'?", answer: "It means the lines are perfectly parallel and will never intersect, e.g., 2x + y = 5 and 4x + 2y = 20." },
-      { question: "What if there are 'infinite solutions'?", answer: "This happens when both equations actually describe the exact same line, meaning they intersect at every single point." }
+      { question: "What if there is no solution?", answer: "If the lines are parallel (slopes are equal but intercepts are different), the system is 'inconsistent' and has no solution." },
+      { question: "What are 'infinite solutions'?", answer: "If both equations represent the same line, any point on that line is a solution, resulting in infinite possibilities." }
     ]
   },
   'discount-calculator': {
