@@ -205,7 +205,7 @@ export default function GraphingCalculatorClient() {
         <nav className="text-[11px] font-medium text-slate-400">
           <Link href="/" className="hover:text-blue-600">Home</Link>
           <span className="mx-1.5">›</span>
-          <Link href="/engineering" className="hover:text-blue-600">Engineering</Link>
+          <Link href="/engineering/" className="hover:text-blue-600">Engineering</Link>
           <span className="mx-1.5">›</span>
           <span className="text-slate-600">Graphing Calculator</span>
         </nav>

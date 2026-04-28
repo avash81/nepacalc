@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Word Counter Online | Character & Letter Count Tool Nepal NepaCal",
+  title: "Word Counter Online | Character & Letter Count Tool Nepal NepaCalc",
   description: "Count words, characters, and sentences in your text instantly. Free online word counter for students, writers, and SEO professionals in Nepal.",
   slug: 'word-counter',
   keywords: ["word counter nepal", "calculate word count", "character count tool", "essay word counter", "online text analysis", "seo word count tool"],

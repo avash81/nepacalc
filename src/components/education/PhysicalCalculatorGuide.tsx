@@ -323,7 +323,7 @@ export function PhysicalCalculatorGuide() {
          <div className="flex-1 space-y-2">
             <h4 className="text-sm font-black text-gray-900 uppercase tracking-widest">Platform Note</h4>
             <p className="text-gray-500 text-sm font-medium leading-relaxed">
-               While physical calculators are indispensable for proctored exams (SAT/ACT), NEPACALC provides high-precision digital versions of these same algorithms for study and professional work — ensuring you have the exact computational power you need, whenever you have an internet connection.
+               While physical calculators are indispensable for proctored exams (SAT/ACT), NepaCalc provides high-precision digital versions of these same algorithms for study and professional work — ensuring you have the exact computational power you need, whenever you have an internet connection.
             </p>
          </div>
       </div>

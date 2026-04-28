@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Scientific Calculator Online | Advanced Math & Trig Nepal NepaCal",
+  title: "Scientific Calculator Online | Advanced Math & Trig Nepal NepaCalc",
   description: "Professional online scientific calculator with trigonometry, logs, and power functions. Free, high-precision tool for students and engineers in Nepal.",
   slug: 'scientific-calculator',
   keywords: ["scientific calculator nepal", "online trig calculator", "logarithm calculator", "advanced math solver", "scientific notation calc", "ioe entrance math tool"],

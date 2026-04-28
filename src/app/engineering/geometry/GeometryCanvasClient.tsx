@@ -170,7 +170,7 @@ export default function GeometryCanvasClient() {
       <div className="max-w-7xl mx-auto px-4 py-3">
         <nav className="text-[11px] font-medium text-slate-400">
           <Link href="/" className="hover:text-blue-600">Home</Link><span className="mx-1.5">›</span>
-          <Link href="/engineering" className="hover:text-blue-600">Engineering</Link><span className="mx-1.5">›</span>
+          <Link href="/engineering/" className="hover:text-blue-600">Engineering</Link><span className="mx-1.5">›</span>
           <span className="text-slate-600">Geometry</span>
         </nav>
       </div>

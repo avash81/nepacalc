@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Remittance Calculator Nepal | Highest Exchange Rate Tracker NepaCal",
+  title: "Remittance Calculator Nepal | Highest Exchange Rate Tracker NepaCalc",
   description: "Compare remittance rates from Western Union, IME, and Banks in Nepal. Calculate net NPR received with latest exchange rates and IPO quota benefits.",
   slug: 'remittance-calculator',
   keywords: ["remittance calculator nepal", "highest exchange rate nepal", "ime remittance rate", "western union nepal rate", "remittance ipo quota", "send money to nepal"],

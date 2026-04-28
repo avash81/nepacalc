@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const SITE_CONFIG = {
-  name: 'NepaCal',
+  name: 'NepaCalc',
   domain: 'nepacalc.com',
   baseUrl: 'https://nepacalc.com',
   twitter: '@nepacalcnp',
@@ -30,15 +30,15 @@ export function calcMeta({ title, description, slug, keywords = [], canonical }:
     .replace(/\s+/g, ' ')       // Normalize spaces
     .trim();
 
-  if (!seoDescription.toLowerCase().includes('nepacal')) {
-    seoDescription = `${seoDescription} Try NepaCal now`;
+  if (!seoDescription.toLowerCase().includes('nepacalc')) {
+    seoDescription = `${seoDescription} Try NepaCalc now`;
   }
 
   // Length Control
   seoTitle = seoTitle.length > 60 ? seoTitle.substring(0, 60) : seoTitle;
   seoDescription = seoDescription.length > 160 ? seoDescription.substring(0, 160) : seoDescription;
 
-  const globalKeywords = [...new Set([...keywords, 'NepaCal', 'Nepal Calculator', 'Free Online Tools'])];
+  const globalKeywords = [...new Set([...keywords, 'NepaCalc', 'Nepal Calculator', 'Free Online Tools'])];
 
   // Fix slug formatting for canonical (ensure no double slashes and ends with slash)
   const cleanSlug = slug.startsWith('/') ? slug.substring(1) : slug;
@@ -56,7 +56,7 @@ export function calcMeta({ title, description, slug, keywords = [], canonical }:
     keywords: globalKeywords,
     openGraph: {
       url: canonicalUrl,
-      siteName: 'NepaCal Nepal',
+      siteName: 'NepaCalc Nepal',
       title: seoTitle,
       description: seoDescription,
       type: 'website',

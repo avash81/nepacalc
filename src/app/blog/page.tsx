@@ -1,5 +1,5 @@
 /**
- * @fileoverview Blog Page (RSC) — NEPACALC
+ * @fileoverview Blog Page (RSC) — NepaCalc
  *
  * Refactored to React Server Component (RSC) for maximum SEO impact.
  * Fetches all published blog posts and SEO guide pages server-side.
@@ -15,14 +15,14 @@ import { fetchFirestoreCollection } from '@/lib/firestore-rest';
 
 // --- SEO CONFIGURATION ---
 export const metadata: Metadata = {
-  title: 'Blog & Financial Guides | NEPACALC Precision',
+  title: 'Blog & Financial Guides | NepaCalc Precision',
   description: 'Expert tips on Nepal income tax, salary planning, SSF, home loans, and professional calculator tutorials. Stay financially informed with the latest updates.',
-  alternates: { canonical: 'https://nepacalc.com/blog/' },
+  alternates: { canonical: 'https://NepaCalc.com/blog/' },
   openGraph: {
-    title: 'NEPACALC Blog — Expert Nepal Calculation Guides',
+    title: 'NepaCalc Blog — Expert Nepal Calculation Guides',
     description: 'Expert financial advice and calculator walkthroughs for Nepal.',
-    url: 'https://nepacalc.com/blog',
-    siteName: 'NEPACALC',
+    url: 'https://NepaCalc.com/blog',
+    siteName: 'NepaCalc',
     type: 'website',
   },
 };

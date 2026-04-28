@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "QR Code Generator | Create Free Custom QR Codes Online Nepal NepaCal",
+  title: "QR Code Generator | Create Free Custom QR Codes Online Nepal NepaCalc",
   description: "Generate free, permanent QR codes for URLs, text, and contact information instantly. High-resolution QR maker for businesses and individuals in Nepal.",
   slug: 'qr-generator',
   keywords: ["qr code generator nepal", "create qr code free", "qr maker online", "permanent qr code", "custom qr code generator", "business qr code nepal"],

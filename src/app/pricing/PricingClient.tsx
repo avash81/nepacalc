@@ -29,7 +29,7 @@ export default function PricingClient() {
              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-8">
                    <div className="space-y-2">
-                      <h2 className="text-3xl font-black text-gray-900">NEPACALC Infinity</h2>
+                      <h2 className="text-3xl font-black text-gray-900">NepaCalc Infinity</h2>
                       <p className="text-[12px] font-black text-blue-600 uppercase tracking-[0.2em]">The Ultimate Precision Suite</p>
                    </div>
                    
@@ -83,7 +83,7 @@ export default function PricingClient() {
                    </div>
                    <div className="pt-4 border-t border-slate-200">
                       <p className="text-[11px] text-slate-400 italic leading-relaxed">
-                        "Our commitment is to keep NEPACALC free for the lifetime of the project, ensuring academic and professional growth for all."
+                        "Our commitment is to keep NepaCalc free for the lifetime of the project, ensuring academic and professional growth for all."
                       </p>
                    </div>
                 </div>

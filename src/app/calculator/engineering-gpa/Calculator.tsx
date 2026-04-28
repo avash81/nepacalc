@@ -21,7 +21,7 @@ const DEFAULT_STATE = {
 };
 
 export default function EngineeringGPACalculator() {
-  const [state, setState] = useLocalStorage('NEPACALC_engineering_gpa_v3', DEFAULT_STATE);
+  const [state, setState] = useLocalStorage('NepaCalc_engineering_gpa_v3', DEFAULT_STATE);
   const { uni, currentCGPA, completedCredits, targetCGPA, remainingCredits, semesters } = state;
 
   const updateState = (updates: Partial<typeof DEFAULT_STATE>) => setState({ ...state, ...updates });

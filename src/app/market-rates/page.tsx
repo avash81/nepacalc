@@ -24,8 +24,8 @@ export default function MarketRatesPillarPage() {
       <JsonLd
         type="breadcrumb"
         breadcrumbItems={[
-          { name: 'Home', item: 'https://nepacalc.com/' },
-          { name: 'Market Rates', item: 'https://nepacalc.com/market-rates/' }
+          { name: 'Home', item: 'https://NepaCalc.com/' },
+          { name: 'Market Rates', item: 'https://NepaCalc.com/market-rates/' }
         ]}
       />
       <CalcWrapper

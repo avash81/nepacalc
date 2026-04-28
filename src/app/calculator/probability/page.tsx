@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Probability Calculator | Odds & Statistical Likelihood Nepal NepaCal",
+  title: "Probability Calculator | Odds & Statistical Likelihood Nepal NepaCalc",
   description: "Calculate the probability of independent and dependent events instantly. Convert odds to percentages and solve complex statistical problems in Nepal.",
   slug: 'probability',
   keywords: ["probability calculator nepal", "calculate odds", "statistical probability tool", "independent events calculator", "theoretical probability nepal", "math solver"],

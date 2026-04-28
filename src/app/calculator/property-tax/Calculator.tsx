@@ -162,8 +162,8 @@ export default function PropertyTaxCalculator() {
           answer: "If your selling price is lower than your original cost price (resulting in a negative gain), you have zero taxable profit and therefore no Capital Gains Tax liability. However, you still have to pay standard registration processing fees."
         }
       ]}
-      sidebar={{ title: "Real Estate Tools", links: [{ label: "Property Registration", href: "/calculator/property-registration" }, { label: "Mortgage Calc", href: "/calculator/mortgage-calculator" }, { label: "Nepal Land", href: "/calculator/nepal-land" }, { label: "Income Tax", href: "/calculator/nepal-income-tax" }], banner: { title: "Plan Your Sale", description: "Factor in CGT before finalizing any property deal. It directly impacts your net proceeds.", image: "/images/property-banner.jpg" } }}
-      relatedTools={[{ label: "Property Registration", href: "/calculator/property-registration" }, { label: "Mortgage", href: "/calculator/mortgage-calculator" }, { label: "Income Tax", href: "/calculator/nepal-income-tax" }]}
+      sidebar={{ title: "Real Estate Tools", links: [{ label: "Property Registration", href: "/calculator/property-registration/" }, { label: "Mortgage Calc", href: "/calculator/mortgage-calculator/" }, { label: "Nepal Land", href: "/calculator/nepal-land/" }, { label: "Income Tax", href: "/calculator/nepal-income-tax/" }], banner: { title: "Plan Your Sale", description: "Factor in CGT before finalizing any property deal. It directly impacts your net proceeds.", image: "/images/property-banner.jpg" } }}
+      relatedTools={[{ label: "Property Registration", href: "/calculator/property-registration/" }, { label: "Mortgage", href: "/calculator/mortgage-calculator/" }, { label: "Income Tax", href: "/calculator/nepal-income-tax/" }]}
     />
   );
 }

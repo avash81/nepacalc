@@ -4,14 +4,14 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata: Metadata = {
-  title: 'Live Exchange Rate Nepal Today | USD INR to NPR NepaCal',
+  title: 'Live Exchange Rate Nepal Today | USD INR to NPR NepaCalc',
   description: 'Official foreign exchange rates in Nepal. Real-time USD, INR, EUR, and GBP to NPR conversions synchronized with latest NRB benchmarks.',
   keywords: ['exchange rate nepal today', 'usd to npr live', 'inr to npr rate', 'nrb forex rates', 'nepal currency converter'],
   alternates: {
-    canonical: 'https://nepacalc.com/market-rates/exchange-rate/',
+    canonical: 'https://NepaCalc.com/market-rates/exchange-rate/',
   },
   openGraph: {
-    title: 'Live Foreign Exchange Rates Nepal | NEPACALC',
+    title: 'Live Foreign Exchange Rates Nepal | NepaCalc',
     description: 'Track live currency exchange rates against the Nepalese Rupee (NPR). Official indices and NRB sync.',
     type: 'article',
   },
@@ -31,7 +31,7 @@ const FOREX_FAQS = [
     answer: "The Buying Rate is what the bank pays you for your foreign currency, while the Selling Rate is what you pay the bank. The difference, or 'spread', covers operational costs and market risks."
   },
   {
-    question: "How often are the forex rates updated on NEPACALC?",
+    question: "How often are the forex rates updated on NepaCalc?",
     answer: "We update our forex indices every morning as soon as the NRB releases the daily official rates, ensuring you have the latest figures for your financial planning."
   },
   {

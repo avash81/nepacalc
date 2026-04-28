@@ -2849,9 +2849,53 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
   },
 
   'password-generator': {
-    title: "Secure Password Generator | Cryptographic Random Strings",
+    title: "Secure Password Generator | Institutional Grade Random Entropy",
     description: "Generate highly secure, randomized passwords utilizing uppercase, lowercase, numbers, and special symbols to defeat brute-force attacks.",
-    content: null,
+    content: (
+      <>
+        <h2>The Science of Password Entropy: Why Complexity Matters</h2>
+        <p>
+          In an era of distributed computing and massive botnets, the security of your digital identity depends entirely on <strong>entropy</strong>—the measure of randomness in your password. A password like "Password123" has extremely low entropy and can be cracked in milliseconds by a standard GPU. Our generator uses <code>window.crypto.getRandomValues()</code>, a cryptographically strong random number generator (CSPRNG), to ensure that every string produced is truly unpredictable.
+        </p>
+
+        <h3>Anatomy of a Secure Password</h3>
+        <div className="bg-[#f8f9fa] border border-[#dadce0] rounded-xl p-6 my-6">
+           <ul className="space-y-4 list-none p-0 m-0">
+             <li className="flex items-start gap-3">
+               <span className="bg-[#1a73e8] text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] mt-1 shrink-0">1</span>
+               <div>
+                 <strong>Length is King:</strong> Modern standards recommend at least 16 characters. Every additional character increases the cracking time exponentially.
+               </div>
+             </li>
+             <li className="flex items-start gap-3">
+               <span className="bg-[#1a73e8] text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] mt-1 shrink-0">2</span>
+               <div>
+                 <strong>Character Diversity:</strong> By mixing symbols ($ % #) and numbers, you force attackers to search a much larger "keyspace."
+               </div>
+             </li>
+             <li className="flex items-start gap-3">
+               <span className="bg-[#1a73e8] text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] mt-1 shrink-0">3</span>
+               <div>
+                 <strong>Zero Predictability:</strong> Avoid dictionary words, birthdays, or names. Randomly generated strings are the only defense against dictionary attacks.
+               </div>
+             </li>
+           </ul>
+        </div>
+
+        <h2>How Our Generator Protects Your Privacy</h2>
+        <p>
+          Most online password generators send your data to a server, creating a massive security risk. <strong>NepaCalc is different.</strong> Our logic runs entirely in your local browser environment. The password is created on your device and never touches our database or logs. This "Zero-Knowledge" architecture ensures that even we cannot see what you have generated.
+        </p>
+
+        <h2>Security Best Practices for 2081</h2>
+        <p>
+          Generating a password is only half the battle. To maintain a secure posture:
+          1. <strong>Use a Password Manager:</strong> Don't try to memorize random strings. Use tools like Bitwarden, 1Password, or Google Password Manager.
+          2. <strong>Enable 2FA/MFA:</strong> Even a perfect password can be stolen via phishing. Two-Factor Authentication is your final safety net.
+          3. <strong>Unique Passwords:</strong> Never reuse the same password across multiple sites. If one site is breached, all your accounts are at risk.
+        </p>
+      </>
+    ),
     faqs: [
       { question: "Does this tool save my generated passwords?", answer: "Absolutely not. All passwords are generated locally on your device using your browser's secure crypto random number generator. Nothing is sent to a server." },
       { question: "How often should I change my password?", answer: "Modern security guidelines recommend changing your password immediately if there is a known data breach, rather than on an arbitrary schedule." }
@@ -2859,9 +2903,58 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
   },
 
   'concrete-mix': {
-    title: "Concrete Mix Calculator | Volume & Material Estimator",
+    title: "Concrete Mix Calculator | Material Estimation & Strength Grades",
     description: "Calculate exactly how much cement, sand, and aggregate you need for your construction project based on the mix ratio.",
-    content: null,
+    content: (
+      <>
+        <h2>The Science of Concrete: Proportions and Strength</h2>
+        <p>
+          Concrete is not just a mixture of mud; it is a chemical reaction (hydration). Achieving the right <strong>mix design</strong> is critical for the structural integrity of your building. Whether you are casting a pillar, a beam, or a slab in Nepal, using the correct ratio of Cement, Sand, and Aggregate determines the final strength (M-Grade) of the structure.
+        </p>
+
+        <h3>Standard Mix Ratios Used in Nepal</h3>
+        <div className="overflow-x-auto my-6">
+          <table className="min-w-full border-collapse border border-[#dadce0] text-xs">
+            <thead className="bg-[#f8f9fa]">
+              <tr>
+                <th className="border border-[#dadce0] px-4 py-2 text-left">Grade</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left">Ratio (C:S:A)</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left">Typical Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-[#dadce0] px-4 py-2 font-bold">M20</td>
+                <td className="border border-[#dadce0] px-4 py-2">1 : 1.5 : 3</td>
+                <td className="border border-[#dadce0] px-4 py-2">Pillars, Beams, Slabs (Standard Residential)</td>
+              </tr>
+              <tr>
+                <td className="border border-[#dadce0] px-4 py-2 font-bold">M15</td>
+                <td className="border border-[#dadce0] px-4 py-2">1 : 2 : 4</td>
+                <td className="border border-[#dadce0] px-4 py-2">Footings, PCC, Flooring</td>
+              </tr>
+              <tr>
+                <td className="border border-[#dadce0] px-4 py-2 font-bold">M10</td>
+                <td className="border border-[#dadce0] px-4 py-2">1 : 3 : 6</td>
+                <td className="border border-[#dadce0] px-4 py-2">Levelling course, non-structural work</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Understanding Dry Volume vs. Wet Volume</h2>
+        <p>
+          A common mistake in construction is ordering materials based on the final volume of the slab. When you mix cement, sand, and stone with water, the air gaps are filled, and the volume shrinks. To find the amount of dry materials needed, you must multiply the "Wet Volume" by a factor of <strong>1.54</strong>. Our calculator handles this complex conversion automatically, ensuring you never run out of materials mid-cast.
+        </p>
+
+        <h2>Steps to a Perfect Mix</h2>
+        <ol>
+          <li><strong>Clean Materials:</strong> Ensure sand is free of silt and aggregates are free of dust.</li>
+          <li><strong>Water-Cement Ratio:</strong> Too much water weakens the concrete; too little prevents proper hydration. Aim for a workable "slump."</li>
+          <li><strong>Curing:</strong> Once cast, concrete needs to stay moist for at least 7-14 days to reach its design strength.</li>
+        </ol>
+      </>
+    ),
     faqs: [
       { question: "What is the 'Dry Volume' multiplier?", answer: "When water is added to dry materials, the mixture shrinks. Multiply your 'wet volume' by 1.54 to find the actual 'dry volume' of raw materials needed." },
       { question: "How many bags of cement are in a cubic meter?", answer: "One standard 50kg bag of cement has a volume of approximately 0.0347 cubic meters, so roughly 28.8 bags make up one cubic meter." }
@@ -2869,9 +2962,35 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
   },
 
   'brick-calculator': {
-    title: "Brick Calculator | Estimate Wall Construction Materials",
+    title: "Brick Calculator Nepal | Estimate Construction Materials",
     description: "Calculate the total number of bricks required to build a wall. Accurately factors in mortar joint thickness and wall dimensions.",
-    content: null,
+    content: (
+      <>
+        <h2>Professional Brick Estimation Guide</h2>
+        <p>
+          Whether you are building a boundary wall or a full residential structure, estimating bricks correctly is essential for procurement and cost management. In Nepal, standard brick sizes vary, but the <strong>9" x 4.5" x 3"</strong> dimension is the most common benchmark.
+        </p>
+
+        <h3>Wall Thickness and Calculations</h3>
+        <p>
+          The number of bricks per square foot depends heavily on the wall thickness:
+          - <strong>9-inch Wall (Full Brick):</strong> Requires approximately 10 to 12 bricks per square foot.
+          - <strong>4.5-inch Wall (Half Brick/Partition):</strong> Requires approximately 5 to 6 bricks per square foot.
+        </p>
+
+        <h2>The Mortar Factor</h2>
+        <p>
+          A wall isn't just bricks; it's bricks plus mortar. Standard calculations assume a <strong>10mm to 12mm (0.5 inch)</strong> mortar joint. Our engine subtracts the volume occupied by mortar from the total wall volume, providing a more accurate brick count than simple area-based estimates.
+        </p>
+
+        <div className="bg-[#e8f0fe] p-6 rounded-xl my-8 border border-[#1a73e8]">
+           <h3 className="text-[#1967d2] font-black mt-0 text-sm mb-3">Expert Construction Tip</h3>
+           <p className="text-xs leading-relaxed text-[#3c4043] mb-0">
+              Always subtract the area of <strong>Doors and Windows</strong> from your total wall area before calculating. A single standard door (3' x 7') saves you nearly 200-250 bricks!
+           </p>
+        </div>
+      </>
+    ),
     faqs: [
       { question: "Should I buy extra bricks for wastage?", answer: "Yes. It is industry standard to add a 5% to 10% wastage allowance to your final calculated number for breakage during transport and cutting." },
       { question: "Does the calculator account for windows and doors?", answer: "You must subtract the square footage of any windows, doors, or open arches from the total wall area before calculating the brick count." }

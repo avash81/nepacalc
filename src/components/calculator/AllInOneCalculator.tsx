@@ -128,7 +128,7 @@ export default function AllInOneCalculator({
           body: JSON.stringify({
             contents: [{
               parts: [{
-                text: `You are the NEPACALC Logic Engine. Provide expert, clinical step-by-step logic for: "${query}".
+                text: `You are the NepaCalc Logic Engine. Provide expert, clinical step-by-step logic for: "${query}".
                 RULES: 1. Plain text only. 2. No brand names (Google, Gemini, etc.). 3. Max 150 words. 4. Professional tone.`
               }]
             }]

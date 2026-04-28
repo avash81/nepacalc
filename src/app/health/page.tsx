@@ -1,15 +1,16 @@
+import { calcMeta } from '@/lib/calcMeta';
 import { CALCULATORS } from '@/data/calculators';
 import { PillarCard } from '@/components/calculator/PillarCard';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { JsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Health & Fitness Calculators — BMI, BMR, Calories | NEPACALC',
-  description: 'Free WHO-standard health calculators for BMI, BMR, calorie needs, body fat, and ideal weight. Accurate fitness tools. Try NEPACALC now.',
-  keywords: ['bmi calculator', 'bmr calculator', 'calorie calculator', 'body fat calculator', 'health tools nepal'],
-  alternates: { canonical: 'https://nepacalc.com/health/' }
-};
+export const metadata = calcMeta({
+  title: 'Nepal Health Calculators BMI Calorie TDEE More',
+  description: 'BMI BMR TDEE calorie body fat ideal weight free health calculators for Nepal.',
+  slug: 'health',
+  keywords: ['bmi calculator nepal', 'calorie calculator nepal', 'health tools nepal', 'bmr calculator nepal'],
+});
 
 const TAGS: Record<string, string> = {
   'bmi': 'BODY WEIGHT',
@@ -32,8 +33,8 @@ export default function HealthPillarPage() {
       <JsonLd
         type="breadcrumb"
         breadcrumbItems={[
-          { name: 'Home', item: 'https://nepacalc.com/' },
-          { name: 'Health', item: 'https://nepacalc.com/health/' }
+          { name: 'Home', item: 'https://NepaCalc.com/' },
+          { name: 'Health', item: 'https://NepaCalc.com/health/' }
         ]}
       />
       <CalcWrapper

@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Roman Numerals Converter | Date & Number Translator Nepal NepaCal",
+  title: "Roman Numerals Converter | Date & Number Translator Nepal NepaCalc",
   description: "Convert numbers to Roman numerals and vice versa instantly. Fast, accurate translator for dates, chapters, and formal numbering in Nepal.",
   slug: 'roman-numerals',
   keywords: ["roman numerals converter nepal", "convert numbers to roman", "roman numeral date converter", "latin numbers tool", "math solver nepal", "roman numeral symbols"],

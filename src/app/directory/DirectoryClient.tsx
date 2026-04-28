@@ -9,7 +9,7 @@ export default function DirectoryClient() {
   return (
     <CalcWrapper
       title="Tool Directory"
-      description="The official index of NEPACALC's high-precision mathematical units and institutional tools."
+      description="The official index of NepaCalc's high-precision mathematical units and institutional tools."
       crumbs={[{ label: 'Directory' }]}
     >
       <div className="py-8 pb-12">

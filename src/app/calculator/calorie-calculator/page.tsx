@@ -5,7 +5,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Calorie Calculator | Daily Needs & Weight Loss Goals Nepal NepaCal",
+  title: "Calorie Calculator | Daily Needs & Weight Loss Goals Nepal NepaCalc",
   description: "Calculate your daily calorie needs for weight loss, maintenance, or muscle gain. Tailored for Nepalese lifestyles with BMR and TDEE precision.",
   slug: 'calorie-calculator',
   keywords: ["calorie calculator nepal", "daily calorie needs", "calorie deficit for weight loss", "tdee calculator nepal", "how many calories to eat", "fitness nutrition nepal"],

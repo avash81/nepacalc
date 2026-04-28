@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Standard Deviation Calculator | Variance & Mean Analysis Nepal NepaCal",
+  title: "Standard Deviation Calculator | Variance & Mean Analysis Nepal NepaCalc",
   description: "Calculate standard deviation, variance, and mean for any dataset instantly. Professional statistical tool for research and data analysis in Nepal.",
   slug: 'standard-deviation',
   keywords: ["standard deviation calculator nepal", "calculate variance online", "mean and SD calculator", "population standard deviation", "sample standard deviation", "statistics tool nepal"],

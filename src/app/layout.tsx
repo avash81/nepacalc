@@ -14,8 +14,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nepacalc.com'),
-  title: "Free Online Calculators for Nepal NepaCal",
-  description: "Nepals trusted free calculator platform for income tax EMI planning GPA tracking unit conversions and 80 plus professional tools. Try NepaCal now",
+  title: "Free Online Calculators for Nepal — NepaCalc",
+  description: "Nepal's trusted free calculator platform for income tax, EMI planning, GPA tracking, unit conversions, and 80+ professional tools. Try NepaCalc now.",
   icons: {
     icon: [
       { url: '/favicon.png' },
@@ -52,32 +52,32 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Free Online Calculators for Nepal NepaCal",
-    description: "Use professional online calculators for Nepal income tax EMI GPA and engineering. Engineered for academic and financial precision. Try NepaCal now",
-    url: 'https://nepacalc.com',
-    siteName: 'NEPACALC',
+    title: "Free Online Calculators for Nepal NepaCalc",
+    description: "Use professional online calculators for Nepal income tax EMI GPA and engineering. Engineered for academic and financial precision. Try NepaCalc now",
+    url: 'https://NepaCalc.com',
+    siteName: 'NepaCalc',
     images: [
       {
         url: '/logo.png',
         width: 800,
         height: 800,
-        alt: 'NepaCal Logo',
+        alt: 'NepaCalc Logo',
       },
     ],
     locale: 'en_NP',
     type: 'website',
   },
   alternates: {
-    canonical: 'https://nepacalc.com/',
+    canonical: 'https://NepaCalc.com/',
     languages: {
-      'en-NP': 'https://nepacalc.com/',
-      'x-default': 'https://nepacalc.com/'
+      'en-NP': 'https://NepaCalc.com/',
+      'x-default': 'https://NepaCalc.com/'
     }
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Free Online Calculators for Nepal NepaCal",
-    description: "Nepals leading utility laboratory for high precision mathematical tools and financial planning. Try NepaCal now",
+    title: "Free Online Calculators for Nepal NepaCalc",
+    description: "Nepals leading utility laboratory for high precision mathematical tools and financial planning. Try NepaCalc now",
     images: ['/logo.png'],
   },
 };
@@ -93,26 +93,21 @@ const globalSchema = {
     {
       "@type": "Organization",
       "@id": "https://nepacalc.com/#organization",
-      "name": "NepaCal",
-      "alternateName": ["NEPACALC", "NepaCalc.com"],
+      "name": "NepaCalc",
+      "alternateName": ["NepaCalc", "NepaCalc.com"],
       "url": "https://nepacalc.com",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://nepacalc.com/apple-touch-icon.png",
-        "width": 512,
-        "height": 512
-      },
-      "image": "https://nepacalc.com/apple-touch-icon.png",
+      "logo": "https://nepacalc.com/logo.png",
+      "image": "https://nepacalc.com/logo.png",
       "sameAs": [
         "https://www.facebook.com/nepacalc",
-        "https://twitter.com/nepacalc"
+        "https://twitter.com/nepacalcnp"
       ]
     },
     {
       "@type": "WebSite",
       "@id": "https://nepacalc.com/#website",
       "url": "https://nepacalc.com",
-      "name": "NEPACALC",
+      "name": "NepaCalc",
       "description": "Free online scientific calculator with real-time graphing, maths solver, and 80+ professional calculators for Nepal.",
       "publisher": {
         "@id": "https://nepacalc.com/#organization"
@@ -126,7 +121,7 @@ const globalSchema = {
     {
       "@type": "WebApplication",
       "@id": "https://nepacalc.com/#calculator",
-      "name": "NEPACALC — Professional Mathematical & Engineering Suite",
+      "name": "NepaCalc — Professional Mathematical & Engineering Suite",
       "url": "https://nepacalc.com",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Any",

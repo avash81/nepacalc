@@ -62,7 +62,7 @@ export function Navbar() {
           
           {/* Left: Logo + Desktop Links */}
           <div className="flex items-center gap-14">
-            <Link href="/" className="hover:opacity-80 transition-opacity" aria-label="NEPACALC Home">
+            <Link href="/" className="hover:opacity-80 transition-opacity" aria-label="NepaCalc Home">
                <Logo size="sm" theme="indigo" />
             </Link>
             
@@ -151,7 +151,7 @@ export function Navbar() {
 
           <div className="p-8 border-t border-[#e8eaed] text-center text-[9px] font-black uppercase tracking-[0.2em] bg-[#f8f9fa]">
             <div className="text-[#FFC107] mb-2 bg-black py-2 rounded-md mx-4">Nepal Academic Edition</div>
-            <div className="text-[#5F6368]">© NEPACALC Laboratory</div>
+            <div className="text-[#5F6368]">© NepaCalc Laboratory</div>
           </div>
         </nav>
       </aside>

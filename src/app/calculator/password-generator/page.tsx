@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Secure Password Generator | Strong Random Pwd Online Nepal NepaCal",
+  title: "Secure Password Generator | Strong Random Pwd Online Nepal NepaCalc",
   description: "Generate high-entropy, secure random passwords instantly. Protect your online accounts in Nepal with custom length and special character options.",
   slug: 'password-generator',
   keywords: ["password generator nepal", "secure random password", "strong password maker", "random string generator", "online security tool", "high entropy passwords"],

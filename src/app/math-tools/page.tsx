@@ -5,10 +5,10 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Math & Education Calculators — GPA, Statistics, Calculus | NEPACALC',
-  description: 'Professional grade math calculators for GPA, statistics, calculus, algebra, and more. Academic tools for students and professionals. Try NEPACALC now.',
+  title: 'Math & Education Calculators — GPA, Statistics, Calculus | NepaCalc',
+  description: 'Professional grade math calculators for GPA, statistics, calculus, algebra, and more. Academic tools for students and professionals. Try NepaCalc now.',
   keywords: ['gpa calculator', 'statistics calculator', 'calculus solver', 'algebra calculator', 'math tools'],
-  alternates: { canonical: 'https://nepacalc.com/math-tools/' }
+  alternates: { canonical: 'https://NepaCalc.com/math-tools/' }
 };
 
 const TAGS: Record<string, string> = {
@@ -47,8 +47,8 @@ export default function MathToolsPillarPage() {
       <JsonLd
         type="breadcrumb"
         breadcrumbItems={[
-          { name: 'Home', item: 'https://nepacalc.com/' },
-          { name: 'Math Tools', item: 'https://nepacalc.com/math-tools/' }
+          { name: 'Home', item: 'https://NepaCalc.com/' },
+          { name: 'Math Tools', item: 'https://NepaCalc.com/math-tools/' }
         ]}
       />
       <CalcWrapper

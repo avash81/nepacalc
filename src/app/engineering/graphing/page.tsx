@@ -3,13 +3,13 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import GraphingCalculatorClient from './GraphingCalculatorClient';
 
 export const metadata: Metadata = {
-  title: 'Free Online Graphing Calculator — Plot Functions | NEPACALC',
+  title: 'Free Online Graphing Calculator — Plot Functions | NepaCalc',
   description: 'Interactive graphing calculator: plot multiple functions simultaneously with custom colors, infinite pan & zoom, real-time rendering. Supports sin, cos, tan, log, polynomials, and more. Free, no login required.',
   keywords: ['graphing calculator', 'function plotter', 'graph functions online', 'desmos alternative', 'plot equations', 'math grapher'],
   openGraph: {
-    title: 'Free Graphing Calculator | NEPACALC',
+    title: 'Free Graphing Calculator | NepaCalc',
     description: 'Plot multiple functions with custom colors, pan, zoom, and real-time rendering.',
-    url: 'https://nepacalc.com/engineering/graphing',
+    url: 'https://NepaCalc.com/engineering/graphing',
   },
 };
 
@@ -19,16 +19,16 @@ export default function GraphingPage() {
       <JsonLd
         type="breadcrumb"
         breadcrumbItems={[
-          { name: 'Home', item: 'https://nepacalc.com' },
-          { name: 'Engineering', item: 'https://nepacalc.com/engineering' },
-          { name: 'Graphing Calculator', item: 'https://nepacalc.com/engineering/graphing' }
+          { name: 'Home', item: 'https://NepaCalc.com' },
+          { name: 'Engineering', item: 'https://NepaCalc.com/engineering' },
+          { name: 'Graphing Calculator', item: 'https://NepaCalc.com/engineering/graphing' }
         ]}
       />
       <JsonLd
         type="calculator"
-        name="NEPACALC Graphing Calculator"
+        name="NepaCalc Graphing Calculator"
         description="Interactive graphing calculator with multi-expression support, custom colors, infinite pan & zoom."
-        url="https://nepacalc.com/engineering/graphing"
+        url="https://NepaCalc.com/engineering/graphing"
         category="EducationalApplication"
       />
       <GraphingCalculatorClient />
@@ -36,7 +36,7 @@ export default function GraphingPage() {
       <section className="mt-12 bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl shadow-slate-200/40">
         <h2 className="text-2xl font-black text-slate-900 mb-6 tracking-tight">Professional Graphing Intelligence</h2>
         <p className="text-slate-600 text-base leading-relaxed mb-6 font-medium">
-          NepaCal&apos;s High-Precision Graphing Engine is a professional-grade mathematical visualizer designed for students and engineers in Nepal. Unlike generic plotters, our engine utilizes a custom Pratt-parser to handle complex trigonometric, logarithmic, and polynomial functions with zero computational lag.
+          NepaCalc&apos;s High-Precision Graphing Engine is a professional-grade mathematical visualizer designed for students and engineers in Nepal. Unlike generic plotters, our engine utilizes a custom Pratt-parser to handle complex trigonometric, logarithmic, and polynomial functions with zero computational lag.
         </p>
         <p className="text-slate-600 text-base leading-relaxed mb-10">
           Visualize multiple functions simultaneously, customize color palettes for clarity, and explore mathematical relationships through an infinite Cartesian plane. Whether you&apos;re preparing for SEE exams or solving complex engineering variables, our tool provides the visual clarity needed for deep conceptual understanding.

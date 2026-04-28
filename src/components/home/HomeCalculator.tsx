@@ -60,7 +60,7 @@ export function HomeCalculator() {
           body: JSON.stringify({
             contents: [{
               parts: [{
-                text: `You are the NEPACALC Precision Logic Engine. Provide expert, clinical step-by-step logic for: "${solverInput}".
+                text: `You are the NepaCalc Precision Logic Engine. Provide expert, clinical step-by-step logic for: "${solverInput}".
                 RULES: 1. Plain text only. 2. No brand names (Google, Gemini, etc.). 3. Max 100 words. 4. Professional tone.`
               }]
             }]

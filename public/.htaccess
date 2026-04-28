@@ -36,6 +36,11 @@ RewriteRule ^calculator/gpa-to-percentage/?$ /calculator/cgpa/ [L,R=301]
 # Sitemap Fix
 RewriteRule ^sitemap\.html$ /sitemap/ [L,R=301]
 
+# Geometry Consolidation
+RewriteRule ^math-tools/geometry/?$ /engineering/geometry/ [L,R=301]
+RewriteRule ^math-tools/geometry\.html$ /engineering/geometry/ [L,R=301]
+RewriteRule ^calculator/geometry-3d/?$ /engineering/3d/ [L,R=301]
+
 # Wrong top-level paths
 RewriteRule ^exchange-rates/?$ /market-rates/exchange-rate/ [L,R=301]
 RewriteRule ^education/?$ /math-tools/ [L,R=301]

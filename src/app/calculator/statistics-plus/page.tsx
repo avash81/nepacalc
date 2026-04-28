@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Statistics Plus | Mean, Median, Mode & Range Nepal NepaCal",
+  title: "Statistics Plus | Mean, Median, Mode & Range Nepal NepaCalc",
   description: "Calculate descriptive statistics instantly. Find the mean, median, mode, and range for any dataset with our professional math tool for students in Nepal.",
   slug: 'statistics-plus',
   keywords: ["statistics calculator nepal", "calculate mean median mode", "descriptive statistics tool", "range calculator", "average calculator nepal", "math solver"],

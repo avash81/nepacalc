@@ -8,10 +8,10 @@ export const metadata: Metadata = {
   description: 'Compare remittance rates to Nepal from around the world. Live Western Union, IME, and Prabhu Remit NPR conversions.',
   keywords: ['remittance rates nepal', 'send money to nepal', 'ime rates today', 'western union npr rate', 'remittance board live'],
   alternates: {
-    canonical: 'https://nepacalc.com/market-rates/remittance/',
+    canonical: 'https://NepaCalc.com/market-rates/remittance/',
   },
   openGraph: {
-    title: 'Live Remittance Board Nepal | NEPACALC',
+    title: 'Live Remittance Board Nepal | NepaCalc',
     description: 'Track and compare remittance rates for Nepal from Middle East, USA, and Australia. Real-time transparency.',
     type: 'article',
   },

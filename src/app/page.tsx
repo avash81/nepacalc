@@ -8,29 +8,29 @@ import type { Metadata } from 'next';
 
 /* ── Homepage-specific metadata (overrides layout.tsx defaults) ── */
 export const metadata: Metadata = {
-  title: 'Free Online Calculator NepaCal Nepal',
+  title: 'Free Online Calculator NepaCalc Nepal',
   description:
-    'Use free online calculators for math finance health conversions and more. Nepals best calculator site with 100 plus tools. Try NepaCal now',
+    'Use free online calculators for math finance health conversions and more. Nepals best calculator site with 100 plus tools. Try NepaCalc now',
   keywords: [
     'online calculator', 'scientific calculator', 'graphing calculator',
     'maths solver', 'algebra solver', 'trigonometry calculator',
     'calculus calculator', 'nepal income tax calculator', 'EMI calculator',
-    'GPA calculator', 'free online calculator', 'nepacalc',
+    'GPA calculator', 'free online calculator', 'NepaCalc',
     'graphing tool', 'math plotter', 'function grapher',
   ],
   openGraph: {
-    title: 'Free Online Calculator NepaCal Nepal',
-    description: 'Use free online calculators for math finance health conversions and more. Nepals best calculator site with 100 plus tools. Try NepaCal now',
+    title: 'Free Online Calculator NepaCalc Nepal',
+    description: 'Use free online calculators for math finance health conversions and more. Nepals best calculator site with 100 plus tools. Try NepaCalc now',
     url: 'https://nepacalc.com',
-    siteName: 'NEPACALC',
+    siteName: 'NepaCalc',
     locale: 'en_NP',
     type: 'website',
     images: ['https://nepacalc.com/og-image.png']
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Online Calculator NepaCal Nepal',
-    description: 'Use free online calculators for math finance health conversions and more. Nepals best calculator site with 100 plus tools. Try NepaCal now',
+    title: 'Free Online Calculator NepaCalc Nepal',
+    description: 'Use free online calculators for math finance health conversions and more. Nepals best calculator site with 100 plus tools. Try NepaCalc now',
   },
   alternates: {
     canonical: 'https://nepacalc.com/',
@@ -38,11 +38,35 @@ export const metadata: Metadata = {
 };
 
 /* ── Homepage-specific JSON-LD schemas ── */
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'NepaCalc',
+  url: 'https://nepacalc.com',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://nepacalc.com/logo.png',
+    width: 300,
+    height: 60
+  },
+  sameAs: [
+    'https://github.com/avash81',
+    'https://www.linkedin.com/in/avash-chaudhary-6a8479364'
+  ]
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'NepaCalc',
+  url: 'https://nepacalc.com'
+};
+
 const homepageCalcSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
   '@id': 'https://nepacalc.com/#calculator',
-  name: 'NEPACALC Scientific Calculator & Graphing Engine',
+  name: 'NepaCalc Scientific Calculator & Graphing Engine',
   url: 'https://nepacalc.com',
   applicationCategory: 'EducationalApplication',
   applicationSubCategory: 'Scientific Calculator',
@@ -64,7 +88,7 @@ const homepageCalcSchema = {
   },
   creator: {
     '@type': 'Organization',
-    name: 'NEPACALC',
+    name: 'NepaCalc',
     url: 'https://nepacalc.com',
   },
 };
@@ -75,13 +99,13 @@ const homepageFaqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What types of calculators are available on NEPACALC?',
-      acceptedAnswer: { '@type': 'Answer', text: 'NEPACALC offers 80+ professional calculators including a scientific calculator, graphing tool, maths solver, Nepal income tax calculator, EMI calculator, and more.' },
+      name: 'What types of calculators are available on NepaCalc?',
+      acceptedAnswer: { '@type': 'Answer', text: 'NepaCalc offers 80+ professional calculators including a scientific calculator, graphing tool, maths solver, Nepal income tax calculator, EMI calculator, and more.' },
     },
     {
       '@type': 'Question',
-      name: 'Is NEPACALC free to use?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes, NEPACALC is 100% free with no registration required.' },
+      name: 'Is NepaCalc free to use?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes, NepaCalc is 100% free with no registration required.' },
     },
   ],
 };
@@ -94,6 +118,8 @@ export default function HomePage() {
         type="application/ld+json" 
         dangerouslySetInnerHTML={{ 
           __html: JSON.stringify([
+            organizationSchema,
+            websiteSchema,
             homepageCalcSchema,
             homepageFaqSchema
           ]) 

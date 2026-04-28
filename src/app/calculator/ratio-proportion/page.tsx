@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Ratio & Proportion Calculator | Solve A:B = C:D Equations Nepal NepaCal",
+  title: "Ratio & Proportion Calculator | Solve A:B = C:D Equations Nepal NepaCalc",
   description: "Free online ratio and proportion solver. Simplify ratios, calculate scaling, and solve for unknown values in any proportion equation instantly.",
   slug: 'ratio-proportion',
   keywords: ["ratio and proportion calculator nepal", "solve ratios", "ratio simplifier", "cross multiplication calculator", "proportion solver nepal", "math scaling tool"],

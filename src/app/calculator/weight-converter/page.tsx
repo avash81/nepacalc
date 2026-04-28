@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Weight Converter | Kilograms, Pounds & Tolas Online Nepal NepaCal",
+  title: "Weight Converter | Kilograms, Pounds & Tolas Online Nepal NepaCalc",
   description: "Convert between kg, lbs, grams, and traditional Nepal weight units instantly. Professional weight conversion tool for commerce and home use.",
   slug: 'weight-converter',
   keywords: ["weight converter nepal", "convert kg to lbs", "gram to kg calculator", "tola to gram converter", "mass converter tool", "measurement tool nepal"],

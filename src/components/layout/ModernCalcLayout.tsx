@@ -58,8 +58,9 @@ export function ModernCalcLayout({
     if (!title || !pathname || typeof window === 'undefined') return;
     try {
       const history = JSON.parse(localStorage.getItem('cp_recent') || '[]');
-      const current = { label: title, href: pathname };
-      const filtered = history.filter((h: any) => h.href !== pathname);
+      const normalizedPath = normalizeLink(pathname) as string;
+      const current = { label: title, href: normalizedPath };
+      const filtered = history.filter((h: any) => h.href !== normalizedPath);
       const newHistory = [current, ...filtered].slice(0, 12);
       localStorage.setItem('cp_recent', JSON.stringify(newHistory));
     } catch (e) {
@@ -154,14 +155,27 @@ export function ModernCalcLayout({
             </div>
             {ads?.inContent && <div className="flex justify-center no-print">{ads.inContent}</div>}
             {details && <div className="space-y-6">{details}</div>}
-            {relatedTools && (
-              <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-4 flex flex-wrap gap-2 items-center">
-                <span className="text-[11px] font-bold uppercase text-[#70757A] mr-2">Related:</span>
-                {relatedTools.map((tool, idx) => (
-                  <Link key={idx} href={normalizeLink(tool.href) as string} className="px-4 py-1.5 bg-white border border-[#DADCE0] rounded-full text-sm font-medium text-[#1A73E8] hover:bg-[#E8F0FE] hover:border-[#1A73E8] transition-all">
-                    {tool.label}
-                  </Link>
-                ))}
+            {/* Smart Internal Linking - Critical for Indexing all 80+ pages */}
+            {(relatedTools || (effectiveSlug && CALCULATORS.find(c => c.slug === effectiveSlug))) && (
+              <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-4">
+                <div className="flex items-center justify-between mb-3 px-1">
+                   <span className="text-[11px] font-black uppercase text-[#70757A] tracking-widest">Recommended Tools</span>
+                   <Link href="/calculators/" className="text-[10px] font-bold text-[#1A73E8] hover:underline uppercase">View All</Link>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {(relatedTools || CALCULATORS
+                    .filter(c => {
+                      const current = CALCULATORS.find(curr => curr.slug === effectiveSlug);
+                      return c.category === current?.category && c.slug !== effectiveSlug;
+                    })
+                    .slice(0, 5)
+                    .map(c => ({ label: c.name, href: `/calculator/${c.slug}/` }))
+                  ).map((tool, idx) => (
+                    <Link key={idx} href={normalizeLink(tool.href) as string} className="px-4 py-2 bg-white border border-[#DADCE0] rounded-lg text-xs font-bold text-[#3C4043] hover:text-[#1A73E8] hover:border-[#1A73E8] hover:shadow-sm transition-all">
+                      {tool.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             )}
             {(howToUse || formula) && (
@@ -198,7 +212,37 @@ export function ModernCalcLayout({
                 )}
               </div>
             )}
-            {enrichedSEO && <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm p-6 prose prose-sm max-w-none prose-slate text-[#3C4043] prose-headings:text-[#202124] prose-headings:font-bold prose-h2:text-lg prose-h3:text-base">{enrichedSEO}</div>}
+            {enrichedSEO ? (
+              <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm p-6 prose prose-sm max-w-none prose-slate text-[#3C4043] prose-headings:text-[#202124] prose-headings:font-bold prose-h2:text-lg prose-h3:text-base">
+                {enrichedSEO}
+              </div>
+            ) : (
+              <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm p-8">
+                <article className="prose prose-sm max-w-none prose-slate">
+                  <h2 className="text-xl font-bold text-[#202124] mb-4">About {title}</h2>
+                  <p className="leading-relaxed text-[#5F6368]">
+                    The <strong>{title}</strong> on NepaCalc is a professional-grade computational tool designed for accuracy and ease of use. {description} 
+                  </p>
+                  <p className="leading-relaxed text-[#5F6368] mt-4">
+                    As part of the NepaCalc Laboratory suite, this tool follows standard mathematical and institutional protocols to ensure that every calculation is precise. Whether you are using it for academic research, professional financial planning, or daily utility needs in Nepal, our engine provides reliable results instantly without requiring any registration or data entry beyond the necessary variables.
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-4 items-center border-t border-[#F1F3F4] pt-6">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#188038]" />
+                      <span className="text-[10px] font-black uppercase tracking-widest text-[#70757A]">High Precision</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#188038]" />
+                      <span className="text-[10px] font-black uppercase tracking-widest text-[#70757A]">Mobile Verified</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-[#188038]" />
+                      <span className="text-[10px] font-black uppercase tracking-widest text-[#70757A]">Free Forever</span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            )}
             {enrichedFAQs && enrichedFAQs.length > 0 && (
               <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
                 <div className="px-6 py-5 border-b border-[#DADCE0] flex items-center gap-3">
@@ -306,11 +350,17 @@ export function ModernCalcLayout({
       </div>
       {ads?.bottom && <div className="mt-8 flex justify-center no-print pb-20 lg:pb-8">{ads.bottom}</div>}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-[#DADCE0] px-4 py-2 flex justify-around items-center z-50">
-        {[ { label: 'Health', icon: Activity }, { label: 'Finance', icon: DollarSign }, { label: 'Math', icon: Calculator }, { label: 'Convert', icon: Home } ].map((item) => (
-          <button key={item.label} className="flex flex-col items-center gap-1 p-2">
+        {[ 
+          { label: 'Home', icon: Home, href: '/' },
+          { label: 'Health', icon: Activity, href: '/health/' }, 
+          { label: 'Finance', icon: DollarSign, href: '/finance/' }, 
+          { label: 'Math', icon: Calculator, href: '/math-tools/' }, 
+          { label: 'Convert', icon: TrendingUp, href: '/converters/' } 
+        ].map((item) => (
+          <Link key={item.label} href={item.href} className="flex flex-col items-center gap-1 p-2">
             <item.icon className="w-5 h-5 text-[#5F6368]" />
             <span className="text-[10px] font-medium text-[#5F6368]">{item.label}</span>
-          </button>
+          </Link>
         ))}
       </div>
     </div>

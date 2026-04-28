@@ -1,21 +1,14 @@
-import { Metadata } from 'next';
+import { calcMeta } from '@/lib/calcMeta';
 import GoldDashboardClient from './GoldDashboardClient';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
-export const metadata: Metadata = {
-  title: 'Live Gold Price Today Nepal | 24K & 22K Tola Gram NepaCal',
-  description: 'Track real-time gold rates in Nepal per tola and gram. Official FENEGOSIDA benchmarks for 24K Hallmark and 22K Tejabi gold jewelry.',
+export const metadata = calcMeta({
+  title: 'Live Gold Price in Nepal Today Per Tola Gram',
+  description: 'Real-time gold price in Nepal. 24K and 22K rates per tola and gram. Updated daily.',
+  slug: 'market-rates/live-gold-price',
   keywords: ['gold price nepal today', 'gold rate per tola', '24k gold price nepal', '22k gold price nepal', 'gold price kathmandu', 'fenegosida gold rate'],
-  alternates: {
-    canonical: 'https://nepacalc.com/market-rates/live-gold-price/',
-  },
-  openGraph: {
-    title: 'Live Gold Price Today Nepal | NEPACALC',
-    description: 'Track hallmark and tejabi gold rates in Nepal per tola and gram with live market updates.',
-    type: 'article',
-  },
-};
+});
 
 const GOLD_FAQS = [
   {

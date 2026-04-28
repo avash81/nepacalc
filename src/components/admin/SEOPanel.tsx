@@ -136,7 +136,7 @@ export default function SEOPanel({ data, onChange, onAutoGenerateSlug }: SEOPane
             {data.metaTitle || 'Your SEO Title Will Appear Here'}
           </div>
           <div className="text-[#006621] text-sm truncate">
-            nepacalc.com/blog/{data.slug || 'your-slug'}
+            NepaCalc.com/blog/{data.slug || 'your-slug'}
           </div>
           <div className="text-[#545454] text-sm line-clamp-2">
             {data.metaDescription || 'Your meta description will appear here. Make sure to include your focus keyword naturally to improve search rankings.'}

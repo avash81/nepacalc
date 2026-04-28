@@ -3,10 +3,10 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import GeometryCanvasClient from './GeometryCanvasClient';
 
 export const metadata: Metadata = {
-  title: 'Free Interactive Geometry Tool — Constructions | NEPACALC',
+  title: 'Free Interactive Geometry Tool — Constructions | NepaCalc',
   description: 'Interactive geometry canvas: construct points, lines, circles, and polygons with real-time measurements. Drag objects, measure angles and distances. Free online geometry tool.',
   keywords: ['geometry tool', 'interactive geometry', 'draw circles online', 'geometry canvas', 'compass and straightedge', 'measure angles online'],
-  openGraph: { title: 'Free Geometry Tool | NEPACALC', description: 'Interactive constructions with measurements.', url: 'https://nepacalc.com/engineering/geometry' },
+  openGraph: { title: 'Free Geometry Tool | NepaCalc', description: 'Interactive constructions with measurements.', url: 'https://NepaCalc.com/engineering/geometry' },
 };
 
 export default function GeometryPage() {
@@ -15,18 +15,18 @@ export default function GeometryPage() {
       <JsonLd
         type="breadcrumb"
         breadcrumbItems={[
-          { name: 'Home', item: 'https://nepacalc.com' },
-          { name: 'Engineering', item: 'https://nepacalc.com/engineering' },
-          { name: 'Geometry Canvas', item: 'https://nepacalc.com/engineering/geometry' }
+          { name: 'Home', item: 'https://NepaCalc.com' },
+          { name: 'Engineering', item: 'https://NepaCalc.com/engineering' },
+          { name: 'Geometry Canvas', item: 'https://NepaCalc.com/engineering/geometry' }
         ]}
       />
-      <JsonLd type="calculator" name="NEPACALC Geometry Canvas" description="Interactive geometry construction tool with points, lines, circles, polygons and measurements." url="https://nepacalc.com/engineering/geometry" category="EducationalApplication" />
+      <JsonLd type="calculator" name="NepaCalc Geometry Canvas" description="Interactive geometry construction tool with points, lines, circles, polygons and measurements." url="https://NepaCalc.com/engineering/geometry" category="EducationalApplication" />
       <GeometryCanvasClient />
     
       <section className="mt-12 bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl shadow-slate-200/40">
         <h2 className="text-2xl font-black text-slate-900 mb-6 tracking-tight">Interactive Euclidean Constructions</h2>
         <p className="text-slate-600 text-base leading-relaxed mb-6 font-medium">
-          The Interactive Geometry Canvas by NepaCal is a digital laboratory for Euclidean constructions. Built specifically for the Nepalese curriculum (SEE and NEB), this tool allows you to construct points, lines, circles, and complex polygons with millimeter precision.
+          The Interactive Geometry Canvas by NepaCalc is a digital laboratory for Euclidean constructions. Built specifically for the Nepalese curriculum (SEE and NEB), this tool allows you to construct points, lines, circles, and complex polygons with millimeter precision.
         </p>
         <p className="text-slate-600 text-base leading-relaxed mb-10">
           Features include real-time angle measurement, distance tracking, and object snapping, making it the perfect companion for geometry assignments, architectural sketching, and mathematical proofs. Explore the world of shapes with a tool that feels as natural as a compass and straightedge but with digital accuracy.

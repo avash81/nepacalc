@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Solar Requirement Calculator | Panel & Battery Estimator Nepal NepaCal",
+  title: "Solar Requirement Calculator | Panel & Battery Estimator Nepal NepaCalc",
   description: "Calculate your home solar system requirements in Nepal. Estimate panel wattage, battery backup (Ah), and inverter size for your household load.",
   slug: 'solar-requirement',
   keywords: ["solar calculator nepal", "solar panel requirement", "battery backup calculator", "solar system for home nepal", "load calculation for solar", "renewable energy nepal"],

@@ -2,7 +2,7 @@ import { ProgrammerApp } from '@/components/ecosystem/ProgrammerApp';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Programmer Logic Terminal — NEPACALC',
+  title: 'Programmer Logic Terminal — NepaCalc',
   description: 'High-precision base converter (Hex, Bin, Dec, Oct) with 64-bit interactive logic and bitwise gates. Digital engineering laboratory.',
   keywords: ['programmer calculator', 'base converter', 'binary calculator', 'hex to decimal', 'bitwise operations'],
 };

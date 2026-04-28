@@ -3,9 +3,9 @@ import { Mail, MessageCircle, MapPin, Globe, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | NEPACALC Support',
-  description: 'Need help or have a feature request? Contact the NEPACALC research team for support or business inquiries.',
-  alternates: { canonical: 'https://nepacalc.com/contact/' },
+  title: 'Contact Us | NepaCalc Support',
+  description: 'Need help or have a feature request? Contact the NepaCalc research team for support or business inquiries.',
+  alternates: { canonical: 'https://NepaCalc.com/contact/' },
 };
 
 export default function ContactPage() {
@@ -32,8 +32,8 @@ export default function ContactPage() {
               <h2 className="text-2xl font-black text-gray-900 mb-2">Support & Business</h2>
               <p className="text-sm text-gray-400 mb-8 font-black uppercase tracking-widest">Available 24/7</p>
               <div className="flex flex-col gap-4">
-                 <a href="mailto:support@nepacalc.com" className="text-xl font-black text-blue-600 hover:scale-105 transition-all">support@nepacalc.com</a>
-                 <a href="mailto:contact@nepacalc.com" className="text-xl font-black text-slate-900 hover:scale-105 transition-all">contact@nepacalc.com</a>
+                 <a href="mailto:support@NepaCalc.com" className="text-xl font-black text-blue-600 hover:scale-105 transition-all">support@NepaCalc.com</a>
+                 <a href="mailto:contact@NepaCalc.com" className="text-xl font-black text-slate-900 hover:scale-105 transition-all">contact@NepaCalc.com</a>
               </div>
            </div>
 

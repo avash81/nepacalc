@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Z-Score Calculator | Normal Distribution & Probability Nepal NepaCal",
+  title: "Z-Score Calculator | Normal Distribution & Probability Nepal NepaCalc",
   description: "Calculate Z-scores and find probabilities using the standard normal distribution. Professional statistical tool for students and researchers in Nepal.",
   slug: 'z-score',
   keywords: ["z-score calculator nepal", "calculate standard score", "normal distribution calculator", "p-value from z-score", "statistics tool nepal", "z-table calculator"],

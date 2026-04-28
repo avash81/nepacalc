@@ -40,12 +40,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const calculatorPages = CALCULATORS.map((calc) => {
     const isDirectRoute = calc.slug.includes('/');
     const isMarketRate = calc.category === 'market' || calc.slug.includes('market-rates');
+    const isCritical = ['nepal-income-tax', 'nepal-salary', 'loan-emi', 'sip-calculator', 'nepal-land'].includes(calc.id);
     
     return {
       url: isDirectRoute ? `${baseUrl}/${calc.slug}/` : `${baseUrl}/calculator/${calc.slug}/`,
-      lastModified: isMarketRate ? new Date() : new Date('2026-04-24T12:00:00Z'),
-      changeFrequency: isMarketRate ? ('hourly' as const) : ('monthly' as const),
-      priority: 0.7,
+      lastModified: (isMarketRate || isCritical) ? new Date() : new Date('2026-04-24T12:00:00Z'),
+      changeFrequency: isMarketRate ? ('hourly' as const) : (isCritical ? 'daily' as const : 'weekly' as const),
+      priority: isCritical ? 0.9 : 0.75,
     };
   });
 

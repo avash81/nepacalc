@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Simple Calculator | Online Basic Arithmetic Tool Nepal NepaCal",
+  title: "Simple Calculator | Online Basic Arithmetic Tool Nepal NepaCalc",
   description: "Free online simple calculator for addition, subtraction, multiplication, and division. Fast, responsive basic math tool for daily calculations in Nepal.",
   slug: 'simple-calculator',
   keywords: ["simple calculator nepal", "online basic calculator", "arithmetic calculator", "free math tool", "quick calculation nepal", "keyboard shortcut calculator"],

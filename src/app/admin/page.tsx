@@ -55,7 +55,7 @@ export default function AdminDashboard() {
           <div>
             <h1 className="text-[22px] font-semibold text-gray-800 tracking-tight">Dashboard</h1>
             <p className="text-[13px] text-gray-500 mt-0.5">
-              {user?.email || 'Admin'} · nepacalc.com
+              {user?.email || 'Admin'} · NepaCalc.com
             </p>
           </div>
           <div className="flex items-center gap-3">

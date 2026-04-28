@@ -5,10 +5,10 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Engineering Calculators — Physics, Chemistry, 3D Plotting | NEPACALC',
-  description: 'Professional engineering calculators for physics, chemistry, matrices, structural design, and 3D surface plotting. Try NEPACALC now.',
+  title: 'Engineering Calculators — Physics, Chemistry, 3D Plotting | NepaCalc',
+  description: 'Professional engineering calculators for physics, chemistry, matrices, structural design, and 3D surface plotting. Try NepaCalc now.',
   keywords: ['engineering calculator', 'physics calculator', 'chemistry calculator', '3d plotter', 'matrix calculator'],
-  alternates: { canonical: 'https://nepacalc.com/engineering/' }
+  alternates: { canonical: 'https://NepaCalc.com/engineering/' }
 };
 
 const TAGS: Record<string, string> = {
@@ -36,8 +36,8 @@ export default function EngineeringPillarPage() {
       <JsonLd
         type="breadcrumb"
         breadcrumbItems={[
-          { name: 'Home', item: 'https://nepacalc.com/' },
-          { name: 'Engineering', item: 'https://nepacalc.com/engineering/' }
+          { name: 'Home', item: 'https://NepaCalc.com/' },
+          { name: 'Engineering', item: 'https://NepaCalc.com/engineering/' }
         ]}
       />
       <CalcWrapper

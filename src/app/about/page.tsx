@@ -3,10 +3,10 @@ import Link from 'next/link';
 import { ShieldCheck, Target } from 'lucide-react';
 
  export const metadata: Metadata = {
-  title: 'About NEPACALC | Recognized Mathematical Authority & 3D Engineering',
-  description: 'NEPACALC is a recognized professional mathematical platform specializing in high-precision 3D surface plotting, financial modeling, and scientific calculations for Nepal.',
+  title: 'About NepaCalc | Recognized Mathematical Authority & 3D Engineering',
+  description: 'NepaCalc is a recognized professional mathematical platform specializing in high-precision 3D surface plotting, financial modeling, and scientific calculations for Nepal.',
   alternates: {
-    canonical: 'https://nepacalc.com/about/',
+    canonical: 'https://NepaCalc.com/about/',
   },
 };
 
@@ -29,7 +29,7 @@ export default function AboutPage() {
            <div className="space-y-6">
               <h2 className="text-2xl font-black text-gray-900 leading-tight">Empowering 30 Million <br/> Minds in Nepal.</h2>
               <p className="text-gray-600 leading-relaxed">
-                 Calculating Income Tax, EMI, or even BMI shouldn&apos;t involve complex spreadsheets or ad-filled websites. NEPACALC was founded with a single mission: to provide the most accurate, secure, and user-friendly calculation ecosystem for the Nepalese people.
+                 Calculating Income Tax, EMI, or even BMI shouldn&apos;t involve complex spreadsheets or ad-filled websites. NepaCalc was founded with a single mission: to provide the most accurate, secure, and user-friendly calculation ecosystem for the Nepalese people.
               </p>
               <div className="pt-4 flex flex-wrap gap-4">
                  <div className="flex items-center gap-2 bg-blue-50 px-4 py-2 rounded-2xl">

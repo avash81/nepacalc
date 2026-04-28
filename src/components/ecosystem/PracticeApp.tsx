@@ -58,7 +58,7 @@ export function PracticeApp() {
               <div className="flex items-center gap-4">
                  <div className="flex items-center gap-2 px-3 py-1 bg-indigo-600 rounded-full">
                     <Shield className="w-4 h-4" />
-                    <span className="text-xs font-black uppercase tracking-widest italic">NEPACALC Practice Mode</span>
+                    <span className="text-xs font-black uppercase tracking-widest italic">NepaCalc Practice Mode</span>
                  </div>
                  <div className="h-4 w-px bg-slate-700" />
                  <span className="text-xs font-bold text-slate-400 uppercase tracking-tighter">Tool: {tool}</span>
@@ -106,7 +106,7 @@ export function PracticeApp() {
                </h1>
                <p className="text-slate-500 leading-relaxed font-medium">
                   Practice for the SAT, ACT, or IB exams in a distraction-free, timed workspace. 
-                  This mode simulates the official NEPACALC testing boundaries.
+                  This mode simulates the official NepaCalc testing boundaries.
                </p>
             </div>
 

@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Paint Cost Calculator | Wall Area & Budget Estimator Nepal NepaCal",
+  title: "Paint Cost Calculator | Wall Area & Budget Estimator Nepal NepaCalc",
   description: "Estimate the cost of painting your home in Nepal. Calculate paint quantity (liters), primer needs, and labor costs for interior and exterior walls.",
   slug: 'paint-cost',
   keywords: ["paint cost calculator nepal", "wall painting budget", "paint quantity estimator", "interior painting cost nepal", "asian paints price calculator", "berger paints coverage"],

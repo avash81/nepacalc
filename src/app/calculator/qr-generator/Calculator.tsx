@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Download, QrCode } from 'lucide-react';
 
 export default function QRGenerator() {
-  const [text, setText] = useState('https://nepacalc.com');
+  const [text, setText] = useState('https://NepaCalc.com');
   const [size, setSize] = useState(300);
 
   const qrUrl = useMemo(
@@ -48,9 +48,9 @@ export default function QRGenerator() {
             <label className="text-xs font-bold uppercase text-slate-500 tracking-wider">Useful Presets</label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
-                { label: 'Website URL',   val: 'https://nepacalc.com' },
+                { label: 'Website URL',   val: 'https://NepaCalc.com' },
                 { label: 'Phone Number',  val: 'tel:+9779800000000' },
-                { label: 'Email Link',    val: 'mailto:contact@nepacalc.com' },
+                { label: 'Email Link',    val: 'mailto:contact@NepaCalc.com' },
                 { label: 'WiFi Access',   val: 'WIFI:T:WPA;S:MyNetwork;P:mypassword;;' },
               ].map(p => (
                 <button key={p.label} onClick={() => setText(p.val)}

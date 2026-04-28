@@ -118,7 +118,7 @@ export function ThreeDApp() {
          </div>
 
          <div className="p-4 bg-slate-100 border-t border-slate-200 text-center">
-            <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">NEPACALC 3D Engine</div>
+            <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">NepaCalc 3D Engine</div>
          </div>
       </div>
 

@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Physics Force Calculator | Newton's Second Law (F=ma) Nepal NepaCal",
+  title: "Physics Force Calculator | Newton's Second Law (F=ma) Nepal NepaCalc",
   description: "Calculate force, mass, or acceleration instantly using Newton's Second Law. Professional physics tool for students and engineers in Nepal.",
   slug: 'physics-force',
   keywords: ["force calculator nepal", "calculate f=ma", "newton's second law calculator", "physics solver nepal", "force mass acceleration tool", "academic physics"],

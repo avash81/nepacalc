@@ -29,9 +29,9 @@ export function MathTopNav() {
       <JsonLd 
          type="breadcrumb"
          breadcrumbItems={[
-           { name: 'Home', item: 'https://nepacalc.com' },
-           { name: 'Math Tools', item: 'https://nepacalc.com/directory' },
-           { name: activeLink.name, item: `https://nepacalc.com${activeLink.path}` }
+           { name: 'Home', item: 'https://NepaCalc.com' },
+           { name: 'Math Tools', item: 'https://NepaCalc.com/directory' },
+           { name: activeLink.name, item: `https://NepaCalc.com${activeLink.path}` }
          ]}
       />
       <header className="h-[44px] w-full bg-[#f8f9fa] border-b border-[#e8eaed] flex items-center justify-between px-4 sm:px-6 select-none relative z-[50]">

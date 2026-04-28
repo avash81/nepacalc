@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Kinetic Energy Calculator | Physics (1/2mv²) Nepal NepaCal",
+  title: "Kinetic Energy Calculator | Physics (1/2mv²) Nepal NepaCalc",
   description: "Calculate kinetic energy, mass, or velocity instantly using the KE = ½mv² formula. Professional physics tool for students and researchers in Nepal.",
   slug: 'physics-energy',
   keywords: ["kinetic energy calculator nepal", "calculate physics energy", "1/2mv2 formula", "physics solver nepal", "energy mass velocity calc", "academic physics tool"],

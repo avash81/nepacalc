@@ -53,7 +53,7 @@ export default function AdminLoginPage() {
           <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-600 rounded-xl mb-4 shadow-lg">
             <span className="text-white font-bold text-sm">NC</span>
           </div>
-          <h1 className="text-[20px] font-semibold text-gray-800">Sign in to NepaCal</h1>
+          <h1 className="text-[20px] font-semibold text-gray-800">Sign in to NepaCalc</h1>
           <p className="text-[13px] text-gray-500 mt-1">Admin dashboard access</p>
         </div>
 
@@ -69,7 +69,7 @@ export default function AdminLoginPage() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 required
-                placeholder="you@nepacalc.com"
+                placeholder="you@NepaCalc.com"
                 className="w-full border border-gray-300 rounded-lg px-3.5 py-2.5 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
               />
             </div>
@@ -110,7 +110,7 @@ export default function AdminLoginPage() {
         </div>
 
         <p className="text-center text-[12px] text-gray-400 mt-6">
-          NepaCal Admin · Protected
+          NepaCalc Admin · Protected
         </p>
       </div>
     </div>

@@ -29,12 +29,12 @@ const CURRENCY_META: Record<string, { label: string; symbol: string; flag: strin
   KWD: { label: 'Kuwaiti Dinar', symbol: 'د.ك', flag: '🇰🇼' },
 };
 
-const CACHE_KEY = 'NEPACALC_currency_rates_v4';
+const CACHE_KEY = 'NepaCalc_currency_rates_v4';
 const CACHE_TTL = 30 * 60 * 1000;
 interface RateCache { rates: Record<string, number>; fetchedAt: number; }
 
 export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: boolean }) {
-  const [state, setState] = useLocalStorage('NEPACALC_currency_v3', { fromCurrency: 'USD', amount: 100 });
+  const [state, setState] = useLocalStorage('NepaCalc_currency_v3', { fromCurrency: 'USD', amount: 100 });
   const { fromCurrency, amount } = state;
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 

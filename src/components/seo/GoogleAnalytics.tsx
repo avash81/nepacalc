@@ -57,7 +57,7 @@ export function GoogleAnalytics() {
       window.addEventListener(evt, load, { passive: true, once: true })
     );
 
-    timer = setTimeout(load, 8000);
+    timer = setTimeout(load, 12000);
 
     return () => {
       ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(evt => 

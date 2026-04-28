@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | NEPACALC',
-  description: 'Learn how NEPACALC handles your data. We prioritize your privacy: zero data collection, local browser calculations, and no registration required.',
+  title: 'Privacy Policy | NepaCalc',
+  description: 'Learn how NepaCalc handles your data. We prioritize your privacy: zero data collection, local browser calculations, and no registration required.',
   alternates: {
-    canonical: 'https://nepacalc.com/privacy/',
+    canonical: 'https://NepaCalc.com/privacy/',
   },
 };
 
@@ -15,7 +15,7 @@ export default function PrivacyPage() {
         Privacy Policy
       </h1>
       <div className="prose text-gray-600 text-sm space-y-4">
-        <p>NEPACALC does not collect or store any personal data.
+        <p>NepaCalc does not collect or store any personal data.
           All calculations happen entirely in your browser.
           No user data is sent to our servers.</p>
         <p>We do not require registration. We do not use
@@ -23,7 +23,7 @@ export default function PrivacyPage() {
         <p>Google Analytics may be used to track anonymous
           page views to improve our service. You can opt out
           using browser extensions.</p>
-        <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:contact@nepacalc.com" className="text-blue-600 hover:underline">contact@nepacalc.com</a>.</p>
+        <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:contact@NepaCalc.com" className="text-blue-600 hover:underline">contact@NepaCalc.com</a>.</p>
         <p>Last updated: {new Date().getFullYear()}</p>
       </div>
     </div>

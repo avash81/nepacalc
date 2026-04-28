@@ -5,10 +5,10 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Unit Converters & Utility Tools — Length, Weight, Date | NEPACALC',
-  description: 'Free online unit converters for length, weight, date, currency, binary, and more. Fast and precise daily utility tools. Try NEPACALC now.',
+  title: 'Unit Converters & Utility Tools — Length, Weight, Date | NepaCalc',
+  description: 'Free online unit converters for length, weight, date, currency, binary, and more. Fast and precise daily utility tools. Try NepaCalc now.',
   keywords: ['unit converter', 'length converter', 'weight converter', 'binary converter', 'date calculator'],
-  alternates: { canonical: 'https://nepacalc.com/converters/' }
+  alternates: { canonical: 'https://NepaCalc.com/converters/' }
 };
 
 const TAGS: Record<string, string> = {
@@ -36,8 +36,8 @@ export default function ConvertersPillarPage() {
       <JsonLd
         type="breadcrumb"
         breadcrumbItems={[
-          { name: 'Home', item: 'https://nepacalc.com/' },
-          { name: 'Converters', item: 'https://nepacalc.com/converters/' }
+          { name: 'Home', item: 'https://NepaCalc.com/' },
+          { name: 'Converters', item: 'https://NepaCalc.com/converters/' }
         ]}
       />
       <CalcWrapper

@@ -4,9 +4,9 @@ import { ArrowLeft } from 'lucide-react';
 
 export const metadata = {
   title: 'Full Site Index — Complete HTML Sitemap',
-  description: 'A comprehensive, human-readable directory of every tool and calculator available on NEPACALC. Organized for optimal crawlability and ease of use.',
+  description: 'A comprehensive, human-readable directory of every tool and calculator available on NepaCalc. Organized for optimal crawlability and ease of use.',
   alternates: {
-    canonical: 'https://nepacalc.com/sitemap/',
+    canonical: 'https://NepaCalc.com/sitemap/',
   },
 };
 
@@ -34,7 +34,7 @@ export default function HTMLSitemap() {
           <header className="mb-8 border-b border-slate-200 pb-8">
              <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-3">HTML Sitemap</h1>
              <p className="text-slate-600 font-medium">
-               Complete hierarchical index of the NEPACALC platform. This document outlines our entire organizational structure to assist both users and search engines.
+               Complete hierarchical index of the NepaCalc platform. This document outlines our entire organizational structure to assist both users and search engines.
              </p>
           </header>
 

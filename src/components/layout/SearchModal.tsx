@@ -54,7 +54,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
       }
       if (e.key === 'Enter' && results[activeIndex]) {
         const c = results[activeIndex];
-        router.push(c.slug.includes('/') ? `/${c.slug}` : `/calculator/${c.slug}`);
+        router.push(c.slug.includes('/') ? `/${c.slug}/` : `/calculator/${c.slug}/`);
         onClose();
       }
     };
@@ -107,7 +107,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                 <button
                   key={c.id}
                   onClick={() => {
-                    router.push(c.slug.includes('/') ? `/${c.slug}` : `/calculator/${c.slug}`);
+                    router.push(c.slug.includes('/') ? `/${c.slug}/` : `/calculator/${c.slug}/`);
                     onClose();
                   }}
                   onMouseEnter={() => setActiveIndex(i)}
@@ -136,7 +136,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                    <button
                      key={c.id}
                      onClick={() => {
-                       router.push(c.slug.includes('/') ? `/${c.slug}` : `/calculator/${c.slug}`);
+                        router.push(c.slug.includes('/') ? `/${c.slug}/` : `/calculator/${c.slug}/`);
                        onClose();
                      }}
                      className="flex items-center gap-3 p-3 rounded-xl border border-[var(--border)] hover:border-[var(--primary)] hover:bg-[var(--primary-light)] transition-all text-left group"

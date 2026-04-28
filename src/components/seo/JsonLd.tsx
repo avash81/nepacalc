@@ -23,10 +23,10 @@ interface JsonLdProps {
 const INSTITUTIONAL_FAQS = [
   { 
     question: "How accurate is this calculator for professional use in Nepal?", 
-    answer: "NEPACALC uses high-precision floating point arithmetic verified against Nepal Inland Revenue Department (IRD) guidelines and international financial standards. It's suitable for professional planning, internal audits, and academic documentation." 
+    answer: "NepaCalc uses high-precision floating point arithmetic verified against Nepal Inland Revenue Department (IRD) guidelines and international financial standards. It's suitable for professional planning, internal audits, and academic documentation." 
   },
   { 
-    question: "Does NEPACALC store my personal calculation data?", 
+    question: "Does NepaCalc store my personal calculation data?", 
     answer: "No. Privacy is our priority. All calculations are performed entirely on your device (client-side). Your inputs are never transmitted to our servers or stored in any database." 
   },
   { 
@@ -41,7 +41,7 @@ const INSTITUTIONAL_FAQS = [
 
 export function JsonLd({ type, name, description, url, faqs, category = 'UtilitiesApplication', breadcrumbItems }: JsonLdProps) {
   const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://nepacalc.com';
-  const siteName = 'NEPACALC';
+  const siteName = 'NepaCalc';
   
   const finalFaqs = (faqs && faqs.length > 0) ? faqs : [];
 
@@ -86,7 +86,7 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
     calculator: {
       '@context': 'https://schema.org',
       '@type': 'SoftwareApplication',
-      name: name || 'NEPACALC Laboratory Tool',
+      name: name || 'NepaCalc Laboratory Tool',
       description: description || 'Professional mathematical visualization and calculation tool.',
       url: url || base,
       applicationCategory: schemaCategory,
@@ -98,7 +98,7 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
       },
       author: {
         '@type': 'Organization',
-        name: 'NEPACALC',
+        name: 'NepaCalc',
         url: base,
       },
       featureList: [

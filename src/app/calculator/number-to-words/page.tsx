@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Number to Words Converter | Lakh & Crore Cheque Writer Nepal NepaCal",
+  title: "Number to Words Converter | Lakh & Crore Cheque Writer Nepal NepaCalc",
   description: "Convert numbers to words instantly using the South Asian (Lakh/Crore) or International (Million/Billion) system. Perfect for writing cheques in Nepal.",
   slug: 'number-to-words',
   keywords: ["number to words converter nepal", "lakh crore converter", "cheque writing tool", "convert digits to words", "south asian numbering system", "nepal financial tools"],

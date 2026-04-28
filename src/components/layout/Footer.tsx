@@ -1,25 +1,65 @@
-'use client';
 import Link from 'next/link';
+import { CATEGORIES, CALCULATORS } from '@/data/calculators';
 
 export function Footer() {
   const year = new Date().getFullYear();
+  
+  // Categorized links for SEO indexing
+  const footerLinks = [
+    { title: "Nepal Tools", items: CALCULATORS.filter(c => c.category === 'nepal').slice(0, 10) },
+    { title: "Finance & Health", items: CALCULATORS.filter(c => ['finance', 'health'].includes(c.category)).slice(0, 10) },
+    { title: "Math & Engineering", items: CALCULATORS.filter(c => ['education', 'engineering'].includes(c.category)).slice(0, 10) },
+  ];
+
   return (
-    <footer className="bg-[#f2f2f2] text-[#5f6368] pt-4 pb-20 sm:pb-2 sm:pt-2 no-print border-t border-[#dadce0] text-[13px]">
-      <div className="hp-container flex flex-wrap justify-center sm:justify-end items-center gap-2">
-        <Link href="/blog/" className="hover:text-[#3c4043] transition-colors">blog</Link>
-        <span className="text-[#70757a]">|</span>
-        <Link href="/about/" className="hover:text-[#3c4043] transition-colors">about us</Link>
-        <span className="text-[#70757a]">|</span>
-        <Link href="/sitemap/" className="hover:text-[#3c4043] transition-colors">sitemap</Link>
-        <span className="text-[#70757a]">|</span>
-        <Link href="/terms/" className="hover:text-[#3c4043] transition-colors">terms of use</Link>
-        <span className="text-[#70757a]">|</span>
-        <Link href="/privacy/" className="hover:text-[#3c4043] transition-colors">privacy policy</Link>
-        <span className="text-[#70757a]">|</span>
-        <Link href="/contact/" className="hover:text-[#3c4043] transition-colors font-bold">contact us</Link>
-        <span className="text-[#70757a]">|</span>
-        <a href="mailto:support@nepacalc.com" className="hover:text-[#3c4043] transition-colors font-bold">support@nepacalc.com</a>
-        <span className="ml-2">© {year} NEPACALC — Official Platform</span>
+    <footer className="bg-[#1a1a1a] text-[#bdc1c6] pt-16 pb-8 no-print border-t border-[#3c4043] text-[13px]">
+      <div className="max-w-[1280px] mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          {/* Brand Column */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl font-black text-white tracking-tighter">Nepa<span className="text-[#1A73E8]">Calc</span></span>
+            </div>
+            <p className="text-xs leading-relaxed text-[#9aa0a6] font-medium">
+              Nepal&apos;s leading platform for high-precision calculators, converters, and engineering tools. Built for accuracy, localized for Nepal.
+            </p>
+            <div className="flex flex-col gap-2">
+              <a href="mailto:support@nepacalc.com" className="text-[#1A73E8] font-bold hover:underline">support@nepacalc.com</a>
+              <p className="text-[10px] uppercase font-black tracking-widest text-[#5f6368]">Verified Authority Site</p>
+            </div>
+          </div>
+
+          {/* Dynamic Columns for Indexing */}
+          {footerLinks.map((col, idx) => (
+            <div key={idx}>
+              <h3 className="text-white font-black uppercase text-[11px] tracking-widest mb-6 border-l-4 border-[#1A73E8] pl-3">{col.title}</h3>
+              <ul className="space-y-3">
+                {col.items.map((item) => (
+                  <li key={item.slug}>
+                    <Link href={`/calculator/${item.slug}/`} className="text-[#9aa0a6] hover:text-[#1A73E8] transition-colors font-medium hover:pl-1 duration-200 block">
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-[#3c4043] pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 font-bold uppercase text-[10px] tracking-wider">
+            <Link href="/blog/" className="hover:text-white transition-colors">Blog</Link>
+            <Link href="/about/" className="hover:text-white transition-colors">About</Link>
+            <Link href="/sitemap/" className="hover:text-white transition-colors">Sitemap</Link>
+            <Link href="/terms/" className="hover:text-white transition-colors">Terms</Link>
+            <Link href="/privacy/" className="hover:text-white transition-colors">Privacy</Link>
+            <Link href="/contact/" className="hover:text-white transition-colors">Contact</Link>
+          </div>
+          <div className="text-[#70757a] text-[11px] font-medium">
+            © {year} NepaCalc Platform — All Rights Reserved.
+          </div>
+        </div>
       </div>
     </footer>
   );

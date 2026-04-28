@@ -46,7 +46,7 @@ export function ResultDisplay({
   const handleCopy = async () => {
     const textToCopy = `${title}: ${primaryResult.value} ${typeof primaryResult.description === 'string' ? primaryResult.description : ''}\n` +
       secondaryResults.map(r => `${r.label}: ${r.value}`).join('\n') + 
-      `\nCalculated on NEPACALC — ${window.location.href}`;
+      `\nCalculated on NepaCalc — ${window.location.href}`;
       
     try {
       await navigator.clipboard.writeText(textToCopy);

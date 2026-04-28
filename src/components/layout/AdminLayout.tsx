@@ -86,7 +86,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                  <NepalFlag className="w-6 h-6" />
               </div>
               <div className="flex flex-col">
-                <span className="text-[15px] font-black text-white tracking-tight leading-none uppercase italic">NEPACALC</span>
+                <span className="text-[15px] font-black text-white tracking-tight leading-none uppercase italic">NepaCalc</span>
                 <span className="text-[9px] font-black text-blue-500 uppercase tracking-[0.2em] mt-1">Command Center</span>
               </div>
             </Link>

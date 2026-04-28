@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Pregnancy Due Date Calculator | Estimated Delivery Date NepaCal",
+  title: "Pregnancy Due Date Calculator | Estimated Delivery Date NepaCalc",
   description: "Calculate your pregnancy due date (EDD) based on your last menstrual period or conception date. Track your pregnancy milestones week by week.",
   slug: 'pregnancy-due-date',
   keywords: ["pregnancy due date calculator", "edd calculator", "pregnancy weeks", "last menstrual period", "conception date calculator", "nepal health tools"],

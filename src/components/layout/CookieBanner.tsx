@@ -22,7 +22,7 @@ export function CookieBanner() {
     );
 
     // Fallback if no interaction
-    timer = setTimeout(showBanner, 8000);
+    timer = setTimeout(showBanner, 12000);
 
     return () => {
       ['scroll', 'mousemove', 'touchstart', 'keydown'].forEach(evt => 
@@ -49,7 +49,7 @@ export function CookieBanner() {
           <div className="flex-1 min-w-0">
             <span className="block text-[12px] font-black uppercase tracking-widest text-blue-400 mb-1">Privacy Compliance</span>
             <p className="text-[11px] font-medium leading-relaxed text-white">
-              NEPACALC uses session metadata to ensure calculation precision and analytical integrity.
+              NepaCalc uses session metadata to ensure calculation precision and analytical integrity.
               By continuing, you verify compliance with our professional privacy standards.
             </p>
           </div>

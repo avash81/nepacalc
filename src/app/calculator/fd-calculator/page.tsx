@@ -2,8 +2,8 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: "FD Calculator Nepal | Fixed Deposit Maturity Tool NepaCalc",
-  description: "Calculate Fixed Deposit maturity and interest earned at Nepal bank rates. Supports monthly, quarterly, and yearly compounding. Includes 5% TDS note.",
+  title: 'FD Calculator Nepal Fixed Deposit Returns FY 2081 82',
+  description: 'Calculate FD maturity and interest for Nepal banks. Updated rates.',
   slug: 'fd-calculator',
   keywords: ["fd calculator nepal", "fixed deposit maturity", "nepal bank fd rates", "fd interest calculator", "compound interest fd", "quarterly compounding nepal"],
 });

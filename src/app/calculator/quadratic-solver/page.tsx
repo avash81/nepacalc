@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Quadratic Equation Solver | Roots & Discriminant Nepal NepaCal",
+  title: "Quadratic Equation Solver | Roots & Discriminant Nepal NepaCalc",
   description: "Solve quadratic equations instantly. Find real and complex roots, calculate the discriminant, and see step-by-step solutions for ax² + bx + c = 0.",
   slug: 'quadratic-solver',
   keywords: ["quadratic equation solver nepal", "calculate roots of quadratic", "quadratic formula calculator", "discriminant calculator", "math solver nepal", "algebra tool"],

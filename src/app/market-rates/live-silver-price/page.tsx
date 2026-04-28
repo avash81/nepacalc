@@ -4,11 +4,11 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata: Metadata = {
-  title: 'Live Silver Price Today Nepal | Chandi Tola & Gram NepaCal',
+  title: 'Live Silver Price Today Nepal | Chandi Tola & Gram NepaCalc',
   description: 'Current silver (Chandi) prices in Nepal per tola and gram. Live market benchmarks and official FENEGOSIDA daily silver rates.',
   keywords: ['silver price nepal today', 'chandi rate today', 'silver price per tola', 'silver rate kathmandu', 'silver converter nepal'],
   alternates: {
-    canonical: 'https://nepacalc.com/market-rates/live-silver-price/',
+    canonical: 'https://NepaCalc.com/market-rates/live-silver-price/',
   },
 };
 

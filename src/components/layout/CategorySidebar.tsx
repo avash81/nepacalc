@@ -4,13 +4,13 @@ import { usePathname } from 'next/navigation';
 import { CATEGORIES } from '@/data/calculators';
 
 const PILLAR_LINKS: Record<string, string> = {
-  market: '/market-rates',
-  nepal: '/nepal',
-  finance: '/finance',
-  health: '/health',
-  utility: '/converters',
-  education: '/math-tools',
-  engineering: '/engineering'
+  market: '/market-rates/',
+  nepal: '/nepal/',
+  finance: '/finance/',
+  health: '/health/',
+  utility: '/converters/',
+  education: '/math-tools/',
+  engineering: '/engineering/'
 };
 
 export function CategorySidebar() {
@@ -27,7 +27,7 @@ export function CategorySidebar() {
           </h3>
           <ul className="space-y-2">
             {cat.calculators.slice(0, 4).map((calc) => {
-              const calcPath = calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`;
+              const calcPath = calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`;
               const isActive = pathname === calcPath;
               return (
                 <li key={calc.id}>

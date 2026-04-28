@@ -4,7 +4,7 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Sleep Calculator | Optimal Wake-Up Time & REM Cycles Nepal NepaCal",
+  title: "Sleep Calculator | Optimal Wake-Up Time & REM Cycles Nepal NepaCalc",
   description: "Calculate the best time to wake up or go to bed using 90-minute sleep cycles. Improve your sleep quality and feel refreshed every morning.",
   slug: 'sleep',
   keywords: ["sleep calculator nepal", "sleep cycle calculator", "best time to wake up", "90 minute sleep cycles", "bedtime calculator", "improve sleep quality"],
