@@ -2751,20 +2751,61 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
   'market-rates/exchange-rate': {
     title: "Live Foreign Exchange Rates Nepal | USD, AUD, INR to NPR",
     description: "View real-time, official Nepal Rastra Bank (NRB) foreign exchange reference rates for USD, AUD, EUR, and GBP to Nepalese Rupees.",
-    content: null,
+    content: (
+      <>
+        <h2>Foreign Exchange in Nepal: Mastering NRB Rates</h2>
+        <p>
+          If you are receiving a <strong>remittance from abroad</strong>, planning a trip to Australia or the USA, or conducting international trade, staying updated with the latest exchange rates is vital. The <strong>Nepal Rastra Bank (NRB)</strong> publishes daily reference rates that serve as the benchmark for all commercial banks and money exchangers across the country.
+        </p>
+
+        <h3>Understanding Buying vs. Selling Rates</h3>
+        <p>
+          One of the most common points of confusion for travelers in Nepal is the difference between these two numbers:
+          - <strong>Buying Rate:</strong> The price the bank will pay you if you give them foreign currency (e.g., USD).
+          - <strong>Selling Rate:</strong> The price the bank charges you if you want to buy foreign currency from them.
+          The difference between these two is the bank's profit margin, often called the "Spread."
+        </p>
+
+        <div className="p-6 bg-blue-50 border border-blue-100 rounded-lg my-8">
+           <h4 className="text-sm font-bold text-blue-900 mb-2">Did You Know?</h4>
+           <p className="text-xs leading-relaxed text-blue-800 mb-0">
+             The Nepalese Rupee (NPR) is <strong>pegged to the Indian Rupee (INR)</strong> at a fixed rate of 1.6:1. This means that if the Indian Rupee weakens against the US Dollar, the Nepalese Rupee will also weaken proportionally.
+           </p>
+        </div>
+      </>
+    ),
     faqs: [
-      { question: "What is the difference between the Buying Rate and Selling Rate?", answer: "The Buying Rate is what the bank pays YOU if you give them foreign currency. The Selling Rate is what the bank charges YOU if you want to buy foreign currency." },
-      { question: "Can I get the exact NRB rate at a money exchange counter?", answer: "No. Money changers and commercial banks add their own spread (profit margin) on top of the NRB reference rate." }
+      { question: "What is the best time to exchange money in Nepal?", answer: "The NRB publishes new rates daily (except holidays) around 10:00 AM. It's often best to wait for the morning update before visiting a bank." },
+      { question: "Can I exchange money at the airport?", answer: "Yes, Tribhuvan International Airport (TIA) has multiple exchange counters, but their rates may be slightly less favorable than those found in Thamel or New Road." }
     ]
   },
 
   'market-rates/live-silver-price': {
     title: "Live Silver Price in Nepal | Chandi Rates Today",
     description: "Check the official daily Silver (Chandi) rates in Nepal per Tola and per Gram, authorized by FENEGOSIDA.",
-    content: null,
+    content: (
+      <>
+        <h2>Silver Market Trends in Nepal (Chandi)</h2>
+        <p>
+          While Gold (Sun) often gets the spotlight, Silver (Chandi) remains a vital metal for traditional Nepalese jewelry, religious artifacts, and household utensils. The <strong>Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)</strong> sets the daily silver price based on international market fluctuations.
+        </p>
+
+        <h3>Silver Measurement Units in Nepal</h3>
+        <p>
+          In the Nepalese market, silver is primarily traded in:
+          - <strong>Tola:</strong> The traditional unit (11.66 grams).
+          - <strong>Gram:</strong> The international standard.
+        </p>
+
+        <h2>Buying Silver: Quality and Purity</h2>
+        <p>
+          When buying silver in Nepal, always look for <strong>Sterling Silver (925)</strong>, which contains 92.5% pure silver and 7.5% other metals for durability. For traditional items, "Fine Silver" (99.9% purity) is often used but is much softer.
+        </p>
+      </>
+    ),
     faqs: [
-      { question: "Is the price of silver the same across all of Nepal?", answer: "The base price of raw silver is uniform nationally. However, local jewelers may adjust making charges depending on the region." },
-      { question: "How many grams are in one Tola of Silver?", answer: "Just like gold, one Tola of silver is equal to 11.66 grams." }
+      { question: "Why does the silver price change daily?", answer: "The price is linked to the international market (LBMA) and the exchange rate of the US Dollar. Since Nepal imports all of its silver, global shifts are reflected immediately." },
+      { question: "Is silver a good investment in Nepal?", answer: "Silver is often considered 'the poor man's gold.' It is more affordable for small investors and has historically preserved its value against inflation." }
     ]
   },
 
@@ -2809,42 +2850,105 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
   },
 
   'paint-cost': {
-    title: "House Painting Cost & Volume Calculator",
-    description: "Estimate exactly how many liters of paint you need for a room or house. Calculate total costs based on primer, coats, and square footage.",
-    content: null,
+    title: "House Painting Cost & Volume Calculator | Nepal Pricing 2081",
+    description: "Estimate exactly how many liters of paint you need for a room or house. Calculate total costs based on primer, coats, and square footage for Asian Paints, Berger, and KNP.",
+    content: (
+      <>
+        <h2>Planning a Home Makeover? Calculate Your Paint Needs</h2>
+        <p>
+          Painting your home in Nepal is a significant investment. Whether you are using **Asian Paints, Berger, or KNP**, the most common mistake homeowners make is buying too much or too little paint. Our <strong>House Painting Cost Calculator</strong> helps you find the perfect balance between volume and budget.
+        </p>
+
+        <h3>How Much Paint Do You Really Need?</h3>
+        <p>
+          A standard rule of thumb for interior walls in Nepal is:
+          - <strong>1 Liter</strong> of emulsion paint typically covers about <strong>130-150 sq. ft.</strong> for a single coat.
+          - <strong>Primer:</strong> Always apply one coat of primer first to ensure the paint sticks properly and the color remains vibrant.
+        </p>
+
+        <div className="bg-[#f1f3f4] border border-[#dadce0] rounded-lg p-6 my-8">
+           <h3 className="font-bold mb-3">Cost Components (Estimated)</h3>
+           <p className="text-sm text-[#5f6368]">
+             The total cost isn't just the paint. You must also factor in:
+             1. <strong>Labor Cost:</strong> Typically charged per square foot or as a daily wage.
+             2. <strong>Putty & Primer:</strong> Essential for new walls to achieve a smooth finish.
+             3. <strong>Tools:</strong> Brushes, rollers, and masking tape.
+           </p>
+        </div>
+      </>
+    ),
     faqs: [
       { question: "How many coats of paint are necessary?", answer: "For most interior walls, you will need one coat of primer and two coats of finish paint for an even, durable look." },
-      { question: "How much area does one liter of paint cover?", answer: "A standard liter of interior latex paint typically covers about 10 to 12 square meters per single coat." }
+      { question: "What is the best time of year to paint in Nepal?", answer: "The dry seasons (October to November and March to May) are ideal. Avoid painting during the monsoon, as high humidity prevents the paint from drying properly." }
     ]
   },
 
   'word-counter': {
-    title: "Advanced Word & Character Counter | Reading Time",
-    description: "Instantly count words, characters (with/without spaces), paragraphs, and estimate reading time for essays and SEO articles.",
-    content: null,
+    title: "Advanced Word & Character Counter | Reading Time Estimator",
+    description: "Instantly count words, characters, and paragraphs. Optimized for SEO content writing and academic essays in Nepal.",
+    content: (
+      <>
+        <h2>Precision Word Counting for SEO and Academics</h2>
+        <p>
+          Whether you are writing a <strong>Lok Sewa essay</strong>, a university assignment, or an SEO-optimized blog post, keeping track of your word count is essential. Our <strong>Word Counter</strong> provides real-time statistics including character count (with and without spaces), paragraph count, and estimated reading time.
+        </p>
+
+        <h3>Why Word Count Matters for SEO</h3>
+        <p>
+          Search engines like Google prioritize content that provides "depth." Most top-ranking pages have at least 1000-1500 words. Use our tool to ensure your content meets the "Authority" threshold before you publish!
+        </p>
+      </>
+    ),
     faqs: [
       { question: "How is reading time calculated?", answer: "We estimate reading time based on the universal average reading speed of an adult, which is roughly 200 to 250 words per minute." },
-      { question: "Does the tool store my text?", answer: "No. All counting is done locally in your browser using JavaScript. We do not upload or save your documents to our servers." }
+      { question: "Is my text saved on your server?", answer: "No. All counting is done locally in your browser. Your text never leaves your device, ensuring 100% privacy." }
     ]
   },
 
   'qr-generator': {
-    title: "Free QR Code Generator | Make Custom QR Codes",
-    description: "Generate high-density, machine-readable QR codes for URLs, text, WiFi passwords, and contact cards instantly and for free.",
-    content: null,
+    title: "Free QR Code Generator | Custom QR Codes for Nepal",
+    description: "Generate high-density QR codes for URLs, WiFi, and contact cards instantly. Optimized for Fonepay and digital payments in Nepal.",
+    content: (
+      <>
+        <h2>The Rise of QR Codes in Nepal</h2>
+        <p>
+          From <strong>Fonepay</strong> at local grocery stores to digital menus in Thamel restaurants, QR codes have revolutionized how we interact in Nepal. Our <strong>QR Code Generator</strong> allows you to create custom, high-resolution codes for any purpose—be it sharing your WiFi password with guests or linking to your business website.
+        </p>
+
+        <h3>Best Practices for QR Codes</h3>
+        <p>
+          1. <strong>High Contrast:</strong> Always use dark pixels on a light background for maximum scannability.
+          2. <strong>Size Matters:</strong> Ensure the QR code is at least 2cm x 2cm for printed materials.
+          3. <strong>Test Before Printing:</strong> Always scan your generated code with multiple apps to ensure it works!
+        </p>
+      </>
+    ),
     faqs: [
-      { question: "Do QR codes expire?", answer: "No, a standard static QR code contains the actual data embedded in its pixels. It will never expire as long as the destination URL or text remains active." },
-      { question: "Can I put a WiFi password in a QR code?", answer: "Yes! You can generate a WiFi QR code. When someone scans it, it will automatically connect them to your network without typing the password." }
+      { question: "Do QR codes expire?", answer: "No. Static QR codes contain the actual data and will work forever as long as the destination URL remains active." },
+      { question: "Can I put a logo in my QR code?", answer: "Standard QR codes have 'Error Correction' built-in, meaning you can often place a small logo in the center without breaking the code." }
     ]
   },
 
   'number-to-words': {
-    title: "Number to Words Converter | Check Writing Utility",
-    description: "Convert large numerical integers into written English words. Essential for writing checks and legal contracts.",
-    content: null,
+    title: "Number to Words Converter | Check Writing Utility Nepal",
+    description: "Convert large numerical integers into written English words. Essential for writing checks and legal contracts in Nepal.",
+    content: (
+      <>
+        <h2>Never Make a Mistake on a Check Again</h2>
+        <p>
+          Writing large amounts on checks can be stressful. Is it "Thousand" or "Thousands"? Where does the "and" go? Our <strong>Number to Words Converter</strong> is the ultimate utility for accountants, business owners, and individuals in Nepal who want to ensure their legal documents and bank checks are error-free.
+        </p>
+
+        <h3>How to Write Decimals on a Check</h3>
+        <p>
+          In the Nepalese banking system, decimals (paisa) are typically written as fractions of 100.
+          - <strong>Example:</strong> Rs. 15,250.75 becomes "Fifteen Thousand Two Hundred Fifty and 75/100 only."
+        </p>
+      </>
+    ),
     faqs: [
-      { question: "How do you write out decimals on a check?", answer: "Decimals are written as fractions of 100. For example, Rs. 150.50 is written as 'One Hundred Fifty and 50/100'." },
-      { question: "What is the biggest number the tool can convert?", answer: "Our engine can safely convert numbers up into the trillions without losing precision." }
+      { question: "What is the biggest number the tool can convert?", answer: "Our engine can safely convert numbers up into the trillions without losing precision." },
+      { question: "Does it support the 'Lakh' and 'Crore' system?", answer: "Yes, our converter is optimized for the South Asian numbering system used in Nepal." }
     ]
   },
 
@@ -3014,6 +3118,367 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
     faqs: [
       { question: "What does it mean if the equations have 'no solution'?", answer: "It means the lines are perfectly parallel and will never intersect, e.g., 2x + y = 5 and 4x + 2y = 20." },
       { question: "What if there are 'infinite solutions'?", answer: "This happens when both equations actually describe the exact same line, meaning they intersect at every single point." }
+    ]
+  },
+  'discount-calculator': {
+    title: "Discount Calculator Nepal | Sale Price & Savings Estimator",
+    description: "Calculate exact sale prices and total savings during Dashain, Tihar, and seasonal sales. Factures in stacked discounts and regional tax implications.",
+    content: (
+      <>
+        <h2>Smart Shopping in Nepal: Mastering the Discount Math</h2>
+        <p>
+          Whether you are shopping at Civil Mall, Labim Mall, or browsing local stores in New Road, understanding the real value of a "discount" is crucial for your budget. During major festivals like <strong>Dashain and Tihar</strong>, Nepalese retailers offer massive percentage-based reductions. Our <strong>Discount Calculator</strong> is designed to help you see past the marketing and calculate the exact amount of money staying in your pocket.
+        </p>
+
+        <h3>Why You Need a Digital Discount Tool</h3>
+        <p>
+          Calculating "20% off Rs. 4,500" might seem simple, but in the heat of shopping, mental math often leads to overspending. Furthermore, many stores in Nepal use <strong>"Stacked Discounts"</strong> (e.g., 20% off + an additional 10% for bank card holders). Our engine handles these compounding calculations with 100% precision, ensuring you know the final price before you reach the billing counter.
+        </p>
+
+        <div className="bg-[#e8f0fe] border border-[#1a73e8] rounded-xl p-6 my-8">
+           <h3 className="text-[#1967d2] font-black mt-0 mb-3 uppercase text-xs tracking-widest">Expert Shopping Tip</h3>
+           <p className="text-sm leading-relaxed mb-0">
+             In Nepal, always ask if the "Discounted Price" includes <strong>VAT (13%)</strong>. Sometimes a 50% discount is applied to the base price, but the tax is added later, changing your final total. Use our tool to verify the base price first!
+           </p>
+        </div>
+
+        <h2>Strategic Spending: How to Save More</h2>
+        <p>
+          To maximize your savings in the Nepalese market:
+          1. <strong>Compare Unit Prices:</strong> A larger pack with a small discount might be more expensive than two smaller packs with a large discount.
+          2. <strong>Factor in Travel:</strong> Saving Rs. 100 at a distant store might cost you Rs. 200 in petrol or Pathao charges.
+          3. <strong>Check the Expiry:</strong> Deep discounts (70%+) in grocery stores often mean the product is near its expiry date.
+        </p>
+      </>
+    ),
+    faqs: [
+      { question: "How do I calculate 20% off a price?", answer: "Multiply the original price by 0.20 to find the discount amount, then subtract that from the original price." },
+      { question: "What is the difference between discount and VAT in Nepal?", answer: "A discount reduces the price you pay, while VAT (Value Added Tax) is a 13% government tax added to the final sale price." },
+      { question: "Does this calculator support compounding discounts?", answer: "Yes, you can apply an initial discount and then apply a secondary discount (like a coupon) to the new total." }
+    ]
+  },
+
+  'vat-calculator': {
+    title: "VAT Calculator Nepal | 13% Tax & Price Breakdown",
+    description: "Calculate Value Added Tax (VAT) for goods and services in Nepal. Supports both VAT Inclusive and VAT Exclusive price calculations based on IRD standards.",
+    content: (
+      <>
+        <h2>The Definitive Guide to VAT in Nepal (2081/82)</h2>
+        <p>
+          In Nepal, <strong>Value Added Tax (VAT)</strong> is a multi-stage tax levied on the consumption of goods and services. Currently, the standard VAT rate in Nepal is fixed at <strong>13%</strong> by the Inland Revenue Department (IRD).
+        </p>
+
+        <h3>VAT Inclusive vs. VAT Exclusive: The Difference</h3>
+        <p>
+          Understanding how VAT is applied is critical for both business owners and consumers:
+          - <strong>VAT Exclusive:</strong> This is the "Base Price." You must add 13% on top of this amount.
+          - <strong>VAT Inclusive:</strong> This is the "Final Price" you see on a receipt. The 13% tax is already hidden inside this number.
+        </p>
+
+        <div className="overflow-x-auto my-8">
+           <table className="min-w-full border-collapse border border-[#dadce0] text-xs">
+              <thead className="bg-[#f8f9fa]">
+                 <tr>
+                    <th className="border border-[#dadce0] px-4 py-2 text-left">Calculation Type</th>
+                    <th className="border border-[#dadce0] px-4 py-2 text-left">Mathematical Formula</th>
+                 </tr>
+              </thead>
+              <tbody>
+                 <tr>
+                    <td className="border border-[#dadce0] px-4 py-2 font-bold">Adding VAT</td>
+                    <td className="border border-[#dadce0] px-4 py-2">Base Price × 1.13</td>
+                 </tr>
+                 <tr>
+                    <td className="border border-[#dadce0] px-4 py-2 font-bold">Removing VAT</td>
+                    <td className="border border-[#dadce0] px-4 py-2">Total Price ÷ 1.13</td>
+                 </tr>
+              </tbody>
+           </table>
+        </div>
+
+        <h2>Why Use the NepaCalc VAT Tool?</h2>
+        <p>
+          Manual tax calculation often leads to rounding errors that can cause issues during <strong>VAT Filing</strong>. Our tool ensures precision and reliability for all your tax-related needs.
+        </p>
+      </>
+    ),
+    faqs: [
+      { question: "What is the current VAT rate in Nepal?", answer: "The standard VAT rate in Nepal is 13% for most taxable goods and services." },
+      { question: "Are any items exempt from VAT in Nepal?", answer: "Yes. Basic necessities like unprocessed food, health services, and education are typically VAT-exempt." }
+    ]
+  },
+
+  'loan-emi': {
+    title: "Loan EMI Calculator Nepal | Monthly Payment Estimator",
+    description: "Calculate Equated Monthly Installments (EMI) for home, auto, and personal loans from Nepalese banks. Factors in interest rates and tenure.",
+    content: (
+      <>
+        <h2>Loan Planning in Nepal: Understanding EMI</h2>
+        <p>
+          Taking a loan from a Nepalese bank—whether it's for a new house in Bhaktapur or a vehicle—requires careful financial planning. The most critical number you need to know is your <strong>Equated Monthly Installment (EMI)</strong>. This is the fixed amount you pay back to the bank every month until the loan is fully repaid.
+        </p>
+
+        <h3>Components of an EMI</h3>
+        <p>
+          Your EMI consists of two parts:
+          1. <strong>Principal:</strong> The actual loan amount you borrowed.
+          2. <strong>Interest:</strong> The cost of borrowing, which varies based on the bank's base rate and premium.
+        </p>
+
+        <div className="bg-[#fef7e0] border border-[#fbbc04] rounded-lg p-5 my-6">
+           <h4 className="text-sm font-black text-[#b06000] uppercase mb-2">Banking Alert</h4>
+           <p className="text-xs leading-relaxed mb-0 text-[#3c4043]">
+             Most banks in Nepal use <strong>Floating Interest Rates</strong>. This means your EMI can change if the Nepal Rastra Bank (NRB) adjusts the base rate. Always use our calculator to re-verify your payments if your bank sends you a rate hike notice!
+           </p>
+        </div>
+
+        <h2>How to Use the EMI Calculator</h2>
+        <p>
+          Simply enter your loan amount, the annual interest rate, and the loan tenure (in years or months). Our engine will provide a detailed breakdown of your total interest payable and the total cost of the loan.
+        </p>
+      </>
+    ),
+    faqs: [
+      { question: "Can I prepay my loan in Nepal?", answer: "Yes, most banks allow prepayment, but they may charge a 'Prepayment Fee' ranging from 0.5% to 2% of the principal." },
+      { question: "What is the standard loan tenure for a home loan?", answer: "In Nepal, home loans (Ghar Karja) typically have a tenure of 5 to 30 years." }
+    ]
+  }
+  'nepal-land': {
+    title: "Nepal Land Area Converter | Ropani, Aana, Bigha to Sq. Ft.",
+    description: "Convert between Nepalese land units (Ropani, Aana, Paisa, Dam) and Terai units (Bigha, Kattha, Dhur). Precise calculations for real estate in Nepal.",
+    content: (
+      <>
+        <h2>Nepal Land Measurement System: A Complete Guide</h2>
+        <p>
+          Buying or selling land in Nepal requires a deep understanding of two distinct measurement systems: the <strong>Hilly System</strong> (Ropani-Aana) used in Kathmandu and the hills, and the <strong>Terai System</strong> (Bigha-Kattha) used in the southern plains. Our <strong>Nepal Land Area Converter</strong> handles both systems with 100% precision.
+        </p>
+
+        <h3>1. The Ropani-Aana System (Hills & Kathmandu)</h3>
+        <p>
+          In Kathmandu and surrounding hilly regions, land is measured in Ropani, Aana, Paisa, and Dam:
+          - <strong>1 Ropani</strong> = 16 Aana (5476 sq. ft.)
+          - <strong>1 Aana</strong> = 4 Paisa (342.25 sq. ft.)
+          - <strong>1 Paisa</strong> = 4 Dam (85.56 sq. ft.)
+        </p>
+
+        <div className="bg-[#f1f3f4] border border-[#dadce0] rounded-lg p-6 my-8">
+           <h3 className="font-bold mb-3">Conversion Table: Sq. Ft. to Local Units</h3>
+           <ul className="space-y-2 text-sm text-[#5f6368]">
+              <li><strong>1 Ropani</strong> = 5476 sq. ft.</li>
+              <li><strong>1 Aana</strong> = 342.25 sq. ft.</li>
+              <li><strong>1 Bigha</strong> = 72900 sq. ft.</li>
+              <li><strong>1 Kattha</strong> = 3645 sq. ft.</li>
+           </ul>
+        </div>
+
+        <h3>2. The Bigha-Kattha System (Terai)</h3>
+        <p>
+          In the Terai region, the measurement units are significantly larger:
+          - <strong>1 Bigha</strong> = 20 Kattha
+          - <strong>1 Kattha</strong> = 20 Dhur
+        </p>
+
+        <h2>Why Real Estate Professionals Choose NepaCalc</h2>
+        <p>
+          Discrepancies in land measurement can lead to legal disputes or financial losses. Our tool is used by property developers, legal advisors, and home buyers across Nepal to ensure that the area mentioned in the <strong>Lalpurja</strong> (Land Ownership Certificate) matches the actual physical measurement in Square Feet or Square Meters.
+        </p>
+      </>
+    ),
+    faqs: [
+      { question: "How many Aana are in one Ropani?", answer: "There are exactly 16 Aana in one Ropani of land." },
+      { question: "What is 1 Kattha in Square Feet?", answer: "One Kattha is equivalent to 3,645 square feet in the Terai measurement system." },
+      { question: "How do I convert Sq. Ft. to Aana?", answer: "Divide the total square feet by 342.25 to find the number of Aana." }
+    ]
+  },
+
+  'bmi': {
+    title: "BMI Calculator Nepal | Body Mass Index for South Asians",
+    description: "Calculate your Body Mass Index (BMI) accurately. Optimized for South Asian body types and WHO health standards for Nepal.",
+    content: (
+      <>
+        <h2>Understanding BMI for the Nepalese Population</h2>
+        <p>
+          Body Mass Index (BMI) is a simple calculation using a person's height and weight. The formula is <code>BMI = kg/m²</code>. While BMI is a global standard, medical professionals in Nepal often use modified cut-offs for <strong>South Asian populations</strong>, who may face higher health risks at lower BMI levels compared to Western populations.
+        </p>
+
+        <h3>WHO BMI Categories for South Asia</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-8 text-center">
+           <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <span className="block text-xs font-bold text-blue-700 uppercase">Underweight</span>
+              <span className="text-lg font-black">&lt; 18.5</span>
+           </div>
+           <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+              <span className="block text-xs font-bold text-green-700 uppercase">Normal</span>
+              <span className="text-lg font-black">18.5 - 23</span>
+           </div>
+           <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <span className="block text-xs font-bold text-yellow-700 uppercase">Overweight</span>
+              <span className="text-lg font-black">23 - 27.5</span>
+           </div>
+           <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+              <span className="block text-xs font-bold text-red-700 uppercase">Obese</span>
+              <span className="text-lg font-black">&gt; 27.5</span>
+           </div>
+        </div>
+
+        <h2>Health Beyond the Numbers</h2>
+        <p>
+          While our <strong>BMI Calculator</strong> provides a useful starting point, it does not measure body fat directly. For a complete health assessment, Nepalese doctors also recommend measuring <strong>Waist Circumference</strong> and monitoring blood pressure and sugar levels, especially given the rising rates of Type 2 Diabetes in Nepal.
+        </p>
+      </>
+    ),
+    faqs: [
+      { question: "Is BMI accurate for children?", answer: "BMI for adults and children is calculated differently. For children, you should use a 'BMI-for-age' growth chart." },
+      { question: "What is a healthy weight for a 5'5\" person?", answer: "For a person with a height of 5'5\", a healthy weight range is typically between 55kg and 70kg, depending on body frame and muscle mass." }
+    ]
+  },
+
+  'percentage-calculator': {
+    title: "Percentage Calculator | Find Increases, Decreases & Shares",
+    description: "Calculate percentages instantly. Useful for markups, school grades, business growth, and tip calculations in Nepal.",
+    content: (
+      <>
+        <h2>The Ultimate Tool for Percentage Calculations</h2>
+        <p>
+          Percentages are everywhere—from calculating your <strong>SEE or NEB grades</strong> to figuring out the interest rate on your savings account. Our <strong>Percentage Calculator</strong> simplifies these common math problems, allowing you to solve for any variable in a percentage equation.
+        </p>
+
+        <h3>Three Ways to Use This Tool</h3>
+        <ol className="space-y-4">
+           <li><strong>Find the Percentage:</strong> What is X as a percentage of Y? (e.g., You got 450 marks out of 500. What is the percentage?)</li>
+           <li><strong>Percentage Increase/Decrease:</strong> If the price of petrol went from Rs. 160 to Rs. 175, what was the percentage hike?</li>
+           <li><strong>Percentage of a Value:</strong> What is 13% of Rs. 12,000? (Crucial for VAT and service charge math).</li>
+        </ol>
+
+        <div className="p-6 bg-slate-50 border-l-4 border-slate-400 rounded-r-lg my-8">
+           <p className="italic text-sm text-slate-600 mb-0">
+             "Mathematics is not about numbers, equations, computations, or algorithms: it is about understanding." — Use this tool to understand the growth and ratios in your financial and academic life.
+           </p>
+        </div>
+      </>
+    ),
+    faqs: [
+      { question: "How do I calculate a 10% increase?", answer: "Multiply the number by 1.10. For example, a 10% increase on 100 is 100 * 1.10 = 110." },
+      { question: "How do I find the percentage of my exam marks?", answer: "Divide your obtained marks by the total possible marks, then multiply the result by 100." }
+    ]
+  }
+  'pregnancy-due-date': {
+    title: "Pregnancy Due Date Calculator | Baby Arrival Estimator",
+    description: "Calculate your estimated due date (EDD) accurately using Naegele's rule. Includes weekly pregnancy milestones and health tips for mothers in Nepal.",
+    content: (
+      <>
+        <h2>Planning for Your New Arrival: The EDD Guide</h2>
+        <p>
+          Finding out you are pregnant is one of life's most exciting moments. One of the first questions every expecting parent in Nepal asks is: <strong>"When is my baby coming?"</strong> Our <strong>Pregnancy Due Date Calculator</strong> uses the standard medical formula known as Naegele's Rule to estimate your delivery date based on your Last Menstrual Period (LMP).
+        </p>
+
+        <h3>How Your Due Date is Calculated</h3>
+        <p>
+          Most pregnancies last approximately 40 weeks (280 days) from the first day of the last menstrual period. Our tool:
+          1. Adds seven days to the first day of your LMP.
+          2. Subtracts three months from that date.
+          3. Adds one year to get the final Estimated Due Date (EDD).
+        </p>
+
+        <div className="bg-[#fff0f0] border border-[#ffcfcf] rounded-xl p-6 my-8">
+           <h3 className="text-[#d93025] font-black mt-0 mb-3 uppercase text-xs tracking-widest">A Note for Mothers</h3>
+           <p className="text-sm leading-relaxed mb-0 text-[#3c4043]">
+             Remember that only about 4% of babies are born exactly on their due date. Most arrive within a window of two weeks before or after. In Nepal, we recommend regular checkups at a certified maternity hospital to monitor your baby's growth and health.
+           </p>
+        </div>
+      </>
+    ),
+    faqs: [
+      { question: "Can the due date change?", answer: "Yes. An early ultrasound (usually before 12 weeks) is the most accurate way to date a pregnancy and may lead your doctor to adjust the EDD." },
+      { question: "What if I don't know my LMP?", answer: "If your periods are irregular or you don't remember the date, your healthcare provider will use an ultrasound to measure the baby and estimate the due date." }
+    ]
+  },
+
+  'age-calculator': {
+    title: "Age Calculator | Precise Years, Months, Days & Hours",
+    description: "Calculate your exact age or the time between two dates. Essential for document filling, school admissions, and retirement planning in Nepal.",
+    content: (
+      <>
+        <h2>Calculate Your Exact Age Instantly</h2>
+        <p>
+          Whether you are applying for a **Lok Sewa Aayog** position, filling out a passport application at the Department of Passport, or calculating your child's age for school admission, precision matters. Our <strong>Age Calculator</strong> provides a breakdown of your life in years, months, days, and even minutes.
+        </p>
+
+        <h3>Practical Uses in Nepal</h3>
+        <ul>
+          <li><strong>Document Verification:</strong> Ensure your age matches the requirements for government service or citizenship.</li>
+          <li><strong>Health Monitoring:</strong> Pediatricians in Nepal often track growth milestones based on exact age in months.</li>
+          <li><strong>Event Planning:</strong> Calculate exactly how many days are left until a major milestone or anniversary.</li>
+        </ul>
+      </>
+    ),
+    faqs: [
+      { question: "Does the calculator account for leap years?", answer: "Yes, our algorithm automatically factors in leap years (366 days) to ensure your age calculation is 100% accurate." },
+      { question: "How old am I if I was born in 2050 BS?", answer: "To use this tool for Bikram Sambat (BS) dates, you should first convert the year to AD or simply enter the BS numbers if the current year is also in BS." }
+    ]
+  },
+
+  'concrete-mix': {
+    title: "Concrete Mix Calculator | Cement, Sand & Aggregate Ratio",
+    description: "Calculate the exact volume of cement, sand, and stone needed for slabs, pillars, and footings. Supports M15, M20, and M25 mix designs.",
+    content: (
+      <>
+        <h2>Building Safe Homes in Nepal: Concrete Ratios</h2>
+        <p>
+          In a seismically active country like Nepal, the strength of your concrete is the most important factor in house construction. Our <strong>Concrete Mix Calculator</strong> helps homeowners and civil engineers estimate the quantities of cement, sand, and aggregate (crushed stone) required for various structural elements.
+        </p>
+
+        <h3>Standard Mix Ratios (IS Codes)</h3>
+        <p>
+          For residential buildings in Nepal, the following grades are commonly used:
+          - <strong>M15 (1:2:4):</strong> Used for PCC and floor leveling.
+          - <strong>M20 (1:1.5:3):</strong> The standard for RCC slabs, beams, and columns in Nepal.
+          - <strong>M25 (1:1:2):</strong> Used for high-strength foundations and heavy-duty pillars.
+        </p>
+
+        <div className="bg-[#f8f9fa] border border-[#dadce0] rounded-lg p-6 my-8">
+           <h3 className="font-bold mb-3">Material Estimation (per Cubic Meter)</h3>
+           <p className="text-sm text-[#5f6368]">
+             For 1m³ of M20 concrete, you typically need approximately 8 bags of cement, 15 cubic feet of sand, and 30 cubic feet of aggregate, depending on the moisture content and compaction.
+           </p>
+        </div>
+      </>
+    ),
+    faqs: [
+      { question: "How much water should I add to concrete?", answer: "The Water-Cement ratio should be around 0.45 to 0.50. Too much water weakens the concrete, while too little makes it difficult to work with." },
+      { question: "What is the standard size of a cement bag in Nepal?", answer: "A standard bag of cement in Nepal (OPC or PPC) weighs 50kg and has a volume of approximately 0.035 cubic meters." }
+    ]
+  },
+
+  'brick-calculator': {
+    title: "Brick Calculator Nepal | Estimate Bricks for Walls & Houses",
+    description: "Calculate the total number of bricks required for a wall or building. Factors in mortar thickness and standard Nepalese brick sizes (9\" x 4.5\" x 3\").",
+    content: (
+      <>
+        <h2>Brick Estimation for Construction in Nepal</h2>
+        <p>
+          Whether you are building a boundary wall or a multi-story house in Kathmandu, bricks are a major expense. Our <strong>Brick Calculator</strong> is optimized for the standard bricks produced in Nepalese kilns, helping you order the exact quantity and avoid wastage.
+        </p>
+
+        <h3>Standard Brick Dimensions in Nepal</h3>
+        <p>
+          Most "Chimney Bricks" in Nepal follow the standard size of:
+          - <strong>Length:</strong> 9 inches
+          - <strong>Width:</strong> 4.5 inches
+          - <strong>Height:</strong> 3 inches
+        </p>
+
+        <h2>Professional Estimation Tips</h2>
+        <p>
+          1. <strong>Mortar Joints:</strong> Always account for a 10mm to 12mm mortar joint between bricks.
+          2. <strong>Wastage:</strong> Add a 5% to 10% buffer for broken bricks during transport and handling at the site.
+          3. <strong>Opening Deductions:</strong> Don't forget to subtract the area of windows and doors from your total wall area!
+        </p>
+      </>
+    ),
+    faqs: [
+      { question: "How many bricks are in a 9-inch wall per sq. ft.?", answer: "For a standard 9-inch thick wall in Nepal, you need approximately 10 to 12 bricks per square foot of wall area." },
+      { question: "What is the current price of bricks in Kathmandu?", answer: "Prices fluctuate seasonally but typically range from Rs. 15 to Rs. 22 per brick depending on the quality (A-one or Second) and transport distance." }
     ]
   }
 };
