@@ -111,12 +111,6 @@ button {
   user-select: none;
 }
 
-button:hover {
-  background-color: #FFC107 !important;
-  color: #000000 !important;
-  box-shadow: 0 10px 15px -3px rgba(255, 193, 7, 0.3);
-}
-
 button:active {
   transform: scale(0.96);
 }
@@ -131,8 +125,17 @@ button:active {
 /* iOS safe-area bottom inset — fixes overlap with iPhone home indicator */
 .pb-safe { padding-bottom: env(safe-area-inset-bottom, 12px); }
 
-/* iOS safe-area bottom inset — fixes overlap with iPhone home indicator */
-.pb-safe { padding-bottom: env(safe-area-inset-bottom, 12px); }
+/* Off-screen content deferral — browser skips layout/paint until visible.
+   Dramatically reduces TBT and LCP on mobile devices. */
+.seo-content-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px;
+}
+
+.faq-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 400px;
+}
 
 /* Global Print Architecture */
 @media print {

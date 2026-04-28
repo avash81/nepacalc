@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import dynamic from 'next/dynamic';
 
 const inter = Inter({ 
   subsets: ["latin"], 
@@ -82,10 +83,10 @@ export const metadata: Metadata = {
   },
 };
 
-import dynamic from 'next/dynamic';
+// Defer all non-critical components — never block the main thread
 const MobileNav = dynamic(() => import("@/components/layout/MobileNav").then(mod => mod.MobileNav), { ssr: false });
 const CookieBanner = dynamic(() => import("@/components/layout/CookieBanner").then(mod => mod.CookieBanner), { ssr: false });
-import { GoogleAnalytics } from "@/components/seo/GoogleAnalytics";
+const GoogleAnalytics = dynamic(() => import("@/components/seo/GoogleAnalytics").then(mod => mod.GoogleAnalytics), { ssr: false });
 
 const globalSchema = {
   "@context": "https://schema.org",
@@ -149,10 +150,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* DNS prefetch + preconnect for faster external resource loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        {/* Tell mobile browsers not to scale */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </head>
       <body className={`${inter.variable} font-sans`}>
-        <GoogleAnalytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
@@ -173,6 +180,8 @@ export default function RootLayout({
         </main>
         <MobileNav />
         <CookieBanner />
+        {/* Deferred — loads after all critical content */}
+        <GoogleAnalytics />
       </body>
     </html>
   );

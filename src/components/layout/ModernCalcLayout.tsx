@@ -1,13 +1,13 @@
 'use client';
-import React, { ReactNode, Fragment, useState, useEffect } from 'react';
+import React, { ReactNode, Fragment, useState, useEffect, useCallback, lazy, Suspense } from 'react';
 import Link from 'next/link';
 import { Info, Sigma, HelpCircle, ChevronRight, Calculator, ArrowLeft, Heart, Search, Menu, User, Home, Activity, DollarSign, Settings, CheckCircle2, TrendingUp, AlertCircle } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { TIER1_SEO_CONTENT } from '@/data/seo-content';
-import { getLatestRates, MarketRate } from '@/utils/market/fetchRates';
 import { usePathname } from 'next/navigation';
 import { RecentSidebar } from './RecentSidebar';
 import { CALCULATORS } from '@/data/calculators';
+import type { MarketRate } from '@/utils/market/fetchRates';
 
 interface ModernCalcLayoutProps {
   title: string;
@@ -44,10 +44,17 @@ export function ModernCalcLayout({
   const [lastUpdate, setLastUpdate] = useState<string>('');
   const pathname = usePathname();
 
+  // Defer market rates fetch — don't block initial paint
   useEffect(() => {
-    const rates = getLatestRates();
-    setLiveRates(rates);
-    setLastUpdate(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }));
+    const timer = setTimeout(async () => {
+      try {
+        const { getLatestRates } = await import('@/utils/market/fetchRates');
+        const rates = getLatestRates();
+        setLiveRates(rates);
+        setLastUpdate(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }));
+      } catch (e) { /* silent */ }
+    }, 800); // defer 800ms after first paint
+    return () => clearTimeout(timer);
   }, []);
 
   const effectiveSlug = slug || pathname?.split('/').filter(Boolean).pop();
@@ -214,9 +221,11 @@ export function ModernCalcLayout({
               </div>
             )}
             {enrichedSEO ? (
-              <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm p-6 prose prose-sm max-w-none prose-slate text-[#3C4043] prose-headings:text-[#202124] prose-headings:font-bold prose-h2:text-lg prose-h3:text-base">
-                {enrichedSEO}
-              </div>
+              <Suspense fallback={<div className="h-32 bg-white border border-[#DADCE0] rounded-lg animate-pulse" />}>
+                <div className="seo-content-section bg-white border border-[#DADCE0] rounded-lg shadow-sm p-6 prose prose-sm max-w-none prose-slate text-[#3C4043] prose-headings:text-[#202124] prose-headings:font-bold prose-h2:text-lg prose-h3:text-base">
+                  {enrichedSEO}
+                </div>
+              </Suspense>
             ) : (
               <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm p-8">
                 <article className="prose prose-sm max-w-none prose-slate">
@@ -245,7 +254,7 @@ export function ModernCalcLayout({
               </div>
             )}
             {enrichedFAQs && enrichedFAQs.length > 0 && (
-              <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
+              <div className="faq-section bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
                 <div className="px-6 py-5 border-b border-[#DADCE0] flex items-center gap-3">
                   <HelpCircle className="w-5 h-5 text-[#1A73E8]" />
                   <h2 className="text-base font-black text-[#202124]">Frequently Asked Questions</h2>
