@@ -110,170 +110,38 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
     ]
   },
   'loan-emi': {
-    title: "EMI Calculator Nepal | Loan Intelligence & Amortization Laboratory",
-    description: "Expert-grade EMI calculator for Home, Auto, and Personal loans in Nepal. Detailed amortization analytics, loan taxonomy, and creditworthiness guides.",
+    title: "Loan EMI Calculator Nepal | Monthly Payment Estimator",
+    description: "Calculate Equated Monthly Installments (EMI) for home, auto, and personal loans from Nepalese banks. Factors in interest rates and tenure.",
     content: (
       <>
-        <div className="bg-[#f8f9fa] border-l-4 border-[#1a73e8] p-6 mb-8 rounded-r-xl">
-          <h2 className="text-xl font-black text-[#202124] mb-2 mt-0">Numerical Analytics Laboratory: Loan Intelligence</h2>
-          <p className="text-sm text-[#5f6368] mb-0 italic">
-            Advanced computational engine designed for the Nepalese financial landscape, providing institutional-grade clarity on debt servicing and amortization trajectories.
-          </p>
-        </div>
-
-        <h2>Structural Breakdown: How the EMI Engine Works</h2>
+        <h2>Loan Planning in Nepal: Understanding EMI</h2>
         <p>
-          The Equated Monthly Installment (EMI) is a mathematical construct designed to amortize a debt over a fixed period. Our engine uses the <strong>Standard Reducing Balance Model</strong>, which is the primary structure used by all A-Class Commercial Banks in Nepal.
+          Taking a loan from a Nepalese bank—whether it's for a new house in Bhaktapur or a vehicle—requires careful financial planning. The most critical number you need to know is your <strong>Equated Monthly Installment (EMI)</strong>. This is the fixed amount you pay back to the bank every month until the loan is fully repaid.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
-           <div className="bg-white border border-[#dadce0] p-6 rounded-xl shadow-sm">
-              <h3 className="text-[#1a73e8] font-black mt-0 uppercase text-xs tracking-widest mb-4">The Mathematical Core</h3>
-              <div className="bg-[#f8f9fa] p-4 rounded font-mono text-[13px] border border-[#dadce0] mb-4">
-                 EMI = [P × r × (1+r)^n] / [(1+r)^n - 1]
-              </div>
-              <p className="text-[11px] leading-relaxed text-[#5f6368]">
-                 This formula ensures that while the total EMI remains constant, the <strong>Interest Portion</strong> decreases every month as the <strong>Principal Balance</strong> reduces, while the <strong>Principal Portion</strong> increases.
-              </p>
-           </div>
-           <div className="bg-white border border-[#dadce0] p-6 rounded-xl shadow-sm">
-              <h3 className="text-[#1a73e8] font-black mt-0 uppercase text-xs tracking-widest mb-4">How it Helps You</h3>
-              <ul className="text-[11px] space-y-2 text-[#5f6368] list-none p-0">
-                 <li className="flex gap-2"><strong>1. Budgeting:</strong> Know exactly how much disposable income remains.</li>
-                 <li className="flex gap-2"><strong>2. Loan Comparison:</strong> Compare different banks' "Base Rate + Premium" offers.</li>
-                 <li className="flex gap-2"><strong>3. Tenure Optimization:</strong> See how increasing tenure reduces EMI but spikes interest.</li>
-              </ul>
-           </div>
-        </div>
-
-        <h2>EMI Intelligence Matrix: Principal vs Tenure Impact</h2>
+        <h3>Components of an EMI</h3>
         <p>
-          Understanding the sensitivity of your EMI to the loan duration is critical for long-term financial health. Below is a simulation for a <strong>Rs. 5,000,000 (50 Lakh)</strong> loan at a <strong>12%</strong> interest rate:
+          Your EMI consists of two parts:
+          1. <strong>Principal:</strong> The actual loan amount you borrowed.
+          2. <strong>Interest:</strong> The cost of borrowing, which varies based on the bank's base rate and premium.
         </p>
 
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-xs">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-3 text-left">Tenure</th>
-                <th className="border border-[#dadce0] px-4 py-3 text-right">Monthly EMI</th>
-                <th className="border border-[#dadce0] px-4 py-3 text-right">Total Interest</th>
-                <th className="border border-[#dadce0] px-4 py-3 text-right">Interest as % of Loan</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-3 font-bold">5 Years</td>
-                <td className="border border-[#dadce0] px-4 py-3 text-right">Rs. 1,11,222</td>
-                <td className="border border-[#dadce0] px-4 py-3 text-right">Rs. 16,73,332</td>
-                <td className="border border-[#dadce0] px-4 py-3 text-right text-[#188038]">33.4%</td>
-              </tr>
-              <tr className="bg-[#fcfcfc]">
-                <td className="border border-[#dadce0] px-4 py-3 font-bold">10 Years</td>
-                <td className="border border-[#dadce0] px-4 py-3 text-right">Rs. 71,735</td>
-                <td className="border border-[#dadce0] px-4 py-3 text-right">Rs. 36,08,202</td>
-                <td className="border border-[#dadce0] px-4 py-3 text-right text-[#f9ab00]">72.1%</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-3 font-bold">15 Years</td>
-                <td className="border border-[#dadce0] px-4 py-3 text-right">Rs. 60,008</td>
-                <td className="border border-[#dadce0] px-4 py-3 text-right">Rs. 58,01,440</td>
-                <td className="border border-[#dadce0] px-4 py-3 text-right text-[#d93025]">116.0%</td>
-              </tr>
-              <tr className="bg-[#fcfcfc]">
-                <td className="border border-[#dadce0] px-4 py-3 font-bold">20 Years</td>
-                <td className="border border-[#dadce0] px-4 py-3 text-right">Rs. 55,054</td>
-                <td className="border border-[#dadce0] px-4 py-3 text-right">Rs. 82,12,960</td>
-                <td className="border border-[#dadce0] px-4 py-3 text-right text-red-700 font-black">164.2%</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h2>Advanced Derivation: Components of Your Payment</h2>
-        <h3>1. The Principal (P)</h3>
-        <p>
-          This is the actual amount you borrow. Every month, a portion of your EMI goes toward reducing this balance. In the early years of a long-term loan, this portion is surprisingly small.
-        </p>
-
-        <h3>2. The Interest Rate (r)</h3>
-        <p>
-          Calculated as <code>(Annual Rate / 12 / 100)</code>. For example, a 12% annual rate becomes 0.01 per month. This is the fee charged by the bank for the privilege of using their capital.
-        </p>
-
-        <h3>3. The Tenure (n)</h3>
-        <p>
-          The total number of months. A 15-year loan has <code>15 x 12 = 180</code> installments.
-        </p>
-
-        <div className="bg-[#e8f0fe] p-6 rounded-xl my-8 border border-[#1a73e8]">
-           <h3 className="text-[#1967d2] font-black mt-0 text-sm mb-3">Expert Insight: The DTI Ratio for Nepal</h3>
-           <p className="text-xs leading-relaxed text-[#3c4043] mb-0">
-              When using this calculator, aim for a <strong>Debt-to-Income (DTI) ratio</strong> of less than <strong>50%</strong>. Banks in Nepal evaluate your EMI affordability based on your net verifiable monthly income. If your salary is Rs. 100,000, your total EMIs (including existing ones) should ideally stay below Rs. 50,000 to ensure a high probability of loan approval.
+        <div className="bg-[#fef7e0] border border-[#fbbc04] rounded-lg p-5 my-6">
+           <h4 className="text-sm font-black text-[#b06000] uppercase mb-2">Banking Alert</h4>
+           <p className="text-xs leading-relaxed mb-0 text-[#3c4043]">
+             Most banks in Nepal use <strong>Floating Interest Rates</strong>. This means your EMI can change if the Nepal Rastra Bank (NRB) adjusts the base rate. Always use our calculator to re-verify your payments if your bank sends you a rate hike notice!
            </p>
         </div>
 
-        <h2>Comparison Taxonomy: Secured vs Unsecured</h2>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Feature</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Secured Loans</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Unsecured Loans</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Collateral</td>
-                <td className="border border-[#dadce0] px-4 py-2">Required (Real Estate, Gold)</td>
-                <td className="border border-[#dadce0] px-4 py-2">Not Required</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Interest Rate</td>
-                <td className="border border-[#dadce0] px-4 py-2">Lower (Base Rate + 2-4%)</td>
-                <td className="border border-[#dadce0] px-4 py-2">Higher (Base Rate + 5-7%)</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Examples</td>
-                <td className="border border-[#dadce0] px-4 py-2">Home Loan, Auto Loan</td>
-                <td className="border border-[#dadce0] px-4 py-3">Personal Loan, Credit Card</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h2>Final Strategy: Reducing Total Interest</h2>
+        <h2>How to Use the EMI Calculator</h2>
         <p>
-          The most effective way to help your future self is by making <strong>Partial Prepayments</strong>. By paying even an extra Rs. 5,000 per month against the principal, you can save years of payments and lakhs in interest. Use this structural breakdown to plan your journey toward a debt-free life in Nepal.
+          Simply enter your loan amount, the annual interest rate, and the loan tenure (in years or months). Our engine will provide a detailed breakdown of your total interest payable and the total cost of the loan.
         </p>
       </>
     ),
     faqs: [
-      {
-        question: "How does the Base Rate system work in Nepal?",
-        answer: "Banks calculate their minimum lending rate (Base Rate) based on their cost of funds. They then add a 'premium' (e.g., Base Rate + 2%) to determine your final interest rate."
-      },
-      {
-        question: "What is the DTI ratio required by banks?",
-        answer: "Most banks in Nepal prefer a Debt-to-Income (DTI) ratio of below 50%, meaning your total monthly EMIs should not exceed half of your verified monthly income."
-      },
-      {
-        question: "Is it better to choose a longer tenure?",
-        answer: "A longer tenure makes the EMI affordable but significantly increases the total interest. It is best to choose the shortest tenure your budget can comfortably accommodate."
-      },
-      {
-        question: "How do prepayments affect my loan EMI?",
-        answer: "Prepayments reduce the principal balance directly. This usually allows you to either reduce your monthly EMI amount or shorten the remaining loan tenure, saving you interest."
-      },
-      {
-        question: "Can I use this calculator for a business loan in Nepal?",
-        answer: "Yes, while business loans often have different terms, the basic monthly EMI calculation using the reducing balance method remains the same as shown here."
-      },
-      {
-        question: "What is a 'Floating' interest rate in Nepal?",
-        answer: "Most loans in Nepal are on a floating rate, meaning the interest changes when the bank's Base Rate changes (usually reviewed every quarter by the NRB)."
-      }
+      { question: "Can I prepay my loan in Nepal?", answer: "Yes, most banks allow prepayment, but they may charge a 'Prepayment Fee' ranging from 0.5% to 2% of the principal." },
+      { question: "What is the standard loan tenure for a home loan?", answer: "In Nepal, home loans (Ghar Karja) typically have a tenure of 5 to 30 years." }
     ]
   },
   'nea-bill': {
@@ -654,58 +522,43 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
     ]
   },
   'nepal-land': {
-    title: "Nepal Land Measurement Calculator | Ropani & Bigha Converter",
-    description: "Convert land units in Nepal between Ropani, Aana, Paisa, Dam (Hilly) and Bigha, Kattha, Dhur (Terai). Support for Square Feet and Square Meters.",
+    title: "Nepal Land Area Converter | Ropani, Aana, Bigha to Sq. Ft.",
+    description: "Convert between Nepalese land units (Ropani, Aana, Paisa, Dam) and Terai units (Bigha, Kattha, Dhur). Precise calculations for real estate in Nepal.",
     content: (
       <>
-        <h2>Nepal Land Measurement Systems Explained</h2>
+        <h2>Nepal Land Measurement System: A Complete Guide</h2>
         <p>
-          Nepal uses two distinct systems for land measurement depending on the geography. In the Hilly regions (including Kathmandu), the <strong>Ropani-Aana</strong> system is used, while in the Terai regions, the <strong>Bigha-Kattha</strong> system is the standard.
+          Buying or selling land in Nepal requires a deep understanding of two distinct measurement systems: the <strong>Hilly System</strong> (Ropani-Aana) used in Kathmandu and the hills, and the <strong>Terai System</strong> (Bigha-Kattha) used in the southern plains. Our <strong>Nepal Land Area Converter</strong> handles both systems with 100% precision.
         </p>
-        
-        <h3>Conversion Table: Hilly vs. Terai vs. Metric</h3>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Unit</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Equivalent (Sq. Ft)</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Equivalent (Sq. Mtr)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-bold">1 Ropani</td>
-                <td className="border border-[#dadce0] px-4 py-2">5,476 sq. ft.</td>
-                <td className="border border-[#dadce0] px-4 py-2">508.72 sq. m.</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-bold">1 Bigha</td>
-                <td className="border border-[#dadce0] px-4 py-2">72,900 sq. ft.</td>
-                <td className="border border-[#dadce0] px-4 py-2">6,772.63 sq. m.</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-bold">1 Aana</td>
-                <td className="border border-[#dadce0] px-4 py-2">342.25 sq. ft.</td>
-                <td className="border border-[#dadce0] px-4 py-2">31.80 sq. m.</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-bold">1 Kattha</td>
-                <td className="border border-[#dadce0] px-4 py-2">3,645 sq. ft.</td>
-                <td className="border border-[#dadce0] px-4 py-2">338.63 sq. m.</td>
-              </tr>
-            </tbody>
-          </table>
+
+        <h3>1. The Ropani-Aana System (Hills & Kathmandu)</h3>
+        <p>
+          In Kathmandu and surrounding hilly regions, land is measured in Ropani, Aana, Paisa, and Dam:
+          - <strong>1 Ropani</strong> = 16 Aana (5476 sq. ft.)
+          - <strong>1 Aana</strong> = 4 Paisa (342.25 sq. ft.)
+          - <strong>1 Paisa</strong> = 4 Dam (85.56 sq. ft.)
+        </p>
+
+        <div className="bg-[#f1f3f4] border border-[#dadce0] rounded-lg p-6 my-8">
+           <h3 className="font-bold mb-3">Conversion Table: Sq. Ft. to Local Units</h3>
+           <ul className="space-y-2 text-sm text-[#5f6368]">
+              <li><strong>1 Ropani</strong> = 5476 sq. ft.</li>
+              <li><strong>1 Aana</strong> = 342.25 sq. ft.</li>
+              <li><strong>1 Bigha</strong> = 72900 sq. ft.</li>
+              <li><strong>1 Kattha</strong> = 3645 sq. ft.</li>
+           </ul>
         </div>
 
-        <h2>Why is accurate conversion important?</h2>
+        <h3>2. The Bigha-Kattha System (Terai)</h3>
         <p>
-          Real estate prices in Nepal are soaring, and even a few square feet can mean a difference of lakhs of rupees. When buying or selling land, always convert official 'Lalpurja' measurements into square feet to verify the actual usable area.
+          In the Terai region, the measurement units are significantly larger:
+          - <strong>1 Bigha</strong> = 20 Kattha
+          - <strong>1 Kattha</strong> = 20 Dhur
         </p>
 
-        <h2>Using the NepaCalc Land Tool</h2>
+        <h2>Why Real Estate Professionals Choose NepaCalc</h2>
         <p>
-          Our calculator allows you to enter land units in any format and instantly converts them to all other Nepalese and International units (Sq. Ft, Sq. Mtr). This is the most comprehensive tool for real estate agents, engineers, and home buyers in Nepal.
+          Discrepancies in land measurement can lead to legal disputes or financial losses. Our tool is used by property developers, legal advisors, and home buyers across Nepal to ensure that the area mentioned in the <strong>Lalpurja</strong> (Land Ownership Certificate) matches the actual physical measurement in Square Feet or Square Meters.
         </p>
       </>
     ),
@@ -959,53 +812,38 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
     ]
   },
   'bmi': {
-    title: "BMI Calculator | Check Your Body Mass Index Online",
-    description: "Calculate your Body Mass Index (BMI) instantly. Find out your healthy weight range and check if you are underweight, normal, overweight, or obese.",
+    title: "BMI Calculator Nepal | Body Mass Index for South Asians",
+    description: "Calculate your Body Mass Index (BMI) accurately. Optimized for South Asian body types and WHO health standards for Nepal.",
     content: (
       <>
-        <h2>Understanding Your Body Mass Index (BMI)</h2>
+        <h2>Understanding BMI for the Nepalese Population</h2>
         <p>
-          The Body Mass Index (BMI) is a simple mathematical formula used to classify whether a person has a healthy body weight for their height. While it doesn't measure body fat directly, it is a widely used screening tool by doctors and health professionals worldwide.
+          Body Mass Index (BMI) is a simple calculation using a person's height and weight. The formula is <code>BMI = kg/m²</code>. While BMI is a global standard, medical professionals in Nepal often use modified cut-offs for <strong>South Asian populations</strong>, who may face higher health risks at lower BMI levels compared to Western populations.
         </p>
 
-        <h3>BMI Classification Chart (WHO Guidelines)</h3>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">BMI Score</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Weight Status</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Health Risk</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Below 18.5</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-blue-600 font-bold">Underweight</td>
-                <td className="border border-[#dadce0] px-4 py-2">Possible nutritional deficiency</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">18.5 - 24.9</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-green-600 font-bold">Normal Weight</td>
-                <td className="border border-[#dadce0] px-4 py-2">Low Risk (Healthy)</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">25.0 - 29.9</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-yellow-600 font-bold">Overweight</td>
-                <td className="border border-[#dadce0] px-4 py-2">Moderate risk of heart disease</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">30.0 and Above</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-red-600 font-bold">Obese</td>
-                <td className="border border-[#dadce0] px-4 py-2">High risk of diabetes & hypertension</td>
-              </tr>
-            </tbody>
-          </table>
+        <h3>WHO BMI Categories for South Asia</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-8 text-center">
+           <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <span className="block text-xs font-bold text-blue-700 uppercase">Underweight</span>
+              <span className="text-lg font-black">&lt; 18.5</span>
+           </div>
+           <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+              <span className="block text-xs font-bold text-green-700 uppercase">Normal</span>
+              <span className="text-lg font-black">18.5 - 23</span>
+           </div>
+           <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <span className="block text-xs font-bold text-yellow-700 uppercase">Overweight</span>
+              <span className="text-lg font-black">23 - 27.5</span>
+           </div>
+           <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+              <span className="block text-xs font-bold text-red-700 uppercase">Obese</span>
+              <span className="text-lg font-black">&gt; 27.5</span>
+           </div>
         </div>
 
-        <h2>Next Steps After Calculating BMI</h2>
+        <h2>Health Beyond the Numbers</h2>
         <p>
-          If your BMI is <strong>23.2</strong>, you are in the healthy "Normal" weight category! However, remember that BMI is just an indicator. For a complete health assessment, you should also calculate your <strong>ideal daily calorie intake</strong> based on your physical activity, and track your body fat percentage, as muscular athletes may have a high BMI but low body fat.
+          While our <strong>BMI Calculator</strong> provides a useful starting point, it does not measure body fat directly. For a complete health assessment, Nepalese doctors also recommend measuring <strong>Waist Circumference</strong> and monitoring blood pressure and sugar levels, especially given the rising rates of Type 2 Diabetes in Nepal.
         </p>
       </>
     ),
@@ -1238,7 +1076,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </p>
         <h3>The Impact of Down Payments</h3>
         <p>
-          Making a larger down payment directly reduces your principal loan amount. This not only lowers your monthly EMI but also drastically reduces the total interest you will pay to the bank over 15 or 20 years. Always aim for at least a 20% down payment to avoid mandatory mortgage insurance (PMI) in many jurisdictions.
+          Making a larger down payment directly reduces your principal loan amount. This only lowers your monthly EMI but also drastically reduces the total interest you will pay to the bank over 15 or 20 years. Always aim for at least a 20% down payment to avoid mandatory mortgage insurance (PMI) in many jurisdictions.
         </p>
       </>
     ),
@@ -1309,31 +1147,26 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
     ]
   },
   'age-calculator': {
-    title: "Age Calculator | Calculate Exact Age in Years, Months, Days",
-    description: "Find out exactly how old you are today. Calculate your exact age in years, months, weeks, and days between any two dates.",
+    title: "Age Calculator | Precise Years, Months, Days & Hours",
+    description: "Calculate your exact age or the time between two dates. Essential for document filling, school admissions, and retirement planning in Nepal.",
     content: (
       <>
-        <h2>How the Exact Age Calculator Works</h2>
+        <h2>Calculate Your Exact Age Instantly</h2>
         <p>
-          Calculating your age isn't just about knowing your birth year. In many legal, medical, and astrological scenarios, you need to know your exact age down to the day. Our calculator handles leap years and different month lengths automatically to give you perfect precision.
+          Whether you are applying for a **Lok Sewa Aayog** position, filling out a passport application at the Department of Passport, or calculating your child's age for school admission, precision matters. Our <strong>Age Calculator</strong> provides a breakdown of your life in years, months, days, and even minutes.
         </p>
-        <h3>Use Cases for Exact Age</h3>
-        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-          <li><strong>Government Forms:</strong> Visa and passport applications require age verification.</li>
-          <li><strong>Medical Dosages:</strong> Pediatric medicine requires exact age in months and days.</li>
-          <li><strong>Milestones:</strong> Find out exactly when you will turn 10,000 days old!</li>
+
+        <h3>Practical Uses in Nepal</h3>
+        <ul>
+          <li><strong>Document Verification:</strong> Ensure your age matches the requirements for government service or citizenship.</li>
+          <li><strong>Health Monitoring:</strong> Pediatricians in Nepal often track growth milestones based on exact age in months.</li>
+          <li><strong>Event Planning:</strong> Calculate exactly how many days are left until a major milestone or anniversary.</li>
         </ul>
       </>
     ),
     faqs: [
-      {
-        question: "Does this calculator account for leap years?",
-        answer: "Yes, our algorithm automatically detects leap years (like 2020 and 2024) and adjusts the day count perfectly."
-      },
-      {
-        question: "Can I calculate the age of a historical event?",
-        answer: "Absolutely. Just enter the date of the event as the 'Date of Birth' to see exactly how much time has passed."
-      }
+      { question: "Does the calculator account for leap years?", answer: "Yes, our algorithm automatically factors in leap years (366 days) to ensure your age calculation is 100% accurate." },
+      { question: "How old am I if I was born in 2050 BS?", answer: "To use this tool for Bikram Sambat (BS) dates, you should first convert the year to AD or simply enter the BS numbers if the current year is also in BS." }
     ]
   },
   'gpa': {
@@ -1731,32 +1564,40 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
     ]
   },
   'discount-calculator': {
-    title: "Discount Calculator | Find the Final Sale Price",
-    description: "Calculate the final price after a percentage discount is applied. Quickly figure out your exact savings during sales and promotions.",
+    title: "Discount Calculator Nepal | Sale Price & Savings Estimator",
+    description: "Calculate exact sale prices and total savings during Dashain, Tihar, and seasonal sales. Factures in stacked discounts and regional tax implications.",
     content: (
       <>
-        <h2>How the Discount Calculator Works</h2>
+        <h2>Smart Shopping in Nepal: Mastering the Discount Math</h2>
         <p>
-          During major sales events like Black Friday or holiday clearances, stores often advertise massive percentage discounts. Our calculator helps you instantly figure out the exact cash amount you save, and the final price you will pay at the register.
+          Whether you are shopping at Civil Mall, Labim Mall, or browsing local stores in New Road, understanding the real value of a "discount" is crucial for your budget. During major festivals like <strong>Dashain and Tihar</strong>, Nepalese retailers offer massive percentage-based reductions. Our <strong>Discount Calculator</strong> is designed to help you see past the marketing and calculate the exact amount of money staying in your pocket.
         </p>
-        <h3>The Discount Formula</h3>
+
+        <h3>Why You Need a Digital Discount Tool</h3>
         <p>
-          Calculating a discount manually is easy:
-          <br/><strong>Step 1:</strong> Convert the discount percentage to a decimal (20% = 0.20).
-          <br/><strong>Step 2:</strong> Multiply the original price by the decimal to find the savings amount.
-          <br/><strong>Step 3:</strong> Subtract the savings from the original price to get the final cost.
+          Calculating "20% off Rs. 4,500" might seem simple, but in the heat of shopping, mental math often leads to overspending. Furthermore, many stores in Nepal use <strong>"Stacked Discounts"</strong> (e.g., 20% off + an additional 10% for bank card holders). Our engine handles these compounding calculations with 100% precision, ensuring you know the final price before you reach the billing counter.
+        </p>
+
+        <div className="bg-[#e8f0fe] border border-[#1a73e8] rounded-xl p-6 my-8">
+           <h3 className="text-[#1967d2] font-black mt-0 mb-3 uppercase text-xs tracking-widest">Expert Shopping Tip</h3>
+           <p className="text-sm leading-relaxed mb-0">
+             In Nepal, always ask if the "Discounted Price" includes <strong>VAT (13%)</strong>. Sometimes a 50% discount is applied to the base price, but the tax is added later, changing your final total. Use our tool to verify the base price first!
+           </p>
+        </div>
+
+        <h2>Strategic Spending: How to Save More</h2>
+        <p>
+          To maximize your savings in the Nepalese market:
+          1. <strong>Compare Unit Prices:</strong> A larger pack with a small discount might be more expensive than two smaller packs with a large discount.
+          2. <strong>Factor in Travel:</strong> Saving Rs. 100 at a distant store might cost you Rs. 200 in petrol or Pathao charges.
+          3. <strong>Check the Expiry:</strong> Deep discounts (70%+) in grocery stores often mean the product is near its expiry date.
         </p>
       </>
     ),
     faqs: [
-      {
-        question: "How do I calculate a double discount?",
-        answer: "If a store offers '20% off plus an extra 10% off', do NOT add them to 30%. You must calculate the 20% discount first, and then apply the 10% discount to the new, lower price."
-      },
-      {
-        question: "Does the calculator include sales tax?",
-        answer: "By default, this tool calculates the pre-tax discounted price. If sales tax applies, it is usually added to the final discounted price, not the original price."
-      }
+      { question: "How do I calculate 20% off a price?", answer: "Multiply the original price by 0.20 to find the discount amount, then subtract it from the original price." },
+      { question: "What is the difference between discount and VAT in Nepal?", answer: "A discount reduces the price you pay, while VAT (Value Added Tax) is a 13% government tax added to the final sale price." },
+      { question: "Does this calculator support compounding discounts?", answer: "Yes, you can apply an initial discount and then apply a secondary discount (like a coupon) to the new total." }
     ]
   },
   'tip-calculator': {
@@ -2597,7 +2438,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       }
     ]
   },
-
   'calculus-lab': {
     title: "Calculus & Algebra Solver | Derivatives & Integrals Online",
     description: "Solve derivatives, integrals, and limits instantly. Symbolic calculus engine for students and professionals. Step-by-step logic for complex equations.",
@@ -2621,7 +2461,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Is this tool useful for physics?", answer: "Absolutely. Calculus is the language of physics, used to calculate velocity, acceleration, and electromagnetic fields." }
     ]
   },
-
   'property-tax': {
     title: "Capital Gains Tax (CGT) Calculator Real Estate Nepal | Malpot Guide",
     description: "Calculate Capital Gains Tax for real estate and land sales in Nepal. Find your exact tax liability before visiting the Malpot office.",
@@ -2634,8 +2473,8 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
 
         <h3>CGT Rates for FY 2080/81</h3>
         <ul>
-          <li><strong>Property held for > 5 years:</strong> 5% on the gain.</li>
-          <li><strong>Property held for < 5 years:</strong> 7.5% on the gain.</li>
+          <li><strong>Property held for &gt; 5 years:</strong> 5% on the gain.</li>
+          <li><strong>Property held for &lt; 5 years:</strong> 7.5% on the gain.</li>
         </ul>
 
         <div className="bg-[#f1f8e9] border border-[#33691e] rounded-lg p-6 my-8">
@@ -2651,7 +2490,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Who pays the CGT?", answer: "In Nepal, the seller is legally responsible for paying the Capital Gains Tax on the profit earned from the sale." }
     ]
   },
-
   'property-registration': {
     title: "Property Registration & Malpot Fee Calculator | Nepal Land Tax",
     description: "Calculate land and house registration fees for Nepal Malpot offices. Includes municipal discounts and stamp duties for all provinces.",
@@ -2675,7 +2513,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "What is 'Thaili'?", answer: "'Thaili' refers to the official transaction amount mentioned in the registration deed, which must be equal to or higher than the government's minimum valuation." }
     ]
   },
-
   'nepal-tds': {
     title: "Nepal TDS Calculator | Tax Deducted at Source IRD",
     description: "Calculate TDS on rent, service fees, and contracts in Nepal per IRD rules for FY 2080/81. Ensure legal compliance for your business.",
@@ -2700,7 +2537,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Can I claim a refund for TDS?", answer: "TDS is an advance tax. If your final tax liability at the end of the year is lower than the total TDS deducted, you can claim a refund or carry it forward." }
     ]
   },
-
   'nepse-bonus-tax': {
     title: "NEPSE Bonus Share & Dividend Tax Calculator | Share Market Nepal",
     description: "Calculate tax on bonus shares and cash dividends received from NEPSE-listed companies. Essential tool for share market investors in Nepal.",
@@ -2720,10 +2556,9 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
     ),
     faqs: [
       { question: "Do I need to pay tax on bonus shares separately?", answer: "Usually, the company deducts the tax from your cash dividend to pay for the bonus share tax. If no cash dividend is announced, you may need to deposit the tax amount to the company's account." },
-      { question: "Is share trading profit also taxed?", answer: "Yes, Capital Gains Tax on share trading is 5% for long-term investors (held > 1 year) and 7.5% for short-term investors." }
+      { question: "Is share trading profit also taxed?", answer: "Yes, Capital Gains Tax on share trading is 5% for long-term investors (held &gt; 1 year) and 7.5% for short-term investors." }
     ]
   },
-
   'gratuity-calculator': {
     title: "Gratuity Calculator Nepal | Labor Act 2074 Entitlements",
     description: "Calculate your end-of-service gratuity entitlement under Nepal's Labor Act 2074. Find out exactly what your employer owes you after resignation or retirement.",
@@ -2754,7 +2589,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Can I receive gratuity if I resign?", answer: "Yes. As long as you have completed the minimum service period, you are entitled to gratuity regardless of whether you resign or retire." }
     ]
   },
-
   'foreign-employment': {
     title: "Foreign Employment Cost & Salary Calculator Nepal | DoFE Fees",
     description: "Calculate total cost of going abroad for work from Nepal. Includes agency fees, visa, insurance, and expected net savings for Gulf and European jobs.",
@@ -2778,7 +2612,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Is income from abroad taxable in Nepal?", answer: "Remittance income sent via formal banking channels is generally not taxed in Nepal. However, always check the latest Finance Act for updates." }
     ]
   },
-
   'kukl-bill': {
     title: "KUKL Water Bill Calculator | Kathmandu Water Tariffs 2081",
     description: "Calculate your exact KUKL monthly water bill for Kathmandu Valley based on meter size and consumption units. Find your bill before the meter reader arrives.",
@@ -2802,7 +2635,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "What should I do if my bill is unusually high?", answer: "Check for leaks in your internal plumbing first. If no leaks are found, you can request a meter testing at your local KUKL branch office." }
     ]
   },
-
   'nepal-attendance': {
     title: "Attendance Calculator | Nepal University 75% Rule Guide",
     description: "Calculate your university attendance percentage. Find out exactly how many more classes you can miss before being barred from exams at TU, KU, or PU.",
@@ -2834,7 +2666,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Do internal marks depend on attendance?", answer: "Yes, many colleges in Nepal allocate a portion of internal assessment marks (usually 5-10%) based on your attendance record." }
     ]
   },
-
   'lead-time': {
     title: "Lead Time & Cycle Time Calculator | Business Efficiency",
     description: "Calculate manufacturing lead times, cycle times, and takt time. Essential for optimizing inventory and supply chain for Nepalese businesses.",
@@ -2857,7 +2688,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Why is Lead Time important for SEO content writing?", answer: "In content marketing, lead time is the time between planning and publishing. Faster lead times allow you to respond to trends before your competitors." }
     ]
   },
-
   'pythagorean-theorem': {
     title: "Pythagorean Theorem Calculator | Solve Triangles Instantly",
     description: "Instantly solve for the hypotenuse or any side of a right-angled triangle using a² + b² = c². Essential for students, architects, and engineers.",
@@ -2886,7 +2716,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "What is a Pythagorean Triple?", answer: "A set of three positive integers that perfectly fit the formula with no decimals. The most famous are (3, 4, 5) and (5, 12, 13)." }
     ]
   },
-
   'surface-area-calculator': {
     title: "Surface Area Calculator | 3D Geometric Shapes & Formulas",
     description: "Calculate the total surface area of cylinders, spheres, cones, and rectangular prisms. Essential for construction and material estimation.",
@@ -2910,7 +2739,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Why do we use 'square units' for surface area?", answer: "Since surface area measures a 2D surface on a 3D object, it is always expressed in square units (e.g., cm², m², sq. ft.)." }
     ]
   },
-
   'volume-calculator': {
     title: "Volume Calculator | 3D Space & Capacity Estimator",
     description: "Calculate the volume of any 3D geometric shape instantly. Supports cones, cylinders, spheres, and rectangular prisms for industrial and home use.",
@@ -2934,7 +2762,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "How do I convert volume to weight?", answer: "You must know the density of the material. For water, 1 liter = 1 kilogram. For concrete or soil, the weight is much higher per unit of volume." }
     ]
   },
-
   'market-rates/live-gold-price': {
     title: "Live Gold Price in Nepal Today | Fine & Tejabi Sun",
     description: "Check the exact, official daily gold rates in Nepal (Fine 24K and Tejabi 22K). Prices synced with the Nepal Gold and Silver Dealers' Association.",
@@ -2964,7 +2791,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "How many grams are in 1 Tola of gold?", answer: "In Nepal, 1 Tola is equivalent to exactly 11.66 grams." }
     ]
   },
-
   'market-rates/remittance': {
     title: "Nepal Remittance Board | Compare Live Money Transfer Rates",
     description: "Compare real-time exchange rates from top remit companies (IME, Western Union, Prabhu) for sending money to Nepal from abroad.",
@@ -2988,7 +2814,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "What documents are needed for remittance?", answer: "The sender needs a valid ID and proof of address in their host country. The receiver in Nepal usually needs their Citizenship card for cash pickup." }
     ]
   },
-
   'market-rates/exchange-rate': {
     title: "Live Foreign Exchange Rates Nepal | USD, AUD, INR to NPR",
     description: "View real-time, official Nepal Rastra Bank (NRB) foreign exchange reference rates for USD, AUD, EUR, and GBP to Nepalese Rupees.",
@@ -3020,7 +2845,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Can I exchange money at the airport?", answer: "Yes, Tribhuvan International Airport (TIA) has multiple exchange counters, but their rates may be slightly less favorable than those found in Thamel or New Road." }
     ]
   },
-
   'market-rates/live-silver-price': {
     title: "Live Silver Price in Nepal | Chandi Rates Today",
     description: "Check the official daily Silver (Chandi) rates in Nepal per Tola and per Gram, authorized by FENEGOSIDA.",
@@ -3049,7 +2873,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Is silver a good investment in Nepal?", answer: "Silver is often considered 'the poor man's gold.' It is more affordable for small investors and has historically preserved its value against inflation." }
     ]
   },
-
   'bmi-child': {
     title: "Child BMI Percentile Calculator | Pediatric Growth Tracking Nepal",
     description: "Calculate your child's BMI percentile accurately based on CDC and WHO growth charts. Essential for monitoring childhood development and nutrition in Nepal.",
@@ -3080,7 +2903,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "What is a healthy percentile range for a child?", answer: "A healthy weight is typically defined as falling between the 5th and 85th percentiles." }
     ]
   },
-
   'sleep': {
     title: "Sleep Cycle Calculator | Optimize Wake Time & REM Sleep",
     description: "Calculate the exact time you should go to bed or wake up to avoid grogginess. Based on 90-minute human REM sleep cycles.",
@@ -3102,7 +2924,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Is 6 hours of sleep enough?", answer: "For some, 4 full cycles (6 hours) is enough, but most adults perform best with 5 or 6 cycles (7.5 to 9 hours)." }
     ]
   },
-
   'momo-calorie-counter': {
     title: "Momo Calorie Counter | Nepalese Food Nutrition Guide",
     description: "Calculate the exact calories and macros in your plate of Momo (Chicken, Buff, Veg). Essential for fitness enthusiasts in Kathmandu.",
@@ -3131,7 +2952,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Is momo healthy?", answer: "Steamed momos are a good source of protein and carbs. The healthiness depends largely on the quality of meat and the amount of oil used in the filling." }
     ]
   },
-
   'solar-requirement': {
     title: "Solar Panel & Inverter Calculator | Home Load Capacity Nepal",
     description: "Calculate the total wattage required for your home. Size your solar panels, battery bank, and inverter accurately for load-shedding backup.",
@@ -3155,7 +2975,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "How long do solar batteries last in Nepal?", answer: "Lead-acid batteries typically last 3-5 years, while modern Lithium-Ion batteries can last 10+ years with proper maintenance." }
     ]
   },
-
   'paint-cost': {
     title: "House Painting Cost & Volume Calculator | Nepal Pricing 2081",
     description: "Estimate exactly how many liters of paint you need for a room or house. Calculate total costs based on primer, coats, and square footage for Asian Paints, Berger, and KNP.",
@@ -3189,7 +3008,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "What is the best time of year to paint in Nepal?", answer: "The dry seasons (October to November and March to May) are ideal. Avoid painting during the monsoon, as high humidity prevents the paint from drying properly." }
     ]
   },
-
   'word-counter': {
     title: "Advanced Word & Character Counter | Reading Time Estimator",
     description: "Instantly count words, characters, and paragraphs. Optimized for SEO content writing and academic essays in Nepal.",
@@ -3211,7 +3029,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Is my text saved on your server?", answer: "No. All counting is done locally in your browser. Your text never leaves your device, ensuring 100% privacy." }
     ]
   },
-
   'qr-generator': {
     title: "Free QR Code Generator | Custom QR Codes for Nepal",
     description: "Generate high-density QR codes for URLs, WiFi, and contact cards instantly. Optimized for Fonepay and digital payments in Nepal.",
@@ -3235,7 +3052,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Can I put a logo in my QR code?", answer: "Standard QR codes have 'Error Correction' built-in, meaning you can often place a small logo in the center without breaking the code." }
     ]
   },
-
   'number-to-words': {
     title: "Number to Words Converter | Check Writing Utility Nepal",
     description: "Convert large numerical integers into written English words. Essential for writing checks and legal contracts in Nepal.",
@@ -3258,7 +3074,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Does it support the 'Lakh' and 'Crore' system?", answer: "Yes, our converter is optimized for the South Asian numbering system used in Nepal." }
     ]
   },
-
   'password-generator': {
     title: "Secure Password Generator | Institutional Grade Random Entropy",
     description: "Generate highly secure, randomized passwords utilizing uppercase, lowercase, numbers, and special symbols to defeat brute-force attacks.",
@@ -3312,7 +3127,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "How often should I change my password?", answer: "Modern security guidelines recommend changing your password immediately if there is a known data breach, rather than on an arbitrary schedule." }
     ]
   },
-
   'concrete-mix': {
     title: "Concrete Mix Calculator | Material Estimation & Strength Grades",
     description: "Calculate exactly how much cement, sand, and aggregate you need for your construction project based on the mix ratio.",
@@ -3371,7 +3185,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "How many bags of cement are in a cubic meter?", answer: "One standard 50kg bag of cement has a volume of approximately 0.0347 cubic meters, so roughly 28.8 bags make up one cubic meter." }
     ]
   },
-
   'brick-calculator': {
     title: "Brick Calculator Nepal | Estimate Construction Materials",
     description: "Calculate the total number of bricks required to build a wall. Accurately factors in mortar joint thickness and wall dimensions.",
@@ -3407,7 +3220,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Does the calculator account for windows and doors?", answer: "You must subtract the square footage of any windows, doors, or open arches from the total wall area before calculating the brick count." }
     ]
   },
-
   'chemistry-molar': {
     title: "Molar Mass Calculator | Molecular Weight Finder",
     description: "Calculate the exact molar mass and molecular weight of any chemical compound. Essential chemistry tool for students and lab technicians.",
@@ -3432,7 +3244,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Does this tool support organic compounds?", answer: "Yes, you can enter complex formulas like C₆H₁₂O₆ (Glucose) and the engine will parse each element accurately." }
     ]
   },
-
   'linear-solver': {
     title: "Linear Equations Solver | Algebra Systems",
     description: "Solve systems of simultaneous linear equations instantly. Supports multiple variables (x, y, z) using matrix substitution and elimination.",
@@ -3454,218 +3265,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
     faqs: [
       { question: "What if there is no solution?", answer: "If the lines are parallel (slopes are equal but intercepts are different), the system is 'inconsistent' and has no solution." },
       { question: "What are 'infinite solutions'?", answer: "If both equations represent the same line, any point on that line is a solution, resulting in infinite possibilities." }
-    ]
-  },
-  'discount-calculator': {
-    title: "Discount Calculator Nepal | Sale Price & Savings Estimator",
-    description: "Calculate exact sale prices and total savings during Dashain, Tihar, and seasonal sales. Factures in stacked discounts and regional tax implications.",
-    content: (
-      <>
-        <h2>Smart Shopping in Nepal: Mastering the Discount Math</h2>
-        <p>
-          Whether you are shopping at Civil Mall, Labim Mall, or browsing local stores in New Road, understanding the real value of a "discount" is crucial for your budget. During major festivals like <strong>Dashain and Tihar</strong>, Nepalese retailers offer massive percentage-based reductions. Our <strong>Discount Calculator</strong> is designed to help you see past the marketing and calculate the exact amount of money staying in your pocket.
-        </p>
-
-        <h3>Why You Need a Digital Discount Tool</h3>
-        <p>
-          Calculating "20% off Rs. 4,500" might seem simple, but in the heat of shopping, mental math often leads to overspending. Furthermore, many stores in Nepal use <strong>"Stacked Discounts"</strong> (e.g., 20% off + an additional 10% for bank card holders). Our engine handles these compounding calculations with 100% precision, ensuring you know the final price before you reach the billing counter.
-        </p>
-
-        <div className="bg-[#e8f0fe] border border-[#1a73e8] rounded-xl p-6 my-8">
-           <h3 className="text-[#1967d2] font-black mt-0 mb-3 uppercase text-xs tracking-widest">Expert Shopping Tip</h3>
-           <p className="text-sm leading-relaxed mb-0">
-             In Nepal, always ask if the "Discounted Price" includes <strong>VAT (13%)</strong>. Sometimes a 50% discount is applied to the base price, but the tax is added later, changing your final total. Use our tool to verify the base price first!
-           </p>
-        </div>
-
-        <h2>Strategic Spending: How to Save More</h2>
-        <p>
-          To maximize your savings in the Nepalese market:
-          1. <strong>Compare Unit Prices:</strong> A larger pack with a small discount might be more expensive than two smaller packs with a large discount.
-          2. <strong>Factor in Travel:</strong> Saving Rs. 100 at a distant store might cost you Rs. 200 in petrol or Pathao charges.
-          3. <strong>Check the Expiry:</strong> Deep discounts (70%+) in grocery stores often mean the product is near its expiry date.
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "How do I calculate 20% off a price?", answer: "Multiply the original price by 0.20 to find the discount amount, then subtract that from the original price." },
-      { question: "What is the difference between discount and VAT in Nepal?", answer: "A discount reduces the price you pay, while VAT (Value Added Tax) is a 13% government tax added to the final sale price." },
-      { question: "Does this calculator support compounding discounts?", answer: "Yes, you can apply an initial discount and then apply a secondary discount (like a coupon) to the new total." }
-    ]
-  },
-
-  'vat-calculator': {
-    title: "VAT Calculator Nepal | 13% Tax & Price Breakdown",
-    description: "Calculate Value Added Tax (VAT) for goods and services in Nepal. Supports both VAT Inclusive and VAT Exclusive price calculations based on IRD standards.",
-    content: (
-      <>
-        <h2>The Definitive Guide to VAT in Nepal (2081/82)</h2>
-        <p>
-          In Nepal, <strong>Value Added Tax (VAT)</strong> is a multi-stage tax levied on the consumption of goods and services. Currently, the standard VAT rate in Nepal is fixed at <strong>13%</strong> by the Inland Revenue Department (IRD).
-        </p>
-
-        <h3>VAT Inclusive vs. VAT Exclusive: The Difference</h3>
-        <p>
-          Understanding how VAT is applied is critical for both business owners and consumers:
-          - <strong>VAT Exclusive:</strong> This is the "Base Price." You must add 13% on top of this amount.
-          - <strong>VAT Inclusive:</strong> This is the "Final Price" you see on a receipt. The 13% tax is already hidden inside this number.
-        </p>
-
-        <div className="overflow-x-auto my-8">
-           <table className="min-w-full border-collapse border border-[#dadce0] text-xs">
-              <thead className="bg-[#f8f9fa]">
-                 <tr>
-                    <th className="border border-[#dadce0] px-4 py-2 text-left">Calculation Type</th>
-                    <th className="border border-[#dadce0] px-4 py-2 text-left">Mathematical Formula</th>
-                 </tr>
-              </thead>
-              <tbody>
-                 <tr>
-                    <td className="border border-[#dadce0] px-4 py-2 font-bold">Adding VAT</td>
-                    <td className="border border-[#dadce0] px-4 py-2">Base Price × 1.13</td>
-                 </tr>
-                 <tr>
-                    <td className="border border-[#dadce0] px-4 py-2 font-bold">Removing VAT</td>
-                    <td className="border border-[#dadce0] px-4 py-2">Total Price ÷ 1.13</td>
-                 </tr>
-              </tbody>
-           </table>
-        </div>
-
-        <h2>Why Use the NepaCalc VAT Tool?</h2>
-        <p>
-          Manual tax calculation often leads to rounding errors that can cause issues during <strong>VAT Filing</strong>. Our tool ensures precision and reliability for all your tax-related needs.
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "What is the current VAT rate in Nepal?", answer: "The standard VAT rate in Nepal is 13% for most taxable goods and services." },
-      { question: "Are any items exempt from VAT in Nepal?", answer: "Yes. Basic necessities like unprocessed food, health services, and education are typically VAT-exempt." }
-    ]
-  },
-
-  'loan-emi': {
-    title: "Loan EMI Calculator Nepal | Monthly Payment Estimator",
-    description: "Calculate Equated Monthly Installments (EMI) for home, auto, and personal loans from Nepalese banks. Factors in interest rates and tenure.",
-    content: (
-      <>
-        <h2>Loan Planning in Nepal: Understanding EMI</h2>
-        <p>
-          Taking a loan from a Nepalese bank—whether it's for a new house in Bhaktapur or a vehicle—requires careful financial planning. The most critical number you need to know is your <strong>Equated Monthly Installment (EMI)</strong>. This is the fixed amount you pay back to the bank every month until the loan is fully repaid.
-        </p>
-
-        <h3>Components of an EMI</h3>
-        <p>
-          Your EMI consists of two parts:
-          1. <strong>Principal:</strong> The actual loan amount you borrowed.
-          2. <strong>Interest:</strong> The cost of borrowing, which varies based on the bank's base rate and premium.
-        </p>
-
-        <div className="bg-[#fef7e0] border border-[#fbbc04] rounded-lg p-5 my-6">
-           <h4 className="text-sm font-black text-[#b06000] uppercase mb-2">Banking Alert</h4>
-           <p className="text-xs leading-relaxed mb-0 text-[#3c4043]">
-             Most banks in Nepal use <strong>Floating Interest Rates</strong>. This means your EMI can change if the Nepal Rastra Bank (NRB) adjusts the base rate. Always use our calculator to re-verify your payments if your bank sends you a rate hike notice!
-           </p>
-        </div>
-
-        <h2>How to Use the EMI Calculator</h2>
-        <p>
-          Simply enter your loan amount, the annual interest rate, and the loan tenure (in years or months). Our engine will provide a detailed breakdown of your total interest payable and the total cost of the loan.
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "Can I prepay my loan in Nepal?", answer: "Yes, most banks allow prepayment, but they may charge a 'Prepayment Fee' ranging from 0.5% to 2% of the principal." },
-      { question: "What is the standard loan tenure for a home loan?", answer: "In Nepal, home loans (Ghar Karja) typically have a tenure of 5 to 30 years." }
-    ]
-  }
-  'nepal-land': {
-    title: "Nepal Land Area Converter | Ropani, Aana, Bigha to Sq. Ft.",
-    description: "Convert between Nepalese land units (Ropani, Aana, Paisa, Dam) and Terai units (Bigha, Kattha, Dhur). Precise calculations for real estate in Nepal.",
-    content: (
-      <>
-        <h2>Nepal Land Measurement System: A Complete Guide</h2>
-        <p>
-          Buying or selling land in Nepal requires a deep understanding of two distinct measurement systems: the <strong>Hilly System</strong> (Ropani-Aana) used in Kathmandu and the hills, and the <strong>Terai System</strong> (Bigha-Kattha) used in the southern plains. Our <strong>Nepal Land Area Converter</strong> handles both systems with 100% precision.
-        </p>
-
-        <h3>1. The Ropani-Aana System (Hills & Kathmandu)</h3>
-        <p>
-          In Kathmandu and surrounding hilly regions, land is measured in Ropani, Aana, Paisa, and Dam:
-          - <strong>1 Ropani</strong> = 16 Aana (5476 sq. ft.)
-          - <strong>1 Aana</strong> = 4 Paisa (342.25 sq. ft.)
-          - <strong>1 Paisa</strong> = 4 Dam (85.56 sq. ft.)
-        </p>
-
-        <div className="bg-[#f1f3f4] border border-[#dadce0] rounded-lg p-6 my-8">
-           <h3 className="font-bold mb-3">Conversion Table: Sq. Ft. to Local Units</h3>
-           <ul className="space-y-2 text-sm text-[#5f6368]">
-              <li><strong>1 Ropani</strong> = 5476 sq. ft.</li>
-              <li><strong>1 Aana</strong> = 342.25 sq. ft.</li>
-              <li><strong>1 Bigha</strong> = 72900 sq. ft.</li>
-              <li><strong>1 Kattha</strong> = 3645 sq. ft.</li>
-           </ul>
-        </div>
-
-        <h3>2. The Bigha-Kattha System (Terai)</h3>
-        <p>
-          In the Terai region, the measurement units are significantly larger:
-          - <strong>1 Bigha</strong> = 20 Kattha
-          - <strong>1 Kattha</strong> = 20 Dhur
-        </p>
-
-        <h2>Why Real Estate Professionals Choose NepaCalc</h2>
-        <p>
-          Discrepancies in land measurement can lead to legal disputes or financial losses. Our tool is used by property developers, legal advisors, and home buyers across Nepal to ensure that the area mentioned in the <strong>Lalpurja</strong> (Land Ownership Certificate) matches the actual physical measurement in Square Feet or Square Meters.
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "How many Aana are in one Ropani?", answer: "There are exactly 16 Aana in one Ropani of land." },
-      { question: "What is 1 Kattha in Square Feet?", answer: "One Kattha is equivalent to 3,645 square feet in the Terai measurement system." },
-      { question: "How do I convert Sq. Ft. to Aana?", answer: "Divide the total square feet by 342.25 to find the number of Aana." }
-    ]
-  },
-
-  'bmi': {
-    title: "BMI Calculator Nepal | Body Mass Index for South Asians",
-    description: "Calculate your Body Mass Index (BMI) accurately. Optimized for South Asian body types and WHO health standards for Nepal.",
-    content: (
-      <>
-        <h2>Understanding BMI for the Nepalese Population</h2>
-        <p>
-          Body Mass Index (BMI) is a simple calculation using a person's height and weight. The formula is <code>BMI = kg/m²</code>. While BMI is a global standard, medical professionals in Nepal often use modified cut-offs for <strong>South Asian populations</strong>, who may face higher health risks at lower BMI levels compared to Western populations.
-        </p>
-
-        <h3>WHO BMI Categories for South Asia</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-8 text-center">
-           <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-              <span className="block text-xs font-bold text-blue-700 uppercase">Underweight</span>
-              <span className="text-lg font-black">&lt; 18.5</span>
-           </div>
-           <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-              <span className="block text-xs font-bold text-green-700 uppercase">Normal</span>
-              <span className="text-lg font-black">18.5 - 23</span>
-           </div>
-           <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-              <span className="block text-xs font-bold text-yellow-700 uppercase">Overweight</span>
-              <span className="text-lg font-black">23 - 27.5</span>
-           </div>
-           <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-              <span className="block text-xs font-bold text-red-700 uppercase">Obese</span>
-              <span className="text-lg font-black">&gt; 27.5</span>
-           </div>
-        </div>
-
-        <h2>Health Beyond the Numbers</h2>
-        <p>
-          While our <strong>BMI Calculator</strong> provides a useful starting point, it does not measure body fat directly. For a complete health assessment, Nepalese doctors also recommend measuring <strong>Waist Circumference</strong> and monitoring blood pressure and sugar levels, especially given the rising rates of Type 2 Diabetes in Nepal.
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "Is BMI accurate for children?", answer: "BMI for adults and children is calculated differently. For children, you should use a 'BMI-for-age' growth chart." },
-      { question: "What is a healthy weight for a 5'5\" person?", answer: "For a person with a height of 5'5\", a healthy weight range is typically between 55kg and 70kg, depending on body frame and muscle mass." }
     ]
   },
 
@@ -3697,7 +3296,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "How do I calculate a 10% increase?", answer: "Multiply the number by 1.10. For example, a 10% increase on 100 is 100 * 1.10 = 110." },
       { question: "How do I find the percentage of my exam marks?", answer: "Divide your obtained marks by the total possible marks, then multiply the result by 100." }
     ]
-  }
+  },
   'pregnancy-due-date': {
     title: "Pregnancy Due Date Calculator | Baby Arrival Estimator",
     description: "Calculate your estimated due date (EDD) accurately using Naegele's rule. Includes weekly pregnancy milestones and health tips for mothers in Nepal.",
@@ -3727,94 +3326,6 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
     faqs: [
       { question: "Can the due date change?", answer: "Yes. An early ultrasound (usually before 12 weeks) is the most accurate way to date a pregnancy and may lead your doctor to adjust the EDD." },
       { question: "What if I don't know my LMP?", answer: "If your periods are irregular or you don't remember the date, your healthcare provider will use an ultrasound to measure the baby and estimate the due date." }
-    ]
-  },
-
-  'age-calculator': {
-    title: "Age Calculator | Precise Years, Months, Days & Hours",
-    description: "Calculate your exact age or the time between two dates. Essential for document filling, school admissions, and retirement planning in Nepal.",
-    content: (
-      <>
-        <h2>Calculate Your Exact Age Instantly</h2>
-        <p>
-          Whether you are applying for a **Lok Sewa Aayog** position, filling out a passport application at the Department of Passport, or calculating your child's age for school admission, precision matters. Our <strong>Age Calculator</strong> provides a breakdown of your life in years, months, days, and even minutes.
-        </p>
-
-        <h3>Practical Uses in Nepal</h3>
-        <ul>
-          <li><strong>Document Verification:</strong> Ensure your age matches the requirements for government service or citizenship.</li>
-          <li><strong>Health Monitoring:</strong> Pediatricians in Nepal often track growth milestones based on exact age in months.</li>
-          <li><strong>Event Planning:</strong> Calculate exactly how many days are left until a major milestone or anniversary.</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      { question: "Does the calculator account for leap years?", answer: "Yes, our algorithm automatically factors in leap years (366 days) to ensure your age calculation is 100% accurate." },
-      { question: "How old am I if I was born in 2050 BS?", answer: "To use this tool for Bikram Sambat (BS) dates, you should first convert the year to AD or simply enter the BS numbers if the current year is also in BS." }
-    ]
-  },
-
-  'concrete-mix': {
-    title: "Concrete Mix Calculator | Cement, Sand & Aggregate Ratio",
-    description: "Calculate the exact volume of cement, sand, and stone needed for slabs, pillars, and footings. Supports M15, M20, and M25 mix designs.",
-    content: (
-      <>
-        <h2>Building Safe Homes in Nepal: Concrete Ratios</h2>
-        <p>
-          In a seismically active country like Nepal, the strength of your concrete is the most important factor in house construction. Our <strong>Concrete Mix Calculator</strong> helps homeowners and civil engineers estimate the quantities of cement, sand, and aggregate (crushed stone) required for various structural elements.
-        </p>
-
-        <h3>Standard Mix Ratios (IS Codes)</h3>
-        <p>
-          For residential buildings in Nepal, the following grades are commonly used:
-          - <strong>M15 (1:2:4):</strong> Used for PCC and floor leveling.
-          - <strong>M20 (1:1.5:3):</strong> The standard for RCC slabs, beams, and columns in Nepal.
-          - <strong>M25 (1:1:2):</strong> Used for high-strength foundations and heavy-duty pillars.
-        </p>
-
-        <div className="bg-[#f8f9fa] border border-[#dadce0] rounded-lg p-6 my-8">
-           <h3 className="font-bold mb-3">Material Estimation (per Cubic Meter)</h3>
-           <p className="text-sm text-[#5f6368]">
-             For 1m³ of M20 concrete, you typically need approximately 8 bags of cement, 15 cubic feet of sand, and 30 cubic feet of aggregate, depending on the moisture content and compaction.
-           </p>
-        </div>
-      </>
-    ),
-    faqs: [
-      { question: "How much water should I add to concrete?", answer: "The Water-Cement ratio should be around 0.45 to 0.50. Too much water weakens the concrete, while too little makes it difficult to work with." },
-      { question: "What is the standard size of a cement bag in Nepal?", answer: "A standard bag of cement in Nepal (OPC or PPC) weighs 50kg and has a volume of approximately 0.035 cubic meters." }
-    ]
-  },
-
-  'brick-calculator': {
-    title: "Brick Calculator Nepal | Estimate Bricks for Walls & Houses",
-    description: "Calculate the total number of bricks required for a wall or building. Factors in mortar thickness and standard Nepalese brick sizes (9\" x 4.5\" x 3\").",
-    content: (
-      <>
-        <h2>Brick Estimation for Construction in Nepal</h2>
-        <p>
-          Whether you are building a boundary wall or a multi-story house in Kathmandu, bricks are a major expense. Our <strong>Brick Calculator</strong> is optimized for the standard bricks produced in Nepalese kilns, helping you order the exact quantity and avoid wastage.
-        </p>
-
-        <h3>Standard Brick Dimensions in Nepal</h3>
-        <p>
-          Most "Chimney Bricks" in Nepal follow the standard size of:
-          - <strong>Length:</strong> 9 inches
-          - <strong>Width:</strong> 4.5 inches
-          - <strong>Height:</strong> 3 inches
-        </p>
-
-        <h2>Professional Estimation Tips</h2>
-        <p>
-          1. <strong>Mortar Joints:</strong> Always account for a 10mm to 12mm mortar joint between bricks.
-          2. <strong>Wastage:</strong> Add a 5% to 10% buffer for broken bricks during transport and handling at the site.
-          3. <strong>Opening Deductions:</strong> Don't forget to subtract the area of windows and doors from your total wall area!
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "How many bricks are in a 9-inch wall per sq. ft.?", answer: "For a standard 9-inch thick wall in Nepal, you need approximately 10 to 12 bricks per square foot of wall area." },
-      { question: "What is the current price of bricks in Kathmandu?", answer: "Prices fluctuate seasonally but typically range from Rs. 15 to Rs. 22 per brick depending on the quality (A-one or Second) and transport distance." }
     ]
   }
 };
