@@ -7,7 +7,6 @@ import {
   PerspectiveCamera, OrthographicCamera, Float
 } from '@react-three/drei';
 import * as THREE from 'three';
-import { STLExporter } from 'three/examples/jsm/exporters/STLExporter';
 import * as math from 'mathjs';
 import { 
   Box, RotateCcw, Plus, Minus, Search, Maximize, ChevronRight, ArrowLeft
@@ -472,17 +471,6 @@ export default function ThreeDCalculatorClient() {
       z: Math.max(prev.z, range.z)
     }));
   }, []);
-
-  const exportToSTL = () => {
-    if (!sceneRef.current) return;
-    const exporter = new STLExporter();
-    const stlString = exporter.parse(sceneRef.current);
-    const blob = new Blob([stlString], { type: 'text/plain' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `nepacalc-3d-model-${Date.now()}.stl`;
-    link.click();
-  };
 
   const resetStudio = () => {
     setGraphs([{ id: '1', equation: 'z = sin(sqrt(x^2 + y^2))', visible: true, color: '#0ea5e9', opacity: 0.9, error: null }]);
