@@ -5,8 +5,8 @@ import { CATEGORY_URL_MAP } from '@/config/GlobalConfig';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://nepacalc.com';
-  // Use a slightly older date as base to avoid "too fresh" duplicate timestamp issues
-  const lastModDate = new Date('2026-04-20T10:00:00Z');
+  // Use a fixed date for base modified to optimize crawl budget
+  const lastModDate = new Date('2026-04-28T10:00:00Z');
 
   // 1. Static Core Pages
   const staticPages = [
@@ -19,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/terms',
   ].map((route) => ({
     url: `${baseUrl}${route}/`,
-    lastModified: route === '' ? new Date() : lastModDate,
+    lastModified: lastModDate,
     changeFrequency: 'weekly' as const,
     priority: route === '' ? 1.0 : 0.8,
   }));
@@ -30,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     if (!path.endsWith('/')) path += '/';
     return {
       url: `${baseUrl}${path}`,
-      lastModified: new Date('2026-04-22T08:30:00Z'),
+      lastModified: lastModDate,
       changeFrequency: 'daily' as const,
       priority: 0.9,
     };
@@ -44,8 +44,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     
     return {
       url: isDirectRoute ? `${baseUrl}/${calc.slug}/` : `${baseUrl}/calculator/${calc.slug}/`,
-      lastModified: (isMarketRate || isCritical) ? new Date() : new Date('2026-04-24T12:00:00Z'),
-      changeFrequency: isMarketRate ? ('hourly' as const) : (isCritical ? 'daily' as const : 'weekly' as const),
+      lastModified: isMarketRate ? new Date() : lastModDate,
+      changeFrequency: isMarketRate ? ('daily' as const) : (isCritical ? 'daily' as const : 'weekly' as const),
       priority: isCritical ? 0.9 : 0.75,
     };
   });
@@ -58,14 +58,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const blogPages = posts.map((post: any) => ({
       url: `${baseUrl}/blog/${post.slug}/`,
-      lastModified: new Date(post.updatedAt || new Date()),
+      lastModified: new Date(post.updatedAt || lastModDate),
       changeFrequency: 'weekly' as const,
       priority: 0.6,
     }));
 
     const guidePages = guides.map((guide: any) => ({
       url: `${baseUrl}/guide/${guide.slug}/`,
-      lastModified: new Date('2026-04-25T05:00:00Z'),
+      lastModified: lastModDate,
       changeFrequency: 'weekly' as const,
       priority: 0.6,
     }));

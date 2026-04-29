@@ -4,12 +4,17 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
-      allow: '/',
+      allow: [
+        '/',
+        '/favicon.ico',
+        '/favicon.png',
+        '/favicon-48x48.png',
+        '/logo.png'
+      ],
       disallow: [
         '/api/',
         '/admin/',
         '/search/',
-        '/*?*', // Block query parameters to avoid duplicate content
       ],
     },
     sitemap: 'https://nepacalc.com/sitemap.xml',

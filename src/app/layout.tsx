@@ -17,26 +17,6 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://nepacalc.com'),
   title: "Free Online Calculators for Nepal — NepaCalc",
   description: "Nepal's trusted free calculator platform for income tax, EMI planning, GPA tracking, unit conversions, and 80+ professional tools. Try NepaCalc now.",
-  icons: {
-    icon: [
-      { url: '/favicon.png' },
-      { url: '/favicon.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon.png', sizes: '48x48', type: 'image/png' },
-      { url: '/favicon.png', sizes: '96x96', type: 'image/png' },
-      { url: '/favicon.png', sizes: '144x144', type: 'image/png' },
-    ],
-    shortcut: ['/favicon.png'],
-    apple: [
-      { url: '/apple-touch-icon.png' },
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-    other: [
-      {
-        rel: 'apple-touch-icon-precomposed',
-        url: '/apple-touch-icon.png',
-      },
-    ],
-  },
   manifest: '/manifest.json',
   verification: {
     google: "IoM3eC1OeiymFDD1h8N5MWQlfN-5tUmRxpj-e1BFIT8",
@@ -55,13 +35,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Free Online Calculators for Nepal NepaCalc",
     description: "Use professional online calculators for Nepal income tax EMI GPA and engineering. Engineered for academic and financial precision. Try NepaCalc now",
-    url: 'https://NepaCalc.com',
+    url: 'https://nepacalc.com',
     siteName: 'NepaCalc',
     images: [
       {
         url: '/logo.png',
-        width: 800,
-        height: 800,
+        width: 1024,
+        height: 1024,
         alt: 'NepaCalc Logo',
       },
     ],
@@ -69,10 +49,10 @@ export const metadata: Metadata = {
     type: 'website',
   },
   alternates: {
-    canonical: 'https://NepaCalc.com/',
+    canonical: 'https://nepacalc.com/',
     languages: {
-      'en-NP': 'https://NepaCalc.com/',
-      'x-default': 'https://NepaCalc.com/'
+      'en-NP': 'https://nepacalc.com/',
+      'x-default': 'https://nepacalc.com/'
     }
   },
   twitter: {
@@ -83,7 +63,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Defer all non-critical components — never block the main thread
 const MobileNav = dynamic(() => import("@/components/layout/MobileNav").then(mod => mod.MobileNav), { ssr: false });
 const CookieBanner = dynamic(() => import("@/components/layout/CookieBanner").then(mod => mod.CookieBanner), { ssr: false });
 const GoogleAnalytics = dynamic(() => import("@/components/seo/GoogleAnalytics").then(mod => mod.GoogleAnalytics), { ssr: false });
@@ -150,13 +129,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* DNS prefetch + preconnect for faster external resource loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        {/* Tell mobile browsers not to scale */}
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       </head>
       <body className={`${inter.variable} font-sans`}>
@@ -171,7 +148,6 @@ export default function RootLayout({
           Skip to content
         </a>
         <Navbar />
-        {/* Add bottom padding on mobile so content is not hidden behind MobileNav */}
         <main id="main-content" className="pt-16">
           <div className="lg:pb-0">
             {children}
@@ -180,10 +156,8 @@ export default function RootLayout({
         </main>
         <MobileNav />
         <CookieBanner />
-        {/* Deferred — loads after all critical content */}
         <GoogleAnalytics />
       </body>
     </html>
   );
 }
-

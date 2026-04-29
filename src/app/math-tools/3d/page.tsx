@@ -1,9 +1,9 @@
-import { ThreeDApp } from '@/components/ecosystem/ThreeDApp';
+import ThreeDCalculatorClient from '@/components/calculators/ThreeDCalculatorClient';
 
 export default function ThreeDimensionalPage() {
   return (
     <>
-      <ThreeDApp />
+      <ThreeDCalculatorClient />
     </>
   );
 }
