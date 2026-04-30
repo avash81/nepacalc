@@ -17,11 +17,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/contact',
     '/privacy',
     '/terms',
+    '/directory',
+    '/engineering',
+    '/engineering/3d',
+    '/engineering/geometry',
+    '/finance',
+    '/health',
+    '/converters',
+    '/nepal',
+    '/market-rates',
+    '/guide',
   ].map((route) => ({
     url: `${baseUrl}${route}/`,
     lastModified: lastModDate,
     changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1.0 : 0.8,
+    priority: route === '' ? 1.0 : route === '/directory' ? 0.95 : 0.85,
   }));
 
   // 2. Canonical Pillar Pages (Hubs)
