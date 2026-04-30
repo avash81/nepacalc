@@ -170,7 +170,6 @@ function ProfessionalAxis({ bounds, showLabels, showGrid }: { bounds: { x: numbe
           cellThickness={1}
           cellColor="#94a3b8" 
           position={[0, -0.01, 0]} 
-          opacity={0.35}
         />
       )}
 
@@ -304,7 +303,7 @@ function SurfaceMesh({ equation, resolution, color, opacity, params, index, isAc
   );
 }
 
-function ImplicitSurfaceMesh({ equation, resolution, color, params, opacity, globalWireframe, sliceMode, slicePos, onRangeReport }: any) {
+function ImplicitSurfaceMesh({ equation, resolution, color, params, opacity, globalWireframe, sliceMode, slicePos, onRangeReport, useRadians }: any) {
   useEffect(() => {
     if (onRangeReport) {
       onRangeReport({ x: 6, y: 6, z: 6 }); // Implicit is fixed in [-6, 6] box
@@ -777,9 +776,11 @@ export default function ThreeDCalculatorClient() {
                             {...graph} 
                             resolution={resolution} 
                             params={params} 
+                            globalWireframe={globalWireframe}
                             sliceMode={sliceMode}
                             slicePos={slicePos}
                             onRangeReport={reportRange}
+                            useRadians={useRadians}
                           />
                         );
                       }

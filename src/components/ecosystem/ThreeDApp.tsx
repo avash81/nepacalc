@@ -86,7 +86,7 @@ function ArrowAxis({ direction, color, label, size = 8 }: { direction: [number, 
       <QuadraticBezierLine start={[0,0,0]} end={dir.clone().multiplyScalar(size).toArray()} color={color} lineWidth={1.5} />
       <line>
         <bufferGeometry attach="geometry">
-          <float32BufferAttribute attachObject={['attributes', 'position']} count={2} array={new Float32Array([0, 0, 0, ...dir.clone().multiplyScalar(-size).toArray()])} itemSize={3} />
+          <float32BufferAttribute attach="attributes-position" count={2} array={new Float32Array([0, 0, 0, ...dir.clone().multiplyScalar(-size).toArray()])} itemSize={3} />
         </bufferGeometry>
         <lineDashedMaterial attach="material" color={color} dashSize={0.2} gapSize={0.2} transparent opacity={0.3} />
       </line>
