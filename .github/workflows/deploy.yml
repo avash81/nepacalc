@@ -26,10 +26,11 @@ jobs:
         run: npm run build
 
       - name: FTP Deploy to cPanel
-        uses: appleboy/ftp-action@master
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          host: 51.79.228.153
+          server: 51.79.228.153
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local_dir: ./out/
-          remote_dir: public_html/
+          local-dir: ./out/
+          server-dir: public_html/
+          state-name: .ftp-deploy-sync-state-v2.json
