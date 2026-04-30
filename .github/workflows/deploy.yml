@@ -26,15 +26,10 @@ jobs:
         run: npm run build
 
       - name: FTP Deploy to cPanel
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: appleboy/ftp-action@master
         with:
-          server: 51.79.228.153
+          host: 51.79.228.153
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
-          server-dir: public_html/
-          exclude: |
-            **/_next/cache/**
-            .git*
-            .node_modules*
-          dangerous-clean-slate: false
+          local_dir: ./out/
+          remote_dir: public_html/
