@@ -8,15 +8,15 @@ import { SearchModal } from './SearchModal';
 const tabs = [
   { name: 'Home', path: '/', icon: Home },
   { name: 'Search', path: '#', icon: Search, isSearch: true },
-  { name: 'Calc', path: '/math-tools/', isSpecial: true },
-  { name: 'Explore', path: '/explore/', icon: Globe },
-  { name: 'Library', path: '/library/', icon: BookOpen },
+  { name: 'Calc', path: '/directory/', isSpecial: true },
+  { name: 'Explore', path: '/directory/', icon: Globe },
+  { name: 'Library', path: '/guide/', icon: BookOpen },
 ];
 
 export function MobileNav() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
-  if (pathname.startsWith('/math-tools')) return null;
+  if (pathname.startsWith('/admin')) return null;
 
   return (
     <>
