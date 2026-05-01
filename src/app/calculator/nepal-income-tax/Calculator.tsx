@@ -4,6 +4,7 @@ import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { Wallet, Receipt, TrendingDown, Info, ShieldCheck, ArrowRightLeft, PieChart } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
 import { calculateNepalIncomeTax } from '@/utils/math/country-rules/nepal';
+import { SuggestionBox } from '@/components/ui/SuggestionBox';
 
 const DEFAULT_STATE = {
   income: 1200000,
@@ -173,6 +174,12 @@ export default function NepalIncomeTaxCalculator() {
             <PieChart className="w-4 h-4 text-[#188038] shrink-0 mt-0.5" />
             <p className="text-[10px] text-[#202124] leading-tight">Your income is <strong>{100 - result.effectiveRate}% Tax-Free</strong> after legal deductions and rebates.</p>
           </div>
+          
+          <div className="text-[10px] text-gray-500 text-center italic mt-4">
+            Data verified against the <a href="https://ird.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Inland Revenue Department (IRD)</a> Finance Act 2081/82.
+          </div>
+
+          <SuggestionBox calculatorName="Nepal Income Tax" />
         </div>
       }
       details={

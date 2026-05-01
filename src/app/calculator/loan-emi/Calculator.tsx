@@ -331,23 +331,23 @@ export default function LoanEMICalculator() {
           </div>
 
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm mt-8">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering EMI Mechanics & NRB Directives</h2>
+            <h2 className="text-xl font-black text-[#202124] mb-4">How Bank Loans Actually Work in Nepal</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>
-                In the modern Nepalese banking landscape, navigating credit requires an exact understanding of amortization algorithms. Our <strong className="text-[#202124]">emi calculator nepal</strong> is engineered to perfectly replicate the internal banking systems used by 'A' Class commercial banks. By adhering strictly to the <strong className="text-[#202124]">nrb base rate</strong> regulations, this tool decouples your monthly payment into its exact principal and interest components.
+                Taking out a loan in Nepal can feel overwhelming, especially when trying to figure out exactly how much you will have to pay back each month. We built this <strong className="text-[#202124]">emi calculator nepal</strong> to give you the exact same numbers that 'A' Class commercial banks use. By strictly following <strong className="text-[#202124]">nrb base rate</strong> regulations, this tool clearly breaks down your monthly payment so you can see exactly where every Rupee goes—how much is paying off your actual loan, and how much is going to the bank as interest.
               </p>
               <p>
-                Whether you are evaluating a vehicle loan or personal credit, relying on an accurate <strong className="text-[#202124]">interest rate calculator</strong> is critical. The Nepal Rastra Bank (NRB) mandates transparent interest rate formulations based on the base rate plus a fixed premium. This calculator allows you to reverse-engineer your financial capacity, determining your maximum borrowing power based strictly on your monthly income constraints.
+                Whether you are planning to buy a car, purchase a home, or take out a personal loan, having an accurate <strong className="text-[#202124]">interest rate calculator</strong> by your side is crucial. The Nepal Rastra Bank (NRB) requires banks to be transparent about their rates (which are usually the base rate plus a premium). We designed this tool to put the power back in your hands, allowing you to confidently plan your budget before you ever step foot inside a bank branch.
               </p>
             </div>
           </div>
 
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Amortization & Repayment Mechanics</h3>
+            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Understanding Your Repayment Journey</h3>
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Reducing Balance Supremacy:</strong> Unlike unregulated lenders that use flat-rate mechanics, regulated financial institutions in Nepal operate on a reducing balance framework. This <strong className="text-[#202124]">loan schedule</strong> dynamically recalculates your interest burden each month based only on the outstanding principal, exponentially accelerating your debt reduction over time.</li>
-              <li><strong className="text-[#188038]">The Amortization Curve:</strong> The analytics engine visually demonstrates the fundamental rule of term loans: early payments are heavily skewed towards interest. By reviewing the <strong className="text-[#202124]">emi breakdown</strong> in the first 12 months, borrowers can visualize exactly how much capital is being absorbed by borrowing costs versus actual wealth accumulation.</li>
-              <li><strong className="text-[#D93025]">Reverse Affordability Checks:</strong> The dual-mode architecture includes a strict affordability engine. If a borrower has an EMI capacity of exactly Rs. 25,000, the algorithm calculates the mathematical borrowing ceiling, ensuring compliance with NRB's strict Debt Service Coverage Ratio (DSCR) mandates for individual borrowers.</li>
+              <li><strong className="text-[#1A73E8]">The Benefit of Reducing Balance:</strong> Most regulated financial institutions in Nepal use a reducing balance method. This is great news for you! This <strong className="text-[#202124]">loan schedule</strong> recalculates your interest every single month based only on what you still owe. This means as you pay down your loan, the amount of interest you are charged shrinks every month.</li>
+              <li><strong className="text-[#188038]">Why the First Years are Expensive:</strong> Our charts visually show you the reality of term loans: your early payments go mostly toward paying off interest, not your principal. By looking at the <strong className="text-[#202124]">emi breakdown</strong> for your first 12 months, you can clearly see how much of your hard-earned money is actually building your wealth versus paying the bank's fees.</li>
+              <li><strong className="text-[#D93025]">Checking What You Can Afford:</strong> We built a special feature just for you. If you know your budget only allows you to pay exactly Rs. 25,000 every month, you can flip this calculator to our 'Affordability' mode. It will instantly tell you the maximum loan amount you can safely take out while staying within the NRB's strict personal debt guidelines.</li>
             </ul>
           </div>
 

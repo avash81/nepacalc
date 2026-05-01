@@ -29,7 +29,7 @@ export const Logo: React.FC<LogoProps> = ({ size = 'md', theme = 'indigo', class
       aria-label="NepaCalc Logo - Professional Nepal Calculators"
     >
       <img 
-        src="/favicon.png" 
+        src="/logo.png" 
         alt="NepaCalc" 
         className="object-contain" 
         style={{ height: h, width: h }}
