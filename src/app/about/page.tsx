@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'About NepaCal — Nepal\\'s Free Calculator Platform',
-  description: 'NepaCal is a free calculator platform built by Avash Chaudhary in Kathmandu for Nepal. 100+ tools for tax, finance, health, engineering, and more.',
+  title: "About NepaCal — Nepal's Free Calculator Platform",
+  description: "NepaCal is a free calculator platform built by Avash Chaudhary in Kathmandu for Nepal. 100+ tools for tax, finance, health, engineering, and more.",
   alternates: {
     canonical: 'https://NepaCalc.com/about/',
   },

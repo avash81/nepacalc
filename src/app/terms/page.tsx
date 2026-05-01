@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | NepaCal',
-  description: 'NepaCal terms of service — conditions for using Nepal\\'s free calculator platform.',
+  title: "Terms of Service | NepaCal",
+  description: "NepaCal terms of service — conditions for using Nepal's free calculator platform.",
   alternates: {
     canonical: 'https://NepaCalc.com/terms/',
   },
