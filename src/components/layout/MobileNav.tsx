@@ -7,10 +7,10 @@ import { SearchModal } from './SearchModal';
 
 const tabs = [
   { name: 'Home', path: '/', icon: Home },
-  { name: 'Search', path: '#', icon: Search, isSearch: true },
-  { name: 'Calc', path: '/directory/', isSpecial: true },
-  { name: 'Explore', path: '/directory/', icon: Globe },
-  { name: 'Library', path: '/guide/', icon: BookOpen },
+  { name: 'Nepal', path: '/nepal/', icon: Globe },
+  { name: 'Search', path: '#', isSpecial: true, isSearch: true },
+  { name: 'Directory', path: '/directory/', icon: Grid },
+  { name: 'Guide', path: '/guide/', icon: BookOpen },
 ];
 
 export function MobileNav() {
