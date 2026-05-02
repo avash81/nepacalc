@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: 'export',
   poweredByHeader: false,
   compress: true,
-  trailingSlash: false,
+  trailingSlash: true,
   images: {
     unoptimized: true,
     formats: ['image/avif', 'image/webp'],

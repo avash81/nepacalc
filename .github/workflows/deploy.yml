@@ -24,6 +24,14 @@ jobs:
 
       - name: Build Static Site
         run: npm run build
+        env:
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: "calcpro-e1dd9"
+          NEXT_PUBLIC_FIREBASE_DATABASE_ID: "ai-studio-d5cad48c-3132-4615-96f7-ef198596220d"
+          NEXT_PUBLIC_SITE_URL: "https://nepacalc.com"
+          NEXT_PUBLIC_FIREBASE_API_KEY: "AIzaSyAUAbGWU1eMw7eePLTG0D1gbQRssGqw6V8"
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: "calcpro-e1dd9.firebaseapp.com"
+          NEXT_PUBLIC_FIREBASE_APP_ID: "1:369907965034:web:71504a7c24a9b3690dfe13"
+          NEXT_PUBLIC_GA_ID: "G-G78ED8CZ3D"
 
       - name: FTP Deploy to cPanel
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
