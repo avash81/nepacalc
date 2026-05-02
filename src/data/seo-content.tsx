@@ -1,4 +1,6 @@
 import React from 'react';
+import { AuthorByline } from '@/components/ui/AuthorByline';
+
 
 export interface SEOBlock {
   title: string;
@@ -80,6 +82,11 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <p className="mt-4">
           <strong>Tax Refund Calculator Nepal:</strong> If too much TDS (Tax Deducted at Source) was deducted from your salary or investment income throughout the year, you might be eligible for a tax refund from the IRD. By calculating your exact annual tax liability here and comparing it to what was actually deducted, you can easily find out if you are owed a refund when filing your D03 return!
         </p>
+        <p className="mt-4">To see exactly how income tax is deducted from your monthly pay, use our <a href="/calculator/nepal-salary/" className="text-[#1A73E8] font-bold hover:underline">Nepal Salary Calculator</a> which integrates both SSF and standard deductions in one step.</p>
+        <AuthorByline fiscalYear="2082/83 (2025/26)" sources={[
+          { label: 'IRD Nepal', url: 'https://ird.gov.np' },
+          { label: 'Tax Rates 2082', url: 'https://ird.gov.np/en/tax-rates' },
+        ]} />
       </>
     ),
     faqs: [
@@ -420,6 +427,11 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <p>
           When negotiating a new job offer in Nepal, always ask whether the offered salary is 'Gross' or 'Net'. Use our calculator to see exactly how much you will receive after the government takes its share.
         </p>
+        <p className="mt-4">For a full breakdown of your year-end tax obligations, use our <a href="/calculator/nepal-income-tax/" className="text-[#1A73E8] font-bold hover:underline">Nepal Income Tax Calculator</a> to reconcile your TDS and file your D03 return accurately.</p>
+        <AuthorByline fiscalYear="2082/83 (2025/26)" sources={[
+          { label: 'IRD Nepal (SSF)', url: 'https://ird.gov.np' },
+          { label: 'Social Security Fund', url: 'https://ssf.gov.np' },
+        ]} />
       </>
     ),
     faqs: [
@@ -492,6 +504,11 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <p>
           WACC (Weighted Average Cost of Capital) is essential in Nepal for calculating your profit. It includes the purchase price plus the commissions paid. You must calculate and declare your WACC in the MeroShare portal before selling shares to ensure correct CGT calculation.
         </p>
+        <p className="mt-4">For accurate WACC calculation, use our dedicated <a href="/calculator/nepse-wacc/" className="text-[#1A73E8] font-bold hover:underline">NEPSE WACC Calculator</a>. For bonus share tax, see our <a href="/calculator/nepse-bonus-tax/" className="text-[#1A73E8] font-bold hover:underline">Bonus Tax Calculator</a>.</p>
+        <AuthorByline fiscalYear="2082/83 (2025/26)" sources={[
+          { label: 'SEBON Nepal', url: 'https://sebon.gov.np' },
+          { label: 'NEPSE Official', url: 'https://www.nepalstock.com.np' },
+        ]} />
       </>
     ),
     faqs: [
@@ -560,6 +577,11 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <p>
           Discrepancies in land measurement can lead to legal disputes or financial losses. Our tool is used by property developers, legal advisors, and home buyers across Nepal to ensure that the area mentioned in the <strong>Lalpurja</strong> (Land Ownership Certificate) matches the actual physical measurement in Square Feet or Square Meters.
         </p>
+        <p className="mt-4">When purchasing land, also calculate the government fees with our <a href="/calculator/property-registration/" className="text-[#1A73E8] font-bold hover:underline">Property Registration Calculator</a> to know the exact stamp duty and registration costs.</p>
+        <AuthorByline fiscalYear="2082/83 (2025/26)" sources={[
+          { label: 'DoLMA Nepal', url: 'https://dolma.gov.np' },
+          { label: 'Land Revenue Office', url: 'https://mofe.gov.np' },
+        ]} />
       </>
     ),
     faqs: [
@@ -633,6 +655,11 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <p>
           To promote green energy, the Nepal government offers significantly lower annual taxes for electric vehicles compared to petrol or diesel vehicles. Some provinces even offer temporary tax waivers for new EV registrations.
         </p>
+        <p className="mt-4">After renewing your bluebook, also verify your <a href="/calculator/nepal-vat/" className="text-[#1A73E8] font-bold hover:underline">VAT calculations</a> for vehicle-related purchases and spare parts.</p>
+        <AuthorByline fiscalYear="2082/83 (2025/26)" sources={[
+          { label: 'Dept. of Transport (DoTM)', url: 'https://dotm.gov.np' },
+          { label: 'TMIS Portal', url: 'https://www.tmis.gov.np' },
+        ]} />
       </>
     ),
     faqs: [
@@ -985,6 +1012,119 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       }
     ]
   },
+  'gpa': {
+    title: "GPA Calculator Nepal | TU, KU, NEB Grade Point Average",
+    description: "Calculate your semester GPA instantly using Nepal's NEB/TU 4-point grading scale. Includes TU, KU, and Pokhara University classification table and GPA to percentage conversion.",
+    content: (
+      <>
+        <h2>Understanding Nepal's GPA System: TU, KU, NEB &amp; PU</h2>
+        <p>
+          Nepal's universities use different grading systems, which can be confusing for students applying for scholarships, further studies, or jobs abroad. Our <strong>GPA Calculator for Nepal</strong> supports both the <strong>NEB/Tribhuvan University (TU)</strong> 4.0 scale and the international US grading system, making it easy to calculate your exact academic standing.
+        </p>
+
+        <h3>Nepal GPA to Percentage Conversion Table (NEB/TU System)</h3>
+        <p>The official NEB and TU grading scale maps letter grades to grade points as follows. This is the authoritative reference used by all Nepali higher education institutions:</p>
+        <div className="overflow-x-auto my-6">
+          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
+            <thead className="bg-[#E8F0FE]">
+              <tr>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Grade</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Grade Points</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">% Range</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Classification</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['A+', '4.0', '90-100%', 'Outstanding'],
+                ['A',  '3.6', '80-89%',  'Excellent'],
+                ['B+', '3.2', '70-79%',  'Very Good'],
+                ['B',  '2.8', '60-69%',  'Good'],
+                ['C+', '2.4', '50-59%',  'Satisfactory'],
+                ['C',  '2.0', '40-49%',  'Acceptable'],
+                ['D',  '1.6', '30-39%',  'Partially Acceptable'],
+                ['E',  '0.8', '20-29%',  'Insufficient'],
+                ['N',  '0.0', 'Below 20%','Not Graded/Fail'],
+              ].map(([g, p, pct, cls]) => (
+                <tr key={g} className="odd:bg-white even:bg-[#f8f9fa]">
+                  <td className="border border-[#dadce0] px-4 py-2 font-black text-[#1A73E8]">{g}</td>
+                  <td className="border border-[#dadce0] px-4 py-2 font-bold">{p}</td>
+                  <td className="border border-[#dadce0] px-4 py-2">{pct}</td>
+                  <td className="border border-[#dadce0] px-4 py-2 text-[#5f6368]">{cls}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h3>University-Wise Minimum GPA Requirements in Nepal</h3>
+        <div className="overflow-x-auto my-6">
+          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
+            <thead className="bg-[#f8f9fa]">
+              <tr>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">University</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Pass GPA</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Distinction GPA</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['Tribhuvan University (TU)', '2.0 (C)', '3.6 (A)', 'IOE min D per subject'],
+                ['Kathmandu University (KU)',  '2.0 (C)', '3.5+',    'Semester system'],
+                ['Pokhara University (PU)',    '2.0 (C)', '3.6 (A)', 'NEB-aligned scale'],
+                ['Purbanchal University',      '2.0 (C)', '3.5+',    'Varies by program'],
+                ['NEB (SEE/+2)',               '1.6 (D)', '4.0 (A+)','National board'],
+              ].map(([uni, pass, dist, note]) => (
+                <tr key={uni} className="odd:bg-white even:bg-[#f8f9fa]">
+                  <td className="border border-[#dadce0] px-4 py-2 font-bold">{uni}</td>
+                  <td className="border border-[#dadce0] px-4 py-2 text-red-600 font-bold">{pass}</td>
+                  <td className="border border-[#dadce0] px-4 py-2 text-green-700 font-bold">{dist}</td>
+                  <td className="border border-[#dadce0] px-4 py-2 text-[#5f6368] text-xs">{note}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2>How to Convert Nepal GPA to Percentage</h2>
+        <p>
+          The most widely used approximation formula in Nepal is: <strong>Percentage ≈ GPA × 25</strong>. So a GPA of 3.6 ≈ 90%, and a GPA of 2.8 ≈ 70%. However, for official purposes (visa applications, international university admissions), always request a certified transcript from your institution showing both the GPA and the actual percentage marks scored.
+        </p>
+
+        <h2>Semester GPA vs. CGPA: What Matters for Your Degree?</h2>
+        <p>
+          Your <strong>Semester GPA</strong> only reflects performance in a single term. What appears on your degree certificate and is evaluated by employers and foreign universities is your <strong>CGPA (Cumulative GPA)</strong> — the credit-weighted average across all semesters. Use our <a href="/calculator/cgpa/" className="text-[#1A73E8] font-bold hover:underline">CGPA Calculator</a> to track your overall standing. For SEE results, see our <a href="/calculator/see-gpa/" className="text-[#1A73E8] font-bold hover:underline">SEE GPA Calculator</a>.
+        </p>
+        <AuthorByline fiscalYear="2082/83 (2025/26)" sources={[
+          { label: 'NEB Nepal', url: 'https://www.neb.gov.np' },
+          { label: 'TU Official', url: 'https://tribhuvan-university.edu.np' },
+        ]} />
+      </>
+    ),
+    faqs: [
+      {
+        question: "What is A+ GPA in Nepal's NEB system?",
+        answer: "A+ is the highest grade in Nepal's NEB/TU system, corresponding to 4.0 grade points and a percentage range of 90-100%. It is classified as 'Outstanding'."
+      },
+      {
+        question: "What is the minimum GPA to pass in TU?",
+        answer: "In Tribhuvan University's semester system, students must maintain a minimum GPA of 2.0 (C grade, 40%) to pass. For IOE engineering programs, each subject requires at least a D grade (1.6 GPA)."
+      },
+      {
+        question: "How do I convert Nepal GPA to percentage?",
+        answer: "Use the approximation: Percentage = GPA × 25. For example, GPA 3.6 ≈ 90%, GPA 2.8 ≈ 70%. For official use, request a transcript from your institution with the actual percentage."
+      },
+      {
+        question: "What is the difference between GPA and CGPA?",
+        answer: "GPA (Grade Point Average) is calculated for a single semester, while CGPA (Cumulative GPA) is the credit-weighted average across all semesters. CGPA appears on your final degree certificate."
+      },
+      {
+        question: "Does KU use the same grading scale as TU?",
+        answer: "Kathmandu University (KU) uses a similar 4.0 GPA scale but has its own grading policy. KU generally requires a minimum 2.0 GPA to continue enrollment, and a 3.5+ CGPA is considered distinction level."
+      }
+    ]
+  },
   'attendance': {
     title: "Attendance Calculator | Find out how many classes you can skip",
     description: "University attendance calculator. Enter your current attendance percentage and total classes to find out how many classes you need to attend to reach your goal.",
@@ -1169,37 +1309,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "How old am I if I was born in 2050 BS?", answer: "To use this tool for Bikram Sambat (BS) dates, you should first convert the year to AD or simply enter the BS numbers if the current year is also in BS." }
     ]
   },
-  'gpa': {
-    title: "GPA Calculator | College & High School Grade Point Average",
-    description: "Free online GPA calculator for college and high school students. Calculate your semester GPA and cumulative CGPA instantly.",
-    content: (
-      <>
-        <h2>How to Calculate Your GPA</h2>
-        <p>
-          Your Grade Point Average (GPA) is the standardized metric used by schools and universities to measure your academic performance. It is calculated by dividing the total number of grade points earned by the total number of credit hours attempted.
-        </p>
-        <h3>The 4.0 Grading Scale</h3>
-        <p>
-          Most universities use the standard 4.0 scale:
-          <br/><strong>A = 4.0</strong> (Excellent)
-          <br/><strong>B = 3.0</strong> (Good)
-          <br/><strong>C = 2.0</strong> (Average)
-          <br/><strong>D = 1.0</strong> (Passing)
-          <br/><strong>F = 0.0</strong> (Failing)
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is a weighted GPA?",
-        answer: "A weighted GPA takes the difficulty of the class into account. For example, an 'A' in an AP or Honors class might be worth 5.0 points instead of the standard 4.0."
-      },
-      {
-        question: "How do credit hours affect my GPA?",
-        answer: "Classes with more credit hours have a bigger impact on your GPA. An 'A' in a 4-credit class boosts your GPA much more than an 'A' in a 1-credit class."
-      }
-    ]
-  },
+
   'standard-deviation': {
     title: "Standard Deviation Calculator | Population & Sample Stats",
     description: "Calculate standard deviation, variance, and mean for a dataset. Supports both population and sample data calculations instantly.",
