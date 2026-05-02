@@ -40,6 +40,7 @@ async function getPostData(slug: string) {
         title: "Nepal IT Freelancer Tax Guide: 5% Final Withholding & Slabs",
         metaTitle: "Nepal IT Freelancer Tax Guide: 5% Final Withholding & Slabs",
         metaDesc: "Maximize your take-home pay with the 5% tax rule for IT exports in Nepal. Learn about startup exemptions, SSF, and official IRD tax slabs for the current fiscal year.",
+        focusKeyword: "Nepal IT Freelancer Tax",
         slug: "nepal-it-freelancer-tax-guide",
         excerpt: "Maximize your take-home pay with the 5% tax rule for IT exports in Nepal. Learn about startup exemptions, SSF, and official IRD tax slabs for the current fiscal year.",
         content: `## Nepal IT Freelancer & Remote Work Tax Guide (Current Fiscal Year)
