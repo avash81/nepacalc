@@ -50,8 +50,16 @@ export default function NEABillCalculator() {
 
     const slab1 = TARIFF_SLABS[0];
     const consumedSlab1 = Math.max(0, Math.min(units, 20));
-    let slab1Rate = slab1.energyBase[connectionAmps as keyof typeof slab1.energyBase];
-    if (connectionAmps === '5A' && units > 20) slab1Rate = slab1.energyCrossed;
+    
+    // Type-safe extraction of rates
+    let slab1Rate = 0;
+    if ('energyBase' in slab1 && slab1.energyBase) {
+      slab1Rate = (slab1.energyBase as any)[connectionAmps] || 0;
+    }
+    
+    if (connectionAmps === '5A' && units > 20 && 'energyCrossed' in slab1) {
+      slab1Rate = (slab1 as any).energyCrossed || 0;
+    }
 
     if (consumedSlab1 > 0) {
       const amount = consumedSlab1 * slab1Rate;
