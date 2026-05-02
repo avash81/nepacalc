@@ -44,7 +44,12 @@ export function ModernCalcLayout({
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [liveRates, setLiveRates] = useState<MarketRate[]>([]);
   const [lastUpdate, setLastUpdate] = useState<string>('');
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Defer market rates fetch — don't block initial paint
   useEffect(() => {
@@ -420,7 +425,10 @@ export function ModernCalcLayout({
                 ) : (
                   CALCULATORS
                     .filter(c => c.category === category && c.slug !== effectiveSlug)
-                    .sort(() => Math.random() - 0.5) // Randomize for fresh discovery
+                    .sort((a, b) => {
+                       if (!mounted) return 0; // Keep stable for hydration
+                       return Math.random() - 0.5; // Shuffle after mount
+                    })
                     .slice(0, 8)
                     .map(related => (
                       <Link 
