@@ -152,6 +152,9 @@ export default function AboutPage() {
               
               <div className="text-sm text-gray-600 mb-3 space-y-2">
                 <p>
+                  I'm Avash, and like many of you, I was tired of using calculators that used 'Dollars' or 'Acres' when I just wanted to know the tax on my salary in Kathmandu. I built NepaCal to speak our language—both in code and in culture.
+                </p>
+                <p>
                   I am a Software Engineer (NCIT, 2021-2026) based in Kathmandu. My academic research focused on automated data verification systems, expertise which I now apply to ensure the algorithmic accuracy of NepaCal. I manually verify the mathematical logic of the calculators against the Finance Bill (Aarthik Vidheyak) released by the government every year.
                 </p>
               </div>

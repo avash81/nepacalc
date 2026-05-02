@@ -48,6 +48,7 @@ export const CALCULATORS: Calculator[] = [
   { id: 'see-gpa', slug: 'see-gpa', name: 'SEE GPA Calculator', icon: '🅰️', description: 'Calculate SEE grade point average.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepali-date', slug: 'nepali-date', name: 'Nepali Date Converter', icon: '📅', description: 'Standard BS to AD date conversion utility.', category: 'nepal', isNepal: true },
   { id: 'nepal-vat', slug: 'nepal-vat', name: 'VAT Calculator', icon: '🔖', description: 'Calculate VAT (13%) addition and subtraction.', category: 'nepal', isNepal: true },
+  { id: 'lok-sewa-age', slug: 'lok-sewa-age', name: 'Lok Sewa Age Calculator', icon: '🧑‍💼', description: 'Calculate exact age and check PSC eligibility limits.', category: 'nepal', isNepal: true, isNew: true, isHot: true },
 
 
   // ==========================================

@@ -1125,6 +1125,118 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       }
     ]
   },
+  'cgpa': {
+    title: "CGPA Calculator Nepal | Cumulative Grade Point Average",
+    description: "Calculate your cumulative GPA (CGPA) accurately for TU, KU, PU, and international universities. Track your academic progress easily.",
+    content: (
+      <>
+        <h2>The Secret to Maintaining Your CGPA in Nepal</h2>
+        <p>
+          I know the feeling—you've just finished a brutal semester at TU or KU, and you're staring at your transcript wondering how that one 'C' grade is going to ruin your chances of studying in the US or Australia. Don't panic. Let's break this down into simple steps.
+        </p>
+        <p>
+          Your <strong>Cumulative GPA (CGPA)</strong> is the only number that really matters on your final degree certificate. Unlike a simple average, CGPA is "credit-weighted." That means an 'A' in a massive 6-credit Final Year Project is going to boost your score way more than an 'A' in a 1-credit elective. 
+        </p>
+
+        <h3>Why You Need to Track This Early</h3>
+        <p>
+          Many students wait until their 7th semester to calculate their overall standing, only to realize they are mathematically locked out of getting a "Distinction" (3.6+). By using this tool every semester, you can see exactly what grades you need in your upcoming classes to pull your average up before it's too late.
+        </p>
+
+        <h2>CGPA to Percentage: The Golden Rule</h2>
+        <p>
+          If you are applying for Lok Sewa exams or scholarships, they often ask for your "Percentage" instead of your GPA. While Tribhuvan University uses the rough approximation of <strong>Percentage ≈ CGPA × 25</strong>, always remember to get your official transcript verified if you are applying for high-stakes government jobs.
+        </p>
+        
+        <p className="mt-4">
+          Need to calculate just this semester's results? Head over to our <a href="/calculator/gpa/" className="text-[#1A73E8] font-bold hover:underline">Semester GPA Calculator</a>.
+        </p>
+        <AuthorByline fiscalYear="2082/83 (2025/26)" compact />
+      </>
+    ),
+    faqs: [
+      {
+        question: "Can I still get a Distinction if my early semesters were bad?",
+        answer: "Yes, but it requires heavy lifting! Because early semesters have high credit loads, you will need nearly perfect 4.0s in your final years to pull a 2.8 up to a 3.6. Use the calculator to plug in 'what-if' scenarios."
+      },
+      {
+        question: "Does retaking a failed exam affect my CGPA?",
+        answer: "In most Nepali universities (TU/PU), if you clear a back-paper, the new grade replaces the 'F' in your CGPA calculation, though the transcript will still show it was a retake."
+      }
+    ]
+  },
+  'ideal-weight': {
+    title: "Ideal Body Weight Calculator | Health Standards for Nepal",
+    description: "Calculate your ideal body weight based on your height, age, and gender. Calibrated with South Asian health standards in mind.",
+    content: (
+      <>
+        <h2>Finding Your Healthy Range in Nepal</h2>
+        <p>
+          Let's be honest—our Nepali diet is heavy on the carbs. Between the daily Dal Bhat, the evening momos, and the sugary chiya, hitting your "ideal" weight can feel impossible. But what exactly should you weigh?
+        </p>
+        <p>
+          We built this engine using the internationally recognized Devine and Robinson formulas, but we always remind our users: <strong>South Asians have a different body composition.</strong> We naturally carry more visceral fat (belly fat) at lower weights compared to Westerners. This means hitting your "ideal" number on the scale is only half the battle.
+        </p>
+
+        <h3>Why the Scale Lies to You</h3>
+        <p>
+          Your ideal weight is a range, not a single strict number. If you are a gym-goer lifting heavy weights in Kathmandu, you might weigh "too much" according to this calculator, but you are perfectly healthy because muscle is dense. 
+        </p>
+        <p>
+          Don't just chase the number on the scale. Combine this result with our <a href="/calculator/bmi/" className="text-[#1A73E8] font-bold hover:underline">BMI Calculator</a> and keep an eye on your waist circumference to avoid the rising risk of diabetes in Nepal.
+        </p>
+        <AuthorByline fiscalYear="2082/83 (2025/26)" compact />
+      </>
+    ),
+    faqs: [
+      {
+        question: "Is Dal Bhat making me gain weight?",
+        answer: "Not necessarily! Dal Bhat is nutritious, but the portion size of the rice (white carbs) is usually the culprit. Try doubling the veggies and dal while halving the rice to hit your ideal weight faster."
+      },
+      {
+        question: "How accurate is the Devine formula for Nepalis?",
+        answer: "It provides a very solid baseline for medical dosing and general fitness goals, but South Asian health guidelines suggest staying on the lower end of your 'ideal' range to minimize cardiovascular risks."
+      }
+    ]
+  },
+  'bmr': {
+    title: "BMR Calculator Nepal | Basal Metabolic Rate",
+    description: "Calculate your Basal Metabolic Rate (BMR) to find out exactly how many calories your body burns at rest. Essential for weight loss or muscle gain.",
+    content: (
+      <>
+        <h2>The Engine That Keeps You Alive</h2>
+        <p>
+          If you spent the entire day lying in bed doing absolutely nothing, your body would still burn hundreds of calories just keeping your heart beating, your lungs breathing, and your brain functioning. That baseline energy requirement is your <strong>Basal Metabolic Rate (BMR)</strong>.
+        </p>
+        <p>
+          Why does this matter? Because you can't build a proper Nepali diet plan without knowing this number first. 
+        </p>
+
+        <h3>How to Use Your BMR for Weight Loss</h3>
+        <p>
+          Once you know your BMR, you multiply it by your activity level to get your Total Daily Energy Expenditure (TDEE). If your TDEE is 2,200 calories, and you eat 1,700 calories of roti, sabji, and dal, you will lose weight. It is pure mathematics.
+        </p>
+        <p>
+          We use the highly accurate <strong>Mifflin-St Jeor equation</strong> for this tool. It's the gold standard used by dietitians worldwide.
+        </p>
+        
+        <p className="mt-4">
+          To see how this translates to your daily meals, check out our <a href="/calculator/calorie-calculator/" className="text-[#1A73E8] font-bold hover:underline">Daily Calorie Calculator</a>.
+        </p>
+        <AuthorByline fiscalYear="2082/83 (2025/26)" compact />
+      </>
+    ),
+    faqs: [
+      {
+        question: "Why is my BMR lower than my friend's?",
+        answer: "BMR is heavily influenced by muscle mass, age, and gender. Men naturally have higher BMRs because they carry more muscle. As we age, our BMR drops, which is why gaining weight becomes easier in our 30s and 40s."
+      },
+      {
+        question: "Should I eat fewer calories than my BMR to lose weight fast?",
+        answer: "No! Eating below your BMR forces your body into 'starvation mode,' slowing down your metabolism and making you lose muscle instead of fat. Always eat above your BMR but below your TDEE."
+      }
+    ]
+  },
   'attendance': {
     title: "Attendance Calculator | Find out how many classes you can skip",
     description: "University attendance calculator. Enter your current attendance percentage and total classes to find out how many classes you need to attend to reach your goal.",
@@ -1562,32 +1674,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       }
     ]
   },
-  'cgpa': {
-    title: "CGPA Calculator | Cumulative Grade Point Average",
-    description: "Calculate your Cumulative Grade Point Average (CGPA) across multiple semesters. Track your university academic progress easily.",
-    content: (
-      <>
-        <h2>How to Calculate CGPA</h2>
-        <p>
-          Your Cumulative Grade Point Average (CGPA) is the overall average of your grades across all semesters of your degree. It provides a single metric that represents your entire academic journey, which is crucial for university admissions and job applications.
-        </p>
-        <h3>Semester GPA vs. CGPA</h3>
-        <p>
-          Your <strong>Semester GPA</strong> is the average for just one specific term. Your <strong>CGPA</strong> combines all your semester GPAs, but it must be weighted by the number of credit hours you took in each semester. You cannot simply take the average of two semester GPAs if they have different credit hours!
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Can I convert my CGPA to a percentage?",
-        answer: "Many universities provide a specific formula, but a common standard is to multiply your CGPA by 9.5 or use a direct multiplier like 25 (if on a 4.0 scale), though this varies globally."
-      },
-      {
-        question: "How do credit hours affect my CGPA?",
-        answer: "A semester where you took 18 credit hours will pull your CGPA much harder than a semester where you only took 12 credit hours."
-      }
-    ]
-  },
+
   'fraction-calculator': {
     title: "Fraction Calculator | Add, Subtract, Multiply, Divide",
     description: "Free online fraction calculator. Add, subtract, multiply, and divide fractions easily. Get answers in simplified and mixed fraction formats.",
@@ -1790,32 +1877,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       }
     ]
   },
-  'ideal-weight': {
-    title: "Ideal Weight Calculator | Find Your Healthy Target",
-    description: "Calculate your ideal body weight based on your height, age, and gender using multiple scientifically validated formulas.",
-    content: (
-      <>
-        <h2>Finding Your Ideal Body Weight (IBW)</h2>
-        <p>
-          "What should I weigh?" is one of the most common health questions. Our calculator uses multiple scientifically validated formulas (such as the Devine, Robinson, and Miller formulas) to give you a highly accurate target weight range.
-        </p>
-        <h3>Why Your Ideal Weight is a Range</h3>
-        <p>
-          There is no single "perfect" number. Your ideal weight depends on your bone density, muscle mass, and body frame size. Therefore, our tool provides a healthy <em>range</em>, giving you a realistic and achievable health goal rather than a strict, single number.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Which IBW formula is the most accurate?",
-        answer: "The Devine formula (1974) is widely used in medicine for calculating drug dosages, but the Robinson formula is often preferred for general health and fitness goals."
-      },
-      {
-        question: "Does this calculator account for muscle mass?",
-        answer: "No, standard IBW formulas do not distinguish between fat and muscle. Highly muscular athletes may naturally weigh more than their predicted 'ideal' weight."
-      }
-    ]
-  },
+
   'margin-calculator': {
     title: "Margin Calculator | Gross Profit & Sales Margin",
     description: "Calculate gross profit margin, markup, and determine your optimal selling price. Free online calculator for business owners and retailers.",
