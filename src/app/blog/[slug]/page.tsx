@@ -11,7 +11,7 @@ export async function generateStaticParams() {
   try {
     const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
     const dbId = process.env.NEXT_PUBLIC_FIREBASE_DATABASE_ID;
-    if (!projectId) return [{ slug: 'welcome-to-nepacalc' }]; // Fallback slug
+    if (!projectId) return [{ slug: 'welcome-to-nepacalc' }]; 
 
     const url = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/${dbId || '(default)'}/documents/posts?pageSize=100`;
     const res = await fetch(url);
@@ -87,13 +87,15 @@ Under the latest Finance Act, freelancers should ensure their earnings are coded
     let targetDoc = null;
     let allPublished = [];
 
-    // Find the requested post and all published posts
     for (const d of data.documents) {
       const f = d.fields;
       if (f?.status?.stringValue === 'published') {
         const parsed = {
           title: f.title?.stringValue || '',
           slug: f.slug?.stringValue || '',
+          metaTitle: f.metaTitle?.stringValue || '',
+          metaDesc: f.metaDesc?.stringValue || '',
+          focusKeyword: f.focusKeyword?.stringValue || '',
           excerpt: f.excerpt?.stringValue || '',
           content: f.content?.stringValue || '',
           category: f.category?.stringValue || '',
@@ -114,7 +116,6 @@ Under the latest Finance Act, freelancers should ensure their earnings are coded
 
     if (!targetDoc) return null;
 
-    // Filter related posts (same category, excluding current)
     const related = allPublished
       .filter(p => p.slug !== slug && p.category === targetDoc.category)
       .slice(0, 2);
@@ -125,11 +126,7 @@ Under the latest Finance Act, freelancers should ensure their earnings are coded
   }
 }
 
-export async function generateMetadata({
-  params
-}: {
-  params: { slug: string }
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const data = await getPostData(params.slug);
   if (!data?.post) return { title: 'Not Found' };
 
@@ -184,7 +181,6 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           }),
         }}
       />
-      {/* BlogPosting & FAQ Schema Graph for Global Search Dominance */}
       <script
         type="application/ld+json"
         suppressHydrationWarning
