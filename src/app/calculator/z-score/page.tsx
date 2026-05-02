@@ -17,7 +17,7 @@ const ZSCORE_FAQS = [
   },
   {
     question: "How do I calculate a Z-score?",
-    answer: "The formula is z = (x - μ) / σ, where 'x' is the value, 'μ' is the mean, and 'σ' is the standard deviation."
+    answer: "The formula is z = (x, μ) / σ, where 'x' is the value, 'μ' is the mean, and 'σ' is the standard deviation."
   },
   {
     question: "What does a negative Z-score mean?",

@@ -32,7 +32,7 @@ export default function NepalIncomeTaxCalculator() {
     const actualCit = Math.min(citDeduction, citMax);
 
     const calculation = calculateNepalIncomeTax(
-      annualGross - (insDeduction + healthInsDeduction + actualCit), 
+      annualGross, (insDeduction + healthInsDeduction + actualCit), 
       married, 
       isSSFContributor, 
       gender

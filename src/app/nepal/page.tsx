@@ -69,13 +69,13 @@ export default function NepalPillarPage() {
             ))}
           </div>
 
-          {/* SEO Rich Content - 1500+ Words Hub */}
+          {/* SEO Rich Content, 1500+ Words Hub */}
           <section className="bg-white border border-[#DADCE0] rounded-xl p-8 lg:p-12 shadow-sm">
             <article className="prose prose-slate max-w-none">
               <h2 className="text-3xl font-black text-[#202124] mb-8">Ultimate IRD Tax Calculator and VAT Calculator Nepal</h2>
               
               <p className="text-lg leading-relaxed text-[#5F6368]">
-                As Nepal rapidly digitizes its financial and administrative systems, the need for precise, localized, and reliable calculation tools has never been greater. Whether you are an individual calculating your salary tax or a business filing a <strong>13% VAT return</strong>, relying on an accurate <strong>IRD tax calculator</strong> is crucial. NepaCalc serves as the definitive digital hub for all <strong>Nepal tax calculation</strong> needs—from the intricate tax slabs of the Inland Revenue Department (IRD) to the complex land measurements used in the Maalpot offices.
+                As Nepal rapidly digitizes its financial and administrative systems, the need for precise, localized, and reliable calculation tools has never been greater. Whether you are an individual calculating your salary tax or a business filing a <strong>13% VAT return</strong>, relying on an accurate <strong>IRD tax calculator</strong> is crucial. NepaCalc serves as the definitive digital hub for all <strong>Nepal tax calculation</strong> needs, from the intricate tax slabs of the Inland Revenue Department (IRD) to the complex land measurements used in the Maalpot offices.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-12">
@@ -135,7 +135,7 @@ export default function NepalPillarPage() {
                   <tbody className="divide-y text-[#5F6368]">
                     <tr><td className="p-4 font-bold">SEBON Transaction Fee</td><td className="p-4">0.015%</td><td className="p-4">On total transaction amount</td></tr>
                     <tr><td className="p-4 font-bold">DP Charge</td><td className="p-4">Rs. 25</td><td className="p-4">Per scrip transfer</td></tr>
-                    <tr><td className="p-4 font-bold">Broker Commission</td><td className="p-4">0.27% - 0.40%</td><td className="p-4">Progressive slab based on volume</td></tr>
+                    <tr><td className="p-4 font-bold">Broker Commission</td><td className="p-4">0.27%, 0.40%</td><td className="p-4">Progressive slab based on volume</td></tr>
                     <tr><td className="p-4 font-bold">Capital Gains Tax (Long-term)</td><td className="p-4">5%</td><td className="p-4">Holding period &gt; 365 days</td></tr>
                     <tr><td className="p-4 font-bold">Capital Gains Tax (Short-term)</td><td className="p-4">7.5%</td><td className="p-4">Holding period &lt; 365 days</td></tr>
                   </tbody>

@@ -176,7 +176,7 @@ const CALCULATORS_DATA: CalculatorItem[] = [
     specs: ['Math Practice Game'],
     features: ['Math drill patterns', 'Instant right/wrong feedback', '3 Difficulty levels'],
     exams: { sat: false, act: false, ap: false },
-    note: 'Not a standard calculator—a game designed to make learning math facts fun.'
+    note: 'Not a standard calculator, a game designed to make learning math facts fun.'
   }
 ];
 
@@ -200,7 +200,7 @@ export function PhysicalCalculatorGuide() {
         </p>
       </div>
 
-      {/* QUICK TABLE - SUMMARY VIEW */}
+      {/* QUICK TABLE, SUMMARY VIEW */}
       <div className="bg-white border border-gray-100 rounded-[2.5rem] overflow-hidden shadow-sm">
          <div className="p-8 border-b border-gray-50 flex items-center justify-between bg-gray-50/50">
             <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">Quick Comparison Matrix</h3>
@@ -323,7 +323,7 @@ export function PhysicalCalculatorGuide() {
          <div className="flex-1 space-y-2">
             <h4 className="text-sm font-black text-gray-900 uppercase tracking-widest">Platform Note</h4>
             <p className="text-gray-500 text-sm font-medium leading-relaxed">
-               While physical calculators are indispensable for proctored exams (SAT/ACT), NepaCalc provides high-precision digital versions of these same algorithms for study and professional work — ensuring you have the exact computational power you need, whenever you have an internet connection.
+               While physical calculators are indispensable for proctored exams (SAT/ACT), NepaCalc provides high-precision digital versions of these same algorithms for study and professional work ,  ensuring you have the exact computational power you need, whenever you have an internet connection.
             </p>
          </div>
       </div>

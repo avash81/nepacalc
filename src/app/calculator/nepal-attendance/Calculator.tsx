@@ -17,16 +17,16 @@ export default function NepalAttendanceCalculator() {
   const results = useMemo(() => {
     const percentage = totalClasses > 0 ? (attended / totalClasses) * 100 : 0;
     const requiredClasses = Math.ceil((required / 100) * totalClasses);
-    const shortage = Math.max(0, requiredClasses - attended);
+    const shortage = Math.max(0, requiredClasses, attended);
     const isEligible = percentage >= required;
 
     const maxTotalAllowed = Math.floor(attended / (required / 100));
-    const canMissMore = Math.max(0, maxTotalAllowed - totalClasses);
+    const canMissMore = Math.max(0, maxTotalAllowed, totalClasses);
 
     let classesToAttend = 0;
     if (!isEligible) {
-      const numerator = (required * totalClasses / 100) - attended;
-      const denominator = 1 - (required / 100);
+      const numerator = (required * totalClasses / 100), attended;
+      const denominator = 1, (required / 100);
       classesToAttend = Math.ceil(numerator / denominator);
     }
 
@@ -147,21 +147,21 @@ export default function NepalAttendanceCalculator() {
             <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The NQ (Not Qualified) Penalty</h3>
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
               <li><strong className="text-[#1A73E8]">Absolute Thresholds:</strong> Most faculties enforce a strict <strong className="text-[#202124]">minimum 75 attendance nq</strong> rule. Falling to 74.9% mathematically disqualifies you from receiving your admit card for final board examinations, forcing a year back or a semester repeat.</li>
-              <li><strong className="text-[#188038]">Predictive Buffers:</strong> If you are currently above the threshold, the algorithm reverses the equation to calculate your "buffer"—the exact number of future classes you can safely skip without breaking the 75% baseline.</li>
+              <li><strong className="text-[#188038]">Predictive Buffers:</strong> If you are currently above the threshold, the algorithm reverses the equation to calculate your "buffer", the exact number of future classes you can safely skip without breaking the 75% baseline.</li>
               <li><strong className="text-[#D93025]">Condonation Limits:</strong> While Deans have the authority to condone up to a 5% shortage (reducing the requirement to 70%), this is strictly reserved for documented emergencies (e.g., hospitalization) and cannot be relied upon as a standard academic buffer.</li>
             </ul>
           </div>
         </div>
       }
       howToUse={{ steps: ["Find out the total number of classes (lectures or practicals) conducted by your professor so far.", "Enter the number of those classes you were physically present for.", "Select your university's required threshold (usually 75%).", "If you are short, the calculator will tell you exactly how many consecutive classes you must attend to cross the threshold."] }}
-      formula={{ title: "Eligibility Math", description: "Algebraic projection.", raw: "Current % = (Attended / Total) × 100\n\nIf short, classes needed (x) is found by solving:\n(Attended + x) / (Total + x) = Threshold%\n\nx = (Threshold × Total - Attended) / (1 - Threshold)" }}
+      formula={{ title: "Eligibility Math", description: "Algebraic projection.", raw: "Current % = (Attended / Total) × 100\n\nIf short, classes needed (x) is found by solving:\n(Attended + x) / (Total + x) = Threshold%\n\nx = (Threshold × Total, Attended) / (1, Threshold)" }}
       faqs={[
         { question: "What happens if I fall below 75% attendance in Nepal?", answer: "Colleges are mandated to send a list of eligible students to the university board. If you are below 75% without an approved condonation, you will receive an NQ (Not Qualified) notice and be barred from sitting the board exams. You will have to repeat the semester or year, losing both time and tuition fees." },
         { question: "Do internal assessments count towards attendance?", answer: "No. Attendance is tracked strictly for physical presence in lectures and practical labs. However, low attendance often correlates with low internal assessment marks since participation in practicals, quizzes, and term tests requires being present. Some colleges also deduct internal marks for excessive absences beyond the NQ threshold." },
         { question: "What is the condonation rule in TU and PU?", answer: "Both TU and PU allow a maximum 5% attendance condonation in genuine emergencies (hospitalization, family bereavement, official government duty). This reduces the effective requirement from 75% to 70%. It requires a formal written application to the Faculty Dean or Campus Chief with supporting documentation (medical certificate, etc.) and is never automatically granted." },
-        { question: "Can I calculate how many classes I can safely skip?", answer: "Yes — when your current attendance is above 75%, the calculator automatically computes your 'buffer': the exact number of future classes you can miss without falling below the threshold. This takes into account both your current attendance and the remaining classes in the semester, giving you a real-time safety margin." },
+        { question: "Can I calculate how many classes I can safely skip?", answer: "Yes ,  when your current attendance is above 75%, the calculator automatically computes your 'buffer': the exact number of future classes you can miss without falling below the threshold. This takes into account both your current attendance and the remaining classes in the semester, giving you a real-time safety margin." },
         { question: "What is the 75% attendance rule based on?", answer: "The 75% minimum attendance rule in Nepal is based on the University Grants Commission (UGC) Nepal directives, which all affiliated universities (TU, PU, KU, PU) are required to enforce. The rule ensures minimum academic engagement. In practice, most colleges track theory and practical lab attendance separately, and you must meet 75% in both independently." },
-        { question: "How many classes can I miss in a 100-class semester?", answer: "If 100 classes are held and the requirement is 75%, you need at least 75 classes. You can miss a maximum of 25 classes. However, this is a hard ceiling — missing class 26 triggers NQ status. The buffer calculator here gives you the real-time count as the semester progresses, adjusting for how many total classes have been held so far." }
+        { question: "How many classes can I miss in a 100-class semester?", answer: "If 100 classes are held and the requirement is 75%, you need at least 75 classes. You can miss a maximum of 25 classes. However, this is a hard ceiling ,  missing class 26 triggers NQ status. The buffer calculator here gives you the real-time count as the semester progresses, adjusting for how many total classes have been held so far." }
       ]}
       sidebar={{ title: "Academic Tools", links: [{ label: "SEE GPA Calculator", href: "/calculator/see-gpa" }, { label: "Marks Needed", href: "/calculator/marks-needed" }], banner: { title: "Plan Ahead", description: "Don't let attendance ruin your semester. Track it early.", image: "/images/math-banner.jpg" } }}
       relatedTools={[{ label: "SEE GPA Calculator", href: "/calculator/see-gpa" }]}

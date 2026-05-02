@@ -31,7 +31,7 @@ export default function AdminDashboard() {
         const allSnap = await getDocs(postsRef);
         const total = allSnap.size;
         const published = allSnap.docs.filter(d => d.data().status === 'published').length;
-        setStats({ total, published, drafts: total - published });
+        setStats({ total, published, drafts: total, published });
       } catch (error) {
         handleFirestoreError(error, OperationType.LIST, 'posts');
       } finally {
@@ -156,7 +156,7 @@ export default function AdminDashboard() {
                       <div className="text-[11px] text-gray-400 mt-0.5">/{p.slug}</div>
                     </td>
                     <td className="px-6 py-4">
-                      <span className="text-[12px] text-gray-500 capitalize">{p.category || '—'}</span>
+                      <span className="text-[12px] text-gray-500 capitalize">{p.category || ', '}</span>
                     </td>
                     <td className="px-6 py-4">
                       <span className={`inline-flex items-center gap-1.5 text-[11px] font-medium px-2.5 py-1 rounded-full ${
@@ -169,7 +169,7 @@ export default function AdminDashboard() {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-[12px] text-gray-400">
-                      {p.date ? new Date(p.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—'}
+                      {p.date ? new Date(p.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : ', '}
                     </td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">

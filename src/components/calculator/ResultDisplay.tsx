@@ -46,7 +46,7 @@ export function ResultDisplay({
   const handleCopy = async () => {
     const textToCopy = `${title}: ${primaryResult.value} ${typeof primaryResult.description === 'string' ? primaryResult.description : ''}\n` +
       secondaryResults.map(r => `${r.label}: ${r.value}`).join('\n') + 
-      `\nCalculated on NepaCalc — ${window.location.href}`;
+      `\nCalculated on NepaCalc ,  ${window.location.href}`;
       
     try {
       await navigator.clipboard.writeText(textToCopy);
@@ -112,7 +112,7 @@ export function ResultDisplay({
           )}
         </div>
 
-        {/* Interpretation Band - MDCalc Style Premium */}
+        {/* Interpretation Band, MDCalc Style Premium */}
         {interpretation && (
           <div className={`mt-10 -mx-12 -mb-12 p-5 border-t flex items-center justify-center gap-3 font-black text-[11px] uppercase tracking-widest backdrop-blur-md ${interpretationColors[interpretation.variant]}`}>
             <AlertCircle className="w-4 h-4 shrink-0" />

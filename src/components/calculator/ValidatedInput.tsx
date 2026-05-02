@@ -22,7 +22,7 @@ export interface ValidatedInputProps {
 }
 
 /**
- * ValidatedInput — A fully accessible, premium input component for Phase 4.
+ * ValidatedInput ,  A fully accessible, premium input component for Phase 4.
  * Integrates ARIA roles, unique IDs, and real-time validation feedback.
  */
 export function ValidatedInput({

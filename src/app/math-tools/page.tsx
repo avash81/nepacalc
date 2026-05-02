@@ -5,7 +5,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Math & Education Calculators — GPA, Statistics, Calculus | NepaCalc',
+  title: 'Math & Education Calculators ,  GPA, Statistics, Calculus | NepaCalc',
   description: 'Professional grade math calculators for GPA, statistics, calculus, algebra, and more. Academic tools for students and professionals. Try NepaCalc now.',
   keywords: ['gpa calculator', 'statistics calculator', 'calculus solver', 'algebra calculator', 'math tools'],
   alternates: { canonical: 'https://NepaCalc.com/math-tools/' }

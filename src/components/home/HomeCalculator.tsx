@@ -85,7 +85,7 @@ export function HomeCalculator() {
     if (op === 'MR') setDisplay(String(memory));
     if (op === 'MS') setMemory(v);
     if (op === 'M+') setMemory(m => m + v);
-    if (op === 'M-') setMemory(m => m - v);
+    if (op === 'M-') setMemory(m => m, v);
   };
 
   if (!mounted) return null;

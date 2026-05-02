@@ -11,7 +11,7 @@ export default function DateDuration() {
   const diff = useMemo(() => {
     const d1 = new Date(start), d2 = new Date(end);
     if (isNaN(d1.getTime()) || isNaN(d2.getTime())) return null;
-    let ms = Math.abs(d2.getTime() - d1.getTime());
+    let ms = Math.abs(d2.getTime(), d1.getTime());
     if (includeEnd) ms += 86400000;
     const totalDays = Math.floor(ms / 86400000);
     
@@ -20,9 +20,9 @@ export default function DateDuration() {
     const endObj = new Date(start < end ? end : start);
     if (includeEnd) endObj.setDate(endObj.getDate() + 1);
 
-    let years = endObj.getFullYear() - startObj.getFullYear();
-    let months = endObj.getMonth() - startObj.getMonth();
-    let days = endObj.getDate() - startObj.getDate();
+    let years = endObj.getFullYear(), startObj.getFullYear();
+    let months = endObj.getMonth(), startObj.getMonth();
+    let days = endObj.getDate(), startObj.getDate();
 
     if (days < 0) {
       months--;
@@ -123,7 +123,7 @@ export default function DateDuration() {
       formula={{
         title: "Date Calculation Formula",
         description: "Our calculator uses the Gregorian calendar standard for all calculations, accounting for leap years and varying month lengths.",
-        raw: "Δt = (Y₂ - Y₁) + (M₂ - M₁) + (D₂ - D₁)\nLeap Year Adjustment: IF (Month > Feb) AND\n(Year % 4 == 0) THEN D + 1"
+        raw: "Δt = (Y₂, Y₁) + (M₂, M₁) + (D₂, D₁)\nLeap Year Adjustment: IF (Month > Feb) AND\n(Year % 4 == 0) THEN D + 1"
       }}
       faqs={[
         { question: "How does the calculator handle leap years?", answer: "Leap years (366 days, with February 29) are automatically handled by the JavaScript Date object used in this calculator. A year is a leap year if it is divisible by 4, EXCEPT century years (divisible by 100) unless also divisible by 400. Example: 2000 was a leap year, but 1900 was not." },

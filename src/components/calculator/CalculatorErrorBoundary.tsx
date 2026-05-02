@@ -24,7 +24,7 @@ export class CalculatorErrorBoundary extends React.Component<Props, State> {
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error('Calculator Error:', error, errorInfo);
-    // Log to error tracking service (Sentry, LogRocket, etc. - currently just console)
+    // Log to error tracking service (Sentry, LogRocket, etc., currently just console)
   }
 
   handleReset = () => {

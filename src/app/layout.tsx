@@ -15,23 +15,18 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nepacalc.com'),
-  title: "Free Online Calculators for Nepal — NepaCalc",
+  title: "Free Online Calculators for Nepal ,  NepaCalc",
   description: "Nepal's trusted free calculator platform for income tax, EMI planning, GPA tracking, unit conversions, and 80+ professional tools. Try NepaCalc now.",
   manifest: '/manifest.json',
   icons: {
     icon: [
-      { url: '/favicon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/logo.png', sizes: 'any' },
       { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
-      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
-      { url: '/favicon-144x144.png', sizes: '144x144', type: 'image/png' },
-      { url: '/favicon-192x192.png', sizes: '192x192', type: 'image/png' },
-      { url: '/favicon-512x512.png', sizes: '512x512', type: 'image/png' },
+      { url: '/logo.png', sizes: '192x192', type: 'image/png' },
+      { url: '/logo.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-    other: [
-      { rel: 'mask-icon', url: '/logo.png', color: '#1A73E8' },
+      { url: '/logo.png', sizes: '180x180', type: 'image/png' },
     ],
   },
   verification: {
@@ -117,7 +112,7 @@ const globalSchema = {
     {
       "@type": "WebApplication",
       "@id": "https://nepacalc.com/#calculator",
-      "name": "NepaCalc — Professional Mathematical & Engineering Suite",
+      "name": "NepaCalc ,  Professional Mathematical & Engineering Suite",
       "url": "https://nepacalc.com",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Any",
@@ -152,8 +147,9 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         {/* Explicit Favicon for Google Search Results */}
+        <link rel="icon" href="/logo.png" sizes="any" />
         <link rel="icon" href="/favicon-48x48.png" sizes="48x48" type="image/png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
       </head>
       <body className={`${inter.variable} font-sans`}>
         <script

@@ -82,7 +82,7 @@ export default function SIPCalculator() {
             <div className="text-xs font-bold text-[var(--success)] uppercase tracking-tight">Wealth Gained: Rs. {results.wealthGained.toLocaleString()}</div>
           </div>
 
-          {/* Projection Area Chart - Classic Style */}
+          {/* Projection Area Chart, Classic Style */}
           <div className="space-y-4">
             <div className="text-xs font-bold uppercase tracking-tight text-[var(--text-main)]">Growth Projection Map</div>
             <div className="h-[260px] w-full border border-[var(--border)] p-2 bg-slate-50/30">

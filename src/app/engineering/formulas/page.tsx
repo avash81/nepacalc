@@ -3,7 +3,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import FormulaReferenceClient from './FormulaReferenceClient';
 
 export const metadata: Metadata = {
-  title: 'Math Formula Reference — Algebra, Calculus & Physics | NepaCalc',
+  title: 'Math Formula Reference ,  Algebra, Calculus & Physics | NepaCalc',
   description: 'Comprehensive math formula reference from school to engineering level. Covers algebra, geometry, trigonometry, calculus, statistics, physics, and engineering formulas. Beautifully rendered, searchable.',
   keywords: ['math formulas', 'algebra formulas', 'calculus formulas', 'trigonometry formulas', 'physics formulas', 'engineering formulas', 'formula sheet', 'math reference'],
   openGraph: { title: 'Math Formula Reference | NepaCalc', description: 'Complete formula reference from school to engineering level.', url: 'https://NepaCalc.com/engineering/formulas' },

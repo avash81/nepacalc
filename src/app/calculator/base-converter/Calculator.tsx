@@ -32,7 +32,7 @@ export default function BaseConverter() {
 
   const d = useMemo(() => {
     if (res && 'dec' in res) { const r = res as ConversionResult; return { dec: r.dec, bin: r.bin, hex: r.hex, oct: r.oct, char: r.char, logic: r.logic }; }
-    return { dec: '—', bin: '—', hex: '—', oct: '—', char: null, logic: { and: '0', or: '0', xor: '0' } };
+    return { dec: ', ', bin: ', ', hex: ', ', oct: ', ', char: null, logic: { and: '0', or: '0', xor: '0' } };
   }, [res]);
 
   const BASES = [{ id: 10, l: 'Decimal' }, { id: 2, l: 'Binary' }, { id: 16, l: 'Hex' }, { id: 8, l: 'Octal' }];
@@ -93,7 +93,7 @@ export default function BaseConverter() {
         <div className="space-y-4">
           {[
             { l: 'Binary (Base 2)', v: d.bin, color: 'text-[#1A73E8]', bg: 'bg-[#E8F0FE]', border: 'border-[#C5D9F7]' },
-            { l: 'Hexadecimal (Base 16)', v: d.hex !== '—' ? `0x${d.hex}` : '—', color: 'text-[#E37400]', bg: 'bg-[#FFF7E0]', border: 'border-[#FEEFC3]' },
+            { l: 'Hexadecimal (Base 16)', v: d.hex !== ', ' ? `0x${d.hex}` : ', ', color: 'text-[#E37400]', bg: 'bg-[#FFF7E0]', border: 'border-[#FEEFC3]' },
             { l: 'Octal (Base 8)', v: d.oct, color: 'text-[#188038]', bg: 'bg-[#E6F4EA]', border: 'border-[#CEEAD6]' },
             { l: 'Decimal (Base 10)', v: d.dec, color: 'text-[#202124]', bg: 'bg-white', border: 'border-[#DADCE0]' },
           ].map(item => (
@@ -107,12 +107,12 @@ export default function BaseConverter() {
             <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center flex flex-col items-center justify-center gap-2">
               <Terminal className="w-5 h-5 text-[#70757A]" />
               <div className="text-[9px] font-bold uppercase text-[#70757A] tracking-wider">ASCII Char</div>
-              <div className="text-2xl font-black text-[#1A73E8] font-mono">{d.char || '—'}</div>
+              <div className="text-2xl font-black text-[#1A73E8] font-mono">{d.char || ', '}</div>
             </div>
             <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center flex flex-col items-center justify-center gap-2">
               <Cpu className="w-5 h-5 text-[#70757A]" />
               <div className="text-[9px] font-bold uppercase text-[#70757A] tracking-wider">Memory Size</div>
-              <div className="text-2xl font-black text-[#188038] font-mono">{d.hex !== '—' ? Math.ceil(d.hex.length / 2) : '0'}b</div>
+              <div className="text-2xl font-black text-[#188038] font-mono">{d.hex !== ', ' ? Math.ceil(d.hex.length / 2) : '0'}b</div>
             </div>
           </div>
         </div>
@@ -121,7 +121,7 @@ export default function BaseConverter() {
       formula={{ title: "Base Mathematics", description: "Standard radix conversions.", raw: "Base 10 (Decimal): Standard human counting (0-9)\nBase 2 (Binary): Computer logical bits (0-1)\nBase 16 (Hexadecimal): Byte shorthand (0-9, A-F)\nBase 8 (Octal): Older computing shorthand (0-7)" }}
       faqs={[
         { question: "Why is Hexadecimal important in programming?", answer: "Hexadecimal (Base 16) is a compact representation of binary data. One hex digit perfectly represents 4 binary bits (a nibble), and two hex digits represent one byte. It is the standard in programming for: color codes (#FF5733), memory addresses (0x7FFE), CPU registers, and network MAC addresses." },
-        { question: "What does the Memory Size output mean?", answer: "Memory size estimates the minimum number of bytes required to store the entered number in a computer's RAM. It is calculated from the hexadecimal digit length — every 2 hex digits represent 1 byte. For example, the number 255 = 0xFF requires 1 byte. 65535 = 0xFFFF requires 2 bytes." },
+        { question: "What does the Memory Size output mean?", answer: "Memory size estimates the minimum number of bytes required to store the entered number in a computer's RAM. It is calculated from the hexadecimal digit length ,  every 2 hex digits represent 1 byte. For example, the number 255 = 0xFF requires 1 byte. 65535 = 0xFFFF requires 2 bytes." },
         { question: "How does Binary (Base 2) relate to computer hardware?", answer: "Binary is the native language of all digital electronics. Each binary digit (bit) corresponds to a transistor state: 0 = off, 1 = on. Modern CPUs process 64 bits simultaneously (64-bit architecture). All images, audio, and text files are ultimately stored as combinations of 0s and 1s at the hardware level." },
         { question: "What are bitwise AND, OR, and XOR operations used for?", answer: "Bitwise operations work on individual bits: AND (both bits must be 1 → result 1) is used for masking/filtering. OR (at least one bit is 1 → result 1) is used for setting flags. XOR (exactly one bit is 1 → result 1) is used for toggling bits, checksums, and encryption. They are fundamental in systems programming, embedded development, and network protocols." },
         { question: "What is Octal (Base 8) used for?", answer: "Octal was widely used in early computing and is still relevant today for Unix/Linux file permissions. The permission string 'rwxr-xr-x' equals octal 755: owner=7 (rwx=111), group=5 (r-x=101), others=5 (r-x=101). Understanding octal is essential for system administration in Linux environments." },

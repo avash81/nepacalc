@@ -42,7 +42,7 @@ export default function SIPCalculator() {
       schedule.push({ 
         year, 
         invested: totalInvested, 
-        returns: fv - totalInvested, 
+        returns: fv, totalInvested, 
         balance: fv,
         yearlyInvested
       });
@@ -52,7 +52,7 @@ export default function SIPCalculator() {
       success: true,
       fv, 
       totalInvested, 
-      returns: fv - totalInvested, 
+      returns: fv, totalInvested, 
       schedule 
     };
   }, [monthly, rate, years, stepUp]);
@@ -354,7 +354,7 @@ export default function SIPCalculator() {
       formula={{
         title: "SIP Calculation Formula & Derivation",
         description: "The calculator uses the future value of an annuity due formula, adapted for monthly contributions. When Step-Up is active, the formula recalculates the PMT (payment) annually.",
-        raw: "FV = P × ({[1 + i]^n - 1} / i) × (1 + i)\n\nVariables Explained:\n• P: Periodic SIP Amount (e.g., Rs. 5000)\n• i: Periodic Interest Rate (Annual Rate / 12 / 100)\n• n: Total Number of Months\n\nFor Step-Up SIPs, the formula is executed iteratively for each year, adjusting 'P' by the Step-Up percentage: P_new = P_old * (1 + StepUp_Rate)."
+        raw: "FV = P × ({[1 + i]^n, 1} / i) × (1 + i)\n\nVariables Explained:\n• P: Periodic SIP Amount (e.g., Rs. 5000)\n• i: Periodic Interest Rate (Annual Rate / 12 / 100)\n• n: Total Number of Months\n\nFor Step-Up SIPs, the formula is executed iteratively for each year, adjusting 'P' by the Step-Up percentage: P_new = P_old * (1 + StepUp_Rate)."
       }}
       faqs={[
         {

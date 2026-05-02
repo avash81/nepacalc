@@ -146,8 +146,8 @@ export default function BMICalculator() {
                  <div className="p-3 space-y-2">
                     {[
                       { label: 'Underweight', range: '< 18.5', color: 'bg-[#1A73E8]' },
-                      { label: 'Normal Weight', range: '18.5 - 24.9', color: 'bg-[#188038]' },
-                      { label: 'Overweight', range: '25.0 - 29.9', color: 'bg-[#F29900]' },
+                      { label: 'Normal Weight', range: '18.5, 24.9', color: 'bg-[#188038]' },
+                      { label: 'Overweight', range: '25.0, 29.9', color: 'bg-[#F29900]' },
                       { label: 'Obese', range: '≥ 30.0', color: 'bg-[#D93025]' },
                     ].map((r) => (
                       <div key={r.label} className={`flex justify-between items-center text-[11px] p-1.5 rounded ${result.data?.status.includes(r.label.split(' ')[0]) ? 'bg-[#F1F3F4] font-bold' : ''}`}>
@@ -198,7 +198,7 @@ export default function BMICalculator() {
                 In Nepal, as urbanization and lifestyle shifts accelerate, monitoring metabolic health has become a critical public health priority. Our <strong className="text-[#202124]">bmi calculator nepal</strong> is calibrated to the global World Health Organization (WHO) standards, providing an immediate screening metric for adults. By analyzing the ratio of your body mass to the square of your height, this tool helps identify potential risks for non-communicable diseases (NCDs) such as hypertension and Type 2 diabetes, which are increasingly prevalent in Nepalese cities.
               </p>
               <p>
-                While the <strong className="text-[#202124]">body mass index</strong> is a powerful statistical proxy for body fatness, it is important to interpret results within our regional physiological context. Health professionals in Nepal often use BMI as an entry-point for deeper nutritional counseling, especially when identifying the 'double burden' of malnutrition—where both undernutrition and obesity coexist in different demographic segments.
+                While the <strong className="text-[#202124]">body mass index</strong> is a powerful statistical proxy for body fatness, it is important to interpret results within our regional physiological context. Health professionals in Nepal often use BMI as an entry-point for deeper nutritional counseling, especially when identifying the 'double burden' of malnutrition, where both undernutrition and obesity coexist in different demographic segments.
               </p>
             </div>
           </div>

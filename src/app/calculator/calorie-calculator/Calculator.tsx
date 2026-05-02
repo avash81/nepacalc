@@ -167,7 +167,7 @@ export default function CalorieCalculator() {
         steps: [
           "Select your biological sex. This dictates the specific metabolic baseline constants utilized in the equation.",
           "Enter your current age, weight (in kg), and height (in cm) with absolute precision.",
-          "Select your Activity Level. Be honest—overestimating your activity level will artificially inflate your daily calorie allowance and stall weight loss.",
+          "Select your Activity Level. Be honest, overestimating your activity level will artificially inflate your daily calorie allowance and stall weight loss.",
           "Review the 'Daily Results' matrix to see your exact Maintenance ceiling.",
           "Follow the specific caloric target that aligns with your personal goal (Maintenance, Weight Loss, or Extreme Loss)."
         ]

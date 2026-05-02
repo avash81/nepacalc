@@ -133,7 +133,7 @@ export default function GratuityCalculator() {
       formula={{
         title: "Labor Act Calculation Rule",
         description: "The calculation mandates an 8.33% monthly accumulation on the base salary alone.",
-        raw: "1. Monthly Employer Contribution = Basic Salary × 8.33%\n2. Yearly Gratuity Accrual = Basic Salary × (8.33% × 12) = 1 Month Basic Salary\n\nTotal Gross Fund = 1 Month Basic Salary × Total Years of Service\n\nTaxation: 15% Flat Rate on the Taxable Portion (Total Fund - Exempt Amount)."
+        raw: "1. Monthly Employer Contribution = Basic Salary × 8.33%\n2. Yearly Gratuity Accrual = Basic Salary × (8.33% × 12) = 1 Month Basic Salary\n\nTotal Gross Fund = 1 Month Basic Salary × Total Years of Service\n\nTaxation: 15% Flat Rate on the Taxable Portion (Total Fund, Exempt Amount)."
       }}
       faqs={[
         {
@@ -142,7 +142,7 @@ export default function GratuityCalculator() {
         },
         {
           question: "Is my Gratuity payout taxable in Nepal?",
-          answer: "Yes, but it is heavily subsidized. There is a tax exemption limit—usually 50% of the total amount or up to Rs. 5,00,000 (whichever is lower), provided the fund is approved by the IRD. Only the amount exceeding this exempt limit is taxed at a flat 15%."
+          answer: "Yes, but it is heavily subsidized. There is a tax exemption limit, usually 50% of the total amount or up to Rs. 5,00,000 (whichever is lower), provided the fund is approved by the IRD. Only the amount exceeding this exempt limit is taxed at a flat 15%."
         },
         {
           question: "Does Gratuity include my allowances?",

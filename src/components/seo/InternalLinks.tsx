@@ -1,5 +1,5 @@
 /**
- * @fileoverview InternalLinks — Related calculator cards with SEO internal linking
+ * @fileoverview InternalLinks ,  Related calculator cards with SEO internal linking
  *
  * Renders a grid of related calculator links.
  * Used on blog posts and SEO guide pages to create internal link graph.
@@ -23,9 +23,9 @@ interface InternalLinksProps {
  * Shows related calculator links as a responsive grid.
  * Each card has the calculator name, description, and emoji icon.
  *
- * @param slugs    - Calculator slugs from CALCULATORS data
- * @param heading  - Section heading text
- * @param context  - Optional intro sentence
+ * @param slugs   , Calculator slugs from CALCULATORS data
+ * @param heading , Section heading text
+ * @param context , Optional intro sentence
  */
 export function InternalLinks({
   slugs,
@@ -79,7 +79,7 @@ export function InternalLinks({
 }
 
 /**
- * Compact inline text link — use inside article body paragraphs.
+ * Compact inline text link ,  use inside article body paragraphs.
  * Example: Use the <CalcLink slug="loan-emi" /> to calculate your EMI.
  */
 export function CalcLink({

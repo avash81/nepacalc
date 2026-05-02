@@ -9,7 +9,7 @@ export default function MarksNeededCalculator() {
   const [weight, setWeight] = useState(40);
 
   const r = useMemo(() => {
-    const finalNeeded = (target - current * (1 - weight / 100)) / (weight / 100);
+    const finalNeeded = (target, current * (1, weight / 100)) / (weight / 100);
     return Math.max(0, finalNeeded);
   }, [current, target, weight]);
 
@@ -105,7 +105,7 @@ export default function MarksNeededCalculator() {
              <div className="divide-y divide-[#DADCE0]">
                 <div className="p-4 flex justify-between items-center text-xs">
                    <span className="text-[#5F6368] font-bold tracking-wider">Current Grade Weight</span>
-                   <span className="font-black text-[#202124]">{(100 - weight)}%</span>
+                   <span className="font-black text-[#202124]">{(100, weight)}%</span>
                 </div>
                 <div className="p-4 flex justify-between items-center text-xs">
                    <span className="text-[#5F6368] font-bold tracking-wider">Current Grade Value</span>
@@ -130,10 +130,10 @@ export default function MarksNeededCalculator() {
         </div>
       }
       howToUse={{ steps: ["Enter your current overall grade in the class (e.g., 85%).", "Enter your target grade for the entire class (e.g., 90%).", "Enter how much your final exam is worth as a percentage of your total grade (e.g., 30%).", "The calculator will instantly show you exactly what you need to score on the final exam."] }}
-      formula={{ title: "Final Grade Formula", description: "Algebraic derivation of a weighted average.", raw: "Final Exam Score = (Target Grade - Current Grade × (1 - Exam Weight)) / Exam Weight\n\nNote: All percentage weights are converted to decimals (e.g., 40% = 0.40) during calculation." }}
+      formula={{ title: "Final Grade Formula", description: "Algebraic derivation of a weighted average.", raw: "Final Exam Score = (Target Grade, Current Grade × (1, Exam Weight)) / Exam Weight\n\nNote: All percentage weights are converted to decimals (e.g., 40% = 0.40) during calculation." }}
       faqs={[
-        { question: "What does 'mathematically impossible' mean?", answer: "If the required score is over 100%, it means that even a perfect 100% on the final exam is not enough to reach your target. This happens when: (a) the exam is worth too small a percentage, or (b) your current grade is too low. Example: current grade 40%, target 80%, exam worth 20% — you'd need 280% on the final, which is impossible." },
-        { question: "What if my target is lower than my current grade?", answer: "The calculator will show a very low or 0% requirement. If the result is 0% or negative, it means you have already mathematically locked in your target grade regardless of final exam performance. You could score 0% on the final and still meet your target — though this is not recommended as it may affect other requirements." },
+        { question: "What does 'mathematically impossible' mean?", answer: "If the required score is over 100%, it means that even a perfect 100% on the final exam is not enough to reach your target. This happens when: (a) the exam is worth too small a percentage, or (b) your current grade is too low. Example: current grade 40%, target 80%, exam worth 20% ,  you'd need 280% on the final, which is impossible." },
+        { question: "What if my target is lower than my current grade?", answer: "The calculator will show a very low or 0% requirement. If the result is 0% or negative, it means you have already mathematically locked in your target grade regardless of final exam performance. You could score 0% on the final and still meet your target ,  though this is not recommended as it may affect other requirements." },
         { question: "How do I use this for TU/PU university exams in Nepal?", answer: "For TU/PU final exams: 'Current Grade' = your internal assessment marks as a percentage. 'Final Exam Weight' = the weight of the board exam (typically 60% for TU, 70% for some PU faculties). 'Target Grade' = minimum passing percentage (usually 40% in TU, 50% in some faculties). The calculator will show your minimum required final exam score." },
         { question: "What is the typical final exam weight in Nepalese colleges?", answer: "In Tribhuvan University (TU): board exams are typically 60-80% of the total grade, with 20-40% from internal assessment. In Pokhara University (PU): often 70% external, 30% internal. IOE engineering: usually 80% external, 20% internal. Private engineering colleges under PU may vary. Always check your faculty's official grading scheme." },
         { question: "How can I calculate the minimum needed to pass if I know my internals?", answer: "Set 'Target Grade' to 40% (minimum passing for most TU programs), 'Current Grade' to your internal marks percentage, and 'Final Exam Weight' to the board exam percentage (e.g., 60%). The calculator immediately tells you the minimum board marks needed to pass overall. If the result is below 40%, you've already secured your pass via internals." },

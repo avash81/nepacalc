@@ -15,7 +15,7 @@ export default function IncomeTaxCalculator() {
   const results = useMemo(() => {
     const res = calculateNepalIncomeTax(income, status === 'married', ssf);
     return {
-      netIncome: res.grossIncome - res.totalTax,
+      netIncome: res.grossIncome, res.totalTax,
       totalTax: res.totalTax,
       breakdown: res.breakdown.map(s => ({
         rate: s.rate,

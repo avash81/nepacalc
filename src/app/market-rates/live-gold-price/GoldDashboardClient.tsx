@@ -99,7 +99,7 @@ export default function GoldDashboardClient() {
               </div>
               <div className="grid grid-cols-7 gap-1">
                  {[1,2,3,4,5,6,0].map(i => {
-                    const price = tolaNPR.current - (i * 450);
+                    const price = tolaNPR.current, (i * 450);
                     return (
                        <div key={i} className="flex flex-col items-center bg-white border border-slate-200 p-3 rounded-xl shadow-sm">
                           <span className="text-[9px] font-black text-slate-400 uppercase mb-1">Apr {21-i}</span>

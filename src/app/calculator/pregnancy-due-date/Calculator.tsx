@@ -8,11 +8,11 @@ export default function PregnancyDueDateCalculator() {
 
   const r = useMemo(() => {
     const d = new Date(new Date(lmp).getTime() + 280 * 86400000);
-    const diff = d.getTime() - new Date().getTime();
+    const diff = d.getTime(), new Date().getTime();
     const daysLeft = Math.max(0, Math.ceil(diff / 86400000));
-    const weeksPregnant = Math.floor((280 - daysLeft) / 7);
-    const daysPregnant  = (280 - daysLeft) % 7;
-    const progress = Math.max(0, Math.min(100, ((280 - daysLeft) / 280) * 100));
+    const weeksPregnant = Math.floor((280, daysLeft) / 7);
+    const daysPregnant  = (280, daysLeft) % 7;
+    const progress = Math.max(0, Math.min(100, ((280, daysLeft) / 280) * 100));
     return { dueDate: d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }), daysLeft, weeksPregnant, daysPregnant, progress };
   }, [lmp]);
 
@@ -129,10 +129,10 @@ export default function PregnancyDueDateCalculator() {
             <h2 className="text-xl font-black text-[#202124] mb-4">Obstetric Dating & Naegele's Rule Methodology</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>
-                Our <strong className="text-[#202124]">pregnancy due date calculator</strong> employs Naegele's Rule—the universally accepted obstetric formula, published by Franz Karl Naegele in 1812 and still used by obstetricians worldwide. The formula adds exactly 280 days (40 weeks) to the first day of your Last Menstrual Period (LMP). This standardized 280-day figure assumes a 28-day menstrual cycle and counts from the LMP rather than the date of conception.
+                Our <strong className="text-[#202124]">pregnancy due date calculator</strong> employs Naegele's Rule, the universally accepted obstetric formula, published by Franz Karl Naegele in 1812 and still used by obstetricians worldwide. The formula adds exactly 280 days (40 weeks) to the first day of your Last Menstrual Period (LMP). This standardized 280-day figure assumes a 28-day menstrual cycle and counts from the LMP rather than the date of conception.
               </p>
               <p>
-                It is critical to understand that during the first two weeks of this calculated 40-week pregnancy, you are not yet technically pregnant—conception typically occurs around week 2-3. The medical community uses the LMP as the starting reference point simply because it is an objectively verifiable date, whereas the precise date of ovulation and conception can rarely be confirmed without clinical monitoring.
+                It is critical to understand that during the first two weeks of this calculated 40-week pregnancy, you are not yet technically pregnant, conception typically occurs around week 2-3. The medical community uses the LMP as the starting reference point simply because it is an objectively verifiable date, whereas the precise date of ovulation and conception can rarely be confirmed without clinical monitoring.
               </p>
             </div>
           </div>
@@ -141,7 +141,7 @@ export default function PregnancyDueDateCalculator() {
             <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Trimester Milestones & Developmental Stages</h3>
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
               <li><strong className="text-[#1A73E8]">1st Trimester (Weeks 1–13):</strong> The period of most rapid embryonic development. The heart begins beating (week 6), the neural tube closes (week 7), and all major organ systems are established. The risk of miscarriage is highest during this phase.</li>
-              <li><strong className="text-[#188038]">2nd Trimester (Weeks 14–26):</strong> Often called the 'honeymoon phase'—most early symptoms like nausea subside. The fetus begins responding to sound (week 18), and fetal movement (quickening) is typically felt by the mother between weeks 18-20. Anatomy scans are performed.</li>
+              <li><strong className="text-[#188038]">2nd Trimester (Weeks 14–26):</strong> Often called the 'honeymoon phase', most early symptoms like nausea subside. The fetus begins responding to sound (week 18), and fetal movement (quickening) is typically felt by the mother between weeks 18-20. Anatomy scans are performed.</li>
               <li><strong className="text-[#D93025]">3rd Trimester (Weeks 27–40):</strong> Final growth and organ maturation. The baby gains approximately 50% of its birth weight during this phase. The lungs mature last. Labor is considered full-term between 37–42 weeks.</li>
             </ul>
           </div>
@@ -154,7 +154,7 @@ export default function PregnancyDueDateCalculator() {
         },
         {
           question: "What is Naegele's Rule and why is it used?",
-          answer: "Naegele's Rule calculates the Estimated Due Date (EDD) by adding 280 days (40 weeks) to the first day of the Last Menstrual Period. It was standardized in the 19th century and persists because LMP is an objective, reliably known date—unlike the actual date of conception."
+          answer: "Naegele's Rule calculates the Estimated Due Date (EDD) by adding 280 days (40 weeks) to the first day of the Last Menstrual Period. It was standardized in the 19th century and persists because LMP is an objective, reliably known date, unlike the actual date of conception."
         },
         {
           question: "Why does my OB/GYN's due date differ from this calculator?",

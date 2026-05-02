@@ -120,7 +120,7 @@ export default function LengthConverter() {
             <h2 className="text-xl font-black text-[#202124] mb-4">The Metric & Imperial Systems: A History of Incompatibility</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>
-                The global coexistence of two distinct length measurement systems—the Metric (SI) and the Imperial—creates a constant need for high-precision <strong className="text-[#202124]">length conversion</strong>. The Metric system, anchored by the Meter (m), was formalized by the French Academy of Sciences in 1795 and is based on powers of 10, making arithmetic operations intuitive. Our <strong className="text-[#202124]">length converter</strong> handles all conversions with engineering-grade precision using the official NIST-defined equivalence factors.
+                The global coexistence of two distinct length measurement systems, the Metric (SI) and the Imperial, creates a constant need for high-precision <strong className="text-[#202124]">length conversion</strong>. The Metric system, anchored by the Meter (m), was formalized by the French Academy of Sciences in 1795 and is based on powers of 10, making arithmetic operations intuitive. Our <strong className="text-[#202124]">length converter</strong> handles all conversions with engineering-grade precision using the official NIST-defined equivalence factors.
               </p>
               <p>
                 The Imperial system, still in official use only in the USA, Myanmar, and Liberia, originated from historical physical body measurements (foot, hand, inch) with no consistent decimal structure. The exact equivalence between the two systems is defined by international treaty: exactly 1 inch = 25.4 mm, making all Imperial-to-SI conversions mathematically exact, not approximations.
@@ -143,7 +143,7 @@ export default function LengthConverter() {
       faqs={[
         {
           question: "How many centimeters are in an inch exactly?",
-          answer: "Exactly 2.54 centimeters. This is not an approximation—it is defined by international treaty. Therefore, 1 foot is exactly 30.48 cm, and 1 yard is exactly 91.44 cm."
+          answer: "Exactly 2.54 centimeters. This is not an approximation, it is defined by international treaty. Therefore, 1 foot is exactly 30.48 cm, and 1 yard is exactly 91.44 cm."
         },
         {
           question: "What is the difference between a nautical mile and a land mile?",

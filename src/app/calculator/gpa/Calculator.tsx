@@ -224,7 +224,7 @@ export default function GPACalculator() {
         },
         {
           question: "How do I convert Nepal GPA to percentage?",
-          answer: "A common approximate formula used by TU and NEB is: Percentage = GPA × 25. So a 3.6 GPA ≈ 90%. However, this is an approximation—exact conversion depends on the actual marks scored, not just the GPA. For official conversions (for visa or university applications), request a transcript with both GPA and percentage from your institution."
+          answer: "A common approximate formula used by TU and NEB is: Percentage = GPA × 25. So a 3.6 GPA ≈ 90%. However, this is an approximation, exact conversion depends on the actual marks scored, not just the GPA. For official conversions (for visa or university applications), request a transcript with both GPA and percentage from your institution."
         },
         {
           question: "Does retaking a course replace the old grade in the GPA?",

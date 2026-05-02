@@ -122,13 +122,13 @@ export default function QRGenerator() {
             <h2 className="text-xl font-black text-[#202124] mb-4">QR Code Technology: How 2D Matrix Barcodes Work</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>A QR (Quick Response) code is a two-dimensional matrix barcode invented by Denso Wave (Japan) in 1994 for automotive parts tracking. Unlike linear barcodes that encode data in one horizontal dimension, QR codes encode data in both dimensions using a grid of black and white squares, enabling storage of up to 4,296 alphanumeric characters or 7,089 numeric characters in a single compact image. Our <strong className="text-[#202124]">QR code generator</strong> creates static, permanent codes using the QR Code Version 1-40 standard.</p>
-              <p>All codes generated here are <strong className="text-[#202124]">static QR codes</strong>—the destination data is hard-encoded directly into the pattern of the squares. This means no server is involved after generation, the code works indefinitely without any subscription, and your data never leaves your browser.</p>
+              <p>All codes generated here are <strong className="text-[#202124]">static QR codes</strong>, the destination data is hard-encoded directly into the pattern of the squares. This means no server is involved after generation, the code works indefinitely without any subscription, and your data never leaves your browser.</p>
             </div>
           </div>
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
             <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Static vs. Dynamic QR Codes</h3>
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Static QR Codes (This Tool):</strong> The URL or text is directly encoded into the pixel pattern. Free, permanent, zero maintenance. Downside: cannot be edited after printing—a typo requires regenerating and reprinting.</li>
+              <li><strong className="text-[#1A73E8]">Static QR Codes (This Tool):</strong> The URL or text is directly encoded into the pixel pattern. Free, permanent, zero maintenance. Downside: cannot be edited after printing, a typo requires regenerating and reprinting.</li>
               <li><strong className="text-[#188038]">Dynamic QR Codes:</strong> Encode a short redirect URL. The actual destination can be changed after printing via a dashboard. Supports scan tracking/analytics. Typically requires a paid subscription ($5–$30/month).</li>
               <li><strong className="text-[#D93025]">Error Correction:</strong> QR codes include Reed-Solomon error correction, allowing them to remain scannable even when up to 30% of the pattern is damaged, covered by a logo, or torn.</li>
             </ul>
@@ -158,7 +158,7 @@ export default function QRGenerator() {
         },
         {
           question: "Why does my QR code not scan from the screen?",
-          answer: "Common reasons: (1) Screen glare or reflection interfering with the camera. (2) The code is too small on screen—increase the export size to 350px+. (3) The content box is empty. (4) Browser camera permissions blocked. Try darkening the screen brightness slightly and ensuring adequate contrast."
+          answer: "Common reasons: (1) Screen glare or reflection interfering with the camera. (2) The code is too small on screen, increase the export size to 350px+. (3) The content box is empty. (4) Browser camera permissions blocked. Try darkening the screen brightness slightly and ensuring adequate contrast."
         }
       ]}
     />

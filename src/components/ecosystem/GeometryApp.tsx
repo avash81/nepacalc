@@ -136,7 +136,7 @@ export function GeometryApp() {
                     const rPoint = points.find(p => p.id === circ.radiusPoint);
                     if (!center || !rPoint || isNaN(center.x)) return null;
                     
-                    const radius = Math.sqrt(Math.pow(rPoint.x - center.x, 2) + Math.pow(rPoint.y - center.y, 2));
+                    const radius = Math.sqrt(Math.pow(rPoint.x, center.x, 2) + Math.pow(rPoint.y, center.y, 2));
                     
                     return (
                       <Circle 

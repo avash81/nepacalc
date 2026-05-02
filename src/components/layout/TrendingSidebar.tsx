@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { TrendingUp, ArrowRight, Zap, Star } from 'lucide-react';
 
 /**
- * TrendingSidebar — High-aesthetics retention component for Phase 4.
+ * TrendingSidebar ,  High-aesthetics retention component for Phase 4.
  * Generates smart suggestions based on the current calculator's context.
  */
 interface CalculatorLink {

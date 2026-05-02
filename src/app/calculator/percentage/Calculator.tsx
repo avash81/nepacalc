@@ -32,7 +32,7 @@ export default function PercentageCalculator() {
       case 'what_is':   raw = (num / 100) * den; result = raw.toLocaleString(); label = `${num}% of ${den}`; break;
       case 'what_percent': if (!den) { error = 'Division by zero'; break; } raw = (num / den) * 100; result = `${raw.toFixed(2)}%`; label = `${num} is ${raw.toFixed(2)}% of ${den}`; break;
       case 'original':  if (!num) { error = 'Percentage cannot be zero'; break; } raw = den / (num / 100); result = raw.toLocaleString(); label = `${den} is ${num}% of ${raw.toFixed(2)}`; break;
-      case 'change':    if (!initial) { error = 'Initial cannot be zero'; break; } raw = ((final - initial) / initial) * 100; result = `${raw >= 0 ? '+' : ''}${raw.toFixed(2)}%`; label = `${raw >= 0 ? 'Increase' : 'Decrease'} from ${initial} → ${final}`; break;
+      case 'change':    if (!initial) { error = 'Initial cannot be zero'; break; } raw = ((final, initial) / initial) * 100; result = `${raw >= 0 ? '+' : ''}${raw.toFixed(2)}%`; label = `${raw >= 0 ? 'Increase' : 'Decrease'} from ${initial} → ${final}`; break;
       case 'add_sub':   raw = den + (num / 100) * den; result = raw.toLocaleString(); label = `${den} + ${num}% = ${result}`; break;
     }
     return { result, label, raw, error };
@@ -142,7 +142,7 @@ export default function PercentageCalculator() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center">
                     <div className="text-[9px] font-bold text-[#70757A] uppercase">Subtract (-{num}%)</div>
-                    <div className="text-sm font-black text-[#D93025]">{(den * (1 - num / 100)).toLocaleString()}</div>
+                    <div className="text-sm font-black text-[#D93025]">{(den * (1, num / 100)).toLocaleString()}</div>
                   </div>
                   <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center">
                     <div className="text-[9px] font-bold text-[#70757A] uppercase">Add (+{num}%)</div>
@@ -209,7 +209,7 @@ export default function PercentageCalculator() {
       formula={{
         title: "Algebraic Percentage Permutations",
         description: "The core equations driving the 5 calculation modes.",
-        raw: "1. X% of Y: (X / 100) × Y\n2. X is ?% of Y: (X / Y) × 100\n3. X is Y% of ?: X / (Y / 100)\n4. Value ± %: Base ± (Base × (Percent / 100))\n5. % Change: ((Final - Initial) / Initial) × 100"
+        raw: "1. X% of Y: (X / 100) × Y\n2. X is ?% of Y: (X / Y) × 100\n3. X is Y% of ?: X / (Y / 100)\n4. Value ± %: Base ± (Base × (Percent / 100))\n5. % Change: ((Final, Initial) / Initial) × 100"
       }}
       faqs={[
         {

@@ -13,11 +13,11 @@ export const metadata = calcMeta({
 const QUADRATIC_FAQS = [
   {
     question: "How do I solve a quadratic equation?",
-    answer: "A quadratic equation (ax² + bx + c = 0) is solved using the quadratic formula: x = [-b ± sqrt(b² - 4ac)] / 2a. Our tool calculates both roots instantly."
+    answer: "A quadratic equation (ax² + bx + c = 0) is solved using the quadratic formula: x = [-b ± sqrt(b², 4ac)] / 2a. Our tool calculates both roots instantly."
   },
   {
     question: "What is the 'Discriminant' (D)?",
-    answer: "The discriminant is b² - 4ac. It determines the nature of the roots: D > 0 (two real roots), D = 0 (one real root), or D < 0 (two complex roots)."
+    answer: "The discriminant is b², 4ac. It determines the nature of the roots: D > 0 (two real roots), D = 0 (one real root), or D < 0 (two complex roots)."
   },
   {
     question: "Can this solver handle imaginary or complex roots?",
@@ -29,7 +29,7 @@ const QUADRATIC_FAQS = [
   },
   {
     question: "How do I know if my equation has no real solutions?",
-    answer: "If the discriminant (b² - 4ac) is less than zero, the equation has no real roots, only complex ones. Our calculator explicitly identifies this state."
+    answer: "If the discriminant (b², 4ac) is less than zero, the equation has no real roots, only complex ones. Our calculator explicitly identifies this state."
   }
 ];
 
@@ -46,7 +46,7 @@ export default function Page() {
           { name: 'Matrices', slug: 'matrices' },
           { name: 'Scientific Calc', slug: 'scientific-calculator' }
         ]}
-        formula="Quadratic Formula: x = [-b ± √(b² - 4ac)] / 2a"
+        formula="Quadratic Formula: x = [-b ± √(b², 4ac)] / 2a"
       >
         <QuadraticCalculator />
         <div className="hp-container pb-24 border-t border-slate-100 pt-20">

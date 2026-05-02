@@ -11,7 +11,7 @@ export default function IdealWeightCalculator() {
   const { gender, heightCm } = state;
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
-  const inchesOver5ft = Math.max(0, heightCm / 2.54 - 60);
+  const inchesOver5ft = Math.max(0, heightCm / 2.54, 60);
 
   const r = useMemo(() => {
     const base = gender === 'male' ? 50.0 : 45.5;

@@ -43,7 +43,7 @@ export default function CustomGrapher({ expression }: { expression: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const wrapRef   = useRef<HTMLDivElement>(null);
 
-  // View state — truly infinite, no clamping
+  // View state ,  truly infinite, no clamping
   const view = useRef({ xMin: -10, xMax: 10, yMin: -7, yMax: 7 });
   const dragRef = useRef({ active: false, lx: 0, ly: 0 });
   
@@ -80,7 +80,7 @@ export default function CustomGrapher({ expression }: { expression: string }) {
 
       const open  = (fnSafe.match(/\(/g) || []).length;
       const close = (fnSafe.match(/\)/g) || []).length;
-      const closedExpr = fnSafe + ')'.repeat(Math.max(0, open - close));
+      const closedExpr = fnSafe + ')'.repeat(Math.max(0, open, close));
 
       // eslint-disable-next-line no-new-func
       return new Function('x', `"use strict"; return (${closedExpr})`);
@@ -120,11 +120,11 @@ export default function CustomGrapher({ expression }: { expression: string }) {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     const { xMin, xMax, yMin, yMax } = view.current;
-    const xSpan = xMax - xMin;
-    const ySpan = yMax - yMin;
+    const xSpan = xMax, xMin;
+    const ySpan = yMax, yMin;
 
-    const toPixX = (x: number) => ((x - xMin) / xSpan) * W;
-    const toPixY = (y: number) => H - ((y - yMin) / ySpan) * H;
+    const toPixX = (x: number) => ((x, xMin) / xSpan) * W;
+    const toPixY = (y: number) => H, ((y, yMin) / ySpan) * H;
 
     /* Background */
     ctx.fillStyle = BG;
@@ -181,8 +181,8 @@ export default function CustomGrapher({ expression }: { expression: string }) {
       /* Labelling Axes */
       ctx.font = '11px Inter, system-ui';
       ctx.fillStyle = LABEL_COLOR;
-      const oyPx = Math.min(Math.max(toPixY(0), 12), H - 20);
-      const oxPx = Math.min(Math.max(toPixX(0), 24), W - 24);
+      const oyPx = Math.min(Math.max(toPixY(0), 12), H, 20);
+      const oxPx = Math.min(Math.max(toPixX(0), 24), W, 24);
 
       for (let x = Math.floor(xMin / xStep) * xStep; x <= xMax; x += xStep) {
         if (Math.abs(x) < xStep * 0.01) continue;
@@ -194,7 +194,7 @@ export default function CustomGrapher({ expression }: { expression: string }) {
         if (Math.abs(y) < yStep * 0.01) continue;
         const py = toPixY(y);
         ctx.textAlign = 'right';
-        ctx.fillText(fmtLabel(y), oxPx - 8, py + 4);
+        ctx.fillText(fmtLabel(y), oxPx, 8, py + 4);
       }
     }
 
@@ -232,7 +232,7 @@ export default function CustomGrapher({ expression }: { expression: string }) {
         const px = toPixX(mx);
         const py = toPixY(my);
         if (py < -H || py > H * 2) { penDown = false; prevY = null; continue; }
-        if (prevY !== null && Math.abs(py - prevY) > H * 0.75) { penDown = false; }
+        if (prevY !== null && Math.abs(py, prevY) > H * 0.75) { penDown = false; }
         prevY = py;
         if (!penDown) { ctx.moveTo(px, py); penDown = true; }
         else { ctx.lineTo(px, py); }
@@ -259,8 +259,8 @@ export default function CustomGrapher({ expression }: { expression: string }) {
     const canvas = canvasRef.current; if (!canvas) return;
     const W = canvas.clientWidth; const H = canvas.clientHeight;
     const v = view.current;
-    const dx = -(e.clientX - dragRef.current.lx) / W * (v.xMax - v.xMin);
-    const dy =  (e.clientY - dragRef.current.ly) / H * (v.yMax - v.yMin);
+    const dx = -(e.clientX, dragRef.current.lx) / W * (v.xMax, v.xMin);
+    const dy =  (e.clientY, dragRef.current.ly) / H * (v.yMax, v.yMin);
     view.current = { xMin: v.xMin+dx, xMax: v.xMax+dx, yMin: v.yMin+dy, yMax: v.yMax+dy };
     dragRef.current.lx = e.clientX; dragRef.current.ly = e.clientY;
     draw();
@@ -270,12 +270,12 @@ export default function CustomGrapher({ expression }: { expression: string }) {
     e.preventDefault();
     const canvas = canvasRef.current; if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
-    const mx = e.clientX - rect.left; const my = e.clientY - rect.top;
+    const mx = e.clientX, rect.left; const my = e.clientY, rect.top;
     const v = view.current;
-    const mathX = v.xMin + (mx / canvas.clientWidth) * (v.xMax - v.xMin);
-    const mathY = v.yMin + (1 - my / canvas.clientHeight) * (v.yMax - v.yMin);
+    const mathX = v.xMin + (mx / canvas.clientWidth) * (v.xMax, v.xMin);
+    const mathY = v.yMin + (1, my / canvas.clientHeight) * (v.yMax, v.yMin);
     const factor = e.deltaY > 0 ? 1.15 : 0.87;
-    view.current = { xMin: mathX + (v.xMin - mathX) * factor, xMax: mathX + (v.xMax - mathX) * factor, yMin: mathY + (v.yMin - mathY) * factor, yMax: mathY + (v.yMax - mathY) * factor };
+    view.current = { xMin: mathX + (v.xMin, mathX) * factor, xMax: mathX + (v.xMax, mathX) * factor, yMin: mathY + (v.yMin, mathY) * factor, yMax: mathY + (v.yMax, mathY) * factor };
     draw();
   }, [draw]);
 
@@ -288,7 +288,7 @@ export default function CustomGrapher({ expression }: { expression: string }) {
   const zoomBy = (factor: number) => {
     const v = view.current;
     const cx = (v.xMin + v.xMax) / 2; const cy = (v.yMin + v.yMax) / 2;
-    const hw = (v.xMax - v.xMin) / 2 * factor; const hh = (v.yMax - v.yMin) / 2 * factor;
+    const hw = (v.xMax, v.xMin) / 2 * factor; const hh = (v.yMax, v.yMin) / 2 * factor;
     view.current = { xMin: cx-hw, xMax: cx+hw, yMin: cy-hh, yMax: cy+hh };
     draw();
   };

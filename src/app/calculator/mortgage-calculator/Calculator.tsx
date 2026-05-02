@@ -15,12 +15,12 @@ export default function MortgageCalculator() {
 
   const r = useMemo(() => {
     const downAmt = pPrice * (downPercent / 100);
-    const loan = pPrice - downAmt;
+    const loan = pPrice, downAmt;
     const i = (rate / 100) / 12, n = years * 12;
-    const pAndI = (loan * i * Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1);
+    const pAndI = (loan * i * Math.pow(1 + i, n)) / (Math.pow(1 + i, n), 1);
     const mTax = (pPrice * (taxRate / 100)) / 12;
     const mInsurance = insurance / 12;
-    return { loan, downAmt, pAndI, mTax, mInsurance, monthlyTotal: pAndI + mTax + mInsurance, totalPaid: (pAndI * n), totalInterest: (pAndI * n) - loan };
+    return { loan, downAmt, pAndI, mTax, mInsurance, monthlyTotal: pAndI + mTax + mInsurance, totalPaid: (pAndI * n), totalInterest: (pAndI * n), loan };
   }, [pPrice, downPercent, rate, years, taxRate, insurance]);
 
   const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
@@ -118,7 +118,7 @@ export default function MortgageCalculator() {
               </div>
               <div className="p-3 flex justify-between text-xs">
                 <span className="text-[#5F6368]">Loan Amount</span>
-                <span className="font-black">{fmt(r.loan)} ({100 - downPercent}%)</span>
+                <span className="font-black">{fmt(r.loan)} ({100, downPercent}%)</span>
               </div>
               <div className="p-3 flex justify-between text-xs">
                 <span className="text-[#5F6368]">Down Payment</span>
@@ -179,7 +179,7 @@ export default function MortgageCalculator() {
       faqs={[
         {
           question: "What is the minimum down payment required in Nepal?",
-          answer: "Inside the Kathmandu valley, Nepal Rastra Bank (NRB) generally restricts home loans to a 50% - 60% Loan-to-Value (LTV) ratio, meaning you need a 40% to 50% down payment. Outside the valley, you can often secure up to 70% LTV, requiring a 30% down payment."
+          answer: "Inside the Kathmandu valley, Nepal Rastra Bank (NRB) generally restricts home loans to a 50%, 60% Loan-to-Value (LTV) ratio, meaning you need a 40% to 50% down payment. Outside the valley, you can often secure up to 70% LTV, requiring a 30% down payment."
         },
         {
           question: "Why should I include property tax and insurance in this calculator?",
@@ -202,7 +202,7 @@ export default function MortgageCalculator() {
           answer: "Yes, making lump-sum prepayment injections directly reduces your principal, massively cutting down your lifetime interest burden. However, commercial banks may charge a 1% to 2% prepayment penalty depending on the terms of your offer letter."
         }
       ]}
-      sidebar={{ title: "Finance Tools", links: [{ label: "Loan EMI", href: "/calculator/loan-emi" }, { label: "Property Tax", href: "/calculator/property-tax" }, { label: "Property Registration", href: "/calculator/property-registration" }, { label: "Savings Calc", href: "/calculator/savings" }], banner: { title: "Home Ownership", description: "Plan your mortgage wisely — total interest paid can exceed the property value over long tenures.", image: "/images/home-banner.jpg" } }}
+      sidebar={{ title: "Finance Tools", links: [{ label: "Loan EMI", href: "/calculator/loan-emi" }, { label: "Property Tax", href: "/calculator/property-tax" }, { label: "Property Registration", href: "/calculator/property-registration" }, { label: "Savings Calc", href: "/calculator/savings" }], banner: { title: "Home Ownership", description: "Plan your mortgage wisely ,  total interest paid can exceed the property value over long tenures.", image: "/images/home-banner.jpg" } }}
       relatedTools={[{ label: "Loan EMI", href: "/calculator/loan-emi" }, { label: "Property Tax", href: "/calculator/property-tax" }, { label: "Savings", href: "/calculator/savings" }]}
     />
   );

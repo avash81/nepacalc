@@ -51,7 +51,7 @@ export function ModernCalcLayout({
     setMounted(true);
   }, []);
 
-  // Defer market rates fetch — don't block initial paint
+  // Defer market rates fetch ,  don't block initial paint
   useEffect(() => {
     const timer = setTimeout(async () => {
       try {
@@ -265,7 +265,7 @@ export function ModernCalcLayout({
 
                   <h3 className="text-lg font-bold text-[#202124]">Why use the NepaCalc {title}?</h3>
                   <p className="leading-relaxed text-[#5F6368]">
-                    As part of the NepaCalc Laboratory suite, this {title.toLowerCase()} eliminates the need for manual spreadsheets and complex formulas. It is optimized for mobile accessibility, allowing professionals and students in Nepal to access precision math anywhere—from a construction site in Pokhara to a boardroom in Kathmandu.
+                    As part of the NepaCalc Laboratory suite, this {title.toLowerCase()} eliminates the need for manual spreadsheets and complex formulas. It is optimized for mobile accessibility, allowing professionals and students in Nepal to access precision math anywhere, from a construction site in Pokhara to a boardroom in Kathmandu.
                   </p>
 
                   <div className="mt-8 flex flex-wrap gap-4 items-center border-t border-[#F1F3F4] pt-8">
@@ -419,7 +419,7 @@ export function ModernCalcLayout({
                     .filter(c => c.category === category && c.slug !== effectiveSlug)
                     .sort((a, b) => {
                        if (!mounted) return 0; // Keep stable for hydration
-                       return Math.random() - 0.5; // Shuffle after mount
+                       return Math.random(), 0.5; // Shuffle after mount
                     })
                     .slice(0, 8)
                     .map(related => (

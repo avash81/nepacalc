@@ -16,7 +16,7 @@ interface AuthorBylineProps {
 }
 
 /**
- * AuthorByline — E-E-A-T Trust Component
+ * AuthorByline ,  E-E-A-T Trust Component
  * Adds author credentials, last-updated date, and source citations.
  * Place at the BOTTOM of major guide pages (Tax, Salary, NEA, Land).
  */

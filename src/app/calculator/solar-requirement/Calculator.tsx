@@ -216,7 +216,7 @@ export default function SolarCalculator() {
           },
           {
             question: "Should I choose 12V, 24V, or 48V for my battery bank?",
-            answer: "For small setups (under 1kW), 12V is acceptable. For medium systems (1–3kW), 24V is standard. For whole-home setups (3kW+), 48V is strongly recommended—it allows thinner wiring, handles more power safely, and is compatible with all modern hybrid/lithium inverters available in Nepal."
+            answer: "For small setups (under 1kW), 12V is acceptable. For medium systems (1–3kW), 24V is standard. For whole-home setups (3kW+), 48V is strongly recommended, it allows thinner wiring, handles more power safely, and is compatible with all modern hybrid/lithium inverters available in Nepal."
           },
           {
             question: "How many peak sun hours does Nepal get?",
@@ -232,7 +232,7 @@ export default function SolarCalculator() {
           },
           {
             question: "What is the difference between on-grid and off-grid solar?",
-            answer: "On-grid (grid-tie) systems feed surplus power back to the NEA grid and draw from it at night. They do not require batteries but provide no backup during outages. Off-grid systems use battery banks for 24/7 independent power. Hybrid systems combine both—grid-connected with battery backup for outages, which is the most popular option in Nepal today."
+            answer: "On-grid (grid-tie) systems feed surplus power back to the NEA grid and draw from it at night. They do not require batteries but provide no backup during outages. Off-grid systems use battery banks for 24/7 independent power. Hybrid systems combine both, grid-connected with battery backup for outages, which is the most popular option in Nepal today."
           }
         ]}
       />

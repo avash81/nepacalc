@@ -5,7 +5,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Engineering Calculators — Physics, Chemistry, 3D Plotting | NepaCalc',
+  title: 'Engineering Calculators ,  Physics, Chemistry, 3D Plotting | NepaCalc',
   description: 'Professional engineering calculators for physics, chemistry, matrices, structural design, and 3D surface plotting. Try NepaCalc now.',
   keywords: ['engineering calculator', 'physics calculator', 'chemistry calculator', '3d plotter', 'matrix calculator'],
   alternates: { canonical: 'https://NepaCalc.com/engineering/' }

@@ -133,7 +133,7 @@ export default function WordCounter() {
             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
               <h2 className="text-xl font-black text-[#202124] mb-4">Text Analytics & Content Measurement Science</h2>
               <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-                <p>Our <strong className="text-[#202124]">word and character counter</strong> provides a professional-grade textual analysis suite beyond a simple word tally. Every piece of content—from academic dissertations and legal contracts to social media posts and SEO blog articles—operates within strict quantitative constraints. This tool gives you real-time, zero-latency visibility into all critical text metrics as you write.</p>
+                <p>Our <strong className="text-[#202124]">word and character counter</strong> provides a professional-grade textual analysis suite beyond a simple word tally. Every piece of content, from academic dissertations and legal contracts to social media posts and SEO blog articles, operates within strict quantitative constraints. This tool gives you real-time, zero-latency visibility into all critical text metrics as you write.</p>
                 <p>The tool analyzes your text across 6 dimensions simultaneously: word count, character count (with and without spaces), sentence count, paragraph count, reading time estimate, and keyword frequency density. All computations are client-side, meaning your text never leaves your browser.</p>
               </div>
             </div>
@@ -170,7 +170,7 @@ export default function WordCounter() {
           },
           {
             question: "Can I use this tool to check if a Nepali or Hindi text fits platform limits?",
-            answer: "Yes. This tool counts characters in any script including Devanagari. However, be aware that many social platforms count non-ASCII characters (like Nepali/Hindi text) differently—some platforms count each Unicode code point as 2 characters. Always verify against the platform's own counter for multilingual content."
+            answer: "Yes. This tool counts characters in any script including Devanagari. However, be aware that many social platforms count non-ASCII characters (like Nepali/Hindi text) differently, some platforms count each Unicode code point as 2 characters. Always verify against the platform's own counter for multilingual content."
           }
         ]}
       />

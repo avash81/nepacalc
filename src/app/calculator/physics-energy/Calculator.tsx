@@ -36,15 +36,15 @@ export default function EnergyCalc() {
 
           <div className="space-y-5">
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-800">Kinetic Energy — E (Joules)</label>
+              <label className="text-sm font-bold text-slate-800">Kinetic Energy ,  E (Joules)</label>
               <input type="number" value={eVal} onChange={e => setE(e.target.value)} placeholder="? (leave blank to solve)" className={inputCls(eVal === '')} />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-800">Mass — m (kg)</label>
+              <label className="text-sm font-bold text-slate-800">Mass ,  m (kg)</label>
               <input type="number" value={mVal} onChange={e => setM(e.target.value)} placeholder="? (leave blank to solve)" className={inputCls(mVal === '')} />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-800">Velocity — v (m/s)</label>
+              <label className="text-sm font-bold text-slate-800">Velocity ,  v (m/s)</label>
               <input type="number" value={vVal} onChange={e => setV(e.target.value)} placeholder="? (leave blank to solve)" className={inputCls(vVal === '')} />
             </div>
           </div>
@@ -133,7 +133,7 @@ export default function EnergyCalc() {
                 <strong className="text-[#202124]">Kinetic energy (KE)</strong> is the energy possessed by any object in motion. Formally defined by the Work-Energy Theorem, KE is the net work required to accelerate an object of mass <em>m</em> from rest to velocity <em>v</em>. Our <strong className="text-[#202124]">kinetic energy calculator</strong> implements the full algebraic system, allowing you to solve for any one of the three variables (E, m, or v) by leaving its field blank.
               </p>
               <p>
-                The most critical insight from the formula <strong className="text-[#202124]">KE = ½mv²</strong> is the quadratic relationship with velocity: doubling velocity does not double energy—it <strong className="text-[#202124]">quadruples</strong> it. This non-linear scaling has profound real-world implications in vehicle safety, projectile physics, and structural engineering, where impact forces at high speeds are exponentially more destructive.
+                The most critical insight from the formula <strong className="text-[#202124]">KE = ½mv²</strong> is the quadratic relationship with velocity: doubling velocity does not double energy, it <strong className="text-[#202124]">quadruples</strong> it. This non-linear scaling has profound real-world implications in vehicle safety, projectile physics, and structural engineering, where impact forces at high speeds are exponentially more destructive.
               </p>
             </div>
           </div>
@@ -141,8 +141,8 @@ export default function EnergyCalc() {
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
             <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Real-World Kinetic Energy Applications</h3>
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Vehicle Safety (Crash Physics):</strong> A car at 60 km/h has 4× the kinetic energy of the same car at 30 km/h. This quadratic relationship is why high-speed collisions are exponentially more fatal—braking distance also scales with v², not v.</li>
-              <li><strong className="text-[#188038]">Renewable Energy (Wind Turbines):</strong> A wind turbine's power output scales with the cube of wind velocity (since power = energy/time, and KE ∝ v²). Doubling wind speed produces 8× the energy—the primary reason turbine placement is so critical.</li>
+              <li><strong className="text-[#1A73E8]">Vehicle Safety (Crash Physics):</strong> A car at 60 km/h has 4× the kinetic energy of the same car at 30 km/h. This quadratic relationship is why high-speed collisions are exponentially more fatal, braking distance also scales with v², not v.</li>
+              <li><strong className="text-[#188038]">Renewable Energy (Wind Turbines):</strong> A wind turbine's power output scales with the cube of wind velocity (since power = energy/time, and KE ∝ v²). Doubling wind speed produces 8× the energy, the primary reason turbine placement is so critical.</li>
               <li><strong className="text-[#D93025]">Projectile & Ballistic Physics:</strong> The terminal kinetic energy of a bullet or projectile upon impact determines penetration depth and structural damage. Forensic engineers use KE calculations to reconstruct accident and ballistic scenarios.</li>
             </ul>
           </div>
@@ -163,7 +163,7 @@ export default function EnergyCalc() {
         },
         {
           question: "What is the difference between Kinetic Energy and Potential Energy?",
-          answer: "Kinetic Energy is the energy of motion (an object currently moving). Potential Energy is stored energy due to position or state (e.g., a ball held at height has gravitational PE). The Law of Conservation of Energy states that the total energy (KE + PE) in a closed system remains constant—as KE increases, PE decreases, and vice versa."
+          answer: "Kinetic Energy is the energy of motion (an object currently moving). Potential Energy is stored energy due to position or state (e.g., a ball held at height has gravitational PE). The Law of Conservation of Energy states that the total energy (KE + PE) in a closed system remains constant, as KE increases, PE decreases, and vice versa."
         },
         {
           question: "Does this formula apply to relativistic speeds (near speed of light)?",

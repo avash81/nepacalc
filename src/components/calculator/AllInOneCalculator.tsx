@@ -34,7 +34,7 @@ function compute(rawExpr: string, deg: boolean): string {
 
     const open  = (e.match(/\(/g) || []).length;
     const close = (e.match(/\)/g) || []).length;
-    e += ')'.repeat(Math.max(0, open - close));
+    e += ')'.repeat(Math.max(0, open, close));
 
     // eslint-disable-next-line no-new-func
     const fn = new Function('toR', 'toD', `"use strict"; return (${e})`);
@@ -47,7 +47,7 @@ function compute(rawExpr: string, deg: boolean): string {
 }
 
 /* ─────────────────────────────────────────────────────────────────
-   PILL BUTTON — Google's rounded-full key style
+   PILL BUTTON ,  Google's rounded-full key style
    ───────────────────────────────────────────────────────────────── */
 function K({
   label, on, cls, span, ariaLabel
@@ -190,7 +190,7 @@ export default function AllInOneCalculator({
   );
 
   /* ─────────────────────────────────────────────────────────────────
-     SCIENTIFIC KEYPAD — 7  columns (Google layout)
+     SCIENTIFIC KEYPAD ,  7  columns (Google layout)
      ───────────────────────────────────────────────────────────────── */
   const SciKeypad = () => (
     <div className="grid grid-cols-7 gap-1.5 p-6 sm:p-8 bg-white">
@@ -240,11 +240,11 @@ export default function AllInOneCalculator({
   );
 
   /* ─────────────────────────────────────────────────────────────────
-     SOLVER KEYPAD — 3 coloured tabs (Google Maths Solver)
+     SOLVER KEYPAD ,  3 coloured tabs (Google Maths Solver)
      ───────────────────────────────────────────────────────────────── */
   const SolverKeypad = () => {
     // Tab colour themes exactly matching Google
-    let funcCls = 'bg-[#F3E5F5] text-[#7B1FA2] hover:bg-[#E1BEE7] border border-[#CE93D8]/20 font-medium'; // purple — algebra
+    let funcCls = 'bg-[#F3E5F5] text-[#7B1FA2] hover:bg-[#E1BEE7] border border-[#CE93D8]/20 font-medium'; // purple ,  algebra
     let actCls  = 'bg-[#7B1FA2] hover:bg-[#6A1B9A] text-white font-black shadow';
 
     if (tab === 'trig') {

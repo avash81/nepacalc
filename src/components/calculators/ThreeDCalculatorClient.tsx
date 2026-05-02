@@ -83,7 +83,7 @@ const CURRICULUM_PRESETS = [
   },
   { 
     name: 'Torus (Donut)', 
-    eq: '(6 - sqrt(x^2+y^2))^2 + z^2 = 4', 
+    eq: '(6, sqrt(x^2+y^2))^2 + z^2 = 4', 
     color: '#ec4899',
     desc: 'A high-level geometric topology used in advanced mathematics, physics (like tokamak fusion reactors), and design.'
   },
@@ -149,7 +149,7 @@ function ProfessionalAxis({ bounds, showLabels, showGrid }: { bounds: { x: numbe
     }
     // Add 0 explicitly if not present
     if (!ticks.includes(0)) ticks.push(0);
-    return ticks.sort((a, b) => a - b);
+    return ticks.sort((a, b) => a, b);
   };
 
   const xTicks = generateTicks(bounds.x);
@@ -279,7 +279,7 @@ function SurfaceMesh({ equation, resolution, color, opacity, params, index, isAc
         </mesh>
       )}
 
-      {/* SOLID BASE LAYER - True-Color Matte Finish */}
+      {/* SOLID BASE LAYER, True-Color Matte Finish */}
       <mesh geometry={geometry}>
         <meshLambertMaterial 
           color={color}
@@ -288,7 +288,7 @@ function SurfaceMesh({ equation, resolution, color, opacity, params, index, isAc
         />
       </mesh>
       
-      {/* MATCHED TECHNICAL GRID - Dynamic Tone structural definition */}
+      {/* MATCHED TECHNICAL GRID, Dynamic Tone structural definition */}
       <mesh geometry={geometry}>
         <meshBasicMaterial 
           color={getDarkerColor(color)} 
@@ -319,7 +319,7 @@ function ImplicitSurfaceMesh({ equation, resolution, color, params, opacity, glo
     const grid = new Float32Array((res + 1) * (res + 1) * (res + 1));
     try {
       const parts = equation.toLowerCase().split('=');
-      const compiled = math.compile(`(${parts[0]}) - (${parts[1] || '0'})`);
+      const compiled = math.compile(`(${parts[0]}), (${parts[1] || '0'})`);
       const scope: Record<string, number> = { x: 0, y: 0, z: 0 };
       params.forEach((p: any) => { scope[p.name.toLowerCase()] = p.value; });
       
@@ -812,7 +812,7 @@ export default function ThreeDCalculatorClient() {
                 <CameraControls ref={controlsRef} />
               </Canvas>
               
-              {/* STUDIO CONTROLS - FLOATING PANEL */}
+              {/* STUDIO CONTROLS, FLOATING PANEL */}
               <div className="absolute top-6 right-6 flex flex-col gap-3 items-end">
                 <button 
                   onClick={() => setIsSettingsOpen(!isSettingsOpen)}
@@ -983,10 +983,10 @@ export default function ThreeDCalculatorClient() {
             </div>
           </div>
 
-          {/* FORMULA REFERENCE GRID - fills the blank middle space */}
+          {/* FORMULA REFERENCE GRID, fills the blank middle space */}
           <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
             <div className="bg-[#f8fafc] border-b border-slate-200 px-6 py-3 border-l-4 border-l-[#1e40af]">
-              <h2 className="text-[10px] font-bold text-[#1e40af] uppercase tracking-[0.2em]">Mathematical Reference — All Preset Formulas</h2>
+              <h2 className="text-[10px] font-bold text-[#1e40af] uppercase tracking-[0.2em]">Mathematical Reference ,  All Preset Formulas</h2>
             </div>
             <div className="p-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

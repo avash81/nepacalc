@@ -77,7 +77,7 @@ export default function WaterIntakeCalculator() {
                 </div>
               ))}
               {r.glasses > 12 && (
-                <div className="w-9 h-9 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg flex items-center justify-center text-[9px] font-black text-[#5F6368]">+{r.glasses - 12}</div>
+                <div className="w-9 h-9 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg flex items-center justify-center text-[9px] font-black text-[#5F6368]">+{r.glasses, 12}</div>
               )}
             </div>
           </div>
@@ -105,7 +105,7 @@ export default function WaterIntakeCalculator() {
             <h2 className="text-xl font-black text-[#202124] mb-4">Hydration Science & Cellular Water Balance</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>
-                Water is the single most critical nutrient in the human body, accounting for approximately 60% of total body mass. Every biological process—from cellular respiration and nutrient transport to thermoregulation and joint lubrication—is dependent on maintaining adequate hydration. Our <strong className="text-[#202124]">daily water intake calculator</strong> uses a precision algorithm that accounts for your personal biometric profile and physical activity level to generate a scientifically grounded hydration target.
+                Water is the single most critical nutrient in the human body, accounting for approximately 60% of total body mass. Every biological process, from cellular respiration and nutrient transport to thermoregulation and joint lubrication, is dependent on maintaining adequate hydration. Our <strong className="text-[#202124]">daily water intake calculator</strong> uses a precision algorithm that accounts for your personal biometric profile and physical activity level to generate a scientifically grounded hydration target.
               </p>
               <p>
                 The standard medical guideline of "8 glasses a day" is a dangerous oversimplification. A sedentary 50 kg woman requires fundamentally different hydration levels than an active 90 kg man working outdoors. Our formula anchors to the internationally accepted <strong className="text-[#202124]">35 ml per kilogram of body weight</strong> baseline, and then applies a rigorously validated exercise surplus to account for sweat-based fluid and electrolyte losses.
@@ -139,7 +139,7 @@ export default function WaterIntakeCalculator() {
       faqs={[
         {
           question: "Why is the '8 glasses a day' rule inaccurate?",
-          answer: "The '8 glasses a day' rule is a dangerously generic approximation. A 50 kg sedentary person requires roughly 1.75L, while a 90 kg athlete may need 4L or more. Hydration science is deeply personal—it depends on body mass, climate, altitude, sweat rate, and diet."
+          answer: "The '8 glasses a day' rule is a dangerously generic approximation. A 50 kg sedentary person requires roughly 1.75L, while a 90 kg athlete may need 4L or more. Hydration science is deeply personal, it depends on body mass, climate, altitude, sweat rate, and diet."
         },
         {
           question: "Does exercise increase how much water I need?",

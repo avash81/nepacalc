@@ -126,7 +126,7 @@ export default function Geometry3D() {
                 In solid geometry, understanding the physical footprint and capacity of three-dimensional objects is crucial for disciplines ranging from mechanical engineering to fluid dynamics. Our <strong className="text-[#202124]">3d geometry calculator</strong> goes beyond simple arithmetic; it utilizes advanced trigonometric and algebraic formulas to evaluate complex polyhedrons and non-polyhedrons instantly.
               </p>
               <p>
-                The calculator primarily outputs two metrics: <strong className="text-[#202124]">Volume</strong>, which measures the amount of three-dimensional space enclosed by a closed boundary (representing capacity or displacement), and <strong className="text-[#202124]">Surface Area</strong>, which quantifies the total area that the surface of an object occupies. Understanding the distinct mathematical relationships between these two metrics—such as the square-cube law—is essential for optimizing material usage in manufacturing and packaging.
+                The calculator primarily outputs two metrics: <strong className="text-[#202124]">Volume</strong>, which measures the amount of three-dimensional space enclosed by a closed boundary (representing capacity or displacement), and <strong className="text-[#202124]">Surface Area</strong>, which quantifies the total area that the surface of an object occupies. Understanding the distinct mathematical relationships between these two metrics, such as the square-cube law, is essential for optimizing material usage in manufacturing and packaging.
               </p>
             </div>
           </div>
@@ -158,7 +158,7 @@ export default function Geometry3D() {
       faqs={[
         {
           question: "What is the difference between Volume and Surface Area?",
-          answer: "Volume is a measure of capacity—how much space is inside the 3D object (measured in cubic units like cm³). Surface Area is the total area of the outside boundary or 'skin' of the object (measured in square units like cm²)."
+          answer: "Volume is a measure of capacity, how much space is inside the 3D object (measured in cubic units like cm³). Surface Area is the total area of the outside boundary or 'skin' of the object (measured in square units like cm²)."
         },
         {
           question: "Does the cylinder calculation include the top and bottom lids?",

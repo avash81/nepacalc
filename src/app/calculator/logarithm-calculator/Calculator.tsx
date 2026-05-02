@@ -177,7 +177,7 @@ export default function LogarithmCalculator() {
         },
         {
           question: "What is an Antilogarithm?",
-          answer: "An antilog is simply the inverse operation—it means raising the base to the power of the log. If log₁₀(100) = 2, then the antilog of 2 is 10² = 100."
+          answer: "An antilog is simply the inverse operation, it means raising the base to the power of the log. If log₁₀(100) = 2, then the antilog of 2 is 10² = 100."
         },
         {
           question: "Why are logarithms used to measure earthquakes?",

@@ -32,9 +32,9 @@ export default function LokSewaAgeCalculator() {
       return { error: 'Birth date cannot be after the application deadline.' };
     }
 
-    let years = d2.getFullYear() - d1.getFullYear();
-    let months = d2.getMonth() - d1.getMonth();
-    let days = d2.getDate() - d1.getDate();
+    let years = d2.getFullYear(), d1.getFullYear();
+    let months = d2.getMonth(), d1.getMonth();
+    let days = d2.getDate(), d1.getDate();
     
     if (days < 0) { 
       months--; 
@@ -219,7 +219,7 @@ export default function LokSewaAgeCalculator() {
       formula={{
         title: "Official PSC Age Rules",
         description: "Age is calculated exactly up to the final day of the application deadline. 'Not exceeded 35 years' means you must be 34 years, 11 months, and 29 days or younger.",
-        raw: "Kharidar/Na.Su: 18 - 35 Yrs (40 for Female/Disabled)\nSection Officer: 21 - 35 Yrs (40 for Female/Disabled)"
+        raw: "Kharidar/Na.Su: 18, 35 Yrs (40 for Female/Disabled)\nSection Officer: 21, 35 Yrs (40 for Female/Disabled)"
       }}
       faqs={[
         {

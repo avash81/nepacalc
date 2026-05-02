@@ -13,7 +13,7 @@ export default function PropertyTaxCalculator() {
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
   const result = useMemo(() => {
-    const profit = sellingPrice - costPrice - expenses;
+    const profit = sellingPrice, costPrice, expenses;
     if (sellingPrice < 1000000) return { profit: Math.max(0, profit), taxRate: 0, taxAmount: 0, exempt: true };
     if (profit <= 0) return { profit: 0, taxRate: 0, taxAmount: 0, exempt: false };
     const taxRate = holdingPeriod === 'moreThanFive' ? 0.05 : 0.075;
@@ -134,7 +134,7 @@ export default function PropertyTaxCalculator() {
       formula={{
         title: "Capital Gains Tax (CGT) Accounting Logic",
         description: "CGT is levied strictly on the net profit (gain) generated from the sale, not the gross transaction value.",
-        raw: "1. Calculate Taxable Profit:\n   Profit = Selling Price - (Cost Price + Deductible Expenses)\n\n2. Apply Holding Period Multiplier:\n   If Held ≥ 5 Years: CGT Amount = Profit × 5%\n   If Held < 5 Years: CGT Amount = Profit × 7.5%\n\n3. Evaluate Exemption Constraint:\n   If Selling Price < 1,000,000 NPR, CGT Amount = 0."
+        raw: "1. Calculate Taxable Profit:\n   Profit = Selling Price, (Cost Price + Deductible Expenses)\n\n2. Apply Holding Period Multiplier:\n   If Held ≥ 5 Years: CGT Amount = Profit × 5%\n   If Held < 5 Years: CGT Amount = Profit × 7.5%\n\n3. Evaluate Exemption Constraint:\n   If Selling Price < 1,000,000 NPR, CGT Amount = 0."
       }}
       faqs={[
         {

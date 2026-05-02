@@ -148,7 +148,7 @@ export default function NumberToWords() {
             <h2 className="text-xl font-black text-[#202124] mb-4">South Asian vs. International Numeral Systems</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>The <strong className="text-[#202124]">number-to-words converter</strong> supports both major global numeral grouping systems. The core difference lies in how numbers are grouped after the thousands place. In the International system, grouping is always in powers of 1,000 (Thousand, Million, Billion). In the South Asian system, grouping is in powers of 100 after 1,000 (Thousand, Lakh, Crore).</p>
-              <p>For financial documents in Nepal—bank checks, legal contracts, property deeds—the South Asian Lakh/Crore system with the "Rupees ... Only" suffix is standard practice. Writing amounts in words prevents fraudulent alteration of numerical figures.</p>
+              <p>For financial documents in Nepal, bank checks, legal contracts, property deeds, the South Asian Lakh/Crore system with the "Rupees ... Only" suffix is standard practice. Writing amounts in words prevents fraudulent alteration of numerical figures.</p>
             </div>
           </div>
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">

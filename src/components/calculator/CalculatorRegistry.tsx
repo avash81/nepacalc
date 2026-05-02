@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import React from 'react';
 
 /**
- * CalculatorRegistry — Powering the "Inline Calculator" feature.
+ * CalculatorRegistry ,  Powering the "Inline Calculator" feature.
  * 
  * Uses Next.js dynamic imports to only load the calculator code 
  * when it's actually requested by a blog post.

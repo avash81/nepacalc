@@ -31,7 +31,7 @@ function compute(rawExpr: string, deg: boolean): string {
 
     const open  = (e.match(/\(/g) || []).length;
     const close = (e.match(/\)/g) || []).length;
-    e += ')'.repeat(Math.max(0, open - close));
+    e += ')'.repeat(Math.max(0, open, close));
 
     // eslint-disable-next-line no-new-func
     const fn = new Function('toR', 'toD', `"use strict"; return (${e})`);
@@ -71,7 +71,7 @@ function Key({ label, on, variant = 'normal', small = false, ariaLabel }: {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   ADVANCED CALCULATOR — GeoGebra-style 4-tab keyboard
+   ADVANCED CALCULATOR ,  GeoGebra-style 4-tab keyboard
 ════════════════════════════════════════════════════════════════════ */
 export default function AdvancedCalculator({
   onExpressionChange,
@@ -116,7 +116,7 @@ export default function AdvancedCalculator({
     { id: 'sym', label: '#&¬' },
   ];
 
-  /* Bottom row — reusable */
+  /* Bottom row ,  reusable */
   const BotRow = ({ leftLabel, leftFn }: { leftLabel: string; leftFn: () => void }) => (
     <div className="flex gap-1.5">
       <button onClick={leftFn} aria-label="Toggle keyboard type" className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-slate-100 text-slate-700 text-[12px] font-bold hover:bg-slate-200 transition-all active:scale-90">{leftLabel}</button>

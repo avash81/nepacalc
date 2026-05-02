@@ -14,9 +14,9 @@ export default function AttendanceCalculator() {
     const isEligible = currentPercent >= target;
     let diff = 0;
     if (isEligible) {
-      diff = Math.floor((attended / (target / 100)) - total);
+      diff = Math.floor((attended / (target / 100)), total);
     } else {
-      diff = Math.ceil(((target / 100 * total) - attended) / (1 - target / 100));
+      diff = Math.ceil(((target / 100 * total), attended) / (1, target / 100));
     }
     return { currentPercent, isEligible, diff };
   }, [attended, total, target]);
@@ -28,7 +28,7 @@ export default function AttendanceCalculator() {
     <ModernCalcLayout
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Attendance Calculator' }]}
       title="Attendance Calculator"
-      description="Track exam eligibility for TU, PU, and NEB. Calculate exactly how many classes you can miss — or must attend — to meet your attendance target."
+      description="Track exam eligibility for TU, PU, and NEB. Calculate exactly how many classes you can miss ,  or must attend ,  to meet your attendance target."
       icon={GraduationCap}
       inputs={
         <div className="space-y-6">
@@ -108,7 +108,7 @@ export default function AttendanceCalculator() {
               <div className="p-3 flex justify-between text-xs">
                 <span className="text-[#5F6368]">Deficit / Surplus</span>
                 <span className={`font-black ${result.isEligible ? 'text-[#188038]' : 'text-[#D93025]'}`}>
-                  {result.isEligible ? `+${(result.currentPercent - target).toFixed(1)}%` : `-${(target - result.currentPercent).toFixed(1)}%`}
+                  {result.isEligible ? `+${(result.currentPercent, target).toFixed(1)}%` : `-${(target, result.currentPercent).toFixed(1)}%`}
                 </span>
               </div>
             </div>
@@ -116,12 +116,12 @@ export default function AttendanceCalculator() {
 
           <div className="flex gap-2 p-3 bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg items-start">
             <Info className="w-4 h-4 text-[#1A73E8] shrink-0 mt-0.5" />
-            <p className="text-[10px] text-[#202124] leading-tight">TU and PU require 75% attendance for exam eligibility. Some departments enforce 80% or 85% — check with your college.</p>
+            <p className="text-[10px] text-[#202124] leading-tight">TU and PU require 75% attendance for exam eligibility. Some departments enforce 80% or 85% ,  check with your college.</p>
           </div>
         </div>
       }
       howToUse={{ steps: ["Enter the number of classes you have attended.", "Enter the total number of classes held so far.", "Select your target attendance percentage (75%, 80%, or 85%).", "See your current percentage and whether you are eligible.", "If not eligible, the tool tells you exactly how many consecutive classes you must attend."] }}
-      formula={{ title: "Attendance Calculation", description: "Simple ratio for current attendance. Inverse formula to find classes needed.", raw: "Current % = (Attended / Total) × 100\nClasses to Attend = ((target% × total) - attended) / (1 - target%)" }}
+      formula={{ title: "Attendance Calculation", description: "Simple ratio for current attendance. Inverse formula to find classes needed.", raw: "Current % = (Attended / Total) × 100\nClasses to Attend = ((target% × total), attended) / (1, target%)" }}
       faqs={[
         { question: "What is the minimum attendance for TU exams?", answer: "Tribhuvan University (TU) requires a minimum of 75% attendance to sit for final exams. Some departments (Institute of Engineering, MBBS programs) enforce 80–85% attendance. Always confirm the specific requirement with your department head at the start of each semester." },
         { question: "Can I get attendance waived at TU or PU?", answer: "TU and PU allow applications for attendance relaxation in specific, documented cases: serious illness (requiring hospitalization records), official national/university representation, or natural disasters. Applications must be submitted to the department head with supporting documentation before the exam registration deadline." },

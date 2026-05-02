@@ -5,7 +5,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Unit Converters & Utility Tools — Length, Weight, Date | NepaCalc',
+  title: 'Unit Converters & Utility Tools ,  Length, Weight, Date | NepaCalc',
   description: 'Free online unit converters for length, weight, date, currency, binary, and more. Fast and precise daily utility tools. Try NepaCalc now.',
   keywords: ['unit converter', 'length converter', 'weight converter', 'binary converter', 'date calculator'],
   alternates: { canonical: 'https://NepaCalc.com/converters/' }

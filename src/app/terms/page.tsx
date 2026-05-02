@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: "Terms of Service | NepaCal",
-  description: "NepaCal terms of service — conditions for using Nepal's free calculator platform.",
+  description: "NepaCal terms of service ,  conditions for using Nepal's free calculator platform.",
   alternates: {
     canonical: 'https://nepacalc.com/terms/',
   },
@@ -52,11 +52,11 @@ export default function TermsPage() {
           </ul>
 
           <h2 className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2">Limitation of Liability</h2>
-          <p>In no event shall NepaCal or its founder be liable for any damages — including, without limitation, damages for loss of data, loss of profit, or business interruption — arising out of the use or inability to use NepaCal's tools or content, even if we have been notified of the possibility of such damage.</p>
+          <p>In no event shall NepaCal or its founder be liable for any damages ,  including, without limitation, damages for loss of data, loss of profit, or business interruption ,  arising out of the use or inability to use NepaCal's tools or content, even if we have been notified of the possibility of such damage.</p>
           <p>NepaCal provides tools "as is" without warranty of any kind, express or implied, including but not limited to fitness for a particular purpose or non-infringement.</p>
 
           <h2 className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2">Intellectual Property & Prohibited Uses</h2>
-          <p>All content on NepaCal — including calculator logic, JavaScript formulas, written explanations, blog posts, and design — is the intellectual property of NepaCal and Avash Chaudhary.</p>
+          <p>All content on NepaCalc ,  including calculator logic, JavaScript formulas, written explanations, blog posts, and design ,  is the intellectual property of NepaCalc.</p>
           <p><strong>You may:</strong></p>
           <ul>
              <li>Use the calculators freely for personal or professional purposes</li>

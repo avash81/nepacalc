@@ -1,14 +1,14 @@
 /**
- * @fileoverview SEOScorePanel — Live SEO analysis panel for admin editor
+ * @fileoverview SEOScorePanel ,  Live SEO analysis panel for admin editor
  *
  * Shows real-time SEO score as admin types title, description,
  * keywords, and content. Calculates score based on:
- *   - Title length (50-60 chars ideal)
- *   - Description length (120-160 chars ideal)
- *   - Keywords present in content
- *   - Content word count (300+ good, 800+ excellent)
- *   - Internal links count
- *   - H2 headings in content
+ *  , Title length (50-60 chars ideal)
+ *  , Description length (120-160 chars ideal)
+ *  , Keywords present in content
+ *  , Content word count (300+ good, 800+ excellent)
+ *  , Internal links count
+ *  , H2 headings in content
  *
  * @component
  */
@@ -49,12 +49,12 @@ function calcSEO(props: SEOScorePanelProps): { score: number; checks: SEOCheck[]
     {
       label: 'Meta title length (50-60 chars)',
       pass: mt.length >= 50 && mt.length <= 60,
-      hint: `Currently ${mt.length} chars. ${mt.length < 50 ? 'Too short — add more detail.' : mt.length > 60 ? 'Too long — will be cut off in Google.' : 'Perfect!'}`,
+      hint: `Currently ${mt.length} chars. ${mt.length < 50 ? 'Too short ,  add more detail.' : mt.length > 60 ? 'Too long ,  will be cut off in Google.' : 'Perfect!'}`,
     },
     {
       label: 'Meta description length (120-160 chars)',
       pass: metaDesc.length >= 120 && metaDesc.length <= 160,
-      hint: `Currently ${metaDesc.length} chars. ${metaDesc.length < 120 ? 'Too short — Google may rewrite it.' : metaDesc.length > 160 ? 'Too long — will be cut in search results.' : 'Perfect!'}`,
+      hint: `Currently ${metaDesc.length} chars. ${metaDesc.length < 120 ? 'Too short ,  Google may rewrite it.' : metaDesc.length > 160 ? 'Too long ,  will be cut in search results.' : 'Perfect!'}`,
     },
     {
       label: 'Focus keyword set',
@@ -131,7 +131,7 @@ export function SEOScorePanel(props: SEOScorePanelProps) {
         <div>
           <div className="text-sm font-bold text-gray-900">SEO Score</div>
           <div className="text-xs text-gray-400">
-            {score >= 80 ? '✅ Good — ready to publish'
+            {score >= 80 ? '✅ Good ,  ready to publish'
               : score >= 60 ? '⚠️ Needs improvement'
                 : '❌ Needs work before publishing'}
           </div>
@@ -188,7 +188,7 @@ export function SEOScorePanel(props: SEOScorePanelProps) {
         <div className="text-[10px] text-blue-600 leading-relaxed">
           Add internal links to related calculators in your content.
           e.g. &quot;Use our &lt;a href=&apos;...&apos;&gt; Nepal Tax Calculator&lt;/a&gt;&quot;
-          — this boosts SEO for both pages.
+          ,  this boosts SEO for both pages.
         </div>
       </div>
     </div>

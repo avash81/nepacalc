@@ -1,5 +1,5 @@
 /**
- * JsonLd — Phase 4 SEO Mastery Component
+ * JsonLd ,  Phase 4 SEO Mastery Component
  * 
  * Provides high-precision structured data for every calculator page to dominate search results.
  * Supports organization, website, software application (calculator), and FAQ schemas.

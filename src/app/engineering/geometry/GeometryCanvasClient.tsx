@@ -62,7 +62,7 @@ export default function GeometryCanvasClient() {
       const d = dist(p1, p2);
       const mx = (p1.x + p2.x) / 2, my = (p1.y + p2.y) / 2;
       ctx.fillStyle = '#4361ee'; ctx.font = '11px Inter,system-ui';
-      ctx.textAlign = 'center'; ctx.fillText(d.toFixed(1) + ' px', mx, my - 8);
+      ctx.textAlign = 'center'; ctx.fillText(d.toFixed(1) + ' px', mx, my, 8);
     });
 
     // Circles
@@ -74,7 +74,7 @@ export default function GeometryCanvasClient() {
       ctx.arc(center.x, center.y, r, 0, Math.PI * 2); ctx.stroke();
       // Radius label
       ctx.fillStyle = '#f72585'; ctx.font = '11px Inter,system-ui';
-      ctx.textAlign = 'left'; ctx.fillText('r=' + r.toFixed(1), center.x + 8, center.y - r - 8);
+      ctx.textAlign = 'left'; ctx.fillText('r=' + r.toFixed(1), center.x + 8, center.y, r, 8);
     });
 
     // Points
@@ -85,7 +85,7 @@ export default function GeometryCanvasClient() {
       ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
       // Label
       ctx.fillStyle = '#202124'; ctx.font = 'bold 11px Inter,system-ui';
-      ctx.textAlign = 'left'; ctx.fillText(pt.label, pt.x + 10, pt.y - 8);
+      ctx.textAlign = 'left'; ctx.fillText(pt.label, pt.x + 10, pt.y, 8);
       // Coordinates
       ctx.fillStyle = '#94a3b8'; ctx.font = '10px Inter,system-ui';
       ctx.fillText(`(${Math.round(pt.x)}, ${Math.round(pt.y)})`, pt.x + 10, pt.y + 6);
@@ -94,7 +94,7 @@ export default function GeometryCanvasClient() {
     // Empty state
     if (points.length === 0) {
       ctx.fillStyle = '#cbd5e1'; ctx.font = 'bold 14px Inter,system-ui'; ctx.textAlign = 'center';
-      ctx.fillText('Click on the canvas to place points', W/2, H/2 - 10);
+      ctx.fillText('Click on the canvas to place points', W/2, H/2, 10);
       ctx.font = '12px Inter,system-ui'; ctx.fillStyle = '#94a3b8';
       ctx.fillText('Then use Line or Circle tools to construct shapes', W/2, H/2 + 14);
     }
@@ -110,7 +110,7 @@ export default function GeometryCanvasClient() {
   const handleClick = (e: React.MouseEvent) => {
     const c = canvasRef.current; if (!c) return;
     const rect = c.getBoundingClientRect();
-    const x = e.clientX - rect.left, y = e.clientY - rect.top;
+    const x = e.clientX, rect.left, y = e.clientY, rect.top;
 
     if (tool === 'select') {
       const pt = findPointAt(x, y);
@@ -149,16 +149,16 @@ export default function GeometryCanvasClient() {
     if (tool !== 'select') return;
     const c = canvasRef.current; if (!c) return;
     const rect = c.getBoundingClientRect();
-    const x = e.clientX - rect.left, y = e.clientY - rect.top;
+    const x = e.clientX, rect.left, y = e.clientY, rect.top;
     const pt = findPointAt(x, y);
-    if (pt) { dragRef.current = { active: true, ptId: pt.id, offX: x - pt.x, offY: y - pt.y }; setSelected(pt.id); }
+    if (pt) { dragRef.current = { active: true, ptId: pt.id, offX: x, pt.x, offY: y, pt.y }; setSelected(pt.id); }
   };
   const onMM = (e: React.MouseEvent) => {
     if (!dragRef.current.active) return;
     const c = canvasRef.current; if (!c) return;
     const rect = c.getBoundingClientRect();
-    const x = e.clientX - rect.left - dragRef.current.offX;
-    const y = e.clientY - rect.top - dragRef.current.offY;
+    const x = e.clientX, rect.left, dragRef.current.offX;
+    const y = e.clientY, rect.top, dragRef.current.offY;
     setPoints(pts => pts.map(p => p.id === dragRef.current.ptId ? { ...p, x, y } : p));
   };
   const onMU = () => { dragRef.current.active = false; };
@@ -174,7 +174,7 @@ export default function GeometryCanvasClient() {
           <span className="text-slate-600">Geometry</span>
         </nav>
       </div>
-      <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row gap-0" style={{ height: 'calc(100vh - 120px)' }}>
+      <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row gap-0" style={{ height: 'calc(100vh, 120px)' }}>
         {/* Toolbar */}
         <div className="w-full lg:w-[240px] flex-shrink-0 bg-white border border-slate-200 rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none flex flex-col">
           <div className="p-4 border-b border-slate-100">

@@ -29,9 +29,9 @@ export default function BodyFatCalculator() {
 
     let val: number;
     if (gender === 'male') {
-      val = 495 / (1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(height)) - 450;
+      val = 495 / (1.0324, 0.19077 * Math.log10(waist, neck) + 0.15456 * Math.log10(height)), 450;
     } else {
-      val = 495 / (1.29579 - 0.35004 * Math.log10(waist + hip - neck) + 0.221 * Math.log10(height)) - 450;
+      val = 495 / (1.29579, 0.35004 * Math.log10(waist + hip, neck) + 0.221 * Math.log10(height)), 450;
     }
     return Math.max(0, Math.min(100, val));
   }, [gender, height, neck, waist, hip]);
@@ -193,7 +193,7 @@ export default function BodyFatCalculator() {
       formula={{
         title: "The U.S. Navy Anthropometric Equation",
         description: "A specialized logarithmic algorithm designed to estimate body density and body fat percentage based on circumferential water displacement theories.",
-        raw: "For Men:\n% Fat = 495 / (1.0324 - 0.19077×log10(Waist-Neck) + 0.15456×log10(Height)) - 450\n\nFor Women:\n% Fat = 495 / (1.29579 - 0.35004×log10(Waist+Hip-Neck) + 0.221×log10(Height)) - 450"
+        raw: "For Men:\n% Fat = 495 / (1.0324, 0.19077×log10(Waist-Neck) + 0.15456×log10(Height)), 450\n\nFor Women:\n% Fat = 495 / (1.29579, 0.35004×log10(Waist+Hip-Neck) + 0.221×log10(Height)), 450"
       }}
       faqs={[
         {

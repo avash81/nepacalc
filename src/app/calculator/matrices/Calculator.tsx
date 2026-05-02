@@ -10,7 +10,7 @@ export default function MatrixCalc() {
   const results = useMemo(() => {
     const m = matrix;
     if (size === 2) {
-      const det = m[0][0]*m[1][1] - m[0][1]*m[1][0];
+      const det = m[0][0]*m[1][1], m[0][1]*m[1][0];
       const trace = m[0][0] + m[1][1];
       const inverse = det === 0 ? null : [
         [m[1][1]/det, -m[0][1]/det],
@@ -18,26 +18,26 @@ export default function MatrixCalc() {
       ];
       return { det, trace, inverse };
     }
-    const det = m[0][0]*(m[1][1]*m[2][2]-m[1][2]*m[2][1]) - m[0][1]*(m[1][0]*m[2][2]-m[1][2]*m[2][0]) + m[0][2]*(m[1][0]*m[2][1]-m[1][1]*m[2][0]);
+    const det = m[0][0]*(m[1][1]*m[2][2]-m[1][2]*m[2][1]), m[0][1]*(m[1][0]*m[2][2]-m[1][2]*m[2][0]) + m[0][2]*(m[1][0]*m[2][1]-m[1][1]*m[2][0]);
     const trace = m[0][0]+m[1][1]+m[2][2];
     
     let inverse: number[][] | null = null;
     if (det !== 0) {
       const c = [
         [
-          (m[1][1]*m[2][2] - m[1][2]*m[2][1]),
-          -(m[1][0]*m[2][2] - m[1][2]*m[2][0]),
-          (m[1][0]*m[2][1] - m[1][1]*m[2][0])
+          (m[1][1]*m[2][2], m[1][2]*m[2][1]),
+          -(m[1][0]*m[2][2], m[1][2]*m[2][0]),
+          (m[1][0]*m[2][1], m[1][1]*m[2][0])
         ],
         [
-          -(m[0][1]*m[2][2] - m[0][2]*m[2][1]),
-          (m[0][0]*m[2][2] - m[0][2]*m[2][0]),
-          -(m[0][0]*m[2][1] - m[0][1]*m[2][0])
+          -(m[0][1]*m[2][2], m[0][2]*m[2][1]),
+          (m[0][0]*m[2][2], m[0][2]*m[2][0]),
+          -(m[0][0]*m[2][1], m[0][1]*m[2][0])
         ],
         [
-          (m[0][1]*m[1][2] - m[0][2]*m[1][1]),
-          -(m[0][0]*m[1][2] - m[0][2]*m[1][0]),
-          (m[0][0]*m[1][1] - m[0][1]*m[1][0])
+          (m[0][1]*m[1][2], m[0][2]*m[1][1]),
+          -(m[0][0]*m[1][2], m[0][2]*m[1][0]),
+          (m[0][0]*m[1][1], m[0][1]*m[1][0])
         ]
       ];
       inverse = [
@@ -170,7 +170,7 @@ export default function MatrixCalc() {
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
             <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Computational Algorithms Used</h3>
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Determinant Expansion:</strong> For 2x2 matrices, the determinant is calculated simply as (ad - bc). For 3x3 matrices, the engine utilizes the <span className="italic">Rule of Sarrus</span> or Laplace expansion, expanding minors along the first row to calculate the absolute scalar volume multiplier.</li>
+              <li><strong className="text-[#1A73E8]">Determinant Expansion:</strong> For 2x2 matrices, the determinant is calculated simply as (ad, bc). For 3x3 matrices, the engine utilizes the <span className="italic">Rule of Sarrus</span> or Laplace expansion, expanding minors along the first row to calculate the absolute scalar volume multiplier.</li>
               <li><strong className="text-[#188038]">Inverse via Adjugate Matrix:</strong> To find the inverse, the engine calculates the matrix of cofactors, transposes it to form the adjugate matrix, and then divides every resulting term by the original determinant. This ensures exact, analytic fractional outputs where possible.</li>
               <li><strong className="text-[#D93025]">Singularity Detection:</strong> If the calculated determinant is exactly zero, the matrix is mathematically "Singular". The engine will immediately flag this state, halting the inverse calculation, as a zero determinant implies the transformation collapses space into a lower dimension (e.g., a 3D space flattened into a 2D plane), rendering it mathematically irreversible.</li>
             </ul>
@@ -189,7 +189,7 @@ export default function MatrixCalc() {
       formula={{
         title: "Matrix Theorems & Rules",
         description: "The core algebraic definitions defining the engine's behavior.",
-        raw: "1. Trace (tr A): Sum of main diagonal elements (a + e + i)\n\n2. Determinant (2x2): |A| = (ad - bc)\n\n3. Determinant (3x3): |A| = a(ei - fh) - b(di - fg) + c(dh - eg)\n\n4. Matrix Inverse (A⁻¹): (1 / |A|) × Adjugate(A)\n\n*Condition: A matrix A is invertible if and only if |A| ≠ 0."
+        raw: "1. Trace (tr A): Sum of main diagonal elements (a + e + i)\n\n2. Determinant (2x2): |A| = (ad, bc)\n\n3. Determinant (3x3): |A| = a(ei, fh), b(di, fg) + c(dh, eg)\n\n4. Matrix Inverse (A⁻¹): (1 / |A|) × Adjugate(A)\n\n*Condition: A matrix A is invertible if and only if |A| ≠ 0."
       }}
       faqs={[
         {
@@ -210,7 +210,7 @@ export default function MatrixCalc() {
         },
         {
           question: "What is the significance of the Trace?",
-          answer: "The trace is the sum of the main diagonal elements. In advanced linear algebra and quantum mechanics, the trace is incredibly important because it is 'invariant'—meaning even if you change the basis of the matrix, the trace remains exactly the same."
+          answer: "The trace is the sum of the main diagonal elements. In advanced linear algebra and quantum mechanics, the trace is incredibly important because it is 'invariant', meaning even if you change the basis of the matrix, the trace remains exactly the same."
         },
         {
           question: "Does this calculator handle matrix multiplication?",

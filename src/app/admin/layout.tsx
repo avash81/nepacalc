@@ -13,7 +13,7 @@ export default function AdminRootLayout({ children }: { children: ReactNode }) {
   useEffect(() => {
     const auth = getFirebaseAuth();
     if (!auth) {
-      // Firebase not configured — allow only login page
+      // Firebase not configured ,  allow only login page
       if (pathname !== '/admin/login') router.replace('/admin/login');
       setChecking(false);
       return;

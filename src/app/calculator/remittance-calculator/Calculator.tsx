@@ -56,12 +56,12 @@ export default function RemittanceCalculator() {
     return PROVIDERS.map(p => {
       const grossNPR = amount * activeRate;
       const feeNPR = p.type === 'percent' ? (grossNPR * p.fee) / 100 : p.fee;
-      const netNPR = grossNPR - feeNPR;
+      const netNPR = grossNPR, feeNPR;
       return { ...p, netNPR, feeNPR };
     });
   }, [amount, activeRate]);
 
-  const bestProvider = [...results].sort((a, b) => b.netNPR - a.netNPR)[0];
+  const bestProvider = [...results].sort((a, b) => b.netNPR, a.netNPR)[0];
 
   const fmt = (n: number) => n.toLocaleString('en-IN', { maximumFractionDigits: 1 });
 
@@ -91,7 +91,7 @@ export default function RemittanceCalculator() {
                             onChange={e => update({ currencyCode: e.target.value })}
                             className="bg-transparent text-xl font-black outline-none border-b border-white/20 pb-1 mt-1 cursor-pointer hover:border-blue-400 transition-all w-full"
                           >
-                            {CURRENCIES.map(c => <option key={c.code} value={c.code} className="bg-slate-900">{c.code} - {c.name}</option>)}
+                            {CURRENCIES.map(c => <option key={c.code} value={c.code} className="bg-slate-900">{c.code}, {c.name}</option>)}
                           </select>
                         </div>
                     </div>
@@ -246,7 +246,7 @@ export default function RemittanceCalculator() {
         formula={{
           title: "Remittance Math",
           description: "Calculating the exact payout requires factoring in the provider's specific fee structure.",
-          raw: "Gross NPR = Foreign Amount × NRB Buying Rate\n\nIf Flat Fee: Net Payout = Gross NPR - Fixed Fee Amount\nIf Percentage Fee: Net Payout = Gross NPR - (Gross NPR × Fee %)"
+          raw: "Gross NPR = Foreign Amount × NRB Buying Rate\n\nIf Flat Fee: Net Payout = Gross NPR, Fixed Fee Amount\nIf Percentage Fee: Net Payout = Gross NPR, (Gross NPR × Fee %)"
         }}
         faqs={[
           {

@@ -70,7 +70,7 @@ export default function NepaliDateConverter() {
     }
     if (!converted) return null;
     const targetAD = tab === 'ad2bs' ? inputDate : converted;
-    const diffDays = Math.round((new Date(targetAD).getTime() - new Date(todayAD).getTime()) / 86400000);
+    const diffDays = Math.round((new Date(targetAD).getTime(), new Date(todayAD).getTime()) / 86400000);
     return { date: converted, dayEn: DAYS_EN[dayIndex], dayNp: DAYS_NP[dayIndex], diffDays };
   }, [inputDate, tab, todayAD]);
 
@@ -143,7 +143,7 @@ export default function NepaliDateConverter() {
                {tab==='ad2bs'?'CONVERTED TO BS':'CONVERTED TO AD'}
             </div>
             <div className="text-[10px] font-bold uppercase text-white/60 mb-2 tracking-wider">Result</div>
-            <div className="text-4xl sm:text-5xl font-black text-white tracking-tighter mb-4">{result?.date || '—'}</div>
+            <div className="text-4xl sm:text-5xl font-black text-white tracking-tighter mb-4">{result?.date || ', '}</div>
             {result && (
                <div className="flex justify-center items-center gap-3">
                   <div className="text-[11px] font-black text-[#1A73E8] bg-[#E8F0FE] px-3 py-1 rounded uppercase tracking-wider">{result.dayNp}</div>
@@ -158,7 +158,7 @@ export default function NepaliDateConverter() {
                <div className="text-[10px] font-bold uppercase text-[#70757A] tracking-wider">Relative Time</div>
             </div>
             <span className="text-sm font-black text-[#202124]">
-              {result?.diffDays === 0 ? 'Today' : result && result.diffDays > 0 ? `In ${result.diffDays} days` : result ? `${Math.abs(result.diffDays)} days ago` : '—'}
+              {result?.diffDays === 0 ? 'Today' : result && result.diffDays > 0 ? `In ${result.diffDays} days` : result ? `${Math.abs(result.diffDays)} days ago` : ', '}
             </span>
           </div>
 
@@ -188,7 +188,7 @@ export default function NepaliDateConverter() {
                 Bridging the gap between the internationally recognized Gregorian calendar and Nepal's official Bikram Sambat requires algorithmic precision. Our <strong className="text-[#202124]">nepali date converter</strong> is engineered to map absolute chronological data accurately, eliminating the errors common in standard +56 year arithmetic. Whether you are performing an <strong className="text-[#202124]">ad to bs converter</strong> lookup for citizenship documentation or translating corporate timelines, the engine ensures 100% fidelity.
               </p>
               <p>
-                In the context of the <strong className="text-[#202124]">nepali calendar 2081</strong> and beyond, structural anomalies—such as months that dynamically fluctuate between 29 and 32 days depending on solar astrology (Panchanga)—necessitate a strict dictionary-based lookup system rather than simple math. This makes translating an <strong className="text-[#202124]">english to nepali date</strong> a complex operation that this engine handles instantaneously.
+                In the context of the <strong className="text-[#202124]">nepali calendar 2081</strong> and beyond, structural anomalies, such as months that dynamically fluctuate between 29 and 32 days depending on solar astrology (Panchanga), necessitate a strict dictionary-based lookup system rather than simple math. This makes translating an <strong className="text-[#202124]">english to nepali date</strong> a complex operation that this engine handles instantaneously.
               </p>
             </div>
           </div>
@@ -206,7 +206,7 @@ export default function NepaliDateConverter() {
       howToUse={{ steps: ["Select the conversion direction (AD to BS or BS to AD).", "Choose the Year, Month, and Day from the dropdown menus.", "The equivalent date will instantly appear on the right panel alongside the day of the week."] }}
       formula={{ title: "Date Conversion Standard", description: "This tool maps Gregorian dates directly to Bikram Sambat limits.", raw: "Offset Difference ≈ +56 Years, 8.5 Months\nLeap years and varying month lengths in the BS calendar (ranging from 29 to 32 days) make simple arithmetic conversion inaccurate without standard Panchanga mapping." }}
       faqs={[
-        { question: "Why do Nepali months have varying numbers of days?", answer: "The Bikram Sambat (BS) calendar is a solar calendar, but its month lengths are determined by astronomical events (specifically, the sun's transit between zodiac signs). This means each month can have between 29 and 32 days, and the exact length varies year by year based on the Panchanga Nirnayak Samiti's calculations. There is no simple arithmetic rule — it requires a lookup table." },
+        { question: "Why do Nepali months have varying numbers of days?", answer: "The Bikram Sambat (BS) calendar is a solar calendar, but its month lengths are determined by astronomical events (specifically, the sun's transit between zodiac signs). This means each month can have between 29 and 32 days, and the exact length varies year by year based on the Panchanga Nirnayak Samiti's calculations. There is no simple arithmetic rule ,  it requires a lookup table." },
         { question: "Can I find my exact Nepali birth date using this tool?", answer: "Yes! Switch to 'AD To BS', enter your English birth date (from your passport, birth certificate, or hospital record), and the tool will show your precise Bikram Sambat birthday and the day of the week you were born. This is essential for citizenship applications, horoscope preparation, and many official documents in Nepal." },
         { question: "Why is the BS calendar approximately 56 years and 8 months ahead of AD?", answer: "Bikram Sambat began in 57 BC, named after the Vikramaditya era of Indian history. The calendar starts from the legendary coronation of King Vikramaditya. So BS year 2082 corresponds roughly to AD 2025/2026. The exact offset fluctuates by a few days throughout the year due to the differing year lengths of the two calendar systems." },
         { question: "Is this converter accurate for official government documents in Nepal?", answer: "Yes. This converter uses the official Bikram Sambat date mapping tables maintained by the Nepal government. It is accurate for dates within the supported range (approximately 1970 BS to 2099 BS). For dates outside this range or for pre-modern historical dates, specialist astronomical references may be required. For citizenship (Nagarikta) and land records, always verify with the issuing office." },

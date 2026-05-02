@@ -19,10 +19,10 @@ export default function CAGRCalculator() {
 
   const cagr = useMemo(() => {
     if (initial <= 0 || finalV <= 0 || years <= 0) return 0;
-    return (Math.pow(finalV / initial, 1 / years) - 1) * 100;
+    return (Math.pow(finalV / initial, 1 / years), 1) * 100;
   }, [initial, finalV, years]);
 
-  const totalGrowth = finalV > 0 && initial > 0 ? ((finalV - initial) / initial * 100).toFixed(1) : '0';
+  const totalGrowth = finalV > 0 && initial > 0 ? ((finalV, initial) / initial * 100).toFixed(1) : '0';
   const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
   const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
 
@@ -90,7 +90,7 @@ export default function CAGRCalculator() {
             </div>
             <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center">
               <div className="text-[9px] font-bold text-[#70757A] uppercase">Net Gain</div>
-              <div className="text-sm font-black">Rs. {fmt(finalV - initial)}</div>
+              <div className="text-sm font-black">Rs. {fmt(finalV, initial)}</div>
             </div>
           </div>
 
@@ -117,14 +117,14 @@ export default function CAGRCalculator() {
       howToUse={{ steps: ["Enter the initial investment value.", "Enter the final value after the investment period.", "Set the number of years.", "Or use Quick Scenarios to compare real Nepal investment benchmarks."] }}
       formula={{ title: "CAGR Formula", description: "CAGR measures the mean annual growth rate of an investment over a specified time period longer than one year.", raw: "CAGR = [(Final Value / Initial Value)^(1/Years)] − 1" }}
       faqs={[
-        { question: "What is a good CAGR in Nepal?", answer: "Benchmarks in Nepal (2025): Fixed Deposits (FD) average 7–9% CAGR. NEPSE stocks historically average 10–15% CAGR (with high volatility — years of 50%+ gain followed by -30% losses). Real estate in Kathmandu Valley has delivered 12–18% CAGR over the last decade. Mutual funds average 8–12% CAGR depending on NAV performance." },
+        { question: "What is a good CAGR in Nepal?", answer: "Benchmarks in Nepal (2025): Fixed Deposits (FD) average 7–9% CAGR. NEPSE stocks historically average 10–15% CAGR (with high volatility ,  years of 50%+ gain followed by -30% losses). Real estate in Kathmandu Valley has delivered 12–18% CAGR over the last decade. Mutual funds average 8–12% CAGR depending on NAV performance." },
         { question: "How is CAGR different from simple growth rate?", answer: "Simple growth is the total percentage change over the entire period. CAGR annualizes that growth so you can compare investments over different time periods. Example: Rs.1 lakh growing to Rs.2 lakh in 5 years = 100% simple growth, but only 14.87% CAGR. This annualized view makes CAGR the professional standard for investment comparison." },
         { question: "Can CAGR be negative?", answer: "Yes. If your final value is less than your initial value, CAGR will be negative, indicating an annualized loss. For example, NEPSE investors who bought at the 2021 peak and sold in 2023 experienced a negative CAGR of roughly -20% to -30% per year. Negative CAGR is important for risk assessment." },
-        { question: "What is the difference between CAGR and IRR?", answer: "CAGR measures the growth rate of a single lump-sum investment from a start to an end point — it assumes no intermediate cash flows. IRR (Internal Rate of Return) handles multiple cash flows at different times (like SIP investments). For simple comparisons of two lump-sum values, CAGR is sufficient. For SIPs or business projects with periodic cash flows, use IRR." },
+        { question: "What is the difference between CAGR and IRR?", answer: "CAGR measures the growth rate of a single lump-sum investment from a start to an end point ,  it assumes no intermediate cash flows. IRR (Internal Rate of Return) handles multiple cash flows at different times (like SIP investments). For simple comparisons of two lump-sum values, CAGR is sufficient. For SIPs or business projects with periodic cash flows, use IRR." },
         { question: "How do I calculate CAGR for NEPSE investments?", answer: "For NEPSE stocks: Initial value = purchase price × number of shares (adjusted for bonus/rights shares received). Final value = current market price × adjusted share count + any cash dividends received. Enter these into the calculator with the number of years held. Remember to account for bonus shares as they increase your share count without additional cost." },
-        { question: "Is CAGR a reliable predictor of future returns?", answer: "No. CAGR measures historical performance only. It smooths out year-by-year volatility, which can be misleading. A 15% CAGR doesn't mean the investment grew 15% every year — it may have grown 60% one year and fallen 20% the next. Past CAGR is an input to future planning, not a guarantee. Always consider risk and volatility alongside CAGR." }
+        { question: "Is CAGR a reliable predictor of future returns?", answer: "No. CAGR measures historical performance only. It smooths out year-by-year volatility, which can be misleading. A 15% CAGR doesn't mean the investment grew 15% every year ,  it may have grown 60% one year and fallen 20% the next. Past CAGR is an input to future planning, not a guarantee. Always consider risk and volatility alongside CAGR." }
       ]}
-      sidebar={{ title: "Investment Tools", links: [{ label: "SIP Calculator", href: "/calculator/sip-calculator" }, { label: "FD Calculator", href: "/calculator/fd-calculator" }, { label: "Compound Interest", href: "/calculator/compound-interest" }, { label: "NEPSE Tools", href: "/calculator/nepal-stocks" }], banner: { title: "Compare Returns", description: "Always compare investments on an annualized basis — CAGR is the professional standard.", image: "/images/invest-banner.jpg" } }}
+      sidebar={{ title: "Investment Tools", links: [{ label: "SIP Calculator", href: "/calculator/sip-calculator" }, { label: "FD Calculator", href: "/calculator/fd-calculator" }, { label: "Compound Interest", href: "/calculator/compound-interest" }, { label: "NEPSE Tools", href: "/calculator/nepal-stocks" }], banner: { title: "Compare Returns", description: "Always compare investments on an annualized basis ,  CAGR is the professional standard.", image: "/images/invest-banner.jpg" } }}
       relatedTools={[{ label: "SIP Calculator", href: "/calculator/sip-calculator" }, { label: "FD Calculator", href: "/calculator/fd-calculator" }, { label: "Compound Interest", href: "/calculator/compound-interest" }]}
     />
   );

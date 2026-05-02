@@ -46,7 +46,7 @@ export default function Page() {
           { name: 'Bonus Tax', slug: 'nepse-bonus-tax' },
           { name: 'Income Tax', slug: 'nepal-income-tax' }
         ]}
-        formula="Net Profit = Sales - Buy Cost - Commissions - Tax"
+        formula="Net Profit = Sales, Buy Cost, Commissions, Tax"
       >
         <StockCalculator />
         <div className="hp-container pb-24 border-t border-slate-100 pt-20">

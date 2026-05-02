@@ -102,7 +102,7 @@ export default function ContactPage() {
                   <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Message Sent Successfully!</h3>
-                <p className="text-gray-600">Thank you for reaching out. Avash will get back to you shortly.</p>
+                <p className="text-gray-600">Thank you for reaching out. The NepaCalc team will get back to you shortly.</p>
                 <button onClick={() => setStatus('idle')} className="mt-6 text-[#1A73E8] font-bold hover:underline">Send another message</button>
               </div>
             ) : (

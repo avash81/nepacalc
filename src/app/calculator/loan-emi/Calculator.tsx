@@ -35,7 +35,7 @@ export default function LoanEMICalculator() {
     const n = tenure * 12;
 
     if (isReverse) {
-      activePrincipal = targetEmi * ((Math.pow(1 + r, n) - 1) / (r * Math.pow(1 + r, n)));
+      activePrincipal = targetEmi * ((Math.pow(1 + r, n), 1) / (r * Math.pow(1 + r, n)));
     }
 
     const baseCalc = safeCalculateEMI(activePrincipal, rate, tenure, method);
@@ -48,7 +48,7 @@ export default function LoanEMICalculator() {
     let balance = activePrincipal;
     for (let i = 1; i <= Math.min(12, n); i++) {
         const interest = balance * r;
-        const principalPaid = baseEmi - interest;
+        const principalPaid = baseEmi, interest;
         balance -= principalPaid;
         schedule.push({ month: i, interest, principal: principalPaid, balance: Math.max(0, balance) });
     }
@@ -334,7 +334,7 @@ export default function LoanEMICalculator() {
             <h2 className="text-xl font-black text-[#202124] mb-4">How Bank Loans Actually Work in Nepal</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>
-                Taking out a loan in Nepal can feel overwhelming, especially when trying to figure out exactly how much you will have to pay back each month. We built this <strong className="text-[#202124]">emi calculator nepal</strong> to give you the exact same numbers that 'A' Class commercial banks use. By strictly following <strong className="text-[#202124]">nrb base rate</strong> regulations, this tool clearly breaks down your monthly payment so you can see exactly where every Rupee goes—how much is paying off your actual loan, and how much is going to the bank as interest.
+                Taking out a loan in Nepal can feel overwhelming, especially when trying to figure out exactly how much you will have to pay back each month. We built this <strong className="text-[#202124]">emi calculator nepal</strong> to give you the exact same numbers that 'A' Class commercial banks use. By strictly following <strong className="text-[#202124]">nrb base rate</strong> regulations, this tool clearly breaks down your monthly payment so you can see exactly where every Rupee goes, how much is paying off your actual loan, and how much is going to the bank as interest.
               </p>
               <p>
                 Whether you are planning to buy a car, purchase a home, or take out a personal loan, having an accurate <strong className="text-[#202124]">interest rate calculator</strong> by your side is crucial. The Nepal Rastra Bank (NRB) requires banks to be transparent about their rates (which are usually the base rate plus a premium). We designed this tool to put the power back in your hands, allowing you to confidently plan your budget before you ever step foot inside a bank branch.
@@ -390,7 +390,7 @@ export default function LoanEMICalculator() {
         },
         {
           question: "What is the maximum loan tenure offered by banks in Nepal?",
-          answer: "In Nepal: Home loans — up to 20-25 years. Vehicle loans — up to 7 years. Personal loans — up to 5 years. Education loans — up to 7 years (with moratorium during studies). Business loans — 3-10 years depending on the project. NRB regulations periodically cap maximum tenures, so always verify with your specific bank."
+          answer: "In Nepal: Home loans ,  up to 20-25 years. Vehicle loans ,  up to 7 years. Personal loans ,  up to 5 years. Education loans ,  up to 7 years (with moratorium during studies). Business loans ,  3-10 years depending on the project. NRB regulations periodically cap maximum tenures, so always verify with your specific bank."
         }
       ]}
       sidebar={{

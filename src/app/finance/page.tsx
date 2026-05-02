@@ -57,13 +57,13 @@ export default function FinancePillarPage() {
             ))}
           </div>
 
-          {/* SEO Rich Content - ~1500+ Words Finance Hub */}
+          {/* SEO Rich Content, ~1500+ Words Finance Hub */}
           <div className="bg-white border border-[#DADCE0] rounded-xl p-8 lg:p-12 shadow-sm">
             <article className="prose prose-slate max-w-none">
               <h2 className="text-3xl font-black text-[#202124] mb-8">Mastering Your Financial Future with NepaCalc</h2>
               
               <p className="text-lg leading-relaxed text-[#5F6368]">
-                In an era of economic volatility and complex banking products, sound financial planning is the only path to long-term security. <strong>NepaCalc</strong> provides a suite of bank-grade <strong>Finance and Tax Calculators</strong> designed to simplify your journey—from taking your first home loan to planning a multi-decade SIP investment strategy.
+                In an era of economic volatility and complex banking products, sound financial planning is the only path to long-term security. <strong>NepaCalc</strong> provides a suite of bank-grade <strong>Finance and Tax Calculators</strong> designed to simplify your journey, from taking your first home loan to planning a multi-decade SIP investment strategy.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-12">
@@ -83,7 +83,7 @@ export default function FinancePillarPage() {
 
               <h3 className="text-2xl font-black text-[#202124] mt-12">1. Investment Planning: SIPs and Mutual Funds</h3>
               <p>
-                A Systematic Investment Plan (SIP) is a powerful tool for building wealth in the Nepalese and international markets. By investing a fixed amount regularly, you benefit from <strong>Rupee Cost Averaging</strong>—buying more units when prices are low and fewer when prices are high.
+                A Systematic Investment Plan (SIP) is a powerful tool for building wealth in the Nepalese and international markets. By investing a fixed amount regularly, you benefit from <strong>Rupee Cost Averaging</strong>, buying more units when prices are low and fewer when prices are high.
               </p>
               <p>
                 Our <strong>SIP Calculator</strong> provides a detailed breakdown of your invested amount versus your estimated returns, helping you stay disciplined during market fluctuations.
@@ -99,7 +99,7 @@ export default function FinancePillarPage() {
 
               <h3 className="text-2xl font-black text-[#202124] mt-12">3. Savings Goals and Fixed Deposits</h3>
               <p>
-                Whether you are saving for a down payment on a house, your child&apos;s education, or an emergency fund, you need a target. Our <strong>Savings Goal Calculator</strong> works backward—you tell us how much you need and by when, and we tell you exactly how much to save every month. 
+                Whether you are saving for a down payment on a house, your child&apos;s education, or an emergency fund, you need a target. Our <strong>Savings Goal Calculator</strong> works backward, you tell us how much you need and by when, and we tell you exactly how much to save every month. 
               </p>
               <p>
                 For lower-risk growth, use our <strong>FD Calculator (Fixed Deposit)</strong> to compare bank rates and understand the impact of quarterly vs. annual compounding on your principal.
@@ -130,7 +130,7 @@ export default function FinancePillarPage() {
               <div className="space-y-6">
                 <div className="p-6 border border-[#DADCE0] rounded-2xl">
                   <h4 className="font-black text-[#202124]">How does the SIP calculator work?</h4>
-                  <p className="text-sm text-[#5F6368] mt-2">It uses the future value formula for an annuity: FV = P × [((1 + r)^n - 1) / r] × (1 + r), where P is the periodic investment, r is the monthly interest rate, and n is the total number of months.</p>
+                  <p className="text-sm text-[#5F6368] mt-2">It uses the future value formula for an annuity: FV = P × [((1 + r)^n, 1) / r] × (1 + r), where P is the periodic investment, r is the monthly interest rate, and n is the total number of months.</p>
                 </div>
                 <div className="p-6 border border-[#DADCE0] rounded-2xl">
                   <h4 className="font-black text-[#202124]">What is the difference between Simple and Compound Interest?</h4>

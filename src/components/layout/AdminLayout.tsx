@@ -71,7 +71,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans antialiased flex text-[14px]">
-      {/* Sidebar - The Power Core */}
+      {/* Sidebar, The Power Core */}
       <aside 
         className={clsx(
           "fixed inset-y-0 left-0 z-50 w-72 bg-slate-950 text-slate-400 border-r border-white/5 transition-transform duration-500 ease-in-out transform shadow-2xl",

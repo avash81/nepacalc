@@ -1,5 +1,5 @@
 /**
- * GoogleAnalytics — Performance-First Analytics
+ * GoogleAnalytics ,  Performance-First Analytics
  * 
  * Loads GA ONLY after the window 'load' event fires AND the browser
  * is idle (requestIdleCallback). This keeps the main thread clear

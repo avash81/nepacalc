@@ -90,7 +90,7 @@ export default function RomanNumeralsCalculator() {
             </div>
             <div className="relative z-10">
               <div className="text-xs font-bold uppercase tracking-widest text-blue-200 mb-4">Conversion Result</div>
-              <div className="text-5xl sm:text-7xl font-black tracking-tighter font-mono mb-4 break-all">{roman || '—'}</div>
+              <div className="text-5xl sm:text-7xl font-black tracking-tighter font-mono mb-4 break-all">{roman || ', '}</div>
               <div className="inline-block px-4 py-2 bg-white/20 rounded-lg backdrop-blur-sm border border-white/30">
                 <div className="text-xl font-bold">{number ? `= ${number}` : 'Invalid Input'}</div>
               </div>
@@ -125,7 +125,7 @@ export default function RomanNumeralsCalculator() {
         steps: [
           "To convert a modern number, type any integer between 1 and 3999 into the 'Arabic Number' field.",
           "To convert Roman numerals back to numbers, type valid Roman letters (I, V, X, L, C, D, M) into the 'Roman Numeral' field.",
-          "The calculator is bidirectional—updating one field will instantly update the other."
+          "The calculator is bidirectional, updating one field will instantly update the other."
         ]
       }}
       details={

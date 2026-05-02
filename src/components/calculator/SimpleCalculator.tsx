@@ -1,8 +1,8 @@
 'use client';
 /**
- * @fileoverview SimpleCalculator — Basic 4-operation calculator widget
+ * @fileoverview SimpleCalculator ,  Basic 4-operation calculator widget
  *
- * Compact iOS-style calculator. Uses safeEval() — no eval() allowed.
+ * Compact iOS-style calculator. Uses safeEval() ,  no eval() allowed.
  * Touch targets: min-h-[44px] for Apple HIG compliance.
  *
  * @component

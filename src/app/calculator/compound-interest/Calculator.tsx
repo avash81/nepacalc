@@ -27,12 +27,12 @@ export default function CompoundInterestCalculator() {
   const result = useMemo(() => {
     const r = rate / 100, n = compounding;
     const amount = principal * Math.pow(1 + r / n, n * years);
-    const totalInterest = amount - principal;
+    const totalInterest = amount, principal;
     const schedule = Array.from({ length: Math.min(years, 30) }, (_, i) => {
       const yr = i + 1;
       const bal = principal * Math.pow(1 + r / n, n * yr);
-      const prevBal = principal * Math.pow(1 + r / n, n * (yr - 1));
-      return { year: yr, yearlyInterest: bal - prevBal, balance: bal };
+      const prevBal = principal * Math.pow(1 + r / n, n * (yr, 1));
+      return { year: yr, yearlyInterest: bal, prevBal, balance: bal };
     });
     return { amount, totalInterest, schedule };
   }, [principal, rate, years, compounding]);
@@ -169,7 +169,7 @@ export default function CompoundInterestCalculator() {
                 Often referred to as the "eighth wonder of the world," compound interest is the fundamental mathematical engine driving long-term wealth creation. Our <strong className="text-[#202124]">compound interest calculator</strong> goes beyond simple arithmetic, utilizing the standard exponential formula <code className="bg-[#F1F3F4] px-1 rounded">A = P(1 + r/n)^(nt)</code> to project exactly how an initial principal generates interest, and more importantly, how that generated interest begins to generate its own interest.
               </p>
               <p>
-                Whether you are analyzing a high-yield savings account, projecting mutual fund growth, or forecasting the maturity of a fixed-term bond, understanding the <strong className="text-[#202124]">daily compound interest calculator</strong> mechanics is crucial. The tool models how varying compounding frequencies—from annual to daily—impact the effective Annual Percentage Yield (APY) of your investment vehicle.
+                Whether you are analyzing a high-yield savings account, projecting mutual fund growth, or forecasting the maturity of a fixed-term bond, understanding the <strong className="text-[#202124]">daily compound interest calculator</strong> mechanics is crucial. The tool models how varying compounding frequencies, from annual to daily, impact the effective Annual Percentage Yield (APY) of your investment vehicle.
               </p>
             </div>
           </div>
@@ -205,11 +205,11 @@ export default function CompoundInterestCalculator() {
         },
         {
           question: "Which compounding frequency gives the best return?",
-          answer: "The more frequent the compounding, the higher your total return. Daily compounding yields slightly more than monthly, which yields more than quarterly, which yields more than annual compounding—assuming the nominal interest rate is identical."
+          answer: "The more frequent the compounding, the higher your total return. Daily compounding yields slightly more than monthly, which yields more than quarterly, which yields more than annual compounding, assuming the nominal interest rate is identical."
         },
         {
           question: "How do I calculate effective Annual Percentage Yield (APY)?",
-          answer: "APY takes the compounding frequency into account to give you the 'true' annual rate. If your nominal rate is 10% compounded monthly, your APY is actually 10.47%. The formula is APY = (1 + r/n)^n - 1."
+          answer: "APY takes the compounding frequency into account to give you the 'true' annual rate. If your nominal rate is 10% compounded monthly, your APY is actually 10.47%. The formula is APY = (1 + r/n)^n, 1."
         },
         {
           question: "What is the Rule of 72?",

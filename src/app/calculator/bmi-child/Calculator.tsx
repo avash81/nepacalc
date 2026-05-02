@@ -141,7 +141,7 @@ export default function BmiChildCalculator() {
       faqs={[
         {
           question: "Why is Child BMI calculated differently than Adult BMI?",
-          answer: "While the raw math (weight divided by height squared) is identical, the interpretation is completely different. Because children are actively growing, their body fat percentages change constantly. A static BMI range (like 18.5 - 24.9 for adults) is completely inaccurate for kids. Instead, a child's BMI is ranked as a percentile against other children of the exact same age and biological sex."
+          answer: "While the raw math (weight divided by height squared) is identical, the interpretation is completely different. Because children are actively growing, their body fat percentages change constantly. A static BMI range (like 18.5, 24.9 for adults) is completely inaccurate for kids. Instead, a child's BMI is ranked as a percentile against other children of the exact same age and biological sex."
         },
         {
           question: "What does '85th Percentile' actually mean?",
@@ -161,7 +161,7 @@ export default function BmiChildCalculator() {
         },
         {
           question: "What should I do if my child is categorized as Obese?",
-          answer: "Do not attempt to put a growing child on a restrictive diet without medical supervision. Focus on lifestyle changes for the entire family—increasing physical activity, reducing sugary drinks, and consulting a pediatrician or registered dietitian."
+          answer: "Do not attempt to put a growing child on a restrictive diet without medical supervision. Focus on lifestyle changes for the entire family, increasing physical activity, reducing sugary drinks, and consulting a pediatrician or registered dietitian."
         }
       ]}
       sidebar={{ title: "Health Tools", links: [{ label: "Adult BMI Calculator", href: "/calculator/bmi-calculator" }, { label: "Pregnancy Due Date", href: "/calculator/pregnancy-due-date" }], banner: { title: "Pediatric Health", description: "Ensure your child maintains a balanced diet and regular physical activity.", image: "/images/health-banner.jpg" } }}

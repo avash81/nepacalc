@@ -185,7 +185,7 @@ export default function WeightConverter() {
                   The world operates on two primary mass measurement systems in daily life. The <strong className="text-[#202124]">Metric (SI) system</strong>, anchored by the Kilogram, is the global scientific and commercial standard used by 195 countries. It is based on powers of 10, making scaling (grams to kilograms to metric tons) intuitive and computationally clean. Our <strong className="text-[#202124]">weight converter</strong> handles all conversions through a centralized Gram-based pivot for mathematical precision.
                 </p>
                 <p>
-                  Uniquely for Nepal and South Asia, our tool also integrates the <strong className="text-[#202124]">Tola</strong>—a traditional precious metal measurement still universally used in jewelry markets across Nepal, India, and Pakistan. The Tola is now legally defined as exactly 11.6638 grams, bridging the traditional and modern worlds of mass measurement seamlessly.
+                  Uniquely for Nepal and South Asia, our tool also integrates the <strong className="text-[#202124]">Tola</strong>, a traditional precious metal measurement still universally used in jewelry markets across Nepal, India, and Pakistan. The Tola is now legally defined as exactly 11.6638 grams, bridging the traditional and modern worlds of mass measurement seamlessly.
                 </p>
               </div>
             </div>

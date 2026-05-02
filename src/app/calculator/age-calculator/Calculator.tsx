@@ -39,20 +39,20 @@ export default function AgeCalculator() {
       return { error: 'Birth date cannot be in the future of the target date.' };
     }
 
-    let years = d2.getFullYear() - d1.getFullYear();
-    let months = d2.getMonth() - d1.getMonth();
-    let days = d2.getDate() - d1.getDate();
+    let years = d2.getFullYear(), d1.getFullYear();
+    let months = d2.getMonth(), d1.getMonth();
+    let days = d2.getDate(), d1.getDate();
     if (days < 0) { months--; days += new Date(d2.getFullYear(), d2.getMonth(), 0).getDate(); }
     if (months < 0) { years--; months += 12; }
 
-    const diffMs   = Math.abs(d2.getTime() - d1.getTime());
+    const diffMs   = Math.abs(d2.getTime(), d1.getTime());
     const totalDays = Math.floor(diffMs / 86400000);
     const totalWeeks = Math.floor(totalDays / 7);
     const totalMonths = years * 12 + months;
 
     let nextBday = new Date(d2.getFullYear(), d1.getMonth(), d1.getDate());
     if (nextBday <= d2) nextBday = new Date(d2.getFullYear() + 1, d1.getMonth(), d1.getDate());
-    const nextBdayDays = Math.ceil((nextBday.getTime() - d2.getTime()) / 86400000);
+    const nextBdayDays = Math.ceil((nextBday.getTime(), d2.getTime()) / 86400000);
     const dayOfWeek   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d1.getDay()];
     const zodiac      = getZodiac(d1.getDate(), d1.getMonth());
 
@@ -198,12 +198,12 @@ export default function AgeCalculator() {
       formula={{
         title: "Age Calculation Method",
         description: "The age is calculated by comparing years, months, and days between the two dates, accounting for varying month lengths and leap years.",
-        raw: "Age = Target Date - Date of Birth\nBreakdown: Years, Months, Weeks, Days, and even estimated Heartbeats."
+        raw: "Age = Target Date, Date of Birth\nBreakdown: Years, Months, Weeks, Days, and even estimated Heartbeats."
       }}
       faqs={[
         {
           question: "How accurate is the heartbeat estimation?",
-          answer: "The heartbeat count is a statistical estimation based on an average resting heart rate of 80 beats per minute (BPM) multiplied by the total minutes lived. This is a fun approximation — actual lifetime beats vary based on your fitness, age, and health history."
+          answer: "The heartbeat count is a statistical estimation based on an average resting heart rate of 80 beats per minute (BPM) multiplied by the total minutes lived. This is a fun approximation ,  actual lifetime beats vary based on your fitness, age, and health history."
         },
         {
           question: "Does this account for leap years?",
@@ -211,7 +211,7 @@ export default function AgeCalculator() {
         },
         {
           question: "What is the minimum age to apply for a Lok Sewa Aayog exam in Nepal?",
-          answer: "For most Lok Sewa (Public Service Commission) positions, the minimum age is 18 years. The maximum age varies by position — typically 35 years for most posts, 40 years for higher positions, and up to 45 years for specialized or higher-class posts. Always verify with the PSC notice."
+          answer: "For most Lok Sewa (Public Service Commission) positions, the minimum age is 18 years. The maximum age varies by position ,  typically 35 years for most posts, 40 years for higher positions, and up to 45 years for specialized or higher-class posts. Always verify with the PSC notice."
         },
         {
           question: "At what age can I apply for a driving license in Nepal?",
@@ -219,11 +219,11 @@ export default function AgeCalculator() {
         },
         {
           question: "How do I find my age in the Bikram Sambat (B.S.) calendar?",
-          answer: "The Nepali Bikram Sambat calendar is approximately 56 years and 8.5 months ahead of the Gregorian calendar. To find your age in B.S., use our Nepali Date Converter to convert your A.D. birth date to B.S., then subtract from today's B.S. date. This tool works in A.D. — use the companion Nepali Date tool for B.S. calculations."
+          answer: "The Nepali Bikram Sambat calendar is approximately 56 years and 8.5 months ahead of the Gregorian calendar. To find your age in B.S., use our Nepali Date Converter to convert your A.D. birth date to B.S., then subtract from today's B.S. date. This tool works in A.D. ,  use the companion Nepali Date tool for B.S. calculations."
         },
         {
           question: "What zodiac sign does this calculator use?",
-          answer: "This calculator uses Western tropical astrology zodiac signs (Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces), which are based on the Gregorian calendar. Hindu/Vedic astrology uses a different system (sidereal) with different date ranges — this tool does not reflect Vedic rashi."
+          answer: "This calculator uses Western tropical astrology zodiac signs (Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, Pisces), which are based on the Gregorian calendar. Hindu/Vedic astrology uses a different system (sidereal) with different date ranges ,  this tool does not reflect Vedic rashi."
         }
       ]}
       sidebar={{

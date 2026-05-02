@@ -3,7 +3,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 import GraphingCalculatorClient from './GraphingCalculatorClient';
 
 export const metadata: Metadata = {
-  title: 'Free Online Graphing Calculator — Plot Functions | NepaCalc',
+  title: 'Free Online Graphing Calculator ,  Plot Functions | NepaCalc',
   description: 'Interactive graphing calculator: plot multiple functions simultaneously with custom colors, infinite pan & zoom, real-time rendering. Supports sin, cos, tan, log, polynomials, and more. Free, no login required.',
   keywords: ['graphing calculator', 'function plotter', 'graph functions online', 'desmos alternative', 'plot equations', 'math grapher'],
   openGraph: {

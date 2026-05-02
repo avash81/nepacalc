@@ -37,7 +37,7 @@ export function HomeHero() {
         </div>
         <div className="text-center space-y-2 px-4">
           <p className="text-lg font-black text-[#202124] tracking-tight">Scientific & Graphing Calculator</p>
-          <p className="text-sm text-slate-500 font-medium">Click to launch — Deg/Rad · Trig · Graphing Engine</p>
+          <p className="text-sm text-slate-500 font-medium">Click to launch ,  Deg/Rad · Trig · Graphing Engine</p>
         </div>
         <button
           className={`px-8 py-3 rounded-full text-sm font-black uppercase tracking-widest text-white shadow-md transition-all duration-300 ${isActivating ? 'opacity-80 cursor-wait' : 'hover:scale-105 active:scale-100'}`}

@@ -123,7 +123,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       <>
         <h2>Loan Planning in Nepal: Understanding EMI</h2>
         <p>
-          Taking a loan from a Nepalese bank—whether it's for a new house in Bhaktapur or a vehicle—requires careful financial planning. The most critical number you need to know is your <strong>Equated Monthly Installment (EMI)</strong>. This is the fixed amount you pay back to the bank every month until the loan is fully repaid.
+          Taking a loan from a Nepalese bank, whether it's for a new house in Bhaktapur or a vehicle, requires careful financial planning. The most critical number you need to know is your <strong>Equated Monthly Installment (EMI)</strong>. This is the fixed amount you pay back to the bank every month until the loan is fully repaid.
         </p>
 
         <h3>Components of an EMI</h3>
@@ -254,13 +254,13 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
                 <td className="border border-[#dadce0] px-4 py-2 text-green-700">Outstanding</td>
               </tr>
               <tr>
-                <td className="border border-[#dadce0] px-4 py-2">80% - 89.9%</td>
+                <td className="border border-[#dadce0] px-4 py-2">80%, 89.9%</td>
                 <td className="border border-[#dadce0] px-4 py-2 font-bold text-green-600">A</td>
                 <td className="border border-[#dadce0] px-4 py-2">3.6</td>
                 <td className="border border-[#dadce0] px-4 py-2 text-green-600">Excellent</td>
               </tr>
               <tr>
-                <td className="border border-[#dadce0] px-4 py-2">70% - 79.9%</td>
+                <td className="border border-[#dadce0] px-4 py-2">70%, 79.9%</td>
                 <td className="border border-[#dadce0] px-4 py-2 font-bold">B+</td>
                 <td className="border border-[#dadce0] px-4 py-2">3.2</td>
                 <td className="border border-[#dadce0] px-4 py-2">Very Good</td>
@@ -424,8 +424,8 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Fees When Selling Stocks (Capital Gains Tax)</h3>
         <p>
           When selling, you must also pay Capital Gains Tax (CGT) on your profit.
-          - <strong>5% CGT:</strong> For long-term investors (holding more than 365 days).
-          - <strong>7.5% CGT:</strong> For short-term traders (holding less than 365 days).
+         , <strong>5% CGT:</strong> For long-term investors (holding more than 365 days).
+         , <strong>7.5% CGT:</strong> For short-term traders (holding less than 365 days).
         </p>
 
         <h2>How to calculate WACC?</h2>
@@ -479,9 +479,9 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>1. The Ropani-Aana System (Hills & Kathmandu)</h3>
         <p>
           In Kathmandu and surrounding hilly regions, land is measured in Ropani, Aana, Paisa, and Dam:
-          - <strong>1 Ropani</strong> = 16 Aana (5476 sq. ft.)
-          - <strong>1 Aana</strong> = 4 Paisa (342.25 sq. ft.)
-          - <strong>1 Paisa</strong> = 4 Dam (85.56 sq. ft.)
+         , <strong>1 Ropani</strong> = 16 Aana (5476 sq. ft.)
+         , <strong>1 Aana</strong> = 4 Paisa (342.25 sq. ft.)
+         , <strong>1 Paisa</strong> = 4 Dam (85.56 sq. ft.)
         </p>
 
         <div className="bg-[#f1f3f4] border border-[#dadce0] rounded-lg p-6 my-8">
@@ -497,8 +497,8 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>2. The Bigha-Kattha System (Terai)</h3>
         <p>
           In the Terai region, the measurement units are significantly larger:
-          - <strong>1 Bigha</strong> = 20 Kattha
-          - <strong>1 Kattha</strong> = 20 Dhur
+         , <strong>1 Bigha</strong> = 20 Kattha
+         , <strong>1 Kattha</strong> = 20 Dhur
         </p>
 
         <h2>Why Real Estate Professionals Choose NepaCalc</h2>
@@ -576,7 +576,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
 
         <h2>Insurance and Renewal Fees</h2>
         <p>
-          In addition to the vehicle tax, you must also pay for <strong>Third-Party Insurance</strong> (mandatory) and a small renewal fee (around Rs. 200 - 500). If you fail to renew your bluebook on time, heavy penalties (up to 32% per year) can be applied.
+          In addition to the vehicle tax, you must also pay for <strong>Third-Party Insurance</strong> (mandatory) and a small renewal fee (around Rs. 200, 500). If you fail to renew your bluebook on time, heavy penalties (up to 32% per year) can be applied.
         </p>
 
         <h2>Electric Vehicle (EV) Tax Benefits</h2>
@@ -784,11 +784,11 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
           </div>
           <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
             <span className="block text-xs font-bold text-green-700 uppercase">Normal</span>
-            <span className="text-lg font-black">18.5 - 23</span>
+            <span className="text-lg font-black">18.5, 23</span>
           </div>
           <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
             <span className="block text-xs font-bold text-yellow-700 uppercase">Overweight</span>
-            <span className="text-lg font-black">23 - 27.5</span>
+            <span className="text-lg font-black">23, 27.5</span>
           </div>
           <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
             <span className="block text-xs font-bold text-red-700 uppercase">Obese</span>
@@ -948,7 +948,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       <>
         <h2>The Secret to Maintaining Your CGPA in Nepal</h2>
         <p>
-          I know the feeling—you've just finished a brutal semester at TU or KU, and you're staring at your transcript wondering how that one 'C' grade is going to ruin your chances of studying in the US or Australia. Don't panic. Let's break this down into simple steps.
+          I know the feeling, you've just finished a brutal semester at TU or KU, and you're staring at your transcript wondering how that one 'C' grade is going to ruin your chances of studying in the US or Australia. Don't panic. Let's break this down into simple steps.
         </p>
         <p>
           Your <strong>Cumulative GPA (CGPA)</strong> is the only number that really matters on your final degree certificate. Unlike a simple average, CGPA is "credit-weighted." That means an 'A' in a massive 6-credit Final Year Project is going to boost your score way more than an 'A' in a 1-credit elective.
@@ -988,7 +988,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       <>
         <h2>Finding Your Healthy Range in Nepal</h2>
         <p>
-          Let's be honest—our Nepali diet is heavy on the carbs. Between the daily Dal Bhat, the evening momos, and the sugary chiya, hitting your "ideal" weight can feel impossible. But what exactly should you weigh?
+          Let's be honest, our Nepali diet is heavy on the carbs. Between the daily Dal Bhat, the evening momos, and the sugary chiya, hitting your "ideal" weight can feel impossible. But what exactly should you weigh?
         </p>
         <p>
           We built this engine using the internationally recognized Devine and Robinson formulas, but we always remind our users: <strong>South Asians have a different body composition.</strong> We naturally carry more visceral fat (belly fat) at lower weights compared to Westerners. This means hitting your "ideal" number on the scale is only half the battle.
@@ -1066,7 +1066,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
   //       <h3>How to Calculate Required Attendance</h3>
   //       <p>
   //         If your current attendance is below your target (e.g., you are at 65% but need 75%), the calculator uses the formula:
-  //         <br /><code>Required Classes = (Target% × Total Classes - Attended) / (1 - Target%)</code>
+  //         <br /><code>Required Classes = (Target% × Total Classes, Attended) / (1, Target%)</code>
   //         <br />This tells you exactly how many consecutive classes you must attend to pull your average up.
   //       </p>
 
@@ -1098,7 +1098,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       <>
         <h2>Mastering the Percentage Calculator</h2>
         <p>
-          Percentages are everywhere—from calculating a store discount during a sale to determining your profit margin, or figuring out your test scores. This calculator provides a suite of tools to handle any percentage-based math problem instantly.
+          Percentages are everywhere, from calculating a store discount during a sale to determining your profit margin, or figuring out your test scores. This calculator provides a suite of tools to handle any percentage-based math problem instantly.
         </p>
 
         <h3>The Three Core Percentage Formulas</h3>
@@ -1113,7 +1113,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
           </div>
           <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
             <h4 className="font-bold text-[#188038] m-0">3. Percentage Change</h4>
-            <p className="text-sm mt-2 text-[#5f6368]">Formula: <code>((New - Old) / Old) × 100</code><br />Used for calculating growth, inflation, or discounts.</p>
+            <p className="text-sm mt-2 text-[#5f6368]">Formula: <code>((New, Old) / Old) × 100</code><br />Used for calculating growth, inflation, or discounts.</p>
           </div>
         </div>
       </>
@@ -1290,7 +1290,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       },
       {
         question: "What is the probability of an event NOT happening?",
-        answer: "The probability of an event not happening (the complement) is 1 minus the probability that it will happen: P(not A) = 1 - P(A)."
+        answer: "The probability of an event not happening (the complement) is 1 minus the probability that it will happen: P(not A) = 1, P(A)."
       }
     ]
   },
@@ -1718,7 +1718,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       },
       {
         question: "How do I calculate a selling price from a desired margin?",
-        answer: "Selling Price = Cost / (1 - Desired Margin Percentage). For example, to get a 20% margin on a $50 item: 50 / (1 - 0.20) = $62.50."
+        answer: "Selling Price = Cost / (1, Desired Margin Percentage). For example, to get a 20% margin on a $50 item: 50 / (1, 0.20) = $62.50."
       }
     ]
   },
@@ -1949,7 +1949,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </p>
         <h3>The Acceleration Formula</h3>
         <p>
-          The standard formula is: <strong>a = (v_f - v_i) / t</strong>
+          The standard formula is: <strong>a = (v_f, v_i) / t</strong>
           <br />Where <strong>v_f</strong> is the final velocity, <strong>v_i</strong> is the initial velocity, and <strong>t</strong> is the time taken for the change.
         </p>
       </>
@@ -1999,7 +1999,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       <>
         <h2>What is Potential Energy?</h2>
         <p>
-          Potential energy is the stored energy an object has because of its position or state. The most common type is Gravitational Potential Energy—the energy an object holds because of its height above the ground.
+          Potential energy is the stored energy an object has because of its position or state. The most common type is Gravitational Potential Energy, the energy an object holds because of its height above the ground.
         </p>
         <h3>The Potential Energy Formula</h3>
         <p>
@@ -2191,7 +2191,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </p>
         <h3>How the Math Works</h3>
         <p>
-          If you have an 85% in the class going into a final that is worth 20% of your grade, and you want a final grade of 90%, the formula must reverse-engineer the weighted average: <strong>Target = (Desired Grade - (Current Grade × (1 - Final Weight))) / Final Weight</strong>.
+          If you have an 85% in the class going into a final that is worth 20% of your grade, and you want a final grade of 90%, the formula must reverse-engineer the weighted average: <strong>Target = (Desired Grade, (Current Grade × (1, Final Weight))) / Final Weight</strong>.
         </p>
       </>
     ),
@@ -2255,7 +2255,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
     faqs: [
       {
         question: "What is the Z-score formula?",
-        answer: "Z = (X - μ) / σ, where X is the raw score, μ is the population mean, and σ is the population standard deviation."
+        answer: "Z = (X, μ) / σ, where X is the raw score, μ is the population mean, and σ is the population standard deviation."
       },
       {
         question: "Can a Z-score be negative?",
@@ -2474,7 +2474,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       </>
     ),
     faqs: [
-      { question: "How is 'Gain' calculated?", answer: "Gain = Selling Price - Purchase Price - Registered Expenses. The Malpot office uses the government valuation if it is higher than your stated price." },
+      { question: "How is 'Gain' calculated?", answer: "Gain = Selling Price, Purchase Price, Registered Expenses. The Malpot office uses the government valuation if it is higher than your stated price." },
       { question: "Who pays the CGT?", answer: "In Nepal, the seller is legally responsible for paying the Capital Gains Tax on the profit earned from the sale." }
     ]
   },
@@ -2537,8 +2537,8 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
 
         <h3>Taxation on Dividends</h3>
         <p>
-          - <strong>Cash Dividend:</strong> Taxed at 5% (withheld by the company).
-          - <strong>Bonus Shares:</strong> Taxed at 5% of the par value (usually NPR 100).
+         , <strong>Cash Dividend:</strong> Taxed at 5% (withheld by the company).
+         , <strong>Bonus Shares:</strong> Taxed at 5% of the par value (usually NPR 100).
         </p>
       </>
     ),
@@ -2560,7 +2560,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>How Gratuity is Calculated in Nepal</h3>
         <p>
           The standard formula for gratuity is:
-          - <strong>1 Month's Basic Salary</strong> for every year of completed service.
+         , <strong>1 Month's Basic Salary</strong> for every year of completed service.
           The basic salary is defined as the amount you were earning at the time of your departure, excluding allowances and overtime.
         </p>
 
@@ -2590,8 +2590,8 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Legal Caps on Recruitment Fees</h3>
         <p>
           The **Department of Foreign Employment (DoFE)** has set strict caps on how much a recruitment agency can charge:
-          - <strong>Free Visa Free Ticket:</strong> For many Gulf countries and Malaysia, the employer must bear the cost.
-          - <strong>NPR 10,000 Cap:</strong> For countries where "Free Visa" isn't applicable, the agency fee is often capped at NPR 10,000.
+         , <strong>Free Visa Free Ticket:</strong> For many Gulf countries and Malaysia, the employer must bear the cost.
+         , <strong>NPR 10,000 Cap:</strong> For countries where "Free Visa" isn't applicable, the agency fee is often capped at NPR 10,000.
         </p>
       </>
     ),
@@ -2613,8 +2613,8 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Meter Size and Minimum Charges</h3>
         <p>
           Your bill consists of a minimum monthly charge (determined by your meter size, e.g., 1/2 inch, 1 inch) and a consumption-based charge.
-          - <strong>Minimum Consumption:</strong> Usually the first 10,000 liters (10 units) are included in the base charge.
-          - <strong>Sewage Charge:</strong> KUKL also adds a sewage service fee, typically 50% of your water bill.
+         , <strong>Minimum Consumption:</strong> Usually the first 10,000 liters (10 units) are included in the base charge.
+         , <strong>Sewage Charge:</strong> KUKL also adds a sewage service fee, typically 50% of your water bill.
         </p>
       </>
     ),
@@ -2694,7 +2694,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg my-8">
           <h4 className="font-bold mb-2">Real-World Application</h4>
           <p className="text-sm leading-relaxed mb-0">
-            Architects and carpenters in Nepal use this formula every day to ensure corners are perfectly square (90 degrees). If you measure 3 feet on one wall and 4 feet on another, the diagonal distance between them must be exactly 5 feet—this is a "Pythagorean Triple" (3-4-5).
+            Architects and carpenters in Nepal use this formula every day to ensure corners are perfectly square (90 degrees). If you measure 3 feet on one wall and 4 feet on another, the diagonal distance between them must be exactly 5 feet, this is a "Pythagorean Triple" (3-4-5).
           </p>
         </div>
       </>
@@ -2739,9 +2739,9 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
 
         <h3>Practical Volume Conversions</h3>
         <p>
-          - 1 Cubic Meter (m³) = 1000 Liters
-          - 1 Cubic Foot (ft³) ≈ 28.31 Liters
-          - 1 Gallon (US) ≈ 3.78 Liters
+         , 1 Cubic Meter (m³) = 1000 Liters
+         , 1 Cubic Foot (ft³) ≈ 28.31 Liters
+         , 1 Gallon (US) ≈ 3.78 Liters
         </p>
       </>
     ),
@@ -2791,9 +2791,9 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
 
         <h3>How to Choose a Remittance Service</h3>
         <p>
-          - <strong>Compare Rates:</strong> Use our tool to compare IME, Prabhu, and City Express rates side-by-side.
-          - <strong>Hidden Fees:</strong> Some companies offer high rates but charge high fixed service fees.
-          - <strong>Digital Wallets:</strong> Services like <strong>Esewa</strong> and <strong>Khalti</strong> often have partnerships for direct-to-wallet transfers with extra bonuses.
+         , <strong>Compare Rates:</strong> Use our tool to compare IME, Prabhu, and City Express rates side-by-side.
+         , <strong>Hidden Fees:</strong> Some companies offer high rates but charge high fixed service fees.
+         , <strong>Digital Wallets:</strong> Services like <strong>Esewa</strong> and <strong>Khalti</strong> often have partnerships for direct-to-wallet transfers with extra bonuses.
         </p>
       </>
     ),
@@ -2815,8 +2815,8 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Understanding Buying vs. Selling Rates</h3>
         <p>
           One of the most common points of confusion for travelers in Nepal is the difference between these two numbers:
-          - <strong>Buying Rate:</strong> The price the bank will pay you if you give them foreign currency (e.g., USD).
-          - <strong>Selling Rate:</strong> The price the bank charges you if you want to buy foreign currency from them.
+         , <strong>Buying Rate:</strong> The price the bank will pay you if you give them foreign currency (e.g., USD).
+         , <strong>Selling Rate:</strong> The price the bank charges you if you want to buy foreign currency from them.
           The difference between these two is the bank's profit margin, often called the "Spread."
         </p>
 
@@ -2846,8 +2846,8 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Silver Measurement Units in Nepal</h3>
         <p>
           In the Nepalese market, silver is primarily traded in:
-          - <strong>Tola:</strong> The traditional unit (11.66 grams).
-          - <strong>Gram:</strong> The international standard.
+         , <strong>Tola:</strong> The traditional unit (11.66 grams).
+         , <strong>Gram:</strong> The international standard.
         </p>
 
         <h2>Buying Silver: Quality and Purity</h2>
@@ -2873,9 +2873,9 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
 
         <h3>How to Interpret the Results</h3>
         <p>
-          - <strong>5th to 85th Percentile:</strong> Healthy weight range.
-          - <strong>85th to 95th Percentile:</strong> Overweight category.
-          - <strong>Above 95th Percentile:</strong> Obese category.
+         , <strong>5th to 85th Percentile:</strong> Healthy weight range.
+         , <strong>85th to 95th Percentile:</strong> Overweight category.
+         , <strong>Above 95th Percentile:</strong> Obese category.
         </p>
 
         <div className="p-6 bg-green-50 border border-green-200 rounded-lg my-8">
@@ -2922,12 +2922,12 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
           Momo is the unofficial national dish of Nepal. However, if you are on a fitness journey or tracking your macros in Kathmandu, you need to know what's inside your plate. Our <strong>Momo Calorie Counter</strong> provides a breakdown for Steamed, Fried, and Jhol Momos.
         </p>
 
-        <h3>Calorie Breakdown (Per Plate - 10 Pieces)</h3>
+        <h3>Calorie Breakdown (Per Plate, 10 Pieces)</h3>
         <ul>
-          <li><strong>Veg Steamed Momo:</strong> ~250 - 300 Calories</li>
-          <li><strong>Chicken Steamed Momo:</strong> ~350 - 450 Calories</li>
-          <li><strong>Buff Steamed Momo:</strong> ~450 - 550 Calories</li>
-          <li><strong>Fried Momo:</strong> Add an extra 150 - 200 calories due to oil absorption.</li>
+          <li><strong>Veg Steamed Momo:</strong> ~250, 300 Calories</li>
+          <li><strong>Chicken Steamed Momo:</strong> ~350, 450 Calories</li>
+          <li><strong>Buff Steamed Momo:</strong> ~450, 550 Calories</li>
+          <li><strong>Fried Momo:</strong> Add an extra 150, 200 calories due to oil absorption.</li>
         </ul>
 
         <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-6">
@@ -2976,8 +2976,8 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>How Much Paint Do You Really Need?</h3>
         <p>
           A standard rule of thumb for interior walls in Nepal is:
-          - <strong>1 Liter</strong> of emulsion paint typically covers about <strong>130-150 sq. ft.</strong> for a single coat.
-          - <strong>Primer:</strong> Always apply one coat of primer first to ensure the paint sticks properly and the color remains vibrant.
+         , <strong>1 Liter</strong> of emulsion paint typically covers about <strong>130-150 sq. ft.</strong> for a single coat.
+         , <strong>Primer:</strong> Always apply one coat of primer first to ensure the paint sticks properly and the color remains vibrant.
         </p>
 
         <div className="bg-[#f1f3f4] border border-[#dadce0] rounded-lg p-6 my-8">
@@ -3024,7 +3024,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       <>
         <h2>The Rise of QR Codes in Nepal</h2>
         <p>
-          From <strong>Fonepay</strong> at local grocery stores to digital menus in Thamel restaurants, QR codes have revolutionized how we interact in Nepal. Our <strong>QR Code Generator</strong> allows you to create custom, high-resolution codes for any purpose—be it sharing your WiFi password with guests or linking to your business website.
+          From <strong>Fonepay</strong> at local grocery stores to digital menus in Thamel restaurants, QR codes have revolutionized how we interact in Nepal. Our <strong>QR Code Generator</strong> allows you to create custom, high-resolution codes for any purpose, be it sharing your WiFi password with guests or linking to your business website.
         </p>
 
         <h3>Best Practices for QR Codes</h3>
@@ -3053,7 +3053,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>How to Write Decimals on a Check</h3>
         <p>
           In the Nepalese banking system, decimals (paisa) are typically written as fractions of 100.
-          - <strong>Example:</strong> Rs. 15,250.75 becomes "Fifteen Thousand Two Hundred Fifty and 75/100 only."
+         , <strong>Example:</strong> Rs. 15,250.75 becomes "Fifteen Thousand Two Hundred Fifty and 75/100 only."
         </p>
       </>
     ),
@@ -3069,7 +3069,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       <>
         <h2>The Science of Password Entropy: Why Complexity Matters</h2>
         <p>
-          In an era of distributed computing and massive botnets, the security of your digital identity depends entirely on <strong>entropy</strong>—the measure of randomness in your password. A password like "Password123" has extremely low entropy and can be cracked in milliseconds by a standard GPU. Our generator uses <code>window.crypto.getRandomValues()</code>, a cryptographically strong random number generator (CSPRNG), to ensure that every string produced is truly unpredictable.
+          In an era of distributed computing and massive botnets, the security of your digital identity depends entirely on <strong>entropy</strong>, the measure of randomness in your password. A password like "Password123" has extremely low entropy and can be cracked in milliseconds by a standard GPU. Our generator uses <code>window.crypto.getRandomValues()</code>, a cryptographically strong random number generator (CSPRNG), to ensure that every string produced is truly unpredictable.
         </p>
 
         <h3>Anatomy of a Secure Password</h3>
@@ -3186,8 +3186,8 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Wall Thickness and Calculations</h3>
         <p>
           The number of bricks per square foot depends heavily on the wall thickness:
-          - <strong>9-inch Wall (Full Brick):</strong> Requires approximately 10 to 12 bricks per square foot.
-          - <strong>4.5-inch Wall (Half Brick/Partition):</strong> Requires approximately 5 to 6 bricks per square foot.
+         , <strong>9-inch Wall (Full Brick):</strong> Requires approximately 10 to 12 bricks per square foot.
+         , <strong>4.5-inch Wall (Half Brick/Partition):</strong> Requires approximately 5 to 6 bricks per square foot.
         </p>
 
         <h2>The Mortar Factor</h2>
@@ -3263,7 +3263,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       <>
         <h2>The Ultimate Tool for Percentage Calculations</h2>
         <p>
-          Percentages are everywhere—from calculating your <strong>SEE or NEB grades</strong> to figuring out the interest rate on your savings account. Our <strong>Percentage Calculator</strong> simplifies these common math problems, allowing you to solve for any variable in a percentage equation.
+          Percentages are everywhere, from calculating your <strong>SEE or NEB grades</strong> to figuring out the interest rate on your savings account. Our <strong>Percentage Calculator</strong> simplifies these common math problems, allowing you to solve for any variable in a percentage equation.
         </p>
 
         <h3>Three Ways to Use This Tool</h3>
@@ -3275,7 +3275,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
 
         <div className="p-6 bg-slate-50 border-l-4 border-slate-400 rounded-r-lg my-8">
           <p className="italic text-sm text-slate-600 mb-0">
-            "Mathematics is not about numbers, equations, computations, or algorithms: it is about understanding." — Use this tool to understand the growth and ratios in your financial and academic life.
+            "Mathematics is not about numbers, equations, computations, or algorithms: it is about understanding." ,  Use this tool to understand the growth and ratios in your financial and academic life.
           </p>
         </div>
       </>
@@ -3332,7 +3332,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
           </ul>
         </p>
         <p className="mt-4">
-          This means crossing from 20 to 21 units doesn't just add the cost of 1 unit—it retroactively adds a charge for the previous 20 units. <strong>Your bill jump from NPR 30 to over NPR 115 just for using one extra unit.</strong>
+          This means crossing from 20 to 21 units doesn't just add the cost of 1 unit, it retroactively adds a charge for the previous 20 units. <strong>Your bill jump from NPR 30 to over NPR 115 just for using one extra unit.</strong>
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
@@ -3429,7 +3429,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
           The 75% minimum is a standard set by the <strong>University Grants Commission (UGC) Nepal</strong>. While some liberal arts departments might be slightly flexible, professional courses like <strong>Engineering (IOE)</strong>, <strong>Medicine (IOM)</strong>, and science practicals often enforce an even stricter 80% rule.
         </p>
         <p>
-          <strong>Avash’s Note:</strong> Don't wait until the last week of the semester to check your status. If you realize you're short on attendance early, you still have time to attend extra practicals or submit a medical application through the Exam Controller's office.
+          <strong>Expert Note:</strong> Don't wait until the last week of the semester to check your status. If you realize you're short on attendance early, you still have time to attend extra practicals or submit a medical application through the Exam Controller's office.
         </p>
 
         <AuthorByline fiscalYear="2082/83" sources={[

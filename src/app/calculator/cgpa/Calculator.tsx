@@ -162,7 +162,7 @@ export default function CGPACalculator() {
       faqs={[
         {
           question: "Why does my CGPA differ from a simple average of my semester GPAs?",
-          answer: "Simple average treats every semester equally regardless of credit load. CGPA is credit-weighted — a semester with 24 credits counts more than one with 12 credits. This is the academic standard globally because it reflects the actual proportion of work done in each semester."
+          answer: "Simple average treats every semester equally regardless of credit load. CGPA is credit-weighted ,  a semester with 24 credits counts more than one with 12 credits. This is the academic standard globally because it reflects the actual proportion of work done in each semester."
         },
         {
           question: "How do I convert CGPA to Percentage for Nepali universities?",

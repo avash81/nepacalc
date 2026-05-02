@@ -163,7 +163,7 @@ export default function PasswordGenerator() {
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
             <h2 className="text-xl font-black text-[#202124] mb-4">Password Security: Entropy, Brute Force & Cryptographic Randomness</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>Password <strong className="text-[#202124]">entropy</strong> is the mathematical measure of unpredictability. It is calculated as: <code>Entropy = log₂(Pool Size^Length)</code>. A 16-character password using all character types (Pool = 94 printable ASCII chars) has an entropy of ~104 bits—which would take trillions of years to brute-force with current hardware.</p>
+              <p>Password <strong className="text-[#202124]">entropy</strong> is the mathematical measure of unpredictability. It is calculated as: <code>Entropy = log₂(Pool Size^Length)</code>. A 16-character password using all character types (Pool = 94 printable ASCII chars) has an entropy of ~104 bits, which would take trillions of years to brute-force with current hardware.</p>
               <p>This generator uses the browser's <strong className="text-[#202124]">Web Crypto API</strong> (<code>Math.random()</code>-based selection from a cryptographically seeded character pool) which is significantly more random than standard library RNGs. All generation happens client-side; no password data is ever transmitted to any server.</p>
             </div>
           </div>
@@ -185,11 +185,11 @@ export default function PasswordGenerator() {
         },
         {
           question: "What makes a password strong?",
-          answer: "Three factors: Length (the single most important factor—use 16+ characters), Complexity (mix uppercase, lowercase, numbers, and symbols to maximize the character pool), and Uniqueness (never reuse a password across different services)."
+          answer: "Three factors: Length (the single most important factor, use 16+ characters), Complexity (mix uppercase, lowercase, numbers, and symbols to maximize the character pool), and Uniqueness (never reuse a password across different services)."
         },
         {
           question: "How long would it take to crack a 16-character password?",
-          answer: "A 16-character password using all character types (94 printable ASCII chars) has ~104 bits of entropy. At 10 billion guesses per second (high-end GPU), cracking it would take approximately 3.5 × 10¹⁴ years—far longer than the age of the universe."
+          answer: "A 16-character password using all character types (94 printable ASCII chars) has ~104 bits of entropy. At 10 billion guesses per second (high-end GPU), cracking it would take approximately 3.5 × 10¹⁴ years, far longer than the age of the universe."
         },
         {
           question: "Should I use a password manager with these passwords?",

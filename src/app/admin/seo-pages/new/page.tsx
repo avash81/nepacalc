@@ -25,10 +25,10 @@ const CALC_GROUPS = {
 
 /** Schema type options */
 const SCHEMA_TYPES = [
-  { value: 'Article', label: 'Article — general guide or explainer' },
-  { value: 'HowTo', label: 'HowTo — step-by-step instructions' },
-  { value: 'FAQPage', label: 'FAQPage — question & answer page' },
-  { value: 'WebPage', label: 'WebPage — general landing page' },
+  { value: 'Article', label: 'Article ,  general guide or explainer' },
+  { value: 'HowTo', label: 'HowTo ,  step-by-step instructions' },
+  { value: 'FAQPage', label: 'FAQPage ,  question & answer page' },
+  { value: 'WebPage', label: 'WebPage ,  general landing page' },
 ];
 
 function NewSEOPageInner() {
@@ -185,7 +185,7 @@ function NewSEOPageInner() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
-          {/* LEFT — Content editor */}
+          {/* LEFT ,  Content editor */}
           <div className="lg:col-span-8 space-y-8">
 
             <div className="bg-white border border-slate-100 p-10 rounded-[3rem] shadow-xl shadow-slate-200/40 relative overflow-hidden group">
@@ -360,7 +360,7 @@ function NewSEOPageInner() {
 
           </div>
 
-          {/* RIGHT — SEO Score panel */}
+          {/* RIGHT ,  SEO Score panel */}
           <div className="lg:col-span-4 space-y-8">
             <div className="lg:sticky lg:top-8 space-y-8">
               

@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
 
     // Dynamic params
-    const title = searchParams.get('title') || 'NepaCalc — Best Free Calculators';
+    const title = searchParams.get('title') || 'NepaCalc ,  Best Free Calculators';
     const description = searchParams.get('description') || 'Free online calculators for Nepal';
     const mode = searchParams.get('mode') || 'default';
 

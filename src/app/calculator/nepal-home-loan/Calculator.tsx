@@ -5,11 +5,11 @@ import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { Landmark, TrendingDown, ShieldCheck, Info } from 'lucide-react';
 
 const KTM_BANKS = [
-  { name: 'NIC Asia Bank', base: 8.25, premium: '1.5 - 3.5' },
-  { name: 'Nabil Bank', base: 7.95, premium: '2.0 - 4.0' },
-  { name: 'Global IME', base: 8.40, premium: '1.0 - 3.0' },
-  { name: 'Everest Bank', base: 7.80, premium: '2.5 - 5.0' },
-  { name: 'Sanima Bank', base: 8.10, premium: '1.5 - 3.0' },
+  { name: 'NIC Asia Bank', base: 8.25, premium: '1.5, 3.5' },
+  { name: 'Nabil Bank', base: 7.95, premium: '2.0, 4.0' },
+  { name: 'Global IME', base: 8.40, premium: '1.0, 3.0' },
+  { name: 'Everest Bank', base: 7.80, premium: '2.5, 5.0' },
+  { name: 'Sanima Bank', base: 8.10, premium: '1.5, 3.0' },
 ];
 
 export default function NepalHomeLoanCalculator() {
@@ -28,9 +28,9 @@ export default function NepalHomeLoanCalculator() {
   const results = useMemo(() => {
     const r = effectiveRate / 12 / 100;
     const n = tenureYears * 12;
-    const emi = (principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const emi = (principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n), 1);
     const totalPayment = emi * n;
-    const totalInterest = totalPayment - principal;
+    const totalInterest = totalPayment, principal;
 
     return { emi, totalPayment, totalInterest };
   }, [principal, effectiveRate, tenureYears]);
@@ -185,7 +185,7 @@ export default function NepalHomeLoanCalculator() {
                 When planning a real estate purchase in Nepal, relying on a generic <strong className="text-[#202124]">loan calculator home</strong> tool isn't enough to secure your financial future. The Nepalese banking sector, regulated by Nepal Rastra Bank (NRB), operates predominantly on a dynamic "Base Rate + Premium" model. Our advanced <strong className="text-[#202124]">loan amortization calculator</strong> is specifically engineered to model this local interest structure, allowing you to accurately project your Equated Monthly Installment (EMI) and visualize how your principal shrinks over time.
               </p>
               <p>
-                Whether you are evaluating a <strong className="text-[#202124]">payment calculator home equity line</strong> for renovation, or assessing long-term residential financing for a new plot in Kathmandu, understanding your exact interest exposure is critical. Unlike fixed-rate structures common in Western markets—such as an <strong className="text-[#202124]">fha loan</strong> or tracking <strong className="text-[#202124]">current va home loan rates</strong> in the US—Nepal's floating rate mechanism requires a robust amortization engine to forecast potential long-term costs and navigate quarterly rate fluctuations.
+                Whether you are evaluating a <strong className="text-[#202124]">payment calculator home equity line</strong> for renovation, or assessing long-term residential financing for a new plot in Kathmandu, understanding your exact interest exposure is critical. Unlike fixed-rate structures common in Western markets, such as an <strong className="text-[#202124]">fha loan</strong> or tracking <strong className="text-[#202124]">current va home loan rates</strong> in the US, Nepal's floating rate mechanism requires a robust amortization engine to forecast potential long-term costs and navigate quarterly rate fluctuations.
               </p>
             </div>
           </div>
@@ -254,7 +254,7 @@ export default function NepalHomeLoanCalculator() {
         },
         {
           question: "What is the maximum Loan-to-Value (LTV) ratio in Nepal?",
-          answer: "As per NRB directives, the maximum LTV ratio for residential home loans inside the Kathmandu Valley is generally restricted to 50% - 60%. Outside the valley, banks may finance up to 70% of the property's 'Fair Market Value' as evaluated by their engineer."
+          answer: "As per NRB directives, the maximum LTV ratio for residential home loans inside the Kathmandu Valley is generally restricted to 50%, 60%. Outside the valley, banks may finance up to 70% of the property's 'Fair Market Value' as evaluated by their engineer."
         },
         {
           question: "Are there any tax benefits on Home Loans in Nepal?",

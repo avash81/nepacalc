@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | NepaCal',
-  description: 'NepaCal privacy policy — cookies, Google AdSense, Analytics, and your rights. Plain language. Updated May 2026.',
+  description: 'NepaCal privacy policy ,  cookies, Google AdSense, Analytics, and your rights. Plain language. Updated May 2026.',
   alternates: {
     canonical: 'https://nepacalc.com/privacy/',
   },
@@ -44,16 +44,16 @@ export default function PrivacyPage() {
         {/* Content Body */}
         <div className="flex-1 bg-white p-5 md:p-6 md:p-8 rounded-xl border border-gray-100 shadow-sm prose prose-sm md:prose-base prose-blue max-w-none text-gray-600">
           <p className="lead text-gray-700">
-            NepaCal (nepacalc.com) is operated by Avash Chaudhary, based in Kathmandu, Nepal. This privacy policy explains what information we collect, how we use it, and what rights you have. We have written it in plain language — no legal jargon where plain English works just as well.
+            NepaCalc (nepacalc.com) is dedicated to providing high-precision utility laboratory tools for Nepal. This privacy policy explains what information we collect, how we use it, and what rights you have. We have written it in plain language ,  no legal jargon where plain English works just as well.
           </p>
 
           <h2 id="data-collection" className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2 scroll-mt-24">1. What Information We Collect</h2>
           <p><strong>Information you give us:</strong> NepaCal does not require you to create an account or provide any personal information to use any of our calculators. If you contact us via the contact form or email, we collect your name and email address solely to respond to your message. We do not add you to any mailing list.</p>
-          <p><strong>Information collected automatically:</strong> When you visit NepaCal, our servers and third-party services may automatically collect: Your browser type and version, Your device type (desktop, mobile, tablet), Your approximate location (country/city level only, based on IP address — not precise location), Which pages and calculators you visit and how long you spend on them, The website that referred you to NepaCal. We use this information only to understand how people use NepaCal and to improve the tools. We do not use it to identify you personally.</p>
+          <p><strong>Information collected automatically:</strong> When you visit NepaCal, our servers and third-party services may automatically collect: Your browser type and version, Your device type (desktop, mobile, tablet), Your approximate location (country/city level only, based on IP address ,  not precise location), Which pages and calculators you visit and how long you spend on them, The website that referred you to NepaCal. We use this information only to understand how people use NepaCal and to improve the tools. We do not use it to identify you personally.</p>
           <p><strong>What we do NOT collect:</strong> NepaCal calculators run client-side in your browser. Your salary figures, health measurements, tax numbers, or any calculation inputs are not stored, sent to our servers, or logged anywhere. Your calculator data stays on your device.</p>
 
           <h2 id="cookies" className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2 scroll-mt-24">2. Cookies & How We Use Them</h2>
-          <p>NepaCal uses cookies — small text files stored on your device — for the following purposes:</p>
+          <p>NepaCal uses cookies ,  small text files stored on your device ,  for the following purposes:</p>
           <div className="overflow-x-auto my-4">
             <table className="min-w-full text-sm text-left">
               <thead className="bg-gray-50 font-bold text-gray-700 border-b">
@@ -74,19 +74,19 @@ export default function PrivacyPage() {
           <p>We do not pass your personal information to Google AdSense. Google uses its own data from its advertising network. We also do not control the content of the advertisements shown.</p>
 
           <h2 id="analytics" className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2 scroll-mt-24">4. Google Analytics</h2>
-          <p>We use Google Analytics to understand how visitors use NepaCal — which calculators are most popular, session durations, device types, and traffic sources. This helps us decide what to improve and which new tools to build. Google Analytics uses cookies to collect this data in anonymized form. No personally identifiable information is sent to Google Analytics through our implementation. Google processes analytics data in accordance with their <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a>.</p>
+          <p>We use Google Analytics to understand how visitors use NepaCal ,  which calculators are most popular, session durations, device types, and traffic sources. This helps us decide what to improve and which new tools to build. Google Analytics uses cookies to collect this data in anonymized form. No personally identifiable information is sent to Google Analytics through our implementation. Google processes analytics data in accordance with their <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a>.</p>
 
           <h2 id="how-we-use" className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2 scroll-mt-24">5. How We Use Your Information</h2>
           <p>We use information we collect to: Operate and improve NepaCal's calculators and tools, Understand which features are most useful to our users, Display relevant advertisements through Google AdSense, Respond to messages sent through our contact form or email.</p>
-          <p><strong>We do NOT:</strong> Sell your personal information to any third party — ever. Share your data with advertisers. Use your calculator inputs for any purpose. Store sensitive personal information. Send unsolicited emails.</p>
+          <p><strong>We do NOT:</strong> Sell your personal information to any third party ,  ever. Share your data with advertisers. Use your calculator inputs for any purpose. Store sensitive personal information. Send unsolicited emails.</p>
 
           <h2 id="international" className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2 scroll-mt-24">6. International Privacy Standards</h2>
-          <p><strong>For visitors from the EEA (GDPR):</strong> Although we are not legally required to comply with the EU GDPR as a Nepal-based operator, we follow its principles as a matter of good practice. We collect minimal data, do not process personal data for purposes beyond those stated here, and respect your right to access or request deletion of any personal data we hold about you. Because NepaCal calculators run entirely client-side and we do not collect personal identifiers, most GDPR data subject rights do not apply to typical NepaCal usage — there is simply no personal data to access or delete.</p>
+          <p><strong>For visitors from the EEA (GDPR):</strong> Although we are not legally required to comply with the EU GDPR as a Nepal-based operator, we follow its principles as a matter of good practice. We collect minimal data, do not process personal data for purposes beyond those stated here, and respect your right to access or request deletion of any personal data we hold about you. Because NepaCal calculators run entirely client-side and we do not collect personal identifiers, most GDPR data subject rights do not apply to typical NepaCal usage ,  there is simply no personal data to access or delete.</p>
           <p><strong>For visitors from California (CCPA):</strong> NepaCal does not sell personal information to any third party. If you have contacted us by email, that is the only personal data we hold about you, and you may request deletion at any time.</p>
           <p><strong>Do Not Track (DNT):</strong> NepaCal does not currently have a mechanism to respond to DNT signals, but we collect the minimum data necessary by design, and none of our calculators store user data.</p>
 
           <h2 id="children" className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2 scroll-mt-24">7. Children's Privacy</h2>
-          <p>NepaCal does not knowingly collect any personal information from children under the age of 13. Our tools are designed for general audiences — students, professionals, and the public in Nepal. If you believe a child under 13 has provided personal information through our contact form, please contact us immediately at admin@nepacalc.com and we will delete it promptly.</p>
+          <p>NepaCal does not knowingly collect any personal information from children under the age of 13. Our tools are designed for general audiences ,  students, professionals, and the public in Nepal. If you believe a child under 13 has provided personal information through our contact form, please contact us immediately at admin@nepacalc.com and we will delete it promptly.</p>
 
           <h2 id="your-rights" className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2 scroll-mt-24">8. Your Rights</h2>
           <p>Depending on where you are located, you may have rights regarding your personal data. These include the right to know what data we hold about you, the right to request deletion of your data, and the right to opt out of personalized advertising.</p>

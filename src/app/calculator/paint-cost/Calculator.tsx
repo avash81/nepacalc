@@ -128,7 +128,7 @@ export default function PaintCostCalculator() {
               <h2 className="text-xl font-black text-[#202124] mb-4">Paint Coverage Science: How Volume, Surface & Coats Interact</h2>
               <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
                 <p>Accurate paint estimation is the difference between a seamless renovation and a frustrating mid-project color mismatch. Paint batches vary slightly between production runs, so running out mid-wall is a critical problem. Our <strong className="text-[#202124]">paint calculator</strong> uses the standard volumetric coverage formula (Area &divide; Coverage Rate = Liters) with ceiling rounding to ensure you always purchase enough paint without excessive waste.</p>
-                <p>The key variable is <strong className="text-[#202124]">coverage rate</strong>—the area a given volume of paint covers at adequate opacity. This varies by paint quality (premium paints cover 10–15% more), wall texture, and application method. We recommend using the rate printed on your specific paint can for the most accurate estimate.</p>
+                <p>The key variable is <strong className="text-[#202124]">coverage rate</strong>, the area a given volume of paint covers at adequate opacity. This varies by paint quality (premium paints cover 10–15% more), wall texture, and application method. We recommend using the rate printed on your specific paint can for the most accurate estimate.</p>
               </div>
             </div>
             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">

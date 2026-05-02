@@ -20,7 +20,7 @@ export default function NepseBonusTaxCalculator() {
     const cashTaxAmount = cashDividend * taxRate;
     const totalTax = bonusTaxAmount + cashTaxAmount;
     const totalDividendValue = (bonusShares * faceValue) + cashDividend;
-    return { bonusTaxAmount, cashTaxAmount, totalTax, totalDividendValue, netPayable: totalDividendValue - totalTax };
+    return { bonusTaxAmount, cashTaxAmount, totalTax, totalDividendValue, netPayable: totalDividendValue, totalTax };
   }, [bonusShares, cashDividend, faceValue]);
 
   const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
@@ -31,7 +31,7 @@ export default function NepseBonusTaxCalculator() {
       slug="nepse-bonus-tax"
       crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Bonus Share Tax' }]}
       title="NEPSE Dividend Tax Calculator"
-      description="Calculate dividend withholding tax on bonus shares and cash dividends from listed companies. Based on Nepal Income Tax Act FY 2082/83 — 5% WHT rate."
+      description="Calculate dividend withholding tax on bonus shares and cash dividends from listed companies. Based on Nepal Income Tax Act FY 2082/83 ,  5% WHT rate."
       icon={TrendingUp}
       inputs={
         <div className="space-y-6">

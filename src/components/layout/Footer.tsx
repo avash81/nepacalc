@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { CALCULATORS } from '@/data/calculators';
-import { Logo } from '@/components/ui/Logo';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -16,10 +15,11 @@ export function Footer() {
     <footer className="bg-[#1a1a1a] text-[#bdc1c6] pt-16 pb-8 no-print border-t border-[#3c4043] text-[13px]">
       <div className="max-w-[1280px] mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Brand Column */}
           <div className="space-y-6">
-            <Link href="/" className="inline-block transition-transform hover:scale-105">
-              <Logo size="md" theme="white" />
+            <Link href="/" className="inline-block group">
+              <span className="text-[22px] font-black tracking-tighter transition-colors font-sans text-transparent bg-clip-text bg-gradient-to-r from-white to-[#1A73E8]">
+                NEPACALC
+              </span>
             </Link>
             <p className="text-xs leading-relaxed text-[#9aa0a6] font-medium">
               Nepal&apos;s leading platform for high-precision calculators, converters, and engineering tools. Built for accuracy, localized for Nepal.
@@ -58,7 +58,7 @@ export function Footer() {
             <Link href="/contact/" className="hover:text-white transition-colors">Contact</Link>
           </div>
           <div className="text-[#70757a] text-[11px] font-medium">
-            © {year} NepaCal | Built by Avash Chaudhary
+            &copy; {year} NepaCalc, All Rights Reserved
           </div>
         </div>
       </div>

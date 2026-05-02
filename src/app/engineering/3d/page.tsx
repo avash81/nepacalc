@@ -24,7 +24,7 @@ export default function ThreeDPage() {
       <JsonLd type="calculator" name="3D Graph Calculator" description="Use our free 3D graph calculator to plot functions and visualize 3D graphs online. Graph equations like z=sin(x,y), paraboloids, spheres, and more." url="https://nepacalc.com/engineering/3d" category="EducationalApplication" />
       <ThreeDCalculatorClient />
 
-      {/* SEO Rich Content — Server Rendered */}
+      {/* SEO Rich Content ,  Server Rendered */}
       <section className="max-w-[1280px] mx-auto px-4 pb-16">
         <div className="bg-white border border-[#DADCE0] rounded-xl p-8 lg:p-12 shadow-sm mt-8">
           <article className="prose prose-slate max-w-none">

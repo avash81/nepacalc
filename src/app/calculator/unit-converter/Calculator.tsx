@@ -177,7 +177,7 @@ export default function UnitConverter() {
             <h2 className="text-xl font-black text-[#202124] mb-4">Dimensional Analysis & SI Unit Architecture</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>
-                Our <strong className="text-[#202124]">unit converter</strong> is built on the principles of <strong className="text-[#202124]">dimensional analysis</strong>—the mathematical process of converting any quantity expressed in one unit to its equivalent in another, while preserving the underlying physical magnitude. The engine internally anchors every conversion to an SI (International System of Units) base unit (e.g., Meters for length, Kilograms for mass), ensuring that cross-category chains of conversion remain arithmetically exact.
+                Our <strong className="text-[#202124]">unit converter</strong> is built on the principles of <strong className="text-[#202124]">dimensional analysis</strong>, the mathematical process of converting any quantity expressed in one unit to its equivalent in another, while preserving the underlying physical magnitude. The engine internally anchors every conversion to an SI (International System of Units) base unit (e.g., Meters for length, Kilograms for mass), ensuring that cross-category chains of conversion remain arithmetically exact.
               </p>
               <p>
                 The International System of Units defines 7 base units from which all other derived units are constructed. This architecture guarantees absolute global consistency: a meter measured in Kathmandu is physically identical to a meter measured in London or New York. Our conversion factors are sourced from the official NIST (National Institute of Standards and Technology) definitions.
@@ -191,7 +191,7 @@ export default function UnitConverter() {
               <li><strong className="text-[#1A73E8]">Length:</strong> SI Base Unit: Meter (m). Covers the full spectrum from nanometer-scale engineering to interstellar megaparsecs. Imperial units (feet, miles) are derived from exact SI equivalents.</li>
               <li><strong className="text-[#188038]">Weight/Mass:</strong> SI Base Unit: Kilogram (kg). The kilogram is the only SI base unit still defined by a physical artifact (the International Prototype Kilogram). All other mass units are mathematically proportional.</li>
               <li><strong className="text-[#D93025]">Volume:</strong> SI Derived Unit: Cubic Meter (m³). The Liter (L) is a non-SI unit accepted for use, defined exactly as 0.001 m³. All culinary and industrial measurements trace back to this anchor.</li>
-              <li><strong className="text-[#F29900]">Area:</strong> SI Derived Unit: Square Meter (m²). All area metrics—from real estate (square feet) to agriculture (hectares, acres)—are computed as proportional scaling of this base.</li>
+              <li><strong className="text-[#F29900]">Area:</strong> SI Derived Unit: Square Meter (m²). All area metrics, from real estate (square feet) to agriculture (hectares, acres), are computed as proportional scaling of this base.</li>
             </ul>
           </div>
         </div>

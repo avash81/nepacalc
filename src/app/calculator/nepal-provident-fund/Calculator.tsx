@@ -63,7 +63,7 @@ export default function NepalPFCalculator() {
 
           <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
             <div className="px-4 py-2 bg-[#F8F9FA] border-b border-[#DADCE0]">
-              <span className="text-[10px] font-bold text-[#70757A] uppercase">Nepal Labor Act 2074 — PF Rules</span>
+              <span className="text-[10px] font-bold text-[#70757A] uppercase">Nepal Labor Act 2074 ,  PF Rules</span>
             </div>
             <div className="divide-y divide-[#DADCE0]">
               {rules.map(([l, v]) => (
@@ -173,7 +173,7 @@ export default function NepalPFCalculator() {
         },
         {
           question: "Is the interest earned on PF taxable in Nepal?",
-          answer: "No. Currently, the interest accrued within the EPF is tax-free while it remains in the fund. However, at the time of final withdrawal, a 5% tax is levied on the 'gain' (Total Amount - Total Contributions)."
+          answer: "No. Currently, the interest accrued within the EPF is tax-free while it remains in the fund. However, at the time of final withdrawal, a 5% tax is levied on the 'gain' (Total Amount, Total Contributions)."
         },
         {
           question: "Do contract or temporary employees get PF and Gratuity?",

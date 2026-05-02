@@ -144,15 +144,15 @@ export default function ForceCalc() {
         },
         {
           question: "What is the difference between Work and Energy?",
-          answer: "In physics, Work is the process of energy transfer—it describes an action (applying force over distance). Energy is the capacity to do work. Work done ON a system increases its energy; work done BY a system decreases it. Both are measured in Joules, making them numerically equivalent despite being conceptually distinct."
+          answer: "In physics, Work is the process of energy transfer, it describes an action (applying force over distance). Energy is the capacity to do work. Work done ON a system increases its energy; work done BY a system decreases it. Both are measured in Joules, making them numerically equivalent despite being conceptually distinct."
         },
         {
           question: "What is the difference between Power and Energy?",
-          answer: "Energy (Joules) is the total amount of work done or transferred. Power (Watts) is the rate at which that energy is used. A 100W motor running for 10 seconds uses the same energy (1000 J) as a 1000W motor running for 1 second—but they have very different power ratings."
+          answer: "Energy (Joules) is the total amount of work done or transferred. Power (Watts) is the rate at which that energy is used. A 100W motor running for 10 seconds uses the same energy (1000 J) as a 1000W motor running for 1 second, but they have very different power ratings."
         },
         {
           question: "Why does Pressure depend on Area and not just Force?",
-          answer: "Pressure measures how concentrated a force is. The same 100 N force applied to a 1 cm² area creates 1 MPa of pressure—enough to pierce metal. Applied to a 100 cm² area, it creates only 10 kPa—barely enough to dent foam. This principle is used in hydraulic presses, needles, and pneumatic systems."
+          answer: "Pressure measures how concentrated a force is. The same 100 N force applied to a 1 cm² area creates 1 MPa of pressure, enough to pierce metal. Applied to a 100 cm² area, it creates only 10 kPa, barely enough to dent foam. This principle is used in hydraulic presses, needles, and pneumatic systems."
         },
         {
           question: "What is a Joule in everyday terms?",

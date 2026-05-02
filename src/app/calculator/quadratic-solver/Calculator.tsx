@@ -32,10 +32,10 @@ export default function QuadraticSolver() {
     const range = 10;
     const step = 0.5;
     
-    for (let xNum = h - range; xNum <= h + range; xNum += step) {
+    for (let xNum = h, range; xNum <= h + range; xNum += step) {
       const yNum = (a * xNum * xNum) + (b * xNum) + c;
-      const sx = 50 + (xNum - h) * (100 / (range * 2));
-      const sy = 50 - (yNum - k) * (100 / (range * 2));
+      const sx = 50 + (xNum, h) * (100 / (range * 2));
+      const sy = 50, (yNum, k) * (100 / (range * 2));
       points.push(`${sx},${sy}`);
     }
     return points.join(' ');
@@ -157,7 +157,7 @@ export default function QuadraticSolver() {
             <h2 className="text-xl font-black text-[#202124] mb-4">Algebraic Resolution of Quadratic Polynomials</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>
-                In mathematics, a quadratic equation is a second-degree polynomial equation. The prefix "quad" signifies that the variable is squared (raised to the power of 2). Geometrically, this equation plots a U-shaped curve known as a <strong className="text-[#202124]">parabola</strong>. Solving a quadratic equation determines its "roots"—the exact coordinate locations where the parabolic curve crosses the horizontal x-axis.
+                In mathematics, a quadratic equation is a second-degree polynomial equation. The prefix "quad" signifies that the variable is squared (raised to the power of 2). Geometrically, this equation plots a U-shaped curve known as a <strong className="text-[#202124]">parabola</strong>. Solving a quadratic equation determines its "roots", the exact coordinate locations where the parabolic curve crosses the horizontal x-axis.
               </p>
               <p>
                 Our computational <strong className="text-[#202124]">quadratic formula calculator</strong> utilizes the standard universal formula to provide exact root derivations. Unlike traditional factoring methods (which fail on equations with non-integer roots), the quadratic formula analytically parses the equation's coefficients to yield the precise geometric intersections, even evaluating complex (imaginary) numbers seamlessly.
@@ -168,7 +168,7 @@ export default function QuadraticSolver() {
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
             <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Understanding The Discriminant (Δ)</h3>
             <p className="text-sm text-[#5F6368] mb-3">
-              The nature of the parabolic curve is dictated entirely by a sub-formula known as the Discriminant (b² - 4ac). This number "discriminates" between the three possible geometric realities:
+              The nature of the parabolic curve is dictated entirely by a sub-formula known as the Discriminant (b², 4ac). This number "discriminates" between the three possible geometric realities:
             </p>
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
               <li><strong className="text-[#1A73E8]">Positive Discriminant (Δ &gt; 0):</strong> The parabola crosses the x-axis twice. The equation possesses two distinct, real mathematical roots.</li>
@@ -190,7 +190,7 @@ export default function QuadraticSolver() {
       formula={{
         title: "The Quadratic Formula",
         description: "The universal analytic algebraic solution.",
-        raw: "Standard Form:\nax² + bx + c = 0\n\nThe Formula:\nx = (-b ± √(b² - 4ac)) / 2a\n\nThe Discriminant (Δ):\nΔ = b² - 4ac\n\nThe Parabola Vertex:\nx = -b / 2a\ny = -Δ / 4a"
+        raw: "Standard Form:\nax² + bx + c = 0\n\nThe Formula:\nx = (-b ± √(b², 4ac)) / 2a\n\nThe Discriminant (Δ):\nΔ = b², 4ac\n\nThe Parabola Vertex:\nx = -b / 2a\ny = -Δ / 4a"
       }}
       faqs={[
         {

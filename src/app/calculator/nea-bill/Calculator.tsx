@@ -437,29 +437,6 @@ export default function NEABillCalculator() {
               </div>
            </div>
 
-           {/* E-E-A-T Author Byline */}
-           <div className="bg-white border border-[#DADCE0] rounded-2xl overflow-hidden shadow-sm">
-             <div className="bg-[#E6F4EA] border-b border-[#CEEAD6] px-6 py-2">
-               <span className="text-[10px] font-black uppercase tracking-widest text-[#188038]">✓ Updated for BS 2082/83 (2025/26)</span>
-             </div>
-             <div className="p-6">
-               <div className="flex items-start gap-4 mb-3">
-                 <div className="w-10 h-10 bg-[#1A73E8] rounded-full flex items-center justify-center text-white font-black shrink-0">A</div>
-                 <div>
-                   <div className="text-sm font-black text-[#202124]">Avash Chaudhary</div>
-                   <div className="text-[10px] text-[#5F6368]">Full-Stack Developer &amp; Finance Researcher · NCIT Alumni</div>
-                 </div>
-               </div>
-               <p className="text-[11px] text-[#5F6368] leading-relaxed mb-3">
-                 All NEA tariff data is verified against the official Nepal Electricity Authority rate schedule.
-                 Also manage your full utility budget with our <a href="/calculator/kukl-bill/" className="text-[#1A73E8] font-bold hover:underline">KUKL Water Bill Calculator</a>.
-               </p>
-               <div className="flex flex-wrap gap-2">
-                 <a href="https://nea.org.np" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#F8F9FA] border border-[#DADCE0] rounded-full text-[10px] font-bold text-[#1A73E8] hover:bg-[#E8F0FE] transition-colors">↗ NEA Official</a>
-                 <a href="https://nea.org.np/tariff" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#F8F9FA] border border-[#DADCE0] rounded-full text-[10px] font-bold text-[#1A73E8] hover:bg-[#E8F0FE] transition-colors">↗ Tariff Schedule 2082</a>
-               </div>
-             </div>
-           </div>
          </div>
       }
       howToUse={{

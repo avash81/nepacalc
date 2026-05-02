@@ -27,7 +27,7 @@ const ICON_MAP: Record<string, any> = {
 };
 
 /**
- * QuickPresets — Phase 1 Optimized Component
+ * QuickPresets ,  Phase 1 Optimized Component
  * Allows users to instantly fill calculator values with common industry benchmarks.
  */
 export function QuickPresets({ presets, onSelect }: QuickPresetsProps) {

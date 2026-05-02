@@ -21,7 +21,7 @@ export default function LeadTimeCalculator() {
 
     if (!isNaN(parsedLeadTime) && baseDate) {
       const [year, month, day] = baseDate.split('-').map(Number);
-      targetDate = new Date(year, month - 1, day);
+      targetDate = new Date(year, month, 1, day);
       
       if (excludeWeekends && unit === 'days') {
         let daysCounter = 0;
@@ -133,14 +133,14 @@ export default function LeadTimeCalculator() {
         </div>
       }
       howToUse={{ steps: ["Select your mode: Find when an order will arrive (Delivery) or find when you need to order to hit a deadline (Order).", "Enter your base reference date.", "Enter the lead time (time taken by supplier) and select the unit (days, weeks, months).", "If using days, toggle whether to count only business days (skips weekends) or all calendar days."] }}
-      formula={{ title: "Lead Time Calculation Logic", description: "Gregorian calendar arithmetic.", raw: "Forward Mode:\nTarget Date = Start Date + Lead Time\n\nBackward Mode:\nRequired Order Date = Deadline Date - Lead Time\n\nBusiness Day Mode:\nIterates day by day, ignoring index 0 (Sunday) and 6 (Saturday)." }}
+      formula={{ title: "Lead Time Calculation Logic", description: "Gregorian calendar arithmetic.", raw: "Forward Mode:\nTarget Date = Start Date + Lead Time\n\nBackward Mode:\nRequired Order Date = Deadline Date, Lead Time\n\nBusiness Day Mode:\nIterates day by day, ignoring index 0 (Sunday) and 6 (Saturday)." }}
       faqs={[
         { question: "What is Lead Time in supply chain management?", answer: "Lead time is the total elapsed time between the initiation and completion of a process. In supply chain: it is the time from placing a purchase order to receiving the goods. Lead time includes order processing time + manufacturing time + shipping time + customs clearance. Accurate lead time calculation prevents stockouts and excess inventory." },
-        { question: "Does this calculator account for public holidays?", answer: "No — the 'Business Days' mode removes Saturdays and Sundays, but it does not have a built-in Nepal public holiday calendar. You must manually add extra days for known holidays (Dashain, Tihar, etc.). For Nepal-specific scheduling, always check the official Government of Nepal public holiday list for the relevant fiscal year." },
+        { question: "Does this calculator account for public holidays?", answer: "No ,  the 'Business Days' mode removes Saturdays and Sundays, but it does not have a built-in Nepal public holiday calendar. You must manually add extra days for known holidays (Dashain, Tihar, etc.). For Nepal-specific scheduling, always check the official Government of Nepal public holiday list for the relevant fiscal year." },
         { question: "What is the difference between Lead Time and Cycle Time?", answer: "Lead time = total time from customer order to delivery (includes all waiting and processing). Cycle time = the actual time to complete one unit of work (just the active production phase). Example: A furniture order has 2-day processing (cycle time) but 14-day total lead time because of shipping. This calculator primarily computes lead time." },
         { question: "How do I use this for project deadline planning?", answer: "Use 'Order By Date' mode: Set the 'need-by date' as your project deadline, enter your lead time (how many days you need to prepare), and the calculator tells you the last possible start date. For example, if you need to submit a report by March 31 and need 10 business days to prepare, you must start by March 17." },
         { question: "What is a typical supplier lead time for imports into Nepal?", answer: "Import lead times to Nepal vary significantly: China (air freight): 7–10 days. China (sea freight via Kolkata): 35–50 days. India (road freight): 5–14 days. USA/Europe (air): 10–15 days. USA/Europe (sea): 45–75 days. Add 5–15 days for customs clearance at Birgunj/Bhairahawa or Tribhuvan International Airport." },
-        { question: "Can I calculate working days backwards from a deadline?", answer: "Yes — use 'Order By Date' mode. Enter your target need-by date, specify how many business days of lead time you require, and the calculator counts backwards (skipping weekends) to give you the exact last date to place your order. This is ideal for just-in-time (JIT) procurement planning." }
+        { question: "Can I calculate working days backwards from a deadline?", answer: "Yes ,  use 'Order By Date' mode. Enter your target need-by date, specify how many business days of lead time you require, and the calculator counts backwards (skipping weekends) to give you the exact last date to place your order. This is ideal for just-in-time (JIT) procurement planning." }
       ]}
       sidebar={{ title: "Logistics Tools", links: [{ label: "Number Base Converter", href: "/calculator/base-converter" }, { label: "Standard Deviation", href: "/calculator/standard-deviation" }], banner: { title: "Supply Chain", description: "Accurate lead time tracking prevents stockouts and overstocking.", image: "/images/finance-banner.jpg" } }}
       relatedTools={[{ label: "Standard Deviation", href: "/calculator/standard-deviation" }]}

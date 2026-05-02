@@ -4,7 +4,7 @@ import RemittanceDashboardClient from './RemittanceDashboardClient';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 
 export const metadata: Metadata = {
-  title: 'Live Remittance Board Nepal — Compare Western Union, IME Rates',
+  title: 'Live Remittance Board Nepal ,  Compare Western Union, IME Rates',
   description: 'Compare remittance rates to Nepal from around the world. Live Western Union, IME, and Prabhu Remit NPR conversions.',
   keywords: ['remittance rates nepal', 'send money to nepal', 'ime rates today', 'western union npr rate', 'remittance board live'],
   alternates: {

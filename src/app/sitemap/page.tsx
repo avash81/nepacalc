@@ -3,7 +3,7 @@ import { CATEGORIES } from '@/data/calculators';
 import { ArrowLeft } from 'lucide-react';
 
 export const metadata = {
-  title: 'Full Site Index — Complete HTML Sitemap',
+  title: 'Full Site Index ,  Complete HTML Sitemap',
   description: 'A comprehensive, human-readable directory of every tool and calculator available on NepaCalc. Organized for optimal crawlability and ease of use.',
   alternates: {
     canonical: 'https://NepaCalc.com/sitemap/',
@@ -56,7 +56,7 @@ export default function HTMLSitemap() {
                                {calc.name}
                             </Link>
                             <span className="text-sm text-slate-500 hidden sm:inline-block">
-                               — {calc.description}
+                               ,  {calc.description}
                             </span>
                             <p className="text-xs text-slate-400 sm:hidden mt-0.5 max-w-[280px] leading-tight">
                                {calc.description}
@@ -75,17 +75,17 @@ export default function HTMLSitemap() {
                    <li className="relative">
                       <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
                       <Link href="/blog/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Research Library (Blog)</Link>
-                      <span className="text-sm text-slate-500 hidden sm:inline-block">— Specialized guides and platform updates.</span>
+                      <span className="text-sm text-slate-500 hidden sm:inline-block">,  Specialized guides and platform updates.</span>
                    </li>
                    <li className="relative">
                       <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
                       <Link href="/directory/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Visual Tool Directory</Link>
-                      <span className="text-sm text-slate-500 hidden sm:inline-block">— Global index of all calculated units and visualizers.</span>
+                      <span className="text-sm text-slate-500 hidden sm:inline-block">,  Global index of all calculated units and visualizers.</span>
                    </li>
                    <li className="relative">
                       <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
                       <Link href="/nepal/" className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline mr-2">Nepal-Specific Pillar</Link>
-                      <span className="text-sm text-slate-500 hidden sm:inline-block">— Localized tools for the Nepali mathematical standards.</span>
+                      <span className="text-sm text-slate-500 hidden sm:inline-block">,  Localized tools for the Nepali mathematical standards.</span>
                    </li>
                 </ul>
              </section>

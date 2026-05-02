@@ -1,5 +1,5 @@
 /**
- * @fileoverview Blog Index Page — Reverted to Old Structure
+ * @fileoverview Blog Index Page ,  Reverted to Old Structure
  *
  * Fetches all published blog posts from Firestore.
  */
@@ -26,7 +26,7 @@ export default async function BlogIndexPage() {
 
   const publishedPosts = (posts || [])
     .filter((p: any) => p && p.status === 'published')
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    .sort((a, b) => new Date(b.date).getTime(), new Date(a.date).getTime());
 
   return (
     <div className="min-h-screen bg-[#F8FAFB]">

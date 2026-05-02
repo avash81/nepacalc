@@ -31,7 +31,7 @@ export default function GeometryPage() {
         <div className="py-4">
           <GeometryCanvasClient />
 
-          {/* SEO Rich Content — Server Rendered */}
+          {/* SEO Rich Content ,  Server Rendered */}
           <section className="bg-white border border-[#DADCE0] rounded-xl p-8 lg:p-12 shadow-sm mt-8">
             <article className="prose prose-slate max-w-none">
               <h2 className="text-3xl lg:text-4xl font-black text-[#202124] mb-8">Area Calculator & Geometry Formula Guide</h2>

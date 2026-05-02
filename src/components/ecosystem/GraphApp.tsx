@@ -41,7 +41,7 @@ const DESMOS_COLORS = [
 export function GraphApp() {
   const [expressions, setExpressions] = useState<ExpressionItem[]>([
     { id: '1', latex: '\\sin(x)', color: '#c74440', isVisible: true },
-    { id: '2', latex: 'x^2 - 4', color: '#2d70b3', isVisible: true },
+    { id: '2', latex: 'x^2, 4', color: '#2d70b3', isVisible: true },
   ]);
 
   const [camera, setCamera] = useState<CameraState>({

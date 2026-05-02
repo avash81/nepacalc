@@ -15,7 +15,7 @@ export default function FractionCalculator() {
     let rN = 0, rD = 1;
     switch(op) {
       case '+': rN = num1 * d2 + num2 * d1; rD = d1 * d2; break;
-      case '-': rN = num1 * d2 - num2 * d1; rD = d1 * d2; break;
+      case '-': rN = num1 * d2, num2 * d1; rD = d1 * d2; break;
       case '*': rN = num1 * num2; rD = d1 * d2; break;
       case '/': rN = num1 * d2; rD = d1 * num2; break;
     }
@@ -162,7 +162,7 @@ export default function FractionCalculator() {
                 In mathematics, a fraction represents a part of a whole or, more generally, any number of equal parts. It is fundamentally a division operation where the numerator (top number) is divided by the denominator (bottom number). Our <strong className="text-[#202124]">fraction calculator</strong> is designed not just to compute the final answer, but to process inputs exactly as they are taught in academic arithmetic, including seamless handling of mixed numbers and improper fractions.
               </p>
               <p>
-                Unlike standard digital calculators that immediately convert fractions into floating-point decimals—often losing precision in cases involving infinite repeating decimals (like 1/3)—this engine maintains exact rational arithmetic. It performs cross-multiplication, finds common denominators, and applies the Euclidean algorithm to guarantee the final <strong className="text-[#202124]">fraction simplified</strong> result is absolutely precise without rounding errors.
+                Unlike standard digital calculators that immediately convert fractions into floating-point decimals, often losing precision in cases involving infinite repeating decimals (like 1/3), this engine maintains exact rational arithmetic. It performs cross-multiplication, finds common denominators, and applies the Euclidean algorithm to guarantee the final <strong className="text-[#202124]">fraction simplified</strong> result is absolutely precise without rounding errors.
               </p>
             </div>
           </div>
@@ -189,7 +189,7 @@ export default function FractionCalculator() {
       formula={{
         title: "Fundamental Fraction Arithmetic",
         description: "The core mathematical theorems used by the computation engine.",
-        raw: "1. Addition: (a/b) + (c/d) = (ad + bc) / bd\n2. Subtraction: (a/b) - (c/d) = (ad - bc) / bd\n3. Multiplication: (a/b) × (c/d) = (ac) / (bd)\n4. Division: (a/b) ÷ (c/d) = (a/b) × (d/c) = (ad) / (bc)\n\nSimplification requires dividing the final numerator and denominator by their Greatest Common Divisor: GCD(Numerator, Denominator)."
+        raw: "1. Addition: (a/b) + (c/d) = (ad + bc) / bd\n2. Subtraction: (a/b), (c/d) = (ad, bc) / bd\n3. Multiplication: (a/b) × (c/d) = (ac) / (bd)\n4. Division: (a/b) ÷ (c/d) = (a/b) × (d/c) = (ad) / (bc)\n\nSimplification requires dividing the final numerator and denominator by their Greatest Common Divisor: GCD(Numerator, Denominator)."
       }}
       faqs={[
         {
