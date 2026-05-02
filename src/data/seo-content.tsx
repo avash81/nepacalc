@@ -3499,5 +3499,150 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "Can the due date change?", answer: "Yes. An early ultrasound (usually before 12 weeks) is the most accurate way to date a pregnancy and may lead your doctor to adjust the EDD." },
       { question: "What if I don't know my LMP?", answer: "If your periods are irregular or you don't remember the date, your healthcare provider will use an ultrasound to measure the baby and estimate the due date." }
     ]
+  },
+  'nea-bill': {
+    title: "NEA Electricity Bill Calculator Nepal | Unit & Tariff Math",
+    description: "Calculate your Nepal Electricity Authority (NEA) monthly bill instantly. Includes the latest 5A domestic tariff slabs, service charges, and VAT for Nepal.",
+    content: (
+      <>
+        <h2>The Most Important Thing About Your NEA Bill</h2>
+        <p>Before anything else, there is one rule that confuses almost every Nepali electricity user. Read this carefully.</p>
+        <p><strong>The "first 20 units" are NOT always free.</strong></p>
+        <p>
+          For 5A domestic meters:
+          - If you use <strong>20 units or fewer</strong>: energy charge = NPR 0 (you pay only the fixed service charge)
+          - If you use <strong>21 units or more</strong>: the first 20 units are now charged at NPR 3 per unit, not zero
+        </p>
+        <p>This means crossing from 20 to 21 units does not just add the cost of 1 unit at the higher rate — it retroactively adds a charge for all 20 units that were previously free.</p>
+        
+        <div className="bg-[#f1f3f4] border border-[#dadce0] rounded-lg p-6 my-4">
+           <h3 className="font-bold mb-2">Example: 20 units consumed</h3>
+           <ul className="text-sm text-[#5f6368]">
+              <li>Service charge: NPR 30 (5A meter)</li>
+              <li>Energy charge: NPR 0 (stays below threshold)</li>
+              <li><strong>Total: NPR 30</strong></li>
+           </ul>
+        </div>
+        
+        <div className="bg-[#fce8e6] border border-[#fad2cf] rounded-lg p-6 my-4">
+           <h3 className="font-bold mb-2 text-[#c5221f]">Example: 21 units consumed</h3>
+           <ul className="text-sm text-[#c5221f]">
+              <li>Service charge: NPR 50 (slab moves up)</li>
+              <li>Energy charge: 20 units × NPR 3 = NPR 60, plus 1 unit × NPR 6.50 = NPR 6.50</li>
+              <li><strong>Total: NPR 116.50</strong></li>
+           </ul>
+        </div>
+        
+        <p>Consuming just 1 extra unit above 20 can more than triple your bill. This is why watching your consumption near the 20-unit mark matters.</p>
+        <p className="text-xs italic text-gray-500">Source: Nepal Electricity Authority (nea.org.np) tariff schedule. Rates are for standard 5A single-phase domestic meters and are subject to change by NEA.</p>
+
+        <h2>Current NEA Tariff Slabs (5A Domestic Meter)</h2>
+        <div className="overflow-x-auto my-6">
+          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
+            <thead className="bg-[#f8f9fa]">
+              <tr>
+                <th className="border border-[#dadce0] px-4 py-2 text-left">Monthly Units</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left">Service Charge (NPR)</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left">Energy Charge (NPR/unit)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td className="border border-[#dadce0] px-4 py-2">0–20</td><td className="border border-[#dadce0] px-4 py-2">30</td><td className="border border-[#dadce0] px-4 py-2">0 (free if total ≤ 20)</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2">21–30</td><td className="border border-[#dadce0] px-4 py-2">50</td><td className="border border-[#dadce0] px-4 py-2">3.00/unit for first 20, then 6.50/unit</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2">31–50</td><td className="border border-[#dadce0] px-4 py-2">50</td><td className="border border-[#dadce0] px-4 py-2">as above + 8.00/unit</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2">51–100</td><td className="border border-[#dadce0] px-4 py-2">75</td><td className="border border-[#dadce0] px-4 py-2">as above + 9.50/unit</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2">101–250</td><td className="border border-[#dadce0] px-4 py-2">100</td><td className="border border-[#dadce0] px-4 py-2">as above + 9.50/unit</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2">Above 250</td><td className="border border-[#dadce0] px-4 py-2">125</td><td className="border border-[#dadce0] px-4 py-2">as above + 11.00/unit</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs italic text-gray-500">Note: 15A meters have different service charges. The 5A ("special domestic") meter is the most common for small households. Commercial and industrial meters follow entirely different tariff schedules.</p>
+
+        <h2>How to Read Your NEA Bill</h2>
+        <p>Your monthly NEA electricity bill has several components:</p>
+        <ul className="list-disc pl-5 space-y-2">
+          <li><strong>Service/Fixed Charge:</strong> A flat monthly fee based on which unit slab you fall into. This applies regardless of how much electricity you use.</li>
+          <li><strong>Energy Charge:</strong> The per-unit cost multiplied by the number of units consumed in that slab range.</li>
+          <li><strong>VAT:</strong> 13% on the total of service + energy charges.</li>
+          <li><strong>Meter Rent:</strong> A small monthly charge for the electricity meter itself (typically NPR 5–15 for domestic meters).</li>
+        </ul>
+        <p className="font-bold mt-4">The total on your bill = Service Charge + Energy Charge + VAT + Meter Rent</p>
+      </>
+    ),
+    faqs: []
+  },
+  'attendance': {
+    title: "Attendance Calculator Nepal | 75% Rule for TU, KU, PU",
+    description: "Calculate your college attendance percentage. Find out exactly how many classes you can miss or need to attend to stay above the 75% minimum.",
+    content: (
+      <>
+        <h2>Nepal's 75% Attendance Rule</h2>
+        <p>Most colleges and universities in Nepal — including Tribhuvan University (TU), Kathmandu University (KU), Pokhara University (PU), and all affiliated campuses — require a minimum of <strong>75% attendance</strong> to appear in final exams. Falling below 75% typically means you are barred from sitting the exam regardless of your academic performance.</p>
+        <p>This calculator helps you track exactly where you stand and how many more classes you can afford to miss — or how many you need to attend to recover — before the semester ends.</p>
+
+        <h2>How to Use This Calculator</h2>
+        <ol className="list-decimal pl-5 space-y-2">
+          <li>Enter the total number of classes held so far this semester</li>
+          <li>Enter the number of classes you have attended</li>
+          <li>Enter the total number of remaining classes in the semester</li>
+          <li>Click Calculate — you see your current attendance %, whether you are safe, and exactly how many classes you can still miss while staying above 75%</li>
+        </ol>
+
+        <h2>Why 75%?</h2>
+        <p>The 75% minimum is set by the University Grants Commission (UGC) Nepal as a standard across institutions. Some departments — particularly medical, engineering, and science practicals — enforce stricter thresholds (80% or higher). Always check your specific department's attendance policy.</p>
+        <p><strong>Pro tip:</strong> If you are below 75% but still have classes remaining, the calculator shows how many consecutive classes you must attend to recover. Use it to plan rather than panic.</p>
+      </>
+    ),
+    faqs: [
+      { question: "What happens if I miss an exam due to attendance shortage?", answer: "You typically receive a \"Not Eligible\" (NE) status and cannot sit the exam that semester. Depending on your institution, you may be able to apply for special consideration with a valid reason (medical certificate, etc.) through the exam controller's office." },
+      { question: "My college tracks attendance differently. Can I still use this?", answer: "Yes. The calculator works with any attendance percentage threshold. If your college requires 80%, just remember that 75% is the national minimum — your department may be stricter." }
+    ]
+  },
+  'gpa': {
+    title: "GPA Calculator Nepal | TU, KU, PU Grading System",
+    description: "Calculate your semester GPA or overall CGPA according to standard Nepal university 4.0 grading scales. Convert GPA to percentage instantly.",
+    content: (
+      <>
+        <h2>Nepal University GPA System</h2>
+        <p>Most universities in Nepal follow a <strong>4.0 GPA scale</strong> — the same standard used internationally. Your GPA is a weighted average of your grade points across subjects, weighted by the credit hours of each course.</p>
+
+        <h2>Nepal Standard Grading Scale (TU, KU, PU)</h2>
+        <div className="overflow-x-auto my-6">
+          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
+            <thead className="bg-[#f8f9fa]">
+              <tr>
+                <th className="border border-[#dadce0] px-4 py-2 text-left">Marks Range</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left">Grade</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left">Grade Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td className="border border-[#dadce0] px-4 py-2">90–100%</td><td className="border border-[#dadce0] px-4 py-2">A+</td><td className="border border-[#dadce0] px-4 py-2">4.0</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2">80–89.9%</td><td className="border border-[#dadce0] px-4 py-2">A</td><td className="border border-[#dadce0] px-4 py-2">3.6</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2">70–79.9%</td><td className="border border-[#dadce0] px-4 py-2">B+</td><td className="border border-[#dadce0] px-4 py-2">3.2</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2">60–69.9%</td><td className="border border-[#dadce0] px-4 py-2">B</td><td className="border border-[#dadce0] px-4 py-2">2.8</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2">50–59.9%</td><td className="border border-[#dadce0] px-4 py-2">C+</td><td className="border border-[#dadce0] px-4 py-2">2.4</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2">40–49.9%</td><td className="border border-[#dadce0] px-4 py-2">C</td><td className="border border-[#dadce0] px-4 py-2">2.0</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2">35–39.9%</td><td className="border border-[#dadce0] px-4 py-2">D+</td><td className="border border-[#dadce0] px-4 py-2">1.6</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2">30–34.9%</td><td className="border border-[#dadce0] px-4 py-2">D</td><td className="border border-[#dadce0] px-4 py-2">1.2</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2">Below 30%</td><td className="border border-[#dadce0] px-4 py-2">F (Fail)</td><td className="border border-[#dadce0] px-4 py-2">0.0</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="text-xs italic text-gray-500">Note: Some universities have slight variations. Check your institution's official grade sheet for their exact scale.</p>
+
+        <h2>How to Use This Calculator</h2>
+        <ol className="list-decimal pl-5 space-y-2">
+          <li>Enter each subject name and its credit hours</li>
+          <li>Enter your marks or grade for each subject</li>
+          <li>Click Calculate — you see individual grade points, semester GPA, and CGPA if you enter multiple semesters</li>
+        </ol>
+        <p className="mt-4"><strong>GPA to percentage conversion:</strong> (GPA ÷ 4.0) × 100 = approximate percentage. Many scholarship forms and foreign universities ask for percentage — use this formula for conversion.</p>
+      </>
+    ),
+    faqs: [
+      { question: "What GPA do I need for a scholarship?", answer: "Most Nepal government scholarships require first division (roughly GPA 3.2+). For international scholarships (Australian Awards, DAAD, Erasmus), 3.0 or above is typically the baseline, though requirements vary." },
+      { question: "What is CGPA?", answer: "CGPA (Cumulative GPA) is your weighted average across all semesters completed so far. It gives a more accurate picture of overall academic performance than a single semester's GPA." }
+    ]
   }
 };

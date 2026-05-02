@@ -57,7 +57,7 @@ export function Footer() {
             <Link href="/contact/" className="hover:text-white transition-colors">Contact</Link>
           </div>
           <div className="text-[#70757a] text-[11px] font-medium">
-            © {year} NepaCalc Platform — All Rights Reserved.
+            © {year} NepaCal | Built by Avash Chaudhary
           </div>
         </div>
       </div>
