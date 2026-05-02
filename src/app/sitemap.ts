@@ -66,12 +66,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const posts = await fetchFirestoreCollection('posts');
     const guides = await fetchFirestoreCollection('seo_pages');
 
-    const blogPages = posts.map((post: any) => ({
-      url: `${baseUrl}/blog/${post.slug}/`,
-      lastModified: new Date(post.updatedAt || lastModDate),
-      changeFrequency: 'weekly' as const,
-      priority: 0.6,
-    }));
+    const blogPages: any[] = [];
 
     const guidePages = guides.map((guide: any) => ({
       url: `${baseUrl}/guide/${guide.slug}/`,

@@ -1,3 +1,4 @@
+'use client';
 import dynamic from 'next/dynamic';
 import React from 'react';
 
@@ -14,7 +15,6 @@ export const CalculatorRegistry: Record<string, any> = {
   'nepal-salary': dynamic(() => import('@/app/calculator/nepal-salary/Calculator'), { ssr: false }),
   'sip-calculator': dynamic(() => import('@/app/calculator/sip-calculator/Calculator'), { ssr: false }),
   'nepali-date': dynamic(() => import('@/app/calculator/nepali-date/Calculator'), { ssr: false }),
-  // Add more as needed by blog content
 };
 
 export function InlineCalculator({ slug }: { slug: string }) {

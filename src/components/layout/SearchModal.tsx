@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Search, X, Calculator, ArrowRight } from 'lucide-react';
 import { CALCULATORS, Calculator as CalcType } from '@/data/calculators';
 import { useRouter } from 'next/navigation';
+import { Logo } from '@/components/ui/Logo';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -75,6 +76,9 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
       {/* Modal */}
       <div className="relative w-full max-w-xl bg-[var(--bg-surface)] rounded-2xl shadow-2xl border border-[var(--border)] overflow-hidden animate-in zoom-in-95 duration-200">
         <div className="flex items-center p-4 border-b border-[var(--border)] bg-[var(--bg-page)]">
+          <div className="hidden sm:block mr-4 scale-75 opacity-80">
+            <Logo size="sm" theme="indigo" />
+          </div>
           <Search className="w-5 h-5 text-[var(--text-muted)] mr-3" />
           <input
             ref={inputRef}

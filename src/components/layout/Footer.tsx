@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { CATEGORIES, CALCULATORS } from '@/data/calculators';
+import { CALCULATORS } from '@/data/calculators';
+import { Logo } from '@/components/ui/Logo';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -17,9 +18,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
           <div className="space-y-6">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl font-black text-white tracking-tighter">Nepa<span className="text-[#1A73E8]">Calc</span></span>
-            </div>
+            <Link href="/" className="inline-block transition-transform hover:scale-105">
+              <Logo size="md" theme="white" />
+            </Link>
             <p className="text-xs leading-relaxed text-[#9aa0a6] font-medium">
               Nepal&apos;s leading platform for high-precision calculators, converters, and engineering tools. Built for accuracy, localized for Nepal.
             </p>

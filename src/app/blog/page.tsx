@@ -1,210 +1,81 @@
 /**
- * @fileoverview Blog Page (RSC) — NepaCalc
+ * @fileoverview Blog Index Page — Reverted to Old Structure
  *
- * Refactored to React Server Component (RSC) for maximum SEO impact.
- * Fetches all published blog posts and SEO guide pages server-side.
- * Standardizes metadata and structured data for search engine dominance.
- * 
- * @module src/app/blog/page.tsx
+ * Fetches all published blog posts from Firestore.
  */
 
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Calendar, Clock, ArrowRight, BookOpen, FileText, Search } from 'lucide-react';
+import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { fetchFirestoreCollection } from '@/lib/firestore-rest';
 
-// --- SEO CONFIGURATION ---
 export const metadata: Metadata = {
-  title: 'Blog & Financial Guides | NepaCalc Precision',
-  description: 'Expert tips on Nepal income tax, salary planning, SSF, home loans, and professional calculator tutorials. Stay financially informed with the latest updates.',
-  alternates: { canonical: 'https://NepaCalc.com/blog/' },
-  openGraph: {
-    title: 'NepaCalc Blog — Expert Nepal Calculation Guides',
-    description: 'Expert financial advice and calculator walkthroughs for Nepal.',
-    url: 'https://NepaCalc.com/blog',
-    siteName: 'NepaCalc',
-    type: 'website',
-  },
+  title: 'Blog & Financial Guides | NepaCalc',
+  description: 'Expert tips on Nepal income tax, salary planning, and professional calculator tutorials.',
+  alternates: { canonical: 'https://nepacalc.com/blog/' },
+  robots: { index: false, follow: false },
 };
 
-interface ContentItem {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  category: string;
-  date: string;
-  status: string;
-  type: 'post' | 'guide';
-  wordCount?: number;
-}
-
 export default async function BlogIndexPage() {
-  const currentTab = 'all'; // Default to all for static export
-
-  // Fetch all content server-side with robust error handling
-  let postsRaw: any[] = [];
-  let guidesRaw: any[] = [];
-
+  let posts: any[] = [];
   try {
-    const results = await Promise.allSettled([
-      fetchFirestoreCollection('posts'),
-      fetchFirestoreCollection('seo_pages')
-    ]);
-
-    if (results[0].status === 'fulfilled') postsRaw = results[0].value || [];
-    if (results[1].status === 'fulfilled') guidesRaw = results[1].value || [];
+    posts = await fetchFirestoreCollection('posts');
   } catch (error) {
-    console.error('Final Build: Firestore fetch failed but proceeding with fallback.', error);
+    console.error('Firestore fetch error:', error);
   }
 
-  let posts: ContentItem[] = [];
-  let guides: ContentItem[] = [];
-
-  try {
-    posts = (postsRaw || [])
-      .filter((p: any) => p && p.status === 'published')
-      .map((p: any) => ({ ...p, type: 'post' as const }));
-
-    guides = (guidesRaw || [])
-      .filter((p: any) => p && p.status === 'published')
-      .map((p: any) => ({ ...p, type: 'guide' as const }));
-  } catch (error) {
-    console.error('Blog Render mapping error:', error);
-    // Graceful fallback if data shape is unexpectedly corrupted
-  }
-
-  // Combine and sort by date descending
-  let items = [...posts, ...guides].sort((a, b) => {
-    const da = a.date ? new Date(a.date).getTime() : 0;
-    const db = b.date ? new Date(b.date).getTime() : 0;
-    return (isNaN(db) ? 0 : db) - (isNaN(da) ? 0 : da);
-  });
-
-  // Tab filtering handled server-side for initial static build (default: all)
-  const tabs = [
-    { id: 'all',    label: 'All Content', count: posts.length + guides.length, href: '/blog/' },
-    { id: 'posts',  label: 'Blog Posts',  count: posts.length, href: '/blog/?type=posts' },
-    { id: 'guides', label: 'Guides',      count: guides.length, href: '/blog/?type=guides' },
-  ];
+  const publishedPosts = (posts || [])
+    .filter((p: any) => p && p.status === 'published')
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
-    <div className="min-h-screen bg-[var(--bg-page)] dark:bg-gray-950 transition-colors duration-300">
-      <div className="hp-container py-8 sm:py-20">
-
-        {/* --- HEADER --- */}
-        <header className="mb-10 text-center lg:text-left max-w-2xl animate-fade-in">
-          <div className="inline-flex items-center gap-3 text-[9px] font-black uppercase tracking-[0.2em] text-[var(--primary)] bg-[var(--primary-light)] border border-[var(--primary-light)] rounded-xl px-4 py-1.5 mb-6 shadow-sm">
-            <span className="w-1.5 h-1.5 bg-[var(--primary)] rounded-full animate-pulse shadow-sm shadow-blue-500/50" />
-            Mathematical Insights
-          </div>
-          <h1 className="text-[20px] sm:text-[28px] font-black text-[var(--text-main)] mb-4 tracking-tighter leading-tight">
-            Scientific <span className="text-[var(--primary)]">Resources</span>
+    <div className="min-h-screen bg-[#F8FAFB]">
+      <div className="max-w-6xl mx-auto px-4 py-16">
+        <header className="mb-12">
+          <h1 className="text-3xl font-extrabold text-gray-900 mb-4">
+            Blog & <span className="text-blue-600">Guides</span>
           </h1>
-          <p className="text-[var(--text-secondary)] text-[14px] leading-relaxed font-medium">
-             Expert financial guidance, local tax intelligence, and professional calculator tutorials for the latest Nepal fiscal ecosystem.
+          <p className="text-gray-500 max-w-2xl">
+            Stay informed with the latest financial updates and expert guides for Nepal.
           </p>
         </header>
 
-        {/* --- TABS --- */}
-        <div className="flex flex-wrap gap-2 mb-12 border-b border-gray-100 dark:border-gray-900 pb-8">
-          {tabs.map((tab) => (
-            <Link
-              key={tab.id}
-              href={tab.href}
-              className={`group flex items-center gap-4 px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all
-                ${currentTab === tab.id
-                  ? 'bg-gray-900 text-white dark:bg-white dark:text-black shadow-xl shadow-gray-200/20 dark:shadow-none'
-                  : 'text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20'}`}
-            >
-              {tab.label}
-              <span className={`px-2 py-0.5 rounded-lg text-[9px]
-                ${currentTab === tab.id ? 'bg-white/20 dark:bg-black/10' : 'bg-gray-100 dark:bg-gray-800'}`}>
-                {tab.count}
-              </span>
-            </Link>
-          ))}
-        </div>
-
-        {/* --- CONTENT GRID --- */}
-        {items.length === 0 ? (
-          <div className="text-center py-32 bg-[var(--bg-surface)] rounded-[3rem] border border-[var(--border)] shadow-sm">
-            <BookOpen className="w-12 h-12 text-gray-300 mx-auto mb-6 opacity-50" />
-            <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-widest text-center">No articles found in this category</h3>
+        {publishedPosts.length === 0 ? (
+          <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-gray-200">
+            <p className="text-gray-400">No blog posts found.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {items.map((item) => {
-              const href = item.type === 'guide' ? `/guide/${item.slug}/` : `/blog/${item.slug}/`;
-              const readMins = Math.max(1, Math.round((item.wordCount || 800) / 200));
-              const isSalaryFocus = item.title.toLowerCase().includes('salary') || item.excerpt.toLowerCase().includes('salary');
-
-              return (
-                <Link key={item.id} href={href} className="group relative flex flex-col bg-[var(--bg-surface)] border border-[var(--border)] rounded-[1.5rem] p-6 transition-all hover:border-[var(--primary)] hover:shadow-xl active:scale-[0.98] shadow-sm">
-                  
-                  {/* Badge */}
-                  <div className="flex items-center justify-between mb-6">
-                    <span className={`text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full border
-                      ${item.type === 'guide' 
-                        ? 'bg-emerald-50 text-emerald-600 border-emerald-100 dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800/50' 
-                        : 'bg-blue-50 text-blue-600 border-blue-100 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800/50'}`}>
-                      {item.type}
-                    </span>
-                    {isSalaryFocus && (
-                        <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-blue-600 text-white shadow-lg shadow-blue-600/20">
-                            <ArrowRight className="w-3 h-3" />
-                        </div>
-                    )}
-                  </div>
-
-                  <h2 className="text-lg font-black text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors mb-4 leading-tight">
-                    {item.title}
-                  </h2>
-
-                  <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-6 line-clamp-2">
-                    {item.excerpt}
-                  </p>
-
-                  <div className="mt-auto pt-4 border-t border-gray-50 dark:border-gray-800 flex items-center justify-between">
-                    <div className="flex items-center gap-4 text-[9px] font-black text-gray-400 uppercase tracking-widest">
-                       <span className="flex items-center gap-2">
-                          <Calendar className="w-3 h-3" />
-                          {item.date && !isNaN(new Date(item.date).getTime()) 
-                            ? new Date(item.date).toLocaleDateString('en-NP', { month: 'short', day: 'numeric' })
-                            : 'Recent'}
-                       </span>
-                       <span>·</span>
-                       <span className="flex items-center gap-2">
-                          <Clock className="w-3 h-3" />
-                          {readMins}m
-                       </span>
+            {publishedPosts.map((post) => (
+              <Link 
+                key={post.id} 
+                href={`/blog/${post.slug}/`}
+                className="group flex flex-col bg-white border border-gray-100 rounded-2xl p-6 transition-all hover:shadow-lg hover:border-blue-300"
+              >
+                <div className="mb-4">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                    {post.category || 'Post'}
+                  </span>
+                </div>
+                <h2 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 mb-3 leading-tight">
+                  {post.title}
+                </h2>
+                <p className="text-gray-500 text-sm mb-6 line-clamp-3">
+                  {post.excerpt}
+                </p>
+                <div className="mt-auto flex items-center justify-between text-[11px] text-gray-400 font-medium">
+                  <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-3 h-3" />
+                      {new Date(post.date).toLocaleDateString()}
                     </div>
                   </div>
-
-                  {/* Auto-Linking Strategy (Phase 2 SEO) */}
-                  {isSalaryFocus && (
-                      <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-blue-600 text-white text-[8px] font-black uppercase px-3 py-1.5 rounded-xl translate-y-2 group-hover:translate-y-0 duration-300 pointer-events-none">
-                         Try Salary Calc →
-                      </div>
-                  )}
-                </Link>
-              );
-            })}
+                  <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-blue-600 transition-colors" />
+                </div>
+              </Link>
+            ))}
           </div>
         )}
-
-        {/* --- NEWSLETTER CTA --- */}
-         <section className="mt-32 bg-gray-950 dark:bg-white rounded-[2rem] p-8 sm:p-16 text-center relative overflow-hidden">
-            <div className="relative z-10 space-y-6">
-               <h2 className="text-white dark:text-black text-2xl sm:text-4xl font-black tracking-tight">Stay ahead of the <span className="text-blue-500">market.</span></h2>
-               <p className="text-white/60 dark:text-black/60 max-w-xl mx-auto text-sm">Join our growing community of Nepal professionals receiving weekly tax insights and 2082/83 financial alerts.</p>
-               <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                  <input type="email" placeholder="Your work email" className="flex-1 bg-white/10 dark:bg-gray-100 border border-white/20 dark:border-gray-200 rounded-xl px-6 py-3 text-white dark:text-black focus:outline-none focus:border-blue-500 transition-all font-medium text-sm" />
-                  <button className="bg-blue-600 text-white font-black text-[10px] uppercase tracking-[0.2em] px-8 py-4 rounded-xl hover:bg-blue-500 hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-blue-600/30">Get Alerts</button>
-               </div>
-            </div>
-         </section>
-
       </div>
     </div>
   );

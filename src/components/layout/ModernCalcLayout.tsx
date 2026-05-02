@@ -126,7 +126,18 @@ export function ModernCalcLayout({
         "image": "https://nepacalc.com/logo.png",
         "applicationCategory": "BusinessApplication, FinanceApplication, EducationApplication",
         "operatingSystem": "All",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "NPR" }
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "NPR" },
+        "publisher": {
+          "@type": "Organization",
+          "name": "NepaCalc",
+          "url": "https://nepacalc.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://nepacalc.com/logo.png",
+            "width": "1024",
+            "height": "1024"
+          }
+        }
       })}} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       {howToSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />}

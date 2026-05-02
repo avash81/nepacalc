@@ -21,14 +21,14 @@ export async function generateStaticParams() {
   try {
     const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
     const dbId = process.env.NEXT_PUBLIC_FIREBASE_DATABASE_ID;
-    if (!projectId) return [{ slug: 'nepal-tax-guide' }];
+    return [];
 
     const url = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/${dbId || '(default)'}/documents/seo_pages?pageSize=100`;
     const res = await fetch(url);
-    if (!res.ok) return [{ slug: 'nepal-tax-guide' }];
+    if (!res.ok) return [];
 
     const data = await res.json();
-    if (!data.documents) return [{ slug: 'nepal-tax-guide' }];
+    if (!data.documents) return [];
 
     return data.documents
       .filter((d: any) => d.fields?.status?.stringValue === 'published')
@@ -38,7 +38,7 @@ export async function generateStaticParams() {
       .filter((p: any) => p.slug !== '');
   } catch (e) {
     console.error('Error generating static params for guides:', e);
-    return [{ slug: 'nepal-tax-guide' }];
+    return [];
   }
 }
 

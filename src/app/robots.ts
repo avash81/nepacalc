@@ -15,6 +15,7 @@ export default function robots(): MetadataRoute.Robots {
         '/api/',
         '/admin/',
         '/search/',
+        '/blog/',
       ],
     },
     sitemap: 'https://nepacalc.com/sitemap.xml',
