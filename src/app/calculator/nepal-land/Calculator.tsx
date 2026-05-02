@@ -2,7 +2,10 @@
 import { useMemo, useState, useEffect, useRef } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { Map, Layers, Ruler, Building2, Lightbulb, ExternalLink, History, Landmark, Compass, Table, Sigma } from 'lucide-react';
+import { GoogleResultCard, GoogleSubCard, GoogleTip } from '@/components/ui/ResultCard';
 import Link from 'next/link';
+import { BlockMath } from 'react-katex';
+import 'katex/dist/katex.min.css';
 
 // Constants
 const SQFT_PER_ROPANI = 5476;
@@ -154,41 +157,32 @@ export default function NepalLandCalculator() {
         </div>
       }
       results={
-        <div className="space-y-4">
-          <div className="p-5 bg-[#1A1A2E] border border-[#DADCE0] rounded-lg text-center space-y-1 text-white shadow-lg">
-            <div className="text-[9px] font-bold text-blue-400 uppercase tracking-wider">Lalpurja Area Base</div>
-            <div className="text-3xl font-black">{Math.round(values.sqft).toLocaleString()} <span className="text-base text-blue-400">ft²</span></div>
-            <div className="text-[10px] font-bold text-white/50 uppercase">{values.sqm.toFixed(2)} m² | {values.acres.toFixed(3)} Ac</div>
+        <div className="space-y-6">
+          <GoogleResultCard 
+            title="Lalpurja Area Base"
+            value={Math.round(values.sqft).toLocaleString()}
+            suffix=" ft²"
+            badge={`${values.sqm.toFixed(2)} m² | ${values.acres.toFixed(3)} Ac`}
+          />
+
+          <div className="grid grid-cols-2 gap-4">
+             <GoogleSubCard 
+               title="Hill System (RAPD)"
+               value={`${values.ropani_b}-${values.aana_b}-${values.paisa_b}-${values.daam_b.toFixed(0)}`}
+               label="Ropani-Aana-Paisa-Daam"
+             />
+             <GoogleSubCard 
+               title="Terai System (BKD)"
+               value={`${values.bigha_b}-${values.kattha_b}-${values.dhur_b.toFixed(0)}`}
+               label="Bigha-Kattha-Dhur"
+               color="#188038"
+             />
           </div>
 
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 flex gap-3">
-             <Lightbulb className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-             <div className="space-y-0.5">
-                <p className="text-[10px] font-black text-amber-900 uppercase">Buyer's Insight</p>
-                <p className="text-[10px] text-amber-800 leading-tight font-medium">Verified by <strong>DoLMA 2082 Standards</strong>. 1 Ropani = 508.72 m². Match your <strong>LIN</strong> ID records.</p>
-             </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3">
-            <div className="bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg p-3 text-center shadow-sm">
-              <div className="text-[8px] font-bold text-[#1A73E8] uppercase tracking-widest mb-2 border-b border-[#C5D9F7] pb-1">Hill System (RAPD)</div>
-              <div className="flex justify-between px-1">
-                <div><div className="text-sm font-black text-[#1A73E8]">{values.ropani_b}</div><div className="text-[7px] text-[#70757A] uppercase font-bold">Ropani</div></div>
-                <div><div className="text-sm font-black text-[#1A73E8]">{values.aana_b}</div><div className="text-[7px] text-[#70757A] uppercase font-bold">Aana</div></div>
-                <div><div className="text-sm font-black text-[#1A73E8]">{values.paisa_b}</div><div className="text-[7px] text-[#70757A] uppercase font-bold">Paisa</div></div>
-                <div><div className="text-sm font-black text-[#1A73E8]">{values.daam_b.toFixed(0)}</div><div className="text-[7px] text-[#70757A] uppercase font-bold">Daam</div></div>
-              </div>
-            </div>
-            
-            <div className="bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg p-3 text-center shadow-sm">
-              <div className="text-[8px] font-bold text-[#188038] uppercase tracking-widest mb-2 border-b border-[#CEEAD6] pb-1">Terai System (BKD)</div>
-              <div className="flex justify-around px-1">
-                <div><div className="text-sm font-black text-[#188038]">{values.bigha_b}</div><div className="text-[7px] text-[#70757A] uppercase font-bold">Bigha</div></div>
-                <div><div className="text-sm font-black text-[#188038]">{values.kattha_b}</div><div className="text-[7px] text-[#70757A] uppercase font-bold">Kattha</div></div>
-                <div><div className="text-sm font-black text-[#188038]">{values.dhur_b.toFixed(0)}</div><div className="text-[7px] text-[#70757A] uppercase font-bold">Dhur</div></div>
-              </div>
-            </div>
-          </div>
+          <GoogleTip 
+            title="Buyer's Insight"
+            tip="Verified by DoLMA 2082 Standards. 1 Ropani = 508.72 m². Match your LIN ID records."
+          />
         </div>
       }
       details={
@@ -320,18 +314,19 @@ export default function NepalLandCalculator() {
                    <div className="space-y-4">
                       <h4 className="text-xs font-black uppercase tracking-widest text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full inline-block">1. Ropani-Aana System (Hills)</h4>
                       <p className="text-xs text-[#5F6368] leading-relaxed">Used in Kathmandu and the hills to buy or sell land. Our <strong>Nepal Land Area Converter</strong> converts between these 100% accurately.</p>
-                      <div className="bg-[#F8F9FA] p-6 rounded-2xl border border-[#DADCE0] font-mono text-center">
-                         {"$$1\\ Ropani = 16\\ Aana = 5476\\ ft^2$$"}
-                         {"$$1\\ Aana = 4\\ Paisa = 342.25\\ ft^2$$"}
-                         {"$$1\\ Paisa = 4\\ Dam = 85.56\\ ft^2$$"}
+                      <div className="bg-[#F8F9FA] p-4 rounded-2xl border border-[#DADCE0] text-center overflow-x-auto">
+                        <BlockMath math="1\ Ropani = 16\ Aana = 5476\ ft^2" />
+                        <BlockMath math="1\ Aana = 4\ Paisa = 342.25\ ft^2" />
+                        <BlockMath math="1\ Paisa = 4\ Daam = 85.56\ ft^2" />
                       </div>
                    </div>
                    <div className="space-y-4">
                       <h4 className="text-xs font-black uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full inline-block">2. Bigha-Kattha System (Terai)</h4>
                       <p className="text-xs text-[#5F6368] leading-relaxed">The units of measurement in the Terai region are much bigger. This system is essential for plains cross-regional investors.</p>
-                      <div className="bg-[#F8F9FA] p-6 rounded-2xl border border-[#DADCE0] font-mono text-center">
-                         {"$$1\\ Bigha = 20\\ Kattha = 72900\\ ft^2$$"}
-                         {"$$1\\ Kattha = 20\\ Dhur = 3645\\ ft^2$$"}
+                      <div className="bg-[#F8F9FA] p-4 rounded-2xl border border-[#DADCE0] text-center overflow-x-auto">
+                        <BlockMath math="1\ Bigha = 20\ Kattha = 72900\ ft^2" />
+                        <BlockMath math="1\ Kattha = 20\ Dhur = 3645\ ft^2" />
+                        <BlockMath math="1\ Dhur = 182.25\ ft^2" />
                       </div>
                    </div>
                 </div>
@@ -353,32 +348,6 @@ export default function NepalLandCalculator() {
                    </div>
                 </div>
              </div>
-          </div>
-
-          {/* 7. Recommended Tools Section */}
-          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-3xl p-8">
-            <div className="flex items-center justify-between mb-8">
-              <h3 className="text-lg font-black text-[#202124] uppercase tracking-tight">Recommended Tools</h3>
-              <Link href="/directory/" className="text-[10px] font-black text-blue-600 uppercase tracking-widest hover:underline">View All &rarr;</Link>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-              {[
-                { n: 'Income Tax', h: '/calculator/nepal-income-tax/' },
-                { n: 'Salary Calc', h: '/calculator/nepal-salary/' },
-                { n: 'Home Loan', h: '/calculator/nepal-home-loan/' },
-                { n: 'Electricity Bill', h: '/calculator/nea-bill/' },
-                { n: 'NEPSE Trading', h: '/calculator/nepse-trading/' },
-                { n: 'Capital Gains', h: '/calculator/nepse-cgt/' },
-                { n: 'Property Fee', h: '/calculator/property-registration/' },
-                { n: 'Provident Fund', h: '/calculator/nepal-provident-fund/' },
-                { n: 'TDS Calculator', h: '/calculator/nepal-tds/' },
-                { n: 'Vehicle Tax', h: '/calculator/nepal-vehicle-tax/' }
-              ].map(tool => (
-                <Link key={tool.n} href={tool.h} className="p-3 bg-white border border-[#DADCE0] rounded-xl text-center hover:border-blue-600 hover:shadow-md transition-all">
-                  <div className="text-[10px] font-black text-[#202124] uppercase truncate">{tool.n}</div>
-                </Link>
-              ))}
-            </div>
           </div>
         </div>
       }

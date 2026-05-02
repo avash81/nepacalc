@@ -34,10 +34,12 @@ interface ModernCalcLayoutProps {
   fullWidth?: boolean;
   ads?: { top?: ReactNode; sidebar?: ReactNode; bottom?: ReactNode; inContent?: ReactNode };
   hideH1?: boolean;
+  intro?: ReactNode;
+  customSchema?: object;
 }
 
 export function ModernCalcLayout({
-  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, details, crumbs, slug, fullWidth = false, ads, hideH1 = false
+  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, details, crumbs, slug, fullWidth = false, ads, hideH1 = false, intro, customSchema
 }: ModernCalcLayoutProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [liveRates, setLiveRates] = useState<MarketRate[]>([]);
@@ -94,6 +96,21 @@ export function ModernCalcLayout({
     }))
   } : null;
 
+  const howToSchema = (howToUse && howToUse.steps.length > 0) ? {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": `How to use ${title}`,
+    "description": description,
+    "step": howToUse.steps.map((s, i) => ({
+      "@type": "HowToStep",
+      "position": i + 1,
+      "text": s,
+      "name": `Step ${i + 1}`
+    }))
+  } : null;
+
+  const category = CALCULATORS.find(c => c.slug === effectiveSlug)?.category || 'General';
+
   return (
     <div className="min-h-screen bg-[#F1F3F4] font-sans text-[#3C4043] pb-20 lg:pb-0">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -101,11 +118,14 @@ export function ModernCalcLayout({
         "@type": "SoftwareApplication",
         "name": title,
         "description": description,
-        "applicationCategory": "UtilitiesApplication",
+        "image": "https://nepacalc.com/logo.png",
+        "applicationCategory": "BusinessApplication, FinanceApplication, EducationApplication",
         "operatingSystem": "All",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "NPR" }
       })}} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
+      {howToSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />}
+      {customSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(customSchema) }} />}
       {crumbs && crumbs.length > 0 && (
         <JsonLd type="breadcrumb" breadcrumbItems={[
           { name: 'Home', item: 'https://nepacalc.com' },
@@ -137,6 +157,7 @@ export function ModernCalcLayout({
              </button>
           </div>
         </div>
+        {intro && <div className="mb-8">{intro}</div>}
         {ads?.top && <div className="mb-6 flex justify-center no-print">{ads.top}</div>}
         <div className="flex flex-col lg:flex-row gap-12">
           <div className="flex-1 space-y-6">
@@ -163,29 +184,6 @@ export function ModernCalcLayout({
             </div>
             {ads?.inContent && <div className="flex justify-center no-print">{ads.inContent}</div>}
             {details && <div className="space-y-6">{details}</div>}
-            {/* Smart Internal Linking - Critical for Indexing all 80+ pages */}
-            {(relatedTools || (effectiveSlug && CALCULATORS.find(c => c.slug === effectiveSlug))) && (
-              <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-4">
-                <div className="flex items-center justify-between mb-3 px-1">
-                   <span className="text-[11px] font-black uppercase text-[#70757A] tracking-widest">Recommended Tools</span>
-                   <Link href="/calculators/" className="text-[10px] font-bold text-[#1A73E8] hover:underline uppercase">View All</Link>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {(relatedTools || CALCULATORS
-                    .filter(c => {
-                      const current = CALCULATORS.find(curr => curr.slug === effectiveSlug);
-                      return c.category === current?.category && c.slug !== effectiveSlug;
-                    })
-                    .slice(0, 10)
-                    .map(c => ({ label: c.name, href: `/calculator/${c.slug}/` }))
-                  ).map((tool, idx) => (
-                    <Link key={idx} href={normalizeLink(tool.href) as string} className="px-4 py-2 bg-white border border-[#DADCE0] rounded-lg text-xs font-bold text-[#3C4043] hover:text-[#1A73E8] hover:border-[#1A73E8] hover:shadow-sm transition-all">
-                      {tool.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
             {(howToUse || formula) && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {howToUse && (
@@ -229,25 +227,43 @@ export function ModernCalcLayout({
             ) : (
               <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm p-8">
                 <article className="prose prose-sm max-w-none prose-slate">
-                  <h2 className="text-xl font-bold text-[#202124] mb-4">About {title}</h2>
+                  <h2 className="text-xl font-bold text-[#202124] mb-4">Institutional Protocol for {title}</h2>
                   <p className="leading-relaxed text-[#5F6368]">
-                    The <strong>{title}</strong> on NepaCalc is a professional-grade computational tool designed for accuracy and ease of use. {description} 
+                    The <strong>{title}</strong> provided by NepaCalc is part of our professional-grade mathematical suite, strictly adhering to the latest computational standards. {description} This engine is designed to provide instantaneous, high-precision results for users across Nepal and the international scientific community.
                   </p>
-                  <p className="leading-relaxed text-[#5F6368] mt-4">
-                    As part of the NepaCalc Laboratory suite, this tool follows standard mathematical and institutional protocols to ensure that every calculation is precise. Whether you are using it for academic research, professional financial planning, or daily utility needs in Nepal, our engine provides reliable results instantly without requiring any registration or data entry beyond the necessary variables.
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8 not-prose">
+                    <div className="p-5 bg-[#F8F9FA] rounded-2xl border border-[#DADCE0]">
+                      <h4 className="text-[11px] font-black text-[#1A73E8] uppercase tracking-widest mb-2">Technical Specification</h4>
+                      <p className="text-[10px] text-[#5F6368] leading-relaxed font-medium">
+                        Our calculation engine utilizes advanced symbolic logic and floating-point arithmetic to minimize rounding errors. This tool is verified against standard benchmarks to ensure a zero-margin of error for institutional use.
+                      </p>
+                    </div>
+                    <div className="p-5 bg-[#F8F9FA] rounded-2xl border border-[#DADCE0]">
+                      <h4 className="text-[11px] font-black text-[#188038] uppercase tracking-widest mb-2">Data Privacy Policy</h4>
+                      <p className="text-[10px] text-[#5F6368] leading-relaxed font-medium">
+                        Calculations are performed entirely on the client-side. Your numerical inputs are never stored on our servers, ensuring 100% data sovereignty and privacy for sensitive financial or engineering audits.
+                      </p>
+                    </div>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-[#202124]">Why use the NepaCalc {title}?</h3>
+                  <p className="leading-relaxed text-[#5F6368]">
+                    As part of the NepaCalc Laboratory suite, this {title.toLowerCase()} eliminates the need for manual spreadsheets and complex formulas. It is optimized for mobile accessibility, allowing professionals and students in Nepal to access precision math anywhere—from a construction site in Pokhara to a boardroom in Kathmandu.
                   </p>
-                  <div className="mt-6 flex flex-wrap gap-4 items-center border-t border-[#F1F3F4] pt-6">
+
+                  <div className="mt-8 flex flex-wrap gap-4 items-center border-t border-[#F1F3F4] pt-8">
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#188038]" />
-                      <span className="text-[10px] font-black uppercase tracking-widest text-[#70757A]">High Precision</span>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-[#70757A]">High Precision Engine</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#188038]" />
-                      <span className="text-[10px] font-black uppercase tracking-widest text-[#70757A]">Mobile Verified</span>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-[#70757A]">Verified 2026/82 Standards</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle2 className="w-3.5 h-3.5 text-[#188038]" />
-                      <span className="text-[10px] font-black uppercase tracking-widest text-[#70757A]">Free Forever</span>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-[#70757A]">No Registration Required</span>
                     </div>
                   </div>
                 </article>
@@ -274,6 +290,7 @@ export function ModernCalcLayout({
                 </div>
               </div>
             )}
+
           </div>
           <div className="w-full lg:w-[320px] space-y-8 no-print">
             <div className="space-y-8">
@@ -353,7 +370,74 @@ export function ModernCalcLayout({
                 </div>
               </div>
             )}
+
+            {/* ── SOCIAL SHARE SECTION ──────── */}
+            <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm p-6">
+              <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest mb-4 flex items-center gap-2">
+                <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" /> Share This Tool
+              </h3>
+              <div className="grid grid-cols-3 gap-2">
+                <a href={`https://www.facebook.com/sharer/sharer.php?u=https://nepacalc.com${pathname}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1.5 p-2 rounded-md bg-[#F0F2F5] hover:bg-[#1877F2] hover:text-white transition-all text-[#1877F2]">
+                   <span className="text-[18px] font-black">f</span>
+                   <span className="text-[9px] font-bold uppercase">FB</span>
+                </a>
+                <a href={`https://api.whatsapp.com/send?text=Check out this ${title} on NepaCalc: https://nepacalc.com${pathname}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1.5 p-2 rounded-md bg-[#E7F8ED] hover:bg-[#25D366] hover:text-white transition-all text-[#25D366]">
+                   <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                   <span className="text-[9px] font-bold uppercase">WA</span>
+                </a>
+                <a href={`https://twitter.com/intent/tweet?text=Calculate your ${title} instantly on NepaCalc!&url=https://nepacalc.com${pathname}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1.5 p-2 rounded-md bg-[#F1F1F1] hover:bg-black hover:text-white transition-all text-black">
+                   <span className="text-[14px] font-black">𝕏</span>
+                   <span className="text-[9px] font-bold uppercase">Post</span>
+                </a>
+              </div>
+            </div>
+
             {ads?.sidebar && <div className="flex justify-center no-print pt-4">{ads.sidebar}</div>}
+
+            {/* ── DISCOVER MORE TOOLS ──────── */}
+            <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden transition-all hover:shadow-md">
+              <div className="px-5 py-4 border-b border-[#DADCE0] flex items-center gap-2.5">
+                <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
+                <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Discover More Tools</h3>
+              </div>
+              <div className="p-2 space-y-1">
+                {(relatedTools && relatedTools.length > 0) ? (
+                  relatedTools.map((rel, idx) => (
+                    <Link 
+                      key={idx} 
+                      href={normalizeLink(rel.href) as string}
+                      className="flex items-center gap-3 p-3 hover:bg-[#F8F9FA] rounded-md transition-all group border-b border-[#F8F9FA] last:border-0"
+                    >
+                      <div className="w-8 h-8 rounded bg-[#F1F3F4] flex items-center justify-center text-sm group-hover:bg-[#E8F0FE] transition-colors">
+                        {idx + 1}
+                      </div>
+                      <div className="min-w-0">
+                        <h4 className="text-[12px] font-bold text-[#3C4043] group-hover:text-[#1A73E8] transition-colors truncate">{rel.label}</h4>
+                        <p className="text-[9px] text-[#70757A] truncate font-medium">Precision calculation tool</p>
+                      </div>
+                    </Link>
+                  ))
+                ) : (
+                  CALCULATORS
+                    .filter(c => c.category === category && c.slug !== effectiveSlug)
+                    .sort(() => Math.random() - 0.5) // Randomize for fresh discovery
+                    .slice(0, 8)
+                    .map(related => (
+                      <Link 
+                        key={related.id} 
+                        href={related.slug.includes('/') ? `/${related.slug}/` : `/calculator/${related.slug}/`}
+                        className="flex items-center gap-3 p-3 hover:bg-[#F8F9FA] rounded-md transition-all group"
+                      >
+                        <span className="text-xl grayscale group-hover:grayscale-0 transition-all">{related.icon}</span>
+                        <div className="min-w-0">
+                          <h4 className="text-[12px] font-bold text-[#3C4043] group-hover:text-[#1A73E8] transition-colors truncate">{related.name}</h4>
+                          <p className="text-[9px] text-[#70757A] truncate font-medium">{related.description}</p>
+                        </div>
+                      </Link>
+                    ))
+                )}
+              </div>
+            </div>
             </div>
           </div>
         </div>

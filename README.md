@@ -56,7 +56,7 @@ src/
 3. **Accuracy Audit**: `npm test` (**89 Cases must pass before any push**)
 4. **Style Verification**: `npm run lint` (**Strict zero-tolerance for errors**)
 5. **Production Build**: `npm run build`
-6. **Deploy**: Vercel/Self-host as high-performance SSR/Client Hybrid.
+6. **Deploy**: Deploy as a static export to cPanel or any high-performance static hosting.
 
 ---
 

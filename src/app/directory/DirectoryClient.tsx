@@ -38,7 +38,7 @@ export default function DirectoryClient() {
                 {cat.calculators.map(calc => (
                   <Link 
                     key={calc.id} 
-                    href={`/calculator/${calc.slug}`}
+                    href={calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`}
                     className="group flex items-center justify-between py-3 px-4 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-all"
                   >
                     <div className="flex items-center gap-4">
