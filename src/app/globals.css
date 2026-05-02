@@ -137,6 +137,13 @@ button:active {
   contain-intrinsic-size: 0 400px;
 }
 
+/* Minimal Bolding for SEO Highlights */
+.seo-content-section h1, .seo-content-section h2, .seo-content-section h3, .seo-content-section h4,
+.details-container h1, .details-container h2, .details-container h3, .details-container h4 {
+  font-weight: 800 !important;
+  color: #202124 !important;
+}
+
 /* Global Print Architecture */
 @media print {
   body {

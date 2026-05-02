@@ -244,7 +244,7 @@ export default function NEABillCalculator() {
 
           <GoogleTip 
             title="Payment Alert"
-            tip={result.paymentWindow === 4 
+            tip={paymentWindow === 4 
               ? "Warning: Your bill is over 41 days old. You are at high risk of line disconnection."
               : "Pay via NEA App, eSewa, or Khalti to get instant digital receipts."}
           />

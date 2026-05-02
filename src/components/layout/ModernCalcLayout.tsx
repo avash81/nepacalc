@@ -188,7 +188,7 @@ export function ModernCalcLayout({
               )}
             </div>
             {ads?.inContent && <div className="flex justify-center no-print">{ads.inContent}</div>}
-            {details && <div className="space-y-6">{details}</div>}
+            {details && <div className="details-container space-y-6">{details}</div>}
             {(howToUse || formula) && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {howToUse && (
