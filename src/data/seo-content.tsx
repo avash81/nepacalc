@@ -19,7 +19,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <p>
           Managing your finances starts with understanding your tax obligations. In Nepal, the Inland Revenue Department (IRD) sets income tax slabs annually. For the current fiscal year, the tax system remains progressive, meaning higher earners pay a larger percentage of their income in tax.
         </p>
-        
+
         <h3>Income Tax Brackets (Latest Budget Cycle)</h3>
         <div className="overflow-x-auto my-6">
           <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
@@ -134,10 +134,10 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </p>
 
         <div className="bg-[#fef7e0] border border-[#fbbc04] rounded-lg p-5 my-6">
-           <h4 className="text-sm font-black text-[#b06000] uppercase mb-2">Banking Alert</h4>
-           <p className="text-xs leading-relaxed mb-0 text-[#3c4043]">
-             Most banks in Nepal use <strong>Floating Interest Rates</strong>. This means your EMI can change if the Nepal Rastra Bank (NRB) adjusts the base rate. Always use our calculator to re-verify your payments if your bank sends you a rate hike notice!
-           </p>
+          <h4 className="text-sm font-black text-[#b06000] uppercase mb-2">Banking Alert</h4>
+          <p className="text-xs leading-relaxed mb-0 text-[#3c4043]">
+            Most banks in Nepal use <strong>Floating Interest Rates</strong>. This means your EMI can change if the Nepal Rastra Bank (NRB) adjusts the base rate. Always use our calculator to re-verify your payments if your bank sends you a rate hike notice!
+          </p>
         </div>
 
         <h2>How to Use the EMI Calculator</h2>
@@ -151,79 +151,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       { question: "What is the standard loan tenure for a home loan?", answer: "In Nepal, home loans (Ghar Karja) typically have a tenure of 5 to 30 years." }
     ]
   },
-  'nea-bill': {
-    title: "NEA Bill Calculator 2081 | Nepal Electricity Authority Bill Online",
-    description: "Calculate your Nepal Electricity Authority (NEA) bill online based on current 2081 tariff rates. Support for domestic and commercial meters.",
-    content: (
-      <>
-        <h2>How to Calculate Your NEA Electricity Bill in Nepal</h2>
-        <p>
-          The Nepal Electricity Authority (NEA) uses a slab-based pricing system for domestic consumers. Your bill consists of three main components: a fixed minimum charge (Energy Charge), a per-unit rate that increases with consumption, and a service charge based on your meter capacity (Ampere).
-        </p>
-        
-        <h3>NEA Domestic Tariff Slabs (Current)</h3>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Consumption (Units)</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Energy Charge (NPR)</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Minimum Charge (NPR)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">0 - 20 Units</td>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 0.00 (Energy)</td>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 30.00</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">21 - 30 Units</td>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 6.50 / Unit</td>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 50.00</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">31 - 50 Units</td>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 8.00 / Unit</td>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 75.00</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">Above 400 Units</td>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 12.00 / Unit</td>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 250.00</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
 
-        <h2>Tips to Reduce Your Electricity Bill</h2>
-        <ul>
-          <li><strong>Switch to LED:</strong> LED bulbs use up to 80% less energy than traditional incandescent bulbs.</li>
-          <li><strong>Monitor Heavy Appliances:</strong> Water heaters, irons, and refrigerators are the biggest energy consumers.</li>
-          <li><strong>Check your Meter Capacity:</strong> If you have a 30 Ampere meter but only use small appliances, you might be paying a higher fixed charge unnecessarily.</li>
-        </ul>
-
-        <h2>Using the Online NEA Calculator</h2>
-        <p>
-          Instead of manually calculating complex slabs, simply enter your 'Current Reading' and 'Previous Reading' (or total units consumed) and select your meter capacity. Our tool will instantly calculate the total amount including all service charges and taxes.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is the minimum charge for NEA bill?",
-        answer: "The minimum charge depends on your meter capacity (Ampere). For 5A, it is generally Rs. 30 for the first 20 units."
-      },
-      {
-        question: "How can I pay my NEA bill online?",
-        answer: "You can pay your bill through digital wallets like eSewa, Khalti, or through your mobile banking app once you know the amount."
-      },
-      {
-        question: "What happens if I pay the NEA bill late?",
-        answer: "NEA charges a penalty (usually 2% to 5%) if the bill is not paid within the due date mentioned on your bill."
-      }
-    ]
-  },
   'nepali-date': {
     title: "Nepali Date Converter | AD to BS & BS to AD Online",
     description: "Accurate Nepali Date Converter for Bikram Sambat (BS) and Gregorian Calendar (AD). Convert dates of birth, events, and official documents instantly.",
@@ -233,7 +161,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <p>
           Nepal officially uses the Bikram Sambat (BS) calendar, which is approximately 56 years and 8 months ahead of the Gregorian Calendar (AD). Whether you are filling out a citizenship form, applying for a driving license, or checking a public holiday, converting between BS and AD is a daily necessity.
         </p>
-        
+
         <h3>Bikram Sambat (BS) Months & Seasons</h3>
         <div className="overflow-x-auto my-6">
           <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
@@ -306,7 +234,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <p>
           The Secondary Education Examination (SEE) in Nepal uses a Grade Point Average (GPA) system to evaluate student performance. Under the new 2081/2082 grading guidelines, students must achieve a minimum of 35% in theoretical exams to pass and be eligible for Grade 11.
         </p>
-        
+
         <h3>SEE Grading Table (Official)</h3>
         <div className="overflow-x-auto my-6">
           <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
@@ -382,7 +310,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <p>
           Understanding your net pay is crucial for budgeting. In Nepal, your 'Gross Salary' is what is written in your contract, but your 'Net Salary' or 'Take-Home Pay' is what actually lands in your bank account after mandatory deductions.
         </p>
-        
+
         <h3>Salary Deduction Comparison Table</h3>
         <div className="overflow-x-auto my-6">
           <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
@@ -458,7 +386,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <p>
           Investing in the Nepal Stock Exchange (NEPSE) involves more than just the share price. Every buy and sell order incurs various fees that eat into your profits. Knowing these costs upfront helps you make better trading decisions.
         </p>
-        
+
         <h3>NEPSE Broker Commission Slabs</h3>
         <div className="overflow-x-auto my-6">
           <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
@@ -495,7 +423,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
 
         <h3>Fees When Selling Stocks (Capital Gains Tax)</h3>
         <p>
-          When selling, you must also pay Capital Gains Tax (CGT) on your profit. 
+          When selling, you must also pay Capital Gains Tax (CGT) on your profit.
           - <strong>5% CGT:</strong> For long-term investors (holding more than 365 days).
           - <strong>7.5% CGT:</strong> For short-term traders (holding less than 365 days).
         </p>
@@ -557,13 +485,13 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </p>
 
         <div className="bg-[#f1f3f4] border border-[#dadce0] rounded-lg p-6 my-8">
-           <h3 className="font-bold mb-3">Conversion Table: Sq. Ft. to Local Units</h3>
-           <ul className="space-y-2 text-sm text-[#5f6368]">
-              <li><strong>1 Ropani</strong> = 5476 sq. ft.</li>
-              <li><strong>1 Aana</strong> = 342.25 sq. ft.</li>
-              <li><strong>1 Bigha</strong> = 72900 sq. ft.</li>
-              <li><strong>1 Kattha</strong> = 3645 sq. ft.</li>
-           </ul>
+          <h3 className="font-bold mb-3">Conversion Table: Sq. Ft. to Local Units</h3>
+          <ul className="space-y-2 text-sm text-[#5f6368]">
+            <li><strong>1 Ropani</strong> = 5476 sq. ft.</li>
+            <li><strong>1 Aana</strong> = 342.25 sq. ft.</li>
+            <li><strong>1 Bigha</strong> = 72900 sq. ft.</li>
+            <li><strong>1 Kattha</strong> = 3645 sq. ft.</li>
+          </ul>
         </div>
 
         <h3>2. The Bigha-Kattha System (Terai)</h3>
@@ -606,12 +534,12 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       <>
         <h2>Blue Book Renew Price in Nepal (2081/82 Update)</h2>
         <p>
-          Every vehicle owner in Nepal must pay an annual tax to the provincial government to renew their bluebook. The exact <strong>blue book renew price in Nepal</strong> depends on your vehicle type, engine capacity (CC), and the province where it is registered (e.g., Bagmati, Gandaki, Lumbini). 
+          Every vehicle owner in Nepal must pay an annual tax to the provincial government to renew their bluebook. The exact <strong>blue book renew price in Nepal</strong> depends on your vehicle type, engine capacity (CC), and the province where it is registered (e.g., Bagmati, Gandaki, Lumbini).
         </p>
         <p className="mt-2">
           Use our calculator below to instantly find out your exact blue book renewal cost before visiting the Yatayat office.
         </p>
-        
+
         <h3>Bike Tax Slabs (Bagmati Province 2081/82)</h3>
         <div className="overflow-x-auto my-6">
           <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
@@ -686,7 +614,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <p>
           Buying a home is the biggest investment for most Nepalese families. Banks in Nepal typically offer home loans for up to 15 to 20 years. The maximum loan amount is usually limited to 50% to 70% of the property's fair market value.
         </p>
-        
+
         <h3>Maximum Loan-to-Value (LTV) Ratios</h3>
         <div className="overflow-x-auto my-6">
           <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
@@ -753,19 +681,19 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <p>
           Value Added Tax (VAT) is a consumption tax placed on a product whenever value is added at each stage of the supply chain. In Nepal, the standard VAT rate is <strong>13%</strong>, governed by the Inland Revenue Department (IRD).
         </p>
-        
+
         <h3>Adding VAT to a Price (Exclusive to Inclusive)</h3>
         <p>
           If a product costs Rs. 1,000 (excluding VAT), you must add 13% to find the final selling price.
-          <br/><strong>Formula:</strong> <code>Price + (Price × 0.13)</code>
-          <br/><strong>Example:</strong> Rs. 1,000 + Rs. 130 = Rs. 1,130
+          <br /><strong>Formula:</strong> <code>Price + (Price × 0.13)</code>
+          <br /><strong>Example:</strong> Rs. 1,000 + Rs. 130 = Rs. 1,130
         </p>
 
         <h3>Removing VAT from a Price (Inclusive to Exclusive)</h3>
         <p>
           If a product is sold for Rs. 1,130 (including VAT) and you need to find the base price before tax:
-          <br/><strong>Formula:</strong> <code>Total Price / 1.13</code>
-          <br/><strong>Example:</strong> Rs. 1,130 / 1.13 = Rs. 1,000
+          <br /><strong>Formula:</strong> <code>Total Price / 1.13</code>
+          <br /><strong>Example:</strong> Rs. 1,130 / 1.13 = Rs. 1,000
         </p>
 
         <h2>Who Needs to Register for VAT in Nepal?</h2>
@@ -798,27 +726,27 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <p>
           Your ideal daily calorie intake depends entirely on your Total Daily Energy Expenditure (TDEE). TDEE is the total number of calories you burn in a day, which is calculated using your Basal Metabolic Rate (BMR) and your physical activity level.
         </p>
-        
+
         <h3>Calorie Intake by BMI</h3>
         <p>
-          Many people ask: <em>"What is the ideal daily calorie intake for BMI 23.2?"</em> 
-          <br/><br/>
+          Many people ask: <em>"What is the ideal daily calorie intake for BMI 23.2?"</em>
+          <br /><br />
           Your BMI (Body Mass Index) tells you if you are at a healthy weight, but it does <strong>not</strong> determine your calorie needs by itself. Two people with a BMI of 23.2 might need vastly different calories if one is an athlete and the other sits at a desk all day. To find your exact number, our calculator uses the Mifflin-St Jeor equation to find your BMR, then multiplies it by your activity level.
         </p>
 
         <h2>How to Use Your TDEE for Weight Management</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
           <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-             <h4 className="font-bold text-[#1a73e8] m-0">1. Maintain Weight</h4>
-             <p className="text-sm mt-2 text-[#5f6368]">Consume exactly your TDEE calories per day.</p>
+            <h4 className="font-bold text-[#1a73e8] m-0">1. Maintain Weight</h4>
+            <p className="text-sm mt-2 text-[#5f6368]">Consume exactly your TDEE calories per day.</p>
           </div>
           <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-             <h4 className="font-bold text-[#d93025] m-0">2. Lose Weight</h4>
-             <p className="text-sm mt-2 text-[#5f6368]">Subtract 500 calories from your TDEE (Caloric Deficit) to lose about 0.5kg per week.</p>
+            <h4 className="font-bold text-[#d93025] m-0">2. Lose Weight</h4>
+            <p className="text-sm mt-2 text-[#5f6368]">Subtract 500 calories from your TDEE (Caloric Deficit) to lose about 0.5kg per week.</p>
           </div>
           <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-             <h4 className="font-bold text-[#188038] m-0">3. Gain Muscle</h4>
-             <p className="text-sm mt-2 text-[#5f6368]">Add 300-500 calories to your TDEE (Caloric Surplus) combined with resistance training.</p>
+            <h4 className="font-bold text-[#188038] m-0">3. Gain Muscle</h4>
+            <p className="text-sm mt-2 text-[#5f6368]">Add 300-500 calories to your TDEE (Caloric Surplus) combined with resistance training.</p>
           </div>
         </div>
       </>
@@ -850,22 +778,22 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
 
         <h3>WHO BMI Categories for South Asia</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-8 text-center">
-           <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-              <span className="block text-xs font-bold text-blue-700 uppercase">Underweight</span>
-              <span className="text-lg font-black">&lt; 18.5</span>
-           </div>
-           <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-              <span className="block text-xs font-bold text-green-700 uppercase">Normal</span>
-              <span className="text-lg font-black">18.5 - 23</span>
-           </div>
-           <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-              <span className="block text-xs font-bold text-yellow-700 uppercase">Overweight</span>
-              <span className="text-lg font-black">23 - 27.5</span>
-           </div>
-           <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-              <span className="block text-xs font-bold text-red-700 uppercase">Obese</span>
-              <span className="text-lg font-black">&gt; 27.5</span>
-           </div>
+          <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <span className="block text-xs font-bold text-blue-700 uppercase">Underweight</span>
+            <span className="text-lg font-black">&lt; 18.5</span>
+          </div>
+          <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+            <span className="block text-xs font-bold text-green-700 uppercase">Normal</span>
+            <span className="text-lg font-black">18.5 - 23</span>
+          </div>
+          <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <span className="block text-xs font-bold text-yellow-700 uppercase">Overweight</span>
+            <span className="text-lg font-black">23 - 27.5</span>
+          </div>
+          <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+            <span className="block text-xs font-bold text-red-700 uppercase">Obese</span>
+            <span className="text-lg font-black">&gt; 27.5</span>
+          </div>
         </div>
 
         <h2>Health Beyond the Numbers</h2>
@@ -902,14 +830,14 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Common Weight Conversions</h3>
         <p>
           Here are some of the most common conversion factors used worldwide:
-          <br/><strong>1 Kilogram (kg)</strong> = 2.20462 Pounds (lbs)
-          <br/><strong>1 Pound (lb)</strong> = 16 Ounces (oz)
-          <br/><strong>1 Gram (g)</strong> = 0.035274 Ounces (oz)
+          <br /><strong>1 Kilogram (kg)</strong> = 2.20462 Pounds (lbs)
+          <br /><strong>1 Pound (lb)</strong> = 16 Ounces (oz)
+          <br /><strong>1 Gram (g)</strong> = 0.035274 Ounces (oz)
         </p>
 
         <h2>Why Accuracy Matters</h2>
         <p>
-          Our weight converter uses up to 6 decimal places of precision. This is critical in fields like baking, chemistry, and international shipping where even a fraction of a gram can make a massive difference. 
+          Our weight converter uses up to 6 decimal places of precision. This is critical in fields like baking, chemistry, and international shipping where even a fraction of a gram can make a massive difference.
         </p>
       </>
     ),
@@ -941,20 +869,20 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Essential Length Formulas</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
           <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-             <h4 className="font-bold text-[#1a73e8] m-0">Metric to Imperial</h4>
-             <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-               <li>1 Meter = 3.28084 Feet</li>
-               <li>1 Centimeter = 0.3937 Inches</li>
-               <li>1 Kilometer = 0.621371 Miles</li>
-             </ul>
+            <h4 className="font-bold text-[#1a73e8] m-0">Metric to Imperial</h4>
+            <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+              <li>1 Meter = 3.28084 Feet</li>
+              <li>1 Centimeter = 0.3937 Inches</li>
+              <li>1 Kilometer = 0.621371 Miles</li>
+            </ul>
           </div>
           <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-             <h4 className="font-bold text-[#1a73e8] m-0">Imperial to Metric</h4>
-             <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-               <li>1 Foot = 0.3048 Meters</li>
-               <li>1 Inch = 2.54 Centimeters</li>
-               <li>1 Mile = 1.60934 Kilometers</li>
-             </ul>
+            <h4 className="font-bold text-[#1a73e8] m-0">Imperial to Metric</h4>
+            <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
+              <li>1 Foot = 0.3048 Meters</li>
+              <li>1 Inch = 2.54 Centimeters</li>
+              <li>1 Mile = 1.60934 Kilometers</li>
+            </ul>
           </div>
         </div>
       </>
@@ -986,14 +914,14 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
 
         <h3>What is LCM?</h3>
         <p>
-          The <strong>Least Common Multiple (LCM)</strong> of two numbers is the smallest number (not zero) that is a multiple of both. 
-          <br/><em>Example:</em> For 4 and 6, the multiples of 4 are (4, 8, 12, 16...) and the multiples of 6 are (6, 12, 18...). The lowest matching number is 12. So, LCM = 12.
+          The <strong>Least Common Multiple (LCM)</strong> of two numbers is the smallest number (not zero) that is a multiple of both.
+          <br /><em>Example:</em> For 4 and 6, the multiples of 4 are (4, 8, 12, 16...) and the multiples of 6 are (6, 12, 18...). The lowest matching number is 12. So, LCM = 12.
         </p>
 
         <h3>What is GCF?</h3>
         <p>
           The <strong>Greatest Common Factor (GCF)</strong>, also known as the Greatest Common Divisor (GCD), is the largest number that divides both numbers without leaving a remainder.
-          <br/><em>Example:</em> For 12 and 18, the factors of 12 are (1, 2, 3, 4, 6, 12) and the factors of 18 are (1, 2, 3, 6, 9, 18). The largest common factor is 6. So, GCF = 6.
+          <br /><em>Example:</em> For 12 and 18, the factors of 12 are (1, 2, 3, 4, 6, 12) and the factors of 18 are (1, 2, 3, 6, 9, 18). The largest common factor is 6. So, GCF = 6.
         </p>
       </>
     ),
@@ -1012,119 +940,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       }
     ]
   },
-  'gpa': {
-    title: "GPA Calculator Nepal | TU, KU, NEB Grade Point Average",
-    description: "Calculate your semester GPA instantly using Nepal's NEB/TU 4-point grading scale. Includes TU, KU, and Pokhara University classification table and GPA to percentage conversion.",
-    content: (
-      <>
-        <h2>Understanding Nepal's GPA System: TU, KU, NEB &amp; PU</h2>
-        <p>
-          Nepal's universities use different grading systems, which can be confusing for students applying for scholarships, further studies, or jobs abroad. Our <strong>GPA Calculator for Nepal</strong> supports both the <strong>NEB/Tribhuvan University (TU)</strong> 4.0 scale and the international US grading system, making it easy to calculate your exact academic standing.
-        </p>
 
-        <h3>Nepal GPA to Percentage Conversion Table (NEB/TU System)</h3>
-        <p>The official NEB and TU grading scale maps letter grades to grade points as follows. This is the authoritative reference used by all Nepali higher education institutions:</p>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#E8F0FE]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Grade</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Grade Points</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">% Range</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Classification</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ['A+', '4.0', '90-100%', 'Outstanding'],
-                ['A',  '3.6', '80-89%',  'Excellent'],
-                ['B+', '3.2', '70-79%',  'Very Good'],
-                ['B',  '2.8', '60-69%',  'Good'],
-                ['C+', '2.4', '50-59%',  'Satisfactory'],
-                ['C',  '2.0', '40-49%',  'Acceptable'],
-                ['D',  '1.6', '30-39%',  'Partially Acceptable'],
-                ['E',  '0.8', '20-29%',  'Insufficient'],
-                ['N',  '0.0', 'Below 20%','Not Graded/Fail'],
-              ].map(([g, p, pct, cls]) => (
-                <tr key={g} className="odd:bg-white even:bg-[#f8f9fa]">
-                  <td className="border border-[#dadce0] px-4 py-2 font-black text-[#1A73E8]">{g}</td>
-                  <td className="border border-[#dadce0] px-4 py-2 font-bold">{p}</td>
-                  <td className="border border-[#dadce0] px-4 py-2">{pct}</td>
-                  <td className="border border-[#dadce0] px-4 py-2 text-[#5f6368]">{cls}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <h3>University-Wise Minimum GPA Requirements in Nepal</h3>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">University</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Pass GPA</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Distinction GPA</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ['Tribhuvan University (TU)', '2.0 (C)', '3.6 (A)', 'IOE min D per subject'],
-                ['Kathmandu University (KU)',  '2.0 (C)', '3.5+',    'Semester system'],
-                ['Pokhara University (PU)',    '2.0 (C)', '3.6 (A)', 'NEB-aligned scale'],
-                ['Purbanchal University',      '2.0 (C)', '3.5+',    'Varies by program'],
-                ['NEB (SEE/+2)',               '1.6 (D)', '4.0 (A+)','National board'],
-              ].map(([uni, pass, dist, note]) => (
-                <tr key={uni} className="odd:bg-white even:bg-[#f8f9fa]">
-                  <td className="border border-[#dadce0] px-4 py-2 font-bold">{uni}</td>
-                  <td className="border border-[#dadce0] px-4 py-2 text-red-600 font-bold">{pass}</td>
-                  <td className="border border-[#dadce0] px-4 py-2 text-green-700 font-bold">{dist}</td>
-                  <td className="border border-[#dadce0] px-4 py-2 text-[#5f6368] text-xs">{note}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <h2>How to Convert Nepal GPA to Percentage</h2>
-        <p>
-          The most widely used approximation formula in Nepal is: <strong>Percentage ≈ GPA × 25</strong>. So a GPA of 3.6 ≈ 90%, and a GPA of 2.8 ≈ 70%. However, for official purposes (visa applications, international university admissions), always request a certified transcript from your institution showing both the GPA and the actual percentage marks scored.
-        </p>
-
-        <h2>Semester GPA vs. CGPA: What Matters for Your Degree?</h2>
-        <p>
-          Your <strong>Semester GPA</strong> only reflects performance in a single term. What appears on your degree certificate and is evaluated by employers and foreign universities is your <strong>CGPA (Cumulative GPA)</strong> — the credit-weighted average across all semesters. Use our <a href="/calculator/cgpa/" className="text-[#1A73E8] font-bold hover:underline">CGPA Calculator</a> to track your overall standing. For SEE results, see our <a href="/calculator/see-gpa/" className="text-[#1A73E8] font-bold hover:underline">SEE GPA Calculator</a>.
-        </p>
-        <AuthorByline fiscalYear="2082/83 (2025/26)" sources={[
-          { label: 'NEB Nepal', url: 'https://www.neb.gov.np' },
-          { label: 'TU Official', url: 'https://tribhuvan-university.edu.np' },
-        ]} />
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is A+ GPA in Nepal's NEB system?",
-        answer: "A+ is the highest grade in Nepal's NEB/TU system, corresponding to 4.0 grade points and a percentage range of 90-100%. It is classified as 'Outstanding'."
-      },
-      {
-        question: "What is the minimum GPA to pass in TU?",
-        answer: "In Tribhuvan University's semester system, students must maintain a minimum GPA of 2.0 (C grade, 40%) to pass. For IOE engineering programs, each subject requires at least a D grade (1.6 GPA)."
-      },
-      {
-        question: "How do I convert Nepal GPA to percentage?",
-        answer: "Use the approximation: Percentage = GPA × 25. For example, GPA 3.6 ≈ 90%, GPA 2.8 ≈ 70%. For official use, request a transcript from your institution with the actual percentage."
-      },
-      {
-        question: "What is the difference between GPA and CGPA?",
-        answer: "GPA (Grade Point Average) is calculated for a single semester, while CGPA (Cumulative GPA) is the credit-weighted average across all semesters. CGPA appears on your final degree certificate."
-      },
-      {
-        question: "Does KU use the same grading scale as TU?",
-        answer: "Kathmandu University (KU) uses a similar 4.0 GPA scale but has its own grading policy. KU generally requires a minimum 2.0 GPA to continue enrollment, and a 3.5+ CGPA is considered distinction level."
-      }
-    ]
-  },
   'cgpa': {
     title: "CGPA Calculator Nepal | Cumulative Grade Point Average",
     description: "Calculate your cumulative GPA (CGPA) accurately for TU, KU, PU, and international universities. Track your academic progress easily.",
@@ -1135,7 +951,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
           I know the feeling—you've just finished a brutal semester at TU or KU, and you're staring at your transcript wondering how that one 'C' grade is going to ruin your chances of studying in the US or Australia. Don't panic. Let's break this down into simple steps.
         </p>
         <p>
-          Your <strong>Cumulative GPA (CGPA)</strong> is the only number that really matters on your final degree certificate. Unlike a simple average, CGPA is "credit-weighted." That means an 'A' in a massive 6-credit Final Year Project is going to boost your score way more than an 'A' in a 1-credit elective. 
+          Your <strong>Cumulative GPA (CGPA)</strong> is the only number that really matters on your final degree certificate. Unlike a simple average, CGPA is "credit-weighted." That means an 'A' in a massive 6-credit Final Year Project is going to boost your score way more than an 'A' in a 1-credit elective.
         </p>
 
         <h3>Why You Need to Track This Early</h3>
@@ -1147,7 +963,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <p>
           If you are applying for Lok Sewa exams or scholarships, they often ask for your "Percentage" instead of your GPA. While Tribhuvan University uses the rough approximation of <strong>Percentage ≈ CGPA × 25</strong>, always remember to get your official transcript verified if you are applying for high-stakes government jobs.
         </p>
-        
+
         <p className="mt-4">
           Need to calculate just this semester's results? Head over to our <a href="/calculator/gpa/" className="text-[#1A73E8] font-bold hover:underline">Semester GPA Calculator</a>.
         </p>
@@ -1180,7 +996,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
 
         <h3>Why the Scale Lies to You</h3>
         <p>
-          Your ideal weight is a range, not a single strict number. If you are a gym-goer lifting heavy weights in Kathmandu, you might weigh "too much" according to this calculator, but you are perfectly healthy because muscle is dense. 
+          Your ideal weight is a range, not a single strict number. If you are a gym-goer lifting heavy weights in Kathmandu, you might weigh "too much" according to this calculator, but you are perfectly healthy because muscle is dense.
         </p>
         <p>
           Don't just chase the number on the scale. Combine this result with our <a href="/calculator/bmi/" className="text-[#1A73E8] font-bold hover:underline">BMI Calculator</a> and keep an eye on your waist circumference to avoid the rising risk of diabetes in Nepal.
@@ -1209,7 +1025,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
           If you spent the entire day lying in bed doing absolutely nothing, your body would still burn hundreds of calories just keeping your heart beating, your lungs breathing, and your brain functioning. That baseline energy requirement is your <strong>Basal Metabolic Rate (BMR)</strong>.
         </p>
         <p>
-          Why does this matter? Because you can't build a proper Nepali diet plan without knowing this number first. 
+          Why does this matter? Because you can't build a proper Nepali diet plan without knowing this number first.
         </p>
 
         <h3>How to Use Your BMR for Weight Loss</h3>
@@ -1219,7 +1035,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <p>
           We use the highly accurate <strong>Mifflin-St Jeor equation</strong> for this tool. It's the gold standard used by dietitians worldwide.
         </p>
-        
+
         <p className="mt-4">
           To see how this translates to your daily meals, check out our <a href="/calculator/calorie-calculator/" className="text-[#1A73E8] font-bold hover:underline">Daily Calorie Calculator</a>.
         </p>
@@ -1237,44 +1053,44 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       }
     ]
   },
-  'attendance': {
-    title: "Attendance Calculator | Find out how many classes you can skip",
-    description: "University attendance calculator. Enter your current attendance percentage and total classes to find out how many classes you need to attend to reach your goal.",
-    content: (
-      <>
-        <h2>The Ultimate College Attendance Calculator</h2>
-        <p>
-          Maintaining the mandatory attendance limit (usually 75% or 80%) is one of the most stressful parts of university life. Our Attendance Calculator helps you strategically plan your schedule so you never fall below the required threshold.
-        </p>
 
-        <h3>How to Calculate Required Attendance</h3>
-        <p>
-          If your current attendance is below your target (e.g., you are at 65% but need 75%), the calculator uses the formula:
-          <br/><code>Required Classes = (Target% × Total Classes - Attended) / (1 - Target%)</code>
-          <br/>This tells you exactly how many consecutive classes you must attend to pull your average up.
-        </p>
+  //   title: "Attendance Calculator | Find out how many classes you can skip",
+  //   description: "University attendance calculator. Enter your current attendance percentage and total classes to find out how many classes you need to attend to reach your goal.",
+  //   content: (
+  //     <>
+  //       <h2>The Ultimate College Attendance Calculator</h2>
+  //       <p>
+  //         Maintaining the mandatory attendance limit (usually 75% or 80%) is one of the most stressful parts of university life. Our Attendance Calculator helps you strategically plan your schedule so you never fall below the required threshold.
+  //       </p>
 
-        <h3>How Many Classes Can You Bunk?</h3>
-        <p>
-          If you are above your target (e.g., you are at 90% and only need 75%), the tool calculates your 'bunk buffer'. It tells you exactly how many upcoming classes you can safely miss without dropping below your mandatory threshold.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What happens if my attendance is below 75%?",
-        answer: "In most universities, falling below the mandatory 75% attendance mark makes you ineligible to sit for the final semester examinations."
-      },
-      {
-        question: "How is attendance percentage calculated?",
-        answer: "It is calculated as: (Number of Classes Attended ÷ Total Number of Classes Held) × 100."
-      },
-      {
-        question: "Can this calculator predict future attendance?",
-        answer: "Yes, by entering your current stats and target percentage, it predicts exactly how many future classes you need to attend or can afford to miss."
-      }
-    ]
-  },
+  //       <h3>How to Calculate Required Attendance</h3>
+  //       <p>
+  //         If your current attendance is below your target (e.g., you are at 65% but need 75%), the calculator uses the formula:
+  //         <br /><code>Required Classes = (Target% × Total Classes - Attended) / (1 - Target%)</code>
+  //         <br />This tells you exactly how many consecutive classes you must attend to pull your average up.
+  //       </p>
+
+  //       <h3>How Many Classes Can You Bunk?</h3>
+  //       <p>
+  //         If you are above your target (e.g., you are at 90% and only need 75%), the tool calculates your 'bunk buffer'. It tells you exactly how many upcoming classes you can safely miss without dropping below your mandatory threshold.
+  //       </p>
+  //     </>
+  //   ),
+  //   faqs: [
+  //     {
+  //       question: "What happens if my attendance is below 75%?",
+  //       answer: "In most universities, falling below the mandatory 75% attendance mark makes you ineligible to sit for the final semester examinations."
+  //     },
+  //     {
+  //       question: "How is attendance percentage calculated?",
+  //       answer: "It is calculated as: (Number of Classes Attended ÷ Total Number of Classes Held) × 100."
+  //     },
+  //     {
+  //       question: "Can this calculator predict future attendance?",
+  //       answer: "Yes, by entering your current stats and target percentage, it predicts exactly how many future classes you need to attend or can afford to miss."
+  //     }
+  //   ]
+  // },
   'percentage': {
     title: "Percentage Calculator | Find % Increase, Decrease & Discounts",
     description: "Free online percentage calculator. Calculate percentage increases, decreases, discounts, and find out what percentage one number is of another.",
@@ -1288,16 +1104,16 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>The Three Core Percentage Formulas</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
           <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-             <h4 className="font-bold text-[#1a73e8] m-0">1. What is X% of Y?</h4>
-             <p className="text-sm mt-2 text-[#5f6368]">Formula: <code>(X / 100) × Y</code><br/>Used for finding the exact value of a percentage (e.g., 20% of 500 is 100).</p>
+            <h4 className="font-bold text-[#1a73e8] m-0">1. What is X% of Y?</h4>
+            <p className="text-sm mt-2 text-[#5f6368]">Formula: <code>(X / 100) × Y</code><br />Used for finding the exact value of a percentage (e.g., 20% of 500 is 100).</p>
           </div>
           <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-             <h4 className="font-bold text-[#d93025] m-0">2. X is what % of Y?</h4>
-             <p className="text-sm mt-2 text-[#5f6368]">Formula: <code>(X / Y) × 100</code><br/>Used for finding test scores (e.g., getting 45 out of 60 is 75%).</p>
+            <h4 className="font-bold text-[#d93025] m-0">2. X is what % of Y?</h4>
+            <p className="text-sm mt-2 text-[#5f6368]">Formula: <code>(X / Y) × 100</code><br />Used for finding test scores (e.g., getting 45 out of 60 is 75%).</p>
           </div>
           <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-             <h4 className="font-bold text-[#188038] m-0">3. Percentage Change</h4>
-             <p className="text-sm mt-2 text-[#5f6368]">Formula: <code>((New - Old) / Old) × 100</code><br/>Used for calculating growth, inflation, or discounts.</p>
+            <h4 className="font-bold text-[#188038] m-0">3. Percentage Change</h4>
+            <p className="text-sm mt-2 text-[#5f6368]">Formula: <code>((New - Old) / Old) × 100</code><br />Used for calculating growth, inflation, or discounts.</p>
           </div>
         </div>
       </>
@@ -1355,9 +1171,9 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Daily vs. Monthly vs. Annual Compounding</h3>
         <p>
           The frequency of compounding drastically changes your final return.
-          <br/><strong>Annual:</strong> Interest is calculated once a year.
-          <br/><strong>Monthly:</strong> Interest is calculated 12 times a year (Standard for bank accounts).
-          <br/><strong>Daily:</strong> Interest is calculated 365 times a year (Maximizes growth).
+          <br /><strong>Annual:</strong> Interest is calculated once a year.
+          <br /><strong>Monthly:</strong> Interest is calculated 12 times a year (Standard for bank accounts).
+          <br /><strong>Daily:</strong> Interest is calculated 365 times a year (Maximizes growth).
         </p>
       </>
     ),
@@ -1434,8 +1250,8 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Population vs. Sample</h3>
         <p>
           It is critical to choose the correct formula based on your data:
-          <br/><strong>Population:</strong> Use this when your dataset includes every single member of the group you are studying (Divide by N).
-          <br/><strong>Sample:</strong> Use this when your data is just a random sample of a larger group (Divide by N-1, known as Bessel's correction).
+          <br /><strong>Population:</strong> Use this when your dataset includes every single member of the group you are studying (Divide by N).
+          <br /><strong>Sample:</strong> Use this when your data is just a random sample of a larger group (Divide by N-1, known as Bessel's correction).
         </p>
       </>
     ),
@@ -1490,8 +1306,8 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Key Functions Explained</h3>
         <p>
           <strong>Trigonometry (Sin, Cos, Tan):</strong> Used for calculating angles and distances in geometry and physics. Ensure your calculator is set to the correct mode (Degrees or Radians).
-          <br/><strong>Logarithms (Log, Ln):</strong> Used in scaling variables, calculating pH levels in chemistry, and measuring earthquake intensity (Richter scale).
-          <br/><strong>Factorials (n!):</strong> Essential for calculating combinations and permutations in statistics.
+          <br /><strong>Logarithms (Log, Ln):</strong> Used in scaling variables, calculating pH levels in chemistry, and measuring earthquake intensity (Richter scale).
+          <br /><strong>Factorials (n!):</strong> Essential for calculating combinations and permutations in statistics.
         </p>
       </>
     ),
@@ -1518,12 +1334,12 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Most Common Conversions</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
           <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-             <h4 className="font-bold text-[#1a73e8] m-0">Temperature</h4>
-             <p className="text-sm mt-2 text-[#5f6368]">Celsius to Fahrenheit: <code>(°C × 9/5) + 32 = °F</code></p>
+            <h4 className="font-bold text-[#1a73e8] m-0">Temperature</h4>
+            <p className="text-sm mt-2 text-[#5f6368]">Celsius to Fahrenheit: <code>(°C × 9/5) + 32 = °F</code></p>
           </div>
           <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-             <h4 className="font-bold text-[#1a73e8] m-0">Volume</h4>
-             <p className="text-sm mt-2 text-[#5f6368]">1 Gallon (US) = 3.78541 Liters</p>
+            <h4 className="font-bold text-[#1a73e8] m-0">Volume</h4>
+            <p className="text-sm mt-2 text-[#5f6368]">1 Gallon (US) = 3.78541 Liters</p>
           </div>
         </div>
       </>
@@ -1600,7 +1416,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
       <>
         <h2>Reaching Your Savings Goals</h2>
         <p>
-          Whether you are saving for a vacation, a down payment on a house, or an emergency fund, breaking down a massive goal into smaller, manageable chunks is the key to financial success. 
+          Whether you are saving for a vacation, a down payment on a house, or an emergency fund, breaking down a massive goal into smaller, manageable chunks is the key to financial success.
         </p>
         <h3>The 50/30/20 Rule</h3>
         <p>
@@ -1657,9 +1473,9 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>The Simple Interest Formula</h3>
         <p>
           The formula is straightforward: <strong>I = P × R × T</strong>
-          <br/><strong>P (Principal):</strong> The initial amount of money.
-          <br/><strong>R (Rate):</strong> The annual interest rate (in decimal form).
-          <br/><strong>T (Time):</strong> The time the money is invested or borrowed for, in years.
+          <br /><strong>P (Principal):</strong> The initial amount of money.
+          <br /><strong>R (Rate):</strong> The annual interest rate (in decimal form).
+          <br /><strong>T (Time):</strong> The time the money is invested or borrowed for, in years.
         </p>
       </>
     ),
@@ -1715,9 +1531,9 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>How the Conversion Works</h3>
         <p>
           To convert a decimal like <code>0.75</code> to a fraction:
-          <br/>1. Write it over 1: <code>0.75 / 1</code>
-          <br/>2. Multiply top and bottom by 100 to remove the decimal: <code>75 / 100</code>
-          <br/>3. Simplify by dividing by the Greatest Common Factor (25): <code>3 / 4</code>
+          <br />1. Write it over 1: <code>0.75 / 1</code>
+          <br />2. Multiply top and bottom by 100 to remove the decimal: <code>75 / 100</code>
+          <br />3. Simplify by dividing by the Greatest Common Factor (25): <code>3 / 4</code>
         </p>
       </>
     ),
@@ -1776,10 +1592,10 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </p>
 
         <div className="bg-[#e8f0fe] border border-[#1a73e8] rounded-xl p-6 my-8">
-           <h3 className="text-[#1967d2] font-black mt-0 mb-3 uppercase text-xs tracking-widest">Expert Shopping Tip</h3>
-           <p className="text-sm leading-relaxed mb-0">
-             In Nepal, always ask if the "Discounted Price" includes <strong>VAT (13%)</strong>. Sometimes a 50% discount is applied to the base price, but the tax is added later, changing your final total. Use our tool to verify the base price first!
-           </p>
+          <h3 className="text-[#1967d2] font-black mt-0 mb-3 uppercase text-xs tracking-widest">Expert Shopping Tip</h3>
+          <p className="text-sm leading-relaxed mb-0">
+            In Nepal, always ask if the "Discounted Price" includes <strong>VAT (13%)</strong>. Sometimes a 50% discount is applied to the base price, but the tax is added later, changing your final total. Use our tool to verify the base price first!
+          </p>
         </div>
 
         <h2>Strategic Spending: How to Save More</h2>
@@ -1809,8 +1625,8 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Tipping Etiquette Worldwide</h3>
         <p>
           Tipping rules vary wildly depending on where you are:
-          <br/><strong>United States:</strong> 15% to 20% is the standard expectation for decent service.
-          <br/><strong>Europe & Asia:</strong> Tipping is often included as a 'service charge', or a smaller 5-10% tip is given as a compliment.
+          <br /><strong>United States:</strong> 15% to 20% is the standard expectation for decent service.
+          <br /><strong>Europe & Asia:</strong> Tipping is often included as a 'service charge', or a smaller 5-10% tip is given as a compliment.
         </p>
       </>
     ),
@@ -1918,7 +1734,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>How to Calculate ROI</h3>
         <p>
           The formula is incredibly simple: <strong>ROI = (Net Profit / Cost of Investment) × 100</strong>.
-          <br/>If you spend $1,000 on a marketing campaign and it generates $1,500 in total sales, your Net Profit is $500. Your ROI is ($500 / $1000) × 100 = <strong>50%</strong>.
+          <br />If you spend $1,000 on a marketing campaign and it generates $1,500 in total sales, your Net Profit is $500. Your ROI is ($500 / $1000) × 100 = <strong>50%</strong>.
         </p>
       </>
     ),
@@ -2050,9 +1866,9 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Common Salary Deductions</h3>
         <p>
           To find your net salary, you must subtract several mandatory and voluntary deductions from your gross pay:
-          <br/><strong>Income Tax (TDS):</strong> Deducted by your employer and paid to the government.
-          <br/><strong>Retirement Funds:</strong> Contributions to Provident Funds (PF), SSF, or 401(k)s.
-          <br/><strong>Health Insurance:</strong> Premiums for company-sponsored medical coverage.
+          <br /><strong>Income Tax (TDS):</strong> Deducted by your employer and paid to the government.
+          <br /><strong>Retirement Funds:</strong> Contributions to Provident Funds (PF), SSF, or 401(k)s.
+          <br /><strong>Health Insurance:</strong> Premiums for company-sponsored medical coverage.
         </p>
       </>
     ),
@@ -2079,7 +1895,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Common Uses</h3>
         <p>
           <strong>Payroll & Timesheets:</strong> Add up the exact number of hours and minutes worked over a week to calculate total pay.
-          <br/><strong>Athletics:</strong> Calculate pace and total running times for marathons or interval training.
+          <br /><strong>Athletics:</strong> Calculate pace and total running times for marathons or interval training.
         </p>
       </>
     ),
@@ -2134,7 +1950,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>The Acceleration Formula</h3>
         <p>
           The standard formula is: <strong>a = (v_f - v_i) / t</strong>
-          <br/>Where <strong>v_f</strong> is the final velocity, <strong>v_i</strong> is the initial velocity, and <strong>t</strong> is the time taken for the change.
+          <br />Where <strong>v_f</strong> is the final velocity, <strong>v_i</strong> is the initial velocity, and <strong>t</strong> is the time taken for the change.
         </p>
       </>
     ),
@@ -2161,7 +1977,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>The Kinetic Energy Formula</h3>
         <p>
           The physics formula is: <strong>KE = 1/2 × m × v²</strong>
-          <br/>Where <strong>m</strong> is the mass (in kilograms) and <strong>v</strong> is the velocity (in meters per second). Notice that velocity is squared, meaning speed has a much greater impact on kinetic energy than mass.
+          <br />Where <strong>m</strong> is the mass (in kilograms) and <strong>v</strong> is the velocity (in meters per second). Notice that velocity is squared, meaning speed has a much greater impact on kinetic energy than mass.
         </p>
       </>
     ),
@@ -2188,7 +2004,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>The Potential Energy Formula</h3>
         <p>
           The standard formula is: <strong>PE = m × g × h</strong>
-          <br/>Where <strong>m</strong> is mass (in kg), <strong>g</strong> is the acceleration due to gravity (9.81 m/s² on Earth), and <strong>h</strong> is the height (in meters).
+          <br />Where <strong>m</strong> is mass (in kg), <strong>g</strong> is the acceleration due to gravity (9.81 m/s² on Earth), and <strong>h</strong> is the height (in meters).
         </p>
       </>
     ),
@@ -2215,7 +2031,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>The Force Formula</h3>
         <p>
           The foundational physics equation is: <strong>F = m × a</strong>
-          <br/>Where <strong>F</strong> is Force (in Newtons), <strong>m</strong> is mass (in kg), and <strong>a</strong> is acceleration (in m/s²).
+          <br />Where <strong>F</strong> is Force (in Newtons), <strong>m</strong> is mass (in kg), and <strong>a</strong> is acceleration (in m/s²).
         </p>
       </>
     ),
@@ -2242,7 +2058,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>The Pressure Formula</h3>
         <p>
           The formula is: <strong>P = F / A</strong>
-          <br/>Where <strong>P</strong> is Pressure (in Pascals), <strong>F</strong> is Force (in Newtons), and <strong>A</strong> is the Area (in square meters).
+          <br />Where <strong>P</strong> is Pressure (in Pascals), <strong>F</strong> is Force (in Newtons), and <strong>A</strong> is the Area (in square meters).
         </p>
       </>
     ),
@@ -2269,7 +2085,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>The Work Formula</h3>
         <p>
           The formula is: <strong>W = F × d × cos(θ)</strong>
-          <br/>Where <strong>W</strong> is Work (in Joules), <strong>F</strong> is the force applied, <strong>d</strong> is the displacement, and <strong>θ</strong> is the angle of the force. If the force is applied in the exact direction of movement, the angle is 0, and the formula simplifies to W = F × d.
+          <br />Where <strong>W</strong> is Work (in Joules), <strong>F</strong> is the force applied, <strong>d</strong> is the displacement, and <strong>θ</strong> is the angle of the force. If the force is applied in the exact direction of movement, the angle is 0, and the formula simplifies to W = F × d.
         </p>
       </>
     ),
@@ -2296,7 +2112,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>The Power Formula</h3>
         <p>
           The formula is: <strong>P = W / t</strong>
-          <br/>Where <strong>P</strong> is Power (in Watts), <strong>W</strong> is the Work done (in Joules), and <strong>t</strong> is the time taken (in seconds).
+          <br />Where <strong>P</strong> is Power (in Watts), <strong>W</strong> is the Work done (in Joules), and <strong>t</strong> is the time taken (in seconds).
         </p>
       </>
     ),
@@ -2323,7 +2139,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>The Density Formula</h3>
         <p>
           The formula is: <strong>ρ = m / V</strong>
-          <br/>Where <strong>ρ (rho)</strong> is Density, <strong>m</strong> is mass, and <strong>V</strong> is volume. Objects with a density lower than water (1,000 kg/m³) will float, while objects with a higher density will sink.
+          <br />Where <strong>ρ (rho)</strong> is Density, <strong>m</strong> is mass, and <strong>V</strong> is volume. Objects with a density lower than water (1,000 kg/m³) will float, while objects with a higher density will sink.
         </p>
       </>
     ),
@@ -2430,9 +2246,9 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>The Empirical Rule (68-95-99.7)</h3>
         <p>
           In a normal distribution (a bell curve):
-          <br/><strong>68%</strong> of data falls within a Z-score of -1 to 1.
-          <br/><strong>95%</strong> falls within a Z-score of -2 to 2.
-          <br/><strong>99.7%</strong> falls within a Z-score of -3 to 3. If you have a Z-score of 3.5, you are in the extreme upper percentile!
+          <br /><strong>68%</strong> of data falls within a Z-score of -1 to 1.
+          <br /><strong>95%</strong> falls within a Z-score of -2 to 2.
+          <br /><strong>99.7%</strong> falls within a Z-score of -3 to 3. If you have a Z-score of 3.5, you are in the extreme upper percentile!
         </p>
       </>
     ),
@@ -2513,8 +2329,8 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         <h3>Common vs. Natural Logarithms</h3>
         <p>
           In mathematics, you will encounter two primary types:
-          <br/><strong>Common Log (log):</strong> Uses base 10. Heavily used in engineering and defining the Richter Scale for earthquakes.
-          <br/><strong>Natural Log (ln):</strong> Uses the mathematical constant <em>e</em> (approx 2.718) as its base. It is the fundamental backbone of calculus and compounding growth formulas.
+          <br /><strong>Common Log (log):</strong> Uses base 10. Heavily used in engineering and defining the Richter Scale for earthquakes.
+          <br /><strong>Natural Log (ln):</strong> Uses the mathematical constant <em>e</em> (approx 2.718) as its base. It is the fundamental backbone of calculus and compounding growth formulas.
         </p>
       </>
     ),
@@ -2650,10 +2466,10 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </ul>
 
         <div className="bg-[#f1f8e9] border border-[#33691e] rounded-lg p-6 my-8">
-           <h4 className="font-bold mb-2">Exemption Tip</h4>
-           <p className="text-sm leading-relaxed mb-0">
-             If the property has been owned for more than 10 years and the transaction value is below 10 Lakhs, you might be eligible for certain exemptions. Always consult with a professional accountant for the latest IRD circulars.
-           </p>
+          <h4 className="font-bold mb-2">Exemption Tip</h4>
+          <p className="text-sm leading-relaxed mb-0">
+            If the property has been owned for more than 10 years and the transaction value is below 10 Lakhs, you might be eligible for certain exemptions. Always consult with a professional accountant for the latest IRD circulars.
+          </p>
         </div>
       </>
     ),
@@ -2749,10 +2565,10 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </p>
 
         <div className="bg-[#e8f0fe] border border-[#1a73e8] rounded-xl p-6 my-8">
-           <h3 className="text-[#1967d2] font-black mt-0 mb-3 uppercase text-xs tracking-widest">Legal Notice</h3>
-           <p className="text-sm leading-relaxed mb-0">
-             Your employer is legally required to deposit your gratuity into a social security fund or a separate bank account. If they refuse to pay, you can file a complaint with the **Department of Labor and Occupational Safety**.
-           </p>
+          <h3 className="text-[#1967d2] font-black mt-0 mb-3 uppercase text-xs tracking-widest">Legal Notice</h3>
+          <p className="text-sm leading-relaxed mb-0">
+            Your employer is legally required to deposit your gratuity into a social security fund or a separate bank account. If they refuse to pay, you can file a complaint with the **Department of Labor and Occupational Safety**.
+          </p>
         </div>
       </>
     ),
@@ -2826,10 +2642,10 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </p>
 
         <div className="bg-[#fef7e0] border border-[#fbbc04] rounded-lg p-5 my-6">
-           <h4 className="text-sm font-black text-[#b06000] uppercase mb-2">Academic Tip</h4>
-           <p className="text-xs leading-relaxed mb-0 text-[#3c4043]">
-             In many professional courses like MBBS or Engineering, the requirement might be as high as 80%. Always check your specific department's policy before planning any leaves!
-           </p>
+          <h4 className="text-sm font-black text-[#b06000] uppercase mb-2">Academic Tip</h4>
+          <p className="text-xs leading-relaxed mb-0 text-[#3c4043]">
+            In many professional courses like MBBS or Engineering, the requirement might be as high as 80%. Always check your specific department's policy before planning any leaves!
+          </p>
         </div>
       </>
     ),
@@ -2876,10 +2692,10 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </p>
 
         <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg my-8">
-           <h4 className="font-bold mb-2">Real-World Application</h4>
-           <p className="text-sm leading-relaxed mb-0">
-             Architects and carpenters in Nepal use this formula every day to ensure corners are perfectly square (90 degrees). If you measure 3 feet on one wall and 4 feet on another, the diagonal distance between them must be exactly 5 feet—this is a "Pythagorean Triple" (3-4-5).
-           </p>
+          <h4 className="font-bold mb-2">Real-World Application</h4>
+          <p className="text-sm leading-relaxed mb-0">
+            Architects and carpenters in Nepal use this formula every day to ensure corners are perfectly square (90 degrees). If you measure 3 feet on one wall and 4 feet on another, the diagonal distance between them must be exactly 5 feet—this is a "Pythagorean Triple" (3-4-5).
+          </p>
         </div>
       </>
     ),
@@ -2951,10 +2767,10 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </ul>
 
         <div className="bg-[#fef7e0] border border-[#fbbc04] rounded-lg p-6 my-8">
-           <h3 className="text-[#b06000] font-black mt-0 mb-3 uppercase text-xs tracking-widest">Pricing Tip</h3>
-           <p className="text-sm leading-relaxed mb-0 text-[#3c4043]">
-             When you buy jewelry, the "Rate" you pay is: <strong>Market Rate + Making Charges + Jarti (Wastage)</strong>. Always ask your jeweler for a complete breakdown of these costs!
-           </p>
+          <h3 className="text-[#b06000] font-black mt-0 mb-3 uppercase text-xs tracking-widest">Pricing Tip</h3>
+          <p className="text-sm leading-relaxed mb-0 text-[#3c4043]">
+            When you buy jewelry, the "Rate" you pay is: <strong>Market Rate + Making Charges + Jarti (Wastage)</strong>. Always ask your jeweler for a complete breakdown of these costs!
+          </p>
         </div>
       </>
     ),
@@ -3005,10 +2821,10 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </p>
 
         <div className="p-6 bg-blue-50 border border-blue-100 rounded-lg my-8">
-           <h4 className="text-sm font-bold text-blue-900 mb-2">Did You Know?</h4>
-           <p className="text-xs leading-relaxed text-blue-800 mb-0">
-             The Nepalese Rupee (NPR) is <strong>pegged to the Indian Rupee (INR)</strong> at a fixed rate of 1.6:1. This means that if the Indian Rupee weakens against the US Dollar, the Nepalese Rupee will also weaken proportionally.
-           </p>
+          <h4 className="text-sm font-bold text-blue-900 mb-2">Did You Know?</h4>
+          <p className="text-xs leading-relaxed text-blue-800 mb-0">
+            The Nepalese Rupee (NPR) is <strong>pegged to the Indian Rupee (INR)</strong> at a fixed rate of 1.6:1. This means that if the Indian Rupee weakens against the US Dollar, the Nepalese Rupee will also weaken proportionally.
+          </p>
         </div>
       </>
     ),
@@ -3063,10 +2879,10 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </p>
 
         <div className="p-6 bg-green-50 border border-green-200 rounded-lg my-8">
-           <h4 className="text-sm font-bold text-green-900 mb-2">Pediatrician Tip</h4>
-           <p className="text-xs leading-relaxed text-green-800 mb-0">
-             If your child falls outside the "Healthy" range, don't panic. Growth spurts can temporarily shift percentiles. In Nepal, focus on providing a balanced diet of "Dal Bhat," vegetables, and proteins while encouraging active play.
-           </p>
+          <h4 className="text-sm font-bold text-green-900 mb-2">Pediatrician Tip</h4>
+          <p className="text-xs leading-relaxed text-green-800 mb-0">
+            If your child falls outside the "Healthy" range, don't panic. Growth spurts can temporarily shift percentiles. In Nepal, focus on providing a balanced diet of "Dal Bhat," vegetables, and proteins while encouraging active play.
+          </p>
         </div>
       </>
     ),
@@ -3115,7 +2931,7 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </ul>
 
         <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-6">
-           <p className="text-sm italic mb-0">"The secret calories are often in the Achar (sauce). Nut-based sauces can add 100+ calories per serving!"</p>
+          <p className="text-sm italic mb-0">"The secret calories are often in the Achar (sauce). Nut-based sauces can add 100+ calories per serving!"</p>
         </div>
       </>
     ),
@@ -3165,13 +2981,13 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </p>
 
         <div className="bg-[#f1f3f4] border border-[#dadce0] rounded-lg p-6 my-8">
-           <h3 className="font-bold mb-3">Cost Components (Estimated)</h3>
-           <p className="text-sm text-[#5f6368]">
-             The total cost isn't just the paint. You must also factor in:
-             1. <strong>Labor Cost:</strong> Typically charged per square foot or as a daily wage.
-             2. <strong>Putty & Primer:</strong> Essential for new walls to achieve a smooth finish.
-             3. <strong>Tools:</strong> Brushes, rollers, and masking tape.
-           </p>
+          <h3 className="font-bold mb-3">Cost Components (Estimated)</h3>
+          <p className="text-sm text-[#5f6368]">
+            The total cost isn't just the paint. You must also factor in:
+            1. <strong>Labor Cost:</strong> Typically charged per square foot or as a daily wage.
+            2. <strong>Putty & Primer:</strong> Essential for new walls to achieve a smooth finish.
+            3. <strong>Tools:</strong> Brushes, rollers, and masking tape.
+          </p>
         </div>
       </>
     ),
@@ -3258,26 +3074,26 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
 
         <h3>Anatomy of a Secure Password</h3>
         <div className="bg-[#f8f9fa] border border-[#dadce0] rounded-xl p-6 my-6">
-           <ul className="space-y-4 list-none p-0 m-0">
-             <li className="flex items-start gap-3">
-               <span className="bg-[#1a73e8] text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] mt-1 shrink-0">1</span>
-               <div>
-                 <strong>Length is King:</strong> Modern standards recommend at least 16 characters. Every additional character increases the cracking time exponentially.
-               </div>
-             </li>
-             <li className="flex items-start gap-3">
-               <span className="bg-[#1a73e8] text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] mt-1 shrink-0">2</span>
-               <div>
-                 <strong>Character Diversity:</strong> By mixing symbols ($ % #) and numbers, you force attackers to search a much larger "keyspace."
-               </div>
-             </li>
-             <li className="flex items-start gap-3">
-               <span className="bg-[#1a73e8] text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] mt-1 shrink-0">3</span>
-               <div>
-                 <strong>Zero Predictability:</strong> Avoid dictionary words, birthdays, or names. Randomly generated strings are the only defense against dictionary attacks.
-               </div>
-             </li>
-           </ul>
+          <ul className="space-y-4 list-none p-0 m-0">
+            <li className="flex items-start gap-3">
+              <span className="bg-[#1a73e8] text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] mt-1 shrink-0">1</span>
+              <div>
+                <strong>Length is King:</strong> Modern standards recommend at least 16 characters. Every additional character increases the cracking time exponentially.
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="bg-[#1a73e8] text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] mt-1 shrink-0">2</span>
+              <div>
+                <strong>Character Diversity:</strong> By mixing symbols ($ % #) and numbers, you force attackers to search a much larger "keyspace."
+              </div>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="bg-[#1a73e8] text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] mt-1 shrink-0">3</span>
+              <div>
+                <strong>Zero Predictability:</strong> Avoid dictionary words, birthdays, or names. Randomly generated strings are the only defense against dictionary attacks.
+              </div>
+            </li>
+          </ul>
         </div>
 
         <h2>How Our Generator Protects Your Privacy</h2>
@@ -3380,10 +3196,10 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </p>
 
         <div className="bg-[#e8f0fe] p-6 rounded-xl my-8 border border-[#1a73e8]">
-           <h3 className="text-[#1967d2] font-black mt-0 text-sm mb-3">Expert Construction Tip</h3>
-           <p className="text-xs leading-relaxed text-[#3c4043] mb-0">
-              Always subtract the area of <strong>Doors and Windows</strong> from your total wall area before calculating. A single standard door (3' x 7') saves you nearly 200-250 bricks!
-           </p>
+          <h3 className="text-[#1967d2] font-black mt-0 text-sm mb-3">Expert Construction Tip</h3>
+          <p className="text-xs leading-relaxed text-[#3c4043] mb-0">
+            Always subtract the area of <strong>Doors and Windows</strong> from your total wall area before calculating. A single standard door (3' x 7') saves you nearly 200-250 bricks!
+          </p>
         </div>
       </>
     ),
@@ -3452,15 +3268,15 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
 
         <h3>Three Ways to Use This Tool</h3>
         <ol className="space-y-4">
-           <li><strong>Find the Percentage:</strong> What is X as a percentage of Y? (e.g., You got 450 marks out of 500. What is the percentage?)</li>
-           <li><strong>Percentage Increase/Decrease:</strong> If the price of petrol went from Rs. 160 to Rs. 175, what was the percentage hike?</li>
-           <li><strong>Percentage of a Value:</strong> What is 13% of Rs. 12,000? (Crucial for VAT and service charge math).</li>
+          <li><strong>Find the Percentage:</strong> What is X as a percentage of Y? (e.g., You got 450 marks out of 500. What is the percentage?)</li>
+          <li><strong>Percentage Increase/Decrease:</strong> If the price of petrol went from Rs. 160 to Rs. 175, what was the percentage hike?</li>
+          <li><strong>Percentage of a Value:</strong> What is 13% of Rs. 12,000? (Crucial for VAT and service charge math).</li>
         </ol>
 
         <div className="p-6 bg-slate-50 border-l-4 border-slate-400 rounded-r-lg my-8">
-           <p className="italic text-sm text-slate-600 mb-0">
-             "Mathematics is not about numbers, equations, computations, or algorithms: it is about understanding." — Use this tool to understand the growth and ratios in your financial and academic life.
-           </p>
+          <p className="italic text-sm text-slate-600 mb-0">
+            "Mathematics is not about numbers, equations, computations, or algorithms: it is about understanding." — Use this tool to understand the growth and ratios in your financial and academic life.
+          </p>
         </div>
       </>
     ),
@@ -3488,10 +3304,10 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
         </p>
 
         <div className="bg-[#fff0f0] border border-[#ffcfcf] rounded-xl p-6 my-8">
-           <h3 className="text-[#d93025] font-black mt-0 mb-3 uppercase text-xs tracking-widest">A Note for Mothers</h3>
-           <p className="text-sm leading-relaxed mb-0 text-[#3c4043]">
-             Remember that only about 4% of babies are born exactly on their due date. Most arrive within a window of two weeks before or after. In Nepal, we recommend regular checkups at a certified maternity hospital to monitor your baby's growth and health.
-           </p>
+          <h3 className="text-[#d93025] font-black mt-0 mb-3 uppercase text-xs tracking-widest">A Note for Mothers</h3>
+          <p className="text-sm leading-relaxed mb-0 text-[#3c4043]">
+            Remember that only about 4% of babies are born exactly on their due date. Most arrive within a window of two weeks before or after. In Nepal, we recommend regular checkups at a certified maternity hospital to monitor your baby's growth and health.
+          </p>
         </div>
       </>
     ),
@@ -3501,148 +3317,268 @@ export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
     ]
   },
   'nea-bill': {
-    title: "NEA Electricity Bill Calculator Nepal | Unit & Tariff Math",
-    description: "Calculate your Nepal Electricity Authority (NEA) monthly bill instantly. Includes the latest 5A domestic tariff slabs, service charges, and VAT for Nepal.",
+    title: "NEA Bill Calculator 2082 | Nepal Electricity Authority Tariff Guide",
+    description: "Calculate your Nepal Electricity Authority (NEA) bill online with 2082 tariff rates. Learn about the 20-unit free limit and slab-based pricing for domestic meters.",
     content: (
       <>
         <h2>The Most Important Thing About Your NEA Bill</h2>
-        <p>Before anything else, there is one rule that confuses almost every Nepali electricity user. Read this carefully.</p>
+        <p>Before you look at the numbers, there is one specific rule that confuses almost every household in Nepal. Understanding this can save you hundreds of rupees every month.</p>
         <p><strong>The "first 20 units" are NOT always free.</strong></p>
         <p>
-          For 5A domestic meters:
-          - If you use <strong>20 units or fewer</strong>: energy charge = NPR 0 (you pay only the fixed service charge)
-          - If you use <strong>21 units or more</strong>: the first 20 units are now charged at NPR 3 per unit, not zero
+          For a standard 5A domestic meter:
+          <ul className="list-disc pl-5 mt-2">
+            <li>If you use <strong>exactly 20 units or fewer</strong>: Your energy charge is NPR 0 (you pay only the NPR 30 service charge).</li>
+            <li>If you use <strong>21 units or more</strong>: The "free" status vanishes. Those first 20 units are now charged at NPR 3 per unit.</li>
+          </ul>
         </p>
-        <p>This means crossing from 20 to 21 units does not just add the cost of 1 unit at the higher rate — it retroactively adds a charge for all 20 units that were previously free.</p>
-        
-        <div className="bg-[#f1f3f4] border border-[#dadce0] rounded-lg p-6 my-4">
-           <h3 className="font-bold mb-2">Example: 20 units consumed</h3>
-           <ul className="text-sm text-[#5f6368]">
-              <li>Service charge: NPR 30 (5A meter)</li>
-              <li>Energy charge: NPR 0 (stays below threshold)</li>
-              <li><strong>Total: NPR 30</strong></li>
-           </ul>
-        </div>
-        
-        <div className="bg-[#fce8e6] border border-[#fad2cf] rounded-lg p-6 my-4">
-           <h3 className="font-bold mb-2 text-[#c5221f]">Example: 21 units consumed</h3>
-           <ul className="text-sm text-[#c5221f]">
-              <li>Service charge: NPR 50 (slab moves up)</li>
-              <li>Energy charge: 20 units × NPR 3 = NPR 60, plus 1 unit × NPR 6.50 = NPR 6.50</li>
-              <li><strong>Total: NPR 116.50</strong></li>
-           </ul>
-        </div>
-        
-        <p>Consuming just 1 extra unit above 20 can more than triple your bill. This is why watching your consumption near the 20-unit mark matters.</p>
-        <p className="text-xs italic text-gray-500">Source: Nepal Electricity Authority (nea.org.np) tariff schedule. Rates are for standard 5A single-phase domestic meters and are subject to change by NEA.</p>
+        <p className="mt-4">
+          This means crossing from 20 to 21 units doesn't just add the cost of 1 unit—it retroactively adds a charge for the previous 20 units. <strong>Your bill jump from NPR 30 to over NPR 115 just for using one extra unit.</strong>
+        </p>
 
-        <h2>Current NEA Tariff Slabs (5A Domestic Meter)</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+          <div className="bg-[#f1f3f4] border border-[#dadce0] rounded-lg p-6">
+            <h3 className="font-bold mb-2">Example: 20 Units Consumed</h3>
+            <ul className="text-sm text-[#5f6368]">
+              <li>Service charge: NPR 30 (5A meter)</li>
+              <li>Energy charge: NPR 0 (Free threshold)</li>
+              <li><strong>Total: NPR 30</strong></li>
+            </ul>
+          </div>
+          <div className="bg-[#fce8e6] border border-[#fad2cf] rounded-lg p-6">
+            <h3 className="font-bold mb-2 text-[#c5221f]">Example: 21 Units Consumed</h3>
+            <ul className="text-sm text-[#c5221f]">
+              <li>Service charge: NPR 50 (Slab moves up)</li>
+              <li>Energy charge: (20 × 3) + (1 × 6.50) = NPR 66.50</li>
+              <li><strong>Total: NPR 116.50</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>Current NEA Domestic Tariff Slabs (5A Meter)</h2>
+        <p>The following rates are based on the latest <strong>NEA Tariff Schedule for 2081/82</strong>. Note that 15A and 30A meters have higher fixed service charges.</p>
         <div className="overflow-x-auto my-6">
           <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
             <thead className="bg-[#f8f9fa]">
               <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Monthly Units</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Service Charge (NPR)</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Energy Charge (NPR/unit)</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-bold">Monthly Units</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-bold">Service Charge (NPR)</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-bold">Energy Charge (NPR/Unit)</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td className="border border-[#dadce0] px-4 py-2">0–20</td><td className="border border-[#dadce0] px-4 py-2">30</td><td className="border border-[#dadce0] px-4 py-2">0 (free if total ≤ 20)</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2">21–30</td><td className="border border-[#dadce0] px-4 py-2">50</td><td className="border border-[#dadce0] px-4 py-2">3.00/unit for first 20, then 6.50/unit</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2">31–50</td><td className="border border-[#dadce0] px-4 py-2">50</td><td className="border border-[#dadce0] px-4 py-2">as above + 8.00/unit</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2">51–100</td><td className="border border-[#dadce0] px-4 py-2">75</td><td className="border border-[#dadce0] px-4 py-2">as above + 9.50/unit</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2">101–250</td><td className="border border-[#dadce0] px-4 py-2">100</td><td className="border border-[#dadce0] px-4 py-2">as above + 9.50/unit</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2">Above 250</td><td className="border border-[#dadce0] px-4 py-2">125</td><td className="border border-[#dadce0] px-4 py-2">as above + 11.00/unit</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2 font-medium">0–20</td><td className="border border-[#dadce0] px-4 py-2">30</td><td className="border border-[#dadce0] px-4 py-2">0 (if total ≤ 20)</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2 font-medium">21–30</td><td className="border border-[#dadce0] px-4 py-2">50</td><td className="border border-[#dadce0] px-4 py-2">3.00 for first 20, then 6.50</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2 font-medium">31–50</td><td className="border border-[#dadce0] px-4 py-2">50</td><td className="border border-[#dadce0] px-4 py-2">Above + 8.00</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2 font-medium">51–100</td><td className="border border-[#dadce0] px-4 py-2">75</td><td className="border border-[#dadce0] px-4 py-2">Above + 9.50</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2 font-medium">101–250</td><td className="border border-[#dadce0] px-4 py-2">100</td><td className="border border-[#dadce0] px-4 py-2">Above + 9.50</td></tr>
+              <tr><td className="border border-[#dadce0] px-4 py-2 font-medium">Above 250</td><td className="border border-[#dadce0] px-4 py-2">125</td><td className="border border-[#dadce0] px-4 py-2">Above + 11.00</td></tr>
             </tbody>
           </table>
         </div>
-        <p className="text-xs italic text-gray-500">Note: 15A meters have different service charges. The 5A ("special domestic") meter is the most common for small households. Commercial and industrial meters follow entirely different tariff schedules.</p>
 
-        <h2>How to Read Your NEA Bill</h2>
-        <p>Your monthly NEA electricity bill has several components:</p>
+        <h2>How to Reduce Your Monthly Bill</h2>
         <ul className="list-disc pl-5 space-y-2">
-          <li><strong>Service/Fixed Charge:</strong> A flat monthly fee based on which unit slab you fall into. This applies regardless of how much electricity you use.</li>
-          <li><strong>Energy Charge:</strong> The per-unit cost multiplied by the number of units consumed in that slab range.</li>
-          <li><strong>VAT:</strong> 13% on the total of service + energy charges.</li>
-          <li><strong>Meter Rent:</strong> A small monthly charge for the electricity meter itself (typically NPR 5–15 for domestic meters).</li>
+          <li><strong>Check your Meter Capacity:</strong> If you are a small family with a 15A or 30A meter, you are paying a higher monthly fixed charge. If your peak load is low, consider downgrading to a 5A meter to save money.</li>
+          <li><strong>The LED Advantage:</strong> In Nepal, lighting usually accounts for 20% of a household bill. Switching from tube lights to 9W LED bulbs can pay for itself in just three months.</li>
+          <li><strong>Timing your Heavy Loads:</strong> If you have a Time-of-Day (TOD) meter, running water pumps or washing machines during "Off-Peak" hours (usually late night) can be significantly cheaper.</li>
         </ul>
-        <p className="font-bold mt-4">The total on your bill = Service Charge + Energy Charge + VAT + Meter Rent</p>
-      </>
-    ),
-    faqs: []
-  },
-  'attendance': {
-    title: "Attendance Calculator Nepal | 75% Rule for TU, KU, PU",
-    description: "Calculate your college attendance percentage. Find out exactly how many classes you can miss or need to attend to stay above the 75% minimum.",
-    content: (
-      <>
-        <h2>Nepal's 75% Attendance Rule</h2>
-        <p>Most colleges and universities in Nepal — including Tribhuvan University (TU), Kathmandu University (KU), Pokhara University (PU), and all affiliated campuses — require a minimum of <strong>75% attendance</strong> to appear in final exams. Falling below 75% typically means you are barred from sitting the exam regardless of your academic performance.</p>
-        <p>This calculator helps you track exactly where you stand and how many more classes you can afford to miss — or how many you need to attend to recover — before the semester ends.</p>
 
-        <h2>How to Use This Calculator</h2>
-        <ol className="list-decimal pl-5 space-y-2">
-          <li>Enter the total number of classes held so far this semester</li>
-          <li>Enter the number of classes you have attended</li>
-          <li>Enter the total number of remaining classes in the semester</li>
-          <li>Click Calculate — you see your current attendance %, whether you are safe, and exactly how many classes you can still miss while staying above 75%</li>
-        </ol>
-
-        <h2>Why 75%?</h2>
-        <p>The 75% minimum is set by the University Grants Commission (UGC) Nepal as a standard across institutions. Some departments — particularly medical, engineering, and science practicals — enforce stricter thresholds (80% or higher). Always check your specific department's attendance policy.</p>
-        <p><strong>Pro tip:</strong> If you are below 75% but still have classes remaining, the calculator shows how many consecutive classes you must attend to recover. Use it to plan rather than panic.</p>
+        <AuthorByline fiscalYear="2082/83" sources={[
+          { label: 'NEA Official Tariff', url: 'https://www.nea.org.np' },
+          { label: 'Electricity Regulatory Commission', url: 'https://erc.gov.np' },
+        ]} />
       </>
     ),
     faqs: [
-      { question: "What happens if I miss an exam due to attendance shortage?", answer: "You typically receive a \"Not Eligible\" (NE) status and cannot sit the exam that semester. Depending on your institution, you may be able to apply for special consideration with a valid reason (medical certificate, etc.) through the exam controller's office." },
-      { question: "My college tracks attendance differently. Can I still use this?", answer: "Yes. The calculator works with any attendance percentage threshold. If your college requires 80%, just remember that 75% is the national minimum — your department may be stricter." }
+      {
+        question: "How do I pay my NEA bill online?",
+        answer: "You can use digital wallets like eSewa or Khalti. Simply enter your SC Number and Consumer ID from your bill. Remember to pay within 7 days of the bill date to get a 2% rebate!"
+      },
+      {
+        question: "What is the penalty for late payment?",
+        answer: "If you pay after 22 days of the bill date, a 5% penalty is added. After 30 days, it increases to 10%, and eventually 25%. After 60nd day, the NEA has the right to disconnect your line."
+      },
+      {
+        question: "Is there a discount for early payment?",
+        answer: "Yes, NEA offers a 2% discount (rebate) if you pay your bill within 7 days of the reading date."
+      }
+    ]
+  },
+  'attendance': {
+    title: "Attendance Calculator Nepal | TU, KU & PU 75% Rule Guide",
+    description: "Calculate your university attendance percentage instantly. Find out exactly how many classes you can skip or must attend to stay above the mandatory 75% limit.",
+    content: (
+      <>
+        <h2>The 75% Attendance Rule in Nepal</h2>
+        <p>
+          Maintaining the mandatory attendance limit is easily one of the most stressful parts of student life in Nepal. Whether you are at <strong>Tribhuvan University (TU)</strong>, <strong>Kathmandu University (KU)</strong>, or <strong>Pokhara University (PU)</strong>, the rule is almost universal: you need a minimum of <strong>75% attendance</strong> to appear in your final examinations.
+        </p>
+        <p>
+          Falling below this 75% threshold usually results in a "Not Eligible" (NE) status, meaning you are barred from the exam hall regardless of how hard you’ve studied. We built this calculator to help you strategically plan your semester so you stay safe without losing your mind.
+        </p>
+
+        <h3>How to Use the Attendance Calculator</h3>
+        <p>This tool works in two ways depending on your current situation:</p>
+        <ol className="list-decimal pl-5 space-y-2 my-4">
+          <li><strong>The "Recovery" Mode:</strong> If you are currently below your target (e.g., you’re at 60% but need 75%), the calculator tells you exactly how many <strong>consecutive classes</strong> you must attend to pull your average back up.</li>
+          <li><strong>The "Bunk Buffer" Mode:</strong> If you’ve been a regular student and are safely above 80%, the tool calculates exactly how many upcoming classes you can safely miss (or "bunk") without dropping below the danger zone.</li>
+        </ol>
+
+        <h3>Why is the threshold so strict?</h3>
+        <p>
+          The 75% minimum is a standard set by the <strong>University Grants Commission (UGC) Nepal</strong>. While some liberal arts departments might be slightly flexible, professional courses like <strong>Engineering (IOE)</strong>, <strong>Medicine (IOM)</strong>, and science practicals often enforce an even stricter 80% rule.
+        </p>
+        <p>
+          <strong>Avash’s Note:</strong> Don't wait until the last week of the semester to check your status. If you realize you're short on attendance early, you still have time to attend extra practicals or submit a medical application through the Exam Controller's office.
+        </p>
+
+        <AuthorByline fiscalYear="2082/83" sources={[
+          { label: 'UGC Nepal Guidelines', url: 'https://www.ugcnepal.edu.np' },
+          { label: 'TU Exam Controller Office', url: 'https://tuexam.edu.np' },
+        ]} />
+      </>
+    ),
+    faqs: [
+      {
+        question: "What happens if my attendance is below 75% in TU?",
+        answer: "Typically, you will be marked as 'Not Eligible' (NE). This means you cannot fill out the exam form and will have to wait for the next session or re-register for the course depending on your college's internal policy."
+      },
+      {
+        question: "Can I use medical certificates to cover short attendance?",
+        answer: "Most Nepali universities allow a 5% to 10% relaxation (lowering the requirement to 65% or 70%) if you provide a valid medical certificate from a recognized hospital, but this must be approved by the Head of Department (HOD)."
+      },
+      {
+        question: "How is attendance percentage calculated?",
+        answer: "The formula is simple: (Total Classes Attended ÷ Total Classes Held) × 100. Our calculator automates this and factors in future classes as well."
+      },
+      {
+        question: "Is the attendance rule different for practical classes?",
+        answer: "Yes, many institutions in Nepal require 80% or even 90% attendance for practical/lab sessions. Make sure to adjust the 'Target Percentage' in the calculator to match your specific lab requirements."
+      }
     ]
   },
   'gpa': {
-    title: "GPA Calculator Nepal | TU, KU, PU Grading System",
-    description: "Calculate your semester GPA or overall CGPA according to standard Nepal university 4.0 grading scales. Convert GPA to percentage instantly.",
+    title: "GPA Calculator Nepal | TU, KU, NEB & PU Grading System",
+    description: "Calculate your semester GPA or overall CGPA instantly using Nepal's official NEB/TU 4.0 grading scale. Convert GPA to percentage for FY 2082/83.",
     content: (
       <>
-        <h2>Nepal University GPA System</h2>
-        <p>Most universities in Nepal follow a <strong>4.0 GPA scale</strong> — the same standard used internationally. Your GPA is a weighted average of your grade points across subjects, weighted by the credit hours of each course.</p>
+        <h2>Understanding the Nepal University GPA System</h2>
+        <p>
+          Most universities in Nepal, including <strong>Tribhuvan University (TU)</strong>, <strong>Kathmandu University (KU)</strong>, and <strong>Pokhara University (PU)</strong>, have shifted to the international <strong>4.0 GPA scale</strong>. This system is designed to reward consistent performance across semesters rather than just final exam marks.
+        </p>
+        <p>
+          Your GPA is a weighted average: it takes your grade points (from the table below) and weights them against the <strong>credit hours</strong> of each subject. This means your 3-credit core subjects affect your GPA more than a 1-credit lab.
+        </p>
 
-        <h2>Nepal Standard Grading Scale (TU, KU, PU)</h2>
+        <h3>Official NEB & TU Grading Scale (FY 2082/83)</h3>
+        <p>This is the authoritative reference used by all Nepali higher education institutions to map your percentage marks to letter grades:</p>
+        <div className="overflow-x-auto my-6">
+          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
+            <thead className="bg-[#E8F0FE]">
+              <tr>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Grade</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Grade Points</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">% Range</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Classification</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['A+', '4.0', '90–100%', 'Outstanding'],
+                ['A', '3.6', '80–89.9%', 'Excellent'],
+                ['B+', '3.2', '70–79.9%', 'Very Good'],
+                ['B', '2.8', '60–69.9%', 'Good'],
+                ['C+', '2.4', '50–59.9%', 'Satisfactory'],
+                ['C', '2.0', '40–49.9%', 'Acceptable'],
+                ['D+', '1.6', '35–39.9%', 'Partially Acceptable'],
+                ['D', '1.2', '30–34.9%', 'Insufficient'],
+                ['F', '0.0', 'Below 30%', 'Fail'],
+              ].map(([g, p, pct, cls]) => (
+                <tr key={g} className="odd:bg-white even:bg-[#f8f9fa]">
+                  <td className="border border-[#dadce0] px-4 py-2 font-black text-[#1A73E8]">{g}</td>
+                  <td className="border border-[#dadce0] px-4 py-2 font-bold">{p}</td>
+                  <td className="border border-[#dadce0] px-4 py-2">{pct}</td>
+                  <td className="border border-[#dadce0] px-4 py-2 text-[#5f6368]">{cls}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h3>University-Wise Minimum Pass & Distinction Marks</h3>
         <div className="overflow-x-auto my-6">
           <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
             <thead className="bg-[#f8f9fa]">
               <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Marks Range</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Grade</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Grade Points</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">University</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Pass GPA</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Distinction</th>
+                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Special Note</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td className="border border-[#dadce0] px-4 py-2">90–100%</td><td className="border border-[#dadce0] px-4 py-2">A+</td><td className="border border-[#dadce0] px-4 py-2">4.0</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2">80–89.9%</td><td className="border border-[#dadce0] px-4 py-2">A</td><td className="border border-[#dadce0] px-4 py-2">3.6</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2">70–79.9%</td><td className="border border-[#dadce0] px-4 py-2">B+</td><td className="border border-[#dadce0] px-4 py-2">3.2</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2">60–69.9%</td><td className="border border-[#dadce0] px-4 py-2">B</td><td className="border border-[#dadce0] px-4 py-2">2.8</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2">50–59.9%</td><td className="border border-[#dadce0] px-4 py-2">C+</td><td className="border border-[#dadce0] px-4 py-2">2.4</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2">40–49.9%</td><td className="border border-[#dadce0] px-4 py-2">C</td><td className="border border-[#dadce0] px-4 py-2">2.0</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2">35–39.9%</td><td className="border border-[#dadce0] px-4 py-2">D+</td><td className="border border-[#dadce0] px-4 py-2">1.6</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2">30–34.9%</td><td className="border border-[#dadce0] px-4 py-2">D</td><td className="border border-[#dadce0] px-4 py-2">1.2</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2">Below 30%</td><td className="border border-[#dadce0] px-4 py-2">F (Fail)</td><td className="border border-[#dadce0] px-4 py-2">0.0</td></tr>
+              {[
+                ['Tribhuvan University (TU)', '2.0 (C)', '3.6 (A)', 'IOE requires min D per subject'],
+                ['Kathmandu University (KU)', '2.0 (C)', '3.5+', 'Uses rigorous semester system'],
+                ['Pokhara University (PU)', '2.0 (C)', '3.6 (A)', 'Fully aligned with NEB scale'],
+                ['NEB (Class 11 & 12)', '1.6 (D)', '4.0 (A+)', 'Pass requires 35% in Theory'],
+              ].map(([uni, pass, dist, note]) => (
+                <tr key={uni} className="odd:bg-white even:bg-[#f8f9fa]">
+                  <td className="border border-[#dadce0] px-4 py-2 font-bold">{uni}</td>
+                  <td className="border border-[#dadce0] px-4 py-2 text-red-600 font-bold">{pass}</td>
+                  <td className="border border-[#dadce0] px-4 py-2 text-green-700 font-bold">{dist}</td>
+                  <td className="border border-[#dadce0] px-4 py-2 text-[#5f6368] text-xs">{note}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
-        <p className="text-xs italic text-gray-500">Note: Some universities have slight variations. Check your institution's official grade sheet for their exact scale.</p>
 
-        <h2>How to Use This Calculator</h2>
-        <ol className="list-decimal pl-5 space-y-2">
-          <li>Enter each subject name and its credit hours</li>
-          <li>Enter your marks or grade for each subject</li>
-          <li>Click Calculate — you see individual grade points, semester GPA, and CGPA if you enter multiple semesters</li>
-        </ol>
-        <p className="mt-4"><strong>GPA to percentage conversion:</strong> (GPA ÷ 4.0) × 100 = approximate percentage. Many scholarship forms and foreign universities ask for percentage — use this formula for conversion.</p>
+        <h2>How to Convert GPA to Percentage in Nepal</h2>
+        <p>
+          If you are applying for a foreign visa or a Nepal government scholarship, they often ask for your percentage. While there is no "perfect" official formula, the most widely accepted method in Nepal is:
+        </p>
+        <blockquote>
+          <strong>Approximate Percentage = GPA × 25</strong>
+          <br />
+          <em>Example: A GPA of 3.2 would be 3.2 × 25 = 80%.</em>
+        </blockquote>
+        <p>
+          <strong>Caution:</strong> For official international admissions (like Australia or USA), always request a certified transcript from your college that explicitly lists your aggregate percentage marks.
+        </p>
+
+        <h2>Semester GPA vs. CGPA: What is the difference?</h2>
+        <p>
+          Don't get confused between the two:
+          <ul className="list-disc pl-5 space-y-1 mt-2">
+            <li><strong>Semester GPA:</strong> Your performance in a single 6-month term.</li>
+            <li><strong>CGPA (Cumulative GPA):</strong> The credit-weighted average of ALL semesters you have completed so far. This is the "final" number that appears on your degree.</li>
+          </ul>
+        </p>
+
+        <AuthorByline fiscalYear="2082/83 (2025/26)" sources={[
+          { label: 'NEB Nepal', url: 'https://www.neb.gov.np' },
+          { label: 'TU Official', url: 'https://tribhuvan-university.edu.np' },
+        ]} />
       </>
     ),
     faqs: [
-      { question: "What GPA do I need for a scholarship?", answer: "Most Nepal government scholarships require first division (roughly GPA 3.2+). For international scholarships (Australian Awards, DAAD, Erasmus), 3.0 or above is typically the baseline, though requirements vary." },
-      { question: "What is CGPA?", answer: "CGPA (Cumulative GPA) is your weighted average across all semesters completed so far. It gives a more accurate picture of overall academic performance than a single semester's GPA." }
+      {
+        question: "What is A+ GPA in Nepal's system?",
+        answer: "In Nepal (NEB/TU), an A+ is the highest possible grade. It represents 'Outstanding' performance, usually for scores between 90% and 100%, and carries a 4.0 grade point."
+      },
+      {
+        question: "Is a 3.0 GPA good in Nepal?",
+        answer: "Yes, a 3.0 GPA is considered 'Very Good.' It is roughly equivalent to a 75% aggregate and generally meets the eligibility criteria for most government jobs and foreign university admissions."
+      },
+      {
+        question: "How do I calculate CGPA across 8 semesters?",
+        answer: "To calculate CGPA, multiply each semester's GPA by its total credit hours, add them all up, and divide by the total credit hours of the entire degree. You can use our dedicated CGPA tool for this."
+      },
+      {
+        question: "Does Kathmandu University (KU) follow the same scale as TU?",
+        answer: "While both use a 4.0 scale, KU often has stricter internal marking. Generally, a CGPA of 2.0 is required to remain in good standing, and 3.5+ is distinction level."
+      }
     ]
   }
 };
