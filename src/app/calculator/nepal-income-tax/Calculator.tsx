@@ -56,7 +56,7 @@ export default function NepalIncomeTaxCalculator() {
       slug="nepal-income-tax"
       crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Income Tax Calculator' }]}
       title="Nepal Income Tax Dashboard"
-      description="Professional tax laboratory for FY 2081/82. Includes SSF SST-waiver, female rebates, and deduction mapping."
+      description="Professional tax laboratory for the current fiscal year. Includes SSF SST-waiver, female rebates, and deduction mapping."
       icon={Wallet}
       inputs={
         <div className="space-y-6">
@@ -176,7 +176,7 @@ export default function NepalIncomeTaxCalculator() {
           </div>
           
           <div className="text-[10px] text-gray-500 text-center italic mt-4">
-            Data verified against the <a href="https://ird.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Inland Revenue Department (IRD)</a> Finance Act 2081/82.
+            Data verified against the <a href="https://ird.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Inland Revenue Department (IRD)</a> Finance Act for the current budget cycle.
           </div>
 
           <SuggestionBox calculatorName="Nepal Income Tax" />
@@ -185,15 +185,27 @@ export default function NepalIncomeTaxCalculator() {
       details={
         <div className="space-y-8">
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Understanding Nepal Income Tax (FY 2081/82)</h2>
+            <h2 className="text-xl font-black text-[#202124] mb-4">Understanding Nepal Income Tax (Evergreen Guide)</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>
                 The Nepal Income Tax Calculator helps estimate your monthly and annual tax liabilities based on the prevailing tax laws governed by the Inland Revenue Department (IRD) of Nepal. Taxation in Nepal follows a progressive slab system, meaning your income is divided into segments, and higher segments are taxed at progressively higher rates. This tool is designed primarily for resident individuals earning remuneration (salary) and provides a highly accurate <strong className="text-[#202124]">net income calculator</strong> for financial planning.
               </p>
               <p>
-                A core principle of the Nepalese tax system is the distinction between gross income and taxable income. By legally utilizing available deductions and understanding the thresholds associated with your marital status, you can optimize your tax burden. The calculator automatically integrates the latest provisions for the fiscal year 2081/82 (2024/2025), including the 1% Social Security Tax (SST) and its corresponding waivers for contributing members.
+                A core principle of the Nepalese tax system is the distinction between gross income and taxable income. By legally utilizing available deductions and understanding the thresholds associated with your marital status, you can optimize your tax burden. The calculator automatically integrates the latest provisions for the current fiscal year, including the 1% Social Security Tax (SST) and its corresponding waivers for contributing members.
               </p>
             </div>
+          </div>
+
+          <div className="bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg p-6 shadow-sm">
+            <h3 className="text-lg font-bold text-[#1A73E8] mb-4 border-b border-[#C5D9F7] pb-2">The 5% IT Freelancer & Export Rule</h3>
+            <p className="text-sm text-[#5F6368] leading-relaxed mb-4">
+              If you are an IT freelancer or providing remote services to entities outside Nepal, you are likely eligible for the <strong>5% Final Withholding Tax</strong>. 
+            </p>
+            <ul className="space-y-2 text-xs text-[#5F6368] list-disc pl-5">
+              <li><strong>Final Tax:</strong> The 5% deducted by your bank on foreign currency receipts is considered a final tax for most individual freelancers.</li>
+              <li><strong>Formal Channels:</strong> Payments must be received through formal banking channels to qualify for this preferential rate.</li>
+              <li><strong>Consultancy vs. IT:</strong> Ensure your bank codes your transactions correctly. "Consultancy" may attract a 15% TDS, whereas "IT Services/Export" qualifies for the 5% incentive.</li>
+            </ul>
           </div>
 
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
@@ -201,7 +213,7 @@ export default function NepalIncomeTaxCalculator() {
             <p className="text-sm text-[#5F6368] mb-4">A standard income tax calculation in Nepal involves several key components. Understanding these inputs will help you navigate your payslip and our <strong className="text-[#202124]">tax calculator nepal</strong>.</p>
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
               <li><strong className="text-[#202124]">Assessable Income (Gross Salary):</strong> This is the total remuneration earned from your employment before any deductions or taxes are applied. It includes your basic salary, dearness allowance, Dashain bonus, and any other taxable allowances provided by your employer.</li>
-              <li><strong className="text-[#202124]">Marital Status Assessment:</strong> Nepal provides different initial tax-free thresholds depending on whether an individual elects to be assessed as "Single" or as a "Couple" (Married). For the current fiscal year, the threshold is Rs. 500,000 for single individuals and Rs. 600,000 for married couples. Married individuals whose spouses also earn income must carefully choose whether joint or separate assessment is mathematically beneficial.</li>
+              <li><strong className="text-[#202124]">Marital Status Assessment:</strong> Nepal provides different initial tax-free thresholds depending on whether an individual elects to be assessed as "Single" or as a "Couple" (Married). The thresholds are adjusted periodically by the budget; currently, they stand at Rs. 500,000 for single and Rs. 600,000 for married individuals.</li>
               <li><strong className="text-[#202124]">Social Security Fund (SSF):</strong> The SSF is a government-mandated retirement and welfare fund. Salaried professionals who are formally enrolled and contribute to the SSF are granted a waiver on the baseline 1% Social Security Tax on their first tax slab. This is mathematically applied by dropping the 1% slab rate to 0% for SSF contributors.</li>
             </ul>
           </div>

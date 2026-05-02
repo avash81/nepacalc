@@ -1,12 +1,10 @@
 import Link from 'next/link';
 import { CATEGORIES } from '@/data/calculators';
 import { InstitutionalBlock } from '@/components/layout/InstitutionalBlock';
-import { TopCalculators } from '@/components/layout/TopCalculators';
 import { HomeHero } from './HomeHero';
 import { RecentCalculators } from '@/components/layout/RecentCalculators';
 import type { Metadata } from 'next';
 
-/* ── Homepage-specific metadata (overrides layout.tsx defaults) ── */
 export const metadata: Metadata = {
   title: 'Free Online Calculator NepaCalc Nepal',
   description:
@@ -16,118 +14,31 @@ export const metadata: Metadata = {
     'maths solver', 'algebra solver', 'trigonometry calculator',
     'calculus calculator', 'nepal income tax calculator', 'EMI calculator',
     'GPA calculator', 'free online calculator', 'NepaCalc',
-    'graphing tool', 'math plotter', 'function grapher',
   ],
-  openGraph: {
-    title: 'Free Online Calculator NepaCalc Nepal',
-    description: 'Use free online calculators for math finance health conversions and more. Nepals best calculator site with 100 plus tools. Try NepaCalc now',
-    url: 'https://nepacalc.com',
-    siteName: 'NepaCalc',
-    locale: 'en_NP',
-    type: 'website',
-    images: ['https://nepacalc.com/og-image.png']
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Free Online Calculator NepaCalc Nepal',
-    description: 'Use free online calculators for math finance health conversions and more. Nepals best calculator site with 100 plus tools. Try NepaCalc now',
-  },
   alternates: {
     canonical: 'https://nepacalc.com/',
   }
 };
 
-/* ── Homepage-specific JSON-LD schemas ── */
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'NepaCalc',
   url: 'https://nepacalc.com',
-  logo: {
-    '@type': 'ImageObject',
-    url: 'https://nepacalc.com/logo.png',
-    width: 300,
-    height: 60
-  },
-  sameAs: [
-    'https://github.com/avash81',
-    'https://www.linkedin.com/in/avash-chaudhary-6a8479364'
-  ]
-};
-
-const websiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'NepaCalc',
-  url: 'https://nepacalc.com'
-};
-
-const homepageCalcSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebApplication',
-  '@id': 'https://nepacalc.com/#calculator',
-  name: 'NepaCalc Scientific Calculator & Graphing Engine',
-  url: 'https://nepacalc.com',
-  applicationCategory: 'EducationalApplication',
-  applicationSubCategory: 'Scientific Calculator',
-  operatingSystem: 'Any (Web Browser)',
-  browserRequirements: 'Requires JavaScript, HTML5 Canvas',
-  offers: { '@type': 'Offer', price: '0', priceCurrency: 'NPR' },
-  featureList: [
-    'Scientific calculator with Deg/Rad mode',
-    'Advanced Graphing engine',
-    'Maths Solver — Algebra, Trigonometry, Calculus',
-    '80+ specialized calculators available',
-  ],
-  softwareVersion: '4.0',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '2450',
-    bestRating: '5',
-  },
-  creator: {
-    '@type': 'Organization',
-    name: 'NepaCalc',
-    url: 'https://nepacalc.com',
-  },
-};
-
-const homepageFaqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: 'What types of calculators are available on NepaCalc?',
-      acceptedAnswer: { '@type': 'Answer', text: 'NepaCalc offers 80+ professional calculators including a scientific calculator, graphing tool, maths solver, Nepal income tax calculator, EMI calculator, and more.' },
-    },
-    {
-      '@type': 'Question',
-      name: 'Is NepaCalc free to use?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes, NepaCalc is 100% free with no registration required.' },
-    },
-  ],
+  logo: 'https://nepacalc.com/logo.png',
 };
 
 export default function HomePage() {
   return (
     <>
-      {/* Institutional SEO Suite */}
       <script 
         type="application/ld+json" 
         dangerouslySetInnerHTML={{ 
-          __html: JSON.stringify([
-            organizationSchema,
-            websiteSchema,
-            homepageCalcSchema,
-            homepageFaqSchema
-          ]) 
+          __html: JSON.stringify([organizationSchema]) 
         }} 
       />
       
       <div className="min-h-screen bg-[#F1F3F4]">
-        {/* 1. Header & Calculator */}
         <section className="pt-1 pb-8 border-b border-[#dadce0] bg-[#F1F3F4]">
           <div className="hp-container">
             <div className="mb-4 max-w-6xl">
@@ -139,11 +50,10 @@ export default function HomePage() {
               </p>
             </div>
 
-               <HomeHero />
+            <HomeHero />
           </div>
         </section>
         
-        {/* 2. Structured Directory */}
         <main className="hp-container py-6">
           <RecentCalculators />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
@@ -161,9 +71,12 @@ export default function HomePage() {
                       <li key={calc.id}>
                         <Link 
                            href={href} 
-                           className="text-[13px] text-[#3c4043] hover:text-[#1a73e8] hover:underline truncate block py-1.5"
+                           className="text-[13px] text-[#3c4043] hover:text-[#1a73e8] hover:underline truncate flex items-center justify-between py-1.5 group"
                         >
-                           {calc.name}
+                           <span className="truncate">{calc.name}</span>
+                           {calc.isNew && (
+                             <span className="ml-2 px-1.5 py-0.5 bg-blue-100 text-blue-600 text-[8px] font-black rounded uppercase tracking-tighter shrink-0">New</span>
+                           )}
                         </Link>
                       </li>
                     );
@@ -171,14 +84,13 @@ export default function HomePage() {
                 </ul>
                 <div className="mt-3 pt-2 border-t border-[#f1f3f4]">
                   <Link href={cat.id === 'education' ? '/math-tools/' : cat.id === 'utility' ? '/converters/' : `/${cat.id}/`} className="text-[9px] font-bold text-[#1a73e8] hover:underline uppercase tracking-widest flex items-center gap-1">
-                    View All <span className="text-[12px] leading-none">&rarr;</span>
+                    View All &rarr;
                   </Link>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* New Optimized Institutional Footer */}
           <div className="mt-12">
              <InstitutionalBlock />
           </div>

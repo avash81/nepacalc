@@ -9,16 +9,16 @@ export interface SEOBlock {
 
 export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
   'nepal-income-tax': {
-    title: "Income Tax Calculator Nepal FY 2081/82 (2024/2025)",
-    description: "Calculate your net salary and income tax slabs in Nepal for the fiscal year 2081/82. Includes SSF, insurance, and female rebate calculations.",
+    title: "Income Tax Calculator Nepal (Current Fiscal Year)",
+    description: "Calculate your net salary and income tax slabs in Nepal for the current budget cycle. Includes SSF, insurance, and female rebate calculations.",
     content: (
       <>
-        <h2>How Income Tax Works in Nepal (FY 2081/82)</h2>
+        <h2>How Income Tax Works in Nepal (Current Fiscal Year)</h2>
         <p>
-          Managing your finances starts with understanding your tax obligations. In Nepal, the Inland Revenue Department (IRD) sets income tax slabs annually. For the fiscal year 2081/82, the tax system remains progressive, meaning higher earners pay a larger percentage of their income in tax.
+          Managing your finances starts with understanding your tax obligations. In Nepal, the Inland Revenue Department (IRD) sets income tax slabs annually. For the current fiscal year, the tax system remains progressive, meaning higher earners pay a larger percentage of their income in tax.
         </p>
         
-        <h3>Income Tax Slabs for FY 2081/82</h3>
+        <h3>Income Tax Brackets (Latest Budget Cycle)</h3>
         <div className="overflow-x-auto my-6">
           <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
             <thead className="bg-[#f8f9fa]">

@@ -71,7 +71,7 @@ export default function NEABillCalculator() {
     <ModernCalcLayout
       slug="nea-bill"
       crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Electricity Bill Calculator' }]}
-      title="NEA Electricity Bill Calculator"
+      title="NEA Bill Calculator 2026: Calculate your Electricity Bill Online"
       description="Professional slab-based bill estimation for Nepal Electricity Authority (NEA) domestic consumers. Accurate for the latest 2081/82 tariff schedules."
       icon={Zap}
       inputs={

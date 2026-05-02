@@ -32,7 +32,7 @@ export const CALCULATORS: Calculator[] = [
   { id: 'nepal-salary', slug: 'nepal-salary', name: 'Salary Calculator', icon: '💵', description: 'Calculate net take home salary with IRD deductions.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepal-home-loan', slug: 'nepal-home-loan', name: 'Home Loan Calculator', icon: '🏠', description: 'Calculate home loan EMI with Nepal bank rates.', category: 'nepal', isNepal: true },
   { id: 'nea-bill', slug: 'nea-bill', name: 'Electricity Bill Calculator', icon: '⚡', description: 'Calculate Nepal Electricity Authority (NEA) progressive billing.', category: 'nepal', isNepal: true, isNew: true },
-  { id: 'nepal-land', slug: 'nepal-land', name: 'Land Area Converter', icon: '🏞️', description: 'Convert land area between Ropani, Bigha, and Square Feet.', category: 'nepal', isNepal: true, isHot: true },
+  { id: 'nepal-land', slug: 'nepal-land', name: 'Land Area Converter', icon: '🏞️', description: 'Convert land area between Ropani, Bigha, and Square Feet.', category: 'nepal', isNepal: true, isHot: true, isNew: true },
   { id: 'nepal-stocks', slug: 'nepal-stocks', name: 'NEPSE Trading Calculator', icon: '📈', description: 'Calculate share trading profit after commission and tax.', category: 'nepal', isNepal: true, isHot: true },
   { id: 'property-tax', slug: 'property-tax', name: 'Capital Gains Tax (CGT)', icon: '🏛️', description: 'Calculate real estate capital gains tax for Nepal.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'property-registration', slug: 'property-registration', name: 'Property Registration Fee', icon: '📋', description: 'Calculate Malpok registration fees and stamp duty.', category: 'nepal', isNepal: true, isNew: true },

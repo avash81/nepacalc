@@ -176,7 +176,7 @@ export function ModernCalcLayout({
                       const current = CALCULATORS.find(curr => curr.slug === effectiveSlug);
                       return c.category === current?.category && c.slug !== effectiveSlug;
                     })
-                    .slice(0, 5)
+                    .slice(0, 10)
                     .map(c => ({ label: c.name, href: `/calculator/${c.slug}/` }))
                   ).map((tool, idx) => (
                     <Link key={idx} href={normalizeLink(tool.href) as string} className="px-4 py-2 bg-white border border-[#DADCE0] rounded-lg text-xs font-bold text-[#3C4043] hover:text-[#1A73E8] hover:border-[#1A73E8] hover:shadow-sm transition-all">

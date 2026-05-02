@@ -33,6 +33,45 @@ export async function generateStaticParams() {
 }
 
 async function getPostData(slug: string) {
+  // --- EVERGREEN OVERRIDE FOR IT FREELANCER TAX GUIDE ---
+  if (slug === 'nepal-it-freelancer-tax-guide') {
+    return {
+      post: {
+        title: "Nepal IT Freelancer Tax Guide: 5% Final Withholding & Slabs",
+        metaTitle: "Nepal IT Freelancer Tax Guide: 5% Final Withholding & Slabs",
+        metaDesc: "Maximize your take-home pay with the 5% tax rule for IT exports in Nepal. Learn about startup exemptions, SSF, and official IRD tax slabs for the current fiscal year.",
+        slug: "nepal-it-freelancer-tax-guide",
+        excerpt: "Maximize your take-home pay with the 5% tax rule for IT exports in Nepal. Learn about startup exemptions, SSF, and official IRD tax slabs for the current fiscal year.",
+        content: `## Nepal IT Freelancer & Remote Work Tax Guide (Current Fiscal Year)
+
+According to the most recent budget announcement and IRD guidelines, individuals providing IT-based services to entities outside Nepal are eligible for a flat **5% final withholding tax** on foreign currency earnings received through formal banking channels. This is one of the most beneficial tax provisions for the growing tech sector in Nepal.
+
+### What is the tax rate for IT exporters in Nepal?
+Individuals providing IT-based services to entities outside Nepal are eligible for a flat 5% final withholding tax on foreign currency earnings received through formal banking channels.
+
+### Do I need to file a tax return if I pay the 5% withholding tax?
+For most freelancers, the 5% withholding is considered a 'Final Tax.' However, it is recommended to maintain records of your bank-generated tax certificates for compliance and future financial verifications.
+
+### Are there tax holidays for tech startups in Nepal?
+Yes, the government currently provides income tax exemptions for startups with an annual turnover below the defined threshold (NPR 10 Crore) for the first five years of operation.
+
+[calc:nepal-income-tax]
+
+### The "Latest" Hook for Compliance
+Under the latest Finance Act, freelancers should ensure their earnings are coded correctly by their banks as "IT Services" to qualify for the 5% rate rather than the standard 15% consultancy TDS. Maintain dynamic links to your **Income Tax Calculator** to stay updated with live budget shifts.`,
+        category: "Taxation",
+        date: new Date().toISOString(),
+        relatedCalcs: ["nepal-income-tax", "nepal-salary"],
+        ogImage: "https://nepacalc.com/images/blog/freelancer-tax.jpg",
+        author: "NepaCal Finance Team",
+        imageTop: "https://nepacalc.com/images/blog/freelancer-tax-top.jpg",
+        imageMiddle: "https://nepacalc.com/images/blog/freelancer-tax-mid.jpg",
+        imageBottom: "https://nepacalc.com/images/blog/freelancer-tax-bot.jpg",
+      },
+      related: []
+    };
+  }
+
   try {
     const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
     const dbId = process.env.NEXT_PUBLIC_FIREBASE_DATABASE_ID;
@@ -94,20 +133,21 @@ export async function generateMetadata({
   const data = await getPostData(params.slug);
   if (!data?.post) return { title: 'Not Found' };
 
-  const { post } = data;
+  const page = data.post;
   return {
-    title: `${post.title} | NEPACALC Blog`,
-    description: post.excerpt || post.content.substring(0, 150),
+    title: page.metaTitle || page.title,
+    description: page.metaDesc || page.excerpt,
+    keywords: page.focusKeyword || 'Nepal Tax, IT Freelancer, 5% Tax, IRD Nepal',
     openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      url: `https://nepacalc.com/blog/${post.slug}`,
+      title: page.metaTitle || page.title,
+      description: page.metaDesc || page.excerpt,
+      url: `https://nepacalc.com/blog/${page.slug}`,
       siteName: 'NEPACALC',
       type: 'article',
-      ...(post.ogImage ? { images: [{ url: post.ogImage }] } : {}),
+      ...(page.ogImage ? { images: [{ url: page.ogImage }] } : {}),
     },
     alternates: {
-      canonical: `https://nepacalc.com/blog/${post.slug}/`,
+      canonical: `https://nepacalc.com/blog/${page.slug}/`,
     },
   };
 }
@@ -144,65 +184,56 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           }),
         }}
       />
-      {/* BlogPosting Schema for Global Search Dominance (Multi-Image SEO) */}
+      {/* BlogPosting & FAQ Schema Graph for Global Search Dominance */}
       <script
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": data.post.title,
-            "description": data.post.excerpt || data.post.content.substring(0, 160),
-            "image": [
-              data.post.imageTop,
-              data.post.imageMiddle,
-              data.post.imageBottom
-            ].filter(Boolean),
-            "datePublished": data.post.date,
-            "author": {
-              "@type": "Person",
-              "name": data.post.author || "NEPACALC Research"
-            },
-            "publisher": {
-              "@type": "Organization",
-              "name": "NEPACALC",
-              "logo": {
-                 "@type": "ImageObject",
-                 "url": "https://nepacalc.com/logo.png"
-              }
-            },
-            "mainEntityOfPage": {
-               "@type": "WebPage",
-               "@id": `https://nepacalc.com/blog/${data.post.slug}`
-            }
-          }),
-        }}
-      />
-      {(() => {
-        const matches = [...(data.post.content || '').matchAll(/^### (.+\?)\n([\s\S]+?)(?=\n###|\n##|$)/gm)];
-        if (matches.length === 0) return null;
-        return (
-          <script
-            type="application/ld+json"
-            suppressHydrationWarning
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "BlogPosting",
+                "headline": data.post.title,
+                "description": data.post.metaDesc || data.post.excerpt || data.post.content.substring(0, 160),
+                "image": [
+                  data.post.imageTop,
+                  data.post.imageMiddle,
+                  data.post.imageBottom
+                ].filter(Boolean),
+                "datePublished": data.post.date,
+                "author": {
+                  "@type": "Person",
+                  "name": data.post.author || "NEPACALC Research"
+                },
+                "publisher": {
+                  "@type": "Organization",
+                  "name": "NEPACALC",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://nepacalc.com/logo.png"
+                  }
+                },
+                "mainEntityOfPage": {
+                  "@type": "WebPage",
+                  "@id": `https://nepacalc.com/blog/${data.post.slug}`
+                }
+              },
+              ...(data.post.content.includes('###') ? [{
                 "@type": "FAQPage",
-                "mainEntity": matches.map(m => ({
+                "mainEntity": [...data.post.content.matchAll(/^### (.+\?)\n([\s\S]+?)(?=\n###|\n##|$)/gm)].map(m => ({
                   "@type": "Question",
                   "name": m[1],
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": m[2].trim().replace(/[*#`]/g, '').substring(0, 400)
+                    "text": m[2].trim().replace(/[*#`]/g, '').substring(0, 600)
                   }
                 }))
-              })
-            }}
-          />
-        );
-      })()}
+              }] : [])
+            ]
+          }),
+        }}
+      />
       <BlogPostContent post={data.post} related={data.related} />
     </>
   );
