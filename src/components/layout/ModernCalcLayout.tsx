@@ -65,8 +65,17 @@ export function ModernCalcLayout({
   }, []);
 
   const effectiveSlug = slug || pathname?.split('/').filter(Boolean).pop();
-  const enrichedSEO = seoContent || (effectiveSlug && TIER1_SEO_CONTENT[effectiveSlug]?.content);
-  const enrichedFAQs = (faqs && faqs.length > 0) ? faqs : (effectiveSlug && TIER1_SEO_CONTENT[effectiveSlug]?.faqs) || [];
+  const seoEntry = effectiveSlug ? TIER1_SEO_CONTENT[effectiveSlug] : null;
+
+  const enrichedSEO = seoContent || seoEntry?.content;
+  const enrichedFAQs = (faqs && faqs.length > 0) ? faqs : seoEntry?.faqs || [];
+  const enrichedHowTo = howToUse || (seoEntry?.howToUse ? { steps: seoEntry.howToUse } : null);
+  const enrichedFormula = formula || (seoEntry?.formula ? { 
+    title: seoEntry.formula.title, 
+    description: seoEntry.formula.description, 
+    raw: seoEntry.formula.equation,
+    variables: seoEntry.formula.variables 
+  } : null);
 
   // Track History
   useEffect(() => {
@@ -200,9 +209,9 @@ export function ModernCalcLayout({
             </div>
             {ads?.inContent && <div className="flex justify-center no-print">{ads.inContent}</div>}
             {details && <div className="details-container space-y-6">{details}</div>}
-            {(howToUse || formula) && (
+            {(enrichedHowTo || enrichedFormula) && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {howToUse && (
+                {enrichedHowTo && (
                   <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm">
                     <div className="px-5 py-4 border-b border-[#DADCE0] flex items-center gap-2.5">
                       <div className="w-6 h-6 rounded-full bg-[#1A73E8] flex items-center justify-center"><Info className="w-3.5 h-3.5 text-white" /></div>
@@ -210,7 +219,7 @@ export function ModernCalcLayout({
                     </div>
                     <div className="p-6">
                       <ul className="space-y-4">
-                        {howToUse.steps.map((step, idx) => (
+                        {enrichedHowTo.steps.map((step, idx) => (
                           <li key={idx} className="flex gap-3 text-sm leading-relaxed text-[#5F6368]">
                             <div className="w-1.5 h-1.5 rounded-full bg-[#1A73E8] mt-1.5 shrink-0" />
                             <span>{step}</span>
@@ -220,70 +229,35 @@ export function ModernCalcLayout({
                     </div>
                   </div>
                 )}
-                {formula && (
+                {enrichedFormula && (
                   <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm">
                     <div className="px-5 py-4 border-b border-[#DADCE0] flex items-center gap-2.5">
                       <div className="w-6 h-6 rounded-full bg-[#1A73E8] flex items-center justify-center"><Sigma className="w-3.5 h-3.5 text-white" /></div>
-                      <h2 className="text-sm font-bold text-[#202124]">{formula.title}</h2>
+                      <h2 className="text-sm font-bold text-[#202124]">{enrichedFormula.title}</h2>
                     </div>
                     <div className="p-6 space-y-4">
-                      <p className="text-sm text-[#5F6368] leading-relaxed">{formula.description}</p>
-                      {formula.raw && <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded font-mono text-[13px] text-[#202124] overflow-x-auto whitespace-pre">{formula.raw}</div>}
+                      <p className="text-sm text-[#5F6368] leading-relaxed">{enrichedFormula.description}</p>
+                      {enrichedFormula.raw && <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded font-mono text-[13px] text-[#202124] overflow-x-auto whitespace-pre">{enrichedFormula.raw}</div>}
+                      {(enrichedFormula as any).variables && (
+                        <div className="space-y-1.5 pt-2">
+                           {(enrichedFormula as any).variables.map((v: string, i: number) => (
+                             <p key={i} className="text-[11px] text-[#70757A] flex items-center gap-2">
+                               <span className="w-1 h-1 rounded-full bg-[#dadce0]" /> {v}
+                             </p>
+                           ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
               </div>
             )}
-            {enrichedSEO ? (
+            {enrichedSEO && (
               <Suspense fallback={<div className="h-32 bg-white border border-[#DADCE0] rounded-lg animate-pulse" />}>
-                <div className="seo-content-section bg-white border border-[#DADCE0] rounded-lg shadow-sm p-6 prose prose-sm max-w-none prose-slate text-[#3C4043] prose-headings:text-[#202124] prose-headings:font-bold prose-h2:text-lg prose-h3:text-base">
+                <div className="seo-content-section bg-white border border-[#DADCE0] rounded-lg shadow-sm p-6 lg:p-8 prose prose-sm max-w-none prose-slate text-[#3C4043] prose-headings:text-[#202124] prose-headings:font-bold prose-h2:text-xl prose-h3:text-lg">
                   {enrichedSEO}
                 </div>
               </Suspense>
-            ) : (
-              <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm p-8">
-                <article className="prose prose-sm max-w-none prose-slate">
-                  <h2 className="text-xl font-bold text-[#202124] mb-4">Institutional Protocol for {title}</h2>
-                  <p className="leading-relaxed text-[#5F6368]">
-                    The <strong>{title}</strong> provided by NepaCalc is part of our professional-grade mathematical suite, strictly adhering to the latest computational standards. {description} This engine is designed to provide instantaneous, high-precision results for users across Nepal and the international scientific community.
-                  </p>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-8 not-prose">
-                    <div className="p-5 bg-[#F8F9FA] rounded-2xl border border-[#DADCE0]">
-                      <h4 className="text-[11px] font-black text-[#1A73E8] uppercase tracking-widest mb-2">Technical Specification</h4>
-                      <p className="text-[10px] text-[#5F6368] leading-relaxed font-medium">
-                        Our calculation engine utilizes advanced symbolic logic and floating-point arithmetic to minimize rounding errors. This tool is verified against standard benchmarks to ensure a zero-margin of error for institutional use.
-                      </p>
-                    </div>
-                    <div className="p-5 bg-[#F8F9FA] rounded-2xl border border-[#DADCE0]">
-                      <h4 className="text-[11px] font-black text-[#188038] uppercase tracking-widest mb-2">Data Privacy Policy</h4>
-                      <p className="text-[10px] text-[#5F6368] leading-relaxed font-medium">
-                        Calculations are performed entirely on the client-side. Your numerical inputs are never stored on our servers, ensuring 100% data sovereignty and privacy for sensitive financial or engineering audits.
-                      </p>
-                    </div>
-                  </div>
-
-                  <h3 className="text-lg font-bold text-[#202124]">Why use the NepaCalc {title}?</h3>
-                  <p className="leading-relaxed text-[#5F6368]">
-                    As part of the NepaCalc Laboratory suite, this {title.toLowerCase()} eliminates the need for manual spreadsheets and complex formulas. It is optimized for mobile accessibility, allowing professionals and students in Nepal to access precision math anywhere, from a construction site in Pokhara to a boardroom in Kathmandu.
-                  </p>
-
-                  <div className="mt-8 flex flex-wrap gap-4 items-center border-t border-[#F1F3F4] pt-8">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#188038]" />
-                      <span className="text-[10px] font-black uppercase tracking-widest text-[#70757A]">High Precision Engine</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#188038]" />
-                      <span className="text-[10px] font-black uppercase tracking-widest text-[#70757A]">Verified 2026/82 Standards</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#188038]" />
-                      <span className="text-[10px] font-black uppercase tracking-widest text-[#70757A]">No Registration Required</span>
-                    </div>
-                  </div>
-                </article>
-              </div>
             )}
             {enrichedFAQs && enrichedFAQs.length > 0 && (
               <div className="faq-section bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">

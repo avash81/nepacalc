@@ -28,34 +28,34 @@ export const CALCULATORS: Calculator[] = [
   // ==========================================
   // NEPAL SPECIFIC PILLAR (24)
   // ==========================================
-  { id: 'nepal-income-tax', slug: 'nepal-income-tax', name: 'Income Tax Calculator', icon: '📝', description: 'Income tax calculator for Nepal updated for latest fiscal year.', category: 'nepal', isNepal: true, isHot: true },
-  { id: 'nepal-salary', slug: 'nepal-salary', name: 'Salary Calculator', icon: '💵', description: 'Calculate net take home salary with IRD deductions.', category: 'nepal', isNepal: true, isNew: true },
-  { id: 'nepal-home-loan', slug: 'nepal-home-loan', name: 'Home Loan Calculator', icon: '🏠', description: 'Calculate home loan EMI with Nepal bank rates.', category: 'nepal', isNepal: true },
-  { id: 'nea-bill', slug: 'nea-bill', name: 'Electricity Bill Calculator', icon: '⚡', description: 'Calculate Nepal Electricity Authority (NEA) progressive billing.', category: 'nepal', isNepal: true, isNew: true },
-  { id: 'nepal-land', slug: 'nepal-land', name: 'Land Area Converter', icon: '🏞️', description: 'Convert land area between Ropani, Bigha, and Square Feet.', category: 'nepal', isNepal: true, isHot: true, isNew: true },
-  { id: 'nepal-stocks', slug: 'nepal-stocks', name: 'NEPSE Trading Calculator', icon: '📈', description: 'Calculate share trading profit after commission and tax.', category: 'nepal', isNepal: true, isHot: true },
-  { id: 'property-tax', slug: 'property-tax', name: 'Capital Gains Tax (CGT)', icon: '🏛️', description: 'Calculate real estate capital gains tax for Nepal.', category: 'nepal', isNepal: true, isNew: true },
-  { id: 'property-registration', slug: 'property-registration', name: 'Property Registration Fee', icon: '📋', description: 'Calculate Malpok registration fees and stamp duty.', category: 'nepal', isNepal: true, isNew: true },
-  { id: 'nepal-provident-fund', slug: 'nepal-provident-fund', name: 'Provident Fund (EPF)', icon: '🏦', description: 'Retirement savings and interest for EPF Nepal.', category: 'nepal', isNepal: true },
-  { id: 'nepal-tds', slug: 'nepal-tds', name: 'TDS Calculator', icon: '✂️', description: 'Calculate withholding tax for professional services.', category: 'nepal', isNepal: true, isNew: true },
-  { id: 'nepal-vehicle-tax', slug: 'nepal-vehicle-tax', name: 'Vehicle Tax Calculator', icon: '🚗', description: 'Calculate road tax for motorbikes and cars.', category: 'nepal', isNepal: true, isNew: true },
+  { id: 'nepal-income-tax', slug: 'nepal-income-tax', name: 'Income Tax Calculator', icon: '📝', description: 'Income tax calculator for Nepal updated for latest fiscal year.', category: 'nepal', isNepal: true, isHot: true, keywords: ['Nepal Income Tax Calculator', 'IRD tax slabs 2081/82', 'salary tax Nepal', 'tax on bonus Nepal', 'social security tax'] },
+  { id: 'nepal-salary', slug: 'nepal-salary', name: 'Salary Calculator', icon: '💵', description: 'Calculate net take home salary with IRD deductions.', category: 'nepal', isNepal: true, isNew: true, keywords: ['Salary Calculator Nepal', 'Net take home salary', 'IRD salary deductions', 'PF and CIT calculation', 'allowance tax'] },
+  { id: 'nepal-home-loan', slug: 'nepal-home-loan', name: 'Home Loan Calculator', icon: '🏠', description: 'Calculate home loan EMI with Nepal bank rates.', category: 'nepal', isNepal: true, keywords: ['Home Loan EMI Nepal', 'NRB base rate', 'floating interest rate Nepal', 'housing loan eligibility', 'bank premium'] },
+  { id: 'nea-bill', slug: 'nea-bill', name: 'Electricity Bill Calculator', icon: '⚡', description: 'Calculate Nepal Electricity Authority (NEA) progressive billing.', category: 'nepal', isNepal: true, isNew: true, keywords: ['NEA Bill Calculator', 'Nepal Electricity Authority tariffs', 'electricity slabs', 'NEA unit rates', 'penalty calculation'] },
+  { id: 'nepal-land', slug: 'nepal-land', name: 'Land Area Converter', icon: '🏞️', description: 'Convert land area between Ropani, Bigha, and Square Feet.', category: 'nepal', isNepal: true, isHot: true, isNew: true, keywords: ['Nepal Land Converter', 'Ropani to Bigha', 'Aana to Sq Ft converter', 'Khetmuri calculation', 'Dhur to Paisa'] },
+  { id: 'nepal-stocks', slug: 'nepal-stocks', name: 'NEPSE Trading Calculator', icon: '📈', description: 'Calculate share trading profit after commission and tax.', category: 'nepal', isNepal: true, isHot: true, keywords: ['NEPSE Profit Calculator', 'SEBON commission rates', 'DP fee Nepal', 'CGT on shares', 'stock profit calculation'] },
+  { id: 'property-tax', slug: 'property-tax', name: 'Capital Gains Tax (CGT)', icon: '🏛️', description: 'Calculate real estate capital gains tax for Nepal.', category: 'nepal', isNepal: true, isNew: true, keywords: ['CGT Calculator Nepal', 'Property sale tax Nepal', 'capital gains tax IRD', 'real estate tax calculation'] },
+  { id: 'property-registration', slug: 'property-registration', name: 'Property Registration Fee', icon: '📋', description: 'Calculate Malpok registration fees and stamp duty.', category: 'nepal', isNepal: true, isNew: true, keywords: ['Malpot Registration Fee', 'Land registration cost Nepal', 'stamp duty rates', 'wada sifarish fee', 'malpot tax'] },
+  { id: 'nepal-provident-fund', slug: 'nepal-provident-fund', name: 'Provident Fund (EPF)', icon: '🏦', description: 'Retirement savings and interest for EPF Nepal.', category: 'nepal', isNepal: true, keywords: ['EPF Nepal Calculator', 'Karmachari Sanchaya Kosh interest', 'PF withdrawal rules', 'CIT vs EPF Nepal'] },
+  { id: 'nepal-tds', slug: 'nepal-tds', name: 'TDS Calculator', icon: '✂️', description: 'Calculate withholding tax for professional services.', category: 'nepal', isNepal: true, isNew: true, keywords: ['TDS Rate Nepal', 'IRD withholding tax', '1.5% TDS professional', 'TDS on rent Nepal', 'TDS payment deadline'] },
+  { id: 'nepal-vehicle-tax', slug: 'nepal-vehicle-tax', name: 'Vehicle Tax Calculator', icon: '🚗', description: 'Calculate road tax for motorbikes and cars.', category: 'nepal', isNepal: true, isNew: true, keywords: ['Vehicle Tax Nepal', 'Road tax motorbikes', 'car renewal fee Nepal', 'DoTM tax slabs', 'bluebook renewal'] },
   { id: 'nepse-wacc', slug: 'nepse-wacc', name: 'WACC Calculator', icon: '📊', description: 'Calculate Weighted Average Cost of Capital for NEPSE.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepse-bonus-tax', slug: 'nepse-bonus-tax', name: 'Bonus Share Tax', icon: '🎁', description: 'Calculate tax on dividend and bonus shares.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'gratuity-calculator', slug: 'gratuity-calculator', name: 'Gratuity Calculator', icon: '💼', description: 'Calculate retirement benefits under Labor Act 2074.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'foreign-employment', slug: 'foreign-employment', name: 'Foreign Employment Fees', icon: '✈️', description: 'Check legal manpower and visa fees for Nepal.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'kukl-bill', slug: 'kukl-bill', name: 'KUKL Water Bill', icon: '💧', description: 'Calculate Kathmandu water bill slabs and sewerage tax.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepal-attendance', slug: 'nepal-attendance', name: 'University Attendance', icon: '🎓', description: 'Track 75% exam eligibility for universities in Nepal.', category: 'nepal', isNepal: true, isNew: true },
-  { id: 'see-gpa', slug: 'see-gpa', name: 'SEE GPA Calculator', icon: '🅰️', description: 'Calculate SEE grade point average.', category: 'nepal', isNepal: true, isNew: true },
+  { id: 'see-gpa', slug: 'see-gpa', name: 'SEE GPA Calculator', icon: '🅰️', description: 'Calculate SEE grade point average.', category: 'nepal', isNepal: true, isNew: true, keywords: ['SEE GPA Calculator', 'NEB grading system', 'SEE marks to GPA', 'GPA to percentage Nepal', 'SEE 2081 results'] },
   { id: 'nepali-date', slug: 'nepali-date', name: 'Nepali Date Converter', icon: '📅', description: 'Standard BS to AD date conversion utility.', category: 'nepal', isNepal: true },
   { id: 'nepal-vat', slug: 'nepal-vat', name: 'VAT Calculator', icon: '🔖', description: 'Calculate VAT (13%) addition and subtraction.', category: 'nepal', isNepal: true },
-  { id: 'lok-sewa-age', slug: 'lok-sewa-age', name: 'Lok Sewa Age Calculator', icon: '🧑‍💼', description: 'Calculate exact age and check PSC eligibility limits.', category: 'nepal', isNepal: true, isNew: true, isHot: true },
+  { id: 'lok-sewa-age', slug: 'lok-sewa-age', name: 'Lok Sewa Age Calculator', icon: '🧑‍💼', description: 'Calculate exact age and check PSC eligibility limits.', category: 'nepal', isNepal: true, isNew: true, isHot: true, keywords: ['Lok Sewa Age Limit', 'PSC Nepal age calculator', 'kharidar eligibility', 'adhikari age limit', 'PSC exam dates'] },
 
 
   // ==========================================
   // FINANCE & BANKING PILLAR (11)
   // ==========================================
   { id: 'loan-emi', slug: 'loan-emi', name: 'Loan EMI Calculator', icon: '💳', description: 'Standard EMI calculator for loans and mortgages.', category: 'finance', isHot: true },
-  { id: 'sip-calculator', slug: 'sip-calculator', name: 'SIP Calculator', icon: '📈', description: 'Estimate future wealth from SIP investments.', category: 'finance', isHot: true },
+  { id: 'sip-calculator', slug: 'sip-calculator', name: 'SIP Calculator', icon: '📈', description: 'Estimate future wealth from SIP investments.', category: 'finance', isHot: true, keywords: ['SIP Returns Calculator', 'Mutual fund SIP', 'compound growth', 'future value investment', 'systematic investment plan'] },
   { id: 'mortgage-calculator', slug: 'mortgage-calculator', name: 'Mortgage Calculator', icon: '🏘️', description: 'Calculate home mortgage repayments.', category: 'finance' },
   { id: 'compound-interest', slug: 'compound-interest', name: 'Compound Interest', icon: '💹', description: 'Calculate interest on principal and accumulated interest.', category: 'finance' },
   { id: 'fd-calculator', slug: 'fd-calculator', name: 'Fixed Deposit Calculator', icon: '🏦', description: 'Calculate bank fixed deposit interest returns.', category: 'finance' },
@@ -68,7 +68,7 @@ export const CALCULATORS: Calculator[] = [
   // ==========================================
   // EDUCATION & MATH PILLAR (25)
   // ==========================================
-  { id: 'gpa', slug: 'gpa', name: 'GPA Calculator', icon: '🎓', description: 'Calculate semester grade point average.', category: 'education', isHot: true },
+  { id: 'gpa', slug: 'gpa', name: 'GPA Calculator', icon: '🎓', description: 'Calculate semester grade point average.', category: 'education', isHot: true, keywords: ['Semester GPA Calculator', 'Grade point average', 'credit hours', 'grade weightage', 'college GPA tracker'] },
   { id: 'cgpa', slug: 'cgpa', name: 'CGPA Calculator', icon: '📚', description: 'Calculate cumulative grade point average.', category: 'education' },
   { id: 'engineering-gpa', slug: 'engineering-gpa', name: 'Engineering GPA', icon: '📐', description: 'GPA calculator for engineering degree grading systems.', category: 'education' },
   { id: 'marks-needed', slug: 'marks-needed', name: 'Target Grade Calculator', icon: '🎯', description: 'Calculate required marks for final exams.', category: 'education' },
@@ -115,7 +115,7 @@ export const CALCULATORS: Calculator[] = [
   // ==========================================
   // CONVERTERS & UTILITY PILLAR (14)
   // ==========================================
-  { id: 'unit-converter', slug: 'unit-converter', name: 'Universal Unit Converter', icon: '🔄', description: 'Convert between standard international measurement systems.', category: 'utility', isHot: true },
+  { id: 'unit-converter', slug: 'unit-converter', name: 'Universal Unit Converter', icon: '🔄', description: 'Convert between standard international measurement systems.', category: 'utility', isHot: true, keywords: ['Universal Unit Converter', 'Metric to imperial', 'conversion table', 'scientific units', 'SI units'] },
   { id: 'length-converter', slug: 'length-converter', name: 'Length Converter', icon: '📏', description: 'Convert dimensional units like meters, feet, and miles.', category: 'utility', isNew: true },
   { id: 'weight-converter', slug: 'weight-converter', name: 'Weight Converter', icon: '⚖️', description: 'Convert mass units including grams, kilograms, and pounds.', category: 'utility', isNew: true },
   { id: 'base-converter', slug: 'base-converter', name: 'Base Converter', icon: '🔟', description: 'Convert numeric strings between Decimal, Binary, Hex, and Octal.', category: 'utility', isNew: true },
@@ -133,7 +133,7 @@ export const CALCULATORS: Calculator[] = [
   // ==========================================
   // HEALTH & FITNESS PILLAR (10)
   // ==========================================
-  { id: 'bmi', slug: 'bmi', name: 'BMI Calculator', icon: '⚖️', description: 'Calculate Body Mass Index (BMI) using WHO physiological standards.', category: 'health' },
+  { id: 'bmi', slug: 'bmi', name: 'BMI Calculator', icon: '⚖️', description: 'Calculate Body Mass Index (BMI) using WHO physiological standards.', category: 'health', keywords: ['BMI Index Calculator', 'Body mass index WHO', 'healthy weight range', 'BMI for adults'] },
   { id: 'bmr', slug: 'bmr', name: 'BMR Calculator', icon: '🔥', description: 'Calculate absolute Basal Metabolic Rate.', category: 'health' },
   { id: 'calorie-calculator', slug: 'calorie-calculator', name: 'Calorie Calculator', icon: '🍎', description: 'Calculate requisite caloric thresholds for homeostasis.', category: 'health' },
   { id: 'body-fat', slug: 'body-fat', name: 'Body Fat Calculator', icon: '💪', description: 'Estimate body fat composition metrics.', category: 'health' },
@@ -147,7 +147,7 @@ export const CALCULATORS: Calculator[] = [
   // ==========================================
   // MARKET RATES PILLAR (4)
   // ==========================================
-  { id: 'gold-converter', slug: 'market-rates/live-gold-price', name: 'Live Gold Price', icon: '🏆', description: 'Real-time 24K and 22K gold rates in Nepal with Federation sync.', category: 'market', isNepal: true, isHot: true },
+  { id: 'gold-converter', slug: 'market-rates/live-gold-price', name: 'Live Gold Price', icon: '🏆', description: 'Real-time 24K and 22K gold rates in Nepal with Federation sync.', category: 'market', isNepal: true, isHot: true, keywords: ['Live Gold Price Nepal', 'Federation of Nepal Gold & Silver', '24k gold rate', 'Tola to Gram gold', 'Chandi price'] },
   { id: 'remittance-calculator', slug: 'market-rates/remittance', name: 'Remittance Board', icon: '💸', description: 'Compare real-time exchange rates for sending money to Nepal.', category: 'market', isNepal: true },
   { id: 'currency-converter', slug: 'market-rates/exchange-rate', name: 'Exchange Rates', icon: '💱', description: 'Live foreign exchange rates for 20+ currencies including USD and INR.', category: 'market', isNepal: true },
   { id: 'live-silver-price', slug: 'market-rates/live-silver-price', name: 'Live Silver Price', icon: '🥈', description: 'Real-time silver (Chandi) rates in Nepal. Synced with federation benchmarks.', category: 'market', isNepal: true },

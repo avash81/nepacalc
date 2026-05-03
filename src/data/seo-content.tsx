@@ -1,3584 +1,1327 @@
 import React from 'react';
-import { AuthorByline } from '@/components/ui/AuthorByline';
 
-
-export interface SEOBlock {
+interface SEOContent {
   title: string;
   description: string;
+  howToUse?: string[];
+  formula?: {
+    title: string;
+    equation: string;
+    description: string;
+    variables: string[];
+  };
   content: React.ReactNode;
   faqs: { question: string; answer: string }[];
 }
 
-export const TIER1_SEO_CONTENT: Record<string, SEOBlock> = {
-  'nepal-income-tax': {
-    title: "Income Tax Calculator Nepal (Current Fiscal Year)",
-    description: "Calculate your net salary and income tax slabs in Nepal for the current budget cycle. Includes SSF, insurance, and female rebate calculations.",
+export const TIER1_SEO_CONTENT: Record<string, SEOContent> = {
+  'nepal-land': {
+    title: "Nepal Land Area Converter | Ropani, Bigha, Square Feet",
+    description: "Convert land measurements across all Nepalese and International units including Ropani, Bigha, Aana, Kattha, and Sq Ft. Precise Malpot-grade conversions for Kathmandu and Terai.",
+    howToUse: [
+      "Select Region: Choose the Hilly/Valley (Ropani) or Terai (Bigha) system.",
+      "Enter Units: Input your land measurement in Aana, Kattha, or Square Feet.",
+      "Analyze Conversion: View the instant conversion across all Nepali and international units.",
+      "Check Malpot Value: Use the output for official documentation and property valuation."
+    ],
+    formula: {
+      title: "Land Conversion Formulas",
+      equation: "1 Ropani = 16 Aana = 64 Paisa = 256 Daam",
+      description: "Nepal uses two distinct measurement systems based on geography: the Ropani system for the Hills/Valleys and the Bigha system for the Terai.",
+      variables: [
+        "1 Ropani = 5,476 Square Feet (The standard unit of land measurement in the Hills and Valleys of Nepal)",
+        "1 Bigha = 72,900 Square Feet (The standard unit of land measurement in the Terai flatlands)",
+        "1 Aana = 342.25 Square Feet (Equivalent to 1/16th of a Ropani)",
+        "1 Kattha = 3,645 Square Feet (Equivalent to 1/20th of a Bigha)"
+      ]
+    },
     content: (
       <>
-        <h2>How Income Tax Works in Nepal (Current Fiscal Year)</h2>
-        <p>
-          Managing your finances starts with understanding your tax obligations. In Nepal, the Inland Revenue Department (IRD) sets income tax slabs annually. For the current fiscal year, the tax system remains progressive, meaning higher earners pay a larger percentage of their income in tax.
-        </p>
-
-        <h3>Income Tax Brackets (Latest Budget Cycle)</h3>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Taxable Income Slab</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Individual (Single)</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Couple (Married)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">First Slab (1% SST*)</td>
-                <td className="border border-[#dadce0] px-4 py-2">Up to Rs. 5,00,000</td>
-                <td className="border border-[#dadce0] px-4 py-2">Up to Rs. 6,00,000</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Next Rs. 2,00,000</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-center">10%</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-center">10%</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Next Rs. 3,00,000</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-center">20%</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-center">20%</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Rs. 10L to Rs. 20L</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-center">30%</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-center">30%</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Rs. 20L to Rs. 50L</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-center">36%</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-center">36%</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Above Rs. 50,00,000</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-center">39%</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-center">39%</td>
-              </tr>
-            </tbody>
-          </table>
-          <p className="text-[11px] text-[#5f6368] mt-2">*1% Social Security Tax is waived for SSF contributors.</p>
+        <h2 className="text-xl font-bold text-[#202124] mb-3">The Ultimate Encyclopedia of Nepal Land Measurement & Real Estate</h2>
+        
+        <div className="bg-[#e8f0fe] rounded-xl p-5 mb-5 border border-[#d2e3fc]">
+          <h4 className="text-[#1967d2] font-bold text-base mb-2 mt-0">Real Estate Navigation</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 text-xs text-[#3c4043]">
+            <a href="#land-1" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>1.</span> Ropani vs. Bigha (Hilly vs. Terai)</a>
+            <a href="#land-2" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>2.</span> Square Feet to Daam Precision</a>
+            <a href="#land-3" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>3.</span> The Malpot \"Minimum Valuation\"</a>
+            <a href="#land-4" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>4.</span> Registration Fee Structure (Wada/Malpot)</a>
+            <a href="#land-5" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>5.</span> Sifarish & Documentation Flow</a>
+          </div>
         </div>
 
-        <h2>Example: 8 Lakh Salary Breakdown</h2>
-        <p>
-          If your annual income is Rs. 8,00,000 and you are an individual taxpayer:
-          1. The first 5 Lakhs are taxed at 1% (Rs. 5,000).
-          2. The next 2 Lakhs (5L to 7L) are taxed at 10% (Rs. 20,000).
-          3. The remaining 1 Lakh (7L to 8L) is taxed at 20% (Rs. 20,000).
-          Total Tax: Rs. 45,000.
+        <p className="text-sm text-[#3c4043] leading-relaxed mb-5">
+          Real estate is the most popular investment in Nepal. However, the complexity of dual measurement systems (Ropani vs. Bigha) and 'Daam' level precision often leads to calculation errors. Whether you are buying a plot in Kathmandu or selling land in Chitwan, our <a href="/calculator/loan-emi/" className="text-[#1a73e8] font-bold hover:underline">Loan EMI Tool</a> can help you plan your property finance once you have verified the area.
         </p>
 
-        <h2>IRD Tax Calculator & Tax Refunds in Nepal</h2>
-        <p>
-          This IRD Tax Calculator is essential for salaried employees in Nepal, business owners calculating their personal income tax, and HR professionals managing payroll. It accurately follows the latest Inland Revenue Department (IRD) directives.
-        </p>
-        <p className="mt-4">
-          <strong>Tax Refund Calculator Nepal:</strong> If too much TDS (Tax Deducted at Source) was deducted from your salary or investment income throughout the year, you might be eligible for a tax refund from the IRD. By calculating your exact annual tax liability here and comparing it to what was actually deducted, you can easily find out if you are owed a refund when filing your D03 return!
-        </p>
-        <p className="mt-4">To see exactly how income tax is deducted from your monthly pay, use our <a href="/calculator/nepal-salary/" className="text-[#1A73E8] font-bold hover:underline">Nepal Salary Calculator</a> which integrates both SSF and standard deductions in one step.</p>
-        <AuthorByline fiscalYear="2082/83 (2025/26)" sources={[
-          { label: 'IRD Nepal', url: 'https://ird.gov.np' },
-          { label: 'Tax Rates 2082', url: 'https://ird.gov.np/en/tax-rates' },
-        ]} />
+        <div className="space-y-6">
+          <section id="land-1">
+            <h3 className="text-base font-bold text-[#202124] mb-2">1. The Ropani vs. Bigha Divide</h3>
+            <p className="text-sm text-[#5f6368] mb-3">Nepal's geography dictates its measurement. In Kathmandu and the Hills, we use Ropani. In the Terai, we use Bigha.</p>
+            <div className="border border-[#dadce0] rounded-xl overflow-hidden">
+               <table className="w-full text-xs text-left">
+                  <thead className="bg-[#f8f9fa] border-b border-[#dadce0]">
+                     <tr><th className="p-3">Hilly System (Ropani)</th><th className="p-3">Terai System (Bigha)</th></tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#dadce0]">
+                     <tr><td className="p-3">1 Ropani = 16 Aana</td><td className="p-3">1 Bigha = 20 Kattha</td></tr>
+                     <tr><td className="p-3">1 Aana = 4 Paisa</td><td className="p-3">1 Kattha = 20 Dhur</td></tr>
+                     <tr><td className="p-3">1 Paisa = 4 Daam</td><td className="p-3">1 Dhur = 182.25 Sq Ft</td></tr>
+                  </tbody>
+               </table>
+            </div>
+          </section>
+
+          <section id="land-3">
+            <h3 className="text-base font-bold text-[#202124] mb-2">3. The Malpot \"Minimum Valuation\" Rule</h3>
+            <p className="text-sm text-[#5f6368] mb-2">When registering land, the government has a floor price for every area. This is the minimum price you must declare.</p>
+            <div className="p-4 bg-[#fff4e5] border border-[#ffe0b2] rounded-xl">
+               <p className="text-xs text-[#3c4043] mb-0">**Institutional Tip:** Your registration tax is calculated on either the **Minimum Valuation** or the **Actual Transaction Price**—whichever is higher. Always check the latest Malpot valuation list before signing a deal.</p>
+            </div>
+          </section>
+        </div>
+
+        <div className="mt-10 pt-6 border-t border-[#f1f3f4] text-center">
+           <p className="text-[11px] text-[#5f6368]">
+              NepaCalc Internal Silo: After verifying your land area, calculate the <a href="/calculator/property-registration/" className="text-[#1a73e8] font-bold hover:underline">Registration Fee</a> or check your <a href="/calculator/nepal-home-loan/" className="text-[#1a73e8] font-bold hover:underline">Home Loan Eligibility</a>.
+           </p>
+        </div>
       </>
     ),
     faqs: [
-      {
-        question: "Is the 1% social security tax mandatory?",
-        answer: "Yes, for salaried individuals, but it is waived if you are contributing to the Social Security Fund (SSF)."
-      },
-      {
-        question: "How does the female tax rebate work in Nepal?",
-        answer: "Female taxpayers who only have 'remuneration income' are entitled to a 10% rebate on their total calculated income tax."
-      },
-      {
-        question: "What are the deductible expenses for income tax?",
-        answer: "You can deduct life insurance premiums (up to Rs. 40,000), health insurance (up to Rs. 20,000), and contributions to provident funds or CIT (up to 1/3 of income or Rs. 3,00,000)."
-      },
-      {
-        question: "Is there a penalty for late tax filing in Nepal?",
-        answer: "Yes, the Inland Revenue Department (IRD) imposes interest and late fees if you fail to file your tax return (D01/D03) within the designated deadline (usually Ashwin end)."
-      },
-      {
-        question: "Can I deduct my home loan interest from taxable income?",
-        answer: "No, currently the Nepal tax law does not allow individuals to deduct home loan interest from their taxable income, unlike in some other countries."
-      },
-      {
-        question: "How is tax calculated for part-time or freelance work in Nepal?",
-        answer: "Freelance or consultancy income is generally subject to a 15% TDS (Tax Deducted at Source) in Nepal, which is treated as an advance tax against your total annual liability."
-      }
+      { question: "How many Sq Ft are in 1 Ropani?", answer: "1 Ropani equals exactly 5,476 Square Feet." },
+      { question: "What is the difference between Bigha and Ropani?", answer: "A Bigha (72,900 sq ft) is much larger than a Ropani (5,476 sq ft). The Bigha system is used in the flatlands of the Terai, while Ropani is used in the Hills and Valleys." },
+      { question: "What is an 'Aana'?", answer: "An Aana is a standard unit in the Ropani system, equal to 342.25 Square Feet. It is the most common unit used for buying residential plots in Kathmandu." }
     ]
   },
+
   'loan-emi': {
-    title: "Loan EMI Calculator Nepal | Monthly Payment Estimator",
-    description: "Calculate Equated Monthly Installments (EMI) for home, auto, and personal loans from Nepalese banks. Factors in interest rates and tenure.",
+    title: "Loan EMI Calculator | Home, Auto & Personal Loan Planning",
+    description: "The definitive encyclopedia for Loan EMI in Nepal (FY 2082/83). Learn about NRB monetary policy, construction tranche systems, LTV limits, and the 5 C's of credit.",
+    howToUse: [
+      "Enter Principal Amount: The total loan amount you wish to borrow.",
+      "Set Interest Rate: The annual percentage rate (APR) provided by your bank.",
+      "Choose Tenure: The duration of the loan in years or months.",
+      "Calculate: View your monthly EMI, total interest, and full repayment amount."
+    ],
+    formula: {
+      title: "EMI (Equated Monthly Installment) Formula",
+      equation: "E = [P x r x (1+r)^n] / [(1+r)^n - 1]",
+      description: "The standard annuity formula used by banks in Nepal and globally to calculate fixed monthly payments on a reducing balance basis.",
+      variables: [
+        "P = Principal Loan Amount (The total initial sum of money borrowed from the bank or financial institution)",
+        "r = Periodic Interest Rate (The monthly interest rate calculated as Annual Rate / 12 months / 100)",
+        "n = Total Number of Payments (The total duration of the loan in months: Number of Years x 12)",
+        "E = Monthly EMI (The fixed amount to be repaid to the bank or institution every month)"
+      ]
+    },
     content: (
       <>
-        <h2>Loan Planning in Nepal: Understanding EMI</h2>
-        <p>
-          Taking a loan from a Nepalese bank, whether it's for a new house in Bhaktapur or a vehicle, requires careful financial planning. The most critical number you need to know is your <strong>Equated Monthly Installment (EMI)</strong>. This is the fixed amount you pay back to the bank every month until the loan is fully repaid.
-        </p>
-
-        <h3>Components of an EMI</h3>
-        <p>
-          Your EMI consists of two parts:
-          1. <strong>Principal:</strong> The actual loan amount you borrowed.
-          2. <strong>Interest:</strong> The cost of borrowing, which varies based on the bank's base rate and premium.
-        </p>
-
-        <div className="bg-[#fef7e0] border border-[#fbbc04] rounded-lg p-5 my-6">
-          <h4 className="text-sm font-black text-[#b06000] uppercase mb-2">Banking Alert</h4>
-          <p className="text-xs leading-relaxed mb-0 text-[#3c4043]">
-            Most banks in Nepal use <strong>Floating Interest Rates</strong>. This means your EMI can change if the Nepal Rastra Bank (NRB) adjusts the base rate. Always use our calculator to re-verify your payments if your bank sends you a rate hike notice!
-          </p>
+        {/* Main Title */}
+        <h2 className="text-xl font-bold text-[#202124] mb-3">The Ultimate Encyclopedia of Loan EMI & Institutional Finance</h2>
+        
+        {/* Navigation */}
+        <div className="bg-[#e8f0fe] rounded-xl p-5 mb-5 border border-[#d2e3fc]">
+          <h4 className="text-[#1967d2] font-bold text-base mb-2 mt-0">Master Course Navigation</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 text-xs text-[#3c4043]">
+            <a href="#section-1" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>1.</span> The Financial Formula Toolkit</a>
+            <a href="#section-2" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>2.</span> NRB Macro-Economics (Layman Summary)</a>
+            <a href="#section-3" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>3.</span> Home Construction (Tranche) System</a>
+            <a href="#section-4" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>4.</span> LTV Limits: Inside vs. Outside Valley</a>
+            <a href="#section-5" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>5.</span> The 3 Phases of Amortization</a>
+            <a href="#section-6" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>6.</span> The 5 C's of Credit (Institutional Standards)</a>
+            <a href="#section-7" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>7.</span> Global vs. Nepal Rastra Bank Standards</a>
+            <a href="#section-8" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>8.</span> Advanced Masterclass: Bi-Weekly & k-Constant</a>
+            <a href="#section-9" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>9.</span> Financial Psychology: Good vs. Bad Debt</a>
+            <a href="#section-10" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>10.</span> Legal Documentation & IRD Formats</a>
+          </div>
         </div>
 
-        <h2>How to Use the EMI Calculator</h2>
-        <p>
-          Simply enter your loan amount, the annual interest rate, and the loan tenure (in years or months). Our engine will provide a detailed breakdown of your total interest payable and the total cost of the loan.
+        <p className="text-sm text-[#3c4043] leading-relaxed mb-5">
+          Taking out a loan is a massive commitment. Whether you're financing a <a href="/calculator/nepal-land/" className="text-[#1a73e8] font-bold hover:underline">Home in Kathmandu</a> or a Commercial Vehicle, you're entering a complex mathematical contract. At NepaCalc, we bridge the gap between bank jargon and financial clarity. This guide provides an institutional-level deep dive into how loan mathematics and central bank policies impact your wealth.
         </p>
+
+        {/* Sections */}
+        <div className="space-y-6">
+          {/* 1 */}
+          <section id="section-1">
+            <h3 className="text-base font-bold text-[#202124] mb-2">1. The Financial Toolkit: Critical Loan Formulas</h3>
+            <p className="text-sm text-[#5f6368] mb-3">To manage your debt effectively, you need more than just one formula. Professional financial planning involves a suite of calculations that reveal the 'True Cost' of borrowing.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 border border-[#dadce0] rounded-xl bg-[#f8f9fa] space-y-2">
+                <h4 className="text-[10px] font-bold text-[#1a73e8] uppercase">A. The EMI (Annuity) Formula</h4>
+                <p className="text-[11px] text-[#5f6368] leading-relaxed">Derived from the Present Value of a Geometric Series, this determines your fixed monthly payment.</p>
+                <div className="bg-white p-3 rounded-lg border border-[#dadce0] font-mono text-[11px] font-bold text-[#202124] text-center">
+                   E = [P x r x (1+r)^n] / [(1+r)^n - 1]
+                </div>
+              </div>
+              <div className="p-4 border border-[#dadce0] rounded-xl bg-[#f8f9fa] space-y-2">
+                <h4 className="text-[10px] font-bold text-[#1a73e8] uppercase">B. Total Interest Payable</h4>
+                <p className="text-[11px] text-[#5f6368] leading-relaxed">This formula reveals exactly how much 'extra' you are paying the bank over the life of the loan.</p>
+                <div className="bg-white p-3 rounded-lg border border-[#dadce0] font-mono text-[11px] font-bold text-[#202124] text-center">
+                   I = (E x n) - P
+                </div>
+                <p className="text-[10px] text-[#d93025] font-medium italic mt-2">Critical: On long tenures, Interest often exceeds the Principal.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* 2 */}
+          <section id="section-2">
+            <h3 className="text-base font-bold text-[#202124] mb-2">2. Macro-Economics: NRB Policy in Plain English</h3>
+            <p className="text-sm text-[#5f6368] leading-relaxed mb-2">In Nepal, your interest rate is rarely "Fixed." It is a Floating Rate determined by the bank's Base Rate.</p>
+            <div className="p-5 bg-[#fdf2f2] border-l-2 border-[#d93025] rounded-r-xl">
+               <h5 className="text-[#d93025] font-bold text-sm mb-2 mt-0">Layman Summary: The "Tap" Theory</h5>
+               <p className="text-[#3c4043] text-xs leading-relaxed mb-0">
+                  Think of the central bank (NRB) as a tap. When they tighten the tap (raise CRR/SLR), money becomes scarce and expensive. This causes the bank's Base Rate to rise, which automatically pushes your EMI higher. When they open the tap, money flows easily, and your EMI drops.
+               </p>
+            </div>
+          </section>
+
+          {/* 3 */}
+          <section id="section-3">
+            <h3 className="text-base font-bold text-[#202124] mb-2">3. Home Construction Loans (The Tranche System)</h3>
+            <p className="text-sm text-[#5f6368] leading-relaxed mb-3">In Nepal, many borrowers take Vikas Karja (Construction Loans). Unlike a home purchase, the bank releases funds in a Tranche (Installment) System.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                { n: "1", h: "1st Installment (20-25%)", d: "Released after the foundation/DPC level is completed and verified by the bank's engineer." },
+                { n: "2", h: "2nd Installment (30-40%)", d: "Released after the first or second-floor slab is cast." },
+                { n: "3", h: "Final Installment", d: "Released once the finishing work (plumbing, wiring, painting) is nearly complete." }
+              ].map((t, i) => (
+                <div key={i} className="p-4 border border-[#dadce0] rounded-xl bg-white text-center">
+                  <div className="w-8 h-8 rounded-full bg-[#f8f9fa] border border-[#dadce0] text-[#1a73e8] flex items-center justify-center text-sm font-bold mx-auto mb-3">{t.n}</div>
+                  <h5 className="font-bold text-xs mb-2 text-[#202124]">{t.h}</h5>
+                  <p className="text-[10px] text-[#5f6368] leading-relaxed mb-0">{t.d}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* 4 */}
+          <section id="section-4">
+            <h3 className="text-base font-bold text-[#202124] mb-2">4. LTV Deep Dive: Inside vs. Outside Valley</h3>
+            <p className="text-sm text-[#5f6368] mb-2">The Loan-to-Value (LTV) ratio is the absolute limit of what you can borrow based on your collateral. NRB sets different limits based on geography and purpose.</p>
+            <div className="border border-[#dadce0] rounded-xl overflow-hidden">
+              <table className="w-full text-xs text-left">
+                <thead className="bg-[#f8f9fa] border-b border-[#dadce0]">
+                  <tr><th className="p-3">Loan Category</th><th className="p-3">Inside Ktm Valley</th><th className="p-3">Outside Valley</th></tr>
+                </thead>
+                <tbody className="divide-y divide-[#dadce0]">
+                  <tr><td className="p-3 font-medium">Residential Home Loan</td><td className="p-3 font-bold text-[#d93025]">50%</td><td className="p-3 font-bold text-[#d93025]">60%</td></tr>
+                  <tr><td className="p-3 font-medium">Real Estate/Plotting</td><td className="p-3">40%</td><td className="p-3">50%</td></tr>
+                  <tr><td className="p-3 font-medium">Electric Vehicles (EV)</td><td className="p-3 font-bold text-[#1e8e3e]">80%</td><td className="p-3 font-bold text-[#1e8e3e]">80%</td></tr>
+                  <tr><td className="p-3 font-medium">Non-EV Petrol/Diesel</td><td className="p-3">50%</td><td className="p-3">50%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          {/* 5 */}
+          <section id="section-5">
+            <h3 className="text-base font-bold text-[#202124] mb-2">5. The Lifecycle of a 20-Year Amortization</h3>
+            <p className="text-sm text-[#5f6368] mb-2">An amortization schedule is a dynamic journey through three distinct phases:</p>
+            <div className="space-y-3">
+              {[
+                { n: "1", h: "Phase 1: Interest Dominance (Years 1-7)", d: "In the early years, nearly 80% of your EMI goes toward interest. This is when the bank makes its profit. Pro-Tip: Making even a small extra principal payment here will cancel out months of future debt." },
+                { n: "2", h: "Phase 2: The Equilibrium Point (Years 8-12)", d: "Around the midpoint, the portion of your EMI going toward principal finally equals the interest. From this point forward, your equity in the property grows faster than the bank's profit." },
+                { n: "3", h: "Phase 3: Principal Dominance (Years 13-20)", d: "The balance is now low. Interest is minimal. Most of your EMI is simply 'moving money from your pocket to your house equity'. Pre-paying now saves less money than pre-paying in Phase 1." }
+              ].map((p, i) => (
+                <div key={i} className="flex gap-4 p-4 bg-[#f8f9fa] rounded-xl border border-[#dadce0]">
+                  <div className="w-6 h-6 rounded-full bg-[#1a73e8] text-white flex items-center justify-center font-bold text-[10px] shrink-0 mt-0.5">{p.n}</div>
+                  <div>
+                    <h5 className="font-bold text-[#202124] text-xs mb-1">{p.h}</h5>
+                    <p className="text-[11px] text-[#5f6368] leading-relaxed mb-0">{p.d}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* 6 */}
+          <section id="section-6">
+            <h3 className="text-base font-bold text-[#202124] mb-2">6. The 5 C's of Credit: Institutional Standards</h3>
+            <p className="text-sm text-[#5f6368] mb-2">Nepal's 'A' Class banks use these criteria to determine your Premium. One low score can result in a 'Premium Hike' or rejection:</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+              {[
+                { h: "Character", d: "Your credit history from the CIB report. Do you have 'Past Due' events?" },
+                { h: "Capacity", d: "Your DTI (Debt-to-Income) ratio. Banks prefer this below 50%. Use our <a href='/calculator/nepal-salary/' className='text-[#1a73e8] hover:underline'>Salary Calculator</a> to audit your exact monthly capacity." },
+                { h: "Capital", d: "Your net worth and liquid assets. How much 'Skin in the game' do you have?" },
+                { h: "Collateral", d: "The forced sale value of the property. Is it near a river or high-tension line?" },
+                { h: "Conditions", d: "The macro-economic climate and your industry stability (e.g. Tourism vs. IT)." }
+              ].map((c, i) => (
+                <div key={i} className="p-4 border border-[#dadce0] rounded-xl bg-white shadow-sm">
+                  <h5 className="text-[10px] font-bold text-[#1a73e8] uppercase mb-2 tracking-wider">{c.h}</h5>
+                  <p className="text-[10px] text-[#5f6368] leading-relaxed mb-0">{c.d}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* 7 */}
+          <section id="section-7">
+            <h3 className="text-base font-bold text-[#202124] mb-2">7. Institutional Formats: Nepal vs. International</h3>
+            <p className="text-sm text-[#5f6368] mb-2">Understanding these formats helps you when comparing loans using global financial tools.</p>
+            <div className="border border-[#dadce0] rounded-xl overflow-hidden">
+              <table className="w-full text-xs text-left">
+                <thead className="bg-[#f8f9fa] border-b border-[#dadce0]">
+                  <tr><th className="p-3">Feature</th><th className="p-3">Nepal (NRB)</th><th className="p-3">USA (Fed)</th><th className="p-3">Canada (OSFI)</th></tr>
+                </thead>
+                <tbody className="divide-y divide-[#dadce0]">
+                  <tr><td className="p-3 font-medium">Pricing Model</td><td className="p-3">Base Rate + Premium</td><td className="p-3">SOFR + Margin</td><td className="p-3">Prime + Margin</td></tr>
+                  <tr><td className="p-3 font-medium">Compounding</td><td className="p-3">Monthly / Quarterly</td><td className="p-3">Daily / Monthly</td><td className="p-3">Semi-Annual</td></tr>
+                  <tr><td className="p-3 font-medium">Day Count</td><td className="p-3">Actual / 365</td><td className="p-3">30 / 360</td><td className="p-3">Actual / 365</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          {/* 8 */}
+          <section id="section-8">
+            <h3 className="text-base font-bold text-[#202124] mb-2">8. Advanced Masterclass: Pro Debt Management</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-5 bg-[#e8f0fe] border border-[#d2e3fc] rounded-xl">
+                 <h5 className="font-bold text-[#1967d2] text-sm mb-2">Bi-Weekly Payment Proof</h5>
+                 <p className="text-xs text-[#3c4043] leading-relaxed mb-0">Paying half your EMI every two weeks equals 13 payments a year. This simple mathematical trick can shave 4 years off a 20-year loan without any extra burden.</p>
+              </div>
+              <div className="p-5 bg-[#f8f9fa] border border-[#dadce0] rounded-xl">
+                 <h5 className="font-bold text-[#202124] text-sm mb-2">The Loan Constant (k)</h5>
+                 <p className="text-xs text-[#3c4043] leading-relaxed mb-0">Formula: (Annual Debt / Total Loan) x 100. If 'k' is lower than your property's rental yield, you have Positive Leverage.</p>
+              </div>
+            </div>
+            <div className="p-4 bg-[#fff4e5] border border-[#ffe0b2] rounded-xl mt-4 flex gap-3 items-start">
+               <span className="text-base shrink-0">⚠️</span>
+               <div>
+                  <h5 className="font-bold text-[#e65100] text-[10px] uppercase mb-1 mt-0">Technical Warning: Rule of 78s</h5>
+                  <p className="text-xs text-[#3c4043] mb-0">Be wary of the Rule of 78s. While mostly phased out, some lenders still use this to 'front-load' interest. Always demand a 'Reducing Balance' contract.</p>
+               </div>
+            </div>
+          </section>
+
+          {/* 9 */}
+          <section id="section-9">
+            <h3 className="text-base font-bold text-[#202124] mb-2">9. The Psychology of Debt: Good vs. Bad Debt</h3>
+            <p className="text-sm text-[#5f6368] mb-2">Not all loans are equal. Successful financial planning involves distinguishing between debt that builds wealth and debt that destroys it.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-5 bg-[#e6f4ea] border border-[#ceead6] rounded-xl">
+                 <h4 className="text-[10px] font-bold text-[#1e8e3e] uppercase mb-3">Good Debt (Wealth Creators)</h4>
+                 <ul className="text-xs text-[#3c4043] space-y-2 list-none p-0">
+                    <li className="flex items-center gap-2"><span>✓</span> <strong>Home Loans:</strong> Real estate usually appreciates in value over time.</li>
+                    <li className="flex items-center gap-2"><span>✓</span> <strong>Education Loans:</strong> An investment in your future earning capacity.</li>
+                    <li className="flex items-center gap-2"><span>✓</span> <strong>Business Loans:</strong> Using capital to generate higher returns (ROE).</li>
+                 </ul>
+              </div>
+              <div className="p-5 bg-[#fce8e6] border border-[#fad2cf] rounded-xl">
+                 <h4 className="text-[10px] font-bold text-[#d93025] uppercase mb-3">Bad Debt (Wealth Destroyers)</h4>
+                 <ul className="text-xs text-[#3c4043] space-y-2 list-none p-0">
+                    <li className="flex items-center gap-2"><span>✕</span> <strong>Wedding Loans:</strong> High-interest debt for a one-day event.</li>
+                    <li className="flex items-center gap-2"><span>✕</span> <strong>Consumer Loans:</strong> Financing the latest iPhone or luxury watch.</li>
+                    <li className="flex items-center gap-2"><span>✕</span> <strong>Credit Card Revolving:</strong> Rates often exceed 20% in Nepal.</li>
+                 </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* 11 */}
+          <section>
+            <h3 className="text-base font-bold text-[#202124] mb-2">11. The Institutional Workflow: Step-by-Step to Approval</h3>
+            <p className="text-sm text-[#5f6368] mb-3">Navigating the bureaucracy of an 'A' Class bank in Nepal can be daunting. Understanding the internal milestones helps you manage expectations:</p>
+            <div className="space-y-3">
+              {[
+                { n: "1", h: "Document Verification (3-5 Days)", d: "The bank reviews your 'Kyc', Lalpurja, and Income certificates. They check if your 'Tax Clearance' matches your bank statements." },
+                { n: "2", h: "Valuation & Site Inspection (2-3 Days)", d: "An independent engineer visits the property to determine the 'Fair Market Value' and 'Forced Sale Value'. Note: Banks lend on the lower of the two. For area verification, use the <a href='/calculator/nepal-land/' className='text-[#1a73e8] hover:underline'>Land Area Converter</a>." },
+                { n: "3", h: "CIB Verification (Instant)", d: "The bank pulls your record from the Credit Information Bureau. Any 'Blacklisting' or 'Overdue' in the last 2 years will likely cause a rejection." },
+                { n: "4", h: "Sanction Letter Issued", d: "If approved, you receive a 'Sanction Letter' detailing the rate, tenure, and conditions. Read this carefully for 'Commitment Fees' and 'Prepayment' clauses." },
+                { n: "5", h: "Legal Mortgage (Rokka)", d: "You visit the Land Revenue Office (Malpot) with the bank's representative to place a 'Rokka' (Lien) on your property." }
+              ].map((s, i) => (
+                <div key={i} className="flex gap-4 p-4 border border-[#dadce0] rounded-xl bg-white items-center shadow-sm">
+                   <div className="w-8 h-8 rounded-full bg-[#1a73e8] text-white flex items-center justify-center font-bold text-[11px] shrink-0">{s.n}</div>
+                   <div>
+                      <h5 className="font-bold text-[#202124] text-xs mb-0.5">{s.h}</h5>
+                      <p className="text-[10px] text-[#5f6368] leading-relaxed mb-0">{s.d}</p>
+                   </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* 12 */}
+          <section>
+            <h3 className="text-base font-bold text-[#202124] mb-2">12. The Insurance Shield: Protecting Your Estate</h3>
+            <p className="text-sm text-[#5f6368] mb-2">Banks in Nepal generally require two types of insurance before disbursing a loan. This isn't just a formality—it's a critical safety net for your family.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-5 border border-[#dadce0] rounded-xl bg-[#f8f9fa] space-y-2">
+                 <h5 className="font-bold text-xs text-[#202124] mt-0">A. Term Life Insurance (Loan Protector)</h5>
+                 <p className="text-[11px] text-[#5f6368] leading-relaxed mb-0">In the event of the borrower's death, the insurance company pays the outstanding loan balance directly to the bank. This ensures your family keeps the house without the burden of debt.</p>
+              </div>
+              <div className="p-5 border border-[#dadce0] rounded-xl bg-[#f8f9fa] space-y-2">
+                 <h5 className="font-bold text-xs text-[#202124] mt-0">B. Property/Fire Insurance</h5>
+                 <p className="text-[11px] text-[#5f6368] leading-relaxed mb-0">Required for Home and Business loans. It covers the structure against Fire, Earthquake, and Floods. Pro-Tip: Ensure the valuation on the policy matches the 'Replacement Cost' of the building.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* 13 */}
+          <section>
+            <h3 className="text-base font-bold text-[#202124] mb-2">13. Loan Refinancing & Balance Transfers (BT)</h3>
+            <p className="text-sm text-[#5f6368] mb-2">Interest rates in Nepal move in cycles. If you took a loan at 14% and the current market is at 10.5%, you have two options to save money:</p>
+            <div className="bg-[#f1f3f4] rounded-xl p-5 space-y-3">
+               <div className="flex items-start gap-3">
+                  <span className="text-lg mt-0.5">🚀</span>
+                  <p className="text-[#3c4043] text-xs leading-relaxed mb-0"><strong>Internal Refinancing:</strong> Negotiate with your current bank to lower the 'Premium' over the Base Rate. Often requires a small 'Processing Fee'.</p>
+               </div>
+               <div className="flex items-start gap-3">
+                  <span className="text-lg mt-0.5">🏦</span>
+                  <p className="text-[#3c4043] text-xs leading-relaxed mb-0"><strong>External Balance Transfer:</strong> Move your entire loan to another bank with a lower rate. Calculation: Only do this if the Interest Savings &gt; (Swap Fees + Prepayment Penalties + New Processing Fees).</p>
+               </div>
+            </div>
+          </section>
+
+          {/* 14 */}
+          <section>
+            <h3 className="text-base font-bold text-[#202124] mb-2">14. The Math of Prepayment: When to Pay Early?</h3>
+            <p className="text-sm text-[#5f6368] mb-2">Prepaying your loan is the most effective way to build wealth, but timing matters. Due to the Reducing Balance method, interest is front-loaded.</p>
+            <div className="p-5 bg-[#f8f9fa] border border-[#dadce0] rounded-xl mb-3 text-center">
+               <h5 className="font-bold text-sm text-[#1a73e8] mb-2">The "Golden Rule" of Prepayment</h5>
+               <p className="text-xs text-[#3c4043] italic mb-3">"A Rupee prepaid in Year 2 is worth roughly 5 Rupees in Year 15 due to saved compound interest."</p>
+               <p className="text-xs text-[#3c4043] font-medium">Goal: Reduce Tenure, not EMI. Shortening the years saves exponentially more interest.</p>
+            </div>
+            <div className="p-4 border border-[#dadce0] rounded-xl bg-white">
+               <h5 className="font-bold text-[10px] uppercase text-[#1a73e8] mb-1">Bonus Pay</h5>
+               <p className="text-[11px] text-[#5f6368] mb-0">Use yearly bonuses to pay off 1-2 extra EMIs. This can cut a 20-year loan down to 14 years.</p>
+            </div>
+          </section>
+
+          {/* 15 */}
+          <section>
+            <h3 className="text-base font-bold text-[#202124] mb-2">15. Tax Benefits & Fiscal Intelligence</h3>
+            <p className="text-sm text-[#5f6368] mb-2">In Nepal, loans aren't just a liability—they can be a tool for tax optimization. Under current IRD (Inland Revenue Department) guidelines:</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                { i: "🏛️", h: "Home Loan Interest", d: "Individual taxpayers can claim a deduction of up to Rs. 25,000 per year on interest paid for a home loan (verify latest budget limits)." },
+                { i: "💼", h: "Business Loans", d: "100% of the interest paid on a business loan is a tax-deductible expense, directly reducing your taxable net profit." },
+                { i: "🎓", h: "Education Loans", d: "While not a direct deduction in all cases, the 'Social Security Tax' exemptions for students often provide indirect relief." }
+              ].map((t, i) => (
+                <div key={i} className="p-5 bg-[#e8f0fe] border border-[#d2e3fc] rounded-xl text-center">
+                   <span className="text-2xl block mb-2">{t.i}</span>
+                   <h5 className="font-bold text-[#1967d2] text-xs mb-2">{t.h}</h5>
+                   <p className="text-[10px] text-[#3c4043] leading-relaxed mb-0">{t.d}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* 16 */}
+          <section>
+            <h3 className="text-base font-bold text-[#202124] mb-2">16. Default, Recovery & The 35-Day Notice</h3>
+            <p className="text-sm text-[#5f6368] mb-2">Missing an EMI has severe consequences beyond just a late fee. Banks in Nepal follow a strict protocol mandated by the NRB:</p>
+            <div className="space-y-3">
+               <div className="p-4 border-l-2 border-[#fbbc04] bg-[#fffaf0] rounded-r-lg">
+                  <h5 className="font-bold text-[#946c00] text-[10px] uppercase mb-1">Step 1: The Call & Penalty (1-30 Days)</h5>
+                  <p className="text-[11px] text-[#3c4043] mb-0">Late fees (often 2% over the interest rate) are applied. Your CIB record is flagged as 'Overdue'.</p>
+               </div>
+               <div className="p-4 border-l-2 border-[#ea4335] bg-[#fef2f2] rounded-r-lg">
+                  <h5 className="font-bold text-[#b91c1c] text-[10px] uppercase mb-1">Step 2: The 35-Day Public Notice</h5>
+                  <p className="text-[11px] text-[#3c4043] mb-0">If the loan remains 'Non-Performing' (NPL) for over 90 days, the bank publishes your name and photo in a national daily newspaper, giving you 35 days to settle the debt.</p>
+               </div>
+               <div className="p-4 border-l-2 border-[#202124] bg-[#f8f9fa] rounded-r-lg">
+                  <h5 className="font-bold text-[#202124] text-[10px] uppercase mb-1">Step 3: Auction & Legal Action</h5>
+                  <p className="text-[11px] text-[#3c4043] mb-0">If the 35-day notice expires, the bank has the legal right to auction your collateral property to recover the outstanding balance and legal costs.</p>
+               </div>
+            </div>
+          </section>
+
+          {/* 17 */}
+          <section>
+            <h3 className="text-base font-bold text-[#202124] mb-2">17. The Role of Guarantors & Personal Liability</h3>
+            <p className="text-sm text-[#5f6368] mb-2">In Nepal, most loans require a Guarantor (Zamanati). If you are asked to sign as a guarantor, understand the legal gravity:</p>
+            <div className="p-5 border-2 border-[#dadce0] rounded-xl bg-white shadow-sm relative overflow-hidden">
+               <div className="absolute top-0 left-0 w-1 h-full bg-[#ea4335]"></div>
+               <p className="text-[#202124] text-xs leading-relaxed mb-0 font-medium italic">
+                  "A guarantor is 100% legally responsible for the debt if the primary borrower defaults. The bank can legally freeze the guarantor's bank accounts and even auction the guarantor's property if the primary collateral is insufficient. Rule of Thumb: Only guarantee a loan for someone whose financial integrity you trust as much as your own."
+               </p>
+            </div>
+          </section>
+
+          {/* 18 */}
+          <section>
+            <h3 className="text-base font-bold text-[#202124] mb-2">18. Digital Banking & EMI Hygiene</h3>
+            <p className="text-sm text-[#5f6368] mb-2">Managing a 20-year loan requires organizational discipline. Professional borrowers use these digital tools:</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+               <div className="p-5 bg-[#f8f9fa] border border-[#dadce0] rounded-xl flex gap-4 items-start">
+                  <span className="text-xl">📱</span>
+                  <div>
+                     <h5 className="font-bold text-[#202124] text-xs mb-1 mt-0">Standing Instructions (SI)</h5>
+                     <p className="text-[10px] text-[#5f6368] mb-0">Set an auto-debit on your mobile banking app. This prevents "Accidental Defaults" due to forgetfulness.</p>
+                  </div>
+               </div>
+               <div className="p-5 bg-[#f8f9fa] border border-[#dadce0] rounded-xl flex gap-4 items-start">
+                  <span className="text-xl">🔔</span>
+                  <div>
+                     <h5 className="font-bold text-[#202124] text-xs mb-1 mt-0">EMI Alerts</h5>
+                     <p className="text-[10px] text-[#5f6368] mb-0">Ensure your phone number is registered for SMS alerts to track interest rate changes immediately.</p>
+                  </div>
+               </div>
+            </div>
+          </section>
+
+          {/* 19 */}
+          <section id="section-10">
+            <h3 className="text-base font-bold text-[#202124] mb-2">19. Legal Documentation & Institutional Protocol</h3>
+            <p className="text-sm text-[#5f6368] mb-2">To move from 'Calculation' to 'Approval' in Nepal, you must provide:</p>
+            <ul className="space-y-2 text-xs text-[#3c4043] list-none p-0">
+               <li className="flex items-center gap-3"><span className="text-[#1a73e8]">•</span> <strong>Lalpurja:</strong> Primary land ownership document.</li>
+               <li className="flex items-center gap-3"><span className="text-[#1a73e8]">•</span> <strong>Tax Clearance:</strong> Proving you are an active taxpayer (Official IRD Format).</li>
+               <li className="flex items-center gap-3"><span className="text-[#1a73e8]">•</span> <strong>Blue Prints:</strong> Verified by the local municipality (Wada/Nagarpalika).</li>
+               <li className="flex items-center gap-3"><span className="text-[#1a73e8]">•</span> <strong>Direct NRB Source:</strong> For latest rates, consult the Official NRB Circulars.</li>
+            </ul>
+          </section>
+        </div>
+
+        {/* Internal Silo */}
+        <div className="mt-10 pt-6 border-t border-[#f1f3f4] text-center">
+           <p className="text-[11px] text-[#5f6368]">
+              NepaCalc Internal Silo: For property planning, use the <a href="/calculator/nepal-land/" className="text-[#1a73e8] font-bold hover:underline">Land Area Converter</a>. 
+              To audit your take-home pay, visit the <a href="/calculator/nepal-salary/" className="text-[#1a73e8] font-bold hover:underline">Salary Calculator</a>.
+           </p>
+        </div>
+      </>
+    ),
+  },
+  'nepal-income-tax': {
+    title: "Nepal Income Tax Calculator FY 2082/83 | Official IRD Slabs",
+    description: "Calculate your income tax in Nepal based on the latest 2082/83 fiscal year budget. Includes SSF waivers, female rebates, and authorized IRD deductions.",
+    howToUse: [
+      "Select Status: Choose between Single or Married (Joint) filing.",
+      "Enter Income: Input your total annual income from all sources.",
+      "Add Deductions: Enter your contributions to SSF, EPF, CIT, and Life Insurance.",
+      "Check Rebates: If you are a female taxpayer, ensure the 10% rebate is applied.",
+      "Review Slabs: Analyze how your income is distributed across the progressive tax brackets."
+    ],
+    formula: {
+      title: "Nepal Progressive Tax Formula",
+      equation: "Tax = Σ (Slab_Income x Slab_Rate)",
+      description: "The IRD uses a Progressive Tax System. You only pay the higher percentage on the portion of income that falls within that specific 'slab.'",
+      variables: [
+        "Σ (Sigma) = Summation (The mathematical process of adding up the tax from all applicable income slabs)",
+        "Slab Income = The specific portion of your total salary that falls within a particular tax bracket",
+        "Slab Rate = The tax percentage (ranging from 1% to 39%) assigned by the IRD to that specific slab",
+        "SST = Social Security Tax (A mandatory 1% tax on the first slab, waived for SSF contributors)"
+      ]
+    },
+    content: (
+      <>
+        {/* Main Title */}
+        <h2 className="text-xl font-bold text-[#202124] mb-3">The Ultimate Encyclopedia of Nepal Income Tax & Fiscal Policy</h2>
+        
+        {/* Navigation */}
+        <div className="bg-[#e8f0fe] rounded-xl p-5 mb-5 border border-[#d2e3fc]">
+          <h4 className="text-[#1967d2] font-bold text-base mb-2 mt-0">Institutional Tax Navigation</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 text-xs text-[#3c4043]">
+            <a href="#section-1" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>1.</span> The "Social Security Tax" (SST) Rule</a>
+            <a href="#section-2" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>2.</span> Institutional Slabs for 2082/83</a>
+            <a href="#section-3" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>3.</span> Authorized Deductions (Act 2058)</a>
+            <a href="#section-4" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>4.</span> Female Taxpayer Rebates (10%)</a>
+            <a href="#section-5" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>5.</span> Progressive vs. Flat Tax Theory</a>
+            <a href="#section-6" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>6.</span> Tax on Bonus & Dashain Allowance</a>
+            <a href="#section-7" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>7.</span> Retirement Fund (SSF/CIT/EPF) Strategy</a>
+            <a href="#section-8" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>8.</span> Health & Life Insurance Relief</a>
+            <a href="#section-9" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>9.</span> Remote Area Allowance (Kha/Ga/Gha)</a>
+            <a href="#section-10" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>10.</span> Penalty for Late Filing (D-01/D-03)</a>
+          </div>
+        </div>
+
+        <p className="text-sm text-[#3c4043] leading-relaxed mb-5">
+          Managing your taxes in Nepal requires a deep understanding of the <a href="/calculator/nepal-salary/" className="text-[#1a73e8] font-bold hover:underline">Income Tax Act 2058</a>. Whether you are a salaried professional or a business owner, your tax liability is determined by a complex hierarchy of slabs, deductions, and rebates. NepaCalc provides this institutional deep-dive to help you optimize your wealth while remaining 100% compliant with the Inland Revenue Department (IRD).
+        </p>
+
+        {/* Sections */}
+        <div className="space-y-6">
+          {/* 1 */}
+          <section id="section-1">
+            <h3 className="text-base font-bold text-[#202124] mb-2">1. The "Social Security Tax" (SST) Waiver Rule</h3>
+            <p className="text-sm text-[#5f6368] mb-3">In Nepal, the first bracket of income is subject to a 1% tax known as Social Security Tax. However, there is a critical institutional exception.</p>
+            <div className="p-5 bg-[#e8f0fe] border-l-2 border-[#1967d2] rounded-r-xl">
+               <h5 className="text-[#1967d2] font-bold text-sm mb-2 mt-0">Institutional Insight: The SSF Advantage</h5>
+               <p className="text-[#3c4043] text-xs leading-relaxed mb-0">
+                  If you are a contributor to the **Social Security Fund (SSF)**, the 1% SST is completely waived. This means your first Rs. 5,00,000 (Single) or Rs. 6,00,000 (Married) is 100% tax-free. If you are NOT in SSF, the bank or employer will deduct this 1% by default.
+               </p>
+            </div>
+          </section>
+
+          {/* 2 */}
+          <section id="section-2">
+            <h3 className="text-base font-bold text-[#202124] mb-2">2. Institutional Slabs for FY 2082/83</h3>
+            <p className="text-sm text-[#5f6368] mb-2">The current fiscal year uses a progressive 7-tier system. Note that these limits apply to your *Taxable* income after all deductions are removed.</p>
+            <div className="border border-[#dadce0] rounded-xl overflow-hidden">
+              <table className="w-full text-xs text-left">
+                <thead className="bg-[#f8f9fa] border-b border-[#dadce0]">
+                  <tr><th className="p-3">Slab Range</th><th className="p-3">Single Rate</th><th className="p-3">Married Rate</th></tr>
+                </thead>
+                <tbody className="divide-y divide-[#dadce0]">
+                  <tr><td className="p-3">Up to 5L (S) / 6L (M)</td><td className="p-3 font-bold text-[#1e8e3e]">1% (SST)</td><td className="p-3 font-bold text-[#1e8e3e]">1% (SST)</td></tr>
+                  <tr><td className="p-3">Next 2,00,000</td><td className="p-3">10%</td><td className="p-3">10%</td></tr>
+                  <tr><td className="p-3">Next 3,00,000</td><td className="p-3">20%</td><td className="p-3">20%</td></tr>
+                  <tr><td className="p-3">Next 10,00,000</td><td className="p-3">30%</td><td className="p-3">30%</td></tr>
+                  <tr><td className="p-3">Next 30,00,000</td><td className="p-3 font-bold text-[#d93025]">36%</td><td className="p-3 font-bold text-[#d93025]">36%</td></tr>
+                  <tr><td className="p-3">Above 50,00,000</td><td className="p-3 font-bold text-[#d93025]">39%</td><td className="p-3 font-bold text-[#d93025]">39%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          {/* 3 */}
+          <section id="section-3">
+            <h3 className="text-base font-bold text-[#202124] mb-2">3. Authorized Deductions (Income Tax Act 2058)</h3>
+            <p className="text-sm text-[#5f6368] mb-3">You can legally reduce your taxable income by utilizing these four pillars of deduction. Use the <a href="/calculator/nepal-salary/" className="text-[#1a73e8] hover:underline">Salary Tool</a> to verify these limits.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 border border-[#dadce0] rounded-xl bg-[#f8f9fa] space-y-2">
+                <h4 className="text-[10px] font-bold text-[#1a73e8] uppercase">A. Retirement Fund (SSF/CIT/EPF)</h4>
+                <p className="text-[11px] text-[#5f6368] leading-relaxed">Max deduction: **1/3 of total income** or **Rs. 5,00,000** (whichever is lower). This is the most powerful tool for tax saving in Nepal.</p>
+              </div>
+              <div className="p-4 border border-[#dadce0] rounded-xl bg-[#f8f9fa] space-y-2">
+                <h4 className="text-[10px] font-bold text-[#1a73e8] uppercase">B. Insurance Premiums</h4>
+                <p className="text-[11px] text-[#5f6368] leading-relaxed">**Life Insurance:** Deduct up to Rs. 40,000/year. **Health Insurance:** Deduct up to Rs. 20,000/year. You must have the official premium receipt for verification.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* 4 */}
+          <section id="section-4">
+            <h3 className="text-base font-bold text-[#202124] mb-2">4. The 10% Female Taxpayer Rebate</h3>
+            <p className="text-sm text-[#5f6368] leading-relaxed mb-3">To encourage workforce participation, the Government of Nepal offers a 10% rebate on the total tax payable for female taxpayers who have income only from employment.</p>
+            <div className="bg-[#f1f3f4] rounded-xl p-5 border border-[#dadce0]">
+               <p className="text-xs text-[#3c4043] leading-relaxed mb-0">
+                  **Rule:** If your total tax calculated is Rs. 1,00,000, and you qualify for the rebate, you only pay **Rs. 90,000**. Note: This does NOT apply if you have income from business, investments, or land sales.
+               </p>
+            </div>
+          </section>
+
+          {/* 5 */}
+          <section id="section-5">
+            <h3 className="text-base font-bold text-[#202124] mb-2">5. Understanding Progressive Tax Theory</h3>
+            <p className="text-sm text-[#5f6368] mb-2">A common misconception is that if you enter the 30% slab, your *entire* income is taxed at 30%. This is false.</p>
+            <div className="p-4 bg-[#fff4e5] border border-[#ffe0b2] rounded-xl flex gap-3 items-start">
+               <span className="text-base shrink-0">💡</span>
+               <p className="text-xs text-[#3c4043] mb-0">Your income is like a series of buckets. Only the money that "overflows" into the higher bucket gets taxed at the higher rate. The money in the lower buckets remains taxed at 1%, 10%, and 20%.</p>
+            </div>
+          </section>
+
+          {/* 10 */}
+          <section id="section-10">
+            <h3 className="text-base font-bold text-[#202124] mb-2">10. Institutional Workflow & Filing Deadlines</h3>
+            <p className="text-sm text-[#5f6368] mb-2">Failing to file your tax return (D-01/D-03) can lead to penalties and interest. Follow this institutional cycle:</p>
+            <ul className="space-y-2 text-xs text-[#3c4043] list-none p-0">
+               <li className="flex items-center gap-3"><span className="text-[#1a73e8]">•</span> <strong>Ashwin End:</strong> Deadline for filing the previous year's tax return.</li>
+               <li className="flex items-center gap-3"><span className="text-[#1a73e8]">•</span> <strong>TDS Filing:</strong> Must be done within 25 days of the following month.</li>
+               <li className="flex items-center gap-3"><span className="text-[#1a73e8]">•</span> <strong>Official IRD Portals:</strong> Use the [Taxpayer Portal](https://ird.gov.np) for online submissions.</li>
+            </ul>
+          </section>
+        </div>
+
+        {/* Internal Silo */}
+        <div className="mt-10 pt-6 border-t border-[#f1f3f4] text-center">
+           <p className="text-[11px] text-[#5f6368]">
+              NepaCalc Internal Silo: After calculating your tax, audit your monthly take-home on the <a href="/calculator/nepal-salary/" className="text-[#1a73e8] font-bold hover:underline">Salary Calculator</a> or plan property wealth with the <a href="/calculator/nepal-land/" className="text-[#1a73e8] font-bold hover:underline">Land Area Converter</a>.
+           </p>
+        </div>
       </>
     ),
     faqs: [
-      { question: "Can I prepay my loan in Nepal?", answer: "Yes, most banks allow prepayment, but they may charge a 'Prepayment Fee' ranging from 0.5% to 2% of the principal." },
-      { question: "What is the standard loan tenure for a home loan?", answer: "In Nepal, home loans (Ghar Karja) typically have a tenure of 5 to 30 years." }
+      { question: "Is the 1% SST mandatory for everyone?", answer: "Yes, it is mandatory for all employment income, but it is waived if you are an active contributor to the Social Security Fund (SSF)." },
+      { question: "Can a married couple file as single?", answer: "Yes. In Nepal, couples have the option to file as 'Married' (Joint) to get a higher tax-free ceiling (Rs. 6L vs 5L), or as 'Single' if it is mathematically more advantageous." },
+      { question: "What is the tax on a Dashain Bonus?", answer: "Bonuses and allowances are added to your total annual income. They are not taxed separately but are taxed at your highest applicable slab rate." },
+      { question: "Are medical expenses tax-deductible?", answer: "Yes, you can claim a medical tax credit of 15% of the approved medical expenses or Rs. 750, whichever is lower. This is a direct credit from your tax payable." }
     ]
   },
 
-  'nepali-date': {
-    title: "Nepali Date Converter | AD to BS & BS to AD Online",
-    description: "Accurate Nepali Date Converter for Bikram Sambat (BS) and Gregorian Calendar (AD). Convert dates of birth, events, and official documents instantly.",
+  'nea-bill': {
+    title: "NEA Electricity Bill Calculator 2081 | Latest Nepal Tariffs",
+    description: "Calculate your Nepal Electricity Authority (NEA) monthly bill including energy charges, service fees, and rebate/penalty logic. Updated for current tariff cycles.",
+    howToUse: [
+      "Select Meter Capacity: Choose your Ampere limit (usually 5A, 15A, or 30A for homes).",
+      "Enter Units: Input the total units consumed for the month.",
+      "Energy Charge: View the energy cost based on the current NEA Tariff.",
+      "Service Charge: See the fixed monthly fee applied to your meter size.",
+      "Check Penalties: Account for late payment fees or early payment rebates."
+    ],
+    formula: {
+      title: "Electricity Billing Formula",
+      equation: "Total = Service_Charge + Σ (Unit_Block x Energy_Rate)",
+      description: "NepaCalc uses a tiered summation model to calculate your NEA bill, ensuring each unit block is charged according to its specific rate.",
+      variables: [
+        "Σ (Sigma) = Total Summation (Adding up energy charges from all used consumption tiers)",
+        "Service Charge = A fixed monthly fee based on your meter capacity (e.g., 5A, 15A, 30A)",
+        "Unit Block = The specific number of electricity units consumed within a particular tariff tier",
+        "Energy Rate = The cost per unit (NPR) as defined by the NEA for that specific consumption tier"
+      ]
+    },
     content: (
       <>
-        <h2>The Importance of Date Conversion in Nepal</h2>
-        <p>
-          Nepal officially uses the Bikram Sambat (BS) calendar, which is approximately 56 years and 8 months ahead of the Gregorian Calendar (AD). Whether you are filling out a citizenship form, applying for a driving license, or checking a public holiday, converting between BS and AD is a daily necessity.
-        </p>
-
-        <h3>Bikram Sambat (BS) Months & Seasons</h3>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">BS Month</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">AD Start (Approx)</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Season (Ritu)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Baisakh</td>
-                <td className="border border-[#dadce0] px-4 py-2">Mid-April</td>
-                <td className="border border-[#dadce0] px-4 py-2">Basanta (Spring)</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Srawan</td>
-                <td className="border border-[#dadce0] px-4 py-2">Mid-July</td>
-                <td className="border border-[#dadce0] px-4 py-2">Barsa (Monsoon)</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Kartik</td>
-                <td className="border border-[#dadce0] px-4 py-2">Mid-October</td>
-                <td className="border border-[#dadce0] px-4 py-2">Sharad (Autumn)</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Magh</td>
-                <td className="border border-[#dadce0] px-4 py-2">Mid-January</td>
-                <td className="border border-[#dadce0] px-4 py-2">Shishir (Winter)</td>
-              </tr>
-            </tbody>
-          </table>
+        {/* Main Title */}
+        <h2 className="text-xl font-bold text-[#202124] mb-3">The Ultimate Encyclopedia of NEA Billing & Energy Efficiency</h2>
+        
+        {/* Navigation */}
+        <div className="bg-[#e8f0fe] rounded-xl p-5 mb-5 border border-[#d2e3fc]">
+          <h4 className="text-[#1967d2] font-bold text-base mb-2 mt-0">Energy Masterclass Navigation</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 text-xs text-[#3c4043]">
+            <a href="#nea-1" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>1.</span> The 20-Unit "Free" Threshold</a>
+            <a href="#nea-2" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>2.</span> Domestic Tariff Tiers (5A/15A/30A)</a>
+            <a href="#nea-3" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>3.</span> Service Charges & Fixed Fees</a>
+            <a href="#nea-4" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>4.</span> TOD (Time-of-Day) Pricing Strategy</a>
+            <a href="#nea-5" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>5.</span> Late Payment Penalties (25% Rule)</a>
+            <a href="#nea-6" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>6.</span> Solar Net Metering in Nepal</a>
+            <a href="#nea-7" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>7.</span> Commercial vs. Industrial Rates</a>
+            <a href="#nea-8" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>8.</span> Understanding Voltage Levels (11kV/33kV)</a>
+            <a href="#nea-9" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>9.</span> Meter Reading & Billing Cycle</a>
+            <a href="#nea-10" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>10.</span> Official NEA Digital Payments</a>
+          </div>
         </div>
 
-        <h2>When do you need a Date Converter?</h2>
-        <ul>
-          <li><strong>Visa Applications:</strong> Most international visa forms require your date of birth in AD.</li>
-          <li><strong>Educational Certificates:</strong> SEE and +2 certificates often list dates in BS.</li>
-          <li><strong>History & Documentation:</strong> Historical events in Nepal are recorded in BS.</li>
-        </ul>
-
-        <h2>Accurate Conversion with NepaCalc</h2>
-        <p>
-          Our converter uses a high-precision algorithm based on official Nepali Panchanga data. It supports conversions from as early as 1975 BS to 2100 BS, ensuring you get the correct day of the week and corresponding date every time.
+        <p className="text-sm text-[#3c4043] leading-relaxed mb-5">
+          Understanding your electricity bill in Nepal is the first step toward significant cost savings. The Nepal Electricity Authority (NEA) operates a progressive tariff system designed to subsidize low-volume users while encouraging efficiency among high-volume consumers. Whether you are managing a household or a large <a href="/calculator/nepal-home-loan/" className="text-[#1a73e8] font-bold hover:underline">Home Construction project</a>, this guide decodes the math behind your meter.
         </p>
+
+        {/* Sections */}
+        <div className="space-y-6">
+          {/* 1 */}
+          <section id="nea-1">
+            <h3 className="text-base font-bold text-[#202124] mb-2">1. The 20-Unit "Free" Threshold</h3>
+            <p className="text-sm text-[#5f6368] mb-3">For users with a 5 Ampere meter capacity, the NEA provides a 'Lifeline' subsidy. The first 20 units are free from energy charges.</p>
+            <div className="p-5 bg-[#e6f4ea] border-l-2 border-[#1e8e3e] rounded-r-xl">
+               <h5 className="text-[#1e8e3e] font-bold text-sm mb-2 mt-0">Institutional Insight: The 21-Unit Jump</h5>
+               <p className="text-[#3c4043] text-xs leading-relaxed mb-0">
+                  Be careful: once you consume the 21st unit, the subsidy vanishes for all units consumed. If you stay under 20, you only pay the fixed **Rs. 30 service charge**. This makes efficiency critical for small households.
+               </p>
+            </div>
+          </section>
+
+          {/* 2 */}
+          <section id="nea-2">
+            <h3 className="text-base font-bold text-[#202124] mb-2">2. Domestic Tariff Tiers (Residential Units)</h3>
+            <p className="text-sm text-[#5f6368] mb-2">NEA billing is divided into consumption blocks. The more you use, the higher the rate for that specific block.</p>
+            <div className="border border-[#dadce0] rounded-xl overflow-hidden">
+              <table className="w-full text-xs text-left">
+                <thead className="bg-[#f8f9fa] border-b border-[#dadce0]">
+                  <tr><th className="p-3">Unit Block</th><th className="p-3">Rate (NPR/Unit)</th><th className="p-3">Svc Charge (5A)</th></tr>
+                </thead>
+                <tbody className="divide-y divide-[#dadce0]">
+                  <tr><td className="p-3">0 - 20 Units</td><td className="p-3 font-bold text-[#1e8e3e]">Free</td><td className="p-3">Rs. 30</td></tr>
+                  <tr><td className="p-3">21 - 30 Units</td><td className="p-3">Rs. 6.50</td><td className="p-3">Rs. 50</td></tr>
+                  <tr><td className="p-3">31 - 50 Units</td><td className="p-3">Rs. 8.00</td><td className="p-3">Rs. 75</td></tr>
+                  <tr><td className="p-3">51 - 150 Units</td><td className="p-3">Rs. 9.50</td><td className="p-3">Rs. 100</td></tr>
+                  <tr><td className="p-3">Above 250 Units</td><td className="p-3 font-bold text-[#d93025]">Rs. 11.00</td><td className="p-3">Rs. 150</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          {/* 4 */}
+          <section id="nea-4">
+            <h3 className="text-base font-bold text-[#202124] mb-2">4. TOD (Time-of-Day) Pricing Strategy</h3>
+            <p className="text-sm text-[#5f6368] mb-3">If you have a digital TOD meter, your unit rate changes based on the time of day. This is the ultimate tool for industrial and high-volume domestic users.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 border border-[#dadce0] rounded-xl bg-[#f8f9fa] space-y-2">
+                <h4 className="text-[10px] font-bold text-[#1a73e8] uppercase">Off-Peak (11 PM - 5 AM)</h4>
+                <p className="text-[11px] text-[#5f6368] leading-relaxed">The lowest rates. Ideal for charging EVs or running heavy water pumps.</p>
+              </div>
+              <div className="p-4 border border-[#dadce0] rounded-xl bg-[#f8f9fa] space-y-2">
+                <h4 className="text-[10px] font-bold text-[#d93025] uppercase">Peak Hours (5 PM - 11 PM)</h4>
+                <p className="text-[11px] text-[#5f6368] leading-relaxed">The highest rates. Avoid running high-wattage appliances like washing machines or heaters during this window.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* 5 */}
+          <section id="nea-5">
+            <h3 className="text-base font-bold text-[#202124] mb-2">5. Late Payment Penalties (The 25% Rule)</h3>
+            <p className="text-sm text-[#5f6368] leading-relaxed mb-3">NEA is strict about payment deadlines. Missing your window can lead to heavy compounding penalties.</p>
+            <div className="bg-[#fdf2f2] rounded-xl p-5 border-l-2 border-[#d93025]">
+               <ul className="text-xs text-[#3c4043] space-y-1 list-none p-0">
+                  <li className="flex items-center gap-2"><strong>1-7 Days:</strong> 2% Rebate (Early Payment)</li>
+                  <li className="flex items-center gap-2"><strong>16-30 Days:</strong> 5% Penalty</li>
+                  <li className="flex items-center gap-2"><strong>After 40 Days:</strong> 25% Penalty</li>
+               </ul>
+            </div>
+          </section>
+        </div>
+
+        {/* Internal Silo */}
+        <div className="mt-10 pt-6 border-t border-[#f1f3f4] text-center">
+           <p className="text-[11px] text-[#5f6368]">
+              NepaCalc Internal Silo: To audit your income for bill payments, visit the <a href="/calculator/nepal-salary/" className="text-[#1a73e8] font-bold hover:underline">Salary Calculator</a>. Planning a home build? Check the <a href="/calculator/nepal-home-loan/" className="text-[#1a73e8] font-bold hover:underline">Home Loan Tool</a>.
+           </p>
+        </div>
       </>
     ),
     faqs: [
-      {
-        question: "How many years ahead is BS from AD?",
-        answer: "Bikram Sambat (BS) is approximately 56.7 years ahead of the Gregorian Calendar (AD)."
-      },
-      {
-        question: "Why do Nepali months have different days every year?",
-        answer: "The Nepali calendar is a lunisolar calendar where month lengths are determined by the time the sun stays in each zodiac sign, leading to variations between 29 and 32 days."
-      },
-      {
-        question: "Is this date converter accurate for old dates?",
-        answer: "Yes, our tool is mapped against historical calendars to ensure accuracy for citizenship and educational document conversions."
-      }
-    ]
-  },
-  'see-gpa': {
-    title: "SEE GPA Calculator 2081 | Secondary Education Examination Nepal",
-    description: "Calculate your SEE GPA online based on the latest 2081 grading system in Nepal. Convert marks to grades for all subjects instantly.",
-    content: (
-      <>
-        <h2>How is SEE GPA Calculated in Nepal (New System)?</h2>
-        <p>
-          The Secondary Education Examination (SEE) in Nepal uses a Grade Point Average (GPA) system to evaluate student performance. Under the new 2081/2082 grading guidelines, students must achieve a minimum of 35% in theoretical exams to pass and be eligible for Grade 11.
-        </p>
-
-        <h3>SEE Grading Table (Official)</h3>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Score Range</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Grade</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Grade Point</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Performance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">90% and above</td>
-                <td className="border border-[#dadce0] px-4 py-2 font-bold text-green-700">A+</td>
-                <td className="border border-[#dadce0] px-4 py-2">4.0</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-green-700">Outstanding</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">80%, 89.9%</td>
-                <td className="border border-[#dadce0] px-4 py-2 font-bold text-green-600">A</td>
-                <td className="border border-[#dadce0] px-4 py-2">3.6</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-green-600">Excellent</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">70%, 79.9%</td>
-                <td className="border border-[#dadce0] px-4 py-2 font-bold">B+</td>
-                <td className="border border-[#dadce0] px-4 py-2">3.2</td>
-                <td className="border border-[#dadce0] px-4 py-2">Very Good</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 text-red-600">Below 35%</td>
-                <td className="border border-[#dadce0] px-4 py-2 font-bold text-red-600">NG</td>
-                <td className="border border-[#dadce0] px-4 py-2">0.0</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-red-600">Non-Graded</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h2>Understanding the NG (Non-Graded) System</h2>
-        <p>
-          Unlike the previous system where students could pass with a lower aggregate, the new system requires a minimum 'D' grade (35%) in every subject's theoretical portion. If a student fails to achieve this, they are marked 'NG' and must participate in grade increment exams.
-        </p>
-
-        <h2>How to use the SEE GPA Calculator</h2>
-        <p>
-          Simply enter your marks for each subject (Math, Science, English, etc.). Our tool accounts for the credit hours of each subject to give you a weighted GPA. This is the most accurate way to estimate your official result before the NEB releases the grade sheets.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is the minimum marks to pass SEE?",
-        answer: "You need at least 35% in theory exams to avoid an NG (Non-Graded) result."
-      },
-      {
-        question: "How many credit hours are there in SEE?",
-        answer: "Most major subjects carry 4 credit hours, while optional and practical-heavy subjects may vary."
-      },
-      {
-        question: "Can I convert GPA to percentage?",
-        answer: "Yes, a general rule of thumb is GPA x 25 = Percentage, though this is an approximation and official transcripts should be used for formal purposes."
-      }
+      { question: "Why is my bill Rs. 30 if I used 0 units?", answer: "This is the fixed monthly service charge for a 5 Ampere meter. It covers infrastructure maintenance regardless of usage." },
+      { question: "How can I change my meter Ampere (Capacity)?", answer: "You must visit your local NEA distribution center with a copy of your citizenship and an application for upgrade/downgrade." },
+      { question: "What is Net Metering?", answer: "Net Metering allows you to sell excess solar energy back to the NEA grid, deducting it from your consumption bill." }
     ]
   },
   'nepal-salary': {
-    title: "Net Salary Calculator Nepal | Take-Home Pay Estimator",
-    description: "Calculate your monthly take-home salary in Nepal after taxes, SSF, and insurance deductions. Updated for the latest 2081/82 tax slabs.",
+    title: "Nepal Salary Calculator 2081/82 | Official Take Home Pay",
+    description: "Calculate your net take-home salary in Nepal including SSF, CIT, EPF, and Income Tax deductions. Updated for the latest fiscal budget.",
+    howToUse: [
+      "Enter Gross Salary: Input your total monthly or annual gross salary.",
+      "Select Filing Status: Choose Single or Married for accurate tax slabs.",
+      "Set Deductions: Toggle contributions for SSF, CIT, and Provident Fund.",
+      "Calculate Net: Instantly view your monthly take-home pay after all statutory deductions."
+    ],
+    formula: {
+      title: "Salary Computation Logic",
+      equation: "Net Pay = Gross Salary - (SSF + CIT + Tax)",
+      description: "NepaCalc follows the official Inland Revenue Department (IRD) and Social Security Fund (SSF) guidelines for precise deduction logic.",
+      variables: [
+        "Gross Salary = Your total monthly or annual remuneration before any statutory deductions or taxes",
+        "SSF = Social Security Fund (A 31% total contribution: 11% from employee and 20% from employer)",
+        "CIT = Citizen Investment Trust (A voluntary, tax-deductible savings scheme in Nepal)",
+        "Net Pay = Your final 'Take-Home' salary amount deposited into your bank account after all deductions"
+      ]
+    },
     content: (
       <>
-        <h2>Calculate Your Take-Home Salary in Nepal</h2>
-        <p>
-          Understanding your net pay is crucial for budgeting. In Nepal, your 'Gross Salary' is what is written in your contract, but your 'Net Salary' or 'Take-Home Pay' is what actually lands in your bank account after mandatory deductions.
-        </p>
-
-        <h3>Salary Deduction Comparison Table</h3>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Deduction Type</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">With SSF</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Without SSF</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Social Security Tax (SST)</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-green-700 font-bold">Exempt (0%)</td>
-                <td className="border border-[#dadce0] px-4 py-2">1% (on 1st Slab)</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Employee Contribution</td>
-                <td className="border border-[#dadce0] px-4 py-2">11% of Basic</td>
-                <td className="border border-[#dadce0] px-4 py-2">10% (Provident Fund)</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Employer Contribution</td>
-                <td className="border border-[#dadce0] px-4 py-2">20% of Basic</td>
-                <td className="border border-[#dadce0] px-4 py-2">10% (Provident Fund)</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Insurance Coverage</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-green-700">Included</td>
-                <td className="border border-[#dadce0] px-4 py-2 text-red-600">Not Included</td>
-              </tr>
-            </tbody>
-          </table>
+        {/* Main Title */}
+        <h2 className="text-xl font-bold text-[#202124] mb-3">The Ultimate Encyclopedia of Salary Structures & Payroll in Nepal</h2>
+        
+        {/* Navigation */}
+        <div className="bg-[#e8f0fe] rounded-xl p-5 mb-5 border border-[#d2e3fc]">
+          <h4 className="text-[#1967d2] font-bold text-base mb-2 mt-0">Payroll Navigation</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 text-xs text-[#3c4043]">
+            <a href="#sal-1" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>1.</span> Basic vs. Gross vs. Net Salary</a>
+            <a href="#sal-2" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>2.</span> SSF Contributions (11% vs 20%)</a>
+            <a href="#sal-3" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>3.</span> CIT & EPF Strategy</a>
+            <a href="#sal-4" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>4.</span> Festival Allowance (Dashain Bonus)</a>
+            <a href="#sal-5" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>5.</span> Overtime & Allowance Taxation</a>
+            <a href="#sal-6" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>6.</span> Tax Clearance Certificates (TCC)</a>
+          </div>
         </div>
 
-        <h2>The Benefit of Social Security Fund (SSF)</h2>
-        <p>
-          Employees contributing to the SSF benefit from medical insurance, accident insurance, and dependent security. Moreover, the 1% Social Security Tax on the first income slab (Rs. 5L/6L) is waived for SSF contributors, providing a direct financial saving.
+        <p className="text-sm text-[#3c4043] leading-relaxed mb-5">
+          Navigating the payroll landscape in Nepal requires an understanding of both the Labor Act 2074 and the Income Tax Act 2058. Whether you are an HR professional or an employee, knowing your 'Take-Home' pay is vital for financial planning. Use our <a href="/calculator/nepal-income-tax/" className="text-[#1a73e8] font-bold hover:underline">Income Tax Tool</a> to see a detailed breakdown of your tax slabs.
         </p>
 
-        <h2>Using the Salary Tool for Negotiation</h2>
-        <p>
-          When negotiating a new job offer in Nepal, always ask whether the offered salary is 'Gross' or 'Net'. Use our calculator to see exactly how much you will receive after the government takes its share.
-        </p>
-        <p className="mt-4">For a full breakdown of your year-end tax obligations, use our <a href="/calculator/nepal-income-tax/" className="text-[#1A73E8] font-bold hover:underline">Nepal Income Tax Calculator</a> to reconcile your TDS and file your D03 return accurately.</p>
-        <AuthorByline fiscalYear="2082/83 (2025/26)" sources={[
-          { label: 'IRD Nepal (SSF)', url: 'https://ird.gov.np' },
-          { label: 'Social Security Fund', url: 'https://ssf.gov.np' },
-        ]} />
+        {/* Sections */}
+        <div className="space-y-6">
+          <section id="sal-1">
+            <h3 className="text-base font-bold text-[#202124] mb-2">1. Basic vs. Gross vs. Net Salary</h3>
+            <p className="text-sm text-[#5f6368] mb-3">In Nepal, your 'Salary' is often quoted as Gross, but you take home the Net. The difference lies in statutory deductions.</p>
+            <div className="p-4 bg-[#f8f9fa] border border-[#dadce0] rounded-xl space-y-2">
+               <p className="text-xs text-[#3c4043] mb-0">**Basic Salary:** The fixed amount (usually 60% of Gross) used to calculate SSF and PF.</p>
+               <p className="text-xs text-[#3c4043] mb-0">**Gross Salary:** Basic + All Allowances (House, Food, Transport).</p>
+               <p className="text-xs text-[#3c4043] mb-0">**Net Salary:** The actual cash deposited in your bank account after Tax and SSF.</p>
+            </div>
+          </section>
+
+          <section id="sal-2">
+            <h3 className="text-base font-bold text-[#202124] mb-2">2. SSF Contributions (The 31% Rule)</h3>
+            <p className="text-sm text-[#5f6368] mb-2">The Social Security Fund (SSF) is the most significant change in Nepal's payroll history. It is a 31% total contribution.</p>
+            <ul className="text-xs text-[#3c4043] space-y-1">
+               <li><strong>11% (Employee):</strong> Deducted from your basic salary monthly.</li>
+               <li><strong>20% (Employer):</strong> Paid by the company on top of your gross.</li>
+               <li><strong>Result:</strong> You gain a 31% contribution toward medical, accident, and retirement insurance.</li>
+            </ul>
+          </section>
+        </div>
+
+        {/* Internal Silo */}
+        <div className="mt-10 pt-6 border-t border-[#f1f3f4] text-center">
+           <p className="text-[11px] text-[#5f6368]">
+              NepaCalc Internal Silo: After auditing your salary, plan your investments with the <a href="/calculator/sip-calculator/" className="text-[#1a73e8] font-bold hover:underline">SIP Calculator</a>. Planning a home purchase? Use the <a href="/calculator/nepal-home-loan/" className="text-[#1a73e8] font-bold hover:underline">Home Loan Tool</a>.
+           </p>
+        </div>
       </>
     ),
     faqs: [
-      {
-        question: "Is SSF mandatory in Nepal?",
-        answer: "Yes, the Social Security Act makes it mandatory for all formal sector employers and employees to register and contribute to the SSF."
-      },
-      {
-        question: "What is the difference between EPF and SSF?",
-        answer: "EPF (Employees' Provident Fund) is primarily a retirement savings scheme, whereas SSF (Social Security Fund) provides broader insurance coverage including medical, maternity, and disability benefits."
-      },
-      {
-        question: "How is Dashain bonus taxed?",
-        answer: "The Dashain bonus is added to your annual income and taxed according to your applicable income tax slabs."
-      }
+      { question: "Is SSF mandatory in Nepal?", answer: "Yes, for the formal sector, SSF is a mandatory social security requirement under the Labor Act." },
+      { question: "What is the tax-free limit for individuals?", answer: "Rs. 5,00,000 for singles and Rs. 6,00,000 for married couples for the current fiscal year." }
     ]
   },
+
   'nepal-stocks': {
-    title: "NEPSE Stock Calculator | Buy & Sell Commission Calculator Nepal",
-    description: "Calculate NEPSE stock transaction costs including SEBON commission, DP fee, and CGT for individuals and companies in Nepal.",
+    title: "NEPSE Trading Calculator | Share Profit, Commission & Tax",
+    description: "Calculate your net profit or loss on NEPSE share trading. Includes SEBON commission tiers, DP charges, and Capital Gains Tax (CGT) logic.",
+    howToUse: [
+      "Enter Quantity: Input the number of shares bought or sold.",
+      "Enter Price: Set the purchase or selling price per share.",
+      "Broker Commission: The tool automatically applies the SEBON regulated commission tiers.",
+      "Capital Gains: Select if you have held the share for more or less than 365 days.",
+      "Calculate: Instantly see your total costs, tax, and net profit."
+    ],
+    formula: {
+      title: "NEPSE Profit Formula",
+      equation: "Net Profit = (Sale - Purchase) - (Fees + Tax)",
+      description: "Profit on the Nepal Stock Exchange is calculated by subtracting all institutional fees and capital gains tax from your gross trading result.",
+      variables: [
+        "Quantity = The total number of shares in the transaction (Bought or Sold)",
+        "Price = The market rate per share agreed upon in the secondary market (LTP)",
+        "Fees = Total regulatory leakage including Broker Commission, SEBON Fee, and DP Charge",
+        "Net Profit = The actual cash gain remaining after subtracting all institutional costs and Capital Gains Tax (CGT)"
+      ]
+    },
     content: (
       <>
-        <h2>NEPSE Transaction Cost Breakdown</h2>
-        <p>
-          Investing in the Nepal Stock Exchange (NEPSE) involves more than just the share price. Every buy and sell order incurs various fees that eat into your profits. Knowing these costs upfront helps you make better trading decisions.
-        </p>
-
-        <h3>NEPSE Broker Commission Slabs</h3>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Transaction Amount</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Commission Rate</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">Up to Rs. 50,000</td>
-                <td className="border border-[#dadce0] px-4 py-2">0.40%</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 50,001 to Rs. 5,00,000</td>
-                <td className="border border-[#dadce0] px-4 py-2">0.37%</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 5,00,001 to Rs. 20,00,000</td>
-                <td className="border border-[#dadce0] px-4 py-2">0.34%</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 20,00,001 to Rs. 1 Crore</td>
-                <td className="border border-[#dadce0] px-4 py-2">0.30%</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">Above Rs. 1 Crore</td>
-                <td className="border border-[#dadce0] px-4 py-2">0.27%</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3>Fees When Selling Stocks (Capital Gains Tax)</h3>
-        <p>
-          When selling, you must also pay Capital Gains Tax (CGT) on your profit.
-         , <strong>5% CGT:</strong> For long-term investors (holding more than 365 days).
-         , <strong>7.5% CGT:</strong> For short-term traders (holding less than 365 days).
-        </p>
-
-        <h2>How to calculate WACC?</h2>
-        <p>
-          WACC (Weighted Average Cost of Capital) is essential in Nepal for calculating your profit. It includes the purchase price plus the commissions paid. You must calculate and declare your WACC in the MeroShare portal before selling shares to ensure correct CGT calculation.
-        </p>
-        <p className="mt-4">For accurate WACC calculation, use our dedicated <a href="/calculator/nepse-wacc/" className="text-[#1A73E8] font-bold hover:underline">NEPSE WACC Calculator</a>. For bonus share tax, see our <a href="/calculator/nepse-bonus-tax/" className="text-[#1A73E8] font-bold hover:underline">Bonus Tax Calculator</a>.</p>
-        <AuthorByline fiscalYear="2082/83 (2025/26)" sources={[
-          { label: 'SEBON Nepal', url: 'https://sebon.gov.np' },
-          { label: 'NEPSE Official', url: 'https://www.nepalstock.com.np' },
-        ]} />
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is the broker commission for NEPSE?",
-        answer: "Broker commissions in Nepal are slab-based, ranging from 0.40% for small trades down to 0.27% for trades above Rs. 1 Crore."
-      },
-      {
-        question: "How much is the DP fee per company?",
-        answer: "The Depository Participant (DP) fee is a flat Rs. 25 per company per day, regardless of how many shares you sell of that company."
-      },
-      {
-        question: "What is the Capital Gains Tax (CGT) rate?",
-        answer: "For individual investors, CGT is 5% if you hold shares for more than a year (long-term) and 7.5% if you sell within a year (short-term)."
-      },
-      {
-        question: "What is SEBON commission?",
-        answer: "SEBON (Securities Board of Nepal) charges a flat 0.015% on the total transaction amount as a regulatory fee."
-      },
-      {
-        question: "Do I have to pay tax if I sell at a loss?",
-        answer: "No, Capital Gains Tax is only applied to the profit. If you sell at a loss, you don't pay CGT, but you still pay broker commission and DP fees."
-      },
-      {
-        question: "How is the purchase cost calculated in WACC?",
-        answer: "The purchase cost includes the price you paid for the shares plus the broker commission and SEBON fee paid during the purchase."
-      }
-    ]
-  },
-  'nepal-land': {
-    title: "Nepal Land Area Converter | Ropani, Aana, Bigha to Sq. Ft.",
-    description: "Convert between Nepalese land units (Ropani, Aana, Paisa, Dam) and Terai units (Bigha, Kattha, Dhur). Precise calculations for real estate in Nepal.",
-    content: (
-      <>
-        <h2>Nepal Land Measurement System: A Complete Guide</h2>
-        <p>
-          Buying or selling land in Nepal requires a deep understanding of two distinct measurement systems: the <strong>Hilly System</strong> (Ropani-Aana) used in Kathmandu and the hills, and the <strong>Terai System</strong> (Bigha-Kattha) used in the southern plains. Our <strong>Nepal Land Area Converter</strong> handles both systems with 100% precision.
-        </p>
-
-        <h3>1. The Ropani-Aana System (Hills & Kathmandu)</h3>
-        <p>
-          In Kathmandu and surrounding hilly regions, land is measured in Ropani, Aana, Paisa, and Dam:
-         , <strong>1 Ropani</strong> = 16 Aana (5476 sq. ft.)
-         , <strong>1 Aana</strong> = 4 Paisa (342.25 sq. ft.)
-         , <strong>1 Paisa</strong> = 4 Dam (85.56 sq. ft.)
-        </p>
-
-        <div className="bg-[#f1f3f4] border border-[#dadce0] rounded-lg p-6 my-8">
-          <h3 className="font-bold mb-3">Conversion Table: Sq. Ft. to Local Units</h3>
-          <ul className="space-y-2 text-sm text-[#5f6368]">
-            <li><strong>1 Ropani</strong> = 5476 sq. ft.</li>
-            <li><strong>1 Aana</strong> = 342.25 sq. ft.</li>
-            <li><strong>1 Bigha</strong> = 72900 sq. ft.</li>
-            <li><strong>1 Kattha</strong> = 3645 sq. ft.</li>
-          </ul>
-        </div>
-
-        <h3>2. The Bigha-Kattha System (Terai)</h3>
-        <p>
-          In the Terai region, the measurement units are significantly larger:
-         , <strong>1 Bigha</strong> = 20 Kattha
-         , <strong>1 Kattha</strong> = 20 Dhur
-        </p>
-
-        <h2>Why Real Estate Professionals Choose NepaCalc</h2>
-        <p>
-          Discrepancies in land measurement can lead to legal disputes or financial losses. Our tool is used by property developers, legal advisors, and home buyers across Nepal to ensure that the area mentioned in the <strong>Lalpurja</strong> (Land Ownership Certificate) matches the actual physical measurement in Square Feet or Square Meters.
-        </p>
-        <p className="mt-4">When purchasing land, also calculate the government fees with our <a href="/calculator/property-registration/" className="text-[#1A73E8] font-bold hover:underline">Property Registration Calculator</a> to know the exact stamp duty and registration costs.</p>
-        <AuthorByline fiscalYear="2082/83 (2025/26)" sources={[
-          { label: 'DoLMA Nepal', url: 'https://dolma.gov.np' },
-          { label: 'Land Revenue Office', url: 'https://mofe.gov.np' },
-        ]} />
-      </>
-    ),
-    faqs: [
-      {
-        question: "How many square feet are in 1 Ropani?",
-        answer: "There are exactly 5,476 square feet in 1 Ropani."
-      },
-      {
-        question: "How many Aana make 1 Kattha?",
-        answer: "1 Kattha is approximately equal to 10.65 Aana."
-      },
-      {
-        question: "Is the measurement system different in Kathmandu?",
-        answer: "No, Kathmandu follows the Ropani-Aana system common to the hilly regions of Nepal."
-      }
-    ]
-  },
-  'nepal-vehicle-tax': {
-    title: "Nepal Vehicle Tax Calculator 2081 | Bluebook Renewal Fee",
-    description: "Calculate annual vehicle tax and bluebook renewal fees for cars, bikes, and heavy vehicles in Nepal for FY 2081/82.",
-    content: (
-      <>
-        <h2>Blue Book Renew Price in Nepal (2081/82 Update)</h2>
-        <p>
-          Every vehicle owner in Nepal must pay an annual tax to the provincial government to renew their bluebook. The exact <strong>blue book renew price in Nepal</strong> depends on your vehicle type, engine capacity (CC), and the province where it is registered (e.g., Bagmati, Gandaki, Lumbini).
-        </p>
-        <p className="mt-2">
-          Use our calculator below to instantly find out your exact blue book renewal cost before visiting the Yatayat office.
-        </p>
-
-        <h3>Bike Tax Slabs (Bagmati Province 2081/82)</h3>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Engine Capacity (CC)</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Annual Tax (NPR)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">Up to 125 CC</td>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 3,000</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">126 CC to 160 CC</td>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 5,000</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">161 CC to 250 CC</td>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 9,000</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">251 CC to 400 CC</td>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 11,000</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2">Above 401 CC</td>
-                <td className="border border-[#dadce0] px-4 py-2">Rs. 20,000</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h2>Insurance and Renewal Fees</h2>
-        <p>
-          In addition to the vehicle tax, you must also pay for <strong>Third-Party Insurance</strong> (mandatory) and a small renewal fee (around Rs. 200, 500). If you fail to renew your bluebook on time, heavy penalties (up to 32% per year) can be applied.
-        </p>
-
-        <h2>Electric Vehicle (EV) Tax Benefits</h2>
-        <p>
-          To promote green energy, the Nepal government offers significantly lower annual taxes for electric vehicles compared to petrol or diesel vehicles. Some provinces even offer temporary tax waivers for new EV registrations.
-        </p>
-        <p className="mt-4">After renewing your bluebook, also verify your <a href="/calculator/nepal-vat/" className="text-[#1A73E8] font-bold hover:underline">VAT calculations</a> for vehicle-related purchases and spare parts.</p>
-        <AuthorByline fiscalYear="2082/83 (2025/26)" sources={[
-          { label: 'Dept. of Transport (DoTM)', url: 'https://dotm.gov.np' },
-          { label: 'TMIS Portal', url: 'https://www.tmis.gov.np' },
-        ]} />
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is the penalty for late bluebook renewal?",
-        answer: "Penalties start after a 3-month grace period and can reach up to 32% of the tax amount for long delays."
-      },
-      {
-        question: "Can I pay vehicle tax online in Nepal?",
-        answer: "Yes, you can pay through the Transport Management Information System (TMIS) portal or via digital wallets in most provinces."
-      },
-      {
-        question: "Does vehicle tax vary by province?",
-        answer: "Yes, each province has its own Finance Act which sets the annual vehicle tax rates, though they are generally similar across the country."
-      }
-    ]
-  },
-  'nepal-home-loan': {
-    title: "Nepal Home Loan Calculator | Housing Loan Eligibility & EMI",
-    description: "Calculate your home loan eligibility and monthly EMI for housing loans in Nepal. Compare bank interest rates and plan your dream home.",
-    content: (
-      <>
-        <h2>Planning Your Home Loan in Nepal</h2>
-        <p>
-          Buying a home is the biggest investment for most Nepalese families. Banks in Nepal typically offer home loans for up to 15 to 20 years. The maximum loan amount is usually limited to 50% to 70% of the property's fair market value.
-        </p>
-
-        <h3>Maximum Loan-to-Value (LTV) Ratios</h3>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Property Type</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">LTV Ratio (Inside Valley)</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">LTV Ratio (Outside Valley)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Residential Home Loan</td>
-                <td className="border border-[#dadce0] px-4 py-2">50%</td>
-                <td className="border border-[#dadce0] px-4 py-2">60%</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">Commercial Real Estate</td>
-                <td className="border border-[#dadce0] px-4 py-2">40%</td>
-                <td className="border border-[#dadce0] px-4 py-2">50%</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-medium">First-Time Home Buyer*</td>
-                <td className="border border-[#dadce0] px-4 py-2">Up to 70%</td>
-                <td className="border border-[#dadce0] px-4 py-2">Up to 70%</td>
-              </tr>
-            </tbody>
-          </table>
-          <p className="text-[11px] text-[#5f6368] mt-2">*Varies based on NRB circulars and individual bank policies.</p>
-        </div>
-
-        <h2>Fixed vs. Variable Interest Rates</h2>
-        <p>
-          Most banks in Nepal offer variable interest rates linked to their <strong>Base Rate</strong>. However, some banks have started offering fixed interest rates for 5 to 7 years to protect borrowers from market fluctuations. Always check the 'Spread Rate' added by the bank to the base rate.
-        </p>
-
-        <h2>Documentation Required</h2>
-        <p>
-          To apply for a home loan, you will need a 'Lalpurja' (Land Ownership Certificate), 'Char Killa' (Four Boundary Certificate), 'Tax Clearance Certificate', and proof of income. If you are building a new house, an approved house map (Napsa) from the municipality is also required.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is the maximum tenure for a home loan in Nepal?",
-        answer: "Most commercial banks offer a maximum tenure of 20 years, depending on the age of the borrower at the time of maturity."
-      },
-      {
-        question: "How much down payment is required?",
-        answer: "As per NRB regulations, you typically need a 30% to 50% down payment, as banks can only finance up to 50-70% of the property value."
-      },
-      {
-        question: "Are there any hidden charges in home loans?",
-        answer: "Besides interest, you should account for service fees (0.25% to 1%), insurance premiums, and legal valuation fees."
-      }
-    ]
-  },
-  'nepal-vat': {
-    title: "VAT Calculator Nepal | Calculate 13% Value Added Tax",
-    description: "Free online VAT calculator for Nepal. Calculate 13% Value Added Tax (VAT) amounts instantly. Add or remove VAT from any price.",
-    content: (
-      <>
-        <h2>How to Calculate 13% VAT in Nepal</h2>
-        <p>
-          Value Added Tax (VAT) is a consumption tax placed on a product whenever value is added at each stage of the supply chain. In Nepal, the standard VAT rate is <strong>13%</strong>, governed by the Inland Revenue Department (IRD).
-        </p>
-
-        <h3>Adding VAT to a Price (Exclusive to Inclusive)</h3>
-        <p>
-          If a product costs Rs. 1,000 (excluding VAT), you must add 13% to find the final selling price.
-          <br /><strong>Formula:</strong> <code>Price + (Price × 0.13)</code>
-          <br /><strong>Example:</strong> Rs. 1,000 + Rs. 130 = Rs. 1,130
-        </p>
-
-        <h3>Removing VAT from a Price (Inclusive to Exclusive)</h3>
-        <p>
-          If a product is sold for Rs. 1,130 (including VAT) and you need to find the base price before tax:
-          <br /><strong>Formula:</strong> <code>Total Price / 1.13</code>
-          <br /><strong>Example:</strong> Rs. 1,130 / 1.13 = Rs. 1,000
-        </p>
-
-        <h2>Who Needs to Register for VAT in Nepal?</h2>
-        <p>
-          According to the IRD, businesses must register for VAT if their annual turnover exceeds the threshold limits (e.g., Rs. 50 Lakhs for goods, Rs. 20 Lakhs for services). Once registered, businesses must issue VAT invoices and file their VAT returns electronically on a monthly or trimester basis.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is the current VAT rate in Nepal?",
-        answer: "The standard VAT rate in Nepal is 13%. However, certain essential goods and services are exempt from VAT."
-      },
-      {
-        question: "How do I remove 13% VAT from a total amount?",
-        answer: "Divide the total amount by 1.13. The result is your base price before VAT."
-      },
-      {
-        question: "Is VAT mandatory for all businesses in Nepal?",
-        answer: "No, small businesses with an annual turnover below the IRD threshold (e.g., Rs. 50 Lakhs for trading goods) can operate under PAN without registering for VAT."
-      }
-    ]
-  },
-  'calorie-calculator': {
-    title: "Calorie Calculator | Ideal Daily Calorie Intake & TDEE",
-    description: "Calculate your ideal daily calorie intake for weight loss, maintenance, or muscle gain. Accurate TDEE calculator based on your BMI, age, and activity level.",
-    content: (
-      <>
-        <h2>What is Your Ideal Daily Calorie Intake?</h2>
-        <p>
-          Your ideal daily calorie intake depends entirely on your Total Daily Energy Expenditure (TDEE). TDEE is the total number of calories you burn in a day, which is calculated using your Basal Metabolic Rate (BMR) and your physical activity level.
-        </p>
-
-        <h3>Calorie Intake by BMI</h3>
-        <p>
-          Many people ask: <em>"What is the ideal daily calorie intake for BMI 23.2?"</em>
-          <br /><br />
-          Your BMI (Body Mass Index) tells you if you are at a healthy weight, but it does <strong>not</strong> determine your calorie needs by itself. Two people with a BMI of 23.2 might need vastly different calories if one is an athlete and the other sits at a desk all day. To find your exact number, our calculator uses the Mifflin-St Jeor equation to find your BMR, then multiplies it by your activity level.
-        </p>
-
-        <h2>How to Use Your TDEE for Weight Management</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
-          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-            <h4 className="font-bold text-[#1a73e8] m-0">1. Maintain Weight</h4>
-            <p className="text-sm mt-2 text-[#5f6368]">Consume exactly your TDEE calories per day.</p>
+        <h2 className="text-xl font-bold text-[#202124] mb-3">The Ultimate Encyclopedia of Stock Trading & NEPSE Finance</h2>
+        
+        <div className="bg-[#e8f0fe] rounded-xl p-5 mb-5 border border-[#d2e3fc]">
+          <h4 className="text-[#1967d2] font-bold text-base mb-2 mt-0">Stock Market Navigation</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 text-xs text-[#3c4043]">
+            <a href="#st-1" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>1.</span> SEBON Commission Tiers</a>
+            <a href="#st-2" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>2.</span> DP Charges (Flat Rs. 25)</a>
+            <a href="#st-3" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>3.</span> Long-Term vs. Short-Term CGT</a>
+            <a href="#st-4" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>4.</span> WACC Calculation Logic</a>
+            <a href="#st-5" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>5.</span> Bonus & Right Share Tax</a>
           </div>
-          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-            <h4 className="font-bold text-[#d93025] m-0">2. Lose Weight</h4>
-            <p className="text-sm mt-2 text-[#5f6368]">Subtract 500 calories from your TDEE (Caloric Deficit) to lose about 0.5kg per week.</p>
-          </div>
-          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-            <h4 className="font-bold text-[#188038] m-0">3. Gain Muscle</h4>
-            <p className="text-sm mt-2 text-[#5f6368]">Add 300-500 calories to your TDEE (Caloric Surplus) combined with resistance training.</p>
-          </div>
+        </div>
+
+        <p className="text-sm text-[#3c4043] leading-relaxed mb-5">
+          Trading on the Nepal Stock Exchange (NEPSE) requires more than just picking the right company. You must manage the 'leakage' caused by commissions, DP charges, and taxes. Whether you are a day trader or a long-term investor, using our <a href="/calculator/nepse-wacc/" className="text-[#1a73e8] font-bold hover:underline">WACC Tool</a> alongside this profit calculator ensures you know your true cost basis.
+        </p>
+
+        <div className="space-y-6">
+          <section id="st-1">
+            <h3 className="text-base font-bold text-[#202124] mb-2">1. SEBON Commission Tiers</h3>
+            <p className="text-sm text-[#5f6368] mb-2">Broker commissions in Nepal are regulated by SEBON. They follow a tiered structure—the more you trade, the lower the percentage.</p>
+            <div className="border border-[#dadce0] rounded-xl overflow-hidden">
+               <table className="w-full text-xs text-left">
+                  <thead className="bg-[#f8f9fa] border-b border-[#dadce0]">
+                     <tr><th className="p-3">Transaction Amount</th><th className="p-3">Commission %</th></tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#dadce0]">
+                     <tr><td className="p-3">Up to Rs. 50,000</td><td className="p-3">0.36%</td></tr>
+                     <tr><td className="p-3">Rs. 50,001 to Rs. 5,00,000</td><td className="p-3">0.33%</td></tr>
+                     <tr><td className="p-3">Rs. 5,00,001 to Rs. 20,00,000</td><td className="p-3">0.31%</td></tr>
+                     <tr><td className="p-3">Above Rs. 1,00,00,000</td><td className="p-3">0.24%</td></tr>
+                  </tbody>
+               </table>
+            </div>
+          </section>
+
+          <section id="st-3">
+            <h3 className="text-base font-bold text-[#202124] mb-2">3. Long-Term (5%) vs. Short-Term (7.5%) CGT</h3>
+            <p className="text-sm text-[#5f6368] mb-3">Capital Gains Tax (CGT) is only paid on profits. Nepal uses a time-based logic to determine your tax rate.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+               <div className="p-4 border-l-4 border-[#1e8e3e] bg-[#f8f9fa] rounded-r-xl">
+                  <h5 className="font-bold text-xs text-[#1e8e3e] mb-1 mt-0">Long-Term (5%)</h5>
+                  <p className="text-[10px] text-[#5f6368] mb-0">Applies if you hold the share for **more than 365 days**. This encourages stable, long-term investing.</p>
+               </div>
+               <div className="p-4 border-l-4 border-[#d93025] bg-[#f8f9fa] rounded-r-xl">
+                  <h5 className="font-bold text-xs text-[#d93025] mb-1 mt-0">Short-Term (7.5%)</h5>
+                  <p className="text-[10px] text-[#5f6368] mb-0">Applies if you sell within **365 days**. This is the standard rate for active traders.</p>
+               </div>
+            </div>
+          </section>
+
+          <section id="st-4">
+            <h3 className="text-base font-bold text-[#202124] mb-2">4. WACC Calculation Logic</h3>
+            <p className="text-sm text-[#5f6368] mb-2">In Nepal, you must declare your Weighted Average Cost Basis (WACC) before selling shares. This ensures the IRD collects the correct Capital Gains Tax.</p>
+            <div className="p-4 bg-[#fff4e5] border border-[#ffe0b2] rounded-xl">
+               <p className="text-xs text-[#3c4043] mb-0">**Pro Tip:** Your WACC includes the purchase price plus the broker commission and the 0.015% SEBON fee. Always use the <a href="/calculator/nepse-wacc/" className="text-[#1a73e8] font-bold hover:underline">WACC Tool</a> to find your exact base.</p>
+            </div>
+          </section>
+        </div>
+
+        <div className="mt-10 pt-6 border-t border-[#f1f3f4] text-center">
+           <p className="text-[11px] text-[#5f6368]">
+              NepaCalc Internal Silo: For accurate portfolio management, use the <a href="/calculator/nepse-wacc/" className="text-[#1a73e8] font-bold hover:underline">WACC Calculator</a>. Need to calculate dividends? Visit our <a href="/calculator/nepse-bonus-tax/" className="text-[#1a73e8] font-bold hover:underline">Bonus Share Tax Tool</a>.
+           </p>
         </div>
       </>
     ),
     faqs: [
-      {
-        question: "How many calories should I eat to lose weight?",
-        answer: "A general rule is to consume 500 fewer calories than your TDEE. This creates a deficit of 3,500 calories per week, leading to about 0.5kg (1 lb) of fat loss."
-      },
-      {
-        question: "Is the Mifflin-St Jeor equation accurate?",
-        answer: "Yes, the Mifflin-St Jeor equation is widely considered by health professionals to be the most accurate formula for estimating resting metabolic rate."
-      },
-      {
-        question: "What is the difference between BMR and TDEE?",
-        answer: "BMR is the calories you burn just staying alive (if you stayed in bed all day). TDEE includes your BMR plus the calories burned through daily movement and exercise."
-      }
-    ]
-  },
-  'bmi': {
-    title: "BMI Calculator Nepal | Body Mass Index for South Asians",
-    description: "Calculate your Body Mass Index (BMI) accurately. Optimized for South Asian body types and WHO health standards for Nepal.",
-    content: (
-      <>
-        <h2>Understanding BMI for the Nepalese Population</h2>
-        <p>
-          Body Mass Index (BMI) is a simple calculation using a person's height and weight. The formula is <code>BMI = kg/m²</code>. While BMI is a global standard, medical professionals in Nepal often use modified cut-offs for <strong>South Asian populations</strong>, who may face higher health risks at lower BMI levels compared to Western populations.
-        </p>
-
-        <h3>WHO BMI Categories for South Asia</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-8 text-center">
-          <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <span className="block text-xs font-bold text-blue-700 uppercase">Underweight</span>
-            <span className="text-lg font-black">&lt; 18.5</span>
-          </div>
-          <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-            <span className="block text-xs font-bold text-green-700 uppercase">Normal</span>
-            <span className="text-lg font-black">18.5, 23</span>
-          </div>
-          <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <span className="block text-xs font-bold text-yellow-700 uppercase">Overweight</span>
-            <span className="text-lg font-black">23, 27.5</span>
-          </div>
-          <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-            <span className="block text-xs font-bold text-red-700 uppercase">Obese</span>
-            <span className="text-lg font-black">&gt; 27.5</span>
-          </div>
-        </div>
-
-        <h2>Health Beyond the Numbers</h2>
-        <p>
-          While our <strong>BMI Calculator</strong> provides a useful starting point, it does not measure body fat directly. For a complete health assessment, Nepalese doctors also recommend measuring <strong>Waist Circumference</strong> and monitoring blood pressure and sugar levels, especially given the rising rates of Type 2 Diabetes in Nepal.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Is BMI accurate for bodybuilders?",
-        answer: "No. Because muscle weighs more than fat, athletes and bodybuilders often have a high BMI (classifying them as overweight or obese) even if their body fat percentage is extremely low."
-      },
-      {
-        question: "What is a healthy BMI for a woman?",
-        answer: "The healthy BMI range is the same for adult men and women, which is between 18.5 and 24.9."
-      },
-      {
-        question: "How can I lower my BMI?",
-        answer: "To lower your BMI, you need to lose weight. This is best achieved by eating in a caloric deficit (calculating your TDEE and eating less calories than you burn) and engaging in regular exercise."
-      }
-    ]
-  },
-  'weight-converter': {
-    title: "Weight Converter | Convert kg to lbs, grams, ounces online",
-    description: "Free and highly accurate weight converter tool. Instantly convert kilograms (kg) to pounds (lbs), grams to ounces, and more.",
-    content: (
-      <>
-        <h2>How the Weight Converter Works</h2>
-        <p>
-          Whether you are following a cooking recipe from a different country, measuring your body weight at the gym, or calculating shipping costs, converting weights between the Metric system (kg, grams) and the Imperial system (lbs, ounces) is a daily necessity.
-        </p>
-
-        <h3>Common Weight Conversions</h3>
-        <p>
-          Here are some of the most common conversion factors used worldwide:
-          <br /><strong>1 Kilogram (kg)</strong> = 2.20462 Pounds (lbs)
-          <br /><strong>1 Pound (lb)</strong> = 16 Ounces (oz)
-          <br /><strong>1 Gram (g)</strong> = 0.035274 Ounces (oz)
-        </p>
-
-        <h2>Why Accuracy Matters</h2>
-        <p>
-          Our weight converter uses up to 6 decimal places of precision. This is critical in fields like baking, chemistry, and international shipping where even a fraction of a gram can make a massive difference.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "How many pounds are in a kilogram?",
-        answer: "There are approximately 2.20462 pounds in one kilogram."
-      },
-      {
-        question: "Is ounce a measure of weight or volume?",
-        answer: "An 'ounce' (oz) measures weight, whereas a 'fluid ounce' (fl oz) measures volume. This converter is for weight ounces."
-      },
-      {
-        question: "How many grams in one pound?",
-        answer: "There are exactly 453.592 grams in one standard pound."
-      }
-    ]
-  },
-  'length-converter': {
-    title: "Length Converter | Convert meters, feet, inches, cm",
-    description: "Accurate length and distance converter. Convert meters to feet, centimeters to inches, kilometers to miles instantly online.",
-    content: (
-      <>
-        <h2>Understanding Length Conversions</h2>
-        <p>
-          The world uses two primary systems for measuring length: the Metric System (Meters, Centimeters, Kilometers) and the Imperial System (Feet, Inches, Miles). Our length converter allows seamless transitions between these systems for construction, sewing, engineering, and travel.
-        </p>
-
-        <h3>Essential Length Formulas</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-            <h4 className="font-bold text-[#1a73e8] m-0">Metric to Imperial</h4>
-            <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-              <li>1 Meter = 3.28084 Feet</li>
-              <li>1 Centimeter = 0.3937 Inches</li>
-              <li>1 Kilometer = 0.621371 Miles</li>
-            </ul>
-          </div>
-          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-            <h4 className="font-bold text-[#1a73e8] m-0">Imperial to Metric</h4>
-            <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-              <li>1 Foot = 0.3048 Meters</li>
-              <li>1 Inch = 2.54 Centimeters</li>
-              <li>1 Mile = 1.60934 Kilometers</li>
-            </ul>
-          </div>
-        </div>
-      </>
-    ),
-    faqs: [
-      {
-        question: "How many inches are in a foot?",
-        answer: "There are exactly 12 inches in one foot."
-      },
-      {
-        question: "What is the difference between a meter and a yard?",
-        answer: "A meter is slightly longer than a yard. 1 yard is exactly 0.9144 meters, or 3 feet."
-      },
-      {
-        question: "How many centimeters in an inch?",
-        answer: "One inch is exactly equal to 2.54 centimeters."
-      }
-    ]
-  },
-  'lcm-gcf-calculator': {
-    title: "Calculator for LCM and GCF | Least Common Multiple & Factor",
-    description: "Fast online calculator for LCM and GCF. Find the Least Common Multiple and Greatest Common Factor for two or more numbers instantly.",
-    content: (
-      <>
-        <h2>How the LCM and GCF Calculator Works</h2>
-        <p>
-          Whether you are solving complex fractions, simplifying algebraic expressions, or working on scheduling problems, finding the Least Common Multiple (LCM) and Greatest Common Factor (GCF) is a foundational math skill.
-        </p>
-
-        <h3>What is LCM?</h3>
-        <p>
-          The <strong>Least Common Multiple (LCM)</strong> of two numbers is the smallest number (not zero) that is a multiple of both.
-          <br /><em>Example:</em> For 4 and 6, the multiples of 4 are (4, 8, 12, 16...) and the multiples of 6 are (6, 12, 18...). The lowest matching number is 12. So, LCM = 12.
-        </p>
-
-        <h3>What is GCF?</h3>
-        <p>
-          The <strong>Greatest Common Factor (GCF)</strong>, also known as the Greatest Common Divisor (GCD), is the largest number that divides both numbers without leaving a remainder.
-          <br /><em>Example:</em> For 12 and 18, the factors of 12 are (1, 2, 3, 4, 6, 12) and the factors of 18 are (1, 2, 3, 6, 9, 18). The largest common factor is 6. So, GCF = 6.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "How is LCM used in fractions?",
-        answer: "When adding or subtracting fractions with different denominators, you must find the LCM of the denominators to create a common base."
-      },
-      {
-        question: "What is the relationship between LCM and GCF?",
-        answer: "For any two numbers 'a' and 'b', the product of the numbers is equal to the product of their LCM and GCF (a × b = LCM × GCF)."
-      },
-      {
-        question: "Can I find the LCM of three or more numbers?",
-        answer: "Yes, this calculator allows you to input multiple numbers separated by commas to find their collective LCM and GCF."
-      }
+      { question: "What is the DP Charge?", answer: "The Depository Participant (DP) charge is a flat fee of Rs. 25 per script, regardless of the quantity of shares sold." },
+      { question: "Is there a SEBON fee?", answer: "Yes, SEBON charges a nominal fee of 0.015% on every transaction to fund market regulation." },
+      { question: "How is 'Profit' calculated for tax?", answer: "CGT is calculated on (Net Sales Amount - Net Purchase Amount). You only pay tax if you make a profit. Losses can be adjusted in future trades under specific IRD rules." }
     ]
   },
 
-  'cgpa': {
-    title: "CGPA Calculator Nepal | Cumulative Grade Point Average",
-    description: "Calculate your cumulative GPA (CGPA) accurately for TU, KU, PU, and international universities. Track your academic progress easily.",
-    content: (
-      <>
-        <h2>The Secret to Maintaining Your CGPA in Nepal</h2>
-        <p>
-          I know the feeling, you've just finished a brutal semester at TU or KU, and you're staring at your transcript wondering how that one 'C' grade is going to ruin your chances of studying in the US or Australia. Don't panic. Let's break this down into simple steps.
-        </p>
-        <p>
-          Your <strong>Cumulative GPA (CGPA)</strong> is the only number that really matters on your final degree certificate. Unlike a simple average, CGPA is "credit-weighted." That means an 'A' in a massive 6-credit Final Year Project is going to boost your score way more than an 'A' in a 1-credit elective.
-        </p>
-
-        <h3>Why You Need to Track This Early</h3>
-        <p>
-          Many students wait until their 7th semester to calculate their overall standing, only to realize they are mathematically locked out of getting a "Distinction" (3.6+). By using this tool every semester, you can see exactly what grades you need in your upcoming classes to pull your average up before it's too late.
-        </p>
-
-        <h2>CGPA to Percentage: The Golden Rule</h2>
-        <p>
-          If you are applying for Lok Sewa exams or scholarships, they often ask for your "Percentage" instead of your GPA. While Tribhuvan University uses the rough approximation of <strong>Percentage ≈ CGPA × 25</strong>, always remember to get your official transcript verified if you are applying for high-stakes government jobs.
-        </p>
-
-        <p className="mt-4">
-          Need to calculate just this semester's results? Head over to our <a href="/calculator/gpa/" className="text-[#1A73E8] font-bold hover:underline">Semester GPA Calculator</a>.
-        </p>
-        <AuthorByline fiscalYear="2082/83 (2025/26)" compact />
-      </>
-    ),
-    faqs: [
-      {
-        question: "Can I still get a Distinction if my early semesters were bad?",
-        answer: "Yes, but it requires heavy lifting! Because early semesters have high credit loads, you will need nearly perfect 4.0s in your final years to pull a 2.8 up to a 3.6. Use the calculator to plug in 'what-if' scenarios."
-      },
-      {
-        question: "Does retaking a failed exam affect my CGPA?",
-        answer: "In most Nepali universities (TU/PU), if you clear a back-paper, the new grade replaces the 'F' in your CGPA calculation, though the transcript will still show it was a retake."
-      }
-    ]
-  },
-  'ideal-weight': {
-    title: "Ideal Body Weight Calculator | Health Standards for Nepal",
-    description: "Calculate your ideal body weight based on your height, age, and gender. Calibrated with South Asian health standards in mind.",
-    content: (
-      <>
-        <h2>Finding Your Healthy Range in Nepal</h2>
-        <p>
-          Let's be honest, our Nepali diet is heavy on the carbs. Between the daily Dal Bhat, the evening momos, and the sugary chiya, hitting your "ideal" weight can feel impossible. But what exactly should you weigh?
-        </p>
-        <p>
-          We built this engine using the internationally recognized Devine and Robinson formulas, but we always remind our users: <strong>South Asians have a different body composition.</strong> We naturally carry more visceral fat (belly fat) at lower weights compared to Westerners. This means hitting your "ideal" number on the scale is only half the battle.
-        </p>
-
-        <h3>Why the Scale Lies to You</h3>
-        <p>
-          Your ideal weight is a range, not a single strict number. If you are a gym-goer lifting heavy weights in Kathmandu, you might weigh "too much" according to this calculator, but you are perfectly healthy because muscle is dense.
-        </p>
-        <p>
-          Don't just chase the number on the scale. Combine this result with our <a href="/calculator/bmi/" className="text-[#1A73E8] font-bold hover:underline">BMI Calculator</a> and keep an eye on your waist circumference to avoid the rising risk of diabetes in Nepal.
-        </p>
-        <AuthorByline fiscalYear="2082/83 (2025/26)" compact />
-      </>
-    ),
-    faqs: [
-      {
-        question: "Is Dal Bhat making me gain weight?",
-        answer: "Not necessarily! Dal Bhat is nutritious, but the portion size of the rice (white carbs) is usually the culprit. Try doubling the veggies and dal while halving the rice to hit your ideal weight faster."
-      },
-      {
-        question: "How accurate is the Devine formula for Nepalis?",
-        answer: "It provides a very solid baseline for medical dosing and general fitness goals, but South Asian health guidelines suggest staying on the lower end of your 'ideal' range to minimize cardiovascular risks."
-      }
-    ]
-  },
-  'bmr': {
-    title: "BMR Calculator Nepal | Basal Metabolic Rate",
-    description: "Calculate your Basal Metabolic Rate (BMR) to find out exactly how many calories your body burns at rest. Essential for weight loss or muscle gain.",
-    content: (
-      <>
-        <h2>The Engine That Keeps You Alive</h2>
-        <p>
-          If you spent the entire day lying in bed doing absolutely nothing, your body would still burn hundreds of calories just keeping your heart beating, your lungs breathing, and your brain functioning. That baseline energy requirement is your <strong>Basal Metabolic Rate (BMR)</strong>.
-        </p>
-        <p>
-          Why does this matter? Because you can't build a proper Nepali diet plan without knowing this number first.
-        </p>
-
-        <h3>How to Use Your BMR for Weight Loss</h3>
-        <p>
-          Once you know your BMR, you multiply it by your activity level to get your Total Daily Energy Expenditure (TDEE). If your TDEE is 2,200 calories, and you eat 1,700 calories of roti, sabji, and dal, you will lose weight. It is pure mathematics.
-        </p>
-        <p>
-          We use the highly accurate <strong>Mifflin-St Jeor equation</strong> for this tool. It's the gold standard used by dietitians worldwide.
-        </p>
-
-        <p className="mt-4">
-          To see how this translates to your daily meals, check out our <a href="/calculator/calorie-calculator/" className="text-[#1A73E8] font-bold hover:underline">Daily Calorie Calculator</a>.
-        </p>
-        <AuthorByline fiscalYear="2082/83 (2025/26)" compact />
-      </>
-    ),
-    faqs: [
-      {
-        question: "Why is my BMR lower than my friend's?",
-        answer: "BMR is heavily influenced by muscle mass, age, and gender. Men naturally have higher BMRs because they carry more muscle. As we age, our BMR drops, which is why gaining weight becomes easier in our 30s and 40s."
-      },
-      {
-        question: "Should I eat fewer calories than my BMR to lose weight fast?",
-        answer: "No! Eating below your BMR forces your body into 'starvation mode,' slowing down your metabolism and making you lose muscle instead of fat. Always eat above your BMR but below your TDEE."
-      }
-    ]
-  },
-
-  //   title: "Attendance Calculator | Find out how many classes you can skip",
-  //   description: "University attendance calculator. Enter your current attendance percentage and total classes to find out how many classes you need to attend to reach your goal.",
-  //   content: (
-  //     <>
-  //       <h2>The Ultimate College Attendance Calculator</h2>
-  //       <p>
-  //         Maintaining the mandatory attendance limit (usually 75% or 80%) is one of the most stressful parts of university life. Our Attendance Calculator helps you strategically plan your schedule so you never fall below the required threshold.
-  //       </p>
-
-  //       <h3>How to Calculate Required Attendance</h3>
-  //       <p>
-  //         If your current attendance is below your target (e.g., you are at 65% but need 75%), the calculator uses the formula:
-  //         <br /><code>Required Classes = (Target% × Total Classes, Attended) / (1, Target%)</code>
-  //         <br />This tells you exactly how many consecutive classes you must attend to pull your average up.
-  //       </p>
-
-  //       <h3>How Many Classes Can You Bunk?</h3>
-  //       <p>
-  //         If you are above your target (e.g., you are at 90% and only need 75%), the tool calculates your 'bunk buffer'. It tells you exactly how many upcoming classes you can safely miss without dropping below your mandatory threshold.
-  //       </p>
-  //     </>
-  //   ),
-  //   faqs: [
-  //     {
-  //       question: "What happens if my attendance is below 75%?",
-  //       answer: "In most universities, falling below the mandatory 75% attendance mark makes you ineligible to sit for the final semester examinations."
-  //     },
-  //     {
-  //       question: "How is attendance percentage calculated?",
-  //       answer: "It is calculated as: (Number of Classes Attended ÷ Total Number of Classes Held) × 100."
-  //     },
-  //     {
-  //       question: "Can this calculator predict future attendance?",
-  //       answer: "Yes, by entering your current stats and target percentage, it predicts exactly how many future classes you need to attend or can afford to miss."
-  //     }
-  //   ]
-  // },
-  'percentage': {
-    title: "Percentage Calculator | Find % Increase, Decrease & Discounts",
-    description: "Free online percentage calculator. Calculate percentage increases, decreases, discounts, and find out what percentage one number is of another.",
-    content: (
-      <>
-        <h2>Mastering the Percentage Calculator</h2>
-        <p>
-          Percentages are everywhere, from calculating a store discount during a sale to determining your profit margin, or figuring out your test scores. This calculator provides a suite of tools to handle any percentage-based math problem instantly.
-        </p>
-
-        <h3>The Three Core Percentage Formulas</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
-          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-            <h4 className="font-bold text-[#1a73e8] m-0">1. What is X% of Y?</h4>
-            <p className="text-sm mt-2 text-[#5f6368]">Formula: <code>(X / 100) × Y</code><br />Used for finding the exact value of a percentage (e.g., 20% of 500 is 100).</p>
-          </div>
-          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-            <h4 className="font-bold text-[#d93025] m-0">2. X is what % of Y?</h4>
-            <p className="text-sm mt-2 text-[#5f6368]">Formula: <code>(X / Y) × 100</code><br />Used for finding test scores (e.g., getting 45 out of 60 is 75%).</p>
-          </div>
-          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-            <h4 className="font-bold text-[#188038] m-0">3. Percentage Change</h4>
-            <p className="text-sm mt-2 text-[#5f6368]">Formula: <code>((New, Old) / Old) × 100</code><br />Used for calculating growth, inflation, or discounts.</p>
-          </div>
-        </div>
-      </>
-    ),
-    faqs: [
-      {
-        question: "How do I calculate a 20% discount?",
-        answer: "To calculate a 20% discount, multiply the original price by 0.20 to find the discount amount, then subtract it from the original price. Or simply multiply the price by 0.80."
-      },
-      {
-        question: "How do I reverse calculate a percentage?",
-        answer: "If you know the final amount after a 13% tax was added, divide the final amount by 1.13 to find the original pre-tax amount."
-      },
-      {
-        question: "What does percent actually mean?",
-        answer: "Percent literally means 'per hundred'. So 50 percent (50%) simply means 50 out of every 100."
-      }
-    ]
-  },
-  'mortgage-calculator': {
-    title: "Mortgage Calculator | Home Loan EMI & Amortization",
-    description: "Calculate your monthly mortgage payments with taxes and insurance. Get a detailed amortization schedule for your home loan.",
-    content: (
-      <>
-        <h2>How a Mortgage Calculator Works</h2>
-        <p>
-          A mortgage is likely the largest financial commitment you will ever make. Our mortgage calculator helps you determine exactly how much your monthly payments will be, breaking down the principal and interest components over the entire life of the loan.
-        </p>
-        <h3>The Impact of Down Payments</h3>
-        <p>
-          Making a larger down payment directly reduces your principal loan amount. This only lowers your monthly EMI but also drastically reduces the total interest you will pay to the bank over 15 or 20 years. Always aim for at least a 20% down payment to avoid mandatory mortgage insurance (PMI) in many jurisdictions.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is an amortization schedule?",
-        answer: "It is a complete table of periodic loan payments, showing the amount of principal and the amount of interest that comprise each payment until the loan is paid off."
-      },
-      {
-        question: "Does this calculator include property tax?",
-        answer: "Yes, advanced mortgage calculations often require you to input estimated annual property taxes and home insurance to give you your true monthly housing cost (PITI)."
-      }
-    ]
-  },
-  'compound-interest': {
-    title: "Compound Interest Calculator | See Your Wealth Grow",
-    description: "Free compound interest calculator. Find out how your investments and savings will grow over time with the power of compounding.",
-    content: (
-      <>
-        <h2>The Power of Compound Interest</h2>
-        <p>
-          Albert Einstein reportedly called compound interest the "eighth wonder of the world." Unlike simple interest, which only pays interest on the initial principal, compound interest pays interest on the principal <strong>and</strong> on the accumulated interest from previous periods.
-        </p>
-        <h3>Daily vs. Monthly vs. Annual Compounding</h3>
-        <p>
-          The frequency of compounding drastically changes your final return.
-          <br /><strong>Annual:</strong> Interest is calculated once a year.
-          <br /><strong>Monthly:</strong> Interest is calculated 12 times a year (Standard for bank accounts).
-          <br /><strong>Daily:</strong> Interest is calculated 365 times a year (Maximizes growth).
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is the formula for compound interest?",
-        answer: "The formula is A = P(1 + r/n)^(nt), where A is the final amount, P is the principal, r is the annual interest rate, n is the compounding frequency, and t is time in years."
-      },
-      {
-        question: "How is compound interest different from simple interest?",
-        answer: "Simple interest is only calculated on the principal amount. Compound interest is calculated on the principal amount AND the accumulated interest of previous periods."
-      }
-    ]
-  },
-  'sip-calculator': {
-    title: "SIP Calculator | Systematic Investment Plan Returns",
-    description: "Calculate the future value of your monthly SIP investments in mutual funds. Plan your retirement and wealth creation goals easily.",
-    content: (
-      <>
-        <h2>What is a Systematic Investment Plan (SIP)?</h2>
-        <p>
-          A Systematic Investment Plan (SIP) allows you to invest a fixed amount regularly (usually monthly) into mutual funds or stocks. It is one of the most effective ways to build long-term wealth because it enforces financial discipline and utilizes the power of compound interest.
-        </p>
-        <h3>Rupee Cost Averaging</h3>
-        <p>
-          By investing a fixed amount every month, you buy more units when the market is down and fewer units when the market is up. This averages out the cost of your investments over time, protecting you from market volatility.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Can I stop my SIP at any time?",
-        answer: "Yes, SIPs are highly flexible. You can pause, stop, or increase your SIP amount at any time without facing heavy penalties from the mutual fund."
-      },
-      {
-        question: "What is an expected return on a mutual fund SIP?",
-        answer: "While market returns vary, long-term equity mutual funds historically generate an average annualized return of 10% to 15%."
-      }
-    ]
-  },
-  'age-calculator': {
-    title: "Age Calculator | Precise Years, Months, Days & Hours",
-    description: "Calculate your exact age or the time between two dates. Essential for document filling, school admissions, and retirement planning in Nepal.",
-    content: (
-      <>
-        <h2>Calculate Your Exact Age Instantly</h2>
-        <p>
-          Whether you are applying for a **Lok Sewa Aayog** position, filling out a passport application at the Department of Passport, or calculating your child's age for school admission, precision matters. Our <strong>Age Calculator</strong> provides a breakdown of your life in years, months, days, and even minutes.
-        </p>
-
-        <h3>Practical Uses in Nepal</h3>
-        <ul>
-          <li><strong>Document Verification:</strong> Ensure your age matches the requirements for government service or citizenship.</li>
-          <li><strong>Health Monitoring:</strong> Pediatricians in Nepal often track growth milestones based on exact age in months.</li>
-          <li><strong>Event Planning:</strong> Calculate exactly how many days are left until a major milestone or anniversary.</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      { question: "Does the calculator account for leap years?", answer: "Yes, our algorithm automatically factors in leap years (366 days) to ensure your age calculation is 100% accurate." },
-      { question: "How old am I if I was born in 2050 BS?", answer: "To use this tool for Bikram Sambat (BS) dates, you should first convert the year to AD or simply enter the BS numbers if the current year is also in BS." }
-    ]
-  },
-
-  'standard-deviation': {
-    title: "Standard Deviation Calculator | Population & Sample Stats",
-    description: "Calculate standard deviation, variance, and mean for a dataset. Supports both population and sample data calculations instantly.",
-    content: (
-      <>
-        <h2>Understanding Standard Deviation</h2>
-        <p>
-          In statistics, standard deviation is a measure of the amount of variation or dispersion of a set of values. A low standard deviation indicates that the values tend to be close to the mean, while a high standard deviation indicates that the values are spread out over a wider range.
-        </p>
-        <h3>Population vs. Sample</h3>
-        <p>
-          It is critical to choose the correct formula based on your data:
-          <br /><strong>Population:</strong> Use this when your dataset includes every single member of the group you are studying (Divide by N).
-          <br /><strong>Sample:</strong> Use this when your data is just a random sample of a larger group (Divide by N-1, known as Bessel's correction).
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What does the variance mean?",
-        answer: "Variance is simply the square of the standard deviation. It represents the average of the squared differences from the Mean."
-      },
-      {
-        question: "Why do we divide by N-1 for a sample?",
-        answer: "Dividing by N-1 (Bessel's correction) corrects the bias in the estimation of the population variance, providing a more accurate estimate."
-      }
-    ]
-  },
-  'probability': {
-    title: "Probability Calculator | Calculate Odds & Statistics",
-    description: "Free probability calculator. Find the probability of single events, multiple events, independent events, and conditional probabilities.",
-    content: (
-      <>
-        <h2>The Basics of Probability</h2>
-        <p>
-          Probability is the mathematical measure of the likelihood that an event will occur. It is always a number between 0 (impossible) and 1 (certainty), often expressed as a percentage from 0% to 100%.
-        </p>
-        <h3>Types of Probability Scenarios</h3>
-        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-          <li><strong>Independent Events:</strong> The outcome of one event does not affect the other (e.g., flipping a coin twice).</li>
-          <li><strong>Dependent Events:</strong> The outcome of the first event affects the second (e.g., drawing two cards from a deck without replacement).</li>
-          <li><strong>Mutually Exclusive:</strong> Two events that cannot occur at the same time (e.g., rolling a 2 and a 3 on a single die).</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      {
-        question: "How do you calculate the probability of two independent events?",
-        answer: "Multiply the probability of the first event by the probability of the second event: P(A and B) = P(A) × P(B)."
-      },
-      {
-        question: "What is the probability of an event NOT happening?",
-        answer: "The probability of an event not happening (the complement) is 1 minus the probability that it will happen: P(not A) = 1, P(A)."
-      }
-    ]
-  },
-  'scientific-calculator': {
-    title: "Scientific Calculator Online | Trigonometry, Logs, Exponents",
-    description: "Advanced online scientific calculator. Solve complex math problems including trigonometry (sin, cos, tan), logarithms, and exponential functions.",
-    content: (
-      <>
-        <h2>The Power of a Scientific Calculator</h2>
-        <p>
-          Unlike a standard four-function calculator, a scientific calculator is designed to handle engineering, physics, and advanced mathematics. It includes dedicated functions for trigonometry, logarithms, probability, and complex exponentiation.
-        </p>
-        <h3>Key Functions Explained</h3>
-        <p>
-          <strong>Trigonometry (Sin, Cos, Tan):</strong> Used for calculating angles and distances in geometry and physics. Ensure your calculator is set to the correct mode (Degrees or Radians).
-          <br /><strong>Logarithms (Log, Ln):</strong> Used in scaling variables, calculating pH levels in chemistry, and measuring earthquake intensity (Richter scale).
-          <br /><strong>Factorials (n!):</strong> Essential for calculating combinations and permutations in statistics.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Should I use Degrees or Radians?",
-        answer: "It depends on your math problem. High school geometry typically uses Degrees, while advanced calculus and physics often require Radians."
-      },
-      {
-        question: "What does the 'e' button do?",
-        answer: "The 'e' button represents Euler's number (approximately 2.718), which is the base of the natural logarithm, widely used in calculus and compound interest."
-      }
-    ]
-  },
-  'unit-converter': {
-    title: "Universal Unit Converter | Convert Everything Instantly",
-    description: "The ultimate universal unit converter. Convert length, weight, temperature, volume, area, and speed instantly online.",
-    content: (
-      <>
-        <h2>The Universal Unit Converter</h2>
-        <p>
-          Our universal unit converter eliminates the need to memorize complex conversion factors. Whether you are an engineer calculating torque, a chef converting recipe volumes, or a traveler converting temperatures, this tool handles it all.
-        </p>
-        <h3>Most Common Conversions</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-            <h4 className="font-bold text-[#1a73e8] m-0">Temperature</h4>
-            <p className="text-sm mt-2 text-[#5f6368]">Celsius to Fahrenheit: <code>(°C × 9/5) + 32 = °F</code></p>
-          </div>
-          <div className="bg-white border border-[#dadce0] p-4 rounded-lg">
-            <h4 className="font-bold text-[#1a73e8] m-0">Volume</h4>
-            <p className="text-sm mt-2 text-[#5f6368]">1 Gallon (US) = 3.78541 Liters</p>
-          </div>
-        </div>
-      </>
-    ),
-    faqs: [
-      {
-        question: "How do you convert Celsius to Kelvin?",
-        answer: "To convert Celsius to Kelvin, simply add 273.15 to the Celsius temperature."
-      },
-      {
-        question: "What is the difference between a US Gallon and a UK Gallon?",
-        answer: "A US liquid gallon is roughly 3.785 liters, whereas a UK (Imperial) gallon is larger, at exactly 4.54609 liters."
-      }
-    ]
-  },
-  'date-duration': {
-    title: "Date Duration Calculator | Days Between Two Dates",
-    description: "Calculate the exact duration between two dates. Find out how many days, weeks, months, or years are between a start date and an end date.",
-    content: (
-      <>
-        <h2>Calculating Time Between Dates</h2>
-        <p>
-          Finding the exact duration between two dates is surprisingly complicated due to leap years, varying month lengths (28, 30, or 31 days), and daylight saving time changes. Our duration calculator handles these complexities automatically.
-        </p>
-        <h3>Common Uses for Date Calculators</h3>
-        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-          <li><strong>Project Management:</strong> Calculate the exact number of days remaining until a deadline.</li>
-          <li><strong>Legal & Contracts:</strong> Determine the precise length of a lease agreement or warranty period.</li>
-          <li><strong>Event Planning:</strong> Find out exactly how many weeks are left until a wedding or vacation.</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Does the calculator include the end date?",
-        answer: "By default, duration calculators calculate the difference between the days. If you want to include both the start AND end date in your count, you must add 1 to the final result."
-      },
-      {
-        question: "How does it handle leap years?",
-        answer: "The algorithm automatically checks if a year is divisible by 4 (and handles the century rules) to accurately add February 29th to the day count when applicable."
-      }
-    ]
-  },
-  'fd-calculator': {
-    title: "Fixed Deposit Calculator | FD Maturity & Interest Returns",
-    description: "Calculate your Fixed Deposit (FD) maturity amount and total interest earned. Plan your safe investments with our free FD calculator.",
-    content: (
-      <>
-        <h2>How a Fixed Deposit (FD) Works</h2>
-        <p>
-          A Fixed Deposit is one of the safest investment options available, offering a guaranteed rate of return over a specific tenure. When you open an FD, you lock in a sum of money for a set period, and the bank pays you interest, usually compounded quarterly.
-        </p>
-        <h3>Understanding FD Compounding</h3>
-        <p>
-          Most banks calculate FD interest using <strong>Quarterly Compounding</strong>. This means that every three months, the interest earned is added to your principal amount, and the next quarter's interest is calculated on this new, larger amount. This yields a slightly higher return than simple annual interest.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Can I withdraw my FD before maturity?",
-        answer: "Yes, premature withdrawal is possible, but banks usually levy a penalty (often 1% to 2% reduction in the applicable interest rate)."
-      },
-      {
-        question: "Is FD interest taxable?",
-        answer: "Yes, the interest earned on Fixed Deposits is subject to Tax Deducted at Source (TDS), which the bank deducts before paying out your maturity amount."
-      }
-    ]
-  },
-  'savings': {
-    title: "Savings Goal Calculator | Plan Your Financial Future",
-    description: "Set a financial goal and calculate exactly how much you need to save daily, weekly, or monthly to reach your savings target.",
-    content: (
-      <>
-        <h2>Reaching Your Savings Goals</h2>
-        <p>
-          Whether you are saving for a vacation, a down payment on a house, or an emergency fund, breaking down a massive goal into smaller, manageable chunks is the key to financial success.
-        </p>
-        <h3>The 50/30/20 Rule</h3>
-        <p>
-          A popular budgeting strategy is to divide your after-tax income into three categories: 50% for needs (rent, groceries), 30% for wants (entertainment), and <strong>20% strictly for savings</strong>. Use our calculator to see if your monthly savings target aligns with this rule!
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Does this calculator account for interest?",
-        answer: "This is a pure savings calculator focused on principal accumulation. For growth with interest, use our Compound Interest or SIP calculator."
-      },
-      {
-        question: "Why is an emergency fund important?",
-        answer: "Financial experts recommend saving 3 to 6 months of living expenses in a highly liquid account to protect against unexpected job loss or medical emergencies."
-      }
-    ]
-  },
-  'cagr-calculator': {
-    title: "CAGR Calculator | Compound Annual Growth Rate",
-    description: "Calculate the Compound Annual Growth Rate (CAGR) of your investments. Measure the exact yearly return of your portfolio.",
-    content: (
-      <>
-        <h2>What is CAGR?</h2>
-        <p>
-          The Compound Annual Growth Rate (CAGR) is the most accurate way to measure and compare the past performance of investments over time. It represents the smooth, annualized rate of return of an investment, pretending that it grew at a steady rate every year.
-        </p>
-        <h3>Why CAGR is Better Than Absolute Return</h3>
-        <p>
-          If your investment grows from $100 to $150 over 5 years, the absolute return is 50%. However, this doesn't account for the time it took. CAGR accounts for the time value of money, revealing that the actual annualized growth rate is 8.45% per year.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is the formula for CAGR?",
-        answer: "CAGR = [(Ending Value / Beginning Value) ^ (1 / Number of Years)] - 1"
-      },
-      {
-        question: "Does CAGR account for investment risk?",
-        answer: "No, CAGR only measures past growth. It assumes a smooth, steady growth rate and completely ignores the volatility and risk that happened in between."
-      }
-    ]
-  },
-  'simple-interest': {
-    title: "Simple Interest Calculator | Principal, Rate, Time",
-    description: "Calculate simple interest on loans and savings. Easily find the total interest and final amount with our free online calculator.",
-    content: (
-      <>
-        <h2>Understanding Simple Interest</h2>
-        <p>
-          Simple interest is the most basic way of calculating interest. Unlike compound interest, simple interest is calculated <strong>only on the principal amount</strong>, ignoring any accumulated interest from previous periods.
-        </p>
-        <h3>The Simple Interest Formula</h3>
-        <p>
-          The formula is straightforward: <strong>I = P × R × T</strong>
-          <br /><strong>P (Principal):</strong> The initial amount of money.
-          <br /><strong>R (Rate):</strong> The annual interest rate (in decimal form).
-          <br /><strong>T (Time):</strong> The time the money is invested or borrowed for, in years.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Where is simple interest used in real life?",
-        answer: "Simple interest is commonly used for short-term personal loans, auto loans, and some types of short-term bonds or certificates of deposit."
-      },
-      {
-        question: "Is simple interest better for the borrower or lender?",
-        answer: "Simple interest is generally better for the borrower because they don't pay 'interest on interest,' resulting in a lower total payout compared to compounding loans."
-      }
-    ]
-  },
-
-  'fraction-calculator': {
-    title: "Fraction Calculator | Add, Subtract, Multiply, Divide",
-    description: "Free online fraction calculator. Add, subtract, multiply, and divide fractions easily. Get answers in simplified and mixed fraction formats.",
-    content: (
-      <>
-        <h2>Mastering Fraction Mathematics</h2>
-        <p>
-          Fractions represent parts of a whole, but calculating them manually can be tricky. Our fraction calculator handles all four basic operations and automatically simplifies the result to its lowest terms.
-        </p>
-        <h3>The Rules of Fractions</h3>
-        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-          <li><strong>Addition/Subtraction:</strong> You must first find a common denominator before adding the numerators.</li>
-          <li><strong>Multiplication:</strong> Multiply the numerators together, then multiply the denominators together.</li>
-          <li><strong>Division:</strong> Flip the second fraction upside down (reciprocal) and then multiply them.</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is an improper fraction?",
-        answer: "An improper fraction is one where the numerator (top number) is larger than the denominator (bottom number), such as 7/4."
-      },
-      {
-        question: "Does the calculator simplify fractions?",
-        answer: "Yes, the calculator automatically finds the Greatest Common Factor (GCF) to reduce the final answer to its simplest form."
-      }
-    ]
-  },
-  'decimal-to-fraction': {
-    title: "Decimal to Fraction Converter | Simplify Decimals Instantly",
-    description: "Convert any decimal number into a simplified fraction. Fast, accurate, and includes steps for converting repeating decimals.",
-    content: (
-      <>
-        <h2>Converting Decimals to Fractions</h2>
-        <p>
-          While decimals are easy to use in calculators, fractions are often required in carpentry, recipe measurements, and advanced algebra. Our converter instantly translates any decimal value into its exact fractional equivalent.
-        </p>
-        <h3>How the Conversion Works</h3>
-        <p>
-          To convert a decimal like <code>0.75</code> to a fraction:
-          <br />1. Write it over 1: <code>0.75 / 1</code>
-          <br />2. Multiply top and bottom by 100 to remove the decimal: <code>75 / 100</code>
-          <br />3. Simplify by dividing by the Greatest Common Factor (25): <code>3 / 4</code>
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "How do you convert a repeating decimal?",
-        answer: "Repeating decimals (like 0.333...) require an algebraic formula, but as a rule of thumb, a single repeating digit is placed over a 9 (e.g., 0.333... = 3/9 = 1/3)."
-      },
-      {
-        question: "Can I convert whole numbers with decimals?",
-        answer: "Yes, numbers like 2.5 will be converted into a mixed fraction (2 1/2) as well as an improper fraction (5/2)."
-      }
-    ]
-  },
-  'base-converter': {
-    title: "Base Converter | Binary, Hexadecimal, Octal, Decimal",
-    description: "Convert numbers between Decimal, Binary, Hexadecimal, and Octal bases. Essential tool for computer science and programming.",
-    content: (
-      <>
-        <h2>Understanding Number Bases</h2>
-        <p>
-          While humans count in Base-10 (Decimal) because we have 10 fingers, computers operate entirely differently. Our base converter allows programmers and computer scientists to seamlessly translate data between different digital formats.
-        </p>
-        <h3>The Core Computer Bases</h3>
-        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-          <li><strong>Binary (Base-2):</strong> Uses only 0 and 1. The fundamental language of all computer hardware.</li>
-          <li><strong>Octal (Base-8):</strong> Uses digits 0-7. Often used in Unix file permissions.</li>
-          <li><strong>Hexadecimal (Base-16):</strong> Uses digits 0-9 and letters A-F. Used extensively for color codes (HTML) and memory addresses.</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Why do programmers use Hexadecimal?",
-        answer: "Hexadecimal is a highly compact way to represent binary data. One Hex digit perfectly represents four binary bits (a nibble), making it much easier for humans to read memory dumps or color codes."
-      },
-      {
-        question: "What is the highest number in Base-2?",
-        answer: "In Base-2 (Binary), the highest single digit is 1. To count higher than 1, you must add another column (e.g., the decimal number 2 is written as 10 in binary)."
-      }
-    ]
-  },
-  'discount-calculator': {
-    title: "Discount Calculator Nepal | Sale Price & Savings Estimator",
-    description: "Calculate exact sale prices and total savings during Dashain, Tihar, and seasonal sales. Factures in stacked discounts and regional tax implications.",
-    content: (
-      <>
-        <h2>Smart Shopping in Nepal: Mastering the Discount Math</h2>
-        <p>
-          Whether you are shopping at Civil Mall, Labim Mall, or browsing local stores in New Road, understanding the real value of a "discount" is crucial for your budget. During major festivals like <strong>Dashain and Tihar</strong>, Nepalese retailers offer massive percentage-based reductions. Our <strong>Discount Calculator</strong> is designed to help you see past the marketing and calculate the exact amount of money staying in your pocket.
-        </p>
-
-        <h3>Why You Need a Digital Discount Tool</h3>
-        <p>
-          Calculating "20% off Rs. 4,500" might seem simple, but in the heat of shopping, mental math often leads to overspending. Furthermore, many stores in Nepal use <strong>"Stacked Discounts"</strong> (e.g., 20% off + an additional 10% for bank card holders). Our engine handles these compounding calculations with 100% precision, ensuring you know the final price before you reach the billing counter.
-        </p>
-
-        <div className="bg-[#e8f0fe] border border-[#1a73e8] rounded-xl p-6 my-8">
-          <h3 className="text-[#1967d2] font-black mt-0 mb-3 uppercase text-xs tracking-widest">Expert Shopping Tip</h3>
-          <p className="text-sm leading-relaxed mb-0">
-            In Nepal, always ask if the "Discounted Price" includes <strong>VAT (13%)</strong>. Sometimes a 50% discount is applied to the base price, but the tax is added later, changing your final total. Use our tool to verify the base price first!
-          </p>
-        </div>
-
-        <h2>Strategic Spending: How to Save More</h2>
-        <p>
-          To maximize your savings in the Nepalese market:
-          1. <strong>Compare Unit Prices:</strong> A larger pack with a small discount might be more expensive than two smaller packs with a large discount.
-          2. <strong>Factor in Travel:</strong> Saving Rs. 100 at a distant store might cost you Rs. 200 in petrol or Pathao charges.
-          3. <strong>Check the Expiry:</strong> Deep discounts (70%+) in grocery stores often mean the product is near its expiry date.
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "How do I calculate 20% off a price?", answer: "Multiply the original price by 0.20 to find the discount amount, then subtract it from the original price." },
-      { question: "What is the difference between discount and VAT in Nepal?", answer: "A discount reduces the price you pay, while VAT (Value Added Tax) is a 13% government tax added to the final sale price." },
-      { question: "Does this calculator support compounding discounts?", answer: "Yes, you can apply an initial discount and then apply a secondary discount (like a coupon) to the new total." }
-    ]
-  },
-  'tip-calculator': {
-    title: "Tip Calculator | Calculate Gratuity and Split the Bill",
-    description: "Easily calculate the tip for a restaurant bill and split the total cost among multiple people. Free online gratuity calculator.",
-    content: (
-      <>
-        <h2>The Stress-Free Tip Calculator</h2>
-        <p>
-          Figuring out how much to tip the waiter and how to split the bill fairly among friends can ruin the end of a great meal. Our tip calculator does the math instantly, allowing you to focus on the conversation, not the receipt.
-        </p>
-        <h3>Tipping Etiquette Worldwide</h3>
-        <p>
-          Tipping rules vary wildly depending on where you are:
-          <br /><strong>United States:</strong> 15% to 20% is the standard expectation for decent service.
-          <br /><strong>Europe & Asia:</strong> Tipping is often included as a 'service charge', or a smaller 5-10% tip is given as a compliment.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Should I tip before or after tax?",
-        answer: "Standard etiquette suggests calculating your tip based on the pre-tax total, though many people simply tip on the final bill amount for convenience."
-      },
-      {
-        question: "How does splitting the bill work?",
-        answer: "Our tool calculates the total bill (Cost + Tip) and then divides that final number equally by the number of people in your party, so everyone pays an exact, fair share."
-      }
-    ]
-  },
-  'bmr-calculator': {
-    title: "BMR Calculator | Basal Metabolic Rate",
-    description: "Calculate your Basal Metabolic Rate (BMR). Find out exactly how many calories your body burns at rest every day.",
-    content: (
-      <>
-        <h2>What is Basal Metabolic Rate (BMR)?</h2>
-        <p>
-          Your Basal Metabolic Rate (BMR) represents the total number of calories your body needs to perform basic, life-sustaining functions (like breathing, blood circulation, and cell production) if you were to rest in bed all day.
-        </p>
-        <h3>Why BMR is Crucial for Weight Loss</h3>
-        <p>
-          You cannot create a healthy weight loss plan without knowing your BMR. It acts as the baseline for your daily calorie needs. Once you know your BMR, you multiply it by an activity factor to find your Total Daily Energy Expenditure (TDEE). Eating below your TDEE results in weight loss.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Is BMR the same as resting metabolic rate (RMR)?",
-        answer: "They are very similar. BMR is measured under strict laboratory conditions (fasted, fully rested), while RMR is a slightly less strict measurement of resting calorie burn. For practical purposes, they are often used interchangeably."
-      },
-      {
-        question: "How can I increase my BMR?",
-        answer: "Muscle tissue burns more calories at rest than fat tissue. Therefore, the most effective way to increase your BMR is by building muscle through resistance training."
-      }
-    ]
-  },
-  'body-fat': {
-    title: "Body Fat Calculator | Estimate Your Body Fat Percentage",
-    description: "Calculate your body fat percentage using the U.S. Navy Method. Enter your height, waist, and neck measurements for an accurate estimate.",
-    content: (
-      <>
-        <h2>Understanding Body Fat Percentage</h2>
-        <p>
-          Body Fat Percentage is a much better indicator of overall health than Body Mass Index (BMI). While BMI only looks at your total weight, your body fat percentage distinguishes between heavy muscle mass and actual fat tissue.
-        </p>
-        <h3>The U.S. Navy Method</h3>
-        <p>
-          Our calculator uses the U.S. Navy algorithm, which estimates body fat based on the circumference of your waist, neck, and (for women) hips. It is one of the most accurate methods available outside of a clinical setting like a DEXA scan.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is a healthy body fat percentage?",
-        answer: "For men, a healthy range is typically 10-20%. For women, it is naturally higher, generally between 20-30%."
-      },
-      {
-        question: "Why do I need to measure my neck?",
-        answer: "The Navy method uses the neck measurement as a proxy for lean body mass. The difference between your waist (which holds fat) and your neck helps estimate total body fat."
-      }
-    ]
-  },
-
-  'margin-calculator': {
-    title: "Margin Calculator | Gross Profit & Sales Margin",
-    description: "Calculate gross profit margin, markup, and determine your optimal selling price. Free online calculator for business owners and retailers.",
-    content: (
-      <>
-        <h2>Margin vs. Markup</h2>
-        <p>
-          In retail and business, understanding the difference between Margin and Markup is the key to profitability. If a product costs $100 and you sell it for $150, your profit is $50.
-        </p>
-        <h3>The Mathematical Difference</h3>
-        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-          <li><strong>Margin:</strong> Profit divided by Sales Price. ($50 / $150 = 33.3% Margin)</li>
-          <li><strong>Markup:</strong> Profit divided by Cost. ($50 / $100 = 50% Markup)</li>
-        </ul>
-        <p className="mt-2">Always set your prices based on Margin to ensure your business remains profitable after operating expenses.</p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is a good gross profit margin?",
-        answer: "It varies heavily by industry. Grocery stores operate on razor-thin margins (1-3%), while software and digital products often have margins exceeding 70%."
-      },
-      {
-        question: "How do I calculate a selling price from a desired margin?",
-        answer: "Selling Price = Cost / (1, Desired Margin Percentage). For example, to get a 20% margin on a $50 item: 50 / (1, 0.20) = $62.50."
-      }
-    ]
-  },
-  'roi-calculator': {
-    title: "ROI Calculator | Return on Investment",
-    description: "Calculate the Return on Investment (ROI) of any business venture, stock, or real estate property. Find out your exact profit percentage.",
-    content: (
-      <>
-        <h2>What is Return on Investment (ROI)?</h2>
-        <p>
-          Return on Investment (ROI) is a universal financial metric used to evaluate the efficiency and profitability of an investment. It tells you exactly how much profit you made for every dollar you invested, expressed as a percentage.
-        </p>
-        <h3>How to Calculate ROI</h3>
-        <p>
-          The formula is incredibly simple: <strong>ROI = (Net Profit / Cost of Investment) × 100</strong>.
-          <br />If you spend $1,000 on a marketing campaign and it generates $1,500 in total sales, your Net Profit is $500. Your ROI is ($500 / $1000) × 100 = <strong>50%</strong>.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is an annualized ROI?",
-        answer: "Standard ROI ignores time. An Annualized ROI factors in how long it took to generate that return, giving you a percentage that represents the yearly growth rate (similar to CAGR)."
-      },
-      {
-        question: "Can ROI be negative?",
-        answer: "Yes, if your investment loses money (your final return is less than your initial cost), your Net Profit is negative, resulting in a negative ROI."
-      }
-    ]
-  },
-  'inflation-calculator': {
-    title: "Inflation Calculator | Future Value of Money",
-    description: "Calculate how inflation affects the purchasing power of your money over time. See what your savings will be worth in the future.",
-    content: (
-      <>
-        <h2>The Silent Thief: Inflation</h2>
-        <p>
-          Inflation is the rate at which the general level of prices for goods and services is rising, causing purchasing power to fall. If the inflation rate is 3%, a $100 grocery bill today will cost $103 next year.
-        </p>
-        <h3>Protecting Your Wealth</h3>
-        <p>
-          This calculator demonstrates why leaving money sitting in a zero-interest checking account is dangerous. Over 10 or 20 years, inflation can destroy half the value of your savings. To combat inflation, your money must be invested in assets that yield a return higher than the annual inflation rate.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "How is inflation calculated?",
-        answer: "Governments calculate inflation using a Consumer Price Index (CPI), which tracks the average change over time in the prices paid by urban consumers for a market basket of consumer goods and services."
-      },
-      {
-        question: "What is hyperinflation?",
-        answer: "Hyperinflation is extremely rapid or out of control inflation, typically defined as an inflation rate exceeding 50% per month."
-      }
-    ]
-  },
-  'vat-calculator': {
-    title: "Global VAT Calculator | Add or Remove Value Added Tax",
-    description: "Universal VAT calculator. Instantly add or remove Value Added Tax from prices. Supports standard rates for the UK, EU, and globally.",
-    content: (
-      <>
-        <h2>The Universal Value Added Tax (VAT) Calculator</h2>
-        <p>
-          Value Added Tax (VAT) is a consumption tax assessed on the value added to goods and services. It is utilized in over 160 countries around the world, particularly in the European Union and the United Kingdom.
-        </p>
-        <h3>How to Extract VAT from a Total Price</h3>
-        <p>
-          If you have a receipt with a total price and need to find out how much of that was VAT, you cannot simply multiply the total by the VAT percentage. Instead, you must use division: <strong>Base Price = Total Price / (1 + VAT Rate)</strong>.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Is VAT the same as Sales Tax?",
-        answer: "No. Sales tax is only collected once, at the final point of sale to the consumer. VAT is collected at every stage of the supply chain whenever value is added."
-      },
-      {
-        question: "How do I add 20% UK VAT?",
-        answer: "To add 20% VAT to a net amount, simply multiply the net amount by 1.20."
-      }
-    ]
-  },
-  'gst-calculator': {
-    title: "GST Calculator | Goods and Services Tax",
-    description: "Calculate GST (Goods and Services Tax) instantly. Add or reverse calculate GST for India, Australia, Canada, and New Zealand.",
-    content: (
-      <>
-        <h2>Calculating Goods and Services Tax (GST)</h2>
-        <p>
-          GST is an indirect, broad-based consumption tax applied to the cost of most goods and services. It is heavily utilized in countries like India (which has multiple tax slabs: 5%, 12%, 18%, 28%), Australia (10%), and Canada.
-        </p>
-        <h3>Inclusive vs. Exclusive GST</h3>
-        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-          <li><strong>GST Exclusive:</strong> The price before tax. You must add the GST percentage to find the final selling price.</li>
-          <li><strong>GST Inclusive:</strong> The final retail price including tax. Use our reverse-calculator to extract the base price for accounting and tax returns.</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      {
-        question: "How do you reverse calculate 18% GST?",
-        answer: "If the final price is $118, divide it by 1.18 to get the base pre-tax price of $100."
-      },
-      {
-        question: "What is the difference between CGST and SGST in India?",
-        answer: "In India, intra-state sales are split equally between the Central Government (CGST) and the State Government (SGST). An 18% GST item will have 9% CGST and 9% SGST."
-      }
-    ]
-  },
-  'ppf-calculator': {
-    title: "PPF Calculator | Public Provident Fund Returns",
-    description: "Calculate your Public Provident Fund (PPF) maturity amount, total investment, and tax-free interest earned over 15 years.",
-    content: (
-      <>
-        <h2>Why Invest in a Public Provident Fund (PPF)?</h2>
-        <p>
-          The Public Provident Fund (PPF) is one of the most popular long-term saving schemes in India, favored for its safety, attractive interest rates, and incredible tax benefits under the EEE (Exempt-Exempt-Exempt) category.
-        </p>
-        <h3>The Magic of 15-Year Compounding</h3>
-        <p>
-          A PPF account has a mandatory lock-in period of 15 years. While this seems long, it allows your money to experience massive growth through annual compounding. The interest earned is completely tax-free, making it superior to standard bank Fixed Deposits for long-term goals like retirement.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is the maximum I can invest in PPF?",
-        answer: "The current maximum limit for PPF investments in India is Rs. 1.5 Lakh per financial year to claim Section 80C tax deductions."
-      },
-      {
-        question: "Can I extend my PPF account after 15 years?",
-        answer: "Yes, upon maturity after 15 years, you can extend your PPF account in blocks of 5 years, with or without making further contributions."
-      }
-    ]
-  },
-  'salary-calculator': {
-    title: "Salary Calculator | Gross vs. Net Take-Home Pay",
-    description: "Calculate your exact take-home pay. Deduct taxes, insurance, and provident fund contributions to find your true monthly net salary.",
-    content: (
-      <>
-        <h2>Gross Salary vs. Net Take-Home Pay</h2>
-        <p>
-          When you accept a job offer, the company quotes your Gross Salary (your total pay before any deductions). However, what you actually receive in your bank account is your Net Take-Home Pay, which can be significantly lower.
-        </p>
-        <h3>Common Salary Deductions</h3>
-        <p>
-          To find your net salary, you must subtract several mandatory and voluntary deductions from your gross pay:
-          <br /><strong>Income Tax (TDS):</strong> Deducted by your employer and paid to the government.
-          <br /><strong>Retirement Funds:</strong> Contributions to Provident Funds (PF), SSF, or 401(k)s.
-          <br /><strong>Health Insurance:</strong> Premiums for company-sponsored medical coverage.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is Cost to Company (CTC)?",
-        answer: "CTC is the total amount a company spends on an employee. It includes the gross salary PLUS employer contributions to retirement funds, bonuses, and perks."
-      },
-      {
-        question: "How can I increase my take-home pay?",
-        answer: "You can optimize your take-home pay by claiming all legal tax deductions, maximizing tax-saving investments, or restructuring your salary components with your HR department."
-      }
-    ]
-  },
-  'time-calculator': {
-    title: "Time Calculator | Add, Subtract, & Multiply Time",
-    description: "Add or subtract hours, minutes, and seconds easily. Perfect for payroll, running times, and scheduling tasks.",
-    content: (
-      <>
-        <h2>How the Time Calculator Works</h2>
-        <p>
-          Calculating time is notoriously difficult because it relies on a Base-60 system (60 seconds in a minute, 60 minutes in an hour) rather than the standard Base-10 decimal system used in regular math. Our calculator automatically handles these conversions for you.
-        </p>
-        <h3>Common Uses</h3>
-        <p>
-          <strong>Payroll & Timesheets:</strong> Add up the exact number of hours and minutes worked over a week to calculate total pay.
-          <br /><strong>Athletics:</strong> Calculate pace and total running times for marathons or interval training.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "How do you add times together?",
-        answer: "To add time, you add the hours, minutes, and seconds separately. If the seconds exceed 60, you add 1 to the minutes and keep the remainder. If minutes exceed 60, you add 1 to the hours."
-      },
-      {
-        question: "Can I subtract a later time from an earlier time?",
-        answer: "Yes, this is common when calculating a time difference across midnight. The calculator automatically adjusts for 24-hour cycles."
-      }
-    ]
-  },
-  'speed-distance-time': {
-    title: "Speed, Distance & Time Calculator",
-    description: "Calculate speed, distance, or time. Enter any two values to instantly find the missing variable using standard physics formulas.",
-    content: (
-      <>
-        <h2>The Speed, Distance, and Time Triangle</h2>
-        <p>
-          The relationship between speed, distance, and time is one of the most fundamental concepts in physics. If you know any two of these variables, you can easily calculate the third.
-        </p>
-        <h3>The Core Formulas</h3>
-        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-          <li><strong>Speed:</strong> Distance ÷ Time. (e.g., How fast are you going?)</li>
-          <li><strong>Distance:</strong> Speed × Time. (e.g., How far will you travel?)</li>
-          <li><strong>Time:</strong> Distance ÷ Speed. (e.g., How long will the trip take?)</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is the difference between speed and velocity?",
-        answer: "Speed is a scalar quantity (how fast you are moving), while velocity is a vector quantity (how fast you are moving AND in what specific direction)."
-      },
-      {
-        question: "How do I convert km/h to mph?",
-        answer: "To convert kilometers per hour to miles per hour, divide the speed by 1.60934."
-      }
-    ]
-  },
-  'acceleration-calculator': {
-    title: "Acceleration Calculator | Find Change in Velocity",
-    description: "Calculate the acceleration of an object. Instantly find the rate of change in velocity over time using standard kinematics equations.",
-    content: (
-      <>
-        <h2>What is Acceleration?</h2>
-        <p>
-          Acceleration is the rate at which an object changes its velocity. If you are driving a car and press the gas pedal, you are accelerating because your speed is increasing over time. Conversely, hitting the brakes is a form of negative acceleration (deceleration).
-        </p>
-        <h3>The Acceleration Formula</h3>
-        <p>
-          The standard formula is: <strong>a = (v_f, v_i) / t</strong>
-          <br />Where <strong>v_f</strong> is the final velocity, <strong>v_i</strong> is the initial velocity, and <strong>t</strong> is the time taken for the change.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is the unit of acceleration?",
-        answer: "The standard SI unit for acceleration is meters per second squared (m/s²)."
-      },
-      {
-        question: "What is the acceleration due to gravity?",
-        answer: "On Earth, the acceleration due to gravity is approximately 9.81 m/s²."
-      }
-    ]
-  },
-  'kinetic-energy-calculator': {
-    title: "Kinetic Energy Calculator | Mass and Velocity",
-    description: "Calculate the kinetic energy of a moving object. Enter mass and velocity to find the energy in Joules instantly.",
-    content: (
-      <>
-        <h2>Understanding Kinetic Energy</h2>
-        <p>
-          Kinetic energy is the energy that an object possesses due to its motion. The heavier an object is and the faster it moves, the more kinetic energy it has. This is why a fast-moving truck causes significantly more damage in a collision than a slow-moving bicycle.
-        </p>
-        <h3>The Kinetic Energy Formula</h3>
-        <p>
-          The physics formula is: <strong>KE = 1/2 × m × v²</strong>
-          <br />Where <strong>m</strong> is the mass (in kilograms) and <strong>v</strong> is the velocity (in meters per second). Notice that velocity is squared, meaning speed has a much greater impact on kinetic energy than mass.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is the unit of Kinetic Energy?",
-        answer: "The standard SI unit for any form of energy, including kinetic energy, is the Joule (J)."
-      },
-      {
-        question: "Can kinetic energy be negative?",
-        answer: "No. Because mass is always positive and velocity is squared (making it positive), kinetic energy is always a positive value or zero."
-      }
-    ]
-  },
-  'potential-energy-calculator': {
-    title: "Potential Energy Calculator | Gravitational Energy",
-    description: "Calculate the gravitational potential energy of an object. Enter mass and height to find the stored energy in Joules.",
-    content: (
-      <>
-        <h2>What is Potential Energy?</h2>
-        <p>
-          Potential energy is the stored energy an object has because of its position or state. The most common type is Gravitational Potential Energy, the energy an object holds because of its height above the ground.
-        </p>
-        <h3>The Potential Energy Formula</h3>
-        <p>
-          The standard formula is: <strong>PE = m × g × h</strong>
-          <br />Where <strong>m</strong> is mass (in kg), <strong>g</strong> is the acceleration due to gravity (9.81 m/s² on Earth), and <strong>h</strong> is the height (in meters).
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What happens to potential energy when an object falls?",
-        answer: "As an object falls, its height decreases, meaning it loses potential energy. According to the conservation of energy, this lost potential energy is converted directly into kinetic energy."
-      },
-      {
-        question: "Does potential energy depend on the path taken?",
-        answer: "No. Gravitational potential energy only depends on the vertical height, not the path taken to reach that height."
-      }
-    ]
-  },
-  'force-calculator': {
-    title: "Force Calculator | Newton's Second Law",
-    description: "Calculate force, mass, or acceleration using Newton's Second Law of Motion (F = m × a). Fast and accurate physics calculator.",
-    content: (
-      <>
-        <h2>Understanding Newton's Second Law</h2>
-        <p>
-          Force is a push or pull upon an object resulting from its interaction with another object. According to Sir Isaac Newton's Second Law of Motion, the force applied to an object is equal to the mass of that object multiplied by its acceleration.
-        </p>
-        <h3>The Force Formula</h3>
-        <p>
-          The foundational physics equation is: <strong>F = m × a</strong>
-          <br />Where <strong>F</strong> is Force (in Newtons), <strong>m</strong> is mass (in kg), and <strong>a</strong> is acceleration (in m/s²).
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is a Newton?",
-        answer: "A Newton (N) is the standard SI unit of force. One Newton is equal to the force required to accelerate a 1-kilogram mass at a rate of 1 meter per second squared."
-      },
-      {
-        question: "Is force a vector or scalar?",
-        answer: "Force is a vector quantity, meaning it has both a magnitude (how strong the push/pull is) and a specific direction."
-      }
-    ]
-  },
-  'pressure-calculator': {
-    title: "Pressure Calculator | Force and Area",
-    description: "Calculate pressure, force, or area. Understand how force is distributed over a surface using standard physics formulas.",
-    content: (
-      <>
-        <h2>The Physics of Pressure</h2>
-        <p>
-          Pressure is defined as the physical force exerted on an object. The force applied is perpendicular to the surface of objects per unit area. This explains why a sharp knife cuts easily (the force is concentrated on a tiny area, creating massive pressure).
-        </p>
-        <h3>The Pressure Formula</h3>
-        <p>
-          The formula is: <strong>P = F / A</strong>
-          <br />Where <strong>P</strong> is Pressure (in Pascals), <strong>F</strong> is Force (in Newtons), and <strong>A</strong> is the Area (in square meters).
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is a Pascal?",
-        answer: "A Pascal (Pa) is the standard SI unit of pressure. It is defined as one Newton of force applied over one square meter of area (N/m²)."
-      },
-      {
-        question: "How does area affect pressure?",
-        answer: "Pressure is inversely proportional to area. If you apply the exact same force to a smaller area, the pressure drastically increases."
-      }
-    ]
-  },
-  'work-calculator': {
-    title: "Work Calculator | Force and Displacement",
-    description: "Calculate the mechanical work done when a force is applied over a distance. Free online physics calculator for work and energy.",
-    content: (
-      <>
-        <h2>What is Work in Physics?</h2>
-        <p>
-          In everyday language, 'work' means any physical or mental effort. However, in physics, Work is strictly defined as the measure of energy transfer that occurs when an object is moved over a distance by an external, parallel force.
-        </p>
-        <h3>The Work Formula</h3>
-        <p>
-          The formula is: <strong>W = F × d × cos(θ)</strong>
-          <br />Where <strong>W</strong> is Work (in Joules), <strong>F</strong> is the force applied, <strong>d</strong> is the displacement, and <strong>θ</strong> is the angle of the force. If the force is applied in the exact direction of movement, the angle is 0, and the formula simplifies to W = F × d.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "If I push a wall and it doesn't move, did I do work?",
-        answer: "In physics, no. Because the displacement (distance moved) is zero, the total mechanical work done is zero, regardless of how tired you feel."
-      },
-      {
-        question: "What is the unit of Work?",
-        answer: "Work is a form of energy transfer, so it is measured in Joules (J)."
-      }
-    ]
-  },
-  'power-calculator': {
-    title: "Power Calculator | Work and Time",
-    description: "Calculate power output. Find out the rate at which work is done or energy is transferred using our free physics calculator.",
-    content: (
-      <>
-        <h2>Understanding Power Output</h2>
-        <p>
-          While 'Work' measures the total amount of energy transferred, 'Power' measures how <em>fast</em> that work is done. A weak engine and a powerful engine can both do the same amount of work (e.g., move a car 1 mile), but the powerful engine does it in much less time.
-        </p>
-        <h3>The Power Formula</h3>
-        <p>
-          The formula is: <strong>P = W / t</strong>
-          <br />Where <strong>P</strong> is Power (in Watts), <strong>W</strong> is the Work done (in Joules), and <strong>t</strong> is the time taken (in seconds).
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is a Watt?",
-        answer: "A Watt (W) is the standard SI unit of power. It is defined as one Joule of work performed per second (1 J/s)."
-      },
-      {
-        question: "How do Watts relate to Horsepower?",
-        answer: "Horsepower is an imperial unit of power. One mechanical horsepower is equivalent to approximately 745.7 Watts."
-      }
-    ]
-  },
-  'density-calculator': {
-    title: "Density Calculator | Mass and Volume",
-    description: "Calculate the density of an object. Enter mass and volume to instantly find the density in standard units.",
-    content: (
-      <>
-        <h2>What is Density?</h2>
-        <p>
-          Density is a measurement that compares the amount of matter an object has (its mass) to its size (its volume). It explains why a handful of lead feels much heavier than a handful of feathers, even though they take up the same amount of space.
-        </p>
-        <h3>The Density Formula</h3>
-        <p>
-          The formula is: <strong>ρ = m / V</strong>
-          <br />Where <strong>ρ (rho)</strong> is Density, <strong>m</strong> is mass, and <strong>V</strong> is volume. Objects with a density lower than water (1,000 kg/m³) will float, while objects with a higher density will sink.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What are the common units for density?",
-        answer: "In the metric system, density is usually expressed as kilograms per cubic meter (kg/m³) or grams per cubic centimeter (g/cm³)."
-      },
-      {
-        question: "Does temperature affect density?",
-        answer: "Yes. For most substances, as temperature increases, the substance expands, increasing its volume and thereby decreasing its density."
-      }
-    ]
-  },
-  'engineering-gpa': {
-    title: "Engineering GPA Calculator | Tech Degree Grading",
-    description: "Calculate your Engineering GPA accurately. Custom weighting for heavy credit-hour labs and technical subjects.",
-    content: (
-      <>
-        <h2>Why an Engineering GPA Calculator?</h2>
-        <p>
-          Engineering degrees often feature highly variable credit hours (e.g., 4-credit calculus courses vs. 1-credit lab sessions). A standard GPA calculator might incorrectly weigh these, destroying your actual grade representation. This tool correctly applies credit-hour weighting standard to most tech degrees.
-        </p>
-        <h3>The Importance of Major GPA</h3>
-        <p>
-          When applying for tech internships, recruiters often look at your "Major GPA" (the GPA of only your core engineering and math classes) rather than your Cumulative GPA (which includes general education electives).
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "How do credit hours affect my GPA?",
-        answer: "A class worth 4 credits impacts your GPA four times as much as a 1-credit class. Doing well in heavy-credit core classes is essential for a high engineering GPA."
-      },
-      {
-        question: "Should I list my Major GPA on my resume?",
-        answer: "Yes, especially if your Major GPA is significantly higher than your Cumulative GPA. Just ensure you clearly label it as 'Major GPA' to avoid misleading recruiters."
-      }
-    ]
-  },
-  'marks-needed': {
-    title: "Target Grade Calculator | What Do I Need on My Final?",
-    description: "Calculate exactly what score you need on your final exam to keep your A, or pass the class. Relieve your end-of-semester anxiety instantly.",
-    content: (
-      <>
-        <h2>The 'Final Grade' Anxiety</h2>
-        <p>
-          As finals week approaches, the most common question students ask is: <em>"What do I need to score on the final exam to pass the class?"</em> Our calculator uses the exact weighting of your syllabus to give you a precise target score.
-        </p>
-        <h3>How the Math Works</h3>
-        <p>
-          If you have an 85% in the class going into a final that is worth 20% of your grade, and you want a final grade of 90%, the formula must reverse-engineer the weighted average: <strong>Target = (Desired Grade, (Current Grade × (1, Final Weight))) / Final Weight</strong>.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What if the calculator says I need over 100%",
-        answer: "If the required score is over 100%, it means it is mathematically impossible to achieve your desired final grade with the remaining weight of the final exam, unless extra credit is offered."
-      },
-      {
-        question: "Can I use this if my class uses a point system instead of percentages?",
-        answer: "Yes, you can simply convert your total points earned and total points possible into a percentage before using the calculator."
-      }
-    ]
-  },
-  'statistics-plus': {
-    title: "Statistics Calculator | Mean, Median, Mode, Variance",
-    description: "Advanced descriptive statistics calculator. Instantly find the mean, median, mode, variance, and standard deviation of any data set.",
-    content: (
-      <>
-        <h2>Understanding Descriptive Statistics</h2>
-        <p>
-          Descriptive statistics provide a summary that quantitatively describes or summarizes features from a collection of information. Rather than looking at raw data (like thousands of individual test scores), statistics give you a "big picture" view of the central tendency and dispersion.
-        </p>
-        <h3>Key Metrics Explained</h3>
-        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-          <li><strong>Mean (Average):</strong> The sum of all numbers divided by the count. Sensitive to extreme outliers.</li>
-          <li><strong>Median:</strong> The exact middle value when data is sorted. Highly robust against outliers.</li>
-          <li><strong>Variance:</strong> A measure of how spread out the data points are from the mean.</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      {
-        question: "When should I use the median instead of the mean?",
-        answer: "Use the median when your data set has massive outliers (like income distribution) because extreme high/low values will artificially drag the mean up or down."
-      },
-      {
-        question: "What is a bimodal distribution?",
-        answer: "It is a data set that has two distinct peaks (modes), meaning there are two most-frequent values rather than just one."
-      }
-    ]
-  },
-  'z-score': {
-    title: "Z-Score Calculator | Standard Normal Distribution",
-    description: "Calculate the Z-score for any data point. Determine exactly how many standard deviations a value is away from the mean.",
-    content: (
-      <>
-        <h2>What is a Z-Score?</h2>
-        <p>
-          In statistics, a Z-score (or standard score) tells you how far a data point is from the mean of a data set, measured in terms of standard deviations. It allows you to compare results from completely different tests or surveys on a level playing field.
-        </p>
-        <h3>The Empirical Rule (68-95-99.7)</h3>
-        <p>
-          In a normal distribution (a bell curve):
-          <br /><strong>68%</strong> of data falls within a Z-score of -1 to 1.
-          <br /><strong>95%</strong> falls within a Z-score of -2 to 2.
-          <br /><strong>99.7%</strong> falls within a Z-score of -3 to 3. If you have a Z-score of 3.5, you are in the extreme upper percentile!
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is the Z-score formula?",
-        answer: "Z = (X, μ) / σ, where X is the raw score, μ is the population mean, and σ is the population standard deviation."
-      },
-      {
-        question: "Can a Z-score be negative?",
-        answer: "Yes. A negative Z-score simply means the data point is below the average (mean), while a positive Z-score means it is above the average."
-      }
-    ]
-  },
-  'ratio-proportion': {
-    title: "Ratio & Proportion Calculator | Scale and Simplify",
-    description: "Solve proportions, find missing values in ratios, and simplify complex ratios instantly. Essential for baking, geometry, and scaling.",
-    content: (
-      <>
-        <h2>Mastering Ratios and Proportions</h2>
-        <p>
-          A ratio compares the relationship between two amounts (e.g., 2 cups of flour for every 1 cup of sugar). A proportion is simply an equation stating that two ratios are equal (e.g., 2/1 = 4/2).
-        </p>
-        <h3>Cross-Multiplication Made Easy</h3>
-        <p>
-          If you are trying to scale up a recipe or resize an image while maintaining its aspect ratio, you must find a missing value in a proportion (A/B = C/X). Our calculator uses algebraic cross-multiplication to solve for the missing variable instantly.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "How do you simplify a ratio?",
-        answer: "To simplify a ratio like 15:20, you find the Greatest Common Factor (GCF) of both numbers, which is 5. Divide both sides by 5 to get the simplified ratio of 3:4."
-      },
-      {
-        question: "What is the 'Golden Ratio'?",
-        answer: "The Golden Ratio is an irrational mathematical constant, approximately 1.618. It frequently appears in geometry, art, and architecture as the most aesthetically pleasing proportion."
-      }
-    ]
-  },
-  'area-calculator': {
-    title: "Area Calculator | Square Footage & Geometric Shapes",
-    description: "Calculate the area of a circle, square, rectangle, or triangle. Get instant measurements in square feet, meters, and acres.",
-    content: (
-      <>
-        <h2>Why Do We Calculate Area?</h2>
-        <p>
-          Area is a measurement of the 2D surface enclosed within a boundary. Whether you are buying paint for a wall, fertilizer for a lawn, or carpet for a bedroom, calculating the exact square footage is the first step to knowing how much material to buy.
-        </p>
-        <h3>Common Area Formulas</h3>
-        <ul className="text-sm mt-2 text-[#5f6368] space-y-1 pl-4 list-disc">
-          <li><strong>Rectangle:</strong> Length × Width</li>
-          <li><strong>Triangle:</strong> 1/2 × Base × Height</li>
-          <li><strong>Circle:</strong> π × Radius²</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      {
-        question: "How do I calculate the area of an irregular room?",
-        answer: "The easiest method is to divide the irregular shape into smaller, standard shapes (like multiple rectangles), calculate the area of each separately, and then add them together."
-      },
-      {
-        question: "What is the difference between Area and Perimeter?",
-        answer: "Perimeter is the 1D length of the OUTSIDE boundary (like a fence). Area is the 2D space on the INSIDE (like the grass inside the fence)."
-      }
-    ]
-  },
-  'logarithm-calculator': {
-    title: "Logarithm Calculator | Base 10, Natural Log (ln)",
-    description: "Calculate logarithms and inverse logarithms for any base. Instantly solve complex exponential equations.",
-    content: (
-      <>
-        <h2>Understanding Logarithms</h2>
-        <p>
-          A logarithm is simply the inverse operation to exponentiation. It answers the question: <em>"To what power must a base number be raised to produce a specific given number?"</em> For example, if 10² = 100, then the base-10 logarithm of 100 is 2.
-        </p>
-        <h3>Common vs. Natural Logarithms</h3>
-        <p>
-          In mathematics, you will encounter two primary types:
-          <br /><strong>Common Log (log):</strong> Uses base 10. Heavily used in engineering and defining the Richter Scale for earthquakes.
-          <br /><strong>Natural Log (ln):</strong> Uses the mathematical constant <em>e</em> (approx 2.718) as its base. It is the fundamental backbone of calculus and compounding growth formulas.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Can you take the logarithm of a negative number?",
-        answer: "No, in the realm of real numbers, logarithms are undefined for negative numbers and zero. An exponent applied to a positive base will never result in a negative number."
-      },
-      {
-        question: "How do I change the base of a logarithm?",
-        answer: "You can use the Change of Base Formula: log_b(x) = log_k(x) / log_k(b), allowing you to convert any base to a standard base-10 calculation."
-      }
-    ]
-  },
-  'rounding': {
-    title: "Rounding Number Utility | Significant Figures",
-    description: "Round any decimal number to the nearest tenth, hundredth, or a specific number of significant figures. Mathematical precision tool.",
-    content: (
-      <>
-        <h2>The Rules of Rounding Numbers</h2>
-        <p>
-          Rounding is used to make numbers simpler and easier to use while keeping their value close to what it originally was. The fundamental rule is: If the digit you are rounding is followed by 5, 6, 7, 8, or 9, round the number UP. If it is 0, 1, 2, 3, or 4, round DOWN.
-        </p>
-        <h3>What are Significant Figures?</h3>
-        <p>
-          In science and engineering, "sig-figs" indicate the precision of a measurement. You cannot report an answer to 8 decimal places if your original measuring tool only had precision to 1 decimal place! Our calculator helps you truncate numbers to their valid scientific precision.
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is 'Banker's Rounding'?",
-        answer: "Banker's rounding (or Round-Half-To-Even) is a statistical tie-breaking rule. If a number ends exactly in 5, it rounds to the nearest EVEN number (e.g., 2.5 becomes 2, but 3.5 becomes 4). This prevents massive upward drift in large datasets."
-      },
-      {
-        question: "How do I round to the nearest hundredth?",
-        answer: "Look at the third decimal place (the thousandths). If it's 5 or higher, increase the second decimal place by 1. Otherwise, leave it as is."
-      }
-    ]
-  },
-  'simple-calculator': {
-    title: "Basic Calculator | Standard Online Arithmetic Tool",
-    description: "A fast, free online basic calculator for standard addition, subtraction, multiplication, and division. Perfect for quick daily math.",
-    content: (
-      <>
-        <h2>The Standard Daily Calculator</h2>
-        <p>
-          While we offer dozens of advanced engineering and financial tools, sometimes you just need to do basic math quickly without hunting for an app on your phone. This lightweight, high-speed standard calculator handles all primary arithmetic operations instantly.
-        </p>
-        <h3>Order of Operations (PEMDAS)</h3>
-        <p>
-          Our calculator engine strictly follows standard algebraic rules: <strong>P</strong>arentheses, <strong>E</strong>xponents, <strong>M</strong>ultiplication/<strong>D</strong>ivision (left to right), and <strong>A</strong>ddition/<strong>S</strong>ubtraction (left to right).
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "What happens if I divide by zero?",
-        answer: "In mathematics, division by zero is undefined. Our calculator will return an error or 'Infinity' depending on the exact computation constraint."
-      },
-      {
-        question: "Does this calculator support keyboard input?",
-        answer: "Yes, for maximum speed on a desktop, you can use your numeric keypad to enter numbers and operations directly."
-      }
-    ]
-  },
-  'roman-numerals': {
-    title: "Roman Numerals Converter | Translate to Arabic Numbers",
-    description: "Convert Roman Numerals (e.g., XIV, MMXXIV) to standard decimal numbers and vice versa. Learn the rules of ancient Roman counting.",
-    content: (
-      <>
-        <h2>The Ancient Roman Numeral System</h2>
-        <p>
-          Originating in ancient Rome, this numeric system remained the standard way of writing numbers throughout Europe well into the Late Middle Ages. Today, they are still used in clock faces, movie copyright dates, and the Super Bowl.
-        </p>
-        <h3>The Core Symbols</h3>
-        <p>
-          Roman numerals use seven distinct letters from the Latin alphabet: <strong>I (1), V (5), X (10), L (50), C (100), D (500), and M (1000).</strong>
-        </p>
-        <p className="mt-2">
-          <strong>The Subtraction Rule:</strong> If a smaller number is placed BEFORE a larger number, it is subtracted. For example, IV is 4 (5 - 1), but VI is 6 (5 + 1).
-        </p>
-      </>
-    ),
-    faqs: [
-      {
-        question: "Is there a Roman Numeral for zero?",
-        answer: "No, the Romans did not have a numeral or concept for zero as a standalone number. They simply left a blank space or used the Latin word 'nulla'."
-      },
-      {
-        question: "What is the highest number you can write?",
-        answer: "Using standard Roman symbols, the highest easily written number is 3,999 (MMMCMXCIX). To write higher numbers, the Romans used a 'vinculum' (an overline) to multiply the value by 1,000."
-      }
-    ]
-  },
-  'calculus-lab': {
-    title: "Calculus & Algebra Solver | Derivatives & Integrals Online",
-    description: "Solve derivatives, integrals, and limits instantly. Symbolic calculus engine for students and professionals. Step-by-step logic for complex equations.",
-    content: (
-      <>
-        <h2>Mastering Higher Mathematics: Calculus Lab</h2>
-        <p>
-          Calculus is the mathematical study of continuous change. Whether you are a student at **TU/KU** or an engineer in the field, our <strong>Calculus Solver</strong> helps you verify complex derivations and integrations instantly.
-        </p>
-
-        <h3>Core Features</h3>
-        <ul>
-          <li><strong>Differentiation:</strong> Find the rate of change for any function (Chain rule, Power rule).</li>
-          <li><strong>Integration:</strong> Calculate the area under a curve (Definite and Indefinite).</li>
-          <li><strong>Limits:</strong> Analyze the behavior of functions as they approach a specific value.</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      { question: "Can it solve multi-variable calculus?", answer: "The current version focuses on single-variable calculus, which covers 90% of undergraduate requirements." },
-      { question: "Is this tool useful for physics?", answer: "Absolutely. Calculus is the language of physics, used to calculate velocity, acceleration, and electromagnetic fields." }
-    ]
-  },
-  'property-tax': {
-    title: "Capital Gains Tax (CGT) Calculator Real Estate Nepal | Malpot Guide",
-    description: "Calculate Capital Gains Tax for real estate and land sales in Nepal. Find your exact tax liability before visiting the Malpot office.",
-    content: (
-      <>
-        <h2>Selling Property in Nepal: The CGT Breakdown</h2>
-        <p>
-          When you sell land or a house in Nepal at a profit, you are liable to pay <strong>Capital Gains Tax (CGT)</strong>. This tax is collected by the **Malpot Office** at the time of registration transfer.
-        </p>
-
-        <h3>CGT Rates for FY 2080/81</h3>
-        <ul>
-          <li><strong>Property held for &gt; 5 years:</strong> 5% on the gain.</li>
-          <li><strong>Property held for &lt; 5 years:</strong> 7.5% on the gain.</li>
-        </ul>
-
-        <div className="bg-[#f1f8e9] border border-[#33691e] rounded-lg p-6 my-8">
-          <h4 className="font-bold mb-2">Exemption Tip</h4>
-          <p className="text-sm leading-relaxed mb-0">
-            If the property has been owned for more than 10 years and the transaction value is below 10 Lakhs, you might be eligible for certain exemptions. Always consult with a professional accountant for the latest IRD circulars.
-          </p>
-        </div>
-      </>
-    ),
-    faqs: [
-      { question: "How is 'Gain' calculated?", answer: "Gain = Selling Price, Purchase Price, Registered Expenses. The Malpot office uses the government valuation if it is higher than your stated price." },
-      { question: "Who pays the CGT?", answer: "In Nepal, the seller is legally responsible for paying the Capital Gains Tax on the profit earned from the sale." }
-    ]
-  },
   'property-registration': {
-    title: "Property Registration & Malpot Fee Calculator | Nepal Land Tax",
-    description: "Calculate land and house registration fees for Nepal Malpot offices. Includes municipal discounts and stamp duties for all provinces.",
+    title: "Nepal Property Registration Fee Calculator | Malpot & Stamp Duty",
+    description: "Calculate land and house registration fees in Nepal based on municipal rates and minimum valuation. Official Malpot calculation logic.",
+    howToUse: [
+      "Select Location: Choose between Metropolitan, Sub-Metropolitan, or Municipality.",
+      "Enter Valuation: Input the government minimum valuation or actual price.",
+      "Check Gender/Status: Apply rebates for female ownership or senior citizens.",
+      "Review Fees: View the breakdown of Registration Tax and Bagmati/Province fees."
+    ],
+    formula: {
+      title: "Registration Fee Formula",
+      equation: "Fee = (Valuation x Rate) + Municipal_Surcharge",
+      description: "The registration fee is a percentage of the valuation, which varies based on the gender of the owner and the location of the property.",
+      variables: [
+        "Valuation = The higher value between the official Government Minimum Valuation and the Actual Transaction Price",
+        "Base Rate = The standard registration percentage set by the local municipality (Metropolitan vs. Rural)",
+        "Rebate = Government-mandated discount (e.g., 25% for female owners, 50% for senior citizens)",
+        "Municipal Surcharge = Additional infrastructure or province-specific fees (e.g., Bagmati Province Fee)"
+      ]
+    },
     content: (
       <>
-        <h2>Understanding Property Registration Fees in Nepal</h2>
-        <p>
-          Buying property (Lekhapadi) involves more than just the purchase price. The <strong>Registration Fee</strong> is a significant cost paid to the government. This fee varies depending on whether the property is in a <strong>Municipality (Nagarpalika)</strong> or a <strong>Rural Municipality (Gaunpalika)</strong>.
+        <h2 className="text-xl font-bold text-[#202124] mb-3">The Ultimate Encyclopedia of Malpot & Property Registration in Nepal</h2>
+        
+        <div className="bg-[#e8f0fe] rounded-xl p-5 mb-5 border border-[#d2e3fc]">
+          <h4 className="text-[#1967d2] font-bold text-base mb-2 mt-0">Malpot Navigation</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 text-xs text-[#3c4043]">
+            <a href="#mal-1" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>1.</span> Metropolitan vs. Village Rates</a>
+            <a href="#mal-2" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>2.</span> Female Ownership Rebate (25%)</a>
+            <a href="#mal-3" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>3.</span> Senior Citizen & Martyr Family Rebates</a>
+            <a href="#mal-4" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>4.</span> Bagmati Province Surcharges</a>
+            <a href="#mal-5" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>5.</span> The \"Sifarish\" Documentation Flow</a>
+          </div>
+        </div>
+
+        <p className="text-sm text-[#3c4043] leading-relaxed mb-5">
+          Registering property in Nepal involves multiple layers of taxation, including the federal Registration Fee and local municipal surcharges. Using our <a href="/calculator/nepal-land/" className="text-[#1a73e8] font-bold hover:underline">Land Area Converter</a> to verify your 'Aana' or 'Kattha' measurements is the first step before calculating your final tax liability at the Malpot office.
         </p>
 
-        <h3>Key Fee Components</h3>
-        <ul>
-          <li><strong>Registration Fee:</strong> Typically 2% to 5% of the valuation.</li>
-          <li><strong>Service Charge:</strong> A small fixed fee for the administrative work.</li>
-          <li><strong>Bagmati Civilization Tax:</strong> Applicable for transactions within the Bagmati watershed area.</li>
-        </ul>
+        <div className="space-y-6">
+          <section id="mal-1">
+            <h3 className="text-base font-bold text-[#202124] mb-2">1. Metropolitan vs. Village Rates</h3>
+            <p className="text-sm text-[#5f6368] mb-2">The registration fee percentage varies significantly based on whether the property is located in a Metropolitan city (Kathmandu, Pokhara) or a Village Municipality.</p>
+            <div className="border border-[#dadce0] rounded-xl overflow-hidden">
+               <table className="w-full text-xs text-left">
+                  <thead className="bg-[#f8f9fa] border-b border-[#dadce0]">
+                     <tr><th className="p-3">Location Category</th><th className="p-3">Registration Rate</th></tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#dadce0]">
+                     <tr><td className="p-3">Metropolitan (Mahanagarpalika)</td><td className="p-3">5%</td></tr>
+                     <tr><td className="p-3">Sub-Metropolitan</td><td className="p-3">4.5%</td></tr>
+                     <tr><td className="p-3">Municipality (Nagarpalika)</td><td className="p-3">4%</td></tr>
+                     <tr><td className="p-3">Rural Municipality (Gaunpalika)</td><td className="p-3">2%</td></tr>
+                  </tbody>
+               </table>
+            </div>
+          </section>
+
+          <section id="mal-2">
+            <h3 className="text-base font-bold text-[#202124] mb-2">2. The Female Ownership Rebate</h3>
+            <p className="text-sm text-[#5f6368] mb-3">To encourage land ownership among women, the Government of Nepal offers a significant rebate on registration fees.</p>
+            <div className="p-5 bg-[#e6f4ea] border-l-2 border-[#1e8e3e] rounded-r-xl">
+               <h5 className="text-[#1e8e3e] font-bold text-sm mb-2 mt-0">Institutional Insight: 25% Savings</h5>
+               <p className="text-[#3c4043] text-xs leading-relaxed mb-0">
+                  Female owners generally receive a **25% discount** on the registration fee. In remote areas, this rebate can go up to 50%. This makes joint ownership or female-only ownership a popular choice for reducing closing costs.
+               </p>
+            </div>
+          </section>
+
+          <section id="mal-4">
+            <h3 className="text-base font-bold text-[#202124] mb-2">4. Bagmati Province Surcharges</h3>
+            <p className="text-sm text-[#5f6368] mb-2">If your property is in the Bagmati Province (including Kathmandu), you must pay an additional infrastructure surcharge on top of the base registration fee.</p>
+            <div className="p-4 bg-[#f8f9fa] border border-[#dadce0] rounded-xl">
+               <p className="text-xs text-[#3c4043] mb-0">**Filing Tip:** Ensure your 'Sifarish' from the local Wada office clearly mentions the 'Ghar/Jagga' valuation to avoid delays at the Malpot counter.</p>
+            </div>
+          </section>
+        </div>
+
+        <div className="mt-10 pt-6 border-t border-[#f1f3f4] text-center">
+           <p className="text-[11px] text-[#5f6368]">
+              NepaCalc Internal Silo: After calculating registration fees, audit your sale profit with the <a href="/calculator/property-tax/" className="text-[#1a73e8] font-bold hover:underline">CGT Calculator</a> or check your <a href="/calculator/nepal-home-loan/" className="text-[#1a73e8] font-bold hover:underline">Home Loan Options</a>.
+           </p>
+        </div>
       </>
     ),
     faqs: [
-      { question: "Are there discounts for female ownership?", answer: "Yes! To encourage land ownership among women, the government offers significant discounts (often 25-30%) on registration fees if the property is registered in a woman's name." },
-      { question: "What is 'Thaili'?", answer: "'Thaili' refers to the official transaction amount mentioned in the registration deed, which must be equal to or higher than the government's minimum valuation." }
+      { question: "What is the Bagmati Province Surcharge?", answer: "Properties in the Bagmati province often incur an additional infrastructure fee (usually Rs. 1,000 to Rs. 5,000) depending on the valuation." },
+      { question: "Can I use the Minimum Valuation for tax?", answer: "Yes, but if your bank loan amount or actual transaction price is higher, the Malpot office will use the higher value to calculate tax." }
     ]
   },
+
+  'property-tax': {
+    title: "Nepal Property Capital Gains Tax Calculator | IRD Real Estate Tax",
+    description: "Calculate Capital Gains Tax (CGT) on property sales in Nepal. Updated for latest IRD rules on 5% vs 7.5% tax tiers based on holding period.",
+    howToUse: [
+      "Enter Sale Price: The amount you are selling the property for.",
+      "Enter Purchase Price: The original cost of the property.",
+      "Select Holding Period: Choose 'Less than 10 years' or 'More than 10 years'.",
+      "Calculate: View the net profit and applicable tax."
+    ],
+    formula: {
+      title: "Property CGT Formula",
+      equation: "CGT = (Sale_Price - Purchase_Price) x Tax_Rate",
+      description: "In Nepal, Capital Gains Tax is a final withholding tax on the profit made from selling real estate. The rate depends on how long you held the property.",
+      variables: [
+        "Sale Price = The total gross amount received from the property buyer at the time of transfer",
+        "Purchase Price = The original acquisition cost or the previous government valuation of the property",
+        "Tax Rate = The Capital Gains Tax percentage based on holding period (5% for holdings >10 years, 7.5% for <10 years)",
+        "Profit = The net taxable gain on the property sale, subject to final withholding tax"
+      ]
+    },
+    content: (
+      <>
+        <h2 className="text-xl font-bold text-[#202124] mb-3">The Ultimate Encyclopedia of Property CGT in Nepal</h2>
+        
+        <div className="bg-[#e8f0fe] rounded-xl p-5 mb-5 border border-[#d2e3fc]">
+          <h4 className="text-[#1967d2] font-bold text-base mb-2 mt-0">Tax Navigation</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 text-xs text-[#3c4043]">
+            <a href="#cgt-1" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>1.</span> Holding Period Logic (10-Year Rule)</a>
+            <a href="#cgt-2" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>2.</span> The Rs. 10 Lakh Profit Threshold</a>
+            <a href="#cgt-3" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>3.</span> CGT for Non-Residents</a>
+            <a href="#cgt-4" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>4.</span> Deductible Costs (Brokerage/Registration)</a>
+            <a href="#cgt-5" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>5.</span> Final Withholding vs. Assessment</a>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          <section id="cgt-1">
+            <h3 className="text-base font-bold text-[#202124] mb-2">1. The 10-Year Holding Period Rule</h3>
+            <p className="text-sm text-[#5f6368] mb-3">The Inland Revenue Department (IRD) incentivizes long-term property ownership by offering a lower tax rate for properties held for a decade or more.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+               <div className="p-4 border-l-4 border-[#1e8e3e] bg-[#f8f9fa] rounded-r-xl">
+                  <h5 className="font-bold text-xs text-[#1e8e3e] mb-1 mt-0">Long-Term (5%)</h5>
+                  <p className="text-[10px] text-[#5f6368] mb-0">Applies if you hold the property for **10 years or more**.</p>
+               </div>
+               <div className="p-4 border-l-4 border-[#d93025] bg-[#f8f9fa] rounded-r-xl">
+                  <h5 className="font-bold text-xs text-[#d93025] mb-1 mt-0">Short-Term (7.5%)</h5>
+                  <p className="text-[10px] text-[#5f6368] mb-0">Applies if you sell within **10 years** of purchase.</p>
+               </div>
+            </div>
+          </section>
+
+          <section id="cgt-2">
+            <h3 className="text-base font-bold text-[#202124] mb-2">2. The Rs. 10 Lakh Profit Exemption</h3>
+            <p className="text-sm text-[#5f6368] mb-2">For individuals selling their primary residence, there is a tax-free threshold on the total profit earned.</p>
+            <div className="p-4 bg-[#e8f0fe] border border-[#d2e3fc] rounded-xl">
+               <p className="text-xs text-[#3c4043] mb-0">**Institutional Rule:** If your total profit is less than **Rs. 1,000,000** and the property is categorized as 'Residential', you may be exempt from paying CGT. This is a critical provision for small homeowners.</p>
+            </div>
+          </section>
+
+          <section id="cgt-4">
+            <h3 className="text-base font-bold text-[#202124] mb-2">4. Deductible Costs (Improving Your Net)</h3>
+            <p className="text-sm text-[#5f6368] mb-2">While Nepal uses a simple sale-minus-purchase logic, you can sometimes adjust for documented registration fees and legal costs.</p>
+            <div className="p-4 bg-[#f8f9fa] border border-[#dadce0] rounded-xl">
+               <p className="text-xs text-[#3c4043] mb-0">**Note:** Brokerage fees are generally not deductible unless paid via bank transfer to a VAT-registered agency. Always keep your previous Malpot receipts to prove your 'Purchase Price'.</p>
+            </div>
+          </section>
+        </div>
+
+        <div className="mt-10 pt-6 border-t border-[#f1f3f4] text-center">
+           <p className="text-[11px] text-[#5f6368]">
+              NepaCalc Internal Silo: After calculating your tax, check the <a href="/calculator/property-registration/" className="text-[#1a73e8] font-bold hover:underline">Registration Fees</a> for your next purchase or use the <a href="/calculator/nepal-income-tax/" className="text-[#1a73e8] font-bold hover:underline">Income Tax Tool</a> for annual filing.
+           </p>
+        </div>
+      </>
+    ),
+    faqs: [
+      { question: "Is CGT mandatory on every sale?", answer: "No. If your total profit is less than Rs. 10 Lakh on a residential property that you have lived in, you may be exempt under current IRD rules." },
+      { question: "Can I deduct brokerage fees from the profit?", answer: "Legally, only documented costs (like registration fees paid previously) are easily deductible. Brokerage fees are often hard to deduct unless paid through official banking channels." }
+    ]
+  },
+
   'nepal-tds': {
-    title: "Nepal TDS Calculator | Tax Deducted at Source IRD",
-    description: "Calculate TDS on rent, service fees, and contracts in Nepal per IRD rules for FY 2080/81. Ensure legal compliance for your business.",
+    title: "Nepal TDS Calculator | Withholding Tax on Services & Rent",
+    description: "Calculate Tax Deducted at Source (TDS) in Nepal for professional services, rent, and commissions. Official IRD withholding rates 2081/82.",
+    howToUse: [
+      "Select Service Type: Professional (1.5%), Rent (10%), or Consultancy.",
+      "Enter Invoice Amount: Input the gross amount before tax.",
+      "Calculate: View the TDS amount and the net payment to the vendor."
+    ],
+    formula: {
+      title: "TDS Calculation Formula",
+      equation: "TDS = Gross_Amount x TDS_Rate",
+      description: "TDS is a 'Pay-as-you-earn' tax system where the payer deducts a percentage of the payment and deposits it directly with the IRD on behalf of the receiver.",
+      variables: [
+        "Gross Amount = The total invoice value or payment amount before any statutory tax deduction",
+        "TDS Rate = The specific withholding percentage (e.g., 1.5% for services, 10% for house rent)",
+        "Net Payment = The actual cash amount received by the service provider after the TDS has been deducted",
+        "PAN Status = The determining factor for the tax rate (Standard vs. Penal 15% rate for entities without a valid PAN)"
+      ]
+    },
     content: (
       <>
-        <h2>Mastering TDS in Nepal: A Guide for Businesses</h2>
-        <p>
-          <strong>Tax Deducted at Source (TDS)</strong> is a method of collecting income tax in Nepal where the person responsible for making a payment is required to deduct tax and deposit it with the <strong>Inland Revenue Department (IRD)</strong>.
-        </p>
+        <h2 className="text-xl font-bold text-[#202124] mb-3">The Ultimate Encyclopedia of TDS & Withholding Tax in Nepal</h2>
+        
+        <div className="bg-[#e8f0fe] rounded-xl p-5 mb-5 border border-[#d2e3fc]">
+          <h4 className="text-[#1967d2] font-bold text-base mb-2 mt-0">TDS Navigation</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 text-xs text-[#3c4043]">
+            <a href="#tds-1" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>1.</span> Professional Services (1.5%)</a>
+            <a href="#tds-2" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>2.</span> House Rent TDS Rules (10%)</a>
+            <a href="#tds-3" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>3.</span> Filing Deadlines (25th of Month)</a>
+            <a href="#tds-4" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>4.</span> PAN vs. VAT TDS Differences</a>
+            <a href="#tds-5" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>5.</span> TDS Certificate (E-TDS) Retrieval</a>
+          </div>
+        </div>
 
-        <h3>Common TDS Rates in Nepal</h3>
-        <ul>
-          <li><strong>House Rent:</strong> 10%</li>
-          <li><strong>Service Fees (Natural Person):</strong> 15%</li>
-          <li><strong>Bank Interest:</strong> 5%</li>
-          <li><strong>Meeting Fees:</strong> 15%</li>
-        </ul>
+        <div className="space-y-6">
+          <section id="tds-1">
+            <h3 className="text-base font-bold text-[#202124] mb-2">1. The 1.5% Professional Service Rule</h3>
+            <p className="text-sm text-[#5f6368] mb-3">Most corporate payments for services (Audit, Legal, IT) attract a 1.5% TDS if the provider is registered.</p>
+            <div className="p-4 bg-[#f8f9fa] border border-[#dadce0] rounded-xl">
+               <p className="text-xs text-[#3c4043] mb-0">**Note:** If the service provider is NOT registered in the IRD system, the TDS rate typically jumps to **15%**. Always verify the PAN/VAT status of your vendors before making payments.</p>
+            </div>
+          </section>
+
+          <section id="tds-2">
+            <h3 className="text-base font-bold text-[#202124] mb-2">2. House Rent TDS (The 10% Standard)</h3>
+            <p className="text-sm text-[#5f6368] mb-2">In Nepal, the person or company renting a property is responsible for deducting 10% of the rent and depositing it as TDS.</p>
+            <div className="p-4 bg-[#fff4e5] border border-[#ffe0b2] rounded-xl">
+               <p className="text-xs text-[#3c4043] mb-0">**Institutional Rule:** Many local municipalities now collect 'Rental Tax' directly. Ensure you aren't double-taxed by checking if your area requires IRD TDS or Local Government Rent Tax.</p>
+            </div>
+          </section>
+
+          <section id="tds-3">
+            <h3 className="text-base font-bold text-[#202124] mb-2">3. Filing Deadlines (25th Rule)</h3>
+            <p className="text-sm text-[#5f6368] mb-2">TDS must be deposited in the government treasury within a strict timeframe to avoid penalties.</p>
+            <div className="p-4 bg-[#fdf2f2] border-l-2 border-[#d93025] rounded-r-lg">
+               <p className="text-xs text-[#3c4043] mb-0">**Deadline:** TDS must be filed and paid by the **25th day** of the following Nepali month. Late filing attracts interest and a flat penalty per day.</p>
+            </div>
+          </section>
+        </div>
+
+        <div className="mt-10 pt-6 border-t border-[#f1f3f4] text-center">
+           <p className="text-[11px] text-[#5f6368]">
+              NepaCalc Internal Silo: After calculating TDS, ensure your annual returns are correct with the <a href="/calculator/nepal-income-tax/" className="text-[#1a73e8] font-bold hover:underline">Income Tax Calculator</a>. Managing a business? Check our <a href="/calculator/nepal-vat/" className="text-[#1a73e8] font-bold hover:underline">VAT Tool</a>.
+           </p>
+        </div>
       </>
     ),
     faqs: [
-      { question: "What is the deadline for depositing TDS?", answer: "TDS must be deposited to the IRD within 25 days from the end of the month in which the deduction was made." },
-      { question: "Can I claim a refund for TDS?", answer: "TDS is an advance tax. If your final tax liability at the end of the year is lower than the total TDS deducted, you can claim a refund or carry it forward." }
+      { question: "Is TDS refundable?", answer: "Yes, TDS is a credit toward your total income tax liability. When you file your annual tax return, the total TDS deducted is subtracted from your tax payable." },
+      { question: "What is the deadline for depositing TDS?", answer: "TDS must be deposited with the IRD within 25 days of the end of the month in which the deduction was made." }
     ]
   },
+
+  'nepse-wacc': {
+    title: "NEPSE WACC Calculator | Share Weighted Average Cost Basis",
+    description: "Calculate your Weighted Average Cost of Capital (WACC) for NEPSE shares. Essential for accurate profit reporting and CGT calculation on the Nepal Stock Exchange.",
+    howToUse: [
+      "Enter Purchase Quantity: Input the total number of shares bought in each lot.",
+      "Enter Purchase Price: Include the broker commission and SEBON fees in your cost.",
+      "Add Multiple Lots: Add all transactions for the same script to get the average.",
+      "Analyze Result: Use the calculated WACC for your Meroshare EDIS declaration."
+    ],
+    formula: {
+      title: "WACC Calculation Logic",
+      equation: "WACC = Σ(Quantity x Price) / Total Quantity",
+      description: "Weighted Average Cost of Capital in NEPSE represents the average price you paid for a stock across multiple buy orders, including all regulatory fees.",
+      variables: [
+        "Σ (Sigma) = Summation (The mathematical process of adding up the total cost of all individual purchase lots)",
+        "Quantity = The total number of shares accumulated across all buy transactions for a specific script",
+        "Cost Basis = The total purchase price including all regulatory fees such as Broker Commission and SEBON fees",
+        "Adjusted WACC = The final weighted average cost of capital after accounting for bonus and right share issues"
+      ]
+    },
+    content: (
+      <>
+        <h2 className="text-xl font-bold text-[#202124] mb-3">The Ultimate Encyclopedia of WACC & Cost Basis in NEPSE</h2>
+        
+        <div className="bg-[#e8f0fe] rounded-xl p-5 mb-5 border border-[#d2e3fc]">
+          <h4 className="text-[#1967d2] font-bold text-base mb-2 mt-0">Stock Math Navigation</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 text-xs text-[#3c4043]">
+            <a href="#wacc-1" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>1.</span> Why WACC is Mandatory in Meroshare</a>
+            <a href="#wacc-2" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>2.</span> Including Commissions in Cost Basis</a>
+            <a href="#wacc-3" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>3.</span> Adjusting for Bonus & Right Shares</a>
+            <a href="#wacc-4" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>4.</span> WACC for IPO vs. Secondary Market</a>
+            <a href="#wacc-5" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>5.</span> Meroshare \"My Purchase Source\" Logic</a>
+          </div>
+        </div>
+
+        <p className="text-sm text-[#3c4043] leading-relaxed mb-5">
+          In the Nepal Stock Exchange (NEPSE), the 'WACC' is not just a metric—it is a legal requirement for 'Purchase Price' declaration in Meroshare. Failing to calculate WACC correctly can lead to overpayment of Capital Gains Tax. Use our <a href="/calculator/nepal-stocks/" className="text-[#1a73e8] font-bold hover:underline">Profit Calculator</a> to see how your WACC impacts your net return.
+        </p>
+
+        <div className="space-y-6">
+          <section id="wacc-1">
+            <h3 className="text-base font-bold text-[#202124] mb-2">1. Why WACC is Mandatory?</h3>
+            <p className="text-sm text-[#5f6368] mb-3">When you sell shares, the CDSC system requires a cost basis to calculate your CGT. The WACC represents this cost.</p>
+            <div className="p-4 bg-[#fff4e5] border-l-2 border-[#ff9800] rounded-r-xl">
+               <p className="text-xs text-[#3c4043] mb-0">**Critical Step:** Always include the Rs. 25 DP charge and the SEBON fees when manually calculating your 'Purchase Price' if the system doesn't auto-fetch it.</p>
+            </div>
+          </section>
+
+          <section id="wacc-3">
+            <h3 className="text-base font-bold text-[#202124] mb-2">3. Adjusting for Bonus & Right Shares</h3>
+            <p className="text-sm text-[#5f6368] mb-2">Bonus and Right shares lower your average cost. The WACC tool automatically averages these 'Free' or 'Subsidized' shares into your total portfolio value.</p>
+            <div className="p-4 bg-[#f8f9fa] border border-[#dadce0] rounded-xl">
+               <p className="text-xs text-[#3c4043] mb-0">**WACC Formula for Bonus:** (Original Cost) / (Total Shares Including Bonus). This is why your WACC drops after a company issues a dividend.</p>
+            </div>
+          </section>
+        </div>
+
+        <div className="mt-10 pt-6 border-t border-[#f1f3f4] text-center">
+           <p className="text-[11px] text-[#5f6368]">
+              NepaCalc Internal Silo: After calculating WACC, audit your dividend returns with the <a href="/calculator/nepse-bonus-tax/" className="text-[#1a73e8] font-bold hover:underline">Bonus Tax Tool</a> or check your <a href="/calculator/nepal-stocks/" className="text-[#1a73e8] font-bold hover:underline">Total Trading Profit</a>.
+           </p>
+        </div>
+      </>
+    ),
+    faqs: [
+      { question: "What is the face value for IPO WACC?", answer: "For most IPOs in Nepal, the cost basis or WACC is the face value of Rs. 100 per share." },
+      { question: "Do I include broker commission in WACC?", answer: "Yes. Your true cost basis includes the stock price plus the broker commission and the 0.015% SEBON fee." }
+    ]
+  },
+
   'nepse-bonus-tax': {
-    title: "NEPSE Bonus Share & Dividend Tax Calculator | Share Market Nepal",
-    description: "Calculate tax on bonus shares and cash dividends received from NEPSE-listed companies. Essential tool for share market investors in Nepal.",
+    title: "NEPSE Bonus & Dividend Tax Calculator | Share Return Analytics",
+    description: "Calculate the net cash dividend and tax payable on bonus shares in Nepal. Updated for latest fiscal rules on bonus share taxation.",
+    howToUse: [
+      "Enter Shares Owned: Your total holding before the book closure.",
+      "Bonus/Dividend %: Input the percentages announced by the company.",
+      "Market Price: The current LTP or the price on the book closure day.",
+      "Calculate: View your new share count and net cash in hand after tax."
+    ],
+    formula: {
+      title: "Dividend Tax Formula",
+      equation: "Net Cash = Gross_Dividend - (Gross_Dividend x Tax_Rate)",
+      description: "Dividends in Nepal are subject to a 5% tax for individual residents. Bonus shares are also taxed based on their face value (usually Rs. 100).",
+      variables: [
+        "Bonus % = The percentage of additional shares issued by the company to its existing shareholders",
+        "Face Value = The statutory unit price used for tax calculation (Standardized at Rs. 100 in Nepal)",
+        "Tax Payable = The 5% final withholding tax calculated on the total face value of the bonus shares issued",
+        "Price Adjustment = The mathematical reduction in market price applied by NEPSE on the book closure day"
+      ]
+    },
     content: (
       <>
-        <h2>Share Market Investing: Understanding Dividend Taxes</h2>
-        <p>
-          Investing in the <strong>Nepal Stock Exchange (NEPSE)</strong> can be rewarding through dividends and bonus shares. However, investors must understand the tax implications of these corporate actions to calculate their true net returns.
-        </p>
-
-        <h3>Taxation on Dividends</h3>
-        <p>
-         , <strong>Cash Dividend:</strong> Taxed at 5% (withheld by the company).
-         , <strong>Bonus Shares:</strong> Taxed at 5% of the par value (usually NPR 100).
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "Do I need to pay tax on bonus shares separately?", answer: "Usually, the company deducts the tax from your cash dividend to pay for the bonus share tax. If no cash dividend is announced, you may need to deposit the tax amount to the company's account." },
-      { question: "Is share trading profit also taxed?", answer: "Yes, Capital Gains Tax on share trading is 5% for long-term investors (held &gt; 1 year) and 7.5% for short-term investors." }
-    ]
-  },
-  'gratuity-calculator': {
-    title: "Gratuity Calculator Nepal | Labor Act 2074 Entitlements",
-    description: "Calculate your end-of-service gratuity entitlement under Nepal's Labor Act 2074. Find out exactly what your employer owes you after resignation or retirement.",
-    content: (
-      <>
-        <h2>Know Your Rights: Gratuity Under Nepal's Labor Act 2074</h2>
-        <p>
-          In Nepal, the **Labor Act 2074** mandates that every employee who has completed at least one year of service is entitled to a gratuity upon leaving their job. Whether you have resigned, retired, or been laid off, understanding how your "End-of-Service" benefits are calculated is crucial.
-        </p>
-
-        <h3>How Gratuity is Calculated in Nepal</h3>
-        <p>
-          The standard formula for gratuity is:
-         , <strong>1 Month's Basic Salary</strong> for every year of completed service.
-          The basic salary is defined as the amount you were earning at the time of your departure, excluding allowances and overtime.
-        </p>
-
-        <div className="bg-[#e8f0fe] border border-[#1a73e8] rounded-xl p-6 my-8">
-          <h3 className="text-[#1967d2] font-black mt-0 mb-3 uppercase text-xs tracking-widest">Legal Notice</h3>
-          <p className="text-sm leading-relaxed mb-0">
-            Your employer is legally required to deposit your gratuity into a social security fund or a separate bank account. If they refuse to pay, you can file a complaint with the **Department of Labor and Occupational Safety**.
-          </p>
-        </div>
-      </>
-    ),
-    faqs: [
-      { question: "How many years of service qualify for gratuity?", answer: "Under Nepal's Labor Act 2074, an employee qualifies for gratuity after completing at least one year of continuous service." },
-      { question: "Can I receive gratuity if I resign?", answer: "Yes. As long as you have completed the minimum service period, you are entitled to gratuity regardless of whether you resign or retire." }
-    ]
-  },
-  'foreign-employment': {
-    title: "Foreign Employment Cost & Salary Calculator Nepal | DoFE Fees",
-    description: "Calculate total cost of going abroad for work from Nepal. Includes agency fees, visa, insurance, and expected net savings for Gulf and European jobs.",
-    content: (
-      <>
-        <h2>Planning for Foreign Employment: The Real Costs</h2>
-        <p>
-          Each year, hundreds of thousands of Nepalese workers seek opportunities in countries like the **UAE, Qatar, Japan, and Romania**. However, many fall into debt due to unregulated agency fees. Our <strong>Foreign Employment Calculator</strong> helps you estimate the legal and hidden costs of your migration.
-        </p>
-
-        <h3>Legal Caps on Recruitment Fees</h3>
-        <p>
-          The **Department of Foreign Employment (DoFE)** has set strict caps on how much a recruitment agency can charge:
-         , <strong>Free Visa Free Ticket:</strong> For many Gulf countries and Malaysia, the employer must bear the cost.
-         , <strong>NPR 10,000 Cap:</strong> For countries where "Free Visa" isn't applicable, the agency fee is often capped at NPR 10,000.
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "What is the importance of the DoFE Labor Permit?", answer: "The labor permit ensures that your employment is legal and that you are covered by the Foreign Employment Insurance in case of injury or death." },
-      { question: "Is income from abroad taxable in Nepal?", answer: "Remittance income sent via formal banking channels is generally not taxed in Nepal. However, always check the latest Finance Act for updates." }
-    ]
-  },
-  'kukl-bill': {
-    title: "KUKL Water Bill Calculator | Kathmandu Water Tariffs 2081",
-    description: "Calculate your exact KUKL monthly water bill for Kathmandu Valley based on meter size and consumption units. Find your bill before the meter reader arrives.",
-    content: (
-      <>
-        <h2>Kathmandu Water Bills: Understanding KUKL Tariffs</h2>
-        <p>
-          Managing your monthly expenses in Kathmandu requires tracking your water consumption. The **Kathmandu Upatyaka Khanepani Limited (KUKL)** uses a tiered pricing system where the more you use, the higher the rate per unit.
-        </p>
-
-        <h3>Meter Size and Minimum Charges</h3>
-        <p>
-          Your bill consists of a minimum monthly charge (determined by your meter size, e.g., 1/2 inch, 1 inch) and a consumption-based charge.
-         , <strong>Minimum Consumption:</strong> Usually the first 10,000 liters (10 units) are included in the base charge.
-         , <strong>Sewage Charge:</strong> KUKL also adds a sewage service fee, typically 50% of your water bill.
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "Where can I pay my KUKL bill online?", answer: "You can pay your KUKL bill via digital wallets like Esewa, Khalti, or mobile banking apps." },
-      { question: "What should I do if my bill is unusually high?", answer: "Check for leaks in your internal plumbing first. If no leaks are found, you can request a meter testing at your local KUKL branch office." }
-    ]
-  },
-  'nepal-attendance': {
-    title: "Attendance Calculator | Nepal University 75% Rule Guide",
-    description: "Calculate your university attendance percentage. Find out exactly how many more classes you can miss before being barred from exams at TU, KU, or PU.",
-    content: (
-      <>
-        <h2>Staying Eligible: The 75% Attendance Rule in Nepal</h2>
-        <p>
-          For students in Nepal, maintaining a minimum attendance of <strong>75%</strong> is a mandatory requirement set by major universities like <strong>Tribhuvan University (TU), Kathmandu University (KU), and Pokhara University (PU)</strong>. Falling below this threshold can lead to being barred from sitting for final board examinations.
-        </p>
-
-        <h3>How to Use the Attendance Tracker</h3>
-        <p>
-          Simply enter the total number of classes held and the number of classes you have attended. Our tool will tell you:
-          1. Your current attendance percentage.
-          2. How many more classes you can miss while staying above 75%.
-          3. How many consecutive classes you must attend to reach your target percentage if you are currently below it.
-        </p>
-
-        <div className="bg-[#fef7e0] border border-[#fbbc04] rounded-lg p-5 my-6">
-          <h4 className="text-sm font-black text-[#b06000] uppercase mb-2">Academic Tip</h4>
-          <p className="text-xs leading-relaxed mb-0 text-[#3c4043]">
-            In many professional courses like MBBS or Engineering, the requirement might be as high as 80%. Always check your specific department's policy before planning any leaves!
-          </p>
-        </div>
-      </>
-    ),
-    faqs: [
-      { question: "Can I get a waiver for low attendance?", answer: "Waivers are extremely rare and usually require official medical documentation or proof of an emergency, approved by the Dean's office." },
-      { question: "Do internal marks depend on attendance?", answer: "Yes, many colleges in Nepal allocate a portion of internal assessment marks (usually 5-10%) based on your attendance record." }
-    ]
-  },
-  'lead-time': {
-    title: "Lead Time & Cycle Time Calculator | Business Efficiency",
-    description: "Calculate manufacturing lead times, cycle times, and takt time. Essential for optimizing inventory and supply chain for Nepalese businesses.",
-    content: (
-      <>
-        <h2>Optimizing Your Business Workflow</h2>
-        <p>
-          Efficiency is the key to profit for any manufacturing or service business in Nepal. Our <strong>Lead Time Calculator</strong> helps you identify where time is being wasted in your delivery or production process.
-        </p>
-
-        <h3>Lead Time vs. Cycle Time</h3>
-        <ul>
-          <li><strong>Lead Time:</strong> The total time from the moment a customer places an order until the product is delivered.</li>
-          <li><strong>Cycle Time:</strong> The internal time it takes to actually produce the item.</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      { question: "How can I reduce my business lead time?", answer: "Reducing lead time involves optimizing supplier lead times, reducing internal processing delays, and improving logistics." },
-      { question: "Why is Lead Time important for SEO content writing?", answer: "In content marketing, lead time is the time between planning and publishing. Faster lead times allow you to respond to trends before your competitors." }
-    ]
-  },
-  'pythagorean-theorem': {
-    title: "Pythagorean Theorem Calculator | Solve Triangles Instantly",
-    description: "Instantly solve for the hypotenuse or any side of a right-angled triangle using a² + b² = c². Essential for students, architects, and engineers.",
-    content: (
-      <>
-        <h2>The Foundation of Geometry: Pythagoras' Theorem</h2>
-        <p>
-          The <strong>Pythagorean Theorem</strong> is one of the most famous principles in mathematics. It describes the relationship between the three sides of a right-angled triangle. Our <strong>Triangle Solver</strong> allows you to find any missing side (a, b, or c) with 100% precision.
-        </p>
-
-        <h3>The Mathematical Formula</h3>
-        <p>
-          The theorem states that in a right triangle, the square of the hypotenuse (the side opposite the right angle) is equal to the sum of the squares of the other two sides: <code>a² + b² = c²</code>.
-        </p>
-
-        <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg my-8">
-          <h4 className="font-bold mb-2">Real-World Application</h4>
-          <p className="text-sm leading-relaxed mb-0">
-            Architects and carpenters in Nepal use this formula every day to ensure corners are perfectly square (90 degrees). If you measure 3 feet on one wall and 4 feet on another, the diagonal distance between them must be exactly 5 feet, this is a "Pythagorean Triple" (3-4-5).
-          </p>
-        </div>
-      </>
-    ),
-    faqs: [
-      { question: "Does the Pythagorean theorem work on any triangle?", answer: "No. The theorem strictly applies only to right-angled triangles where one angle is exactly 90 degrees." },
-      { question: "What is a Pythagorean Triple?", answer: "A set of three positive integers that perfectly fit the formula with no decimals. The most famous are (3, 4, 5) and (5, 12, 13)." }
-    ]
-  },
-  'surface-area-calculator': {
-    title: "Surface Area Calculator | 3D Geometric Shapes & Formulas",
-    description: "Calculate the total surface area of cylinders, spheres, cones, and rectangular prisms. Essential for construction and material estimation.",
-    content: (
-      <>
-        <h2>Mastering 3D Geometry: Surface Area Guide</h2>
-        <p>
-          Surface area is the total area occupied by the surface of a 3D object. Whether you are calculating how much paint you need for a cylindrical water tank or the amount of wrapping paper for a gift box, our <strong>Surface Area Calculator</strong> provides instant results using standard geometric formulas.
-        </p>
-
-        <h3>Common Surface Area Formulas</h3>
-        <ul>
-          <li><strong>Sphere:</strong> 4 × π × r²</li>
-          <li><strong>Cylinder:</strong> 2πrh + 2πr² (includes both bases)</li>
-          <li><strong>Cube:</strong> 6 × a² (where 'a' is the side length)</li>
-        </ul>
-      </>
-    ),
-    faqs: [
-      { question: "What is the difference between lateral and total surface area?", answer: "Lateral surface area covers only the sides (excluding the top and bottom bases). Total surface area includes the bases as well." },
-      { question: "Why do we use 'square units' for surface area?", answer: "Since surface area measures a 2D surface on a 3D object, it is always expressed in square units (e.g., cm², m², sq. ft.)." }
-    ]
-  },
-  'volume-calculator': {
-    title: "Volume Calculator | 3D Space & Capacity Estimator",
-    description: "Calculate the volume of any 3D geometric shape instantly. Supports cones, cylinders, spheres, and rectangular prisms for industrial and home use.",
-    content: (
-      <>
-        <h2>How Much Can It Hold? Volume Calculation Explained</h2>
-        <p>
-          Volume is the amount of 3D space a substance or shape occupies or contains. In Nepal, understanding volume is critical for everything from sizing a <strong>water tank</strong> to calculating the engine displacement (cc) of a motorcycle.
-        </p>
-
-        <h3>Practical Volume Conversions</h3>
-        <p>
-         , 1 Cubic Meter (m³) = 1000 Liters
-         , 1 Cubic Foot (ft³) ≈ 28.31 Liters
-         , 1 Gallon (US) ≈ 3.78 Liters
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "What is the formula for the volume of a cylinder?", answer: "Volume of a cylinder = π × r² × h, where r is the radius of the circular base and h is the height." },
-      { question: "How do I convert volume to weight?", answer: "You must know the density of the material. For water, 1 liter = 1 kilogram. For concrete or soil, the weight is much higher per unit of volume." }
-    ]
-  },
-  'market-rates/live-gold-price': {
-    title: "Live Gold Price in Nepal Today | Fine & Tejabi Sun",
-    description: "Check the exact, official daily gold rates in Nepal (Fine 24K and Tejabi 22K). Prices synced with the Nepal Gold and Silver Dealers' Association.",
-    content: (
-      <>
-        <h2>Gold Market in Nepal: A Heritage of Investment</h2>
-        <p>
-          In Nepal, gold (Sun) is not just jewelry; it is a primary form of savings and a symbol of cultural heritage, especially during the wedding season. The <strong>Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)</strong> sets the daily benchmark price for the entire country.
-        </p>
-
-        <h3>Understanding Gold Types in Nepal</h3>
-        <ul>
-          <li><strong>Fine Gold (24K):</strong> 99.99% pure gold, primarily used for investment bars and coins.</li>
-          <li><strong>Tejabi Gold (22K):</strong> Approximately 91.6% pure gold, mixed with other metals to provide the durability needed for intricate jewelry designs.</li>
-        </ul>
-
-        <div className="bg-[#fef7e0] border border-[#fbbc04] rounded-lg p-6 my-8">
-          <h3 className="text-[#b06000] font-black mt-0 mb-3 uppercase text-xs tracking-widest">Pricing Tip</h3>
-          <p className="text-sm leading-relaxed mb-0 text-[#3c4043]">
-            When you buy jewelry, the "Rate" you pay is: <strong>Market Rate + Making Charges + Jarti (Wastage)</strong>. Always ask your jeweler for a complete breakdown of these costs!
-          </p>
-        </div>
-      </>
-    ),
-    faqs: [
-      { question: "Why is the gold price higher in Nepal than in the international market?", answer: "Nepal imposes an import duty (tax) on gold, which adds to the international base price. Additionally, local demand and currency fluctuations play a role." },
-      { question: "How many grams are in 1 Tola of gold?", answer: "In Nepal, 1 Tola is equivalent to exactly 11.66 grams." }
-    ]
-  },
-  'market-rates/remittance': {
-    title: "Nepal Remittance Board | Compare Live Money Transfer Rates",
-    description: "Compare real-time exchange rates from top remit companies (IME, Western Union, Prabhu) for sending money to Nepal from abroad.",
-    content: (
-      <>
-        <h2>The Remittance Lifeline of Nepal</h2>
-        <p>
-          Remittance is a critical pillar of the Nepalese economy, supporting millions of households. Whether you are sending money from the <strong>Gulf, Malaysia, or South Korea</strong>, finding the best exchange rate can make a significant difference in the amount your family receives in NPR.
-        </p>
-
-        <h3>How to Choose a Remittance Service</h3>
-        <p>
-         , <strong>Compare Rates:</strong> Use our tool to compare IME, Prabhu, and City Express rates side-by-side.
-         , <strong>Hidden Fees:</strong> Some companies offer high rates but charge high fixed service fees.
-         , <strong>Digital Wallets:</strong> Services like <strong>Esewa</strong> and <strong>Khalti</strong> often have partnerships for direct-to-wallet transfers with extra bonuses.
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "Which is the fastest way to send money to Nepal?", answer: "Direct digital transfers to bank accounts or wallets like IME Pay are usually the fastest, often reflecting within minutes." },
-      { question: "What documents are needed for remittance?", answer: "The sender needs a valid ID and proof of address in their host country. The receiver in Nepal usually needs their Citizenship card for cash pickup." }
-    ]
-  },
-  'market-rates/exchange-rate': {
-    title: "Live Foreign Exchange Rates Nepal | USD, AUD, INR to NPR",
-    description: "View real-time, official Nepal Rastra Bank (NRB) foreign exchange reference rates for USD, AUD, EUR, and GBP to Nepalese Rupees.",
-    content: (
-      <>
-        <h2>Foreign Exchange in Nepal: Mastering NRB Rates</h2>
-        <p>
-          If you are receiving a <strong>remittance from abroad</strong>, planning a trip to Australia or the USA, or conducting international trade, staying updated with the latest exchange rates is vital. The <strong>Nepal Rastra Bank (NRB)</strong> publishes daily reference rates that serve as the benchmark for all commercial banks and money exchangers across the country.
-        </p>
-
-        <h3>Understanding Buying vs. Selling Rates</h3>
-        <p>
-          One of the most common points of confusion for travelers in Nepal is the difference between these two numbers:
-         , <strong>Buying Rate:</strong> The price the bank will pay you if you give them foreign currency (e.g., USD).
-         , <strong>Selling Rate:</strong> The price the bank charges you if you want to buy foreign currency from them.
-          The difference between these two is the bank's profit margin, often called the "Spread."
-        </p>
-
-        <div className="p-6 bg-blue-50 border border-blue-100 rounded-lg my-8">
-          <h4 className="text-sm font-bold text-blue-900 mb-2">Did You Know?</h4>
-          <p className="text-xs leading-relaxed text-blue-800 mb-0">
-            The Nepalese Rupee (NPR) is <strong>pegged to the Indian Rupee (INR)</strong> at a fixed rate of 1.6:1. This means that if the Indian Rupee weakens against the US Dollar, the Nepalese Rupee will also weaken proportionally.
-          </p>
-        </div>
-      </>
-    ),
-    faqs: [
-      { question: "What is the best time to exchange money in Nepal?", answer: "The NRB publishes new rates daily (except holidays) around 10:00 AM. It's often best to wait for the morning update before visiting a bank." },
-      { question: "Can I exchange money at the airport?", answer: "Yes, Tribhuvan International Airport (TIA) has multiple exchange counters, but their rates may be slightly less favorable than those found in Thamel or New Road." }
-    ]
-  },
-  'market-rates/live-silver-price': {
-    title: "Live Silver Price in Nepal | Chandi Rates Today",
-    description: "Check the official daily Silver (Chandi) rates in Nepal per Tola and per Gram, authorized by FENEGOSIDA.",
-    content: (
-      <>
-        <h2>Silver Market Trends in Nepal (Chandi)</h2>
-        <p>
-          While Gold (Sun) often gets the spotlight, Silver (Chandi) remains a vital metal for traditional Nepalese jewelry, religious artifacts, and household utensils. The <strong>Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)</strong> sets the daily silver price based on international market fluctuations.
-        </p>
-
-        <h3>Silver Measurement Units in Nepal</h3>
-        <p>
-          In the Nepalese market, silver is primarily traded in:
-         , <strong>Tola:</strong> The traditional unit (11.66 grams).
-         , <strong>Gram:</strong> The international standard.
-        </p>
-
-        <h2>Buying Silver: Quality and Purity</h2>
-        <p>
-          When buying silver in Nepal, always look for <strong>Sterling Silver (925)</strong>, which contains 92.5% pure silver and 7.5% other metals for durability. For traditional items, "Fine Silver" (99.9% purity) is often used but is much softer.
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "Why does the silver price change daily?", answer: "The price is linked to the international market (LBMA) and the exchange rate of the US Dollar. Since Nepal imports all of its silver, global shifts are reflected immediately." },
-      { question: "Is silver a good investment in Nepal?", answer: "Silver is often considered 'the poor man's gold.' It is more affordable for small investors and has historically preserved its value against inflation." }
-    ]
-  },
-  'bmi-child': {
-    title: "Child BMI Percentile Calculator | Pediatric Growth Tracking Nepal",
-    description: "Calculate your child's BMI percentile accurately based on CDC and WHO growth charts. Essential for monitoring childhood development and nutrition in Nepal.",
-    content: (
-      <>
-        <h2>Monitoring Childhood Growth: Understanding BMI Percentiles</h2>
-        <p>
-          Unlike adults, a child's body fat changes significantly as they grow. Therefore, a single BMI number isn't enough. Our <strong>Child BMI Calculator</strong> uses "BMI-for-age" percentiles to show how your child's weight compares to other children of the same age and gender in Nepal and globally.
-        </p>
-
-        <h3>How to Interpret the Results</h3>
-        <p>
-         , <strong>5th to 85th Percentile:</strong> Healthy weight range.
-         , <strong>85th to 95th Percentile:</strong> Overweight category.
-         , <strong>Above 95th Percentile:</strong> Obese category.
-        </p>
-
-        <div className="p-6 bg-green-50 border border-green-200 rounded-lg my-8">
-          <h4 className="text-sm font-bold text-green-900 mb-2">Pediatrician Tip</h4>
-          <p className="text-xs leading-relaxed text-green-800 mb-0">
-            If your child falls outside the "Healthy" range, don't panic. Growth spurts can temporarily shift percentiles. In Nepal, focus on providing a balanced diet of "Dal Bhat," vegetables, and proteins while encouraging active play.
-          </p>
-        </div>
-      </>
-    ),
-    faqs: [
-      { question: "Is BMI accurate for athletic children?", answer: "Heavily muscular children may have a higher BMI even with low body fat. Always consult a doctor for a full assessment." },
-      { question: "What is a healthy percentile range for a child?", answer: "A healthy weight is typically defined as falling between the 5th and 85th percentiles." }
-    ]
-  },
-  'sleep': {
-    title: "Sleep Cycle Calculator | Optimize Wake Time & REM Sleep",
-    description: "Calculate the exact time you should go to bed or wake up to avoid grogginess. Based on 90-minute human REM sleep cycles.",
-    content: (
-      <>
-        <h2>Wake Up Refreshed: The Science of Sleep Cycles</h2>
-        <p>
-          Have you ever woken up after 8 hours of sleep feeling exhausted? This often happens because you were woken up in the middle of a **Deep Sleep** cycle. Our <strong>Sleep Calculator</strong> uses 90-minute cycle logic to find the perfect window for you to wake up or go to bed.
-        </p>
-
-        <h3>The 90-Minute Rule</h3>
-        <p>
-          The human brain goes through several stages of sleep every night. A complete cycle takes approximately 90 minutes. Waking up at the end of a cycle (during Light Sleep) makes you feel alert and energized.
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "How long does it take to fall asleep?", answer: "The average person takes about 14 minutes to fall asleep. Our calculator automatically adds this buffer to your bedtime." },
-      { question: "Is 6 hours of sleep enough?", answer: "For some, 4 full cycles (6 hours) is enough, but most adults perform best with 5 or 6 cycles (7.5 to 9 hours)." }
-    ]
-  },
-  'momo-calorie-counter': {
-    title: "Momo Calorie Counter | Nepalese Food Nutrition Guide",
-    description: "Calculate the exact calories and macros in your plate of Momo (Chicken, Buff, Veg). Essential for fitness enthusiasts in Kathmandu.",
-    content: (
-      <>
-        <h2>Counting Calories in Nepal's Favorite Dish: Momo</h2>
-        <p>
-          Momo is the unofficial national dish of Nepal. However, if you are on a fitness journey or tracking your macros in Kathmandu, you need to know what's inside your plate. Our <strong>Momo Calorie Counter</strong> provides a breakdown for Steamed, Fried, and Jhol Momos.
-        </p>
-
-        <h3>Calorie Breakdown (Per Plate, 10 Pieces)</h3>
-        <ul>
-          <li><strong>Veg Steamed Momo:</strong> ~250, 300 Calories</li>
-          <li><strong>Chicken Steamed Momo:</strong> ~350, 450 Calories</li>
-          <li><strong>Buff Steamed Momo:</strong> ~450, 550 Calories</li>
-          <li><strong>Fried Momo:</strong> Add an extra 150, 200 calories due to oil absorption.</li>
-        </ul>
-
-        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-6">
-          <p className="text-sm italic mb-0">"The secret calories are often in the Achar (sauce). Nut-based sauces can add 100+ calories per serving!"</p>
-        </div>
-      </>
-    ),
-    faqs: [
-      { question: "Which momo is best for weight loss?", answer: "Steamed vegetable or chicken momo is the best choice for those watching their weight." },
-      { question: "Is momo healthy?", answer: "Steamed momos are a good source of protein and carbs. The healthiness depends largely on the quality of meat and the amount of oil used in the filling." }
-    ]
-  },
-  'solar-requirement': {
-    title: "Solar Panel & Inverter Calculator | Home Load Capacity Nepal",
-    description: "Calculate the total wattage required for your home. Size your solar panels, battery bank, and inverter accurately for load-shedding backup.",
-    content: (
-      <>
-        <h2>Sizing Your Solar System for Nepalese Homes</h2>
-        <p>
-          With electricity rates rising and the need for reliable backup power, many Nepalese households are switching to solar. Our <strong>Solar Requirement Calculator</strong> helps you determine exactly how many panels and what battery capacity you need based on your daily appliance usage.
-        </p>
-
-        <h3>Step-by-Step Load Calculation</h3>
-        <ol>
-          <li><strong>List Appliances:</strong> Count all LED bulbs, fans, TVs, and computers.</li>
-          <li><strong>Calculate Watt-Hours:</strong> Multiply the wattage by the hours of use per day.</li>
-          <li><strong>Size the Battery:</strong> Factor in "Days of Autonomy" (cloudy days in Nepal).</li>
-        </ol>
-      </>
-    ),
-    faqs: [
-      { question: "What is the difference between Off-Grid and On-Grid solar?", answer: "Off-Grid systems use batteries to store power for nighttime use. On-Grid systems sell excess power back to the NEA (Net Metering)." },
-      { question: "How long do solar batteries last in Nepal?", answer: "Lead-acid batteries typically last 3-5 years, while modern Lithium-Ion batteries can last 10+ years with proper maintenance." }
-    ]
-  },
-  'paint-cost': {
-    title: "House Painting Cost & Volume Calculator | Nepal Pricing 2081",
-    description: "Estimate exactly how many liters of paint you need for a room or house. Calculate total costs based on primer, coats, and square footage for Asian Paints, Berger, and KNP.",
-    content: (
-      <>
-        <h2>Planning a Home Makeover? Calculate Your Paint Needs</h2>
-        <p>
-          Painting your home in Nepal is a significant investment. Whether you are using **Asian Paints, Berger, or KNP**, the most common mistake homeowners make is buying too much or too little paint. Our <strong>House Painting Cost Calculator</strong> helps you find the perfect balance between volume and budget.
-        </p>
-
-        <h3>How Much Paint Do You Really Need?</h3>
-        <p>
-          A standard rule of thumb for interior walls in Nepal is:
-         , <strong>1 Liter</strong> of emulsion paint typically covers about <strong>130-150 sq. ft.</strong> for a single coat.
-         , <strong>Primer:</strong> Always apply one coat of primer first to ensure the paint sticks properly and the color remains vibrant.
-        </p>
-
-        <div className="bg-[#f1f3f4] border border-[#dadce0] rounded-lg p-6 my-8">
-          <h3 className="font-bold mb-3">Cost Components (Estimated)</h3>
-          <p className="text-sm text-[#5f6368]">
-            The total cost isn't just the paint. You must also factor in:
-            1. <strong>Labor Cost:</strong> Typically charged per square foot or as a daily wage.
-            2. <strong>Putty & Primer:</strong> Essential for new walls to achieve a smooth finish.
-            3. <strong>Tools:</strong> Brushes, rollers, and masking tape.
-          </p>
-        </div>
-      </>
-    ),
-    faqs: [
-      { question: "How many coats of paint are necessary?", answer: "For most interior walls, you will need one coat of primer and two coats of finish paint for an even, durable look." },
-      { question: "What is the best time of year to paint in Nepal?", answer: "The dry seasons (October to November and March to May) are ideal. Avoid painting during the monsoon, as high humidity prevents the paint from drying properly." }
-    ]
-  },
-  'word-counter': {
-    title: "Advanced Word & Character Counter | Reading Time Estimator",
-    description: "Instantly count words, characters, and paragraphs. Optimized for SEO content writing and academic essays in Nepal.",
-    content: (
-      <>
-        <h2>Precision Word Counting for SEO and Academics</h2>
-        <p>
-          Whether you are writing a <strong>Lok Sewa essay</strong>, a university assignment, or an SEO-optimized blog post, keeping track of your word count is essential. Our <strong>Word Counter</strong> provides real-time statistics including character count (with and without spaces), paragraph count, and estimated reading time.
-        </p>
-
-        <h3>Why Word Count Matters for SEO</h3>
-        <p>
-          Search engines like Google prioritize content that provides "depth." Most top-ranking pages have at least 1000-1500 words. Use our tool to ensure your content meets the "Authority" threshold before you publish!
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "How is reading time calculated?", answer: "We estimate reading time based on the universal average reading speed of an adult, which is roughly 200 to 250 words per minute." },
-      { question: "Is my text saved on your server?", answer: "No. All counting is done locally in your browser. Your text never leaves your device, ensuring 100% privacy." }
-    ]
-  },
-  'qr-generator': {
-    title: "Free QR Code Generator | Custom QR Codes for Nepal",
-    description: "Generate high-density QR codes for URLs, WiFi, and contact cards instantly. Optimized for Fonepay and digital payments in Nepal.",
-    content: (
-      <>
-        <h2>The Rise of QR Codes in Nepal</h2>
-        <p>
-          From <strong>Fonepay</strong> at local grocery stores to digital menus in Thamel restaurants, QR codes have revolutionized how we interact in Nepal. Our <strong>QR Code Generator</strong> allows you to create custom, high-resolution codes for any purpose, be it sharing your WiFi password with guests or linking to your business website.
-        </p>
-
-        <h3>Best Practices for QR Codes</h3>
-        <p>
-          1. <strong>High Contrast:</strong> Always use dark pixels on a light background for maximum scannability.
-          2. <strong>Size Matters:</strong> Ensure the QR code is at least 2cm x 2cm for printed materials.
-          3. <strong>Test Before Printing:</strong> Always scan your generated code with multiple apps to ensure it works!
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "Do QR codes expire?", answer: "No. Static QR codes contain the actual data and will work forever as long as the destination URL remains active." },
-      { question: "Can I put a logo in my QR code?", answer: "Standard QR codes have 'Error Correction' built-in, meaning you can often place a small logo in the center without breaking the code." }
-    ]
-  },
-  'number-to-words': {
-    title: "Number to Words Converter | Check Writing Utility Nepal",
-    description: "Convert large numerical integers into written English words. Essential for writing checks and legal contracts in Nepal.",
-    content: (
-      <>
-        <h2>Never Make a Mistake on a Check Again</h2>
-        <p>
-          Writing large amounts on checks can be stressful. Is it "Thousand" or "Thousands"? Where does the "and" go? Our <strong>Number to Words Converter</strong> is the ultimate utility for accountants, business owners, and individuals in Nepal who want to ensure their legal documents and bank checks are error-free.
-        </p>
-
-        <h3>How to Write Decimals on a Check</h3>
-        <p>
-          In the Nepalese banking system, decimals (paisa) are typically written as fractions of 100.
-         , <strong>Example:</strong> Rs. 15,250.75 becomes "Fifteen Thousand Two Hundred Fifty and 75/100 only."
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "What is the biggest number the tool can convert?", answer: "Our engine can safely convert numbers up into the trillions without losing precision." },
-      { question: "Does it support the 'Lakh' and 'Crore' system?", answer: "Yes, our converter is optimized for the South Asian numbering system used in Nepal." }
-    ]
-  },
-  'password-generator': {
-    title: "Secure Password Generator | Institutional Grade Random Entropy",
-    description: "Generate highly secure, randomized passwords utilizing uppercase, lowercase, numbers, and special symbols to defeat brute-force attacks.",
-    content: (
-      <>
-        <h2>The Science of Password Entropy: Why Complexity Matters</h2>
-        <p>
-          In an era of distributed computing and massive botnets, the security of your digital identity depends entirely on <strong>entropy</strong>, the measure of randomness in your password. A password like "Password123" has extremely low entropy and can be cracked in milliseconds by a standard GPU. Our generator uses <code>window.crypto.getRandomValues()</code>, a cryptographically strong random number generator (CSPRNG), to ensure that every string produced is truly unpredictable.
-        </p>
-
-        <h3>Anatomy of a Secure Password</h3>
-        <div className="bg-[#f8f9fa] border border-[#dadce0] rounded-xl p-6 my-6">
-          <ul className="space-y-4 list-none p-0 m-0">
-            <li className="flex items-start gap-3">
-              <span className="bg-[#1a73e8] text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] mt-1 shrink-0">1</span>
-              <div>
-                <strong>Length is King:</strong> Modern standards recommend at least 16 characters. Every additional character increases the cracking time exponentially.
-              </div>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="bg-[#1a73e8] text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] mt-1 shrink-0">2</span>
-              <div>
-                <strong>Character Diversity:</strong> By mixing symbols ($ % #) and numbers, you force attackers to search a much larger "keyspace."
-              </div>
-            </li>
-            <li className="flex items-start gap-3">
-              <span className="bg-[#1a73e8] text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] mt-1 shrink-0">3</span>
-              <div>
-                <strong>Zero Predictability:</strong> Avoid dictionary words, birthdays, or names. Randomly generated strings are the only defense against dictionary attacks.
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <h2>How Our Generator Protects Your Privacy</h2>
-        <p>
-          Most online password generators send your data to a server, creating a massive security risk. <strong>NepaCalc is different.</strong> Our logic runs entirely in your local browser environment. The password is created on your device and never touches our database or logs. This "Zero-Knowledge" architecture ensures that even we cannot see what you have generated.
-        </p>
-
-        <h2>Security Best Practices for 2081</h2>
-        <p>
-          Generating a password is only half the battle. To maintain a secure posture:
-          1. <strong>Use a Password Manager:</strong> Don't try to memorize random strings. Use tools like Bitwarden, 1Password, or Google Password Manager.
-          2. <strong>Enable 2FA/MFA:</strong> Even a perfect password can be stolen via phishing. Two-Factor Authentication is your final safety net.
-          3. <strong>Unique Passwords:</strong> Never reuse the same password across multiple sites. If one site is breached, all your accounts are at risk.
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "Does this tool save my generated passwords?", answer: "Absolutely not. All passwords are generated locally on your device using your browser's secure crypto random number generator. Nothing is sent to a server." },
-      { question: "How often should I change my password?", answer: "Modern security guidelines recommend changing your password immediately if there is a known data breach, rather than on an arbitrary schedule." }
-    ]
-  },
-  'concrete-mix': {
-    title: "Concrete Mix Calculator | Material Estimation & Strength Grades",
-    description: "Calculate exactly how much cement, sand, and aggregate you need for your construction project based on the mix ratio.",
-    content: (
-      <>
-        <h2>The Science of Concrete: Proportions and Strength</h2>
-        <p>
-          Concrete is not just a mixture of mud; it is a chemical reaction (hydration). Achieving the right <strong>mix design</strong> is critical for the structural integrity of your building. Whether you are casting a pillar, a beam, or a slab in Nepal, using the correct ratio of Cement, Sand, and Aggregate determines the final strength (M-Grade) of the structure.
-        </p>
-
-        <h3>Standard Mix Ratios Used in Nepal</h3>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-xs">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Grade</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Ratio (C:S:A)</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left">Typical Usage</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-bold">M20</td>
-                <td className="border border-[#dadce0] px-4 py-2">1 : 1.5 : 3</td>
-                <td className="border border-[#dadce0] px-4 py-2">Pillars, Beams, Slabs (Standard Residential)</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-bold">M15</td>
-                <td className="border border-[#dadce0] px-4 py-2">1 : 2 : 4</td>
-                <td className="border border-[#dadce0] px-4 py-2">Footings, PCC, Flooring</td>
-              </tr>
-              <tr>
-                <td className="border border-[#dadce0] px-4 py-2 font-bold">M10</td>
-                <td className="border border-[#dadce0] px-4 py-2">1 : 3 : 6</td>
-                <td className="border border-[#dadce0] px-4 py-2">Levelling course, non-structural work</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h2>Understanding Dry Volume vs. Wet Volume</h2>
-        <p>
-          A common mistake in construction is ordering materials based on the final volume of the slab. When you mix cement, sand, and stone with water, the air gaps are filled, and the volume shrinks. To find the amount of dry materials needed, you must multiply the "Wet Volume" by a factor of <strong>1.54</strong>. Our calculator handles this complex conversion automatically, ensuring you never run out of materials mid-cast.
-        </p>
-
-        <h2>Steps to a Perfect Mix</h2>
-        <ol>
-          <li><strong>Clean Materials:</strong> Ensure sand is free of silt and aggregates are free of dust.</li>
-          <li><strong>Water-Cement Ratio:</strong> Too much water weakens the concrete; too little prevents proper hydration. Aim for a workable "slump."</li>
-          <li><strong>Curing:</strong> Once cast, concrete needs to stay moist for at least 7-14 days to reach its design strength.</li>
-        </ol>
-      </>
-    ),
-    faqs: [
-      { question: "What is the 'Dry Volume' multiplier?", answer: "When water is added to dry materials, the mixture shrinks. Multiply your 'wet volume' by 1.54 to find the actual 'dry volume' of raw materials needed." },
-      { question: "How many bags of cement are in a cubic meter?", answer: "One standard 50kg bag of cement has a volume of approximately 0.0347 cubic meters, so roughly 28.8 bags make up one cubic meter." }
-    ]
-  },
-  'brick-calculator': {
-    title: "Brick Calculator Nepal | Estimate Construction Materials",
-    description: "Calculate the total number of bricks required to build a wall. Accurately factors in mortar joint thickness and wall dimensions.",
-    content: (
-      <>
-        <h2>Professional Brick Estimation Guide</h2>
-        <p>
-          Whether you are building a boundary wall or a full residential structure, estimating bricks correctly is essential for procurement and cost management. In Nepal, standard brick sizes vary, but the <strong>9" x 4.5" x 3"</strong> dimension is the most common benchmark.
-        </p>
-
-        <h3>Wall Thickness and Calculations</h3>
-        <p>
-          The number of bricks per square foot depends heavily on the wall thickness:
-         , <strong>9-inch Wall (Full Brick):</strong> Requires approximately 10 to 12 bricks per square foot.
-         , <strong>4.5-inch Wall (Half Brick/Partition):</strong> Requires approximately 5 to 6 bricks per square foot.
-        </p>
-
-        <h2>The Mortar Factor</h2>
-        <p>
-          A wall isn't just bricks; it's bricks plus mortar. Standard calculations assume a <strong>10mm to 12mm (0.5 inch)</strong> mortar joint. Our engine subtracts the volume occupied by mortar from the total wall volume, providing a more accurate brick count than simple area-based estimates.
-        </p>
-
-        <div className="bg-[#e8f0fe] p-6 rounded-xl my-8 border border-[#1a73e8]">
-          <h3 className="text-[#1967d2] font-black mt-0 text-sm mb-3">Expert Construction Tip</h3>
-          <p className="text-xs leading-relaxed text-[#3c4043] mb-0">
-            Always subtract the area of <strong>Doors and Windows</strong> from your total wall area before calculating. A single standard door (3' x 7') saves you nearly 200-250 bricks!
-          </p>
-        </div>
-      </>
-    ),
-    faqs: [
-      { question: "Should I buy extra bricks for wastage?", answer: "Yes. It is industry standard to add a 5% to 10% wastage allowance to your final calculated number for breakage during transport and cutting." },
-      { question: "Does the calculator account for windows and doors?", answer: "You must subtract the square footage of any windows, doors, or open arches from the total wall area before calculating the brick count." }
-    ]
-  },
-  'chemistry-molar': {
-    title: "Molar Mass Calculator | Molecular Weight Finder",
-    description: "Calculate the exact molar mass and molecular weight of any chemical compound. Essential chemistry tool for students and lab technicians.",
-    content: (
-      <>
-        <h2>Precision Chemistry: Calculating Molar Mass</h2>
-        <p>
-          Molar mass is a fundamental property of chemical elements and compounds. It is defined as the mass of one mole of a substance, usually expressed in <strong>grams per mole (g/mol)</strong>. Our <strong>Molar Mass Calculator</strong> uses the latest atomic weights to provide 100% accurate results.
-        </p>
-
-        <h3>How to Calculate Manually</h3>
-        <p>
-          To find the molar mass of a compound like H₂O:
-          1. Identify the atomic mass of each element (H ≈ 1.01, O ≈ 16.00).
-          2. Multiply by the number of atoms (2 × 1.01 + 1 × 16.00).
-          3. Total = 18.02 g/mol.
-        </p>
-      </>
-    ),
-    faqs: [
-      { question: "What is Avogadro's Number?", answer: "Avogadro's number (6.022 × 10²³) is the number of particles in one mole of a substance." },
-      { question: "Does this tool support organic compounds?", answer: "Yes, you can enter complex formulas like C₆H₁₂O₆ (Glucose) and the engine will parse each element accurately." }
-    ]
-  },
-  'linear-solver': {
-    title: "Linear Equations Solver | Algebra Systems",
-    description: "Solve systems of simultaneous linear equations instantly. Supports multiple variables (x, y, z) using matrix substitution and elimination.",
-    content: (
-      <>
-        <h2>Algebra Made Simple: Linear System Solver</h2>
-        <p>
-          Linear equations are the foundation of algebra, physics, and engineering. Solving a system of two or three variables manually can be time-consuming. Our <strong>Linear Solver</strong> uses matrix-based algorithms to find the values of X, Y, and Z in seconds.
-        </p>
-
-        <h3>Methods for Solving Linear Systems</h3>
-        <ol>
-          <li><strong>Substitution:</strong> Solving for one variable and plugging it into the other equation.</li>
-          <li><strong>Elimination:</strong> Adding or subtracting equations to remove a variable.</li>
-          <li><strong>Matrix Method:</strong> Using Cramer's Rule or Gaussian Elimination.</li>
-        </ol>
-      </>
-    ),
-    faqs: [
-      { question: "What if there is no solution?", answer: "If the lines are parallel (slopes are equal but intercepts are different), the system is 'inconsistent' and has no solution." },
-      { question: "What are 'infinite solutions'?", answer: "If both equations represent the same line, any point on that line is a solution, resulting in infinite possibilities." }
-    ]
-  },
-
-  'percentage-calculator': {
-    title: "Percentage Calculator | Find Increases, Decreases & Shares",
-    description: "Calculate percentages instantly. Useful for markups, school grades, business growth, and tip calculations in Nepal.",
-    content: (
-      <>
-        <h2>The Ultimate Tool for Percentage Calculations</h2>
-        <p>
-          Percentages are everywhere, from calculating your <strong>SEE or NEB grades</strong> to figuring out the interest rate on your savings account. Our <strong>Percentage Calculator</strong> simplifies these common math problems, allowing you to solve for any variable in a percentage equation.
-        </p>
-
-        <h3>Three Ways to Use This Tool</h3>
-        <ol className="space-y-4">
-          <li><strong>Find the Percentage:</strong> What is X as a percentage of Y? (e.g., You got 450 marks out of 500. What is the percentage?)</li>
-          <li><strong>Percentage Increase/Decrease:</strong> If the price of petrol went from Rs. 160 to Rs. 175, what was the percentage hike?</li>
-          <li><strong>Percentage of a Value:</strong> What is 13% of Rs. 12,000? (Crucial for VAT and service charge math).</li>
-        </ol>
-
-        <div className="p-6 bg-slate-50 border-l-4 border-slate-400 rounded-r-lg my-8">
-          <p className="italic text-sm text-slate-600 mb-0">
-            "Mathematics is not about numbers, equations, computations, or algorithms: it is about understanding." ,  Use this tool to understand the growth and ratios in your financial and academic life.
-          </p>
-        </div>
-      </>
-    ),
-    faqs: [
-      { question: "How do I calculate a 10% increase?", answer: "Multiply the number by 1.10. For example, a 10% increase on 100 is 100 * 1.10 = 110." },
-      { question: "How do I find the percentage of my exam marks?", answer: "Divide your obtained marks by the total possible marks, then multiply the result by 100." }
-    ]
-  },
-  'pregnancy-due-date': {
-    title: "Pregnancy Due Date Calculator | Baby Arrival Estimator",
-    description: "Calculate your estimated due date (EDD) accurately using Naegele's rule. Includes weekly pregnancy milestones and health tips for mothers in Nepal.",
-    content: (
-      <>
-        <h2>Planning for Your New Arrival: The EDD Guide</h2>
-        <p>
-          Finding out you are pregnant is one of life's most exciting moments. One of the first questions every expecting parent in Nepal asks is: <strong>"When is my baby coming?"</strong> Our <strong>Pregnancy Due Date Calculator</strong> uses the standard medical formula known as Naegele's Rule to estimate your delivery date based on your Last Menstrual Period (LMP).
-        </p>
-
-        <h3>How Your Due Date is Calculated</h3>
-        <p>
-          Most pregnancies last approximately 40 weeks (280 days) from the first day of the last menstrual period. Our tool:
-          1. Adds seven days to the first day of your LMP.
-          2. Subtracts three months from that date.
-          3. Adds one year to get the final Estimated Due Date (EDD).
-        </p>
-
-        <div className="bg-[#fff0f0] border border-[#ffcfcf] rounded-xl p-6 my-8">
-          <h3 className="text-[#d93025] font-black mt-0 mb-3 uppercase text-xs tracking-widest">A Note for Mothers</h3>
-          <p className="text-sm leading-relaxed mb-0 text-[#3c4043]">
-            Remember that only about 4% of babies are born exactly on their due date. Most arrive within a window of two weeks before or after. In Nepal, we recommend regular checkups at a certified maternity hospital to monitor your baby's growth and health.
-          </p>
-        </div>
-      </>
-    ),
-    faqs: [
-      { question: "Can the due date change?", answer: "Yes. An early ultrasound (usually before 12 weeks) is the most accurate way to date a pregnancy and may lead your doctor to adjust the EDD." },
-      { question: "What if I don't know my LMP?", answer: "If your periods are irregular or you don't remember the date, your healthcare provider will use an ultrasound to measure the baby and estimate the due date." }
-    ]
-  },
-  'nea-bill': {
-    title: "NEA Bill Calculator 2082 | Nepal Electricity Authority Tariff Guide",
-    description: "Calculate your Nepal Electricity Authority (NEA) bill online with 2082 tariff rates. Learn about the 20-unit free limit and slab-based pricing for domestic meters.",
-    content: (
-      <>
-        <h2>The Most Important Thing About Your NEA Bill</h2>
-        <p>Before you look at the numbers, there is one specific rule that confuses almost every household in Nepal. Understanding this can save you hundreds of rupees every month.</p>
-        <p><strong>The "first 20 units" are NOT always free.</strong></p>
-        <p>
-          For a standard 5A domestic meter:
-          <ul className="list-disc pl-5 mt-2">
-            <li>If you use <strong>exactly 20 units or fewer</strong>: Your energy charge is NPR 0 (you pay only the NPR 30 service charge).</li>
-            <li>If you use <strong>21 units or more</strong>: The "free" status vanishes. Those first 20 units are now charged at NPR 3 per unit.</li>
-          </ul>
-        </p>
-        <p className="mt-4">
-          This means crossing from 20 to 21 units doesn't just add the cost of 1 unit, it retroactively adds a charge for the previous 20 units. <strong>Your bill jump from NPR 30 to over NPR 115 just for using one extra unit.</strong>
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
-          <div className="bg-[#f1f3f4] border border-[#dadce0] rounded-lg p-6">
-            <h3 className="font-bold mb-2">Example: 20 Units Consumed</h3>
-            <ul className="text-sm text-[#5f6368]">
-              <li>Service charge: NPR 30 (5A meter)</li>
-              <li>Energy charge: NPR 0 (Free threshold)</li>
-              <li><strong>Total: NPR 30</strong></li>
-            </ul>
-          </div>
-          <div className="bg-[#fce8e6] border border-[#fad2cf] rounded-lg p-6">
-            <h3 className="font-bold mb-2 text-[#c5221f]">Example: 21 Units Consumed</h3>
-            <ul className="text-sm text-[#c5221f]">
-              <li>Service charge: NPR 50 (Slab moves up)</li>
-              <li>Energy charge: (20 × 3) + (1 × 6.50) = NPR 66.50</li>
-              <li><strong>Total: NPR 116.50</strong></li>
-            </ul>
+        <h2 className="text-xl font-bold text-[#202124] mb-3">The Ultimate Encyclopedia of Dividends & Bonus Shares in Nepal</h2>
+        
+        <div className="bg-[#e8f0fe] rounded-xl p-5 mb-5 border border-[#d2e3fc]">
+          <h4 className="text-[#1967d2] font-bold text-base mb-2 mt-0">Dividend Navigation</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 text-xs text-[#3c4043]">
+            <a href="#div-1" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>1.</span> The 5% Resident Dividend Tax Rule</a>
+            <a href="#div-2" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>2.</span> Price Adjustment Formula (NEPSE)</a>
+            <a href="#div-3" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>3.</span> Tax on Bonus Shares (Face Value Logic)</a>
+            <a href="#div-4" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>4.</span> Right Share vs. Bonus Share Tax</a>
+            <a href="#div-5" className="flex items-center gap-2 hover:text-[#1a73e8] hover:underline transition-colors"><span>5.</span> Book Closure & Eligibility Dates</a>
           </div>
         </div>
 
-        <h2>Current NEA Domestic Tariff Slabs (5A Meter)</h2>
-        <p>The following rates are based on the latest <strong>NEA Tariff Schedule for 2081/82</strong>. Note that 15A and 30A meters have higher fixed service charges.</p>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-bold">Monthly Units</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-bold">Service Charge (NPR)</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-bold">Energy Charge (NPR/Unit)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td className="border border-[#dadce0] px-4 py-2 font-medium">0–20</td><td className="border border-[#dadce0] px-4 py-2">30</td><td className="border border-[#dadce0] px-4 py-2">0 (if total ≤ 20)</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2 font-medium">21–30</td><td className="border border-[#dadce0] px-4 py-2">50</td><td className="border border-[#dadce0] px-4 py-2">3.00 for first 20, then 6.50</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2 font-medium">31–50</td><td className="border border-[#dadce0] px-4 py-2">50</td><td className="border border-[#dadce0] px-4 py-2">Above + 8.00</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2 font-medium">51–100</td><td className="border border-[#dadce0] px-4 py-2">75</td><td className="border border-[#dadce0] px-4 py-2">Above + 9.50</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2 font-medium">101–250</td><td className="border border-[#dadce0] px-4 py-2">100</td><td className="border border-[#dadce0] px-4 py-2">Above + 9.50</td></tr>
-              <tr><td className="border border-[#dadce0] px-4 py-2 font-medium">Above 250</td><td className="border border-[#dadce0] px-4 py-2">125</td><td className="border border-[#dadce0] px-4 py-2">Above + 11.00</td></tr>
-            </tbody>
-          </table>
+        <div className="space-y-6">
+          <section id="div-1">
+            <h3 className="text-base font-bold text-[#202124] mb-2">1. The 5% Resident Dividend Tax</h3>
+            <p className="text-sm text-[#5f6368] mb-3">Nepal's tax law (Income Tax Act 2058) mandates a 5% final withholding tax on cash dividends paid to individual residents by NEPSE-listed companies.</p>
+            <div className="p-4 bg-[#f8f9fa] border border-[#dadce0] rounded-xl">
+               <p className="text-xs text-[#3c4043] mb-0">**Institutional Note:** The company automatically deducts this 5% before depositing the cash in your bank account. You do not need to pay it manually.</p>
+            </div>
+          </section>
+
+          <section id="div-2">
+            <h3 className="text-base font-bold text-[#202124] mb-2">2. NEPSE Price Adjustment Logic</h3>
+            <p className="text-sm text-[#5f6368] mb-3">On the book closure day, NEPSE adjusts the market price of a stock to account for the bonus shares being issued.</p>
+            <div className="p-4 bg-[#e8f0fe] border border-[#d2e3fc] rounded-xl">
+               <p className="text-xs text-[#3c4043] font-bold mb-1">Adjusted Price = (Market Price) / (1 + Bonus Percentage)</p>
+               <p className="text-[10px] text-[#5f6368] mb-0">Example: If a stock is Rs. 1100 and gives 10% bonus, the adjusted price becomes 1100 / 1.1 = Rs. 1000. This maintains the market capitalization of the company.</p>
+            </div>
+          </section>
+
+          <section id="div-3">
+            <h3 className="text-base font-bold text-[#202124] mb-2">3. Tax on Bonus Shares</h3>
+            <p className="text-sm text-[#5f6368] mb-2">A common point of confusion is how 'Free' bonus shares are taxed. In Nepal, bonus shares are taxed at 5% of their **Face Value** (Rs. 100), not the market value.</p>
+            <div className="p-4 bg-[#fdf2f2] border-l-2 border-[#d93025] rounded-r-lg">
+               <p className="text-xs text-[#3c4043] mb-0">**Tax Math:** If you get 10 bonus shares, the tax is 5% of (10 x 100) = Rs. 50. If the company didn't announce enough cash dividend to cover this, you must pay it manually via your broker.</p>
+            </div>
+          </section>
         </div>
 
-        <h2>How to Reduce Your Monthly Bill</h2>
-        <ul className="list-disc pl-5 space-y-2">
-          <li><strong>Check your Meter Capacity:</strong> If you are a small family with a 15A or 30A meter, you are paying a higher monthly fixed charge. If your peak load is low, consider downgrading to a 5A meter to save money.</li>
-          <li><strong>The LED Advantage:</strong> In Nepal, lighting usually accounts for 20% of a household bill. Switching from tube lights to 9W LED bulbs can pay for itself in just three months.</li>
-          <li><strong>Timing your Heavy Loads:</strong> If you have a Time-of-Day (TOD) meter, running water pumps or washing machines during "Off-Peak" hours (usually late night) can be significantly cheaper.</li>
-        </ul>
-
-        <AuthorByline fiscalYear="2082/83" sources={[
-          { label: 'NEA Official Tariff', url: 'https://www.nea.org.np' },
-          { label: 'Electricity Regulatory Commission', url: 'https://erc.gov.np' },
-        ]} />
+        <div className="mt-10 pt-6 border-t border-[#f1f3f4] text-center">
+           <p className="text-[11px] text-[#5f6368]">
+              NepaCalc Internal Silo: After calculating dividends, verify your portfolio's <a href="/calculator/nepse-wacc/" className="text-[#1a73e8] font-bold hover:underline">WACC Basis</a> or check your <a href="/calculator/nepal-stocks/" className="text-[#1a73e8] font-bold hover:underline">Trading Profits</a>.
+           </p>
+        </div>
       </>
     ),
     faqs: [
-      {
-        question: "How do I pay my NEA bill online?",
-        answer: "You can use digital wallets like eSewa or Khalti. Simply enter your SC Number and Consumer ID from your bill. Remember to pay within 7 days of the bill date to get a 2% rebate!"
-      },
-      {
-        question: "What is the penalty for late payment?",
-        answer: "If you pay after 22 days of the bill date, a 5% penalty is added. After 30 days, it increases to 10%, and eventually 25%. After 60nd day, the NEA has the right to disconnect your line."
-      },
-      {
-        question: "Is there a discount for early payment?",
-        answer: "Yes, NEA offers a 2% discount (rebate) if you pay your bill within 7 days of the reading date."
-      }
-    ]
-  },
-  'attendance': {
-    title: "Attendance Calculator Nepal | TU, KU & PU 75% Rule Guide",
-    description: "Calculate your university attendance percentage instantly. Find out exactly how many classes you can skip or must attend to stay above the mandatory 75% limit.",
-    content: (
-      <>
-        <h2>The 75% Attendance Rule in Nepal</h2>
-        <p>
-          Maintaining the mandatory attendance limit is easily one of the most stressful parts of student life in Nepal. Whether you are at <strong>Tribhuvan University (TU)</strong>, <strong>Kathmandu University (KU)</strong>, or <strong>Pokhara University (PU)</strong>, the rule is almost universal: you need a minimum of <strong>75% attendance</strong> to appear in your final examinations.
-        </p>
-        <p>
-          Falling below this 75% threshold usually results in a "Not Eligible" (NE) status, meaning you are barred from the exam hall regardless of how hard you’ve studied. We built this calculator to help you strategically plan your semester so you stay safe without losing your mind.
-        </p>
-
-        <h3>How to Use the Attendance Calculator</h3>
-        <p>This tool works in two ways depending on your current situation:</p>
-        <ol className="list-decimal pl-5 space-y-2 my-4">
-          <li><strong>The "Recovery" Mode:</strong> If you are currently below your target (e.g., you’re at 60% but need 75%), the calculator tells you exactly how many <strong>consecutive classes</strong> you must attend to pull your average back up.</li>
-          <li><strong>The "Bunk Buffer" Mode:</strong> If you’ve been a regular student and are safely above 80%, the tool calculates exactly how many upcoming classes you can safely miss (or "bunk") without dropping below the danger zone.</li>
-        </ol>
-
-        <h3>Why is the threshold so strict?</h3>
-        <p>
-          The 75% minimum is a standard set by the <strong>University Grants Commission (UGC) Nepal</strong>. While some liberal arts departments might be slightly flexible, professional courses like <strong>Engineering (IOE)</strong>, <strong>Medicine (IOM)</strong>, and science practicals often enforce an even stricter 80% rule.
-        </p>
-        <p>
-          <strong>Expert Note:</strong> Don't wait until the last week of the semester to check your status. If you realize you're short on attendance early, you still have time to attend extra practicals or submit a medical application through the Exam Controller's office.
-        </p>
-
-        <AuthorByline fiscalYear="2082/83" sources={[
-          { label: 'UGC Nepal Guidelines', url: 'https://www.ugcnepal.edu.np' },
-          { label: 'TU Exam Controller Office', url: 'https://tuexam.edu.np' },
-        ]} />
-      </>
-    ),
-    faqs: [
-      {
-        question: "What happens if my attendance is below 75% in TU?",
-        answer: "Typically, you will be marked as 'Not Eligible' (NE). This means you cannot fill out the exam form and will have to wait for the next session or re-register for the course depending on your college's internal policy."
-      },
-      {
-        question: "Can I use medical certificates to cover short attendance?",
-        answer: "Most Nepali universities allow a 5% to 10% relaxation (lowering the requirement to 65% or 70%) if you provide a valid medical certificate from a recognized hospital, but this must be approved by the Head of Department (HOD)."
-      },
-      {
-        question: "How is attendance percentage calculated?",
-        answer: "The formula is simple: (Total Classes Attended ÷ Total Classes Held) × 100. Our calculator automates this and factors in future classes as well."
-      },
-      {
-        question: "Is the attendance rule different for practical classes?",
-        answer: "Yes, many institutions in Nepal require 80% or even 90% attendance for practical/lab sessions. Make sure to adjust the 'Target Percentage' in the calculator to match your specific lab requirements."
-      }
-    ]
-  },
-  'gpa': {
-    title: "GPA Calculator Nepal | TU, KU, NEB & PU Grading System",
-    description: "Calculate your semester GPA or overall CGPA instantly using Nepal's official NEB/TU 4.0 grading scale. Convert GPA to percentage for FY 2082/83.",
-    content: (
-      <>
-        <h2>Understanding the Nepal University GPA System</h2>
-        <p>
-          Most universities in Nepal, including <strong>Tribhuvan University (TU)</strong>, <strong>Kathmandu University (KU)</strong>, and <strong>Pokhara University (PU)</strong>, have shifted to the international <strong>4.0 GPA scale</strong>. This system is designed to reward consistent performance across semesters rather than just final exam marks.
-        </p>
-        <p>
-          Your GPA is a weighted average: it takes your grade points (from the table below) and weights them against the <strong>credit hours</strong> of each subject. This means your 3-credit core subjects affect your GPA more than a 1-credit lab.
-        </p>
-
-        <h3>Official NEB & TU Grading Scale (FY 2082/83)</h3>
-        <p>This is the authoritative reference used by all Nepali higher education institutions to map your percentage marks to letter grades:</p>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#E8F0FE]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Grade</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Grade Points</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">% Range</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Classification</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ['A+', '4.0', '90–100%', 'Outstanding'],
-                ['A', '3.6', '80–89.9%', 'Excellent'],
-                ['B+', '3.2', '70–79.9%', 'Very Good'],
-                ['B', '2.8', '60–69.9%', 'Good'],
-                ['C+', '2.4', '50–59.9%', 'Satisfactory'],
-                ['C', '2.0', '40–49.9%', 'Acceptable'],
-                ['D+', '1.6', '35–39.9%', 'Partially Acceptable'],
-                ['D', '1.2', '30–34.9%', 'Insufficient'],
-                ['F', '0.0', 'Below 30%', 'Fail'],
-              ].map(([g, p, pct, cls]) => (
-                <tr key={g} className="odd:bg-white even:bg-[#f8f9fa]">
-                  <td className="border border-[#dadce0] px-4 py-2 font-black text-[#1A73E8]">{g}</td>
-                  <td className="border border-[#dadce0] px-4 py-2 font-bold">{p}</td>
-                  <td className="border border-[#dadce0] px-4 py-2">{pct}</td>
-                  <td className="border border-[#dadce0] px-4 py-2 text-[#5f6368]">{cls}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <h3>University-Wise Minimum Pass & Distinction Marks</h3>
-        <div className="overflow-x-auto my-6">
-          <table className="min-w-full border-collapse border border-[#dadce0] text-sm">
-            <thead className="bg-[#f8f9fa]">
-              <tr>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">University</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Pass GPA</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Distinction</th>
-                <th className="border border-[#dadce0] px-4 py-2 text-left font-black">Special Note</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ['Tribhuvan University (TU)', '2.0 (C)', '3.6 (A)', 'IOE requires min D per subject'],
-                ['Kathmandu University (KU)', '2.0 (C)', '3.5+', 'Uses rigorous semester system'],
-                ['Pokhara University (PU)', '2.0 (C)', '3.6 (A)', 'Fully aligned with NEB scale'],
-                ['NEB (Class 11 & 12)', '1.6 (D)', '4.0 (A+)', 'Pass requires 35% in Theory'],
-              ].map(([uni, pass, dist, note]) => (
-                <tr key={uni} className="odd:bg-white even:bg-[#f8f9fa]">
-                  <td className="border border-[#dadce0] px-4 py-2 font-bold">{uni}</td>
-                  <td className="border border-[#dadce0] px-4 py-2 text-red-600 font-bold">{pass}</td>
-                  <td className="border border-[#dadce0] px-4 py-2 text-green-700 font-bold">{dist}</td>
-                  <td className="border border-[#dadce0] px-4 py-2 text-[#5f6368] text-xs">{note}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <h2>How to Convert GPA to Percentage in Nepal</h2>
-        <p>
-          If you are applying for a foreign visa or a Nepal government scholarship, they often ask for your percentage. While there is no "perfect" official formula, the most widely accepted method in Nepal is:
-        </p>
-        <blockquote>
-          <strong>Approximate Percentage = GPA × 25</strong>
-          <br />
-          <em>Example: A GPA of 3.2 would be 3.2 × 25 = 80%.</em>
-        </blockquote>
-        <p>
-          <strong>Caution:</strong> For official international admissions (like Australia or USA), always request a certified transcript from your college that explicitly lists your aggregate percentage marks.
-        </p>
-
-        <h2>Semester GPA vs. CGPA: What is the difference?</h2>
-        <p>
-          Don't get confused between the two:
-          <ul className="list-disc pl-5 space-y-1 mt-2">
-            <li><strong>Semester GPA:</strong> Your performance in a single 6-month term.</li>
-            <li><strong>CGPA (Cumulative GPA):</strong> The credit-weighted average of ALL semesters you have completed so far. This is the "final" number that appears on your degree.</li>
-          </ul>
-        </p>
-
-        <AuthorByline fiscalYear="2082/83 (2025/26)" sources={[
-          { label: 'NEB Nepal', url: 'https://www.neb.gov.np' },
-          { label: 'TU Official', url: 'https://tribhuvan-university.edu.np' },
-        ]} />
-      </>
-    ),
-    faqs: [
-      {
-        question: "What is A+ GPA in Nepal's system?",
-        answer: "In Nepal (NEB/TU), an A+ is the highest possible grade. It represents 'Outstanding' performance, usually for scores between 90% and 100%, and carries a 4.0 grade point."
-      },
-      {
-        question: "Is a 3.0 GPA good in Nepal?",
-        answer: "Yes, a 3.0 GPA is considered 'Very Good.' It is roughly equivalent to a 75% aggregate and generally meets the eligibility criteria for most government jobs and foreign university admissions."
-      },
-      {
-        question: "How do I calculate CGPA across 8 semesters?",
-        answer: "To calculate CGPA, multiply each semester's GPA by its total credit hours, add them all up, and divide by the total credit hours of the entire degree. You can use our dedicated CGPA tool for this."
-      },
-      {
-        question: "Does Kathmandu University (KU) follow the same scale as TU?",
-        answer: "While both use a 4.0 scale, KU often has stricter internal marking. Generally, a CGPA of 2.0 is required to remain in good standing, and 3.5+ is distinction level."
-      }
+      { question: "How much is the tax on cash dividends?", answer: "For individual residents in Nepal, the cash dividend tax is 5%." },
+      { question: "Is bonus share tax different from cash dividend tax?", answer: "The rate is the same (5%), but bonus share tax is calculated on the face value (Rs. 100) of the shares issued, not the market value." }
     ]
   }
 };
