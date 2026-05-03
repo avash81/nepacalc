@@ -53,6 +53,21 @@ export default function LoanEMICalculator() {
         schedule.push({ month: i, interest, principal: principalPaid, balance: Math.max(0, balance) });
     }
 
+    const fullSchedule = [];
+    let fullBalance = activePrincipal;
+    for (let i = 1; i <= n; i++) {
+        const interest = fullBalance * r;
+        const principalPaid = baseEmi - interest;
+        fullBalance -= principalPaid;
+        fullSchedule.push({ 
+          month: i, 
+          interest, 
+          principal: principalPaid, 
+          balance: Math.max(0, fullBalance),
+          emi: baseEmi 
+        });
+    }
+
     return { 
       success: true, 
       activePrincipal,
@@ -60,6 +75,7 @@ export default function LoanEMICalculator() {
       totalInterest,
       totalPayment: activePrincipal + totalInterest,
       schedule,
+      fullSchedule,
       totalMonths: n
     };
   }, [principal, rate, tenure, method, targetEmi, isReverse]);
@@ -162,8 +178,8 @@ export default function LoanEMICalculator() {
         </div>
       }
       details={result.success && (
-        <div className="space-y-12">
-          {/* Main Visual Intelligence Cards */}
+        <div className="space-y-10">
+          {/* Main Visual Intelligence Cards (From Screenshots) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm flex flex-col">
                <div className="px-4 py-3 border-b border-[#DADCE0] bg-[#F8F9FA] flex justify-between items-center">
@@ -262,7 +278,78 @@ export default function LoanEMICalculator() {
             </div>
           </div>
 
-          {/* Detailed Authority Guide Section */}
+          {/* Repayment Trajectory (Bar Chart) - Restored from Screenshot */}
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+            <div className="flex items-center gap-2 mb-6">
+              <div className="w-1.5 h-5 bg-[#1A73E8] rounded-full" />
+              <h3 className="text-sm font-black text-[#202124] uppercase tracking-wider">Repayment Trajectory (Reducing Principal)</h3>
+            </div>
+            <div className="h-[280px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <ReBarChart
+                  data={result.schedule}
+                  margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+                  barSize={32}
+                >
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F1F3F4" />
+                  <XAxis 
+                    dataKey="month" 
+                    tick={{ fontSize: 10, fill: '#70757A', fontWeight: 'bold' }} 
+                    axisLine={false}
+                    tickLine={false}
+                    tickFormatter={(val) => `M${val}`}
+                  />
+                  <YAxis 
+                    tick={{ fontSize: 9, fill: '#70757A', fontWeight: 'bold' }} 
+                    axisLine={false}
+                    tickLine={false}
+                    tickFormatter={(val) => `${(val/1000).toFixed(0)}k`}
+                  />
+                  <Tooltip 
+                    cursor={{ fill: '#F1F3F4' }}
+                    formatter={(value: number) => formatNPR(value)}
+                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 8px 30px rgba(0,0,0,0.12)', fontSize: '11px' }}
+                  />
+                  <Bar dataKey="principal" stackId="a" fill="#188038" radius={[0, 0, 0, 0]} />
+                  <Bar dataKey="interest" stackId="a" fill="#D93025" radius={[4, 4, 0, 0]} />
+                </ReBarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Full Amortization Intelligence Table - Restored from Screenshot */}
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+             <div className="px-6 py-4 bg-[#F8F9FA] border-b border-[#DADCE0] flex items-center gap-2">
+                <Activity className="w-4 h-4 text-[#1A73E8]" />
+                <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Full Amortization Intelligence</h3>
+             </div>
+             <div className="overflow-x-auto custom-scrollbar">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-[#F8F9FA] text-[10px] font-bold uppercase text-[#70757A] border-b border-[#DADCE0]">
+                      <th className="px-6 py-3 whitespace-nowrap">Period</th>
+                      <th className="px-6 py-3 text-right whitespace-nowrap">EMI Portion</th>
+                      <th className="px-6 py-3 text-right whitespace-nowrap">Principal</th>
+                      <th className="px-6 py-3 text-right whitespace-nowrap">Interest</th>
+                      <th className="px-6 py-3 text-right whitespace-nowrap">Outstanding</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[#DADCE0]">
+                    {result.fullSchedule!.map((row) => (
+                      <tr key={row.month} className="text-[11px] hover:bg-[#F8F9FA] transition-colors">
+                        <td className="px-6 py-3 font-bold text-[#1A73E8] whitespace-nowrap">Month {row.month}</td>
+                        <td className="px-6 py-3 text-right font-medium text-[#5F6368] whitespace-nowrap">{formatNPR(row.emi)}</td>
+                        <td className="px-6 py-3 text-right font-bold text-[#188038] whitespace-nowrap">{formatNPR(row.principal)}</td>
+                        <td className="px-6 py-3 text-right font-bold text-[#D93025] whitespace-nowrap">{formatNPR(row.interest)}</td>
+                        <td className="px-6 py-3 text-right font-black text-[#202124] whitespace-nowrap">{formatNPR(row.balance)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+             </div>
+          </div>
+
+          {/* Detailed Authority Guide Section (Placed Below Charts) */}
           <div className="bg-white border border-[#DADCE0] rounded-2xl p-8 md:p-12 shadow-sm space-y-10">
             <header className="border-b border-[#F1F3F4] pb-6">
               <h2 className="text-2xl font-black text-[#202124] leading-tight mb-3">
