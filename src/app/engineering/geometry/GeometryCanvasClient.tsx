@@ -74,7 +74,7 @@ export default function GeometryCanvasClient() {
       ctx.arc(center.x, center.y, r, 0, Math.PI * 2); ctx.stroke();
       // Radius label
       ctx.fillStyle = '#f72585'; ctx.font = '11px Inter,system-ui';
-      ctx.textAlign = 'left'; ctx.fillText('r=' + r.toFixed(1), center.x + 8, center.y, r, 8);
+      ctx.textAlign = 'left'; ctx.fillText('r=' + r.toFixed(1), center.x + 8, center.y - 8);
     });
 
     // Points
@@ -110,7 +110,7 @@ export default function GeometryCanvasClient() {
   const handleClick = (e: React.MouseEvent) => {
     const c = canvasRef.current; if (!c) return;
     const rect = c.getBoundingClientRect();
-    const x = e.clientX, rect.left, y = e.clientY, rect.top;
+    const x = e.clientX - rect.left, y = e.clientY - rect.top;
 
     if (tool === 'select') {
       const pt = findPointAt(x, y);
@@ -149,16 +149,16 @@ export default function GeometryCanvasClient() {
     if (tool !== 'select') return;
     const c = canvasRef.current; if (!c) return;
     const rect = c.getBoundingClientRect();
-    const x = e.clientX, rect.left, y = e.clientY, rect.top;
+    const x = e.clientX - rect.left, y = e.clientY - rect.top;
     const pt = findPointAt(x, y);
-    if (pt) { dragRef.current = { active: true, ptId: pt.id, offX: x, pt.x, offY: y, pt.y }; setSelected(pt.id); }
+    if (pt) { dragRef.current = { active: true, ptId: pt.id, offX: x - pt.x, offY: y - pt.y }; setSelected(pt.id); }
   };
   const onMM = (e: React.MouseEvent) => {
     if (!dragRef.current.active) return;
     const c = canvasRef.current; if (!c) return;
     const rect = c.getBoundingClientRect();
-    const x = e.clientX, rect.left, dragRef.current.offX;
-    const y = e.clientY, rect.top, dragRef.current.offY;
+    const x = e.clientX - rect.left - dragRef.current.offX;
+    const y = e.clientY - rect.top - dragRef.current.offY;
     setPoints(pts => pts.map(p => p.id === dragRef.current.ptId ? { ...p, x, y } : p));
   };
   const onMU = () => { dragRef.current.active = false; };
@@ -174,7 +174,7 @@ export default function GeometryCanvasClient() {
           <span className="text-slate-600">Geometry</span>
         </nav>
       </div>
-      <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row gap-0" style={{ height: 'calc(100vh, 120px)' }}>
+      <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row gap-0" style={{ height: 'calc(100vh - 120px)' }}>
         {/* Toolbar */}
         <div className="w-full lg:w-[240px] flex-shrink-0 bg-white border border-slate-200 rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none flex flex-col">
           <div className="p-4 border-b border-slate-100">

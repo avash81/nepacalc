@@ -146,8 +146,8 @@ export default function BMICalculator() {
                  <div className="p-3 space-y-2">
                     {[
                       { label: 'Underweight', range: '< 18.5', color: 'bg-[#1A73E8]' },
-                      { label: 'Normal Weight', range: '18.5, 24.9', color: 'bg-[#188038]' },
-                      { label: 'Overweight', range: '25.0, 29.9', color: 'bg-[#F29900]' },
+                      { label: 'Normal Weight', range: '18.5 to 24.9', color: 'bg-[#188038]' },
+                      { label: 'Overweight', range: '25.0 to 29.9', color: 'bg-[#F29900]' },
                       { label: 'Obese', range: '≥ 30.0', color: 'bg-[#D93025]' },
                     ].map((r) => (
                       <div key={r.label} className={`flex justify-between items-center text-[11px] p-1.5 rounded ${result.data?.status.includes(r.label.split(' ')[0]) ? 'bg-[#F1F3F4] font-bold' : ''}`}>

@@ -90,7 +90,7 @@ export default function ForeignEmploymentFee() {
                     {isOvercharged ? 'OVERCHARGE DETECTED' : 'FEE COMPLIANCE OK'}
                  </h4>
                  <p className={`text-[10px] leading-relaxed ${isOvercharged ? 'text-[#B3261E]' : 'text-[#0F5223]'}`}>
-                    {isOvercharged ? `The recruitment agency is illegally overcharging you by Rs. ${fmt(manpowerFee, dest.maxFee)}. The government limit for ${dest.name} is Rs. ${fmt(dest.maxFee)}.` : `The manpower fee complies with the current DOFE policies for ${dest.name}. Note: Keep bank receipts for all payments.`}
+                    {isOvercharged ? `The recruitment agency is illegally overcharging you by Rs. ${fmt(manpowerFee - dest.maxFee)}. The government limit for ${dest.name} is Rs. ${fmt(dest.maxFee)}.` : `The manpower fee complies with the current DOFE policies for ${dest.name}. Note: Keep bank receipts for all payments.`}
                  </p>
               </div>
            </div>
@@ -122,7 +122,7 @@ export default function ForeignEmploymentFee() {
                 <div className="flex justify-between items-center pb-2 border-b border-white/10">
                    <span className="text-xs text-white/70">Overcharge Amount</span>
                    <span className={`text-sm font-black font-mono ${isOvercharged ? 'text-[#F28B82]' : 'text-[#81C995]'}`}>
-                     Rs. {isOvercharged ? fmt(manpowerFee, dest.maxFee) : '0'}
+                     Rs. {isOvercharged ? fmt(manpowerFee - dest.maxFee) : '0'}
                    </span>
                 </div>
              </div>

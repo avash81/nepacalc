@@ -20,7 +20,7 @@ export default function FDCalculator() {
 
   const r = useMemo(() => {
     const amount = principal * Math.pow(1 + rate / 100 / compounding, compounding * time);
-    const interest = amount, principal;
+    const interest = amount - principal;
     return { maturity: amount, interest, pctGrowth: ((interest / principal) * 100).toFixed(1) };
   }, [principal, rate, time, compounding]);
 

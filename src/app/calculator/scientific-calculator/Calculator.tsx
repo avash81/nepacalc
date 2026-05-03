@@ -78,12 +78,12 @@ function drawMultiGraph(canvas: HTMLCanvasElement, expressions: string[], deg: b
     ctx.shadowBlur = 10; ctx.shadowColor = ctx.strokeStyle as string;
     ctx.beginPath(); let first = true;
     for (let px = 0; px < w; px++) {
-      const vx = (px, offsetX) / scale;
+      const vx = (px - offsetX) / scale;
       try {
         const { res, err } = stemEval(expr.replace(/x/g, `(${vx})`), deg);
         const val = parseFloat(res);
         if (!err && isFinite(val)) {
-          const py = offsetY, val * scale;
+          const py = offsetY - val * scale;
           if (first) { ctx.moveTo(px, py); first = false; } else { ctx.lineTo(px, py); }
         } else { first = true; }
       } catch { first = true; }
@@ -164,16 +164,16 @@ export default function ScientificCalculator() {
       case 'STO': setStoMode(true); return;
       case 'QR': generateQR(); return;
       case 'AC': if (shift) { setIsOff(true); setShift(false); } else { const n=[...expressions]; n[activeIndex]=''; updateState({ expressions: n, cursorIndex: 0 }); setDisplay('0'); setShift(false); setAlpha(false); setStoMode(false); } return;
-      case 'DEL': { const n=[...expressions]; n[activeIndex]=n[activeIndex].slice(0, cursorIndex, 1) + n[activeIndex].slice(cursorIndex); updateState({ expressions: n, cursorIndex: Math.max(0, cursorIndex, 1) }); return; }
+      case 'DEL': { const n=[...expressions]; n[activeIndex]=n[activeIndex].slice(0, cursorIndex - 1) + n[activeIndex].slice(cursorIndex); updateState({ expressions: n, cursorIndex: Math.max(0, cursorIndex - 1) }); return; }
       case '=': { const { res, err } = stemEval(expressions[activeIndex], angleMode==='DEG'); if(!err) { const n=[...expressions]; n[activeIndex]=res; updateState({ lastAns: res, expressions: n, cursorIndex: res.length }); } return; }
       case 'M+': { const v=parseFloat(display); if(!isNaN(v)) updateState({ memory: memory + v }); return; }
       case 'MR': { const n=[...expressions]; n[activeIndex]=n[activeIndex].slice(0, cursorIndex) + String(memory) + n[activeIndex].slice(cursorIndex); updateState({ expressions: n, cursorIndex: cursorIndex + String(memory).length }); return; }
       case 'ANGLE': updateState({ angleMode: angleMode==='DEG'?'RAD':angleMode==='RAD'?'GRA':'DEG' }); return;
       case 'ANS': { const n=[...expressions]; n[activeIndex]=n[activeIndex].slice(0, cursorIndex) + lastAns + n[activeIndex].slice(cursorIndex); updateState({ expressions: n, cursorIndex: cursorIndex + lastAns.length }); return; }
-      case 'LEFT': updateState({ cursorIndex: Math.max(0, cursorIndex, 1) }); return;
+      case 'LEFT': updateState({ cursorIndex: Math.max(0, cursorIndex - 1) }); return;
       case 'RIGHT': updateState({ cursorIndex: Math.min(expressions[activeIndex].length, cursorIndex + 1) }); return;
       case 'UP': updateState({ activeIndex: (activeIndex + 1) % 3 }); return;
-      case 'DOWN': updateState({ activeIndex: (activeIndex, 1 + 3) % 3 }); return;
+      case 'DOWN': updateState({ activeIndex: (activeIndex - 1 + 3) % 3 }); return;
       case 'SIMPLIFY': { const n=[...expressions]; n[activeIndex]=`simplify(${n[activeIndex]})`; updateState({ expressions: n }); return; }
       case 'DIFF': { const n=[...expressions]; n[activeIndex]=`diff(${n[activeIndex]})`; updateState({ expressions: n }); return; }
       default: { 

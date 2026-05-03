@@ -56,12 +56,12 @@ export default function RemittanceCalculator() {
     return PROVIDERS.map(p => {
       const grossNPR = amount * activeRate;
       const feeNPR = p.type === 'percent' ? (grossNPR * p.fee) / 100 : p.fee;
-      const netNPR = grossNPR, feeNPR;
+      const netNPR = grossNPR - feeNPR;
       return { ...p, netNPR, feeNPR };
     });
   }, [amount, activeRate]);
 
-  const bestProvider = [...results].sort((a, b) => b.netNPR, a.netNPR)[0];
+  const bestProvider = [...results].sort((a, b) => b.netNPR - a.netNPR)[0];
 
   const fmt = (n: number) => n.toLocaleString('en-IN', { maximumFractionDigits: 1 });
 

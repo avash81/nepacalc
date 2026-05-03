@@ -18,10 +18,10 @@ export default function RemittanceDashboardClient() {
   const fmt = (n: number) => n.toFixed(2);
 
   const providers = [
-    { name: 'Wise', rate: usd, 0.15, fee: '0.99', speed: 'Instant', safety: 'High' },
-    { name: 'Remitly', rate: usd, 0.40, fee: '0.00', speed: '4 Hours', safety: 'High' },
-    { name: 'Western Union', rate: usd, 0.85, fee: '4.99', speed: 'Instant', safety: 'Max' },
-    { name: 'IME Pay', rate: usd, 1.20, fee: '0.00', speed: 'Real-time', safety: 'Local Choice' },
+    { name: 'Wise', rate: usd - 0.15, fee: '0.99', speed: 'Instant', safety: 'High' },
+    { name: 'Remitly', rate: usd - 0.40, fee: '0.00', speed: '4 Hours', safety: 'High' },
+    { name: 'Western Union', rate: usd - 0.85, fee: '4.99', speed: 'Instant', safety: 'Max' },
+    { name: 'IME Pay', rate: usd - 1.20, fee: '0.00', speed: 'Real-time', safety: 'Local Choice' },
   ];
 
   return (

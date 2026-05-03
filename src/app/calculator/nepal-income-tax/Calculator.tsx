@@ -30,9 +30,11 @@ export default function NepalIncomeTaxCalculator() {
     const healthInsDeduction = Math.min(healthInsurance, 20000);
     const citMax = Math.min(annualGross / 3, 500000);
     const actualCit = Math.min(citDeduction, citMax);
+    const totalDeductions = insDeduction + healthInsDeduction + actualCit;
+    const taxableGross = Math.max(0, annualGross - totalDeductions);
 
     const calculation = calculateNepalIncomeTax(
-      annualGross, (insDeduction + healthInsDeduction + actualCit), 
+      taxableGross,
       married, 
       isSSFContributor, 
       gender
@@ -40,7 +42,7 @@ export default function NepalIncomeTaxCalculator() {
 
     return {
       ...calculation,
-      totalDeductions: insDeduction + healthInsDeduction + actualCit,
+      totalDeductions,
       netAnnual: annualGross - calculation.totalTax,
       netMonthly: (annualGross - calculation.totalTax) / 12
     };

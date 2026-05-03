@@ -9,7 +9,7 @@ export default function MarksNeededCalculator() {
   const [weight, setWeight] = useState(40);
 
   const r = useMemo(() => {
-    const finalNeeded = (target, current * (1, weight / 100)) / (weight / 100);
+    const finalNeeded = (target - current * (1 - weight / 100)) / (weight / 100);
     return Math.max(0, finalNeeded);
   }, [current, target, weight]);
 
@@ -105,7 +105,7 @@ export default function MarksNeededCalculator() {
              <div className="divide-y divide-[#DADCE0]">
                 <div className="p-4 flex justify-between items-center text-xs">
                    <span className="text-[#5F6368] font-bold tracking-wider">Current Grade Weight</span>
-                   <span className="font-black text-[#202124]">{(100, weight)}%</span>
+                   <span className="font-black text-[#202124]">{(100 - weight)}%</span>
                 </div>
                 <div className="p-4 flex justify-between items-center text-xs">
                    <span className="text-[#5F6368] font-bold tracking-wider">Current Grade Value</span>

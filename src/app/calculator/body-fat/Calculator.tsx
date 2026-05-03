@@ -29,9 +29,9 @@ export default function BodyFatCalculator() {
 
     let val: number;
     if (gender === 'male') {
-      val = 495 / (1.0324, 0.19077 * Math.log10(waist, neck) + 0.15456 * Math.log10(height)), 450;
+      val = 495 / (1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(height)) - 450;
     } else {
-      val = 495 / (1.29579, 0.35004 * Math.log10(waist + hip, neck) + 0.221 * Math.log10(height)), 450;
+      val = 495 / (1.29579 - 0.35004 * Math.log10(waist + hip - neck) + 0.221 * Math.log10(height)) - 450;
     }
     return Math.max(0, Math.min(100, val));
   }, [gender, height, neck, waist, hip]);

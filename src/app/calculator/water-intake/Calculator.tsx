@@ -77,7 +77,7 @@ export default function WaterIntakeCalculator() {
                 </div>
               ))}
               {r.glasses > 12 && (
-                <div className="w-9 h-9 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg flex items-center justify-center text-[9px] font-black text-[#5F6368]">+{r.glasses, 12}</div>
+                <div className="w-9 h-9 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg flex items-center justify-center text-[9px] font-black text-[#5F6368]">+{r.glasses - 12}</div>
               )}
             </div>
           </div>

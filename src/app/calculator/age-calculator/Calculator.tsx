@@ -39,20 +39,20 @@ export default function AgeCalculator() {
       return { error: 'Birth date cannot be in the future of the target date.' };
     }
 
-    let years = d2.getFullYear(), d1.getFullYear();
-    let months = d2.getMonth(), d1.getMonth();
-    let days = d2.getDate(), d1.getDate();
+    let years = d2.getFullYear() - d1.getFullYear();
+    let months = d2.getMonth() - d1.getMonth();
+    let days = d2.getDate() - d1.getDate();
     if (days < 0) { months--; days += new Date(d2.getFullYear(), d2.getMonth(), 0).getDate(); }
     if (months < 0) { years--; months += 12; }
 
-    const diffMs   = Math.abs(d2.getTime(), d1.getTime());
+    const diffMs   = Math.abs(d2.getTime() - d1.getTime());
     const totalDays = Math.floor(diffMs / 86400000);
     const totalWeeks = Math.floor(totalDays / 7);
     const totalMonths = years * 12 + months;
 
     let nextBday = new Date(d2.getFullYear(), d1.getMonth(), d1.getDate());
     if (nextBday <= d2) nextBday = new Date(d2.getFullYear() + 1, d1.getMonth(), d1.getDate());
-    const nextBdayDays = Math.ceil((nextBday.getTime(), d2.getTime()) / 86400000);
+    const nextBdayDays = Math.ceil((nextBday.getTime() - d2.getTime()) / 86400000);
     const dayOfWeek   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d1.getDay()];
     const zodiac      = getZodiac(d1.getDate(), d1.getMonth());
 
@@ -198,7 +198,7 @@ export default function AgeCalculator() {
       formula={{
         title: "Age Calculation Method",
         description: "The age is calculated by comparing years, months, and days between the two dates, accounting for varying month lengths and leap years.",
-        raw: "Age = Target Date, Date of Birth\nBreakdown: Years, Months, Weeks, Days, and even estimated Heartbeats."
+        raw: "Age = Target Date - Date of Birth\nBreakdown: Years, Months, Weeks, Days, and even estimated Heartbeats."
       }}
       faqs={[
         {

@@ -31,7 +31,7 @@ export default function AdminDashboard() {
         const allSnap = await getDocs(postsRef);
         const total = allSnap.size;
         const published = allSnap.docs.filter(d => d.data().status === 'published').length;
-        setStats({ total, published, drafts: total, published });
+        setStats({ total, published, drafts: total - published });
       } catch (error) {
         handleFirestoreError(error, OperationType.LIST, 'posts');
       } finally {

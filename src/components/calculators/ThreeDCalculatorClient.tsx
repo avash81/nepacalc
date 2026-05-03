@@ -149,7 +149,7 @@ function ProfessionalAxis({ bounds, showLabels, showGrid }: { bounds: { x: numbe
     }
     // Add 0 explicitly if not present
     if (!ticks.includes(0)) ticks.push(0);
-    return ticks.sort((a, b) => a, b);
+    return ticks.sort((a, b) => a - b);
   };
 
   const xTicks = generateTicks(bounds.x);

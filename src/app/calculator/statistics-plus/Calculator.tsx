@@ -10,7 +10,7 @@ export default function StatisticsPlus() {
   const stats = useMemo(() => {
     const nums = input.split(/[\s,]+/).map(Number).filter(n => !isNaN(n));
     if (nums.length === 0) return null;
-    const sorted = [...nums].sort((a, b) => a, b);
+    const sorted = [...nums].sort((a, b) => a - b);
     const sum    = nums.reduce((a, b) => a + b, 0);
     const mean   = sum / nums.length;
     const mid    = Math.floor(sorted.length / 2);
@@ -19,7 +19,7 @@ export default function StatisticsPlus() {
     let maxFreq = 0;
     nums.forEach(n => { counts[n] = (counts[n]||0)+1; if (counts[n] > maxFreq) maxFreq = counts[n]; });
     const modes = Object.keys(counts).filter(k => counts[Number(k)] === maxFreq).map(Number);
-    const range  = sorted[sorted.length-1], sorted[0];
+    const range  = sorted[sorted.length-1] - sorted[0];
     return { mean, median, modes, range, min: sorted[0], max: sorted[sorted.length-1], count: nums.length, sum, sorted };
   }, [input]);
 
@@ -65,7 +65,7 @@ export default function StatisticsPlus() {
                   {stats.sorted.slice(0, 15).map((n, i) => (
                     <span key={i} className="bg-white border border-indigo-200 px-2.5 py-1 rounded-md text-xs font-mono font-bold text-indigo-700 shadow-sm">{n}</span>
                   ))}
-                  {stats.sorted.length > 15 && <span className="text-xs font-bold text-indigo-500 self-center ml-1">…and {stats.sorted.length, 15} more</span>}
+                  {stats.sorted.length > 15 && <span className="text-xs font-bold text-indigo-500 self-center ml-1">…and {stats.sorted.length - 15} more</span>}
                 </div>
               </div>
             )}

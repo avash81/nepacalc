@@ -9,7 +9,7 @@ export default function ZScoreCalc() {
   const [mu, setMu]       = useState(70);
   const [sigma, setSigma] = useState(10);
 
-  const z = useMemo(() => sigma === 0 ? 0 : (x, mu) / sigma, [x, mu, sigma]);
+  const z = useMemo(() => sigma === 0 ? 0 : (x - mu) / sigma, [x, mu, sigma]);
 
   const interpretation =
     Math.abs(z) < 1  ? 'Within ±1σ (69% of distribution)' :
@@ -96,7 +96,7 @@ export default function ZScoreCalc() {
                 { label: 'Raw Value (x)',  val: x },
                 { label: 'Mean (μ)',       val: mu },
                 { label: 'Std Dev (σ)',    val: sigma },
-                { label: 'Difference',     val: (x, mu).toFixed(2) },
+                { label: 'Difference',     val: (x - mu).toFixed(2) },
               ].map(({ label, val }) => (
                 <div key={label} className="p-4 flex justify-between items-center hover:bg-slate-50 transition-colors">
                   <span className="text-xs font-bold uppercase text-slate-500 tracking-wider">{label}</span>

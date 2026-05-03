@@ -14,9 +14,9 @@ export default function AttendanceCalculator() {
     const isEligible = currentPercent >= target;
     let diff = 0;
     if (isEligible) {
-      diff = Math.floor((attended / (target / 100)), total);
+      diff = Math.floor((attended / (target / 100)) - total);
     } else {
-      diff = Math.ceil(((target / 100 * total), attended) / (1, target / 100));
+      diff = Math.ceil(((target / 100 * total) - attended) / (1 - target / 100));
     }
     return { currentPercent, isEligible, diff };
   }, [attended, total, target]);
@@ -108,7 +108,7 @@ export default function AttendanceCalculator() {
               <div className="p-3 flex justify-between text-xs">
                 <span className="text-[#5F6368]">Deficit / Surplus</span>
                 <span className={`font-black ${result.isEligible ? 'text-[#188038]' : 'text-[#D93025]'}`}>
-                  {result.isEligible ? `+${(result.currentPercent, target).toFixed(1)}%` : `-${(target, result.currentPercent).toFixed(1)}%`}
+                  {result.isEligible ? `+${(result.currentPercent - target).toFixed(1)}%` : `-${(target - result.currentPercent).toFixed(1)}%`}
                 </span>
               </div>
             </div>

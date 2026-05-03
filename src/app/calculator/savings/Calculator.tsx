@@ -14,9 +14,9 @@ export default function SavingsCalculator() {
   const result = useMemo(() => {
     const r = rate / 12 / 100;
     const n = years * 12;
-    const fv = r === 0 ? monthly * n : monthly * (((Math.pow(1 + r, n), 1) / r) * (1 + r));
+    const fv = r === 0 ? monthly * n : monthly * (((Math.pow(1 + r, n) - 1) / r) * (1 + r));
     const invested = monthly * n;
-    const interest = fv, invested;
+    const interest = fv - invested;
     return { fv: Math.round(fv), invested: Math.round(invested), interest: Math.round(interest), pctGrowth: ((interest / invested) * 100).toFixed(1) };
   }, [monthly, rate, years]);
 

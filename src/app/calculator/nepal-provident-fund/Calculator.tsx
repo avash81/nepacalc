@@ -173,7 +173,7 @@ export default function NepalPFCalculator() {
         },
         {
           question: "Is the interest earned on PF taxable in Nepal?",
-          answer: "No. Currently, the interest accrued within the EPF is tax-free while it remains in the fund. However, at the time of final withdrawal, a 5% tax is levied on the 'gain' (Total Amount, Total Contributions)."
+          answer: "No. Currently, the interest accrued within the EPF is tax-free while it remains in the fund. However, at the time of final withdrawal, a 5% tax is levied on the 'gain' (Total Amount - Total Contributions)."
         },
         {
           question: "Do contract or temporary employees get PF and Gratuity?",

@@ -15,9 +15,9 @@ export default function ProbabilityCalc() {
   const [total, setTotal]         = useState(6);
 
   const res = useMemo(() => {
-    if (total <= 0) return { prob: 0, pct: ', ', odds: ', ', complement: ', ' };
+    if (total <= 0) return { prob: 0, pct: '0%', odds: '0:0', complement: '100%' };
     const p = Math.min(favorable / total, 1);
-    return { prob: p.toFixed(4), pct: (p * 100).toFixed(2) + '%', odds: `${favorable}:${total, favorable}`, complement: ((1-p)*100).toFixed(2) + '%' };
+    return { prob: p.toFixed(4), pct: (p * 100).toFixed(2) + '%', odds: `${favorable}:${total - favorable}`, complement: ((1-p)*100).toFixed(2) + '%' };
   }, [favorable, total]);
 
   const inputCls = "w-full px-4 py-3 rounded-lg border border-slate-200 bg-slate-50 font-bold text-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:bg-white outline-none transition-all";
@@ -131,7 +131,7 @@ export default function ProbabilityCalc() {
             <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
               <li><strong className="text-[#1A73E8]">Decimal Probability (P):</strong> The standard format used in advanced academic mathematics and machine learning algorithms. It is strictly bounded between 0.0 (absolute impossibility) and 1.0 (absolute certainty).</li>
               <li><strong className="text-[#188038]">Betting Odds (Success:Failure):</strong> Unlike probability which compares favorable outcomes to the total, <strong className="text-[#202124]">odds calculator</strong> metrics compare favorable outcomes directly against <span className="italic">unfavorable</span> outcomes. If you have 1 winning ticket in a 10-ticket lottery, the probability is 10%, but the odds are 1:9.</li>
-              <li><strong className="text-[#D93025]">The Complement Rule (P'):</strong> In statistical theory, the complement represents the probability that the event will NOT happen. Because the sum of all possible probabilities in a sample space must equal 100%, the complement is always exactly (100%, P). Our visual bar instantly graphs this dichotomy.</li>
+              <li><strong className="text-[#D93025]">The Complement Rule (P'):</strong> In statistical theory, the complement represents the probability that the event will NOT happen. Because the sum of all possible probabilities in a sample space must equal 100%, the complement is always exactly (100% - P). Our visual bar instantly graphs this dichotomy.</li>
             </ul>
           </div>
         </div>
@@ -148,7 +148,7 @@ export default function ProbabilityCalc() {
       formula={{
         title: "Theoretical Probability Formula",
         description: "The core statistical ratio defining independent events.",
-        raw: "P(Event) = (Favorable Outcomes) / (Total Possible Outcomes)\n\nComplement Rule:\nP(Not Event) = 1, P(Event)\n\nOdds Calculation:\nOdds = (Favorable Outcomes) : (Total Outcomes, Favorable Outcomes)"
+        raw: "P(Event) = (Favorable Outcomes) / (Total Possible Outcomes)\n\nComplement Rule:\nP(Not Event) = 1 - P(Event)\n\nOdds Calculation:\nOdds = (Favorable Outcomes) : (Total Outcomes - Favorable Outcomes)"
       }}
       faqs={[
         {

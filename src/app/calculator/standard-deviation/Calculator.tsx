@@ -75,7 +75,7 @@ export default function StandardDeviationCalculator() {
                     { label: 'Variance (s²)',    val: r.variance.toFixed(4), desc: 'Squared deviation' },
                     { label: 'Minimum',         val: r.min, desc: 'Lowest value' },
                     { label: 'Maximum',         val: r.max, desc: 'Highest value' },
-                    { label: 'Range',       val: r.max, r.min, desc: 'Max, Min' },
+                    { label: 'Range',       val: r.max - r.min, desc: 'Maximum minus Minimum' },
                   ].map(({ label, val, desc }) => (
                     <div key={label} className="p-4 flex justify-between items-center hover:bg-slate-50 transition-colors">
                       <div>
@@ -91,7 +91,7 @@ export default function StandardDeviationCalculator() {
                    <Sigma className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
                    <div>
                       <div className="text-xs font-bold uppercase text-slate-600 mb-1 tracking-wider">Formula Used (Sample)</div>
-                      <code className="text-sm font-mono text-blue-600 font-bold">s = √[ Σ(x, x̄)² / (n, 1) ]</code>
+                      <code className="text-sm font-mono text-blue-600 font-bold">s = √[ Σ(x - x̄)² / (n - 1) ]</code>
                    </div>
                 </div>
               </>
@@ -127,7 +127,7 @@ export default function StandardDeviationCalculator() {
             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
               <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Sample vs. Population Mathematics</h3>
               <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-                <li><strong className="text-[#1A73E8]">Sample Standard Deviation (s):</strong> This calculator utilizes Bessel's Correction, dividing the squared variance by <code className="bg-[#F1F3F4] px-1 rounded">n, 1</code> rather than <code className="bg-[#F1F3F4] px-1 rounded">n</code>. This is the universal standard for experimental research, as it provides an unbiased statistical estimate when you only have access to a subset of data rather than the entire population.</li>
+                <li><strong className="text-[#1A73E8]">Sample Standard Deviation (s):</strong> This calculator utilizes Bessel's Correction, dividing the squared variance by <code className="bg-[#F1F3F4] px-1 rounded">n - 1</code> rather than <code className="bg-[#F1F3F4] px-1 rounded">n</code>. This is the universal standard for experimental research, as it provides an unbiased statistical estimate when you only have access to a subset of data rather than the entire population.</li>
                 <li><strong className="text-[#188038]">Variance (s²):</strong> Variance is the direct precursor to standard deviation. It represents the average of the squared mathematical differences from the Mean. Because variance is squared, it heavily penalizes extreme outliers in your dataset.</li>
                 <li><strong className="text-[#D93025]">Dataset Range:</strong> The engine automatically isolates the absolute minimum and maximum floating-point values within your dataset, instantly outputting the total statistical spread.</li>
               </ul>
@@ -144,14 +144,14 @@ export default function StandardDeviationCalculator() {
           ]
         }}
         formula={{
-          title: "Sample Standard Deviation Logic",
-          description: "The algorithmic path to determining statistical dispersion utilizing Bessel's Correction.",
-          raw: "Mean (x̄) = ( Σ xi ) / n\n\nSample Variance (s²) = Σ (xi, x̄)² / (n, 1)\n\nSample Standard Deviation (s) = √ s²\n\nWhere:\nΣ = Summation of all points\nxi = Each individual data point\nx̄ = The Mean average\nn = Total number of data points"
+          title: "Standard Deviation Formula",
+          description: "Calculation for Sample Standard Deviation",
+          raw: "Mean (x̄) = ( Σ xi ) / n\n\nSample Variance (s²) = Σ (xi - x̄)² / (n - 1)\n\nSample Standard Deviation (s) = √ s²\n\nWhere:\nΣ = Summation of all points\nxi = Each individual data point\nx̄ = The Mean average\nn = Total number of data points"
         }}
         faqs={[
           {
-            question: "Why does the formula divide by (n, 1) instead of just 'n'?",
-            answer: "Dividing by (n, 1) is known as Bessel's correction. In statistics, when you only have a sample of data (not the entire global population), dividing by 'n' consistently underestimates the true variance. Subtracting 1 artificially inflates the result to mathematically compensate for this bias."
+            question: "Why does the formula divide by (n - 1) instead of just 'n'?",
+            answer: "Dividing by (n - 1) is known as Bessel's correction. In statistics, when you only have a sample of data (not the entire global population), dividing by 'n' consistently underestimates the true variance. Subtracting 1 artificially inflates the result to mathematically compensate for this bias."
           },
           {
             question: "What is the physical difference between Standard Deviation and Variance?",

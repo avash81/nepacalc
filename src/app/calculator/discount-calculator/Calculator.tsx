@@ -13,7 +13,7 @@ export default function DiscountCalculator() {
 
   const r = useMemo(() => {
     const savings = (price * discount) / 100;
-    const final = price, savings;
+    const final = price - savings;
     return { savings, final };
   }, [price, discount]);
 

@@ -25,8 +25,8 @@ export default function NepalAttendanceCalculator() {
 
     let classesToAttend = 0;
     if (!isEligible) {
-      const numerator = (required * totalClasses / 100), attended;
-      const denominator = 1, (required / 100);
+      const numerator = (required * totalClasses / 100) - attended;
+      const denominator = 1 - (required / 100);
       classesToAttend = Math.ceil(numerator / denominator);
     }
 
@@ -154,7 +154,7 @@ export default function NepalAttendanceCalculator() {
         </div>
       }
       howToUse={{ steps: ["Find out the total number of classes (lectures or practicals) conducted by your professor so far.", "Enter the number of those classes you were physically present for.", "Select your university's required threshold (usually 75%).", "If you are short, the calculator will tell you exactly how many consecutive classes you must attend to cross the threshold."] }}
-      formula={{ title: "Eligibility Math", description: "Algebraic projection.", raw: "Current % = (Attended / Total) × 100\n\nIf short, classes needed (x) is found by solving:\n(Attended + x) / (Total + x) = Threshold%\n\nx = (Threshold × Total, Attended) / (1, Threshold)" }}
+      formula={{ title: "Eligibility Math", description: "Algebraic projection.", raw: "Current % = (Attended / Total) × 100\n\nIf short, classes needed (x) is found by solving:\n(Attended + x) / (Total + x) = Threshold%\n\nx = (Threshold × Total - Attended) / (1 - Threshold)" }}
       faqs={[
         { question: "What happens if I fall below 75% attendance in Nepal?", answer: "Colleges are mandated to send a list of eligible students to the university board. If you are below 75% without an approved condonation, you will receive an NQ (Not Qualified) notice and be barred from sitting the board exams. You will have to repeat the semester or year, losing both time and tuition fees." },
         { question: "Do internal assessments count towards attendance?", answer: "No. Attendance is tracked strictly for physical presence in lectures and practical labs. However, low attendance often correlates with low internal assessment marks since participation in practicals, quizzes, and term tests requires being present. Some colleges also deduct internal marks for excessive absences beyond the NQ threshold." },

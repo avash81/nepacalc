@@ -77,9 +77,9 @@ export default function GraphingCalculatorClient() {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     const { xMin, xMax, yMin, yMax } = view.current;
-    const xS = xMax, xMin, yS = yMax, yMin;
-    const toX = (x: number) => ((x, xMin) / xS) * W;
-    const toY = (y: number) => H, ((y, yMin) / yS) * H;
+    const xS = xMax - xMin, yS = yMax - yMin;
+    const toX = (x: number) => ((x - xMin) / xS) * W;
+    const toY = (y: number) => H - ((y - yMin) / yS) * H;
 
     // BG
     ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
@@ -131,7 +131,7 @@ export default function GraphingCalculatorClient() {
         if (my === null) { pen = false; prevPy = null; continue; }
         const px = toX(mx), py = toY(my);
         if (py < -5000 || py > H + 5000) { pen = false; prevPy = null; continue; }
-        if (prevPy !== null && Math.abs(py, prevPy) > H * 0.6) pen = false;
+        if (prevPy !== null && Math.abs(py - prevPy) > H * 0.6) pen = false;
         prevPy = py;
         if (!pen) { ctx.moveTo(px, py); pen = true; } else ctx.lineTo(px, py);
       }
@@ -143,7 +143,7 @@ export default function GraphingCalculatorClient() {
       ctx.fillStyle = '#cbd5e1'; ctx.font = 'bold 14px Inter,system-ui,sans-serif';
       ctx.textAlign = 'center'; ctx.fillText('Type a function in the sidebar to plot', W/2, H/2, 10);
       ctx.font = '12px Inter,system-ui,sans-serif'; ctx.fillStyle = '#94a3b8';
-      ctx.fillText('e.g.  sin(x)  ·  x^2, 4  ·  1/x  ·  cos(2*x)', W/2, H/2 + 14);
+      ctx.fillText('e.g.  sin(x)  ·  x^2 - 4  ·  1/x  ·  cos(2*x)', W/2, H/2 + 14);
     }
   }, [exprs]);
 
@@ -161,8 +161,8 @@ export default function GraphingCalculatorClient() {
     if (!drag.current.active) return;
     const c = canvasRef.current; if (!c) return;
     const v = view.current, W = c.clientWidth, H = c.clientHeight;
-    const dx = -(e.clientX, drag.current.lx) / W * (v.xMax, v.xMin);
-    const dy = (e.clientY, drag.current.ly) / H * (v.yMax, v.yMin);
+    const dx = -(e.clientX - drag.current.lx) / W * (v.xMax - v.xMin);
+    const dy = (e.clientY - drag.current.ly) / H * (v.yMax - v.yMin);
     view.current = { xMin: v.xMin+dx, xMax: v.xMax+dx, yMin: v.yMin+dy, yMax: v.yMax+dy };
     drag.current.lx = e.clientX; drag.current.ly = e.clientY;
     cancelAnimationFrame(raf.current); raf.current = requestAnimationFrame(draw);
@@ -174,8 +174,8 @@ export default function GraphingCalculatorClient() {
     e.preventDefault();
     const c = canvasRef.current; if (!c) return;
     const r = c.getBoundingClientRect(), v = view.current;
-    const mx = v.xMin + ((e.clientX, r.left) / c.clientWidth) * (v.xMax, v.xMin);
-    const my = v.yMin + (1, (e.clientY, r.top) / c.clientHeight) * (v.yMax, v.yMin);
+    const mx = v.xMin + ((e.clientX - r.left) / c.clientWidth) * (v.xMax - v.xMin);
+    const my = v.yMin + (1 - (e.clientY - r.top) / c.clientHeight) * (v.yMax - v.yMin);
     const f = e.deltaY > 0 ? 1.12 : 0.89;
     view.current = { xMin: mx+(v.xMin-mx)*f, xMax: mx+(v.xMax-mx)*f, yMin: my+(v.yMin-my)*f, yMax: my+(v.yMax-my)*f };
     cancelAnimationFrame(raf.current); raf.current = requestAnimationFrame(draw);
@@ -212,7 +212,7 @@ export default function GraphingCalculatorClient() {
       </div>
 
       {/* Main layout */}
-      <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row gap-0" style={{ height: 'calc(100vh, 120px)' }}>
+      <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row gap-0" style={{ height: 'calc(100vh - 120px)' }}>
         {/* Sidebar */}
         <div className="w-full lg:w-[320px] flex-shrink-0 bg-white border border-slate-200 rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none overflow-hidden flex flex-col">
           <div className="p-4 border-b border-slate-100 flex items-center justify-between">

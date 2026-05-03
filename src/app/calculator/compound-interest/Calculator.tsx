@@ -27,11 +27,11 @@ export default function CompoundInterestCalculator() {
   const result = useMemo(() => {
     const r = rate / 100, n = compounding;
     const amount = principal * Math.pow(1 + r / n, n * years);
-    const totalInterest = amount, principal;
+    const totalInterest = amount - principal;
     const schedule = Array.from({ length: Math.min(years, 30) }, (_, i) => {
       const yr = i + 1;
       const bal = principal * Math.pow(1 + r / n, n * yr);
-      const prevBal = principal * Math.pow(1 + r / n, n * (yr, 1));
+      const prevBal = principal * Math.pow(1 + r / n, n * (yr - 1));
       return { year: yr, yearlyInterest: bal, prevBal, balance: bal };
     });
     return { amount, totalInterest, schedule };
@@ -209,7 +209,7 @@ export default function CompoundInterestCalculator() {
         },
         {
           question: "How do I calculate effective Annual Percentage Yield (APY)?",
-          answer: "APY takes the compounding frequency into account to give you the 'true' annual rate. If your nominal rate is 10% compounded monthly, your APY is actually 10.47%. The formula is APY = (1 + r/n)^n, 1."
+          answer: "APY takes the compounding frequency into account to give you the 'true' annual rate. If your nominal rate is 10% compounded monthly, your APY is actually 10.47%. The formula is APY = (1 + r/n)^n - 1."
         },
         {
           question: "What is the Rule of 72?",

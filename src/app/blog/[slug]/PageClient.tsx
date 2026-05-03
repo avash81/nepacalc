@@ -24,10 +24,10 @@ function sanitizeUrlEscaped(url: string): string | null {
   return null;
 }
 
-function renderContent(content: string): string {
+function renderContent(content: string, imageMiddle?: string): string {
   // Escape any raw HTML from Firestore before applying markdown-like formatting.
   const escaped = escapeHtml(content);
-  return escaped
+  let html = escaped
     .replace(/^## (.+)$/gm, '<h2 class="text-xl font-bold text-gray-900 mt-8 mb-3 scroll-mt-20">$1</h2>')
     .replace(/^### (.+)$/gm, '<h3 class="text-base font-bold text-gray-800 mt-5 mb-2">$1</h3>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
@@ -40,10 +40,26 @@ function renderContent(content: string): string {
       return `<a href="${safe}" class="text-blue-600 underline hover:text-blue-800" rel="noopener noreferrer">${label}</a>`;
     })
     .replace(/^(?!<[hlo]).+$/gm, (l) => l.trim() ? `<p class="mb-4 text-gray-700 leading-relaxed">${l}</p>` : '');
+
+  // Inject middle image after first H2
+  if (imageMiddle) {
+    const h2Match = html.match(/<\/h2>/);
+    if (h2Match) {
+      const index = h2Match.index! + 5;
+      const imgHtml = `
+        <div class="my-8 rounded-2xl overflow-hidden border border-gray-100 shadow-lg">
+          <img src="${imageMiddle}" alt="Content Visual" class="w-full h-auto object-cover" loading="lazy" />
+        </div>
+      `;
+      html = html.slice(0, index) + imgHtml + html.slice(index);
+    }
+  }
+
+  return html;
 }
 
 export default function PageClient({ post, related }: { post: any, related: any[] }) {
-  const html = useMemo(() => post ? renderContent(post.content || '') : '', [post]);
+  const html = useMemo(() => post ? renderContent(post.content || '', post.imageMiddle) : '', [post]);
 
   const faqs = useMemo(() => {
     if (!post?.content) return [];
@@ -111,11 +127,35 @@ export default function PageClient({ post, related }: { post: any, related: any[
         </div>
 
         {/* Article body */}
-        <div
-          className="prose prose-sm max-w-none text-gray-700
-                     prose-a:text-blue-600"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <div className="space-y-6">
+          {post.imageTop && (
+            <div className="mb-8 rounded-3xl overflow-hidden border border-gray-100 shadow-xl">
+              <img 
+                src={post.imageTop} 
+                alt={post.title} 
+                className="w-full h-[300px] sm:h-[400px] object-cover"
+                priority
+              />
+            </div>
+          )}
+
+          <div
+            className="prose prose-sm max-w-none text-gray-700
+                       prose-a:text-blue-600"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+
+          {post.imageBottom && (
+            <div className="mt-8 rounded-3xl overflow-hidden border border-gray-100 shadow-xl">
+              <img 
+                src={post.imageBottom} 
+                alt="Concluding Visual" 
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
+            </div>
+          )}
+        </div>
 
         {/* FAQ section (auto-extracted) */}
         {faqs.length >= 2 && (

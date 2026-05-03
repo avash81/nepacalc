@@ -35,9 +35,9 @@ export function PlotCanvas({ expressions, camera, setCamera }: PlotCanvasProps) 
     const cy = ch / 2 + camera.y;
 
     const toScreenX = (mathX: number) => cx + mathX * zoom;
-    const toScreenY = (mathY: number) => cy, mathY * zoom;
-    const toMathX = (screenX: number) => (screenX, cx) / zoom;
-    const toMathY = (screenY: number) => (cy, screenY) / zoom;
+    const toScreenY = (mathY: number) => cy - mathY * zoom;
+    const toMathX = (screenX: number) => (screenX - cx) / zoom;
+    const toMathY = (screenY: number) => (cy - screenY) / zoom;
 
     // Grid
     ctx.lineWidth = 1;
@@ -90,17 +90,17 @@ export function PlotCanvas({ expressions, camera, setCamera }: PlotCanvasProps) 
     ctx.textBaseline = 'top';
     for (let x = Math.floor(startX / step) * step; x <= endX; x += step) {
       if (Math.abs(x) < 0.0001) continue;
-      ctx.fillText(Number.isInteger(x) ? x.toString() : x.toFixed(1), toScreenX(x), Math.min(Math.max(sY0 + 5, 5), ch, 20));
+      ctx.fillText(Number.isInteger(x) ? x.toString() : x.toFixed(1), toScreenX(x), Math.min(Math.max(sY0 + 5, 5), ch - 20));
     }
     ctx.textAlign = 'right';
     ctx.textBaseline = 'middle';
     for (let y = Math.floor(startY / step) * step; y <= endY; y += step) {
       if (Math.abs(y) < 0.0001) continue;
-      ctx.fillText(Number.isInteger(y) ? y.toString() : y.toFixed(1), Math.min(Math.max(sX0, 5, 20), cw, 5), toScreenY(y));
+      ctx.fillText(Number.isInteger(y) ? y.toString() : y.toFixed(1), Math.min(Math.max(sX0 - 5, 20), cw - 5), toScreenY(y));
     }
 
     // Expressions
-    const stepMath = (toMathX(cw), toMathX(0)) / cw;
+    const stepMath = (toMathX(cw) - toMathX(0)) / cw;
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
 
@@ -163,10 +163,10 @@ export function PlotCanvas({ expressions, camera, setCamera }: PlotCanvasProps) 
        const nextZoom = Math.max(1, Math.min(prev.zoom * factor, 2000));
        const rect = containerRef.current?.getBoundingClientRect();
        if (!rect) return prev;
-       const mouseX = e.clientX, rect.left, rect.width / 2;
-       const mouseY = e.clientY, rect.top, rect.height / 2;
+       const mouseX = e.clientX - rect.left - rect.width / 2;
+       const mouseY = e.clientY - rect.top - rect.height / 2;
        const ratio = nextZoom / prev.zoom;
-       return { ...prev, zoom: nextZoom, x: mouseX, (mouseX, prev.x) * ratio, y: mouseY, (mouseY, prev.y) * ratio };
+       return { ...prev, zoom: nextZoom, x: mouseX - (mouseX - prev.x) * ratio, y: mouseY - (mouseY - prev.y) * ratio };
     });
   };
 
@@ -179,8 +179,8 @@ export function PlotCanvas({ expressions, camera, setCamera }: PlotCanvasProps) 
 
   const handlePointerMove = (e: React.PointerEvent) => {
     if (!isDragging) return;
-    const dx = e.clientX, lastMouse.x;
-    const dy = e.clientY, lastMouse.y;
+    const dx = e.clientX - lastMouse.x;
+    const dy = e.clientY - lastMouse.y;
     setLastMouse({ x: e.clientX, y: e.clientY });
     setCamera(prev => ({ ...prev, x: prev.x + dx, y: prev.y + dy }));
   };

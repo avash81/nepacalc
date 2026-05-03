@@ -20,23 +20,23 @@ export default function LinearSolver() {
 
   const result = useMemo(() => {
     if (mode === '2var') {
-      const det = a1*b2, a2*b1;
+      const det = a1*b2 - a2*b1;
       if (det === 0) return { ok: false, msg: 'No unique solution. The lines are either parallel (no intersection) or exactly the same line (infinite solutions).' };
-      return { ok: true, x: (c1*b2, c2*b1) / det, y: (a1*c2, a2*c1) / det };
+      return { ok: true, x: (c1*b2 - c2*b1) / det, y: (a1*c2 - a2*c1) / det };
     }
     
     const { a:A1, b:B1, c:C1, d:D1 } = eq1;
     const { a:A2, b:B2, c:C2, d:D2 } = eq2;
     const { a:A3, b:B3, c:C3, d:D3 } = eq3;
     
-    const det = A1*(B2*C3, B3*C2), B1*(A2*C3, A3*C2) + C1*(A2*B3, A3*B2);
+    const det = A1*(B2*C3 - B3*C2) - B1*(A2*C3 - A3*C2) + C1*(A2*B3 - A3*B2);
     if (det === 0) return { ok: false, msg: 'Singular system. The planes do not intersect at a single unique point (no solution or infinite solutions).' };
     
     return {
       ok: true,
-      x: (D1*(B2*C3, B3*C2), B1*(D2*C3, D3*C2) + C1*(D2*B3, D3*B2)) / det,
-      y: (A1*(D2*C3, D3*C2), D1*(A2*C3, A3*C2) + C1*(A2*D3, A3*D2)) / det,
-      z: (A1*(B2*D3, B3*D2), B1*(A2*D3, A3*D2) + D1*(A2*B3, A3*B2)) / det,
+      x: (D1*(B2*C3 - B3*C2) - B1*(D2*C3 - D3*C2) + C1*(D2*B3 - D3*B2)) / det,
+      y: (A1*(D2*C3 - D3*C2) - D1*(A2*C3 - A3*C2) + C1*(A2*D3 - A3*D2)) / det,
+      z: (A1*(B2*D3 - B3*D2) - B1*(A2*D3 - A3*D2) + D1*(A2*B3 - A3*B2)) / det,
     };
   }, [mode, a1, b1, c1, a2, b2, c2, eq1, eq2, eq3]);
 
@@ -148,11 +148,11 @@ export default function LinearSolver() {
                       
                       {/* Equation 1 Line */}
                       {b1 !== 0 && (
-                        <line x1="-15" y1={(c1, a1*(-15))/b1} x2="15" y2={(c1, a1*(15))/b1} stroke="#1A73E8" strokeWidth="0.5" />
+                        <line x1="-15" y1={(c1 - a1*(-15))/b1} x2="15" y2={(c1 - a1*(15))/b1} stroke="#1A73E8" strokeWidth="0.5" />
                       )}
                       {/* Equation 2 Line */}
                       {b2 !== 0 && (
-                        <line x1="-15" y1={(c2, a2*(-15))/b2} x2="15" y2={(c2, a2*(15))/b2} stroke="#188038" strokeWidth="0.5" />
+                        <line x1="-15" y1={(c2 - a2*(-15))/b2} x2="15" y2={(c2 - a2*(15))/b2} stroke="#188038" strokeWidth="0.5" />
                       )}
                       
                       {/* Intersection Node */}
@@ -214,7 +214,7 @@ export default function LinearSolver() {
       formula={{
         title: "Cramer's Determinant Theorem",
         description: "The core matrix algebra used to resolve 2x2 and 3x3 systems.",
-        raw: "Standard Form (2 Variables):\na1x + b1y = c1\na2x + b2y = c2\n\nMain Determinant:\nΔ = (a1 × b2), (a2 × b1)\n\nSub-Determinants:\nΔx = (c1 × b2), (c2 × b1)\nΔy = (a1 × c2), (a2 × c1)\n\nFinal Solution Vector:\nx = Δx / Δ\ny = Δy / Δ\n\n*If Δ = 0, the matrix is singular and no unique vector exists."
+        raw: "Standard Form (2 Variables):\na1x + b1y = c1\na2x + b2y = c2\n\nMain Determinant:\nΔ = (a1 × b2) - (a2 × b1)\n\nSub-Determinants:\nΔx = (c1 × b2) - (c2 × b1)\nΔy = (a1 × c2) - (a2 × c1)\n\nFinal Solution Vector:\nx = Δx / Δ\ny = Δy / Δ\n\n*If Δ = 0, the matrix is singular and no unique vector exists."
       }}
       faqs={[
         {

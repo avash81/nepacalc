@@ -28,9 +28,9 @@ export default function NepalHomeLoanCalculator() {
   const results = useMemo(() => {
     const r = effectiveRate / 12 / 100;
     const n = tenureYears * 12;
-    const emi = (principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n), 1);
+    const emi = (principal * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
     const totalPayment = emi * n;
-    const totalInterest = totalPayment, principal;
+    const totalInterest = totalPayment - principal;
 
     return { emi, totalPayment, totalInterest };
   }, [principal, effectiveRate, tenureYears]);

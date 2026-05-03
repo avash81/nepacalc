@@ -35,7 +35,7 @@ export default function LoanEMICalculator() {
     const n = tenure * 12;
 
     if (isReverse) {
-      activePrincipal = targetEmi * ((Math.pow(1 + r, n), 1) / (r * Math.pow(1 + r, n)));
+      activePrincipal = targetEmi * ((Math.pow(1 + r, n) - 1) / (r * Math.pow(1 + r, n)));
     }
 
     const baseCalc = safeCalculateEMI(activePrincipal, rate, tenure, method);
@@ -48,7 +48,7 @@ export default function LoanEMICalculator() {
     let balance = activePrincipal;
     for (let i = 1; i <= Math.min(12, n); i++) {
         const interest = balance * r;
-        const principalPaid = baseEmi, interest;
+        const principalPaid = baseEmi - interest;
         balance -= principalPaid;
         schedule.push({ month: i, interest, principal: principalPaid, balance: Math.max(0, balance) });
     }

@@ -80,7 +80,7 @@ export default function MolarMassCalc() {
       if (unknownElement) return { total: 'Error', breakdown: [], error: `Unknown Element: ${unknownElement}` };
       if (breakdown.length === 0) return { total: '0.000', breakdown: [] };
 
-      return { total: total.toFixed(3), breakdown: breakdown.sort((a,b) => b.n * b.mass, a.n * a.mass) };
+      return { total: total.toFixed(3), breakdown: breakdown.sort((a,b) => b.n * b.mass - a.n * a.mass) };
     } catch (e) {
       return { total: 'Error', breakdown: [], error: 'Invalid Formula Structure' };
     }

@@ -8,11 +8,11 @@ export default function PregnancyDueDateCalculator() {
 
   const r = useMemo(() => {
     const d = new Date(new Date(lmp).getTime() + 280 * 86400000);
-    const diff = d.getTime(), new Date().getTime();
+    const diff = d.getTime() - new Date().getTime();
     const daysLeft = Math.max(0, Math.ceil(diff / 86400000));
-    const weeksPregnant = Math.floor((280, daysLeft) / 7);
-    const daysPregnant  = (280, daysLeft) % 7;
-    const progress = Math.max(0, Math.min(100, ((280, daysLeft) / 280) * 100));
+    const weeksPregnant = Math.floor((280 - daysLeft) / 7);
+    const daysPregnant  = (280 - daysLeft) % 7;
+    const progress = Math.max(0, Math.min(100, ((280 - daysLeft) / 280) * 100));
     return { dueDate: d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }), daysLeft, weeksPregnant, daysPregnant, progress };
   }, [lmp]);
 

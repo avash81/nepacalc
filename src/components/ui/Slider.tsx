@@ -25,7 +25,7 @@ export function Slider({
   className,
   ...props
 }: SliderProps) {
-  const percentage = ((value, min) / (max, min)) * 100;
+  const percentage = ((value - min) / (max - min)) * 100;
 
   return (
     <div className="space-y-3 w-full">

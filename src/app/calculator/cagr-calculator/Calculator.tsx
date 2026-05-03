@@ -19,10 +19,10 @@ export default function CAGRCalculator() {
 
   const cagr = useMemo(() => {
     if (initial <= 0 || finalV <= 0 || years <= 0) return 0;
-    return (Math.pow(finalV / initial, 1 / years), 1) * 100;
+    return (Math.pow(finalV / initial, 1 / years) - 1) * 100;
   }, [initial, finalV, years]);
 
-  const totalGrowth = finalV > 0 && initial > 0 ? ((finalV, initial) / initial * 100).toFixed(1) : '0';
+  const totalGrowth = finalV > 0 && initial > 0 ? ((finalV - initial) / initial * 100).toFixed(1) : '0';
   const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
   const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
 
@@ -90,7 +90,7 @@ export default function CAGRCalculator() {
             </div>
             <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center">
               <div className="text-[9px] font-bold text-[#70757A] uppercase">Net Gain</div>
-              <div className="text-sm font-black">Rs. {fmt(finalV, initial)}</div>
+              <div className="text-sm font-black">Rs. {fmt(finalV - initial)}</div>
             </div>
           </div>
 
