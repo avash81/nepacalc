@@ -134,7 +134,7 @@ export default function PageClient({ post, related }: { post: any, related: any[
                 src={post.imageTop} 
                 alt={post.title} 
                 className="w-full h-[300px] sm:h-[400px] object-cover"
-                priority
+                loading="eager"
               />
             </div>
           )}
