@@ -162,16 +162,17 @@ export default function LoanEMICalculator() {
         </div>
       }
       details={result.success && (
-        <div className="space-y-8">
+        <div className="space-y-12">
+          {/* Main Visual Intelligence Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm flex flex-col">
                <div className="px-4 py-3 border-b border-[#DADCE0] bg-[#F8F9FA] flex justify-between items-center">
-                 <span className="text-[10px] font-bold text-[#70757A] uppercase">Early Repayment Schedule (1st Year)</span>
+                 <span className="text-[10px] font-bold text-[#70757A] uppercase tracking-widest">Early Repayment Schedule (1st Year)</span>
                  <Table className="w-3.5 h-3.5 text-[#1A73E8]" />
                </div>
-               <div className="flex-1 overflow-y-auto max-h-[340px]">
-                 <table className="w-full text-left">
-                   <thead className="sticky top-0 bg-[#F8F9FA] text-[9px] font-bold uppercase text-[#70757A] border-b border-[#DADCE0]">
+               <div className="flex-1 overflow-y-auto max-h-[340px] custom-scrollbar">
+                 <table className="w-full text-left border-collapse">
+                   <thead className="sticky top-0 bg-[#F8F9FA] text-[9px] font-bold uppercase text-[#70757A] border-b border-[#DADCE0] z-10">
                      <tr>
                        <th className="px-4 py-3">Month</th>
                        <th className="px-4 py-3 text-right">Principal</th>
@@ -236,119 +237,158 @@ export default function LoanEMICalculator() {
                      <span className="text-base font-black text-[#202124]">{formatNPR(result.totalPayment!)}</span>
                   </div>
                 </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                   <div className="p-4 rounded-xl border border-[#DADCE0] bg-[#F8F9FA] space-y-2">
-                      <div className="flex justify-between items-center">
-                         <span className="text-[10px] font-bold text-[#5F6368] uppercase">Principal</span>
-                         <span className="text-[11px] font-black text-[#188038]">{((result.activePrincipal! / result.totalPayment!) * 100).toFixed(1)}%</span>
-                      </div>
-                      <div className="w-full h-1.5 bg-[#E8EAED] rounded-full overflow-hidden">
-                         <div className="h-full bg-[#188038]" style={{ width: `${(result.activePrincipal! / result.totalPayment!) * 100}%` }} />
-                      </div>
-                   </div>
-                   <div className="p-4 rounded-xl border border-[#DADCE0] bg-[#F8F9FA] space-y-2">
-                      <div className="flex justify-between items-center">
-                         <span className="text-[10px] font-bold text-[#5F6368] uppercase">Interest</span>
-                         <span className="text-[11px] font-black text-[#D93025]">{((result.totalInterest! / result.totalPayment!) * 100).toFixed(1)}%</span>
-                      </div>
-                      <div className="w-full h-1.5 bg-[#E8EAED] rounded-full overflow-hidden">
-                         <div className="h-full bg-[#D93025]" style={{ width: `${(result.totalInterest! / result.totalPayment!) * 100}%` }} />
-                      </div>
-                   </div>
-                </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-1.5 h-5 bg-[#1A73E8] rounded-full" />
-              <h3 className="text-sm font-black text-[#202124] uppercase tracking-wider">Repayment Trajectory (Reducing Principal)</h3>
-            </div>
-            <div className="h-[280px] w-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <ReBarChart
-                  data={result.schedule}
-                  margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
-                  barSize={32}
-                >
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F1F3F4" />
-                  <XAxis 
-                    dataKey="month" 
-                    tick={{ fontSize: 10, fill: '#70757A', fontWeight: 'bold' }} 
-                    axisLine={false}
-                    tickLine={false}
-                    tickFormatter={(val) => `M${val}`}
-                  />
-                  <YAxis 
-                    tick={{ fontSize: 9, fill: '#70757A', fontWeight: 'bold' }} 
-                    axisLine={false}
-                    tickLine={false}
-                    tickFormatter={(val) => `${(val/1000).toFixed(0)}k`}
-                  />
-                  <Tooltip 
-                    cursor={{ fill: '#F1F3F4' }}
-                    formatter={(value: number) => formatNPR(value)}
-                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 8px 30px rgba(0,0,0,0.12)', fontSize: '11px' }}
-                  />
-                  <Bar dataKey="principal" stackId="a" fill="#188038" radius={[0, 0, 0, 0]} />
-                  <Bar dataKey="interest" stackId="a" fill="#D93025" radius={[4, 4, 0, 0]} />
-                </ReBarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
+          {/* Detailed Authority Guide Section */}
+          <div className="bg-white border border-[#DADCE0] rounded-2xl p-8 md:p-12 shadow-sm space-y-10">
+            <header className="border-b border-[#F1F3F4] pb-8">
+              <h2 className="text-3xl font-black text-[#202124] leading-tight mb-4">
+                The Definitive Guide to Bank Loans and EMI in Nepal (FY 2082/83)
+              </h2>
+              <p className="text-base text-[#5F6368] leading-relaxed max-w-3xl">
+                Taking out a loan is one of the most significant financial commitments a person in Nepal will make. 
+                Whether you are building a house in Kathmandu, starting a business in Pokhara, or buying an Electric Vehicle (EV) 
+                to navigate the city, understanding how your money is being moved is the first step toward financial freedom.
+              </p>
+            </header>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
-             <div className="px-6 py-4 bg-[#F8F9FA] border-b border-[#DADCE0] flex items-center gap-2">
-                <Activity className="w-4 h-4 text-[#1A73E8]" />
-                <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Full Amortization Intelligence</h3>
-             </div>
-             <div className="overflow-x-auto">
-                <table className="w-full text-left">
-                  <thead>
-                    <tr className="bg-[#F8F9FA] text-[10px] font-bold uppercase text-[#70757A] border-b border-[#DADCE0]">
-                      <th className="px-6 py-3">Period</th>
-                      <th className="px-6 py-3 text-right">EMI Portion</th>
-                      <th className="px-6 py-3 text-right">Principal</th>
-                      <th className="px-6 py-3 text-right">Interest</th>
-                      <th className="px-6 py-3 text-right">Outstanding</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-[#DADCE0]">
-                    {result.schedule!.map((row) => (
-                      <tr key={row.month} className="text-[11px] hover:bg-[#F8F9FA] transition-colors">
-                        <td className="px-6 py-3 font-bold text-[#1A73E8]">Month {row.month}</td>
-                        <td className="px-6 py-3 text-right font-medium text-[#5F6368]">{formatNPR(result.baseEmi!)}</td>
-                        <td className="px-6 py-3 text-right font-bold text-[#188038]">{formatNPR(row.principal)}</td>
-                        <td className="px-6 py-3 text-right font-bold text-[#D93025]">{formatNPR(row.interest)}</td>
-                        <td className="px-6 py-3 text-right font-black text-[#202124]">{formatNPR(row.balance)}</td>
-                      </tr>
+            <section className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+              <div className="lg:col-span-8 space-y-12">
+                
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold text-[#202124] flex items-center gap-3">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#E8F0FE] text-[#1A73E8] text-sm font-black">1</span>
+                    How Bank Loans Actually Work in Nepal
+                  </h3>
+                  <p className="text-[#5F6368] leading-relaxed">
+                    In the Nepali banking ecosystem, "A" Class Commercial Banks (like Nabil Bank or Nepal Bank) operate 
+                    under strict circulars issued by <strong className="text-[#202124]">Nepal Rastra Bank (NRB)</strong>. 
+                    When you take a loan, you aren't just paying back the money; you are participating in a regulated financial 
+                    contract where the interest rates are dynamic, not static.
+                  </p>
+                  
+                  <div className="bg-[#F8F9FA] border-l-4 border-[#1A73E8] p-6 rounded-r-xl space-y-4">
+                    <h4 className="text-[13px] font-black text-[#202124] uppercase tracking-wider">The "Base Rate + Premium" Model</h4>
+                    <p className="text-sm text-[#5F6368]">
+                      Unlike many Western countries where fixed-rate mortgages are common, Nepal primarily operates on a 
+                      <strong className="text-[#202124]"> Floating Interest Rate</strong> system.
+                    </p>
+                    <ul className="space-y-3">
+                      <li className="text-sm">
+                        <strong className="text-[#1A73E8]">The Base Rate:</strong> This is the minimum rate at which a bank can lend. 
+                        It changes every quarter (Poush, Chaitra, Ashadh, and Ashwin) based on the bank's cost of funds.
+                      </li>
+                      <li className="text-sm">
+                        <strong className="text-[#1A73E8]">The Premium:</strong> This is the "extra" percentage the bank charges you 
+                        based on your credit risk. This is usually fixed for the life of your loan.
+                      </li>
+                    </ul>
+                    <div className="mt-4 pt-4 border-t border-[#DADCE0] text-[11px] font-bold text-[#188038] uppercase">
+                       Crucial Advice: Negotiate the Premium, not the total rate. A 0.5% lower premium can save you lakhs.
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold text-[#202124] flex items-center gap-3">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#E8F0FE] text-[#1A73E8] text-sm font-black">2</span>
+                    Step-by-Step Guide: From Calculator to Cash-in-Hand
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {[
+                      { title: "Research", desc: "Use this EMI tool to find your Sweet Spot. Play with tenure to balance monthly costs vs total interest." },
+                      { title: "Paper Trail", desc: "Prepare Nagarikta, 6 months bank statements, Lalpurja/Bluebook, and Mandatory IRD Tax Clearance." },
+                      { title: "Negotiation", desc: "Visit the Credit Manager. Ask for the 'A' Class Rate and check processing fees (0.75% to 1.25%)." }
+                    ].map((step, i) => (
+                      <div key={i} className="p-5 border border-[#DADCE0] rounded-xl hover:border-[#1A73E8] transition-all group">
+                        <div className="text-[10px] font-black text-[#1A73E8] uppercase mb-2">Phase {i+1}</div>
+                        <div className="text-sm font-bold text-[#202124] mb-2">{step.title}</div>
+                        <p className="text-[12px] text-[#5F6368] leading-relaxed group-hover:text-[#202124] transition-colors">{step.desc}</p>
+                      </div>
                     ))}
-                  </tbody>
-                </table>
-             </div>
-          </div>
+                  </div>
+                </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm mt-8">
-            <h2 className="text-xl font-black text-[#202124] mb-4">How Bank Loans Actually Work in Nepal</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                Taking out a loan in Nepal can feel overwhelming, especially when trying to figure out exactly how much you will have to pay back each month. We built this <strong className="text-[#202124]">emi calculator nepal</strong> to give you the exact same numbers that 'A' Class commercial banks use. By strictly following <strong className="text-[#202124]">nrb base rate</strong> regulations, this tool clearly breaks down your monthly payment so you can see exactly where every Rupee goes, how much is paying off your actual loan, and how much is going to the bank as interest.
-              </p>
-              <p>
-                Whether you are planning to buy a car, purchase a home, or take out a personal loan, having an accurate <strong className="text-[#202124]">interest rate calculator</strong> by your side is crucial. The Nepal Rastra Bank (NRB) requires banks to be transparent about their rates (which are usually the base rate plus a premium). We designed this tool to put the power back in your hands, allowing you to confidently plan your budget before you ever step foot inside a bank branch.
-              </p>
-            </div>
-          </div>
+                <div className="space-y-6">
+                  <h3 className="text-xl font-bold text-[#202124] flex items-center gap-3">
+                    <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#E8F0FE] text-[#1A73E8] text-sm font-black">3</span>
+                    What to Avoid: Common Pitfalls in Nepal
+                  </h3>
+                  <div className="space-y-6">
+                    <div className="flex gap-4">
+                       <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#FEEFC3] flex items-center justify-center text-[#E37400] font-black text-xs">A</div>
+                       <div className="space-y-2">
+                         <h4 className="text-sm font-black text-[#202124]">The "Flat Rate" Deception</h4>
+                         <p className="text-[13px] text-[#5F6368] leading-relaxed">
+                            Sahakaris might offer a 10% Flat Rate. It sounds better than a bank's 13% reducing rate, but it's a trap. 
+                            A 10% Flat Rate is actually closer to an <strong className="text-[#D93025]">18% Reducing Rate</strong>. 
+                            Always insist on reducing balance calculation.
+                         </p>
+                       </div>
+                    </div>
+                    <div className="flex gap-4">
+                       <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#FEEFC3] flex items-center justify-center text-[#E37400] font-black text-xs">B</div>
+                       <div className="space-y-2">
+                         <h4 className="text-sm font-black text-[#202124]">The Over-Leverage Risk (DSTI Ratio)</h4>
+                         <p className="text-[13px] text-[#5F6368] leading-relaxed">
+                            NRB rules specify that your total EMIs should not exceed <strong className="text-[#202124]">50% to 60%</strong> of your 
+                            verifiable monthly income. If you earn Rs. 1 Lakh and EMI is Rs. 70,000, your loan will likely be rejected.
+                         </p>
+                       </div>
+                    </div>
+                  </div>
+                </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Understanding Your Repayment Journey</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">The Benefit of Reducing Balance:</strong> Most regulated financial institutions in Nepal use a reducing balance method. This is great news for you! This <strong className="text-[#202124]">loan schedule</strong> recalculates your interest every single month based only on what you still owe. This means as you pay down your loan, the amount of interest you are charged shrinks every month.</li>
-              <li><strong className="text-[#188038]">Why the First Years are Expensive:</strong> Our charts visually show you the reality of term loans: your early payments go mostly toward paying off interest, not your principal. By looking at the <strong className="text-[#202124]">emi breakdown</strong> for your first 12 months, you can clearly see how much of your hard-earned money is actually building your wealth versus paying the bank's fees.</li>
-              <li><strong className="text-[#D93025]">Checking What You Can Afford:</strong> We built a special feature just for you. If you know your budget only allows you to pay exactly Rs. 25,000 every month, you can flip this calculator to our 'Affordability' mode. It will instantly tell you the maximum loan amount you can safely take out while staying within the NRB's strict personal debt guidelines.</li>
-            </ul>
+                <div className="bg-[#202124] text-white p-8 rounded-[2rem] space-y-6 relative overflow-hidden">
+                   <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600 rounded-full blur-[80px] opacity-20" />
+                   <h3 className="text-lg font-bold border-b border-white/10 pb-4">Strategic Loan Planning</h3>
+                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                         <h4 className="text-[11px] font-black text-blue-400 uppercase tracking-widest">Home Buyers (Ghar Karja)</h4>
+                         <p className="text-xs text-slate-300 leading-relaxed">Long-term (15-25 years). A 0.25% rate difference can save the cost of a small car over 20 years.</p>
+                      </div>
+                      <div className="space-y-2">
+                         <h4 className="text-[11px] font-black text-emerald-400 uppercase tracking-widest">EV Buyers (Sawari Karja)</h4>
+                         <p className="text-xs text-slate-300 leading-relaxed">NRB currently allows up to 80% financing for Electric Vehicles, vs 50% for petrol cars.</p>
+                      </div>
+                   </div>
+                </div>
+
+              </div>
+
+              <div className="lg:col-span-4 space-y-6">
+                <div className="p-6 bg-white border border-[#DADCE0] rounded-2xl shadow-sm sticky top-24">
+                  <div className="flex items-center gap-2 mb-6">
+                    <Activity className="w-4 h-4 text-[#1A73E8]" />
+                    <h4 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Summary Checklist</h4>
+                  </div>
+                  <ul className="space-y-4">
+                    {[
+                      "Negotiate the Premium (The bank's control point)",
+                      "Verify Method is 'Reducing Balance'",
+                      "Audit Processing & Valuation Fees",
+                      "Check DSTI Ratio Compatibility",
+                      "Analyze Pre-payment Clauses (1-2% fee)",
+                      "Verify IRD Tax Clearance Validity"
+                    ].map((item, i) => (
+                      <li key={i} className="flex gap-3 text-xs text-[#5F6368] items-start">
+                        <div className="w-4 h-4 rounded-full bg-[#E6F4EA] flex items-center justify-center text-[#188038] flex-shrink-0 mt-0.5 font-black">✓</div>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <div className="mt-8 pt-6 border-t border-[#F1F3F4]">
+                     <p className="text-[10px] text-[#70757A] font-medium leading-relaxed">
+                        Disclaimer: Based on Finance Act and NRB Directives 2082/83. Banking terms vary by institution. 
+                        Consult a certified advisor.
+                     </p>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
 
         </div>
@@ -363,34 +403,30 @@ export default function LoanEMICalculator() {
         ]
       }}
       formula={{
-        title: "Loan Repayment Analytics & Derivation",
-        description: "The EMI (Equated Monthly Installment) is derived using the amortization formula for a reducing balance, where each payment covers the interest for the period plus a portion of the principal.",
-        raw: "E = [P × r × (1+r)^n] / [(1+r)^n - 1]\n\nVariables Explained:\n• P: Principal Loan Amount\n• r: Periodic (Monthly) Interest Rate (Annual Rate / 12 / 100)\n• n: Total Number of Repayment Installments (Years × 12)\n\nThis formula ensures that by the end of the tenure (n), the total balance becomes zero through periodic principal reduction."
+        title: "The Standard Amortization Formula",
+        description: "Our Loan EMI Calculator uses the precise mathematical model recognized by global financial institutions and Nepal Rastra Bank.",
+        raw: "E = [P × r × (1+r)^n] / [(1+r)^n - 1]\n\nVariables Explained:\n• P (Principal): The total sum borrowed.\n• r (Monthly Interest Rate): (Annual Rate / 12 / 100). E.g., 13.5% = 0.01125.\n• n (Tenure in Months): A 15-year loan has an n of 180.\n\nThis formula calculates the fixed monthly amount required to clear both principal and interest by the end of the tenure."
       }}
       faqs={[
         {
-          question: "What is the difference between Reducing and Flat rates?",
-          answer: "In Reducing Balance, interest is calculated on the remaining loan amount each month. In Flat Rate, interest is calculated on the original principal for the entire tenure, making it significantly more expensive over time."
+          question: "How often does my EMI change?",
+          answer: "In a floating-rate system, banks review their Base Rate every 3 months. If the Base Rate goes up, banks usually keep your EMI the same but increase your loan tenure. If you want to keep the same tenure, you must request an EMI increase instead."
         },
         {
-          question: "How do banks in Nepal calculate EMI?",
-          answer: "Most commercial banks in Nepal (A-Class) use the Reducing Balance Method with monthly compounding. This means you pay less interest as your principal balance decreases each month."
+          question: "What is a 'Grace Period'?",
+          answer: "Common in construction or agriculture loans, this is a period where you only pay the Interest and not the Principal. This is also called a Moratorium Period."
         },
         {
-          question: "What is a 'Base Rate' in Nepal?",
-          answer: "Base Rate is the minimum interest rate below which a bank cannot lend. Your actual loan rate is typically 'Base Rate + Premium' (e.g., if Base Rate is 9.5% and Premium is 2%, your rate is 11.5%)."
+          question: "Does insurance matter for Nepali loans?",
+          answer: "Yes. Every bank loan in Nepal requires the asset (house or car) to be insured with the bank as the beneficiary. Additionally, Credit Term Life Insurance is often mandatory to protect the family from debt."
         },
         {
-          question: "Can I prepay my loan in Nepal?",
-          answer: "Yes, most banks allow prepayment. While some may charge a small fee (1-2%), prepaying even small amounts can drastically reduce your total interest burden and loan tenure."
+          question: "Can I use my Gold as collateral?",
+          answer: "Yes. Gold loans (Sun Karja) are common for short-term liquidity. You can estimate your collateral value using current gold rates before visiting the branch."
         },
         {
-          question: "Does tenure affect the total interest?",
-          answer: "Yes, significantly. A longer tenure reduces your monthly EMI but increases the total interest you pay over the life of the loan. Aim for the shortest tenure you can comfortably afford."
-        },
-        {
-          question: "What is the maximum loan tenure offered by banks in Nepal?",
-          answer: "In Nepal: Home loans ,  up to 20-25 years. Vehicle loans ,  up to 7 years. Personal loans ,  up to 5 years. Education loans ,  up to 7 years (with moratorium during studies). Business loans ,  3-10 years depending on the project. NRB regulations periodically cap maximum tenures, so always verify with your specific bank."
+          question: "What is the DSTI ratio exactly?",
+          answer: "The Debt Service to Income ratio is the percentage of your gross income that goes toward paying debt. NRB limits this to ensure borrowers are not over-leveraged and can maintain a basic standard of living."
         }
       ]}
       sidebar={{
@@ -398,15 +434,15 @@ export default function LoanEMICalculator() {
         subtitle: "Financial Resources",
         links: [
           { label: "Home Loan Nepal", href: "/calculator/nepal-home-loan", icon: Home },
-          { label: "Vehicle Tax Nepal", href: "/calculator/nepal-vehicle-tax", icon: Activity },
+          { label: "Salary Calculator", href: "/calculator/nepal-salary", icon: Activity },
           { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: DollarSign },
-          { label: "SIP Calculator", href: "/calculator/sip-calculator", icon: TrendingUp },
+          { label: "Land Area Converter", href: "/calculator/nepal-land-area", icon: TrendingUp },
         ],
       }}
       relatedTools={[
         { label: "Home Loan", href: "/calculator/nepal-home-loan" },
-        { label: "Vehicle Tax", href: "/calculator/nepal-vehicle-tax" },
-        { label: "SIP Calculator", href: "/calculator/sip-calculator" }
+        { label: "Salary Tool", href: "/calculator/nepal-salary" },
+        { label: "Income Tax", href: "/calculator/nepal-income-tax" }
       ]}
     />
   );
