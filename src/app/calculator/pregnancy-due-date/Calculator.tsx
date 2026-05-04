@@ -113,6 +113,9 @@ export default function PregnancyDueDateCalculator() {
         links: [
           { label: 'BMI Calculator', href: '/calculator/bmi-calculator' },
           { label: 'Sleep Calculator', href: '/calculator/sleep' },
+          { label: "BMI Calculator", href: "/calculator/bmi/" },
+          { label: "Percentage Calc", href: "/calculator/percentage/" },
+          { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" }
         ],
       }}
       howToUse={{

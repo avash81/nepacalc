@@ -140,10 +140,13 @@ export default function SleepCalculator() {
         sidebar={{
           title: "Health & Wellness",
           links: [
-            { label: 'BMI Calculator', href: '/calculator/bmi' },
+          { label: 'BMI Calculator', href: '/calculator/bmi' },
             { label: 'Pregnancy Due Date', href: '/calculator/pregnancy-due-date' },
             { label: 'Weight Converter', href: '/calculator/weight-converter' },
-          ],
+          { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
+          { label: "Percentage Calc", href: "/calculator/percentage/" }
+        ],
         }}
         howToUse={{
           steps: [

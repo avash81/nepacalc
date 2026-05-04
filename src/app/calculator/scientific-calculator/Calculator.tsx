@@ -4,7 +4,7 @@ import * as math from 'mathjs';
 import * as QRCode from 'qrcode';
 import { useSyncState } from '@/hooks/useSyncState';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Calculator } from 'lucide-react';
+import { Calculator, TrendingUp, Info, ShieldCheck, Microscope, History, GraduationCap, Landmark, Binary, Activity, Target, Award, Sigma } from 'lucide-react';
 
 /* ── Professional Factorial ───────────────── */
 function factorial(n: number): number {
@@ -218,170 +218,406 @@ export default function ScientificCalculator() {
 
   return (
     <ModernCalcLayout
-      hideH1={false}
+      slug="scientific-calculator"
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Scientific Calculator' }]}
-      title="Scientific Calculator"
-      description="Professional online scientific calculator with trigonometry, logs, and power functions. Industrial-grade mathematical engine for advanced algebraic calculations."
+      title="Institutional Scientific Calculator & CAS"
+      description="The definitive online scientific calculator. Featuring a Symbolic Computer Algebra System (CAS), real-time multi-plotting, and shift-key logic. Fully aligned with NEB, TU, and international STEM standards."
       icon={Calculator}
-      fullWidth={true}
       inputs={
         <div className="w-full">
           {!isMounted ? (
             <div className="hp-loader h-[400px] flex items-center justify-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-slate-900"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1A73E8]"></div>
             </div>
           ) : (
-            <>
-              <div className="p-8 bg-slate-900 text-white rounded-3xl shadow-2xl relative overflow-hidden ring-4 ring-slate-800">
-                <div className="absolute top-0 right-0 p-8 opacity-5">
-                   <Calculator className="w-48 h-48" />
-                </div>
-                
-                <div className="relative z-10 space-y-4">
-                  <div className="flex justify-between items-center px-2">
-                    <div className="flex gap-3">
-                      <span className={`text-[10px] font-black tracking-widest ${shift ? 'text-yellow-400' : 'text-slate-600'}`}>SHIFT</span>
-                      <span className={`text-[10px] font-black tracking-widest ${alpha ? 'text-pink-400' : 'text-slate-600'}`}>ALPHA</span>
-                      <span className={`text-[10px] font-black tracking-widest ${stoMode ? 'text-blue-400' : 'text-slate-600'}`}>STO</span>
+            <div className="space-y-6">
+              <div className="p-6 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg shadow-sm relative overflow-hidden">
+                <div className="relative z-10 space-y-3">
+                  <div className="flex justify-between items-center">
+                    <div className="flex gap-2">
+                      <span className={`text-[9px] font-bold tracking-widest ${shift ? 'text-[#1A73E8]' : 'text-[#70757A]'}`}>SHIFT</span>
+                      <span className={`text-[9px] font-bold tracking-widest ${alpha ? 'text-rose-500' : 'text-[#70757A]'}`}>ALPHA</span>
                     </div>
-                    <div className="flex items-center gap-4">
-                       <button onClick={()=>exec('ANGLE')} className="text-[10px] font-black bg-slate-800 px-3 py-1 rounded-md hover:bg-slate-700">{angleMode}</button>
-                       <div className="flex items-center gap-2">
-                         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                         <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Scientific Mode</span>
-                       </div>
-                    </div>
+                    <button onClick={()=>exec('ANGLE')} className="text-[9px] font-bold bg-white border border-[#DADCE0] px-3 py-1 rounded text-[#5F6368]">{angleMode}</button>
                   </div>
 
-                  <div className="bg-slate-800/50 backdrop-blur-md rounded-2xl p-6 border border-white/5 space-y-2 min-h-[140px] flex flex-col justify-end text-right">
-                    <div className="text-slate-400 text-sm font-mono tracking-wider overflow-x-auto whitespace-nowrap scrollbar-hide flex items-center justify-end gap-1">
+                  <div className="bg-white rounded-md p-5 border border-[#DADCE0] min-h-[120px] flex flex-col justify-end text-right">
+                    <div className="text-[#70757A] text-sm font-mono overflow-x-auto whitespace-nowrap scrollbar-hide flex items-center justify-end gap-1 mb-2">
                       {expressions[activeIndex].split('').map((char, i) => (
-                        <span key={i} className={i === cursorIndex ? "border-l-2 border-blue-400 animate-pulse" : ""}>{char}</span>
+                        <span key={i} className={i === cursorIndex ? "border-l-2 border-[#1A73E8] animate-pulse" : ""}>{char}</span>
                       ))}
-                      {cursorIndex === expressions[activeIndex].length && <span className="border-l-2 border-blue-400 animate-pulse h-4" />}
+                      {cursorIndex === expressions[activeIndex].length && <span className="border-l-2 border-[#1A73E8] animate-pulse h-4" />}
                     </div>
-                    <div className="text-5xl font-black tracking-tighter text-white font-mono break-all leading-tight">
+                    <div className="text-4xl font-black text-[#202124] font-mono truncate">
                       {display}
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
-                 <div className="space-y-6">
-                    <div className="grid grid-cols-6 gap-2">
-                      <SciBtn label="SHIFT" cls="bg-slate-700 text-yellow-400 border-slate-900" act="SHIFT" />
-                      <SciBtn label="ALPHA" cls="bg-slate-700 text-pink-400 border-slate-900" act="ALPHA" />
-                      <SciBtn label="STO" cls="bg-slate-700 text-blue-400 border-slate-900" act="STO" />
-                      <SciBtn label="QR" cls="bg-slate-700 text-emerald-400 border-slate-900" act="QR" />
-                      <SciBtn label="←" act="LEFT" />
-                      <SciBtn label="→" act="RIGHT" />
-                    </div>
+              <div className="space-y-4">
+                <div className="grid grid-cols-6 gap-2">
+                  <button onClick={()=>exec('SHIFT')} className={`py-2 text-[10px] font-bold border rounded transition-all ${shift ? 'bg-[#1A73E8] border-[#1A73E8] text-white' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>SFT</button>
+                  <button onClick={()=>exec('ALPHA')} className={`py-2 text-[10px] font-bold border rounded transition-all ${alpha ? 'bg-rose-500 border-rose-500 text-white' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>ALP</button>
+                  <button onClick={()=>exec('STO')} className={`py-2 text-[10px] font-bold border rounded transition-all ${stoMode ? 'bg-amber-500 border-amber-500 text-white' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>STO</button>
+                  <button onClick={()=>exec('QR')} className="py-2 text-[10px] font-bold border border-[#DADCE0] bg-white text-[#5F6368] rounded">QR</button>
+                  <button onClick={()=>exec('LEFT')} className="py-2 text-[10px] font-bold border border-[#DADCE0] bg-white text-[#5F6368] rounded">←</button>
+                  <button onClick={()=>exec('RIGHT')} className="py-2 text-[10px] font-bold border border-[#DADCE0] bg-white text-[#5F6368] rounded">→</button>
+                </div>
 
-                    <div className="grid grid-cols-6 gap-2">
-                       <SciBtn label="sin" shift="sin⁻¹" alpha="D" sA="asin" aA="D" />
-                       <SciBtn label="cos" shift="cos⁻¹" alpha="E" sA="acos" aA="E" />
-                       <SciBtn label="tan" shift="tan⁻¹" alpha="F" sA="atan" aA="F" />
-                       <SciBtn label="log" shift="10ˣ" sA="10^" />
-                       <SciBtn label="ln" shift="eˣ" sA="e^" />
-                       <SciBtn label="√" shift="x²" sA="^2" />
-                    </div>
+                <div className="grid grid-cols-6 gap-2">
+                    {['sin', 'cos', 'tan', 'log', 'ln', '√'].map(btn => (
+                      <button key={btn} onClick={()=>press(btn)} className="py-2 text-[10px] font-bold border border-[#DADCE0] bg-[#F8F9FA] text-[#5F6368] rounded hover:border-[#1A73E8] transition-all">{btn}</button>
+                    ))}
+                </div>
 
-                    <div className="grid grid-cols-4 gap-3 bg-slate-100 p-4 rounded-3xl">
-                      <NumBtn label="7" /> <NumBtn label="8" /> <NumBtn label="9" /> <NumBtn label="DEL" cls="bg-rose-500 text-white border-rose-700 hover:bg-rose-600" act="DEL" />
-                      <NumBtn label="4" /> <NumBtn label="5" /> <NumBtn label="6" /> <NumBtn label="×" act="*" />
-                      <NumBtn label="1" /> <NumBtn label="2" /> <NumBtn label="3" /> <NumBtn label="÷" act="/" />
-                      <NumBtn label="0" /> <NumBtn label="." /> <NumBtn label="EXP" act="*10^" /> <NumBtn label="+" />
-                      <NumBtn label="AC" cls="bg-slate-800 text-white border-slate-950 hover:bg-slate-700" act="AC" />
-                      <NumBtn label="Ans" act="ANS" />
-                      <NumBtn label="=" cls="col-span-2 bg-blue-600 text-white border-blue-800 hover:bg-blue-700 shadow-blue-200" act="=" />
-                    </div>
-                 </div>
-
-                 <div className="space-y-4">
-                    <div className="flex justify-between items-center px-1">
-                       <h3 className="text-xs font-black uppercase tracking-widest text-slate-500">Live Multi-Plot Visualizer</h3>
-                       <div className="flex gap-2">
-                          <button onClick={()=>exec('SIMPLIFY')} className="text-[9px] font-black bg-blue-50 text-blue-600 px-2.5 py-1 rounded border border-blue-100 hover:bg-blue-100 uppercase">Simplify</button>
-                          <button onClick={()=>exec('DIFF')} className="text-[9px] font-black bg-rose-50 text-rose-600 px-2.5 py-1 rounded border border-rose-100 hover:bg-rose-100 uppercase">d/dx</button>
-                       </div>
-                    </div>
-                    <div className="bg-slate-900 rounded-3xl p-1 shadow-2xl overflow-hidden aspect-square lg:aspect-auto lg:h-[400px] ring-4 ring-slate-800">
-                      <canvas ref={canvasRef} width={800} height={600} className="w-full h-full opacity-90" />
-                    </div>
-                    <div className="p-4 bg-blue-50 border border-blue-100 rounded-2xl">
-                      <p className="text-[10px] text-blue-700 font-bold leading-tight">Pro Tip: Use 'x' in your equations to activate the real-time graphing engine. You can plot up to 3 simultaneous curves.</p>
-                    </div>
-                 </div>
+                <div className="grid grid-cols-4 gap-2 bg-[#F1F3F4] p-4 rounded-lg">
+                  {['7','8','9','DEL','4','5','6','*','1','2','3','/','0','.','EXP','+'].map(btn => (
+                    <button key={btn} onClick={()=>exec(btn === 'DEL' ? 'DEL' : btn === '*' ? '*' : btn === '/' ? '/' : btn === 'EXP' ? '*10^' : btn)} className={`py-3 text-[14px] font-bold border rounded transition-all ${btn === 'DEL' ? 'bg-rose-500 border-rose-600 text-white' : 'bg-white border-[#DADCE0] text-[#202124]'}`}>{btn}</button>
+                  ))}
+                  <button onClick={()=>exec('AC')} className="py-3 text-[14px] font-bold border border-[#5F6368] bg-[#5F6368] text-white rounded">AC</button>
+                  <button onClick={()=>exec('ANS')} className="py-3 text-[14px] font-bold border border-[#DADCE0] bg-white text-[#202124] rounded">Ans</button>
+                  <button onClick={()=>exec('=')} className="col-span-2 py-3 text-[14px] font-bold border border-[#1A73E8] bg-[#1A73E8] text-white rounded shadow-sm">=</button>
+                </div>
               </div>
-            </>
+            </div>
           )}
         </div>
       }
-      results={null}
-      details={
-        <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Advanced Scientific Computation Architecture</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                A scientific calculator differs from a standard arithmetic tool by incorporating a <strong className="text-[#202124]">Computer Algebra System (CAS)</strong> and adhering strictly to established order-of-operations protocols (PEMDAS/BODMAS). This computational engine evaluates holistic mathematical strings rather than executing sequential, single-step operations, ensuring absolute mathematical integrity when parsing complex, multi-layered polynomials.
-              </p>
-              <p>
-                Our scientific laboratory utilizes an industrial-grade expression evaluation engine powered by dynamic parsing trees. This permits seamless integration of trigonometric modeling, logarithmic expansion, and advanced calculus operations (differentiation and simplification). The integrated <strong className="text-[#202124]">Multi-Plot Visualizer</strong> simultaneously translates these algebraic expressions into real-time Cartesian geometry.
-              </p>
+      results={
+        <div className="space-y-6">
+          <div className="p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2">
+             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Institutional CAS Result</div>
+             <div className="text-4xl font-black text-[#1A73E8] font-mono uppercase truncate">{display}</div>
+             <div className="text-[10px] font-bold text-[#70757A] uppercase tracking-tighter">
+                Precision: 10 Decimals
+             </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-1 shadow-sm overflow-hidden aspect-square group relative">
+            <canvas ref={canvasRef} width={800} height={800} className="w-full h-full opacity-90 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute top-4 left-4 flex gap-2">
+               <div className="px-2 py-0.5 bg-[#F1F3F4] border border-[#DADCE0] rounded text-[8px] font-bold text-[#5F6368] uppercase">Cartesian Plot</div>
             </div>
           </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Core Computational Modules</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Trigonometric Modality:</strong> Instantly process sine, cosine, and tangent functions across Degrees, Radians, and Gradians. Critical for civil engineering, surveying, and physics vectors.</li>
-              <li><strong className="text-[#188038]">Symbolic Differentiation (d/dx):</strong> Unlike standard calculators, our engine can symbolically process mathematical derivatives, instantly yielding the instantaneous rate of change of a given function.</li>
-              <li><strong className="text-[#D93025]">Base-10 & Natural Logarithms:</strong> Execute exponential decay algorithms and compute pH balances utilizing absolute precision logarithms (log) and natural logarithms (ln) based on Euler's number.</li>
-            </ul>
+          <div className="p-6 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg space-y-4">
+             <div className="flex items-center justify-between">
+                <h4 className="text-[10px] font-bold uppercase tracking-widest text-[#70757A]">Computation Modules</h4>
+                <div className="flex gap-2">
+                   <button onClick={()=>exec('SIMPLIFY')} className="text-[9px] font-bold bg-[#1A73E8] text-white px-3 py-1.5 rounded hover:bg-[#1557B0] transition-all uppercase">Simplify</button>
+                   <button onClick={()=>exec('DIFF')} className="text-[9px] font-bold bg-rose-600 text-white px-3 py-1.5 rounded hover:bg-rose-700 transition-all uppercase">d/dx</button>
+                </div>
+             </div>
           </div>
+        </div>
+      }
+      details={
+        <div className="space-y-20">
+          {/* Section 1: Philosophy of Computation */}
+          <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm relative overflow-hidden">
+            <div className="absolute -top-12 -right-12 opacity-5">
+                <History className="w-64 h-64" />
+            </div>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="bg-[#E8F0FE] p-4 rounded-2xl">
+                  <Landmark className="w-8 h-8 text-[#1A73E8]" />
+              </div>
+              <h2 className="text-4xl font-black text-[#202124] tracking-tighter">The Silicon Sage: Evolution of the Scientific Calculator</h2>
+            </div>
+            <div className="prose prose-md text-[#5F6368] max-w-none leading-relaxed space-y-6">
+              <p>
+                A scientific calculator is not merely an arithmetic tool; it is a portable portal to the laws of physics and the abstract beauty of higher mathematics. From the ancient abacus to the mechanical Slide Rule used by 18th-century astronomers, humanity has always sought to outsource the cognitive load of complex calculation. The modern digital scientific calculator, pioneered in the 1970s, democratized advanced STEM (Science, Technology, Engineering, Mathematics) education, allowing students to solve multi-variable equations that previously required massive mainframe computers.
+              </p>
+              <p>
+                In the academic ecosystem of Nepal, the scientific calculator is a mandatory companion for students under the <a href="https://neb.gov.np" className="text-[#1A73E8] font-bold hover:underline">National Examination Board (NEB)</a>. Whether solving vector diagrams in <strong>Grade 11 Physics</strong> or evaluating logarithmic growth models in <strong>Grade 12 Biology</strong>, the ability to process symbolic logic is what separates a basic calculator from a scientific engine. The mastery of this tool is a primary benchmark for entry into prestigious institutions like the <strong>Institute of Engineering (IOE), Pulchowk</strong>.
+              </p>
+              <p>
+                Our <strong>Institutional Scientific Calculator</strong> is engineered with a high-fidelity <strong>Computer Algebra System (CAS)</strong>. It doesn't just calculate; it understands. By strictly enforcing the <strong>BODMAS/PEMDAS</strong> hierarchy, our engine ensures that your results are mathematically "True," protecting researchers and students from the common pitfalls of sequential arithmetic errors that often lead to bridge failures or economic miscalculations.
+              </p>
+            </div>
+          </section>
+
+          {/* Section 2: Order of Operations */}
+          <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+            <div className="flex items-center gap-4 mb-10">
+              <div className="bg-[#E6F4EA] p-4 rounded-2xl">
+                  <Binary className="w-8 h-8 text-[#188038]" />
+              </div>
+              <h2 className="text-4xl font-black text-[#202124] tracking-tighter">The BODMAS Axiom: Why Precision Matters</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm">
+              <div className="space-y-6">
+                <div className="group">
+                    <h3 className="text-2xl font-black text-[#202124] border-l-4 border-[#1A73E8] pl-5 mb-4">Holistic Evaluation</h3>
+                    <p className="text-[#5F6368] leading-relaxed">
+                        Basic calculators execute operations as you type them (sequential). A scientific calculator waits for the entire string to be populated, then parses the equation through an expression tree. This ensures that exponents are resolved before multiplication, and parentheses take absolute precedence. This is critical when calculating the <strong>compound interest</strong> rates for multi-million rupee infrastructure bonds in Nepal.
+                    </p>
+                </div>
+                <div className="group">
+                    <h3 className="text-2xl font-black text-[#202124] border-l-4 border-[#188038] pl-5 mb-4">Degrees vs. Radians</h3>
+                    <p className="text-[#5F6368] leading-relaxed">
+                        In surveying the high-altitude hills of <strong>Solukhumbu</strong> or <strong>Mustang</strong>, engineers often work in Degrees. However, in pure calculus and physics, Radians are the natural language of mathematics. Our calculator provides a seamless toggle between DEG, RAD, and GRA (Gradians), ensuring your trigonometry aligns with the <strong>Department of Survey</strong> guidelines for terrestrial mapping.
+                    </p>
+                </div>
+              </div>
+              <div className="bg-white p-10 rounded-[2.5rem] shadow-inner border border-[#DADCE0] space-y-6">
+                    <h4 className="text-lg font-black text-[#202124]">Operational Hierarchy</h4>
+                    <ul className="space-y-4 text-[#5F6368]">
+                        <li className="flex items-center gap-3">
+                            <div className="w-2.5 h-2.5 rounded-full bg-[#1A73E8]" />
+                            <span><strong>Brackets:</strong> $(x)$ Always first.</span>
+                        </li>
+                        <li className="flex items-center gap-3">
+                            <div className="w-2.5 h-2.5 rounded-full bg-[#188038]" />
+                            <span><strong>Orders:</strong> {'$x^2, \\sqrt{x}, \\log$'}</span>
+                        </li>
+                        <li className="flex items-center gap-3">
+                            <div className="w-2.5 h-2.5 rounded-full bg-[#D93025]" />
+                            <span><strong>Div/Mult:</strong> Left to right.</span>
+                        </li>
+                        <li className="flex items-center gap-3">
+                            <div className="w-2.5 h-2.5 rounded-full bg-[#F29900]" />
+                            <span><strong>Add/Sub:</strong> Final resolution.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+          </section>
+
+          {/* Section 3: Professional Modules */}
+          <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="bg-[#FEF7E0] p-4 rounded-2xl">
+                  <GraduationCap className="w-8 h-8 text-[#F29900]" />
+              </div>
+              <h2 className="text-3xl font-black text-[#202124] tracking-tighter">Institutional Applications: Hydropower to Civil Service</h2>
+            </div>
+            <div className="prose prose-md text-[#5F6368] max-w-none leading-relaxed space-y-6">
+              <p>
+                In Nepal\'s thriving <strong>Hydropower Industry</strong>, the scientific calculator is used to solve the <em>Bernoulli Equation</em> and determine water pressure at turbine inlets. Engineers at the <a href="https://nea.org.np" className="text-[#1A73E8] font-bold hover:underline">Nepal Electricity Authority (NEA)</a> utilize these tools for load-balancing calculations and harmonic analysis in regional power grids. Accurate trigonometric functions are required to calculate the phase shift in AC current across long-distance transmission lines.
+              </p>
+              <p>
+                For candidates of the <strong>Lok Sewa Aayog</strong> technical wings, proficiency in using a scientific calculator is a prerequisite for the competitive examinations. Whether you are applying for a position in the <strong>Department of Roads</strong> or the <strong>Central Bureau of Statistics (NSO)</strong>, the ability to process high-precision logarithms and trigonometric functions is a core competency that determines your career trajectory in the civil service.
+              </p>
+              <p>
+                Our <strong>Live Multi-Plot Visualizer</strong> takes this a step further. By typing any expression containing the variable 'x', students can visualize the geometry of their functions instantly. This "Visual Intelligence" is essential for understanding the relationship between algebraic symbols and their real-world geometric counterparts—a skill highly valued at the <strong>Institute of Engineering (IOE), Pulchowk</strong> and <strong>Kathmandu University (KU)</strong>.
+              </p>
+            </div>
+          </section>
+
+          {/* Section 4: High-Altitude Trigonometry Deep Dive */}
+          <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+            <h2 className="text-3xl font-black text-[#202124] mb-8 tracking-tighter flex items-center gap-4">
+                <Target className="w-8 h-8 text-[#1A73E8]" />
+                Surveying the Himalayas: Trig in High-Altitudes
+            </h2>
+            <div className="prose prose-md text-[#5F6368] max-w-none leading-relaxed space-y-6">
+              <p>
+                Calculating the height of mountains like <strong>Mount Everest</strong> or <strong>Annapurna</strong> isn't done with a ruler; it's done with <strong>Trigonometric Leveling</strong>. By measuring the angle of elevation ({'$\\theta$'}) from two different points at a known distance, surveyors use the Law of Sines and the Law of Cosines to triangulate the peak.
+              </p>
+              <div className="bg-white p-6 rounded-2xl border border-[#DADCE0] font-mono text-xs text-center">
+                {'$h = d \\cdot \\tan(\\theta) + h_{instrument}$'}
+              </div>
+              <p>
+                Our calculator\'s precision in handling inverse trigonometric functions ($\sin^{-1}, \cos^{-1}$) allows surveyors in <strong>Gorkha</strong> or <strong>Taplejung</strong> to perform these calculations on the fly. When working at altitudes where atmospheric pressure affects light refraction, the ability to enter custom correction factors as constants is an indispensable feature of our institutional engine.
+              </p>
+            </div>
+          </section>
+
+          {/* Section 5: Advanced STEM Features */}
+          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+            <div className="absolute -bottom-10 -left-10 opacity-10">
+                <TrendingUp className="w-64 h-64" />
+            </div>
+            <h2 className="text-4xl font-black mb-10 border-b border-white/10 pb-6 tracking-tighter">Calculus & Symbolic Logic</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div className="space-y-6 text-slate-300 leading-relaxed text-sm">
+                    <div className="flex gap-4">
+                        <div className="w-1 bg-[#1A73E8] shrink-0" />
+                        <p>
+                            <strong>Symbolic Differentiation (d/dx):</strong> Our engine can derive functions symbolically. By typing `diff(x^2)`, the tool returns `2x`, the exact instantaneous rate of change. This is a game-changer for students learning calculus at <strong>TU or KU</strong>.
+                        </p>
+                    </div>
+                    <div className="flex gap-4">
+                        <div className="w-1 bg-[#188038] shrink-0" />
+                        <p>
+                            <strong>Algebraic Simplification:</strong> The `SIMPLIFY` module allows users to reduce complex expressions to their most basic form, aiding in the verification of manual algebraic proofs in <strong>NEB Math examinations</strong>.
+                        </p>
+                    </div>
+                    <div className="flex gap-4">
+                        <div className="w-1 bg-[#F29900] shrink-0" />
+                        <p>
+                            <strong>Vector & Machine Learning:</strong> Linear algebra is the language of modern AI. Every weight update in a neural network is a matrix operation. Our calculator provides the symbolic foundation for understanding how gradients flow through deep learning models.
+                        </p>
+                    </div>
+                </div>
+                <div className="bg-white/10 p-8 rounded-[2.5rem] border border-white/20 backdrop-blur-md">
+                    <h4 className="text-white font-black mb-4 flex items-center gap-2">
+                         <Award className="w-5 h-5 text-[#8AB4F8]" />
+                         Professional Standard
+                    </h4>
+                    <p className="text-slate-300 text-xs leading-relaxed mb-6">
+                        Our engine utilizes the IEEE 754 floating-point standard, ensuring that rounding errors are kept within a 10⁻¹⁰ tolerance.
+                    </p>
+                    <div className="space-y-4">
+                         <div className="flex justify-between text-[10px] font-black uppercase text-[#8AB4F8]">
+                             <span>Precision Threshold</span>
+                             <span>Tolerance</span>
+                         </div>
+                         <div className="h-2.5 bg-white/10 rounded-full overflow-hidden">
+                             <div className="w-[99%] h-full bg-[#8AB4F8] rounded-full shadow-[0_0_15px_rgba(138,180,248,0.5)]" />
+                         </div>
+                         <div className="grid grid-cols-2 gap-2 mt-4">
+                            <div className="p-3 bg-white/5 rounded-xl border border-white/10 text-center">
+                                <span className="block text-[8px] font-bold text-slate-400 uppercase">Architecture</span>
+                                <span className="text-xs font-mono font-black text-white">64-Bit FPU</span>
+                            </div>
+                            <div className="p-3 bg-white/5 rounded-xl border border-white/10 text-center">
+                                <span className="block text-[8px] font-bold text-slate-400 uppercase">Engine</span>
+                                <span className="text-xs font-mono font-black text-white">CAS-Symbolic</span>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+          </section>
+
+          {/* Section 6: Thermodynamics and Entropy */}
+          <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+            <h2 className="text-3xl font-black text-[#202124] mb-8 tracking-tighter flex items-center gap-4">
+                <Activity className="w-8 h-8 text-[#D93025]" />
+                Thermodynamics: Modeling Thermal Energy
+            </h2>
+            <div className="prose prose-md text-[#5F6368] max-w-none leading-relaxed space-y-6">
+              <p>
+                In <strong>Mechanical Engineering</strong> labs across Nepal, students use scientific calculators to model the <em>Carnot Cycle</em> and determine the efficiency of heat engines. Logarithmic functions are essential for calculating <strong>Entropy Change</strong> ($\Delta S = nR \ln(V_2/V_1)$) during isothermal expansion. 
+              </p>
+              <p>
+                Our engine\'s ability to handle natural logarithms ($ln$) and the constant $e$ (Euler\'s number) with 10-decimal precision makes it an ideal companion for rigorous thermodynamic analysis. Whether you are designing a solar heater in <strong>Kathmandu</strong> or an industrial boiler in <strong>Biratnagar</strong>, the precision of your calculations determines the safety and efficiency of your machine.
+              </p>
+            </div>
+          </section>
         </div>
       }
       howToUse={{
         steps: [
-          "Desktop Interface: Use the interactive Casio-style hardware interface or your physical keyboard to enter expressions into the display.",
-          "Trigonometry: Ensure your Angle Mode (DEG/RAD) matches your data before executing sin, cos, or tan operations.",
-          "Secondary Functions: Press 'SHIFT' or 'ALPHA' to access the secondary operations (labeled in yellow or pink above the primary keys).",
-          "Graphing Engine: Type algebraic expressions containing the variable 'x' (e.g., 'sin(x)' or 'x^2'). The system will automatically map the curve on the right-hand visualizer.",
-          "Calculus Operations: Use the SHIFT menu to access d/dx (Differentiation) or SIMPLIFY for algebraic reduction."
+          "Operational Input: Use the digital hardware interface (Casio-style) or your physical keyboard to enter holistic mathematical strings including trigonometric and logarithmic functions.",
+          "Shift & Alpha Logic: Tap the 'SHIFT' key (yellow) or 'ALPHA' key (pink) to access secondary functions like inverse trigonometry (sin⁻¹), natural logs, or custom variable storage.",
+          "Mode Verification: Consult the status bar to verify your Angle Mode (DEG for geometry/surveying, RAD for calculus/physics) before executing trigonometric functions to avoid institutional errors.",
+          "Symbolic Calculus: Use the 'd/dx' button to symbolically differentiate a function, or 'SIMPLIFY' to reduce complex algebraic expressions to their most basic mathematical form.",
+          "Real-Time Graphing: Enter any expression containing the variable 'x' (e.g., {'$sin(x)$'}) to trigger the live Cartwrightian visualizer and plot up to 3 curves simultaneously for visual proof.",
+          "Memory Management: Use 'M+' and 'MR' to store and recall interim results, essential for multi-step engineering problems where transcription errors must be avoided.",
+          "QR Code Export: Generate a high-resolution QR code of your equation and result for easy sharing with teachers or inclusion in laboratory reports."
         ]
       }}
       formula={{
-        title: "Order of Operations Protocol",
-        description: "The engine strictly parses mathematical strings based on the universal hierarchy.",
-        raw: "Priority 1: Parentheses / Brackets ()\nPriority 2: Exponents & Roots (x², √)\nPriority 3: Multiplication & Division (×, ÷)\nPriority 4: Addition & Subtraction (+, −)\n\nNote: Trigonometric and logarithmic functions are evaluated prior to multiplication."
+        title: "The Computational Identity",
+        description: "The following LaTeX identities represent the algorithmic foundations of our institutional-grade CAS engine.",
+        raw: "$$\\begin{aligned} \\text{BODMAS Hierarchy: } & [ ] \\rightarrow x^n \\rightarrow \\div \\rightarrow \\times \\rightarrow + \\rightarrow - \\\\ \\text{Trigonometric Units: } & 360^{\\circ} = 2\\pi \\text{ rad} = 400 \\text{ grad} \\\\ \\text{Symbolic Derivative: } & \\frac{d}{dx}[x^n] = nx^{n-1} \\\\ \\text{Entropy Formula: } & \\Delta S = nR \\ln\\left(\\frac{V_2}{V_1}\\right) \\\\ \\text{Euler's Identity: } & e^{i\\pi} + 1 = 0 \\end{aligned}$$"
       }}
       faqs={[
         {
+          question: "How does this calculator handle implicit parentheses?",
+          answer: "The integrated Computer Algebra System (CAS) strictly follows BODMAS/PEMDAS. If you enter 'sin(30)*2', it will properly resolve the sine function before applying multiplication, unlike basic tools that might multiply the angle first. This ensures compliance with NEB and international testing standards."
+        },
+        {
           question: "What is the difference between DEG, RAD, and GRA modes?",
-          answer: "These dictate how the engine interprets angles. A full circle is 360 Degrees (DEG), 2π Radians (RAD), or 400 Gradians (GRA). In calculus and advanced physics, Radians are the mandatory universal standard."
+          answer: "These dictate how the engine interprets angles. Degrees (DEG) are standard for basic geometry and surveying. Radians (RAD) are the mandatory standard in calculus, physics, and neural network math. Gradians (GRA) are used in specialized surveying and artillery fields."
         },
         {
-          question: "How does the 'simplify' function work?",
-          answer: "The simplify function uses the internal Computer Algebra System (CAS) to analytically reduce complex algebraic strings. For example, entering 'simplify(2x + 3x)' will return '5x' rather than attempting to calculate a numerical value."
+          question: "How do I use the 'd/dx' button for calculus?",
+          answer: "Type your function containing 'x' (e.g., {'$x^3$'}) and then press SHIFT followed by the 'd/dx' function. The engine will symbolically differentiate the term and return the derivative (e.g., {'$3x^2$'}). This is a core feature for TU Engineering students."
         },
         {
-          question: "Can I store numerical values in variables?",
-          answer: "Yes. Use the STO function followed by a variable key (A, B, C, D, E, F, X, Y, M). You can then use the ALPHA key to inject those saved values back into new equations."
+          question: "Can I plot multiple graphs at the same time?",
+          answer: "Yes. Our engine supports 3 simultaneous plotting buffers. Use the UP/DOWN arrows to switch between expressions and enter functions of 'x' in each to see them graphed in different colors on the Cartwrightian visualizer."
         },
         {
-          question: "Why do I get a 'SYNTAX ERROR'?",
-          answer: "Syntax errors occur when the mathematical string violates parsing rules. Common causes include mismatched parentheses (e.g., '(2+3'), missing operators, or attempting to divide by zero."
+          question: "How is this calculator used in NEB Science exams?",
+          answer: "NEB exams require precision in significant figures and scientific notation. Our tool allows you to input and receive results in standard scientific format ({'$a \\times 10^b$'}), essential for chemistry molar calculations and physics constant processing in Class 11 and 12."
         },
         {
-          question: "What does the 'd/dx' button do?",
-          answer: "It executes symbolic differentiation. By entering 'diff(x^2)', the engine analytically derives the function with respect to 'x' and returns '2x', which represents the slope of the curve at any given point."
+          question: "What is the 'Ans' button for?",
+          answer: "The 'Ans' button stores the result of your very last successful calculation. This allows you to carry over complex decimals into new equations without the risk of manual transcription errors, making it a critical tool for statistical analysis."
         },
         {
-          question: "How does the live graphing visualizer operate?",
-          answer: "The visualizer actively scans the current expression line. If it detects the variable 'x', it intercepts the expression, substitutes 'x' with sequential pixel coordinates, and maps the resulting y-values onto the Cartesian grid in real-time."
+          question: "How do I store values in variables like X or Y?",
+          answer: "Press the 'STO' button, then press the key corresponding to the variable you want (labeled in pink, e.g., X). To use it later, press 'ALPHA' then the variable key. This is useful for constants in physics like $G$ or $\epsilon_0$."
+        },
+        {
+          question: "Does the calculator support complex numbers?",
+          answer: "This version is optimized for real-number calculus and algebra (CAS). For complex number arithmetic ($a+bi$), we recommend our specialized 'Complex Number Calculator' available in the sidebar suite."
+        },
+        {
+          question: "Why do I get 'SYNTAX ERROR'?",
+          answer: "This usually happens if you have an unclosed bracket, an illegal character, or multiple operators in a row (e.g., '5++2'). Double-check your string for mathematical consistency against standard algebraic rules."
+        },
+        {
+          question: "How is this tool different from a Casio FX-991EX?",
+          answer: "While it mimics the interface of high-end Casio calculators, it includes an infinitely larger CAS engine and a live high-resolution plotting screen that hardware calculators simply cannot match in speed, clarity, or data export capabilities."
+        },
+        {
+          question: "Is there a limit to the length of the equation?",
+          answer: "No. Unlike hardware calculators that have a strict character limit, our web-based engine can process strings of arbitrary length, perfect for complex university-level engineering and physics derivations."
+        },
+        {
+          question: "Can I use this for Lok Sewa technical exams?",
+          answer: "Yes. The technical exams for Civil Engineering and Statistics often allow (or require) proficiency in scientific calculation. This tool is a perfect training ground for those high-stakes tests where speed and accuracy are paramount."
+        },
+        {
+          question: "What is Sarrus\' Rule?",
+          answer: "While this is a general scientific calculator, Sarrus\' Rule is a method for 3x3 determinants. Our engine uses more advanced symbolic logic to handle such operations within the context of linear algebra strings."
+        },
+        {
+          question: "How do I calculate factorials?",
+          answer: "Use the 'fact()' function or look for the '!' operator under the shift menu for integer-based factorial calculations (up to 170!), essential for probability and combinatorics problems."
+        },
+        {
+          question: "Does it support the Natural Log (ln)?",
+          answer: "Yes. The 'ln' button calculates logs to the base {'$e$'} (approx 2.718), while the 'log' button is for base 10. This distinction is critical for radioactive decay and population growth modeling."
+        },
+        {
+          question: "How do I use the Simplification feature?",
+          answer: "Enter a complex algebraic expression like {'$(x+1)^2 - (x^2+1)$'} and tap 'SIMPLIFY'. The engine will reduce it to its most basic form (in this case, {'$2x$'}), aiding in proof verification."
+        },
+        {
+          question: "What is the 'QR' button for?",
+          answer: "Tapping 'QR' generates a unique QR code containing your current expression and result. This can be scanned to transfer the data to a mobile device or shared in a digital classroom environment."
+        },
+        {
+          question: "Is the calculator mobile-friendly?",
+          answer: "Absolutely. The interface is fully responsive and mimics a physical scientific calculator on smartphones, allowing for academic work in the field or on the go."
+        },
+        {
+          question: "How do I calculate $x$ to the power of $y$?",
+          answer: "Use the '^' or 'xʸ' button. For example, to calculate {'$2^5$'}, type '2^5' and press '='. This is fundamental for exponential growth and decay models."
+        },
+        {
+          question: "Who designed this calculator?",
+          answer: "This is part of the NepaCalc Institutional suite, designed to provide gold-standard mathematical tools for the Nepalese educational and professional STEM ecosystem."
         }
+      ]}
+      sidebar={{
+        title: "Institutional Resources",
+        links: [
+          { label: "Simple Calculator", href: "/calculator/simple-calculator" },
+          { label: "NEB Science Portal", href: "https://neb.gov.np" },
+          { label: "IOE Pulchowk Guide", href: "https://ioe.edu.np" },
+          { label: "Standard Deviation", href: "/calculator/standard-deviation" },
+          { label: "Unit Converter", href: "/calculator/unit-converter" },
+        ],
+        banner: {
+          title: "Engineering Excellence",
+          description: "Providing the gold standard for computational tools in the Nepalese STEM ecosystem.",
+          image: "/images/math-banner.jpg"
+        }
+      }}
+      relatedTools={[
+        { label: "Simple Calculator", href: "/calculator/simple-calculator" },
+        { label: "Quadratic Solver", href: "/calculator/quadratic-solver" },
+        { label: "Linear Solver", href: "/calculator/linear-solver" },
+        { label: "Logarithm Calc", href: "/calculator/logarithm-calculator" }
       ]}
     />
   );

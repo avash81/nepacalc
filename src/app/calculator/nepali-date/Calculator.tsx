@@ -91,91 +91,104 @@ export default function NepaliDateConverter() {
   return (
     <ModernCalcLayout
       slug="nepali-date"
-      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Nepali Date Converter' }]}
-      title="Nepali Date Converter"
-      description="Gregorian (AD) to Bikram Sambat (BS) converter with astronomical accuracy for Nepal's official calendar. Syncs seamlessly with IRD standards."
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Tools', href: '/nepal/' }, { label: 'Date Converter' }]}
+      title="Institutional Nepali Date"
+      description="The definitive resource for Nepalese timekeeping. Convert Gregorian (AD) to Bikram Sambat (BS) with astronomical precision for official Lalpurja, Nagarikta, and IRD regulatory compliance."
       icon={Calendar}
       inputs={
-        <div className="space-y-6">
-          <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
-            {[ { key: 'ad2bs', label: 'AD To BS' }, { key: 'bs2ad', label: 'BS To AD' } ].map(t => (
-              <button key={t.key} onClick={() => handleTabChange(t.key as any)}
-                className={`flex-1 py-2 text-[10px] font-bold uppercase tracking-wider rounded-md transition-all ${tab === t.key ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}>
-                {t.label}
-              </button>
-            ))}
-          </div>
+        <div className="space-y-8">
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden border border-white/5">
+             <div className="absolute top-0 right-0 p-10 opacity-10"><Clock className="w-40 h-40" /></div>
+             <div className="relative z-10 space-y-6">
+                <div className="flex bg-white/5 p-1.5 rounded-2xl border border-white/10">
+                  {[ { key: 'ad2bs', label: 'AD To BS' }, { key: 'bs2ad', label: 'BS To AD' } ].map(t => (
+                    <button 
+                      key={t.key} 
+                      onClick={() => handleTabChange(t.key as any)}
+                      className={`flex-1 py-3 text-[10px] font-black uppercase tracking-[0.2em] rounded-xl transition-all ${tab === t.key ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
+                    >
+                      {t.label}
+                    </button>
+                  ))}
+                </div>
 
-          <div className="space-y-4">
-            <div className="flex justify-between items-center">
-               <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider">
-                {tab === 'ad2bs' ? 'Gregorian Date (AD)' : 'Bikram Sambat (BS)'}
-              </label>
-              <button onClick={() => handleTabChange(tab === 'ad2bs' ? 'bs2ad' : 'ad2bs')} className="p-1.5 bg-[#E8F0FE] text-[#1A73E8] rounded hover:bg-[#D2E3FC] transition-colors group">
-                 <RefreshCw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
-              </button>
-            </div>
-            
-            <div className="grid grid-cols-3 gap-3">
-               <select value={inputY} onChange={e => handleDatePartChange('y', e.target.value)} className={selectCls}>
-                 {(tab === 'ad2bs' ? adYears : bsYears).map(y => <option key={y} value={y}>{y}</option>)}
-               </select>
-               <select value={inputM} onChange={e => handleDatePartChange('m', e.target.value)} className={selectCls}>
-                 {(tab === 'ad2bs' ? adMonthsList : bsMonthsList).map(m => <option key={m.n} value={String(m.n).padStart(2, '0')}>{m.label}</option>)}
-               </select>
-               <select value={inputD} onChange={e => handleDatePartChange('d', e.target.value)} className={selectCls}>
-                 {Array.from({ length: tab === 'ad2bs' ? 31 : 32 }, (_, i) => i + 1).map(d => (
-                   <option key={d} value={String(d).padStart(2, '0')}>{d}</option>
-                 ))}
-               </select>
-            </div>
-            <button onClick={() => update({ inputDate: tab === 'ad2bs' ? todayAD : todayBS })}
-              className="w-full py-2 bg-white border border-[#DADCE0] rounded-md text-[10px] font-bold uppercase tracking-wider text-[#70757A] hover:bg-[#F8F9FA] transition-colors">
-              Set to Today
-            </button>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                     <label className="text-[10px] font-black uppercase text-blue-400 tracking-[0.3em]">
+                      {tab === 'ad2bs' ? 'Gregorian Origin (AD)' : 'Bikram Sambat Origin (BS)'}
+                    </label>
+                    <button onClick={() => handleTabChange(tab === 'ad2bs' ? 'bs2ad' : 'ad2bs')} className="p-2 bg-white/5 text-blue-400 rounded-xl hover:bg-blue-600 hover:text-white transition-all group border border-white/10">
+                       <RefreshCw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
+                    </button>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                     <select value={inputY} onChange={e => handleDatePartChange('y', e.target.value)} className="w-full h-14 px-4 bg-white/5 border border-white/10 rounded-2xl text-white text-lg font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
+                       {(tab === 'ad2bs' ? adYears : bsYears).map(y => <option key={y} value={y} className="bg-slate-900">{y}</option>)}
+                     </select>
+                     <select value={inputM} onChange={e => handleDatePartChange('m', e.target.value)} className="w-full h-14 px-4 bg-white/5 border border-white/10 rounded-2xl text-white text-lg font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
+                       {(tab === 'ad2bs' ? adMonthsList : bsMonthsList).map(m => <option key={m.n} value={String(m.n).padStart(2, '0')} className="bg-slate-900">{m.label}</option>)}
+                     </select>
+                     <select value={inputD} onChange={e => handleDatePartChange('d', e.target.value)} className="w-full h-14 px-4 bg-white/5 border border-white/10 rounded-2xl text-white text-lg font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
+                       {Array.from({ length: tab === 'ad2bs' ? 31 : 32 }, (_, i) => i + 1).map(d => (
+                         <option key={d} value={String(d).padStart(2, '0')} className="bg-slate-900">{d}</option>
+                       ))}
+                     </select>
+                  </div>
+                  <button onClick={() => update({ inputDate: tab === 'ad2bs' ? todayAD : todayBS })}
+                    className="w-full py-4 bg-white/5 border border-white/10 rounded-2xl text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:bg-blue-600 hover:text-white transition-all">
+                    Reset to Institutional Present
+                  </button>
+                </div>
+             </div>
           </div>
         </div>
       }
       results={
         <div className="space-y-6">
-          <div className="p-8 bg-[#1A1A2E] border border-[#DADCE0] rounded-lg text-center text-white relative overflow-hidden">
-            <div className={`absolute top-0 right-0 px-3 py-1 text-[9px] font-black uppercase tracking-wider ${tab==='ad2bs' ? 'bg-[#D93025]':'bg-[#1A73E8]'}`}>
-               {tab==='ad2bs'?'CONVERTED TO BS':'CONVERTED TO AD'}
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-4 shadow-xl relative overflow-hidden group">
+            <div className={`absolute top-0 right-0 px-6 py-2 text-[9px] font-black uppercase tracking-widest text-white ${tab==='ad2bs' ? 'bg-rose-600':'bg-blue-600'} rounded-bl-3xl shadow-lg`}>
+               {tab==='ad2bs'?'Computed BS':'Computed AD'}
             </div>
-            <div className="text-[10px] font-bold uppercase text-white/60 mb-2 tracking-wider">Result</div>
-            <div className="text-4xl sm:text-5xl font-black text-white tracking-tighter mb-4">{result?.date || ', '}</div>
+            <div className="text-[10px] font-bold uppercase text-blue-600 mb-2 tracking-[0.2em]">Validated Chronological Result</div>
+            <div className="text-6xl font-black text-slate-900 tracking-tighter mb-4 font-mono uppercase">{result?.date || ', '}</div>
             {result && (
-               <div className="flex justify-center items-center gap-3">
-                  <div className="text-[11px] font-black text-[#1A73E8] bg-[#E8F0FE] px-3 py-1 rounded uppercase tracking-wider">{result.dayNp}</div>
-                  <div className="text-[11px] font-bold text-white/80 uppercase">{result.dayEn}</div>
+               <div className="flex justify-center items-center gap-4">
+                  <div className="text-[11px] font-black text-white bg-slate-900 px-5 py-2 rounded-full uppercase tracking-widest shadow-md">{result.dayNp}</div>
+                  <div className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">{result.dayEn}</div>
                </div>
             )}
           </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-4 flex justify-between items-center">
-            <div className="flex items-center gap-2">
-               <Clock className="w-4 h-4 text-[#70757A]" />
-               <div className="text-[10px] font-bold uppercase text-[#70757A] tracking-wider">Relative Time</div>
+          <div className="bg-slate-900 rounded-[2.5rem] p-8 flex justify-between items-center text-white shadow-2xl relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Clock className="w-20 h-20 text-emerald-500" /></div>
+            <div className="flex items-center gap-4 relative z-10">
+               <div className="p-3 bg-white/5 rounded-2xl border border-white/10">
+                  <Clock className="w-5 h-5 text-emerald-400" />
+               </div>
+               <div className="text-[10px] font-black uppercase text-emerald-400 tracking-[0.2em]">Institutional Delta</div>
             </div>
-            <span className="text-sm font-black text-[#202124]">
-              {result?.diffDays === 0 ? 'Today' : result && result.diffDays > 0 ? `In ${result.diffDays} days` : result ? `${Math.abs(result.diffDays)} days ago` : ', '}
+            <span className="text-lg font-black relative z-10 font-mono">
+              {result?.diffDays === 0 ? 'PRESENT' : result && result.diffDays > 0 ? `+${result.diffDays} DAYS` : result ? `-${Math.abs(result.diffDays)} DAYS` : ', '}
             </span>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg p-4 text-center">
-              <div className="text-[9px] font-bold text-[#1A73E8] uppercase tracking-wider mb-1">Today (AD)</div>
-              <div className="text-sm font-black text-[#202124]">{todayAD}</div>
+            <div className="bg-white border border-slate-200 rounded-[2rem] p-6 text-center shadow-lg group hover:border-blue-500 transition-all">
+              <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">Reference Today (AD)</div>
+              <div className="text-lg font-black text-slate-900 font-mono uppercase tracking-tighter">{todayAD}</div>
             </div>
-            <div className="bg-[#FCE8E6] border border-[#FAD2CF] rounded-lg p-4 text-center">
-              <div className="text-[9px] font-bold text-[#D93025] uppercase tracking-wider mb-1">Today (BS)</div>
-              <div className="text-sm font-black text-[#202124]">{todayBS}</div>
+            <div className="bg-white border border-slate-200 rounded-[2rem] p-6 text-center shadow-lg group hover:border-rose-500 transition-all">
+              <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">Reference Today (BS)</div>
+              <div className="text-lg font-black text-slate-900 font-mono uppercase tracking-tighter">{todayBS}</div>
             </div>
           </div>
           
-          <div className="flex gap-2 p-3 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg items-start">
-             <Info className="w-4 h-4 text-[#1A73E8] shrink-0 mt-0.5" />
-             <p className="text-[10px] text-[#202124] leading-tight italic">Bikram Sambat is approximately 56 years and 8.5 months ahead of the Gregorian calendar. This calculation relies on precise Panchanga data.</p>
+          <div className="p-8 bg-blue-50 border border-blue-100 rounded-[2.5rem] flex gap-6 items-start shadow-inner">
+             <Info className="w-6 h-6 text-blue-600 shrink-0" />
+             <p className="text-[11px] text-slate-600 leading-relaxed font-medium">
+               The <strong>Bikram Sambat</strong> system is a lunisolar hybrid regulated by the <em>Nepal Panchanga Nirnayak Samiti</em>. This engine accounts for the dynamic month-length fluctuations (29-32 days) inherent in official Nepalese timekeeping.
+             </p>
           </div>
         </div>
       }
@@ -213,8 +226,18 @@ export default function NepaliDateConverter() {
         { question: "What is the Nepali New Year date in AD?", answer: "Nepali New Year (Naya Barsha) falls on Baisakh 1 of the Bikram Sambat calendar, which typically corresponds to April 13 or 14 in the Gregorian calendar, occasionally April 12. The exact date changes each year based on astronomical calculations. In 2025 AD, Baisakh 1, 2082 BS fell on April 14. Use this converter to find the exact AD date for any BS New Year." },
         { question: "How does the BS calendar affect tax filing deadlines in Nepal?", answer: "Nepal's fiscal year runs from Shrawan 1 to Ashar End (approximately mid-July to mid-July in AD). The IRD (Inland Revenue Department) sets tax filing deadlines in BS dates. Key deadlines: VAT returns due by the 25th of the next BS month. Income tax returns due by Poush End (approximately mid-January AD). Using this converter helps businesses align their Gregorian accounting software with BS regulatory deadlines." }
       ]}
-      sidebar={{ title: "Daily Utility", links: [{ label: "Unit Converter", href: "/calculator/unit-converter" }, { label: "Age Calculator", href: "/calculator/age" }], banner: { title: "Tithi Planner", description: "Plan your cultural events ahead by checking exact date alignments.", image: "/images/date-banner.jpg" } }}
-      relatedTools={[{ label: "Age Calculator", href: "/calculator/age" }, { label: "Unit Converter", href: "/calculator/unit-converter" }]}
+      sidebar={{ title: "Daily Utility", links: [
+          { label: "Unit Converter", href: "/calculator/unit-converter" }, { label: "Age Calculator", href: "/calculator/age" },
+          { label: "BMI Calculator", href: "/calculator/bmi/" },
+          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
+        ], banner: { title: "Tithi Planner", description: "Plan your cultural events ahead by checking exact date alignments.", image: "/images/date-banner.jpg" } }}
+      relatedTools={[
+        { label: "Age Calculator", href: "/calculator/age" }, { label: "Unit Converter", href: "/calculator/unit-converter" },
+        { label: "BMI Calculator", href: "/calculator/bmi/" },
+          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
+      ]}
     />
   );
 }

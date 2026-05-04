@@ -204,8 +204,18 @@ export default function ForeignEmploymentFee() {
           answer: "We recommend adding your Foreign Employment Welfare Fund deposit (usually Rs. 1,500 or Rs. 2,500 depending on tenure) into the 'Insurance' or 'Orientation' box to see your total out-of-pocket expense accurately."
         }
       ]}
-      sidebar={{ title: "Public Service", links: [{ label: "Passport Status Checker", href: "/calculator/passport-status" }, { label: "Remittance Calculator", href: "/calculator/remittance-calculator" }], banner: { title: "Migrant Safety", description: "Report illegal fee demands to the Department of Foreign Employment.", image: "/images/nepal-banner.jpg" } }}
-      relatedTools={[{ label: "Remittance Calculator", href: "/calculator/remittance-calculator" }]}
+      sidebar={{ title: "Public Service", links: [
+          { label: "Passport Status Checker", href: "/calculator/passport-status" }, { label: "Remittance Calculator", href: "/calculator/remittance-calculator" },
+          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
+          { label: "Nepal Salary", href: "/calculator/nepal-salary/" }
+        ], banner: { title: "Migrant Safety", description: "Report illegal fee demands to the Department of Foreign Employment.", image: "/images/nepal-banner.jpg" } }}
+      relatedTools={[
+        { label: "Remittance Calculator", href: "/calculator/remittance-calculator" },
+        { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
+          { label: "Nepal Salary", href: "/calculator/nepal-salary/" }
+      ]}
     />
   );
 }

@@ -91,6 +91,9 @@ export default function RoundingCalc() {
         links: [
           { label: 'Ratio & Proportion', href: '/calculator/ratio-proportion/' },
           { label: 'Percentage Calculator', href: '/calculator/percentage/' },
+          { label: "Percentage Calc", href: "/calculator/percentage/" },
+          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
+          { label: "BMI Calculator", href: "/calculator/bmi/" }
         ],
       }}
       details={

@@ -85,13 +85,10 @@ export default function BrickCalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-8 bg-[#1A1A2E] border border-[#DADCE0] rounded-lg text-center relative overflow-hidden">
-             <div className="absolute top-0 right-0 p-4 opacity-10">
-                <Hammer className="w-24 h-24 text-[#E37400]" />
-             </div>
-             <div className="text-[10px] font-bold uppercase tracking-wider text-white/60 mb-2 relative z-10">Total Bricks Required</div>
-             <div className="text-5xl font-black text-[#E37400] tracking-tighter mb-2 relative z-10">{result.totalBricks.toLocaleString()}</div>
-             <div className="text-[10px] font-bold text-[#E37400] uppercase bg-[#FFF7E0] inline-flex px-3 py-1 rounded relative z-10 tracking-wider">Includes 5% Wastage</div>
+          <div className="p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2">
+             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Total Masonry Requirement</div>
+             <div className="text-6xl font-black text-[#1A73E8] tracking-tighter">{result.totalBricks.toLocaleString()}</div>
+             <div className="text-[10px] font-bold text-[#70757A] uppercase tracking-tighter">Units (Includes 5% Site Wastage)</div>
           </div>
 
           <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
@@ -114,25 +111,17 @@ export default function BrickCalculator() {
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Precision Masonry Estimation for Nepal</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                Accurate material estimation is the cornerstone of cost-effective construction in Nepal. Our <strong className="text-[#202124]">brick calculator nepal</strong> engine is specifically calibrated to local manufacturing standards. By default, it processes the standard Nepalese brick dimensions (9" x 4.5" x 3") while mathematically accounting for the volumetric displacement of a standard 0.5-inch mortar joint.
-              </p>
-              <p>
-                A frequent query among civil engineering students and contractors is <strong className="text-[#202124]">how many bricks in 1 square feet in nepal</strong>. Instead of relying on rough rules of thumb (which often ignore mortar ratios and site wastage), this tool runs a precise 3D volumetric analysis. It divides the total wall volume by the effective volume of a single brick (including its mortar shell) to prevent both material shortages and costly over-ordering.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Wall Thickness and Wastage Metrics</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Load-Bearing Structures (Double Layer):</strong> For exterior perimeters and primary load-bearing partitions, a <strong className="text-[#202124]">9 inch wall brick calculation</strong> is mandatory. This doubles the volumetric requirement and alters the mortar ratio, which the algorithm handles automatically.</li>
-              <li><strong className="text-[#188038]">Partition Walls (Single Layer):</strong> Interior room dividers typically utilize a <strong className="text-[#202124]">4.5 inch wall brick calculation</strong>. Because the wall thickness equals the width of a single brick, the mathematical volume drops significantly, yielding higher area coverage per thousand bricks.</li>
-              <li><strong className="text-[#D93025]">The 5% Wastage Mandate:</strong> Theoretical mathematics must account for real-world friction. During transport, unloading, and site cutting, breakage is inevitable. The calculator strictly applies a 5% inflation factor to the raw brick count to ensure you have enough unbroken materials to finish the span.</li>
-            </ul>
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+             <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
+                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Masonry Procurement Audit</h3>
+             </div>
+             <p className="text-sm text-[#5F6368] leading-relaxed">
+                The institutional engine for civil engineering material estimation in Nepal. Calibrated for 
+                <strong> Standard Nepali Bricks</strong> (9x4.5x3 inches), this tool provides a high-precision volumetric 
+                analysis of masonry requirements. It mathematically accounts for <strong>Mortar Joint Displacement</strong> 
+                and strictly enforces a <strong>5% Site Wastage Protocol</strong> to ensure procurement accuracy for 
+                structural wall construction.
+             </p>
           </div>
         </div>
       }
@@ -146,8 +135,18 @@ export default function BrickCalculator() {
         { question: "What is the difference between a 4.5-inch and 9-inch wall?", answer: "A 4.5-inch (single layer) wall uses bricks placed with their width (4.5\") as the wall thickness. Used for interior partitions ,  not load-bearing. A 9-inch (double layer) wall has bricks placed end-to-end, doubling the thickness. Required for all exterior walls and structural/load-bearing internal walls in Nepali construction standards." },
         { question: "How do I estimate the cost of bricks for my project?", answer: "As of 2025, standard Nepalese bricks cost approximately NPR 12–18 per brick (price varies by district). Multiply the total brick count from this calculator by the local market rate. For a typical 10×10 ft single-layer wall, you'd need ~600 bricks, costing around NPR 7,200–10,800 in materials alone, before mortar and labor." }
       ]}
-      sidebar={{ title: "Construction Tools", links: [{ label: "Concrete Mix Calculator", href: "/calculator/concrete-mix" }, { label: "Paint Cost Estimator", href: "/calculator/paint-cost" }, { label: "Property Registration", href: "/calculator/property-registration" }], banner: { title: "Site Estimator", description: "Accurate material calculation prevents project delays and excess holding costs.", image: "/images/construction-banner.jpg" } }}
-      relatedTools={[{ label: "Concrete Mix", href: "/calculator/concrete-mix" }, { label: "Paint Cost", href: "/calculator/paint-cost" }]}
+      sidebar={{ title: "Construction Tools", links: [
+          { label: "Concrete Mix Calculator", href: "/calculator/concrete-mix" }, { label: "Paint Cost Estimator", href: "/calculator/paint-cost" }, { label: "Property Registration", href: "/calculator/property-registration" },
+          { label: "Age Calculator", href: "/calculator/age-calculator/" },
+          { label: "Percentage Calc", href: "/calculator/percentage/" },
+          { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" }
+        ], banner: { title: "Site Estimator", description: "Accurate material calculation prevents project delays and excess holding costs.", image: "/images/construction-banner.jpg" } }}
+      relatedTools={[
+        { label: "Concrete Mix", href: "/calculator/concrete-mix" }, { label: "Paint Cost", href: "/calculator/paint-cost" },
+        { label: "Age Calculator", href: "/calculator/age-calculator/" },
+          { label: "Percentage Calc", href: "/calculator/percentage/" },
+          { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" }
+      ]}
     />
   );
 }

@@ -136,21 +136,10 @@ export default function MolarMassCalc() {
       }
       results={
         <div className="space-y-6">
-          <div className="bg-[#1A1A2E] rounded-lg border border-[#DADCE0] text-center relative overflow-hidden">
-             <div className="absolute top-0 right-0 w-32 h-32 bg-[#1A73E8] opacity-10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none" />
-             <div className="p-8 border-b border-white/10 relative z-10">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-[#8AB4F8] mb-2">Molecular Mass</div>
-                <div className="text-5xl font-black text-white tracking-tighter font-mono flex items-baseline justify-center gap-2">
-                  {res.total} <span className="text-xl text-white/50 font-bold">g/mol</span>
-                </div>
-             </div>
-             
-             <div className="px-6 py-4 bg-white/5 relative z-10 flex justify-center gap-4">
-                <div className="flex items-center gap-2">
-                   <Atom className="w-4 h-4 text-[#8AB4F8]" />
-                   <span className="text-[10px] font-bold text-white uppercase tracking-wider">{res.breakdown.length} Unique Elements</span>
-                </div>
-             </div>
+          <div className="p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2">
+             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Molecular Mass Analysis</div>
+             <div className="text-5xl font-black text-[#1A73E8] tracking-tighter font-mono">{res.total} <span className="text-xl">g/mol</span></div>
+             <div className="text-[10px] font-bold text-[#70757A] uppercase tracking-tighter">{res.breakdown.length} Unique Elements Identified</div>
           </div>
 
           <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
@@ -182,7 +171,22 @@ export default function MolarMassCalc() {
           </div>
         </div>
       }
-      howToUse={{ steps: ["Enter the chemical formula in the input box.", "Ensure you use correct capitalization (e.g., NaCl, not nacl or NACL).", "Use parentheses for compound groups (e.g., (NH4)2SO4).", "The tool instantly parses the formula, multiplies atomic weights by their respective counts, and provides the total molar mass in g/mol."] }}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+             <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
+                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Molecular Composition Audit</h3>
+             </div>
+             <p className="text-sm text-[#5F6368] leading-relaxed">
+                The institutional engine for molecular weight verification. Calibrated using the latest 
+                <strong> IUPAC Standard Atomic Weights</strong>, this tool provides a high-precision 
+                stoichiometric analysis of chemical formulas. By recursively parsing nested parentheses 
+                and element symbols, it ensures 100% mathematical validity for laboratory preparation, 
+                chemical engineering, and pharmaceutical research protocols.
+             </p>
+          </div>
+        </div>
+      }
       formula={{ title: "Molar Mass Calculation", description: "Atomic weight aggregation.", raw: "Molar Mass = (Count_1 × Atomic_Mass_1) + (Count_2 × Atomic_Mass_2) + ...\n\nExample for H2O:\nHydrogen (H): 2 × 1.008 = 2.016 g/mol\nOxygen (O): 1 × 15.999 = 15.999 g/mol\nTotal = 18.015 g/mol" }}
       faqs={[
         { question: "What is Molar Mass?", answer: "Molar mass is the total mass of one mole of a substance, calculated by summing the atomic masses of all atoms in the molecule. It is expressed in grams per mole (g/mol) and is a fundamental quantity in stoichiometry ,  used to convert between mass (grams) and amount (moles) of a substance in chemical reactions." },
@@ -192,8 +196,18 @@ export default function MolarMassCalc() {
         { question: "What are IUPAC Standard Atomic Weights?", answer: "IUPAC (International Union of Pure and Applied Chemistry) periodically updates the standard atomic weights of all elements to reflect the natural isotopic abundance in the Earth's crust and atmosphere. This calculator uses the 2021 IUPAC recommended values, which is the industry standard for all chemistry, pharmaceutical, and engineering calculations." },
         { question: "How do I calculate molar mass for a compound like glucose (C6H12O6)?", answer: "For glucose (C6H12O6): Carbon (C) = 6 × 12.011 = 72.066. Hydrogen (H) = 12 × 1.008 = 12.096. Oxygen (O) = 6 × 15.999 = 95.994. Total = 72.066 + 12.096 + 95.994 = 180.156 g/mol. Just type 'C6H12O6' into the calculator and it computes this instantly with a full element-by-element breakdown." }
       ]}
-      sidebar={{ title: "Science & Math Tools", links: [{ label: "Fraction Calculator", href: "/calculator/fraction-calculator" }, { label: "Base Converter", href: "/calculator/base-converter" }], banner: { title: "Academic Utilities", description: "Save time on chemistry homework and lab prep with instant molecular weight analysis.", image: "/images/math-banner.jpg" } }}
-      relatedTools={[{ label: "Fraction Calculator", href: "/calculator/fraction-calculator" }]}
+      sidebar={{ title: "Science & Math Tools", links: [
+          { label: "Fraction Calculator", href: "/calculator/fraction-calculator" }, { label: "Base Converter", href: "/calculator/base-converter" },
+          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
+          { label: "Percentage Calc", href: "/calculator/percentage/" },
+          { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" }
+        ], banner: { title: "Academic Utilities", description: "Save time on chemistry homework and lab prep with instant molecular weight analysis.", image: "/images/math-banner.jpg" } }}
+      relatedTools={[
+        { label: "Fraction Calculator", href: "/calculator/fraction-calculator" },
+        { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
+          { label: "Percentage Calc", href: "/calculator/percentage/" },
+          { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" }
+      ]}
     />
   );
 }

@@ -1,8 +1,12 @@
 'use client';
 import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Landmark, FileText, CheckCircle2, Info, Receipt } from 'lucide-react';
+import { Landmark, FileText, CheckCircle2, Info, Receipt, Zap, Scale, Activity, Globe, History, ShieldCheck, PieChart, TrendingUp, Wallet } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
+import { 
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  PieChart as RePieChart, Pie, Cell
+} from 'recharts';
 
 const DEFAULT_STATE = {
   source: 'rent',
@@ -20,8 +24,10 @@ const TDS_RATES: Record<string, { rate: number; label: string; isService?: boole
   brokerage: { rate: 0.15, label: 'Brokerage', isService: true },
 };
 
+function formatNPR(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
+
 export default function NepalTdsCalculator() {
-  const [state, setState] = useSyncState('nepal_tds_v2', DEFAULT_STATE);
+  const [state, setState] = useSyncState('nepal_tds_v5', DEFAULT_STATE);
   const { source, amount, isVatRegistered } = state;
 
   const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {
@@ -33,203 +39,309 @@ export default function NepalTdsCalculator() {
   const result = useMemo(() => {
     const tdsAmount = amount * selectedRate;
     const netAmount = amount - tdsAmount;
-    return { tdsAmount, netAmount, rate: selectedRate * 100 };
+    return { 
+      tdsAmount, 
+      netAmount, 
+      rate: selectedRate * 100,
+      chartData: [
+        { name: 'Net Payout', val: netAmount, fill: '#10b981' },
+        { name: 'TDS Withheld', val: tdsAmount, fill: '#ef4444' }
+      ]
+    };
   }, [amount, selectedRate]);
-
-  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
-  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
 
   return (
     <ModernCalcLayout
       slug="nepal-tds"
-      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'TDS Calculator' }]}
-      title="Nepal TDS Calculator"
-      description="Calculate Tax Deducted at Source (TDS) as per Nepal's Income Tax Act 2058."
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Tools', href: '/nepal/' }, { label: 'TDS Calculator' }]}
+      title="Nepal TDS"
+      description="The definitive Tax Deducted at Source (TDS) engine for Nepal. Calibrated to the Income Tax Act 2058 with real-time VAT-conditional logic."
       icon={Landmark}
       inputs={
-        <div className="space-y-6">
-          <div className="space-y-3">
-            <label className={labelCls}>Payment Category</label>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {Object.entries(TDS_RATES).map(([id, info]) => (
-                <button
-                  key={id}
-                  onClick={() => updateState({ source: id })}
-                  className={`flex items-center justify-between px-4 py-3 rounded-lg border transition-all text-left ${
-                    source === id 
-                      ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' 
-                      : 'bg-white border-[#DADCE0] text-[#3C4043] hover:border-[#1A73E8]'
-                  }`}
-                >
-                  <span className="text-[13px] font-bold">{info.label}</span>
-                  <span className={`text-[10px] font-black ${source === id ? 'text-[#1A73E8]' : 'text-[#70757A]'}`}>
-                      {(info.rate * 100).toFixed(1)}%
-                  </span>
-                </button>
-              ))}
-            </div>
+        <div className="space-y-8">
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-10 opacity-10"><Zap className="w-40 h-40" /></div>
+             <div className="relative z-10 grid grid-cols-1 gap-6">
+                <div className="space-y-4">
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Payment Category</label>
+                   <div className="grid grid-cols-2 gap-2">
+                    {Object.entries(TDS_RATES).map(([id, info]) => (
+                      <button
+                        key={id}
+                        onClick={() => updateState({ source: id })}
+                        className={`px-3 py-3 rounded-xl border text-left transition-all ${source === id ? 'bg-blue-600 border-blue-600 text-white shadow-lg' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'}`}
+                      >
+                        <div className="text-[10px] font-black uppercase truncate">{info.label}</div>
+                        <div className="text-[9px] font-bold opacity-60">{(info.rate * 100).toFixed(1)}% Base</div>
+                      </button>
+                    ))}
+                   </div>
+                </div>
+                <div className="space-y-4">
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Gross Payment (NPR)</label>
+                   <input 
+                      type="number" 
+                      value={amount} 
+                      onChange={(e) => updateState({ amount: Number(e.target.value) })}
+                      className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" 
+                   />
+                </div>
+             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className={labelCls}>Gross Payment Amount</label>
-            <div className="relative">
-              <input 
-                type="number" 
-                value={amount} 
-                onChange={e => updateState({ amount: Number(e.target.value) })} 
-                className={inputCls} 
-              />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">NPR</span>
-            </div>
+          <div className="p-8 border border-slate-200 rounded-[2rem] bg-white space-y-6 shadow-sm">
+             <div className="flex items-center gap-3">
+                <div className="p-2 bg-blue-50 rounded-lg"><Scale className="w-4 h-4 text-blue-600" /></div>
+                <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Tax Status Modifiers</h3>
+             </div>
+             {TDS_RATES[source]?.isService && (
+               <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                  <input 
+                     type="checkbox" 
+                     id="vat_reg_tds" 
+                     checked={isVatRegistered} 
+                     onChange={e => updateState({ isVatRegistered: e.target.checked })}
+                     className="w-5 h-5 rounded-lg border-slate-300 text-blue-600 focus:ring-blue-500" 
+                  />
+                  <label htmlFor="vat_reg_tds" className="text-[11px] font-black text-slate-700 uppercase leading-none cursor-pointer">Receiver is VAT Registered (1.5% Rate)</label>
+               </div>
+             )}
+             <p className="text-[10px] text-slate-400 font-bold uppercase leading-relaxed italic">
+                Rule: {source === 'rent' ? "Municipal rent tax (10%) applies for corporate leases." : "Service TDS drops from 15% to 1.5% only with a valid VAT invoice."}
+             </p>
           </div>
-
-          {TDS_RATES[source]?.isService && (
-            <div className="flex items-center gap-3 p-4 bg-[#F8F9FA] rounded-lg border border-[#DADCE0]">
-              <input 
-                type="checkbox" 
-                id="vat-reg" 
-                checked={isVatRegistered}
-                onChange={(e) => updateState({ isVatRegistered: e.target.checked })}
-                className="w-4 h-4 rounded border-[#DADCE0] text-[#1A73E8] focus:ring-[#1A73E8]"
-              />
-              <label htmlFor="vat-reg" className="text-sm font-medium text-[#3C4043] cursor-pointer">
-                Receiver is VAT Registered (1.5% TDS)
-              </label>
-            </div>
-          )}
-
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-            Calculate TDS
-          </button>
         </div>
       }
       results={
         <div className="space-y-6">
-          <div className="space-y-4">
-            <div className="p-6 bg-[#FCE8E6] border border-[#FAD2CF] rounded-lg text-center space-y-1">
-              <div className="text-[10px] font-bold text-[#D93025] uppercase tracking-wider">TDS Amount</div>
-              <div className="text-3xl font-black text-[#D93025]">NPR {result.tdsAmount.toLocaleString()}</div>
-            </div>
-            
-            <div className="p-6 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg text-center space-y-1">
-              <div className="text-[10px] font-bold text-[#188038] uppercase tracking-wider">Net Payable</div>
-              <div className="text-3xl font-black text-[#188038]">NPR {result.netAmount.toLocaleString()}</div>
-            </div>
-          </div>
-
-          <div className="p-4 bg-white border border-[#DADCE0] rounded-lg space-y-3">
-             <div className="flex items-center gap-2 mb-1">
-               <Receipt className="w-4 h-4 text-[#1A73E8]" />
-               <span className="text-[11px] font-bold text-[#202124] uppercase">Summary</span>
-             </div>
-             <div className="flex justify-between text-xs">
-               <span className="text-[#5F6368]">Rate Applied</span>
-               <span className="font-bold text-[#202124]">{result.rate}%</span>
-             </div>
-             <div className="flex justify-between text-xs">
-               <span className="text-[#5F6368]">Base Amount</span>
-               <span className="font-bold text-[#202124]">NPR {amount.toLocaleString()}</span>
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Landmark className="w-24 h-24 text-rose-600" /></div>
+             <div className="text-[10px] font-bold text-rose-600 uppercase tracking-[0.2em]">TDS Withholding Amount</div>
+             <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">{formatNPR(result.tdsAmount)}</div>
+             <div className="px-5 py-2 bg-slate-100 rounded-full inline-block text-[10px] font-black uppercase tracking-tight text-slate-500">
+                Deposit to IRD via E-TDS
              </div>
           </div>
 
-          <div className="flex gap-2 p-3 bg-[#FFF7E0] border border-[#FEEFC3] rounded-lg">
-            <Info className="w-4 h-4 text-[#F29900] shrink-0" />
-            <p className="text-[10px] text-[#202124] leading-tight">Deposit this amount to IRD within 25 days of the next month.</p>
+          <div className="grid grid-cols-2 gap-4">
+             <div className="p-6 bg-emerald-50 border border-emerald-100 rounded-3xl space-y-1">
+                <div className="text-[9px] font-black text-emerald-600 uppercase">Net to Party</div>
+                <div className="text-xl font-black text-emerald-600">{formatNPR(result.netAmount)}</div>
+             </div>
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1">
+                <div className="text-[9px] font-black text-slate-400 uppercase">Effective Rate</div>
+                <div className="text-xl font-black text-slate-900">{result.rate}%</div>
+             </div>
+          </div>
+
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Receipt className="w-24 h-24 text-blue-500" /></div>
+             <div className="relative z-10 flex items-center justify-between">
+                <div className="space-y-1">
+                   <h4 className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Payout Integrity</h4>
+                   <p className="text-2xl font-black">{((result.netAmount / amount) * 100).toFixed(1)}%</p>
+                </div>
+                <div className="h-2 w-32 bg-white/10 rounded-full overflow-hidden">
+                   <div className="h-full bg-emerald-400 rounded-full" style={{ width: `${(result.netAmount / amount) * 100}%` }} />
+                </div>
+             </div>
           </div>
         </div>
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Precision Tax Deducted at Source (TDS) Analytics</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                Compliance with the Inland Revenue Department (IRD) requires exact withholding tax calculations on all corporate and institutional payments. Our <strong className="text-[#202124]">tds calculator nepal</strong> is engineered to parse the latest <strong className="text-[#202124]">tds rate in nepal</strong> schedules set by the Income Tax Act 2058. It mathematically computes the exact withholding amount before disbursing net payments to vendors, landlords, and consultants.
-              </p>
-              <p>
-                The platform dynamically adjusts to piecewise regulatory logic. For example, when calculating <strong className="text-[#202124]">rent tds nepal</strong>, the system applies a strict 10% multiplier. However, for professional services, the engine branches its logic based on the recipient's tax status, enforcing a 1.5% rate for VAT-registered firms while defaulting to 15% for non-registered entities.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-6 opacity-5"><Activity className="w-20 h-20 text-blue-600" /></div>
+              <div className="flex items-center gap-2 mb-8">
+                <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Withholding Distribution</h3>
+              </div>
+              <div className="h-[300px] w-full relative">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RePieChart>
+                    <Pie
+                      data={result.chartData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={70}
+                      outerRadius={95}
+                      paddingAngle={8}
+                      dataKey="val"
+                      stroke="none"
+                    >
+                      {result.chartData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.fill} />
+                      ))}
+                    </Pie>
+                    <Tooltip 
+                       formatter={(v: number) => formatNPR(v)}
+                       contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 8px 30px rgba(0,0,0,0.12)', fontSize: '11px', fontWeight: 'bold' }}
+                    />
+                  </RePieChart>
+                </ResponsiveContainer>
+                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                   <span className="text-[9px] font-black text-slate-400 uppercase">Gross Pmt</span>
+                   <span className="text-lg font-black text-slate-900">{formatNPR(amount)}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+               <div className="absolute -bottom-12 -right-12 opacity-10"><ShieldCheck className="w-64 h-64 text-emerald-500" /></div>
+               <h3 className="text-2xl font-black mb-8 tracking-tight text-emerald-400 uppercase tracking-widest">Rate Comparison Matrix</h3>
+               <div className="h-[240px] w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={Object.entries(TDS_RATES).map(([id, info]) => ({ name: info.label.split(' ')[0], rate: info.rate * 100 }))}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
+                      <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fontSize: 8, fill: '#94a3b8', fontWeight: 'bold'}} />
+                      <YAxis hide />
+                      <Tooltip 
+                         contentStyle={{ backgroundColor: '#1A1A2E', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', fontSize: '10px' }}
+                      />
+                      <Bar dataKey="rate" fill="#3b82f6" radius={[4, 4, 0, 0]} barSize={20} />
+                    </BarChart>
+                  </ResponsiveContainer>
+               </div>
+               <p className="mt-6 text-[9px] text-slate-500 leading-relaxed uppercase tracking-widest font-black">
+                  Visualizing statutory TDS rates across different payment buckets.
+               </p>
             </div>
           </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Category-Specific Rate Matrix (FY 2081/82)</h3>
-            <p className="text-sm text-[#5F6368] mb-4">The withholding rate is entirely dependent on the nature of the transaction. Accurately classifying the payment is critical to avoid IRD penalties during annual audits.</p>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Professional Services:</strong> Standard <strong className="text-[#202124]">consultancy tds nepal</strong> is fixed at 15%. This rate must be withheld by the paying institution unless the consultant presents a valid VAT registration, which dramatically reduces the withholding requirement to 1.5%.</li>
-              <li><strong className="text-[#1A73E8]">Investment Yields:</strong> When executing a <strong className="text-[#202124]">dividend tds nepal 2081</strong> calculation, the algorithm applies a flat 5% final withholding tax. This signifies that the recipient has no further income tax liability on that specific dividend payout.</li>
-              <li><strong className="text-[#1A73E8]">Rent (House & Land):</strong> Rental payments made by businesses to landlords are subject to a 10% TDS. It is important to note that individuals paying rent for personal residential use do not need to withhold this tax.</li>
-            </ul>
-          </div>
+          {/* TDS Encyclopedia - content body */}
+          <section className="bg-white border border-slate-200 rounded-[3rem] p-12 shadow-sm relative overflow-hidden">
+            <div className="absolute -top-12 -right-12 opacity-5">
+                <Landmark className="w-64 h-64 text-blue-600" />
+            </div>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="bg-blue-50 p-4 rounded-2xl">
+                  <Scale className="w-8 h-8 text-blue-600" />
+              </div>
+              <h2 className="text-4xl font-black text-slate-900 tracking-tighter uppercase">The TDS Encyclopedia: Nepal’s Withholding Architecture</h2>
+            </div>
+            <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-8 text-lg">
+              <p>
+                Tax Deducted at Source (TDS) is a fundamental pillar of <strong>Nepal’s Income Tax Act, 2058</strong>. It serves as a mechanism for the government to collect revenue at the very point where income is generated. For businesses and institutions, acting as a "Withholding Agent" is a mandatory legal obligation. Our <strong>Institutional TDS Engine</strong> is calibrated to the latest <strong>Finance Act</strong> schedules for <strong>2081/82</strong>.
+              </p>
+              
+              <div className="bg-blue-50 border border-blue-100 p-8 rounded-[2.5rem] flex gap-6 items-start my-10">
+                 <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm shrink-0">
+                    <Globe className="w-6 h-6 text-blue-600" />
+                 </div>
+                 <div>
+                    <h4 className="text-sm font-black text-slate-900 mb-2 uppercase tracking-widest">Resident vs Non-Resident Dynamics</h4>
+                    <p className="text-[11px] font-medium text-slate-500 leading-relaxed">
+                      Most rates in this tool apply to <strong>Resident</strong> entities. Payments to non-residents (foreign companies without a permanent establishment in Nepal) are subject to a flat 25% TDS unless a double taxation avoidance agreement (DTAA) provides a lower rate.
+                    </p>
+                 </div>
+              </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">TDS Thresholds and Exemption Limits</h3>
-            <p className="text-sm text-[#5F6368] mb-4">Not all transactions require withholding. The IRD specifies minimum thresholds to ease the accounting burden on micro-transactions.</p>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#188038]">Contract Payments:</strong> If a payment for a contract or procurement is less than Rs. 50,000, TDS is generally not required to be withheld. However, if multiple payments to the same vendor exceed this threshold cumulatively over the fiscal year, TDS must be deducted.</li>
-              <li><strong className="text-[#188038]">Final vs. Advance Withholding:</strong> Some TDS deductions (like the 5% on dividends or bank interest) are considered 'final.' You do not need to file a tax return declaring them. Conversely, the 1.5% or 15% withheld on consultancy is 'advance tax,' meaning the consultant must file a year-end return and can adjust the withheld amount against their final tax liability.</li>
-            </ul>
-          </div>
+              <h3 className="text-2xl font-black text-slate-900 mt-12 mb-6 uppercase">1. Categorical Withholding: Rent, Service, and Interest</h3>
+              <p>
+                The rate of TDS is entirely dependent on the nature of the transaction. Classifying a payment incorrectly can lead to significant audit liabilities with the <strong>Inland Revenue Department (IRD)</strong>.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-10">
+                 <div className="p-8 border border-slate-200 rounded-[2rem] space-y-4 bg-slate-50">
+                    <h4 className="text-xs font-black text-blue-600 uppercase tracking-widest">House Rent (10%)</h4>
+                    <p className="text-[11px] font-medium leading-relaxed">
+                      Mandatory for all corporate leases. Payments to individual landlords for business premises must withhold 10% which is then deposited to the local municipality or IRD.
+                    </p>
+                 </div>
+                 <div className="p-8 border border-slate-200 rounded-[2rem] space-y-4 bg-emerald-50">
+                    <h4 className="text-xs font-black text-emerald-600 uppercase tracking-widest">Professional Services (1.5% / 15%)</h4>
+                    <p className="text-[11px] font-medium leading-relaxed">
+                      Consultancy and technical services face a binary choice: 1.5% if the provider is VAT-registered, or 15% if they are PAN-registered individuals or firms.
+                    </p>
+                 </div>
+              </div>
+
+              <h3 className="text-2xl font-black text-slate-900 mt-12 mb-6 uppercase">2. Final Withholding vs Advance Tax</h3>
+              <p>
+                Understanding the "Finality" of tax is crucial. Deductions like 5% on <strong>Dividends</strong> or <strong>Bank Interest</strong> are generally "Final Withholding," meaning the recipient has no further income tax liability on that specific income. Conversely, the 1.5% or 15% on consultancy is "Advance Tax," where the recipient can adjust the withheld amount against their final year-end tax bill.
+              </p>
+            </div>
+          </section>
+
+          {/* Withholding Integrity Guardrails - content body */}
+          <section className="bg-slate-900 text-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+             <div className="absolute -bottom-12 -right-12 opacity-10"><History className="w-64 h-64 text-emerald-500" /></div>
+             <h2 className="text-3xl font-black mb-10 tracking-tight text-emerald-400 uppercase tracking-widest">Withholding Integrity Guardrails</h2>
+             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="space-y-4">
+                   <h4 className="text-lg font-black flex items-center gap-2 text-emerald-400"><Scale className="w-5 h-5" /> Periodic Filing</h4>
+                   <p className="text-xs text-slate-400 leading-relaxed">
+                      Withheld amounts must be deposited to the IRD within 25 days of the following Nepalese month via the E-TDS portal.
+                   </p>
+                </div>
+                <div className="space-y-4">
+                   <h4 className="text-lg font-black flex items-center gap-2 text-emerald-400"><Receipt className="w-5 h-5" /> PAN Verification</h4>
+                   <p className="text-xs text-slate-400 leading-relaxed">
+                      Always verify the recipient's PAN before issuing payment. Payments above NPR 2,000 without a PAN are technically non-deductible for the payer.
+                   </p>
+                </div>
+                <div className="space-y-4">
+                   <h4 className="text-lg font-black flex items-center gap-2 text-emerald-400"><ShieldCheck className="w-5 h-5" /> Audit Trails</h4>
+                   <p className="text-xs text-slate-400 leading-relaxed">
+                      Keep E-TDS certificates and bank deposit slips for 6 years. These are the primary proof of compliance during IRD field audits.
+                   </p>
+                </div>
+             </div>
+          </section>
         </div>
       }
       howToUse={{
         steps: [
-          "Select the specific category of your payment (e.g., Rent, Consultancy, Dividend, Commission). Selecting the wrong category will result in an inaccurate withholding rate.",
-          "Enter the total Gross Payment Amount. This must be the base amount before any secondary taxes (like VAT) are added.",
-          "If paying for a service (Consultancy, Commission, Brokerage), check if the receiving party is VAT Registered. If yes, toggle the checkbox to reduce the TDS rate from 15% to 1.5%.",
-          "Deduct the 'TDS Amount' generated by the calculator from your payment.",
-          "Disburse the 'Net Payable' amount to the receiving party and deposit the withheld TDS to the Inland Revenue Department (IRD) within 25 days."
+          "Category selection: Choose the nature of the payment (Rent, Dividend, Consultancy, etc.).",
+          "Gross Amount: Input the total payment amount before any tax deductions.",
+          "VAT Toggle: If paying for services, check if the provider is VAT-registered to apply the 1.5% rate.",
+          "Results Audit: Review the TDS Withheld amount and the Net Payout for the party.",
+          "Compliance: Deposit the withheld tax to the IRD using the recipient's PAN."
         ]
       }}
       formula={{
-        title: "TDS Mathematical Logic",
-        description: "TDS is strictly calculated on the Gross Base Amount, excluding any Value Added Tax (VAT).",
-        raw: "1. Identify Base Rate based on Income Tax Act 2058 Schedule 1.\n2. Apply VAT conditional modifier (if applicable to service).\n\nTDS Withheld = Gross Amount × Applicable Rate (%)\nNet Payment to Party = Gross Amount - TDS Withheld\n\nNote: If the party charges VAT, the final invoice total will be: (Gross Amount + 13% VAT) - TDS Withheld."
+        title: "The Withholding Axiom",
+        description: "Statutory algorithm for point-of-source taxation in Nepal.",
+        raw: "$$TDS = Gross \\times Rate_{statutory}$$",
+        latex: "Net = Gross - (Gross x Rate)"
       }}
       faqs={[
-        {
-          question: "When should I use the 1.5% TDS rate instead of 15%?",
-          answer: "As per the IRD guidelines, if you are paying for professional services, consultancy, or commissions to an individual or firm that is legally registered for Value Added Tax (VAT) and provides a VAT invoice, you must withhold only 1.5% TDS. If they only have a PAN (Personal Account Number), you must withhold 15%."
-        },
-        {
-          question: "Is TDS calculated on the total bill amount including VAT?",
-          answer: "No. TDS is always calculated strictly on the Gross Base Amount before the 13% VAT is added. For example, on a base bill of Rs. 100,000 with 13% VAT, the invoice total is Rs. 113,000. Your 1.5% TDS (Rs. 1,500) is calculated on the Rs. 100,000 base, not the 113,000."
-        },
-        {
-          question: "What is the TDS rate for house rent in Nepal?",
-          answer: "The current TDS rate for house and land rent is 10%. This applies when corporate entities or businesses pay rent to a landlord. Personal residential renters are not required to deduct TDS."
-        },
-        {
-          question: "What happens if I forget to deduct TDS?",
-          answer: "If you fail to deduct TDS or fail to deposit it to the IRD within 25 days of the following Nepalese month, the IRD will disallow that expense from your company's P&L statement during tax assessment. You will also be liable for a 15% per annum interest penalty on the un-withheld amount."
-        },
-        {
-          question: "Do I need to deduct TDS for payments below Rs. 50,000?",
-          answer: "Generally, for single procurement or contract payments below Rs. 50,000, TDS is not required. However, if you split invoices to intentionally stay below this limit, or if aggregate payments to the same vendor exceed the threshold in a fiscal year, TDS becomes mandatory."
-        },
-        {
-          question: "How do I deposit the withheld TDS in Nepal?",
-          answer: "You must deposit the withheld TDS through the IRD's online Taxpayer Portal. You generate a transaction voucher (E-TDS) specifying the PAN of the party you withheld from, and then pay the amount through connected banking channels like ConnectIPS or direct bank deposit."
-        }
+        { question: "What is the TDS rate for house rent in Nepal?", answer: "The current rate for house and land rent is 10%, applicable for corporate and business tenants." },
+        { question: "When do I use 1.5% TDS for services?", answer: "Use 1.5% only when the service provider is VAT-registered and provides a valid VAT invoice. Otherwise, use 15%." },
+        { question: "Is TDS calculated on the VAT amount?", answer: "No. TDS is always calculated strictly on the gross base amount before 13% VAT is added." },
+        { question: "What is the TDS on bank interest?", answer: "For resident individuals, banks deduct a final withholding tax of 5% on interest earned from savings and fixed deposits." },
+        { question: "What is the penalty for not depositing TDS on time?", answer: "Late deposits face a 15% per annum interest charge plus potential penalties from the IRD." },
+        { question: "Do I need to deduct TDS on payments to individuals?", answer: "Yes, if you are a business or institution, you must deduct TDS even when paying individuals for services or rent." },
+        { question: "What is the deadline for depositing TDS?", answer: "Withheld TDS must be deposited within 25 days of the following Nepalese month." },
+        { question: "What is the TDS rate on dividends?", answer: "Dividends from listed companies in Nepal are subject to a final withholding tax of 5%." },
+        { question: "Do IT freelancers have to pay TDS?", answer: "Banks deduct 5% TDS at the source for foreign currency payments received for service exports." },
+        { question: "Can I get a refund of the TDS deducted from my payment?", answer: "If the TDS is 'Advance Tax' (like 1.5% or 15%), you can claim it as a credit against your final income tax. If it is 'Final Withholding,' it cannot be refunded." },
+        { question: "What is an E-TDS certificate?", answer: "It is an electronic certificate generated from the IRD portal proving that tax was withheld and deposited against your PAN." },
+        { question: "What is the TDS rate on meeting fees?", answer: "Meeting fees (Bharta) are subject to a flat 15% TDS in Nepal." },
+        { question: "Is there TDS on vehicle rentals?", answer: "Yes, vehicle rentals are generally subject to 10% TDS, similar to house rent." },
+        { question: "What is the TDS on consultancy for a non-resident?", answer: "Payments to non-residents for consultancy are generally subject to a 25% withholding tax unless a DTAA applies." },
+        { question: "Do I need a PAN to receive payments in Nepal?", answer: "Yes, the government has made it mandatory to provide a PAN for any payment exceeding NPR 2,000 for service or rent." },
+        { question: "How often do TDS rates change?", answer: "Rates are reviewed every year during the national budget announcement (Finance Act) in Jestha (May/June)." },
+        { question: "What is the TDS on insurance commissions?", answer: "Insurance commissions are subject to 15% TDS in Nepal." },
+        { question: "Can I deduct my business expenses from the TDS base?", answer: "No. TDS is calculated on the gross amount. You account for your expenses during your year-end income tax filing." },
+        { question: "Who is responsible for paying TDS, the buyer or the seller?", answer: "The buyer (payer) is responsible for deducting the tax and depositing it to the government on behalf of the seller (receiver)." },
+        { question: "Is this tool calibrated to the 2081/82 budget?", answer: "Yes, all rates are updated to reflect the latest Finance Act 2081 standards." }
       ]}
       sidebar={{
-        title: "Nepal Tax Tools",
+        title: "Tax Hub",
+        subtitle: "Compliance & Strategy",
         links: [
-          { label: "Income Tax Calculator", href: "/calculator/nepal-income-tax/" },
-          { label: "VAT Calculator", href: "/calculator/nepal-vat/" },
-          { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
-          { label: "Vehicle Tax Nepal", href: "/calculator/nepal-vehicle-tax/" },
+          { label: "VAT Calculator", href: "/calculator/nepal-vat", icon: Receipt },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: Wallet },
+          { label: "Salary Calculator", href: "/calculator/nepal-salary", icon: Activity },
+          { label: "IRD Portal", href: "https://ird.gov.np", icon: Globe },
         ],
-        banner: {
-          title: "Stay Tax Compliant",
-          description: "Follow IRD Nepal's latest guidelines to avoid massive penalties and late fees on your corporate payments.",
-          image: "/images/nepal-tax-banner.jpg"
-        }
       }}
       relatedTools={[
-        { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
-        { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
-        { label: "VAT Calculator", href: "/calculator/nepal-vat/" }
+        { label: "VAT Calculator", href: "/calculator/nepal-vat" },
+        { label: "Income Tax", href: "/calculator/nepal-income-tax" },
+        { label: "Salary Calculator", href: "/calculator/nepal-salary" }
       ]}
     />
   );

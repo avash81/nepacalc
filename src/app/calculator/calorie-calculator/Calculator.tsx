@@ -1,7 +1,7 @@
 'use client';
 import { useState, useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Activity, Apple, Info, Sigma, User, Target } from 'lucide-react';
+import { Activity, Apple, Info, Sigma, User, Target, Calculator, Zap } from 'lucide-react';
 
 const ACTIVITY_LEVELS = [
   { id: 'sedentary',  label: 'Sedentary',          desc: 'Little/no exercise',     mult: 1.2   },
@@ -38,7 +38,7 @@ export default function CalorieCalculator() {
   const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
 
   return (
-    <ModernCalcLayout hideH1={true}
+    <ModernCalcLayout slug="calorie-calculator" hideH1={false}
       crumbs={[{ label: 'Health', href: '/health/' }, { label: 'Calorie Calculator' }]}
       title="Calorie Calculator"
       description="Determine your daily caloric needs for maintenance or weight goals using the Mifflin-St Jeor equation."
@@ -98,8 +98,8 @@ export default function CalorieCalculator() {
             </select>
           </div>
 
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-            Calculate Calories
+          <button onClick={() => {}} className="w-full h-12 bg-[#1A73E8] hover:bg-[#1765CC] text-white font-bold uppercase tracking-widest rounded-md transition-all shadow-sm flex items-center justify-center gap-2">
+            <Calculator className="w-4 h-4" /> Calculate Metabolism
           </button>
         </div>
       }
@@ -107,59 +107,62 @@ export default function CalorieCalculator() {
         <div className="space-y-6">
           {result ? (
             <>
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="text-sm font-bold text-[#202124]">Daily Results</h3>
-                <Info className="w-4 h-4 text-[#1A73E8]" />
+              <div className="p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2">
+                 <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Total Daily Energy Expenditure (TDEE)</div>
+                 <div className="text-5xl font-black text-[#1A73E8] tracking-tighter">{result.tdee} <span className="text-xl">kcal</span></div>
+                 <div className="text-[10px] font-bold text-[#70757A] uppercase">Maintenance Calorie Ceiling</div>
               </div>
-              
-              <div className="space-y-3">
-                {[
-                  { label: 'Maintenance', sub: 'Keep current weight', val: result.tdee, color: 'text-[#188038]', bg: 'bg-[#E6F4EA]' },
-                  { label: 'Weight Loss', sub: '0.5 kg / week', val: result.lose05, color: 'text-[#1A73E8]', bg: 'bg-[#E8F0FE]' },
-                  { label: 'Extreme Loss', sub: '1 kg / week', val: result.lose10, color: 'text-[#D93025]', bg: 'bg-[#FCE8E6]' },
-                ].map((goal) => (
-                  <div key={goal.label} className={`p-4 ${goal.bg} border border-[#DADCE0] rounded-lg flex justify-between items-center group hover:shadow-md transition-all`}>
-                    <div>
-                      <div className="text-sm font-bold text-[#202124]">{goal.label}</div>
-                      <div className="text-[10px] text-[#5F6368]">{goal.sub}</div>
-                    </div>
-                    <div className="text-right">
-                      <div className={`text-xl font-black ${goal.color}`}>{goal.val.toLocaleString()}</div>
-                      <div className="text-[9px] font-bold text-[#70757A] uppercase tracking-tighter">kcal/day</div>
-                    </div>
-                  </div>
-                ))}
+
+              <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+                 <div className="px-4 py-3 border-b border-[#DADCE0] bg-[#F8F9FA] flex justify-between items-center">
+                    <span className="text-[10px] font-bold text-[#70757A] uppercase tracking-widest">Goal-Based Trajectories</span>
+                    <Target className="w-3.5 h-3.5 text-[#1A73E8]" />
+                 </div>
+                 <div className="p-5 space-y-5">
+                    {[
+                      { label: 'Weight Loss', sub: '-0.5 kg/week', val: result.lose05, color: 'text-[#1A73E8]' },
+                      { label: 'Extreme Loss', sub: '-1.0 kg/week', val: result.lose10, color: 'text-[#D93025]' },
+                      { label: 'Muscle Gain', sub: '+0.5 kg/week', val: result.gain05, color: 'text-[#188038]' },
+                    ].map((g, i) => (
+                      <div key={g.label} className="flex justify-between items-center">
+                         <div className="space-y-0.5">
+                            <div className="text-[11px] font-black uppercase text-[#202124]">{g.label}</div>
+                            <div className="text-[9px] text-[#70757A] font-medium uppercase tracking-tighter">{g.sub}</div>
+                         </div>
+                         <div className={`text-lg font-black font-mono ${g.color}`}>{g.val} <span className="text-[10px]">kcal</span></div>
+                      </div>
+                    ))}
+                 </div>
+              </div>
+
+              <div className="flex gap-2 p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg items-start">
+                 <Sigma className="w-4 h-4 text-[#1A73E8] shrink-0 mt-0.5" />
+                 <p className="text-[10px] text-[#5F6368] leading-relaxed uppercase font-bold">
+                    Mifflin-St Jeor Protocol: Calibrated for modern metabolic prediction with 100% mathematical precision.
+                 </p>
               </div>
             </>
           ) : (
-            <div className="text-center py-10 opacity-40">
-              <Target className="w-10 h-10 mx-auto mb-2" />
-              <p className="text-sm">Enter stats to see caloric goals</p>
+            <div className="p-20 text-center opacity-20">
+               <Target className="w-20 h-20 mx-auto mb-4" />
+               <p className="text-xl font-black uppercase tracking-widest text-[#202124]">Awaiting Data</p>
             </div>
           )}
         </div>
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Thermodynamics & Daily Energy Expenditure</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                At its core, weight management is governed by the laws of thermodynamics: energy in versus energy out. Our <strong className="text-[#202124]">calorie calculator</strong> serves as your personalized metabolic architect, utilizing the clinically validated Mifflin-St Jeor equation to map exactly how much energy your body requires daily. This calculation is vital whether you are aiming to shed excess fat, build lean muscle mass, or simply maintain your current physique.
-              </p>
-              <p>
-                The calculator determines your <strong className="text-[#202124]">Total Daily Energy Expenditure (TDEE)</strong> by first calculating your resting metabolism and then applying an activity multiplier based on your lifestyle. By identifying this exact maintenance ceiling, the engine can accurately prescribe specific caloric deficits or surpluses to trigger reliable, mathematically predictable body composition changes.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Metabolic Protocols & Goal Trajectories</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Maintenance Protocol (TDEE):</strong> The exact number of calories required to keep your body weight entirely static. If you eat this amount daily, you will neither gain nor lose weight.</li>
-              <li><strong className="text-[#188038]">Hypertrophy (Weight Gain):</strong> To build muscle tissue, the body requires an anabolic state. The engine prescribes a safe, controlled 500-calorie surplus, providing the biological building blocks for muscle synthesis without excessive fat spillover.</li>
-              <li><strong className="text-[#D93025]">Fat Oxidation (Weight Loss):</strong> To burn stored adipose tissue, you must force a biological energy deficit. The calculator provides targets for a mild deficit (-500 kcal/day for 0.5kg weekly loss) and an aggressive deficit (-1000 kcal/day for 1kg weekly loss).</li>
-            </ul>
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+             <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
+                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Metabolic Expenditure Audit</h3>
+             </div>
+             <p className="text-sm text-[#5F6368] leading-relaxed">
+                The institutional engine for total daily energy expenditure (TDEE) assessment. Calibrated using the 
+                <strong> Mifflin-St Jeor Equation</strong>, this tool provides a high-precision verification of 
+                biological energy requirements. By synthesizing basal metabolic rates with physical activity 
+                multipliers, it defines the mathematical boundary for weight maintenance, hypertrophy planning, 
+                and caloric deficit trajectories.
+             </p>
           </div>
         </div>
       }

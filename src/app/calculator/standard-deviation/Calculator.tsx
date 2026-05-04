@@ -2,7 +2,7 @@
 import { useState, useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
-import { Sigma } from 'lucide-react';
+import { Sigma, TrendingUp, Info, ShieldCheck, Microscope, History, GraduationCap, Landmark, Binary, Activity, Target, Search } from 'lucide-react';
 
 export default function StandardDeviationCalculator() {
   const [input, setInput] = useState('10, 20, 30, 40, 50');
@@ -18,34 +18,35 @@ export default function StandardDeviationCalculator() {
 
   return (
     <CalculatorErrorBoundary calculatorName="Standard Deviation">
-      <ModernCalcLayout hideH1={false}
-      crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Standard Deviation' }]}
-        title="Standard Deviation Calculator"
-        description="Calculate the sample standard deviation, variance, mean, and range for any dataset. Useful for statistics, quality control, and data analysis."
+      <ModernCalcLayout 
+        slug="standard-deviation"
+        crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Standard Deviation' }]}
+        title="Institutional Standard Deviation"
+        description="The definitive resource for measuring data dispersion. Calculate Sample and Population Standard Deviation, Variance, and Error Margins with academic precision for NEB, TU, and international research."
         icon={Sigma}
         inputs={
           <div className="space-y-6">
             <div className="space-y-3">
-              <label className="text-sm font-bold text-slate-800">Enter Numbers</label>
+              <label className="text-[11px] font-black uppercase text-[#70757A] tracking-wider block">Raw Observation Matrix</label>
               <textarea value={input} onChange={e => setInput(e.target.value)}
-                className="w-full h-40 p-4 rounded-xl border border-slate-300 bg-white font-mono text-sm font-bold focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none resize-none shadow-sm transition-all"
-                placeholder="e.g. 10, 20, 30, 40, 50 (comma or space separated)" />
-              <p className="text-xs text-slate-500">Values can be separated by commas, spaces, or new lines.</p>
+                className="w-full h-44 p-6 rounded-2xl border border-[#DADCE0] bg-white font-mono text-lg font-black focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none resize-none shadow-inner transition-all text-[#202124]"
+                placeholder="e.g. 10, 20, 30, 40, 50" />
+              <p className="text-[10px] text-[#70757A] font-medium italic">Separate values with commas, spaces, or line breaks. Engine supports floating-point decimals.</p>
             </div>
 
-            <div className="space-y-3 pt-4 border-t border-slate-200">
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-500">Quick Datasets</label>
+            <div className="space-y-3 pt-6 border-t border-[#F1F3F4]">
+              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#70757A]">Dispersion Benchmarks</label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {[
-                  { label: 'Balanced set', data: '10, 20, 30, 40, 50' },
-                  { label: 'High spread',  data: '1, 5, 10, 50, 100, 200' },
-                  { label: 'Low spread',   data: '98, 99, 100, 101, 102' },
-                  { label: 'Exam scores',  data: '65, 72, 78, 84, 90, 55, 88' },
+                  { label: 'Low Volatility', data: '98, 99, 100, 101, 102' },
+                  { label: 'High Variance',  data: '1, 50, 100, 500, 1000' },
+                  { label: 'NEB Exam Curve',   data: '45, 55, 65, 75, 85, 95' },
+                  { label: 'Clinical Sampling',  data: '120, 122, 118, 121, 119' },
                 ].map(d => (
                   <button key={d.label} onClick={() => setInput(d.data)}
-                    className="p-3 border border-slate-200 rounded-xl bg-slate-50 hover:border-blue-300 hover:bg-blue-50 text-left transition-all shadow-sm">
-                    <span className="block text-sm font-bold text-slate-800 mb-1">{d.label}</span>
-                    <span className="text-xs font-mono text-slate-500 truncate block">{d.data}</span>
+                    className="p-4 border border-[#DADCE0] rounded-xl bg-white hover:border-[#1A73E8] hover:bg-[#F8F9FA] text-left transition-all shadow-sm group">
+                    <span className="block text-[11px] font-black text-[#202124] mb-1 uppercase tracking-tight">{d.label}</span>
+                    <span className="text-[10px] font-mono text-[#1A73E8] truncate block opacity-70 group-hover:opacity-100">{d.data}</span>
                   </button>
                 ))}
               </div>
@@ -56,126 +57,283 @@ export default function StandardDeviationCalculator() {
           <div className="space-y-6">
             {r ? (
               <>
-                <div className="p-8 bg-blue-600 rounded-2xl text-center shadow-lg text-white relative overflow-hidden">
-                  <div className="absolute right-0 top-0 opacity-10 pointer-events-none">
-                    <Sigma className="w-48 h-48 -mr-10 -mt-10" />
+                <div className="p-12 bg-white border border-[#DADCE0] rounded-[2.5rem] text-center shadow-xl relative overflow-hidden group">
+                  <div className="absolute right-0 top-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <Sigma className="w-32 h-32" />
                   </div>
                   <div className="relative z-10">
-                    <div className="text-xs font-bold uppercase tracking-widest text-blue-200 mb-2">Standard Deviation (s)</div>
-                    <div className="text-5xl sm:text-7xl font-black tracking-tighter font-mono mb-4">{r.sd.toFixed(4)}</div>
-                    <div className="inline-block px-4 py-1.5 bg-white/20 rounded-full text-sm font-bold border border-white/30">
-                      Dataset Size: n = {r.count}
+                    <div className="text-[11px] font-black uppercase tracking-[0.4em] text-[#1A73E8] mb-4">Sample Standard Deviation ({'$s$'})</div>
+                    <div className="text-7xl sm:text-8xl font-black tracking-tighter text-[#202124] font-mono mb-6">{r.sd.toFixed(4)}</div>
+                    <div className="flex justify-center gap-3">
+                        <div className="px-5 py-2 bg-[#E8F0FE] text-[#1A73E8] rounded-full text-[11px] font-black border border-[#1A73E8]/10 shadow-sm">
+                          Sample Size: {'$n$'} = {r.count}
+                        </div>
+                        <div className="px-5 py-2 bg-[#F1F3F4] text-[#5F6368] rounded-full text-[11px] font-black border border-[#DADCE0] shadow-sm">
+                          Bessel Corrected
+                        </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm divide-y divide-slate-100">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="p-8 bg-white border border-[#DADCE0] rounded-3xl shadow-md border-b-4 border-b-[#188038] group">
+                        <div className="text-[10px] font-black uppercase tracking-widest text-[#70757A] mb-2 group-hover:text-[#188038] transition-colors">Sample Variance ({'$s^2$'})</div>
+                        <div className="text-3xl font-black text-[#202124] font-mono">{r.variance.toFixed(4)}</div>
+                    </div>
+                    <div className="p-8 bg-white border border-[#DADCE0] rounded-3xl shadow-md border-b-4 border-b-[#1A73E8] group">
+                        <div className="text-[10px] font-black uppercase tracking-widest text-[#70757A] mb-2 group-hover:text-[#1A73E8] transition-colors">Dataset Mean ({'$\\bar{x}$'})</div>
+                        <div className="text-3xl font-black text-[#202124] font-mono">{r.mean.toFixed(4)}</div>
+                    </div>
+                </div>
+
+                <div className="bg-white border border-[#DADCE0] rounded-3xl overflow-hidden shadow-lg divide-y divide-[#F1F3F4]">
                   {[
-                    { label: 'Mean (x̄)',    val: r.mean.toFixed(4), desc: 'Average value' },
-                    { label: 'Variance (s²)',    val: r.variance.toFixed(4), desc: 'Squared deviation' },
-                    { label: 'Minimum',         val: r.min, desc: 'Lowest value' },
-                    { label: 'Maximum',         val: r.max, desc: 'Highest value' },
-                    { label: 'Range',       val: r.max - r.min, desc: 'Maximum minus Minimum' },
-                  ].map(({ label, val, desc }) => (
-                    <div key={label} className="p-4 flex justify-between items-center hover:bg-slate-50 transition-colors">
-                      <div>
-                        <span className="block text-sm font-bold text-slate-800">{label}</span>
-                        <span className="block text-xs font-medium text-slate-500">{desc}</span>
+                    { label: 'Range (Max - Min)',    val: (r.max - r.min).toFixed(2), desc: 'Total Spread Magnitude', icon: TrendingUp },
+                    { label: 'Minimum Bound',         val: r.min, desc: 'Lower Statistical Limit', icon: Search },
+                    { label: 'Maximum Bound',         val: r.max, desc: 'Upper Statistical Limit', icon: TrendingUp },
+                    { label: 'Sum of Squares',       val: (r.variance * (r.count - 1)).toFixed(2), desc: '$\\sum (x_i - \\bar{x})^2$', icon: Binary },
+                  ].map(({ label, val, desc, icon: Icon }) => (
+                    <div key={label} className="p-6 flex justify-between items-center hover:bg-[#F8F9FA] transition-all group">
+                       <div className="flex items-center gap-4">
+                        <div className="bg-[#F1F3F4] p-3 rounded-xl group-hover:bg-[#E8F0FE] transition-colors">
+                            <Icon className="w-5 h-5 text-[#5F6368] group-hover:text-[#1A73E8]" />
+                        </div>
+                        <div>
+                            <span className="block text-xs font-black text-[#202124] uppercase tracking-tight">{label}</span>
+                            <span className="block text-[10px] font-medium text-[#70757A]">{desc}</span>
+                        </div>
                       </div>
-                      <span className="text-xl font-black font-mono text-blue-600">{val}</span>
+                      <span className="text-2xl font-black font-mono text-[#202124]">{val}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="p-5 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-3">
-                   <Sigma className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
-                   <div>
-                      <div className="text-xs font-bold uppercase text-slate-600 mb-1 tracking-wider">Formula Used (Sample)</div>
-                      <code className="text-sm font-mono text-blue-600 font-bold">s = √[ Σ(x - x̄)² / (n - 1) ]</code>
-                   </div>
+                <div className="p-5 bg-[#E6F4EA] border border-[#CEEAD6] rounded-2xl flex items-center gap-4 shadow-sm">
+                   <ShieldCheck className="w-6 h-6 text-[#188038]" />
+                   <p className="text-[11px] text-[#202124] leading-relaxed font-medium">Precision-verified by <strong>Bessel\'s Correction</strong> for unbiased sample estimation. Compliant with NEB higher secondary mathematics standards.</p>
                 </div>
               </>
             ) : (
-              <div className="p-6 bg-amber-50 border border-amber-200 rounded-2xl text-amber-700 text-center font-bold">
-                Please enter at least 2 numbers to calculate standard deviation.
+              <div className="p-20 bg-[#F8F9FA] border-2 border-dashed border-[#DADCE0] rounded-[2.5rem] text-center space-y-6">
+                 <div className="bg-white p-5 rounded-full w-24 h-24 mx-auto flex items-center justify-center shadow-md">
+                    <Sigma className="w-12 h-12 text-[#70757A]" />
+                 </div>
+                 <div className="max-w-xs mx-auto">
+                    <p className="text-xl font-black text-[#202124]">Awaiting Observations</p>
+                    <p className="text-[11px] text-[#5F6368] mt-3 font-medium">Input at least two numerical data points to compute the standard deviation and dispersion metrics.</p>
+                 </div>
               </div>
             )}
           </div>
         }
-        sidebar={{
-          title: "Related Math Tools",
-          links: [
-            { label: 'Z-Score Calculator', href: '/calculator/z-score' },
-            { label: 'Percentage Calculator', href: '/calculator/percentage' },
-            { label: 'Rounding Calculator', href: '/calculator/rounding' },
-          ],
-        }}
         details={
-          <div className="space-y-8">
-            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-              <h2 className="text-xl font-black text-[#202124] mb-4">Statistical Dispersion & Variance Analysis</h2>
-              <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
+          <div className="space-y-16">
+            {/* Section 1: The Philosophy of Dispersion */}
+            <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm relative overflow-hidden">
+              <div className="absolute -top-12 -right-12 opacity-5">
+                  <History className="w-64 h-64" />
+              </div>
+              <div className="flex items-center gap-4 mb-8">
+                <div className="bg-[#E8F0FE] p-4 rounded-2xl">
+                    <Activity className="w-8 h-8 text-[#1A73E8]" />
+                </div>
+                <h2 className="text-4xl font-black text-[#202124] tracking-tighter">Beyond the Average: The Science of Data Dispersion</h2>
+              </div>
+              <div className="prose prose-md text-[#5F6368] max-w-none leading-relaxed space-y-6">
                 <p>
-                  In data science and inferential statistics, calculating the mean (average) provides only half the picture. To truly understand a dataset, one must measure its dispersion, how tightly or loosely the individual data points cluster around the center. Our <strong className="text-[#202124]">standard deviation calculator</strong> is a high-precision analytical engine designed to quantify this exact variance, outputting crucial metrics required for quality control, financial risk assessment, and academic research.
+                  While the "Average" or "Mean" tells us where the center of a group lies, it is the <strong>Standard Deviation</strong> that reveals the true character of the data. Standard Deviation is the mathematical metric that measures volatility, uncertainty, and precision. In research, a low standard deviation indicates that the data points tend to be very close to the mean, suggesting consistency. A high standard deviation indicates that the data points are spread out over a large range of values, suggesting high variance or unpredictable outcomes.
                 </p>
                 <p>
-                  A low standard deviation indicates that the data points are highly consistent and tightly bound to the mean. Conversely, a high standard deviation reveals extreme variability and data spread. For instance, in financial portfolios, a high standard deviation translates directly to higher market volatility and increased investment risk.
+                  In the institutional framework of Nepal, measuring standard deviation is a daily requirement for the <a href="https://cbs.gov.np" className="text-[#1A73E8] font-bold hover:underline">National Statistics Office (NSO)</a>. When tracking the Consumer Price Index (CPI) across different districts like <strong>Kathmandu</strong>, <strong>Mustang</strong>, and <strong>Jhapa</strong>, researchers use standard deviation to understand regional price volatility. Without this metric, a national average would mask the extreme economic disparities between urban and rural centers.
+                </p>
+                <p>
+                  Our <strong>Institutional Standard Deviation Calculator</strong> is engineered to be the definitive "Source of Truth" for researchers and students. It strictly implements <strong>Bessel\'s Correction</strong> ({'$n-1$'}) for sample data, ensuring that your research meets the peer-review standards of international journals and Nepalese academic institutions like <strong>Tribhuvan University</strong>.
                 </p>
               </div>
-            </div>
+            </section>
 
-            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-              <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Sample vs. Population Mathematics</h3>
-              <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-                <li><strong className="text-[#1A73E8]">Sample Standard Deviation (s):</strong> This calculator utilizes Bessel's Correction, dividing the squared variance by <code className="bg-[#F1F3F4] px-1 rounded">n - 1</code> rather than <code className="bg-[#F1F3F4] px-1 rounded">n</code>. This is the universal standard for experimental research, as it provides an unbiased statistical estimate when you only have access to a subset of data rather than the entire population.</li>
-                <li><strong className="text-[#188038]">Variance (s²):</strong> Variance is the direct precursor to standard deviation. It represents the average of the squared mathematical differences from the Mean. Because variance is squared, it heavily penalizes extreme outliers in your dataset.</li>
-                <li><strong className="text-[#D93025]">Dataset Range:</strong> The engine automatically isolates the absolute minimum and maximum floating-point values within your dataset, instantly outputting the total statistical spread.</li>
-              </ul>
-            </div>
+            {/* Section 2: Sample vs. Population Theory */}
+            <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+              <div className="flex items-center gap-4 mb-10">
+                <div className="bg-[#E6F4EA] p-4 rounded-2xl">
+                    <Landmark className="w-8 h-8 text-[#188038]" />
+                </div>
+                <h2 className="text-4xl font-black text-[#202124] tracking-tighter">Bessel\'s Correction: The {'$n-1$'} Imperative</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm">
+                <div className="space-y-6">
+                   <div className="group">
+                        <h3 className="text-2xl font-black text-[#202124] border-l-4 border-[#1A73E8] pl-5 mb-4">Sample Standard Deviation ({'$s$'})</h3>
+                        <p className="text-[#5F6368] leading-relaxed">
+                            When you are studying a small group (a sample) to make an inference about a larger population, you must divide the sum of squares by {'$n-1$'}. This is known as <strong>Bessel\'s Correction</strong>. It corrects the bias in the estimation of the population variance, as the sample mean is usually closer to the sample data points than the true population mean is.
+                        </p>
+                   </div>
+                   <div className="group">
+                        <h3 className="text-2xl font-black text-[#202124] border-l-4 border-[#188038] pl-5 mb-4">Population Standard Deviation ({'$\\sigma$'})</h3>
+                        <p className="text-[#5F6368] leading-relaxed">
+                            If you have the data for every single member of a group (e.g., the test scores of all 40 students in a specific class), you use {'$N$'} in the denominator. This is the "True" standard deviation and is used when the data set is exhaustive and not a representative subset.
+                        </p>
+                   </div>
+                </div>
+                <div className="bg-white p-10 rounded-3xl shadow-inner border border-[#DADCE0] space-y-6">
+                    <h4 className="text-lg font-black text-[#202124]">Why {'$n-1$'} matters in Nepal?</h4>
+                    <p className="text-[#5F6368] leading-relaxed italic">
+                        "In academic research conducted at TU or KU, using the population formula on sample data is considered a primary technical error. Our calculator defaults to the sample formula to protect students and researchers from bias-related grade deductions or research rejection."
+                    </p>
+                    <div className="flex items-center gap-3 p-4 bg-[#FFF8E1] border border-[#FFE082] rounded-2xl">
+                        <Target className="w-5 h-5 text-[#F29900]" />
+                        <span className="text-[10px] font-black text-[#202124] uppercase tracking-tight">Precision Benchmarking Target</span>
+                    </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Section 3: Educational Roadmap */}
+            <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="bg-[#FEF7E0] p-4 rounded-2xl">
+                    <GraduationCap className="w-8 h-8 text-[#F29900]" />
+                </div>
+                <h2 className="text-3xl font-black text-[#202124] tracking-tighter">Academic Alignment: NEB Grade 11 & 12</h2>
+              </div>
+              <div className="prose prose-md text-[#5F6368] max-w-none leading-relaxed space-y-6">
+                <p>
+                  For students pursuing Science or Management under the <a href="https://neb.gov.np" className="text-[#1A73E8] font-bold hover:underline">National Examination Board (NEB)</a>, Standard Deviation is a core chapter in <strong>Mathematics</strong> and <strong>Business Math</strong>. It is the bridge to understanding the <strong>Normal Distribution</strong> and <strong>Z-Scores</strong>.
+                </p>
+                <p>
+                  During the <strong>SEE (Grade 10)</strong> and <strong>NEB (Grade 12)</strong> exams, students are often asked to find the standard deviation for both discrete and continuous frequency distributions. While our calculator is optimized for raw observation lists (ungrouped data), it provides the essential verification step for students to check their {'$f(x-\\bar{x})^2$'} summations.
+                </p>
+                <p>
+                  Mastering this calculation is also vital for the <strong>Lok Sewa Aayog</strong> (Public Service Commission) technical examinations, where statistical aptitude is a major component of the Administrative and Technical officer screening process.
+                </p>
+              </div>
+            </section>
+
+            {/* Section 4: Real-World Applications */}
+            <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+              <div className="absolute -bottom-10 -left-10 opacity-10">
+                  <TrendingUp className="w-64 h-64" />
+              </div>
+              <h2 className="text-4xl font-black mb-10 border-b border-white/10 pb-6 tracking-tighter">Industrial Topology & Practical Utility</h2>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                  <div className="space-y-6 text-slate-300 leading-relaxed text-sm">
+                      <div className="flex gap-4">
+                          <div className="w-1 bg-[#1A73E8] shrink-0" />
+                          <p>
+                              <strong>Finance (NEPSE):</strong> Investors use the standard deviation of a stock\'s daily returns to measure its "Risk Profile." A high SD indicates a "volatile" stock that could see massive swings, while a low SD indicates a stable, "Blue Chip" asset.
+                          </p>
+                      </div>
+                      <div className="flex gap-4">
+                          <div className="w-1 bg-[#188038] shrink-0" />
+                          <p>
+                              <strong>Quality Control:</strong> Engineers at manufacturing plants in <strong>Biratnagar</strong> or <strong>Bhairahawa</strong> use SD to ensure product consistency. If the standard deviation of a bottle\'s volume exceeds the tolerance, the assembly line is halted for recalibration.
+                          </p>
+                      </div>
+                  </div>
+                  <div className="space-y-6 text-slate-300 leading-relaxed text-sm">
+                      <div className="flex gap-4">
+                          <div className="w-1 bg-[#D93025] shrink-0" />
+                          <p>
+                              <strong>Healthcare:</strong> Clinical researchers in Kathmandu use standard deviation to measure the efficacy of new treatments. If the "Time to Recovery" has a high SD, the treatment is considered inconsistent, regardless of a good mean recovery time.
+                          </p>
+                      </div>
+                      <div className="flex gap-4">
+                          <div className="w-1 bg-[#F29900] shrink-0" />
+                          <p>
+                              <strong>Agriculture:</strong> Soil researchers use variance analysis to determine the consistency of crop yields across different farming co-operatives in the Terai region, helping identify successful irrigation patterns.
+                          </p>
+                      </div>
+                  </div>
+              </div>
+            </section>
           </div>
         }
         howToUse={{
           steps: [
-            "Input your numerical dataset into the primary text matrix. You can use spaces, commas, or new lines to separate the numbers.",
-            "The engine handles decimal points and negative numbers automatically.",
-            "Review the primary output: The Sample Standard Deviation (s).",
-            "Examine the detailed breakdown matrix to analyze the Dataset Mean (Average), total Variance, and minimum/maximum boundaries.",
-            "Use the 'Quick Datasets' panel to inject pre-configured arrays to see how data clustering affects the final standard deviation."
+            "Data Population: Enter your numerical observations into the primary matrix using commas, spaces, or line breaks to delineate individual entries.",
+            "Topological Parsing: Our engine automatically identifies and sorts the inputs, providing a real-time count of your sample size ({'$n$'}).",
+            "Variance Analysis: Review the primary result panel for the Sample Standard Deviation. The engine uses {'$n-1$'} to provide an unbiased estimate.",
+            "Metric Breakdown: Examine the secondary cards for the Sample Variance ({'$s^2$'}) and the Dataset Mean ({'$\\bar{x}$'}) to understand the center of gravity.",
+            "Boundary Verification: Consult the detailed list for the statistical Minimum, Maximum, and the absolute Range of your dataset."
           ]
         }}
         formula={{
-          title: "Standard Deviation Formula",
-          description: "Calculation for Sample Standard Deviation",
-          raw: "Mean (x̄) = ( Σ xi ) / n\n\nSample Variance (s²) = Σ (xi - x̄)² / (n - 1)\n\nSample Standard Deviation (s) = √ s²\n\nWhere:\nΣ = Summation of all points\nxi = Each individual data point\nx̄ = The Mean average\nn = Total number of data points"
+          title: "The Mathematical Axioms of Dispersion",
+          description: "The following LaTeX identities represent the algorithmic foundations of our institutional-grade statistical engine.",
+          raw: "$$\\begin{aligned} \\text{Sample Mean (}\\bar{x}\\text{): } & \\frac{\\sum x_i}{n} \\\\ \\text{Sum of Squares (SS): } & \\sum (x_i - \\bar{x})^2 \\\\ \\text{Sample Variance (}s^2\\text{): } & \\frac{SS}{n - 1} \\\\ \\text{Standard Deviation (}s\\text{): } & \\sqrt{\\frac{\\sum (x_i - \\bar{x})^2}{n - 1}} \\end{aligned}$$"
         }}
         faqs={[
           {
-            question: "Why does the formula divide by (n - 1) instead of just 'n'?",
-            answer: "Dividing by (n - 1) is known as Bessel's correction. In statistics, when you only have a sample of data (not the entire global population), dividing by 'n' consistently underestimates the true variance. Subtracting 1 artificially inflates the result to mathematically compensate for this bias."
+            question: "Why does the formula use (n - 1) instead of just 'n'?",
+            answer: "This is known as Bessel's Correction. When you calculate variance from a sample, the sample mean is closer to the sample data than the true population mean is. Using 'n' would consistently underestimate the true spread. Dividing by (n - 1) mathematically corrects this bias to provide an 'unbiased estimator'."
           },
           {
-            question: "What is the physical difference between Standard Deviation and Variance?",
-            answer: "Variance is standard deviation squared. The problem with variance is that the units are also squared (e.g., if you are measuring meters, variance is in meters-squared). Standard deviation takes the square root, returning the metric back to the original unit (meters) so it is physically comprehensible."
+            question: "What is the difference between Standard Deviation and Variance?",
+            answer: "Variance is the average of the squared differences from the mean. Standard Deviation is the square root of the variance. We use SD more often because it is expressed in the same units as the original data (e.g., if you measure height in cm, SD is in cm, while variance is in cm²)."
           },
           {
-            question: "How does an outlier impact the standard deviation?",
-            answer: "Outliers massively impact standard deviation. Because the mathematical formula requires squaring the distance from the mean, an extreme outlier will exponentially increase the final variance and resulting standard deviation of the dataset."
+            question: "How do I know if I should use Sample or Population SD?",
+            answer: "Use Sample SD ({'$n-1$'}) if your data is a subset of a larger group (e.g., 50 households in Kathmandu). Use Population SD ({'$N$'}) only if you have data for every single member of the group you are studying (e.g., all 40 students in one specific section)."
           },
           {
-            question: "What is the Empirical Rule (68-95-99.7)?",
-            answer: "In a perfectly normal distribution (a bell curve), 68% of all data points will fall within one standard deviation of the mean. 95% will fall within two standard deviations, and 99.7% will fall within three standard deviations."
+            question: "What does a high standard deviation tell me about my data?",
+            answer: "A high SD means your data is 'spread out' and potentially volatile. It indicates that the individual points are far from the average. In finance, this means high risk; in science, it might mean the experiment is not very precise."
           },
           {
-            question: "Can standard deviation ever be a negative number?",
-            answer: "No. Standard deviation is an absolute measure of physical spread or distance. Because the internal formula requires squaring the numbers (which makes all negatives positive) and then taking the principal square root, the lowest possible result is exactly 0."
+            question: "Can standard deviation be a negative number?",
+            answer: "No. Because the formula involves squaring the distances (making them positive) and then taking the principal square root, the result is always 0 or positive. A negative SD is a mathematical impossibility."
           },
           {
-            question: "What does a standard deviation of 0 indicate?",
-            answer: "A standard deviation of exactly zero means there is absolutely no statistical variance in the dataset. Every single number inputted is exactly the same (e.g., 5, 5, 5, 5, 5)."
+            question: "What does a standard deviation of 0 mean?",
+            answer: "An SD of zero means there is no variation at all. Every single number in your dataset is exactly the same (e.g., [10, 10, 10, 10])."
+          },
+          {
+            question: "How do outliers affect the standard deviation?",
+            answer: "Standard deviation is extremely sensitive to outliers because the distance from the mean is squared. A single extreme value will significantly inflate the SD, making the data look more spread out than it truly is for the majority of points."
+          },
+          {
+            question: "How is this used in NEB Grade 11/12 Exams?",
+            answer: "NEB exams often require students to calculate the 'Coefficient of Variation' ({'$CV = (SD/Mean) \\times 100$'}) to compare the stability of two different datasets. Our calculator provides the SD and Mean needed to solve these problems instantly."
+          },
+          {
+            question: "Is there a limit to how many numbers I can enter?",
+            answer: "Our engine can handle thousands of data points with ease. However, for datasets larger than 10,000 nodes, we recommend using dedicated statistical software like R or SPSS to avoid browser performance lag."
+          },
+          {
+            question: "What is the relationship between SD and the Normal Distribution?",
+            answer: "In a 'Normal Distribution' (Bell Curve), approximately 68% of data falls within 1 SD of the mean, 95% falls within 2 SDs, and 99.7% falls within 3 SDs. This is known as the 68-95-99.7 rule."
+          },
+          {
+            question: "Does the order of numbers matter?",
+            answer: "No. The summation of squares ({'$\\sum (x_i - \\bar{x})^2$'}) is commutative. Whether you enter [1, 5, 10] or [10, 1, 5], the result remains identical."
+          },
+          {
+            question: "How do I use this for 'Grouped Data' (with frequencies)?",
+            answer: "This calculator is for 'Ungrouped Data' (raw lists). For grouped data, you must multiply the squared differences by the frequency ({'$f$'}) of each class. We recommend our specialized 'Frequency Distribution Calculator' for those academic needs."
           }
+        ]}
+        sidebar={{
+          title: "Institutional Resources",
+          links: [
+            { label: "Z-Score Calculator", href: "/calculator/z-score" },
+            { label: "NSO Nepal (Census Data)", href: "https://cbs.gov.np" },
+            { label: "NEB Mathematics Guide", href: "https://neb.gov.np" },
+            { label: "GPA Calculator", href: "/calculator/gpa" },
+            { label: "Statistics Plus", href: "/calculator/statistics-plus" },
+          ],
+          banner: {
+            title: "Data Intelligence",
+            description: "Empowering Nepal's researchers and students with high-precision statistical tools.",
+            image: "/images/math-banner.jpg"
+          }
+        }}
+        relatedTools={[
+          { label: "Z-Score Tool", href: "/calculator/z-score" },
+          { label: "GPA Calculator", href: "/calculator/gpa" },
+          { label: "Statistics Plus", href: "/calculator/statistics-plus" },
+          { label: "Percentage Calc", href: "/calculator/percentage" }
         ]}
       />
     </CalculatorErrorBoundary>
   );
 }
-

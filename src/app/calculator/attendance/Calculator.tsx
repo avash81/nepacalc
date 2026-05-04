@@ -120,8 +120,33 @@ export default function AttendanceCalculator() {
           </div>
         </div>
       }
-      howToUse={{ steps: ["Enter the number of classes you have attended.", "Enter the total number of classes held so far.", "Select your target attendance percentage (75%, 80%, or 85%).", "See your current percentage and whether you are eligible.", "If not eligible, the tool tells you exactly how many consecutive classes you must attend."] }}
-      formula={{ title: "Attendance Calculation", description: "Simple ratio for current attendance. Inverse formula to find classes needed.", raw: "Current % = (Attended / Total) × 100\nClasses to Attend = ((target% × total), attended) / (1, target%)" }}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+             <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
+                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Institutional Attendance Audit</h3>
+             </div>
+             <p className="text-sm text-[#5F6368] leading-relaxed">
+                The standard engine for academic eligibility verification in Nepal. Calibrated for <strong>TU</strong>, <strong>PU</strong>, <strong>KU</strong>, and <strong>NEB</strong> standards. 
+                This tool provides mathematical certainty regarding trajectory management, helping students bridge attendance deficits and maintain statutory compliance for final board examinations.
+             </p>
+          </div>
+        </div>
+      }
+      howToUse={{
+        steps: [
+          "Input the total number of classes you have actively attended so far.",
+          "Input the total number of classes that have been held in the semester.",
+          "Select your university's statutory attendance target (75%, 80%, or 85%).",
+          "Review the primary eligibility output: Safe Zone (Surplus) or Alert (Deficit).",
+          "Consult the student ledger matrix for the precise number of classes to attend to bridge any deficit."
+        ]
+      }}
+      formula={{
+        title: "The Formula Toolkit",
+        description: "Algorithmic derivation for tracking attendance deficits and surpluses.",
+        raw: "$$\\text{Current} \\% = \\frac{\\text{Attended}}{\\text{Total}} \\times 100 \\quad \\| \\quad \\text{To Attend} = \\frac{(\\text{Target} \\% \\times \\text{Total}) - \\text{Attended}}{1 - \\text{Target} \\%}$$"
+      }}
       faqs={[
         { question: "What is the minimum attendance for TU exams?", answer: "Tribhuvan University (TU) requires a minimum of 75% attendance to sit for final exams. Some departments (Institute of Engineering, MBBS programs) enforce 80–85% attendance. Always confirm the specific requirement with your department head at the start of each semester." },
         { question: "Can I get attendance waived at TU or PU?", answer: "TU and PU allow applications for attendance relaxation in specific, documented cases: serious illness (requiring hospitalization records), official national/university representation, or natural disasters. Applications must be submitted to the department head with supporting documentation before the exam registration deadline." },

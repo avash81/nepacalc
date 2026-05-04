@@ -1,203 +1,337 @@
 'use client';
 import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { TrendingUp, ShieldCheck, AlertTriangle, Info, Wallet } from 'lucide-react';
+import { TrendingUp, ShieldCheck, AlertTriangle, Info, Wallet, Zap, Scale, Activity, Globe, History, Receipt, Target, PieChart, Landmark } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
+import { 
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  PieChart as RePieChart, Pie, Cell
+} from 'recharts';
 
-function fmt(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
+function formatNPR(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
 
 export default function NepseBonusTaxCalculator() {
-  const [state, setState] = useSyncState('nepse_tax_v3', {
+  const [state, setState] = useSyncState('nepse_tax_v5', {
     bonusShares: 50, cashDividend: 500, faceValue: 100,
     investorType: 'individual' as 'individual' | 'institutional',
   });
   const { bonusShares, cashDividend, faceValue, investorType } = state;
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
-  const results = useMemo(() => {
+  const result = useMemo(() => {
     const taxRate = 0.05;
     const bonusTaxAmount = (bonusShares * faceValue) * taxRate;
     const cashTaxAmount = cashDividend * taxRate;
     const totalTax = bonusTaxAmount + cashTaxAmount;
     const totalDividendValue = (bonusShares * faceValue) + cashDividend;
-    return { bonusTaxAmount, cashTaxAmount, totalTax, totalDividendValue, netPayable: totalDividendValue - totalTax };
-  }, [bonusShares, cashDividend, faceValue]);
+    const netPayable = totalDividendValue - totalTax;
 
-  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
-  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
+    return { 
+      bonusTaxAmount, 
+      cashTaxAmount, 
+      totalTax, 
+      totalDividendValue, 
+      netPayable,
+      chartData: [
+        { name: 'Net Value', val: Math.max(0, netPayable), fill: '#10b981' },
+        { name: 'Bonus Tax', val: bonusTaxAmount, fill: '#ef4444' },
+        { name: 'Cash Tax', val: cashTaxAmount, fill: '#3b82f6' }
+      ]
+    };
+  }, [bonusShares, cashDividend, faceValue]);
 
   return (
     <ModernCalcLayout
       slug="nepse-bonus-tax"
-      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Bonus Share Tax' }]}
-      title="NEPSE Dividend Tax Calculator"
-      description="Calculate dividend withholding tax on bonus shares and cash dividends from listed companies. Based on Nepal Income Tax Act FY 2082/83 ,  5% WHT rate."
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Tools', href: '/nepal/' }, { label: 'Share Tax' }]}
+      title="NEPSE Dividend"
+      description="The definitive withholding engine for Nepal's stock market. Calculate dividend tax on bonus shares and cash distributions with IRD statutory compliance."
       icon={TrendingUp}
       inputs={
-        <div className="space-y-6">
-          <div className="flex gap-2 p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg items-center">
-            <Info className="w-4 h-4 text-[#188038] shrink-0" />
-            <p className="text-[10px] text-[#202124] font-bold uppercase tracking-wide">Official Tax Rate: 5% (Listed Companies)</p>
+        <div className="space-y-8">
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-10 opacity-10"><Zap className="w-40 h-40" /></div>
+             <div className="relative z-10 grid grid-cols-1 gap-6">
+                <div className="space-y-4">
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Investor Protocol</label>
+                   <div className="flex p-1 bg-white/5 rounded-xl border border-white/10">
+                    {['individual', 'institutional'].map(opt => (
+                      <button key={opt} onClick={() => update({ investorType: opt as any })} className={`flex-1 py-3 text-[10px] font-black uppercase rounded-lg transition-all ${investorType === opt ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400'}`}>{opt}</button>
+                    ))}
+                   </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                   <div className="space-y-2">
+                      <label className="text-[9px] font-black uppercase text-blue-400">Bonus Shares</label>
+                      <input type="number" value={bonusShares} onChange={e => update({ bonusShares: Number(e.target.value) })} className="w-full h-12 px-5 bg-white/5 border border-white/10 rounded-xl text-white font-black" />
+                   </div>
+                   <div className="space-y-2">
+                      <label className="text-[9px] font-black uppercase text-blue-400">Face Value (Rs)</label>
+                      <input type="number" value={faceValue} onChange={e => update({ faceValue: Number(e.target.value) })} className="w-full h-12 px-5 bg-white/5 border border-white/10 rounded-xl text-white font-black" />
+                   </div>
+                </div>
+                <div className="space-y-4">
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Gross Cash Dividend (NPR)</label>
+                   <input 
+                      type="number" 
+                      value={cashDividend} 
+                      onChange={(e) => update({ cashDividend: Number(e.target.value) })}
+                      className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" 
+                   />
+                </div>
+             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className={labelCls}>Investor Type</label>
-            <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
-              {(['individual', 'institutional'] as const).map(t => (
-                <button key={t} onClick={() => update({ investorType: t })}
-                  className={`flex-1 py-2 text-xs font-bold uppercase rounded-md transition-all ${investorType === t ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}>
-                  {t}
-                </button>
-              ))}
-            </div>
+          <div className="p-8 border border-slate-200 rounded-[2rem] bg-white space-y-6 shadow-sm">
+             <div className="flex items-center gap-3">
+                <div className="p-2 bg-blue-50 rounded-lg"><Activity className="w-4 h-4 text-blue-600" /></div>
+                <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Statutory Tax Shield</h3>
+             </div>
+             <p className="text-[11px] font-bold text-slate-700 leading-relaxed uppercase">
+                Listed Companies: <span className="text-blue-600 underline decoration-2">5.0% Fixed WHT</span>.
+             </p>
+             <div className="flex gap-3 p-4 bg-emerald-50 rounded-2xl border border-emerald-100">
+                <Info className="w-5 h-5 text-emerald-600 shrink-0" />
+                <p className="text-[10px] text-emerald-800 font-bold leading-tight">
+                   Mutual Funds are exempt from WHT on dividends received from portfolio companies.
+                </p>
+             </div>
           </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label className={labelCls}>Bonus Shares Received</label>
-              <input type="number" value={bonusShares} min={0}
-                onChange={e => update({ bonusShares: Number(e.target.value) })} className={inputCls} />
-            </div>
-            <div className="space-y-2">
-              <label className={labelCls}>Face Value (Rs.)</label>
-              <input type="number" value={faceValue} min={1}
-                onChange={e => update({ faceValue: Number(e.target.value) })} className={inputCls} />
-              <p className="text-[9px] text-[#70757A]">Standard: Rs. 100 per share</p>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <label className={labelCls}>Gross Cash Dividend (Rs.)</label>
-            <input type="number" value={cashDividend} min={0}
-              onChange={e => update({ cashDividend: Number(e.target.value) })} className={inputCls} />
-          </div>
-
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-            Calculate Tax Liability
-          </button>
         </div>
       }
       results={
         <div className="space-y-6">
-          <div className="p-6 bg-[#FCE8E6] border border-[#FAD2CF] rounded-lg text-center space-y-1">
-            <div className="text-[10px] font-bold text-[#D93025] uppercase tracking-wider">Total Tax Liability</div>
-            <div className="text-4xl font-black text-[#D93025]">{fmt(results.totalTax)}</div>
-            <div className="text-[9px] text-[#70757A] font-bold uppercase">5% Withholding Tax</div>
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><TrendingUp className="w-24 h-24 text-rose-600" /></div>
+             <div className="text-[10px] font-bold text-rose-600 uppercase tracking-[0.2em]">Total Tax Withheld (5%)</div>
+             <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">{formatNPR(result.totalTax)}</div>
+             <div className="px-5 py-2 bg-slate-100 rounded-full inline-block text-[10px] font-black uppercase tracking-tight text-slate-500">
+                Final Withholding Tax (WHT)
+             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center">
-              <div className="text-[9px] font-bold text-[#70757A] uppercase">Bonus Share Tax</div>
-              <div className="text-sm font-black text-[#D93025]">{fmt(results.bonusTaxAmount)}</div>
-            </div>
-            <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center">
-              <div className="text-[9px] font-bold text-[#70757A] uppercase">Cash Dividend Tax</div>
-              <div className="text-sm font-black text-[#D93025]">{fmt(results.cashTaxAmount)}</div>
-            </div>
+             <div className="p-6 bg-emerald-50 border border-emerald-100 rounded-3xl space-y-1">
+                <div className="text-[9px] font-black text-emerald-600 uppercase">Net Value Gain</div>
+                <div className="text-xl font-black text-emerald-600">{formatNPR(result.netPayable)}</div>
+             </div>
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1">
+                <div className="text-[9px] font-black text-slate-400 uppercase">Gross Dividend</div>
+                <div className="text-xl font-black text-slate-900">{formatNPR(result.totalDividendValue)}</div>
+             </div>
           </div>
 
-          <div className="bg-[#1A1A2E] text-white rounded-lg p-5 space-y-4">
-            <div className="flex items-center gap-2">
-              <Wallet className="w-4 h-4 text-[#188038]" />
-              <span className="text-[10px] font-black uppercase tracking-wider">Withholding Summary</span>
-            </div>
-            <div className="space-y-3">
-              <div className="flex justify-between text-xs">
-                <span className="text-white/60">Gross Dividend Value</span>
-                <span className="font-black text-[#4CAF50]">{fmt(results.totalDividendValue)}</span>
-              </div>
-              <div className="h-px bg-white/10" />
-              <div className="flex justify-between text-xs">
-                <span className="text-white/60">Net Payable (In-Hand)</span>
-                <span className="font-black text-white">{fmt(results.netPayable)}</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex gap-2 p-3 bg-[#FFF7E0] border border-[#FEEFC3] rounded-lg items-start">
-            <AlertTriangle className="w-4 h-4 text-[#F29900] shrink-0 mt-0.5" />
-            <p className="text-[10px] text-[#202124] leading-tight">Verify final WHT deducted with your DP (Depository Participant) or CDSC portal after dividend processing.</p>
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Wallet className="w-24 h-24 text-blue-500" /></div>
+             <div className="relative z-10 flex items-center justify-between">
+                <div className="space-y-1">
+                   <h4 className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Yield Integrity</h4>
+                   <p className="text-2xl font-black">{((result.netPayable / result.totalDividendValue) * 100).toFixed(1)}%</p>
+                </div>
+                <div className="h-2 w-32 bg-white/10 rounded-full overflow-hidden">
+                   <div className="h-full bg-emerald-400 rounded-full" style={{ width: `${(result.netPayable / result.totalDividendValue) * 100}%` }} />
+                </div>
+             </div>
           </div>
         </div>
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering NEPSE Corporate Actions & Taxation</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                When publicly traded companies on the Nepal Stock Exchange (NEPSE) declare corporate actions, the Inland Revenue Department (IRD) imposes a mandatory 5% Withholding Tax (WHT) on all payouts to individuals. Our <strong className="text-[#202124]">nepse bonus tax calculator</strong> is engineered to decouple the often-confusing <strong className="text-[#202124]">bonus share tax calculation nepal</strong> from standard capital gains models. It allows retail and institutional investors to exactly project their net-in-hand dividend yield before the book closure date.
-              </p>
-              <p>
-                Unlike standard <strong className="text-[#202124]">capital gains tax nepal</strong> (which fluctuates between 5% and 7.5% based on the holding period of sold shares), the <strong className="text-[#202124]">withholding tax on dividend nepal 2081</strong> is a flat 5% deduction at the source. This engine accurately parses both stock dividend (bonus shares) and cash dividend inputs to generate a unified liability report.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-6 opacity-5"><PieChart className="w-20 h-20 text-blue-600" /></div>
+              <div className="flex items-center gap-2 mb-8">
+                <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Dividend Burden Audit</h3>
+              </div>
+              <div className="h-[300px] w-full relative">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RePieChart>
+                    <Pie
+                      data={result.chartData.filter(d => d.val > 0)}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={70}
+                      outerRadius={95}
+                      paddingAngle={8}
+                      dataKey="val"
+                      stroke="none"
+                    >
+                      {result.chartData.filter(d => d.val > 0).map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.fill} />
+                      ))}
+                    </Pie>
+                    <Tooltip 
+                       formatter={(v: number) => formatNPR(v)}
+                       contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 8px 30px rgba(0,0,0,0.12)', fontSize: '11px', fontWeight: 'bold' }}
+                    />
+                  </RePieChart>
+                </ResponsiveContainer>
+                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                   <span className="text-[9px] font-black text-slate-400 uppercase">Gross Gain</span>
+                   <span className="text-lg font-black text-slate-900">{formatNPR(result.totalDividendValue)}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+               <div className="absolute -bottom-12 -right-12 opacity-10"><ShieldCheck className="w-64 h-64 text-emerald-500" /></div>
+               <h3 className="text-2xl font-black mb-8 tracking-tight text-emerald-400 uppercase tracking-widest">Bonus vs Cash Logic</h3>
+               <div className="space-y-6">
+                  <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                     <div className="flex justify-between items-center mb-2">
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Bonus Share Tax</span>
+                        <span className="text-xl font-black text-emerald-400">{formatNPR(result.bonusTaxAmount)}</span>
+                     </div>
+                     <p className="text-[9px] text-slate-500 leading-relaxed uppercase tracking-widest font-black">
+                        Calculated on Face Value (Rs. 100), not Market Price.
+                     </p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                     <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+                        <div className="text-[9px] text-slate-400 uppercase font-black mb-1">Cash Tax</div>
+                        <div className="text-sm font-black">{formatNPR(result.cashTaxAmount)}</div>
+                     </div>
+                     <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+                        <div className="text-[9px] text-slate-400 uppercase font-black mb-1">WHT Status</div>
+                        <div className="text-sm font-black text-emerald-400 uppercase">Final</div>
+                     </div>
+                  </div>
+               </div>
             </div>
           </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The Face Value Mathematics</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Bonus Share Valuation:</strong> The IRD strictly dictates that bonus shares are taxed based on their <span className="italic">Face Value</span> (typically NPR 100 per share in Nepal), not their current market traded price (LTP). Our algorithm uses this absolute constant to calculate your exact liability.</li>
-              <li><strong className="text-[#188038]">Cash Dividend Dynamics:</strong> For <strong className="text-[#202124]">cash dividend tax nepal</strong> calculations, the 5% is simply deducted from the gross declared cash amount. In many cases, companies declare just enough cash dividend to cover the tax liability of the bonus shares, ensuring investors do not have to pay tax out-of-pocket to their Depository Participant (DP).</li>
-              <li><strong className="text-[#D93025]">Final Withholding Status:</strong> For individual retail investors, this 5% dividend tax is considered the final tax liability on that specific income stream, requiring no further declaration in your annual income tax returns.</li>
-            </ul>
-          </div>
+          <section className="bg-white border border-slate-200 rounded-[3rem] p-12 shadow-sm relative overflow-hidden">
+            <div className="absolute -top-12 -right-12 opacity-5">
+                <Landmark className="w-64 h-64 text-blue-600" />
+            </div>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="bg-blue-50 p-4 rounded-2xl">
+                  <Scale className="w-8 h-8 text-blue-600" />
+              </div>
+              <h2 className="text-4xl font-black text-slate-900 tracking-tighter uppercase">The NEPSE Dividend Encyclopedia: Navigating Tax & Capital</h2>
+            </div>
+            <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-8 text-lg">
+              <p>
+                In the <strong>Nepal Stock Exchange (NEPSE)</strong>, dividends are the primary mechanism for distributing corporate surplus. Governed by the <strong>Income Tax Act, 2058</strong>, these distributions are subject to a flat <strong>5% Withholding Tax (WHT)</strong>. Understanding the interplay between bonus shares, cash dividends, and the resulting tax liability is essential for long-term portfolio management.
+              </p>
+              
+              <div className="bg-blue-50 border border-blue-100 p-8 rounded-[2.5rem] flex gap-6 items-start my-10">
+                 <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm shrink-0">
+                    <Globe className="w-6 h-6 text-blue-600" />
+                 </div>
+                 <div>
+                    <h4 className="text-sm font-black text-slate-900 mb-2 uppercase tracking-widest">Face Value Taxation</h4>
+                    <p className="text-[11px] font-medium text-slate-500 leading-relaxed">
+                      Crucially, bonus shares are taxed based on their <strong>Face Value</strong> (usually NPR 100), not their current market price (LTP). This statutory rule significantly lowers the tax burden for premium stocks trading at high multiples.
+                    </p>
+                 </div>
+              </div>
+
+              <h3 className="text-2xl font-black text-slate-900 mt-12 mb-6 uppercase">1. Bonus Share Tax: The Out-of-Pocket Risk</h3>
+              <p>
+                When a company issues bonus shares without an accompanying cash dividend, the investor must manually deposit the 5% WHT to the company's designated bank account before the shares are credited to their DEMAT. Our <strong>Institutional Engine</strong> calculates this exact amount to prevent delays in share receipt.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-10">
+                 <div className="p-8 border border-slate-200 rounded-[2rem] space-y-4 bg-slate-50">
+                    <h4 className="text-xs font-black text-blue-600 uppercase tracking-widest">Cash Covered Bonus</h4>
+                    <p className="text-[11px] font-medium leading-relaxed">
+                      Investor-friendly companies declare a cash dividend equal to 5% of the bonus share value to cover the tax liability, making the distribution "Tax Neutral" for the holder.
+                    </p>
+                 </div>
+                 <div className="p-8 border border-slate-200 rounded-[2rem] space-y-4 bg-emerald-50">
+                    <h4 className="text-xs font-black text-emerald-600 uppercase tracking-widest">Final Withholding</h4>
+                    <p className="text-[11px] font-medium leading-relaxed">
+                      For individuals, the 5% WHT is a <strong>Final Tax</strong>. It does not need to be added to your annual taxable income or declared in your IRD returns.
+                    </p>
+                 </div>
+              </div>
+
+              <h3 className="text-2xl font-black text-slate-900 mt-12 mb-6 uppercase">2. Capital Gains vs. Dividend Tax</h3>
+              <p>
+                While dividends are taxed at 5%, the <strong>Capital Gains Tax (CGT)</strong> on the sale of shares is progressive based on holding period. For individuals, a gain on shares held for over 365 days is taxed at 5%, while short-term gains (under 365 days) are taxed at 7.5%.
+              </p>
+            </div>
+          </section>
+
+          <section className="bg-slate-900 text-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+             <div className="absolute -bottom-12 -right-12 opacity-10"><History className="w-64 h-64 text-emerald-500" /></div>
+             <h2 className="text-3xl font-black mb-10 tracking-tight text-emerald-400 uppercase tracking-widest">Portfolio Integrity Guardrails</h2>
+             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="space-y-4">
+                   <h4 className="text-lg font-black flex items-center gap-2 text-emerald-400"><Target className="w-5 h-5" /> Book Closure</h4>
+                   <p className="text-xs text-slate-400 leading-relaxed">
+                      Only shareholders listed in the company registry as of the Book Closure date are eligible for dividends. Ensure T+2 settlement time.
+                   </p>
+                </div>
+                <div className="space-y-4">
+                   <h4 className="text-lg font-black flex items-center gap-2 text-emerald-400"><Receipt className="w-5 h-5" /> WACC Audit</h4>
+                   <p className="text-xs text-slate-400 leading-relaxed">
+                      Bonus shares lower your <strong>Weighted Average Cost of Capital (WACC)</strong>. Update your cost basis in MeroShare immediately after shares are credited.
+                   </p>
+                </div>
+                <div className="space-y-4">
+                   <h4 className="text-lg font-black flex items-center gap-2 text-emerald-400"><ShieldCheck className="w-5 h-5" /> Institutional Rates</h4>
+                   <p className="text-xs text-slate-400 leading-relaxed">
+                      Institutional investors (Companies) may face 15% TDS on dividends, which is treated as an advance tax against corporate liability.
+                   </p>
+                </div>
+             </div>
+          </section>
         </div>
       }
       howToUse={{
         steps: [
-          "Select your Investor Type. Individuals pay 5% WHT, whereas Institutional investors may have different rates depending on mutual fund exemptions.",
-          "Enter the exact number of Bonus Shares you were allotted by the company.",
-          "Verify the Face Value. In NEPSE, this is almost exclusively Rs. 100, though mutual funds usually operate at Rs. 10.",
-          "Enter any Gross Cash Dividend received alongside the bonus shares.",
-          "Review your 'Total Tax Liability' to see how much money the company will withhold before crediting your DEMAT/Bank account."
+          "Investor Type: Select 'Individual' for 5% WHT logic.",
+          "Bonus Shares: Enter the number of new shares you are receiving.",
+          "Face Value: Standard is Rs. 100 for shares and Rs. 10 for Mutual Funds.",
+          "Cash Dividend: Enter any gross cash amount declared alongside.",
+          "Audit: Review the 'Total Tax Liability' to see the exact withholding amount."
         ]
       }}
       formula={{
-        title: "Nepal Dividend WHT Formula",
-        description: "The official IRD formulation for calculating tax on corporate actions.",
-        raw: "1. Bonus Share Tax = (Number of Bonus Shares × Face Value) × 5%\n2. Cash Dividend Tax = Gross Cash Dividend Amount × 5%\n\nTotal Tax Liability = Bonus Share Tax + Cash Dividend Tax"
+        title: "The Dividend Withholding Axiom",
+        description: "Official IRD formulation for NEPSE corporate actions.",
+        raw: "$$Total Tax = (Shares \\times FaceValue \\times 0.05) + (Cash \\times 0.05)$$",
+        latex: "Tax = (Bonus \\times 100 \\times 0.05) + (Cash \\times 0.05)"
       }}
       faqs={[
-        {
-          question: "Who deducts the dividend tax in Nepal?",
-          answer: "The company distributing the dividend (often via their Share Registrar or Capital company) automatically deducts the 5% Withholding Tax (WHT) before crediting the shares to your DEMAT or cash to your bank account."
-        },
-        {
-          question: "Why do companies sometimes only give cash dividends for tax purposes?",
-          answer: "When a company issues bonus shares, the investor must pay 5% tax on the face value of those shares. To prevent investors from having to pay out of their own pocket, companies often issue a tiny cash dividend exactly equal to that 5% tax burden."
-        },
-        {
-          question: "Is the 5% dividend tax final or advance?",
-          answer: "For individual retail investors in Nepal, the 5% WHT on dividends is generally treated as a Final Withholding Tax. This means you do not need to calculate or pay any further income tax on this specific dividend income in your annual returns."
-        },
-        {
-          question: "Are bonus shares taxed on their market price (LTP)?",
-          answer: "No. The Inland Revenue Department (IRD) mandates that bonus shares are taxed strictly on their Face Value (usually Rs. 100), regardless of whether the stock is trading at Rs. 200 or Rs. 2000 in the secondary market."
-        },
-        {
-          question: "Do mutual funds pay dividend tax?",
-          answer: "In Nepal, registered mutual funds are entirely exempt from paying tax on dividends received from companies. However, when the mutual fund distributes dividends to its own unit holders, a 5% tax is deducted."
-        },
-        {
-          question: "What happens if a company gives bonus shares but NO cash dividend?",
-          answer: "If no cash dividend is provided to cover the tax, the investor must manually deposit the 5% tax amount into the company's designated bank account before the Capital will release the bonus shares into the investor's DEMAT account."
-        }
+        { question: "What is the tax rate on NEPSE dividends?", answer: "The standard rate for individual investors is 5% for both bonus shares and cash dividends." },
+        { question: "Are bonus shares taxed on their market price?", answer: "No, bonus shares are taxed based on their Face Value (typically Rs. 100), not their secondary market price (LTP)." },
+        { question: "What is the dividend tax for Mutual Funds?", answer: "Mutual funds are exempt from paying tax on dividends they receive. However, unit holders pay 5% when the fund distributes its own dividends." },
+        { question: "Is dividend tax a final withholding tax?", answer: "Yes, for individual retail investors in Nepal, the 5% WHT is a final tax and does not need to be included in your annual income tax return." },
+        { question: "What happens if a company gives no cash dividend to cover bonus tax?", answer: "The investor must manually deposit the 5% tax amount to the company's bank account before bonus shares are released to their DEMAT." },
+        { question: "What is the Face Value for Mutual Fund units?", answer: "Most mutual fund units in Nepal have a face value of Rs. 10, compared to Rs. 100 for equity shares." },
+        { question: "Does the dividend tax change if I am a long-term investor?", answer: "No, unlike Capital Gains Tax (CGT), the dividend tax rate is a flat 5% regardless of your holding period." },
+        { question: "How is cash dividend tax deducted?", answer: "The company automatically deducts 5% from the gross cash amount and credits the remaining 95% to your bank account." },
+        { question: "Who sets the dividend tax rate in Nepal?", answer: "The Ministry of Finance sets the rates through the annual Finance Act/Budget announcement." },
+        { question: "What is 'Tax Neutral' dividend?", answer: "It refers to a distribution where the company provides enough cash dividend to exactly cover the tax liability of the bonus shares." },
+        { question: "Can I claim a refund for dividend tax?", answer: "Since it is a final withholding tax for individuals, it generally cannot be claimed as a refund or credit against other taxes." },
+        { question: "What is the tax for institutional investors?", answer: "Institutional investors (except mutual funds) typically face 15% TDS on dividends, which is adjustable against their total corporate tax." },
+        { question: "How long does it take for bonus shares to hit my DEMAT?", answer: "It usually takes 1-3 months after the AGM and book closure, provided the tax has been settled (either via cash cover or manual deposit)." },
+        { question: "Do I have to pay tax on right shares?", answer: "Right shares themselves are not taxed at the time of issuance (as you pay face value for them), but any subsequent gain on sale is subject to CGT." },
+        { question: "Is the dividend tax the same for private companies?", answer: "No, dividends from private (unlisted) companies may be subject to different rates and declaration rules." },
+        { question: "What is the CGT rate for individual share investors?", answer: "It is 5% for long-term (held > 365 days) and 7.5% for short-term (held < 365 days) capital gains." },
+        { question: "What is WACC in NEPSE?", answer: "Weighted Average Cost of Capital (WACC) is your average purchase price per share, which is used to calculate your CGT upon sale." },
+        { question: "Does this calculator handle corporate surcharges?", answer: "For individuals, dividend tax is a flat 5% without surcharges. High earners may face surcharges on total taxable income, but dividends are final." },
+        { question: "What is the 'Holding Period' for bonus shares?", answer: "For CGT purposes, the holding period of bonus shares starts from the date of the book closure announcement." },
+        { question: "Is this tool updated for FY 2081/82?", answer: "Yes, it reflects the latest 5% WHT standard as per the current Finance Act." }
       ]}
-      sidebar={{ 
-        title: "NEPSE Tools", 
+      sidebar={{
+        title: "NEPSE Hub",
+        subtitle: "Tax & Compliance",
         links: [
-          { label: "Nepal Income Tax", href: "/calculator/nepal-income-tax/" }, 
-          { label: "Nepal TDS", href: "/calculator/nepal-tds/" }, 
-          { label: "CAGR Calculator", href: "/calculator/cagr-calculator/" }, 
-          { label: "SIP Calculator", href: "/calculator/sip-calculator/" }
-        ], 
-        banner: { title: "Smart Investing", description: "Always account for dividend tax when calculating your effective NEPSE return.", image: "/images/nepse-banner.jpg" } 
+          { label: "WACC Calculator", href: "/calculator/nepse-wacc", icon: Target },
+          { label: "Trading Calculator", href: "/calculator/nepal-stocks", icon: Activity },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: Wallet },
+          { label: "CDSC Portal", href: "https://meroshare.cdsc.com.np", icon: Globe },
+        ],
       }}
       relatedTools={[
-        { label: "Nepal Income Tax", href: "/calculator/nepal-income-tax/" }, 
-        { label: "TDS Calculator", href: "/calculator/nepal-tds/" }, 
-        { label: "CAGR Calculator", href: "/calculator/cagr-calculator/" }
+        { label: "WACC Calculator", href: "/calculator/nepse-wacc" },
+        { label: "Trading Tool", href: "/calculator/nepal-stocks" },
+        { label: "Income Tax", href: "/calculator/nepal-income-tax" }
       ]}
     />
   );

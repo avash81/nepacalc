@@ -95,95 +95,71 @@ export default function BMRCalculator() {
             </div>
           </div>
 
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-            Calculate Metabolism
+          <button onClick={() => {}} className="w-full h-12 bg-[#1A73E8] hover:bg-[#1765CC] text-white font-bold uppercase tracking-widest rounded-md transition-all shadow-sm flex items-center justify-center gap-2">
+            <Calculator className="w-4 h-4" /> Calculate Metabolism
           </button>
         </div>
       }
       results={
         <div className="space-y-6">
-          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
-            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Maintenance Calories (TDEE)</div>
-            <div className="text-4xl font-black text-[#1A73E8]">{analysis.tdee} kcal</div>
-            <div className="text-[9px] text-[#70757A] font-bold uppercase">To maintain current weight</div>
+          <div className="p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2">
+             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Maintenance Calories (TDEE)</div>
+             <div className="text-5xl font-black text-[#1A73E8] tracking-tighter">{analysis.tdee} <span className="text-xl">kcal</span></div>
+             <div className="text-[10px] font-bold text-[#70757A] uppercase">Daily energy requirement</div>
           </div>
 
-          <div className="grid grid-cols-1 gap-4">
-             <div className="p-4 bg-white border border-[#DADCE0] rounded-lg flex justify-between items-center">
-               <div className="flex items-center gap-2">
-                 <Heart className="w-4 h-4 text-[#D93025]" />
-                 <span className="text-[11px] font-bold text-[#70757A] uppercase">Basal Metabolic Rate (BMR)</span>
-               </div>
-               <span className="text-sm font-black text-[#202124]">{analysis.bmr} kcal</span>
+          <div className="grid grid-cols-1 gap-3">
+             <div className="p-4 bg-white border border-[#DADCE0] rounded-lg flex justify-between items-center shadow-sm">
+                <div className="flex items-center gap-2">
+                   <Heart className="w-3.5 h-3.5 text-[#D93025]" />
+                   <span className="text-[10px] font-bold text-[#70757A] uppercase tracking-tight">Basal Metabolic Rate</span>
+                </div>
+                <span className="text-sm font-black text-[#202124]">{analysis.bmr} kcal/day</span>
              </div>
           </div>
 
           <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
-             <div className="px-4 py-2 border-b border-[#DADCE0] bg-[#F8F9FA] flex justify-between items-center">
-               <span className="text-[10px] font-bold text-[#70757A] uppercase">Calorie Targets by Goal</span>
-               <Target className="w-3 h-3 text-[#1A73E8]" />
+             <div className="px-4 py-3 border-b border-[#DADCE0] bg-[#F8F9FA] flex justify-between items-center">
+                <span className="text-[10px] font-bold text-[#70757A] uppercase tracking-widest">Goal-Based Trajectories</span>
+                <Target className="w-3.5 h-3.5 text-[#1A73E8]" />
              </div>
-             <div className="p-4 space-y-4">
-                <div className="flex justify-between items-center">
-                   <div className="space-y-0.5">
-                     <div className="text-xs font-bold">Mild Weight Loss</div>
-                     <div className="text-[9px] text-[#5F6368] uppercase">-0.25 kg/week</div>
-                   </div>
-                   <div className="text-sm font-black text-[#1A73E8]">{analysis.tdee - 250} kcal</div>
-                </div>
-                <div className="flex justify-between items-center">
-                   <div className="space-y-0.5">
-                     <div className="text-xs font-bold text-[#D93025]">Weight Loss</div>
-                     <div className="text-[9px] text-[#5F6368] uppercase">-0.5 kg/week</div>
-                   </div>
-                   <div className="text-sm font-black text-[#D93025]">{analysis.tdee - 500} kcal</div>
-                </div>
-                <div className="h-px bg-[#DADCE0]" />
-                <div className="flex justify-between items-center">
-                   <div className="space-y-0.5">
-                     <div className="text-xs font-bold text-[#188038]">Weight Gain</div>
-                     <div className="text-[9px] text-[#5F6368] uppercase">+0.5 kg/week</div>
-                   </div>
-                   <div className="text-sm font-black text-[#188038]">{analysis.tdee + 500} kcal</div>
-                </div>
+             <div className="p-5 space-y-5">
+                {[
+                  { label: 'Mild Weight Loss', sub: '-0.25 kg/week', val: analysis.tdee - 250, color: 'text-[#1A73E8]' },
+                  { label: 'Weight Loss', sub: '-0.5 kg/week', val: analysis.tdee - 500, color: 'text-[#D93025]' },
+                  { label: 'Weight Gain', sub: '+0.5 kg/week', val: analysis.tdee + 500, color: 'text-[#188038]' },
+                ].map((g, i) => (
+                  <div key={g.label} className="flex justify-between items-center">
+                     <div className="space-y-0.5">
+                        <div className="text-[11px] font-black uppercase text-[#202124]">{g.label}</div>
+                        <div className="text-[9px] text-[#70757A] font-medium uppercase tracking-tighter">{g.sub}</div>
+                     </div>
+                     <div className={`text-lg font-black font-mono ${g.color}`}>{g.val} <span className="text-[10px]">kcal</span></div>
+                  </div>
+                ))}
              </div>
           </div>
 
-          <div className="flex gap-2 p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg items-center">
-            <Info className="w-4 h-4 text-[#188038] shrink-0" />
-            <p className="text-[10px] text-[#202124] leading-tight">Calculated using the <strong>Mifflin-St Jeor Equation</strong>, currently the clinical standard for accuracy.</p>
+          <div className="flex gap-2 p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg items-start">
+             <Info className="w-4 h-4 text-[#1A73E8] shrink-0 mt-0.5" />
+             <p className="text-[10px] text-[#5F6368] leading-relaxed uppercase font-bold">
+                Mifflin-St Jeor Protocol: Currently the clinical standard for high-precision metabolic prediction in modern populations.
+             </p>
           </div>
         </div>
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering Metabolism with our BMR Calculator Nepal</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                Your Basal Metabolic Rate (BMR) represents the absolute minimum amount of energy your body requires to maintain vital functions while at complete rest. In the context of Nepal's diverse geography, ranging from the humid Terai to the high-altitude Himalayan regions, understanding your <strong className="text-[#202124]">bmr calculator nepal</strong> results is the cornerstone of effective weight management. Our tool utilizes the clinically validated <strong className="text-[#202124]">Mifflin-St Jeor Equation</strong>, which is widely considered the most accurate formula for modern populations.
-              </p>
-              <p>
-                Scientific studies indicate that metabolic rates can be influenced by environmental factors such as altitude and climate. For those living in high-altitude zones of Nepal, the basal metabolic demand can be slightly higher due to increased respiratory and cardiovascular effort. This calculator provides the baseline necessary to architect a nutritional plan that respects these physiological nuances.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">From BMR to TDEE: The Science of Daily Energy</h3>
-            <div className="space-y-4 text-sm text-[#5F6368]">
-              <p>
-                While BMR is your "resting" burn rate, your <strong className="text-[#202124]">Total Daily Energy Expenditure (TDEE)</strong> is the metric that governs weight loss or gain. It is calculated by applying a physical activity multiplier to your BMR.
-              </p>
-              <ul className="space-y-2 list-disc pl-5">
-                <li><strong className="text-[#202124]">Sedentary:</strong> Best for office workers in Kathmandu or Pokhara with minimal exercise.</li>
-                <li><strong className="text-[#202124]">Active:</strong> Suited for those engaged in labor-intensive occupations or dedicated daily training.</li>
-                <li><strong className="text-[#202124]">Metabolic Flex:</strong> Understanding these numbers allows you to create a precise <strong className="text-[#202124]">calorie deficit</strong> for weight loss or a <strong className="text-[#202124]">surplus</strong> for muscle gain without guesswork.</li>
-              </ul>
-              <p className="pt-2 italic border-t border-[#F1F3F4]">
-                Note: For the most accurate results, ensure you update your weight and activity level monthly, as these factors directly impact your daily caloric ceiling.
-              </p>
-            </div>
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+             <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
+                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Metabolic Efficiency Audit</h3>
+             </div>
+             <p className="text-sm text-[#5F6368] leading-relaxed">
+                The institutional engine for basal metabolic assessment. Calibrated using the <strong>Mifflin-St Jeor Protocol</strong>, 
+                this tool provides a high-precision verification of resting caloric requirements. By integrating physical activity 
+                multipliers (TDEE), it defines the mathematical boundary for weight maintenance, caloric deficit planning, 
+                and metabolic trajectory management.
+             </p>
           </div>
         </div>
       }

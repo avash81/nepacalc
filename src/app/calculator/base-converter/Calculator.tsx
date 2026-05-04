@@ -92,28 +92,43 @@ export default function BaseConverter() {
       results={
         <div className="space-y-4">
           {[
-            { l: 'Binary (Base 2)', v: d.bin, color: 'text-[#1A73E8]', bg: 'bg-[#E8F0FE]', border: 'border-[#C5D9F7]' },
-            { l: 'Hexadecimal (Base 16)', v: d.hex !== ', ' ? `0x${d.hex}` : ', ', color: 'text-[#E37400]', bg: 'bg-[#FFF7E0]', border: 'border-[#FEEFC3]' },
-            { l: 'Octal (Base 8)', v: d.oct, color: 'text-[#188038]', bg: 'bg-[#E6F4EA]', border: 'border-[#CEEAD6]' },
-            { l: 'Decimal (Base 10)', v: d.dec, color: 'text-[#202124]', bg: 'bg-white', border: 'border-[#DADCE0]' },
+            { l: 'Binary (Base 2)', v: d.bin, icon: Cpu },
+            { l: 'Hexadecimal (Base 16)', v: d.hex !== ', ' ? `0x${d.hex}` : ', ', icon: Terminal },
+            { l: 'Octal (Base 8)', v: d.oct, icon: Braces },
+            { l: 'Decimal (Base 10)', v: d.dec, icon: Terminal },
           ].map(item => (
-            <div key={item.l} className={`p-5 ${item.bg} border ${item.border} rounded-lg flex flex-col gap-1`}>
-               <span className="text-[10px] font-bold text-[#70757A] uppercase tracking-wider">{item.l}</span>
-               <span className={`text-lg sm:text-xl font-black font-mono tracking-tight break-all ${item.color}`}>{item.v}</span>
+            <div key={item.l} className="p-5 bg-white border border-[#DADCE0] rounded-lg flex flex-col gap-1 shadow-sm">
+               <div className="flex items-center gap-2 mb-1">
+                  <item.icon className="w-3.5 h-3.5 text-[#70757A]" />
+                  <span className="text-[10px] font-bold text-[#70757A] uppercase tracking-wider">{item.l}</span>
+               </div>
+               <span className="text-xl font-black font-mono tracking-tight break-all text-[#202124]">{item.v}</span>
             </div>
           ))}
 
           <div className="grid grid-cols-2 gap-4 pt-4">
-            <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center flex flex-col items-center justify-center gap-2">
-              <Terminal className="w-5 h-5 text-[#70757A]" />
-              <div className="text-[9px] font-bold uppercase text-[#70757A] tracking-wider">ASCII Char</div>
+            <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg text-center flex flex-col items-center justify-center gap-2">
+              <div className="text-[9px] font-bold uppercase text-[#70757A] tracking-wider">ASCII Character</div>
               <div className="text-2xl font-black text-[#1A73E8] font-mono">{d.char || ', '}</div>
             </div>
-            <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center flex flex-col items-center justify-center gap-2">
-              <Cpu className="w-5 h-5 text-[#70757A]" />
-              <div className="text-[9px] font-bold uppercase text-[#70757A] tracking-wider">Memory Size</div>
-              <div className="text-2xl font-black text-[#188038] font-mono">{d.hex !== ', ' ? Math.ceil(d.hex.length / 2) : '0'}b</div>
+            <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg text-center flex flex-col items-center justify-center gap-2">
+              <div className="text-[9px] font-bold uppercase text-[#70757A] tracking-wider">Memory Footprint</div>
+              <div className="text-2xl font-black text-[#1A73E8] font-mono">{d.hex !== ', ' ? Math.ceil(d.hex.length / 2) : '0'} Byte(s)</div>
             </div>
+          </div>
+        </div>
+      }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+             <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
+                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Radix Transformation Audit</h3>
+             </div>
+             <p className="text-sm text-[#5F6368] leading-relaxed">
+                The institutional engine for multi-base numeral transformations. This tool provides high-precision conversion between 
+                <strong> Binary</strong>, <strong>Decimal</strong>, <strong>Hexadecimal</strong>, and <strong>Octal</strong> systems. 
+                Designed for systems engineering and computer science pedagogy, it includes bitwise logic verification and memory footprint analysis.
+             </p>
           </div>
         </div>
       }
@@ -127,8 +142,18 @@ export default function BaseConverter() {
         { question: "What is Octal (Base 8) used for?", answer: "Octal was widely used in early computing and is still relevant today for Unix/Linux file permissions. The permission string 'rwxr-xr-x' equals octal 755: owner=7 (rwx=111), group=5 (r-x=101), others=5 (r-x=101). Understanding octal is essential for system administration in Linux environments." },
         { question: "What is ASCII and why does this converter show it?", answer: "ASCII (American Standard Code for Information Interchange) maps numbers 32–126 to printable characters. For example, decimal 65 = 'A', 97 = 'a', 48 = '0'. This converter shows the ASCII character when the decimal value is between 32 and 126, which is useful for understanding character encoding in programming and data processing." }
       ]}
-      sidebar={{ title: "Computer Science", links: [{ label: "Number to Words", href: "/calculator/number-to-words" }, { label: "Password Generator", href: "/calculator/password-generator" }], banner: { title: "Programmer Setup", description: "Use Hex and Binary for bitmasking and flag configuration.", image: "/images/math-banner.jpg" } }}
-      relatedTools={[{ label: "Number to Words", href: "/calculator/number-to-words" }]}
+      sidebar={{ title: "Computer Science", links: [
+          { label: "Number to Words", href: "/calculator/number-to-words" }, { label: "Password Generator", href: "/calculator/password-generator" },
+          { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
+          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" }
+        ], banner: { title: "Programmer Setup", description: "Use Hex and Binary for bitmasking and flag configuration.", image: "/images/math-banner.jpg" } }}
+      relatedTools={[
+        { label: "Number to Words", href: "/calculator/number-to-words" },
+        { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
+          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" }
+      ]}
     />
   );
 }

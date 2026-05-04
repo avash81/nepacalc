@@ -1,13 +1,21 @@
 'use client';
 import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { ValidatedInput } from '@/components/calculator/ValidatedInput';
 import { useSyncState } from '@/hooks/useSyncState';
 import { calculateNEPSEReturn } from '@/utils/math/country-rules/nepal';
-import { TrendingUp, BarChart3, ShieldCheck, Target, Zap } from 'lucide-react';
+import { 
+  TrendingUp, BarChart3, ShieldCheck, Target, Zap, Activity, Globe, 
+  History, Scale, PieChart, Receipt, ArrowRight, Landmark, Wallet
+} from 'lucide-react';
+import { 
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  PieChart as RePieChart, Pie, Cell
+} from 'recharts';
+
+function formatNPR(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
 
 export default function NEPSECalculator() {
-  const [state, setState] = useSyncState('nepse_institutional_v1', {
+  const [state, setState] = useSyncState('nepse_institutional_v5', {
     qty: 100,
     buyPrice: 1500,
     sellPrice: 1800,
@@ -22,193 +30,175 @@ export default function NEPSECalculator() {
     const raw = calculateNEPSEReturn(qty, buyPrice, sellPrice, holdingDays, investorType);
     const totalFrictionPercent = 0.008;
     const breakEven = buyPrice * (1 + totalFrictionPercent);
-    return { ...raw, breakEven };
+    
+    const chartData = [
+      { name: 'Initial Cost', val: raw.totalCost, fill: '#3b82f6' },
+      { name: 'Net Profit', val: Math.max(0, raw.netProfit), fill: '#10b981' },
+      { name: 'Total Friction', val: raw.totalCost - raw.netProfit + (raw.netProfit > 0 ? raw.netProfit : 0), fill: '#ef4444' }
+    ];
+
+    const feeData = [
+      { name: 'Broker', val: raw.breakdown.buyComm + raw.breakdown.sellComm, fill: '#3b82f6' },
+      { name: 'SEBON', val: raw.breakdown.buySebon + raw.breakdown.sellSebon, fill: '#8b5cf6' },
+      { name: 'CGT', val: raw.cgtAmount, fill: '#ef4444' }
+    ].filter(d => d.val > 0);
+
+    return { ...raw, breakEven, chartData, feeData };
   }, [qty, buyPrice, sellPrice, holdingDays, investorType]);
 
-  const fmt = (n: number) => n.toLocaleString('en-IN', { maximumFractionDigits: 2 });
+  const inputBlock = (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+         <div className="space-y-2">
+            <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider">Investor Type</label>
+            <div className="grid grid-cols-2 gap-2">
+             {['individual', 'institutional'].map(opt => (
+               <button key={opt} onClick={() => update({ investorType: opt as any })} className={`py-2 text-[10px] font-bold border rounded transition-all ${investorType === opt ? 'bg-[#1A73E8] border-[#1A73E8] text-white shadow-sm' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:border-[#1A73E8]'}`}>{opt}</button>
+             ))}
+            </div>
+         </div>
+         <div className="space-y-2">
+            <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider">Quantity (Units)</label>
+            <input type="number" value={qty} onChange={e => update({ qty: Number(e.target.value) })} className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-lg font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+         </div>
+         <div className="space-y-2">
+            <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider">Buy Price (NPR)</label>
+            <input type="number" value={buyPrice} onChange={e => update({ buyPrice: Number(e.target.value) })} className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-lg font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+         </div>
+         <div className="space-y-2">
+            <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider">Sell Price (NPR)</label>
+            <input type="number" value={sellPrice} onChange={e => update({ sellPrice: Number(e.target.value) })} className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-lg font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+         </div>
+      </div>
+
+      <div className="space-y-2 pt-2 border-t border-[#DADCE0] mt-4">
+         <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider">Holding Period (Days)</label>
+         <div className="flex gap-4">
+            <input type="number" value={holdingDays} onChange={e => update({ holdingDays: Number(e.target.value) })} className="flex-1 h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+            <div className="flex bg-[#F8F9FA] rounded-md p-1 border border-[#DADCE0]">
+               <button onClick={() => update({ holdingDays: 364 })} className={`px-4 py-1.5 text-[10px] font-bold rounded ${holdingDays < 365 ? 'bg-white shadow-sm text-[#1A73E8]' : 'text-[#70757A]'}`}>Short</button>
+               <button onClick={() => update({ holdingDays: 365 })} className={`px-4 py-1.5 text-[10px] font-bold rounded ${holdingDays >= 365 ? 'bg-white shadow-sm text-[#1A73E8]' : 'text-[#70757A]'}`}>Long</button>
+            </div>
+         </div>
+      </div>
+    </div>
+  );
 
   return (
     <ModernCalcLayout
-      hideH1={true}
       slug="nepal-stocks"
-      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'NEPSE Trading Calculator' }]}
-      title="NEPSE Share Trading Calculator"
-      description="Calculate net profit, broker commission, SEBON fees, and CGT for your stock transactions in the Nepal Stock Exchange."
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Tools', href: '/nepal/' }, { label: 'Trading Calculator' }]}
+      title="NEPSE Trading"
+      description="The definitive auditing tool for Nepal's stock traders. Calculate net profit, tiered broker commissions, SEBON fees, and CGT with T+2 precision."
       icon={TrendingUp}
-      inputs={
-        <div className="space-y-8">
-          <div className="flex items-center justify-between mb-2">
-             <h3 className="text-sm font-bold text-slate-800">Trade Parameters</h3>
-             <div className="flex p-1 bg-slate-100 rounded-lg border border-slate-200">
-               {['individual', 'institutional'].map(t => (
-                 <button 
-                   key={t} 
-                   onClick={() => update({ investorType: t as any })}
-                   className={`px-3 py-1 text-xs font-bold uppercase rounded-md transition-all ${investorType === t ? 'bg-white text-emerald-600 shadow-sm' : 'text-slate-500'}`}
-                 >
-                   {t}
-                 </button>
-               ))}
-             </div>
-          </div>
-          
-          <div className="space-y-6">
-             <ValidatedInput label="Units (Quantity)" value={qty} onChange={v => update({ qty: v })} min={1} withSlider />
-             
-             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <ValidatedInput label="Purchase Price" value={buyPrice} onChange={v => update({ buyPrice: v })} prefix="Rs." min={10} />
-                <ValidatedInput label="Selling Price" value={sellPrice} onChange={v => update({ sellPrice: v })} prefix="Rs." min={10} />
-             </div>
-          </div>
-
-          <div className="pt-4 border-t border-slate-100">
-             <div className="flex items-center gap-2 mb-4">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                <h3 className="text-sm font-bold text-slate-800">Tax Holding Period</h3>
-             </div>
-             
-             <div className="grid grid-cols-2 gap-4">
-                {[
-                  { d: 364, l: 'Short Term', r: '7.5% CGT', desc: '< 1 Year' },
-                  { d: 365, l: 'Long Term', r: '5% CGT', desc: '≥ 1 Year' }
-                ].map(p => (
-                  <button 
-                    key={p.l}
-                    onClick={() => update({ holdingDays: p.d })}
-                    className={`p-4 text-left rounded-xl border transition-all ${holdingDays >= p.d && p.d === 365 || holdingDays < 365 && p.d === 364 ? 'bg-emerald-50 border-emerald-200' : 'bg-white border-slate-200'}`}
-                  >
-                     <div className="text-xs font-medium text-slate-500 mb-1">{p.desc}</div>
-                     <div className="text-sm font-bold text-slate-900">{p.l}</div>
-                     <div className={`text-xs font-bold mt-2 ${holdingDays >= p.d && p.d === 365 || holdingDays < 365 && p.d === 364 ? 'text-emerald-700' : 'text-slate-500'}`}>{p.r}</div>
-                  </button>
-                ))}
-             </div>
-             
-             <div className="mt-4 p-4 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between">
-                <span className="text-xs font-medium text-slate-600">Exact Days Held:</span>
-                <input 
-                  type="number" 
-                  value={holdingDays} 
-                  onChange={e => update({ holdingDays: parseInt(e.target.value) || 0 })}
-                  className="w-24 text-right bg-white border border-slate-200 rounded px-2 py-1 text-sm font-bold text-emerald-700 outline-none"
-                />
-             </div>
-          </div>
-        </div>
-      }
+      inputs={inputBlock}
       results={
         <div className="space-y-6">
-          <div className={`p-6 rounded-2xl text-white overflow-hidden relative shadow-md transition-colors ${result.netProfit >= 0 ? 'bg-emerald-600' : 'bg-rose-600'}`}>
-             <div className="relative z-10">
-                <div className="text-xs font-medium uppercase tracking-wider text-white/80 mb-2">Net Realized Profit/Loss</div>
-                <div className="text-3xl font-black mb-2">Rs. {fmt(result.netProfit)}</div>
-                <div className="flex items-center gap-2">
-                   <div className="px-2 py-1 bg-white/20 rounded text-xs font-bold">ROI: {result.roi}%</div>
-                   {result.netProfit > 0 && <Zap className="w-4 h-4 text-yellow-300 fill-yellow-300" />}
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4 pt-4 mt-4 border-t border-white/20">
-                   <div>
-                      <div className="text-xs font-medium text-white/80 mb-1">Capital Gains Tax</div>
-                      <div className="text-sm font-bold">Rs. {fmt(result.cgtAmount)}</div>
-                   </div>
-                   <div>
-                      <div className="text-xs font-medium text-white/80 mb-1">Total Cost</div>
-                      <div className="text-sm font-bold">Rs. {fmt(result.totalCost)}</div>
-                   </div>
-                </div>
-             </div>
+          <div className={`p-8 border rounded-lg text-center space-y-2 ${result.netProfit >= 0 ? 'bg-[#E6FFFA] border-[#B2F5EA]' : 'bg-rose-50 border-rose-100'}`}>
+             <div className={`text-[10px] font-bold uppercase tracking-wider ${result.netProfit >= 0 ? 'text-[#047481]' : 'text-rose-600'}`}>Net Realized P/L</div>
+             <div className={`text-4xl font-black ${result.netProfit >= 0 ? 'text-[#047481]' : 'text-rose-900'}`}>{formatNPR(result.netProfit)}</div>
+             <div className="text-[10px] font-bold text-[#70757A] uppercase tracking-tighter">ROI: {result.roi}%</div>
           </div>
 
-          <div className="bg-white border border-slate-200 rounded-xl p-5">
-             <div className="flex justify-between items-center mb-4">
-                <span className="text-sm font-medium text-slate-600">Break-even Price</span>
-                <span className="text-lg font-bold text-slate-900">Rs. {fmt(result.breakEven)}</span>
+          <div className="grid grid-cols-2 gap-4">
+             <div className="p-5 bg-white border border-[#DADCE0] rounded-md text-center space-y-1">
+                <div className="text-[9px] font-bold text-[#70757A] uppercase">Break-Even Price</div>
+                <div className="text-xl font-black text-[#1A73E8]">Rs. {result.breakEven.toFixed(2)}</div>
              </div>
-             <div className="flex justify-between items-center mb-4">
-                <span className="text-sm font-medium text-slate-600">Net Sell Proceed</span>
-                <span className="text-lg font-bold text-slate-900">Rs. {fmt(result.netSellProceeds)}</span>
-             </div>
-             
-             <div className="p-3 bg-blue-50 rounded-lg flex gap-3 text-blue-800 text-xs">
-                <BarChart3 className="w-4 h-4 shrink-0 mt-0.5" />
-                <p>Calculations use updated Jestha 2081 commission tiers, including SEBON fee (0.015%) and DP charge (Rs. 25).</p>
+             <div className="p-5 bg-white border border-[#DADCE0] rounded-md text-center space-y-1">
+                <div className="text-[9px] font-bold text-[#70757A] uppercase">Net Proceeds</div>
+                <div className="text-xl font-black text-[#202124]">{formatNPR(result.netSellProceeds)}</div>
              </div>
           </div>
         </div>
       }
-      sidebar={{
-        title: "Finance & Tax",
-        links: [
-          { label: 'Nepal Income Tax', href: '/calculator/nepal-income-tax' },
-          { label: 'SIP Calculator', href: '/calculator/sip-calculator' },
-          { label: 'Compound Interest', href: '/calculator/compound-interest' },
-          { label: 'EMI Calculator', href: '/calculator/loan-emi' },
-        ],
-        banner: {
-          title: "Optimize Your Trades",
-          description: "Understanding your exact break-even point allows you to make smarter, more profitable decisions in the secondary market."
-        }
-      }}
-      howToUse={{
-        steps: [
-          "Select your investor type (Individual or Institutional).",
-          "Enter the quantity of shares you traded.",
-          "Input the average purchase price and the selling price.",
-          "Select the holding period to determine your Capital Gains Tax (CGT) bracket (5% for >1 year, 7.5% for <1 year).",
-          "Review the total friction costs, break-even price, and net profit."
-        ]
-      }}
-      faqs={[
-        {
-          question: "What is the Capital Gains Tax (CGT) rate in Nepal?",
-          answer: "For individual investors, the CGT is 7.5% for short-term trades (held for less than 365 days) and 5% for long-term trades (held for 365 days or more). For institutional investors, the rate is typically 10% regardless of the holding period."
-        },
-        {
-          question: "What are the additional charges when trading on NEPSE?",
-          answer: "Besides the broker commission, you also pay a SEBON fee (0.015%), a DP charge (Rs. 25 per transaction), and the Capital Gains Tax on your net profits. These friction costs are deducted automatically from your settlement amount."
-        },
-        {
-          question: "How is the broker commission calculated?",
-          answer: "NEPSE uses a tiered brokerage system ranging from 0.40% to 0.27%. The commission decreases as your total transaction volume increases. For example, trades up to Rs. 50,000 incur a 0.40% commission, while trades above Rs. 1 Crore incur only 0.27%."
-        },
-        {
-          question: "How do I calculate the 365-day holding period for CGT?",
-          answer: "The holding period is calculated from the date the shares were credited to your DEMAT account (EDIS/Purchase settlement date) to the exact date you execute the sell order on the TMS."
-        },
-        {
-          question: "Do I pay CGT if I sell shares at a loss?",
-          answer: "No. Capital Gains Tax is only applied to the Net Profit. If you sell at a loss, or if the profit is so small that the broker commission and SEBON fees negate it, you pay zero CGT. You still pay the broker and SEBON fees."
-        },
-        {
-          question: "Is the DP charge applied per share or per transaction?",
-          answer: "The DP (Depository Participant) charge of Rs. 25 is applied per transaction (per stock/scrip) on the sell side, regardless of whether you are selling 10 shares or 10,000 shares of that specific company on that day."
-        }
-      ]}
       details={
-        <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Precision NEPSE Trading & Share Calculator</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                Trading on the Nepal Stock Exchange requires exact cost analysis before executing orders. Our <strong className="text-[#202124]">nepse calculator</strong> is an advanced financial algorithm that evaluates the complete friction cost of trading. Unlike generic tools, this <strong className="text-[#202124]">share calculator nepal</strong> integrates the latest 2081/82 tiered broker commission rates (0.40% to 0.27%), strict SEBON regulatory fees (0.015%), and mandatory DP charges to determine your absolute net profit.
-              </p>
-              <p>
-                A crucial component of equity trading is tax compliance. This engine functions as a definitive <strong className="text-[#202124]">cgt calculator nepal</strong>, applying the piecewise temporal logic of Capital Gains Tax: 7.5% for short-term holds (&lt;365 days) and 5% for long-term investments. By establishing a rigorous <strong className="text-[#202124]">nepal stock exchange return calculator</strong>, traders can pinpoint the exact break-even tick price required to exit a position without realizing a net loss.
-              </p>
+        <div className="space-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+               <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
+                  <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Transaction Friction Audit</h3>
+               </div>
+               <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="h-[200px] w-[200px] relative">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <RePieChart>
+                        <Pie data={result.feeData} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={2} dataKey="val" stroke="none">
+                          {result.feeData.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} />)}
+                        </Pie>
+                      </RePieChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div className="flex-1 space-y-3 w-full">
+                     {result.feeData.map((d, i) => (
+                        <div key={i} className="flex items-center justify-between p-3 bg-[#F8F9FA] rounded border border-[#DADCE0]">
+                           <div className="flex items-center gap-2">
+                              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: d.fill }} />
+                              <span className="text-[11px] font-bold text-[#5F6368] uppercase">{d.name}</span>
+                           </div>
+                           <span className="text-[11px] font-black text-[#202124]">{formatNPR(d.val)}</span>
+                        </div>
+                     ))}
+                  </div>
+               </div>
+            </div>
+
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+               <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
+                  <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Trade Composition</h3>
+               </div>
+               <div className="h-[240px] w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={result.chartData} barSize={24}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                      <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fontSize: 9, fill: '#70757A', fontWeight: 700}} />
+                      <YAxis hide />
+                      <Tooltip cursor={{ fill: '#f8fafc' }} contentStyle={{ borderRadius: '8px', border: '1px solid #DADCE0', fontSize: '11px' }} formatter={(v: number) => formatNPR(v)} />
+                      <Bar dataKey="val" fill="#1A73E8" radius={[2, 2, 0, 0]} />
+                    </BarChart>
+                  </ResponsiveContainer>
+               </div>
             </div>
           </div>
-
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Cost Distribution</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Tiered Brokerage:</strong> As a dedicated <strong className="text-[#202124]">broker commission calculator nepal</strong>, the system dynamically shifts its percentage multiplier based on total volume. High-volume trades automatically trigger the lower 0.27% threshold, maximizing net yield.</li>
-              <li><strong className="text-[#188038]">WACC Integration:</strong> While serving as a gross transaction model, traders should couple this with a <strong className="text-[#202124]">wacc calculator nepal</strong> to determine the true weighted average cost of accumulated shares across multiple dips.</li>
-              <li><strong className="text-[#D93025]">Loss Absorption Logic:</strong> Capital Gains Tax is strictly applied to <span className="italic">Net Realizable Profit</span>. If the total friction cost (buy fees + sell fees) exceeds the gross price difference, the engine mathematically prevents CGT deduction.</li>
-            </ul>
-          </div>
         </div>
       }
+      howToUse={{
+        steps: [
+          "Protocol: Select 'Individual' for 365-day tiered CGT logic.",
+          "Parameters: Enter the units, purchase price, and target sell price.",
+          "Timeline: Input the exact days held to toggle between 5% and 7.5% tax brackets.",
+          "Audit: Review the 'Break-Even Price' to identify the minimum exit threshold.",
+          "Proceeds: View 'Net Sell Proceed' to know the exact cash amount hitting your bank account."
+        ]
+      }}
+      formula={{
+        title: "The NEPSE Trading Calculus",
+        description: "Official SEBON-compliant formula for net return calculation.",
+        raw: "Net Profit = SellValue - BuyValue - Fees_Total - CGT",
+        latex: "Return = (Qty \\times SellP) - (Qty \\times BuyP) - BrokerFee - SEBONFee - CGT"
+      }}
+      faqs={[
+        { question: "What is the broker commission rate in Nepal?", answer: "Broker commission is volume-tiered by SEBON, ranging from 0.40% for trades up to Rs. 50,000 down to 0.27% for transactions above Rs. 20 Lakh." },
+        { question: "What are the CGT rates for individual investors?", answer: "Capital Gains Tax (CGT) is 5% for long-term holdings (over 365 days) and 7.5% for short-term holdings (under 365 days)." },
+        { question: "What hidden fees are charged on NEPSE trades?", answer: "Besides commission, you pay a flat 0.015% SEBON fee on both buy/sell and a Rs. 25 DP (Depository Participant) fee per scrip during the sale." },
+        { question: "How is the 365-day holding period calculated?", answer: "The period is calculated from the date of purchase settlement (T+2) to the date of sell execution." },
+        { question: "What is the 'Break-Even Price'?", answer: "It is the price at which your total net proceeds from a sale (after commissions, fees, and tax) exactly match your total purchase cost." }
+      ]}
+      sidebar={{
+        title: "Trading Hub",
+        subtitle: "NEPSE Intelligence",
+        links: [
+          { label: "WACC Calculator", href: "/calculator/nepse-wacc", icon: Target },
+          { label: "Bonus Tax Tool", href: "/calculator/nepse-bonus-tax", icon: Receipt },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: Wallet },
+          { label: "TMS Portal", href: "https://tms.nepse.com.np", icon: Globe },
+        ],
+      }}
+      relatedTools={[
+        { label: "WACC Calculator", href: "/calculator/nepse-wacc" },
+        { label: "Bonus Tax", href: "/calculator/nepse-bonus-tax" },
+        { label: "Income Tax", href: "/calculator/nepal-income-tax" }
+      ]}
     />
   );
 }

@@ -1,8 +1,12 @@
 'use client';
 import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Banknote, TrendingUp, Info, Shield, PiggyBank } from 'lucide-react';
+import { Banknote, TrendingUp, Info, Shield, PiggyBank, Activity, Zap, ShieldCheck, Globe, Scale, ArrowRight, Wallet, History, ChevronRight, Table, Landmark } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
+import { 
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  PieChart as RePieChart, Pie, Cell
+} from 'recharts';
 
 function fmt(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
 
@@ -21,173 +25,233 @@ export default function FDCalculator() {
   const r = useMemo(() => {
     const amount = principal * Math.pow(1 + rate / 100 / compounding, compounding * time);
     const interest = amount - principal;
-    return { maturity: amount, interest, pctGrowth: ((interest / principal) * 100).toFixed(1) };
-  }, [principal, rate, time, compounding]);
+    const tds = interest * 0.05; // 5% TDS for individuals in Nepal
+    
+    const schedule = Array.from({ length: 11 }, (_, i) => {
+      const t = (i * time) / 10;
+      const amt = principal * Math.pow(1 + rate / 100 / compounding, compounding * t);
+      return { 
+        year: `${(t).toFixed(1)}y`, 
+        balance: Math.round(amt),
+        interest: Math.round(amt - principal)
+      };
+    });
 
-  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
-  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
+    return { 
+      maturity: amount, 
+      interest, 
+      tds,
+      netMaturity: amount - tds,
+      pctGrowth: ((interest / principal) * 100).toFixed(1),
+      schedule
+    };
+  }, [principal, rate, time, compounding]);
 
   return (
     <ModernCalcLayout
-      crumbs={[{ label: 'Finance', href: '/finance/' }, { label: 'Fixed Deposit Calculator' }]}
-      title="Fixed Deposit (FD) Calculator"
-      description="Calculate FD maturity amount and interest earned with Nepal bank compounding rates. Supports quarterly, monthly, and yearly compounding."
+      slug="fd-calculator"
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Financial', href: '/financial/' }, { label: 'FD Calculator' }]}
+      title="Fixed Deposit (FD)"
+      description="The definitive engine for term deposits in Nepal. Calculate Muddati Khata returns with Class A bank compounding protocols and 5% TDS auditing."
       icon={Banknote}
       inputs={
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <label className={labelCls}>Principal Amount</label>
-            <div className="relative">
-              <input type="number" value={principal} onChange={e => update({ principal: Number(e.target.value) })} className={inputCls} />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">NPR</span>
-            </div>
+        <div className="space-y-8">
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-10 opacity-10"><Zap className="w-40 h-40" /></div>
+             <div className="relative z-10 grid grid-cols-1 gap-6">
+                <div className="space-y-4">
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Principal Deposit</label>
+                   <input 
+                      type="number" 
+                      value={principal} 
+                      onChange={(e) => update({ principal: Number(e.target.value) })}
+                      className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" 
+                   />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                   <div className="space-y-4">
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Interest Rate (%)</label>
+                      <input 
+                        type="number" 
+                        step="0.1"
+                        value={rate} 
+                        onChange={(e) => update({ rate: Number(e.target.value) })}
+                        className="w-full h-12 px-6 bg-white/5 border border-white/10 rounded-xl text-lg font-black text-white focus:border-blue-500 outline-none transition-all" 
+                      />
+                   </div>
+                   <div className="space-y-4">
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Term (Years)</label>
+                      <input 
+                        type="number" 
+                        value={time} 
+                        onChange={(e) => update({ time: Number(e.target.value) })}
+                        className="w-full h-12 px-6 bg-white/5 border border-white/10 rounded-xl text-lg font-black text-white focus:border-blue-500 outline-none transition-all" 
+                      />
+                   </div>
+                </div>
+             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className={labelCls}>Annual Interest Rate</label>
-            <div className="grid grid-cols-4 gap-2 mb-2">
-              {[6, 8, 10, 12].map(v => (
-                <button key={v} onClick={() => update({ rate: v })}
-                  className={`py-2 text-xs font-black border rounded-md transition-all ${rate === v ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>
-                  {v}%
-                </button>
-              ))}
-            </div>
-            <div className="relative">
-              <input type="number" step={0.5} value={rate} onChange={e => update({ rate: Number(e.target.value) })} className={inputCls} />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">% p.a.</span>
-            </div>
+          <div className="p-8 border border-slate-200 rounded-[2rem] bg-white space-y-6 shadow-sm">
+             <div className="flex items-center gap-3">
+                <div className="p-2 bg-blue-50 rounded-lg"><Activity className="w-4 h-4 text-blue-600" /></div>
+                <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Compounding Protocol</h3>
+             </div>
+             <div className="flex p-1 bg-slate-50 border border-slate-100 rounded-xl">
+                {COMP_OPTIONS.map(opt => (
+                  <button 
+                    key={opt.value} 
+                    onClick={() => update({ compounding: opt.value })}
+                    className={`flex-1 py-3 text-[10px] font-black uppercase rounded-lg transition-all ${compounding === opt.value ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 hover:bg-white'}`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+             </div>
           </div>
-
-          <div className="space-y-2">
-            <label className={labelCls}>FD Duration</label>
-            <div className="grid grid-cols-4 gap-2 mb-2">
-              {[{ l: '6mo', v: 0.5 }, { l: '1yr', v: 1 }, { l: '2yr', v: 2 }, { l: '5yr', v: 5 }].map(p => (
-                <button key={p.l} onClick={() => update({ time: p.v })}
-                  className={`py-2 text-xs font-black border rounded-md transition-all ${time === p.v ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>
-                  {p.l}
-                </button>
-              ))}
-            </div>
-            <div className="relative">
-              <input type="number" step={0.5} value={time} onChange={e => update({ time: Number(e.target.value) })} className={inputCls} />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">years</span>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <label className={labelCls}>Compounding Frequency</label>
-            <div className="grid grid-cols-2 gap-2">
-              {COMP_OPTIONS.map(opt => (
-                <button key={opt.value} onClick={() => update({ compounding: opt.value })}
-                  className={`py-2.5 text-xs font-bold border rounded-md transition-all ${compounding === opt.value ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>
-                  {opt.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-            Calculate Maturity
-          </button>
         </div>
       }
       results={
         <div className="space-y-6">
-          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
-            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Maturity Amount</div>
-            <div className="text-3xl font-black text-[#1A73E8]">{fmt(r.maturity)}</div>
-            <div className="text-[9px] text-[#70757A] font-bold uppercase">Grows {r.pctGrowth}% over {time} year{time !== 1 ? 's' : ''}</div>
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Banknote className="w-24 h-24 text-emerald-600" /></div>
+             <div className="text-[10px] font-bold text-emerald-600 uppercase tracking-[0.2em]">Gross Maturity Value</div>
+             <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">{fmt(r.maturity)}</div>
+             <div className="px-5 py-2 bg-slate-100 rounded-full inline-block text-[10px] font-black uppercase tracking-tight text-slate-500">
+                Grows {r.pctGrowth}% over {time} Year{time !== 1 ? 's' : ''}
+             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center">
-              <div className="text-[9px] font-bold text-[#70757A] uppercase">Principal</div>
-              <div className="text-sm font-black">{fmt(principal)}</div>
-            </div>
-            <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center">
-              <div className="text-[9px] font-bold text-[#70757A] uppercase">Interest Earned</div>
-              <div className="text-sm font-black text-[#188038]">+{fmt(r.interest)}</div>
-            </div>
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1">
+                <div className="text-[9px] font-black text-slate-400 uppercase">Gross Interest</div>
+                <div className="text-xl font-black text-slate-900">+{fmt(r.interest)}</div>
+             </div>
+             <div className="p-6 bg-rose-50 border border-rose-100 rounded-3xl space-y-1">
+                <div className="text-[9px] font-black text-rose-600 uppercase">TDS (5% Personal)</div>
+                <div className="text-xl font-black text-rose-600">-{fmt(r.tds)}</div>
+             </div>
           </div>
 
-          <div className="p-4 bg-white border border-[#DADCE0] rounded-lg flex justify-between items-center">
-            <span className="text-[11px] font-bold text-[#70757A] uppercase">Compounding</span>
-            <span className="text-sm font-black">{COMP_OPTIONS.find(c => c.value === compounding)?.label}</span>
-          </div>
-
-          <div className="flex gap-2 p-3 bg-[#FFF7E0] border border-[#FEEFC3] rounded-lg items-start">
-            <Info className="w-4 h-4 text-[#F29900] shrink-0 mt-0.5" />
-            <p className="text-[10px] text-[#202124] leading-tight"><strong>TDS Note:</strong> FD interest in Nepal is subject to <strong>5% withholding tax</strong> deducted at source by the bank.</p>
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><TrendingUp className="w-24 h-24 text-blue-500" /></div>
+             <div className="relative z-10 flex items-center justify-between">
+                <div className="space-y-1">
+                   <h4 className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Net Maturity Value</h4>
+                   <p className="text-2xl font-black">{fmt(r.netMaturity)}</p>
+                </div>
+                <div className="bg-emerald-400/20 text-emerald-400 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">
+                   Post-Tax Yield
+                </div>
+             </div>
           </div>
         </div>
       }
       details={
-        <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Optimizing Fixed Deposit Returns in Nepal</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                Fixed Deposits (Muddati Khata) remain the absolute foundation of risk-free capital preservation in Nepal's banking sector. Our advanced <strong className="text-[#202124]">fd calculator nepal</strong> is engineered to replicate the exact compounding algorithms utilized by 'A' class commercial banks, development banks, and finance companies, allowing you to project precise maturity values against the ever-fluctuating <strong className="text-[#202124]">fixed deposit interest rates nepal</strong>.
-              </p>
-              <p>
-                Unlike simple interest vehicles, modern FD accounts accelerate wealth generation through continuous compounding. Depending on the specific Banking and Financial Institution (BFI) and their promotional schemes, accrued interest may be reinvested on a monthly, quarterly, or annual basis. This calculator dynamically adjusts the effective Annual Percentage Yield (APY) based on your selected frequency, ensuring your projections align perfectly with institutional payouts.
-              </p>
+        <div className="space-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-6 opacity-5"><TrendingUp className="w-20 h-20 text-blue-600" /></div>
+              <div className="flex items-center gap-2 mb-8">
+                <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Maturity Progression</h3>
+              </div>
+              <div className="h-[300px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart data={r.schedule}>
+                    <defs>
+                      <linearGradient id="colorAmt" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.1}/>
+                        <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                    <XAxis dataKey="year" hide />
+                    <YAxis hide domain={['auto', 'auto']} />
+                    <Tooltip 
+                      formatter={(v: number) => fmt(v)}
+                      contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 8px 30px rgba(0,0,0,0.12)', fontSize: '11px', fontWeight: 'bold' }}
+                    />
+                    <Area type="monotone" dataKey="balance" stroke="#3b82f6" strokeWidth={3} fillOpacity={1} fill="url(#colorAmt)" />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+               <div className="absolute -bottom-12 -right-12 opacity-10"><ShieldCheck className="w-64 h-64 text-emerald-500" /></div>
+               <h3 className="text-2xl font-black mb-8 tracking-tight text-emerald-400 uppercase tracking-widest">Security & Leveraging</h3>
+               <div className="space-y-6">
+                  <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                     <div className="flex justify-between items-center mb-3">
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">DCGF Coverage</span>
+                        <span className="text-sm font-black text-emerald-400">{principal <= 500000 ? "100%" : `${((500000/principal)*100).toFixed(0)}%`}</span>
+                     </div>
+                     <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                        <div className="h-full bg-emerald-400" style={{ width: `${Math.min(100, (500000/principal)*100)}%` }} />
+                     </div>
+                     <p className="mt-3 text-[9px] text-slate-500 leading-relaxed uppercase font-black">
+                        Deposits up to NPR 500,000 are guaranteed by sovereign DCGF.
+                     </p>
+                  </div>
+                  <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                     <div className="flex justify-between items-center mb-1">
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">FD Overdraft Capacity (90%)</span>
+                        <span className="text-lg font-black text-blue-400">{fmt(principal * 0.9)}</span>
+                     </div>
+                     <p className="text-[9px] text-slate-500 leading-relaxed uppercase font-black">
+                        Instant liquidity available against this deposit.
+                     </p>
+                  </div>
+               </div>
             </div>
           </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Mechanics of Term Deposits</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Quarterly Compounding Dominance:</strong> The overwhelming majority of Nepalese banks employ quarterly compounding (4 compounding periods per year). Mathematically, this yields a higher effective annual rate than nominal rates, compounding your interest at the end of the fiscal quarters (Ashoj, Poush, Chaitra, and Asadh).</li>
-              <li><strong className="text-[#188038]">The 5% TDS Mandate:</strong> As mandated by the Inland Revenue Department (IRD), all interest generated from personal fixed deposits is subject to a 5% Tax Deducted at Source (<strong className="text-[#202124]">tds on fixed deposit</strong>). While this calculator models the gross compounding trajectory, investors must manually deduct this 5% withholding tax to determine absolute net-in-hand maturity.</li>
-              <li><strong className="text-[#D93025]">Liquidity & Penalty Considerations:</strong> Premature withdrawal of a fixed deposit in Nepal generally incurs a penalty (often a 1-2% reduction from the contracted rate). If short-term liquidity is required, borrowing against the FD (taking an FD Loan up to 90% of the principal) is usually a more mathematically sound strategy than breaking the deposit early.</li>
-            </ul>
-          </div>
+          <section className="bg-white border border-slate-200 rounded-[2rem] overflow-hidden shadow-sm">
+             <div className="px-8 py-5 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                   <div className="p-2 bg-blue-50 rounded-lg text-blue-600"><Table className="w-4 h-4" /></div>
+                   <h3 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">Institutional Maturity Grid</h3>
+                </div>
+             </div>
+             <div className="overflow-x-auto max-h-[450px] custom-scrollbar">
+                <table className="w-full text-left border-collapse">
+                   <thead>
+                      <tr className="bg-slate-50 text-[10px] font-black uppercase text-slate-400 border-b border-slate-200">
+                         <th className="px-8 py-5">Timeline</th>
+                         <th className="px-8 py-5 text-right text-emerald-600">Accrued Interest</th>
+                         <th className="px-8 py-5 text-right">Projected Balance</th>
+                      </tr>
+                   </thead>
+                   <tbody className="divide-y divide-slate-100">
+                      {r.schedule.map((row, idx) => (
+                         <tr key={idx} className="text-[11px] hover:bg-slate-50 transition-colors group">
+                            <td className="px-8 py-5 font-black text-slate-900 group-hover:text-blue-600 transition-colors">{row.year}</td>
+                            <td className="px-8 py-5 text-right font-black text-emerald-600">+{fmt(row.interest)}</td>
+                            <td className="px-8 py-5 text-right font-black text-slate-900">{fmt(row.balance)}</td>
+                         </tr>
+                      ))}
+                   </tbody>
+                 </table>
+             </div>
+          </section>
         </div>
       }
-      howToUse={{
-        steps: [
-          "Enter your initial deposit amount in the 'Principal Amount' field.",
-          "Select a standard annual interest rate using the preset buttons or manually type your bank's exact offered rate.",
-          "Set the FD duration using the preset buttons (6 months, 1 year, etc.) or input a custom decimal value (e.g., 1.5 for 18 months).",
-          "Choose the Compounding Frequency. If you are unsure, select 'Quarterly', as this is the standard for 95% of Nepalese banks.",
-          "Review the final 'Maturity Amount' to see the gross projected payout."
-        ]
+      sidebar={{
+        title: "Savings Hub",
+        subtitle: "Wealth Planning",
+        links: [
+          { label: "SIP Calculator", href: "/calculator/sip-calculator", icon: TrendingUp },
+          { label: "Loan EMI tool", href: "/calculator/loan-emi", icon: Banknote },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: Wallet },
+          { label: "Compound Interest", href: "/calculator/compound-interest", icon: Activity },
+        ],
       }}
-      formula={{
-        title: "Standard Compound Interest Formula",
-        description: "Banks utilize the exponential compounding formula to determine your final maturity amount.",
-        raw: "A = P × (1 + r/n)^(n×t)\n\nWhere:\nA = Total Maturity Amount\nP = Principal Deposit Amount\nr = Annual Interest Rate (decimal)\nn = Number of compounding periods per year (e.g., 4 for Quarterly)\nt = Time in years"
-      }}
-      faqs={[
-        {
-          question: "What is the best compounding frequency for FDs in Nepal?",
-          answer: "Most commercial banks in Nepal compound interest quarterly (4 times a year). However, some cooperative banks or special promotional schemes offer monthly compounding, which yields slightly more mathematically over the same time period."
-        },
-        {
-          question: "Is FD interest taxable in Nepal?",
-          answer: "Yes. For individual depositors, a 5% Tax Deducted at Source (TDS) is applied on the generated FD interest. The bank automatically deducts this tax before crediting the interest to your account. For corporate FDs, the TDS rate is 15%."
-        },
-        {
-          question: "Can I break my Fixed Deposit before maturity?",
-          answer: "Yes, you can break an FD prematurely, but banks will penalize you. Typically, they will recalculate your interest at 1% to 2% lower than the published savings account rate, meaning you lose a significant portion of your expected returns."
-        },
-        {
-          question: "What is an FD Loan and is it better than breaking the FD?",
-          answer: "If you need emergency cash, banks allow you to take a loan against your FD (usually up to 90% of the principal value). The loan interest rate is usually the FD rate + 2%. This is often much better than breaking the FD and losing your compounded interest."
-        },
-        {
-          question: "Are Fixed Deposits safe in Nepal?",
-          answer: "Yes. Deposits in 'A' class commercial banks, 'B' class development banks, and 'C' class finance companies are insured by the Deposit and Credit Guarantee Fund (DCGF) up to Rs. 500,000 per depositor per institution."
-        },
-        {
-          question: "How does the Remittance FD rate work?",
-          answer: "Nepal Rastra Bank (NRB) mandates that all commercial banks must offer at least 1% higher interest rate on fixed deposits that are funded directly through formal foreign employment remittance channels."
-        }
+      relatedTools={[
+        { label: "SIP Calculator", href: "/calculator/sip-calculator" },
+        { label: "Loan EMI", href: "/calculator/loan-emi" },
+        { label: "Compound Interest", href: "/calculator/compound-interest" }
       ]}
-      sidebar={{ title: "Investment Tools", links: [{ label: "Compound Interest", href: "/calculator/compound-interest" }, { label: "SIP Calculator", href: "/calculator/sip-calculator" }, { label: "Simple Interest", href: "/calculator/simple-interest" }, { label: "Nepal TDS", href: "/calculator/nepal-tds-calculator" }], banner: { title: "Grow Your Savings", description: "FDs are one of Nepal's safest investment options. Compare rates across BFIs before locking in.", image: "/images/fd-banner.jpg" } }}
-      relatedTools={[{ label: "SIP Calculator", href: "/calculator/sip-calculator" }, { label: "Compound Interest", href: "/calculator/compound-interest" }, { label: "TDS Tool", href: "/calculator/nepal-tds-calculator" }]}
     />
   );
 }

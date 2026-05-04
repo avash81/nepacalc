@@ -102,11 +102,14 @@ export default function PaintCostCalculator() {
         sidebar={{
           title: "Construction Tools",
           links: [
-            { label: 'Brick Calculator', href: '/calculator/brick-calculator' },
+          { label: 'Brick Calculator', href: '/calculator/brick-calculator' },
             { label: 'Concrete Mix', href: '/calculator/concrete-mix' },
             { label: 'Area Calculator', href: '/calculator/area-calculator' },
             { label: 'Length Converter', href: '/calculator/length-converter' },
-          ],
+          { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
+          { label: "Percentage Calc", href: "/calculator/percentage/" },
+          { label: "BMI Calculator", href: "/calculator/bmi/" }
+        ],
         }}
         howToUse={{
           steps: [

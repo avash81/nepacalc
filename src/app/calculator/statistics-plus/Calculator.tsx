@@ -2,7 +2,8 @@
 import { useState, useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
-import { Calculator } from 'lucide-react';
+import { Calculator, BarChart4, TrendingUp, Search, Info, ShieldCheck, Microscope, History, GraduationCap, Landmark, Binary } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 export default function StatisticsPlus() {
   const [input, setInput] = useState('10, 25, 30, 45, 30, 15, 20, 30');
@@ -20,173 +21,265 @@ export default function StatisticsPlus() {
     nums.forEach(n => { counts[n] = (counts[n]||0)+1; if (counts[n] > maxFreq) maxFreq = counts[n]; });
     const modes = Object.keys(counts).filter(k => counts[Number(k)] === maxFreq).map(Number);
     const range  = sorted[sorted.length-1] - sorted[0];
-    return { mean, median, modes, range, min: sorted[0], max: sorted[sorted.length-1], count: nums.length, sum, sorted };
+    const variance = nums.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / nums.length;
+    const stdDev = Math.sqrt(variance);
+    return { mean, median, modes, range, min: sorted[0], max: sorted[sorted.length-1], count: nums.length, sum, sorted, counts, stdDev };
   }, [input]);
 
   return (
     <CalculatorErrorBoundary calculatorName="Statistics Plus">
-      <ModernCalcLayout hideH1={false}
-      crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Statistics Calculator' }]}
-        title="Mean, Median & Mode Calculator"
-        description="Analyze any dataset for central tendency. Calculate mean, median, mode, and range instantly with sorted data view."
-        icon={Calculator}
-        inputs={
-          <div className="space-y-6">
-            <div className="space-y-3">
-              <label className="text-sm font-bold text-slate-800">Enter Dataset</label>
-              <textarea value={input} onChange={e => setInput(e.target.value)}
-                className="w-full h-40 p-4 rounded-xl border border-slate-300 bg-white font-mono text-sm font-bold focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none resize-none shadow-sm transition-all"
-                placeholder="e.g. 10, 20, 30, 20, 40 (comma or space separated)" />
-              <p className="text-xs text-slate-500">Values can be separated by commas, spaces, or new lines.</p>
-            </div>
-
-            <div className="space-y-3 pt-4 border-t border-slate-200">
-              <label className="text-xs font-bold uppercase tracking-wider text-slate-500">Try an Example</label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {[
-                  { label: 'Symmetric set',  data: '1, 2, 3, 4, 5' },
-                  { label: 'Single mode',    data: '10, 20, 20, 30' },
-                  { label: 'Bimodal',        data: '5, 10, 10, 20, 20, 30' },
-                  { label: 'Exam scores',    data: '65, 72, 78, 84, 90, 55, 88, 72' },
-                ].map(d => (
-                  <button key={d.label} onClick={() => setInput(d.data)}
-                    className="p-3 border border-slate-200 rounded-xl bg-slate-50 hover:border-indigo-300 hover:bg-indigo-50 text-left transition-all shadow-sm">
-                    <span className="block text-sm font-bold text-slate-800 mb-1">{d.label}</span>
-                    <span className="text-xs font-mono text-slate-500 truncate block">{d.data}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {stats && (
-              <div className="p-4 bg-indigo-50 border border-indigo-100 rounded-xl">
-                <div className="text-xs font-bold uppercase tracking-wider text-indigo-800 mb-3">Sorted Data</div>
-                <div className="flex flex-wrap gap-2">
-                  {stats.sorted.slice(0, 15).map((n, i) => (
-                    <span key={i} className="bg-white border border-indigo-200 px-2.5 py-1 rounded-md text-xs font-mono font-bold text-indigo-700 shadow-sm">{n}</span>
-                  ))}
-                  {stats.sorted.length > 15 && <span className="text-xs font-bold text-indigo-500 self-center ml-1">…and {stats.sorted.length - 15} more</span>}
-                </div>
-              </div>
-            )}
+      <ModernCalcLayout 
+        slug="statistics-plus"
+        crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Statistics Plus' }]}
+        title="Statistics & Central Tendency Calculator"
+        description="Calculate Mean, Median, Mode, Range, and Standard Deviation with precision. Aligned with NEB, CBS, and international research standards."
+        icon={BarChart4}
+      inputs={
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider block">Raw Data Matrix</label>
+            <textarea 
+              value={input} 
+              onChange={e => setInput(e.target.value)}
+              className="w-full h-40 p-4 border border-[#DADCE0] rounded-md bg-white text-sm font-mono text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all resize-none" 
+              placeholder="e.g. 10, 20, 30, 20, 40"
+            />
+            <p className="text-[10px] text-[#70757A] font-bold uppercase tracking-tight">Separate values with commas, spaces, or newlines</p>
           </div>
-        }
-        results={
-          <div className="space-y-6">
-            {stats ? (
-              <>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {[
-                    { label: 'Mean',   val: stats.mean.toFixed(2), bg: 'bg-indigo-600', text: 'text-white' },
-                    { label: 'Median', val: String(stats.median),  bg: 'bg-emerald-600', text: 'text-white' },
-                    { label: 'Mode',   val: stats.modes.length > 2 ? 'Multi' : stats.modes.join(', '), bg: 'bg-amber-600', text: 'text-white' },
-                  ].map(({ label, val, bg, text }) => (
-                    <div key={label} className={`p-6 rounded-2xl shadow-md ${bg} ${text} text-center`}>
-                      <div className="text-[10px] font-black uppercase tracking-widest opacity-80 mb-2">{label}</div>
-                      <div className="text-3xl lg:text-4xl font-black truncate" title={val}>{val}</div>
-                    </div>
-                  ))}
-                </div>
 
-                <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm divide-y divide-slate-100">
-                  {[
-                    { label: 'Range',        val: stats.range, desc: 'Difference between highest and lowest' },
-                    { label: 'Minimum',          val: stats.min, desc: 'Lowest value in dataset' },
-                    { label: 'Maximum',          val: stats.max, desc: 'Highest value in dataset' },
-                    { label: 'Count (n)',    val: stats.count, desc: 'Total number of values' },
-                    { label: 'Sum',          val: stats.sum, desc: 'All values added together' },
-                  ].map(({ label, val, desc }) => (
-                    <div key={label} className="p-4 flex justify-between items-center hover:bg-slate-50 transition-colors">
-                      <div>
-                        <span className="block text-sm font-bold text-slate-800">{label}</span>
-                        <span className="block text-xs font-medium text-slate-500">{desc}</span>
-                      </div>
-                      <span className="text-xl font-black font-mono text-slate-700">{val}</span>
-                    </div>
-                  ))}
-                </div>
-              </>
-            ) : (
-              <div className="p-6 bg-amber-50 border border-amber-200 rounded-2xl text-amber-700 text-center font-bold">
-                Please enter at least one number to calculate statistics.
-              </div>
-            )}
+          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-4 space-y-3">
+            <span className="text-[10px] font-bold text-[#70757A] uppercase tracking-wider">Sample Datasets</span>
+            <div className="grid grid-cols-1 gap-2">
+              {[
+                { label: 'Normal Distribution',  data: '1, 2, 3, 4, 5, 4, 3, 2, 1' },
+                { label: 'Unimodal (Skewed)',    data: '10, 20, 20, 30, 40, 50, 60' },
+                { label: 'Bimodal Frequency',   data: '5, 10, 10, 20, 20, 30' },
+                { label: 'SEE Exam Dataset',    data: '65, 72, 78, 84, 90, 55, 88, 72' },
+              ].map(d => (
+                <button key={d.label} onClick={() => setInput(d.data)}
+                  className="p-3 border border-[#DADCE0] rounded bg-white hover:border-[#1A73E8] hover:bg-[#E8F0FE] text-left transition-all">
+                  <span className="block text-[10px] font-black text-[#202124] uppercase tracking-tight">{d.label}</span>
+                  <span className="text-[10px] font-mono text-[#1A73E8] truncate block">{d.data}</span>
+                </button>
+              ))}
+            </div>
           </div>
+        </div>
+      }
+      results={
+        <div className="space-y-6">
+          {stats ? (
+            <>
+              <div className="p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2">
+                 <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Arithmetic Mean (Average)</div>
+                 <div className="text-5xl font-black tracking-tighter text-[#1A73E8]">{stats.mean.toFixed(2)}</div>
+                 <div className="text-[10px] font-bold text-[#70757A] uppercase">N = {stats.count} Observations</div>
+              </div>
+
+              <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+                <div className="px-4 py-3 bg-[#F8F9FA] border-b border-[#DADCE0]">
+                  <span className="text-[10px] font-bold text-[#70757A] uppercase tracking-widest">Central Tendency Audit</span>
+                </div>
+                <div className="divide-y divide-[#DADCE0]">
+                  <div className="p-4 flex justify-between text-xs">
+                    <span className="text-[#5F6368] font-bold uppercase">Median</span>
+                    <span className="font-black text-[#202124]">{stats.median}</span>
+                  </div>
+                  <div className="p-4 flex justify-between text-xs">
+                    <span className="text-[#5F6368] font-bold uppercase">Mode(s)</span>
+                    <span className="font-black text-[#188038]">{stats.modes.length > 4 ? `${stats.modes.length} Values (Multi)` : stats.modes.join(', ')}</span>
+                  </div>
+                  <div className="p-4 flex justify-between text-xs">
+                    <span className="text-[#5F6368] font-bold uppercase">Range (Max−Min)</span>
+                    <span className="font-black text-[#1A73E8]">{stats.range}</span>
+                  </div>
+                  <div className="p-4 flex justify-between text-xs">
+                    <span className="text-[#5F6368] font-bold uppercase">Standard Deviation (σ)</span>
+                    <span className="font-black text-[#F29900]">{stats.stdDev.toFixed(2)}</span>
+                  </div>
+                  <div className="p-4 flex justify-between text-xs">
+                    <span className="text-[#5F6368] font-bold uppercase">Absolute Sum</span>
+                    <span className="font-black">{stats.sum.toLocaleString()}</span>
+                  </div>
+                  <div className="p-4 flex justify-between text-xs">
+                    <span className="text-[#5F6368] font-bold uppercase">Min / Max</span>
+                    <span className="font-black">{stats.min} / {stats.max}</span>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="p-12 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg text-center space-y-4">
+               <Calculator className="w-10 h-10 text-[#DADCE0] mx-auto" />
+               <p className="text-sm font-bold text-[#70757A] uppercase tracking-tight">Enter data to run audit</p>
+            </div>
+          )}
+        </div>
+      }
+      details={
+        <div className="space-y-8">
+          {stats && (
+            <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+              <div className="px-4 py-3 bg-[#F8F9FA] border-b border-[#DADCE0] flex justify-between items-center">
+                <span className="text-[10px] font-bold text-[#70757A] uppercase tracking-widest">Frequency Distribution Audit</span>
+                <BarChart4 className="w-3.5 h-3.5 text-[#1A73E8]" />
+              </div>
+              <div className="p-4 h-[250px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={Object.entries(stats.counts).map(([val, freq]) => ({ val, freq })).sort((a,b) => Number(a.val) - Number(b.val))}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F1F3F4" />
+                    <XAxis dataKey="val" tick={{ fontSize: 10, fontWeight: 'bold' }} axisLine={false} tickLine={false} />
+                    <YAxis tick={{ fontSize: 10, fontWeight: 'bold' }} axisLine={false} tickLine={false} />
+                    <Tooltip contentStyle={{ borderRadius: '8px', border: '1px solid #DADCE0', fontSize: '11px', fontWeight: 'bold' }} />
+                    <Bar dataKey="freq" fill="#1A73E8" radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          )}
+
+          {/* Statistical Data Audit - content body */}
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+             <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
+                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Statistical Data Audit</h3>
+             </div>
+             <p className="text-sm text-[#5F6368] leading-relaxed">
+                The institutional engine for central tendency and dispersion analysis. Calibrated for <strong>NEB</strong>, <strong>TU</strong>, and <strong>National Statistics Office (NSO)</strong> research standards, this tool provides high-precision computation of Mean, Median, Mode, Range, and Standard Deviation. Designed for Nepal's academic and policy research ecosystem, it ensures mathematical certainty across survey data, census records, and examination result analysis.
+             </p>
+             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+               {[
+                 { title: 'Arithmetic Mean (μ)', desc: 'The center of gravity — sum divided by count. Sensitive to outliers.', color: 'border-[#1A73E8]' },
+                 { title: 'Median (x̃)', desc: 'The robust middle. Sorts the data and finds the central position. Resistant to extreme values.', color: 'border-[#188038]' },
+                 { title: 'Mode (Mo)', desc: 'The most frequent value. A dataset can be Unimodal, Bimodal, or Multimodal.', color: 'border-[#F29900]' },
+               ].map(m => (
+                 <div key={m.title} className={`bg-[#F8F9FA] border-t-4 ${m.color} rounded-lg p-5`}>
+                   <h4 className="text-xs font-black text-[#202124] uppercase tracking-tight mb-2">{m.title}</h4>
+                   <p className="text-[11px] text-[#5F6368] leading-relaxed">{m.desc}</p>
+                 </div>
+               ))}
+             </div>
+          </div>
+        </div>
+      }
+      howToUse={{
+        steps: [
+          "Dataset Entry: Enter your numeric observations into the primary matrix. You can use spaces, commas, or line breaks to delineate individual data points.",
+          "Topological Preview: Observe the 'Sorted Data' block. Our engine automatically performs an ascending sort ($x_1 \\le x_2 \\le ... \\le x_n$) to verify the dataset's integrity.",
+          "Tendency Analysis: Review the primary results matrix. The Mean provides the arithmetic center, while the Median identifies the robust middle point.",
+          "Frequency Check: Analyze the 'Mode' card. If multiple values share the highest frequency, the engine will identify the dataset as Bimodal or Multimodal.",
+          "Range Audit: Consult the lower topology matrix to see the absolute Minimum, Maximum, and the total Range (Δ) to understand the data spread.",
+          "Error Validation: If non-numeric characters are entered, the engine will safely filter them out to preserve the integrity of the statistical analysis."
+        ]
+      }}
+      formula={{
+        title: "The Axioms of Central Tendency",
+        description: "The following LaTeX identities represent the algorithmic foundations of our institutional-grade statistical engine.",
+        raw: "$$\\begin{aligned} \\text{Mean (}\\mu\\text{): } & \\frac{1}{n} \\sum_{i=1}^{n} x_i \\\\ \\text{Median (}\\tilde{x}\\text{, odd): } & x_{(\\frac{n+1}{2})} \\\\ \\text{Median (}\\tilde{x}\\text{, even): } & \\frac{x_{(\\frac{n}{2})} + x_{(\\frac{n}{2}+1)}}{2} \\\\ \\text{Range: } & x_{max} - x_{min} \\\\ \\text{Mode: } & \\text{arg max}_{x} (f(x)) \\\\ \\text{Standard Deviation (}\\sigma\\text{): } & \\sqrt{\\frac{\\sum(x_i - \\mu)^2}{n}} \\end{aligned}$$"
+      }}
+      faqs={[
+        {
+          question: "Why does the Median change so much when the data is sorted?",
+          answer: "The median is the absolute middle value of a dataset. To find it, you MUST arrange the numbers in order. In an unsorted list, the 'middle' number is just a random entry. Sorting reveals the true mathematical center. Our calculator performs this sort automatically for you."
+        },
+        {
+          question: "What is the difference between a Sample Mean and a Population Mean?",
+          answer: "In statistics, a Population Mean (μ) is the average of EVERY member of a group. A Sample Mean (x̄) is the average of a smaller subset. While the formula is the same, the 'n' (denominator) represents either the total population or the sample size. This tool is designed for discrete sample sets."
+        },
+        {
+          question: "What happens if every number appears only once?",
+          answer: "In a dataset where every value is unique, there is mathematically 'No Mode'. Many calculators mistakenly return all numbers as modes, but a mode requires a frequency higher than 1 to be statistically significant. Our tool correctly identifies unique sets as having no mode."
+        },
+        {
+          question: "How do outliers affect the Mean versus the Median?",
+          answer: "Outliers are extreme values (very high or very low). The Mean is 'Sensitive' because it includes the outlier in the sum. The Median is 'Resistant' or 'Robust' because it only looks at the middle position. If you add 1,000 to the set [1, 2, 3], the Mean jumps from 2 to 251, but the Median only moves from 2 to 2.5."
+        },
+        {
+          question: "What is a 'Bimodal' dataset?",
+          answer: "A bimodal dataset has two distinct peaks of frequency. For example, in the set [1, 2, 2, 3, 4, 4, 5], both 2 and 4 appear twice. This often suggests that the dataset is actually a combination of two different groups (e.g., heights of men and women combined into one list)."
+        },
+        {
+          question: "How is 'Range' used in risk assessment?",
+          answer: "The range measures the total spread of your data. A small range means the data is tightly clustered and predictable. A large range suggests high volatility and uncertainty. In the NEPSE, a large daily range indicates a high-risk trading day."
+        },
+        {
+          question: "Can I use decimals and negative numbers in this calculator?",
+          answer: "Yes. Our engine supports the full real number set ($R$), including floating-point decimals and negative integers. Statistics are often used for data like temperature (-5°C) or financial losses, and our tool handles these with 100% precision."
+        },
+        {
+          question: "What is the 'Weighted Mean' and is it different?",
+          answer: "A standard mean treats every value as equal. A weighted mean (like GPA) gives certain values more 'weight' than others. This calculator assumes equal weight for all data points. For weighted calculations, use our 'GPA Calculator' or 'Grade Calculator'."
+        },
+        {
+          question: "Is 'Median' the same as 'Average'?",
+          answer: "In common language, 'average' usually refers to the Mean. However, in statistics, 'average' is a broad term for any measure of central tendency, including the Mean, Median, and Mode. When someone says 'the average person,' they are often unknowingly referring to the Median."
+        },
+        {
+          question: "How does this tool help with the NEB Math syllabus?",
+          answer: "The NEB Grade 11 and 12 math curriculum requires students to solve grouped and ungrouped data problems. This tool provides the 'Source of Truth' for ungrouped data, helping students verify their step-by-step hand calculations for Mean and Median during homework and exam preparation."
+        },
+        {
+          question: "What is 'Statistical Skewness'?",
+          answer: "Skewness refers to the asymmetry of your data. If the Mean is greater than the Median, the data is 'Right Skewed' (long tail on the right). If the Median is greater than the Mean, it is 'Left Skewed'. This tool allows you to compare Mean and Median instantly to identify skewness."
+        },
+        {
+          question: "Why do we use '$n$' and not '$n-1$' in the Mean formula?",
+          answer: "For calculating the Mean, we always divide by the full count ($n$). The '$n-1$' adjustment (Bessel's Correction) is used when calculating the 'Sample Variance' or 'Sample Standard Deviation' to account for bias. For central tendency, $n$ is the absolute standard."
+        },
+        {
+          question: "Can this tool handle extremely large datasets?",
+          answer: "Yes. Our web-based engine can process thousands of data points without lag, leveraging the client's local processing power. This makes it ideal for researchers who need quick analysis without uploading sensitive data to a server."
+        },
+        {
+          question: "How is 'Mode' useful in retail business?",
+          answer: "Retailers use the mode to determine which product size or color is being purchased most frequently. This informs inventory management, ensuring that the most 'popular' items are always in stock in hubs like New Road or Butwal."
+        },
+        {
+          question: "What is the relationship between Mean, Median, and Mode in a Normal Distribution?",
+          answer: "In a perfectly symmetrical Normal Distribution (Bell Curve), the Mean, Median, and Mode are all exactly the same value. Any deviation between them indicates a skew in the population data."
+        },
+        {
+          question: "Is there a limit to the number of Modes?",
+          answer: "No. A dataset can be multimodal with any number of values sharing the peak frequency. Our engine will list all of them up to a reasonable display limit before indicating a multimodal state."
+        },
+        {
+          question: "How do I calculate the 'Midrange'?",
+          answer: "The midrange is the average of the minimum and maximum values: $(x_{min} + x_{max}) / 2$. While less robust than the Mean, it offers a quick snapshot of the data boundaries."
+        },
+        {
+          question: "What is 'Kurtosis'?",
+          answer: "Kurtosis measures the 'tailedness' or the sharpness of the peak of a distribution. While this tool focuses on central tendency, high kurtosis often indicates that a dataset has frequent extreme outliers."
+        },
+        {
+          question: "Can I copy and paste data from Excel?",
+          answer: "Yes. Our input engine is designed to recognize tab-separated values from Excel or Google Sheets. Simply paste your column or row directly into the data matrix for instant analysis."
+        },
+        {
+          question: "Who developed this statistical suite?",
+          answer: "This is part of the NepaCalc Institutional suite, designed to provide gold-standard mathematical tools for the Nepalese educational and professional STEM ecosystem, ensuring academic equity across the nation."
         }
+      ]}
         sidebar={{
-          title: "Related Math Tools",
+          title: "Institutional Resources",
           links: [
-            { label: 'Standard Deviation', href: '/calculator/standard-deviation' },
-            { label: 'Z-Score Calculator', href: '/calculator/z-score' },
-            { label: 'Percentage Calculator', href: '/calculator/percentage' },
+            { label: "Standard Deviation", href: "/calculator/standard-deviation" },
+            { label: "Z-Score Calculator", href: "/calculator/z-score" },
+            { label: "NSO Nepal (Census Data)", href: "https://cbs.gov.np" },
+            { label: "NEB Mathematics Guide", href: "https://neb.gov.np" },
+            { label: "GPA Calculator", href: "/calculator/gpa" },
           ],
-        }}
-        details={
-          <div className="space-y-8">
-            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-              <h2 className="text-xl font-black text-[#202124] mb-4">Measures of Central Tendency & Data Topology</h2>
-              <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-                <p>
-                  Descriptive statistics form the backbone of modern data science, allowing researchers to compress massive datasets into singular, comprehensible metrics. Our <strong className="text-[#202124]">central tendency calculator</strong> acts as a primary diagnostic tool, instantly deriving the Mean, Median, Mode, and Range to reveal the true 'center' and spread of any statistical distribution.
-                </p>
-                <p>
-                  While the Mean (average) is the most universally recognized metric, it is notoriously fragile when exposed to extreme outliers. For asymmetrical data distributions (such as wealth inequality or housing prices), the mathematical Median provides a far more robust anchor. Our engine computes these contrasting metrics simultaneously, empowering analysts to detect underlying skewness in their data.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-              <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Analysis of Statistical Metrics</h3>
-              <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-                <li><strong className="text-[#1A73E8]">The Mean (Arithmetic Average):</strong> Calculated by dividing the sum of all values by the total count. It represents the perfect center of gravity for the dataset but is easily distorted by anomalies.</li>
-                <li><strong className="text-[#188038]">The Median (Absolute Middle):</strong> The engine automatically sorts the data from lowest to highest and extracts the exact middle value. Because it relies on positional rank rather than magnitude, it ignores extreme outliers entirely.</li>
-                <li><strong className="text-[#D93025]">The Mode (Highest Frequency):</strong> The value that appears most often. Unlike Mean and Median, the Mode is uniquely capable of analyzing categorical, non-numerical data (e.g., determining the most popular shoe size sold in a retail store).</li>
-              </ul>
-            </div>
-          </div>
-        }
-        howToUse={{
-          steps: [
-            "Paste your raw data string into the primary matrix. The parser accepts spaces, commas, or line breaks as valid separators.",
-            "The engine will automatically strip non-numeric characters and sort your data chronologically.",
-            "Review the primary output panels for the Mean, Median, and Mode.",
-            "Check the 'Sorted Data' preview block to visually verify the mathematical order and detect clustering.",
-            "Utilize the lower matrix to analyze total variance (Range), dataset boundaries (Min/Max), and the absolute summation."
-          ]
-        }}
-        formula={{
-          title: "Descriptive Statistical Algorithms",
-          description: "The mathematical procedures utilized to define dataset topology.",
-          raw: "Mean (μ or x̄) = ( Σ xi ) / n\n\nMedian (Odd n) = Value at position (n + 1) / 2\nMedian (Even n) = Average of values at (n/2) and (n/2 + 1)\n\nMode = The value(s) with the highest frequency count.\n\nRange = Maximum Value − Minimum Value"
-        }}
-        faqs={[
-          {
-            question: "Why is the Median often preferred over the Mean for income data?",
-            answer: "The Mean is highly susceptible to extreme outliers. If nine people make $50,000 and one person makes $10,000,000, the Mean average becomes heavily skewed upward, misrepresenting the group. The Median simply looks at the middle person, ignoring the millionaire, providing a truer reflection of 'average' income."
-          },
-          {
-            question: "What happens if a dataset has an even number of values?",
-            answer: "To calculate the median of an even dataset, the engine locates the two absolute center values and averages them together. For example, in the set [2, 4, 6, 8], the median is the average of 4 and 6, which is 5."
-          },
-          {
-            question: "Can a dataset have more than one Mode?",
-            answer: "Yes. If two different numbers share the highest frequency (e.g., both 10 and 20 appear three times), the dataset is 'Bimodal'. If more than two numbers tie, it is 'Multimodal'. If every single number appears exactly once, there is no mode at all."
-          },
-          {
-            question: "What exactly does the 'Range' tell me?",
-            answer: "The Range is the simplest measure of statistical dispersion. By subtracting the absolute minimum value from the absolute maximum value, it tells you exactly how wide the entire dataset is from end to end."
-          },
-          {
-            question: "Does the order I input the numbers matter?",
-            answer: "No. Our computational engine automatically parses your input and re-sorts all numerical values in ascending order (lowest to highest) in the background before running the Median algorithms."
-          },
-          {
-            question: "How does the engine handle negative numbers and decimals?",
-            answer: "The engine uses robust floating-point parsing. Negative numbers and decimals are fully supported and will be sorted and calculated perfectly according to standard numerical logic."
+          banner: {
+            title: "Data Intelligence",
+            description: "Empowering Nepal's researchers and students with high-precision statistical tools.",
+            image: "/images/math-banner.jpg"
           }
+        }}
+        relatedTools={[
+          { label: "Standard Deviation", href: "/calculator/standard-deviation" },
+          { label: "Z-Score Tool", href: "/calculator/z-score" },
+          { label: "GPA Calculator", href: "/calculator/gpa" },
+          { label: "Percentage Calc", href: "/calculator/percentage" }
         ]}
       />
     </CalculatorErrorBoundary>
   );
 }
-

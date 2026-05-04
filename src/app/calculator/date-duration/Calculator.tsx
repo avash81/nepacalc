@@ -1,7 +1,8 @@
 'use client';
 import { useState, useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Calendar, Clock, Info } from 'lucide-react';
+import { Calendar, Clock, ShieldCheck } from 'lucide-react';
+import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 export default function DateDuration() {
   const [start, setStart] = useState('2025-01-01');
@@ -15,7 +16,6 @@ export default function DateDuration() {
     if (includeEnd) ms += 86400000;
     const totalDays = Math.floor(ms / 86400000);
     
-    // Calculate Years, Months, Days properly
     const startObj = new Date(start < end ? start : end);
     const endObj = new Date(start < end ? end : start);
     if (includeEnd) endObj.setDate(endObj.getDate() + 1);
@@ -36,121 +36,117 @@ export default function DateDuration() {
 
     return { 
       totalDays, 
-      weeks: (totalDays / 7).toFixed(1), 
-      monthsTotal: (totalDays / 30.437).toFixed(1), 
-      yearsTotal: (totalDays / 365.25).toFixed(2),
-      breakdown: `${years} Year, ${months} Months, ${days} Days`,
-      hours: (totalDays * 24).toLocaleString()
+      weeks: (totalDays / 7), 
+      monthsTotal: (totalDays / 30.437), 
+      yearsTotal: (totalDays / 365.25),
+      breakdown: `${years}Y ${months}M ${days}D`,
+      raw: { years, months, days },
+      hours: totalDays * 24
     };
   }, [start, end, includeEnd]);
 
-  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
+  const chartData = [
+    { name: 'Years', val: parseFloat(diff?.yearsTotal.toFixed(2) || '0'), fill: '#6366f1' },
+    { name: 'Months', val: parseFloat(diff?.monthsTotal.toFixed(1) || '0'), fill: '#3b82f6' },
+    { name: 'Weeks', val: parseFloat(diff?.weeks.toFixed(1) || '0'), fill: '#10b981' },
+    { name: 'Days', val: diff?.totalDays || 0, fill: '#f59e0b' },
+  ];
 
   return (
     <ModernCalcLayout
-      crumbs={[{ label: 'Converters', href: '/converters/' }, { label: 'Date Calculator' }]}
-      title="Date Duration Calculator"
-      description="Determine the exact number of days, weeks, months, and years between any two dates using the Gregorian standard."
+      slug="date-duration"
+      crumbs={[{ label: 'Converters', href: '/converters/' }, { label: 'Date Duration' }]}
+      title="Date Duration"
+      description="Calculate exact days, weeks, and years between dates for labor law audits and project timelines."
       icon={Calendar}
       inputs={
         <div className="space-y-6">
-          <div className="grid grid-cols-1 gap-6">
-            <div className="space-y-2">
-              <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider">Start Date</label>
-              <input type="date" value={start} onChange={e => setStart(e.target.value)} className={inputCls} />
-            </div>
-            <div className="space-y-2">
-              <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider">End Date</label>
-              <input type="date" value={end} onChange={e => setEnd(e.target.value)} className={inputCls} />
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-3 p-4 bg-[#F8F9FA] rounded-lg border border-[#DADCE0]">
-            <input 
-              type="checkbox" 
-              id="includeEnd" 
-              checked={includeEnd} 
-              onChange={e => setIncludeEnd(e.target.checked)}
-              className="w-4 h-4 rounded border-[#DADCE0] text-[#1A73E8] focus:ring-[#1A73E8]"
-            />
-            <label htmlFor="includeEnd" className="text-sm font-medium text-[#3C4043]">Include end day in calculation (adds 1 day)</label>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+             <div className="space-y-2">
+                <label className="text-[11px] font-bold uppercase text-[#70757A]">Anchor Date (Start)</label>
+                <input type="date" value={start} onChange={e => setStart(e.target.value)} className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-lg font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all cursor-pointer" />
+             </div>
+             <div className="space-y-2">
+                <label className="text-[11px] font-bold uppercase text-[#70757A]">Target Date (End)</label>
+                <input type="date" value={end} onChange={e => setEnd(e.target.value)} className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-lg font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all cursor-pointer" />
+             </div>
           </div>
 
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-            Calculate
-          </button>
+          <div className="flex items-center gap-4 p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg cursor-pointer" onClick={() => setIncludeEnd(!includeEnd)}>
+             <div className={`w-5 h-5 rounded border-2 transition-all flex items-center justify-center ${includeEnd ? 'bg-[#1A73E8] border-[#1A73E8]' : 'border-[#DADCE0] bg-white'}`}>
+                {includeEnd && <div className="w-2 h-2 bg-white rounded-full" />}
+             </div>
+             <div className="space-y-0.5">
+                <p className="text-[11px] font-black uppercase text-[#202124]">Inclusive Audit</p>
+                <p className="text-[9px] text-[#70757A] font-bold">Add 1 day to count the end date (Standard Legal Protocol)</p>
+             </div>
+          </div>
+
+          <div className="p-4 border border-[#DADCE0] rounded-lg bg-[#E8F0FE] space-y-2">
+             <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-[#1A73E8]" />
+                <h3 className="text-[10px] font-bold uppercase tracking-wider text-[#1A73E8]">Legal Tenure Guard</h3>
+             </div>
+             <p className="text-[10px] text-[#202124] leading-relaxed font-bold">
+                Nepali Labor Law 2074 requires precise tenure calculation for Gratuity and Severance.
+             </p>
+          </div>
         </div>
       }
       results={
         <div className="space-y-6">
           {diff ? (
             <>
-              <div className="text-center space-y-1">
-                <div className="text-3xl font-bold text-[#188038] tracking-tight">{diff.breakdown}</div>
-                <div className="text-[10px] font-bold uppercase text-[#70757A] tracking-widest">Total Duration</div>
+              <div className="p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2">
+                 <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Aggregate Temporal Span</div>
+                 <div className="text-5xl font-black tracking-tighter text-[#1A73E8] uppercase">{diff.breakdown}</div>
+                 <div className="text-[10px] font-bold text-[#70757A] uppercase tracking-tighter">
+                    {diff.totalDays.toLocaleString()} Net Calendar Days
+                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { label: 'Total Days', val: diff.totalDays.toLocaleString() },
-                  { label: 'Total Months', val: diff.monthsTotal },
-                  { label: 'Total Weeks', val: diff.weeks },
-                  { label: 'Total Hours', val: diff.hours },
-                ].map((item) => (
-                  <div key={item.label} className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center space-y-1">
-                    <div className="text-xl font-bold text-[#202124]">{item.val}</div>
-                    <div className="text-[9px] font-bold uppercase text-[#70757A] tracking-wider">{item.label}</div>
-                  </div>
-                ))}
+              <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+                 <div className="flex items-center justify-between mb-6 border-l-4 border-[#1A73E8] pl-4">
+                    <h4 className="text-[11px] font-black uppercase text-[#202124]">Temporal Distribution</h4>
+                    <Clock className="w-4 h-4 text-[#70757A]" />
+                 </div>
+                 <div className="h-[180px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                       <BarChart data={chartData} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
+                          <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#70757A', fontSize: 9, fontWeight: 'bold' }} />
+                          <Tooltip cursor={{ fill: '#F8F9FA' }} contentStyle={{ borderRadius: '8px', border: '1px solid #DADCE0', fontSize: '10px' }} />
+                          <Bar dataKey="val" radius={[4, 4, 0, 0]} barSize={32}>
+                             {chartData.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} />)}
+                          </Bar>
+                       </BarChart>
+                    </ResponsiveContainer>
+                 </div>
               </div>
             </>
           ) : (
-            <div className="text-center py-10">
-              <Info className="w-8 h-8 text-[#DADCE0] mx-auto mb-2" />
-              <p className="text-sm text-[#70757A]">Please enter valid dates to see results.</p>
+            <div className="p-20 text-center opacity-20">
+               <Calendar className="w-20 h-20 mx-auto mb-4" />
+               <p className="text-xl font-black uppercase tracking-widest text-[#70757A]">Awaiting Input</p>
             </div>
           )}
         </div>
       }
-      howToUse={{
-        steps: [
-          "Select the Start Date from the dropdown and input fields.",
-          "Select the End Date using the same format.",
-          "Toggle the 'Include end day' checkbox if you want to count the final day as a full unit.",
-          "Results are updated in real-time to show the precise breakdown."
-        ]
-      }}
-      formula={{
-        title: "Date Calculation Formula",
-        description: "Our calculator uses the Gregorian calendar standard for all calculations, accounting for leap years and varying month lengths.",
-        raw: "Δt = (Y₂ - Y₁) + (M₂ - M₁) + (D₂ - D₁)\nLeap Year Adjustment: IF (Month > Feb) AND\n(Year % 4 == 0) THEN D + 1"
-      }}
-      faqs={[
-        { question: "How does the calculator handle leap years?", answer: "Leap years (366 days, with February 29) are automatically handled by the JavaScript Date object used in this calculator. A year is a leap year if it is divisible by 4, EXCEPT century years (divisible by 100) unless also divisible by 400. Example: 2000 was a leap year, but 1900 was not." },
-        { question: "Is the End Date included by default?", answer: "By default, the end date is not counted (exclusive calculation). For example, from January 1 to January 31 = 30 days exclusive, 31 days inclusive. Check 'Include end day' for inclusive counting, which is needed for things like counting total days in a billing period." },
-        { question: "How do I calculate the number of days between two dates in Nepal?", answer: "Enter your start and end dates using the Gregorian calendar (A.D.). For Bikram Sambat (B.S.) dates, first use our Nepali Date Converter to convert them to A.D. format, then use this tool. For example, to find how many days between Baisakh 1, 2082 and Ashar 15, 2082, convert both to A.D. first." },
-        { question: "What is the difference between calendar days and business days?", answer: "Calendar days count every day including weekends and holidays (e.g., January 1–31 = 31 days). Business days exclude weekends (Saturday & Sunday) and typically public holidays. For financial and legal deadlines in Nepal, 'working days' usually means business days. Use our Lead Time Calculator for business-day-aware date calculations." },
-        { question: "How many days are in a year for date duration calculations?", answer: "A non-leap Gregorian year has 365 days. A leap year has 366 days. When calculating 'years' in the duration breakdown, the calculator uses exact calendar arithmetic (year → month → day subtraction) rather than dividing by 365.25, which gives the most accurate human-readable breakdown." },
-        { question: "Can I calculate my age using this tool?", answer: "Yes, by entering your date of birth as the start date and today as the end date. However, for a full age breakdown with zodiac signs, heartbeat count, and next birthday countdown, use the dedicated Age Calculator which is purpose-built for life stats." }
-      ]}
-      sidebar={{
-        title: "Other Date Tools",
-        links: [
-          { label: "Add/Subtract Days", href: "/calculator/date-add-subtract" },
-          { label: "Business Days Calculator", href: "/calculator/business-days" },
-          { label: "Age Calculator", href: "/calculator/age-calculator" },
-          { label: "Time Until Date", href: "/calculator/time-until" },
-        ],
-        banner: {
-          title: "Plan Your Projects",
-          description: "Precise date calculations are essential for project management, financial accruals, and personal milestones.",
-          image: "/images/calendar-banner.jpg" // We can generate this or use a placeholder
-        }
-      }}
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+             <div className="flex items-center gap-3 mb-6 border-l-4 border-[#1A73E8] pl-4">
+                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Temporal Tenure Audit</h3>
+             </div>
+             <p className="text-sm text-[#5F6368] leading-relaxed">
+                The institutional engine for precision time-span analysis. Calibrated for <strong>Gregorian</strong> and <strong>Labor Law</strong> standards.
+             </p>
+          </div>
+        </div>
+      }
       relatedTools={[
         { label: "Age Calculator", href: "/calculator/age-calculator" },
-        { label: "Nepali Date", href: "/calculator/nepali-date" },
-        { label: "Date Duration", href: "/calculator/date-duration" }
+        { label: "Add/Subtract Days", href: "/calculator/date-add-subtract" },
+        { label: "Lead Time", href: "/calculator/lead-time" }
       ]}
     />
   );

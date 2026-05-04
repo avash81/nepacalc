@@ -6,6 +6,7 @@ import { getDb, handleFirestoreError, OperationType } from '@/lib/firebase';
 import { doc, getDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { clsx } from 'clsx';
 
 export default function EditPostPage() {
   const router = useRouter();
@@ -27,6 +28,7 @@ export default function EditPostPage() {
   
   const [initialLoading, setInitialLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [tab, setTab] = useState<'write' | 'preview'>('write');
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -185,16 +187,69 @@ export default function EditPostPage() {
 
                   {/* Body Editor */}
                   <div>
-                     <div className="flex items-center gap-3 mb-4">
-                        <FileText className="w-5 h-5 text-emerald-500" />
-                        <h2 className="text-[14px] font-black text-slate-900">HTML Source Content</h2>
+                     <div className="flex items-center gap-6 border-b border-slate-100 mb-6">
+                        {(['write','preview'] as const).map(t => (
+                          <button key={t} onClick={() => setTab(t)}
+                            className={clsx(
+                              "pb-3 text-[12px] font-black uppercase tracking-widest transition-all",
+                              tab === t ? "text-blue-600 border-b-2 border-blue-600 shadow-[0_4px_12px_rgba(37,99,235,0.15)]" : "text-slate-400 hover:text-slate-600"
+                            )}>
+                            {t === 'write' ? 'HTML Source' : 'Visual Preview'}
+                          </button>
+                        ))}
                      </div>
-                     <textarea 
-                        value={content} 
-                        onChange={e => setContent(e.target.value)}
-                        className="w-full h-[800px] p-6 rounded-2xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-emerald-400 focus:ring-4 focus:ring-emerald-500/5 outline-none font-mono text-[13px] leading-relaxed text-slate-700 resize-y transition-all shadow-inner custom-scrollbar"
-                        placeholder="## H2 Example&#10;Write your HTML content here..."
-                     />
+
+                     {tab === 'write' ? (
+                        <textarea 
+                           value={content} 
+                           onChange={e => setContent(e.target.value)}
+                           className="w-full h-[800px] p-6 rounded-2xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-emerald-400 focus:ring-4 focus:ring-emerald-500/5 outline-none font-mono text-[13px] leading-relaxed text-slate-700 resize-y transition-all shadow-inner custom-scrollbar"
+                           placeholder="## H2 Example&#10;Write your HTML content here..."
+                        />
+                     ) : (
+                        <div className="w-full h-[800px] p-8 rounded-2xl border border-slate-100 bg-white shadow-inner overflow-y-auto custom-scrollbar">
+                           <div className="space-y-6">
+                              {imageTop && (
+                                  <div className="rounded-3xl overflow-hidden border border-slate-100 shadow-xl mb-8">
+                                      <img src={imageTop} alt="Top Feature" className="w-full h-auto" />
+                                  </div>
+                              )}
+                              <div 
+                                 className="prose prose-sm max-w-none text-slate-700"
+                                 dangerouslySetInnerHTML={{ 
+                                    __html: (() => {
+                                       const escaped = content
+                                          .replace(/&/g, '&amp;')
+                                          .replace(/</g, '&lt;')
+                                          .replace(/>/g, '&gt;')
+                                          .replace(/"/g, '&quot;')
+                                          .replace(/'/g, '&#39;');
+                                       
+                                       let html = escaped
+                                          .replace(/^## (.+)$/gm, '<h2 class="text-xl font-black text-slate-900 mt-8 mb-3">$1</h2>')
+                                          .replace(/^### (.+)$/gm, '<h3 class="text-lg font-bold text-slate-800 mt-5 mb-2">$1</h3>')
+                                          .replace(/\*\*(.+?)\*\*/g, '<strong class="font-black text-slate-900">$1</strong>')
+                                          .replace(/\n\n/g, '</p><p class="mb-4 text-slate-700 leading-relaxed">')
+                                          .replace(/^- (.+)$/gm, '<li class="ml-4 list-disc text-slate-700 mb-1">$1</li>');
+
+                                       if (imageMiddle) {
+                                          const parts = html.split('</h2>');
+                                          if (parts.length > 1) {
+                                             html = parts[0] + `</h2><div class="my-6 rounded-2xl overflow-hidden border border-slate-100 shadow-lg"><img src="${imageMiddle}" class="w-full h-auto" /></div>` + parts.slice(1).join('</h2>');
+                                          }
+                                       }
+                                       return `<p class="mb-4 text-slate-700 leading-relaxed">${html}</p>`;
+                                    })()
+                                 }} 
+                              />
+                              {imageBottom && (
+                                  <div className="rounded-3xl overflow-hidden border border-slate-100 shadow-xl mt-8">
+                                      <img src={imageBottom} alt="Bottom Summary" className="w-full h-auto" />
+                                  </div>
+                              )}
+                           </div>
+                        </div>
+                     )}
                   </div>
                </div>
             </div>

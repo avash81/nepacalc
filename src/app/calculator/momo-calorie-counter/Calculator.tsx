@@ -2,7 +2,7 @@
 import { useMemo } from 'react';
 import { useSyncState } from '@/hooks/useSyncState';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Plus, Trash2, Flame, Info } from 'lucide-react';
+import { Plus, Trash2, Flame, Info, Activity } from 'lucide-react';
 
 const MOMO_TYPES = [
   { id: 'buff',    name: 'Buff Momo (Steamed)',    cal: 35, protein: 3.2, fat: 1.8, carbs: 3.5 },
@@ -31,104 +31,119 @@ export default function MomoCalculator() {
   const add    = () => setState({ ...state, items: [...items, { typeId: 'buff', count: 10 }] });
   const remove = (i: number) => setState({ ...state, items: items.filter((_, idx) => idx !== i) });
 
-  const selectCls = "w-full h-12 px-3 border border-[#DADCE0] rounded-md bg-[#F8F9FA] text-sm font-bold focus:border-[#1A73E8] outline-none text-[#202124] cursor-pointer";
-  const inputCls = "w-full h-12 px-3 border border-[#DADCE0] rounded-md bg-white text-sm font-bold focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none";
-  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider block mb-1.5";
-
   return (
     <ModernCalcLayout
-      crumbs={[{ label: 'Health', href: '/health/' }, { label: 'Momo Calorie Counter' }]}
-      title="Momo Calorie Counter 🥟"
-      description="Track calories and macronutrients for Nepal's favourite dish. Mix varieties and serving sizes for a complete nutritional picture."
+      slug="momo-calorie-counter"
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Health Tools', href: '/health/' }, { label: 'Momo Counter' }]}
+      title="Institutional Momo Calorie Counter & Macro Audit"
+      description="The definitive nutritional engine for Nepal's staple dish. Calibrated to standard Kathmandu restaurant serving sizes with high-precision macro tracking."
       icon={Flame}
       inputs={
-        <div className="space-y-6">
-          <div className="space-y-4">
-            {items.map((item, idx) => (
-              <div key={idx} className="p-5 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg relative shadow-sm">
-                <div className="grid grid-cols-[1fr_90px] gap-4 mb-4">
-                  <div>
-                    <label className={labelCls}>Momo Type</label>
-                    <select value={item.typeId} onChange={e => update(idx, 'typeId', e.target.value)} className={selectCls}>
-                      {MOMO_TYPES.map(t => <option key={t.id} value={t.id}>{t.name} ({t.cal} kcal/pc)</option>)}
-                    </select>
-                  </div>
-                  <div>
-                    <label className={labelCls}>Qty</label>
-                    <input type="number" min={1} max={100} value={item.count} onChange={e => update(idx, 'count', Number(e.target.value))} className={inputCls} />
-                  </div>
+        <div className="space-y-8">
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden border border-white/5">
+             <div className="absolute top-0 right-0 p-10 opacity-10"><Flame className="w-40 h-40" /></div>
+             <div className="relative z-10 space-y-6">
+                <div className="flex justify-between items-center">
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-orange-400">Inventory Slabs</label>
+                   <button onClick={add} className="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white text-[9px] font-black uppercase rounded-xl transition-all shadow-lg flex items-center gap-2">
+                      <Plus className="w-3 h-3" /> Add Variety
+                   </button>
                 </div>
+                
+                <div className="space-y-4">
+                  {items.map((item, idx) => (
+                    <div key={idx} className="p-6 bg-white/5 border border-white/10 rounded-[2rem] relative group transition-all hover:border-orange-500/50">
+                       <div className="grid grid-cols-1 md:grid-cols-[1fr_100px] gap-6">
+                          <div className="space-y-3">
+                             <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Plate Variety</label>
+                             <select value={item.typeId} onChange={e => update(idx, 'typeId', e.target.value)} className="w-full h-12 px-4 bg-white/5 border border-white/10 rounded-xl text-white text-sm font-black focus:border-orange-500 outline-none cursor-pointer">
+                                {MOMO_TYPES.map(t => <option key={t.id} value={t.id} className="bg-slate-900">{t.name}</option>)}
+                             </select>
+                          </div>
+                          <div className="space-y-3">
+                             <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Piece Qty</label>
+                             <input type="number" min={1} value={item.count} onChange={e => update(idx, 'count', Number(e.target.value))} className="w-full h-12 px-4 bg-white/5 border border-white/10 rounded-xl text-white text-sm font-black focus:border-orange-500 outline-none" />
+                          </div>
+                       </div>
 
-                <div className="flex gap-2">
-                  {[5, 10, 20].map(p => (
-                    <button key={p} onClick={() => update(idx, 'count', p)}
-                      className={`flex-1 py-2 text-[10px] font-bold uppercase rounded border transition-all ${item.count === p ? 'bg-white text-[#1A73E8] shadow-sm border border-[#DADCE0]' : 'text-[#70757A] border-[#DADCE0] hover:bg-[#E8F0FE]'}`}>
-                      {p === 5 ? 'Half' : p === 10 ? 'Full' : 'Double'} Plate
-                    </button>
+                       <div className="flex gap-2 mt-6">
+                          {[5, 10, 20].map(p => (
+                             <button key={p} onClick={() => update(idx, 'count', p)} className={`flex-1 py-2 text-[8px] font-black uppercase rounded-lg border transition-all ${item.count === p ? 'bg-orange-600 border-orange-600 text-white shadow-lg scale-105' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'}`}>
+                                {p === 5 ? 'Half' : p === 10 ? 'Full' : 'Double'} Plate
+                             </button>
+                          ))}
+                       </div>
+
+                       {items.length > 1 && (
+                         <button onClick={() => remove(idx)} className="absolute -top-2 -right-2 w-8 h-8 bg-rose-600 text-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-all">
+                            <Trash2 className="w-4 h-4" />
+                         </button>
+                       )}
+                    </div>
                   ))}
                 </div>
-
-                {items.length > 1 && (
-                  <button onClick={() => remove(idx)} className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-white border border-[#DADCE0] text-[#D93025] flex items-center justify-center hover:bg-[#FCE8E6] transition-colors shadow-sm">
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                )}
-              </div>
-            ))}
+             </div>
           </div>
 
-          <button onClick={add} className="w-full py-4 border-2 border-dashed border-[#DADCE0] rounded-lg text-xs font-bold text-[#1A73E8] uppercase hover:bg-[#E8F0FE] hover:border-[#1A73E8] transition-all flex items-center justify-center gap-2">
-            <Plus className="w-4 h-4" /> Add Another Plate/Type
-          </button>
-
-          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden mt-6">
-            <div className="px-4 py-3 bg-[#F8F9FA] border-b border-[#DADCE0]">
-              <h3 className="text-[10px] font-bold uppercase tracking-wider text-[#70757A]">Calorie Database (Per Piece)</h3>
-            </div>
-            <div className="divide-y divide-[#DADCE0]">
-              {MOMO_TYPES.map(t => (
-                <div key={t.id} className="px-4 py-3 flex justify-between items-center hover:bg-[#F8F9FA]">
-                  <span className="text-[11px] font-bold text-[#5F6368]">{t.name}</span>
-                  <span className="text-[11px] font-black text-[#1A73E8] bg-[#E8F0FE] px-2 py-1 rounded">{t.cal} kcal</span>
-                </div>
-              ))}
-            </div>
+          <div className="p-8 border border-slate-200 rounded-[2rem] bg-white space-y-6 shadow-sm">
+             <div className="flex items-center gap-3">
+                <div className="p-2 bg-orange-50 rounded-lg"><Info className="w-4 h-4 text-orange-600" /></div>
+                <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Calorie Intelligence Base</h3>
+             </div>
+             <div className="divide-y divide-slate-100">
+                {MOMO_TYPES.map(t => (
+                   <div key={t.id} className="py-3 flex justify-between items-center group">
+                      <span className="text-[11px] font-bold text-slate-600 group-hover:text-slate-900 transition-colors">{t.name}</span>
+                      <span className="text-[11px] font-black text-orange-600 bg-orange-50 px-3 py-1 rounded-full">{t.cal} kcal/pc</span>
+                   </div>
+                ))}
+             </div>
           </div>
         </div>
       }
       results={
         <div className="space-y-6">
-          <div className="p-8 bg-[#1A1A2E] rounded-lg border border-[#DADCE0] text-center shadow-sm relative overflow-hidden">
-            <Flame className="absolute top-0 right-0 p-4 w-32 h-32 opacity-10 text-orange-500 pointer-events-none" />
-            <div className="text-[10px] font-bold uppercase tracking-wider text-white/70 mb-2 relative z-10">Total Caloric Intake</div>
-            <div className="text-7xl font-black text-orange-500 tracking-tighter mb-2 relative z-10">{result.cals}</div>
-            <div className="text-[11px] font-bold text-white/50 uppercase tracking-widest relative z-10">Kilo-Calories (kcal)</div>
-          </div>
-
-          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
-             <div className="px-4 py-3 bg-[#F8F9FA] border-b border-[#DADCE0]">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#70757A]">Macronutrient Breakdown</span>
-             </div>
-             <div className="grid grid-cols-3 divide-x divide-[#DADCE0]">
-                {[
-                  { label: 'Protein', val: result.protein, unit: 'g', color: 'text-[#1A73E8]' },
-                  { label: 'Fat',     val: result.fat,     unit: 'g', color: 'text-[#D93025]'  },
-                  { label: 'Carbs',   val: result.carbs,   unit: 'g', color: 'text-[#E37400]'},
-                ].map(({ label, val, unit, color }) => (
-                  <div key={label} className="p-5 text-center">
-                    <div className="text-[9px] font-bold uppercase tracking-wider text-[#70757A] mb-1">{label}</div>
-                    <div className={`text-xl font-black font-mono ${color}`}>{val}{unit}</div>
-                  </div>
-                ))}
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Flame className="w-24 h-24 text-orange-600" /></div>
+             <div className="text-[10px] font-bold text-orange-600 uppercase tracking-[0.2em]">Total Caloric Payload</div>
+             <div className="text-6xl font-black tracking-tighter text-slate-900 font-mono uppercase">{result.cals}</div>
+             <div className="px-5 py-2 bg-slate-100 rounded-full inline-block text-[10px] font-black uppercase tracking-tight text-slate-500">
+                Kilo-Calories (kcal)
              </div>
           </div>
 
-          <div className="p-5 bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg flex items-start gap-3">
-             <Info className="w-5 h-5 text-[#1A73E8] shrink-0 mt-0.5" />
-             <p className="text-[11px] text-[#202124] leading-relaxed font-bold">
+          <div className="grid grid-cols-3 gap-3">
+             {[
+               { l: 'PRO', v: result.protein, c: 'text-blue-600', bg: 'bg-blue-50', b: 'border-blue-100' },
+               { l: 'FAT', v: result.fat,     c: 'text-rose-600', bg: 'bg-rose-50', b: 'border-rose-100'  },
+               { l: 'CHO', v: result.carbs,   c: 'text-amber-600',bg: 'bg-amber-50',b: 'border-amber-100'},
+             ].map(m => (
+               <div key={m.l} className={`p-5 rounded-3xl border ${m.b} ${m.bg} text-center space-y-1`}>
+                  <div className={`text-[9px] font-black uppercase tracking-widest ${m.c}`}>{m.l}</div>
+                  <div className={`text-lg font-black ${m.c}`}>{m.v}g</div>
+               </div>
+             ))}
+          </div>
+
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Activity className="w-24 h-24 text-orange-500" /></div>
+             <div className="relative z-10 flex items-center justify-between">
+                <div className="space-y-1">
+                   <h4 className="text-[10px] font-black uppercase tracking-widest text-orange-400">Daily Allowance Hub</h4>
+                   <p className="text-xl font-black">{((result.cals / 2000) * 100).toFixed(1)}% of 2k Limit</p>
+                </div>
+                <div className="h-2 w-24 bg-white/10 rounded-full overflow-hidden">
+                   <div className="h-full bg-orange-400" style={{ width: `${Math.min(100, (result.cals / 2000) * 100)}%` }} />
+                </div>
+             </div>
+          </div>
+
+          <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl flex items-start gap-4">
+             <div className="p-3 bg-white rounded-2xl shadow-sm"><Info className="w-5 h-5 text-blue-600" /></div>
+             <p className="text-[10px] text-slate-600 leading-relaxed font-bold uppercase tracking-tight">
                {result.cals > 600
-                 ? '⚠️ High Calorie Meal: This portion contains significant calories. Consider a 30–45 min brisk walk (burns ≈300 kcal) to help balance your daily intake.'
-                 : '✓ Balanced Portion: Steamed momos, particularly chicken or veg, are a relatively balanced food choice when eaten in moderation.'}
+                 ? 'Institutional Alert: High energy density detected. Consider a 45-minute brisk walk to offset this intake.'
+                 : 'Balanced Audit: This portion aligns with standard nutritional guidelines for a single meal.'}
              </p>
           </div>
         </div>
@@ -185,8 +200,18 @@ export default function MomoCalculator() {
           answer: "While momos are delicious, a daily full plate of steamed buff momos (10 pieces) equates to about 350 calories. If this fits within your Total Daily Energy Expenditure (TDEE), you won't gain weight. However, relying on refined white flour daily may lack necessary dietary fiber."
         }
       ]}
-      sidebar={{ title: "Health & Fitness", links: [{ label: "BMI Calculator", href: "/calculator/bmi" }, { label: "Blood Pressure", href: "/calculator/blood-pressure" }], banner: { title: "Stay Active", description: "You need to walk about 1 mile to burn off just 3 pieces of Buff Momo.", image: "/images/health-banner.jpg" } }}
-      relatedTools={[{ label: "BMI Calculator", href: "/calculator/bmi" }]}
+      sidebar={{ title: "Health & Fitness", links: [
+          { label: "BMI Calculator", href: "/calculator/bmi" }, { label: "Blood Pressure", href: "/calculator/blood-pressure" },
+          { label: "Age Calculator", href: "/calculator/age-calculator/" },
+          { label: "BMI Calculator", href: "/calculator/bmi/" },
+          { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" }
+        ], banner: { title: "Stay Active", description: "You need to walk about 1 mile to burn off just 3 pieces of Buff Momo.", image: "/images/health-banner.jpg" } }}
+      relatedTools={[
+        { label: "BMI Calculator", href: "/calculator/bmi" },
+        { label: "Age Calculator", href: "/calculator/age-calculator/" },
+          { label: "BMI Calculator", href: "/calculator/bmi/" },
+          { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" }
+      ]}
     />
   );
 }

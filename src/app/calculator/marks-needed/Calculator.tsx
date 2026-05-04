@@ -23,9 +23,10 @@ export default function MarksNeededCalculator() {
 
   return (
     <ModernCalcLayout
+      slug="marks-needed"
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Target Grade Calculator' }]}
       title="Final Grade Calculator"
-      description="Calculate exactly what you need to score on your final exam to reach your target overall class grade. Perfect for students planning their study goals."
+      description="Calculate exactly what you need to score on your final exam to reach your target overall class grade."
       icon={GraduationCap}
       inputs={
         <div className="space-y-6">
@@ -94,7 +95,7 @@ export default function MarksNeededCalculator() {
             </div>
             
             <div className={`inline-block px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest rounded relative z-10 ${isImpossible ? 'bg-[#D93025] text-white' : r <= 60 ? 'bg-[#E6F4EA] text-[#188038]' : r <= 80 ? 'bg-[#E8F0FE] text-[#1A73E8]' : 'bg-[#FEF7E0] text-[#E37400]'}`}>
-              {isImpossible ? 'Mathematically Impossible' : r <= 60 ? 'Very Easy Target' : r <= 80 ? 'Achievable Target' : 'Challenging Target'}
+              {isImpossible ? 'Mathematically Impossible' : r <= 60 ? 'Very Easy' : r <= 80 ? 'Achievable' : 'Challenging'}
             </div>
           </div>
 
@@ -117,30 +118,26 @@ export default function MarksNeededCalculator() {
                 </div>
              </div>
           </div>
-
-          <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg flex items-start gap-3">
-             <Info className="w-5 h-5 text-[#1A73E8] shrink-0 mt-0.5" />
-             <div>
-                <h5 className="text-[10px] font-bold uppercase tracking-wider text-[#1A73E8] mb-1">How it works</h5>
-                <p className="text-[11px] text-[#202124] leading-relaxed">
-                  The calculator mathematically balances your current grade against the remaining percentage (weight) of your final exam to find the exact threshold you need to pass.
-                </p>
+        </div>
+      }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+             <div className="flex items-center gap-3 mb-4 border-l-4 border-[#1A73E8] pl-4">
+                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Grade Mapping</h3>
              </div>
+             <p className="text-sm text-[#5F6368] leading-relaxed">
+                Strategic exam planning for semester systems. Calibrated for <strong>TU</strong>, <strong>KU</strong>, and <strong>PU</strong> standards.
+             </p>
           </div>
         </div>
       }
-      howToUse={{ steps: ["Enter your current overall grade in the class (e.g., 85%).", "Enter your target grade for the entire class (e.g., 90%).", "Enter how much your final exam is worth as a percentage of your total grade (e.g., 30%).", "The calculator will instantly show you exactly what you need to score on the final exam."] }}
-      formula={{ title: "Final Grade Formula", description: "Algebraic derivation of a weighted average.", raw: "Final Exam Score = (Target Grade, Current Grade × (1, Exam Weight)) / Exam Weight\n\nNote: All percentage weights are converted to decimals (e.g., 40% = 0.40) during calculation." }}
-      faqs={[
-        { question: "What does 'mathematically impossible' mean?", answer: "If the required score is over 100%, it means that even a perfect 100% on the final exam is not enough to reach your target. This happens when: (a) the exam is worth too small a percentage, or (b) your current grade is too low. Example: current grade 40%, target 80%, exam worth 20% ,  you'd need 280% on the final, which is impossible." },
-        { question: "What if my target is lower than my current grade?", answer: "The calculator will show a very low or 0% requirement. If the result is 0% or negative, it means you have already mathematically locked in your target grade regardless of final exam performance. You could score 0% on the final and still meet your target ,  though this is not recommended as it may affect other requirements." },
-        { question: "How do I use this for TU/PU university exams in Nepal?", answer: "For TU/PU final exams: 'Current Grade' = your internal assessment marks as a percentage. 'Final Exam Weight' = the weight of the board exam (typically 60% for TU, 70% for some PU faculties). 'Target Grade' = minimum passing percentage (usually 40% in TU, 50% in some faculties). The calculator will show your minimum required final exam score." },
-        { question: "What is the typical final exam weight in Nepalese colleges?", answer: "In Tribhuvan University (TU): board exams are typically 60-80% of the total grade, with 20-40% from internal assessment. In Pokhara University (PU): often 70% external, 30% internal. IOE engineering: usually 80% external, 20% internal. Private engineering colleges under PU may vary. Always check your faculty's official grading scheme." },
-        { question: "How can I calculate the minimum needed to pass if I know my internals?", answer: "Set 'Target Grade' to 40% (minimum passing for most TU programs), 'Current Grade' to your internal marks percentage, and 'Final Exam Weight' to the board exam percentage (e.g., 60%). The calculator immediately tells you the minimum board marks needed to pass overall. If the result is below 40%, you've already secured your pass via internals." },
-        { question: "Can I use this to calculate my CGPA target?", answer: "Indirectly yes. Convert your desired grade to a percentage first (e.g., B+ in TU = 55-64%), then set that as your target. For a more sophisticated CGPA-based prediction across multiple semesters with credit weights, use the Engineering GPA Calculator or CGPA Calculator instead, which is specifically designed for credit-hour-weighted academic planning." }
+      relatedTools={[
+        { label: "SEE GPA Calculator", href: "/calculator/see-gpa" },
+        { label: "Percentage Calc", href: "/calculator/percentage/" },
+        { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
+        { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" }
       ]}
-      sidebar={{ title: "Student Tools", links: [{ label: "SEE GPA Calculator", href: "/calculator/see-gpa" }, { label: "Word Counter", href: "/calculator/word-counter" }], banner: { title: "Study Smart", description: "Knowing exactly what you need to score reduces test anxiety.", image: "/images/math-banner.jpg" } }}
-      relatedTools={[{ label: "SEE GPA Calculator", href: "/calculator/see-gpa" }]}
     />
   );
 }

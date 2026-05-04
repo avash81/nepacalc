@@ -159,7 +159,7 @@ export default function SEOPagesAdmin() {
                                 <ExternalLink className="w-4 h-4" />
                               </a>
                             )}
-                            <Link href={`/admin/seo-pages/edit/${page.slug}`} className="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">
+                            <Link href={`/admin/seo-pages/edit?id=${page.id}`} className="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all">
                               <Edit className="w-4 h-4" />
                             </Link>
                             <button onClick={() => handleDelete(page.id, page.title)} disabled={deleting === page.id} className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all disabled:opacity-50">

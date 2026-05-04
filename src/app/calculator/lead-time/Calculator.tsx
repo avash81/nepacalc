@@ -142,8 +142,18 @@ export default function LeadTimeCalculator() {
         { question: "What is a typical supplier lead time for imports into Nepal?", answer: "Import lead times to Nepal vary significantly: China (air freight): 7–10 days. China (sea freight via Kolkata): 35–50 days. India (road freight): 5–14 days. USA/Europe (air): 10–15 days. USA/Europe (sea): 45–75 days. Add 5–15 days for customs clearance at Birgunj/Bhairahawa or Tribhuvan International Airport." },
         { question: "Can I calculate working days backwards from a deadline?", answer: "Yes ,  use 'Order By Date' mode. Enter your target need-by date, specify how many business days of lead time you require, and the calculator counts backwards (skipping weekends) to give you the exact last date to place your order. This is ideal for just-in-time (JIT) procurement planning." }
       ]}
-      sidebar={{ title: "Logistics Tools", links: [{ label: "Number Base Converter", href: "/calculator/base-converter" }, { label: "Standard Deviation", href: "/calculator/standard-deviation" }], banner: { title: "Supply Chain", description: "Accurate lead time tracking prevents stockouts and overstocking.", image: "/images/finance-banner.jpg" } }}
-      relatedTools={[{ label: "Standard Deviation", href: "/calculator/standard-deviation" }]}
+      sidebar={{ title: "Logistics Tools", links: [
+          { label: "Number Base Converter", href: "/calculator/base-converter" }, { label: "Standard Deviation", href: "/calculator/standard-deviation" },
+          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
+          { label: "Percentage Calc", href: "/calculator/percentage/" },
+          { label: "Nepal Salary", href: "/calculator/nepal-salary/" }
+        ], banner: { title: "Supply Chain", description: "Accurate lead time tracking prevents stockouts and overstocking.", image: "/images/finance-banner.jpg" } }}
+      relatedTools={[
+        { label: "Standard Deviation", href: "/calculator/standard-deviation" },
+        { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
+          { label: "Percentage Calc", href: "/calculator/percentage/" },
+          { label: "Nepal Salary", href: "/calculator/nepal-salary/" }
+      ]}
     />
   );
 }

@@ -66,150 +66,131 @@ export default function BMICalculator() {
   return (
     <ModernCalcLayout
       slug="bmi"
-      crumbs={[{ label: 'Health', href: '/health/' }, { label: 'BMI Calculator' }]}
-      title="BMI Calculator"
-      description="Check your Body Mass Index (BMI) based on global WHO standards. A quick tool to assess your weight relative to height."
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Health Tools', href: '/health/' }, { label: 'BMI' }]}
+      title="Institutional BMI"
+      description="The definitive anthropometric engine for Nepal. Calibrated to global WHO standards for high-precision Body Mass Index (BMI) tracking and metabolic screening."
       icon={Scale}
       inputs={
         <div className="space-y-6">
-          <div className="space-y-2">
-            <label className={labelCls}>System of Unit</label>
-            <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
-              {['metric', 'imperial'].map((u) => (
-                <button 
-                  key={u} 
-                  onClick={() => updateState({ unit: u as any })}
-                  className={`flex-1 py-2 text-xs font-bold uppercase rounded-md transition-all ${unit === u ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}
-                >
-                  {u}
-                </button>
-              ))}
-            </div>
+          <div className="grid grid-cols-2 gap-4">
+             <div className="space-y-2">
+                <label className={labelCls}>Weight ({unit === 'metric' ? 'kg' : 'lbs'})</label>
+                <input type="number" value={unit === 'metric' ? weight : lbs} onChange={e => updateState(unit === 'metric' ? { weight: Number(e.target.value) } : { lbs: Number(e.target.value) })} className={inputCls} />
+             </div>
+             <div className="space-y-2">
+                <label className={labelCls}>Unit System</label>
+                <select value={unit} onChange={e => updateState({ unit: e.target.value as any })} className={inputCls}>
+                   <option value="metric">Metric (cm/kg)</option>
+                   <option value="imperial">Imperial (ft/in/lbs)</option>
+                </select>
+             </div>
           </div>
 
-          <div className="space-y-4">
-            {unit === 'metric' ? (
-              <>
+          {unit === 'metric' ? (
+             <div className="space-y-2">
+                <label className={labelCls}>Height (cm)</label>
+                <input type="number" value={height} onChange={e => updateState({ height: Number(e.target.value) })} className={inputCls} />
+             </div>
+          ) : (
+             <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className={labelCls}>Weight (kg)</label>
-                  <input type="number" value={weight} onChange={e => updateState({ weight: Number(e.target.value) })} className={inputCls} />
+                   <label className={labelCls}>Height (ft)</label>
+                   <input type="number" value={feet} onChange={e => updateState({ feet: Number(e.target.value) })} className={inputCls} />
                 </div>
                 <div className="space-y-2">
-                  <label className={labelCls}>Height (cm)</label>
-                  <input type="number" value={height} onChange={e => updateState({ height: Number(e.target.value) })} className={inputCls} />
+                   <label className={labelCls}>Height (in)</label>
+                   <input type="number" value={inches} onChange={e => updateState({ inches: Number(e.target.value) })} className={inputCls} />
                 </div>
-              </>
-            ) : (
-              <>
-                <div className="space-y-2">
-                  <label className={labelCls}>Weight (lbs)</label>
-                  <input type="number" value={lbs} onChange={e => updateState({ lbs: Number(e.target.value) })} className={inputCls} />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className={labelCls}>Height (ft)</label>
-                    <input type="number" value={feet} onChange={e => updateState({ feet: Number(e.target.value) })} className={inputCls} />
-                  </div>
-                  <div className="space-y-2">
-                    <label className={labelCls}>Height (in)</label>
-                    <input type="number" value={inches} onChange={e => updateState({ inches: Number(e.target.value) })} className={inputCls} />
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
+             </div>
+          )}
 
           <button 
             onClick={saveReading}
-            className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm flex items-center justify-center gap-2"
+            className="w-full h-12 bg-[#1A73E8] hover:bg-[#1765CC] text-white font-bold uppercase tracking-widest rounded-md transition-all shadow-sm flex items-center justify-center gap-3"
           >
-            Calculate & Save
+            <Activity className="w-4 h-4" /> Calculate & Archive
           </button>
+
+          <div className="p-6 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg space-y-4">
+             <div className="flex items-center gap-2">
+                <History className="w-4 h-4 text-[#70757A]" />
+                <h3 className="text-[10px] font-bold uppercase tracking-wider text-[#70757A]">Anthropometric History</h3>
+             </div>
+             {readings.length > 0 ? (
+                <div className="space-y-2">
+                   {readings.map((r, i) => (
+                      <div key={i} className="p-3 bg-white border border-[#DADCE0] rounded-md flex justify-between items-center group hover:border-[#1A73E8] transition-all">
+                         <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-[#F8F9FA] border border-[#DADCE0] flex items-center justify-center text-[10px] font-black">{r.bmi.toFixed(1)}</div>
+                            <div className="text-[9px] text-[#70757A] font-bold uppercase">{r.date}</div>
+                         </div>
+                         <span className={`text-[10px] font-black uppercase ${getStatusColor(r.status)}`}>{r.status}</span>
+                      </div>
+                   ))}
+                   <button onClick={() => setReadings([])} className="w-full py-2 text-[9px] font-bold text-[#D93025] uppercase tracking-widest hover:bg-rose-50 rounded transition-all mt-2">Clear Records</button>
+                </div>
+             ) : (
+                <p className="text-[10px] text-[#70757A] text-center py-2 italic uppercase">No snapshots archived.</p>
+             )}
+          </div>
         </div>
       }
       results={
         <div className="space-y-6">
-          {result.success && result.data ? (
-            <>
-              <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
-                <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Your BMI Score</div>
-                <div className="text-5xl font-black text-[#202124]">{result.data.bmi.toFixed(1)}</div>
-                <div className={`text-xs font-black uppercase tracking-widest ${getStatusColor(result.data.status)}`}>
-                  {result.data.status}
+          <div className="p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2">
+             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Anthropometric BMI Score</div>
+             <div className="text-6xl font-black text-[#1A73E8] tracking-tighter">
+               {result.success && result.data ? result.data.bmi.toFixed(1) : '--.-'}
+             </div>
+             {result.success && result.data && (
+                <div className={`text-[10px] font-black uppercase tracking-tighter ${getStatusColor(result.data.status)}`}>
+                   Classification: {result.data.status}
                 </div>
-              </div>
+             )}
+          </div>
 
-              <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
-                 <div className="px-4 py-2 border-b border-[#DADCE0] bg-[#F8F9FA]">
-                   <span className="text-[10px] font-bold text-[#70757A] uppercase">WHO Classification</span>
-                 </div>
-                 <div className="p-3 space-y-2">
-                    {[
-                      { label: 'Underweight', range: '< 18.5', color: 'bg-[#1A73E8]' },
-                      { label: 'Normal Weight', range: '18.5 to 24.9', color: 'bg-[#188038]' },
-                      { label: 'Overweight', range: '25.0 to 29.9', color: 'bg-[#F29900]' },
-                      { label: 'Obese', range: '≥ 30.0', color: 'bg-[#D93025]' },
-                    ].map((r) => (
-                      <div key={r.label} className={`flex justify-between items-center text-[11px] p-1.5 rounded ${result.data?.status.includes(r.label.split(' ')[0]) ? 'bg-[#F1F3F4] font-bold' : ''}`}>
-                        <div className="flex items-center gap-2">
-                          <div className={`w-2 h-2 rounded-full ${r.color}`} />
-                          <span>{r.label}</span>
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 space-y-4 shadow-sm">
+             <h4 className="text-[10px] font-bold uppercase tracking-widest text-[#70757A] text-center border-b border-[#F1F3F4] pb-2">WHO Standard Thresholds</h4>
+             <div className="space-y-2">
+                {[
+                  { label: 'Underweight', range: '< 18.5', color: 'bg-blue-500' },
+                  { label: 'Normal Weight', range: '18.5 - 24.9', color: 'bg-emerald-500' },
+                  { label: 'Overweight', range: '25.0 - 29.9', color: 'bg-amber-500' },
+                  { label: 'Obese', range: '≥ 30.0', color: 'bg-rose-500' },
+                ].map((r) => {
+                  const active = result.data?.status.toLowerCase().includes(r.label.split(' ')[0].toLowerCase());
+                  return (
+                     <div key={r.label} className={`flex justify-between items-center p-3 rounded-md border transition-all ${active ? 'bg-[#F8F9FA] border-[#1A73E8]' : 'bg-transparent border-transparent opacity-40'}`}>
+                        <div className="flex items-center gap-3">
+                           <div className={`w-2 h-2 rounded-full ${r.color}`} />
+                           <span className="text-[10px] font-black uppercase tracking-tight text-[#202124]">{r.label}</span>
                         </div>
-                        <span className="font-mono text-[#70757A]">{r.range}</span>
-                      </div>
-                    ))}
-                 </div>
-              </div>
+                        <span className="text-[10px] font-mono font-bold text-[#70757A]">{r.range}</span>
+                     </div>
+                  );
+                })}
+             </div>
+          </div>
 
-              {readings.length > 0 && (
-                <div className="space-y-2">
-                  <div className="flex justify-between items-center px-1">
-                    <span className={labelCls}>History</span>
-                    <button onClick={() => setReadings([])} className="text-[9px] font-bold text-[#D93025] uppercase">Clear</button>
-                  </div>
-                  <div className="space-y-2">
-                    {readings.map((r, i) => (
-                      <div key={i} className="p-3 bg-white border border-[#DADCE0] rounded-lg flex justify-between items-center text-xs">
-                        <div>
-                          <span className="font-bold">{r.bmi.toFixed(1)}</span>
-                          <span className="text-[#70757A] ml-2 text-[10px]">{r.date}</span>
-                        </div>
-                        <span className={`font-bold ${getStatusColor(r.status)}`}>{r.status}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </>
-          ) : (
-            <div className="text-center py-10 opacity-40">
-              <Activity className="w-10 h-10 mx-auto mb-2" />
-              <p className="text-sm">Enter stats to see classification</p>
-            </div>
-          )}
+          <div className="flex gap-2 p-3 bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg items-start">
+             <Info className="w-4 h-4 text-[#1A73E8] shrink-0 mt-0.5" />
+             <p className="text-[10px] text-[#202124] leading-tight uppercase font-bold">
+                Note: BMI is a population screening tool. Highly muscular individuals may receive non-linear classifications.
+             </p>
+          </div>
         </div>
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Understanding BMI in the Nepal Health Context</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                In Nepal, as urbanization and lifestyle shifts accelerate, monitoring metabolic health has become a critical public health priority. Our <strong className="text-[#202124]">bmi calculator nepal</strong> is calibrated to the global World Health Organization (WHO) standards, providing an immediate screening metric for adults. By analyzing the ratio of your body mass to the square of your height, this tool helps identify potential risks for non-communicable diseases (NCDs) such as hypertension and Type 2 diabetes, which are increasingly prevalent in Nepalese cities.
-              </p>
-              <p>
-                While the <strong className="text-[#202124]">body mass index</strong> is a powerful statistical proxy for body fatness, it is important to interpret results within our regional physiological context. Health professionals in Nepal often use BMI as an entry-point for deeper nutritional counseling, especially when identifying the 'double burden' of malnutrition, where both undernutrition and obesity coexist in different demographic segments.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Technical Slabs & WHO Classification Mechanics</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">The Underweight Threshold (&lt;18.5):</strong> Falling below this slab may indicate nutritional deficiencies or underlying health conditions. In Nepal, this often correlates with food security challenges or high physical labor without adequate caloric intake.</li>
-              <li><strong className="text-[#188038]">The Optimal Healthy Range (18.5–24.9):</strong> This is the target metabolic zone associated with the lowest risk of cardiovascular complications. Maintaining a <strong className="text-[#202124]">healthy weight nepal</strong> status requires a balance of locally sourced nutrient-dense foods and consistent physical activity.</li>
-              <li><strong className="text-[#F29900]">The Overweight & Obese Warning (≥25.0):</strong> Entering these higher categories mathematically increases the pressure on joints and the internal vascular system. For the South Asian population, some studies suggest that health risks may begin at slightly lower BMI points than the global 25.0 threshold, making regular monitoring even more vital.</li>
-            </ul>
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+             <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
+                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Anthropometric Health Audit</h3>
+             </div>
+             <p className="text-sm text-[#5F6368] leading-relaxed">
+                The standard metabolic screening engine for adults in Nepal. Calibrated to <strong>WHO International</strong> standards, this tool 
+                provides immediate verification of Body Mass Index (BMI). Designed for longitudinal health tracking, it helps identify potential 
+                metabolic risks across population-level datasets.
+             </p>
           </div>
         </div>
       }

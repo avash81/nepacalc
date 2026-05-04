@@ -166,8 +166,18 @@ export default function LengthConverter() {
           answer: "In this converter, the smallest standard unit is the Millimeter (mm), equal to 0.001 meters or 0.0394 inches. For sub-millimeter precision in scientific applications, specialized converters handle micrometers (μm) and nanometers (nm)."
         }
       ]}
-      sidebar={{ title: "Conversion Tools", links: [{ label: "Weight Converter", href: "/calculator/weight-converter" }, { label: "Temperature Converter", href: "/calculator/temperature-converter" }], banner: { title: "Global Standards", description: "Only three countries in the world still officially use the Imperial system.", image: "/images/math-banner.jpg" } }}
-      relatedTools={[{ label: "Weight Converter", href: "/calculator/weight-converter" }]}
+      sidebar={{ title: "Conversion Tools", links: [
+          { label: "Weight Converter", href: "/calculator/weight-converter" }, { label: "Temperature Converter", href: "/calculator/temperature-converter" },
+          { label: "BMI Calculator", href: "/calculator/bmi/" },
+          { label: "Percentage Calc", href: "/calculator/percentage/" },
+          { label: "Age Calculator", href: "/calculator/age-calculator/" }
+        ], banner: { title: "Global Standards", description: "Only three countries in the world still officially use the Imperial system.", image: "/images/math-banner.jpg" } }}
+      relatedTools={[
+        { label: "Weight Converter", href: "/calculator/weight-converter" },
+        { label: "BMI Calculator", href: "/calculator/bmi/" },
+          { label: "Percentage Calc", href: "/calculator/percentage/" },
+          { label: "Age Calculator", href: "/calculator/age-calculator/" }
+      ]}
     />
   );
 }

@@ -96,17 +96,17 @@ export default function CGPACalculator() {
              </button>
           </div>
 
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-            Generate Report
+          <button onClick={() => {}} className="w-full h-12 bg-[#1A73E8] hover:bg-[#1765CC] text-white font-bold uppercase tracking-widest rounded-md transition-all shadow-sm flex items-center justify-center gap-2">
+            <Calculator className="w-4 h-4" /> Generate Transcript Audit
           </button>
         </div>
       }
       results={
         <div className="space-y-6">
-          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
-            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Cumulative GPA (CGPA)</div>
-            <div className="text-5xl font-black text-[#1A73E8]">{r.cgpa.toFixed(2)}</div>
-            <div className="text-[11px] font-black text-[#202124] uppercase tracking-widest bg-white/50 px-4 py-1 rounded-full inline-block mt-2 border border-[#1A73E8]/20">{getLetter(r.cgpa)}</div>
+          <div className="p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2">
+             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Cumulative Performance Index</div>
+             <div className="text-6xl font-black text-[#1A73E8] tracking-tighter">{r.cgpa.toFixed(2)}</div>
+             <div className="text-[10px] font-bold text-[#70757A] uppercase tracking-tighter">{getLetter(r.cgpa)}</div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -145,19 +145,35 @@ export default function CGPACalculator() {
           </div>
         </div>
       }
+      details={
+        <div className="space-y-8">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+             <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
+                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Academic Performance Audit</h3>
+             </div>
+             <p className="text-sm text-[#5F6368] leading-relaxed">
+                The institutional engine for cumulative GPA assessment. Calibrated for high-precision credit-weighted 
+                averaging, this tool defines the mathematical mean across multiple semesters. Adhering to standards 
+                from <strong>Tribhuvan (TU)</strong>, <strong>Kathmandu (KU)</strong>, and <strong>International 
+                Credit Systems</strong>, it provides an authoritative verification of academic standing, honors 
+                eligibility, and estimated percentage equivalents.
+             </p>
+          </div>
+        </div>
+      }
       howToUse={{
         steps: [
-          "Enter your GPA for each semester in the first column.",
-          "Enter the total credit hours for that semester in the second column.",
-          "Click 'Add Another Semester' to include more data points.",
-          "Remove any empty or incorrect rows using the trash icon.",
-          "Review your final Cumulative GPA and the letter grade classification."
+          "Enter Credits: Input the total credit hours for each semester.",
+          "Select Grade: Choose your achieved GPA for that semester.",
+          "Add Semesters: Add multiple semester results sequentially.",
+          "Analyze: View your weighted cumulative average.",
+          "Check the system reference table for exact point mapping."
         ]
       }}
       formula={{
-        title: "Credit-Weighted Averaging",
-        description: "CGPA is not a simple average. It is weighted by the credit hours of each semester.",
-        raw: "CGPA = Σ (Semester GPA × Semester Credits) / Σ (Semester Credits)"
+        title: "The Formula Toolkit",
+        description: "The Cumulative Grade Point Average (CGPA) is a weighted mean calculation.",
+        raw: "$$CGPA = \\frac{\\sum (Semester\\_GPA \\times Semester\\_Credits)}{\\sum Semester\\_Credits}$$"
       }}
       faqs={[
         {

@@ -23,86 +23,191 @@ export default function DiscountCalculator() {
 
   return (
     <ModernCalcLayout
-      crumbs={[{ label: 'Converters', href: '/converters/' }, { label: 'Discount Calculator' }]}
-      title="Discount & Sale Calculator"
-      description="Calculate the final sale price after any percentage discount. See exact savings, deal ratings, and compare multiple offers instantly."
+      slug="discount-calculator"
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Retail Tools', href: '/retail/' }, { label: 'Discount Calculator' }]}
+      title="Discount Calculator"
+      description="Determine final purchase prices and total savings across retail and wholesale cycles in Nepal."
       icon={Tag}
       inputs={
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <label className={labelCls}>Original Price / MRP</label>
-            <div className="relative">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A] font-bold">Rs.</span>
-              <input type="number" value={price} onChange={e => update({ price: Number(e.target.value) })} className={`${inputCls} pl-10`} />
-            </div>
+        <div className="space-y-8">
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-10 opacity-10"><Tag className="w-40 h-40" /></div>
+             <div className="relative z-10 grid grid-cols-1 gap-6">
+                <div className="space-y-4">
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Original MRP (NPR)</label>
+                   <input 
+                      type="number" 
+                      value={price} 
+                      onChange={(e) => update({ price: Number(e.target.value) })}
+                      className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" 
+                   />
+                </div>
+                <div className="space-y-4">
+                   <div className="flex justify-between items-center">
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Discount (%)</label>
+                      <span className="text-[10px] font-black text-blue-400">{discount}% OFF</span>
+                   </div>
+                   <input 
+                      type="range" 
+                      min={0} 
+                      max={100} 
+                      value={discount} 
+                      onChange={(e) => update({ discount: Number(e.target.value) })}
+                      className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-blue-500" 
+                   />
+                </div>
+             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className={labelCls}>Discount Percentage</label>
-            <div className="relative">
-              <input type="number" value={discount} min={0} max={100} onChange={e => update({ discount: Number(e.target.value) })} className={inputCls} />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">%</span>
-            </div>
+          <div className="p-8 border border-slate-200 rounded-[2rem] bg-white space-y-6 shadow-sm">
+             <div className="flex items-center gap-3">
+                <div className="p-2 bg-blue-50 rounded-lg"><Zap className="w-4 h-4 text-blue-600" /></div>
+                <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Quick Presets</h3>
+             </div>
+             <div className="grid grid-cols-4 gap-2">
+                {[10, 25, 50, 75].map(v => (
+                  <button 
+                    key={v} 
+                    onClick={() => update({ discount: v })}
+                    className={`py-3 text-[10px] font-black uppercase rounded-lg transition-all ${discount === v ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 bg-slate-50 border border-slate-100 hover:bg-white'}`}
+                  >
+                    {v}%
+                  </button>
+                ))}
+             </div>
           </div>
-
-          <div className="space-y-2">
-            <label className={labelCls}>Quick Presets</label>
-            <div className="grid grid-cols-4 gap-2">
-              {[5, 10, 25, 50].map(v => (
-                <button key={v} onClick={() => update({ discount: v })}
-                  className={`py-2.5 text-xs font-black border rounded-md transition-all ${discount === v ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>
-                  {v}%
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="space-y-2 p-4 bg-[#F8F9FA] rounded-lg border border-[#DADCE0]">
-            <div className="flex justify-between text-[11px] font-bold uppercase text-[#70757A]">
-              <span>Discount Applied</span><span>{discount}%</span>
-            </div>
-            <div className="h-3 bg-white rounded-full w-full overflow-hidden border border-[#DADCE0]">
-              <div className="h-full bg-[#1A73E8] rounded-full transition-all duration-500" style={{ width: `${Math.min(discount, 100)}%` }} />
-            </div>
-          </div>
-
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-            Calculate Savings
-          </button>
         </div>
       }
       results={
         <div className="space-y-6">
-          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
-            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Final Price (You Pay)</div>
-            <div className="text-4xl font-black text-[#188038]">Rs. {fmt(r.final)}</div>
-            <div className="text-[11px] font-black text-[#D93025] uppercase tracking-tight">You save Rs. {fmt(r.savings)}</div>
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><ShoppingBag className="w-24 h-24 text-emerald-600" /></div>
+             <div className="text-[10px] font-bold text-emerald-600 uppercase tracking-[0.2em]">Final Purchase Price</div>
+             <div className="text-5xl font-black tracking-tighter text-slate-900 font-mono uppercase">Rs. {fmt(r.final)}</div>
+             <div className="px-5 py-2 bg-emerald-50 rounded-full inline-block text-[10px] font-black uppercase tracking-tight text-emerald-600">
+                You Save Rs. {fmt(r.savings)}
+             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center">
-              <div className="text-[9px] font-bold text-[#70757A] uppercase">Original Price</div>
-              <div className="text-sm font-black text-[#202124]">Rs. {fmt(price)}</div>
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1">
+                <div className="text-[9px] font-black text-slate-400 uppercase">Original MRP</div>
+                <div className="text-xl font-black text-slate-900">Rs. {fmt(price)}</div>
+             </div>
+             <div className="p-6 bg-blue-50 border border-blue-100 rounded-3xl space-y-1">
+                <div className="text-[9px] font-black text-blue-600 uppercase">Deal Rating</div>
+                <div className="text-xl font-black text-blue-600">{isHotDeal ? '🔥 HOT' : '✓ GOOD'}</div>
+             </div>
+          </div>
+
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Percent className="w-24 h-24 text-blue-500" /></div>
+             <div className="relative z-10 space-y-3">
+                <div className="flex items-center gap-2">
+                   <div className="w-1.5 h-4 bg-emerald-400 rounded-full" />
+                   <h4 className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Consumer Logic</h4>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-relaxed uppercase font-bold tracking-tighter">
+                   {isHotDeal ? 'Premium clearance-level discount detected. This represents peak value for Nepalese retail cycles.' : 'Standard retail discount applied. Ideal for bulk budgeting and monthly household planning.'}
+                </p>
+             </div>
+          </div>
+        </div>
+      }
+      details={
+        <div className="space-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-6 opacity-5"><Percent className="w-20 h-20 text-blue-600" /></div>
+              <div className="flex items-center gap-2 mb-8">
+                <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Savings Audit</h3>
+              </div>
+              <div className="space-y-6">
+                 <div className="flex justify-between items-end">
+                    <span className="text-[10px] font-black text-slate-400 uppercase">Original Cost</span>
+                    <span className="text-xl font-black text-slate-900">Rs. {fmt(price)}</span>
+                 </div>
+                 <div className="w-full h-4 bg-slate-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-blue-600 rounded-full" style={{ width: `${100 - discount}%` }} />
+                 </div>
+                 <div className="flex justify-between items-end">
+                    <span className="text-[10px] font-black text-emerald-600 uppercase">Net Savings</span>
+                    <span className="text-xl font-black text-emerald-600">Rs. {fmt(r.savings)}</span>
+                 </div>
+                 <div className="w-full h-4 bg-emerald-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${discount}%` }} />
+                 </div>
+              </div>
             </div>
-            <div className="p-4 bg-white border border-[#DADCE0] rounded-lg text-center">
-              <div className="text-[9px] font-bold text-[#70757A] uppercase">Amount Saved</div>
-              <div className="text-sm font-black text-[#D93025]">Rs. {fmt(r.savings)}</div>
+
+            <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+               <div className="absolute -bottom-12 -right-12 opacity-10"><ShoppingBag className="w-64 h-64 text-emerald-500" /></div>
+               <h3 className="text-2xl font-black mb-6 tracking-tight text-emerald-400 uppercase tracking-widest">Market Psychology</h3>
+               <p className="text-xs text-slate-400 leading-relaxed font-bold uppercase tracking-tighter mb-8">
+                  In Nepal, the "Discount" label is often a precursor to Dashain, Tihar, and New Year sales. Understanding the net impact on your wallet is the first step toward institutional-grade household budgeting.
+               </p>
+               <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
+                  <div className="text-[9px] font-black text-emerald-400 uppercase mb-2 tracking-widest">Value Retention</div>
+                  <div className="text-3xl font-black text-white">{100 - discount}%</div>
+                  <div className="text-[9px] font-bold text-slate-500 uppercase mt-1">Cost of Acquisition</div>
+               </div>
             </div>
           </div>
 
-          <div className="p-4 bg-white border border-[#DADCE0] rounded-lg flex justify-between items-center">
-            <span className="text-[11px] font-bold uppercase text-[#70757A]">Deal Rating</span>
-            <span className={`text-sm font-black ${isHotDeal ? 'text-[#D93025]' : 'text-[#1A73E8]'}`}>
-              {isHotDeal ? '🔥 HOT DEAL' : '✓ GOOD SAVE'}
-            </span>
-          </div>
+          <section className="bg-white border border-slate-200 rounded-[3rem] p-12 shadow-sm relative overflow-hidden">
+            <div className="absolute -top-12 -right-12 opacity-5">
+                <Tag className="w-64 h-64 text-blue-600" />
+            </div>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="bg-blue-50 p-4 rounded-2xl">
+                  <Percent className="w-8 h-8 text-blue-600" />
+              </div>
+              <h2 className="text-4xl font-black text-slate-900 tracking-tighter uppercase">The Discount Encyclopedia: Consumer Optimization</h2>
+            </div>
+            <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-8 text-lg">
+              <p>
+                A <strong>Discount</strong> is a reduction in the basic price of a good or service. While it appears simple, the mathematics of discounting involves understanding <strong>percentage points</strong>, <strong>effective price floors</strong>, and the impact of mandatory taxes like <strong>VAT</strong> in Nepal.
+              </p>
+              
+              <div className="bg-blue-50 border border-blue-100 p-8 rounded-[2.5rem] flex gap-6 items-start my-10">
+                 <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm shrink-0">
+                    <Zap className="w-6 h-6 text-blue-600" />
+                 </div>
+                 <div>
+                    <h4 className="text-sm font-black text-slate-900 mb-2 uppercase tracking-widest">The "Net-VAT" Nuance</h4>
+                    <p className="text-[11px] font-medium text-slate-500 leading-relaxed">
+                      In the Nepalese retail landscape, discounts are typically applied to the <strong>Maximum Retail Price (MRP)</strong> before the 13% VAT is calculated (if not already included). This distinction is critical for large-ticket items like electronics and automobiles where the tax component is substantial.
+                    </p>
+                 </div>
+              </div>
 
-          <div className="flex gap-2 p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg items-center">
-            <ShoppingBag className="w-4 h-4 text-[#188038] shrink-0" />
-            <p className="text-[10px] text-[#202124] leading-tight">
-              {isHotDeal ? 'Premium clearance-level discount. Excellent value!' : 'Standard retail discount. Good for budget planning.'}
-            </p>
-          </div>
+              <h3 className="text-2xl font-black text-slate-900 mt-12 mb-6 uppercase">1. Types of Discounts in Nepal</h3>
+              <p>
+                From <strong>Cash Discounts</strong> (deductions for immediate payment) to <strong>Trade Discounts</strong> (given by wholesalers to retailers), the goal is always to incentivize a transaction. In local supermarkets like Bhat-Bhateni or Big Mart, "Buy 1 Get 1" (BOGO) is mathematically equivalent to a <strong>50% discount</strong> on each item.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-10">
+                 <div className="p-8 border border-slate-200 rounded-[2rem] space-y-4 bg-slate-50">
+                    <h4 className="text-xs font-black text-blue-600 uppercase tracking-widest">The "Flat" Trap</h4>
+                    <p className="text-[11px] font-medium leading-relaxed">
+                      "Flat 50% Off" is often more transparent than "Up to 70% Off." The latter usually implies that only select, low-value items carry the maximum discount, while popular items remain closer to the MRP.
+                    </p>
+                 </div>
+                 <div className="p-8 border border-slate-200 rounded-[2rem] space-y-4 bg-emerald-50">
+                    <h4 className="text-xs font-black text-emerald-600 uppercase tracking-widest">Effective Savings</h4>
+                    <p className="text-[11px] font-medium leading-relaxed">
+                      Always calculate the <strong>per-unit cost</strong>. A 10% discount on a bulk pack might offer lower effective savings than a 25% discount on individual units during a clearance cycle.
+                    </p>
+                 </div>
+              </div>
+
+              <h3 className="text-2xl font-black text-slate-900 mt-12 mb-6 uppercase">2. Psychology of Pricing</h3>
+              <p>
+                Retailers use <strong>Charity Pricing</strong> (ending in .99 or .95) to make prices seem significantly lower. A discount that brings a price from Rs. 1005 to Rs. 995 feels larger than it is because of the "left-digit effect." This tool helps you bypass that psychological trigger by showing the raw, unvarnished savings amount.
+              </p>
+            </div>
+          </section>
         </div>
       }
       howToUse={{ steps: ["Enter the original MRP of the product.", "Enter the discount percentage offered.", "Use Quick Presets for common sale percentages.", "View the final discounted price and your total savings."] }}

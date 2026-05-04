@@ -181,8 +181,18 @@ export default function Geometry3D() {
           answer: "A capsule is geometrically defined as a cylinder with two hemispheres attached to its ends. The 'height' input refers strictly to the length of the cylindrical body section, not the total end-to-end length."
         }
       ]}
-      sidebar={{ title: "Mathematics", links: [{ label: "Area Calculator (2D)", href: "/calculator/area-calculator" }, { label: "Unit Converter", href: "/calculator/unit-converter" }], banner: { title: "Spatial Logic", description: "Volume represents capacity, while surface area represents the outer boundary footprint.", image: "/images/math-banner.jpg" } }}
-      relatedTools={[{ label: "Area Calculator", href: "/calculator/area-calculator" }]}
+      sidebar={{ title: "Mathematics", links: [
+          { label: "Area Calculator (2D)", href: "/calculator/area-calculator" }, { label: "Unit Converter", href: "/calculator/unit-converter" },
+          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
+          { label: "Nepal Salary", href: "/calculator/nepal-salary/" }
+        ], banner: { title: "Spatial Logic", description: "Volume represents capacity, while surface area represents the outer boundary footprint.", image: "/images/math-banner.jpg" } }}
+      relatedTools={[
+        { label: "Area Calculator", href: "/calculator/area-calculator" },
+        { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
+          { label: "Nepal Salary", href: "/calculator/nepal-salary/" }
+      ]}
     />
   );
 }

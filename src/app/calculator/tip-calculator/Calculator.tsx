@@ -1,7 +1,7 @@
 'use client';
 import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Users, UtensilsCrossed, Info } from 'lucide-react';
+import { Users, UtensilsCrossed, Info, Percent, ShoppingBag } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
 
 function fmt(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
@@ -29,94 +29,189 @@ export default function TipCalculator() {
       description="Calculate tip amounts and split bills evenly among any group. Perfect for restaurants, cafes, and group dining in Nepal."
       icon={UtensilsCrossed}
       inputs={
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <label className={labelCls}>Total Bill Amount</label>
-            <div className="relative">
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xs font-bold text-[#70757A]">NPR</span>
-              <input type="number" value={bill} min={0} onChange={e => update({ bill: Number(e.target.value) })} className={`${inputCls} pl-12`} />
-            </div>
+        <div className="space-y-8">
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-10 opacity-10"><UtensilsCrossed className="w-40 h-40" /></div>
+             <div className="relative z-10 grid grid-cols-1 gap-6">
+                <div className="space-y-4">
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Total Bill (NPR)</label>
+                   <input 
+                      type="number" 
+                      value={bill} 
+                      onChange={(e) => update({ bill: Number(e.target.value) })}
+                      className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" 
+                   />
+                </div>
+                <div className="space-y-4">
+                   <div className="flex justify-between items-center">
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Tip Percentage</label>
+                      <span className="text-[10px] font-black text-blue-400">{tipPercent}%</span>
+                   </div>
+                   <input 
+                      type="range" 
+                      min={0} 
+                      max={30} 
+                      value={tipPercent} 
+                      onChange={(e) => update({ tipPercent: Number(e.target.value) })}
+                      className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-blue-500" 
+                   />
+                </div>
+                <div className="space-y-4">
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Number of People</label>
+                   <div className="flex gap-4 items-center">
+                      <button onClick={() => update({ people: Math.max(1, people - 1) })} className="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-white/10 transition-all text-xl font-black">-</button>
+                      <div className="flex-1 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-xl font-black">{people}</div>
+                      <button onClick={() => update({ people: people + 1 })} className="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-white/10 transition-all text-xl font-black">+</button>
+                   </div>
+                </div>
+             </div>
           </div>
 
-          <div className="space-y-2">
-            <div className="flex justify-between">
-              <label className={labelCls}>Tip Percentage</label>
-              <span className="text-[11px] font-black text-[#1A73E8]">{tipPercent}%</span>
-            </div>
-            <div className="grid grid-cols-4 gap-2">
-              {[5, 10, 15, 20].map(v => (
-                <button key={v} onClick={() => update({ tipPercent: v })}
-                  className={`py-2.5 text-xs font-black border rounded-md transition-all ${tipPercent === v ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>
-                  {v}%
-                </button>
-              ))}
-            </div>
-            <input type="range" min={0} max={30} step={1} value={tipPercent}
-              onChange={e => update({ tipPercent: Number(e.target.value) })}
-              className="w-full accent-[#1A73E8] mt-1" />
+          <div className="p-8 border border-slate-200 rounded-[2.5rem] bg-white space-y-6 shadow-sm">
+             <div className="flex items-center gap-3">
+                <div className="p-2 bg-blue-50 rounded-lg"><Percent className="w-4 h-4 text-blue-600" /></div>
+                <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Service Standards</h3>
+             </div>
+             <div className="grid grid-cols-4 gap-2">
+                {[5, 10, 15, 20].map(v => (
+                  <button 
+                    key={v} 
+                    onClick={() => update({ tipPercent: v })}
+                    className={`py-3 text-[10px] font-black uppercase rounded-xl transition-all ${tipPercent === v ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 bg-slate-50 border border-slate-100 hover:bg-white'}`}
+                  >
+                    {v}%
+                  </button>
+                ))}
+             </div>
           </div>
-
-          <div className="space-y-2">
-            <div className="flex justify-between">
-              <label className={labelCls}>Number of People</label>
-              <span className="text-[11px] font-black text-[#1A73E8]">{people} {people === 1 ? 'person' : 'people'}</span>
-            </div>
-            <div className="grid grid-cols-6 gap-2">
-              {[1, 2, 3, 4, 5, 6].map(v => (
-                <button key={v} onClick={() => update({ people: v })}
-                  className={`py-2 text-xs font-black border rounded-md transition-all ${people === v ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>
-                  {v}
-                </button>
-              ))}
-            </div>
-            <input type="number" value={people} min={1}
-              onChange={e => update({ people: Math.max(1, Number(e.target.value)) })} className={inputCls} />
-          </div>
-
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-            Split Bill
-          </button>
         </div>
       }
       results={
         <div className="space-y-6">
-          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
-            <div className="flex items-center justify-center gap-2">
-              <Users className="w-4 h-4 text-[#1A73E8]" />
-              <span className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Each Person Pays</span>
-            </div>
-            <div className="text-4xl font-black text-[#1A73E8]">{fmt(r.perPerson)}</div>
-            <div className="text-[9px] text-[#70757A] font-bold uppercase">Split {people} {people === 1 ? 'way' : 'ways'}</div>
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Users className="w-24 h-24 text-blue-600" /></div>
+             <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Each Person Pays</div>
+             <div className="text-5xl font-black tracking-tighter text-slate-900 font-mono uppercase">{fmt(r.perPerson)}</div>
+             <div className="px-5 py-2 bg-slate-100 rounded-full inline-block text-[10px] font-black uppercase tracking-tight text-slate-500">
+                Split {people} {people === 1 ? 'way' : 'ways'}
+             </div>
           </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
-            <div className="px-4 py-2 bg-[#F8F9FA] border-b border-[#DADCE0]">
-              <span className="text-[10px] font-bold text-[#70757A] uppercase">Full Breakdown</span>
+          <div className="grid grid-cols-2 gap-4">
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1">
+                <div className="text-[9px] font-black text-slate-400 uppercase">Total Tip</div>
+                <div className="text-xl font-black text-slate-900">{fmt(r.totalTip)}</div>
+             </div>
+             <div className="p-6 bg-blue-50 border border-blue-100 rounded-3xl space-y-1">
+                <div className="text-[9px] font-black text-blue-600 uppercase">Total Bill</div>
+                <div className="text-xl font-black text-blue-600">{fmt(r.totalBill)}</div>
+             </div>
+          </div>
+
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><ShoppingBag className="w-24 h-24 text-emerald-500" /></div>
+             <div className="relative z-10 space-y-3">
+                <div className="flex items-center gap-2">
+                   <div className="w-1.5 h-4 bg-emerald-400 rounded-full" />
+                   <h4 className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Hospitality Note</h4>
+                </div>
+                <p className="text-[11px] text-slate-400 leading-relaxed uppercase font-bold tracking-tighter">
+                   {tipPercent >= 10 ? 'Standard institutional tipping applied. This aligns with Kathmandu hospitality norms.' : 'Minimal tip selected. Tipping remains optional but appreciated in tourist hubs.'}
+                </p>
+             </div>
+          </div>
+        </div>
+      }
+      details={
+        <div className="space-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-6 opacity-5"><Percent className="w-20 h-20 text-blue-600" /></div>
+              <div className="flex items-center gap-2 mb-8">
+                <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Bill Composition</h3>
+              </div>
+              <div className="space-y-6">
+                 <div className="flex justify-between items-end">
+                    <span className="text-[10px] font-black text-slate-400 uppercase">Original Amount</span>
+                    <span className="text-xl font-black text-slate-900">{fmt(bill)}</span>
+                 </div>
+                 <div className="w-full h-4 bg-slate-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-blue-600 rounded-full" style={{ width: `${(bill / r.totalBill) * 100}%` }} />
+                 </div>
+                 <div className="flex justify-between items-end">
+                    <span className="text-[10px] font-black text-emerald-600 uppercase">Total Tip</span>
+                    <span className="text-xl font-black text-emerald-600">{fmt(r.totalTip)}</span>
+                 </div>
+                 <div className="w-full h-4 bg-emerald-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${(r.totalTip / r.totalBill) * 100}%` }} />
+                 </div>
+              </div>
             </div>
-            <div className="divide-y divide-[#DADCE0]">
-              <div className="p-3 flex justify-between text-xs">
-                <span className="text-[#5F6368]">Original Bill</span>
-                <span className="font-black">{fmt(bill)}</span>
-              </div>
-              <div className="p-3 flex justify-between text-xs">
-                <span className="text-[#5F6368]">Total Tip ({tipPercent}%)</span>
-                <span className="font-black text-[#188038]">+ {fmt(r.totalTip)}</span>
-              </div>
-              <div className="p-3 flex justify-between text-xs bg-[#F8F9FA]">
-                <span className="font-bold text-[#202124]">Total Bill + Tip</span>
-                <span className="font-black text-[#1A73E8]">{fmt(r.totalBill)}</span>
-              </div>
-              <div className="p-3 flex justify-between text-xs">
-                <span className="text-[#5F6368]">Tip Per Person</span>
-                <span className="font-black">{fmt(r.tipPerPerson)}</span>
-              </div>
+
+            <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+               <div className="absolute -bottom-12 -right-12 opacity-10"><Users className="w-64 h-64 text-emerald-500" /></div>
+               <h3 className="text-2xl font-black mb-6 tracking-tight text-emerald-400 uppercase tracking-widest">Individual Burden</h3>
+               <p className="text-xs text-slate-400 leading-relaxed font-bold uppercase tracking-tighter mb-8">
+                  Splitting the bill evenly ensures social transparency. In Nepal, "going Dutch" is common among urban professionals and students.
+               </p>
+               <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
+                  <div className="text-[9px] font-black text-emerald-400 uppercase mb-2 tracking-widest">Each Person Owed</div>
+                  <div className="text-3xl font-black text-white">{fmt(r.perPerson)}</div>
+                  <div className="text-[9px] font-bold text-slate-500 uppercase mt-1">Inclusive of {tipPercent}% Tip</div>
+               </div>
             </div>
           </div>
 
-          <div className="flex gap-2 p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg items-center">
-            <Info className="w-4 h-4 text-[#188038] shrink-0" />
-            <p className="text-[10px] text-[#202124] leading-tight">In Nepal, tipping is optional but appreciated ,  10% is standard at restaurants in Kathmandu.</p>
-          </div>
+          <section className="bg-white border border-slate-200 rounded-[3rem] p-12 shadow-sm relative overflow-hidden">
+            <div className="absolute -top-12 -right-12 opacity-5">
+                <UtensilsCrossed className="w-64 h-64 text-blue-600" />
+            </div>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="bg-blue-50 p-4 rounded-2xl">
+                  <Percent className="w-8 h-8 text-blue-600" />
+              </div>
+              <h2 className="text-4xl font-black text-slate-900 tracking-tighter uppercase">The Tip Encyclopedia: Dining Etiquette in Nepal</h2>
+            </div>
+            <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-8 text-lg">
+              <p>
+                Tipping in <strong>Nepal</strong> is a nuanced practice that has evolved with the growth of tourism and the urban restaurant scene. Unlike North America, it is not mandatory but acts as a gesture of appreciation for quality service.
+              </p>
+              
+              <div className="bg-blue-50 border border-blue-100 p-8 rounded-[2.5rem] flex gap-6 items-start my-10">
+                 <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm shrink-0">
+                    <Info className="w-6 h-6 text-blue-600" />
+                 </div>
+                 <div>
+                    <h4 className="text-sm font-black text-slate-900 mb-2 uppercase tracking-widest">The "Service Charge" Context</h4>
+                    <p className="text-[11px] font-medium text-slate-500 leading-relaxed">
+                      Many upscale restaurants in Kathmandu already include a <strong>10% Service Charge</strong> and <strong>13% VAT</strong>. If these are already on your bill, an additional tip is purely voluntary and typically smaller (around 5%).
+                    </p>
+                 </div>
+              </div>
+
+              <h3 className="text-2xl font-black text-slate-900 mt-12 mb-6 uppercase">1. Tipping Guidelines by Scenario</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-10">
+                 <div className="p-8 border border-slate-200 rounded-[2rem] space-y-4 bg-slate-50">
+                    <h4 className="text-xs font-black text-blue-600 uppercase tracking-widest">Casual Dining & Cafes</h4>
+                    <p className="text-[11px] font-medium leading-relaxed">
+                      Rounding up to the nearest Rs. 50 or Rs. 100 is standard. For a Rs. 1,420 bill, leaving Rs. 1,500 is considered a polite gesture.
+                    </p>
+                 </div>
+                 <div className="p-8 border border-slate-200 rounded-[2rem] space-y-4 bg-emerald-50">
+                    <h4 className="text-xs font-black text-emerald-600 uppercase tracking-widest">Trekking & Guides</h4>
+                    <p className="text-[11px] font-medium leading-relaxed">
+                      For trekking staff, tips are a significant part of their seasonal income. It is customary to provide a group tip at the end of the journey, typically 10-15% of the total guide/porter fees.
+                    </p>
+                 </div>
+              </div>
+
+              <h3 className="text-2xl font-black text-slate-900 mt-12 mb-6 uppercase">2. The Math of Splitting</h3>
+              <p>
+                Our tool uses <strong>equal division logic</strong>. For complex bills where items differ significantly in price, we recommend calculating the total tip percentage first, then applying that percentage to each individual's subtotal.
+              </p>
+            </div>
+          </section>
         </div>
       }
       howToUse={{ steps: ["Enter the total restaurant bill amount.", "Select a tip percentage using the preset buttons or the slider.", "Choose the number of people splitting the bill.", "View the per-person amount including tip."] }}

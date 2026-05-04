@@ -85,45 +85,34 @@ export default function AreaCalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-8 bg-[#1A1A2E] border border-[#DADCE0] rounded-lg text-center relative overflow-hidden">
-             <div className="absolute top-0 right-0 w-32 h-32 bg-[#1A73E8] opacity-10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none" />
-             <div className="text-[10px] font-bold uppercase tracking-wider text-white/60 mb-2 relative z-10">Calculated Area</div>
-             <div className="text-4xl sm:text-5xl font-black text-white tracking-tighter mb-4 relative z-10">{result.area.toLocaleString(undefined, { maximumFractionDigits: 4 })}</div>
-             <div className="text-[10px] font-bold text-[#1A73E8] uppercase bg-[#E8F0FE] inline-flex px-3 py-1 rounded relative z-10 tracking-wider">Formula: {result.formula}</div>
+          <div className="p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2">
+             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Calculated Surface Area</div>
+             <div className="text-5xl font-black text-[#1A73E8] tracking-tighter">{result.area.toLocaleString(undefined, { maximumFractionDigits: 4 })}</div>
+             <div className="text-[10px] font-bold text-[#70757A] uppercase tracking-tighter">Formula Applied: {result.formula}</div>
           </div>
 
           <div className="bg-white border border-[#DADCE0] rounded-lg p-5 space-y-3">
              <h4 className="text-[10px] font-bold uppercase tracking-wider text-[#70757A] flex items-center gap-2">
-               <HelpCircle className="w-3.5 h-3.5" /> Measurement Context
+               <HelpCircle className="w-3.5 h-3.5" /> Measurement Protocol
              </h4>
              <ul className="space-y-2 text-xs text-[#202124] leading-relaxed">
-               <li className="flex gap-2 items-start"><div className="w-1.5 h-1.5 rounded-full bg-[#1A73E8] mt-1.5 shrink-0" />Ensure all units (cm, m, inches) are identical before calculating.</li>
-               <li className="flex gap-2 items-start"><div className="w-1.5 h-1.5 rounded-full bg-[#1A73E8] mt-1.5 shrink-0" />The final area is always represented in "square units" (e.g. square meters, square feet).</li>
+               <li className="flex gap-2 items-start"><div className="w-1.5 h-1.5 rounded-full bg-[#1A73E8] mt-1.5 shrink-0" />Ensure consistent units (cm, m, ft) across all input parameters.</li>
+               <li className="flex gap-2 items-start"><div className="w-1.5 h-1.5 rounded-full bg-[#1A73E8] mt-1.5 shrink-0" />Output is represented in square units of the chosen measurement.</li>
              </ul>
           </div>
         </div>
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering Geometric Surface Calculations</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                Surface area is one of the most fundamental measurements in both theoretical mathematics and practical engineering. Our <strong className="text-[#202124]">area calculator</strong> is an all-in-one geometry engine designed to compute the exact footprint of 2D shapes. Whether you are a student solving a geometry proof or a contractor in Kathmandu estimating the number of tiles required for a project, precision is non-negotiable.
-              </p>
-              <p>
-                A common pitfall in surface calculation is unit inconsistency. This <strong className="text-[#202124]">shape area calculator</strong> assumes that all inputs are provided in the same linear unit (e.g., all meters or all feet). The resulting output will always be in "square units," which represents the total 2D space occupied by the shape on a flat plane.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Shape-Specific Mathematical Insights</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Circles & The Pi Constant:</strong> Calculating the <strong>area of a circle</strong> requires the irrational number Pi (~3.14159). Our engine uses a high-precision constant to ensure that for everything from piping diameter to circular architectural elements, your results are mathematically robust.</li>
-              <li><strong className="text-[#188038]">Triangles & Trapezoids:</strong> These shapes are frequently encountered in irregular land plots in Nepal. Using the <strong>base and height method</strong>, we provide a quick way to decompose complex 2D landscapes into manageable geometric segments.</li>
-              <li><strong className="text-[#D93025]">Practical Application:</strong> In construction and tailoring, area estimation directly correlates to cost. By using a <strong>standard area formula</strong> for rectangles and squares, users can minimize waste and optimize material procurement, saving significant resources in long-term projects.</li>
-            </ul>
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+             <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
+                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Geometric Surface Audit</h3>
+             </div>
+             <p className="text-sm text-[#5F6368] leading-relaxed">
+                The standard geometric engine for calculating the 2D footprint of primary shapes. This tool is calibrated for high-precision 
+                <strong> architectural</strong>, <strong>engineering</strong>, and <strong>land measurement</strong> requirements. 
+                Whether computing circle area using Pi or trapezoidal irregular plots, the engine ensures 100% mathematical validity.
+             </p>
           </div>
         </div>
       }
@@ -137,8 +126,18 @@ export default function AreaCalculator() {
         { question: "How is area used in construction in Nepal?", answer: "In Nepal, area calculations are critical for: (1) estimating tiles needed for a floor (total floor area ÷ tile area), (2) paint estimation (wall area), (3) land valuation (Aana, Ropani, Bigha), and (4) concrete or brick estimations. Contractors use area as the base unit for nearly all material procurement." },
         { question: "What is a trapezoid and when is the formula used?", answer: "A trapezoid (also called trapezium) is a 4-sided shape with exactly one pair of parallel sides (called the bases). The area formula is: ½ × (base1 + base2) × height. This shape commonly appears in land plots with one sloped boundary, making this formula essential for irregular plot area estimation in Nepal." }
       ]}
-      sidebar={{ title: "Math & Education Tools", links: [{ label: "Unit Converter", href: "/calculator/unit-converter" }, { label: "Percentage Calculator", href: "/calculator/percentage" }], banner: { title: "Geometry Solver", description: "Quickly determine the 2D surface footprint of any primary shape.", image: "/images/math-banner.jpg" } }}
-      relatedTools={[{ label: "Unit Converter", href: "/calculator/unit-converter" }]}
+      sidebar={{ title: "Math & Education Tools", links: [
+          { label: "Unit Converter", href: "/calculator/unit-converter" }, { label: "Percentage Calculator", href: "/calculator/percentage" },
+          { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" },
+          { label: "Percentage Calc", href: "/calculator/percentage/" },
+          { label: "Age Calculator", href: "/calculator/age-calculator/" }
+        ], banner: { title: "Geometry Solver", description: "Quickly determine the 2D surface footprint of any primary shape.", image: "/images/math-banner.jpg" } }}
+      relatedTools={[
+        { label: "Unit Converter", href: "/calculator/unit-converter" },
+        { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" },
+          { label: "Percentage Calc", href: "/calculator/percentage/" },
+          { label: "Age Calculator", href: "/calculator/age-calculator/" }
+      ]}
     />
   );
 }

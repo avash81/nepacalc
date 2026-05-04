@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { CalculatorErrorBoundary } from '@/components/calculator/CalculatorErrorBoundary';
-import { RotateCcw, Delete, Equal, Percent, Calculator } from 'lucide-react';
+import { RotateCcw, Delete, Equal, Percent, Calculator, Zap } from 'lucide-react';
 import { safeEval } from '@/utils/math/safeEval';
 
 export default function SimpleCalculator() {
@@ -72,22 +72,23 @@ export default function SimpleCalculator() {
 
   return (
     <CalculatorErrorBoundary calculatorName="Simple Calculator">
-      <ModernCalcLayout hideH1={false}
-      crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Basic Calculator' }]}
-        title="Simple Online Calculator"
-        description="A fast, clean, and responsive digital calculator for everyday mathematical operations. Supports addition, subtraction, multiplication, division, and percentages."
+      <ModernCalcLayout 
+        slug="simple-calculator"
+        crumbs={[{ label: 'Home', href: '/' }, { label: 'Math Tools', href: '/math-tools/' }, { label: 'Basic Calculator' }]}
+        title="Institutional Basic Calculator & Logic Engine"
+        description="A high-fidelity digital computational interface for rapid arithmetic audits. Calibrated with a safe-evaluation parser for decimal precision and operational integrity."
         icon={Calculator}
         inputs={
-          <div className="flex flex-col h-full max-w-md mx-auto w-full">
-            <div className="bg-slate-900 rounded-3xl p-6 mb-6 shadow-xl border border-slate-800 relative overflow-hidden">
-               <div className="absolute top-0 right-0 p-4 opacity-5">
-                  <Calculator className="w-32 h-32" />
+          <div className="flex flex-col h-full max-w-md mx-auto w-full space-y-6">
+            <div className="p-8 bg-slate-900 rounded-[2.5rem] shadow-2xl relative overflow-hidden border border-white/5">
+               <div className="absolute top-0 right-0 p-8 opacity-5">
+                  <Calculator className="w-40 h-40" />
                </div>
-               <div className="relative z-10">
-                 <div className="h-6 text-right text-slate-400 text-sm font-medium overflow-hidden whitespace-nowrap font-mono tracking-wider">
-                   {formula}
+               <div className="relative z-10 space-y-2">
+                 <div className="h-6 text-right text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] overflow-hidden whitespace-nowrap font-mono">
+                   {formula || 'System Ready'}
                  </div>
-                 <div className="text-5xl sm:text-6xl font-black text-white text-right mt-2 overflow-hidden truncate font-mono tracking-tighter">
+                 <div className="text-6xl font-black text-white text-right overflow-hidden truncate font-mono tracking-tighter">
                    {display}
                  </div>
                </div>
@@ -101,7 +102,7 @@ export default function SimpleCalculator() {
                   className={`
                     ${btn.colSpan === 2 ? 'col-span-2' : ''} 
                     ${btn.color || 'bg-white text-slate-700 hover:bg-slate-50 border-slate-200 shadow-sm'} 
-                    flex items-center justify-center p-5 rounded-2xl text-2xl font-bold
+                    flex items-center justify-center p-6 rounded-[1.5rem] text-2xl font-black
                     active:scale-95 transition-all
                     border
                   `}
@@ -114,32 +115,38 @@ export default function SimpleCalculator() {
         }
         results={
           <div className="space-y-6">
-             <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm transition-all hover:shadow-md">
-                <div className="flex items-center gap-4 mb-4 text-blue-600">
+             <div className="p-8 bg-white border border-slate-200 rounded-[2.5rem] shadow-xl relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><RotateCcw className="w-20 h-20 text-blue-600" /></div>
+                <div className="flex items-center gap-3 mb-4">
                   <div className="p-2 bg-blue-50 rounded-lg">
-                    <RotateCcw className="w-5 h-5" />
+                    <Zap className="w-4 h-4 text-blue-600" />
                   </div>
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-slate-800">Recent Updates</h4>
+                  <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Arithmetic Integrity Audit</h4>
                 </div>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  We've improved the underlying mathematics engine to use a safer evaluation parser, preventing floating-point precision errors on simple decimals (like 0.1 + 0.2).
+                <p className="text-[11px] text-slate-600 leading-relaxed font-medium">
+                  The underlying engine utilizes a <strong>Safe-Evaluation Parser</strong>. This prevents standard binary floating-point errors (e.g., 0.1 + 0.2) by scaling decimals to integer space before computation.
                 </p>
              </div>
 
-             <div className="p-6 bg-emerald-50 rounded-2xl border border-emerald-100">
-                <h4 className="text-xs font-bold uppercase tracking-widest text-emerald-800 mb-2">Did you know?</h4>
-                <p className="text-sm text-emerald-700 leading-relaxed">
-                  This calculator automatically handles Order of Operations (PEMDAS) internally when you chain multiple calculations.
-                </p>
+             <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Equal className="w-24 h-24 text-emerald-500" /></div>
+                <div className="relative z-10">
+                   <h4 className="text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-2">Operational Logic</h4>
+                   <p className="text-[11px] text-slate-400 leading-relaxed">
+                      Standard PEMDAS hierarchy is strictly enforced. Chained operations follow the universal order of mathematical priority.
+                   </p>
+                </div>
              </div>
           </div>
         }
         sidebar={{
-          title: "More Math Utilities",
+          title: "Math Hub",
+          subtitle: "Academic Suite",
           links: [
-            { label: 'Percentage Calculator', href: '/calculator/percentage' },
-            { label: 'Rounding Calculator', href: '/calculator/rounding' },
-            { label: 'Scientific Calculator', href: '/calculator/scientific' },
+            { label: 'Percentage Tool', href: '/calculator/percentage' },
+            { label: 'Scientific Tool', href: '/calculator/scientific' },
+            { label: 'Statistics Plus', href: '/calculator/statistics-plus' },
+            { label: "BMI Tracker", href: "/calculator/bmi/" },
           ],
         }}
         details={

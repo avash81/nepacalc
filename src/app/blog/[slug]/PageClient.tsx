@@ -24,7 +24,7 @@ function sanitizeUrlEscaped(url: string): string | null {
   return null;
 }
 
-function renderContent(content: string, imageMiddle?: string): string {
+function renderContent(content: string, title: string, imageMiddle?: string): string {
   // Escape any raw HTML from Firestore before applying markdown-like formatting.
   const escaped = escapeHtml(content);
   let html = escaped
@@ -48,7 +48,7 @@ function renderContent(content: string, imageMiddle?: string): string {
       const index = h2Match.index! + 5;
       const imgHtml = `
         <div class="my-8 rounded-2xl overflow-hidden border border-gray-100 shadow-lg">
-          <img src="${imageMiddle}" alt="Content Visual" class="w-full h-auto object-cover" loading="lazy" />
+          <img src="${imageMiddle}" alt="${escapeHtml(title)} — Contextual Detail" class="w-full h-auto object-cover" loading="lazy" />
         </div>
       `;
       html = html.slice(0, index) + imgHtml + html.slice(index);
@@ -59,7 +59,7 @@ function renderContent(content: string, imageMiddle?: string): string {
 }
 
 export default function PageClient({ post, related }: { post: any, related: any[] }) {
-  const html = useMemo(() => post ? renderContent(post.content || '', post.imageMiddle) : '', [post]);
+  const html = useMemo(() => post ? renderContent(post.content || '', post.title || '', post.imageMiddle) : '', [post]);
 
   const faqs = useMemo(() => {
     if (!post?.content) return [];
@@ -132,7 +132,7 @@ export default function PageClient({ post, related }: { post: any, related: any[
             <div className="mb-8 rounded-3xl overflow-hidden border border-gray-100 shadow-xl">
               <img 
                 src={post.imageTop} 
-                alt={post.title} 
+                alt={`${post.title} — Feature Illustration`} 
                 className="w-full h-[300px] sm:h-[400px] object-cover"
                 loading="eager"
               />
@@ -149,7 +149,7 @@ export default function PageClient({ post, related }: { post: any, related: any[
             <div className="mt-8 rounded-3xl overflow-hidden border border-gray-100 shadow-xl">
               <img 
                 src={post.imageBottom} 
-                alt="Concluding Visual" 
+                alt={`${post.title} — Concluding Summary Visual`} 
                 className="w-full h-auto object-cover"
                 loading="lazy"
               />

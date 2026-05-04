@@ -76,52 +76,34 @@ export default function BmiChildCalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="bg-white rounded-lg border border-[#DADCE0] overflow-hidden text-center">
-             <div className="p-8 border-b border-[#DADCE0]">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-[#70757A] mb-2">Calculated BMI</div>
-                <div className="text-5xl font-black text-[#202124] tracking-tighter">{results.bmi}</div>
-             </div>
-             <div className={`p-6 ${results.bgColor}`}>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-[#70757A] mb-1">Age-Specific Category</div>
-                <div className={`text-2xl font-black uppercase tracking-tight ${results.color}`}>{results.category}</div>
+          <div className="p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2">
+             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Calculated Pediatric BMI</div>
+             <div className="text-6xl font-black text-[#1A73E8] tracking-tighter">{results.bmi}</div>
+             <div className={`text-[10px] font-black uppercase tracking-tighter ${results.color}`}>
+                Trajectory: {results.category}
              </div>
           </div>
 
           <div className="p-4 bg-[#FCE8E6] border border-[#FAD2CF] rounded-lg flex gap-3 items-start">
              <ShieldAlert className="w-5 h-5 text-[#D93025] shrink-0 mt-0.5" />
              <div>
-                <h4 className="text-[11px] font-bold uppercase text-[#D93025] tracking-wider mb-1">Clinical Disclaimer</h4>
-                <p className="text-[10px] text-[#202124] leading-relaxed">This tool utilizes standard simplified BMI formulas mapped to WHO midpoints. It is intended for informational estimation only. Always consult a pediatrician using official CDC/WHO growth charts for true clinical diagnostics.</p>
+                <h4 className="text-[11px] font-bold uppercase text-[#D93025] tracking-wider mb-1">Clinical Protocol</h4>
+                <p className="text-[10px] text-[#202124] leading-relaxed">This tool utilizes standard simplified BMI formulas mapped to WHO midpoints. It is intended for informational estimation. Always consult a pediatrician using official CDC/WHO growth charts for clinical diagnostics.</p>
              </div>
-          </div>
-
-          <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg flex gap-3 items-start">
-             <Info className="w-4 h-4 text-[#1A73E8] shrink-0 mt-0.5" />
-             <p className="text-[10px] text-[#202124] leading-relaxed">Child BMI is highly dependent on age and sex because body fat levels shift significantly as children grow. A BMI that is 'normal' for a 5-year-old might be categorized as overweight for a 10-year-old.</p>
           </div>
         </div>
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Pediatric Growth Trajectory & Percentile Analytics</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                Unlike adult BMI, which relies on fixed, static thresholds (e.g., exactly 25.0 for overweight), pediatric physiology is in a state of constant flux. As children grow, their body fat percentages shift radically depending on their age, sex, and stage of puberty. Therefore, our <strong className="text-[#202124]">child bmi calculator</strong> does not simply calculate a raw number; it plots that number against established global growth curves to determine a precise age-and-sex-specific percentile.
-              </p>
-              <p>
-                In the context of pediatric health, determining a <strong className="text-[#202124]">healthy weight for kids</strong> involves identifying where they sit compared to their peers. A BMI value that represents obesity for a 5-year-old might be completely normal for a 15-year-old. This diagnostic tool utilizes normalized percentile data derived from the CDC and WHO to provide a clinically aligned assessment of a child's developmental trajectory.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Understanding Pediatric Percentile Categories</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Underweight (&lt; 5th Percentile):</strong> Indicates the child weighs less than 95% of children of the same age and sex. This can be a flag for potential malnutrition, malabsorption disorders, or metabolic conditions requiring pediatric review.</li>
-              <li><strong className="text-[#188038]">Healthy Weight (5th to &lt; 85th Percentile):</strong> The optimal growth zone. Maintaining a <strong className="text-[#202124]">healthy weight</strong> in this band significantly reduces the risk of early-onset cardiovascular and metabolic issues.</li>
-              <li><strong className="text-[#D93025]">Overweight & Obese (≥ 85th Percentile):</strong> Falling above the 85th percentile (Overweight) or 95th percentile (Obese) flags excessive adiposity. This requires immediate nutritional intervention to prevent long-term complications like childhood Type 2 Diabetes.</li>
-            </ul>
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+             <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
+                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Pediatric Growth Audit</h3>
+             </div>
+             <p className="text-sm text-[#5F6368] leading-relaxed">
+                The institutional engine for pediatric anthropometric assessment. Calibrated for children and teens (ages 2-19), this tool 
+                plots BMI against <strong>WHO/CDC</strong> age-and-sex-specific growth trajectories. It provides mathematical certainty regarding 
+                developmental norms, distinguishing between healthy weight, underweight, and excessive adiposity thresholds.
+             </p>
           </div>
         </div>
       }
@@ -164,8 +146,18 @@ export default function BmiChildCalculator() {
           answer: "Do not attempt to put a growing child on a restrictive diet without medical supervision. Focus on lifestyle changes for the entire family, increasing physical activity, reducing sugary drinks, and consulting a pediatrician or registered dietitian."
         }
       ]}
-      sidebar={{ title: "Health Tools", links: [{ label: "Adult BMI Calculator", href: "/calculator/bmi-calculator" }, { label: "Pregnancy Due Date", href: "/calculator/pregnancy-due-date" }], banner: { title: "Pediatric Health", description: "Ensure your child maintains a balanced diet and regular physical activity.", image: "/images/health-banner.jpg" } }}
-      relatedTools={[{ label: "BMI Calculator", href: "/calculator/bmi-calculator" }]}
+      sidebar={{ title: "Health Tools", links: [
+          { label: "Adult BMI Calculator", href: "/calculator/bmi-calculator" }, { label: "Pregnancy Due Date", href: "/calculator/pregnancy-due-date" },
+          { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
+          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" }
+        ], banner: { title: "Pediatric Health", description: "Ensure your child maintains a balanced diet and regular physical activity.", image: "/images/health-banner.jpg" } }}
+      relatedTools={[
+        { label: "BMI Calculator", href: "/calculator/bmi-calculator" },
+        { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
+          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" }
+      ]}
     />
   );
 }

@@ -1,9 +1,16 @@
 'use client';
 import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Wallet, Landmark, TrendingUp, Info, PieChart, Receipt, Zap, Target, ShieldCheck } from 'lucide-react';
+import { 
+  Wallet, Landmark, TrendingUp, Info, PieChart, Receipt, Zap, 
+  Target, ShieldCheck, Activity, Globe, History, Scale, ArrowRight
+} from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
 import { calculateNepalSalary } from '@/utils/math/country-rules/nepal';
+import { 
+  PieChart as RePieChart, Pie, Cell, ResponsiveContainer, Tooltip,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid
+} from 'recharts';
 
 const DEFAULT_STATE = {
   grossSalary: 80000,
@@ -15,8 +22,10 @@ const DEFAULT_STATE = {
   isMonthly: true
 };
 
+function formatNPR(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
+
 export default function NepalSalaryCalculator() {
-  const [state, setState] = useSyncState('nepal_salary_institutional_v1', DEFAULT_STATE);
+  const [state, setState] = useSyncState('salary_institutional_v5', DEFAULT_STATE);
   const { grossSalary, married, ssf, cit, citAmount, gender } = state;
 
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
@@ -25,251 +34,195 @@ export default function NepalSalaryCalculator() {
     const allowances = { hra: 0, medical: 0, transport: 0, other: 0 };
     const salary = calculateNepalSalary(grossSalary, ssf, cit, gender, allowances);
     
+    const monthlyTax = salary.incomeTax / 12;
+    const totalDeductions = salary.deductions.ssf_employee + (cit ? citAmount : 0) + monthlyTax;
+
+    const chartData = [
+      { name: 'Take Home', val: salary.netSalary, fill: '#10b981' },
+      { name: 'Income Tax', val: monthlyTax, fill: '#ef4444' },
+      { name: 'Retirement', val: salary.deductions.ssf_employee + (cit ? citAmount : 0), fill: '#3b82f6' }
+    ];
+
     return {
       ...salary,
-      monthlyTax: salary.incomeTax / 12,
-      totalDeductions: salary.deductions.ssf_employee + salary.deductions.cit_employee + (salary.incomeTax / 12),
-      inHand: salary.netSalary
+      monthlyTax,
+      totalDeductions,
+      chartData
     };
-  }, [grossSalary, ssf, cit, gender]);
-
-  const fmt = (n: number) => 'Rs. ' + Math.round(n).toLocaleString('en-IN');
-
-  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
-  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
+  }, [grossSalary, ssf, cit, citAmount, gender]);
 
   return (
     <ModernCalcLayout
       slug="nepal-salary"
-      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Salary Calculator' }]}
-      title="Nepal Salary Calculator"
-      description="Professional payroll analysis tool for Nepal. Calculate exact take-home pay, SSF contributions, CIT optimization, and Employer CTC."
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Tools', href: '/nepal/' }, { label: 'Salary Calculator' }]}
+      title="Nepal Salary"
+      description="The definitive institutional payroll engine for Nepal. Calculate take-home pay with Labor Act 2074 compliance, SSF statutory pooling, and CIT tax optimization."
       icon={Wallet}
       inputs={
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <label className={labelCls}>Gross Monthly Salary</label>
-            <div className="relative">
-              <input 
-                type="number" 
-                value={grossSalary} 
-                onChange={e => update({ grossSalary: Number(e.target.value) })} 
-                className={inputCls} 
-              />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">NPR</span>
-            </div>
+        <div className="space-y-8">
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-10 opacity-10"><Zap className="w-40 h-40" /></div>
+             <div className="relative z-10 grid grid-cols-1 gap-6">
+                <div className="space-y-4">
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Gross Monthly Salary (NPR)</label>
+                   <input 
+                      type="number" 
+                      value={grossSalary} 
+                      onChange={(e) => update({ grossSalary: Number(e.target.value) })}
+                      className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" 
+                   />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                   <div className="space-y-4">
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Filing Status</label>
+                      <div className="flex p-1 bg-white/5 rounded-xl border border-white/10">
+                        {[{v: false, l: 'Single'}, {v: true, l: 'Married'}].map(opt => (
+                          <button key={opt.l} onClick={() => update({ married: opt.v as any })} className={`flex-1 py-2 text-[10px] font-black uppercase rounded-lg transition-all ${married === opt.v ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400'}`}>{opt.l}</button>
+                        ))}
+                      </div>
+                   </div>
+                   <div className="space-y-4">
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Gender</label>
+                      <div className="flex p-1 bg-white/5 rounded-xl border border-white/10">
+                        {[{v: 'male', l: 'M'}, {v: 'female', l: 'F'}].map(opt => (
+                          <button key={opt.l} onClick={() => update({ gender: opt.v as any })} className={`flex-1 py-2 text-[10px] font-black uppercase rounded-lg transition-all ${gender === opt.v ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400'}`}>{opt.l}</button>
+                        ))}
+                      </div>
+                   </div>
+                </div>
+             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label className={labelCls}>Status</label>
-              <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
-                {[{ v: false, l: 'Single' }, { v: true, l: 'Married' }].map(m => (
-                  <button key={m.l} onClick={() => update({ married: m.v })} className={`flex-1 py-1.5 text-[10px] font-bold uppercase rounded-md transition-all ${married === m.v ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}>{m.l}</button>
-                ))}
-              </div>
-            </div>
-            <div className="space-y-2">
-              <label className={labelCls}>Gender</label>
-              <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
-                {[{ v: 'male' as const, l: 'Male' }, { v: 'female' as const, l: 'Female' }].map(g => (
-                  <button key={g.l} onClick={() => update({ gender: g.v })} className={`flex-1 py-1.5 text-[10px] font-bold uppercase rounded-md transition-all ${gender === g.v ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}>{g.l}</button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-4 p-4 bg-[#F8F9FA] rounded-lg border border-[#DADCE0]">
-             <div className="flex items-center gap-2 mb-1">
-               <ShieldCheck className="w-4 h-4 text-[#1A73E8]" />
-               <span className="text-[11px] font-bold text-[#202124] uppercase">Retirement Mapping</span>
+          <div className="p-8 border border-slate-200 rounded-[2rem] bg-white space-y-6 shadow-sm">
+             <div className="flex items-center gap-3">
+                <div className="p-2 bg-blue-50 rounded-lg"><ShieldCheck className="w-4 h-4 text-blue-600" /></div>
+                <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Tax Optimization Shield</h3>
              </div>
              <div className="grid grid-cols-2 gap-3">
                 <button 
                   onClick={() => update({ ssf: !ssf })}
-                  className={`p-3 text-left rounded-lg border transition-all ${ssf ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}
+                  className={`p-4 text-left border rounded-2xl transition-all ${ssf ? 'bg-blue-600 border-blue-600 text-white shadow-lg' : 'bg-white border-slate-200 text-slate-500'}`}
                 >
-                  <div className="text-[10px] font-bold uppercase">SSF</div>
-                  <div className="text-[9px] opacity-70">31% Statutory</div>
+                  <div className="text-[10px] font-black uppercase mb-1">SSF (Statutory)</div>
+                  <div className="text-[9px] font-bold opacity-70">31% Pool</div>
                 </button>
                 <button 
                   onClick={() => update({ cit: !cit })}
-                  className={`p-3 text-left rounded-lg border transition-all ${cit ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}
+                  className={`p-4 text-left border rounded-2xl transition-all ${cit ? 'bg-blue-600 border-blue-600 text-white shadow-lg' : 'bg-white border-slate-200 text-slate-500'}`}
                 >
-                  <div className="text-[10px] font-bold uppercase">CIT</div>
-                  <div className="text-[9px] opacity-70">Voluntary</div>
+                  <div className="text-[10px] font-black uppercase mb-1">CIT (Voluntary)</div>
+                  <div className="text-[9px] font-bold opacity-70">Tax Savings</div>
                 </button>
              </div>
              {cit && (
-               <div className="pt-2">
-                 <label className="text-[10px] font-bold text-[#70757A] uppercase">Monthly CIT Amount</label>
-                 <input type="number" value={citAmount} onChange={e => update({ citAmount: Number(e.target.value) })} className="w-full h-10 px-3 border border-[#DADCE0] rounded text-xs mt-1" />
-               </div>
+                <div className="space-y-2 pt-2">
+                   <label className="text-[8px] font-black text-slate-500 uppercase ml-1">Monthly CIT Deposit</label>
+                   <input type="number" value={citAmount} onChange={(e) => update({ citAmount: Number(e.target.value) })} className="w-full h-12 px-6 bg-slate-50 border border-slate-200 rounded-xl text-lg font-black text-slate-900 focus:border-blue-500 outline-none transition-all" />
+                </div>
              )}
           </div>
-
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-            Generate Payroll Report
-          </button>
         </div>
       }
       results={
         <div className="space-y-6">
-          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
-            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Monthly Take-Home (Net)</div>
-            <div className="text-3xl font-black text-[#1A73E8]">{fmt(result.netSalary)}</div>
-            <div className="text-[9px] text-[#70757A] font-bold uppercase">Your actual bank-credit amount</div>
-          </div>
-
-          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
-             <div className="px-4 py-2 border-b border-[#DADCE0] bg-[#F8F9FA] flex justify-between items-center">
-               <span className="text-[10px] font-bold text-[#70757A] uppercase">Monthly Breakdown</span>
-               <Receipt className="w-3 h-3 text-[#1A73E8]" />
-             </div>
-             <div className="divide-y divide-[#DADCE0]">
-               <div className="p-3 flex justify-between items-center hover:bg-[#F8F9FA]">
-                 <span className="text-xs text-[#5F6368]">Gross Monthly</span>
-                 <span className="text-xs font-bold text-[#202124]">{fmt(result.totalGross)}</span>
-               </div>
-               <div className="p-3 flex justify-between items-center hover:bg-[#F8F9FA]">
-                 <span className="text-xs text-[#5F6368]">Employee SSF (11%)</span>
-                 <span className="text-xs font-bold text-[#D93025]">-{fmt(result.deductions.ssf_employee)}</span>
-               </div>
-               {cit && (
-                 <div className="p-3 flex justify-between items-center hover:bg-[#F8F9FA]">
-                   <span className="text-xs text-[#5F6368]">CIT Contribution</span>
-                   <span className="text-xs font-bold text-[#D93025]">-{fmt(result.deductions.cit_employee)}</span>
-                 </div>
-               )}
-               <div className="p-3 flex justify-between items-center hover:bg-[#F8F9FA]">
-                 <span className="text-xs text-[#5F6368]">Income Tax (Monthly)</span>
-                 <span className="text-xs font-bold text-[#D93025]">-{fmt(result.monthlyTax)}</span>
-               </div>
-               <div className="p-3 flex justify-between items-center bg-[#F8F9FA]">
-                 <span className="text-xs font-black text-[#202124] uppercase">Net In-Hand</span>
-                 <span className="text-sm font-black text-[#188038]">{fmt(result.netSalary)}</span>
-               </div>
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Wallet className="w-24 h-24 text-emerald-600" /></div>
+             <div className="text-[10px] font-bold text-emerald-600 uppercase tracking-[0.2em]">Monthly Take-Home Pay</div>
+             <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">{formatNPR(result.netSalary)}</div>
+             <div className="px-5 py-2 bg-slate-100 rounded-full inline-block text-[10px] font-black uppercase tracking-tight text-slate-500">
+                Post-Deduction Credit
              </div>
           </div>
 
-          <div className="p-4 bg-white border border-[#DADCE0] rounded-lg space-y-3">
-             <div className="flex justify-between items-center">
-               <span className="text-[10px] font-bold text-[#70757A] uppercase">Employer Cost (CTC)</span>
-               <span className="text-sm font-black text-[#1A73E8]">{fmt(result.costToCompany)}</span>
+          <div className="grid grid-cols-2 gap-4">
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1 text-center">
+                <div className="text-[9px] font-black text-slate-400 uppercase">Gross Salary</div>
+                <div className="text-xl font-black text-slate-900">{formatNPR(grossSalary)}</div>
              </div>
-             <div className="h-1.5 w-full bg-[#F1F3F4] rounded-full overflow-hidden">
-               <div className="h-full bg-[#1A73E8]" style={{ width: `${(result.netSalary / result.costToCompany) * 100}%` }} />
+             <div className="p-6 bg-blue-50 border border-blue-100 rounded-3xl space-y-1 text-center">
+                <div className="text-[9px] font-black text-blue-600 uppercase">Monthly Tax</div>
+                <div className="text-xl font-black text-blue-600">{formatNPR(result.monthlyTax)}</div>
              </div>
-             <p className="text-[9px] text-[#70757A]">Your net pay is <strong>{Math.round((result.netSalary / result.costToCompany) * 100)}%</strong> of the total cost to your employer.</p>
           </div>
 
-          <div className="flex gap-2 p-3 bg-[#FFF7E0] border border-[#FEEFC3] rounded-lg items-start">
-            <Info className="w-4 h-4 text-[#F29900] shrink-0 mt-0.5" />
-            <p className="text-[10px] text-[#202124] leading-tight">SSF contributions are calculated on <strong>60% of Gross</strong> (assumed Basic) as per standard Nepal corporate practice.</p>
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Target className="w-24 h-24 text-emerald-500" /></div>
+             <div className="relative z-10 flex items-center justify-between">
+                <div className="space-y-1">
+                   <h4 className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Employer CTC</h4>
+                   <p className="text-2xl font-black">{formatNPR(result.costToCompany)}</p>
+                </div>
+                <div className="bg-emerald-500/20 px-3 py-1 rounded-full text-[10px] font-black text-emerald-400 uppercase tracking-tighter">
+                   Full Package Audit
+                </div>
+             </div>
           </div>
         </div>
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering Salary Architecture and Take-Home Pay in Nepal</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                In the Nepalese corporate landscape, understanding the mathematical translation from a gross offer to your actual bank credit is vital. A job offer stating a "gross monthly salary" does not directly reflect the cash you will have available for living expenses. Our <strong className="text-[#202124]">Salary Calculator Nepal</strong> is designed to demystify this process, acting as an exact <strong className="text-[#202124]">net salary calculator</strong> that factors in the Labor Act 2074 and the Contribution Based Social Security Act.
-              </p>
-              <p>
-                Whether you are trying to <strong className="text-[#202124]">figure out hourly salary</strong> for a freelance contract, or calculating the exact Cost to Company (CTC) for your business, this tool bridges the gap between gross expectations and net reality. It dynamically accounts for the 60/40 Basic-to-Allowance split, mandatory Social Security Fund (SSF) deductions, voluntary Citizen Investment Trust (CIT) contributions, and progressive income tax slabs.
-              </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-6 opacity-5"><PieChart className="w-20 h-20 text-blue-600" /></div>
+              <div className="flex items-center gap-2 mb-8">
+                <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Payroll Composition</h3>
+              </div>
+              <div className="h-[300px] w-full relative">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RePieChart>
+                    <Pie
+                      data={result.chartData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={70}
+                      outerRadius={95}
+                      paddingAngle={8}
+                      dataKey="val"
+                      stroke="none"
+                    >
+                      {result.chartData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.fill} />
+                      ))}
+                    </Pie>
+                    <Tooltip 
+                       formatter={(v: number) => formatNPR(v)}
+                       contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 8px 30px rgba(0,0,0,0.12)', fontSize: '11px', fontWeight: 'bold' }}
+                    />
+                  </RePieChart>
+                </ResponsiveContainer>
+              </div>
             </div>
-          </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">The Anatomy of a Nepalese Payslip</h3>
-            <p className="text-sm text-[#5F6368] mb-4">A standard corporate payslip in Nepal is divided into several mathematical components. Understanding these parts is essential when using a <strong className="text-[#202124]">take home pay calculator</strong>.</p>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#202124]">Basic Salary vs Allowances:</strong> By convention and legal precedent in Nepal, Gross Salary is typically split into 60% Basic Salary and 40% Allowances (which may include Dearness, House Rent, or Transport allowances). This split is crucial because statutory deductions like SSF and Provident Fund are calculated strictly on the Basic component, not the Gross.</li>
-              <li><strong className="text-[#202124]">Employee SSF Contribution (11%):</strong> Under the Social Security scheme, an employee is mandated to contribute 11% of their Basic Salary. This amount is mathematically deducted from your gross pay before tax calculation.</li>
-              <li><strong className="text-[#202124]">Employer SSF Contribution (20%):</strong> Your employer contributes an additional 20% of your Basic Salary to your SSF account (comprising Provident Fund, Gratuity, and Insurance coverage). While this does not reduce your monthly take-home, it is a critical component of your overall Cost to Company (CTC) and long-term wealth accumulation.</li>
-            </ul>
-          </div>
-
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Navigating Deductions and Taxes</h3>
-            <p className="text-sm text-[#5F6368] mb-4">Before arriving at your net pay, your gross salary must pass through voluntary deductions and statutory tax gates.</p>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#D93025]">Citizen Investment Trust (CIT):</strong> Employees can opt to channel a portion of their income into a CIT account. This is a highly effective tax-saving strategy, as CIT contributions (up to Rs. 500,000 or 1/3rd of assessable income) are fully deductible from your taxable income base.</li>
-              <li><strong className="text-[#D93025]">Progressive Income Tax (TDS):</strong> After deducting SSF and CIT, the remaining amount is your Taxable Income. Employers in Nepal are required to calculate your projected annual tax liability using the progressive slabs (1%, 10%, 20%, 30%, 36%, 39%) and divide it by 12. This monthly Tax Deducted at Source (TDS) is subtracted directly from your paycheck.</li>
-            </ul>
-          </div>
-
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Salary Negotiation and "Cost to Company"</h3>
-            <p className="text-sm text-[#5F6368] mb-4">When evaluating a job offer, identifying whether the quoted figure is Gross Salary or Cost to Company (CTC) changes the mathematical reality of your negotiation.</p>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#188038]">Gross vs CTC Negotiation:</strong> If an employer offers a CTC of Rs. 100,000, your actual Gross Salary is significantly lower because the CTC includes the employer's 20% SSF contribution. Always negotiate based on Gross Salary to ensure your monthly cash flow meets your expectations.</li>
-              <li><strong className="text-[#188038]">Using the Salary Increase Calculator:</strong> If you are offered a 15% raise, your net take-home will likely increase by less than 15%. This occurs because the higher gross salary may push a portion of your income into a higher marginal tax bracket (e.g., from the 10% slab to the 20% slab). Understanding this marginal rate impact is key to effective financial planning.</li>
-            </ul>
+            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm">
+               <div className="flex items-center gap-2 mb-8">
+                 <div className="w-1.5 h-6 bg-emerald-600 rounded-full" />
+                 <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Deduction Ledger</h3>
+               </div>
+               <div className="divide-y divide-slate-100">
+                  <div className="py-4 flex justify-between items-center text-xs">
+                     <span className="font-bold text-slate-500 uppercase tracking-tighter">SSF Contribution (11%)</span>
+                     <span className="font-black text-slate-900">{formatNPR(result.deductions.ssf_employee)}</span>
+                  </div>
+                  {cit && (
+                    <div className="py-4 flex justify-between items-center text-xs">
+                       <span className="font-bold text-slate-500 uppercase tracking-tighter">CIT Deposit (Voluntary)</span>
+                       <span className="font-black text-slate-900">{formatNPR(citAmount)}</span>
+                    </div>
+                  )}
+                  <div className="py-4 flex justify-between items-center text-xs">
+                     <span className="font-bold text-slate-500 uppercase tracking-tighter">Estimated Income Tax</span>
+                     <span className="font-black text-red-600">{formatNPR(result.monthlyTax)}</span>
+                  </div>
+               </div>
+            </div>
           </div>
         </div>
       }
-      howToUse={{
-        steps: [
-          "Enter your agreed-upon Gross Monthly Salary in the primary input field.",
-          "Select your Marital Status and Gender, as these determine your annual tax-free thresholds and potential rebates.",
-          "Toggle the SSF button if your organization is registered with the Social Security Fund (standard for most modern companies).",
-          "If you voluntarily contribute to the Citizen Investment Trust (CIT), toggle the CIT button and input your monthly contribution amount.",
-          "Review the Monthly Breakdown card to see the exact flow of funds: from Gross, minus SSF, minus CIT, minus Tax, to your final Net In-Hand."
-        ]
-      }}
-      formula={{
-        title: "Nepalese Payroll Mathematics",
-        description: "The underlying logic assumes the standard Nepalese corporate structure defined by the Labor Act.",
-        raw: "1. Basic Salary = Gross Monthly Salary × 60%\n2. Employee SSF = Basic Salary × 11%\n3. Employer SSF = Basic Salary × 20%\n4. Cost To Company (CTC) = Gross Monthly Salary + Employer SSF\n5. Taxable Base = Gross Monthly - (Employee SSF + CIT Contribution)\n6. Monthly Tax = (Annual Tax on Projected Taxable Base) ÷ 12\n7. Net Take-Home Pay = Gross Monthly Salary - (Employee SSF + CIT Contribution + Monthly Tax)"
-      }}
-      faqs={[
-        {
-          question: "What is the difference between Gross Salary and Net Salary in Nepal?",
-          answer: "Gross Salary is the total amount you earn before any deductions. Net Salary (or take-home pay) is the actual amount credited to your bank account after mandatory deductions like SSF, CIT, and Income Tax (TDS) have been subtracted."
-        },
-        {
-          question: "How is the 11% SSF contribution calculated?",
-          answer: "By standard Nepalese corporate practice, the 11% employee contribution to the Social Security Fund is calculated on your Basic Salary, which is typically fixed at 60% of your total Gross Salary."
-        },
-        {
-          question: "Does the employer's 20% SSF contribution get deducted from my pay?",
-          answer: "No. The employer's 20% SSF contribution is paid by the company on top of your Gross Salary. It does not reduce your monthly take-home pay, but it is included in your overall Cost to Company (CTC) package."
-        },
-        {
-          question: "Can I choose not to participate in the SSF?",
-          answer: "For organizations registered as formal entities under the Labor Act 2074 and the Contribution Based Social Security Act, participation in the SSF is mandatory for both the employer and the employee. It cannot be legally opted out of."
-        },
-        {
-          question: "How much can I deduct using the Citizen Investment Trust (CIT)?",
-          answer: "You can deduct up to Rs. 500,000 annually, or one-third (33.33%) of your total assessable income, whichever is lower. This amount is subtracted before calculating your tax liability, making it a highly effective tax-saving tool."
-        },
-        {
-          question: "How do I calculate my hourly rate from my monthly salary?",
-          answer: "Nepal's labor law assumes a standard 48-hour workweek. To find your hourly rate, you can divide your monthly gross salary by 208 (the approximate number of working hours in a month: 48 hours/week × 52 weeks / 12 months)."
-        }
-      ]}
-      sidebar={{
-        title: "Career & Finance",
-        links: [
-          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" },
-          { label: "TDS Calculator", href: "/calculator/nepal-tds/" },
-          { label: "Gratuity Calculator", href: "/calculator/gratuity-calculator/" },
-          { label: "Provident Fund", href: "/calculator/nepal-provident-fund/" },
-        ],
-        banner: {
-          title: "Optimize Your Pay",
-          description: "Understanding your deductions can help you negotiate better CTC packages with your employer.",
-          image: "/images/career-banner.jpg"
-        }
-      }}
       relatedTools={[
-        { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
-        { label: "TDS Calculator", href: "/calculator/nepal-tds/" },
-        { label: "EPF Calculator", href: "/calculator/nepal-provident-fund/" }
+        { label: "Income Tax", href: "/calculator/nepal-income-tax" },
+        { label: "EPF Calculator", href: "/calculator/epf-calculator" },
+        { label: "SSF Engine", href: "/calculator/ssf-calculator" }
       ]}
     />
   );

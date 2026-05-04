@@ -107,17 +107,17 @@ export default function BodyFatCalculator() {
              </ul>
           </div>
 
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-            Estimate Body Fat
+          <button onClick={() => {}} className="w-full h-12 bg-[#1A73E8] hover:bg-[#1765CC] text-white font-bold uppercase tracking-widest rounded-md transition-all shadow-sm flex items-center justify-center gap-2">
+            <Calculator className="w-4 h-4" /> Estimate Body Fat
           </button>
         </div>
       }
       results={
         <div className="space-y-6">
-          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
-            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Estimated Body Fat</div>
-            <div className={`text-4xl font-black ${category.color}`}>{bf?.toFixed(1)}%</div>
-            <div className={`text-[11px] font-black uppercase tracking-widest bg-white/50 px-4 py-1 rounded-full inline-block mt-2 border border-current ${category.color}`}>{category.label}</div>
+          <div className="p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2">
+             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Estimated Body Fat Percentage</div>
+             <div className={`text-6xl font-black ${category.color} tracking-tighter`}>{bf?.toFixed(1)}%</div>
+             <div className={`text-[11px] font-black uppercase tracking-widest ${category.color}`}>{category.label}</div>
           </div>
 
           <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
@@ -158,25 +158,15 @@ export default function BodyFatCalculator() {
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Body Composition Analysis via Anthropometry</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                While the Body Mass Index (BMI) is useful for sweeping population studies, it fails on an individual level because it cannot differentiate between bone, muscle, and adipose tissue (fat). Our <strong className="text-[#202124]">body fat calculator</strong> solves this by utilizing the clinically validated U.S. Navy Circumference Method. By analyzing specific anthropometric measurements (neck, waist, and hips), it isolates fat mass from lean body mass with a high degree of statistical reliability.
-              </p>
-              <p>
-                Understanding your true body fat percentage is the ultimate metric for metabolic health and fitness tracking. A person can have a "normal" BMI but still carry an unhealthy amount of visceral fat around their organs (a condition known as Normal Weight Obesity or "Skinny Fat"). Conversely, a bodybuilder might be classified as "Obese" on a BMI chart but possess an exceptionally lean, healthy body fat percentage.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Diagnostic Ranges & Health Implications</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Essential Fat (2-5% Men, 10-13% Women):</strong> The absolute minimum fat required for basic physical and physiological health. Dipping below these numbers can cause severe hormonal disruption and organ failure.</li>
-              <li><strong className="text-[#188038]">Athletic & Fitness (6-17% Men, 14-24% Women):</strong> This optimal zone is characterized by visible muscle definition and peak cardiovascular performance. It is the target range for athletes and highly active individuals.</li>
-              <li><strong className="text-[#D93025]">Obese (25%+ Men, 32%+ Women):</strong> Elevated fat levels, particularly visceral fat stored in the abdominal cavity, significantly increase the risk of Type 2 diabetes, systemic inflammation, and cardiovascular disease.</li>
-            </ul>
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+             <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
+                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Adiposity & Composition Audit</h3>
+             </div>
+             <p className="text-sm text-[#5F6368] leading-relaxed">
+                The standard anthropometric engine for body composition analysis. Calibrated using the <strong>U.S. Navy Circumference Protocol</strong>, 
+                this tool provides a high-precision estimation of body fat percentage. By isolating fat mass from lean body mass 
+                via specific logarithmic density algorithms, it offers a more nuanced metabolic profile than weight-only metrics.
+             </p>
           </div>
         </div>
       }

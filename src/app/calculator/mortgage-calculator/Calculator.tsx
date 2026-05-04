@@ -1,7 +1,10 @@
 'use client';
 import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Home, Info, DollarSign } from 'lucide-react';
+import { Home, Info, DollarSign, Landmark, ShieldCheck, Target, Receipt, Globe, Wallet, Scale, PieChart } from 'lucide-react';
+import {
+  PieChart as RePieChart, Pie, Cell, ResponsiveContainer, Tooltip
+} from 'recharts';
 import { useSyncState } from '@/hooks/useSyncState';
 
 function fmt(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
@@ -23,9 +26,6 @@ export default function MortgageCalculator() {
     return { loan, downAmt, pAndI, mTax, mInsurance, monthlyTotal: pAndI + mTax + mInsurance, totalPaid: (pAndI * n), totalInterest: (pAndI * n) - loan };
   }, [pPrice, downPercent, rate, years, taxRate, insurance]);
 
-  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
-  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
-
   return (
     <ModernCalcLayout
       crumbs={[{ label: 'Finance', href: '/finance/' }, { label: 'Mortgage Calculator' }]}
@@ -33,177 +33,208 @@ export default function MortgageCalculator() {
       description="Calculate full monthly mortgage payment including Principal & Interest, property tax, and insurance. Based on Nepal bank home loan rates."
       icon={Home}
       inputs={
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <label className={labelCls}>Home Price (NPR)</label>
-            <div className="relative">
-              <input type="number" value={pPrice} min={100000} step={100000}
-                onChange={e => update({ pPrice: Number(e.target.value) })} className={inputCls} />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">NPR</span>
-            </div>
+        <div className="space-y-8">
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-10 opacity-10"><Home className="w-40 h-40" /></div>
+             <div className="relative z-10 grid grid-cols-1 gap-6">
+                <div className="space-y-4">
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Home Price (NPR)</label>
+                   <div className="relative">
+                      <input type="number" value={pPrice} min={100000} step={100000}
+                        onChange={e => update({ pPrice: Number(e.target.value) })} className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                      <span className="absolute right-6 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400 uppercase tracking-widest">NPR</span>
+                   </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                   <div className="space-y-4">
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Down Payment (%)</label>
+                      <div className="relative">
+                         <input type="number" value={downPercent} min={0} max={100}
+                           onChange={e => update({ downPercent: Number(e.target.value) })} className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                         <span className="absolute right-6 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400 uppercase tracking-widest">%</span>
+                      </div>
+                   </div>
+                   <div className="space-y-4">
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Interest Rate (%)</label>
+                      <div className="relative">
+                         <input type="number" value={rate} min={1} max={30} step={0.1}
+                           onChange={e => update({ rate: Number(e.target.value) })} className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                         <span className="absolute right-6 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400 uppercase tracking-widest">%</span>
+                      </div>
+                   </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                   <div className="space-y-4">
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Loan Tenure</label>
+                      <select value={years} onChange={e => update({ years: Number(e.target.value) })}
+                        className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-sm font-black text-white focus:border-blue-500 outline-none transition-all appearance-none">
+                        {[5, 10, 15, 20, 25, 30].map(y => <option key={y} value={y} className="bg-slate-900">{y} Years</option>)}
+                      </select>
+                   </div>
+                   <div className="space-y-4">
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Annual Tax (%)</label>
+                      <div className="relative">
+                         <input type="number" value={taxRate} min={0} max={5} step={0.1}
+                           onChange={e => update({ taxRate: Number(e.target.value) })} className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                         <span className="absolute right-6 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400 uppercase tracking-widest">%</span>
+                      </div>
+                   </div>
+                </div>
+                <div className="space-y-4">
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Annual Insurance (NPR)</label>
+                   <input type="number" value={insurance} min={0} step={5000}
+                     onChange={e => update({ insurance: Number(e.target.value) })} className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                </div>
+             </div>
           </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label className={labelCls}>Down Payment (%)</label>
-              <div className="relative">
-                <input type="number" value={downPercent} min={0} max={100}
-                  onChange={e => update({ downPercent: Number(e.target.value) })} className={inputCls} />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">%</span>
-              </div>
-            </div>
-            <div className="space-y-2">
-              <label className={labelCls}>Interest Rate (%)</label>
-              <div className="relative">
-                <input type="number" value={rate} min={1} max={30} step={0.1}
-                  onChange={e => update({ rate: Number(e.target.value) })} className={inputCls} />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">%</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label className={labelCls}>Loan Tenure</label>
-              <select value={years} onChange={e => update({ years: Number(e.target.value) })}
-                className={inputCls}>
-                {[5, 10, 15, 20, 25, 30].map(y => <option key={y} value={y}>{y} Years</option>)}
-              </select>
-            </div>
-            <div className="space-y-2">
-              <label className={labelCls}>Annual Property Tax (%)</label>
-              <div className="relative">
-                <input type="number" value={taxRate} min={0} max={5} step={0.1}
-                  onChange={e => update({ taxRate: Number(e.target.value) })} className={inputCls} />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">%</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <label className={labelCls}>Annual Insurance (NPR)</label>
-            <input type="number" value={insurance} min={0} step={5000}
-              onChange={e => update({ insurance: Number(e.target.value) })} className={inputCls} />
-          </div>
-
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-            Calculate Mortgage
-          </button>
         </div>
       }
       results={
         <div className="space-y-6">
-          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
-            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Total Monthly Payment</div>
-            <div className="text-3xl font-black text-[#1A73E8]">{fmt(r.monthlyTotal)}</div>
-            <div className="text-[9px] text-[#70757A] font-bold uppercase">Principal & Interest + Tax + Insurance</div>
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Home className="w-24 h-24 text-blue-600" /></div>
+             <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Total Monthly Payment</div>
+             <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">{fmt(r.monthlyTotal)}</div>
+             <div className="px-5 py-2 bg-slate-100 rounded-full inline-block text-[10px] font-black uppercase tracking-tight text-slate-500">
+                Principal & Interest + Tax + Insurance
+             </div>
           </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
-            <div className="px-4 py-2 bg-[#F8F9FA] border-b border-[#DADCE0]">
-              <span className="text-[10px] font-bold text-[#70757A] uppercase">Monthly Breakdown</span>
-            </div>
-            <div className="divide-y divide-[#DADCE0]">
-              <div className="p-3 flex justify-between text-xs">
-                <span className="text-[#5F6368]">Principal & Interest</span>
-                <span className="font-black text-[#1A73E8]">{fmt(r.pAndI)}</span>
-              </div>
-              <div className="p-3 flex justify-between text-xs">
-                <span className="text-[#5F6368]">Property Tax /mo</span>
-                <span className="font-black text-[#F29900]">{fmt(r.mTax)}</span>
-              </div>
-              <div className="p-3 flex justify-between text-xs">
-                <span className="text-[#5F6368]">Insurance /mo</span>
-                <span className="font-black">{fmt(r.mInsurance)}</span>
-              </div>
-              <div className="p-3 flex justify-between text-xs">
-                <span className="text-[#5F6368]">Loan Amount</span>
-                <span className="font-black">{fmt(r.loan)} ({100 - downPercent}%)</span>
-              </div>
-              <div className="p-3 flex justify-between text-xs">
-                <span className="text-[#5F6368]">Down Payment</span>
-                <span className="font-black">{fmt(r.downAmt)} ({downPercent}%)</span>
-              </div>
-              <div className="p-3 flex justify-between text-xs bg-[#F8F9FA]">
-                <span className="font-bold text-[#202124]">Total Interest Over {years} yrs</span>
-                <span className="font-black text-[#D93025]">{fmt(r.totalInterest)}</span>
-              </div>
-            </div>
-          </div>
+          <section className="bg-white border border-slate-200 rounded-[3rem] overflow-hidden shadow-sm">
+             <div className="px-10 py-6 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                   <DollarSign className="w-5 h-5 text-blue-600" />
+                   <h3 className="text-[10px] font-black text-slate-900 uppercase tracking-[0.2em]">Monthly Breakdown</h3>
+                </div>
+             </div>
+             <div className="divide-y divide-slate-100">
+                <div className="p-6 flex justify-between items-center text-xs hover:bg-slate-50 transition-colors">
+                   <span className="text-slate-500 font-black uppercase tracking-widest">Principal & Interest</span>
+                   <span className="font-black text-blue-600 text-sm">{fmt(r.pAndI)}</span>
+                </div>
+                <div className="p-6 flex justify-between items-center text-xs hover:bg-slate-50 transition-colors">
+                   <span className="text-slate-500 font-black uppercase tracking-widest">Property Tax /mo</span>
+                   <span className="font-black text-amber-500 text-sm">{fmt(r.mTax)}</span>
+                </div>
+                <div className="p-6 flex justify-between items-center text-xs hover:bg-slate-50 transition-colors">
+                   <span className="text-slate-500 font-black uppercase tracking-widest">Insurance /mo</span>
+                   <span className="font-black text-slate-900 text-sm">{fmt(r.mInsurance)}</span>
+                </div>
+                <div className="p-6 flex justify-between items-center text-xs hover:bg-slate-50 transition-colors">
+                   <span className="text-slate-500 font-black uppercase tracking-widest">Loan Amount</span>
+                   <span className="font-black text-slate-900 text-sm">{fmt(r.loan)} ({100 - downPercent}%)</span>
+                </div>
+                <div className="p-6 flex justify-between items-center text-xs hover:bg-slate-50 transition-colors">
+                   <span className="text-slate-500 font-black uppercase tracking-widest">Down Payment</span>
+                   <span className="font-black text-slate-900 text-sm">{fmt(r.downAmt)} ({downPercent}%)</span>
+                </div>
+                <div className="p-8 flex justify-between items-center text-xs bg-slate-50 border-t border-slate-200">
+                   <span className="font-black text-slate-900 uppercase tracking-widest">Total Interest ({years} yrs)</span>
+                   <span className="font-black text-rose-600 text-base">{fmt(r.totalInterest)}</span>
+                </div>
+             </div>
+          </section>
 
-          <div className="flex gap-2 p-3 bg-[#FFF7E0] border border-[#FEEFC3] rounded-lg items-start">
-            <Info className="w-4 h-4 text-[#F29900] shrink-0 mt-0.5" />
-            <p className="text-[10px] text-[#202124] leading-tight">Nepal home loan rates typically range 11–14% p.a. (floating). Confirm with your BFI before committing.</p>
+          <div className="p-8 bg-slate-900 rounded-[2.5rem] flex gap-4 items-center text-white shadow-2xl relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Info className="w-24 h-24 text-blue-500" /></div>
+             <div className="relative z-10 flex gap-4">
+                <div className="p-3 bg-white/10 rounded-xl shrink-0 h-min"><Info className="w-5 h-5 text-amber-400" /></div>
+                <p className="text-[11px] text-slate-300 leading-relaxed font-medium">
+                   Nepal home loan rates typically range 11–14% p.a. (floating). Confirm with your BFI before committing.
+                </p>
+             </div>
           </div>
         </div>
-      }
-      details={
+      }      details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Navigating Nepal's Mortgage & Real Estate Market</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                Purchasing residential property in Nepal requires strict adherence to banking regulations and a deep understanding of amortization mechanics. Our comprehensive <strong className="text-[#202124]">mortgage calculator nepal</strong> goes beyond standard EMI equations by integrating holistic homeownership costs, including mandated insurance premiums and local municipal property taxes.
-              </p>
-              <p>
-                A critical factor in real estate financing is the <strong className="text-[#202124]">nrb ltv ratio</strong> (Loan-to-Value). Currently, the Nepal Rastra Bank (NRB) strictly regulates the maximum permissible loan amount against real estate collateral, often capping residential home loans at specific percentages (e.g., 50% to 70%) depending on the property location (inside vs. outside Kathmandu Valley). An accurate <strong className="text-[#202124]">home loan emi</strong> projection must account for this required upfront equity (down payment) to ensure bank compliance.
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+               <div className="absolute top-0 right-0 p-6 opacity-5"><PieChart className="w-20 h-20" /></div>
+               <div className="flex items-center gap-2 mb-8">
+                <div className="w-1.5 h-6 bg-[#1A73E8] rounded-full" />
+                <h3 className="text-sm font-black text-[#202124] uppercase tracking-[0.2em]">Monthly Outflow Analysis</h3>
+              </div>
+              <div className="h-[300px] w-full relative">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RePieChart>
+                    <Pie
+                      data={[
+                        { name: 'Principal & Interest', value: r.pAndI },
+                        { name: 'Property Tax', value: r.mTax },
+                        { name: 'Insurance', value: r.mInsurance }
+                      ]}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={70}
+                      outerRadius={95}
+                      paddingAngle={8}
+                      dataKey="value"
+                      stroke="none"
+                    >
+                      <Cell fill="#1A73E8" />
+                      <Cell fill="#F29900" />
+                      <Cell fill="#D93025" />
+                    </Pie>
+                    <Tooltip 
+                      formatter={(v: number) => fmt(v)}
+                      contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 8px 30px rgba(0,0,0,0.12)', fontSize: '11px', fontWeight: 'bold' }}
+                    />
+                  </RePieChart>
+                </ResponsiveContainer>
+                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                   <span className="text-[10px] font-black text-[#70757A] uppercase tracking-tighter">Total Monthly</span>
+                   <span className="text-lg font-black text-[#202124]">{fmt(r.monthlyTotal)}</span>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Mechanics of Mortgage Amortization</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Reducing Balance Principle:</strong> Nepal's banking sector operates entirely on reducing balance amortization for long-term mortgages. This means your interest burden is calculated strictly on the remaining principal each month. Early in a 15-year tenure, your monthly EMI heavily services the interest component; however, this ratio flips mathematically in the later years.</li>
-              <li><strong className="text-[#188038]">Total Cost of Ownership Matrix:</strong> Many borrowers fail to account for hidden holding costs. This calculator integrates local <strong className="text-[#202124]">property tax calculator</strong> metrics and annual fire/earthquake insurance mandates. When these variables are amortized into a single monthly figure, you gain an institutional-grade view of your actual monthly liquidity requirements.</li>
-              <li><strong className="text-[#D93025]">Base Rate Volatility:</strong> Mortgage rates in Nepal are rarely fixed. They are calculated as the bank's Base Rate plus a fixed premium. Because the Base Rate fluctuates quarterly based on the bank's cost of funds, your total interest paid can vary significantly. Borrowers should run this simulation using historical high and low interest rate margins to stress-test their affordability.</li>
-            </ul>
+            <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden">
+               <div className="absolute -bottom-12 -right-12 opacity-10"><DollarSign className="w-64 h-64" /></div>
+               <h3 className="text-2xl font-black mb-6 tracking-tight text-emerald-400 uppercase tracking-widest">Lifetime Cost Audit</h3>
+               <div className="space-y-6">
+                  <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                     <div className="flex justify-between items-center mb-4">
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Repayment</span>
+                        <span className="text-2xl font-black text-emerald-400">{fmt(r.totalPaid + r.loan)}</span>
+                     </div>
+                     <div className="space-y-3">
+                        <div className="flex justify-between text-[11px]">
+                           <span className="text-slate-400">Principal Loan</span>
+                           <span className="font-bold">{fmt(r.loan)}</span>
+                        </div>
+                        <div className="flex justify-between text-[11px]">
+                           <span className="text-slate-400">Total Interest (Estimate)</span>
+                           <span className="font-bold text-red-400">+{fmt(r.totalInterest)}</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div className="bg-red-500/10 border border-red-500/20 p-6 rounded-2xl">
+                     <h4 className="text-xs font-black text-red-400 uppercase mb-2">Cost Multiplier</h4>
+                     <p className="text-[10px] text-slate-300 leading-relaxed">
+                        You will pay back <strong>{((r.totalPaid / r.loan)).toFixed(1)}x</strong> of the amount you borrowed. This is typical for long-term home loans in Nepal due to high double-digit interest rates.
+                     </p>
+                  </div>
+               </div>
+            </div>
           </div>
         </div>
       }
-      howToUse={{
-        steps: [
-          "Enter the total negotiated Home Price in NPR. This is the absolute cost of the property.",
-          "Set the Down Payment percentage. In Nepal, banks generally require at least a 30-40% down payment (equating to a 60-70% Loan-to-Value limit).",
-          "Input the Annual Interest Rate provided by your commercial bank (Base Rate + Premium).",
-          "Select your desired Loan Tenure. Standard residential home loans in Nepal range from 10 to 25 years.",
-          "Add your estimated Annual Property Tax percentage and Annual Home Insurance cost. These are amortized into your monthly total.",
-          "Review the Total Monthly Payment, which combines your bank EMI, monthly tax reserve, and monthly insurance reserve."
-        ]
+      sidebar={{
+        title: "NepaCalc Tools",
+        subtitle: "Institutional Resources",
+        links: [
+          { label: "Loan EMI Tool", href: "/calculator/loan-emi", icon: Landmark },
+          { label: "Property Tax", href: "/calculator/property-tax", icon: Receipt },
+          { label: "Land Area Calc", href: "/calculator/nepal-land", icon: Home },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax", icon: DollarSign },
+          { label: "NRB Website", href: "https://www.nrb.org.np", icon: Globe },
+        ],
       }}
-      formula={{
-        title: "Comprehensive Mortgage Formula",
-        description: "Calculates the exact monthly financial obligation including P&I, Tax, and Insurance.",
-        raw: "1. EMI = [P × r × (1+r)^n] / [(1+r)^n − 1]\n2. Monthly Tax = (Property Value × Annual Tax Rate) / 12\n3. Monthly Insurance = Annual Insurance Premium / 12\n\nTotal Monthly Payment = EMI + Monthly Tax + Monthly Insurance"
-      }}
-      faqs={[
-        {
-          question: "What is the minimum down payment required in Nepal?",
-          answer: "Inside the Kathmandu valley, Nepal Rastra Bank (NRB) generally restricts home loans to a 50%, 60% Loan-to-Value (LTV) ratio, meaning you need a 40% to 50% down payment. Outside the valley, you can often secure up to 70% LTV, requiring a 30% down payment."
-        },
-        {
-          question: "Why should I include property tax and insurance in this calculator?",
-          answer: "While you pay the bank for Principal and Interest, you must also pay municipal property taxes annually and maintain mandatory fire/earthquake insurance. Factoring these into a monthly 'reserve' gives you a true picture of your monthly housing affordability."
-        },
-        {
-          question: "Are mortgage rates in Nepal fixed or floating?",
-          answer: "The vast majority of home loans in Nepal are floating rate, tied to the bank's Base Rate. However, some banks offer fixed-rate packages for terms up to 5 or 7 years, after which they revert to the floating Base Rate + Premium model."
-        },
-        {
-          question: "How is the total interest calculated over 15 years?",
-          answer: "We use standard reducing-balance amortization. Each month, the interest is calculated on the remaining principal. As you pay down the principal, the interest portion of your EMI decreases, and the principal repayment portion increases."
-        },
-        {
-          question: "Does this calculator account for processing fees?",
-          answer: "No. Banks generally charge a 0.5% to 1.5% upfront Loan Processing Fee, along with engineering valuation and CIC (Credit Information Center) charges. You must pay these out-of-pocket during the loan approval phase."
-        },
-        {
-          question: "Can I pay off my mortgage early to save on interest?",
-          answer: "Yes, making lump-sum prepayment injections directly reduces your principal, massively cutting down your lifetime interest burden. However, commercial banks may charge a 1% to 2% prepayment penalty depending on the terms of your offer letter."
-        }
+      relatedTools={[
+        { label: "Loan EMI", href: "/calculator/loan-emi" },
+        { label: "Property Tax", href: "/calculator/property-tax" },
+        { label: "Nepal Land Converter", href: "/calculator/nepal-land" }
       ]}
-      sidebar={{ title: "Finance Tools", links: [{ label: "Loan EMI", href: "/calculator/loan-emi" }, { label: "Property Tax", href: "/calculator/property-tax" }, { label: "Property Registration", href: "/calculator/property-registration" }, { label: "Savings Calc", href: "/calculator/savings" }], banner: { title: "Home Ownership", description: "Plan your mortgage wisely ,  total interest paid can exceed the property value over long tenures.", image: "/images/home-banner.jpg" } }}
-      relatedTools={[{ label: "Loan EMI", href: "/calculator/loan-emi" }, { label: "Property Tax", href: "/calculator/property-tax" }, { label: "Savings", href: "/calculator/savings" }]}
     />
   );
 }

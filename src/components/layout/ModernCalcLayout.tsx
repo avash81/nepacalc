@@ -28,6 +28,7 @@ interface ModernCalcLayoutProps {
   };
   relatedTools?: { label: string; href: string }[];
   seoContent?: ReactNode;
+  auditPanel?: ReactNode;
   details?: ReactNode;
   crumbs?: { label: string; href?: string }[];
   slug?: string;
@@ -39,7 +40,7 @@ interface ModernCalcLayoutProps {
 }
 
 export function ModernCalcLayout({
-  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, details, crumbs, slug, fullWidth = false, ads, hideH1 = false, intro, customSchema
+  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, ads, hideH1 = false, intro, customSchema
 }: ModernCalcLayoutProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [liveRates, setLiveRates] = useState<MarketRate[]>([]);
@@ -69,13 +70,8 @@ export function ModernCalcLayout({
 
   const enrichedSEO = seoContent || seoEntry?.content;
   const enrichedFAQs = (faqs && faqs.length > 0) ? faqs : seoEntry?.faqs || [];
-  const enrichedHowTo = howToUse || (seoEntry?.howToUse ? { steps: seoEntry.howToUse } : null);
-  const enrichedFormula = formula || (seoEntry?.formula ? { 
-    title: seoEntry.formula.title, 
-    description: seoEntry.formula.description, 
-    raw: seoEntry.formula.equation,
-    variables: seoEntry.formula.variables 
-  } : null);
+  const enrichedHowTo = howToUse || seoEntry?.howToUse;
+  const enrichedFormula = formula || seoEntry?.formula;
 
   // Track History
   useEffect(() => {
@@ -126,7 +122,7 @@ export function ModernCalcLayout({
   const category = CALCULATORS.find(c => c.slug === effectiveSlug)?.category || 'General';
 
   return (
-    <div className="min-h-screen bg-[#F1F3F4] font-sans text-[#3C4043] pb-20 lg:pb-0">
+    <div className="min-h-screen bg-[#F1F3F4] font-sans text-[#3C4043] pb-20 lg:pb-0 selection:bg-blue-100">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
@@ -157,8 +153,8 @@ export function ModernCalcLayout({
           ...crumbs.map(c => ({ name: c.label, item: c.href ? `https://nepacalc.com${normalizeLink(c.href)}` : undefined })).filter((x): x is { name: string, item: string } => !!x.item)
         ]} />
       )}
-      <div className="max-w-[1280px] mx-auto px-4 pt-1 pb-8">
-        <div className="mb-3 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#dadce0] pb-3">
+      <div className="max-w-[1280px] mx-auto px-4 pt-4 pb-8">
+        <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#dadce0] pb-4">
           <div>
             {crumbs && crumbs.length > 0 && (
               <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 text-[11px] font-medium text-[#5f6368] mb-2 uppercase tracking-wider">
@@ -171,7 +167,7 @@ export function ModernCalcLayout({
                 ))}
               </nav>
             )}
-            {!hideH1 && <h1 className="text-2xl sm:text-3xl font-bold text-[#202124] tracking-tight">{title}</h1>}
+            {!hideH1 && <h1 className="text-3xl sm:text-4xl font-bold text-[#202124] tracking-tight mb-1">{title}</h1>}
           </div>
           <div className="flex items-center gap-3">
              <button onClick={() => window.print()} className="hidden sm:flex items-center gap-1.5 text-[11px] font-bold text-[#5F6368] hover:text-[#1A73E8] transition-all bg-white px-3 py-1.5 border border-[#dadce0] rounded-md shadow-sm">
@@ -187,21 +183,21 @@ export function ModernCalcLayout({
         <div className="flex flex-col lg:flex-row gap-12">
           <div className="flex-1 space-y-6">
             <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
-              <div className="px-6 py-3 border-b border-[#DADCE0] flex items-center gap-3 bg-[#F8F9FA]">
+              <div className="px-6 py-4 border-b border-[#DADCE0] flex items-center gap-3 bg-[#F8F9FA]">
                 <div className="flex items-center gap-2">
-                  <Icon className="w-4 h-4 text-[#1A73E8]" />
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#70757A]">Calculator Engine</span>
+                  <Icon className="w-4 h-4 text-[#5F6368]" />
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#5F6368]">Calculator Engine</span>
                 </div>
               </div>
               {fullWidth ? <div className="p-0">{inputs}</div> : (
                 <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-[#DADCE0]">
                   <div className="flex-1 p-4 lg:p-6 bg-white">{inputs}</div>
-                  <div className="w-full md:w-[320px] lg:w-[400px] p-4 bg-[#F8F9FA]">
-                    <div className="bg-white border border-[#DADCE0] rounded-md overflow-hidden h-full flex flex-col">
-                      <div className="px-4 py-2 border-b border-[#DADCE0] bg-white">
+                  <div className="w-full md:w-[320px] lg:w-[450px] p-4 bg-white">
+                    <div className="bg-white border border-[#DADCE0] rounded-md overflow-hidden h-full flex flex-col shadow-sm">
+                      <div className="px-4 py-2.5 border-b border-[#DADCE0] bg-[#F8F9FA]">
                         <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Result Summary</h3>
                       </div>
-                      <div className="flex-1 p-6 flex flex-col justify-center">{results}</div>
+                      <div className="flex-1 p-6 flex flex-col justify-center bg-white">{results}</div>
                     </div>
                   </div>
                 </div>
@@ -258,6 +254,11 @@ export function ModernCalcLayout({
                   {enrichedSEO}
                 </div>
               </Suspense>
+            )}
+            {auditPanel && (
+              <div className="audit-panel-section space-y-6">
+                {auditPanel}
+              </div>
             )}
             {enrichedFAQs && enrichedFAQs.length > 0 && (
               <div className="faq-section bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">

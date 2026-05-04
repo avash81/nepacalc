@@ -181,20 +181,22 @@ export default function CustomGrapher({ expression }: { expression: string }) {
       /* Labelling Axes */
       ctx.font = '11px Inter, system-ui';
       ctx.fillStyle = LABEL_COLOR;
-      const oyPx = Math.min(Math.max(toPixY(0), 12), H, 20);
-      const oxPx = Math.min(Math.max(toPixX(0), 24), W, 24);
+      // Clamp x-axis label row to visible area
+      const oyPx = Math.min(Math.max(toPixY(0), 16), H - 16);
+      // Clamp y-axis label column to visible area
+      const oxPx = Math.min(Math.max(toPixX(0), 28), W - 4);
 
       for (let x = Math.floor(xMin / xStep) * xStep; x <= xMax; x += xStep) {
         if (Math.abs(x) < xStep * 0.01) continue;
         const px = toPixX(x);
         ctx.textAlign = 'center';
-        ctx.fillText(fmtLabel(x), px, oyPx + 16);
+        ctx.fillText(fmtLabel(x), px, oyPx + 14);
       }
       for (let y = Math.floor(yMin / yStep) * yStep; y <= yMax; y += yStep) {
         if (Math.abs(y) < yStep * 0.01) continue;
         const py = toPixY(y);
         ctx.textAlign = 'right';
-        ctx.fillText(fmtLabel(y), oxPx, 8, py + 4);
+        ctx.fillText(fmtLabel(y), oxPx - 4, py + 4);
       }
     }
 

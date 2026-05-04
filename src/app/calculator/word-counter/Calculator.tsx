@@ -115,9 +115,12 @@ export default function WordCounter() {
         sidebar={{
           title: "Related Tools",
           links: [
-            { label: 'Percentage Calculator', href: '/calculator/percentage' },
+          { label: 'Percentage Calculator', href: '/calculator/percentage' },
             { label: 'Rounding Calculator', href: '/calculator/rounding' },
-          ],
+          { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
+          { label: "Age Calculator", href: "/calculator/age-calculator/" },
+          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" }
+        ],
         }}
         howToUse={{
           steps: [

@@ -96,78 +96,64 @@ export default function EngineeringGPACalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="bg-[#1A1A2E] border border-[#DADCE0] rounded-lg p-8 text-center relative overflow-hidden">
-             <div className="absolute top-0 right-0 w-32 h-32 bg-[#1A73E8] opacity-10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none" />
-             <div className="text-[10px] font-bold uppercase tracking-wider text-white/60 mb-2 relative z-10">GPA Required in Remaining Credits</div>
-             <div className={`text-6xl font-black tracking-tighter mb-4 relative z-10 ${analysis.isPossible ? 'text-[#81C995]' : 'text-[#F28B82]'}`}>
+          <div className="p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2">
+             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Target Performance Required</div>
+             <div className={`text-6xl font-black tracking-tighter ${analysis.isPossible ? 'text-[#1A73E8]' : 'text-[#D93025]'}`}>
                {analysis.requiredGPA}
              </div>
-             <div className="text-[10px] font-bold text-[#8AB4F8] uppercase tracking-wider bg-white/10 inline-flex px-3 py-1 rounded relative z-10">To reach target CGPA: {targetCGPA}</div>
+             <div className="text-[10px] font-bold text-[#70757A] uppercase">Required GPA in {remainingCredits} Credits</div>
           </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
-             <div className="px-4 py-2 bg-[#F8F9FA] border-b border-[#DADCE0]">
-                <span className="text-[10px] font-bold text-[#70757A] uppercase">Realtime Audit Ledger</span>
+          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
+             <div className="px-4 py-3 bg-[#F8F9FA] border-b border-[#DADCE0] flex justify-between items-center">
+                <span className="text-[10px] font-bold text-[#70757A] uppercase tracking-widest">Graduation Audit Matrix</span>
+                <Info className="w-3.5 h-3.5 text-[#1A73E8]" />
              </div>
              <div className="divide-y divide-[#DADCE0]">
-                <div className="p-3 flex justify-between text-xs"><span className="text-[#5F6368] font-bold">Actual Calculated CGPA</span><span className="font-black text-[#1A73E8]">{analysis.actualCGPA}</span></div>
-                <div className="p-3 flex justify-between text-xs"><span className="text-[#5F6368] font-bold">Total Credits Verified</span><span className="font-black">{analysis.totalCredits}</span></div>
+                <div className="p-4 flex justify-between text-xs">
+                   <span className="text-[#5F6368] font-bold uppercase">Calculated Current CGPA</span>
+                   <span className="font-black text-[#1A73E8]">{analysis.actualCGPA}</span>
+                </div>
+                <div className="p-4 flex justify-between text-xs">
+                   <span className="text-[#5F6368] font-bold uppercase">Verified Total Credits</span>
+                   <span className="font-black">{analysis.totalCredits}</span>
+                </div>
+                <div className="p-4 flex justify-between text-xs">
+                   <span className="text-[#5F6368] font-bold uppercase">Target CGPA Goal</span>
+                   <span className="font-black text-[#188038]">{targetCGPA.toFixed(2)}</span>
+                </div>
              </div>
           </div>
 
-          <div className={`p-4 border rounded-lg flex gap-3 items-start ${analysis.isPossible ? 'bg-[#E8F0FE] border-[#C5D9F7]' : 'bg-[#FCE8E6] border-[#FAD2CF]'}`}>
-             <Info className={`w-5 h-5 shrink-0 mt-0.5 ${analysis.isPossible ? 'text-[#1A73E8]' : 'text-[#D93025]'}`} />
-             <p className={`text-[10px] leading-relaxed font-bold ${analysis.isPossible ? 'text-[#202124]' : 'text-[#B3261E]'}`}>
-               {analysis.isPossible ? `You must maintain an average GPA of ${analysis.requiredGPA} across your remaining ${remainingCredits} credits to successfully graduate with a ${targetCGPA}.` : `Mathematical Impossibility: A GPA over 4.0 is required. Your target of ${targetCGPA} cannot be reached with only ${remainingCredits} remaining credits.`}
+          <div className={`p-4 border rounded-lg flex gap-3 items-start ${analysis.isPossible ? 'bg-[#E6F4EA] border-[#CEEAD6]' : 'bg-[#FCE8E6] border-[#FAD2CF]'}`}>
+             <Info className={`w-5 h-5 shrink-0 mt-0.5 ${analysis.isPossible ? 'text-[#188038]' : 'text-[#D93025]'}`} />
+             <p className={`text-[10px] leading-relaxed font-bold ${analysis.isPossible ? 'text-[#188038]' : 'text-[#D93025]'}`}>
+               {analysis.isPossible 
+                 ? `MANDATORY: You must maintain an average GPA of ${analysis.requiredGPA} across your remaining ${remainingCredits} credits to secure a ${targetCGPA.toFixed(2)} graduation status.` 
+                 : `PROTOCOL ALERT: A GPA exceeding 4.00 is required. Your target of ${targetCGPA.toFixed(2)} is mathematically unreachable with ${remainingCredits} credits remaining.`}
              </p>
           </div>
         </div>
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Strategic Academic Planning for Nepali Engineers</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                Surviving a rigorous 4-year engineering program requires more than just studying; it demands strict mathematical management of your cumulative credits. Specifically designed as an <strong className="text-[#202124]">ioe gpa calculator</strong> for Tribhuvan University students, this tool algorithmically projects exactly what semester grades are required to achieve your final graduation target. 
-              </p>
-              <p>
-                Unlike basic high-school grading, a <strong className="text-[#202124]">tu engineering cgpa calculator</strong> must account for uneven credit loads, where a 4-credit core subject exponentially impacts your average more than a 1-credit lab. By inputting your completed ledger, the engine instantly solves the algebraic equation to reveal your minimum required performance floor.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">University Standards & Margin of Error</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Pokhara University Variations:</strong> When using this as a <strong className="text-[#202124]">pokhara university gpa calculator</strong>, keep in mind that PU's credit hour distributions differ slightly from TU. You must accurately log your "completed credits" against PU's specific syllabus weighting to prevent prediction drift.</li>
-              <li><strong className="text-[#188038]">Kathmandu University (KU) Specs:</strong> The <strong className="text-[#202124]">ku gpa system</strong> maintains a strict 4.0 scale but places heavy emphasis on internal assessments. Use the "Semester Ledger" to verify your current standing before attempting to predict your required final-year thesis grades.</li>
-              <li><strong className="text-[#D93025]">The Mathematical Impossibility Alert:</strong> Because the maximum theoretical GPA is capped at 4.0, a student in their 7th semester with a 2.5 CGPA physically cannot reach a 3.5 final graduation target, regardless of their final year performance. The algorithm will automatically red-flag these impossible targets.</li>
-            </ul>
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
+             <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
+                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Institutional Engineering Grade Audit</h3>
+             </div>
+             <p className="text-sm text-[#5F6368] leading-relaxed">
+                The institutional engine for engineering academic trajectory management in Nepal. Calibrated for <strong>TU IOE</strong>, <strong>KU</strong>, and <strong>PU</strong> grading protocols, this tool provides a high-precision verification of GPA requirements. 
+                Designed for graduation certainty, it isolates required performance metrics to bridge existing CGPA deficits and ensure statutory compliance with university distinction thresholds.
+             </p>
           </div>
         </div>
       }
-      howToUse={{ steps: ["Select your university standard (TU IOE, KU, PU).", "Enter your current cumulative CGPA and the credits you've completed so far.", "Set your target graduation CGPA and the credits remaining in your degree.", "Optional: Log individual past semesters in the ledger for a precise actual CGPA audit.", "The tool will instantly show you exactly what GPA you need in future exams to hit your target."] }}
-      formula={{ title: "CGPA Prediction Algorithm", description: "Credit-weighted averaging.", raw: "Target Points = Target CGPA × (Completed Credits + Remaining Credits)\nCurrent Points = Current CGPA × Completed Credits\n\nPoints Needed = Target Points - Current Points\nRequired Average GPA = Points Needed / Remaining Credits" }}
-      faqs={[
-        { question: "Why does the calculator say mathematically impossible?", answer: "Because GPA systems are capped at a maximum of 4.0. If the formula (Target Points - Current Points) / Remaining Credits results in a required GPA above 4.0, no amount of perfect future performance can achieve your target. Example: If you need a 3.8 CGPA but only have 10 credits left out of 120, and your current CGPA is 2.5, it is statistically impossible." },
-        { question: "Are TU IOE credit weights different from PU or KU?", answer: "IOE (Tribhuvan University, Institute of Engineering) uses a standard 4.0 credit-weighted GPA. PU (Pokhara University) also uses a 4.0 scale. KU (Kathmandu University) similarly uses 4.0. The key difference is how each university distributes credit hours across courses ,  IOE engineering programs typically have 156–168 total credits over 4 years." },
-        { question: "What is the minimum CGPA to pass in IOE engineering?", answer: "At TU IOE, students must maintain at least 2.0 CGPA to graduate. Additionally, you must pass each subject individually ,  you cannot compensate for a failed subject with high grades elsewhere. Students with CGPA between 2.0 and 2.5 are in academic probation and may face restrictions on course enrollment." },
-        { question: "How do I use this to plan my final year thesis grade?", answer: "In IOE, the final year project/thesis typically carries 12 credit hours ,  the largest single credit block in the program. Enter your current CGPA and completed credits, set your target CGPA, and remaining credits including the 12-credit thesis. The calculator shows exactly what GPA you need in remaining courses, which helps you prioritize the thesis." },
-        { question: "What GPA is needed for graduate school admission from Nepal?", answer: "For most master's programs abroad (USA, Australia, UK): minimum 2.7/4.0 for consideration, 3.0+ for competitive programs, 3.5+ for top universities. For Fulbright scholarship from Nepal: typically 3.2+ required. For ADB-Japan scholarship: minimum 3.0 with exceptional work experience. Plan your target CGPA based on your admission goals from the start." },
-        { question: "Can this calculator work for non-engineering programs?", answer: "Yes, it works for any credit-weighted GPA system. For business, science, or arts programs at TU, PU, or KU ,  simply enter your current CGPA, completed credits, target CGPA, and remaining credits. The math is identical regardless of your faculty. The 'Past Semester Ledger' helps you verify your actual CGPA against your official transcript." }
-      ]}
-      sidebar={{ 
-        title: "Student Life", 
-        links: [
-          { label: "SEE GPA Calculator", href: "/calculator/see-gpa/" }, 
-          { label: "Standard Deviation", href: "/calculator/standard-deviation/" }
-        ], 
-        banner: { title: "Academic Planning", description: "Don't leave graduation to chance. Plan your exam targets early.", image: "/images/math-banner.jpg" } 
-      }}
       relatedTools={[
         { label: "SEE GPA Calculator", href: "/calculator/see-gpa/" }, 
-        { label: "Standard Deviation", href: "/calculator/standard-deviation/" }
+        { label: "Standard Deviation", href: "/calculator/standard-deviation/" },
+        { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
+        { label: "BMI Calculator", href: "/calculator/bmi/" },
+        { label: "Age Calculator", href: "/calculator/age-calculator/" }
       ]}
     />
   );
