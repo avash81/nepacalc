@@ -36,6 +36,10 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
 
+  typescript: {
+    ignoreBuildErrors: false,
+  },
+
   // Webpack: tree shaking only — no manual splitting (caused 1MB bundle bloat)
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {

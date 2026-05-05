@@ -1,5 +1,5 @@
 'use client';
-import React, { ReactNode, Fragment, useState, useEffect, useCallback, lazy, Suspense } from 'react';
+import React, { ReactNode, Fragment, useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { Info, Sigma, HelpCircle, ChevronRight, Calculator, ArrowLeft, Heart, Search, Menu, User, Home, Activity, DollarSign, Settings, CheckCircle2, TrendingUp, AlertCircle } from 'lucide-react';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation';
 import { RecentSidebar } from './RecentSidebar';
 import { CALCULATORS } from '@/data/calculators';
 import type { MarketRate } from '@/utils/market/fetchRates';
+
 
 interface ModernCalcLayoutProps {
   title: string;
@@ -47,12 +48,14 @@ export function ModernCalcLayout({
   const [lastUpdate, setLastUpdate] = useState<string>('');
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
-  
+  const effectiveSlug = slug || pathname?.split('/').filter(Boolean).pop();
+  const seoEntry = effectiveSlug ? TIER1_SEO_CONTENT[effectiveSlug] : null;
+
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Defer market rates fetch ,  don't block initial paint
+  // Defer market rates fetch — don't block initial paint
   useEffect(() => {
     const timer = setTimeout(async () => {
       try {
@@ -61,12 +64,9 @@ export function ModernCalcLayout({
         setLiveRates(rates);
         setLastUpdate(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }));
       } catch (e) { /* silent */ }
-    }, 800); // defer 800ms after first paint
+    }, 800);
     return () => clearTimeout(timer);
   }, []);
-
-  const effectiveSlug = slug || pathname?.split('/').filter(Boolean).pop();
-  const seoEntry = effectiveSlug ? TIER1_SEO_CONTENT[effectiveSlug] : null;
 
   const enrichedSEO = seoContent || seoEntry?.content;
   const enrichedFAQs = (faqs && faqs.length > 0) ? faqs : seoEntry?.faqs || [];
