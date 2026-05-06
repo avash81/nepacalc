@@ -273,16 +273,16 @@ export default function RemittanceCalculator() {
           title: "Diaspora Suite",
           subtitle: "Wealth & Finance",
           links: [
-            { label: "Currency Conv", href: "/calculator/currency-converter", icon: Globe },
-            { label: "WACC Calculator", href: "/calculator/nepse-wacc", icon: Target },
-            { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: Receipt },
+            { label: "Currency Conv", href: "/calculator/currency-converter/", icon: Globe },
+            { label: "WACC Calculator", href: "/calculator/nepse-wacc/", icon: Target },
+            { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Receipt },
             { label: "NRB Official", href: "https://nrb.org.np", icon: Landmark },
           ],
         }}
         relatedTools={[
-          { label: "Currency Converter", href: "/calculator/currency-converter" },
-          { label: "WACC Calculator", href: "/calculator/nepse-wacc" },
-          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax" }
+          { label: "Currency Converter", href: "/calculator/currency-converter/" },
+          { label: "WACC Calculator", href: "/calculator/nepse-wacc/" },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" }
         ]}
       />
     </CalculatorErrorBoundary>

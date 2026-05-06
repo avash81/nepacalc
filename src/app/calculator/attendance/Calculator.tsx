@@ -155,8 +155,8 @@ export default function AttendanceCalculator() {
         { question: "What is the formula to calculate how many classes I can skip?", answer: "If you have met the target, the number of classes you can still miss is: Floor((Attended / Target%) − Total). For example: Attended=60, Total=70, Target=75%. Can miss = Floor((60/0.75) − 70) = Floor(80 − 70) = 10 more classes. This is exactly what this calculator computes for you." },
         { question: "What is the minimum attendance at Kathmandu University (KU)?", answer: "Kathmandu University (KU) generally requires 80% attendance for most undergraduate and graduate programs. The School of Engineering has been known to enforce this strictly, with no relaxation offered unless exceptional circumstances are documented. KU's policy is more stringent than TU in this regard." }
       ]}
-      sidebar={{ title: "Academic Tools", links: [{ label: "CGPA Calculator", href: "/calculator/cgpa" }, { label: "GPA Calculator", href: "/calculator/gpa" }, { label: "SEE GPA", href: "/calculator/see-gpa" }, { label: "Age Calculator", href: "/calculator/age-calculator" }], banner: { title: "Stay On Track", description: "Consistent attendance directly improves understanding and exam performance.", image: "/images/student-banner.jpg" } }}
-      relatedTools={[{ label: "CGPA Calculator", href: "/calculator/cgpa" }, { label: "GPA Calculator", href: "/calculator/gpa" }, { label: "SEE GPA", href: "/calculator/see-gpa" }]}
+      sidebar={{ title: "Academic Tools", links: [{ label: "CGPA Calculator", href: "/calculator/cgpa/" }, { label: "GPA Calculator", href: "/calculator/gpa/" }, { label: "SEE GPA", href: "/calculator/see-gpa/" }, { label: "Age Calculator", href: "/calculator/age-calculator/" }], banner: { title: "Stay On Track", description: "Consistent attendance directly improves understanding and exam performance.", image: "/images/student-banner.jpg" } }}
+      relatedTools={[{ label: "CGPA Calculator", href: "/calculator/cgpa/" }, { label: "GPA Calculator", href: "/calculator/gpa/" }, { label: "SEE GPA", href: "/calculator/see-gpa/" }]}
     />
   );
 }

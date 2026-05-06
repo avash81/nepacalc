@@ -26,7 +26,7 @@ export default function GeometryPage() {
       <CalcWrapper
         title="Geometry Calculator: Area, Perimeter, LCM & GCF"
         description="A professional-grade Euclidean construction engine. Draw, measure, and analyze geometric relationships with precision."
-        crumbs={[{ label: 'Engineering', href: '/engineering' }, { label: 'Geometry' }]}
+        crumbs={[{ label: 'Engineering', href: '/engineering/' }, { label: 'Geometry' }]}
       >
         <div className="py-4">
           <GeometryCanvasClient />

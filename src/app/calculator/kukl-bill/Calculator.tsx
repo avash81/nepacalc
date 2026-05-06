@@ -169,15 +169,15 @@ export default function KUKLCalculator() {
         title: "Utility Hub",
         subtitle: "Nepal Water",
         links: [
-          { label: "NEA Electricity Bill", href: "/calculator/nea-bill", icon: Zap },
-          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: Landmark },
+          { label: "NEA Electricity Bill", href: "/calculator/nea-bill/", icon: Zap },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Landmark },
           { label: "KUKL Official", href: "https://kathmanduwater.org", icon: Globe },
         ],
       }}
       relatedTools={[
-        { label: "NEA Electricity Bill", href: "/calculator/nea-bill" },
-        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax" },
-        { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax" }
+        { label: "NEA Electricity Bill", href: "/calculator/nea-bill/" },
+        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" },
+        { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax/" }
       ]}
     />
   );

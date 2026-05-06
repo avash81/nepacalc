@@ -98,9 +98,9 @@ export default function ForceCalc() {
       sidebar={{
         title: "Physics & Engineering",
         links: [
-          { label: 'Kinetic Energy', href: '/calculator/physics-energy' },
-          { label: 'Geometry Calculator', href: '/calculator/geometry-3d' },
-          { label: 'Scientific Calculator', href: '/calculator/scientific-calculator' },
+          { label: 'Kinetic Energy', href: '/calculator/physics-energy/' },
+          { label: 'Geometry Calculator', href: '/calculator/geometry-3d/' },
+          { label: 'Scientific Calculator', href: '/calculator/scientific-calculator/' },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
           { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
           { label: "Age Calculator", href: "/calculator/age-calculator/" }

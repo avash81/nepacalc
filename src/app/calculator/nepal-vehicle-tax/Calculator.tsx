@@ -346,16 +346,16 @@ export default function NepalVehicleTaxCalculator() {
         title: "Auto Hub",
         subtitle: "Tax & Insurance",
         links: [
-          { label: "Petrol Cost Tool", href: "/calculator/fuel-cost", icon: Activity },
-          { label: "EMI Calculator", href: "/calculator/loan-emi", icon: Wallet },
+          { label: "Petrol Cost Tool", href: "/calculator/fuel-cost/", icon: Activity },
+          { label: "EMI Calculator", href: "/calculator/loan-emi/", icon: Wallet },
           { label: "DoTM Portal", href: "https://dotm.gov.np", icon: Globe },
-          { label: "Vehicle Tax Guide", href: "/blog/nepal-vehicle-tax-guide", icon: History },
+          { label: "Vehicle Tax Guide", href: "/blog/nepal-vehicle-tax-guide/", icon: History },
         ],
       }}
       relatedTools={[
-        { label: "Fuel Cost Tool", href: "/calculator/fuel-cost" },
-        { label: "Loan EMI", href: "/calculator/loan-emi" },
-        { label: "Income Tax", href: "/calculator/nepal-income-tax" }
+        { label: "Fuel Cost Tool", href: "/calculator/fuel-cost/" },
+        { label: "Loan EMI", href: "/calculator/loan-emi/" },
+        { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
       ]}
     />
   );

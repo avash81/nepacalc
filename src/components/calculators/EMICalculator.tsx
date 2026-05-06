@@ -38,7 +38,7 @@ export default function EMICalculator() {
     <CalculatorLayout
       title="Loan EMI Calculator"
       description="Professional EMI calculator for home, car, and personal loans. Plan your repayment with high precision."
-      category={{ label: 'Finance', href: '/calculator/category/finance' }}
+      category={{ label: 'Finance', href: '/calculator/category/finance/' }}
       faqs={faqs}
       leftPanel={
         <div className="space-y-6">

@@ -308,15 +308,15 @@ export default function LcmGcfCalculator() {
         }
       ]}
       sidebar={{ title: "Pure Mathematics", links: [
-          { label: "Fraction Calculator", href: "/calculator/fraction-calculator" },
-          { label: "Decimal to Fraction", href: "/calculator/decimal-to-fraction" },
+          { label: "Fraction Calculator", href: "/calculator/fraction-calculator/" },
+          { label: "Decimal to Fraction", href: "/calculator/decimal-to-fraction/" },
           { label: "NEB Mathematics Guide", href: "https://neb.gov.np" },
           { label: "IOE Entrance Portal", href: "https://ioe.edu.np" },
           { label: "Percentage Calculator", href: "/calculator/percentage/" }
         ], banner: { title: "Number Theory", description: "Standardizing mathematical logic for Nepal's digital age.", image: "/images/math-banner.jpg" } }}
       relatedTools={[
-        { label: "Fraction Calculator", href: "/calculator/fraction-calculator" },
-        { label: "Decimal to Fraction", href: "/calculator/decimal-to-fraction" },
+        { label: "Fraction Calculator", href: "/calculator/fraction-calculator/" },
+        { label: "Decimal to Fraction", href: "/calculator/decimal-to-fraction/" },
         { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" },
         { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" }
       ]}

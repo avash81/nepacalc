@@ -110,7 +110,7 @@ export default function BlogPostContent({ post, related }: { post: any; related:
         <nav className="flex items-center gap-1.5 text-xs text-gray-400 mb-5">
           <Link href="/" className="hover:text-blue-600">Home</Link>
           <span>/</span>
-          <Link href="/blog" className="hover:text-blue-600">Blog</Link>
+          <Link href="/blog/" className="hover:text-blue-600">Blog</Link>
           <span>/</span>
           <span className="text-gray-600 truncate">{post.title}</span>
         </nav>

@@ -261,11 +261,11 @@ export default function StatisticsPlus() {
         sidebar={{
           title: "Institutional Resources",
           links: [
-            { label: "Standard Deviation", href: "/calculator/standard-deviation" },
-            { label: "Z-Score Calculator", href: "/calculator/z-score" },
+            { label: "Standard Deviation", href: "/calculator/standard-deviation/" },
+            { label: "Z-Score Calculator", href: "/calculator/z-score/" },
             { label: "NSO Nepal (Census Data)", href: "https://cbs.gov.np" },
             { label: "NEB Mathematics Guide", href: "https://neb.gov.np" },
-            { label: "GPA Calculator", href: "/calculator/gpa" },
+            { label: "GPA Calculator", href: "/calculator/gpa/" },
           ],
           banner: {
             title: "Data Intelligence",
@@ -274,10 +274,10 @@ export default function StatisticsPlus() {
           }
         }}
         relatedTools={[
-          { label: "Standard Deviation", href: "/calculator/standard-deviation" },
-          { label: "Z-Score Tool", href: "/calculator/z-score" },
-          { label: "GPA Calculator", href: "/calculator/gpa" },
-          { label: "Percentage Calc", href: "/calculator/percentage" }
+          { label: "Standard Deviation", href: "/calculator/standard-deviation/" },
+          { label: "Z-Score Tool", href: "/calculator/z-score/" },
+          { label: "GPA Calculator", href: "/calculator/gpa/" },
+          { label: "Percentage Calc", href: "/calculator/percentage/" }
         ]}
       />
     </CalculatorErrorBoundary>

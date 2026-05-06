@@ -365,10 +365,10 @@ export default function SIPCalculator() {
       sidebar={{
         title: "Investment Toolkit",
         links: [
-          { label: "Lumpsum Calculator", href: "/calculator/lumpsum-calculator", icon: Zap },
-          { label: "FD Calculator (Nepal)", href: "/calculator/fd-calculator", icon: Landmark },
-          { label: "SWP Calculator", href: "/calculator/swp-calculator", icon: History },
-          { label: "Retirement Planner", href: "/calculator/retirement", icon: Target },
+          { label: "Lumpsum Calculator", href: "/calculator/lumpsum-calculator/", icon: Zap },
+          { label: "FD Calculator (Nepal)", href: "/calculator/fd-calculator/", icon: Landmark },
+          { label: "SWP Calculator", href: "/calculator/swp-calculator/", icon: History },
+          { label: "Retirement Planner", href: "/calculator/retirement/", icon: Target },
         ],
         banner: {
           title: "Build Generational Wealth",
@@ -380,9 +380,9 @@ export default function SIPCalculator() {
       formula={TIER1_SEO_CONTENT['sip-calculator'].formula}
       faqs={TIER1_SEO_CONTENT['sip-calculator'].faqs}
       relatedTools={[
-        { label: "Lumpsum Calculator", href: "/calculator/lumpsum-calculator" },
-        { label: "FD Calculator", href: "/calculator/fd-calculator" },
-        { label: "Income Tax", href: "/calculator/nepal-income-tax" }
+        { label: "Lumpsum Calculator", href: "/calculator/lumpsum-calculator/" },
+        { label: "FD Calculator", href: "/calculator/fd-calculator/" },
+        { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
       ]}
     />
   );

@@ -51,7 +51,7 @@ export function MarketDashboardLayout({
             </button>
             <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
             <ChevronRight className="w-3 h-3" />
-            <Link href="/market-rates" className="hover:text-blue-600 transition-colors">Market Rates</Link>
+            <Link href="/market-rates/" className="hover:text-blue-600 transition-colors">Market Rates</Link>
             <ChevronRight className="w-3 h-3" />
             <span className="text-slate-900">{title}</span>
           </nav>

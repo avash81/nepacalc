@@ -152,9 +152,9 @@ export default function MatrixCalc() {
         </div>
       }
       relatedTools={[
-        { label: "Linear Solver", href: "/calculator/linear-solver" },
-        { label: "Scientific Calc", href: "/calculator/scientific-calculator" },
-        { label: "Quadratic Solver", href: "/calculator/quadratic-solver" }
+        { label: "Linear Solver", href: "/calculator/linear-solver/" },
+        { label: "Scientific Calc", href: "/calculator/scientific-calculator/" },
+        { label: "Quadratic Solver", href: "/calculator/quadratic-solver/" }
       ]}
     />
   );

@@ -103,9 +103,9 @@ export default function QuadraticSolver() {
         </div>
       }
       relatedTools={[
-        { label: "Linear Solver", href: "/calculator/linear-solver" },
-        { label: "Scientific Calc", href: "/calculator/scientific-calculator" },
-        { label: "Matrices", href: "/calculator/matrices" }
+        { label: "Linear Solver", href: "/calculator/linear-solver/" },
+        { label: "Scientific Calc", href: "/calculator/scientific-calculator/" },
+        { label: "Matrices", href: "/calculator/matrices/" }
       ]}
     />
   );

@@ -227,13 +227,13 @@ export default function NepaliDateConverter() {
         { question: "How does the BS calendar affect tax filing deadlines in Nepal?", answer: "Nepal's fiscal year runs from Shrawan 1 to Ashar End (approximately mid-July to mid-July in AD). The IRD (Inland Revenue Department) sets tax filing deadlines in BS dates. Key deadlines: VAT returns due by the 25th of the next BS month. Income tax returns due by Poush End (approximately mid-January AD). Using this converter helps businesses align their Gregorian accounting software with BS regulatory deadlines." }
       ]}
       sidebar={{ title: "Daily Utility", links: [
-          { label: "Unit Converter", href: "/calculator/unit-converter" }, { label: "Age Calculator", href: "/calculator/age" },
+          { label: "Unit Converter", href: "/calculator/unit-converter/" }, { label: "Age Calculator", href: "/calculator/age/" },
           { label: "BMI Calculator", href: "/calculator/bmi/" },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
         ], banner: { title: "Tithi Planner", description: "Plan your cultural events ahead by checking exact date alignments.", image: "/images/date-banner.jpg" } }}
       relatedTools={[
-        { label: "Age Calculator", href: "/calculator/age" }, { label: "Unit Converter", href: "/calculator/unit-converter" },
+        { label: "Age Calculator", href: "/calculator/age/" }, { label: "Unit Converter", href: "/calculator/unit-converter/" },
         { label: "BMI Calculator", href: "/calculator/bmi/" },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" }

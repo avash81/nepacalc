@@ -110,8 +110,8 @@ export default function DecimalToFraction() {
         </>
       }
       relatedTools={[
-        { label: "Fraction Calculator", href: "/calculator/fraction-calculator" },
-        { label: "Scientific Calc", href: "/calculator/scientific-calculator" },
+        { label: "Fraction Calculator", href: "/calculator/fraction-calculator/" },
+        { label: "Scientific Calc", href: "/calculator/scientific-calculator/" },
         { label: "Percentage Calc", href: "/calculator/percentage/" },
         { label: "GPA Calculator", href: "/calculator/gpa/" }
       ]}

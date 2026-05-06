@@ -133,7 +133,7 @@ export default function MarksNeededCalculator() {
         </div>
       }
       relatedTools={[
-        { label: "SEE GPA Calculator", href: "/calculator/see-gpa" },
+        { label: "SEE GPA Calculator", href: "/calculator/see-gpa/" },
         { label: "Percentage Calc", href: "/calculator/percentage/" },
         { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
         { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" }

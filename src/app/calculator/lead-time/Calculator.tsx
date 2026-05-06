@@ -143,13 +143,13 @@ export default function LeadTimeCalculator() {
         { question: "Can I calculate working days backwards from a deadline?", answer: "Yes ,  use 'Order By Date' mode. Enter your target need-by date, specify how many business days of lead time you require, and the calculator counts backwards (skipping weekends) to give you the exact last date to place your order. This is ideal for just-in-time (JIT) procurement planning." }
       ]}
       sidebar={{ title: "Logistics Tools", links: [
-          { label: "Number Base Converter", href: "/calculator/base-converter" }, { label: "Standard Deviation", href: "/calculator/standard-deviation" },
+          { label: "Number Base Converter", href: "/calculator/base-converter/" }, { label: "Standard Deviation", href: "/calculator/standard-deviation/" },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
           { label: "Percentage Calc", href: "/calculator/percentage/" },
           { label: "Nepal Salary", href: "/calculator/nepal-salary/" }
         ], banner: { title: "Supply Chain", description: "Accurate lead time tracking prevents stockouts and overstocking.", image: "/images/finance-banner.jpg" } }}
       relatedTools={[
-        { label: "Standard Deviation", href: "/calculator/standard-deviation" },
+        { label: "Standard Deviation", href: "/calculator/standard-deviation/" },
         { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
           { label: "Percentage Calc", href: "/calculator/percentage/" },
           { label: "Nepal Salary", href: "/calculator/nepal-salary/" }

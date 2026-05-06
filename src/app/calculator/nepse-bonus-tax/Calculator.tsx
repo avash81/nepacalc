@@ -322,16 +322,16 @@ export default function NepseBonusTaxCalculator() {
         title: "NEPSE Hub",
         subtitle: "Tax & Compliance",
         links: [
-          { label: "WACC Calculator", href: "/calculator/nepse-wacc", icon: Target },
-          { label: "Trading Calculator", href: "/calculator/nepal-stocks", icon: Activity },
-          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: Wallet },
+          { label: "WACC Calculator", href: "/calculator/nepse-wacc/", icon: Target },
+          { label: "Trading Calculator", href: "/calculator/nepal-stocks/", icon: Activity },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Wallet },
           { label: "CDSC Portal", href: "https://meroshare.cdsc.com.np", icon: Globe },
         ],
       }}
       relatedTools={[
-        { label: "WACC Calculator", href: "/calculator/nepse-wacc" },
-        { label: "Trading Tool", href: "/calculator/nepal-stocks" },
-        { label: "Income Tax", href: "/calculator/nepal-income-tax" }
+        { label: "WACC Calculator", href: "/calculator/nepse-wacc/" },
+        { label: "Trading Tool", href: "/calculator/nepal-stocks/" },
+        { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
       ]}
     />
   );

@@ -121,9 +121,9 @@ export default function ConcreteMixCalculator() {
         </div>
       }
       relatedTools={[
-        { label: "Brick Calculator", href: "/calculator/brick-calculator" },
-        { label: "Paint Estimator", href: "/calculator/paint-cost" },
-        { label: "Age Calculator", href: "/calculator/age-calculator" }
+        { label: "Brick Calculator", href: "/calculator/brick-calculator/" },
+        { label: "Paint Estimator", href: "/calculator/paint-cost/" },
+        { label: "Age Calculator", href: "/calculator/age-calculator/" }
       ]}
     />
   );

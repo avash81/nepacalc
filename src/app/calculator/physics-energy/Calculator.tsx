@@ -111,9 +111,9 @@ export default function EnergyCalc() {
       sidebar={{
         title: "Physics Calculators",
         links: [
-          { label: 'Force & Work', href: '/calculator/physics-force' },
-          { label: 'Math Geometry', href: '/calculator/geometry-3d' },
-          { label: 'Scientific', href: '/calculator/scientific-calculator' },
+          { label: 'Force & Work', href: '/calculator/physics-force/' },
+          { label: 'Math Geometry', href: '/calculator/geometry-3d/' },
+          { label: 'Scientific', href: '/calculator/scientific-calculator/' },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
           { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
           { label: "BMI Calculator", href: "/calculator/bmi/" }

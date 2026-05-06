@@ -179,10 +179,10 @@ export default function LinearSolver() {
         </div>
       }
       relatedTools={[
-        { label: "Quadratic Solver", href: "/calculator/quadratic-solver" },
-        { label: "Scientific Calc", href: "/calculator/scientific-calculator" },
-        { label: "Matrices", href: "/calculator/matrices" },
-        { label: "Logarithm Calc", href: "/calculator/logarithm-calculator" }
+        { label: "Quadratic Solver", href: "/calculator/quadratic-solver/" },
+        { label: "Scientific Calc", href: "/calculator/scientific-calculator/" },
+        { label: "Matrices", href: "/calculator/matrices/" },
+        { label: "Logarithm Calc", href: "/calculator/logarithm-calculator/" }
       ]}
     />
   );

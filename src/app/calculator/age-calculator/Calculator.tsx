@@ -111,8 +111,8 @@ export default function AgeCalculator() {
         </div>
       }
       relatedTools={[
-        { label: "Nepali Date", href: "/calculator/nepali-date" },
-        { label: "BMI Calculator", href: "/calculator/bmi" }
+        { label: "Nepali Date", href: "/calculator/nepali-date/" },
+        { label: "BMI Calculator", href: "/calculator/bmi/" }
       ]}
     />
   );

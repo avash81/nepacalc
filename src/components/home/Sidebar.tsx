@@ -40,7 +40,7 @@ export function Sidebar() {
           ].map(tool => (
             <Link 
               key={tool.slug} 
-              href={`/calculator/${tool.slug}`}
+              href={`/calculator/${tool.slug}/`}
               className="group/item flex items-center justify-between transition-all"
             >
               <div className="flex items-center gap-4">
@@ -63,7 +63,7 @@ export function Sidebar() {
           {popular.map(tool => (
             <Link 
               key={tool.id} 
-              href={`/calculator/${tool.slug}`}
+              href={`/calculator/${tool.slug}/`}
               className="group/item flex items-center justify-between transition-all"
             >
               <div className="flex items-center gap-4">
@@ -86,14 +86,14 @@ export function Sidebar() {
            {['NPR ↔ USD', 'km ↔ miles', '°C ↔ °F', 'kg ↔ lbs'].map(conv => (
              <Link 
                key={conv} 
-               href="/calculator/unit-converter"
+               href="/calculator/unit-converter/"
                className="h-11 border border-gray-100 rounded-lg flex items-center justify-center text-[11px] font-bold text-gray-600 hover:bg-gray-50 hover:border-[#1A73E8] hover:text-[#1A73E8] transition-all bg-white shadow-sm"
              >
                {conv}
              </Link>
            ))}
         </div>
-        <Link href="/calculator/unit-converter" className="mt-4 block text-[10px] font-black text-[#1A73E8] uppercase tracking-widest text-center hover:underline">View all converters →</Link>
+        <Link href="/calculator/unit-converter/" className="mt-4 block text-[10px] font-black text-[#1A73E8] uppercase tracking-widest text-center hover:underline">View all converters →</Link>
       </div>
 
     </div>

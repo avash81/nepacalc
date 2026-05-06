@@ -162,8 +162,8 @@ export default function WaterIntakeCalculator() {
           answer: "Absolutely. At high altitudes (as found in Nepal's Himalayan trekking regions), the air is thinner and drier. Your respiratory rate increases, causing significantly more water to be exhaled with each breath. Trekkers in the Himalayas should increase their water intake by at least 30-40% above this calculator's baseline."
         }
       ]}
-      sidebar={{ title: "Health Toolkit", links: [{ label: "BMI Calculator", href: "/calculator/bmi" }, { label: "BMR Calculator", href: "/calculator/bmr" }, { label: "Calorie Tool", href: "/calculator/calorie-calculator" }, { label: "Ideal Weight", href: "/calculator/ideal-weight" }], banner: { title: "Stay Hydrated", description: "Even mild dehydration of 1-2% body water can impair physical and cognitive performance.", image: "/images/water-banner.jpg" } }}
-      relatedTools={[{ label: "BMI Calculator", href: "/calculator/bmi" }, { label: "BMR Calculator", href: "/calculator/bmr" }, { label: "Calorie Tool", href: "/calculator/calorie-calculator" }]}
+      sidebar={{ title: "Health Toolkit", links: [{ label: "BMI Calculator", href: "/calculator/bmi/" }, { label: "BMR Calculator", href: "/calculator/bmr/" }, { label: "Calorie Tool", href: "/calculator/calorie-calculator/" }, { label: "Ideal Weight", href: "/calculator/ideal-weight/" }], banner: { title: "Stay Hydrated", description: "Even mild dehydration of 1-2% body water can impair physical and cognitive performance.", image: "/images/water-banner.jpg" } }}
+      relatedTools={[{ label: "BMI Calculator", href: "/calculator/bmi/" }, { label: "BMR Calculator", href: "/calculator/bmr/" }, { label: "Calorie Tool", href: "/calculator/calorie-calculator/" }]}
     />
   );
 }

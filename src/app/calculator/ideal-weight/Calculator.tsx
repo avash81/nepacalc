@@ -176,8 +176,8 @@ export default function IdealWeightCalculator() {
           answer: "Biological men naturally carry denser bone structures and a higher ratio of essential lean muscle tissue compared to biological women of the exact same height. The algorithms account for this by utilizing a heavier baseline (50.0 kg vs 45.5 kg)."
         }
       ]}
-      sidebar={{ title: "Health Toolkit", links: [{ label: "BMI Calculator", href: "/calculator/bmi" }, { label: "Body Fat %", href: "/calculator/body-fat" }, { label: "BMR Calculator", href: "/calculator/bmr" }, { label: "Calorie Tool", href: "/calculator/calorie-calculator" }], banner: { title: "Healthy Goals", description: "Use the ideal weight range alongside BMI for a more complete picture of health.", image: "/images/weight-banner.jpg" } }}
-      relatedTools={[{ label: "BMI Calculator", href: "/calculator/bmi" }, { label: "Body Fat %", href: "/calculator/body-fat" }, { label: "BMR Calculator", href: "/calculator/bmr" }]}
+      sidebar={{ title: "Health Toolkit", links: [{ label: "BMI Calculator", href: "/calculator/bmi/" }, { label: "Body Fat %", href: "/calculator/body-fat/" }, { label: "BMR Calculator", href: "/calculator/bmr/" }, { label: "Calorie Tool", href: "/calculator/calorie-calculator/" }], banner: { title: "Healthy Goals", description: "Use the ideal weight range alongside BMI for a more complete picture of health.", image: "/images/weight-banner.jpg" } }}
+      relatedTools={[{ label: "BMI Calculator", href: "/calculator/bmi/" }, { label: "Body Fat %", href: "/calculator/body-fat/" }, { label: "BMR Calculator", href: "/calculator/bmr/" }]}
     />
   );
 }

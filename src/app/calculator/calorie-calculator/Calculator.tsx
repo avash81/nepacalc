@@ -209,10 +209,10 @@ export default function CalorieCalculator() {
       sidebar={{
         title: "Health & Fitness Tools",
         links: [
-          { label: "BMI Calculator", href: "/calculator/bmi" },
-          { label: "BMR Calculator", href: "/calculator/bmr" },
-          { label: "Ideal Weight", href: "/calculator/ideal-weight" },
-          { label: "Body Fat %", href: "/calculator/body-fat" },
+          { label: "BMI Calculator", href: "/calculator/bmi/" },
+          { label: "BMR Calculator", href: "/calculator/bmr/" },
+          { label: "Ideal Weight", href: "/calculator/ideal-weight/" },
+          { label: "Body Fat %", href: "/calculator/body-fat/" },
         ],
         banner: {
           title: "Track your macros",
@@ -221,9 +221,9 @@ export default function CalorieCalculator() {
         }
       }}
       relatedTools={[
-        { label: "BMI Calculator", href: "/calculator/bmi" },
-        { label: "BMR Calculator", href: "/calculator/bmr" },
-        { label: "Ideal Weight", href: "/calculator/ideal-weight" }
+        { label: "BMI Calculator", href: "/calculator/bmi/" },
+        { label: "BMR Calculator", href: "/calculator/bmr/" },
+        { label: "Ideal Weight", href: "/calculator/ideal-weight/" }
       ]}
     />
   );

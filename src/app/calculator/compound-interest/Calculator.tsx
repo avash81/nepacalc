@@ -357,16 +357,16 @@ export default function CompoundInterestCalculator() {
         title: "Growth Hub",
         subtitle: "Wealth Planning",
         links: [
-          { label: "SIP Calculator", href: "/calculator/sip-calculator", icon: TrendingUp },
-          { label: "FD Calculator", href: "/calculator/fd-calculator", icon: Target },
-          { label: "CAGR Engine", href: "/calculator/cagr-calculator", icon: LineChart },
-          { label: "Tax Planner", href: "/calculator/nepal-income-tax", icon: Wallet },
+          { label: "SIP Calculator", href: "/calculator/sip-calculator/", icon: TrendingUp },
+          { label: "FD Calculator", href: "/calculator/fd-calculator/", icon: Target },
+          { label: "CAGR Engine", href: "/calculator/cagr-calculator/", icon: LineChart },
+          { label: "Tax Planner", href: "/calculator/nepal-income-tax/", icon: Wallet },
         ],
       }}
       relatedTools={[
-        { label: "SIP Calculator", href: "/calculator/sip-calculator" },
-        { label: "FD Calculator", href: "/calculator/fd-calculator" },
-        { label: "CAGR Calculator", href: "/calculator/cagr-calculator" }
+        { label: "SIP Calculator", href: "/calculator/sip-calculator/" },
+        { label: "FD Calculator", href: "/calculator/fd-calculator/" },
+        { label: "CAGR Calculator", href: "/calculator/cagr-calculator/" }
       ]}
     />
   );

@@ -116,9 +116,9 @@ export default function RomanNumeralsCalculator() {
       sidebar={{
         title: "Text & Math Tools",
         links: [
-          { label: 'Number to Words', href: '/calculator/number-to-words' },
-          { label: 'Word Counter', href: '/calculator/word-counter' },
-          { label: 'Simple Calculator', href: '/calculator/simple-calculator' },
+          { label: 'Number to Words', href: '/calculator/number-to-words/' },
+          { label: 'Word Counter', href: '/calculator/word-counter/' },
+          { label: 'Simple Calculator', href: '/calculator/simple-calculator/' },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
           { label: "BMI Calculator", href: "/calculator/bmi/" },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" }

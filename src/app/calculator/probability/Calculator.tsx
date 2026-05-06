@@ -337,11 +337,11 @@ export default function ProbabilityCalc() {
       sidebar={{
         title: "Institutional Resources",
         links: [
-          { label: "Z-Score Calculator", href: "/calculator/z-score" },
-          { label: "Standard Deviation", href: "/calculator/standard-deviation" },
+          { label: "Z-Score Calculator", href: "/calculator/z-score/" },
+          { label: "Standard Deviation", href: "/calculator/standard-deviation/" },
           { label: "NEB Math Portal", href: "https://neb.gov.np" },
           { label: "NSO Nepal", href: "https://cbs.gov.np" },
-          { label: "Statistics Plus", href: "/calculator/statistics-plus" },
+          { label: "Statistics Plus", href: "/calculator/statistics-plus/" },
         ],
         banner: {
           title: "Academic Excellence",
@@ -350,10 +350,10 @@ export default function ProbabilityCalc() {
         }
       }}
       relatedTools={[
-        { label: "Z-Score Tool", href: "/calculator/z-score" },
-        { label: "Standard Deviation", href: "/calculator/standard-deviation" },
-        { label: "Statistics Plus", href: "/calculator/statistics-plus" },
-        { label: "Ratio Calculator", href: "/calculator/ratio-proportion" }
+        { label: "Z-Score Tool", href: "/calculator/z-score/" },
+        { label: "Standard Deviation", href: "/calculator/standard-deviation/" },
+        { label: "Statistics Plus", href: "/calculator/statistics-plus/" },
+        { label: "Ratio Calculator", href: "/calculator/ratio-proportion/" }
       ]}
     />
   );

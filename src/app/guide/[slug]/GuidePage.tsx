@@ -221,7 +221,7 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
                aria-label="Breadcrumb">
             <Link href="/" className="hover:text-blue-600">Home</Link>
             <span>/</span>
-            <Link href="/blog" className="hover:text-blue-600">Guides</Link>
+            <Link href="/blog/" className="hover:text-blue-600">Guides</Link>
             <span>/</span>
             <span className="text-gray-600 truncate max-w-[200px]">{page.title}</span>
           </nav>
@@ -422,7 +422,7 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
 
           {/* Back to blog */}
           <div className="mt-8 pt-4 border-t border-gray-200">
-            <Link href="/blog"
+            <Link href="/blog/"
               className="text-sm text-blue-600 hover:underline flex items-center gap-1">
               ← Back to all guides
             </Link>

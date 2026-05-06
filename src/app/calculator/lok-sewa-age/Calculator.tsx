@@ -227,16 +227,16 @@ export default function LokSewaAgeCalculator() {
         title: "Career Hub",
         subtitle: "PSC Resources",
         links: [
-          { label: "Salary Calculator", href: "/calculator/nepal-salary", icon: UserCheck },
-          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: ShieldCheck },
-          { label: "Nepali Date Conv", href: "/calculator/nepali-date-converter", icon: Globe },
+          { label: "Salary Calculator", href: "/calculator/nepal-salary/", icon: UserCheck },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: ShieldCheck },
+          { label: "Nepali Date Conv", href: "/calculator/nepali-date-converter/", icon: Globe },
           { label: "PSC Official Site", href: "https://psc.gov.np", icon: History },
         ],
       }}
       relatedTools={[
-        { label: "Salary Calculator", href: "/calculator/nepal-salary" },
-        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax" },
-        { label: "Nepali Date Converter", href: "/calculator/nepali-date-converter" }
+        { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
+        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" },
+        { label: "Nepali Date Converter", href: "/calculator/nepali-date-converter/" }
       ]}
     />
   );

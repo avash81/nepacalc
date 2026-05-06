@@ -206,16 +206,16 @@ export default function NepalAttendanceCalculator() {
         title: "Academic Hub",
         subtitle: "University Tools",
         links: [
-          { label: "SEE GPA Calc", href: "/calculator/see-gpa", icon: GraduationCap },
-          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age", icon: UserCheck },
-          { label: "Percentage Calc", href: "/calculator/percentage-calculator", icon: Globe },
+          { label: "SEE GPA Calc", href: "/calculator/see-gpa/", icon: GraduationCap },
+          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/", icon: UserCheck },
+          { label: "Percentage Calc", href: "/calculator/percentage-calculator/", icon: Globe },
           { label: "TU Official", href: "https://tu.edu.np", icon: History },
         ],
       }}
       relatedTools={[
-        { label: "SEE GPA Calculator", href: "/calculator/see-gpa" },
-        { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age" },
-        { label: "Percentage Calculator", href: "/calculator/percentage-calculator" }
+        { label: "SEE GPA Calculator", href: "/calculator/see-gpa/" },
+        { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
+        { label: "Percentage Calculator", href: "/calculator/percentage-calculator/" }
       ]}
     />
   );

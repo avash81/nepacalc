@@ -315,11 +315,11 @@ export default function StandardDeviationCalculator() {
         sidebar={{
           title: "Institutional Resources",
           links: [
-            { label: "Z-Score Calculator", href: "/calculator/z-score" },
+            { label: "Z-Score Calculator", href: "/calculator/z-score/" },
             { label: "NSO Nepal (Census Data)", href: "https://cbs.gov.np" },
             { label: "NEB Mathematics Guide", href: "https://neb.gov.np" },
-            { label: "GPA Calculator", href: "/calculator/gpa" },
-            { label: "Statistics Plus", href: "/calculator/statistics-plus" },
+            { label: "GPA Calculator", href: "/calculator/gpa/" },
+            { label: "Statistics Plus", href: "/calculator/statistics-plus/" },
           ],
           banner: {
             title: "Data Intelligence",
@@ -328,10 +328,10 @@ export default function StandardDeviationCalculator() {
           }
         }}
         relatedTools={[
-          { label: "Z-Score Tool", href: "/calculator/z-score" },
-          { label: "GPA Calculator", href: "/calculator/gpa" },
-          { label: "Statistics Plus", href: "/calculator/statistics-plus" },
-          { label: "Percentage Calc", href: "/calculator/percentage" }
+          { label: "Z-Score Tool", href: "/calculator/z-score/" },
+          { label: "GPA Calculator", href: "/calculator/gpa/" },
+          { label: "Statistics Plus", href: "/calculator/statistics-plus/" },
+          { label: "Percentage Calc", href: "/calculator/percentage/" }
         ]}
       />
     </CalculatorErrorBoundary>

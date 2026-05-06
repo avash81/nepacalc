@@ -205,13 +205,13 @@ export default function ForeignEmploymentFee() {
         }
       ]}
       sidebar={{ title: "Public Service", links: [
-          { label: "Passport Status Checker", href: "/calculator/passport-status" }, { label: "Remittance Calculator", href: "/calculator/remittance-calculator" },
+          { label: "Passport Status Checker", href: "/calculator/passport-status/" }, { label: "Remittance Calculator", href: "/calculator/remittance-calculator/" },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
           { label: "Nepal Salary", href: "/calculator/nepal-salary/" }
         ], banner: { title: "Migrant Safety", description: "Report illegal fee demands to the Department of Foreign Employment.", image: "/images/nepal-banner.jpg" } }}
       relatedTools={[
-        { label: "Remittance Calculator", href: "/calculator/remittance-calculator" },
+        { label: "Remittance Calculator", href: "/calculator/remittance-calculator/" },
         { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
           { label: "Nepal Salary", href: "/calculator/nepal-salary/" }

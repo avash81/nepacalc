@@ -20,8 +20,14 @@ export function calcMeta({ title, description, slug, keywords = [], canonical }:
     .replace(/\s+/g, ' ')       // Normalize spaces
     .trim();
 
+  const brandSuffix = ` ${SITE_CONFIG.name}`;
   if (!seoTitle.toLowerCase().includes(SITE_CONFIG.name.toLowerCase())) {
-    seoTitle = `${seoTitle} ${SITE_CONFIG.name}`;
+    if (seoTitle.length + brandSuffix.length > 60) {
+      seoTitle = seoTitle.substring(0, 60 - brandSuffix.length).trim();
+    }
+    seoTitle = `${seoTitle}${brandSuffix}`;
+  } else if (seoTitle.length > 60) {
+    seoTitle = seoTitle.substring(0, 60).trim();
   }
   
   // Clean Description — Must end with Brand reference or CTA
@@ -30,13 +36,15 @@ export function calcMeta({ title, description, slug, keywords = [], canonical }:
     .replace(/\s+/g, ' ')       // Normalize spaces
     .trim();
 
+  const descSuffix = ' Try NepaCalc now.';
   if (!seoDescription.toLowerCase().includes('nepacalc')) {
-    seoDescription = `${seoDescription} Try NepaCalc now`;
+    if (seoDescription.length + descSuffix.length > 160) {
+      seoDescription = seoDescription.substring(0, 160 - descSuffix.length).trim();
+    }
+    seoDescription = `${seoDescription}${descSuffix}`;
+  } else if (seoDescription.length > 160) {
+    seoDescription = seoDescription.substring(0, 160).trim();
   }
-
-  // Length Control
-  seoTitle = seoTitle.length > 60 ? seoTitle.substring(0, 60) : seoTitle;
-  seoDescription = seoDescription.length > 160 ? seoDescription.substring(0, 160) : seoDescription;
 
   const globalKeywords = [...new Set([...keywords, 'NepaCalc', 'Nepal Calculator', 'Free Online Tools'])];
 

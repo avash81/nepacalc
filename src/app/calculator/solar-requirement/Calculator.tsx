@@ -177,8 +177,8 @@ export default function SolarCalculator() {
         sidebar={{
           title: "Related Calculators",
           links: [
-          { label: 'Percentage Calculator', href: '/calculator/percentage' },
-            { label: 'Remittance Calculator', href: '/calculator/remittance-calculator' },
+          { label: 'Percentage Calculator', href: '/calculator/percentage/' },
+            { label: 'Remittance Calculator', href: '/calculator/remittance-calculator/' },
           { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
           { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" }

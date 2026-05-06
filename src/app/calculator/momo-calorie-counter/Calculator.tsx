@@ -201,13 +201,13 @@ export default function MomoCalculator() {
         }
       ]}
       sidebar={{ title: "Health & Fitness", links: [
-          { label: "BMI Calculator", href: "/calculator/bmi" }, { label: "Blood Pressure", href: "/calculator/blood-pressure" },
+          { label: "BMI Calculator", href: "/calculator/bmi/" }, { label: "Blood Pressure", href: "/calculator/blood-pressure/" },
           { label: "Age Calculator", href: "/calculator/age-calculator/" },
           { label: "BMI Calculator", href: "/calculator/bmi/" },
           { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" }
         ], banner: { title: "Stay Active", description: "You need to walk about 1 mile to burn off just 3 pieces of Buff Momo.", image: "/images/health-banner.jpg" } }}
       relatedTools={[
-        { label: "BMI Calculator", href: "/calculator/bmi" },
+        { label: "BMI Calculator", href: "/calculator/bmi/" },
         { label: "Age Calculator", href: "/calculator/age-calculator/" },
           { label: "BMI Calculator", href: "/calculator/bmi/" },
           { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" }

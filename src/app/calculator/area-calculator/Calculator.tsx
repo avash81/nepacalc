@@ -127,13 +127,13 @@ export default function AreaCalculator() {
         { question: "What is a trapezoid and when is the formula used?", answer: "A trapezoid (also called trapezium) is a 4-sided shape with exactly one pair of parallel sides (called the bases). The area formula is: ½ × (base1 + base2) × height. This shape commonly appears in land plots with one sloped boundary, making this formula essential for irregular plot area estimation in Nepal." }
       ]}
       sidebar={{ title: "Math & Education Tools", links: [
-          { label: "Unit Converter", href: "/calculator/unit-converter" }, { label: "Percentage Calculator", href: "/calculator/percentage" },
+          { label: "Unit Converter", href: "/calculator/unit-converter/" }, { label: "Percentage Calculator", href: "/calculator/percentage/" },
           { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" },
           { label: "Percentage Calc", href: "/calculator/percentage/" },
           { label: "Age Calculator", href: "/calculator/age-calculator/" }
         ], banner: { title: "Geometry Solver", description: "Quickly determine the 2D surface footprint of any primary shape.", image: "/images/math-banner.jpg" } }}
       relatedTools={[
-        { label: "Unit Converter", href: "/calculator/unit-converter" },
+        { label: "Unit Converter", href: "/calculator/unit-converter/" },
         { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" },
           { label: "Percentage Calc", href: "/calculator/percentage/" },
           { label: "Age Calculator", href: "/calculator/age-calculator/" }

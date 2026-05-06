@@ -300,16 +300,16 @@ export default function NepalPFCalculator() {
         title: "Wealth Hub",
         subtitle: "Retirement Tools",
         links: [
-          { label: "Salary Calculator", href: "/calculator/nepal-salary", icon: Wallet },
-          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: Landmark },
-          { label: "Gratuity Tool", href: "/calculator/gratuity-calculator", icon: History },
-          { label: "Labor Act Guide", href: "/blog/nepal-labor-act-guide", icon: Globe },
+          { label: "Salary Calculator", href: "/calculator/nepal-salary/", icon: Wallet },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Landmark },
+          { label: "Gratuity Tool", href: "/calculator/gratuity-calculator/", icon: History },
+          { label: "Labor Act Guide", href: "/blog/nepal-labor-act-guide/", icon: Globe },
         ],
       }}
       relatedTools={[
-        { label: "Salary Calculator", href: "/calculator/nepal-salary" },
-        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax" },
-        { label: "Gratuity Calculator", href: "/calculator/gratuity-calculator" }
+        { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
+        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" },
+        { label: "Gratuity Calculator", href: "/calculator/gratuity-calculator/" }
       ]}
     />
   );

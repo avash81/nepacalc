@@ -35,7 +35,7 @@ export default function VATCalculator() {
     <CalculatorLayout
       title="Nepal VAT Calculator"
       description="Quickly calculate Value Added Tax (VAT) for goods and services in Nepal at the standard 13% rate."
-      category={{ label: "Nepal Tools", href: "/calculator/category/nepal" }}
+      category={{ label: "Nepal Tools", href: "/calculator/category/nepal/" }}
       faqs={faqs}
       leftPanel={
         <div className="space-y-6">

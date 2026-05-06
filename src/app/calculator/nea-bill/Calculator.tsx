@@ -234,16 +234,16 @@ export default function NEABillCalculator() {
         title: "Utility Hub",
         subtitle: "Nepal Energy",
         links: [
-          { label: "KUKL Water Bill", href: "/calculator/kukl-bill", icon: Activity },
-          { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax", icon: Globe },
-          { label: "Solar Requirement", href: "/calculator/solar-requirement", icon: Lightbulb },
+          { label: "KUKL Water Bill", href: "/calculator/kukl-bill/", icon: Activity },
+          { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax/", icon: Globe },
+          { label: "Solar Requirement", href: "/calculator/solar-requirement/", icon: Lightbulb },
           { label: "NEA Official", href: "https://nea.org.np", icon: Globe },
         ],
       }}
       relatedTools={[
-        { label: "KUKL Water Bill", href: "/calculator/kukl-bill" },
-        { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax" },
-        { label: "Solar Requirement", href: "/calculator/solar-requirement" }
+        { label: "KUKL Water Bill", href: "/calculator/kukl-bill/" },
+        { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax/" },
+        { label: "Solar Requirement", href: "/calculator/solar-requirement/" }
       ]}
     />
   );

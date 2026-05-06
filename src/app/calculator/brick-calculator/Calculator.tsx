@@ -136,13 +136,13 @@ export default function BrickCalculator() {
         { question: "How do I estimate the cost of bricks for my project?", answer: "As of 2025, standard Nepalese bricks cost approximately NPR 12–18 per brick (price varies by district). Multiply the total brick count from this calculator by the local market rate. For a typical 10×10 ft single-layer wall, you'd need ~600 bricks, costing around NPR 7,200–10,800 in materials alone, before mortar and labor." }
       ]}
       sidebar={{ title: "Construction Tools", links: [
-          { label: "Concrete Mix Calculator", href: "/calculator/concrete-mix" }, { label: "Paint Cost Estimator", href: "/calculator/paint-cost" }, { label: "Property Registration", href: "/calculator/property-registration" },
+          { label: "Concrete Mix Calculator", href: "/calculator/concrete-mix/" }, { label: "Paint Cost Estimator", href: "/calculator/paint-cost/" }, { label: "Property Registration", href: "/calculator/property-registration/" },
           { label: "Age Calculator", href: "/calculator/age-calculator/" },
           { label: "Percentage Calc", href: "/calculator/percentage/" },
           { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" }
         ], banner: { title: "Site Estimator", description: "Accurate material calculation prevents project delays and excess holding costs.", image: "/images/construction-banner.jpg" } }}
       relatedTools={[
-        { label: "Concrete Mix", href: "/calculator/concrete-mix" }, { label: "Paint Cost", href: "/calculator/paint-cost" },
+        { label: "Concrete Mix", href: "/calculator/concrete-mix/" }, { label: "Paint Cost", href: "/calculator/paint-cost/" },
         { label: "Age Calculator", href: "/calculator/age-calculator/" },
           { label: "Percentage Calc", href: "/calculator/percentage/" },
           { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" }

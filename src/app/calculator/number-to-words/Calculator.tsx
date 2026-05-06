@@ -129,9 +129,9 @@ export default function NumberToWords() {
       sidebar={{
         title: "Related Tools",
         links: [
-          { label: 'Roman Numerals', href: '/calculator/roman-numerals' },
-          { label: 'Word Counter', href: '/calculator/word-counter' },
-          { label: 'Percentage Calculator', href: '/calculator/percentage' },
+          { label: 'Roman Numerals', href: '/calculator/roman-numerals/' },
+          { label: 'Word Counter', href: '/calculator/word-counter/' },
+          { label: 'Percentage Calculator', href: '/calculator/percentage/' },
           { label: "BMI Calculator", href: "/calculator/bmi/" },
           { label: "Age Calculator", href: "/calculator/age-calculator/" },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" }

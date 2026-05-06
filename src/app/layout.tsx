@@ -20,13 +20,13 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
   icons: {
     icon: [
-      { url: '/logo.png', sizes: 'any' },
       { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
-      { url: '/logo.png', sizes: '192x192', type: 'image/png' },
-      { url: '/logo.png', sizes: '512x512', type: 'image/png' },
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon-144x144.png', sizes: '144x144', type: 'image/png' },
+      { url: '/favicon-192x192.png', sizes: '192x192', type: 'image/png' },
     ],
     apple: [
-      { url: '/logo.png', sizes: '180x180', type: 'image/png' },
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
   verification: {
@@ -146,10 +146,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        {/* Explicit Favicon for Google Search Results */}
-        <link rel="icon" href="/logo.png" sizes="any" />
-        <link rel="icon" href="/favicon-48x48.png" sizes="48x48" type="image/png" />
-        <link rel="apple-touch-icon" href="/logo.png" />
+        {/* Explicit Favicon for Google Search Results (managed by metadata export) */}
       </head>
       <body className={`${inter.variable} font-sans`}>
         <script

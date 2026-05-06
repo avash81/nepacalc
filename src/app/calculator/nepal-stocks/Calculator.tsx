@@ -188,16 +188,16 @@ export default function NEPSECalculator() {
         title: "Trading Hub",
         subtitle: "NEPSE Intelligence",
         links: [
-          { label: "WACC Calculator", href: "/calculator/nepse-wacc", icon: Target },
-          { label: "Bonus Tax Tool", href: "/calculator/nepse-bonus-tax", icon: Receipt },
-          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: Wallet },
+          { label: "WACC Calculator", href: "/calculator/nepse-wacc/", icon: Target },
+          { label: "Bonus Tax Tool", href: "/calculator/nepse-bonus-tax/", icon: Receipt },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Wallet },
           { label: "TMS Portal", href: "https://tms.nepse.com.np", icon: Globe },
         ],
       }}
       relatedTools={[
-        { label: "WACC Calculator", href: "/calculator/nepse-wacc" },
-        { label: "Bonus Tax", href: "/calculator/nepse-bonus-tax" },
-        { label: "Income Tax", href: "/calculator/nepal-income-tax" }
+        { label: "WACC Calculator", href: "/calculator/nepse-wacc/" },
+        { label: "Bonus Tax", href: "/calculator/nepse-bonus-tax/" },
+        { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
       ]}
     />
   );

@@ -170,13 +170,13 @@ export default function GratuityCalculator() {
         }
       ]}
       sidebar={{ title: "Labor & Finance", links: [
-          { label: "Income Tax Calculator", href: "/calculator/income-tax" }, { label: "Foreign Employment Fee", href: "/calculator/foreign-employment" },
+          { label: "Income Tax Calculator", href: "/calculator/income-tax/" }, { label: "Foreign Employment Fee", href: "/calculator/foreign-employment/" },
           { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
           { label: "BMI Calculator", href: "/calculator/bmi/" }
         ], banner: { title: "Know Your Rights", description: "The Labor Act 2074 protects your retirement and termination benefits.", image: "/images/nepal-banner.jpg" } }}
       relatedTools={[
-        { label: "Income Tax Calculator", href: "/calculator/income-tax" },
+        { label: "Income Tax Calculator", href: "/calculator/income-tax/" },
         { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
           { label: "BMI Calculator", href: "/calculator/bmi/" }

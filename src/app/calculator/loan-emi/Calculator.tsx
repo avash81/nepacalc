@@ -283,10 +283,10 @@ export default function LoanEMICalculator() {
         </div>
       }
       relatedTools={[
-        { label: "Home Loan Tool", href: "/calculator/home-loan" },
-        { label: "Vehicle Loan", href: "/calculator/auto-loan" },
-        { label: "Personal Loan", href: "/calculator/personal-loan" },
-        { label: "Income Tax", href: "/calculator/nepal-income-tax" }
+        { label: "Home Loan Tool", href: "/calculator/home-loan/" },
+        { label: "Vehicle Loan", href: "/calculator/auto-loan/" },
+        { label: "Personal Loan", href: "/calculator/personal-loan/" },
+        { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
       ]}
     />
   );

@@ -143,9 +143,9 @@ export default function SimpleCalculator() {
           title: "Math Hub",
           subtitle: "Academic Suite",
           links: [
-            { label: 'Percentage Tool', href: '/calculator/percentage' },
-            { label: 'Scientific Tool', href: '/calculator/scientific' },
-            { label: 'Statistics Plus', href: '/calculator/statistics-plus' },
+            { label: 'Percentage Tool', href: '/calculator/percentage/' },
+            { label: 'Scientific Tool', href: '/calculator/scientific/' },
+            { label: 'Statistics Plus', href: '/calculator/statistics-plus/' },
             { label: "BMI Tracker", href: "/calculator/bmi/" },
           ],
         }}

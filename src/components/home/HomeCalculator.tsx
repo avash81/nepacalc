@@ -206,7 +206,7 @@ export function HomeCalculator() {
 
       <div className="bg-google-gray/50 py-4 text-center border-t border-google-border">
          <Link 
-           href="/calculator/scientific-calculator"
+           href="/calculator/scientific-calculator/"
            className="text-[10px] font-black text-google-blue uppercase tracking-widest hover:underline transition-all inline-block"
          >
            Access Advanced Engineering Mode →

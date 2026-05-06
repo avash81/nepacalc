@@ -601,11 +601,11 @@ export default function ScientificCalculator() {
       sidebar={{
         title: "Institutional Resources",
         links: [
-          { label: "Simple Calculator", href: "/calculator/simple-calculator" },
+          { label: "Simple Calculator", href: "/calculator/simple-calculator/" },
           { label: "NEB Science Portal", href: "https://neb.gov.np" },
           { label: "IOE Pulchowk Guide", href: "https://ioe.edu.np" },
-          { label: "Standard Deviation", href: "/calculator/standard-deviation" },
-          { label: "Unit Converter", href: "/calculator/unit-converter" },
+          { label: "Standard Deviation", href: "/calculator/standard-deviation/" },
+          { label: "Unit Converter", href: "/calculator/unit-converter/" },
         ],
         banner: {
           title: "Engineering Excellence",
@@ -614,10 +614,10 @@ export default function ScientificCalculator() {
         }
       }}
       relatedTools={[
-        { label: "Simple Calculator", href: "/calculator/simple-calculator" },
-        { label: "Quadratic Solver", href: "/calculator/quadratic-solver" },
-        { label: "Linear Solver", href: "/calculator/linear-solver" },
-        { label: "Logarithm Calc", href: "/calculator/logarithm-calculator" }
+        { label: "Simple Calculator", href: "/calculator/simple-calculator/" },
+        { label: "Quadratic Solver", href: "/calculator/quadratic-solver/" },
+        { label: "Linear Solver", href: "/calculator/linear-solver/" },
+        { label: "Logarithm Calc", href: "/calculator/logarithm-calculator/" }
       ]}
     />
   );

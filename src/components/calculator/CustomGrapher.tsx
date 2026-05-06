@@ -388,7 +388,7 @@ export default function CustomGrapher({ expression }: { expression: string }) {
                 </div>
               </div>
 
-              <Link href="/engineering/graphing" className="block text-center py-2.5 text-indigo-600 text-[13px] font-black hover:bg-indigo-50 rounded-xl transition-all border border-indigo-50 mt-2">
+              <Link href="/engineering/graphing/" className="block text-center py-2.5 text-indigo-600 text-[13px] font-black hover:bg-indigo-50 rounded-xl transition-all border border-indigo-50 mt-2">
                 Open advanced settings
               </Link>
             </div>

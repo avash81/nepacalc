@@ -402,9 +402,9 @@ export default function GPACalculator() {
       sidebar={{
         title: "Academic Suite",
         links: [
-          { label: "CGPA Calculator", href: "/calculator/cgpa" },
-          { label: "SEE GPA Calc", href: "/calculator/see-gpa" },
-          { label: "Attendance tool", href: "/calculator/attendance" },
+          { label: "CGPA Calculator", href: "/calculator/cgpa/" },
+          { label: "SEE GPA Calc", href: "/calculator/see-gpa/" },
+          { label: "Attendance tool", href: "/calculator/attendance/" },
           { label: "NEB Official Site", href: "https://neb.gov.np" },
           { label: "TU Exam Portal", href: "https://tuexam.edu.np" },
         ],
@@ -415,10 +415,10 @@ export default function GPACalculator() {
         }
       }}
       relatedTools={[
-        { label: "CGPA Calculator", href: "/calculator/cgpa" },
-        { label: "SEE GPA Tool", href: "/calculator/see-gpa" },
-        { label: "Attendance tool", href: "/calculator/attendance" },
-        { label: "Marks to GPA", href: "/calculator/marks-needed" }
+        { label: "CGPA Calculator", href: "/calculator/cgpa/" },
+        { label: "SEE GPA Tool", href: "/calculator/see-gpa/" },
+        { label: "Attendance tool", href: "/calculator/attendance/" },
+        { label: "Marks to GPA", href: "/calculator/marks-needed/" }
       ]}
     />
   );

@@ -208,8 +208,8 @@ export default function CAGRCalculator() {
         latex: "CAGR = \\left( \\frac{V_{end}}{V_{start}} \\right)^{\\frac{1}{n}} - 1"
       }}
       relatedTools={[
-        { label: "SIP Calculator", href: "/calculator/sip-calculator" }, 
-        { label: "Fixed Deposit Calc", href: "/calculator/fd-calculator" }
+        { label: "SIP Calculator", href: "/calculator/sip-calculator/" }, 
+        { label: "Fixed Deposit Calc", href: "/calculator/fd-calculator/" }
       ]}
     />
   );

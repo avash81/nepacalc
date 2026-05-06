@@ -75,9 +75,9 @@ export default function ZScoreCalc() {
         </div>
       }
       relatedTools={[
-        { label: "Standard Deviation", href: "/calculator/standard-deviation" },
-        { label: "Statistics Plus", href: "/calculator/statistics-plus" },
-        { label: "GPA Calculator", href: "/calculator/gpa" }
+        { label: "Standard Deviation", href: "/calculator/standard-deviation/" },
+        { label: "Statistics Plus", href: "/calculator/statistics-plus/" },
+        { label: "GPA Calculator", href: "/calculator/gpa/" }
       ]}
     />
   );

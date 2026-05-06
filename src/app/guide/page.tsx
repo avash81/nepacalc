@@ -28,7 +28,7 @@ export default function GuidesPage() {
         <div className="text-center py-12 text-gray-400">
           < BookOpen className="w-8 h-8 mx-auto mb-2" />
           <p className="text-sm">Guides coming soon.</p>
-          <Link href="/blog" className="text-blue-600 hover:underline text-sm mt-2 block">
+          <Link href="/blog/" className="text-blue-600 hover:underline text-sm mt-2 block">
             Browse Blog Posts →
           </Link>
         </div>

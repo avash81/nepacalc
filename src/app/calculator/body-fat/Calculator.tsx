@@ -214,10 +214,10 @@ export default function BodyFatCalculator() {
       sidebar={{
         title: "Fitness Toolkit",
         links: [
-          { label: "BMI Calculator", href: "/calculator/bmi" },
-          { label: "BMR Calculator", href: "/calculator/bmr" },
-          { label: "Ideal Weight", href: "/calculator/ideal-weight" },
-          { label: "Calorie Tool", href: "/calculator/calorie-calculator" },
+          { label: "BMI Calculator", href: "/calculator/bmi/" },
+          { label: "BMR Calculator", href: "/calculator/bmr/" },
+          { label: "Ideal Weight", href: "/calculator/ideal-weight/" },
+          { label: "Calorie Tool", href: "/calculator/calorie-calculator/" },
         ],
         banner: {
           title: "Track Your Progress",
@@ -226,9 +226,9 @@ export default function BodyFatCalculator() {
         }
       }}
       relatedTools={[
-        { label: "BMI Calculator", href: "/calculator/bmi" },
-        { label: "BMR Calculator", href: "/calculator/bmr" },
-        { label: "Ideal Weight", href: "/calculator/ideal-weight" }
+        { label: "BMI Calculator", href: "/calculator/bmi/" },
+        { label: "BMR Calculator", href: "/calculator/bmr/" },
+        { label: "Ideal Weight", href: "/calculator/ideal-weight/" }
       ]}
     />
   );

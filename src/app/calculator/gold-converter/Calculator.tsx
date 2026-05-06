@@ -315,16 +315,16 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
         title: "Market Hub",
         subtitle: "Precious Metals",
         links: [
-          { label: "Currency Converter", href: "/calculator/currency-converter", icon: Globe },
-          { label: "SIP Calculator", href: "/calculator/sip-calculator", icon: TrendingUp },
-          { label: "FD Calculator", href: "/calculator/fd-calculator", icon: Landmark },
+          { label: "Currency Converter", href: "/calculator/currency-converter/", icon: Globe },
+          { label: "SIP Calculator", href: "/calculator/sip-calculator/", icon: TrendingUp },
+          { label: "FD Calculator", href: "/calculator/fd-calculator/", icon: Landmark },
           { label: "FENEGOSIDA Site", href: "https://www.fenegosida.org.np", icon: History },
         ],
       }}
       relatedTools={[
-        { label: "Currency Converter", href: "/calculator/currency-converter" },
-        { label: "SIP Calculator", href: "/calculator/sip-calculator" },
-        { label: "FD Calculator", href: "/calculator/fd-calculator" }
+        { label: "Currency Converter", href: "/calculator/currency-converter/" },
+        { label: "SIP Calculator", href: "/calculator/sip-calculator/" },
+        { label: "FD Calculator", href: "/calculator/fd-calculator/" }
       ]}
     />
   );

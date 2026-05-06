@@ -103,8 +103,8 @@ export default function QRGenerator() {
       sidebar={{
         title: "Digital Utilities",
         links: [
-          { label: 'Password Generator', href: '/calculator/password-generator' },
-          { label: 'Word Counter', href: '/calculator/word-counter' },
+          { label: 'Password Generator', href: '/calculator/password-generator/' },
+          { label: 'Word Counter', href: '/calculator/word-counter/' },
           { label: "BMI Calculator", href: "/calculator/bmi/" },
           { label: "Percentage Calc", href: "/calculator/percentage/" },
           { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" }

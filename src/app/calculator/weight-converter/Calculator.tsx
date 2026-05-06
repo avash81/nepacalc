@@ -171,9 +171,9 @@ export default function WeightConverter() {
         sidebar={{
           title: "Related Calculators",
           links: [
-          { label: 'BMI Calculator', href: '/calculator/bmi' },
-            { label: 'Remittance Calculator', href: '/calculator/remittance-calculator' },
-            { label: 'Percentage Calculator', href: '/calculator/percentage' },
+          { label: 'BMI Calculator', href: '/calculator/bmi/' },
+            { label: 'Remittance Calculator', href: '/calculator/remittance-calculator/' },
+            { label: 'Percentage Calculator', href: '/calculator/percentage/' },
           { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" }

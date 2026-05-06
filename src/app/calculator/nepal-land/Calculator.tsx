@@ -385,16 +385,16 @@ export default function NepalLandCalculator() {
         title: "Nepal Land Hub",
         subtitle: "Property Standards",
         links: [
-          { label: "Salary Calculator", href: "/calculator/nepal-salary", icon: Receipt },
-          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: Landmark },
-          { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax", icon: Globe },
+          { label: "Salary Calculator", href: "/calculator/nepal-salary/", icon: Receipt },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Landmark },
+          { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax/", icon: Globe },
           { label: "DoLMA Official", href: "https://dolma.gov.np", icon: MapPin },
         ],
       }}
       relatedTools={[
-        { label: "Salary Calculator", href: "/calculator/nepal-salary" },
-        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax" },
-        { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax" }
+        { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
+        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" },
+        { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax/" }
       ]}
     />
   );

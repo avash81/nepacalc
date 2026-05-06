@@ -334,16 +334,16 @@ export default function WACCCalculator() {
         title: "NEPSE Hub",
         subtitle: "Portfolio Audit",
         links: [
-          { label: "Bonus Tax Tool", href: "/calculator/nepse-bonus-tax", icon: Receipt },
-          { label: "Trading Engine", href: "/calculator/nepal-stocks", icon: Activity },
-          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: Wallet },
+          { label: "Bonus Tax Tool", href: "/calculator/nepse-bonus-tax/", icon: Receipt },
+          { label: "Trading Engine", href: "/calculator/nepal-stocks/", icon: Activity },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Wallet },
           { label: "Meroshare Portal", href: "https://meroshare.cdsc.com.np", icon: Globe },
         ],
       }}
       relatedTools={[
-        { label: "Bonus Tax", href: "/calculator/nepse-bonus-tax" },
-        { label: "Trading Tool", href: "/calculator/nepal-stocks" },
-        { label: "Income Tax", href: "/calculator/nepal-income-tax" }
+        { label: "Bonus Tax", href: "/calculator/nepse-bonus-tax/" },
+        { label: "Trading Tool", href: "/calculator/nepal-stocks/" },
+        { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
       ]}
     />
   );

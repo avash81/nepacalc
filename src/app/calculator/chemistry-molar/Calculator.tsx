@@ -197,13 +197,13 @@ export default function MolarMassCalc() {
         { question: "How do I calculate molar mass for a compound like glucose (C6H12O6)?", answer: "For glucose (C6H12O6): Carbon (C) = 6 × 12.011 = 72.066. Hydrogen (H) = 12 × 1.008 = 12.096. Oxygen (O) = 6 × 15.999 = 95.994. Total = 72.066 + 12.096 + 95.994 = 180.156 g/mol. Just type 'C6H12O6' into the calculator and it computes this instantly with a full element-by-element breakdown." }
       ]}
       sidebar={{ title: "Science & Math Tools", links: [
-          { label: "Fraction Calculator", href: "/calculator/fraction-calculator" }, { label: "Base Converter", href: "/calculator/base-converter" },
+          { label: "Fraction Calculator", href: "/calculator/fraction-calculator/" }, { label: "Base Converter", href: "/calculator/base-converter/" },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
           { label: "Percentage Calc", href: "/calculator/percentage/" },
           { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" }
         ], banner: { title: "Academic Utilities", description: "Save time on chemistry homework and lab prep with instant molecular weight analysis.", image: "/images/math-banner.jpg" } }}
       relatedTools={[
-        { label: "Fraction Calculator", href: "/calculator/fraction-calculator" },
+        { label: "Fraction Calculator", href: "/calculator/fraction-calculator/" },
         { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
           { label: "Percentage Calc", href: "/calculator/percentage/" },
           { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" }

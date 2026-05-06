@@ -323,16 +323,16 @@ export default function NepalHomeLoanCalculator() {
         title: "Finance Hub",
         subtitle: "Nepal Mortgages",
         links: [
-          { label: "Salary Calculator", href: "/calculator/nepal-salary", icon: Briefcase },
-          { label: "Land Converter", href: "/calculator/nepal-land", icon: Globe },
-          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: Wallet },
+          { label: "Salary Calculator", href: "/calculator/nepal-salary/", icon: Briefcase },
+          { label: "Land Converter", href: "/calculator/nepal-land/", icon: Globe },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Wallet },
           { label: "NRB Official", href: "https://nrb.org.np", icon: Landmark },
         ],
       }}
       relatedTools={[
-        { label: "Salary Calculator", href: "/calculator/nepal-salary" },
-        { label: "Land Converter", href: "/calculator/nepal-land" },
-        { label: "Income Tax", href: "/calculator/nepal-income-tax" }
+        { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
+        { label: "Land Converter", href: "/calculator/nepal-land/" },
+        { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
       ]}
     />
   );

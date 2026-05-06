@@ -206,10 +206,10 @@ export default function BMRCalculator() {
       sidebar={{
         title: "Health Toolkit",
         links: [
-          { label: "BMI Calculator", href: "/calculator/bmi" },
-          { label: "Calorie Calculator", href: "/calculator/calorie-calculator" },
-          { label: "Ideal Weight", href: "/calculator/ideal-weight" },
-          { label: "Water Intake", href: "/calculator/water-intake" },
+          { label: "BMI Calculator", href: "/calculator/bmi/" },
+          { label: "Calorie Calculator", href: "/calculator/calorie-calculator/" },
+          { label: "Ideal Weight", href: "/calculator/ideal-weight/" },
+          { label: "Water Intake", href: "/calculator/water-intake/" },
         ],
         banner: {
           title: "Fuel Your Body Right",
@@ -218,9 +218,9 @@ export default function BMRCalculator() {
         }
       }}
       relatedTools={[
-        { label: "BMI Calculator", href: "/calculator/bmi" },
-        { label: "Calorie Tool", href: "/calculator/calorie-calculator" },
-        { label: "Water Intake", href: "/calculator/water-intake" }
+        { label: "BMI Calculator", href: "/calculator/bmi/" },
+        { label: "Calorie Tool", href: "/calculator/calorie-calculator/" },
+        { label: "Water Intake", href: "/calculator/water-intake/" }
       ]}
     />
   );

@@ -143,13 +143,13 @@ export default function BaseConverter() {
         { question: "What is ASCII and why does this converter show it?", answer: "ASCII (American Standard Code for Information Interchange) maps numbers 32–126 to printable characters. For example, decimal 65 = 'A', 97 = 'a', 48 = '0'. This converter shows the ASCII character when the decimal value is between 32 and 126, which is useful for understanding character encoding in programming and data processing." }
       ]}
       sidebar={{ title: "Computer Science", links: [
-          { label: "Number to Words", href: "/calculator/number-to-words" }, { label: "Password Generator", href: "/calculator/password-generator" },
+          { label: "Number to Words", href: "/calculator/number-to-words/" }, { label: "Password Generator", href: "/calculator/password-generator/" },
           { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" }
         ], banner: { title: "Programmer Setup", description: "Use Hex and Binary for bitmasking and flag configuration.", image: "/images/math-banner.jpg" } }}
       relatedTools={[
-        { label: "Number to Words", href: "/calculator/number-to-words" },
+        { label: "Number to Words", href: "/calculator/number-to-words/" },
         { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" }

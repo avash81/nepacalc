@@ -189,8 +189,8 @@ export default function SavingsCalculator() {
           answer: "Mathematically, the core formula is identical. However, SIPs (Systematic Investment Plans) involve equity markets where returns fluctuate daily and capital is at risk. Savings calculations assume a fixed, guaranteed interest rate typical of banking products."
         }
       ]}
-      sidebar={{ title: "Wealth Tools", links: [{ label: "SIP Calculator", href: "/calculator/sip-calculator" }, { label: "FD Calculator", href: "/calculator/fd-calculator" }, { label: "Compound Interest", href: "/calculator/compound-interest" }, { label: "CAGR Calculator", href: "/calculator/cagr-calculator" }], banner: { title: "Save Consistently", description: "Rs. 5,000/month at 10% for 20 years becomes Rs. 38 Lakhs. Start today.", image: "/images/save-banner.jpg" } }}
-      relatedTools={[{ label: "SIP Calculator", href: "/calculator/sip-calculator" }, { label: "FD Calculator", href: "/calculator/fd-calculator" }, { label: "CAGR Calculator", href: "/calculator/cagr-calculator" }]}
+      sidebar={{ title: "Wealth Tools", links: [{ label: "SIP Calculator", href: "/calculator/sip-calculator/" }, { label: "FD Calculator", href: "/calculator/fd-calculator/" }, { label: "Compound Interest", href: "/calculator/compound-interest/" }, { label: "CAGR Calculator", href: "/calculator/cagr-calculator/" }], banner: { title: "Save Consistently", description: "Rs. 5,000/month at 10% for 20 years becomes Rs. 38 Lakhs. Start today.", image: "/images/save-banner.jpg" } }}
+      relatedTools={[{ label: "SIP Calculator", href: "/calculator/sip-calculator/" }, { label: "FD Calculator", href: "/calculator/fd-calculator/" }, { label: "CAGR Calculator", href: "/calculator/cagr-calculator/" }]}
     />
   );
 }

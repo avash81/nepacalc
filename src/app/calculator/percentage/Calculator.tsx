@@ -310,16 +310,16 @@ export default function PercentageCalculator() {
         title: "Math Resources",
         subtitle: "Proportional Logic",
         links: [
-          { label: "Fraction Calculator", href: "/calculator/fraction-calculator", icon: Layers },
-          { label: "Ratio & Proportion", href: "/calculator/ratio-proportion", icon: Search },
-          { label: "Scientific Calc", href: "/calculator/scientific-calculator", icon: Calculator },
-          { label: "SEE GPA Tool", href: "/calculator/see-gpa", icon: GraduationCap },
+          { label: "Fraction Calculator", href: "/calculator/fraction-calculator/", icon: Layers },
+          { label: "Ratio & Proportion", href: "/calculator/ratio-proportion/", icon: Search },
+          { label: "Scientific Calc", href: "/calculator/scientific-calculator/", icon: Calculator },
+          { label: "SEE GPA Tool", href: "/calculator/see-gpa/", icon: GraduationCap },
         ],
       }}
       relatedTools={[
-        { label: "Fraction Calculator", href: "/calculator/fraction-calculator" },
-        { label: "Ratio Tool", href: "/calculator/ratio-proportion" },
-        { label: "Scientific Calculator", href: "/calculator/scientific-calculator" }
+        { label: "Fraction Calculator", href: "/calculator/fraction-calculator/" },
+        { label: "Ratio Tool", href: "/calculator/ratio-proportion/" },
+        { label: "Scientific Calculator", href: "/calculator/scientific-calculator/" }
       ]}
     />
   );

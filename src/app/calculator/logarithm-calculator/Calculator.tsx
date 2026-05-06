@@ -104,8 +104,8 @@ export default function LogarithmCalculator() {
         </div>
       }
       relatedTools={[
-        { label: "Scientific Calc", href: "/calculator/scientific-calculator" },
-        { label: "Quadratic Solver", href: "/calculator/quadratic-solver" }
+        { label: "Scientific Calc", href: "/calculator/scientific-calculator/" },
+        { label: "Quadratic Solver", href: "/calculator/quadratic-solver/" }
       ]}
     />
   );

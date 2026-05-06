@@ -309,14 +309,14 @@ export default function FractionCalculator() {
         }
       ]}
       sidebar={{ title: "Institutional Resources", links: [
-          { label: "Decimal to Fraction", href: "/calculator/decimal-to-fraction" },
-          { label: "Percentage Calculator", href: "/calculator/percentage" },
+          { label: "Decimal to Fraction", href: "/calculator/decimal-to-fraction/" },
+          { label: "Percentage Calculator", href: "/calculator/percentage/" },
           { label: "NEB Mathematics Curriculum", href: "https://neb.gov.np" },
           { label: "TU Entrance Syllabus", href: "https://tu.edu.np" },
-          { label: "SEE Result Checker", href: "/calculator/see-gpa" }
+          { label: "SEE Result Checker", href: "/calculator/see-gpa/" }
         ], banner: { title: "Academic Excellence", description: "Standardizing the tools used by Nepal's next generation of engineers and scientists.", image: "/images/math-banner.jpg" } }}
       relatedTools={[
-        { label: "Decimal to Fraction", href: "/calculator/decimal-to-fraction" },
+        { label: "Decimal to Fraction", href: "/calculator/decimal-to-fraction/" },
         { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
         { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
         { label: "BMI Calculator", href: "/calculator/bmi/" }

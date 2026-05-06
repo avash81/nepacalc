@@ -40,7 +40,7 @@ export default function IncomeTaxCalculator() {
     <CalculatorLayout
       title="Nepal Income Tax Calculator"
       description="Plan your finances with the latest Nepal Income Tax rules for FY 2082/83. Includes SSF exemptions and marital status benefits."
-      category={{ label: "Nepal Tools", href: "/calculator/category/nepal" }}
+      category={{ label: "Nepal Tools", href: "/calculator/category/nepal/" }}
       faqs={faqs}
       leftPanel={
         <div className="space-y-8 p-6 lg:p-8">

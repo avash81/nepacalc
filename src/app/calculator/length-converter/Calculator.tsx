@@ -167,13 +167,13 @@ export default function LengthConverter() {
         }
       ]}
       sidebar={{ title: "Conversion Tools", links: [
-          { label: "Weight Converter", href: "/calculator/weight-converter" }, { label: "Temperature Converter", href: "/calculator/temperature-converter" },
+          { label: "Weight Converter", href: "/calculator/weight-converter/" }, { label: "Temperature Converter", href: "/calculator/temperature-converter/" },
           { label: "BMI Calculator", href: "/calculator/bmi/" },
           { label: "Percentage Calc", href: "/calculator/percentage/" },
           { label: "Age Calculator", href: "/calculator/age-calculator/" }
         ], banner: { title: "Global Standards", description: "Only three countries in the world still officially use the Imperial system.", image: "/images/math-banner.jpg" } }}
       relatedTools={[
-        { label: "Weight Converter", href: "/calculator/weight-converter" },
+        { label: "Weight Converter", href: "/calculator/weight-converter/" },
         { label: "BMI Calculator", href: "/calculator/bmi/" },
           { label: "Percentage Calc", href: "/calculator/percentage/" },
           { label: "Age Calculator", href: "/calculator/age-calculator/" }

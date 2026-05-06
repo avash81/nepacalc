@@ -220,9 +220,9 @@ export default function NepalSalaryCalculator() {
         </div>
       }
       relatedTools={[
-        { label: "Income Tax", href: "/calculator/nepal-income-tax" },
-        { label: "EPF Calculator", href: "/calculator/epf-calculator" },
-        { label: "SSF Engine", href: "/calculator/ssf-calculator" }
+        { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
+        { label: "EPF Calculator", href: "/calculator/epf-calculator/" },
+        { label: "SSF Engine", href: "/calculator/ssf-calculator/" }
       ]}
     />
   );

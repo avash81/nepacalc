@@ -241,16 +241,16 @@ export default function FDCalculator() {
         title: "Savings Hub",
         subtitle: "Wealth Planning",
         links: [
-          { label: "SIP Calculator", href: "/calculator/sip-calculator", icon: TrendingUp },
-          { label: "Loan EMI tool", href: "/calculator/loan-emi", icon: Banknote },
-          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: Wallet },
-          { label: "Compound Interest", href: "/calculator/compound-interest", icon: Activity },
+          { label: "SIP Calculator", href: "/calculator/sip-calculator/", icon: TrendingUp },
+          { label: "Loan EMI tool", href: "/calculator/loan-emi/", icon: Banknote },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Wallet },
+          { label: "Compound Interest", href: "/calculator/compound-interest/", icon: Activity },
         ],
       }}
       relatedTools={[
-        { label: "SIP Calculator", href: "/calculator/sip-calculator" },
-        { label: "Loan EMI", href: "/calculator/loan-emi" },
-        { label: "Compound Interest", href: "/calculator/compound-interest" }
+        { label: "SIP Calculator", href: "/calculator/sip-calculator/" },
+        { label: "Loan EMI", href: "/calculator/loan-emi/" },
+        { label: "Compound Interest", href: "/calculator/compound-interest/" }
       ]}
     />
   );

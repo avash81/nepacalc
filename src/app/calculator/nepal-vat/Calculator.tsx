@@ -208,16 +208,16 @@ export default function NepalVATCalculator() {
         title: "Fiscal Hub",
         subtitle: "Tax Compliance",
         links: [
-          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: Wallet },
-          { label: "TDS Calculator", href: "/calculator/nepal-tds", icon: Zap },
-          { label: "Salary Tool", href: "/calculator/nepal-salary", icon: Activity },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Wallet },
+          { label: "TDS Calculator", href: "/calculator/nepal-tds/", icon: Zap },
+          { label: "Salary Tool", href: "/calculator/nepal-salary/", icon: Activity },
           { label: "IRD Website", href: "https://ird.gov.np", icon: Globe },
         ],
       }}
       relatedTools={[
-        { label: "Income Tax", href: "/calculator/nepal-income-tax" },
-        { label: "TDS Calculator", href: "/calculator/nepal-tds" },
-        { label: "Salary Calculator", href: "/calculator/nepal-salary" }
+        { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
+        { label: "TDS Calculator", href: "/calculator/nepal-tds/" },
+        { label: "Salary Calculator", href: "/calculator/nepal-salary/" }
       ]}
     />
   );

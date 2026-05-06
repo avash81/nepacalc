@@ -144,9 +144,9 @@ export default function DateDuration() {
         </div>
       }
       relatedTools={[
-        { label: "Age Calculator", href: "/calculator/age-calculator" },
-        { label: "Add/Subtract Days", href: "/calculator/date-add-subtract" },
-        { label: "Lead Time", href: "/calculator/lead-time" }
+        { label: "Age Calculator", href: "/calculator/age-calculator/" },
+        { label: "Add/Subtract Days", href: "/calculator/date-add-subtract/" },
+        { label: "Lead Time", href: "/calculator/lead-time/" }
       ]}
     />
   );

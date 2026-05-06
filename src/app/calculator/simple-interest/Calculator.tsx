@@ -346,16 +346,16 @@ export default function SimpleInterestCalculator() {
         title: "Credit Suite",
         subtitle: "Lending Hub",
         links: [
-          { label: "Compound Interest", href: "/calculator/compound-interest", icon: TrendingUp },
-          { label: "Loan EMI tool", href: "/calculator/loan-emi", icon: Landmark },
-          { label: "FD Calculator", href: "/calculator/fd-calculator", icon: Target },
-          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax", icon: Wallet },
+          { label: "Compound Interest", href: "/calculator/compound-interest/", icon: TrendingUp },
+          { label: "Loan EMI tool", href: "/calculator/loan-emi/", icon: Landmark },
+          { label: "FD Calculator", href: "/calculator/fd-calculator/", icon: Target },
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Wallet },
         ],
       }}
       relatedTools={[
-        { label: "Compound Interest", href: "/calculator/compound-interest" },
-        { label: "Loan EMI", href: "/calculator/loan-emi" },
-        { label: "FD Calculator", href: "/calculator/fd-calculator" }
+        { label: "Compound Interest", href: "/calculator/compound-interest/" },
+        { label: "Loan EMI", href: "/calculator/loan-emi/" },
+        { label: "FD Calculator", href: "/calculator/fd-calculator/" }
       ]}
     />
   );

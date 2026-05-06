@@ -181,8 +181,8 @@ export default function SEEGPACalculator() {
       sidebar={{
         title: "Education Tools",
         links: [
-          { label: '+2 NEB GPA Calculator', href: '/calculator/nepal-neb-gpa' },
-          { label: 'Percentage Calculator', href: '/calculator/percentage' },
+          { label: '+2 NEB GPA Calculator', href: '/calculator/nepal-neb-gpa/' },
+          { label: 'Percentage Calculator', href: '/calculator/percentage/' },
           { label: "BMI Calculator", href: "/calculator/bmi/" },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
           { label: "Age Calculator", href: "/calculator/age-calculator/" }

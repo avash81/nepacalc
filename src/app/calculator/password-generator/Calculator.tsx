@@ -146,8 +146,8 @@ export default function PasswordGenerator() {
       sidebar={{
         title: "Security Tools",
         links: [
-          { label: 'Word Counter', href: '/calculator/word-counter' },
-          { label: 'QR Generator', href: '/calculator/qr-generator' },
+          { label: 'Word Counter', href: '/calculator/word-counter/' },
+          { label: 'QR Generator', href: '/calculator/qr-generator/' },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
           { label: "BMI Calculator", href: "/calculator/bmi/" },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" }

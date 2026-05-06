@@ -223,17 +223,17 @@ export default function MortgageCalculator() {
         title: "NepaCalc Tools",
         subtitle: "Institutional Resources",
         links: [
-          { label: "Loan EMI Tool", href: "/calculator/loan-emi", icon: Landmark },
-          { label: "Property Tax", href: "/calculator/property-tax", icon: Receipt },
-          { label: "Land Area Calc", href: "/calculator/nepal-land", icon: Home },
-          { label: "Income Tax", href: "/calculator/nepal-income-tax", icon: DollarSign },
+          { label: "Loan EMI Tool", href: "/calculator/loan-emi/", icon: Landmark },
+          { label: "Property Tax", href: "/calculator/property-tax/", icon: Receipt },
+          { label: "Land Area Calc", href: "/calculator/nepal-land/", icon: Home },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax/", icon: DollarSign },
           { label: "NRB Website", href: "https://www.nrb.org.np", icon: Globe },
         ],
       }}
       relatedTools={[
-        { label: "Loan EMI", href: "/calculator/loan-emi" },
-        { label: "Property Tax", href: "/calculator/property-tax" },
-        { label: "Nepal Land Converter", href: "/calculator/nepal-land" }
+        { label: "Loan EMI", href: "/calculator/loan-emi/" },
+        { label: "Property Tax", href: "/calculator/property-tax/" },
+        { label: "Nepal Land Converter", href: "/calculator/nepal-land/" }
       ]}
     />
   );

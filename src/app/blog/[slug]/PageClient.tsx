@@ -85,7 +85,7 @@ export default function PageClient({ post, related }: { post: any, related: any[
         <nav className="flex items-center gap-1.5 text-xs text-gray-400 mb-5">
           <Link href="/" className="hover:text-blue-600">Home</Link>
           <span>/</span>
-          <Link href="/blog" className="hover:text-blue-600">Blog</Link>
+          <Link href="/blog/" className="hover:text-blue-600">Blog</Link>
           <span>/</span>
           <span className="text-gray-600 truncate">{post.title}</span>
         </nav>
@@ -218,7 +218,7 @@ export default function PageClient({ post, related }: { post: any, related: any[
         )}
 
         <div className="mt-8 pt-4 border-t border-gray-200">
-          <Link href="/blog"
+          <Link href="/blog/"
             className="text-sm text-blue-600 hover:underline flex items-center gap-1">
             <ArrowLeft className="w-3.5 h-3.5" /> Back to blog
           </Link>

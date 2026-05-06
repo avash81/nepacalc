@@ -309,11 +309,11 @@ export default function RatioProportion() {
       sidebar={{
         title: "Institutional Resources",
         links: [
-          { label: "Percentage Calculator", href: "/calculator/percentage" },
+          { label: "Percentage Calculator", href: "/calculator/percentage/" },
           { label: "NEB Math Portal", href: "https://neb.gov.np" },
           { label: "NSO Nepal (Statistics)", href: "https://cbs.gov.np" },
-          { label: "GPA Calculator", href: "/calculator/gpa" },
-          { label: "Statistics Plus", href: "/calculator/statistics-plus" },
+          { label: "GPA Calculator", href: "/calculator/gpa/" },
+          { label: "Statistics Plus", href: "/calculator/statistics-plus/" },
         ],
         banner: {
           title: "Mathematical Excellence",
@@ -322,10 +322,10 @@ export default function RatioProportion() {
         }
       }}
       relatedTools={[
-        { label: "Percentage Calc", href: "/calculator/percentage" },
-        { label: "Fraction Calc", href: "/calculator/fraction-calculator" },
-        { label: "GPA Calculator", href: "/calculator/gpa" },
-        { label: "Geometry 3D", href: "/calculator/geometry-3d" }
+        { label: "Percentage Calc", href: "/calculator/percentage/" },
+        { label: "Fraction Calc", href: "/calculator/fraction-calculator/" },
+        { label: "GPA Calculator", href: "/calculator/gpa/" },
+        { label: "Geometry 3D", href: "/calculator/geometry-3d/" }
       ]}
     />
   );
