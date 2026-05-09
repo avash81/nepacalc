@@ -32,11 +32,11 @@ export function Footer() {
           {/* Dynamic Columns for Indexing */}
           {footerLinks.map((col, idx) => (
             <div key={idx}>
-              <h3 className="text-[#202124] font-black uppercase text-[11px] tracking-widest mb-6 border-l-4 border-[#1A73E8] pl-3">{col.title}</h3>
+              <h3 className="text-white font-black uppercase text-[11px] tracking-widest mb-6 border-l-4 border-[#1A73E8] pl-3">{col.title}</h3>
               <ul className="space-y-3">
                 {col.items.map((item) => (
                   <li key={item.slug}>
-                    <Link href={`/calculator/${item.slug}/`} className="text-[#9aa0a6] hover:text-[#1A73E8] transition-colors font-medium hover:pl-1 duration-200 block">
+                    <Link href={`/calculator/${item.slug}/`} className="text-[#bdc1c6] hover:text-white transition-colors font-medium hover:pl-1 duration-200 block">
                       {item.name}
                     </Link>
                   </li>
@@ -48,15 +48,15 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-[#3c4043] pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 font-bold uppercase text-[10px] tracking-wider">
-            <Link href="/blog/" className="hover:text-[#202124] transition-colors">Blog</Link>
-            <Link href="/about/" className="hover:text-[#202124] transition-colors">About</Link>
-            <Link href="/sitemap/" className="hover:text-[#202124] transition-colors">Sitemap</Link>
-            <Link href="/terms/" className="hover:text-[#202124] transition-colors">Terms</Link>
-            <Link href="/privacy/" className="hover:text-[#202124] transition-colors">Privacy</Link>
-            <Link href="/contact/" className="hover:text-[#202124] transition-colors">Contact</Link>
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 font-bold uppercase text-[11px] tracking-wider text-[#bdc1c6]">
+            <Link href="/blog/" className="hover:text-white transition-colors">Blog</Link>
+            <Link href="/about/" className="hover:text-white transition-colors">About</Link>
+            <Link href="/sitemap/" className="hover:text-white transition-colors">Sitemap</Link>
+            <Link href="/terms/" className="hover:text-white transition-colors">Terms</Link>
+            <Link href="/privacy/" className="hover:text-white transition-colors">Privacy</Link>
+            <Link href="/contact/" className="hover:text-white transition-colors">Contact</Link>
           </div>
-          <div className="text-[#70757a] text-[11px] font-medium">
+          <div className="text-[#9aa0a6] text-[11px] font-medium">
             &copy; {year} NepaCalc, All Rights Reserved
           </div>
         </div>

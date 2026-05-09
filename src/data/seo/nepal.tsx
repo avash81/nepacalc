@@ -4,7 +4,7 @@ import { SEOContent } from './types';
 export const nepalSEO: Record<string, SEOContent> = {
   'nepal-land': {
     title: "Nepal Land Area Converter | Aana, Ropani, Bigha to Sq. Ft Lab",
-    description: "The definitive systematic resource for Nepal's unique land measurement system. Convert Ropani, Aana, Paisa, Daam and Bigha, Kattha, Dhur with 1500+ words of depth.",
+    description: "The definitive systematic resource for Nepal&apos;s unique land measurement system. Convert Ropani, Aana, Paisa, Daam and Bigha, Kattha, Dhur with 1500+ words of depth.",
     howToUse: {
       steps: [
         "System Selection: Choose between the 'Hilly' system (Ropani-Aana) or the 'Terai' system (Bigha-Kattha).",
@@ -22,7 +22,7 @@ export const nepalSEO: Record<string, SEOContent> = {
     },
     content: (
       <>
-        <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Nepal's Land Measurement Systems</h2>
+        <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Nepal&apos;s Land Measurement Systems</h2>
         
         <div className="bg-[#f8f9fa] border-2 border-[#dadce0] rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#1a73e8] rounded-full blur-[120px] opacity-10" />
@@ -86,6 +86,20 @@ export const nepalSEO: Record<string, SEOContent> = {
             </table>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/nepal-salary/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Salary</a>
+                <a href="/calculator/nepal-stocks/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Stocks</a>
+                <a href="/calculator/property-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Property Tax</a>
+                <a href="/calculator/property-registration/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Property Registration</a>
+                <a href="/calculator/nepal-tds/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Tds</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Real Estate Intelligence Silo</p>
@@ -196,6 +210,24 @@ export const nepalSEO: Record<string, SEOContent> = {
              </div>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mb-4">
+             <h3 className="text-md font-bold text-[#202124] mb-2">Official Data Reference</h3>
+             <p className="text-sm text-slate-600">Calculations are modeled according to the guidelines of: <a href="https://ird.gov.np" target="_blank" rel="nofollow noopener" className="text-[#1a0dab] underline font-medium">Inland Revenue Department (IRD) Nepal</a>.</p>
+          </div>
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/nepal-stocks/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Stocks</a>
+                <a href="/calculator/property-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Property Tax</a>
+                <a href="/calculator/property-registration/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Property Registration</a>
+                <a href="/calculator/nepal-tds/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Tds</a>
+                <a href="/calculator/nepal-provident-fund/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Provident Fund</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Payroll Intelligence Silo</p>
@@ -325,6 +357,20 @@ export const nepalSEO: Record<string, SEOContent> = {
              </p>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/property-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Property Tax</a>
+                <a href="/calculator/property-registration/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Property Registration</a>
+                <a href="/calculator/nepal-tds/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Tds</a>
+                <a href="/calculator/nepal-provident-fund/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Provident Fund</a>
+                <a href="/calculator/nepal-vehicle-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Vehicle Tax</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Stock Market Intelligence Silo</p>
@@ -387,7 +433,7 @@ export const nepalSEO: Record<string, SEOContent> = {
         <section id="rates" className="mb-16">
           <h3 className="text-2xl font-black text-[#202124] mb-6">1. Holding Period Slabs: The Timing Strategy</h3>
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
-            Nepal's Income Tax Act mandates a differential tax rate for real estate based on the duration of ownership. This is designed to discourage short-term speculation while rewarding long-term homeownership.
+            Nepal&apos;s Income Tax Act mandates a differential tax rate for real estate based on the duration of ownership. This is designed to discourage short-term speculation while rewarding long-term homeownership.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
              <div className="p-8 bg-white border-l-8 border-[#e65100] rounded-lg shadow-sm">
@@ -432,6 +478,20 @@ export const nepalSEO: Record<string, SEOContent> = {
              </li>
           </ul>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/property-registration/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Property Registration</a>
+                <a href="/calculator/nepal-tds/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Tds</a>
+                <a href="/calculator/nepal-provident-fund/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Provident Fund</a>
+                <a href="/calculator/nepal-vehicle-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Vehicle Tax</a>
+                <a href="/calculator/nepse-wacc/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepse Wacc</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Real Estate Intelligence Silo</p>
@@ -494,7 +554,7 @@ export const nepalSEO: Record<string, SEOContent> = {
         <section id="bagmati" className="mb-16">
           <h3 className="text-2xl font-black text-[#202124] mb-6">1. Provincial Disparities: The Bagmati Standard</h3>
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
-            Following Nepal's federalization, property registration fees are determined by Provincial Finance Acts. Bagmati Province, containing Kathmandu, typically has the most complex and tiered fee structure.
+            Following Nepal&apos;s federalization, property registration fees are determined by Provincial Finance Acts. Bagmati Province, containing Kathmandu, typically has the most complex and tiered fee structure.
           </p>
           <div className="overflow-hidden rounded-[2rem] border border-[#dadce0] shadow-sm mb-8">
             <table className="w-full text-left text-xs bg-white">
@@ -538,6 +598,20 @@ export const nepalSEO: Record<string, SEOContent> = {
              </p>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/nepal-tds/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Tds</a>
+                <a href="/calculator/nepal-provident-fund/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Provident Fund</a>
+                <a href="/calculator/nepal-vehicle-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Vehicle Tax</a>
+                <a href="/calculator/nepse-wacc/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepse Wacc</a>
+                <a href="/calculator/gratuity-calculator/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Gratuity Calculator</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Malpot Intelligence Silo</p>
@@ -613,7 +687,7 @@ export const nepalSEO: Record<string, SEOContent> = {
         <section id="rent" className="mb-16 p-10 bg-[#fffde7] border border-[#fbc02d]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#f57f17] mb-4">2. House Rent TDS: The 10% Policy</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
-            Payments for house rent to individuals attract a flat <strong>10% TDS</strong>. This is a final withholding tax for the individual landlord, meaning they do not need to include this in their personal income tax return if it's their only source of rental income.
+            Payments for house rent to individuals attract a flat <strong>10% TDS</strong>. This is a final withholding tax for the individual landlord, meaning they do not need to include this in their personal income tax return if it&apos;s their only source of rental income.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
              <div className="p-6 bg-white border border-[#fff9c4] rounded-2xl shadow-sm">
@@ -626,6 +700,20 @@ export const nepalSEO: Record<string, SEOContent> = {
              </div>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/nepal-provident-fund/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Provident Fund</a>
+                <a href="/calculator/nepal-vehicle-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Vehicle Tax</a>
+                <a href="/calculator/nepse-wacc/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepse Wacc</a>
+                <a href="/calculator/gratuity-calculator/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Gratuity Calculator</a>
+                <a href="/calculator/nepal-vat/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Vat</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Tax Compliance Silo</p>
@@ -642,7 +730,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       { question: "When should TDS be deposited in Nepal?", answer: "TDS must be deposited within 25 days of the end of the Nepali month in which the payment was made. Failure to do so attracts interest and penalties from the IRD." },
       { question: "Is TDS calculated on the VAT amount?", answer: "No. According to IRD regulations, TDS is always calculated on the base amount of the invoice, excluding the 13% Value Added Tax." },
       { question: "What is 'E-TDS'?", answer: "E-TDS is the electronic filing of TDS details on the IRD portal. Payers must upload the details of each vendor and the tax deducted to ensure the vendor can claim the tax credit." },
-      { question: "What happens if I don't deduct TDS?", answer: "If you fail to deduct or deposit TDS, the IRD will hold you liable for the tax amount plus a 15% annual interest and potential fines for non-compliance." },
+      { question: "What happens if I don&apos;t deduct TDS?", answer: "If you fail to deduct or deposit TDS, the IRD will hold you liable for the tax amount plus a 15% annual interest and potential fines for non-compliance." },
       { question: "Is TDS on house rent a final tax?", answer: "Yes, for individuals receiving rental income, the 10% TDS deducted by the tenant is considered a final withholding tax." }
     ]
   },
@@ -726,6 +814,20 @@ export const nepalSEO: Record<string, SEOContent> = {
              <p className="text-xs text-slate-400 mb-4 italic">"EPF offers higher liquidity through loans and a lump-sum payout at the end. SSF focuses more on pension and comprehensive medical/accident insurance. Our calculator helps you project the long-term wealth difference between these two paths."</p>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/nepal-vehicle-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Vehicle Tax</a>
+                <a href="/calculator/nepse-wacc/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepse Wacc</a>
+                <a href="/calculator/gratuity-calculator/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Gratuity Calculator</a>
+                <a href="/calculator/nepal-vat/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Vat</a>
+                <a href="/calculator/nepali-date/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepali Date</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Retirement Intelligence Silo</p>
@@ -847,6 +949,20 @@ export const nepalSEO: Record<string, SEOContent> = {
              </div>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/nepse-wacc/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepse Wacc</a>
+                <a href="/calculator/gratuity-calculator/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Gratuity Calculator</a>
+                <a href="/calculator/nepal-vat/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Vat</a>
+                <a href="/calculator/nepali-date/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepali Date</a>
+                <a href="/calculator/see-gpa/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">See Gpa</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Bluebook Intelligence Silo</p>
@@ -932,6 +1048,24 @@ export const nepalSEO: Record<string, SEOContent> = {
              </p>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mb-4">
+             <h3 className="text-md font-bold text-[#202124] mb-2">Official Data Reference</h3>
+             <p className="text-sm text-slate-600">Calculations are modeled according to the guidelines of: <a href="https://www.nepalstock.com" target="_blank" rel="nofollow noopener" className="text-[#1a0dab] underline font-medium">Nepal Stock Exchange (NEPSE)</a>.</p>
+          </div>
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/gratuity-calculator/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Gratuity Calculator</a>
+                <a href="/calculator/nepal-vat/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Vat</a>
+                <a href="/calculator/nepali-date/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepali Date</a>
+                <a href="/calculator/see-gpa/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">See Gpa</a>
+                <a href="/calculator/lok-sewa-age/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Lok Sewa Age</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Equity Intelligence Silo</p>
@@ -947,7 +1081,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       { question: "Do I need to calculate WACC for IPO shares?", answer: "Yes. Even for IPO shares, you must confirm the WACC (usually Rs. 100) on MeroShare before you can sell them on the secondary market (TMS)." },
       { question: "How do I calculate WACC for shares received during a merger?", answer: "In a merger, you use the 'Swap Ratio'. If Company A merges into Company B at a 1:0.8 ratio, your cost base is adjusted by dividing your original cost by 0.8. This is a complex calculation handled by our 'Merger Mode'." },
       { question: "What happens if I enter the wrong WACC on MeroShare?", answer: "If you have already confirmed the wrong WACC, you cannot change it yourself. you must contact your DP (Depository Participant) or Broker to request a manual correction, which can be a lengthy process." },
-      { question: "Does WACC include broker commission?", answer: "Yes. The 'My WACC' calculation in Nepal's TMS/MeroShare system includes the purchase price plus all buying costs like broker commission and SEBON fees." },
+      { question: "Does WACC include broker commission?", answer: "Yes. The 'My WACC' calculation in Nepal&apos;s TMS/MeroShare system includes the purchase price plus all buying costs like broker commission and SEBON fees." },
       { question: "Why is my WACC lower than my buying price?", answer: "This usually happens if you have received bonus shares or right shares. Since these shares are acquired at a lower cost (Rs. 0 or Rs. 100), they pull down your overall weighted average cost." },
       { question: "Is WACC calculated separately for each company?", answer: "Yes. WACC is calculated on a per-scrip basis. Every company in your portfolio has its own independent weighted average cost." }
     ]
@@ -1016,6 +1150,20 @@ export const nepalSEO: Record<string, SEOContent> = {
              </p>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/nepal-vat/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Vat</a>
+                <a href="/calculator/nepali-date/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepali Date</a>
+                <a href="/calculator/see-gpa/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">See Gpa</a>
+                <a href="/calculator/lok-sewa-age/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Lok Sewa Age</a>
+                <a href="/calculator/foreign-employment/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Foreign Employment</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Labor Intelligence Silo</p>
@@ -1029,7 +1177,7 @@ export const nepalSEO: Record<string, SEOContent> = {
     ),
     faqs: [
       { question: "Is gratuity mandatory for private companies in Nepal?", answer: "Yes. Under the Labor Act 2074, all employers (even those with only one employee) must provide gratuity benefits starting from the first day of employment." },
-      { question: "How much tax is deducted from the final gratuity payment?", answer: "Gratuity is taxed as part of your income. However, for non-pensioners, there is often a 15% flat tax or it is adjusted against your annual income slabs depending on whether it's a lump-sum retirement payout." },
+      { question: "How much tax is deducted from the final gratuity payment?", answer: "Gratuity is taxed as part of your income. However, for non-pensioners, there is often a 15% flat tax or it is adjusted against your annual income slabs depending on whether it&apos;s a lump-sum retirement payout." },
       { question: "Can I get gratuity if I resign within 1 year?", answer: "Yes. The current law does not require a minimum service period of 5 years. You are entitled to the accrued 8.33% gratuity even if you resign after a few months." },
       { question: "What is the difference between EPF and Gratuity?", answer: "EPF is a contribution from both employee and employer (10%+10%). Gratuity is entirely funded by the employer (8.33% of basic) as a reward for service." },
       { question: "Does the 8.33% apply to the total gross salary?", answer: "No. Statutory gratuity in Nepal is calculated only based on the 'Basic Salary' as defined in your appointment letter, excluding dearness and other allowances." },
@@ -1124,6 +1272,24 @@ export const nepalSEO: Record<string, SEOContent> = {
             </table>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mb-4">
+             <h3 className="text-md font-bold text-[#202124] mb-2">Official Data Reference</h3>
+             <p className="text-sm text-slate-600">Calculations are modeled according to the guidelines of: <a href="https://ird.gov.np" target="_blank" rel="nofollow noopener" className="text-[#1a0dab] underline font-medium">Inland Revenue Department (IRD) Nepal</a>.</p>
+          </div>
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/nepali-date/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepali Date</a>
+                <a href="/calculator/see-gpa/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">See Gpa</a>
+                <a href="/calculator/lok-sewa-age/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Lok Sewa Age</a>
+                <a href="/calculator/foreign-employment/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Foreign Employment</a>
+                <a href="/calculator/nepse-bonus-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepse Bonus Tax</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">VAT Intelligence Silo</p>
@@ -1147,7 +1313,7 @@ export const nepalSEO: Record<string, SEOContent> = {
 
   'nepali-date': {
     title: "Nepali Date Converter | BS to AD Astronomical Lab",
-    description: "The definitive systematic resource for Bikram Sambat (BS) and Anno Domini (AD) conversion. 1500+ words on Nepal's unique calendar system and astronomical logic.",
+    description: "The definitive systematic resource for Bikram Sambat (BS) and Anno Domini (AD) conversion. 1500+ words on Nepal&apos;s unique calendar system and astronomical logic.",
     howToUse: {
       steps: [
         "Conversion Mode: Select between 'BS to AD' or 'AD to BS'.",
@@ -1186,7 +1352,7 @@ export const nepalSEO: Record<string, SEOContent> = {
         <section id="solar" className="mb-16">
           <h3 className="text-2xl font-black text-[#202124] mb-6">1. Astronomical Logic: Solar Transits</h3>
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
-            Nepal's Bikram Sambat is a <strong>Solar Calendar</strong> based on the sidereal year. Each month begins when the sun enters a new zodiac sign. For example, Baisakh 1 starts when the sun enters Aries (Mesha). Because the transit time varies, the number of days in a Nepali month is not fixed like the Gregorian system.
+            Nepal&apos;s Bikram Sambat is a <strong>Solar Calendar</strong> based on the sidereal year. Each month begins when the sun enters a new zodiac sign. For example, Baisakh 1 starts when the sun enters Aries (Mesha). Because the transit time varies, the number of days in a Nepali month is not fixed like the Gregorian system.
           </p>
           <div className="p-8 bg-white border-l-8 border-[#ffca28] rounded-lg shadow-sm mb-8">
              <p className="text-xs font-black text-[#202124] uppercase mb-2">Institutional Fact:</p>
@@ -1208,6 +1374,20 @@ export const nepalSEO: Record<string, SEOContent> = {
              </ul>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/see-gpa/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">See Gpa</a>
+                <a href="/calculator/lok-sewa-age/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Lok Sewa Age</a>
+                <a href="/calculator/foreign-employment/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Foreign Employment</a>
+                <a href="/calculator/nepse-bonus-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepse Bonus Tax</a>
+                <a href="/calculator/kukl-bill/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Kukl Bill</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Chronology Intelligence Silo</p>
@@ -1270,7 +1450,7 @@ export const nepalSEO: Record<string, SEOContent> = {
         <section id="slabs" className="mb-16">
           <h3 className="text-2xl font-black text-[#202124] mb-6">1. The Grading Hierarchy: Decoding A+ to E</h3>
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
-            Nepal's National Examination Board (NEB) uses a 9-point grading system for SEE. Each grade represents a specific percentage range and carries a Grade Point (GP) used for the final calculation.
+            Nepal&apos;s National Examination Board (NEB) uses a 9-point grading system for SEE. Each grade represents a specific percentage range and carries a Grade Point (GP) used for the final calculation.
           </p>
           <div className="overflow-hidden rounded-[2rem] border border-[#dadce0] shadow-sm mb-8">
             <table className="w-full text-left text-xs bg-white">
@@ -1308,6 +1488,20 @@ export const nepalSEO: Record<string, SEOContent> = {
              </div>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/lok-sewa-age/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Lok Sewa Age</a>
+                <a href="/calculator/foreign-employment/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Foreign Employment</a>
+                <a href="/calculator/nepse-bonus-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepse Bonus Tax</a>
+                <a href="/calculator/kukl-bill/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Kukl Bill</a>
+                <a href="/calculator/mortgage-calculator/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Mortgage Calculator</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Academic Intelligence Silo</p>
@@ -1370,7 +1564,7 @@ export const nepalSEO: Record<string, SEOContent> = {
         <section id="limits" className="mb-16">
           <h3 className="text-2xl font-black text-[#202124] mb-6">1. Standard Age Limits: The Civil Service Gateway</h3>
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
-            For general candidates in Nepal's Public Service Commission (Lok Sewa), the age requirements are strict and non-negotiable. Disqualification occurs if you are even a single day above the threshold.
+            For general candidates in Nepal&apos;s Public Service Commission (Lok Sewa), the age requirements are strict and non-negotiable. Disqualification occurs if you are even a single day above the threshold.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
              <div className="p-8 bg-white border-l-8 border-[#1b5e20] rounded-lg shadow-sm">
@@ -1398,6 +1592,20 @@ export const nepalSEO: Record<string, SEOContent> = {
              </p>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/foreign-employment/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Foreign Employment</a>
+                <a href="/calculator/nepse-bonus-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepse Bonus Tax</a>
+                <a href="/calculator/kukl-bill/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Kukl Bill</a>
+                <a href="/calculator/mortgage-calculator/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Mortgage Calculator</a>
+                <a href="/calculator/compound-interest/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Compound Interest</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">PSC Intelligence Silo</p>
@@ -1490,6 +1698,24 @@ export const nepalSEO: Record<string, SEOContent> = {
             </table>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mb-4">
+             <h3 className="text-md font-bold text-[#202124] mb-2">Official Data Reference</h3>
+             <p className="text-sm text-slate-600">Calculations are modeled according to the guidelines of: <a href="https://doefe.gov.np" target="_blank" rel="nofollow noopener" className="text-[#1a0dab] underline font-medium">Department of Foreign Employment Nepal</a>.</p>
+          </div>
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/nepse-bonus-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepse Bonus Tax</a>
+                <a href="/calculator/kukl-bill/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Kukl Bill</a>
+                <a href="/calculator/mortgage-calculator/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Mortgage Calculator</a>
+                <a href="/calculator/compound-interest/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Compound Interest</a>
+                <a href="/calculator/nepal-income-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Income Tax</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Migration Intelligence Silo</p>
@@ -1506,7 +1732,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       { question: "How much is the Foreign Employment Welfare Fund fee?", answer: "The mandatory contribution to the Foreign Employment Welfare Fund is currently Rs. 1,500 per labor permit." },
       { question: "What is 'Shram Bikriti' (Labor Permit)?", answer: "It is the official approval from the Department of Foreign Employment (DoFE) required for any Nepali citizen to legally work abroad." },
       { question: "Can I renew my labor permit online?", answer: "Yes. The 'Puna-Shram' (Re-entry labor permit) can now be applied for and paid through the FEIMS portal and mobile app while you are abroad or in Nepal." },
-      { question: "What should I do if a manpower agency asks for extra money?", answer: "You should report the agency to the Department of Foreign Employment (DoFE) or the Baideshik Rojgar Board with proof of payment (even if it's a recording or screenshot)." },
+      { question: "What should I do if a manpower agency asks for extra money?", answer: "You should report the agency to the Department of Foreign Employment (DoFE) or the Baideshik Rojgar Board with proof of payment (even if it&apos;s a recording or screenshot)." },
       { question: "Is orientation mandatory for foreign employment?", answer: "Yes. Every first-time migrant worker must attend a two-day pre-departure orientation training (PDOT) from a government-licensed center." }
     ]
   },
@@ -1574,6 +1800,20 @@ export const nepalSEO: Record<string, SEOContent> = {
              </p>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/kukl-bill/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Kukl Bill</a>
+                <a href="/calculator/mortgage-calculator/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Mortgage Calculator</a>
+                <a href="/calculator/compound-interest/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Compound Interest</a>
+                <a href="/calculator/nepal-income-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Income Tax</a>
+                <a href="/calculator/sip-calculator/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Sip Calculator</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Dividend Intelligence Silo</p>
@@ -1658,6 +1898,24 @@ export const nepalSEO: Record<string, SEOContent> = {
              </p>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mb-4">
+             <h3 className="text-md font-bold text-[#202124] mb-2">Official Data Reference</h3>
+             <p className="text-sm text-slate-600">Calculations are modeled according to the guidelines of: <a href="https://kathmanduwater.org" target="_blank" rel="nofollow noopener" className="text-[#1a0dab] underline font-medium">KUKL Nepal</a>.</p>
+          </div>
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/mortgage-calculator/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Mortgage Calculator</a>
+                <a href="/calculator/compound-interest/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Compound Interest</a>
+                <a href="/calculator/nepal-income-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Income Tax</a>
+                <a href="/calculator/sip-calculator/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Sip Calculator</a>
+                <a href="/calculator/nea-bill/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nea Bill</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Utility Intelligence Silo</p>
@@ -1743,6 +2001,24 @@ export const nepalSEO: Record<string, SEOContent> = {
              </p>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mb-4">
+             <h3 className="text-md font-bold text-[#202124] mb-2">Official Data Reference</h3>
+             <p className="text-sm text-slate-600">Calculations are modeled according to the guidelines of: <a href="https://www.nrb.org.np" target="_blank" rel="nofollow noopener" className="text-[#1a0dab] underline font-medium">Nepal Rastra Bank (NRB)</a>.</p>
+          </div>
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/compound-interest/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Compound Interest</a>
+                <a href="/calculator/nepal-income-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Income Tax</a>
+                <a href="/calculator/sip-calculator/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Sip Calculator</a>
+                <a href="/calculator/nea-bill/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nea Bill</a>
+                <a href="/calculator/fixed-deposit/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Fixed Deposit</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Mortgage Intelligence Silo</p>
@@ -1828,6 +2104,20 @@ export const nepalSEO: Record<string, SEOContent> = {
              </p>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/nepal-income-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Income Tax</a>
+                <a href="/calculator/sip-calculator/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Sip Calculator</a>
+                <a href="/calculator/nea-bill/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nea Bill</a>
+                <a href="/calculator/fixed-deposit/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Fixed Deposit</a>
+                <a href="/calculator/loan-emi/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Loan Emi</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Compounding Intelligence Silo</p>
@@ -1890,7 +2180,7 @@ export const nepalSEO: Record<string, SEOContent> = {
         <section id="slabs" className="mb-16">
           <h3 className="text-2xl font-black text-[#202124] mb-6">1. Fiscal Year 2081/82: Official Tax Slabs</h3>
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
-            Nepal's personal income tax is governed by the <strong>Inland Revenue Department (IRD)</strong>. For the fiscal year 2081/82, the government has maintained the slab structure from the previous budget, emphasizing social security through the SSF mandate. Our <strong>nepal income tax slab 2081/82</strong> data is updated daily to reflect official circulars.
+            Nepal&apos;s personal income tax is governed by the <strong>Inland Revenue Department (IRD)</strong>. For the fiscal year 2081/82, the government has maintained the slab structure from the previous budget, emphasizing social security through the SSF mandate. Our <strong>nepal income tax slab 2081/82</strong> data is updated daily to reflect official circulars.
           </p>
           <div className="overflow-hidden rounded-[2rem] border border-[#dadce0] shadow-sm mb-8">
             <table className="w-full text-left text-xs bg-white">
@@ -1938,7 +2228,7 @@ export const nepalSEO: Record<string, SEOContent> = {
         <section id="ssf" className="mb-16 p-10 bg-[#f1f8e9] border border-[#81c784]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#1b5e20] mb-4">2. The Social Security Fund (SSF) Exemption</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
-            The SSF is a transformative shift in Nepal's labor relations. Under the current mandate, employees contribute 11% and employers contribute 20%, totaling a 31% monthly deposit. This is a primary factor in <strong>income tax calculation</strong> for formal sector workers.
+            The SSF is a transformative shift in Nepal&apos;s labor relations. Under the current mandate, employees contribute 11% and employers contribute 20%, totaling a 31% monthly deposit. This is a primary factor in <strong>income tax calculation</strong> for formal sector workers.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#e0e0e0]">
@@ -2017,13 +2307,31 @@ export const nepalSEO: Record<string, SEOContent> = {
              <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#1a73e8] rounded-full blur-[80px] opacity-20" />
              <h4 className="text-lg font-black text-[#4fc3f7] mb-4">The Multi-Bucket Analogy</h4>
              <p className="text-xs text-slate-400 leading-relaxed mb-6">
-                Imagine you have five buckets. The first bucket holds Rs. 5,00,000. Once it's full, the "overflow" goes into the second bucket (Next Rs. 2,00,000), then the third, and so on. The government only charges 30% on the money that is in the <strong>fourth bucket</strong>. The money in the first bucket is still only taxed at 1% (or 0% for SSF).
+                Imagine you have five buckets. The first bucket holds Rs. 5,00,000. Once it&apos;s full, the "overflow" goes into the second bucket (Next Rs. 2,00,000), then the third, and so on. The government only charges 30% on the money that is in the <strong>fourth bucket</strong>. The money in the first bucket is still only taxed at 1% (or 0% for SSF).
              </p>
              <p className="text-xs font-black text-[#202124] uppercase tracking-widest border-l-4 border-[#1a73e8] pl-4">
                 Conclusion: Higher earnings ALWAYS lead to higher net take-home pay, regardless of the slab.
              </p>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mb-4">
+             <h3 className="text-md font-bold text-[#202124] mb-2">Official Data Reference</h3>
+             <p className="text-sm text-slate-600">Calculations are modeled according to the guidelines of: <a href="https://ird.gov.np" target="_blank" rel="nofollow noopener" className="text-[#1a0dab] underline font-medium">Inland Revenue Department (IRD) Nepal</a>.</p>
+          </div>
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/sip-calculator/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Sip Calculator</a>
+                <a href="/calculator/nea-bill/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nea Bill</a>
+                <a href="/calculator/fixed-deposit/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Fixed Deposit</a>
+                <a href="/calculator/loan-emi/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Loan Emi</a>
+                <a href="/calculator/nepal-land/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Land</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Internal Audit Ecosystem</p>
@@ -2159,6 +2467,20 @@ export const nepalSEO: Record<string, SEOContent> = {
             In an SWP, you withdraw a fixed amount every month while the remaining corpus continues to stay invested in the market. If your withdrawal rate (e.g., 8%) is lower than the fund's growth rate (e.g., 12%), your wealth will <strong>continue to grow</strong> even as you "retire" and enjoy a monthly pension.
           </p>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/nea-bill/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nea Bill</a>
+                <a href="/calculator/fixed-deposit/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Fixed Deposit</a>
+                <a href="/calculator/loan-emi/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Loan Emi</a>
+                <a href="/calculator/nepal-land/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Land</a>
+                <a href="/calculator/nepal-salary/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Salary</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Financial Engineering Silo</p>
@@ -2221,7 +2543,7 @@ export const nepalSEO: Record<string, SEOContent> = {
     ],
     formula: {
       title: "The Progressive Energy Summation Algorithm",
-      description: "NEA utilizes a tiered (slab) billing model. Each unit block is charged at a different rate to encourage conservation. Our engine executes a sequential summation of these blocks based on your meter's Ampere rating.",
+      description: "NEA utilizes a tiered (slab) billing model. Each unit block is charged at a different rate to encourage conservation. Our engine executes a sequential summation of these blocks based on your meter&apos;s Ampere rating.",
       raw: "Total Bill = Service Charge + Σ (Units in Slab_i x Rate_i) + Taxes/Levies"
     },
     content: (
@@ -2350,6 +2672,24 @@ export const nepalSEO: Record<string, SEOContent> = {
              </p>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mb-4">
+             <h3 className="text-md font-bold text-[#202124] mb-2">Official Data Reference</h3>
+             <p className="text-sm text-slate-600">Calculations are modeled according to the guidelines of: <a href="https://www.nea.org.np" target="_blank" rel="nofollow noopener" className="text-[#1a0dab] underline font-medium">Nepal Electricity Authority</a>.</p>
+          </div>
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/fixed-deposit/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Fixed Deposit</a>
+                <a href="/calculator/loan-emi/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Loan Emi</a>
+                <a href="/calculator/nepal-land/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Land</a>
+                <a href="/calculator/nepal-salary/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Salary</a>
+                <a href="/calculator/nepal-stocks/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Stocks</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Utility Intelligence Ecosystem</p>
@@ -2380,7 +2720,7 @@ export const nepalSEO: Record<string, SEOContent> = {
     },
     formula: {
       title: "The Compound Interest Axiom",
-      description: "Nepal's banking sector operates on discrete compounding. For maturity at term, the principal grows using the standard compound interest formula with frequency 'n' representing quarterly cycles.",
+      description: "Nepal&apos;s banking sector operates on discrete compounding. For maturity at term, the principal grows using the standard compound interest formula with frequency 'n' representing quarterly cycles.",
       latex: "A = P(1 + r/n)^{nt}",
       raw: "Maturity = Principal x (1 + Rate / Frequency)^(Frequency x Years)"
     },
@@ -2428,7 +2768,7 @@ export const nepalSEO: Record<string, SEOContent> = {
         <section id="tds" className="mb-16 p-10 bg-[#e8f5e9] border border-[#81c784]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#1b5e20] mb-4">2. TDS Mastery: Individual vs Corporate</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
-            The interest you earn on an FD in Nepal is subject to <strong>Withholding Tax (TDS)</strong>. This is a final tax for individuals, meaning you don't need to pay extra tax on this interest during your annual filing.
+            The interest you earn on an FD in Nepal is subject to <strong>Withholding Tax (TDS)</strong>. This is a final tax for individuals, meaning you don&apos;t need to pay extra tax on this interest during your annual filing.
           </p>
           <ul className="space-y-4 text-xs font-bold text-[#3c4043] list-none p-0">
              <li className="flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-[#1b5e20]" /> <strong>Individuals:</strong> 5% Final TDS on interest.</li>
@@ -2440,7 +2780,7 @@ export const nepalSEO: Record<string, SEOContent> = {
         <section id="loan" className="mb-16">
           <h3 className="text-2xl font-black text-[#202124] mb-6">4. Liquidity Architecture: The 90% Loan Rule</h3>
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
-            One of the biggest advantages of a Fixed Deposit in Nepal is the <strong>Loan Against FD</strong>. If you need urgent cash, you don't have to break your FD and pay penalties.
+            One of the biggest advantages of a Fixed Deposit in Nepal is the <strong>Loan Against FD</strong>. If you need urgent cash, you don&apos;t have to break your FD and pay penalties.
           </p>
           <div className="p-8 bg-[#1a1a2e] text-[#202124] rounded-lg shadow-sm">
              <h4 className="text-lg font-black text-[#4fc3f7] mb-4">Institutional Mechanics:</h4>
@@ -2462,6 +2802,20 @@ export const nepalSEO: Record<string, SEOContent> = {
             As each FD matures every year, you reinvest it for another 5 years. This ensures that you have liquidity every year and your average return matches the market's peak rates over time.
           </p>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/loan-emi/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Loan Emi</a>
+                <a href="/calculator/nepal-land/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Land</a>
+                <a href="/calculator/nepal-salary/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Salary</a>
+                <a href="/calculator/nepal-stocks/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Stocks</a>
+                <a href="/calculator/property-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Property Tax</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Banking Intelligence Silo</p>
@@ -2543,7 +2897,7 @@ export const nepalSEO: Record<string, SEOContent> = {
              <div className="p-6 bg-white border border-[#dadce0] rounded-2xl shadow-sm">
                 <h4 className="text-xs font-black uppercase text-[#1a73e8] tracking-widest mb-3">The Base Rate</h4>
                 <p className="text-[11px] text-[#5f6368] leading-relaxed">
-                  This is the bank's cost of funds. It changes quarterly. If the Base Rate drops, your floating-rate EMI interest component should also drop.
+                  This is the bank&apos;s cost of funds. It changes quarterly. If the Base Rate drops, your floating-rate EMI interest component should also drop.
                 </p>
              </div>
              <div className="p-6 bg-white border border-[#dadce0] rounded-2xl shadow-sm">
@@ -2602,6 +2956,24 @@ export const nepalSEO: Record<string, SEOContent> = {
             </table>
           </div>
         </section>
+        <section className="mb-12 bg-[#f8f9fa] border border-[#dadce0] p-6 rounded-xl mt-8">
+          
+          <div className="mb-4">
+             <h3 className="text-md font-bold text-[#202124] mb-2">Official Data Reference</h3>
+             <p className="text-sm text-slate-600">Calculations are modeled according to the guidelines of: <a href="https://www.nrb.org.np" target="_blank" rel="nofollow noopener" className="text-[#1a0dab] underline font-medium">Nepal Rastra Bank (NRB)</a>.</p>
+          </div>
+          <div className="mt-4 pt-4 border-t border-[#dadce0]">
+             <span className="font-bold text-[#202124] text-sm block mb-3">Explore the NepaCalc Network:</span>
+             <div className="flex flex-wrap gap-3 text-sm">
+                <a href="/calculator/nepal-land/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Land</a>
+                <a href="/calculator/nepal-salary/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Salary</a>
+                <a href="/calculator/nepal-stocks/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Nepal Stocks</a>
+                <a href="/calculator/property-tax/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Property Tax</a>
+                <a href="/calculator/property-registration/" className="text-[#1a0dab] hover:underline font-semibold bg-white border border-[#dadce0] px-3 py-1.5 rounded-full shadow-sm">Property Registration</a>
+             </div>
+          </div>
+        </section>
+        
 
         <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
           <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Debt Architecture Silo</p>
@@ -2614,7 +2986,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       </>
     ),
     faqs: [
-      { question: "What is the difference between a fixed and floating interest rate in Nepal?", answer: "A fixed rate stays the same for a set period (e.g., 5 years), providing certainty. A floating rate changes every quarter based on the bank's Base Rate. NRB currently encourages floating rates to reflect market dynamics." },
+      { question: "What is the difference between a fixed and floating interest rate in Nepal?", answer: "A fixed rate stays the same for a set period (e.g., 5 years), providing certainty. A floating rate changes every quarter based on the bank&apos;s Base Rate. NRB currently encourages floating rates to reflect market dynamics." },
       { question: "Can I pay off my loan early in Nepal?", answer: "Yes. However, banks may charge a 'Prepayment Fee' (typically 1% to 2% of the prepaid amount) if you close the loan early or make large part-payments. EV loans and certain personal loans often have zero prepayment fees." },
       { question: "How does the 'Base Rate' affect my monthly EMI?", answer: "If your loan is on a floating rate, the bank reviews it every three months. If the base rate increases, the bank will either increase your EMI amount or extend the loan tenure. You have the right to choose between these two options." },
       { question: "What is LTV (Loan-to-Value) ratio?", answer: "LTV is the percentage of the property or vehicle value that the bank will lend. For a home in Kathmandu, the LTV for a first-time buyer is currently up to 70%, meaning you must pay 30% as a down payment." },
