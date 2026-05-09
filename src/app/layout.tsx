@@ -162,9 +162,11 @@ export default function RootLayout({
           Skip to content
         </a>
         <Navbar />
-        <main id="main-content" className="pt-16">
-          <div className="lg:pb-0">
-            {children}
+        <main id="main-content" className="pt-16 min-h-[85vh]">
+          <div className="flex flex-col h-full">
+            <div className="flex-grow pb-16">
+              {children}
+            </div>
             <Footer />
           </div>
         </main>

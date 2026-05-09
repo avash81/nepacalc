@@ -48,8 +48,30 @@ export function ModernCalcLayout({
   const [lastUpdate, setLastUpdate] = useState<string>('');
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
-  const effectiveSlug = slug || pathname?.split('/').filter(Boolean).pop();
-  const seoEntry = effectiveSlug ? TIER1_SEO_CONTENT[effectiveSlug] : null;
+  
+  const effectiveSlug = React.useMemo(() => {
+    if (slug) return slug;
+    if (!pathname) return null;
+    const parts = pathname.split('/').filter(Boolean);
+    const cleanParts = parts.filter(p => p !== 'calculator' && p !== 'app');
+    return cleanParts[cleanParts.length - 1] || null;
+  }, [slug, pathname]);
+
+  // Try full nested path first (e.g. "math-tools/calculus"), then just the slug key
+  const seoEntry = React.useMemo(() => {
+    if (!effectiveSlug) return null;
+    if (TIER1_SEO_CONTENT[effectiveSlug]) return TIER1_SEO_CONTENT[effectiveSlug];
+    // Try building nested key from pathname
+    if (pathname) {
+      const parts = pathname.split('/').filter(Boolean);
+      const clean = parts.filter(p => p !== 'calculator' && p !== 'app');
+      if (clean.length >= 2) {
+        const nestedKey = clean.slice(-2).join('/');
+        if (TIER1_SEO_CONTENT[nestedKey]) return TIER1_SEO_CONTENT[nestedKey];
+      }
+    }
+    return null;
+  }, [effectiveSlug, pathname]);
 
   useEffect(() => {
     setMounted(true);
@@ -153,7 +175,7 @@ export function ModernCalcLayout({
           ...crumbs.map(c => ({ name: c.label, item: c.href ? `https://nepacalc.com${normalizeLink(c.href)}` : undefined })).filter((x): x is { name: string, item: string } => !!x.item)
         ]} />
       )}
-      <div className="max-w-[1280px] mx-auto px-4 pt-4 pb-8">
+      <div className="max-w-[1280px] mx-auto px-4 pt-4 pb-32">
         <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#dadce0] pb-4">
           <div>
             {crumbs && crumbs.length > 0 && (
