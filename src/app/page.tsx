@@ -41,11 +41,11 @@ export default function HomePage() {
       <div className="min-h-screen bg-[#F1F3F4]">
         <section className="pt-1 pb-8 border-b border-[#dadce0] bg-[#F1F3F4]">
           <div className="hp-container">
-            <div className="mb-4 max-w-6xl">
-              <h1 className="text-2xl sm:text-3xl font-bold text-[#202124] tracking-tight mb-2 leading-[1.1]">
+            <div className="mb-6 max-w-4xl mx-auto text-center px-4 pt-4">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#202124] tracking-tight mb-4 leading-[1.1]">
                 Free Online <span className="text-blue-600">Calculator</span> for Nepal.
               </h1>
-              <p className="text-[13px] sm:text-sm text-slate-600 font-normal leading-relaxed max-w-4xl">
+              <p className="text-[15px] sm:text-base text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto">
                 Easy-to-use tools for tax, finance, health, and math. 80+ calculators for your daily needs.
               </p>
             </div>
