@@ -51,7 +51,7 @@ export default function PropertyRegistration() {
                 <button key={l.id} onClick={() => update({ location: l.id as any })}
                   className={`p-3 rounded-lg border text-left flex justify-between items-center transition-all ${location === l.id ? 'bg-[#E8F0FE] border-[#1A73E8]' : 'bg-white border-[#DADCE0] hover:bg-[#F8F9FA]'}`}>
                   <span className={`text-xs font-bold ${location === l.id ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>{l.name}</span>
-                  <span className={`text-[10px] font-black px-2 py-0.5 rounded ${location === l.id ? 'bg-[#1A73E8] text-white' : 'bg-[#F1F3F4] text-[#5F6368]'}`}>{l.rate}</span>
+                  <span className={`text-[10px] font-black px-2 py-0.5 rounded ${location === l.id ? 'bg-[#1A73E8] text-[#202124]' : 'bg-[#F1F3F4] text-[#5F6368]'}`}>{l.rate}</span>
                 </button>
               ))}
             </div>
@@ -81,7 +81,7 @@ export default function PropertyRegistration() {
             )}
           </div>
 
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors">Calculate Registry Fee</button>
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] font-bold uppercase tracking-widest rounded-md transition-colors">Calculate Registry Fee</button>
         </div>
       }
       results={
@@ -92,9 +92,9 @@ export default function PropertyRegistration() {
             <div className="text-[9px] text-[#70757A] font-bold uppercase">Payable at Malpok Office</div>
           </div>
           <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
-            <div className="px-4 py-2 bg-[#1A1A2E] text-white flex justify-between items-center">
+            <div className="px-4 py-2 bg-[#1A1A2E] text-[#202124] flex justify-between items-center">
               <span className="text-[10px] font-black uppercase">Malpok Invoice</span>
-              <span className="text-[10px] text-white/60">{LOCATIONS.find(l => l.id === location)?.name}</span>
+              <span className="text-[10px] text-[#202124]/60">{LOCATIONS.find(l => l.id === location)?.name}</span>
             </div>
             <div className="divide-y divide-[#DADCE0]">
               <div className="p-3 flex justify-between text-xs"><span className="text-[#5F6368]">Gross Registry Fee ({result.ratePercent}%)</span><span className="font-black">{fmt(result.baseFee)}</span></div>

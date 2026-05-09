@@ -28,7 +28,7 @@ export default function EnergyCalc() {
       inputs={
         <div className="space-y-6">
           <div className="p-4 bg-blue-50 border border-blue-100 rounded-xl flex items-start gap-3">
-            <div className="w-1.5 h-1.5 rounded-full bg-blue-600 mt-2 shrink-0 animate-pulse" />
+            <div className="w-1.5 h-1.5 rounded-full bg-[#1a73e8] mt-2 shrink-0 animate-pulse" />
             <p className="text-sm text-blue-800 font-medium leading-relaxed">
               <strong>Smart Solver:</strong> Fill in any two values and leave the third one blank (?). The calculator will automatically solve for the missing variable.
             </p>

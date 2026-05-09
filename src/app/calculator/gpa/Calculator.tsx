@@ -108,7 +108,7 @@ export default function GPACalculator() {
                <div key={sub.id} className="p-5 bg-[#F8F9FA] border border-[#DADCE0] rounded-2xl space-y-4 group relative hover:border-[#1A73E8] transition-all shadow-sm">
                   <div className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
-                         <div className="w-5 h-5 rounded-full bg-[#1A73E8] text-white flex items-center justify-center text-[10px] font-black">{idx + 1}</div>
+                         <div className="w-5 h-5 rounded-full bg-[#1A73E8] text-[#202124] flex items-center justify-center text-[10px] font-black">{idx + 1}</div>
                          <span className="text-[10px] font-black text-[#202124] uppercase tracking-widest">Academic Course Entry</span>
                     </div>
                     {subjects.length > 1 && (
@@ -149,7 +149,7 @@ export default function GPACalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-[#DADCE0] rounded-3xl text-center space-y-4 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-[#DADCE0] rounded-lg text-center space-y-4 shadow-sm relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                 <Award className="w-24 h-24" />
             </div>
@@ -208,7 +208,7 @@ export default function GPACalculator() {
       details={
         <div className="space-y-8">
           {/* Section 1: The Evolution of Grading in Nepal */}
-          <section className="bg-white border border-[#DADCE0] rounded-3xl p-10 shadow-sm relative overflow-hidden">
+          <section className="bg-white border border-[#DADCE0] rounded-lg p-10 shadow-sm relative overflow-hidden">
             <div className="absolute -top-12 -right-12 opacity-5">
                 <History className="w-48 h-48" />
             </div>
@@ -232,7 +232,7 @@ export default function GPACalculator() {
           </section>
 
           {/* Section 2: University System Mapping */}
-          <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-3xl p-10 shadow-sm">
+          <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-10 shadow-sm">
             <div className="flex items-center gap-4 mb-10">
               <div className="bg-[#E6F4EA] p-4 rounded-2xl">
                   <Award className="w-8 h-8 text-[#188038]" />
@@ -272,7 +272,7 @@ export default function GPACalculator() {
           </section>
 
           {/* Section 3: Technical Deep Dive */}
-          <section className="bg-white border border-[#DADCE0] rounded-3xl p-10 shadow-sm relative overflow-hidden">
+          <section className="bg-white border border-[#DADCE0] rounded-lg p-10 shadow-sm relative overflow-hidden">
             <div className="absolute top-10 right-10 opacity-5">
                 <Microscope className="w-24 h-24" />
             </div>
@@ -303,11 +303,11 @@ export default function GPACalculator() {
           </section>
 
           {/* Section 4: Real-World Career Impact */}
-          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-white rounded-[2rem] p-12 shadow-2xl relative overflow-hidden">
+          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-[#202124] rounded-[2rem] p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -bottom-10 -left-10 opacity-10">
                 <ShieldCheck className="w-64 h-64" />
             </div>
-            <h2 className="text-4xl font-black mb-8 border-b border-white/10 pb-4 tracking-tighter">Career Utility & Global Mobility</h2>
+            <h2 className="text-4xl font-black mb-8 border-b border-[#dadce0] pb-4 tracking-tighter">Career Utility & Global Mobility</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div className="space-y-6 text-slate-300 leading-relaxed text-sm">
                     <p>
@@ -319,15 +319,15 @@ export default function GPACalculator() {
                 </div>
                 <div className="space-y-4">
                     <div className="bg-white/10 p-6 rounded-2xl border border-white/20 backdrop-blur-sm">
-                        <h4 className="text-white font-bold mb-4 flex items-center gap-2">
+                        <h4 className="text-[#202124] font-bold mb-4 flex items-center gap-2">
                              <Target className="w-4 h-4 text-[#8AB4F8]" />
                              Goal Benchmarks
                         </h4>
                         <ul className="space-y-3 text-xs text-[#8AB4F8]">
-                            <li><strong className="text-white">3.8+ GPA:</strong> Top 1% - Scholarship Priority</li>
-                            <li><strong className="text-white">3.6 - 3.8:</strong> Distinction - Tier 1 University Admission</li>
-                            <li><strong className="text-white">3.2 - 3.6:</strong> First Class - Standard Corporate Recruitment</li>
-                            <li><strong className="text-white">2.4 - 3.2:</strong> Upper Second - Standard Passing</li>
+                            <li><strong className="text-[#202124]">3.8+ GPA:</strong> Top 1% - Scholarship Priority</li>
+                            <li><strong className="text-[#202124]">3.6 - 3.8:</strong> Distinction - Tier 1 University Admission</li>
+                            <li><strong className="text-[#202124]">3.2 - 3.6:</strong> First Class - Standard Corporate Recruitment</li>
+                            <li><strong className="text-[#202124]">2.4 - 3.2:</strong> Upper Second - Standard Passing</li>
                         </ul>
                     </div>
                 </div>

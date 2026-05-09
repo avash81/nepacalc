@@ -74,7 +74,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       {/* Sidebar, The Power Core */}
       <aside 
         className={clsx(
-          "fixed inset-y-0 left-0 z-50 w-72 bg-slate-950 text-slate-400 border-r border-white/5 transition-transform duration-500 ease-in-out transform shadow-2xl",
+          "fixed inset-y-0 left-0 z-50 w-72 bg-slate-950 text-slate-400 border-r border-[#dadce0] transition-transform duration-500 ease-in-out transform shadow-sm",
           isSidebarOpen ? "translate-x-0" : "-translate-x-full",
           "lg:relative lg:translate-x-0"
         )}
@@ -82,15 +82,15 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         <div className="h-full flex flex-col pt-8 pb-6">
           <div className="px-8 mb-12 flex items-center justify-between">
             <Link href="/admin" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/30 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-10 h-10 bg-[#1a73e8] rounded-2xl flex items-center justify-center shadow-sm shadow-blue-600/30 group-hover:scale-110 transition-transform duration-300">
                  <NepalFlag className="w-6 h-6" />
               </div>
               <div className="flex flex-col">
-                <span className="text-[15px] font-black text-white tracking-tight leading-none uppercase italic">NepaCalc</span>
+                <span className="text-[15px] font-black text-[#202124] tracking-tight leading-none uppercase italic">NepaCalc</span>
                 <span className="text-[9px] font-black text-blue-500 uppercase tracking-[0.2em] mt-1">Command Center</span>
               </div>
             </Link>
-            <button onClick={() => setIsSidebarOpen(false)} className="lg:hidden p-2 hover:bg-white/5 rounded-xl transition-colors" aria-label="Close sidebar">
+            <button onClick={() => setIsSidebarOpen(false)} className="lg:hidden p-2 hover:bg-[#f8f9fa] rounded-xl transition-colors" aria-label="Close sidebar">
               <X className="w-5 h-5 text-slate-500" />
             </button>
           </div>
@@ -106,12 +106,12 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                   className={clsx(
                     "flex items-center justify-between px-4 py-3.5 rounded-2xl text-[13px] font-bold transition-all duration-300 group",
                     isActive 
-                      ? "bg-blue-600 text-white shadow-xl shadow-blue-600/20" 
-                      : "text-slate-500 hover:text-white hover:bg-white/5"
+                      ? "bg-[#1a73e8] text-[#202124] shadow-sm shadow-blue-600/20" 
+                      : "text-slate-500 hover:text-[#202124] hover:bg-[#f8f9fa]"
                   )}
                 >
                   <div className="flex items-center gap-3.5">
-                    <item.icon className={clsx("w-5 h-5 transition-transform duration-300 group-hover:scale-110", isActive ? "text-white" : "text-slate-600 group-hover:text-blue-500")} />
+                    <item.icon className={clsx("w-5 h-5 transition-transform duration-300 group-hover:scale-110", isActive ? "text-[#202124]" : "text-slate-600 group-hover:text-blue-500")} />
                     <span>{item.name}</span>
                   </div>
                   {isActive && <ChevronRight className="w-4 h-4 opacity-50" />}
@@ -123,7 +123,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           <div className="px-6 mt-8">
             <button 
               onClick={handleLogout}
-              className="flex items-center gap-3 w-full px-5 py-4 rounded-[1.5rem] text-[13px] font-black text-slate-400 bg-white/5 hover:bg-red-500/10 hover:text-red-500 border border-white/5 transition-all duration-300 shadow-sm"
+              className="flex items-center gap-3 w-full px-5 py-4 rounded-[1.5rem] text-[13px] font-black text-slate-400 bg-[#f8f9fa] hover:bg-red-500/10 hover:text-red-500 border border-[#dadce0] transition-all duration-300 shadow-sm"
             >
               <LogOut className="w-5 h-5 opacity-60" />
               Sign Out Session
@@ -149,7 +149,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             <Link href="/" target="_blank" className="text-[12px] font-black text-slate-500 hover:text-blue-600 uppercase tracking-widest flex items-center gap-2 transition-colors">
               Review Site <ExternalLink className="w-3.5 h-3.5" />
             </Link>
-            <div className="w-10 h-10 rounded-2xl bg-slate-950 border border-white/10 flex items-center justify-center text-blue-500 font-black text-xs shadow-lg uppercase italic">
+            <div className="w-10 h-10 rounded-2xl bg-slate-950 border border-[#dadce0] flex items-center justify-center text-blue-500 font-black text-xs shadow-sm uppercase italic">
               NC
             </div>
           </div>

@@ -78,29 +78,29 @@ export default function RemittanceCalculator() {
         icon={DollarSign}
         inputs={
           <div className="space-y-8">
-            <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+            <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
                <div className="absolute top-0 right-0 p-10 opacity-10"><Globe className="w-40 h-40" /></div>
                <div className="relative z-10 grid grid-cols-1 gap-6">
                   <div className="space-y-4">
-                     <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Transfer Amount</label>
+                     <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Transfer Amount</label>
                      <div className="relative">
                         <input 
                           type="number" 
                           value={amount} 
                           onChange={(e) => update({ amount: Number(e.target.value) })}
-                          className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all font-mono" 
+                          className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all font-mono" 
                         />
-                        <span className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-black text-blue-400">{currencyCode}</span>
+                        <span className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-black text-[#1a0dab]">{currencyCode}</span>
                      </div>
                   </div>
                   <div className="space-y-4">
-                     <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Source Currency</label>
+                     <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Source Currency</label>
                      <div className="grid grid-cols-3 gap-2">
                         {CURRENCIES.slice(0, 6).map(c => (
                           <button 
                             key={c.code} 
                             onClick={() => update({ currencyCode: c.code })}
-                            className={`py-3 text-[10px] font-black uppercase rounded-xl transition-all flex items-center justify-center gap-2 ${currencyCode === c.code ? 'bg-blue-600 text-white shadow-lg' : 'bg-white/5 border border-white/10 text-slate-400 hover:bg-white/10'}`}
+                            className={`py-3 text-[10px] font-black uppercase rounded-xl transition-all flex items-center justify-center gap-2 ${currencyCode === c.code ? 'bg-[#1a73e8] text-[#202124] shadow-sm' : 'bg-[#f8f9fa] border border-[#dadce0] text-slate-400 hover:bg-white/10'}`}
                           >
                             <span className="text-lg">{c.flag}</span> {c.code}
                           </button>
@@ -110,7 +110,7 @@ export default function RemittanceCalculator() {
                </div>
             </div>
 
-            <div className="p-8 border border-slate-200 rounded-[2.5rem] bg-white space-y-6 shadow-sm">
+            <div className="p-8 border border-slate-200 rounded-lg bg-white space-y-6 shadow-sm">
                <div className="flex items-center gap-3">
                   <div className="p-2 bg-blue-50 rounded-lg"><RefreshCw className="w-4 h-4 text-blue-600" /></div>
                   <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Exchange Standard</h3>
@@ -142,7 +142,7 @@ export default function RemittanceCalculator() {
         }
         results={
           <div className="space-y-6">
-            <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+            <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
                <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Landmark className="w-24 h-24 text-emerald-600" /></div>
                <div className="text-[10px] font-bold text-emerald-600 uppercase tracking-[0.2em]">Highest Possible Payout</div>
                <div className="text-5xl font-black tracking-tighter text-slate-900 font-mono uppercase">{formatNPR(bestProvider.val)}</div>
@@ -151,7 +151,7 @@ export default function RemittanceCalculator() {
                </div>
             </div>
 
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] overflow-hidden shadow-sm">
+            <div className="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm">
               <div className="px-6 py-4 bg-slate-50 border-b border-slate-100">
                 <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Remittance Audit Ledger</span>
               </div>
@@ -176,7 +176,7 @@ export default function RemittanceCalculator() {
               </div>
             </div>
 
-            <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+            <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
                <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Zap className="w-24 h-24 text-blue-500" /></div>
                <div className="relative z-10 space-y-4">
                   <div className="flex items-center gap-2">
@@ -192,7 +192,7 @@ export default function RemittanceCalculator() {
         }
         details={
           <div className="space-y-12">
-            <section className="bg-white border border-slate-200 rounded-[3rem] p-12 shadow-sm relative overflow-hidden">
+            <section className="bg-white border border-slate-200 rounded-lg p-12 shadow-sm relative overflow-hidden">
               <div className="absolute -top-12 -right-12 opacity-5">
                   <Globe className="w-64 h-64 text-blue-600" />
               </div>
@@ -207,7 +207,7 @@ export default function RemittanceCalculator() {
                   Foreign remittance is the lifeblood of the Nepalese economy, contributing nearly <strong>one-third of the national GDP</strong>. For the millions of Nepalis working in the GCC, Malaysia, and beyond, choosing the right remittance channel is not just about the exchange rate; it&apos;s about accessing institutional benefits and ensuring financial integrity.
                 </p>
                 
-                <div className="bg-emerald-50 border border-emerald-100 p-8 rounded-[2.5rem] flex gap-6 items-start my-10">
+                <div className="bg-emerald-50 border border-emerald-100 p-8 rounded-lg flex gap-6 items-start my-10">
                    <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm shrink-0">
                       <ShieldCheck className="w-6 h-6 text-emerald-600" />
                    </div>

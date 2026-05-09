@@ -2,6 +2,7 @@ import { CALCULATORS } from '@/data/calculators';
 import { PillarCard } from '@/components/calculator/PillarCard';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { HubSEOContent } from '@/components/layout/HubSEOContent';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -57,7 +58,7 @@ export default function MathToolsPillarPage() {
         crumbs={[{ label: 'Math Tools' }]}
       >
         <div className="py-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
             {mathTools.map(calc => (
               <PillarCard
                 key={calc.id}
@@ -70,6 +71,13 @@ export default function MathToolsPillarPage() {
                 isHot={calc.isHot}
               />
             ))}
+          </div>
+
+          {/* SEO Rich Content, ~1500+ Words Math Hub */}
+          <div className="bg-white border border-[#DADCE0] rounded-xl p-8 lg:p-12 shadow-sm">
+            <article className="prose prose-slate max-w-none">
+              <HubSEOContent category="math" />
+            </article>
           </div>
         </div>
       </CalcWrapper>

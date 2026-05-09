@@ -13,7 +13,7 @@ export function CalculatorCard({ calc, compact = false }: Props) {
       href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`}
       className={`
         group flex items-start gap-4 px-4 py-4 bg-white
-        border border-[var(--border)] rounded-3xl hover:border-[var(--primary)] hover:shadow-md transition-all
+        border border-[var(--border)] rounded-lg hover:border-[var(--primary)] hover:shadow-md transition-all
         cursor-pointer text-left no-underline h-full
         ${calc.isNepal ? 'border-l-4 border-l-red-500' : ''}
       `}
@@ -28,12 +28,12 @@ export function CalculatorCard({ calc, compact = false }: Props) {
           </h3>
           {calc.isNepal && <NepalFlag />}
           {calc.isNew && (
-            <span className="bg-[#1A73E8] text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">
+            <span className="bg-[#1A73E8] text-[#202124] text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">
               NEW
             </span>
           )}
           {calc.isHot && (
-            <span className="bg-[#D93025] text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">
+            <span className="bg-[#D93025] text-[#202124] text-[9px] font-black px-1.5 py-0.5 rounded uppercase tracking-wider">
               HOT
             </span>
           )}

@@ -9,7 +9,7 @@ export function NepalFlag({ className }: Props) {
     <span className={`inline-flex items-center gap-1 ${className || ''}`}>
       <span
         className="inline-flex items-center justify-center
-                   bg-red-600 text-white text-[10px] font-bold
+                   bg-red-600 text-[#202124] text-[10px] font-bold
                    px-1.5 py-0.5 rounded-sm leading-none"
         aria-label="Nepal"
       >

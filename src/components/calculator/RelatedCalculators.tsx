@@ -89,7 +89,7 @@ export default function RelatedCalculators({ currentSlug, category }: Props) {
           <Link
             key={calc.id}
             href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`}
-            className="group p-6 bg-white border border-slate-200 rounded-[2rem] hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 flex items-center justify-between"
+            className="group p-6 bg-white border border-slate-200 rounded-[2rem] hover:border-blue-500 hover:shadow-sm hover:shadow-blue-500/5 transition-all duration-300 flex items-center justify-between"
           >
             <div className="flex items-center gap-5">
               <div className="w-14 h-14 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center text-3xl group-hover:scale-110 group-hover:bg-blue-50 group-hover:border-blue-100 transition-all duration-300 shadow-sm">
@@ -104,7 +104,7 @@ export default function RelatedCalculators({ currentSlug, category }: Props) {
                 </p>
               </div>
             </div>
-            <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-300 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shrink-0">
+            <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-300 group-hover:bg-[#1a73e8] group-hover:text-[#202124] transition-all duration-300 shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
               </svg>

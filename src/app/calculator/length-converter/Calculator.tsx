@@ -58,7 +58,7 @@ export default function LengthConverter() {
               </select>
             </div>
             
-            <button onClick={swap} className="mt-6 w-12 h-12 shrink-0 bg-[#E8F0FE] text-[#1A73E8] rounded-full flex items-center justify-center hover:bg-[#1A73E8] hover:text-white transition-colors border border-[#C5D9F7] shadow-sm">
+            <button onClick={swap} className="mt-6 w-12 h-12 shrink-0 bg-[#E8F0FE] text-[#1A73E8] rounded-full flex items-center justify-center hover:bg-[#1A73E8] hover:text-[#202124] transition-colors border border-[#C5D9F7] shadow-sm">
               <ArrowLeftRight className="w-5 h-5" />
             </button>
             
@@ -91,8 +91,8 @@ export default function LengthConverter() {
           <div className="bg-[#1A1A2E] rounded-lg border border-[#DADCE0] p-8 text-center relative overflow-hidden shadow-sm">
              <div className="absolute top-0 right-0 w-32 h-32 bg-[#1A73E8] opacity-10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none" />
              <div className="text-[10px] font-bold uppercase tracking-wider text-[#8AB4F8] mb-2 relative z-10">Converted Result</div>
-             <div className="text-5xl font-black text-white tracking-tighter mb-2 font-mono break-all relative z-10">{result}</div>
-             <div className="text-xs font-bold text-white/70 uppercase tracking-widest relative z-10 bg-white/5 inline-flex px-3 py-1 rounded">
+             <div className="text-5xl font-black text-[#202124] tracking-tighter mb-2 font-mono break-all relative z-10">{result}</div>
+             <div className="text-xs font-bold text-[#202124]/70 uppercase tracking-widest relative z-10 bg-[#f8f9fa] inline-flex px-3 py-1 rounded">
                {UNITS[to].name}
              </div>
           </div>

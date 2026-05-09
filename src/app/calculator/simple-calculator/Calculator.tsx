@@ -67,7 +67,7 @@ export default function SimpleCalculator() {
     { label: '+', onClick: () => handleOperator('+'), color: 'text-blue-600 bg-blue-50 hover:bg-blue-100 border-blue-100' },
     { label: '0', onClick: () => handleNumber('0'), colSpan: 2 },
     { label: '.', onClick: () => !display.includes('.') && setDisplay(display + '.') },
-    { label: '=', onClick: calculate, color: 'bg-blue-600 text-white hover:bg-blue-700 border-blue-700 shadow-md', icon: <Equal className="w-6 h-6" /> },
+    { label: '=', onClick: calculate, color: 'bg-[#1a73e8] text-[#202124] hover:bg-blue-700 border-blue-700 shadow-md', icon: <Equal className="w-6 h-6" /> },
   ];
 
   return (
@@ -80,15 +80,15 @@ export default function SimpleCalculator() {
         icon={Calculator}
         inputs={
           <div className="flex flex-col h-full max-w-md mx-auto w-full space-y-6">
-            <div className="p-8 bg-slate-900 rounded-[2.5rem] shadow-2xl relative overflow-hidden border border-white/5">
+            <div className="p-8 bg-white border border-[#dadce0] rounded-lg shadow-sm relative overflow-hidden border border-[#dadce0]">
                <div className="absolute top-0 right-0 p-8 opacity-5">
                   <Calculator className="w-40 h-40" />
                </div>
                <div className="relative z-10 space-y-2">
-                 <div className="h-6 text-right text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] overflow-hidden whitespace-nowrap font-mono">
+                 <div className="h-6 text-right text-[#1a0dab] text-[10px] font-black uppercase tracking-[0.2em] overflow-hidden whitespace-nowrap font-mono">
                    {formula || 'System Ready'}
                  </div>
-                 <div className="text-6xl font-black text-white text-right overflow-hidden truncate font-mono tracking-tighter">
+                 <div className="text-6xl font-black text-[#202124] text-right overflow-hidden truncate font-mono tracking-tighter">
                    {display}
                  </div>
                </div>
@@ -115,7 +115,7 @@ export default function SimpleCalculator() {
         }
         results={
           <div className="space-y-6">
-             <div className="p-8 bg-white border border-slate-200 rounded-[2.5rem] shadow-xl relative overflow-hidden group">
+             <div className="p-8 bg-white border border-slate-200 rounded-lg shadow-sm relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><RotateCcw className="w-20 h-20 text-blue-600" /></div>
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-2 bg-blue-50 rounded-lg">
@@ -128,7 +128,7 @@ export default function SimpleCalculator() {
                 </p>
              </div>
 
-             <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+             <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Equal className="w-24 h-24 text-emerald-500" /></div>
                 <div className="relative z-10">
                    <h4 className="text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-2">Operational Logic</h4>

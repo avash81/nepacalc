@@ -166,7 +166,7 @@ function NewSEOPageInner() {
               </button>
               <button onClick={() => handleSave('published')}
                  disabled={saving}
-                 className="flex items-center gap-2.5 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-2xl font-black text-[11px] uppercase tracking-widest shadow-xl shadow-blue-500/20 active:scale-95 transition-all disabled:opacity-50"
+                 className="flex items-center gap-2.5 bg-[#1a73e8] hover:bg-blue-700 text-[#202124] px-8 py-3 rounded-2xl font-black text-[11px] uppercase tracking-widest shadow-sm shadow-blue-500/20 active:scale-95 transition-all disabled:opacity-50"
               >
                  {saving ? (
                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -188,7 +188,7 @@ function NewSEOPageInner() {
           {/* LEFT ,  Content editor */}
           <div className="lg:col-span-8 space-y-8">
 
-            <div className="bg-white border border-slate-100 p-10 rounded-[3rem] shadow-xl shadow-slate-200/40 relative overflow-hidden group">
+            <div className="bg-white border border-slate-100 p-10 rounded-lg shadow-sm shadow-slate-200/40 relative overflow-hidden group">
                <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-blue-50 transition-colors pointer-events-none" />
                <div className="relative z-10 space-y-8">
                   {/* Title */}
@@ -253,7 +253,7 @@ function NewSEOPageInner() {
                         <div className="w-full h-[600px] p-8 rounded-2xl border border-slate-100 bg-white shadow-inner overflow-y-auto custom-scrollbar">
                            <div className="space-y-6">
                               {imageTop && (
-                                  <div className="rounded-3xl overflow-hidden border border-slate-100 shadow-xl mb-8">
+                                  <div className="rounded-lg overflow-hidden border border-slate-100 shadow-sm mb-8">
                                       <img src={imageTop} alt="Top Feature" className="w-full h-auto" />
                                   </div>
                               )}
@@ -265,7 +265,7 @@ function NewSEOPageInner() {
                                        if (imageMiddle) {
                                           const parts = html.split('</h2>');
                                           if (parts.length > 1) {
-                                             html = parts[0] + `</h2><div class="my-6 rounded-2xl overflow-hidden border border-slate-100 shadow-lg"><img src="${imageMiddle}" class="w-full h-auto" /></div>` + parts.slice(1).join('</h2>');
+                                             html = parts[0] + `</h2><div class="my-6 rounded-2xl overflow-hidden border border-slate-100 shadow-sm"><img src="${imageMiddle}" class="w-full h-auto" /></div>` + parts.slice(1).join('</h2>');
                                           }
                                        }
                                        return `<p class="mb-4 text-slate-700 leading-relaxed">${html}</p>`;
@@ -273,7 +273,7 @@ function NewSEOPageInner() {
                                  }} 
                               />
                               {imageBottom && (
-                                  <div className="rounded-3xl overflow-hidden border border-slate-100 shadow-xl mt-8">
+                                  <div className="rounded-lg overflow-hidden border border-slate-100 shadow-sm mt-8">
                                       <img src={imageBottom} alt="Bottom Summary" className="w-full h-auto" />
                                   </div>
                               )}
@@ -285,14 +285,14 @@ function NewSEOPageInner() {
             </div>
 
             {/* Related calculators Array */}
-            <div className="bg-slate-950 border border-slate-800 rounded-[3rem] p-10 shadow-2xl relative overflow-hidden">
+            <div className="bg-slate-950 border border-slate-800 rounded-lg p-10 shadow-sm relative overflow-hidden">
                <div className="absolute inset-0 bg-blue-500/5 hover:bg-blue-500/10 transition-colors pointer-events-none" />
                <div className="flex items-center gap-3 mb-6 relative z-10">
-                  <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white border border-blue-500 shadow-xl shadow-blue-500/20">
+                  <div className="w-10 h-10 rounded-xl bg-[#1a73e8] flex items-center justify-center text-[#202124] border border-blue-500 shadow-sm shadow-blue-500/20">
                      <LinkIcon className="w-5 h-5" />
                   </div>
                   <div>
-                     <h3 className="text-[16px] font-black text-white tracking-tight">Internal Nexus Linking</h3>
+                     <h3 className="text-[16px] font-black text-[#202124] tracking-tight">Internal Nexus Linking</h3>
                      <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Bind calculators to this page context</p>
                   </div>
                </div>
@@ -300,7 +300,7 @@ function NewSEOPageInner() {
                <div className="relative z-10 space-y-6">
                   {Object.entries(CALC_GROUPS).map(([group, slugs]) => (
                     <div key={group}>
-                      <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-3 border-b border-white/10 pb-2">
+                      <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-3 border-b border-[#dadce0] pb-2">
                         {group}
                       </div>
                       <div className="flex flex-wrap gap-2">
@@ -312,7 +312,7 @@ function NewSEOPageInner() {
                             <button key={s} onClick={() => toggleCalc(s)}
                               className={clsx(
                                 "px-3 py-1.5 rounded-xl text-[11px] font-bold uppercase tracking-wider transition-all",
-                                selected ? "bg-blue-600 text-white shadow-xl shadow-blue-500/20 scale-105" : "bg-white/5 text-slate-400 border border-white/10 hover:border-white/30 hover:bg-white/10"
+                                selected ? "bg-[#1a73e8] text-[#202124] shadow-sm shadow-blue-500/20 scale-105" : "bg-[#f8f9fa] text-slate-400 border border-[#dadce0] hover:border-white/30 hover:bg-white/10"
                               )}>
                               {calc.name}
                             </button>
@@ -324,7 +324,7 @@ function NewSEOPageInner() {
                </div>
                
                {relatedCalcs.length > 0 && (
-                  <div className="mt-8 pt-4 border-t border-white/10 relative z-10">
+                  <div className="mt-8 pt-4 border-t border-[#dadce0] relative z-10">
                     <span className="text-[11px] font-black text-emerald-400 uppercase tracking-widest flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                       {relatedCalcs.length} Node{relatedCalcs.length !== 1 ? 's' : ''} Activated
@@ -334,7 +334,7 @@ function NewSEOPageInner() {
             </div>
             
             {/* Meta Images / SEO Fields */}
-            <div className="bg-white border border-slate-100 p-10 rounded-[3rem] shadow-xl shadow-slate-200/40">
+            <div className="bg-white border border-slate-100 p-10 rounded-lg shadow-sm shadow-slate-200/40">
                <div className="flex items-center gap-3 mb-8">
                   <div className="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center text-orange-600">
                      <ImageIcon className="w-5 h-5" />
@@ -389,7 +389,7 @@ function NewSEOPageInner() {
           <div className="lg:col-span-4 space-y-8">
             <div className="lg:sticky lg:top-8 space-y-8">
               
-              <div className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/40">
+              <div className="bg-white border border-slate-100 p-8 rounded-lg shadow-sm shadow-slate-200/40">
                  <div className="flex items-center gap-3 mb-6">
                     <Settings className="w-4 h-4 text-slate-400" />
                     <h3 className="text-[13px] font-black text-slate-900 uppercase tracking-widest">Primary Descriptors</h3>
@@ -419,7 +419,7 @@ function NewSEOPageInner() {
                  </div>
               </div>
 
-              <div className="bg-slate-50 rounded-[2.5rem] p-4 border border-slate-100 overflow-hidden">
+              <div className="bg-slate-50 rounded-lg p-4 border border-slate-100 overflow-hidden">
                  <SEOScorePanel
                    title={title}
                    metaTitle={metaTitle}

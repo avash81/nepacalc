@@ -72,7 +72,7 @@ export default function NumberToWords() {
                 { val: 'lakh', label: 'South Asian (Lakh/Crore)' },
               ].map(s => (
                 <button key={s.val} onClick={() => setSystem(s.val as any)}
-                  className={`py-2 px-3 text-sm font-medium rounded-md transition-all ${system === s.val ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>
+                  className={`py-2 px-3 text-sm font-medium rounded-md transition-all ${system === s.val ? 'bg-[#1a73e8] text-[#202124] shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>
                   {s.label}
                 </button>
               ))}
@@ -110,7 +110,7 @@ export default function NumberToWords() {
           </div>
 
           <button onClick={copy}
-            className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all flex items-center justify-center gap-2">
+            className="w-full py-3 bg-[#1a73e8] hover:bg-blue-700 text-[#202124] rounded-lg font-medium transition-all flex items-center justify-center gap-2">
             {copied ? <><Check className="w-5 h-5" /> Copied!</> : <><Copy className="w-5 h-5" /> Copy to Clipboard</>}
           </button>
 

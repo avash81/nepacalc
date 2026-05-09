@@ -27,6 +27,7 @@
     "@upstash/redis": "^1.37.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "dotenv": "^17.4.2",
     "firebase": "^12.11.0",
     "gray-matter": "^4.0.3",
     "jose": "^6.2.2",
@@ -47,7 +48,8 @@
     "react-ts-tradingview-widgets": "^1.2.8",
     "recharts": "^2.15.4",
     "tailwind-merge": "^2.3.0",
-    "three": "^0.183.2"
+    "three": "^0.183.2",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@swc/core": "^1.15.21",

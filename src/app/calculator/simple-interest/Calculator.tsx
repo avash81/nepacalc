@@ -58,36 +58,36 @@ export default function SimpleInterestCalculator() {
       icon={TrendingUp}
       inputs={
         <div className="space-y-8">
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
              <div className="absolute top-0 right-0 p-10 opacity-10"><Zap className="w-40 h-40" /></div>
              <div className="relative z-10 grid grid-cols-1 gap-6">
                 <div className="space-y-4">
-                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Principal Capital (NPR)</label>
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Principal Capital (NPR)</label>
                    <input 
                       type="number" 
                       value={principal} 
                       onChange={(e) => update({ principal: Number(e.target.value) })}
-                      className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" 
+                      className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
                    />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                    <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Annual Rate (%)</label>
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Annual Rate (%)</label>
                       <input 
                          type="number" 
                          step="0.1"
                          value={rate} 
                          onChange={(e) => update({ rate: Number(e.target.value) })}
-                         className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" 
+                         className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
                       />
                    </div>
                    <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Time (Years)</label>
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Time (Years)</label>
                       <input 
                          type="number" 
                          value={time} 
                          onChange={(e) => update({ time: Number(e.target.value) })}
-                         className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" 
+                         className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
                       />
                    </div>
                 </div>
@@ -104,7 +104,7 @@ export default function SimpleInterestCalculator() {
                   <button 
                     key={p.value} 
                     onClick={() => update({ time: p.value })}
-                    className={`py-3 text-[10px] font-black uppercase border rounded-xl transition-all ${time === p.value ? 'bg-blue-600 border-blue-600 text-white shadow-lg' : 'bg-white border-slate-200 text-slate-500 hover:border-blue-300'}`}
+                    className={`py-3 text-[10px] font-black uppercase border rounded-xl transition-all ${time === p.value ? 'bg-[#1a73e8] border-blue-600 text-[#202124] shadow-sm' : 'bg-white border-slate-200 text-slate-500 hover:border-blue-300'}`}
                   >
                     {p.label}
                   </button>
@@ -115,7 +115,7 @@ export default function SimpleInterestCalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Activity className="w-24 h-24 text-blue-600" /></div>
              <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Total Maturity Value</div>
              <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">{fmt(result.total)}</div>
@@ -125,21 +125,21 @@ export default function SimpleInterestCalculator() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1">
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
                 <div className="text-[9px] font-black text-slate-400 uppercase">Principal Seed</div>
                 <div className="text-xl font-black text-slate-900">{fmt(principal)}</div>
              </div>
-             <div className="p-6 bg-emerald-50 border border-emerald-100 rounded-3xl space-y-1">
+             <div className="p-6 bg-emerald-50 border border-emerald-100 rounded-lg space-y-1">
                 <div className="text-[9px] font-black text-emerald-600 uppercase">Interest Gained</div>
                 <div className="text-xl font-black text-emerald-600">+ {fmt(result.interest)}</div>
              </div>
           </div>
 
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><TrendingUp className="w-24 h-24 text-blue-500" /></div>
              <div className="relative z-10 flex items-center justify-between">
                 <div className="space-y-1">
-                   <h4 className="text-[10px] font-black uppercase tracking-widest text-blue-400">Growth Yield</h4>
+                   <h4 className="text-[10px] font-black uppercase tracking-widest text-[#1a0dab]">Growth Yield</h4>
                    <p className="text-2xl font-black">{((result.interest / principal) * 100).toFixed(1)}%</p>
                 </div>
                 <div className="h-2 w-32 bg-white/10 rounded-full overflow-hidden">
@@ -152,10 +152,10 @@ export default function SimpleInterestCalculator() {
       details={
         <div className="space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-lg p-10 shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 p-6 opacity-5"><BarChart className="w-20 h-20 text-blue-600" /></div>
               <div className="flex items-center gap-2 mb-8">
-                <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                <div className="w-1.5 h-6 bg-[#1a73e8] rounded-full" />
                 <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Simple vs Compound Gap</h3>
               </div>
               <div className="h-[300px] w-full">
@@ -179,7 +179,7 @@ export default function SimpleInterestCalculator() {
               </p>
             </div>
 
-            <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+            <div className="bg-[#1A1A2E] text-[#202124] rounded-lg p-10 shadow-sm relative overflow-hidden flex flex-col justify-center">
                <div className="absolute -bottom-12 -right-12 opacity-10"><PieChart className="w-64 h-64 text-emerald-500" /></div>
                <h3 className="text-2xl font-black mb-8 tracking-tight text-emerald-400 uppercase tracking-widest">Asset Composition</h3>
                <div className="h-[240px] w-full">
@@ -221,7 +221,7 @@ export default function SimpleInterestCalculator() {
             </div>
           </div>
 
-          <section className="bg-white border border-slate-200 rounded-[3rem] p-12 shadow-sm relative overflow-hidden">
+          <section className="bg-white border border-slate-200 rounded-lg p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -top-12 -right-12 opacity-5">
                 <Landmark className="w-64 h-64 text-blue-600" />
             </div>
@@ -236,7 +236,7 @@ export default function SimpleInterestCalculator() {
                 Simple Interest is the most fundamental mechanism of financial calculation, characterized by its <strong>linear growth</strong> trajectory. Unlike compounding models where interest earns interest, simple interest (SI) remains calculated solely on the original principal. This engine utilizes the standard high-precision formula <strong>(P × R × T) / 100</strong> to provide institutional audits for informal and short-term credit facilities in Nepal.
               </p>
               
-              <div className="bg-blue-50 border border-blue-100 p-8 rounded-[2.5rem] flex gap-6 items-start my-10">
+              <div className="bg-blue-50 border border-blue-100 p-8 rounded-lg flex gap-6 items-start my-10">
                  <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm shrink-0">
                     <Info className="w-6 h-6 text-blue-600" />
                  </div>
@@ -279,24 +279,24 @@ export default function SimpleInterestCalculator() {
             </div>
           </section>
 
-          <section className="bg-slate-900 text-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+          <section className="bg-white border border-[#dadce0] text-[#202124] rounded-lg p-12 shadow-sm relative overflow-hidden">
              <div className="absolute -bottom-12 -right-12 opacity-10"><History className="w-64 h-64 text-blue-500" /></div>
-             <h2 className="text-3xl font-black mb-10 tracking-tight text-blue-400 uppercase tracking-widest">Informal Credit Guardrails</h2>
+             <h2 className="text-3xl font-black mb-10 tracking-tight text-[#1a0dab] uppercase tracking-widest">Informal Credit Guardrails</h2>
              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="space-y-4">
-                   <h4 className="text-lg font-black flex items-center gap-2 text-blue-400"><ShieldCheck className="w-5 h-5" /> Legal Enforceability</h4>
+                   <h4 className="text-lg font-black flex items-center gap-2 text-[#1a0dab]"><ShieldCheck className="w-5 h-5" /> Legal Enforceability</h4>
                    <p className="text-xs text-slate-400 leading-relaxed">
                       Ensure your Tamasuk mentions the exact interest rate. If no rate is mentioned, Nepalese law often assumes a default simple interest rate for court proceedings.
                    </p>
                 </div>
                 <div className="space-y-4">
-                   <h4 className="text-lg font-black flex items-center gap-2 text-blue-400"><History className="w-5 h-5" /> Interest Payouts</h4>
+                   <h4 className="text-lg font-black flex items-center gap-2 text-[#1a0dab]"><History className="w-5 h-5" /> Interest Payouts</h4>
                    <p className="text-xs text-slate-400 leading-relaxed">
                       Simple interest is ideal for retirees or bond-holders who need a fixed "Byaj" payout every period to cover living expenses without affecting the principal.
                    </p>
                 </div>
                 <div className="space-y-4">
-                   <h4 className="text-lg font-black flex items-center gap-2 text-blue-400"><Wallet className="w-5 h-5" /> TDS Verification</h4>
+                   <h4 className="text-lg font-black flex items-center gap-2 text-[#1a0dab]"><Wallet className="w-5 h-5" /> TDS Verification</h4>
                    <p className="text-xs text-slate-400 leading-relaxed">
                       Interest from banks is subject to 5% TDS. For informal loans, ensure you calculate the 'Net Payout' after any agreed-upon local tax or service fee.
                    </p>

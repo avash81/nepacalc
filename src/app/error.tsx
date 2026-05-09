@@ -20,16 +20,16 @@ export default function Error({
       <div className="max-w-2xl w-full text-center space-y-10">
         
         <div className="relative inline-block">
-          <div className="w-32 h-32 bg-red-50 dark:bg-red-900/10 rounded-[3rem] flex items-center justify-center mx-auto border border-red-100 dark:border-red-900/30 shadow-xl shadow-red-500/5 transition-transform hover:scale-105 duration-500">
+          <div className="w-32 h-32 bg-red-50 dark:bg-red-900/10 rounded-lg flex items-center justify-center mx-auto border border-red-100 dark:border-red-900/30 shadow-sm shadow-red-500/5 transition-transform hover:scale-105 duration-500">
             <AlertCircle className="w-16 h-16 text-red-600 dark:text-red-400" />
           </div>
-          <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 flex items-center justify-center animate-bounce">
+          <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 flex items-center justify-center animate-bounce">
              <span className="text-xl">🛠️</span>
           </div>
         </div>
 
         <div className="space-y-4">
-          <h1 className="text-4xl sm:text-5xl font-black text-gray-900 dark:text-white tracking-tighter">
+          <h1 className="text-4xl sm:text-5xl font-black text-gray-900 dark:text-[#202124] tracking-tighter">
             Calculation Interrupted
           </h1>
           <p className="text-gray-500 dark:text-gray-400 text-lg max-w-lg mx-auto leading-relaxed font-medium">
@@ -40,7 +40,7 @@ export default function Error({
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={() => reset()}
-            className="w-full sm:w-auto px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-3 shadow-xl shadow-blue-500/20 transition-all hover:-translate-y-1 active:scale-95"
+            className="w-full sm:w-auto px-8 py-4 bg-[#1a73e8] hover:bg-blue-700 text-[#202124] rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-3 shadow-sm shadow-blue-500/20 transition-all hover:-translate-y-1 active:scale-95"
           >
             <RotateCcw className="w-4 h-4" />
             Try Again
@@ -48,7 +48,7 @@ export default function Error({
           
           <Link
             href="/directory"
-            className="w-full sm:w-auto px-8 py-4 bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-white rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-3 border border-gray-100 dark:border-gray-800 transition-all hover:-translate-y-1 active:scale-95 shadow-sm"
+            className="w-full sm:w-auto px-8 py-4 bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-[#202124] rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-3 border border-gray-100 dark:border-gray-800 transition-all hover:-translate-y-1 active:scale-95 shadow-sm"
           >
             <Search className="w-4 h-4" />
             Browse Other Tools
@@ -67,7 +67,7 @@ export default function Error({
         </div>
 
         {process.env.NODE_ENV === 'development' && (
-           <div className="mt-10 p-6 bg-red-50 dark:bg-red-900/5 rounded-3xl border border-red-100 dark:border-red-900/20 text-left overflow-auto max-h-40">
+           <div className="mt-10 p-6 bg-red-50 dark:bg-red-900/5 rounded-lg border border-red-100 dark:border-red-900/20 text-left overflow-auto max-h-40">
               <pre className="text-[10px] font-mono text-red-800 dark:text-red-400 whitespace-pre-wrap">
                 {error.stack || error.message}
               </pre>

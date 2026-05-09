@@ -134,7 +134,7 @@ export function HomeCalculator() {
                  />
                  <button 
                    onClick={solveMathQuery}
-                   className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-google-blue text-white rounded-xl hover:bg-google-blue/90 transition-all"
+                   className="absolute right-3 top-1/2 -translate-y-1/2 p-2 bg-google-blue text-[#202124] rounded-xl hover:bg-google-blue/90 transition-all"
                  >
                    <Play className="w-5 h-5 fill-current" />
                  </button>
@@ -182,7 +182,7 @@ export function HomeCalculator() {
              <button onClick={() => append('^')} className="h-11 bg-google-blue-light text-google-blue text-xs font-black rounded-xl">x^y</button>
              <button onClick={() => append('0')} className="h-11 bg-white border border-google-border font-bold rounded-xl text-gray-900">0</button>
              <button onClick={() => append('.')} className="h-11 bg-white border border-google-border font-bold rounded-xl text-gray-900">.</button>
-             <button onClick={calculate} className="h-11 bg-google-blue text-white rounded-xl font-black">=</button>
+             <button onClick={calculate} className="h-11 bg-google-blue text-[#202124] rounded-xl font-black">=</button>
              <button onClick={() => append('+')} className="h-11 bg-google-gray text-gray-600 text-2xl font-bold rounded-xl">+</button>
 
              <button onClick={() => append('(')} className="h-11 bg-google-gray font-bold rounded-xl text-gray-900">(</button>

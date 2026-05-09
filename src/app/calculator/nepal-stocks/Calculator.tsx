@@ -53,7 +53,7 @@ export default function NEPSECalculator() {
             <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider">Investor Type</label>
             <div className="grid grid-cols-2 gap-2">
              {['individual', 'institutional'].map(opt => (
-               <button key={opt} onClick={() => update({ investorType: opt as any })} className={`py-2 text-[10px] font-bold border rounded transition-all ${investorType === opt ? 'bg-[#1A73E8] border-[#1A73E8] text-white shadow-sm' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:border-[#1A73E8]'}`}>{opt}</button>
+               <button key={opt} onClick={() => update({ investorType: opt as any })} className={`py-2 text-[10px] font-bold border rounded transition-all ${investorType === opt ? 'bg-[#1A73E8] border-[#1A73E8] text-[#202124] shadow-sm' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:border-[#1A73E8]'}`}>{opt}</button>
              ))}
             </div>
          </div>

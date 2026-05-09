@@ -53,33 +53,33 @@ export default function CAGRCalculator() {
       icon={TrendingUp}
       inputs={
         <div className="space-y-8">
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
              <div className="absolute top-0 right-0 p-10 opacity-10"><Zap className="w-40 h-40" /></div>
              <div className="relative z-10 grid grid-cols-1 gap-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-4">
-                     <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Initial Value (NPR)</label>
+                     <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Initial Value (NPR)</label>
                      <input 
                         type="number" 
                         value={initial} 
                         onChange={(e) => update({ initial: Number(e.target.value) })}
-                        className="w-full h-12 px-6 bg-white/5 border border-white/10 rounded-xl text-lg font-black text-white focus:border-blue-500 outline-none transition-all" 
+                        className="w-full h-12 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-xl text-lg font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
                      />
                   </div>
                   <div className="space-y-4">
-                     <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Final Value (NPR)</label>
+                     <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Final Value (NPR)</label>
                      <input 
                         type="number" 
                         value={finalV} 
                         onChange={(e) => update({ finalV: Number(e.target.value) })}
-                        className="w-full h-12 px-6 bg-white/5 border border-white/10 rounded-xl text-lg font-black text-white focus:border-blue-500 outline-none transition-all" 
+                        className="w-full h-12 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-xl text-lg font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
                      />
                   </div>
                 </div>
                 <div className="space-y-4">
                    <div className="flex justify-between items-center">
-                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Duration</label>
-                      <span className="text-[10px] font-black text-blue-400">{years} YEARS</span>
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Duration</label>
+                      <span className="text-[10px] font-black text-[#1a0dab]">{years} YEARS</span>
                    </div>
                    <input 
                       type="range" 
@@ -121,7 +121,7 @@ export default function CAGRCalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><TrendingUp className="w-24 h-24 text-emerald-600" /></div>
              <div className="text-[10px] font-bold text-emerald-600 uppercase tracking-[0.2em]">Annualized Growth (CAGR)</div>
              <div className="text-6xl font-black tracking-tighter text-slate-900 font-mono uppercase">{cagr.toFixed(2)}%</div>
@@ -131,11 +131,11 @@ export default function CAGRCalculator() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1">
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
                 <div className="text-[9px] font-black text-slate-400 uppercase">Total ROI</div>
                 <div className="text-xl font-black text-emerald-600">+{totalGrowth.toFixed(1)}%</div>
              </div>
-             <div className="p-6 bg-blue-50 border border-blue-100 rounded-3xl space-y-1">
+             <div className="p-6 bg-blue-50 border border-blue-100 rounded-lg space-y-1">
                 <div className="text-[9px] font-black text-blue-600 uppercase">Wealth Created</div>
                 <div className="text-xl font-black text-blue-600">Rs. {fmt(netGain)}</div>
              </div>
@@ -145,10 +145,10 @@ export default function CAGRCalculator() {
       details={
         <div className="space-y-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-lg p-10 shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 p-6 opacity-5"><TrendingUp className="w-20 h-20 text-blue-600" /></div>
               <div className="flex items-center gap-2 mb-8">
-                <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                <div className="w-1.5 h-6 bg-[#1a73e8] rounded-full" />
                 <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Growth Trajectory</h3>
               </div>
               <div className="h-[300px] w-full">
@@ -173,7 +173,7 @@ export default function CAGRCalculator() {
               </div>
             </div>
 
-            <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+            <div className="bg-[#1A1A2E] text-[#202124] rounded-lg p-10 shadow-sm relative overflow-hidden flex flex-col justify-center">
                <div className="absolute -bottom-12 -right-12 opacity-10"><Landmark className="w-64 h-64 text-emerald-500" /></div>
                <h3 className="text-2xl font-black mb-8 tracking-tight text-emerald-400 uppercase tracking-widest">Growth Breakdown</h3>
                <div className="overflow-y-auto max-h-[250px] custom-scrollbar pr-4">
@@ -181,8 +181,8 @@ export default function CAGRCalculator() {
                      <tbody className="divide-y divide-white/10">
                         {data.map((d, i) => (
                            <tr key={i} className="group">
-                              <td className="py-4 text-[10px] font-black uppercase text-slate-400 group-hover:text-white transition-colors">{d.year}</td>
-                              <td className="py-4 text-right text-sm font-black text-white">{fmt(d.value)}</td>
+                              <td className="py-4 text-[10px] font-black uppercase text-slate-400 group-hover:text-[#202124] transition-colors">{d.year}</td>
+                              <td className="py-4 text-right text-sm font-black text-[#202124]">{fmt(d.value)}</td>
                            </tr>
                         ))}
                      </tbody>

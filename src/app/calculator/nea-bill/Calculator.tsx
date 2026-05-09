@@ -101,7 +101,7 @@ export default function NEABillCalculator() {
                 <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider">Consumption Amperage</label>
                 <div className="grid grid-cols-4 gap-2">
                   {['5A', '15A', '30A', '60A'].map(opt => (
-                    <button key={opt} onClick={() => setConnectionAmps(opt as any)} className={`py-2 text-[10px] font-bold border rounded transition-all ${connectionAmps === opt ? 'bg-[#1A73E8] border-[#1A73E8] text-white shadow-sm' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:border-[#1A73E8]'}`}>{opt}</button>
+                    <button key={opt} onClick={() => setConnectionAmps(opt as any)} className={`py-2 text-[10px] font-bold border rounded transition-all ${connectionAmps === opt ? 'bg-[#1A73E8] border-[#1A73E8] text-[#202124] shadow-sm' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:border-[#1A73E8]'}`}>{opt}</button>
                   ))}
                 </div>
              </div>

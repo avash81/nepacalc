@@ -34,56 +34,56 @@ export default function MortgageCalculator() {
       icon={Home}
       inputs={
         <div className="space-y-8">
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
              <div className="absolute top-0 right-0 p-10 opacity-10"><Home className="w-40 h-40" /></div>
              <div className="relative z-10 grid grid-cols-1 gap-6">
                 <div className="space-y-4">
-                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Home Price (NPR)</label>
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Home Price (NPR)</label>
                    <div className="relative">
                       <input type="number" value={pPrice} min={100000} step={100000}
-                        onChange={e => update({ pPrice: Number(e.target.value) })} className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                        onChange={e => update({ pPrice: Number(e.target.value) })} className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" />
                       <span className="absolute right-6 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400 uppercase tracking-widest">NPR</span>
                    </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                    <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Down Payment (%)</label>
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Down Payment (%)</label>
                       <div className="relative">
                          <input type="number" value={downPercent} min={0} max={100}
-                           onChange={e => update({ downPercent: Number(e.target.value) })} className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                           onChange={e => update({ downPercent: Number(e.target.value) })} className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" />
                          <span className="absolute right-6 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400 uppercase tracking-widest">%</span>
                       </div>
                    </div>
                    <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Interest Rate (%)</label>
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Interest Rate (%)</label>
                       <div className="relative">
                          <input type="number" value={rate} min={1} max={30} step={0.1}
-                           onChange={e => update({ rate: Number(e.target.value) })} className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                           onChange={e => update({ rate: Number(e.target.value) })} className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" />
                          <span className="absolute right-6 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400 uppercase tracking-widest">%</span>
                       </div>
                    </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                    <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Loan Tenure</label>
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Loan Tenure</label>
                       <select value={years} onChange={e => update({ years: Number(e.target.value) })}
-                        className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-sm font-black text-white focus:border-blue-500 outline-none transition-all appearance-none">
-                        {[5, 10, 15, 20, 25, 30].map(y => <option key={y} value={y} className="bg-slate-900">{y} Years</option>)}
+                        className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-sm font-black text-[#202124] focus:border-blue-500 outline-none transition-all appearance-none">
+                        {[5, 10, 15, 20, 25, 30].map(y => <option key={y} value={y} className="bg-white border border-[#dadce0]">{y} Years</option>)}
                       </select>
                    </div>
                    <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Annual Tax (%)</label>
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Annual Tax (%)</label>
                       <div className="relative">
                          <input type="number" value={taxRate} min={0} max={5} step={0.1}
-                           onChange={e => update({ taxRate: Number(e.target.value) })} className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                           onChange={e => update({ taxRate: Number(e.target.value) })} className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" />
                          <span className="absolute right-6 top-1/2 -translate-y-1/2 text-[10px] font-black text-slate-400 uppercase tracking-widest">%</span>
                       </div>
                    </div>
                 </div>
                 <div className="space-y-4">
-                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Annual Insurance (NPR)</label>
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Annual Insurance (NPR)</label>
                    <input type="number" value={insurance} min={0} step={5000}
-                     onChange={e => update({ insurance: Number(e.target.value) })} className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                     onChange={e => update({ insurance: Number(e.target.value) })} className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" />
                 </div>
              </div>
           </div>
@@ -91,7 +91,7 @@ export default function MortgageCalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Home className="w-24 h-24 text-blue-600" /></div>
              <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Total Monthly Payment</div>
              <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">{fmt(r.monthlyTotal)}</div>
@@ -100,7 +100,7 @@ export default function MortgageCalculator() {
              </div>
           </div>
 
-          <section className="bg-white border border-slate-200 rounded-[3rem] overflow-hidden shadow-sm">
+          <section className="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm">
              <div className="px-10 py-6 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                    <DollarSign className="w-5 h-5 text-blue-600" />
@@ -135,7 +135,7 @@ export default function MortgageCalculator() {
              </div>
           </section>
 
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] flex gap-4 items-center text-white shadow-2xl relative overflow-hidden group">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg flex gap-4 items-center text-[#202124] shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Info className="w-24 h-24 text-blue-500" /></div>
              <div className="relative z-10 flex gap-4">
                 <div className="p-3 bg-white/10 rounded-xl shrink-0 h-min"><Info className="w-5 h-5 text-amber-400" /></div>
@@ -148,7 +148,7 @@ export default function MortgageCalculator() {
       }      details={
         <div className="space-y-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-10 shadow-sm relative overflow-hidden">
                <div className="absolute top-0 right-0 p-6 opacity-5"><PieChart className="w-20 h-20" /></div>
                <div className="flex items-center gap-2 mb-8">
                 <div className="w-1.5 h-6 bg-[#1A73E8] rounded-full" />
@@ -188,11 +188,11 @@ export default function MortgageCalculator() {
               </div>
             </div>
 
-            <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden">
+            <div className="bg-[#1A1A2E] text-[#202124] rounded-lg p-10 shadow-sm relative overflow-hidden">
                <div className="absolute -bottom-12 -right-12 opacity-10"><DollarSign className="w-64 h-64" /></div>
                <h3 className="text-2xl font-black mb-6 tracking-tight text-emerald-400 uppercase tracking-widest">Lifetime Cost Audit</h3>
                <div className="space-y-6">
-                  <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                  <div className="p-6 rounded-2xl bg-[#f8f9fa] border border-[#dadce0]">
                      <div className="flex justify-between items-center mb-4">
                         <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Repayment</span>
                         <span className="text-2xl font-black text-emerald-400">{fmt(r.totalPaid + r.loan)}</span>

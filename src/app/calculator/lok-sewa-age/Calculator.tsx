@@ -68,7 +68,7 @@ export default function LokSewaAgeCalculator() {
                <label className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Post Level</label>
                <div className="flex p-1 bg-[#F8F9FA] rounded-md border border-[#DADCE0]">
                  {[{v: 'non-gazetted', l: 'Non-Gazetted'}, {v: 'gazetted', l: 'Gazetted'}].map(opt => (
-                   <button key={opt.v} onClick={() => update({ postLevel: opt.v as any })} className={`flex-1 py-2 text-[10px] font-bold uppercase rounded transition-all ${postLevel === opt.v ? 'bg-[#1A73E8] text-white shadow-sm' : 'text-[#5F6368] hover:bg-white'}`}>{opt.l}</button>
+                   <button key={opt.v} onClick={() => update({ postLevel: opt.v as any })} className={`flex-1 py-2 text-[10px] font-bold uppercase rounded transition-all ${postLevel === opt.v ? 'bg-[#1A73E8] text-[#202124] shadow-sm' : 'text-[#5F6368] hover:bg-white'}`}>{opt.l}</button>
                  ))}
                </div>
             </div>
@@ -76,7 +76,7 @@ export default function LokSewaAgeCalculator() {
                <label className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Applicant Category</label>
                <div className="flex p-1 bg-[#F8F9FA] rounded-md border border-[#DADCE0]">
                  {[{v: 'male', l: 'Male'}, {v: 'female', l: 'Female'}, {v: 'disabled', l: 'Disabled'}].map(opt => (
-                   <button key={opt.v} onClick={() => update({ gender: opt.v as any })} className={`flex-1 py-2 text-[10px] font-bold uppercase rounded transition-all ${gender === opt.v ? 'bg-[#1A73E8] text-white shadow-sm' : 'text-[#5F6368] hover:bg-white'}`}>{opt.l}</button>
+                   <button key={opt.v} onClick={() => update({ gender: opt.v as any })} className={`flex-1 py-2 text-[10px] font-bold uppercase rounded transition-all ${gender === opt.v ? 'bg-[#1A73E8] text-[#202124] shadow-sm' : 'text-[#5F6368] hover:bg-white'}`}>{opt.l}</button>
                  ))}
                </div>
             </div>
@@ -117,7 +117,7 @@ export default function LokSewaAgeCalculator() {
         <div className="space-y-6">
           {result && !result.error ? (
             <>
-              <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+              <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
                  <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><CheckCircle className={`w-24 h-24 ${result.isEligible ? 'text-emerald-600' : 'text-rose-600'}`} /></div>
                  <div className={`text-[10px] font-bold uppercase tracking-[0.2em] ${result.isEligible ? 'text-emerald-600' : 'text-rose-600'}`}>
                     {result.isEligible ? 'Eligible to Apply' : 'Not Eligible'}
@@ -129,11 +129,11 @@ export default function LokSewaAgeCalculator() {
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                 <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1 text-center">
+                 <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-1 text-center">
                     <div className="text-[9px] font-black text-slate-400 uppercase">Min Age</div>
                     <div className="text-xl font-black text-slate-900">{result.minAge} Yrs</div>
                  </div>
-                 <div className="p-6 bg-blue-50 border border-blue-100 rounded-3xl space-y-1 text-center">
+                 <div className="p-6 bg-blue-50 border border-blue-100 rounded-lg space-y-1 text-center">
                     <div className="text-[9px] font-black text-blue-600 uppercase">Max Limit</div>
                     <div className="text-xl font-black text-blue-600">{result.maxAge} Yrs</div>
                  </div>

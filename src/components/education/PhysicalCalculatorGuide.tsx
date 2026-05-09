@@ -201,7 +201,7 @@ export function PhysicalCalculatorGuide() {
       </div>
 
       {/* QUICK TABLE, SUMMARY VIEW */}
-      <div className="bg-white border border-gray-100 rounded-[2.5rem] overflow-hidden shadow-sm">
+      <div className="bg-white border border-gray-100 rounded-lg overflow-hidden shadow-sm">
          <div className="p-8 border-b border-gray-50 flex items-center justify-between bg-gray-50/50">
             <h3 className="text-sm font-black text-gray-900 uppercase tracking-widest">Quick Comparison Matrix</h3>
             <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">CFA / SAT / ACT Reference</span>
@@ -261,7 +261,7 @@ export function PhysicalCalculatorGuide() {
 
          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {filtered.map(item => (
-              <div key={item.id} className="group bg-white border border-gray-100 hover:border-google-blue/30 rounded-[32px] p-10 transition-all hover:shadow-2xl hover:shadow-blue-500/5 relative overflow-hidden">
+              <div key={item.id} className="group bg-white border border-gray-100 hover:border-google-blue/30 rounded-[32px] p-10 transition-all hover:shadow-sm hover:shadow-blue-500/5 relative overflow-hidden">
                  
                  {/* ID Watermark */}
                  <div className="absolute -top-4 -right-4 text-[120px] font-black text-gray-50 opacity-0 group-hover:opacity-100 transition-opacity select-none pointer-events-none">
@@ -316,7 +316,7 @@ export function PhysicalCalculatorGuide() {
       </div>
 
       {/* FOOTNOTE */}
-      <div className="bg-gray-50 border border-gray-200 rounded-[2.5rem] p-10 flex flex-col md:flex-row items-center gap-10">
+      <div className="bg-gray-50 border border-gray-200 rounded-lg p-10 flex flex-col md:flex-row items-center gap-10">
          <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-4xl shadow-sm border border-gray-100">
             💡
          </div>

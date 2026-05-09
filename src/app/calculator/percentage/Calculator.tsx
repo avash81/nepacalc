@@ -57,17 +57,17 @@ export default function PercentageCalculator() {
       icon={Percent}
       inputs={
         <div className="space-y-8">
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
              <div className="absolute top-0 right-0 p-10 opacity-10"><Percent className="w-40 h-40" /></div>
              <div className="relative z-10 space-y-6">
                 <div className="space-y-4">
-                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Computational Methodology</label>
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Computational Methodology</label>
                    <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                      {MODES.map((m) => (
                        <button 
                          key={m.id} 
                          onClick={() => updateState({ mode: m.id as CalcMode })}
-                         className={`flex flex-col items-center justify-center gap-2 p-3 rounded-xl border transition-all text-center ${mode === m.id ? 'bg-blue-600 border-blue-500 text-white shadow-lg' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'}`}
+                         className={`flex flex-col items-center justify-center gap-2 p-3 rounded-xl border transition-all text-center ${mode === m.id ? 'bg-[#1a73e8] border-blue-500 text-[#202124] shadow-sm' : 'bg-[#f8f9fa] border-[#dadce0] text-slate-400 hover:bg-white/10'}`}
                        >
                          <m.icon className="w-4 h-4" />
                          <span className="text-[9px] font-black uppercase tracking-tighter">{m.label.split(' ')[0]}</span>
@@ -76,44 +76,44 @@ export default function PercentageCalculator() {
                    </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-white/10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-[#dadce0]">
                   {mode === 'change' ? (
                     <>
                        <div className="space-y-4">
-                          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Initial Value</label>
+                          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Initial Value</label>
                           <input type="number" value={initial} onChange={e => updateState({ initial: Number(e.target.value) })} 
-                            className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                            className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" />
                        </div>
                        <div className="space-y-4">
-                          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Final Value</label>
+                          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Final Value</label>
                           <input type="number" value={final} onChange={e => updateState({ final: Number(e.target.value) })} 
-                            className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                            className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" />
                        </div>
                     </>
                   ) : mode === 'add_sub' ? (
                     <>
                        <div className="space-y-4">
-                          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Base Principal</label>
+                          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Base Principal</label>
                           <input type="number" value={den} onChange={e => updateState({ den: Number(e.target.value) })} 
-                            className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                            className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" />
                        </div>
                        <div className="space-y-4">
-                          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Adjustment (%)</label>
+                          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Adjustment (%)</label>
                           <input type="number" value={num} onChange={e => updateState({ num: Number(e.target.value) })} 
-                            className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                            className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" />
                        </div>
                     </>
                   ) : (
                     <>
                        <div className="space-y-4">
-                          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">{mode === 'original' ? 'Percentage (%)' : 'Subject (X)'}</label>
+                          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">{mode === 'original' ? 'Percentage (%)' : 'Subject (X)'}</label>
                           <input type="number" value={num} onChange={e => updateState({ num: Number(e.target.value) })} 
-                            className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                            className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" />
                        </div>
                        <div className="space-y-4">
-                          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">{mode === 'original' ? 'Resulting Value' : 'Total (Y)'}</label>
+                          <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">{mode === 'original' ? 'Resulting Value' : 'Total (Y)'}</label>
                           <input type="number" value={den} onChange={e => updateState({ den: Number(e.target.value) })} 
-                            className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                            className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" />
                        </div>
                     </>
                   )}
@@ -121,7 +121,7 @@ export default function PercentageCalculator() {
              </div>
           </div>
 
-          <div className="p-8 border border-slate-200 rounded-[2.5rem] bg-white space-y-6 shadow-sm">
+          <div className="p-8 border border-slate-200 rounded-lg bg-white space-y-6 shadow-sm">
              <div className="flex items-center gap-3">
                 <div className="p-2 bg-blue-50 rounded-lg"><Target className="w-4 h-4 text-blue-600" /></div>
                 <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Quick Presets</h3>
@@ -129,7 +129,7 @@ export default function PercentageCalculator() {
              <div className="flex flex-wrap gap-2">
                 {[5, 10, 13, 15, 20, 25].map(v => (
                   <button key={v} onClick={() => updateState({ num: v })}
-                    className={`px-5 py-3 text-[10px] font-black uppercase rounded-xl transition-all ${num === v ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 bg-slate-50 border border-slate-100 hover:bg-white'}`}
+                    className={`px-5 py-3 text-[10px] font-black uppercase rounded-xl transition-all ${num === v ? 'bg-[#1a73e8] text-[#202124] shadow-sm' : 'text-slate-400 bg-slate-50 border border-slate-100 hover:bg-white'}`}
                   >
                     {v === 13 ? 'VAT (13%)' : `${v}%`}
                   </button>
@@ -141,13 +141,13 @@ export default function PercentageCalculator() {
       results={
         <div className="space-y-6">
           {calc.error ? (
-            <div className="p-10 bg-rose-50 border border-rose-100 rounded-[2.5rem] text-center space-y-2">
+            <div className="p-10 bg-rose-50 border border-rose-100 rounded-lg text-center space-y-2">
                <div className="text-[10px] font-black text-rose-600 uppercase tracking-widest">Logic Constraint</div>
                <div className="text-xl font-black text-rose-900 uppercase tracking-tighter">{calc.error}</div>
             </div>
           ) : (
             <>
-              <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+              <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
                  <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Percent className="w-24 h-24 text-blue-600" /></div>
                  <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Computed Result</div>
                  <div className={`text-5xl font-black tracking-tighter font-mono uppercase ${mode === 'change' && calc.raw >= 0 ? 'text-emerald-600' : mode === 'change' ? 'text-rose-600' : 'text-slate-900'}`}>
@@ -160,23 +160,23 @@ export default function PercentageCalculator() {
 
               {mode === 'add_sub' && (
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="p-6 bg-rose-50 border border-rose-100 rounded-3xl space-y-1">
+                  <div className="p-6 bg-rose-50 border border-rose-100 rounded-lg space-y-1">
                     <div className="text-[9px] font-black text-rose-600 uppercase">Subtracted (-{num}%)</div>
                     <div className="text-xl font-black text-rose-900">{(den * (1 - num / 100)).toLocaleString()}</div>
                   </div>
-                  <div className="p-6 bg-emerald-50 border border-emerald-100 rounded-3xl space-y-1">
+                  <div className="p-6 bg-emerald-50 border border-emerald-100 rounded-lg space-y-1">
                     <div className="text-[9px] font-black text-emerald-600 uppercase">Augmented (+{num}%)</div>
                     <div className="text-xl font-black text-emerald-900">{(den * (1 + num / 100)).toLocaleString()}</div>
                   </div>
                 </div>
               )}
 
-              <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+              <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
                  <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Activity className="w-24 h-24 text-blue-500" /></div>
                  <div className="relative z-10 space-y-3">
                     <div className="flex items-center gap-2">
                        <div className="w-1.5 h-4 bg-blue-400 rounded-full" />
-                       <h4 className="text-[10px] font-black uppercase tracking-widest text-blue-400">Institutional Logic</h4>
+                       <h4 className="text-[10px] font-black uppercase tracking-widest text-[#1a0dab]">Institutional Logic</h4>
                     </div>
                     <p className="text-[11px] text-slate-400 leading-relaxed uppercase font-bold tracking-tighter">
                        Standardized proportional analysis calibrated for academic verification (SEE/NEB) and financial auditing in the Nepalese landscape.
@@ -191,10 +191,10 @@ export default function PercentageCalculator() {
         <div className="space-y-12">
           {(mode === 'what_is' || mode === 'what_percent') && !calc.error && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-               <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+               <div className="bg-white border border-slate-200 rounded-lg p-10 shadow-sm relative overflow-hidden">
                   <div className="absolute top-0 right-0 p-6 opacity-5"><Percent className="w-20 h-20 text-blue-600" /></div>
                   <div className="flex items-center gap-2 mb-8">
-                    <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                    <div className="w-1.5 h-6 bg-[#1a73e8] rounded-full" />
                     <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Distribution Audit</h3>
                   </div>
                   <div className="h-[240px] w-full relative">
@@ -216,14 +216,14 @@ export default function PercentageCalculator() {
                   </div>
                </div>
 
-               <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+               <div className="bg-[#1A1A2E] text-[#202124] rounded-lg p-10 shadow-sm relative overflow-hidden flex flex-col justify-center">
                   <div className="absolute -bottom-12 -right-12 opacity-10"><Target className="w-64 h-64 text-emerald-500" /></div>
                   <h3 className="text-2xl font-black mb-6 tracking-tight text-emerald-400 uppercase tracking-widest">Magnitude Breakdown</h3>
                   <div className="space-y-4">
                      {chartData.map((d, i) => (
-                        <div key={i} className="flex items-center justify-between p-4 bg-white/5 border border-white/10 rounded-2xl">
+                        <div key={i} className="flex items-center justify-between p-4 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl">
                            <span className="text-[10px] font-black text-slate-400 uppercase">{d.name}</span>
-                           <span className="text-xl font-black text-white">{d.value.toLocaleString()}</span>
+                           <span className="text-xl font-black text-[#202124]">{d.value.toLocaleString()}</span>
                         </div>
                      ))}
                   </div>
@@ -231,7 +231,7 @@ export default function PercentageCalculator() {
             </div>
           )}
 
-          <section className="bg-white border border-slate-200 rounded-[3rem] p-12 shadow-sm relative overflow-hidden">
+          <section className="bg-white border border-slate-200 rounded-lg p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -top-12 -right-12 opacity-5">
                 <Percent className="w-64 h-64 text-blue-600" />
             </div>
@@ -246,7 +246,7 @@ export default function PercentageCalculator() {
                 A <strong>Percentage</strong> is a way of expressing a number as a fraction of 100. It is derived from the Latin "per centum," meaning "by the hundred." In modern finance and academics, percentages are the universal language for measuring growth, taxes, and performance.
               </p>
               
-              <div className="bg-blue-50 border border-blue-100 p-8 rounded-[2.5rem] flex gap-6 items-start my-10">
+              <div className="bg-blue-50 border border-blue-100 p-8 rounded-lg flex gap-6 items-start my-10">
                  <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm shrink-0">
                     <Landmark className="w-6 h-6 text-blue-600" />
                  </div>

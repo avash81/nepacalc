@@ -59,7 +59,7 @@ export class CalculatorErrorBoundary extends React.Component<Props, State> {
               <div className="flex gap-3">
                 <button
                   onClick={this.handleReset}
-                  className="px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg transition-colors"
+                  className="px-6 py-2 bg-red-600 hover:bg-red-700 text-[#202124] font-bold rounded-lg transition-colors"
                 >
                   Try Again
                 </button>

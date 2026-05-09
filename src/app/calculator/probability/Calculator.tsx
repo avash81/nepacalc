@@ -40,7 +40,7 @@ export default function ProbabilityCalc() {
       icon={Dices}
       inputs={
         <div className="space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 bg-white border border-[#DADCE0] rounded-3xl shadow-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 bg-white border border-[#DADCE0] rounded-lg shadow-sm">
             <div className="space-y-2">
               <label className={labelCls}>Favorable Outcomes ($n$)</label>
               <input type="number" value={favorable} onChange={e => setFavorable(Number(e.target.value))} min={0} className={inputCls} />
@@ -77,7 +77,7 @@ export default function ProbabilityCalc() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-12 bg-white border border-[#DADCE0] rounded-[2.5rem] text-center relative overflow-hidden shadow-2xl group">
+          <div className="p-12 bg-white border border-[#DADCE0] rounded-lg text-center relative overflow-hidden shadow-sm group">
             <Dices className="absolute -left-6 -bottom-6 w-40 h-40 text-[#DADCE0]/20 -rotate-12 group-hover:rotate-0 transition-transform duration-700" />
             <div className="relative z-10">
               <div className="text-[11px] font-black uppercase tracking-[0.4em] text-[#1A73E8] mb-6">Success Probability</div>
@@ -94,7 +94,7 @@ export default function ProbabilityCalc() {
               { label: 'Odds',       val: res.odds, desc: 'Success:Failure' },
               { label: 'Complement', val: res.complement, desc: '$1 - P(A)$' },
             ].map(({ label, val, desc }) => (
-              <div key={label} className="p-6 bg-white border border-[#DADCE0] rounded-3xl text-center shadow-md group hover:border-[#1A73E8] transition-colors">
+              <div key={label} className="p-6 bg-white border border-[#DADCE0] rounded-lg text-center shadow-md group hover:border-[#1A73E8] transition-colors">
                 <div className="text-[9px] font-black uppercase text-[#70757A] tracking-widest mb-2 group-hover:text-[#1A73E8]">{label}</div>
                 <div className="text-2xl font-black text-[#202124] font-mono">{val}</div>
                 <div className="text-[8px] font-bold text-[#70757A] mt-1 opacity-60 uppercase">{desc}</div>
@@ -102,7 +102,7 @@ export default function ProbabilityCalc() {
             ))}
           </div>
 
-          <div className="p-8 bg-white border border-[#DADCE0] rounded-[2.5rem] space-y-4 shadow-lg">
+          <div className="p-8 bg-white border border-[#DADCE0] rounded-lg space-y-4 shadow-sm">
             <div className="flex justify-between text-[10px] font-black uppercase tracking-widest">
               <span className="text-[#1A73E8]">Likelihood of Event ($P$)</span>
               <span className="text-[#D93025]">Inverse Probability ($Q$)</span>
@@ -131,7 +131,7 @@ export default function ProbabilityCalc() {
       details={
         <div className="space-y-8">
           {/* Section 1: The Philosophy of Chance */}
-          <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm relative overflow-hidden">
+          <section className="bg-white border border-[#DADCE0] rounded-lg p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -top-12 -right-12 opacity-5">
                 <History className="w-64 h-64" />
             </div>
@@ -155,7 +155,7 @@ export default function ProbabilityCalc() {
           </section>
 
           {/* Section 2: Sample Space & Events */}
-          <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+          <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-12 shadow-sm">
             <div className="flex items-center gap-4 mb-10">
               <div className="bg-[#E6F4EA] p-4 rounded-2xl">
                   <Microscope className="w-8 h-8 text-[#188038]" />
@@ -177,7 +177,7 @@ export default function ProbabilityCalc() {
                     </p>
                 </div>
               </div>
-              <div className="bg-white p-10 rounded-3xl shadow-inner border border-[#DADCE0] space-y-6">
+              <div className="bg-white p-10 rounded-lg shadow-inner border border-[#DADCE0] space-y-6">
                     <h4 className="text-lg font-black text-[#202124]">Axioms of Probability</h4>
                     <ul className="space-y-4 text-[#5F6368]">
                         <li className="flex items-center gap-3">
@@ -198,7 +198,7 @@ export default function ProbabilityCalc() {
           </section>
 
           {/* Section 3: Applications in Nepal */}
-          <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+          <section className="bg-white border border-[#DADCE0] rounded-lg p-12 shadow-sm">
             <div className="flex items-center gap-4 mb-8">
               <div className="bg-[#FEF7E0] p-4 rounded-2xl">
                   <GraduationCap className="w-8 h-8 text-[#F29900]" />
@@ -219,11 +219,11 @@ export default function ProbabilityCalc() {
           </section>
 
           {/* Section 4: Real-World Scenarios */}
-          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-[#202124] rounded-lg p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -bottom-10 -left-10 opacity-10">
                 <TrendingUp className="w-64 h-64" />
             </div>
-            <h2 className="text-4xl font-black mb-10 border-b border-white/10 pb-6 tracking-tighter">Industrial Topology & Practical Utility</h2>
+            <h2 className="text-4xl font-black mb-10 border-b border-[#dadce0] pb-6 tracking-tighter">Industrial Topology & Practical Utility</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div className="space-y-6 text-slate-300 leading-relaxed text-sm">
                     <div className="flex gap-4">
@@ -239,8 +239,8 @@ export default function ProbabilityCalc() {
                         </p>
                     </div>
                 </div>
-                <div className="bg-white/10 p-8 rounded-3xl border border-white/20 backdrop-blur-md">
-                    <h4 className="text-white font-black mb-4 flex items-center gap-2">
+                <div className="bg-white/10 p-8 rounded-lg border border-white/20 backdrop-blur-md">
+                    <h4 className="text-[#202124] font-black mb-4 flex items-center gap-2">
                          <Target className="w-5 h-5 text-[#8AB4F8]" />
                          Goal Benchmarks
                     </h4>
@@ -252,16 +252,16 @@ export default function ProbabilityCalc() {
                              <span>Success Threshold</span>
                              <span>Result</span>
                          </div>
-                         <div className="bg-white/5 p-3 rounded-xl border border-white/10 flex justify-between items-center">
-                             <span className="text-[10px] font-bold text-white uppercase">Coin Flip</span>
+                         <div className="bg-[#f8f9fa] p-3 rounded-xl border border-[#dadce0] flex justify-between items-center">
+                             <span className="text-[10px] font-bold text-[#202124] uppercase">Coin Flip</span>
                              <span className="text-xs font-mono font-black text-[#8AB4F8]">50.00%</span>
                          </div>
-                         <div className="bg-white/5 p-3 rounded-xl border border-white/10 flex justify-between items-center">
-                             <span className="text-[10px] font-bold text-white uppercase">Dice Roll (Single)</span>
+                         <div className="bg-[#f8f9fa] p-3 rounded-xl border border-[#dadce0] flex justify-between items-center">
+                             <span className="text-[10px] font-bold text-[#202124] uppercase">Dice Roll (Single)</span>
                              <span className="text-xs font-mono font-black text-[#8AB4F8]">16.67%</span>
                          </div>
-                         <div className="bg-white/5 p-3 rounded-xl border border-white/10 flex justify-between items-center">
-                             <span className="text-[10px] font-bold text-white uppercase">Ace from Deck</span>
+                         <div className="bg-[#f8f9fa] p-3 rounded-xl border border-[#dadce0] flex justify-between items-center">
+                             <span className="text-[10px] font-bold text-[#202124] uppercase">Ace from Deck</span>
                              <span className="text-xs font-mono font-black text-[#8AB4F8]">7.69%</span>
                          </div>
                     </div>

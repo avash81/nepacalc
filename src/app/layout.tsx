@@ -20,13 +20,15 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
   icons: {
     icon: [
-      { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
-      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
-      { url: '/favicon-144x144.png', sizes: '144x144', type: 'image/png' },
-      { url: '/favicon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/logo.png?v=final', sizes: '32x32', type: 'image/png' },
+      { url: '/logo.png?v=final', sizes: '48x48', type: 'image/png' },
+      { url: '/logo.png?v=final', sizes: '96x96', type: 'image/png' },
+      { url: '/logo.png?v=final', sizes: '144x144', type: 'image/png' },
+      { url: '/logo.png?v=final', sizes: '192x192', type: 'image/png' },
+      { url: '/logo.png?v=final', sizes: '512x512', type: 'image/png' },
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/logo.png?v=final', sizes: '180x180', type: 'image/png' },
     ],
   },
   verification: {
@@ -50,7 +52,7 @@ export const metadata: Metadata = {
     siteName: 'NepaCalc',
     images: [
       {
-        url: '/logo.png',
+        url: '/logo.png?v=final',
         width: 1024,
         height: 1024,
         alt: 'NepaCalc Logo',
@@ -70,7 +72,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Free Online Calculators for Nepal NepaCalc",
     description: "Nepals leading utility laboratory for high precision mathematical tools and financial planning. Try NepaCalc now",
-    images: ['/logo.png'],
+    images: ['/logo.png?v=final'],
   },
 };
 
@@ -155,7 +157,7 @@ export default function RootLayout({
         />
         <a 
           href="#main-content" 
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-blue-600 focus:text-white focus:px-6 focus:py-3 focus:rounded-xl focus:font-black focus:uppercase focus:text-[10px] focus:tracking-widest shadow-2xl"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-[#1a73e8] focus:text-[#202124] focus:px-6 focus:py-3 focus:rounded-xl focus:font-black focus:uppercase focus:text-[10px] focus:tracking-widest shadow-sm"
         >
           Skip to content
         </a>

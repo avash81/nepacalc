@@ -164,11 +164,11 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
     if (safeMiddleSrc) {
       const parts = rawHtml.split('</h2>');
       if (parts.length > 1) {
-        const middleImageHtml = `</h2><img src="${escapeHtml(safeMiddleSrc)}" alt="${escapeHtml(page.title)} Details" loading="lazy" class="w-full h-auto rounded-3xl border border-gray-100 shadow-xl my-10 object-cover" />`;
+        const middleImageHtml = `</h2><img src="${escapeHtml(safeMiddleSrc)}" alt="${escapeHtml(page.title)} Details" loading="lazy" class="w-full h-auto rounded-lg border border-gray-100 shadow-sm my-10 object-cover" />`;
         rawHtml = parts[0] + middleImageHtml + parts.slice(1).join('</h2>');
       } else {
         // Fallback if no H2 exists
-        rawHtml += `<img src="${escapeHtml(safeMiddleSrc)}" alt="${escapeHtml(page.title)} Flow" loading="lazy" class="w-full h-auto rounded-3xl border border-gray-100 shadow-xl my-10 object-cover" />`;
+        rawHtml += `<img src="${escapeHtml(safeMiddleSrc)}" alt="${escapeHtml(page.title)} Flow" loading="lazy" class="w-full h-auto rounded-lg border border-gray-100 shadow-sm my-10 object-cover" />`;
       }
     }
     return rawHtml;
@@ -256,8 +256,8 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
               <div className="flex flex-wrap items-center gap-3 mb-6 pb-4
                               border-b border-gray-200 text-xs text-gray-400">
                 <div className="flex items-center gap-1.5">
-                  <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center
-                                  justify-center text-white text-[9px] font-bold">
+                  <div className="w-6 h-6 rounded-full bg-[#1a73e8] flex items-center
+                                  justify-center text-[#202124] text-[9px] font-bold">
                     CP
                   </div>
                   <span>NEPACALC Research Team</span>
@@ -292,7 +292,7 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
                         <a href={`#${item.id}`}
                           className="text-sm text-blue-600 hover:text-blue-800
                                      hover:underline flex items-center gap-2">
-                          <span className="text-[10px] font-bold text-blue-400">
+                          <span className="text-[10px] font-bold text-[#1a0dab]">
                             {String(i + 1).padStart(2,'0')}
                           </span>
                           {item.label}
@@ -305,7 +305,7 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
 
               {/* Top Image (Feature) */}
               {safeTopSrc && (
-                <div className="mb-10 w-full overflow-hidden rounded-[2rem] shadow-2xl border border-gray-100">
+                <div className="mb-10 w-full overflow-hidden rounded-[2rem] shadow-sm border border-gray-100">
                    <img src={safeTopSrc} alt={`${page.title} Overview`} loading="eager" className="w-full h-auto object-cover max-h-[500px]" />
                 </div>
               )}
@@ -319,7 +319,7 @@ export default function SEOGuidePage({ page }: { page: GuidePageData }) {
 
               {/* Bottom Image (Visual Summary) */}
               {safeBottomSrc && (
-                <div className="mt-12 w-full overflow-hidden rounded-[2rem] shadow-2xl border border-gray-100">
+                <div className="mt-12 w-full overflow-hidden rounded-[2rem] shadow-sm border border-gray-100">
                    <img src={safeBottomSrc} alt={`${page.title} Summary`} loading="lazy" className="w-full h-auto object-cover max-h-[500px]" />
                 </div>
               )}

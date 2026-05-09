@@ -56,36 +56,36 @@ export default function FDCalculator() {
       icon={Banknote}
       inputs={
         <div className="space-y-8">
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
              <div className="absolute top-0 right-0 p-10 opacity-10"><Zap className="w-40 h-40" /></div>
              <div className="relative z-10 grid grid-cols-1 gap-6">
                 <div className="space-y-4">
-                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Principal Deposit</label>
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Principal Deposit</label>
                    <input 
                       type="number" 
                       value={principal} 
                       onChange={(e) => update({ principal: Number(e.target.value) })}
-                      className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" 
+                      className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
                    />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                    <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Interest Rate (%)</label>
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Interest Rate (%)</label>
                       <input 
                         type="number" 
                         step="0.1"
                         value={rate} 
                         onChange={(e) => update({ rate: Number(e.target.value) })}
-                        className="w-full h-12 px-6 bg-white/5 border border-white/10 rounded-xl text-lg font-black text-white focus:border-blue-500 outline-none transition-all" 
+                        className="w-full h-12 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-xl text-lg font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
                       />
                    </div>
                    <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Term (Years)</label>
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Term (Years)</label>
                       <input 
                         type="number" 
                         value={time} 
                         onChange={(e) => update({ time: Number(e.target.value) })}
-                        className="w-full h-12 px-6 bg-white/5 border border-white/10 rounded-xl text-lg font-black text-white focus:border-blue-500 outline-none transition-all" 
+                        className="w-full h-12 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-xl text-lg font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
                       />
                    </div>
                 </div>
@@ -102,7 +102,7 @@ export default function FDCalculator() {
                   <button 
                     key={opt.value} 
                     onClick={() => update({ compounding: opt.value })}
-                    className={`flex-1 py-3 text-[10px] font-black uppercase rounded-lg transition-all ${compounding === opt.value ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 hover:bg-white'}`}
+                    className={`flex-1 py-3 text-[10px] font-black uppercase rounded-lg transition-all ${compounding === opt.value ? 'bg-[#1a73e8] text-[#202124] shadow-sm' : 'text-slate-400 hover:bg-white'}`}
                   >
                     {opt.label}
                   </button>
@@ -113,7 +113,7 @@ export default function FDCalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Banknote className="w-24 h-24 text-emerald-600" /></div>
              <div className="text-[10px] font-bold text-emerald-600 uppercase tracking-[0.2em]">Gross Maturity Value</div>
              <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">{fmt(r.maturity)}</div>
@@ -123,17 +123,17 @@ export default function FDCalculator() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1">
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
                 <div className="text-[9px] font-black text-slate-400 uppercase">Gross Interest</div>
                 <div className="text-xl font-black text-slate-900">+{fmt(r.interest)}</div>
              </div>
-             <div className="p-6 bg-rose-50 border border-rose-100 rounded-3xl space-y-1">
+             <div className="p-6 bg-rose-50 border border-rose-100 rounded-lg space-y-1">
                 <div className="text-[9px] font-black text-rose-600 uppercase">TDS (5% Personal)</div>
                 <div className="text-xl font-black text-rose-600">-{fmt(r.tds)}</div>
              </div>
           </div>
 
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><TrendingUp className="w-24 h-24 text-blue-500" /></div>
              <div className="relative z-10 flex items-center justify-between">
                 <div className="space-y-1">
@@ -150,10 +150,10 @@ export default function FDCalculator() {
       details={
         <div className="space-y-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-lg p-10 shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 p-6 opacity-5"><TrendingUp className="w-20 h-20 text-blue-600" /></div>
               <div className="flex items-center gap-2 mb-8">
-                <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                <div className="w-1.5 h-6 bg-[#1a73e8] rounded-full" />
                 <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Maturity Progression</h3>
               </div>
               <div className="h-[300px] w-full">
@@ -178,11 +178,11 @@ export default function FDCalculator() {
               </div>
             </div>
 
-            <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+            <div className="bg-[#1A1A2E] text-[#202124] rounded-lg p-10 shadow-sm relative overflow-hidden flex flex-col justify-center">
                <div className="absolute -bottom-12 -right-12 opacity-10"><ShieldCheck className="w-64 h-64 text-emerald-500" /></div>
                <h3 className="text-2xl font-black mb-8 tracking-tight text-emerald-400 uppercase tracking-widest">Security & Leveraging</h3>
                <div className="space-y-6">
-                  <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                  <div className="p-6 rounded-2xl bg-[#f8f9fa] border border-[#dadce0]">
                      <div className="flex justify-between items-center mb-3">
                         <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">DCGF Coverage</span>
                         <span className="text-sm font-black text-emerald-400">{principal <= 500000 ? "100%" : `${((500000/principal)*100).toFixed(0)}%`}</span>
@@ -194,10 +194,10 @@ export default function FDCalculator() {
                         Deposits up to NPR 500,000 are guaranteed by sovereign DCGF.
                      </p>
                   </div>
-                  <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                  <div className="p-6 rounded-2xl bg-[#f8f9fa] border border-[#dadce0]">
                      <div className="flex justify-between items-center mb-1">
                         <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">FD Overdraft Capacity (90%)</span>
-                        <span className="text-lg font-black text-blue-400">{fmt(principal * 0.9)}</span>
+                        <span className="text-lg font-black text-[#1a0dab]">{fmt(principal * 0.9)}</span>
                      </div>
                      <p className="text-[9px] text-slate-500 leading-relaxed uppercase font-black">
                         Instant liquidity available against this deposit.

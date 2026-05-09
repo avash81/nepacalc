@@ -134,11 +134,11 @@ export function ThreeDApp() {
       <div className="flex-1 flex overflow-hidden p-4 gap-4">
         
         {/* SIDEBAR (ORIGINAL NEPACALC STYLE RESTORED) */}
-        <aside className={`${isSidebarOpen ? 'w-80 lg:w-[400px]' : 'w-0 opacity-0'} bg-[#1e293b] border border-slate-700/50 rounded-3xl transition-all duration-300 flex flex-col overflow-hidden shadow-2xl`}>
+        <aside className={`${isSidebarOpen ? 'w-80 lg:w-[400px]' : 'w-0 opacity-0'} bg-[#1e293b] border border-slate-700/50 rounded-lg transition-all duration-300 flex flex-col overflow-hidden shadow-sm`}>
           <div className="p-6 border-b border-slate-700/50 bg-slate-800/50">
             <div className="flex items-center gap-3">
               <Box className="w-6 h-6 text-indigo-400" />
-              <h1 className="text-lg font-bold text-white tracking-tight">3D Calculator</h1>
+              <h1 className="text-lg font-bold text-[#202124] tracking-tight">3D Calculator</h1>
             </div>
           </div>
 
@@ -158,7 +158,7 @@ export function ThreeDApp() {
                        <input type="checkbox" className="hidden" checked={globalWireframe} onChange={() => setGlobalWireframe(!globalWireframe)} />
                        {globalWireframe && <div className="w-2.5 h-2.5 bg-white rounded-[2px]" />}
                      </div>
-                     <span className="text-[13px] font-bold text-slate-400 group-hover:text-white transition-colors">Wireframe mode</span>
+                     <span className="text-[13px] font-bold text-slate-400 group-hover:text-[#202124] transition-colors">Wireframe mode</span>
                    </label>
                  </div>
                ))}
@@ -172,7 +172,7 @@ export function ThreeDApp() {
                    <button 
                      key={p.name} 
                      onClick={() => applyPreset(p.eq)}
-                     className="px-4 py-3.5 bg-[#0f172a] border border-slate-700 rounded-xl text-[11px] font-bold text-slate-400 hover:text-white hover:border-indigo-500 hover:bg-slate-800 transition-all text-left truncate"
+                     className="px-4 py-3.5 bg-[#0f172a] border border-slate-700 rounded-xl text-[11px] font-bold text-slate-400 hover:text-[#202124] hover:border-indigo-500 hover:bg-slate-800 transition-all text-left truncate"
                    >
                      {p.name}
                    </button>
@@ -198,8 +198,8 @@ export function ThreeDApp() {
         </aside>
 
         {/* VIEWPORT */}
-        <main className="relative flex-1 bg-[#0f172a] rounded-3xl border border-slate-800/50 overflow-hidden">
-          <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="absolute top-8 left-8 z-[50] p-4 bg-slate-800 border border-slate-700 rounded-2xl shadow-xl text-slate-400 hover:text-white transition-all"><Layers className="w-5 h-5" /></button>
+        <main className="relative flex-1 bg-[#0f172a] rounded-lg border border-slate-800/50 overflow-hidden">
+          <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="absolute top-8 left-8 z-[50] p-4 bg-slate-800 border border-slate-700 rounded-2xl shadow-sm text-slate-400 hover:text-[#202124] transition-all"><Layers className="w-5 h-5" /></button>
 
           {mounted ? (
             <Canvas dpr={[1, 2]} camera={{ position: [14, 14, 14], fov: 35 }}>
@@ -221,8 +221,8 @@ export function ThreeDApp() {
 
           {/* FLOATING CONTROLS (GEO STYLE BUT DARK) */}
           <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col gap-3">
-             <button onClick={() => controlsRef.current?.reset()} className="w-14 h-14 bg-slate-800 border border-slate-700 rounded-full shadow-2xl flex items-center justify-center text-slate-400 hover:text-white hover:border-indigo-500 transition-all"><Home className="w-6 h-6" /></button>
-             <div className="flex flex-col bg-slate-800 border border-slate-700 rounded-full shadow-2xl overflow-hidden">
+             <button onClick={() => controlsRef.current?.reset()} className="w-14 h-14 bg-slate-800 border border-slate-700 rounded-full shadow-sm flex items-center justify-center text-slate-400 hover:text-[#202124] hover:border-indigo-500 transition-all"><Home className="w-6 h-6" /></button>
+             <div className="flex flex-col bg-slate-800 border border-slate-700 rounded-full shadow-sm overflow-hidden">
                 <button className="w-14 h-14 flex items-center justify-center text-slate-400 hover:bg-slate-700 border-b border-slate-700"><Plus className="w-5 h-5" /></button>
                 <button className="w-14 h-14 flex items-center justify-center text-slate-400 hover:bg-slate-700"><Minus className="w-5 h-5" /></button>
              </div>

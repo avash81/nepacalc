@@ -30,7 +30,7 @@ export function TrendingSidebar({ currentSlug }: { currentSlug?: string }) {
     .slice(0, 5);
 
   return (
-    <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-[2.5rem] p-6 shadow-sm space-y-6">
+    <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-lg p-6 shadow-sm space-y-6">
       <div className="flex items-center gap-2 px-1">
         <TrendingUp className="w-5 h-5 text-blue-500" />
         <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Trending Tools</h3>
@@ -44,14 +44,14 @@ export function TrendingSidebar({ currentSlug }: { currentSlug?: string }) {
             className="group flex items-center justify-between p-4 rounded-2xl bg-gray-50 dark:bg-gray-800 border-2 border-transparent hover:border-blue-500 hover:bg-blue-50/30 dark:hover:bg-blue-900/10 transition-all duration-300"
           >
             <div className="flex flex-col gap-1">
-              <span className="text-[8px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest opacity-60">
+              <span className="text-[8px] font-black text-blue-600 dark:text-[#1a0dab] uppercase tracking-widest opacity-60">
                 {calc.category}
               </span>
-              <span className="text-xs font-black text-gray-800 dark:text-white uppercase tracking-tight group-hover:translate-x-1 transition-transform">
+              <span className="text-xs font-black text-gray-800 dark:text-[#202124] uppercase tracking-tight group-hover:translate-x-1 transition-transform">
                 {calc.name}
               </span>
             </div>
-            <div className="w-8 h-8 flex items-center justify-center rounded-xl bg-white dark:bg-gray-900 shadow-sm border border-gray-100 dark:border-gray-800 group-hover:bg-blue-600 group-hover:text-white transition-all">
+            <div className="w-8 h-8 flex items-center justify-center rounded-xl bg-white dark:bg-gray-900 shadow-sm border border-gray-100 dark:border-gray-800 group-hover:bg-[#1a73e8] group-hover:text-[#202124] transition-all">
               <ArrowRight className="w-4 h-4" />
             </div>
           </Link>

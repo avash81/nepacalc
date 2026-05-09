@@ -67,7 +67,7 @@ export function InternalLinks({
                 {c.description}
               </div>
             </div>
-            <svg className="w-3.5 h-3.5 text-blue-400 flex-shrink-0"
+            <svg className="w-3.5 h-3.5 text-[#1a0dab] flex-shrink-0"
               fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 18l6-6-6-6" />
             </svg>

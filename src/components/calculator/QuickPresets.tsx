@@ -34,7 +34,7 @@ export function QuickPresets({ presets, onSelect }: QuickPresetsProps) {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2 px-1">
-        <TrendingUp className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+        <TrendingUp className="w-5 h-5 text-blue-600 dark:text-[#1a0dab]" />
         <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-widest leading-none">
           Quick Access Benchmarks
         </h3>
@@ -48,9 +48,9 @@ export function QuickPresets({ presets, onSelect }: QuickPresetsProps) {
             <button
               key={index}
               onClick={() => onSelect(preset)}
-              className="group flex flex-col items-start gap-4 rounded-3xl bg-white dark:bg-gray-900 border-2 border-gray-100 dark:border-gray-800 p-6 text-left transition-all hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/5 active:scale-[0.98]"
+              className="group flex flex-col items-start gap-4 rounded-lg bg-white dark:bg-gray-900 border-2 border-gray-100 dark:border-gray-800 p-6 text-left transition-all hover:border-blue-500 hover:shadow-sm hover:shadow-blue-500/5 active:scale-[0.98]"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-all shadow-sm">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-[#1a0dab] group-hover:bg-[#1a73e8] group-hover:text-[#202124] transition-all shadow-sm">
                 <Icon className="w-6 h-6" />
               </div>
               
@@ -58,7 +58,7 @@ export function QuickPresets({ presets, onSelect }: QuickPresetsProps) {
                 <div className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-hover:text-blue-600 transition-colors">
                   {preset.name}
                 </div>
-                <div className="mt-1 text-sm font-bold text-gray-800 dark:text-white line-clamp-1">
+                <div className="mt-1 text-sm font-bold text-gray-800 dark:text-[#202124] line-clamp-1">
                   {preset.description}
                 </div>
               </div>

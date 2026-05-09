@@ -84,7 +84,7 @@ export default function NewPostPage() {
               <button 
                  onClick={handleSave} 
                  disabled={loading}
-                 className="flex items-center gap-2.5 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-2xl font-black text-[11px] uppercase tracking-widest shadow-xl shadow-blue-500/20 active:scale-95 transition-all disabled:opacity-50"
+                 className="flex items-center gap-2.5 bg-[#1a73e8] hover:bg-blue-700 text-[#202124] px-8 py-3 rounded-2xl font-black text-[11px] uppercase tracking-widest shadow-sm shadow-blue-500/20 active:scale-95 transition-all disabled:opacity-50"
               >
                  {loading ? (
                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -105,7 +105,7 @@ export default function NewPostPage() {
           
           {/* Main Editor Surface */}
           <div className="lg:col-span-8 space-y-8">
-            <div className="bg-white border border-slate-100 p-10 rounded-[3rem] shadow-xl shadow-slate-200/40 relative overflow-hidden group">
+            <div className="bg-white border border-slate-100 p-10 rounded-lg shadow-sm shadow-slate-200/40 relative overflow-hidden group">
                <div className="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-blue-50 transition-colors" />
                <div className="relative z-10 space-y-8">
                   
@@ -156,7 +156,7 @@ export default function NewPostPage() {
                         <div className="w-full h-[600px] p-8 rounded-2xl border border-slate-100 bg-white shadow-inner overflow-y-auto custom-scrollbar">
                            <div className="space-y-6">
                               {imageTop && (
-                                  <div className="rounded-3xl overflow-hidden border border-slate-100 shadow-xl mb-8">
+                                  <div className="rounded-lg overflow-hidden border border-slate-100 shadow-sm mb-8">
                                       <img src={imageTop} alt="Top Feature" className="w-full h-auto" />
                                   </div>
                               )}
@@ -181,7 +181,7 @@ export default function NewPostPage() {
                                        if (imageMiddle) {
                                           const parts = html.split('</h2>');
                                           if (parts.length > 1) {
-                                             html = parts[0] + `</h2><div class="my-6 rounded-2xl overflow-hidden border border-slate-100 shadow-lg"><img src="${imageMiddle}" class="w-full h-auto" /></div>` + parts.slice(1).join('</h2>');
+                                             html = parts[0] + `</h2><div class="my-6 rounded-2xl overflow-hidden border border-slate-100 shadow-sm"><img src="${imageMiddle}" class="w-full h-auto" /></div>` + parts.slice(1).join('</h2>');
                                           }
                                        }
                                        return `<p class="mb-4 text-slate-700 leading-relaxed">${html}</p>`;
@@ -189,7 +189,7 @@ export default function NewPostPage() {
                                  }} 
                               />
                               {imageBottom && (
-                                  <div className="rounded-3xl overflow-hidden border border-slate-100 shadow-xl mt-8">
+                                  <div className="rounded-lg overflow-hidden border border-slate-100 shadow-sm mt-8">
                                       <img src={imageBottom} alt="Bottom Summary" className="w-full h-auto" />
                                   </div>
                               )}
@@ -201,7 +201,7 @@ export default function NewPostPage() {
             </div>
 
             {/* SEO Base Panel */}
-            <div className="bg-white border border-slate-100 p-10 rounded-[3rem] shadow-xl shadow-slate-200/40">
+            <div className="bg-white border border-slate-100 p-10 rounded-lg shadow-sm shadow-slate-200/40">
                <div className="flex items-center gap-3 mb-8">
                   <Settings className="w-5 h-5 text-indigo-500" />
                   <h2 className="text-[14px] font-black text-slate-900">Search Engine Indexing</h2>
@@ -243,17 +243,17 @@ export default function NewPostPage() {
           <div className="lg:col-span-4 space-y-8">
             
             {/* Meta & Categorization */}
-            <div className="bg-slate-950 text-white p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden border border-white/5">
-               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600 rounded-full blur-[80px] opacity-30" />
+            <div className="bg-slate-950 text-[#202124] p-8 rounded-lg shadow-sm relative overflow-hidden border border-[#dadce0]">
+               <div className="absolute top-0 right-0 w-32 h-32 bg-[#1a73e8] rounded-full blur-[80px] opacity-30" />
                <div className="relative z-10 space-y-6">
-                  <h3 className="text-[16px] font-black tracking-tight border-b border-white/10 pb-4">Routing & Hierarchy</h3>
+                  <h3 className="text-[16px] font-black tracking-tight border-b border-[#dadce0] pb-4">Routing & Hierarchy</h3>
                   
                   <div className="space-y-3">
                      <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest">Global Category</label>
                      <select 
                         value={category} 
                         onChange={e => setCategory(e.target.value)}
-                        className="w-full h-12 px-4 rounded-xl border border-white/10 bg-white/5 focus:border-blue-500 outline-none text-[13px] font-bold text-white shadow-inner appearance-none custom-select"
+                        className="w-full h-12 px-4 rounded-xl border border-[#dadce0] bg-[#f8f9fa] focus:border-blue-500 outline-none text-[13px] font-bold text-[#202124] shadow-inner appearance-none custom-select"
                      >
                         <option value="Finance" className="text-slate-900">Finance</option>
                         <option value="Nepal Tools" className="text-slate-900">Nepal Tools</option>
@@ -268,7 +268,7 @@ export default function NewPostPage() {
                      <textarea 
                         value={excerpt} 
                         onChange={e => setExcerpt(e.target.value)}
-                        className="w-full h-28 p-4 rounded-xl border border-white/10 bg-white/5 focus:border-blue-500 outline-none text-[13px] leading-relaxed text-slate-200 resize-none shadow-inner"
+                        className="w-full h-28 p-4 rounded-xl border border-[#dadce0] bg-[#f8f9fa] focus:border-blue-500 outline-none text-[13px] leading-relaxed text-slate-200 resize-none shadow-inner"
                         placeholder="Internal blog listing summary..."
                      />
                   </div>
@@ -276,7 +276,7 @@ export default function NewPostPage() {
             </div>
 
             {/* Multi-Image SEO Slots (The Core Feature) */}
-            <div className="bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/40">
+            <div className="bg-white border border-slate-100 p-8 rounded-lg shadow-sm shadow-slate-200/40">
                <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-500 border border-emerald-100">
                      <ImageIcon className="w-4 h-4" />

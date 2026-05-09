@@ -47,7 +47,7 @@ function renderContent(content: string, title: string, imageMiddle?: string): st
     if (h2Match) {
       const index = h2Match.index! + 5;
       const imgHtml = `
-        <div class="my-8 rounded-2xl overflow-hidden border border-gray-100 shadow-lg">
+        <div class="my-8 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
           <img src="${imageMiddle}" alt="${escapeHtml(title)} — Contextual Detail" class="w-full h-auto object-cover" loading="lazy" />
         </div>
       `;
@@ -129,7 +129,7 @@ export default function PageClient({ post, related }: { post: any, related: any[
         {/* Article body */}
         <div className="space-y-6">
           {post.imageTop && (
-            <div className="mb-8 rounded-3xl overflow-hidden border border-gray-100 shadow-xl">
+            <div className="mb-8 rounded-lg overflow-hidden border border-gray-100 shadow-sm">
               <img 
                 src={post.imageTop} 
                 alt={`${post.title} — Feature Illustration`} 
@@ -146,7 +146,7 @@ export default function PageClient({ post, related }: { post: any, related: any[
           />
 
           {post.imageBottom && (
-            <div className="mt-8 rounded-3xl overflow-hidden border border-gray-100 shadow-xl">
+            <div className="mt-8 rounded-lg overflow-hidden border border-gray-100 shadow-sm">
               <img 
                 src={post.imageBottom} 
                 alt={`${post.title} — Concluding Summary Visual`} 

@@ -29,7 +29,7 @@ export default function RatioProportion() {
       icon={Scale}
       inputs={
         <div className="space-y-6">
-          <div className="p-6 bg-white border border-[#DADCE0] rounded-3xl shadow-sm space-y-4">
+          <div className="p-6 bg-white border border-[#DADCE0] rounded-lg shadow-sm space-y-4">
              <div className="flex items-center gap-3 mb-2">
                 <Target className="w-5 h-5 text-[#1A73E8]" />
                 <span className="text-[11px] font-black uppercase text-[#202124] tracking-widest">Interactive Solving Matrix</span>
@@ -78,7 +78,7 @@ export default function RatioProportion() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-12 bg-white border border-[#DADCE0] rounded-[2.5rem] text-center shadow-2xl relative overflow-hidden group">
+          <div className="p-12 bg-white border border-[#DADCE0] rounded-lg text-center shadow-sm relative overflow-hidden group">
             <div className="absolute right-0 top-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                 <BoxSelect className="w-32 h-32" />
             </div>
@@ -87,7 +87,7 @@ export default function RatioProportion() {
             {result.val === 'No unknown' ? (
               <div className="text-[10px] font-black text-[#D93025] bg-[#FCE8E6] inline-block px-6 py-2 rounded-full border border-[#D93025]/10">Logic Error: Populate 3 of 4 variables</div>
             ) : (
-              <div className="inline-flex gap-4 items-center text-xs font-black text-[#202124] bg-[#F8F9FA] px-8 py-4 rounded-3xl border border-[#DADCE0] shadow-sm">
+              <div className="inline-flex gap-4 items-center text-xs font-black text-[#202124] bg-[#F8F9FA] px-8 py-4 rounded-lg border border-[#DADCE0] shadow-sm">
                 <span>{a || result.val} : {b || result.val}</span>
                 <span className="text-[#1A73E8] text-xl">≡</span>
                 <span>{c || result.val} : {d || result.val}</span>
@@ -95,7 +95,7 @@ export default function RatioProportion() {
             )}
           </div>
 
-          <div className="p-6 bg-[#E8F0FE] border border-[#C5D9F7] rounded-3xl flex items-center gap-4 shadow-sm">
+          <div className="p-6 bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg flex items-center gap-4 shadow-sm">
              <Scale className="w-6 h-6 text-[#1A73E8] shrink-0" />
              <div>
                 <div className="text-[10px] font-black uppercase text-[#1A73E8] mb-1 tracking-widest">Cross-Multiplication Theorem</div>
@@ -107,7 +107,7 @@ export default function RatioProportion() {
       details={
         <div className="space-y-8">
           {/* Section 1: The Philosophy of Relationship */}
-          <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm relative overflow-hidden">
+          <section className="bg-white border border-[#DADCE0] rounded-lg p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -top-12 -right-12 opacity-5">
                 <History className="w-64 h-64" />
             </div>
@@ -131,7 +131,7 @@ export default function RatioProportion() {
           </section>
 
           {/* Section 2: Geometric Similitude */}
-          <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+          <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-12 shadow-sm">
             <div className="flex items-center gap-4 mb-10">
               <div className="bg-[#E6F4EA] p-4 rounded-2xl">
                   <Microscope className="w-8 h-8 text-[#188038]" />
@@ -153,7 +153,7 @@ export default function RatioProportion() {
                     </p>
                 </div>
               </div>
-              <div className="bg-white p-10 rounded-3xl shadow-inner border border-[#DADCE0] space-y-6">
+              <div className="bg-white p-10 rounded-lg shadow-inner border border-[#DADCE0] space-y-6">
                     <h4 className="text-lg font-black text-[#202124]">Algebraic Permutations</h4>
                     <ul className="space-y-4 text-[#5F6368] font-mono text-xs">
                         <li className="flex items-center gap-3 bg-[#F8F9FA] p-3 rounded-xl border border-[#DADCE0]">
@@ -178,7 +178,7 @@ export default function RatioProportion() {
           </section>
 
           {/* Section 3: Academic Significance */}
-          <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+          <section className="bg-white border border-[#DADCE0] rounded-lg p-12 shadow-sm">
             <div className="flex items-center gap-4 mb-8">
               <div className="bg-[#FEF7E0] p-4 rounded-2xl">
                   <GraduationCap className="w-8 h-8 text-[#F29900]" />
@@ -199,11 +199,11 @@ export default function RatioProportion() {
           </section>
 
           {/* Section 4: Real-World Scenarios */}
-          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-[#202124] rounded-lg p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -bottom-10 -left-10 opacity-10">
                 <TrendingUp className="w-64 h-64" />
             </div>
-            <h2 className="text-4xl font-black mb-10 border-b border-white/10 pb-6 tracking-tighter">Industrial Topology & Practical Utility</h2>
+            <h2 className="text-4xl font-black mb-10 border-b border-[#dadce0] pb-6 tracking-tighter">Industrial Topology & Practical Utility</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div className="space-y-6 text-slate-300 leading-relaxed text-sm">
                     <div className="flex gap-4">
@@ -219,8 +219,8 @@ export default function RatioProportion() {
                         </p>
                     </div>
                 </div>
-                <div className="bg-white/10 p-8 rounded-3xl border border-white/20 backdrop-blur-md">
-                    <h4 className="text-white font-black mb-4 flex items-center gap-2">
+                <div className="bg-white/10 p-8 rounded-lg border border-white/20 backdrop-blur-md">
+                    <h4 className="text-[#202124] font-black mb-4 flex items-center gap-2">
                          <Award className="w-5 h-5 text-[#8AB4F8]" />
                          Geometric Harmonics
                     </h4>
@@ -228,12 +228,12 @@ export default function RatioProportion() {
                         Proportions preserve the "Visual Soul" of an object when its size is modified across dimensions.
                     </p>
                     <div className="grid grid-cols-2 gap-4">
-                         <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
-                             <div className="text-[10px] font-bold text-white uppercase mb-1">Standard HD</div>
+                         <div className="bg-[#f8f9fa] p-4 rounded-2xl border border-[#dadce0]">
+                             <div className="text-[10px] font-bold text-[#202124] uppercase mb-1">Standard HD</div>
                              <div className="text-xs font-mono font-black text-[#8AB4F8]">16 : 9</div>
                          </div>
-                         <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
-                             <div className="text-[10px] font-bold text-white uppercase mb-1">Golden Ratio</div>
+                         <div className="bg-[#f8f9fa] p-4 rounded-2xl border border-[#dadce0]">
+                             <div className="text-[10px] font-bold text-[#202124] uppercase mb-1">Golden Ratio</div>
                              <div className="text-xs font-mono font-black text-[#8AB4F8]">1.618 : 1</div>
                          </div>
                     </div>

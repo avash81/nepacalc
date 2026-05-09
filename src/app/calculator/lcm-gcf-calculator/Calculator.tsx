@@ -82,23 +82,23 @@ export default function LcmGcfCalculator() {
         <div className="space-y-6">
           {r ? (
             <>
-              <div className="p-10 bg-white border border-[#DADCE0] rounded-2xl text-center shadow-xl relative overflow-hidden group">
+              <div className="p-10 bg-white border border-[#DADCE0] rounded-2xl text-center shadow-sm relative overflow-hidden group">
                 <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                     <Scale className="w-24 h-24" />
                 </div>
                 <div className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider mb-3">Least Common Multiple (LCM)</div>
                 <div className="text-7xl font-black text-[#1A73E8] tracking-tighter font-mono break-all mb-4">{r.lcm.toLocaleString()}</div>
-                <div className="mt-4 text-[11px] font-bold text-white uppercase tracking-widest bg-[#1A73E8] py-2 px-6 rounded-full inline-block shadow-lg">Universal Multiple</div>
+                <div className="mt-4 text-[11px] font-bold text-[#202124] uppercase tracking-widest bg-[#1A73E8] py-2 px-6 rounded-full inline-block shadow-sm">Universal Multiple</div>
               </div>
 
               <div className="p-10 bg-[#E6F4EA] border border-[#CEEAD6] rounded-2xl text-center shadow-md group">
                 <div className="text-[11px] font-bold uppercase text-[#0F5223] tracking-wider mb-3">Greatest Common Factor (GCF/HCF)</div>
                 <div className="text-7xl font-black text-[#188038] tracking-tighter font-mono break-all mb-4">{r.gcf.toLocaleString()}</div>
-                <div className="mt-4 text-[11px] font-bold text-white uppercase tracking-widest bg-[#188038] py-2 px-6 rounded-full inline-block shadow-lg">Highest Common Divisor</div>
+                <div className="mt-4 text-[11px] font-bold text-[#202124] uppercase tracking-widest bg-[#188038] py-2 px-6 rounded-full inline-block shadow-sm">Highest Common Divisor</div>
               </div>
 
               {r.nums.length === 2 && (
-                <div className="p-8 bg-[#1A1A2E] rounded-2xl border border-slate-800 text-white shadow-2xl relative overflow-hidden">
+                <div className="p-8 bg-[#1A1A2E] rounded-2xl border border-slate-800 text-[#202124] shadow-sm relative overflow-hidden">
                   <div className="absolute -bottom-8 -right-8 opacity-10">
                     <Sigma className="w-32 h-32" />
                   </div>
@@ -110,15 +110,15 @@ export default function LcmGcfCalculator() {
                     <p className="text-sm font-medium text-slate-300 leading-relaxed">
                         According to the product theorem of integers, the product of two numbers is mathematically identical to the product of their LCM and GCF.
                     </p>
-                    <div className="p-5 bg-white/5 rounded-xl border border-white/10 font-mono text-xl text-[#8AB4F8] flex flex-col gap-4">
-                      <div className="flex justify-between items-center border-b border-white/5 pb-2">
-                        <span className="text-xs text-white/50 uppercase tracking-widest">Identity</span>
+                    <div className="p-5 bg-[#f8f9fa] rounded-xl border border-[#dadce0] font-mono text-xl text-[#8AB4F8] flex flex-col gap-4">
+                      <div className="flex justify-between items-center border-b border-[#dadce0] pb-2">
+                        <span className="text-xs text-[#202124]/50 uppercase tracking-widest">Identity</span>
                         <span>LCM(a,b) × GCF(a,b)</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span className="text-white">{r.lcm} × {r.gcf}</span>
-                        <span className="text-white">=</span>
-                        <span className="text-white font-black">{(r.lcm * r.gcf).toLocaleString()}</span>
+                        <span className="text-[#202124]">{r.lcm} × {r.gcf}</span>
+                        <span className="text-[#202124]">=</span>
+                        <span className="text-[#202124] font-black">{(r.lcm * r.gcf).toLocaleString()}</span>
                       </div>
                     </div>
                   </div>
@@ -126,7 +126,7 @@ export default function LcmGcfCalculator() {
               )}
             </>
           ) : (
-            <div className="p-16 bg-[#F8F9FA] border-2 border-dashed border-[#DADCE0] rounded-3xl text-center space-y-6">
+            <div className="p-16 bg-[#F8F9FA] border-2 border-dashed border-[#DADCE0] rounded-lg text-center space-y-6">
                <div className="bg-white p-4 rounded-full w-20 h-20 mx-auto flex items-center justify-center shadow-sm">
                     <Info className="w-10 h-10 text-[#70757A]" />
                </div>
@@ -231,8 +231,8 @@ export default function LcmGcfCalculator() {
           </section>
 
           {/* Section 4: Academic Roadmap for Nepal */}
-          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-white rounded-3xl p-10 shadow-2xl">
-            <h2 className="text-3xl font-black mb-8 border-b border-white/10 pb-4">Nepalese Academic Roadmap & SEE Alignment</h2>
+          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-[#202124] rounded-lg p-10 shadow-sm">
+            <h2 className="text-3xl font-black mb-8 border-b border-[#dadce0] pb-4">Nepalese Academic Roadmap & SEE Alignment</h2>
             <div className="prose prose-md prose-invert max-w-none leading-relaxed space-y-6">
               <p>
                 For students in Nepal, the concepts of LCM and HCF are first formally introduced in Grade 6 and become critical components of the <strong>Compulsory Mathematics</strong> and <strong>Optional Mathematics</strong> papers in the <strong>Secondary Education Examination (SEE)</strong>. Mastering these techniques is the gateway to algebraic simplification and the solving of quadratic equations.

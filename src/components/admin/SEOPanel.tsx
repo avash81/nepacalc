@@ -35,7 +35,7 @@ export default function SEOPanel({ data, onChange, onAutoGenerateSlug }: SEOPane
     <div className="space-y-6">
       {/* Status Card */}
       <Card className="p-6">
-        <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">Publish Status</h3>
+        <h3 className="text-sm font-bold text-slate-900 dark:text-[#202124] uppercase tracking-wider mb-4">Publish Status</h3>
         <Select
           label="Post Status"
           value={data.status}
@@ -51,10 +51,10 @@ export default function SEOPanel({ data, onChange, onAutoGenerateSlug }: SEOPane
       {/* SEO Score Card */}
       <Card className="p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">SEO Score</h3>
+          <h3 className="text-sm font-bold text-slate-900 dark:text-[#202124] uppercase tracking-wider">SEO Score</h3>
           <span className={clsx("text-lg font-black", scoreColor)}>{score}/100</span>
         </div>
-        <div className="w-full bg-slate-100 dark:bg-slate-900 h-2 rounded-full overflow-hidden">
+        <div className="w-full bg-slate-100 dark:bg-white border border-[#dadce0] h-2 rounded-full overflow-hidden">
           <div 
             className={clsx("h-full transition-all duration-500", 
               score < 50 ? 'bg-red-500' : score < 80 ? 'bg-amber-500' : 'bg-green-500'
@@ -66,7 +66,7 @@ export default function SEOPanel({ data, onChange, onAutoGenerateSlug }: SEOPane
 
       {/* SEO Fields */}
       <Card className="p-6 space-y-6">
-        <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-2">Search Optimization</h3>
+        <h3 className="text-sm font-bold text-slate-900 dark:text-[#202124] uppercase tracking-wider mb-2">Search Optimization</h3>
         
         <Input
           label="Focus Keyword"
@@ -86,7 +86,7 @@ export default function SEOPanel({ data, onChange, onAutoGenerateSlug }: SEOPane
             type="text"
             value={data.metaTitle}
             onChange={(e) => onChange('metaTitle', e.target.value)}
-            className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/20 rounded-xl focus:ring-2 focus:ring-cp-blue outline-none text-sm"
+            className="w-full px-4 py-2.5 bg-slate-50 dark:bg-white border border-[#dadce0] border border-slate-200 dark:border-slate-700/20 rounded-xl focus:ring-2 focus:ring-cp-blue outline-none text-sm"
             placeholder="SEO Title (50-60 chars)"
           />
         </div>
@@ -102,7 +102,7 @@ export default function SEOPanel({ data, onChange, onAutoGenerateSlug }: SEOPane
             value={data.metaDescription}
             onChange={(e) => onChange('metaDescription', e.target.value)}
             rows={3}
-            className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/20 rounded-xl focus:ring-2 focus:ring-cp-blue outline-none text-sm resize-none"
+            className="w-full px-4 py-2.5 bg-slate-50 dark:bg-white border border-[#dadce0] border border-slate-200 dark:border-slate-700/20 rounded-xl focus:ring-2 focus:ring-cp-blue outline-none text-sm resize-none"
             placeholder="Meta Description (120-155 chars)"
           />
         </div>
@@ -114,12 +114,12 @@ export default function SEOPanel({ data, onChange, onAutoGenerateSlug }: SEOPane
               type="text"
               value={data.slug}
               onChange={(e) => onChange('slug', e.target.value)}
-              className="flex-1 px-4 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/20 rounded-xl focus:ring-2 focus:ring-cp-blue outline-none text-sm"
+              className="flex-1 px-4 py-2.5 bg-slate-50 dark:bg-white border border-[#dadce0] border border-slate-200 dark:border-slate-700/20 rounded-xl focus:ring-2 focus:ring-cp-blue outline-none text-sm"
               placeholder="url-slug-here"
             />
             <button 
               onClick={onAutoGenerateSlug}
-              className="p-2.5 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/20 rounded-xl hover:bg-cp-blue hover:text-white transition-all"
+              className="p-2.5 bg-slate-100 dark:bg-white border border-[#dadce0] border border-slate-200 dark:border-slate-700/20 rounded-xl hover:bg-cp-blue hover:text-[#202124] transition-all"
               title="Auto-generate from title"
             >
               <Globe className="w-4 h-4" />
@@ -130,7 +130,7 @@ export default function SEOPanel({ data, onChange, onAutoGenerateSlug }: SEOPane
 
       {/* Google Preview */}
       <Card className="p-6">
-        <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">Google Preview</h3>
+        <h3 className="text-sm font-bold text-slate-900 dark:text-[#202124] uppercase tracking-wider mb-4">Google Preview</h3>
         <div className="space-y-1">
           <div className="text-[#1a0dab] text-lg hover:underline cursor-pointer truncate">
             {data.metaTitle || 'Your SEO Title Will Appear Here'}

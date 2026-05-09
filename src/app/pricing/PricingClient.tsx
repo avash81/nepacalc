@@ -24,8 +24,8 @@ export default function PricingClient() {
 
         {/* Featured "Free Forever" Card */}
         <div className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-[3rem] blur opacity-20 group-hover:opacity-30 transition duration-1000"></div>
-          <div className="relative bg-white border border-slate-100 rounded-[3rem] p-8 sm:p-16 shadow-2xl overflow-hidden">
+          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-lg blur opacity-20 group-hover:opacity-30 transition duration-1000"></div>
+          <div className="relative bg-white border border-slate-100 rounded-lg p-8 sm:p-16 shadow-sm overflow-hidden">
              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div className="space-y-8">
                    <div className="space-y-2">
@@ -56,13 +56,13 @@ export default function PricingClient() {
 
                    <Link 
                      href="/"
-                     className="block w-full py-4 bg-blue-600 hover:bg-slate-900 text-white font-black text-[11px] uppercase tracking-[0.2em] text-center rounded-2xl shadow-xl shadow-blue-500/20 transition-all active:scale-95"
+                     className="block w-full py-4 bg-[#1a73e8] hover:bg-white border border-[#dadce0] text-[#202124] font-black text-[11px] uppercase tracking-[0.2em] text-center rounded-2xl shadow-sm shadow-blue-500/20 transition-all active:scale-95"
                    >
                      Start Calculating Now →
                    </Link>
                 </div>
 
-                <div className="bg-slate-50 rounded-[2.5rem] p-8 space-y-6 border border-slate-100">
+                <div className="bg-slate-50 rounded-lg p-8 space-y-6 border border-slate-100">
                    <div className="flex items-center gap-4">
                       <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm">
                          <ShieldCheck className="w-6 h-6 text-blue-600" />

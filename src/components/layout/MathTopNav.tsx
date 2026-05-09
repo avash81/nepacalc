@@ -67,7 +67,7 @@ export function MathTopNav() {
         </div>
       {/* Math Tools Dropdown / Mobile Menu */}
       {menuOpen && (
-        <div className="absolute top-full left-0 md:left-[140px] w-full md:w-[320px] bg-white border-b md:border md:rounded-b-lg border-[#e8eaed] shadow-2xl z-[8900] py-4 flex flex-col max-h-[calc(100vh-120px)] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute top-full left-0 md:left-[140px] w-full md:w-[320px] bg-white border-b md:border md:rounded-b-lg border-[#e8eaed] shadow-sm z-[8900] py-4 flex flex-col max-h-[calc(100vh-120px)] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
            <div className="px-5 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-[#5F6368] border-b border-[#F1F3F4] mb-2 mx-2">Laboratory Suite</div>
            {ECO_LINKS.map(link => {
              const Icon = link.icon;

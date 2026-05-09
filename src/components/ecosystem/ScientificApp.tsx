@@ -89,10 +89,10 @@ export function ScientificApp({ mode }: { mode: 'scientific' | 'basic' }) {
   }, [currentInput, history, angleUnit]);
 
   return (
-    <div className="w-full flex-1 flex flex-col bg-white overflow-hidden relative border-x border-slate-100 shadow-2xl h-full">
+    <div className="w-full flex-1 flex flex-col bg-white overflow-hidden relative border-x border-slate-100 shadow-sm h-full">
       
       {/* 🔬 ENGINEERING STATUS BAR */}
-      <div className="flex justify-between items-center px-6 py-3 bg-[#1a4b8c] text-white z-30">
+      <div className="flex justify-between items-center px-6 py-3 bg-[#1a4b8c] text-[#202124] z-30">
          <div className="flex items-center gap-4">
             <span className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em]">
                <Settings2 className="w-3 h-3 text-[#FFC107]" /> Engineering Mode
@@ -100,13 +100,13 @@ export function ScientificApp({ mode }: { mode: 'scientific' | 'basic' }) {
             <div className="h-3 w-[1px] bg-white/20" />
             <button 
                onClick={() => handleAction('TOGGLE_UNIT')}
-               className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded transition-all ${angleUnit === 'deg' ? 'bg-[#FFC107] text-black shadow-lg shadow-yellow-500/20' : 'bg-white/10 text-white hover:bg-white/20'}`}
+               className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded transition-all ${angleUnit === 'deg' ? 'bg-[#FFC107] text-black shadow-sm shadow-yellow-500/20' : 'bg-white/10 text-[#202124] hover:bg-white/20'}`}
             >
                DEG
             </button>
             <button 
                onClick={() => handleAction('TOGGLE_UNIT')}
-               className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded transition-all ${angleUnit === 'rad' ? 'bg-[#FFC107] text-black shadow-lg shadow-yellow-500/20' : 'bg-white/10 text-white hover:bg-white/20'}`}
+               className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded transition-all ${angleUnit === 'rad' ? 'bg-[#FFC107] text-black shadow-sm shadow-yellow-500/20' : 'bg-white/10 text-[#202124] hover:bg-white/20'}`}
             >
                RAD
             </button>

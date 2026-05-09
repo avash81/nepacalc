@@ -115,13 +115,13 @@ export default function SleepCalculator() {
                         key={i} 
                         className={`p-6 rounded-2xl border transition-all hover:shadow-md ${
                             res.label === 'Recommended' 
-                            ? 'bg-gradient-to-br from-indigo-600 to-violet-600 text-white border-transparent shadow-lg shadow-indigo-200' 
+                            ? 'bg-gradient-to-br from-indigo-600 to-violet-600 text-[#202124] border-transparent shadow-sm shadow-indigo-200' 
                             : 'bg-white border-slate-200 text-slate-800'
                         }`}
                     >
                         <div className="flex items-center justify-between">
                             <div>
-                                <div className={`text-3xl font-black tracking-tight ${res.label === 'Recommended' ? 'text-white' : 'text-slate-900'}`}>{res.time}</div>
+                                <div className={`text-3xl font-black tracking-tight ${res.label === 'Recommended' ? 'text-[#202124]' : 'text-slate-900'}`}>{res.time}</div>
                                 <div className={`text-[10px] font-bold uppercase tracking-widest mt-1 ${res.label === 'Recommended' ? 'text-indigo-200' : 'text-slate-500'}`}>
                                     {res.hours} Hours • {res.cycles} Cycles
                                 </div>

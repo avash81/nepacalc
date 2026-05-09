@@ -86,7 +86,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Weight Protocol</label>
                    <div className="flex p-1 bg-[#F8F9FA] rounded-md border border-[#DADCE0]">
                     {['gram', 'tola'].map(mode => (
-                      <button key={mode} onClick={() => update({ unitMode: mode as any })} className={`flex-1 py-2 text-[10px] font-bold uppercase rounded transition-all ${unitMode === mode ? 'bg-[#1A73E8] text-white shadow-sm' : 'text-[#5F6368] hover:bg-white'}`}>{mode}</button>
+                      <button key={mode} onClick={() => update({ unitMode: mode as any })} className={`flex-1 py-2 text-[10px] font-bold uppercase rounded transition-all ${unitMode === mode ? 'bg-[#1A73E8] text-[#202124] shadow-sm' : 'text-[#5F6368] hover:bg-white'}`}>{mode}</button>
                     ))}
                    </div>
                 </div>
@@ -122,7 +122,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
              </div>
              <div className="flex p-1 bg-white border border-[#DADCE0] rounded-md">
                 {['fixed', 'percent'].map(type => (
-                   <button key={type} onClick={() => update({ makingChargeType: type as any })} className={`flex-1 py-2 text-[10px] font-bold uppercase rounded transition-all ${makingChargeType === type ? 'bg-[#1A73E8] text-white shadow-sm' : 'text-[#5F6368] hover:bg-[#F8F9FA]'}`}>
+                   <button key={type} onClick={() => update({ makingChargeType: type as any })} className={`flex-1 py-2 text-[10px] font-bold uppercase rounded transition-all ${makingChargeType === type ? 'bg-[#1A73E8] text-[#202124] shadow-sm' : 'text-[#5F6368] hover:bg-[#F8F9FA]'}`}>
                       {type === 'fixed' ? 'Fixed Jyala (Rs)' : 'Wastage (Jarti %)'}
                    </button>
                 ))}
@@ -162,7 +162,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
       inputs={inputBlock}
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Landmark className="w-24 h-24 text-amber-600" /></div>
              <div className="text-[10px] font-bold text-amber-600 uppercase tracking-[0.2em]">Estimated Jewelry Valuation</div>
              <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">{formatNPR(result.totalPrice)}</div>
@@ -172,11 +172,11 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-             <div className="p-6 bg-amber-50 border border-amber-100 rounded-3xl space-y-1">
+             <div className="p-6 bg-amber-50 border border-amber-100 rounded-lg space-y-1">
                 <div className="text-[9px] font-black text-amber-600 uppercase">Live Market Rate</div>
                 <div className="text-xl font-black text-amber-600">{formatNPR(activeRate)}</div>
              </div>
-             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1">
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
                 <div className="text-[9px] font-black text-slate-400 uppercase">Crafting Cost</div>
                 <div className="text-xl font-black text-slate-900">{formatNPR(result.makingCharges)}</div>
              </div>

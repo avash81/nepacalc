@@ -102,21 +102,21 @@ export function CalculusApp() {
   }, [expression, operation]);
 
   return (
-    <div className="w-full flex-1 flex flex-col bg-white overflow-hidden relative border-x border-slate-100 shadow-2xl h-full">
+    <div className="w-full flex-1 flex flex-col bg-white overflow-hidden relative border-x border-slate-100 shadow-sm h-full">
       
       {/* 🧪 LABORATORY HEADER */}
-      <div className="flex justify-between items-center px-6 py-4 bg-[#0a0a0a] text-white z-30">
+      <div className="flex justify-between items-center px-6 py-4 bg-[#0a0a0a] text-[#202124] z-30">
         <div className="flex items-center gap-4">
           <span className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em]">
             <BrainCircuit className="w-4 h-4 text-[#FFC107]" /> Calculus Laboratory v4.0
           </span>
           <div className="h-4 w-[1px] bg-white/20" />
-          <div className="flex bg-white/5 rounded-lg p-1">
+          <div className="flex bg-[#f8f9fa] rounded-lg p-1">
              {(['Derivation', 'Integration', 'Simplify', 'Solve'] as const).map(op => (
                <button
                  key={op}
                  onClick={() => setOperation(op)}
-                 className={`px-3 py-1.5 rounded-md text-[9px] font-black uppercase tracking-widest transition-all ${operation === op ? 'bg-[#FFC107] text-black shadow-lg shadow-yellow-500/20 scale-105' : 'text-white/40 hover:text-white hover:bg-white/10'}`}
+                 className={`px-3 py-1.5 rounded-md text-[9px] font-black uppercase tracking-widest transition-all ${operation === op ? 'bg-[#FFC107] text-black shadow-sm shadow-yellow-500/20 scale-105' : 'text-[#202124]/40 hover:text-[#202124] hover:bg-white/10'}`}
                >
                  {op}
                </button>
@@ -145,7 +145,7 @@ export function CalculusApp() {
 
           {history.length === 0 && (
             <div className="flex-1 flex flex-col items-center justify-center text-center py-20 opacity-30">
-               <div className="w-20 h-20 rounded-[2.5rem] bg-white flex items-center justify-center mb-6 shadow-sm">
+               <div className="w-20 h-20 rounded-lg bg-white flex items-center justify-center mb-6 shadow-sm">
                   <FunctionSquare className="w-10 h-10 text-slate-400" />
                </div>
                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">Awaiting Signal Input</p>
@@ -153,7 +153,7 @@ export function CalculusApp() {
           )}
 
           {history.map(item => (
-            <div key={item.id} className="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-sm animate-in slide-in-from-bottom-4 duration-350 active:scale-[0.99] transition-all">
+            <div key={item.id} className="bg-white border border-slate-100 rounded-lg p-8 shadow-sm animate-in slide-in-from-bottom-4 duration-350 active:scale-[0.99] transition-all">
                <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-50">
                   <div className="flex flex-col gap-1">
                      <div className="flex items-center gap-2">
@@ -184,7 +184,7 @@ export function CalculusApp() {
                   ))}
                </div>
 
-               <div className="bg-[#fcf8e8] rounded-3xl p-8 border border-[#FFC107]/20 relative overflow-hidden group">
+               <div className="bg-[#fcf8e8] rounded-lg p-8 border border-[#FFC107]/20 relative overflow-hidden group">
                   <div className="absolute top-0 right-0 p-4 opacity-[0.05] group-hover:opacity-10 transition-opacity">
                      <Zap className="w-20 h-20 fill-black text-black" />
                   </div>
@@ -198,7 +198,7 @@ export function CalculusApp() {
         </div>
 
         {/* 🔡 UNIVERSAL PALETTE & INPUT */}
-        <div className="w-full lg:w-[450px] bg-white border-l border-slate-100 flex flex-col p-8 shadow-2xl z-20">
+        <div className="w-full lg:w-[450px] bg-white border-l border-slate-100 flex flex-col p-8 shadow-sm z-20">
            <div className="flex items-center justify-between mb-8">
               <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 flex items-center gap-2">
                  <Calculator className="w-4 h-4" /> Entry Console
@@ -216,7 +216,7 @@ export function CalculusApp() {
                  />
                  <button 
                    onClick={performCalculation}
-                   className="absolute bottom-6 right-6 bg-black text-white px-8 py-4 rounded-[1.5rem] font-black text-[11px] uppercase tracking-widest hover:bg-slate-800 active:scale-95 transition-all flex items-center gap-3 shadow-2xl"
+                   className="absolute bottom-6 right-6 bg-black text-[#202124] px-8 py-4 rounded-[1.5rem] font-black text-[11px] uppercase tracking-widest hover:bg-slate-800 active:scale-95 transition-all flex items-center gap-3 shadow-sm"
                  >
                    Process <Zap className="w-3 h-3 fill-yellow-400 text-yellow-400" />
                  </button>

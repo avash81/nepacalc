@@ -184,7 +184,7 @@ export default function GeometryCanvasClient() {
             <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Tools</div>
             {TOOL_ITEMS.map(t => (
               <button key={t.id} onClick={() => { setTool(t.id); setPendingPt(null); }}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-medium transition-all ${tool === t.id ? 'bg-[#4361ee] text-white' : 'text-slate-600 hover:bg-slate-100'}`}>
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] font-medium transition-all ${tool === t.id ? 'bg-[#4361ee] text-[#202124]' : 'text-slate-600 hover:bg-slate-100'}`}>
                 <span className="text-[16px]">{t.icon}</span>{t.name}
               </button>
             ))}

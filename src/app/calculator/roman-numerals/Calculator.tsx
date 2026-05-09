@@ -84,7 +84,7 @@ export default function RomanNumeralsCalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-8 bg-blue-600 rounded-2xl text-center shadow-lg text-white relative overflow-hidden">
+          <div className="p-8 bg-[#1a73e8] rounded-2xl text-center shadow-sm text-[#202124] relative overflow-hidden">
             <div className="absolute right-0 top-0 opacity-10 pointer-events-none">
               <Type className="w-48 h-48 -mr-10 -mt-10" />
             </div>

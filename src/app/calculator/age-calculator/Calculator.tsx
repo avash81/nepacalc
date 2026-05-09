@@ -74,7 +74,7 @@ export default function AgeCalculator() {
         <div className="space-y-6">
           {a && !a.error ? (
             <>
-              <div className="p-10 bg-white border border-[#DADCE0] rounded-3xl text-center shadow-xl">
+              <div className="p-10 bg-white border border-[#DADCE0] rounded-lg text-center shadow-sm">
                  <div className="text-7xl font-black text-[#1A73E8] tracking-tighter">{a.years}</div>
                  <div className="text-[10px] font-bold text-[#70757A] uppercase">{a.months} Months, {a.days} Days</div>
               </div>
@@ -100,7 +100,7 @@ export default function AgeCalculator() {
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-3xl p-8 shadow-sm">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
              <div className="flex items-center gap-3 mb-6 border-l-4 border-[#1A73E8] pl-4">
                 <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Chronological Audit</h3>
              </div>

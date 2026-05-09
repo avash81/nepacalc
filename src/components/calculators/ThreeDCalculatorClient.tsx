@@ -584,7 +584,7 @@ export default function ThreeDCalculatorClient() {
                     onClick={() => setSliceMode(mode)}
                     className={`flex-1 py-1.5 rounded text-[10px] font-bold uppercase transition-all ${
                       sliceMode === mode 
-                        ? 'bg-blue-600 text-white shadow-lg' 
+                        ? 'bg-[#1a73e8] text-[#202124] shadow-sm' 
                         : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
                     }`}
                   >
@@ -681,7 +681,7 @@ export default function ThreeDCalculatorClient() {
               <div className="flex items-center justify-between">
                 <span className="text-[9px] font-bold text-slate-400 uppercase">Palette</span>
                 <div className="flex gap-1">
-                  <div className="w-3 h-3 rounded-full bg-blue-600 border border-white/20" />
+                  <div className="w-3 h-3 rounded-full bg-[#1a73e8] border border-white/20" />
                   <div className="w-3 h-3 rounded-full bg-green-600 border border-white/20" />
                   <div className="w-3 h-3 rounded-full bg-red-600 border border-white/20" />
                 </div>
@@ -700,7 +700,7 @@ export default function ThreeDCalculatorClient() {
                   <button 
                     key={p.name} 
                     onClick={() => addGraph(p.eq, p.color)} 
-                    className="h-9 flex items-center justify-center bg-[#0f172a] hover:bg-slate-800 text-white text-[8px] font-black rounded transition-all uppercase tracking-wider px-1"
+                    className="h-9 flex items-center justify-center bg-[#0f172a] hover:bg-slate-800 text-[#202124] text-[8px] font-black rounded transition-all uppercase tracking-wider px-1"
                   >
                     {p.name}
                   </button>
@@ -816,13 +816,13 @@ export default function ThreeDCalculatorClient() {
               <div className="absolute top-6 right-6 flex flex-col gap-3 items-end">
                 <button 
                   onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-                  className={`w-10 h-10 rounded shadow-lg border flex items-center justify-center transition-all ${isSettingsOpen ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`}
+                  className={`w-10 h-10 rounded shadow-sm border flex items-center justify-center transition-all ${isSettingsOpen ? 'bg-[#1a73e8] text-[#202124] border-blue-600' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`}
                 >
                   <Search className="w-5 h-5 rotate-90" /> {/* Wrench replacement */}
                 </button>
 
                 {isSettingsOpen && (
-                  <div className="bg-white p-0 rounded shadow-2xl border border-slate-200 w-80 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 z-50">
+                  <div className="bg-white p-0 rounded shadow-sm border border-slate-200 w-80 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 z-50">
                     <div className="p-5 space-y-5">
                       {/* VIEWPORT SLIDER (ZOOM) */}
                       <div className="flex items-center gap-4 py-2">
@@ -888,10 +888,10 @@ export default function ThreeDCalculatorClient() {
                       <div className="pt-4 border-t border-slate-100">
                         <div className="text-[9px] font-bold text-slate-400 uppercase mb-3 tracking-widest">Technical Projections</div>
                         <div className="flex gap-2">
-                          <button onClick={() => { setIsOrthographic(false); controlsRef.current?.reset(true); }} className={`flex-1 py-2.5 rounded border flex justify-center items-center transition-all ${!isOrthographic ? 'bg-blue-600 border-blue-600 text-white shadow-lg' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
+                          <button onClick={() => { setIsOrthographic(false); controlsRef.current?.reset(true); }} className={`flex-1 py-2.5 rounded border flex justify-center items-center transition-all ${!isOrthographic ? 'bg-[#1a73e8] border-blue-600 text-[#202124] shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
                             <Box className="w-4 h-4" />
                           </button>
-                          <button onClick={() => { setIsOrthographic(true); controlsRef.current?.rotateTo(0, Math.PI/2, true); }} className={`flex-1 py-2.5 rounded border flex justify-center items-center transition-all ${isOrthographic ? 'bg-blue-600 border-blue-600 text-white shadow-lg' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
+                          <button onClick={() => { setIsOrthographic(true); controlsRef.current?.rotateTo(0, Math.PI/2, true); }} className={`flex-1 py-2.5 rounded border flex justify-center items-center transition-all ${isOrthographic ? 'bg-[#1a73e8] border-blue-600 text-[#202124] shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
                             <RotateCcw className="w-4 h-4" />
                           </button>
                           <button onClick={() => controlsRef.current?.setLookAt(0, 0, 30, 0, 0, 0, true)} className="flex-1 py-2.5 bg-slate-50 border border-slate-200 rounded flex justify-center items-center text-slate-400 hover:bg-slate-100">
@@ -908,13 +908,13 @@ export default function ThreeDCalculatorClient() {
                     <div className="flex border-t border-slate-100">
                       <button 
                         onClick={() => setUseRadians(true)}
-                        className={`flex-1 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all ${useRadians ? 'bg-slate-800 text-white' : 'bg-white text-slate-400 hover:bg-slate-50'}`}
+                        className={`flex-1 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all ${useRadians ? 'bg-slate-800 text-[#202124]' : 'bg-white text-slate-400 hover:bg-slate-50'}`}
                       >
                         Radians
                       </button>
                       <button 
                         onClick={() => setUseRadians(false)}
-                        className={`flex-1 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all ${!useRadians ? 'bg-slate-800 text-white' : 'bg-white text-slate-400 hover:bg-slate-50'}`}
+                        className={`flex-1 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all ${!useRadians ? 'bg-slate-800 text-[#202124]' : 'bg-white text-slate-400 hover:bg-slate-50'}`}
                       >
                         Degrees
                       </button>
@@ -925,19 +925,19 @@ export default function ThreeDCalculatorClient() {
                 <div className="flex flex-col gap-1 mt-2">
                   <button 
                     onClick={() => controlsRef.current?.zoom(1.5, true)}
-                    className="w-10 h-10 bg-white shadow-lg border border-slate-200 rounded-t flex items-center justify-center text-slate-600 hover:bg-slate-50 transition-all"
+                    className="w-10 h-10 bg-white shadow-sm border border-slate-200 rounded-t flex items-center justify-center text-slate-600 hover:bg-slate-50 transition-all"
                   >
                     <Plus className="w-5 h-5" />
                   </button>
                   <button 
                     onClick={() => controlsRef.current?.zoom(-1.5, true)}
-                    className="w-10 h-10 bg-white shadow-lg border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 transition-all border-y-0"
+                    className="w-10 h-10 bg-white shadow-sm border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 transition-all border-y-0"
                   >
                     <Minus className="w-5 h-5" />
                   </button>
                   <button 
                     onClick={() => controlsRef.current?.reset(true)}
-                    className="w-10 h-10 bg-white shadow-lg border border-slate-200 rounded-b flex items-center justify-center text-slate-600 hover:bg-slate-50 transition-all"
+                    className="w-10 h-10 bg-white shadow-sm border border-slate-200 rounded-b flex items-center justify-center text-slate-600 hover:bg-slate-50 transition-all"
                   >
                     <RotateCcw className="w-5 h-5" />
                   </button>
@@ -946,10 +946,10 @@ export default function ThreeDCalculatorClient() {
 
               {/* ADVANCED MATHEMATICAL KEYBOARD */}
               {activeInputId && (
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 p-5 rounded-2xl shadow-3xl border border-white/10 w-[600px] z-50">
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white border border-[#dadce0] p-5 rounded-2xl shadow-3xl border border-[#dadce0] w-[600px] z-50">
                   <div className="flex justify-between items-center mb-4">
-                    <span className="text-[10px] font-black text-white/40 uppercase tracking-widest">Scientific Input Panel</span>
-                    <button onClick={() => setActiveInputId(null)} className="text-white/40 hover:text-white"><Plus className="w-4 h-4 rotate-45" /></button>
+                    <span className="text-[10px] font-black text-[#202124]/40 uppercase tracking-widest">Scientific Input Panel</span>
+                    <button onClick={() => setActiveInputId(null)} className="text-[#202124]/40 hover:text-[#202124]"><Plus className="w-4 h-4 rotate-45" /></button>
                   </div>
                   <div className="grid grid-cols-9 gap-2">
                     {KBD_123.flat().map((key) => (
@@ -969,9 +969,9 @@ export default function ThreeDCalculatorClient() {
                           }
                         }}
                         className={`h-11 rounded-lg text-[11px] font-black transition-all active:scale-95 ${
-                          ['AC', 'DEL', 'ENTER'].includes(key) ? 'bg-rose-600 text-white' : 
-                          ['sin', 'cos', 'tan', 'exp', 'log', 'sqrt'].includes(key) ? 'bg-blue-600 text-white' :
-                          'bg-white/10 text-white hover:bg-white/20'
+                          ['AC', 'DEL', 'ENTER'].includes(key) ? 'bg-rose-600 text-[#202124]' : 
+                          ['sin', 'cos', 'tan', 'exp', 'log', 'sqrt'].includes(key) ? 'bg-[#1a73e8] text-[#202124]' :
+                          'bg-white/10 text-[#202124] hover:bg-white/20'
                         }`}
                       >
                         {key}

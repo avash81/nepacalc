@@ -64,7 +64,7 @@ export default function WordCounter() {
           <div className="space-y-6">
             {/* Words & Chars hero */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-6 bg-indigo-600 rounded-3xl text-white text-center shadow-lg relative overflow-hidden">
+              <div className="p-6 bg-indigo-600 rounded-lg text-[#202124] text-center shadow-sm relative overflow-hidden">
                 <div className="absolute top-0 right-0 opacity-10 pointer-events-none -mt-4 -mr-4">
                     <Type className="w-32 h-32" />
                 </div>
@@ -73,7 +73,7 @@ export default function WordCounter() {
                     <div className="text-5xl font-black font-mono tracking-tighter">{result.words}</div>
                 </div>
               </div>
-              <div className="p-6 bg-white border border-slate-200 rounded-3xl text-center shadow-sm flex flex-col justify-center">
+              <div className="p-6 bg-white border border-slate-200 rounded-lg text-center shadow-sm flex flex-col justify-center">
                 <div className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-2">Characters</div>
                 <div className="text-5xl font-black font-mono text-indigo-600 tracking-tighter">{result.chars}</div>
               </div>
@@ -97,7 +97,7 @@ export default function WordCounter() {
               ))}
             </div>
 
-            <div className="p-5 bg-slate-900 rounded-2xl shadow-lg text-white">
+            <div className="p-5 bg-white border border-[#dadce0] rounded-2xl shadow-sm text-[#202124]">
                 <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">Writing Limits Guide</h4>
                 <div className="space-y-3">
                     <div className="flex justify-between items-center text-xs">

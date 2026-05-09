@@ -82,7 +82,7 @@ export default function PostsPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Content Management</h1>
+            <h1 className="text-3xl font-black text-slate-900 dark:text-[#202124] tracking-tight">Content Management</h1>
             <p className="text-slate-500 dark:text-slate-700 mt-1">Manage your SEO-optimized blog posts and guides.</p>
           </div>
           <Link href="/admin/posts/new">
@@ -101,7 +101,7 @@ export default function PostsPage() {
               placeholder="Search posts by title..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/10 rounded-xl focus:ring-2 focus:ring-cp-blue outline-none text-sm"
+              className="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-white border border-[#dadce0] border border-slate-200 dark:border-slate-700/10 rounded-xl focus:ring-2 focus:ring-cp-blue outline-none text-sm"
             />
           </div>
           <div className="flex gap-4 w-full md:w-auto">
@@ -120,11 +120,11 @@ export default function PostsPage() {
         </Card>
 
         {/* Posts Table */}
-        <Card className="overflow-hidden border-none shadow-xl shadow-slate-200/50 dark:shadow-none">
+        <Card className="overflow-hidden border-none shadow-sm shadow-slate-200/50 dark:shadow-none">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-700/10">
+                <tr className="bg-slate-50 dark:bg-white border border-[#dadce0]/50 border-b border-slate-200 dark:border-slate-700/10">
                   <th className="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Post Title</th>
                   <th className="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Status</th>
                   <th className="px-6 py-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Date</th>
@@ -142,14 +142,14 @@ export default function PostsPage() {
                   </tr>
                 ) : (
                   filteredPosts.map((post) => (
-                    <tr key={post.id} className="hover:bg-slate-50 dark:hover:bg-slate-900/30 transition-colors group">
+                    <tr key={post.id} className="hover:bg-slate-50 dark:hover:bg-white border border-[#dadce0]/30 transition-colors group">
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-lg bg-cp-blue/10 flex items-center justify-center text-cp-blue">
                             <FileText className="w-5 h-5" />
                           </div>
                           <div>
-                            <div className="font-bold text-slate-900 dark:text-white group-hover:text-cp-blue transition-colors">
+                            <div className="font-bold text-slate-900 dark:text-[#202124] group-hover:text-cp-blue transition-colors">
                               {post.title}
                             </div>
                             <div className="text-xs text-slate-400">/{post.slug}</div>
@@ -160,7 +160,7 @@ export default function PostsPage() {
                         <span className={clsx(
                           "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider",
                           post.status === 'published' ? 'bg-green-100 text-green-700 dark:bg-green-500/10 dark:text-green-400' :
-                          post.status === 'scheduled' ? 'bg-blue-100 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400' :
+                          post.status === 'scheduled' ? 'bg-blue-100 text-blue-700 dark:bg-blue-500/10 dark:text-[#1a0dab]' :
                           'bg-slate-100 text-slate-600 dark:bg-slate-500/10 dark:text-slate-400'
                         )}>
                           {post.status === 'published' && <CheckCircle2 className="w-3 h-3" />}
@@ -190,7 +190,7 @@ export default function PostsPage() {
                             <Trash2 className="w-4 h-4" />
                           </button>
                           <Link href={`/blog/${post.slug}`} target="_blank">
-                            <button className="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors">
+                            <button className="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-[#202124] transition-colors">
                               <Eye className="w-4 h-4" />
                             </button>
                           </Link>

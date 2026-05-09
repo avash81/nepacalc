@@ -54,7 +54,7 @@ export function PracticeApp() {
      return (
         <div className="fixed inset-0 bg-white z-[500] flex flex-col no-print">
            {/* Restricted HUD */}
-           <div className="h-14 bg-slate-900 text-white flex items-center justify-between px-6 shadow-2xl">
+           <div className="h-14 bg-white border border-[#dadce0] text-[#202124] flex items-center justify-between px-6 shadow-sm">
               <div className="flex items-center gap-4">
                  <div className="flex items-center gap-2 px-3 py-1 bg-indigo-600 rounded-full">
                     <Shield className="w-4 h-4" />
@@ -67,13 +67,13 @@ export function PracticeApp() {
               <div className="flex items-center gap-8">
                  <div className="flex items-center gap-3">
                     <Timer className={`w-5 h-5 ${timeLeft < 300 ? 'text-red-500 animate-pulse' : 'text-indigo-400'}`} />
-                    <span className={`text-xl font-mono font-black ${timeLeft < 300 ? 'text-red-500' : 'text-white'}`}>
+                    <span className={`text-xl font-mono font-black ${timeLeft < 300 ? 'text-red-500' : 'text-[#202124]'}`}>
                        {formatTime(timeLeft)}
                     </span>
                  </div>
                  <button 
                   onClick={endPractice}
-                  className="flex items-center gap-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white px-4 py-1.5 rounded-lg border border-red-500/20 text-xs font-black uppercase tracking-widest transition-all"
+                  className="flex items-center gap-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-[#202124] px-4 py-1.5 rounded-lg border border-red-500/20 text-xs font-black uppercase tracking-widest transition-all"
                  >
                     <X className="w-4 h-4" /> Exit
                  </button>
@@ -93,7 +93,7 @@ export function PracticeApp() {
 
   return (
     <div className="w-full h-[calc(100vh-50px)] flex flex-col items-center justify-center bg-slate-50 p-6">
-      <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 bg-white rounded-[40px] shadow-2xl border border-slate-100 p-8 md:p-16 overflow-hidden relative">
+      <div className="max-w-4xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 bg-white rounded-[40px] shadow-sm border border-slate-100 p-8 md:p-16 overflow-hidden relative">
          
          {/* Decorative Background */}
          <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50 rounded-full -mr-32 -mt-32 blur-3xl opacity-50" />
@@ -117,7 +117,7 @@ export function PracticeApp() {
                      <button 
                         key={m}
                         onClick={() => setDuration(m)}
-                        className={`py-3 rounded-2xl font-bold transition-all border ${duration === m ? 'bg-indigo-600 border-indigo-700 text-white shadow-lg' : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'}`}
+                        className={`py-3 rounded-2xl font-bold transition-all border ${duration === m ? 'bg-indigo-600 border-indigo-700 text-[#202124] shadow-sm' : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'}`}
                      >
                         {m}m
                      </button>
@@ -127,7 +127,7 @@ export function PracticeApp() {
 
             <button 
                onClick={startPractice}
-               className="group flex items-center justify-center gap-3 bg-slate-900 text-white py-5 rounded-3xl font-black uppercase tracking-[0.2em] transform transition-all hover:scale-[1.02] hover:bg-slate-800 shadow-xl active:scale-95"
+               className="group flex items-center justify-center gap-3 bg-white border border-[#dadce0] text-[#202124] py-5 rounded-lg font-black uppercase tracking-[0.2em] transform transition-all hover:scale-[1.02] hover:bg-slate-800 shadow-sm active:scale-95"
             >
                <PlayCircle className="w-6 h-6" />
                Start Session
@@ -148,7 +148,7 @@ export function PracticeApp() {
                   <button 
                      key={t.id}
                      onClick={() => setTool(t.id as ToolType)}
-                     className={`flex items-center gap-4 p-4 rounded-3xl border transition-all text-left group ${tool === t.id ? 'bg-indigo-50 border-indigo-200 ring-2 ring-indigo-500/20' : 'bg-white border-slate-100 hover:border-slate-300'}`}
+                     className={`flex items-center gap-4 p-4 rounded-lg border transition-all text-left group ${tool === t.id ? 'bg-indigo-50 border-indigo-200 ring-2 ring-indigo-500/20' : 'bg-white border-slate-100 hover:border-slate-300'}`}
                   >
                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-2xl transition-all ${tool === t.id ? 'bg-white shadow' : 'bg-slate-50'}`}>
                         {t.icon}

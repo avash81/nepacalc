@@ -116,7 +116,7 @@ export function Navbar() {
       )}
 
       {/* Mobile Drawer */}
-      <aside className={`fixed top-0 right-0 bottom-0 w-[300px] bg-white text-[#202124] z-[301] shadow-2xl transform transition-transform duration-300 ease-out border-l border-[#e8eaed] ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <aside className={`fixed top-0 right-0 bottom-0 w-[300px] bg-white text-[#202124] z-[301] shadow-sm transform transition-transform duration-300 ease-out border-l border-[#e8eaed] ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <nav className="flex flex-col h-full uppercase tracking-widest font-black text-[10px]" aria-label="Mobile Navigation">
           <div className="p-6 flex items-center justify-between border-b border-[#e8eaed] bg-[#f8f9fa]">
             <Logo size="sm" theme="indigo" />

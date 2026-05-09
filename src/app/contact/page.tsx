@@ -71,9 +71,9 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="bg-gray-900 rounded-xl p-6 text-white shadow-sm">
+          <div className="bg-gray-900 rounded-xl p-6 text-[#202124] shadow-sm">
             <div className="mb-4">
-              <Globe className="w-6 h-6 text-blue-400" />
+              <Globe className="w-6 h-6 text-[#1a0dab]" />
             </div>
             <h2 className="text-lg font-black mb-2">100% Online</h2>
             <p className="text-[10px] font-bold text-gray-400 mb-4 uppercase tracking-[0.2em]">Based in Nepal</p>
@@ -134,11 +134,11 @@ export default function ContactPage() {
                 <button 
                   type="submit" 
                   disabled={status === 'submitting'}
-                  className="w-full bg-[#1A73E8] hover:bg-blue-700 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="w-full bg-[#1A73E8] hover:bg-blue-700 text-[#202124] font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   {status === 'submitting' ? (
                     <span className="flex items-center gap-2">
-                      <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                      <svg className="animate-spin h-5 w-5 text-[#202124]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                       Sending...
                     </span>
                   ) : (

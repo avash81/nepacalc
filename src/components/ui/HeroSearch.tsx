@@ -62,7 +62,7 @@ export function HeroSearch() {
         <input
           type="text"
           placeholder="What do you want to calculate today? (e.g. Income Tax, BMI, GPA...)"
-          className="w-full h-20 pl-20 pr-8 bg-white border-2 border-[#dadce0] rounded-2xl text-[18px] font-medium text-[#202124] placeholder:text-[#5f6368] focus:border-blue-600 focus:outline-none shadow-lg transition-all"
+          className="w-full h-20 pl-20 pr-8 bg-white border-2 border-[#dadce0] rounded-2xl text-[18px] font-medium text-[#202124] placeholder:text-[#5f6368] focus:border-blue-600 focus:outline-none shadow-sm transition-all"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => query.trim() && setIsOpen(true)}
@@ -74,7 +74,7 @@ export function HeroSearch() {
       </div>
 
       {isOpen && results.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-3 bg-white border border-[#dadce0] rounded-2xl shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute top-full left-0 right-0 mt-3 bg-white border border-[#dadce0] rounded-2xl shadow-sm overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="p-2">
             <div className="px-4 py-2 text-[10px] font-black text-[#5f6368] uppercase tracking-[0.2em] flex items-center gap-2">
               <Sparkles size={12} className="text-amber-500" />

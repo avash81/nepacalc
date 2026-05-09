@@ -170,13 +170,13 @@ export default function GeometryPage() {
                   </div>
                 </div>
 
-                <div className="mt-12 p-8 bg-[#202124] text-white rounded-2xl">
-                  <h3 className="text-white text-xl font-bold mb-4">Related Math Tools</h3>
+                <div className="mt-12 p-8 bg-[#202124] text-[#202124] rounded-2xl">
+                  <h3 className="text-[#202124] text-xl font-bold mb-4">Related Math Tools</h3>
                   <div className="flex flex-wrap gap-3">
-                    <Link href="/engineering/3d/" className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold text-white no-underline transition-all">3D Graph Calculator</Link>
-                    <Link href="/calculator/ratio-proportion/" className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold text-white no-underline transition-all">Ratio & Proportion</Link>
-                    <Link href="/calculator/quadratic-solver/" className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold text-white no-underline transition-all">Quadratic Solver</Link>
-                    <Link href="/calculator/nepal-land/" className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold text-white no-underline transition-all">Nepal Land Converter</Link>
+                    <Link href="/engineering/3d/" className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold text-[#202124] no-underline transition-all">3D Graph Calculator</Link>
+                    <Link href="/calculator/ratio-proportion/" className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold text-[#202124] no-underline transition-all">Ratio & Proportion</Link>
+                    <Link href="/calculator/quadratic-solver/" className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold text-[#202124] no-underline transition-all">Quadratic Solver</Link>
+                    <Link href="/calculator/nepal-land/" className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold text-[#202124] no-underline transition-all">Nepal Land Converter</Link>
                   </div>
                 </div>
               </div>

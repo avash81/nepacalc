@@ -45,7 +45,7 @@ export default function KUKLCalculator() {
             <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider">Pipe Connection Size</label>
             <div className="grid grid-cols-2 gap-2">
              {['0.5', '0.75'].map(size => (
-               <button key={size} onClick={() => update({ pipeSize: size as any })} className={`py-2 text-[10px] font-bold border rounded transition-all ${pipeSize === size ? 'bg-[#1A73E8] border-[#1A73E8] text-white shadow-sm' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:border-[#1A73E8]'}`}>{size} Inch</button>
+               <button key={size} onClick={() => update({ pipeSize: size as any })} className={`py-2 text-[10px] font-bold border rounded transition-all ${pipeSize === size ? 'bg-[#1A73E8] border-[#1A73E8] text-[#202124] shadow-sm' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:border-[#1A73E8]'}`}>{size} Inch</button>
              ))}
             </div>
          </div>

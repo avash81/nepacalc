@@ -36,32 +36,32 @@ export default function NepalAttendanceCalculator() {
 
   const inputBlock = (
     <div className="space-y-8">
-      <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+      <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
          <div className="absolute top-0 right-0 p-10 opacity-10"><Zap className="w-40 h-40" /></div>
          <div className="relative z-10 space-y-6">
             <div className="space-y-4">
-               <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Total Classes Held</label>
+               <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Total Classes Held</label>
                <input 
                   type="number" 
                   value={totalClasses} 
                   onChange={(e) => update({ totalClasses: Number(e.target.value) })}
-                  className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" 
+                  className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
                />
             </div>
             <div className="space-y-4">
-               <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Classes Attended</label>
+               <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Classes Attended</label>
                <input 
                   type="number" 
                   value={attended} 
                   onChange={(e) => update({ attended: Number(e.target.value) })}
-                  className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" 
+                  className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
                />
             </div>
             <div className="space-y-4">
-               <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Required Threshold (%)</label>
-               <div className="flex p-1 bg-white/5 rounded-xl border border-white/10">
+               <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Required Threshold (%)</label>
+               <div className="flex p-1 bg-[#f8f9fa] rounded-xl border border-[#dadce0]">
                  {[60, 75, 80].map(opt => (
-                   <button key={opt} onClick={() => update({ required: opt })} className={`flex-1 py-2 text-[10px] font-black uppercase rounded-lg transition-all ${required === opt ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400'}`}>{opt}%</button>
+                   <button key={opt} onClick={() => update({ required: opt })} className={`flex-1 py-2 text-[10px] font-black uppercase rounded-lg transition-all ${required === opt ? 'bg-[#1a73e8] text-[#202124] shadow-sm' : 'text-slate-400'}`}>{opt}%</button>
                  ))}
                </div>
             </div>
@@ -90,7 +90,7 @@ export default function NepalAttendanceCalculator() {
       inputs={inputBlock}
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><CheckCircle2 className={`w-24 h-24 ${result.isEligible ? 'text-emerald-600' : 'text-rose-600'}`} /></div>
              <div className={`text-[10px] font-bold uppercase tracking-[0.2em] ${result.isEligible ? 'text-emerald-600' : 'text-rose-600'}`}>
                 Current Attendance
@@ -102,17 +102,17 @@ export default function NepalAttendanceCalculator() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1 text-center">
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-1 text-center">
                 <div className="text-[9px] font-black text-slate-400 uppercase">Target Classes</div>
                 <div className="text-xl font-black text-slate-900">{result.requiredClasses}</div>
              </div>
-             <div className="p-6 bg-blue-50 border border-blue-100 rounded-3xl space-y-1 text-center">
+             <div className="p-6 bg-blue-50 border border-blue-100 rounded-lg space-y-1 text-center">
                 <div className="text-[9px] font-black text-blue-600 uppercase">Current Count</div>
                 <div className="text-xl font-black text-blue-600">{attended}</div>
              </div>
           </div>
 
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Target className="w-24 h-24 text-emerald-500" /></div>
              <div className="relative z-10 flex items-center justify-between">
                 <div className="space-y-1">
@@ -132,7 +132,7 @@ export default function NepalAttendanceCalculator() {
       }
       details={
         <div className="space-y-8">
-          <section className="bg-white border border-slate-200 rounded-[3rem] p-12 shadow-sm relative overflow-hidden">
+          <section className="bg-white border border-slate-200 rounded-lg p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -top-12 -right-12 opacity-5">
                 <History className="w-64 h-64 text-blue-600" />
             </div>
@@ -153,9 +153,9 @@ export default function NepalAttendanceCalculator() {
             </div>
           </section>
 
-          <section className="bg-slate-900 text-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+          <section className="bg-white border border-[#dadce0] text-[#202124] rounded-lg p-12 shadow-sm relative overflow-hidden">
              <div className="absolute -bottom-12 -right-12 opacity-10"><AlertCircle className="w-64 h-64 text-blue-500" /></div>
-             <h2 className="text-3xl font-black mb-10 tracking-tight text-blue-400 uppercase tracking-widest">Academic Integrity Guardrails</h2>
+             <h2 className="text-3xl font-black mb-10 tracking-tight text-[#1a0dab] uppercase tracking-widest">Academic Integrity Guardrails</h2>
              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="space-y-4">
                    <h4 className="text-lg font-black flex items-center gap-2 text-emerald-400"><History className="w-5 h-5" /> Condonation Rules</h4>

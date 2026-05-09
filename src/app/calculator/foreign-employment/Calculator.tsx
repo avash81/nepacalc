@@ -107,20 +107,20 @@ export default function ForeignEmploymentFee() {
           </div>
 
           <div className="bg-[#1A1A2E] rounded-lg p-6 space-y-4 border border-[#DADCE0] relative overflow-hidden">
-             <Plane className="absolute top-0 right-0 p-4 w-24 h-24 text-white/5 pointer-events-none" />
+             <Plane className="absolute top-0 right-0 p-4 w-24 h-24 text-[#202124]/5 pointer-events-none" />
              <div className="text-[10px] font-bold text-[#8AB4F8] uppercase tracking-wider relative z-10">Migration Ledger Tracker</div>
              
              <div className="space-y-3 relative z-10">
-                <div className="flex justify-between items-center pb-2 border-b border-white/10">
-                   <span className="text-xs text-white/70">Legal Max Service Fee</span>
+                <div className="flex justify-between items-center pb-2 border-b border-[#dadce0]">
+                   <span className="text-xs text-[#202124]/70">Legal Max Service Fee</span>
                    <span className="text-sm font-black text-[#81C995] font-mono">Rs. {fmt(dest.maxFee)}</span>
                 </div>
-                <div className="flex justify-between items-center pb-2 border-b border-white/10">
-                   <span className="text-xs text-white/70">Statutory Expenses (Med/Ins/Ori)</span>
-                   <span className="text-sm font-black text-white font-mono">Rs. {fmt(medicalFee + insuranceFee + orientationFee)}</span>
+                <div className="flex justify-between items-center pb-2 border-b border-[#dadce0]">
+                   <span className="text-xs text-[#202124]/70">Statutory Expenses (Med/Ins/Ori)</span>
+                   <span className="text-sm font-black text-[#202124] font-mono">Rs. {fmt(medicalFee + insuranceFee + orientationFee)}</span>
                 </div>
-                <div className="flex justify-between items-center pb-2 border-b border-white/10">
-                   <span className="text-xs text-white/70">Overcharge Amount</span>
+                <div className="flex justify-between items-center pb-2 border-b border-[#dadce0]">
+                   <span className="text-xs text-[#202124]/70">Overcharge Amount</span>
                    <span className={`text-sm font-black font-mono ${isOvercharged ? 'text-[#F28B82]' : 'text-[#81C995]'}`}>
                      Rs. {isOvercharged ? fmt(manpowerFee - dest.maxFee) : '0'}
                    </span>

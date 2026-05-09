@@ -37,7 +37,7 @@ export default function RemittanceDashboardClient() {
            {/* Provider Board */}
            <div className="p-8 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
               <div className="flex items-center gap-3">
-                 <div className="w-10 h-10 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/10">
+                 <div className="w-10 h-10 rounded-2xl bg-[#1a73e8] flex items-center justify-center text-[#202124] shadow-sm shadow-blue-500/10">
                     <Wallet className="w-5 h-5" />
                  </div>
                  <div>
@@ -81,10 +81,10 @@ export default function RemittanceDashboardClient() {
            </div>
 
            {/* Safety Guide Mini */}
-           <div className="p-8 bg-slate-900 text-white rounded-b-[2.5rem] flex flex-col sm:flex-row items-center justify-between gap-6">
+           <div className="p-8 bg-white border border-[#dadce0] text-[#202124] rounded-b-[2.5rem] flex flex-col sm:flex-row items-center justify-between gap-6">
               <div className="flex-1">
                  <h3 className="text-xl font-bold mb-1">Sending for the first time?</h3>
-                 <p className="text-[12px] text-white/50 font-medium">Use licensed channels like Wise or IME for guaranteed insurance and official exchange rates.</p>
+                 <p className="text-[12px] text-[#202124]/50 font-medium">Use licensed channels like Wise or IME for guaranteed insurance and official exchange rates.</p>
               </div>
               <button className="px-6 py-3 bg-white text-slate-900 text-[11px] font-black uppercase tracking-widest rounded-xl hover:bg-blue-50 transition-all">
                  Read Safety Guide

@@ -41,37 +41,37 @@ export default function NepalPFCalculator() {
 
   const inputBlock = (
     <div className="space-y-8">
-      <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+      <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
          <div className="absolute top-0 right-0 p-10 opacity-10"><Zap className="w-40 h-40" /></div>
          <div className="relative z-10 grid grid-cols-1 gap-6">
             <div className="space-y-4">
-               <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Monthly Basic Salary (NPR)</label>
+               <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Monthly Basic Salary (NPR)</label>
                <input 
                   type="number" 
                   value={basic} 
                   onChange={(e) => update({ basic: Number(e.target.value) })}
-                  className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" 
+                  className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
                />
                <p className="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Note: Statutory PF is calculated only on Basic Salary.</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
                <div className="space-y-4">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Service Years</label>
+                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Service Years</label>
                   <input 
                     type="number" 
                     value={years} 
                     onChange={(e) => update({ years: Number(e.target.value) })}
-                    className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-lg font-black text-white focus:border-blue-500 outline-none transition-all" 
+                    className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-lg font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
                   />
                </div>
                <div className="space-y-4">
-                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Interest Rate (%)</label>
+                  <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Interest Rate (%)</label>
                   <input 
                     type="number" 
                     value={rate} 
                     step="0.1"
                     onChange={(e) => update({ rate: Number(e.target.value) })}
-                    className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-lg font-black text-white focus:border-blue-500 outline-none transition-all" 
+                    className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-lg font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
                   />
                </div>
             </div>
@@ -109,7 +109,7 @@ export default function NepalPFCalculator() {
       inputs={inputBlock}
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Landmark className="w-24 h-24 text-blue-600" /></div>
              <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Total Retirement Corpus</div>
              <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">{formatNPR(result.total)}</div>
@@ -119,17 +119,17 @@ export default function NepalPFCalculator() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1 text-center">
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-1 text-center">
                 <div className="text-[9px] font-black text-slate-400 uppercase">Monthly PF</div>
                 <div className="text-xl font-black text-slate-900">{formatNPR(result.monthlyPF)}</div>
              </div>
-             <div className="p-6 bg-blue-50 border border-blue-100 rounded-3xl space-y-1 text-center">
+             <div className="p-6 bg-blue-50 border border-blue-100 rounded-lg space-y-1 text-center">
                 <div className="text-[9px] font-black text-blue-600 uppercase">PF Interest Rate</div>
                 <div className="text-xl font-black text-blue-600">{rate}%</div>
              </div>
           </div>
 
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Target className="w-24 h-24 text-emerald-500" /></div>
              <div className="relative z-10 flex items-center justify-between">
                 <div className="space-y-1">
@@ -146,10 +146,10 @@ export default function NepalPFCalculator() {
       details={
         <div className="space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-lg p-10 shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 p-6 opacity-5"><PieChart className="w-20 h-20 text-blue-600" /></div>
               <div className="flex items-center gap-2 mb-8">
-                <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                <div className="w-1.5 h-6 bg-[#1a73e8] rounded-full" />
                 <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Corpus Composition</h3>
               </div>
               <div className="h-[300px] w-full relative">
@@ -182,11 +182,11 @@ export default function NepalPFCalculator() {
               </div>
             </div>
 
-            <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+            <div className="bg-[#1A1A2E] text-[#202124] rounded-lg p-10 shadow-sm relative overflow-hidden flex flex-col justify-center">
                <div className="absolute -bottom-12 -right-12 opacity-10"><Activity className="w-64 h-64 text-emerald-500" /></div>
                <h3 className="text-2xl font-black mb-8 tracking-tight text-emerald-400 uppercase tracking-widest">Growth Dynamics</h3>
                <div className="space-y-6">
-                  <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
+                  <div className="p-6 rounded-2xl bg-[#f8f9fa] border border-[#dadce0]">
                      <div className="flex justify-between items-center mb-2">
                         <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Gratuity Accrual</span>
                         <span className="text-xl font-black text-emerald-400">+{formatNPR(result.totalGratuity)}</span>
@@ -196,11 +196,11 @@ export default function NepalPFCalculator() {
                      </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
-                     <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+                     <div className="p-4 rounded-xl bg-[#f8f9fa] border border-[#dadce0]">
                         <div className="text-[9px] text-slate-400 uppercase font-black mb-1">PF Principal</div>
                         <div className="text-sm font-black">{formatNPR(result.monthlyPF * 12 * years)}</div>
                      </div>
-                     <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+                     <div className="p-4 rounded-xl bg-[#f8f9fa] border border-[#dadce0]">
                         <div className="text-[9px] text-slate-400 uppercase font-black mb-1">Interest Gain</div>
                         <div className="text-sm font-black text-rose-400">{formatNPR(result.totalPF - (result.monthlyPF * 12 * years))}</div>
                      </div>
@@ -213,7 +213,7 @@ export default function NepalPFCalculator() {
           </div>
 
           {/* Retirement Encyclopedia - content body */}
-          <section className="bg-white border border-slate-200 rounded-[3rem] p-12 shadow-sm relative overflow-hidden">
+          <section className="bg-white border border-slate-200 rounded-lg p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -top-12 -right-12 opacity-5">
                 <Landmark className="w-64 h-64 text-blue-600" />
             </div>
@@ -226,7 +226,7 @@ export default function NepalPFCalculator() {
             <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-8 text-lg">
               <p>Building a robust financial foundation in <strong>Nepal</strong> requires accurate long-term forecasting. Our <strong>Institutional PF Engine</strong> is specifically modeled around the statutory requirements established by the <strong>Labor Act 2074</strong> mandates. It calculates the exact monthly accumulation generated by the mandatory 10% employee deduction matched by a mandatory 10% employer contribution, totaling 20% of your Basic Salary injected into your retirement corpus every month.</p>
               
-              <div className="bg-blue-50 border border-blue-100 p-8 rounded-[2.5rem] flex gap-6 items-start my-10">
+              <div className="bg-blue-50 border border-blue-100 p-8 rounded-lg flex gap-6 items-start my-10">
                  <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm shrink-0">
                     <Info className="w-6 h-6 text-blue-600" />
                  </div>
@@ -247,9 +247,9 @@ export default function NepalPFCalculator() {
           </section>
 
           {/* Retirement Integrity Guardrails - content body */}
-          <section className="bg-slate-900 text-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+          <section className="bg-white border border-[#dadce0] text-[#202124] rounded-lg p-12 shadow-sm relative overflow-hidden">
              <div className="absolute -bottom-12 -right-12 opacity-10"><ShieldCheck className="w-64 h-64 text-blue-500" /></div>
-             <h2 className="text-3xl font-black mb-10 tracking-tight text-blue-400 uppercase tracking-widest">Retirement Integrity Guardrails</h2>
+             <h2 className="text-3xl font-black mb-10 tracking-tight text-[#1a0dab] uppercase tracking-widest">Retirement Integrity Guardrails</h2>
              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="space-y-4">
                    <h4 className="text-lg font-black flex items-center gap-2 text-emerald-400"><History className="w-5 h-5" /> SSF Transition</h4>

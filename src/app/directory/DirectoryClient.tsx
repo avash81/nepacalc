@@ -18,18 +18,18 @@ export default function DirectoryClient() {
           {CATEGORIES.map(cat => (
             <div 
               key={cat.id} 
-              className="break-inside-avoid bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-[2.5rem] p-6 shadow-sm hover:shadow-md transition-shadow"
+              className="break-inside-avoid bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="flex items-center gap-4 mb-6 border-b border-gray-50 dark:border-gray-800 pb-4">
                 <div className="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-900/10 flex items-center justify-center text-2xl font-black">
                   {cat.id === 'nepal' ? (
-                    <span className="text-[12px] font-black text-blue-600 dark:text-blue-400 tracking-tighter">NP</span>
+                    <span className="text-[12px] font-black text-blue-600 dark:text-[#1a0dab] tracking-tighter">NP</span>
                   ) : (
                     cat.icon
                   )}
                 </div>
                 <div>
-                  <h2 className="text-[15px] font-black text-gray-900 dark:text-white uppercase tracking-wider leading-tight">{cat.name}</h2>
+                  <h2 className="text-[15px] font-black text-gray-900 dark:text-[#202124] uppercase tracking-wider leading-tight">{cat.name}</h2>
                   <p className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mt-1">{cat.calculators.length} PRO UNITS</p>
                 </div>
               </div>
@@ -43,7 +43,7 @@ export default function DirectoryClient() {
                   >
                     <div className="flex items-center gap-4">
                       <span className="text-lg grayscale group-hover:grayscale-0 transition-opacity opacity-40 group-hover:opacity-100">{calc.icon}</span>
-                      <span className="text-sm font-bold text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      <span className="text-sm font-bold text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-[#1a0dab] transition-colors">
                         {calc.name}
                       </span>
                     </div>

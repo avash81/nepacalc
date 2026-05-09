@@ -54,26 +54,26 @@ export function SimpleCalculator() {
   }, [display]);
 
   return (
-    <div className="bg-gray-900 rounded-[2rem] p-4 shadow-2xl border border-gray-800 w-full max-w-[320px] mx-auto">
+    <div className="bg-gray-900 rounded-[2rem] p-4 shadow-sm border border-gray-800 w-full max-w-[320px] mx-auto">
       <div className="mb-3 text-right px-2">
         <div className="text-[10px] text-gray-500 font-mono h-4 overflow-hidden">{equation || '\u00A0'}</div>
-        <div className="text-3xl font-light text-white font-mono truncate" style={{fontSize:'clamp(1.5rem,8vw,2rem)'}}>{display}</div>
+        <div className="text-3xl font-light text-[#202124] font-mono truncate" style={{fontSize:'clamp(1.5rem,8vw,2rem)'}}>{display}</div>
       </div>
       <div className="grid grid-cols-4 gap-2">
         <button onClick={clear} className="h-14 rounded-2xl bg-gray-400 text-black font-semibold text-sm hover:bg-gray-300 active:scale-95 transition-all min-h-[44px]">AC</button>
         <button onClick={toggleSign} className="h-14 rounded-2xl bg-gray-400 text-black font-semibold text-sm hover:bg-gray-300 active:scale-95 transition-all min-h-[44px]">+/−</button>
         <button onClick={percent} className="h-14 rounded-2xl bg-gray-400 text-black font-semibold text-sm hover:bg-gray-300 active:scale-95 transition-all min-h-[44px]">%</button>
-        <button onClick={() => handleOperator('÷')} className="h-14 rounded-2xl bg-amber-500 text-white font-semibold text-2xl hover:bg-amber-400 active:scale-95 transition-all min-h-[44px]">÷</button>
-        {['7','8','9'].map(n => <button key={n} onClick={() => handleNumber(n)} className="h-14 rounded-2xl bg-gray-700 text-white font-semibold text-xl hover:bg-gray-600 active:scale-95 transition-all min-h-[44px]">{n}</button>)}
-        <button onClick={() => handleOperator('×')} className="h-14 rounded-2xl bg-amber-500 text-white font-semibold text-2xl hover:bg-amber-400 active:scale-95 transition-all min-h-[44px]">×</button>
-        {['4','5','6'].map(n => <button key={n} onClick={() => handleNumber(n)} className="h-14 rounded-2xl bg-gray-700 text-white font-semibold text-xl hover:bg-gray-600 active:scale-95 transition-all min-h-[44px]">{n}</button>)}
-        <button onClick={() => handleOperator('−')} className="h-14 rounded-2xl bg-amber-500 text-white font-semibold text-2xl hover:bg-amber-400 active:scale-95 transition-all min-h-[44px]">−</button>
-        {['1','2','3'].map(n => <button key={n} onClick={() => handleNumber(n)} className="h-14 rounded-2xl bg-gray-700 text-white font-semibold text-xl hover:bg-gray-600 active:scale-95 transition-all min-h-[44px]">{n}</button>)}
-        <button onClick={() => handleOperator('+')} className="h-14 rounded-2xl bg-amber-500 text-white font-semibold text-2xl hover:bg-amber-400 active:scale-95 transition-all min-h-[44px]">+</button>
-        <button onClick={() => handleNumber('0')} className="h-14 rounded-2xl bg-gray-700 text-white font-semibold text-xl hover:bg-gray-600 active:scale-95 transition-all min-h-[44px]">0</button>
-        <button onClick={() => handleNumber('.')} className="h-14 rounded-2xl bg-gray-700 text-white font-semibold text-xl hover:bg-gray-600 active:scale-95 transition-all min-h-[44px]">.</button>
-        <button onClick={backspace} className="h-14 rounded-2xl bg-gray-700 text-white font-semibold text-xl hover:bg-gray-600 active:scale-95 transition-all min-h-[44px]">⌫</button>
-        <button onClick={calculate} className="h-14 rounded-2xl bg-amber-500 text-white font-semibold text-2xl hover:bg-amber-400 active:scale-95 transition-all shadow-lg min-h-[44px]">=</button>
+        <button onClick={() => handleOperator('÷')} className="h-14 rounded-2xl bg-amber-500 text-[#202124] font-semibold text-2xl hover:bg-amber-400 active:scale-95 transition-all min-h-[44px]">÷</button>
+        {['7','8','9'].map(n => <button key={n} onClick={() => handleNumber(n)} className="h-14 rounded-2xl bg-gray-700 text-[#202124] font-semibold text-xl hover:bg-gray-600 active:scale-95 transition-all min-h-[44px]">{n}</button>)}
+        <button onClick={() => handleOperator('×')} className="h-14 rounded-2xl bg-amber-500 text-[#202124] font-semibold text-2xl hover:bg-amber-400 active:scale-95 transition-all min-h-[44px]">×</button>
+        {['4','5','6'].map(n => <button key={n} onClick={() => handleNumber(n)} className="h-14 rounded-2xl bg-gray-700 text-[#202124] font-semibold text-xl hover:bg-gray-600 active:scale-95 transition-all min-h-[44px]">{n}</button>)}
+        <button onClick={() => handleOperator('−')} className="h-14 rounded-2xl bg-amber-500 text-[#202124] font-semibold text-2xl hover:bg-amber-400 active:scale-95 transition-all min-h-[44px]">−</button>
+        {['1','2','3'].map(n => <button key={n} onClick={() => handleNumber(n)} className="h-14 rounded-2xl bg-gray-700 text-[#202124] font-semibold text-xl hover:bg-gray-600 active:scale-95 transition-all min-h-[44px]">{n}</button>)}
+        <button onClick={() => handleOperator('+')} className="h-14 rounded-2xl bg-amber-500 text-[#202124] font-semibold text-2xl hover:bg-amber-400 active:scale-95 transition-all min-h-[44px]">+</button>
+        <button onClick={() => handleNumber('0')} className="h-14 rounded-2xl bg-gray-700 text-[#202124] font-semibold text-xl hover:bg-gray-600 active:scale-95 transition-all min-h-[44px]">0</button>
+        <button onClick={() => handleNumber('.')} className="h-14 rounded-2xl bg-gray-700 text-[#202124] font-semibold text-xl hover:bg-gray-600 active:scale-95 transition-all min-h-[44px]">.</button>
+        <button onClick={backspace} className="h-14 rounded-2xl bg-gray-700 text-[#202124] font-semibold text-xl hover:bg-gray-600 active:scale-95 transition-all min-h-[44px]">⌫</button>
+        <button onClick={calculate} className="h-14 rounded-2xl bg-amber-500 text-[#202124] font-semibold text-2xl hover:bg-amber-400 active:scale-95 transition-all shadow-sm min-h-[44px]">=</button>
       </div>
     </div>
   );

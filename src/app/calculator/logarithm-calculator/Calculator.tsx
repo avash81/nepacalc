@@ -35,7 +35,7 @@ export default function LogarithmCalculator() {
       icon={CalcIcon}
       inputs={
         <div className="space-y-6">
-          <div className="p-8 bg-white border border-[#DADCE0] rounded-3xl flex items-center justify-center gap-4 shadow-xl">
+          <div className="p-8 bg-white border border-[#DADCE0] rounded-lg flex items-center justify-center gap-4 shadow-sm">
             <span className="text-4xl font-black text-[#5F6368]">log</span>
             <div className="flex flex-col mt-6">
               <input type="number" value={base} onChange={e => updateState({ base: Number(e.target.value) })}
@@ -54,7 +54,7 @@ export default function LogarithmCalculator() {
           <div className="grid grid-cols-2 gap-3">
             {QUICK_BASES.map(({ label, base: b }) => (
               <button key={label} onClick={() => updateState({ base: b })}
-                className={`p-4 border rounded-2xl text-center transition-all ${base === b ? 'bg-[#1A73E8] border-[#1A73E8] text-white shadow-lg' : 'bg-white hover:bg-[#F8F9FA]'}`}>
+                className={`p-4 border rounded-2xl text-center transition-all ${base === b ? 'bg-[#1A73E8] border-[#1A73E8] text-[#202124] shadow-sm' : 'bg-white hover:bg-[#F8F9FA]'}`}>
                 <div className="text-[10px] font-black uppercase">{label.split(' ')[0]}</div>
               </button>
             ))}
@@ -65,7 +65,7 @@ export default function LogarithmCalculator() {
         <div className="space-y-6">
           {results ? (
             <>
-              <div className="bg-white border border-[#DADCE0] rounded-3xl overflow-hidden text-center shadow-2xl">
+              <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden text-center shadow-sm">
                 <div className="p-10">
                    <div className="text-[10px] font-black uppercase text-[#70757A] mb-4">Result (base {base.toFixed(2)})</div>
                    <div className="text-6xl font-black text-[#1A73E8] tracking-tighter font-mono">{results.logB.toFixed(6).replace(/\.?0+$/, '')}</div>
@@ -85,7 +85,7 @@ export default function LogarithmCalculator() {
               </div>
             </>
           ) : (
-             <div className="p-10 bg-[#FCE8E6] border border-[#FAD2CF] rounded-3xl text-center">
+             <div className="p-10 bg-[#FCE8E6] border border-[#FAD2CF] rounded-lg text-center">
                 <p className="text-sm font-bold text-[#D93025]">Domain Violation: Base must be {'>'} 0 and ≠ 1. Number must be {'>'} 0.</p>
              </div>
           )}
@@ -93,7 +93,7 @@ export default function LogarithmCalculator() {
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-3xl p-8 shadow-sm">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
              <div className="flex items-center gap-3 mb-6 border-l-4 border-[#1A73E8] pl-4">
                 <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Institutional Logarithm Engine</h3>
              </div>

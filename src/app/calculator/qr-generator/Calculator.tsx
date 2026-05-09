@@ -37,7 +37,7 @@ export default function QRGenerator() {
             <div className="grid grid-cols-4 gap-2">
               {[150,250,350,500].map(s => (
                 <button key={s} onClick={() => setSize(s)}
-                  className={`py-2 rounded-lg text-xs font-bold transition-all ${size===s ? 'bg-blue-600 text-white shadow' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 border border-transparent'}`}>
+                  className={`py-2 rounded-lg text-xs font-bold transition-all ${size===s ? 'bg-[#1a73e8] text-[#202124] shadow' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 border border-transparent'}`}>
                   {s}px
                 </button>
               ))}
@@ -75,7 +75,7 @@ export default function QRGenerator() {
           </div>
 
           <a href={qrUrl} download="qrcode.png" target="_blank" rel="noopener noreferrer"
-            className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 hover:shadow-lg transition-all flex items-center justify-center gap-2">
+            className="w-full py-4 bg-[#1a73e8] text-[#202124] rounded-xl font-bold hover:bg-blue-700 hover:shadow-sm transition-all flex items-center justify-center gap-2">
             <Download className="w-5 h-5" /> Download PNG
           </a>
 

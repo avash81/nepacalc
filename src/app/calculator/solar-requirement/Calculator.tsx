@@ -93,7 +93,7 @@ export default function SolarCalculator() {
                         onClick={() => updateState({ systemVoltage: v })}
                         className={`py-3 text-sm font-bold rounded-xl border transition-all ${
                           systemVoltage === v 
-                            ? 'bg-amber-500 border-amber-600 text-white shadow-md' 
+                            ? 'bg-amber-500 border-amber-600 text-[#202124] shadow-md' 
                             : 'bg-white border-slate-300 text-slate-600 hover:bg-slate-50'
                         }`}
                       >
@@ -117,7 +117,7 @@ export default function SolarCalculator() {
         }
         results={
           <div className="space-y-6">
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+            <div className="bg-white rounded-lg border border-slate-200 shadow-sm overflow-hidden">
                <div className="p-8 border-b border-slate-100 text-center bg-slate-50">
                   <div className="text-xs font-bold uppercase tracking-widest text-amber-600 mb-2">Recommended System Size</div>
                   <div className="text-6xl font-black text-slate-900 tracking-tighter">
@@ -144,17 +144,17 @@ export default function SolarCalculator() {
                </div>
             </div>
 
-            <div className="p-8 bg-slate-900 rounded-3xl text-white shadow-xl relative overflow-hidden">
+            <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden">
                 <div className="absolute right-0 top-0 opacity-10">
                    <Sun className="w-48 h-48 -mr-10 -mt-10" />
                 </div>
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 text-amber-400 mb-6">
                       <TrendingUp className="w-5 h-5" />
-                      <h4 className="text-xs font-black uppercase tracking-widest text-white">Estimated Annual Impact</h4>
+                      <h4 className="text-xs font-black uppercase tracking-widest text-[#202124]">Estimated Annual Impact</h4>
                   </div>
                   <div className="space-y-4">
-                      <div className="flex justify-between items-center border-b border-white/10 pb-4">
+                      <div className="flex justify-between items-center border-b border-[#dadce0] pb-4">
                           <span className="text-slate-400 uppercase tracking-wider text-[10px] font-bold">Total Generation</span>
                           <span className="text-xl font-black">~{(results.dailyUnits * 365).toFixed(0)} kWh</span>
                       </div>

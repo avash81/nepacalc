@@ -94,7 +94,7 @@ export default function MarksNeededCalculator() {
               {r.toFixed(1)}<span className="text-3xl ml-1">%</span>
             </div>
             
-            <div className={`inline-block px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest rounded relative z-10 ${isImpossible ? 'bg-[#D93025] text-white' : r <= 60 ? 'bg-[#E6F4EA] text-[#188038]' : r <= 80 ? 'bg-[#E8F0FE] text-[#1A73E8]' : 'bg-[#FEF7E0] text-[#E37400]'}`}>
+            <div className={`inline-block px-4 py-1.5 text-[11px] font-bold uppercase tracking-widest rounded relative z-10 ${isImpossible ? 'bg-[#D93025] text-[#202124]' : r <= 60 ? 'bg-[#E6F4EA] text-[#188038]' : r <= 80 ? 'bg-[#E8F0FE] text-[#1A73E8]' : 'bg-[#FEF7E0] text-[#E37400]'}`}>
               {isImpossible ? 'Mathematically Impossible' : r <= 60 ? 'Very Easy' : r <= 80 ? 'Achievable' : 'Challenging'}
             </div>
           </div>

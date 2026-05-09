@@ -50,8 +50,8 @@ export default function AdminLoginPage() {
 
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-600 rounded-xl mb-4 shadow-lg">
-            <span className="text-white font-bold text-sm">NC</span>
+          <div className="inline-flex items-center justify-center w-12 h-12 bg-[#1a73e8] rounded-xl mb-4 shadow-sm">
+            <span className="text-[#202124] font-bold text-sm">NC</span>
           </div>
           <h1 className="text-[20px] font-semibold text-gray-800">Sign in to NepaCalc</h1>
           <p className="text-[13px] text-gray-500 mt-1">Admin dashboard access</p>
@@ -97,7 +97,7 @@ export default function AdminLoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-medium text-[14px] py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2 mt-2"
+              className="w-full bg-[#1a73e8] hover:bg-blue-700 disabled:bg-blue-400 text-[#202124] font-medium text-[14px] py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2 mt-2"
             >
               {loading ? (
                 <>

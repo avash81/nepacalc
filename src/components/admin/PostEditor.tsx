@@ -43,7 +43,7 @@ const MenuButton = ({ onClick, isActive, children, disabled = false }: any) => (
     onClick={onClick}
     disabled={disabled}
     className={`p-2 rounded-md transition-colors ${
-      isActive ? 'bg-cp-blue text-white' : 'text-slate-600 dark:text-slate-700 hover:bg-slate-100 dark:hover:bg-slate-900'
+      isActive ? 'bg-cp-blue text-[#202124]' : 'text-slate-600 dark:text-slate-700 hover:bg-slate-100 dark:hover:bg-white border border-[#dadce0]'
     } disabled:opacity-50`}
   >
     {children}
@@ -79,7 +79,7 @@ export default function PostEditor({ content, onChange }: PostEditorProps) {
   return (
     <div className="border border-slate-200 dark:border-slate-700/10 rounded-2xl overflow-hidden bg-white dark:bg-slate-800">
       {/* Toolbar */}
-      <div className="p-2 border-b border-slate-200 dark:border-slate-700/10 bg-slate-50 dark:bg-slate-900/50 flex flex-wrap gap-1">
+      <div className="p-2 border-b border-slate-200 dark:border-slate-700/10 bg-slate-50 dark:bg-white border border-[#dadce0]/50 flex flex-wrap gap-1">
         <MenuButton onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} isActive={editor.isActive('heading', { level: 1 })}>
           <Heading1 className="w-4 h-4" />
         </MenuButton>

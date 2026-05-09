@@ -56,7 +56,7 @@ export default function PropertyTaxCalculator() {
                   className={`p-4 rounded-lg border text-left transition-all ${holdingPeriod === m.id ? 'border-[#1A73E8] bg-[#E8F0FE]' : 'border-[#DADCE0] bg-white'}`}>
                   <div className="flex justify-between mb-1">
                     <span className={`text-[11px] font-black ${holdingPeriod === m.id ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>{m.label}</span>
-                    <span className={`text-[10px] font-black px-1.5 py-0.5 rounded ${holdingPeriod === m.id ? 'bg-[#1A73E8] text-white' : 'bg-[#F1F3F4] text-[#5F6368]'}`}>{m.rate}</span>
+                    <span className={`text-[10px] font-black px-1.5 py-0.5 rounded ${holdingPeriod === m.id ? 'bg-[#1A73E8] text-[#202124]' : 'bg-[#F1F3F4] text-[#5F6368]'}`}>{m.rate}</span>
                   </div>
                   <p className="text-[9px] text-[#70757A]">{m.desc}</p>
                 </button>
@@ -69,7 +69,7 @@ export default function PropertyTaxCalculator() {
               <p className="text-[10px] text-[#188038] font-bold">Exemption: Selling price below Rs. 10,00,000 is exempt from Capital Gains Tax.</p>
             </div>
           )}
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors">Calculate CGT</button>
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] font-bold uppercase tracking-widest rounded-md transition-colors">Calculate CGT</button>
         </div>
       }
       results={

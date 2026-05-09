@@ -60,24 +60,24 @@ export default function NepalVATCalculator() {
       icon={Receipt}
       inputs={
         <div className="space-y-8">
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
              <div className="absolute top-0 right-0 p-10 opacity-10"><Zap className="w-40 h-40" /></div>
              <div className="relative z-10 grid grid-cols-1 gap-6">
                 <div className="space-y-4">
-                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Calculation Protocol</label>
-                   <div className="flex p-1 bg-white/5 rounded-xl border border-white/10">
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Calculation Protocol</label>
+                   <div className="flex p-1 bg-[#f8f9fa] rounded-xl border border-[#dadce0]">
                     {([{id:'add', l:'Add VAT'}, {id:'remove', l:'Extract VAT'}] as const).map(opt => (
-                      <button key={opt.id} onClick={() => update({ mode: opt.id })} className={`flex-1 py-3 text-[10px] font-black uppercase rounded-lg transition-all ${mode === opt.id ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400'}`}>{opt.l}</button>
+                      <button key={opt.id} onClick={() => update({ mode: opt.id })} className={`flex-1 py-3 text-[10px] font-black uppercase rounded-lg transition-all ${mode === opt.id ? 'bg-[#1a73e8] text-[#202124] shadow-sm' : 'text-slate-400'}`}>{opt.l}</button>
                     ))}
                    </div>
                 </div>
                 <div className="space-y-4">
-                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">{mode === 'add' ? "Base Price (NPR)" : "Total Amount (NPR)"}</label>
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">{mode === 'add' ? "Base Price (NPR)" : "Total Amount (NPR)"}</label>
                    <input 
                       type="number" 
                       value={amount} 
                       onChange={(e) => update({ amount: Number(e.target.value) })}
-                      className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" 
+                      className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
                    />
                 </div>
              </div>
@@ -106,7 +106,7 @@ export default function NepalVATCalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Receipt className="w-24 h-24 text-blue-600" /></div>
              <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">{mode === 'add' ? 'Total Payable Amount' : 'Base Product Value'}</div>
              <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">{formatNPR(mode === 'add' ? r.final : r.baseAmount)}</div>
@@ -116,17 +116,17 @@ export default function NepalVATCalculator() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1">
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
                 <div className="text-[9px] font-black text-slate-400 uppercase">VAT Component (13%)</div>
                 <div className="text-xl font-black text-slate-900">{formatNPR(r.vatAmount)}</div>
              </div>
-             <div className="p-6 bg-amber-50 border border-amber-100 rounded-3xl space-y-1">
+             <div className="p-6 bg-amber-50 border border-amber-100 rounded-lg space-y-1">
                 <div className="text-[9px] font-black text-amber-600 uppercase">S. Charge (10%)</div>
                 <div className="text-xl font-black text-amber-600">{formatNPR(r.scAmount)}</div>
              </div>
           </div>
 
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Scale className="w-24 h-24 text-emerald-500" /></div>
              <div className="relative z-10 flex items-center justify-between">
                 <div className="space-y-1">
@@ -143,10 +143,10 @@ export default function NepalVATCalculator() {
       details={
         <div className="space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-lg p-10 shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 p-6 opacity-5"><Activity className="w-20 h-20 text-blue-600" /></div>
               <div className="flex items-center gap-2 mb-8">
-                <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                <div className="w-1.5 h-6 bg-[#1a73e8] rounded-full" />
                 <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Price Composition Matrix</h3>
               </div>
               <div className="h-[300px] w-full">
@@ -169,7 +169,7 @@ export default function NepalVATCalculator() {
               </div>
             </div>
 
-            <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+            <div className="bg-[#1A1A2E] text-[#202124] rounded-lg p-10 shadow-sm relative overflow-hidden flex flex-col justify-center">
                <div className="absolute -bottom-12 -right-12 opacity-10"><PieChart className="w-64 h-64 text-emerald-500" /></div>
                <h3 className="text-2xl font-black mb-8 tracking-tight text-emerald-400 uppercase tracking-widest">Tax Integrity Audit</h3>
                <div className="h-[240px] w-full relative">

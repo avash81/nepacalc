@@ -96,7 +96,7 @@ export default function CGPACalculator() {
              </button>
           </div>
 
-          <button onClick={() => {}} className="w-full h-12 bg-[#1A73E8] hover:bg-[#1765CC] text-white font-bold uppercase tracking-widest rounded-md transition-all shadow-sm flex items-center justify-center gap-2">
+          <button onClick={() => {}} className="w-full h-12 bg-[#1A73E8] hover:bg-[#1765CC] text-[#202124] font-bold uppercase tracking-widest rounded-md transition-all shadow-sm flex items-center justify-center gap-2">
             <Calculator className="w-4 h-4" /> Generate Transcript Audit
           </button>
         </div>

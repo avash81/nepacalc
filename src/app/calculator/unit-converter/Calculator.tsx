@@ -82,10 +82,10 @@ export default function UnitConverter() {
       icon={ArrowRightLeft}
       inputs={
         <div className="space-y-8">
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden border border-white/5">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden border border-[#dadce0]">
              <div className="absolute top-0 right-0 p-10 opacity-10"><Maximize className="w-40 h-40" /></div>
              <div className="relative z-10 space-y-6">
-                <div className="flex bg-white/5 p-1.5 rounded-2xl border border-white/10 overflow-x-auto scrollbar-hide">
+                <div className="flex bg-[#f8f9fa] p-1.5 rounded-2xl border border-[#dadce0] overflow-x-auto scrollbar-hide">
                   {Object.entries(UNIT_CATEGORIES).map(([key, cat]: [string, any]) => {
                     const active = category === key;
                     return (
@@ -95,7 +95,7 @@ export default function UnitConverter() {
                           const newUnits = UNIT_CATEGORIES[key].units;
                           updateState({ category: key as any, fromUnit: Object.keys(newUnits)[0], toUnit: Object.keys(newUnits)[1] || Object.keys(newUnits)[0] });
                         }} 
-                        className={`flex items-center gap-2 flex-1 px-4 py-3 text-[10px] font-black uppercase tracking-wider rounded-xl transition-all whitespace-nowrap ${active ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
+                        className={`flex items-center gap-2 flex-1 px-4 py-3 text-[10px] font-black uppercase tracking-wider rounded-xl transition-all whitespace-nowrap ${active ? 'bg-[#1a73e8] text-[#202124] shadow-sm' : 'text-slate-400 hover:text-[#202124]'}`}
                       >
                         <cat.icon className="w-3.5 h-3.5 shrink-0" />
                         {cat.name}
@@ -106,28 +106,28 @@ export default function UnitConverter() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                    <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Magnitude Input</label>
-                      <input type="number" value={value} min={0} onChange={e => updateState({ value: Number(e.target.value) })} className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none" />
-                      <select value={fromUnit} onChange={e => updateState({ fromUnit: e.target.value })} className="w-full h-12 px-4 bg-white/5 border border-white/10 rounded-xl text-slate-300 text-sm font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
-                         {Object.entries(units).map(([k, u]: [string, any]) => <option key={k} value={k} className="bg-slate-900">{u.name} ({k})</option>)}
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Magnitude Input</label>
+                      <input type="number" value={value} min={0} onChange={e => updateState({ value: Number(e.target.value) })} className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none" />
+                      <select value={fromUnit} onChange={e => updateState({ fromUnit: e.target.value })} className="w-full h-12 px-4 bg-[#f8f9fa] border border-[#dadce0] rounded-xl text-slate-300 text-sm font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
+                         {Object.entries(units).map(([k, u]: [string, any]) => <option key={k} value={k} className="bg-white border border-[#dadce0]">{u.name} ({k})</option>)}
                       </select>
                    </div>
                    <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Target Resolution</label>
-                      <div className="h-14 flex items-center px-6 bg-blue-600/10 border border-blue-500/30 rounded-2xl text-xl font-black text-blue-400 overflow-hidden truncate">{convert.result}</div>
-                      <select value={toUnit} onChange={e => updateState({ toUnit: e.target.value })} className="w-full h-12 px-4 bg-white/5 border border-white/10 rounded-xl text-slate-300 text-sm font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
-                         {Object.entries(units).map(([k, u]: [string, any]) => <option key={k} value={k} className="bg-slate-900">{u.name} ({k})</option>)}
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Target Resolution</label>
+                      <div className="h-14 flex items-center px-6 bg-[#1a73e8]/10 border border-blue-500/30 rounded-2xl text-xl font-black text-[#1a0dab] overflow-hidden truncate">{convert.result}</div>
+                      <select value={toUnit} onChange={e => updateState({ toUnit: e.target.value })} className="w-full h-12 px-4 bg-[#f8f9fa] border border-[#dadce0] rounded-xl text-slate-300 text-sm font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
+                         {Object.entries(units).map(([k, u]: [string, any]) => <option key={k} value={k} className="bg-white border border-[#dadce0]">{u.name} ({k})</option>)}
                       </select>
                    </div>
                 </div>
                 
-                <button onClick={swapUnits} className="w-full py-4 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:bg-blue-600 hover:text-white transition-all">
+                <button onClick={swapUnits} className="w-full py-4 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl flex items-center justify-center gap-3 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:bg-[#1a73e8] hover:text-[#202124] transition-all">
                   <ArrowRightLeft className="w-4 h-4" /> Polarity Swap
                 </button>
              </div>
           </div>
 
-          <div className="p-8 border border-slate-200 rounded-[2.5rem] bg-white space-y-6 shadow-sm">
+          <div className="p-8 border border-slate-200 rounded-lg bg-white space-y-6 shadow-sm">
              <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                    <div className="p-2 bg-slate-50 rounded-lg"><Search className="w-4 h-4 text-slate-600" /></div>
@@ -147,10 +147,10 @@ export default function UnitConverter() {
                     <button 
                       key={k} 
                       onClick={() => updateState({ toUnit: k })}
-                      className={`p-5 border rounded-2xl text-left transition-all group ${isActive ? 'bg-blue-600 border-blue-600 shadow-lg' : 'bg-white border-slate-200 hover:border-blue-500 shadow-sm'}`}
+                      className={`p-5 border rounded-2xl text-left transition-all group ${isActive ? 'bg-[#1a73e8] border-blue-600 shadow-sm' : 'bg-white border-slate-200 hover:border-blue-500 shadow-sm'}`}
                     >
                        <div className={`text-[8px] font-black uppercase tracking-widest ${isActive ? 'text-blue-100' : 'text-slate-400 group-hover:text-blue-600'}`}>{k}</div>
-                       <div className={`text-lg font-black truncate mt-1 font-mono ${isActive ? 'text-white' : 'text-slate-900'}`}>
+                       <div className={`text-lg font-black truncate mt-1 font-mono ${isActive ? 'text-[#202124]' : 'text-slate-900'}`}>
                          {val < 0.0001 && val > 0 ? val.toExponential(2) : val.toLocaleString(undefined, { maximumFractionDigits: 4 })}
                        </div>
                        <div className={`text-[9px] font-bold mt-1 ${isActive ? 'text-blue-200' : 'text-slate-500'}`}>{u.name}</div>
@@ -163,7 +163,7 @@ export default function UnitConverter() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><CheckCircle2 className="w-24 h-24 text-blue-600" /></div>
              <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Institutional Resolved Magnitude</div>
              <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">{convert.result}</div>
@@ -172,24 +172,24 @@ export default function UnitConverter() {
              </div>
           </div>
 
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Scale className="w-24 h-24 text-blue-500" /></div>
              <div className="relative z-10">
                 <h4 className="text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-4">Precision Resolution Matrix</h4>
                 <div className="space-y-4">
-                   <div className="flex justify-between items-center pb-3 border-b border-white/5">
+                   <div className="flex justify-between items-center pb-3 border-b border-[#dadce0]">
                       <span className="text-[10px] font-bold text-slate-400 uppercase">Scale Factor</span>
-                      <span className="text-sm font-black text-white font-mono">{(units[toUnit].factor / units[fromUnit].factor).toExponential(4)}</span>
+                      <span className="text-sm font-black text-[#202124] font-mono">{(units[toUnit].factor / units[fromUnit].factor).toExponential(4)}</span>
                    </div>
-                   <div className="flex justify-between items-center pb-3 border-b border-white/5">
+                   <div className="flex justify-between items-center pb-3 border-b border-[#dadce0]">
                       <span className="text-[10px] font-bold text-slate-400 uppercase">Unit Anchor</span>
-                      <span className="text-[10px] font-black text-white">SI-Standard Metrology</span>
+                      <span className="text-[10px] font-black text-[#202124]">SI-Standard Metrology</span>
                    </div>
                 </div>
              </div>
           </div>
 
-          <div className="p-8 bg-blue-50 border border-blue-100 rounded-[2.5rem] flex gap-6 items-start shadow-inner">
+          <div className="p-8 bg-blue-50 border border-blue-100 rounded-lg flex gap-6 items-start shadow-inner">
              <CheckCircle2 className="w-6 h-6 text-blue-600 shrink-0" />
              <p className="text-[11px] text-slate-600 leading-relaxed font-medium">
                This converter utilizes the <strong>IEEE-754 floating point standard</strong>, ensuring astronomical precision across high-variance conversions. All derivations are anchored to SI base constants.
@@ -200,7 +200,7 @@ export default function UnitConverter() {
       details={
         <div className="space-y-8">
           {/* Section 1: The Metrology Manifesto */}
-          <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm relative overflow-hidden">
+          <section className="bg-white border border-[#DADCE0] rounded-lg p-12 shadow-sm relative overflow-hidden">
             <div className="flex items-center gap-4 mb-8">
               <div className="bg-[#E8F0FE] p-4 rounded-2xl">
                   <Ruler className="w-8 h-8 text-[#1A73E8]" />
@@ -221,7 +221,7 @@ export default function UnitConverter() {
           </section>
 
           {/* Section 2: SI Base Units & The 2019 Redefinition */}
-          <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+          <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-12 shadow-sm">
             <div className="flex items-center gap-4 mb-10">
               <div className="bg-[#E6F4EA] p-4 rounded-2xl">
                   <CheckCircle2 className="w-8 h-8 text-[#188038]" />
@@ -232,7 +232,7 @@ export default function UnitConverter() {
               <p>
                 The year 2019 marked a historic shift in human history. For over a century, the <strong>Kilogram</strong> was defined by a physical object—a platinum-iridium cylinder kept in a vault in France. If that cylinder gained a speck of dust, the entire world's definition of "mass" changed.
               </p>
-              <div className="bg-white p-8 rounded-3xl border border-[#DADCE0] shadow-inner space-y-4">
+              <div className="bg-white p-8 rounded-lg border border-[#DADCE0] shadow-inner space-y-4">
                  <h4 className="text-[#202124] font-black uppercase text-xs tracking-widest">The Fundamental Constants</h4>
                  <p className="italic text-sm">Today, all 7 SI base units are defined by fundamental constants of the universe, ensuring they are reproducible anywhere in the cosmos:</p>
                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
@@ -249,7 +249,7 @@ export default function UnitConverter() {
           </section>
 
           {/* Section 3: Industrial Applications in Nepal */}
-          <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+          <section className="bg-white border border-[#DADCE0] rounded-lg p-12 shadow-sm">
             <h2 className="text-3xl font-black text-[#202124] mb-8 tracking-tighter flex items-center gap-4">
                 <Scale className="w-8 h-8 text-[#D93025]" />
                 Industrial Rigor: Hydropower & Civil Engineering
@@ -276,11 +276,11 @@ export default function UnitConverter() {
           </section>
 
           {/* Section 4: Global Trade & WTO Standards */}
-          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-[#202124] rounded-lg p-12 shadow-sm relative overflow-hidden">
              <div className="absolute -bottom-12 -right-12 opacity-10">
                 <ArrowRightLeft className="w-64 h-64" />
              </div>
-             <h2 className="text-4xl font-black mb-10 border-b border-white/10 pb-6 tracking-tighter">Global Trade & TBT Agreements</h2>
+             <h2 className="text-4xl font-black mb-10 border-b border-[#dadce0] pb-6 tracking-tighter">Global Trade & TBT Agreements</h2>
              <div className="prose prose-invert max-w-none space-y-6 leading-relaxed">
                <p>
                  As a member of the <strong>World Trade Organization (WTO)</strong>, Nepal adheres to the <strong>Technical Barriers to Trade (TBT)</strong> agreement. This means that Nepalese exports, such as <strong>Orthodox Tea</strong> or <strong>Hand-knotted Carpets</strong>, must be labeled with precise weights and dimensions that meet the standards of the importing nation.

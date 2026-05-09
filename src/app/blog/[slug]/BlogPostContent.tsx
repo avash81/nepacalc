@@ -153,7 +153,7 @@ export default function BlogPostContent({ post, related }: { post: any; related:
 
         {/* Top Image (Feature) */}
         {sanitizeUrlRaw(post.imageTop) && (
-          <div className="mb-10 w-full overflow-hidden rounded-[2.5rem] shadow-2xl border border-gray-100 relative aspect-video">
+          <div className="mb-10 w-full overflow-hidden rounded-lg shadow-sm border border-gray-100 relative aspect-video">
              <Image 
               src={sanitizeUrlRaw(post.imageTop)!} 
               alt={`${post.title} Overview`} 
@@ -193,7 +193,7 @@ export default function BlogPostContent({ post, related }: { post: any; related:
                     return (
                       <Fragment key={index}>
                         <div dangerouslySetInnerHTML={{ __html: firstPart }} />
-                        <div className="my-10 w-full overflow-hidden rounded-[2.5rem] shadow-2xl border border-gray-100 relative aspect-video">
+                        <div className="my-10 w-full overflow-hidden rounded-lg shadow-sm border border-gray-100 relative aspect-video">
                            <Image 
                             src={sanitizeUrlRaw(post.imageMiddle)!} 
                             alt={`${post.title} Deep Dive`} 
@@ -208,7 +208,7 @@ export default function BlogPostContent({ post, related }: { post: any; related:
                  return (
                    <Fragment key={index}>
                      <div dangerouslySetInnerHTML={{ __html: html }} />
-                     <div className="my-10 w-full overflow-hidden rounded-[2.5rem] shadow-2xl border border-gray-100 relative aspect-video">
+                     <div className="my-10 w-full overflow-hidden rounded-lg shadow-sm border border-gray-100 relative aspect-video">
                         <Image 
                          src={sanitizeUrlRaw(post.imageMiddle)!} 
                          alt={`${post.title} Context`} 
@@ -227,7 +227,7 @@ export default function BlogPostContent({ post, related }: { post: any; related:
 
         {/* Middle/Bottom Images and other sections... */}
         {sanitizeUrlRaw(post.imageBottom) && (
-          <div className="mt-12 w-full overflow-hidden rounded-[2.5rem] shadow-2xl border border-gray-100 relative aspect-video">
+          <div className="mt-12 w-full overflow-hidden rounded-lg shadow-sm border border-gray-100 relative aspect-video">
              <Image 
               src={sanitizeUrlRaw(post.imageBottom)!} 
               alt={`${post.title} Summary`} 
@@ -240,8 +240,8 @@ export default function BlogPostContent({ post, related }: { post: any; related:
 
         {/* Automated Nudges and FAQ etc... */}
         {seoNudge && (
-            <div className="mt-12 bg-[#003366] rounded-[2.5rem] p-8 sm:p-12 text-white relative overflow-hidden group shadow-2xl shadow-blue-900/20">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32 group-hover:bg-white/10 transition-all duration-700" />
+            <div className="mt-12 bg-[#003366] rounded-lg p-8 sm:p-12 text-[#202124] relative overflow-hidden group shadow-sm shadow-blue-900/20">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-[#f8f9fa] rounded-full blur-3xl -mr-32 -mt-32 group-hover:bg-white/10 transition-all duration-700" />
                 <div className="relative z-10">
                     <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-blue-100 mb-6">
                         <Target className="w-4 h-4" /> Recommended Tool

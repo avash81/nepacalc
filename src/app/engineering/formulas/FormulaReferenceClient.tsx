@@ -176,7 +176,7 @@ export default function FormulaReferenceClient() {
         {/* Formulas grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {filteredFormulas.map((f, i) => (
-            <div key={i} className="p-5 rounded-2xl border border-slate-200 hover:border-transparent hover:shadow-lg transition-all group" style={{ borderLeftWidth: 4, borderLeftColor: f.catColor }}>
+            <div key={i} className="p-5 rounded-2xl border border-slate-200 hover:border-transparent hover:shadow-sm transition-all group" style={{ borderLeftWidth: 4, borderLeftColor: f.catColor }}>
               <div className="flex items-start justify-between mb-2">
                 <h3 className="text-[14px] font-bold text-[#202124]">{f.name}</h3>
                 {search && <span className="text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: f.catColor + '15', color: f.catColor }}>{f.catName}</span>}

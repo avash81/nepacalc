@@ -169,7 +169,7 @@ export default function AllInOneCalculator({
      GFN = grey function pill   GNM = white number   GEQ = blue =   */
   const GFN = 'bg-[#F1F3F4] hover:bg-[#E8EAED] text-[#202124] border border-[#DADCE0]/10 font-medium';
   const GNM = 'bg-white border border-[#DADCE0] hover:bg-[#F8F9FA] text-[#202124] shadow-sm font-bold';
-  const GEQ = 'bg-[#1A73E8] hover:bg-[#1557B0] text-white font-black shadow-lg shadow-blue-500/20';
+  const GEQ = 'bg-[#1A73E8] hover:bg-[#1557B0] text-[#202124] font-black shadow-sm shadow-blue-500/20';
 
   const HistoryIcon = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F6368" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -245,14 +245,14 @@ export default function AllInOneCalculator({
   const SolverKeypad = () => {
     // Tab colour themes exactly matching Google
     let funcCls = 'bg-[#F3E5F5] text-[#7B1FA2] hover:bg-[#E1BEE7] border border-[#CE93D8]/20 font-medium'; // purple ,  algebra
-    let actCls  = 'bg-[#7B1FA2] hover:bg-[#6A1B9A] text-white font-black shadow';
+    let actCls  = 'bg-[#7B1FA2] hover:bg-[#6A1B9A] text-[#202124] font-black shadow';
 
     if (tab === 'trig') {
       funcCls = 'bg-[#E8F5E9] text-[#2E7D32] hover:bg-[#C8E6C9] border border-[#A5D6A7]/20 font-medium';
-      actCls  = 'bg-[#2E7D32] hover:bg-[#1B5E20] text-white font-black shadow';
+      actCls  = 'bg-[#2E7D32] hover:bg-[#1B5E20] text-[#202124] font-black shadow';
     } else if (tab === 'calculus') {
       funcCls = 'bg-[#FCE4EC] text-[#C2185B] hover:bg-[#F8BBD9] border border-[#F48FB1]/20 font-medium';
-      actCls  = 'bg-[#C2185B] hover:bg-[#880E4F] text-white font-black shadow';
+      actCls  = 'bg-[#C2185B] hover:bg-[#880E4F] text-[#202124] font-black shadow';
     }
 
     const F = (l: React.ReactNode, v: string, a?: string) => <K label={l} on={() => push(v)} cls={funcCls} ariaLabel={a} />;
@@ -267,7 +267,7 @@ export default function AllInOneCalculator({
           {F('<',  '<')}
           <K label="(" on={() => push('(')} cls={GFN} ariaLabel="Open parenthesis" />
           <K label=")" on={() => push(')')} cls={GFN} ariaLabel="Close parenthesis" />
-          <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-white hover:bg-[#2C3033] border border-[#3C4043] font-bold" ariaLabel="Backspace" />
+          <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-[#202124] hover:bg-[#2C3033] border border-[#3C4043] font-bold" ariaLabel="Backspace" />
           <K label="AC" on={ac} cls={GFN} ariaLabel="All Clear" />
 
           {F(<span>□/□</span>, '/', "Fraction")}
@@ -308,7 +308,7 @@ export default function AllInOneCalculator({
           {F('sin', 'sin(')}  {F('cos', 'cos(')}  {F('tan', 'tan(')}
           <K label="(" on={() => push('(')} cls={GFN} ariaLabel="Open parenthesis" />
           <K label=")" on={() => push(')')} cls={GFN} ariaLabel="Close parenthesis" />
-          <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-white hover:bg-[#2C3033] border border-[#3C4043] font-bold" ariaLabel="Backspace" />
+          <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-[#202124] hover:bg-[#2C3033] border border-[#3C4043] font-bold" ariaLabel="Backspace" />
           <K label="AC" on={ac} cls={GFN} ariaLabel="All Clear" />
 
           {F('csc', 'csc(')}  {F('sec', 'sec(')}  {F('cot', 'cot(')}
@@ -341,7 +341,7 @@ export default function AllInOneCalculator({
           {F(<span>d/d□</span>, 'd')}  {F('∞', 'inf')}  {F(<span>ⁿ√□</span>, 'sqrt(')}
           <K label="(" on={() => push('(')} cls={GFN} ariaLabel="Open parenthesis" />
           <K label=")" on={() => push(')')} cls={GFN} ariaLabel="Close parenthesis" />
-          <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-white hover:bg-[#2C3033] border border-[#3C4043] font-bold" ariaLabel="Backspace" />
+          <K label={<span>⌫</span>} on={del} cls="bg-[#3C4043] text-[#202124] hover:bg-[#2C3033] border border-[#3C4043] font-bold" ariaLabel="Backspace" />
           <K label="AC" on={ac} cls={GFN} ariaLabel="All Clear" />
 
           {F(<span>lim<br /><span className="text-[9px]">□→□</span></span>, 'lim')}

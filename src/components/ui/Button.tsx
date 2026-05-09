@@ -26,8 +26,8 @@ export function Button({
     secondary: 'btn-secondary',
     nepal: 'btn-nepal',
     ghost: 'btn-ghost',
-    danger: 'bg-red-600 text-white hover:bg-red-700',
-    gold: 'bg-cp-amber text-white hover:bg-cp-amber/90',
+    danger: 'bg-red-600 text-[#202124] hover:bg-red-700',
+    gold: 'bg-cp-amber text-[#202124] hover:bg-cp-amber/90',
     outline: 'border border-cp-border hover:bg-cp-bg text-cp-text',
   };
 

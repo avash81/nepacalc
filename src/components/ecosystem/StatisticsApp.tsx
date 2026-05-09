@@ -74,21 +74,21 @@ export function StatisticsApp() {
   const clearData = () => setDataInput('');
 
   return (
-    <div className="w-full flex-1 flex flex-col bg-white overflow-hidden relative border-x border-slate-100 shadow-2xl h-full">
+    <div className="w-full flex-1 flex flex-col bg-white overflow-hidden relative border-x border-slate-100 shadow-sm h-full">
       
       {/* 📊 LABORATORY HEADER */}
-      <div className="flex justify-between items-center px-6 py-4 bg-[#1a4b8c] text-white z-30">
+      <div className="flex justify-between items-center px-6 py-4 bg-[#1a4b8c] text-[#202124] z-30">
         <div className="flex items-center gap-4">
           <span className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em]">
             <BarChart3 className="w-4 h-4 text-[#FFC107]" /> Data Analysis Suite
           </span>
           <div className="h-4 w-[1px] bg-white/20" />
-          <div className="flex bg-white/5 rounded-lg p-1">
+          <div className="flex bg-[#f8f9fa] rounded-lg p-1">
              {(['descriptive', 'regression'] as const).map(tab => (
                <button
                  key={tab}
                  onClick={() => setActiveTab(tab)}
-                 className={`px-4 py-1.5 rounded-md text-[9px] font-black uppercase tracking-widest transition-all ${activeTab === tab ? 'bg-[#FFC107] text-black' : 'text-white/40 hover:text-white hover:bg-white/10'}`}
+                 className={`px-4 py-1.5 rounded-md text-[9px] font-black uppercase tracking-widest transition-all ${activeTab === tab ? 'bg-[#FFC107] text-black' : 'text-[#202124]/40 hover:text-[#202124] hover:bg-white/10'}`}
                >
                  {tab === 'descriptive' ? 'Descriptive' : 'Linear Regression'}
                </button>
@@ -154,7 +154,7 @@ export function StatisticsApp() {
                        ))}
                     </div>
 
-                    <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                    <div className="bg-white p-8 rounded-lg border border-slate-100 shadow-sm">
                        <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-8 flex items-center gap-2">
                           <Sigma className="w-3.5 h-3.5" /> Distribution Visualization
                        </h3>
@@ -174,7 +174,7 @@ export function StatisticsApp() {
                     </div>
                   </>
                 ) : (
-                  <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                  <div className="bg-white p-8 rounded-lg border border-slate-100 shadow-sm">
                      <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-8 flex items-center gap-2">
                         <TrendingUp className="w-3.5 h-3.5" /> Simple Linear Regression (n={stats.count})
                      </h3>

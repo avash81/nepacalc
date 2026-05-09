@@ -76,7 +76,7 @@ export default function ConcreteCalculator() {
       >
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8">
           <div className="space-y-8">
-            <div className="bg-white border border-gray-100 rounded-3xl p-6 shadow-sm space-y-6">
+            <div className="bg-white border border-gray-100 rounded-lg p-6 shadow-sm space-y-6">
               <div className="flex bg-gray-50 p-1.5 rounded-2xl border border-gray-100">
                 <button 
                   onClick={() => setUnit('m')}
@@ -150,12 +150,12 @@ export default function ConcreteCalculator() {
           </div>
 
           <div className="space-y-6">
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-[2.5rem] p-8 text-white shadow-2xl shadow-blue-900/20">
-              <div className="text-[10px] font-black text-blue-400 uppercase tracking-[0.3em] mb-6 border-l-2 border-blue-500 pl-4">Estimation Results</div>
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg p-8 text-[#202124] shadow-sm shadow-blue-900/20">
+              <div className="text-[10px] font-black text-[#1a0dab] uppercase tracking-[0.3em] mb-6 border-l-2 border-blue-500 pl-4">Estimation Results</div>
               
               <div className="space-y-8">
                 <div>
-                  <div className="text-4xl font-black text-white flex items-baseline gap-2">
+                  <div className="text-4xl font-black text-[#202124] flex items-baseline gap-2">
                     {fmt(Math.ceil(result.cementBags))} <span className="text-sm font-bold text-gray-400 uppercase tracking-widest">Bags</span>
                   </div>
                   <div className="text-[10px] text-gray-500 font-black uppercase mt-1">Cement Required (approx {fmt(result.cementKg)} kg)</div>
@@ -163,11 +163,11 @@ export default function ConcreteCalculator() {
 
                 <div className="grid grid-cols-2 gap-6">
                    <div>
-                      <div className="text-xl font-black text-white">{fmt(result.sandVol)} m³</div>
+                      <div className="text-xl font-black text-[#202124]">{fmt(result.sandVol)} m³</div>
                       <div className="text-[10px] text-orange-400 font-bold uppercase mt-1">Sand ({fmt(result.sandCft)} cft)</div>
                    </div>
                    <div>
-                      <div className="text-xl font-black text-white">{fmt(result.aggregateVol)} m³</div>
+                      <div className="text-xl font-black text-[#202124]">{fmt(result.aggregateVol)} m³</div>
                       <div className="text-[10px] text-green-400 font-bold uppercase mt-1">Aggregate ({fmt(result.aggregateCft)} cft)</div>
                    </div>
                 </div>
@@ -175,19 +175,19 @@ export default function ConcreteCalculator() {
                 <div className="pt-6 border-t border-gray-700 space-y-2">
                   <div className="flex justify-between text-[10px] font-bold text-gray-500 uppercase tracking-widest">
                     <span>Wet Volume</span>
-                    <span className="text-white">{fmt(volume)} {unit === 'm' ? 'm³' : 'ft³'}</span>
+                    <span className="text-[#202124]">{fmt(volume)} {unit === 'm' ? 'm³' : 'ft³'}</span>
                   </div>
                   <div className="flex justify-between text-[10px] font-bold text-gray-500 uppercase tracking-widest">
                     <span>Dry Volume (Incl Wastage)</span>
-                    <span className="text-blue-400">{fmt(result.dryVolume)} {unit === 'm' ? 'm³' : 'ft³'}</span>
+                    <span className="text-[#1a0dab]">{fmt(result.dryVolume)} {unit === 'm' ? 'm³' : 'ft³'}</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-blue-50 rounded-3xl p-6 border border-blue-100">
+            <div className="bg-blue-50 rounded-lg p-6 border border-blue-100">
                <div className="flex items-start gap-4">
-                  <div className="bg-blue-600 p-2 rounded-xl text-white">
+                  <div className="bg-[#1a73e8] p-2 rounded-xl text-[#202124]">
                     <Info className="w-5 h-5" />
                   </div>
                   <div>

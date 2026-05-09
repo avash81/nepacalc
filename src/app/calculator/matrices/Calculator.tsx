@@ -75,7 +75,7 @@ export default function MatrixCalc() {
             ))}
           </div>
 
-          <div className="p-6 bg-white border border-[#DADCE0] rounded-3xl shadow-sm relative group">
+          <div className="p-6 bg-white border border-[#DADCE0] rounded-lg shadow-sm relative group">
             <div className="text-[10px] font-black uppercase text-[#70757A] mb-6 flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-[#1A73E8]" />
                 Matrix Buffer (A)
@@ -94,7 +94,7 @@ export default function MatrixCalc() {
       }
       results={
         <div className="space-y-6">
-          <div className="bg-white border border-[#DADCE0] rounded-3xl p-10 text-center shadow-xl">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-10 text-center shadow-sm">
             <div className="text-[10px] font-black uppercase tracking-widest text-[#70757A] mb-4">Matrix Determinant (|A|)</div>
             <div className="text-6xl font-black text-[#1A73E8] tracking-tighter font-mono">
                 {results.det.toFixed(2).replace(/\.?0+$/, '')}
@@ -118,14 +118,14 @@ export default function MatrixCalc() {
           </div>
 
           {results.inverse ? (
-            <div className="bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden shadow-2xl">
-              <div className="px-8 py-4 bg-slate-900 border-b border-slate-800">
-                <h3 className="text-[10px] font-black uppercase tracking-widest text-blue-400">Analytic Inverse (A⁻¹)</h3>
+            <div className="bg-slate-950 border border-slate-800 rounded-lg overflow-hidden shadow-sm">
+              <div className="px-8 py-4 bg-white border border-[#dadce0] border-b border-slate-800">
+                <h3 className="text-[10px] font-black uppercase tracking-widest text-[#1a0dab]">Analytic Inverse (A⁻¹)</h3>
               </div>
               <div className="p-8 grid gap-3" style={{ gridTemplateColumns: `repeat(${size}, 1fr)` }}>
                 {results.inverse.map((row, r) => row.map((v, i) => (
-                  <div key={`${r}-${i}`} className="p-4 bg-slate-900 rounded-xl border border-white/5 text-center">
-                    <div className="font-mono font-black text-sm text-white">
+                  <div key={`${r}-${i}`} className="p-4 bg-white border border-[#dadce0] rounded-xl border border-[#dadce0] text-center">
+                    <div className="font-mono font-black text-sm text-[#202124]">
                       {Math.abs(v) < 1e-10 ? '0' : Number.isInteger(v) ? v : v.toFixed(3)}
                     </div>
                   </div>
@@ -133,7 +133,7 @@ export default function MatrixCalc() {
               </div>
             </div>
           ) : (
-            <div className="p-10 border border-[#DADCE0] rounded-3xl bg-[#F8F9FA] text-center">
+            <div className="p-10 border border-[#DADCE0] rounded-lg bg-[#F8F9FA] text-center">
                <p className="text-[10px] font-black text-[#70757A] uppercase">Non-Invertible</p>
             </div>
           )}
@@ -141,7 +141,7 @@ export default function MatrixCalc() {
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-3xl p-8 shadow-sm">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
              <div className="flex items-center gap-3 mb-6 border-l-4 border-[#1A73E8] pl-4">
                 <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Institutional Matrix Resolution</h3>
              </div>

@@ -60,7 +60,7 @@ export default function IncomeTaxCalculator() {
                     key={s}
                     onClick={() => setStatus(s)}
                     className={`flex-1 py-3 text-xs font-black uppercase tracking-widest transition-all rounded-lg ${
-                      status === s ? 'bg-white text-[var(--primary)] shadow-md' : 'text-[var(--text-muted)] hover:bg-white/50'
+                      status === s ? 'bg-white text-[var(--primary)] shadow-md' : 'text-[var(--text-muted)] hover:bg-[#f8f9fa]0'
                     }`}
                   >
                     {s}
@@ -76,7 +76,7 @@ export default function IncomeTaxCalculator() {
               </div>
               <button 
                 onClick={() => setSsf(!ssf)}
-                className={`w-14 h-7 rounded-full transition-all duration-300 relative shadow-inner ${ssf ? 'bg-blue-600' : 'bg-slate-300'}`}
+                className={`w-14 h-7 rounded-full transition-all duration-300 relative shadow-inner ${ssf ? 'bg-[#1a73e8]' : 'bg-slate-300'}`}
               >
                 <div className={`absolute top-1 w-5 h-5 rounded-full bg-white shadow-md transition-all duration-300 ${ssf ? 'left-8' : 'left-1'}`} />
               </button>
@@ -86,8 +86,8 @@ export default function IncomeTaxCalculator() {
       }
       rightPanel={
         <div className="space-y-8">
-          <div className="text-center p-8 lg:p-12 bg-white border-2 border-blue-100 rounded-2xl shadow-xl relative overflow-hidden group">
-            <div className="absolute top-0 left-0 w-full h-1.5 bg-blue-600" />
+          <div className="text-center p-8 lg:p-12 bg-white border-2 border-blue-100 rounded-2xl shadow-sm relative overflow-hidden group">
+            <div className="absolute top-0 left-0 w-full h-1.5 bg-[#1a73e8]" />
             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-600 mb-4">Net Annual Take-Home</div>
             <div className="text-6xl lg:text-7xl font-black text-slate-900 tracking-tighter mb-4 group-hover:scale-105 transition-transform duration-500">Rs. {results.netIncome.toLocaleString()}</div>
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-50 text-red-600 rounded-full text-[11px] font-black uppercase tracking-widest border border-red-100">

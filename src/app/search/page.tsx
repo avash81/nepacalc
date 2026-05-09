@@ -66,7 +66,7 @@ function SearchResults() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-20 bg-white rounded-3xl border border-gray-200">
+            <div className="text-center py-20 bg-white rounded-lg border border-gray-200">
               <p className="text-gray-500">No calculators match your search.</p>
               <button 
                 onClick={() => setQ('')}
@@ -78,7 +78,7 @@ function SearchResults() {
           )}
         </div>
       ) : (
-        <div className="bg-white rounded-3xl p-8 border border-gray-200 text-center">
+        <div className="bg-white rounded-lg p-8 border border-gray-200 text-center">
           <h3 className="text-lg font-bold text-gray-900 mb-4">Popular Searches</h3>
           <div className="flex flex-wrap justify-center gap-3">
             {['Income Tax', 'EMI', 'Nepali Date', 'BMI', 'GPA', 'VAT', 'Salary'].map(term => (

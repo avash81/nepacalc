@@ -33,7 +33,7 @@ export default function GraphingPage() {
       />
       <GraphingCalculatorClient />
     
-      <section className="mt-12 bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-xl shadow-slate-200/40">
+      <section className="mt-12 bg-white rounded-lg p-8 sm:p-12 border border-slate-200 shadow-sm shadow-slate-200/40">
         <h2 className="text-2xl font-black text-slate-900 mb-6 tracking-tight">Professional Graphing Intelligence</h2>
         <p className="text-slate-600 text-base leading-relaxed mb-6 font-medium">
           NepaCalc&apos;s High-Precision Graphing Engine is a professional-grade mathematical visualizer designed for students and engineers in Nepal. Unlike generic plotters, our engine utilizes a custom Pratt-parser to handle complex trigonometric, logarithmic, and polynomial functions with zero computational lag.

@@ -38,7 +38,7 @@ export default function RoundingCalc() {
               <div className="grid grid-cols-6 gap-2">
                 {[0,1,2,3,4,5].map(v => (
                   <button key={v} onClick={() => setPrecision(v)}
-                    className={`py-2 rounded-lg text-sm font-bold transition-all ${precision === v ? 'bg-blue-600 text-white shadow-md' : 'bg-white border border-slate-300 text-slate-600 hover:bg-slate-50'}`}>
+                    className={`py-2 rounded-lg text-sm font-bold transition-all ${precision === v ? 'bg-[#1a73e8] text-[#202124] shadow-md' : 'bg-white border border-slate-300 text-slate-600 hover:bg-slate-50'}`}>
                     {v}
                   </button>
                 ))}

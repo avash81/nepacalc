@@ -57,7 +57,7 @@ export default function StandardDeviationCalculator() {
           <div className="space-y-6">
             {r ? (
               <>
-                <div className="p-12 bg-white border border-[#DADCE0] rounded-[2.5rem] text-center shadow-xl relative overflow-hidden group">
+                <div className="p-12 bg-white border border-[#DADCE0] rounded-lg text-center shadow-sm relative overflow-hidden group">
                   <div className="absolute right-0 top-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                     <Sigma className="w-32 h-32" />
                   </div>
@@ -76,17 +76,17 @@ export default function StandardDeviationCalculator() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="p-8 bg-white border border-[#DADCE0] rounded-3xl shadow-md border-b-4 border-b-[#188038] group">
+                    <div className="p-8 bg-white border border-[#DADCE0] rounded-lg shadow-md border-b-4 border-b-[#188038] group">
                         <div className="text-[10px] font-black uppercase tracking-widest text-[#70757A] mb-2 group-hover:text-[#188038] transition-colors">Sample Variance ({'$s^2$'})</div>
                         <div className="text-3xl font-black text-[#202124] font-mono">{r.variance.toFixed(4)}</div>
                     </div>
-                    <div className="p-8 bg-white border border-[#DADCE0] rounded-3xl shadow-md border-b-4 border-b-[#1A73E8] group">
+                    <div className="p-8 bg-white border border-[#DADCE0] rounded-lg shadow-md border-b-4 border-b-[#1A73E8] group">
                         <div className="text-[10px] font-black uppercase tracking-widest text-[#70757A] mb-2 group-hover:text-[#1A73E8] transition-colors">Dataset Mean ({'$\\bar{x}$'})</div>
                         <div className="text-3xl font-black text-[#202124] font-mono">{r.mean.toFixed(4)}</div>
                     </div>
                 </div>
 
-                <div className="bg-white border border-[#DADCE0] rounded-3xl overflow-hidden shadow-lg divide-y divide-[#F1F3F4]">
+                <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm divide-y divide-[#F1F3F4]">
                   {[
                     { label: 'Range (Max - Min)',    val: (r.max - r.min).toFixed(2), desc: 'Total Spread Magnitude', icon: TrendingUp },
                     { label: 'Minimum Bound',         val: r.min, desc: 'Lower Statistical Limit', icon: Search },
@@ -114,7 +114,7 @@ export default function StandardDeviationCalculator() {
                 </div>
               </>
             ) : (
-              <div className="p-20 bg-[#F8F9FA] border-2 border-dashed border-[#DADCE0] rounded-[2.5rem] text-center space-y-6">
+              <div className="p-20 bg-[#F8F9FA] border-2 border-dashed border-[#DADCE0] rounded-lg text-center space-y-6">
                  <div className="bg-white p-5 rounded-full w-24 h-24 mx-auto flex items-center justify-center shadow-md">
                     <Sigma className="w-12 h-12 text-[#70757A]" />
                  </div>
@@ -129,7 +129,7 @@ export default function StandardDeviationCalculator() {
         details={
           <div className="space-y-16">
             {/* Section 1: The Philosophy of Dispersion */}
-            <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm relative overflow-hidden">
+            <section className="bg-white border border-[#DADCE0] rounded-lg p-12 shadow-sm relative overflow-hidden">
               <div className="absolute -top-12 -right-12 opacity-5">
                   <History className="w-64 h-64" />
               </div>
@@ -153,7 +153,7 @@ export default function StandardDeviationCalculator() {
             </section>
 
             {/* Section 2: Sample vs. Population Theory */}
-            <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+            <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-12 shadow-sm">
               <div className="flex items-center gap-4 mb-10">
                 <div className="bg-[#E6F4EA] p-4 rounded-2xl">
                     <Landmark className="w-8 h-8 text-[#188038]" />
@@ -175,7 +175,7 @@ export default function StandardDeviationCalculator() {
                         </p>
                    </div>
                 </div>
-                <div className="bg-white p-10 rounded-3xl shadow-inner border border-[#DADCE0] space-y-6">
+                <div className="bg-white p-10 rounded-lg shadow-inner border border-[#DADCE0] space-y-6">
                     <h4 className="text-lg font-black text-[#202124]">Why {'$n-1$'} matters in Nepal?</h4>
                     <p className="text-[#5F6368] leading-relaxed italic">
                         "In academic research conducted at TU or KU, using the population formula on sample data is considered a primary technical error. Our calculator defaults to the sample formula to protect students and researchers from bias-related grade deductions or research rejection."
@@ -189,7 +189,7 @@ export default function StandardDeviationCalculator() {
             </section>
 
             {/* Section 3: Educational Roadmap */}
-            <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+            <section className="bg-white border border-[#DADCE0] rounded-lg p-12 shadow-sm">
               <div className="flex items-center gap-4 mb-8">
                 <div className="bg-[#FEF7E0] p-4 rounded-2xl">
                     <GraduationCap className="w-8 h-8 text-[#F29900]" />
@@ -210,11 +210,11 @@ export default function StandardDeviationCalculator() {
             </section>
 
             {/* Section 4: Real-World Applications */}
-            <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+            <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-[#202124] rounded-lg p-12 shadow-sm relative overflow-hidden">
               <div className="absolute -bottom-10 -left-10 opacity-10">
                   <TrendingUp className="w-64 h-64" />
               </div>
-              <h2 className="text-4xl font-black mb-10 border-b border-white/10 pb-6 tracking-tighter">Industrial Topology & Practical Utility</h2>
+              <h2 className="text-4xl font-black mb-10 border-b border-[#dadce0] pb-6 tracking-tighter">Industrial Topology & Practical Utility</h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                   <div className="space-y-6 text-slate-300 leading-relaxed text-sm">
                       <div className="flex gap-4">

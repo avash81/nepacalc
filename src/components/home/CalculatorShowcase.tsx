@@ -74,7 +74,7 @@ export default function CalculatorShowcase() {
               <Link href={`/calculators/${cat.id}`}>
                 <div className="p-8 bg-white rounded-xl border border-cp-border group hover:border-cp-blue transition-all duration-300 overflow-hidden relative shadow-cp-sm">
                   <div className="relative z-10">
-                    <div className={`w-12 h-12 ${cat.color} rounded-lg flex items-center justify-center text-white mb-6 shadow-sm`}>
+                    <div className={`w-12 h-12 ${cat.color} rounded-lg flex items-center justify-center text-[#202124] mb-6 shadow-sm`}>
                       <cat.icon className="w-6 h-6" />
                     </div>
                     <div className="flex items-center justify-between mb-3">

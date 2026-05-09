@@ -55,7 +55,7 @@ export default function WaterIntakeCalculator() {
             </div>
           </div>
 
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
             Calculate Hydration
           </button>
         </div>

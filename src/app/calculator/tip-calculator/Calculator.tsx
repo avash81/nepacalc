@@ -30,22 +30,22 @@ export default function TipCalculator() {
       icon={UtensilsCrossed}
       inputs={
         <div className="space-y-8">
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
              <div className="absolute top-0 right-0 p-10 opacity-10"><UtensilsCrossed className="w-40 h-40" /></div>
              <div className="relative z-10 grid grid-cols-1 gap-6">
                 <div className="space-y-4">
-                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Total Bill (NPR)</label>
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Total Bill (NPR)</label>
                    <input 
                       type="number" 
                       value={bill} 
                       onChange={(e) => update({ bill: Number(e.target.value) })}
-                      className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" 
+                      className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
                    />
                 </div>
                 <div className="space-y-4">
                    <div className="flex justify-between items-center">
-                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Tip Percentage</label>
-                      <span className="text-[10px] font-black text-blue-400">{tipPercent}%</span>
+                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Tip Percentage</label>
+                      <span className="text-[10px] font-black text-[#1a0dab]">{tipPercent}%</span>
                    </div>
                    <input 
                       type="range" 
@@ -57,17 +57,17 @@ export default function TipCalculator() {
                    />
                 </div>
                 <div className="space-y-4">
-                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Number of People</label>
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Number of People</label>
                    <div className="flex gap-4 items-center">
-                      <button onClick={() => update({ people: Math.max(1, people - 1) })} className="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-white/10 transition-all text-xl font-black">-</button>
-                      <div className="flex-1 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-xl font-black">{people}</div>
-                      <button onClick={() => update({ people: people + 1 })} className="w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-white/10 transition-all text-xl font-black">+</button>
+                      <button onClick={() => update({ people: Math.max(1, people - 1) })} className="w-12 h-12 bg-[#f8f9fa] border border-[#dadce0] rounded-xl flex items-center justify-center hover:bg-white/10 transition-all text-xl font-black">-</button>
+                      <div className="flex-1 h-12 bg-[#f8f9fa] border border-[#dadce0] rounded-xl flex items-center justify-center text-xl font-black">{people}</div>
+                      <button onClick={() => update({ people: people + 1 })} className="w-12 h-12 bg-[#f8f9fa] border border-[#dadce0] rounded-xl flex items-center justify-center hover:bg-white/10 transition-all text-xl font-black">+</button>
                    </div>
                 </div>
              </div>
           </div>
 
-          <div className="p-8 border border-slate-200 rounded-[2.5rem] bg-white space-y-6 shadow-sm">
+          <div className="p-8 border border-slate-200 rounded-lg bg-white space-y-6 shadow-sm">
              <div className="flex items-center gap-3">
                 <div className="p-2 bg-blue-50 rounded-lg"><Percent className="w-4 h-4 text-blue-600" /></div>
                 <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Service Standards</h3>
@@ -77,7 +77,7 @@ export default function TipCalculator() {
                   <button 
                     key={v} 
                     onClick={() => update({ tipPercent: v })}
-                    className={`py-3 text-[10px] font-black uppercase rounded-xl transition-all ${tipPercent === v ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 bg-slate-50 border border-slate-100 hover:bg-white'}`}
+                    className={`py-3 text-[10px] font-black uppercase rounded-xl transition-all ${tipPercent === v ? 'bg-[#1a73e8] text-[#202124] shadow-sm' : 'text-slate-400 bg-slate-50 border border-slate-100 hover:bg-white'}`}
                   >
                     {v}%
                   </button>
@@ -88,7 +88,7 @@ export default function TipCalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Users className="w-24 h-24 text-blue-600" /></div>
              <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Each Person Pays</div>
              <div className="text-5xl font-black tracking-tighter text-slate-900 font-mono uppercase">{fmt(r.perPerson)}</div>
@@ -98,17 +98,17 @@ export default function TipCalculator() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1">
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
                 <div className="text-[9px] font-black text-slate-400 uppercase">Total Tip</div>
                 <div className="text-xl font-black text-slate-900">{fmt(r.totalTip)}</div>
              </div>
-             <div className="p-6 bg-blue-50 border border-blue-100 rounded-3xl space-y-1">
+             <div className="p-6 bg-blue-50 border border-blue-100 rounded-lg space-y-1">
                 <div className="text-[9px] font-black text-blue-600 uppercase">Total Bill</div>
                 <div className="text-xl font-black text-blue-600">{fmt(r.totalBill)}</div>
              </div>
           </div>
 
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><ShoppingBag className="w-24 h-24 text-emerald-500" /></div>
              <div className="relative z-10 space-y-3">
                 <div className="flex items-center gap-2">
@@ -125,10 +125,10 @@ export default function TipCalculator() {
       details={
         <div className="space-y-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-lg p-10 shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 p-6 opacity-5"><Percent className="w-20 h-20 text-blue-600" /></div>
               <div className="flex items-center gap-2 mb-8">
-                <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                <div className="w-1.5 h-6 bg-[#1a73e8] rounded-full" />
                 <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Bill Composition</h3>
               </div>
               <div className="space-y-6">
@@ -137,7 +137,7 @@ export default function TipCalculator() {
                     <span className="text-xl font-black text-slate-900">{fmt(bill)}</span>
                  </div>
                  <div className="w-full h-4 bg-slate-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-600 rounded-full" style={{ width: `${(bill / r.totalBill) * 100}%` }} />
+                    <div className="h-full bg-[#1a73e8] rounded-full" style={{ width: `${(bill / r.totalBill) * 100}%` }} />
                  </div>
                  <div className="flex justify-between items-end">
                     <span className="text-[10px] font-black text-emerald-600 uppercase">Total Tip</span>
@@ -149,21 +149,21 @@ export default function TipCalculator() {
               </div>
             </div>
 
-            <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+            <div className="bg-[#1A1A2E] text-[#202124] rounded-lg p-10 shadow-sm relative overflow-hidden flex flex-col justify-center">
                <div className="absolute -bottom-12 -right-12 opacity-10"><Users className="w-64 h-64 text-emerald-500" /></div>
                <h3 className="text-2xl font-black mb-6 tracking-tight text-emerald-400 uppercase tracking-widest">Individual Burden</h3>
                <p className="text-xs text-slate-400 leading-relaxed font-bold uppercase tracking-tighter mb-8">
                   Splitting the bill evenly ensures social transparency. In Nepal, "going Dutch" is common among urban professionals and students.
                </p>
-               <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
+               <div className="p-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl">
                   <div className="text-[9px] font-black text-emerald-400 uppercase mb-2 tracking-widest">Each Person Owed</div>
-                  <div className="text-3xl font-black text-white">{fmt(r.perPerson)}</div>
+                  <div className="text-3xl font-black text-[#202124]">{fmt(r.perPerson)}</div>
                   <div className="text-[9px] font-bold text-slate-500 uppercase mt-1">Inclusive of {tipPercent}% Tip</div>
                </div>
             </div>
           </div>
 
-          <section className="bg-white border border-slate-200 rounded-[3rem] p-12 shadow-sm relative overflow-hidden">
+          <section className="bg-white border border-slate-200 rounded-lg p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -top-12 -right-12 opacity-5">
                 <UtensilsCrossed className="w-64 h-64 text-blue-600" />
             </div>
@@ -178,7 +178,7 @@ export default function TipCalculator() {
                 Tipping in <strong>Nepal</strong> is a nuanced practice that has evolved with the growth of tourism and the urban restaurant scene. Unlike North America, it is not mandatory but acts as a gesture of appreciation for quality service.
               </p>
               
-              <div className="bg-blue-50 border border-blue-100 p-8 rounded-[2.5rem] flex gap-6 items-start my-10">
+              <div className="bg-blue-50 border border-blue-100 p-8 rounded-lg flex gap-6 items-start my-10">
                  <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm shrink-0">
                     <Info className="w-6 h-6 text-blue-600" />
                  </div>

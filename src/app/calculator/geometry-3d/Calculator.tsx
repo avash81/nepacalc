@@ -95,11 +95,11 @@ export default function Geometry3D() {
       results={
         <div className="space-y-6">
           <div className="bg-[#1A1A2E] border border-[#DADCE0] rounded-lg overflow-hidden text-center">
-             <div className="p-8 border-b border-white/10 relative">
+             <div className="p-8 border-b border-[#dadce0] relative">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#1A73E8] opacity-10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none" />
                 <div className="text-[10px] font-bold uppercase tracking-wider text-[#8AB4F8] mb-2 relative z-10">Calculated Volume</div>
-                <div className="text-4xl sm:text-5xl font-black text-white tracking-tighter mb-2 relative z-10 break-all">{res.vol}</div>
-                <div className="text-[10px] text-white/50 font-bold uppercase tracking-widest relative z-10">Cubic Units</div>
+                <div className="text-4xl sm:text-5xl font-black text-[#202124] tracking-tighter mb-2 relative z-10 break-all">{res.vol}</div>
+                <div className="text-[10px] text-[#202124]/50 font-bold uppercase tracking-widest relative z-10">Cubic Units</div>
              </div>
              
              <div className="p-8 bg-[#F8F9FA]">

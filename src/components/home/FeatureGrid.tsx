@@ -73,7 +73,7 @@ export function FeatureGrid() {
             return (
               <div 
                 key={index}
-                className="p-8 rounded-[2rem] bg-white border border-slate-100 hover:border-cp-blue/30 hover:shadow-2xl hover:shadow-cp-blue/5 transition-all group"
+                className="p-8 rounded-[2rem] bg-white border border-slate-100 hover:border-cp-blue/30 hover:shadow-sm hover:shadow-cp-blue/5 transition-all group"
               >
                 <div className={`w-14 h-14 ${feature.bg} ${feature.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                   <Icon strokeWidth={2.5} size={28} />

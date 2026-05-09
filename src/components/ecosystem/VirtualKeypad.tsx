@@ -76,7 +76,7 @@ export function VirtualKeypad({ mode, onInput, onAction }: VirtualKeypadProps) {
     { label: 'mod', val: 'mod(' },
     { label: 'rand', val: 'random()' },
     { label: 'DEG | RAD', action: 'TOGGLE_UNIT', type: 'util', span: 'col-span-2' },
-    { label: '=', action: 'EVALUATE', bg: 'bg-[#1a4b8c] text-white hover:bg-[#123564] border-[#0a2347]', span: 'col-span-2' },
+    { label: '=', action: 'EVALUATE', bg: 'bg-[#1a4b8c] text-[#202124] hover:bg-[#123564] border-[#0a2347]', span: 'col-span-2' },
   ];
 
   const basicNumpad = [
@@ -102,7 +102,7 @@ export function VirtualKeypad({ mode, onInput, onAction }: VirtualKeypadProps) {
 
     { label: '0', val: '0', type: 'num', span: 'col-span-2' },
     { label: '.', val: '.', type: 'num' },
-    { label: '=', action: 'EVALUATE', bg: 'bg-[#1a4b8c] text-white hover:bg-[#123564]' },
+    { label: '=', action: 'EVALUATE', bg: 'bg-[#1a4b8c] text-[#202124] hover:bg-[#123564]' },
   ];
 
   const renderKey = (key: any, i: number) => {
@@ -141,14 +141,14 @@ export function VirtualKeypad({ mode, onInput, onAction }: VirtualKeypadProps) {
 
   if (mode === 'basic') {
     return (
-      <div className="grid grid-cols-4 gap-2 md:gap-3 h-[380px] sm:h-[450px] p-4 bg-white/50 backdrop-blur-xl">
+      <div className="grid grid-cols-4 gap-2 md:gap-3 h-[380px] sm:h-[450px] p-4 bg-[#f8f9fa]0 backdrop-blur-xl">
         {basicNumpad.map((key, i) => renderKey(key, i))}
       </div>
     );
   }
 
   return (
-    <div className="w-full flex flex-col gap-2 bg-white/50 backdrop-blur-xl p-2 md:p-4 border-t border-slate-100">
+    <div className="w-full flex flex-col gap-2 bg-[#f8f9fa]0 backdrop-blur-xl p-2 md:p-4 border-t border-slate-100">
       
       {/* 🔢 EXPANSIVE ENGINEERING GRID */}
       <div className="grid grid-cols-5 md:grid-cols-10 gap-1.5 md:gap-2 h-[420px] md:h-[300px]">

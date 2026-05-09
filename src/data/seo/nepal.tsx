@@ -24,7 +24,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Nepal's Land Measurement Systems</h2>
         
-        <div className="bg-[#f8f9fa] border-2 border-[#dadce0] rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#f8f9fa] border-2 border-[#dadce0] rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#1a73e8] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#1a73e8] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Geospatial Intelligence Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#5f6368] uppercase tracking-tighter">
@@ -131,7 +131,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Salary & Payroll Architecture in Nepal</h2>
         
-        <div className="bg-[#f3e5f5] border-2 border-[#9c27b0]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#f3e5f5] border-2 border-[#9c27b0]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#9c27b0] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#4a148c] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Human Capital Finance Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#4a148c] uppercase tracking-tighter">
@@ -176,7 +176,7 @@ export const nepalSEO: Record<string, SEOContent> = {
             Not all money you receive is taxed. Understanding the distinction between base salary, dearness allowance, and reimbursed expenses is key to accurate payroll management.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-             <div className="p-8 bg-[#e8f0fe] rounded-3xl border border-[#1a73e8]/20">
+             <div className="p-8 bg-[#e8f0fe] rounded-lg border border-[#1a73e8]/20">
                 <h4 className="text-xs font-black uppercase text-[#1a73e8] mb-4">Taxable</h4>
                 <ul className="text-[11px] text-[#3c4043] space-y-2">
                    <li>• Basic Salary & Dearness Allowance</li>
@@ -185,7 +185,7 @@ export const nepalSEO: Record<string, SEOContent> = {
                    <li>• Leave Encashment Payouts</li>
                 </ul>
              </div>
-             <div className="p-8 bg-[#f1f8e9] rounded-3xl border border-[#188038]/20">
+             <div className="p-8 bg-[#f1f8e9] rounded-lg border border-[#188038]/20">
                 <h4 className="text-xs font-black uppercase text-[#188038] mb-4">Exempt (Under conditions)</h4>
                 <ul className="text-[11px] text-[#3c4043] space-y-2">
                    <li>• Fuel & Communication Reimbursements</li>
@@ -239,19 +239,19 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: NEPSE Trading & Commission in Nepal</h2>
         
-        <div className="bg-[#1a1a2e] border-2 border-[#1a73e8]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#1a1a2e] border-2 border-[#1a73e8]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#1a73e8] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#4fc3f7] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Stock Market Masterclass</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-             <a href="#commissions" className="flex items-center gap-2 hover:text-white transition-all"><span>01.</span> SEBON Broker Commission Tiers</a>
-             <a href="#cgt" className="flex items-center gap-2 hover:text-white transition-all"><span>02.</span> Capital Gains Tax (5% vs 7.5%)</a>
-             <a href="#wacc" className="flex items-center gap-2 hover:text-white transition-all"><span>03.</span> WACC Calculation Theory</a>
-             <a href="#fees" className="flex items-center gap-2 hover:text-white transition-all"><span>04.</span> DP & SEBON Regulatory Fees</a>
-             <a href="#bonus" className="flex items-center gap-2 hover:text-white transition-all"><span>05.</span> Bonus & Right Share Adjustment</a>
-             <a href="#holding" className="flex items-center gap-2 hover:text-white transition-all"><span>06.</span> Holding Period Verification Logic</a>
-             <a href="#meroshare" className="flex items-center gap-2 hover:text-white transition-all"><span>07.</span> MeroShare & TMS Integration</a>
-             <a href="#dividends" className="flex items-center gap-2 hover:text-white transition-all"><span>08.</span> Cash Dividend Taxation (5% TDS)</a>
-             <a href="#strategies" className="flex items-center gap-2 hover:text-white transition-all"><span>09.</span> Trading Psychology & Exit Disciplines</a>
+             <a href="#commissions" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>01.</span> SEBON Broker Commission Tiers</a>
+             <a href="#cgt" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>02.</span> Capital Gains Tax (5% vs 7.5%)</a>
+             <a href="#wacc" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>03.</span> WACC Calculation Theory</a>
+             <a href="#fees" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>04.</span> DP & SEBON Regulatory Fees</a>
+             <a href="#bonus" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>05.</span> Bonus & Right Share Adjustment</a>
+             <a href="#holding" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>06.</span> Holding Period Verification Logic</a>
+             <a href="#meroshare" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>07.</span> MeroShare & TMS Integration</a>
+             <a href="#dividends" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>08.</span> Cash Dividend Taxation (5% TDS)</a>
+             <a href="#strategies" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>09.</span> Trading Psychology & Exit Disciplines</a>
           </div>
         </div>
 
@@ -293,7 +293,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </p>
         </section>
 
-        <section id="cgt" className="mb-16 p-10 bg-[#fff3e0] border border-[#ffb74d]/30 rounded-[3rem]">
+        <section id="cgt" className="mb-16 p-10 bg-[#fff3e0] border border-[#ffb74d]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#e65100] mb-4">2. Capital Gains Tax (CGT): The Holding Period Policy</h3>
           <p className="text-sm text-[#3c4033] leading-relaxed mb-6">
             Nepal differentiates between "Short-Term" and "Long-Term" investors for tax purposes. This policy is designed to encourage stable investments in the NEPSE market.
@@ -315,12 +315,12 @@ export const nepalSEO: Record<string, SEOContent> = {
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
             Before selling shares, you must calculate and confirm the <strong>Weighted Average Cost of Capital (WACC)</strong> on MeroShare. This value represents your average buying price including commissions and taxes. If you fail to calculate WACC, the system may default to your base price, potentially leading to higher tax liabilities.
           </p>
-          <div className="p-8 bg-[#1a1a2e] text-white rounded-[3rem] shadow-xl">
+          <div className="p-8 bg-[#1a1a2e] text-[#202124] rounded-lg shadow-sm">
              <h4 className="text-lg font-black text-[#4fc3f7] mb-4">The WACC Formula:</h4>
              <p className="text-xs text-slate-400 leading-relaxed mb-4">
                 WACC = (Total Purchase Value + Total Buying Commissions) / Total Number of Shares.
              </p>
-             <p className="text-xs font-black uppercase tracking-widest text-white border-l-4 border-[#1a73e8] pl-4">
+             <p className="text-xs font-black uppercase tracking-widest text-[#202124] border-l-4 border-[#1a73e8] pl-4">
                 Rule: WACC must be updated after every new purchase or bonus/right share adjustment.
              </p>
           </div>
@@ -368,7 +368,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Real Estate Capital Gains Tax in Nepal</h2>
         
-        <div className="bg-[#fff3e0] border-2 border-[#ffb74d]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#fff3e0] border-2 border-[#ffb74d]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#fb8c00] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#e65100] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Real Estate Strategy Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#5d4037] uppercase tracking-tighter">
@@ -390,12 +390,12 @@ export const nepalSEO: Record<string, SEOContent> = {
             Nepal's Income Tax Act mandates a differential tax rate for real estate based on the duration of ownership. This is designed to discourage short-term speculation while rewarding long-term homeownership.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-             <div className="p-8 bg-white border-l-8 border-[#e65100] rounded-3xl shadow-sm">
+             <div className="p-8 bg-white border-l-8 border-[#e65100] rounded-lg shadow-sm">
                 <h4 className="text-xs font-black uppercase text-[#e65100] tracking-widest mb-2">Held &lt; 5 Years</h4>
                 <p className="text-sm font-black text-[#202124] mb-2">7.5% CGT</p>
                 <p className="text-[11px] text-[#5f6368] leading-relaxed">Considered a short-term gain. Applied if you sell a property within 5 years of the registration date.</p>
              </div>
-             <div className="p-8 bg-white border-l-8 border-[#188038] rounded-3xl shadow-sm">
+             <div className="p-8 bg-white border-l-8 border-[#188038] rounded-lg shadow-sm">
                 <h4 className="text-xs font-black uppercase text-[#188038] tracking-widest mb-2">Held &gt; 5 Years</h4>
                 <p className="text-sm font-black text-[#202124] mb-2">5% CGT</p>
                 <p className="text-[11px] text-[#5f6368] leading-relaxed">Considered a long-term gain. This lower rate applies once you cross the 5-year ownership threshold.</p>
@@ -403,12 +403,12 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="malpot" className="mb-16 p-10 bg-[#e8eaf6] border border-[#3f51b5]/30 rounded-[3rem]">
+        <section id="malpot" className="mb-16 p-10 bg-[#e8eaf6] border border-[#3f51b5]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#1a237e] mb-4">2. Malpot Valuation: The Government Baseline</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             In Nepal, every piece of land has a <strong>Minimum Government Valuation</strong> set by the Malpot office. The CGT is calculated based on the <strong>Actual Sale Price</strong> or the <strong>Malpot Valuation</strong>, whichever is higher.
           </p>
-          <div className="p-6 bg-white/50 rounded-2xl border border-white">
+          <div className="p-6 bg-[#f8f9fa]0 rounded-2xl border border-white">
              <p className="text-xs font-bold text-[#1a237e] uppercase mb-2">Institutional Protocol:</p>
              <p className="text-[11px] text-[#5f6368]">
                "If you sell a property for Rs. 50 Lakhs but the Malpot valuation is Rs. 60 Lakhs, the tax authorities will charge CGT based on Rs. 60 Lakhs. Our calculator helps you identify this gap before you finalize the deal."
@@ -423,11 +423,11 @@ export const nepalSEO: Record<string, SEOContent> = {
           </p>
           <ul className="space-y-4">
              <li className="p-5 bg-[#f1f8e9] rounded-2xl flex items-start gap-4">
-                <span className="w-6 h-6 rounded-full bg-[#33691e] flex items-center justify-center text-white text-[10px] font-bold">01</span>
+                <span className="w-6 h-6 rounded-full bg-[#33691e] flex items-center justify-center text-[#202124] text-[10px] font-bold">01</span>
                 <p className="text-[11px] text-[#33691e] font-bold leading-relaxed">Transactions below Rs. 10 Lakhs are generally exempt from CGT reporting for individuals.</p>
              </li>
              <li className="p-5 bg-[#f1f8e9] rounded-2xl flex items-start gap-4">
-                <span className="w-6 h-6 rounded-full bg-[#33691e] flex items-center justify-center text-white text-[10px] font-bold">02</span>
+                <span className="w-6 h-6 rounded-full bg-[#33691e] flex items-center justify-center text-[#202124] text-[10px] font-bold">02</span>
                 <p className="text-[11px] text-[#33691e] font-bold leading-relaxed">Agricultural land in rural areas (outside municipal limits) may qualify for special tax-free status.</p>
              </li>
           </ul>
@@ -475,7 +475,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Property Registration & Malpot Fees in Nepal</h2>
         
-        <div className="bg-[#f3e5f5] border-2 border-[#ce93d8]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#f3e5f5] border-2 border-[#ce93d8]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#9c27b0] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#4a148c] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Real Estate Compliance Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#4a148c] uppercase tracking-tighter">
@@ -526,7 +526,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="female" className="mb-16 p-10 bg-[#e1f5fe] border border-[#03a9f4]/30 rounded-[3rem]">
+        <section id="female" className="mb-16 p-10 bg-[#e1f5fe] border border-[#03a9f4]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#01579b] mb-4">2. The Female Ownership Multiplier</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             The Government of Nepal promotes women's property rights through significant tax rebates. Depending on the geographical location, a female buyer can save 25% to 35% on the total registration fee.
@@ -581,7 +581,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Tax Deducted at Source (TDS) in Nepal</h2>
         
-        <div className="bg-[#e0f2f1] border-2 border-[#80cbc4]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#e0f2f1] border-2 border-[#80cbc4]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#009688] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#00695c] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Compliance Intelligence Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#00695c] uppercase tracking-tighter">
@@ -602,7 +602,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
             For businesses registered in VAT, payments for professional services or supply of goods attract a <strong>1.5% TDS</strong>. This is not a final tax but a prepayment that the vendor can claim against their annual income tax liability.
           </p>
-          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-3xl mb-8">
+          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-lg mb-8">
             <p className="text-xs font-black text-[#202124] uppercase mb-2">Institutional Protocol:</p>
             <p className="text-[11px] text-[#5f6368] leading-relaxed">
               "TDS must be calculated on the <strong>Base Amount</strong> (excluding VAT). If an invoice is for Rs. 113 (Rs. 100 + 13% VAT), the 1.5% TDS is calculated on Rs. 100, resulting in Rs. 1.50 deduction."
@@ -610,7 +610,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="rent" className="mb-16 p-10 bg-[#fffde7] border border-[#fbc02d]/30 rounded-[3rem]">
+        <section id="rent" className="mb-16 p-10 bg-[#fffde7] border border-[#fbc02d]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#f57f17] mb-4">2. House Rent TDS: The 10% Policy</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             Payments for house rent to individuals attract a flat <strong>10% TDS</strong>. This is a final withholding tax for the individual landlord, meaning they do not need to include this in their personal income tax return if it's their only source of rental income.
@@ -669,7 +669,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Employee Provident Fund (EPF) in Nepal</h2>
         
-        <div className="bg-[#fff3e0] border-2 border-[#ffb74d]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#fff3e0] border-2 border-[#ffb74d]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#fb8c00] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#e65100] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Retirement Architecture Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#5d4037] uppercase tracking-tighter">
@@ -702,12 +702,12 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="loans" className="mb-16 p-10 bg-[#f1f8e9] border border-[#81c784]/30 rounded-[3rem]">
+        <section id="loans" className="mb-16 p-10 bg-[#f1f8e9] border border-[#81c784]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#33691e] mb-4">2. The 70% Loan Rule: Liquidity in Savings</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             Unlike many other savings, EPF in Nepal allows you to borrow against your own contributions. You can typically take a "Sanchayakarta Loan" for up to <strong>70% of your total balance</strong>.
           </p>
-          <div className="bg-white p-8 rounded-3xl border border-[#c8e6c9]">
+          <div className="bg-white p-8 rounded-lg border border-[#c8e6c9]">
              <h4 className="text-sm font-black text-[#33691e] mb-2 uppercase">Institutional Benefits:</h4>
              <ul className="text-[11px] text-[#5f6368] space-y-2">
                 <li>• Lower interest rates compared to commercial personal loans.</li>
@@ -722,7 +722,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
             With the introduction of the Social Security Fund (SSF), many private-sector employees in Nepal have a choice between staying with EPF or migrating to SSF.
           </p>
-          <div className="p-8 bg-[#1a1a2e] text-white rounded-[3rem]">
+          <div className="p-8 bg-[#1a1a2e] text-[#202124] rounded-lg">
              <p className="text-xs text-slate-400 mb-4 italic">"EPF offers higher liquidity through loans and a lump-sum payout at the end. SSF focuses more on pension and comprehensive medical/accident insurance. Our calculator helps you project the long-term wealth difference between these two paths."</p>
           </div>
         </section>
@@ -769,7 +769,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Vehicle Tax & Bluebook Renewal in Nepal</h2>
         
-        <div className="bg-[#e8eaf6] border-2 border-[#3f51b5]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#e8eaf6] border-2 border-[#3f51b5]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#3f51b5] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#1a237e] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Mobility Compliance Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#1a237e] uppercase tracking-tighter">
@@ -824,7 +824,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="penalties" className="mb-16 p-10 bg-[#fff3e0] border border-[#ffb74d]/30 rounded-[3rem]">
+        <section id="penalties" className="mb-16 p-10 bg-[#fff3e0] border border-[#ffb74d]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#e65100] mb-4">2. Late Payment Penalties: The 90-Day Clock</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             You have 90 days from the expiry of your bluebook to pay the tax without penalty. Once you cross this grace period, the penalty increases in stages.
@@ -840,7 +840,7 @@ export const nepalSEO: Record<string, SEOContent> = {
                 <p className="text-xs font-bold text-[#202124]">10% Penalty</p>
                 <p className="text-[10px] text-[#5f6368] mt-2">Applied for the remainder of the fiscal year.</p>
              </div>
-             <div className="p-6 bg-[#1a1a2e] text-white rounded-2xl shadow-sm">
+             <div className="p-6 bg-[#1a1a2e] text-[#202124] rounded-2xl shadow-sm">
                 <p className="text-[10px] font-black text-[#4fc3f7] uppercase mb-1">Stage 3</p>
                 <p className="text-xs font-bold">20% Penalty</p>
                 <p className="text-[10px] text-slate-400 mt-2">Applied if the renewal is delayed to the next fiscal year.</p>
@@ -891,19 +891,19 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: NEPSE WACC & Price Adjustment in Nepal</h2>
         
-        <div className="bg-[#1a1a2e] border-2 border-[#1a73e8]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#1a1a2e] border-2 border-[#1a73e8]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#1a73e8] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#4fc3f7] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Equity Architecture Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-             <a href="#logic" className="flex items-center gap-2 hover:text-white transition-all"><span>01.</span> WACC: The 100% Accuracy Mandate</a>
-             <a href="#bonus" className="flex items-center gap-2 hover:text-white transition-all"><span>02.</span> Bonus Share Adjustment (Rs. 100 Rule)</a>
-             <a href="#right" className="flex items-center gap-2 hover:text-white transition-all"><span>03.</span> Right Share Impact on Average Cost</a>
-             <a href="#mergers" className="flex items-center gap-2 hover:text-white transition-all"><span>04.</span> Swap Ratios & Merger Cost-Base</a>
-             <a href="#meroshare" className="flex items-center gap-2 hover:text-white transition-all"><span>05.</span> My WACC Confirmation Process</a>
-             <a href="#cgt" className="flex items-center gap-2 hover:text-white transition-all"><span>06.</span> CGT Calculation on Adjusted Base</a>
-             <a href="#errors" className="flex items-center gap-2 hover:text-white transition-all"><span>07.</span> Correcting Manual WACC Entry Errors</a>
-             <a href="#holding" className="flex items-center gap-2 hover:text-white transition-all"><span>08.</span> Holding Period vs WACC Synchronization</a>
-             <a href="#strategies" className="flex items-center gap-2 hover:text-white transition-all"><span>09.</span> Portfolio Optimization via WACC Dilution</a>
+             <a href="#logic" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>01.</span> WACC: The 100% Accuracy Mandate</a>
+             <a href="#bonus" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>02.</span> Bonus Share Adjustment (Rs. 100 Rule)</a>
+             <a href="#right" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>03.</span> Right Share Impact on Average Cost</a>
+             <a href="#mergers" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>04.</span> Swap Ratios & Merger Cost-Base</a>
+             <a href="#meroshare" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>05.</span> My WACC Confirmation Process</a>
+             <a href="#cgt" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>06.</span> CGT Calculation on Adjusted Base</a>
+             <a href="#errors" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>07.</span> Correcting Manual WACC Entry Errors</a>
+             <a href="#holding" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>08.</span> Holding Period vs WACC Synchronization</a>
+             <a href="#strategies" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>09.</span> Portfolio Optimization via WACC Dilution</a>
           </div>
         </div>
 
@@ -912,7 +912,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
             In the modern NEPSE ecosystem (TMS & MeroShare), the responsibility of declaring the "Buying Cost" lies with the investor. This is done through the <strong>My WACC</strong> module. If you sell shares without confirming WACC, the system may assume a default price (often the face value), leading to incorrect and usually higher Capital Gains Tax (CGT).
           </p>
-          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-3xl mb-8">
+          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-lg mb-8">
             <p className="text-xs font-black text-[#202124] uppercase mb-2">Institutional Warning:</p>
             <p className="text-[11px] text-[#5f6368] leading-relaxed">
               "Once you confirm WACC on MeroShare, it is final for that transaction. Our calculator ensures you compute the exact value including commission and SEBON fees to avoid overpaying tax or facing IRD audits."
@@ -920,7 +920,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="bonus" className="mb-16 p-10 bg-[#e3f2fd] border border-[#2196f3]/30 rounded-[3rem]">
+        <section id="bonus" className="mb-16 p-10 bg-[#e3f2fd] border border-[#2196f3]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#0d47a1] mb-4">2. Bonus Shares: The Price Dilution Math</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             When a company issues bonus shares, your total number of shares increases, but your total investment stays the same. This <strong>dilutes</strong> your average cost per share.
@@ -975,7 +975,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Gratuity & Retirement Benefits in Nepal</h2>
         
-        <div className="bg-[#f1f8e9] border-2 border-[#81c784]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#f1f8e9] border-2 border-[#81c784]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#81c784] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#1b5e20] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Retirement Compliance Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#1b5e20] uppercase tracking-tighter">
@@ -996,7 +996,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
             Since the implementation of the <strong>Labor Act 2074</strong>, the concept of "waiting 5 years for gratuity" was abolished. Every employee in Nepal is now entitled to gratuity from the first day of their employment. The statutory rate is <strong>8.33% of the basic salary</strong> every month.
           </p>
-          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-3xl mb-8">
+          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-lg mb-8">
             <p className="text-xs font-black text-[#202124] uppercase mb-2">Institutional Logic:</p>
             <p className="text-[11px] text-[#5f6368] leading-relaxed">
               "An 8.33% monthly contribution is mathematically equivalent to exactly one month's basic salary per year. This amount must be either deposited in a separate fund (like SSF) or accrued in the company's books for the employee's benefit."
@@ -1004,7 +1004,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="ssf" className="mb-16 p-10 bg-[#e8f5e9] border border-[#81c784]/30 rounded-[3rem]">
+        <section id="ssf" className="mb-16 p-10 bg-[#e8f5e9] border border-[#81c784]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#1b5e20] mb-4">2. SSF and the Gratuity Evolution</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             For companies registered with the <strong>Social Security Fund (SSF)</strong>, the 8.33% gratuity is part of the 31% total contribution. This shift ensures that the gratuity is safe and earns interest, similar to a provident fund.
@@ -1059,7 +1059,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Value Added Tax (VAT) in Nepal</h2>
         
-        <div className="bg-[#fce4ec] border-2 border-[#f06292]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#fce4ec] border-2 border-[#f06292]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#f06292] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#880e4f] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Indirect Taxation Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#880e4f] uppercase tracking-tighter">
@@ -1081,12 +1081,12 @@ export const nepalSEO: Record<string, SEOContent> = {
             Nepal has a single-tier VAT system with a standard rate of <strong>13%</strong>. This was introduced to simplify tax administration and reduce evasion. While some countries have multiple slabs, Nepal maintains consistency for all taxable goods and services.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-             <div className="p-8 bg-white border border-[#dadce0] rounded-3xl shadow-sm">
+             <div className="p-8 bg-white border border-[#dadce0] rounded-lg shadow-sm">
                 <h4 className="text-xs font-black uppercase text-[#ad1457] tracking-widest mb-2">Domestic Supply</h4>
                 <p className="text-sm font-black text-[#202124] mb-2">13% Standard Rate</p>
                 <p className="text-[11px] text-[#5f6368] leading-relaxed">Applied to all services and goods not listed in the exempt schedule.</p>
              </div>
-             <div className="p-8 bg-white border border-[#dadce0] rounded-3xl shadow-sm">
+             <div className="p-8 bg-white border border-[#dadce0] rounded-lg shadow-sm">
                 <h4 className="text-xs font-black uppercase text-[#188038] tracking-widest mb-2">Exports</h4>
                 <p className="text-sm font-black text-[#202124] mb-2">0% (Zero-Rated)</p>
                 <p className="text-[11px] text-[#5f6368] leading-relaxed">Exporters can claim back the VAT they paid on inputs, encouraging international trade.</p>
@@ -1094,14 +1094,14 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="thresholds" className="mb-16 p-10 bg-[#fce4ec] border border-[#f06292]/30 rounded-[3rem]">
+        <section id="thresholds" className="mb-16 p-10 bg-[#fce4ec] border border-[#f06292]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#880e4f] mb-4">2. Registration Thresholds: When to join VAT?</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             Not every business in Nepal needs to register for VAT. The IRD sets annual turnover thresholds to protect small vendors from compliance burdens.
           </p>
           <div className="overflow-hidden rounded-2xl border border-[#f06292]">
             <table className="w-full text-left text-xs bg-white">
-               <thead className="bg-[#f06292] text-white">
+               <thead className="bg-[#f06292] text-[#202124]">
                   <tr>
                     <th className="p-4 font-black uppercase">Business Type</th>
                     <th className="p-4 font-black uppercase">VAT Threshold (Annual)</th>
@@ -1167,7 +1167,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Bikram Sambat & Nepali Date Logic</h2>
         
-        <div className="bg-[#fff8e1] border-2 border-[#ffca28]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#fff8e1] border-2 border-[#ffca28]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#ffca28] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#bf360c] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Astronomical Intelligence Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#bf360c] uppercase tracking-tighter">
@@ -1188,7 +1188,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
             Nepal's Bikram Sambat is a <strong>Solar Calendar</strong> based on the sidereal year. Each month begins when the sun enters a new zodiac sign. For example, Baisakh 1 starts when the sun enters Aries (Mesha). Because the transit time varies, the number of days in a Nepali month is not fixed like the Gregorian system.
           </p>
-          <div className="p-8 bg-white border-l-8 border-[#ffca28] rounded-3xl shadow-sm mb-8">
+          <div className="p-8 bg-white border-l-8 border-[#ffca28] rounded-lg shadow-sm mb-8">
              <p className="text-xs font-black text-[#202124] uppercase mb-2">Institutional Fact:</p>
              <p className="text-[11px] text-[#5f6368] leading-relaxed">
                "While a Gregorian month is either 28, 29, 30, or 31 days, a Nepali month can be as long as 32 days or as short as 29 days. This requires our converter to use a pre-calculated dataset from the Nepal Panchanga Nirnayak Samiti."
@@ -1196,7 +1196,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="conversion" className="mb-16 p-10 bg-[#f3e5f5] border border-[#9c27b0]/30 rounded-[3rem]">
+        <section id="conversion" className="mb-16 p-10 bg-[#f3e5f5] border border-[#9c27b0]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#4a148c] mb-4">2. The Conversion Gap: 56 Years, 8 Months</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             Bikram Sambat is approximately <strong>56.7 years ahead</strong> of the Gregorian calendar. However, because the New Year days (Jan 1 vs Baisakh 1) do not align, the difference varies between 56 and 57 years depending on the month.
@@ -1251,7 +1251,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: SEE Grading System in Nepal</h2>
         
-        <div className="bg-[#e3f2fd] border-2 border-[#2196f3]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#e3f2fd] border-2 border-[#2196f3]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#2196f3] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#0d47a1] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Academic Intelligence Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#0d47a1] uppercase tracking-tighter">
@@ -1292,7 +1292,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="eligibility" className="mb-16 p-10 bg-[#fff3e0] border border-[#ffb74d]/30 rounded-[3rem]">
+        <section id="eligibility" className="mb-16 p-10 bg-[#fff3e0] border border-[#ffb74d]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#e65100] mb-4">2. Stream Eligibility: The 2.0 GPA Threshold</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             Simply passing SEE is not enough for all subjects. The NEB mandates specific minimum grades for admission into Grade 11.
@@ -1351,7 +1351,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Lok Sewa (PSC) Age Eligibility in Nepal</h2>
         
-        <div className="bg-[#f1f8e9] border-2 border-[#81c784]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#f1f8e9] border-2 border-[#81c784]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#81c784] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#1b5e20] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Public Service Intelligence Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#1b5e20] uppercase tracking-tighter">
@@ -1373,12 +1373,12 @@ export const nepalSEO: Record<string, SEOContent> = {
             For general candidates in Nepal's Public Service Commission (Lok Sewa), the age requirements are strict and non-negotiable. Disqualification occurs if you are even a single day above the threshold.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-             <div className="p-8 bg-white border-l-8 border-[#1b5e20] rounded-3xl shadow-sm">
+             <div className="p-8 bg-white border-l-8 border-[#1b5e20] rounded-lg shadow-sm">
                 <h4 className="text-xs font-black uppercase text-[#1b5e20] mb-2">Minimum Age</h4>
                 <p className="text-sm font-black text-[#202124] mb-2">18 Years</p>
                 <p className="text-[11px] text-[#5f6368]">Must have completed 18 years as of the vacancy deadline for most non-technical posts.</p>
              </div>
-             <div className="p-8 bg-white border-l-8 border-[#d93025] rounded-3xl shadow-sm">
+             <div className="p-8 bg-white border-l-8 border-[#d93025] rounded-lg shadow-sm">
                 <h4 className="text-xs font-black uppercase text-[#d93025] mb-2">Maximum Age</h4>
                 <p className="text-sm font-black text-[#202124] mb-2">35 Years</p>
                 <p className="text-[11px] text-[#5f6368]">Must not have exceeded 35 years for male candidates in general categories.</p>
@@ -1386,7 +1386,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="women" className="mb-16 p-10 bg-[#fffde7] border border-[#fbc02d]/30 rounded-[3rem]">
+        <section id="women" className="mb-16 p-10 bg-[#fffde7] border border-[#fbc02d]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#f57f17] mb-4">2. Reservation Relaxations: The 40-Year Horizon</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             To promote inclusivity in the bureaucracy, the government of Nepal provides a 5-year age relaxation for specific marginalized and under-represented groups.
@@ -1441,7 +1441,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Foreign Employment & Labor Rights in Nepal</h2>
         
-        <div className="bg-[#e0f2f1] border-2 border-[#80cbc4]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#e0f2f1] border-2 border-[#80cbc4]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#009688] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#00695c] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Migration Intelligence Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#00695c] uppercase tracking-tighter">
@@ -1462,7 +1462,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
             Since 2015, Nepal has implemented a "Free Visa Free Ticket" policy for seven major destination countries: Malaysia, Qatar, Saudi Arabia, UAE, Kuwait, Bahrain, and Oman. Under this rule, the employer must bear the cost of the visa and the air ticket.
           </p>
-          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-3xl mb-8">
+          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-lg mb-8">
             <p className="text-xs font-black text-[#202124] uppercase mb-2">Institutional Logic:</p>
             <p className="text-[11px] text-[#5f6368] leading-relaxed">
               "Recruitment agencies (Manpower) can only charge a maximum service fee of Rs. 10,000 if the employer does not provide a service commission. Our calculator helps you audit your invoice against these legal ceilings."
@@ -1470,14 +1470,14 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="insurance" className="mb-16 p-10 bg-[#e1f5fe] border border-[#03a9f4]/30 rounded-[3rem]">
+        <section id="insurance" className="mb-16 p-10 bg-[#e1f5fe] border border-[#03a9f4]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#01579b] mb-4">2. Mandatory Insurance: The Safety Net</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             Every migrant worker from Nepal must have a Term Life Insurance policy. The premium depends on the age of the worker and the contract duration.
           </p>
           <div className="overflow-hidden rounded-2xl border border-[#bbdefb]">
             <table className="w-full text-left text-xs bg-white">
-               <thead className="bg-[#03a9f4] text-white">
+               <thead className="bg-[#03a9f4] text-[#202124]">
                   <tr>
                     <th className="p-4 font-black uppercase">Age Group</th>
                     <th className="p-4 font-black uppercase">Avg. Premium (2-Year)</th>
@@ -1533,7 +1533,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Bonus & Dividend Taxation in Nepal</h2>
         
-        <div className="bg-[#fff3e0] border-2 border-[#ffb74d]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#fff3e0] border-2 border-[#ffb74d]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#fb8c00] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#e65100] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Passive Income Compliance Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#5d4037] uppercase tracking-tighter">
@@ -1554,7 +1554,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
             For individual investors in Nepal, cash dividends are subject to a flat <strong>5% Final Withholding Tax (TDS)</strong>. This means the company will deduct the tax before depositing the money into your bank account. You do not need to include this in your annual income tax return.
           </p>
-          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-3xl mb-8">
+          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-lg mb-8">
             <p className="text-xs font-black text-[#202124] uppercase mb-2">Institutional Logic:</p>
             <p className="text-[11px] text-[#5f6368] leading-relaxed">
               "If a company declares a 20% cash dividend on your Rs. 10,000 face value (100 shares), the gross dividend is Rs. 2,000. After the 5% TDS (Rs. 100), you will receive a net amount of Rs. 1,900."
@@ -1562,7 +1562,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="mergers" className="mb-16 p-10 bg-[#e8f5e9] border border-[#81c784]/30 rounded-[3rem]">
+        <section id="mergers" className="mb-16 p-10 bg-[#e8f5e9] border border-[#81c784]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#1b5e20] mb-4">2. Merger Tax Exemptions: The Strategic Shield</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             To encourage market consolidation, the Government of Nepal provides a tax exemption on dividends for companies that have recently merged.
@@ -1617,7 +1617,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: KUKL Water Billing & Slabs in Kathmandu</h2>
         
-        <div className="bg-[#e1f5fe] border-2 border-[#03a9f4]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#e1f5fe] border-2 border-[#03a9f4]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#03a9f4] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#01579b] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Utility Intelligence Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#01579b] uppercase tracking-tighter">
@@ -1638,7 +1638,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
             Kathmandu Upatyaka Khanepani Limited (KUKL) operates on a tiered billing system. For a standard <strong>0.5-inch meter</strong>, the minimum monthly charge is fixed for the first <strong>10 units (10,000 liters)</strong>.
           </p>
-          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-3xl mb-8">
+          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-lg mb-8">
             <p className="text-xs font-black text-[#202124] uppercase mb-2">Institutional Logic:</p>
             <p className="text-[11px] text-[#5f6368] leading-relaxed">
               "Even if you consume zero water, you are liable to pay the minimum monthly charge. This covers the maintenance of the distribution network and the sewerage connection."
@@ -1646,7 +1646,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="sewerage" className="mb-16 p-10 bg-[#e3f2fd] border border-[#2196f3]/30 rounded-[3rem]">
+        <section id="sewerage" className="mb-16 p-10 bg-[#e3f2fd] border border-[#2196f3]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#0d47a1] mb-4">2. Sewerage Tax: The 50% Mandate</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             In most areas of Kathmandu served by KUKL, a mandatory sewerage charge is applied to the water bill. This is calculated as <strong>50% of the total water consumption charge</strong>.
@@ -1702,7 +1702,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Mortgage Amortization & Home Finance</h2>
         
-        <div className="bg-[#f3e5f5] border-2 border-[#9c27b0]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#f3e5f5] border-2 border-[#9c27b0]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#9c27b0] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#4a148c] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Real Estate Finance Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#4a148c] uppercase tracking-tighter">
@@ -1723,7 +1723,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
             In the early years of a mortgage, the majority of your monthly payment goes toward <strong>Interest</strong> rather than <strong>Principal</strong>. This is because interest is calculated on the outstanding balance, which is highest at the start of the loan.
           </p>
-          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-3xl mb-8">
+          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-lg mb-8">
             <p className="text-xs font-black text-[#202124] uppercase mb-2">Institutional Logic:</p>
             <p className="text-[11px] text-[#5f6368] leading-relaxed">
               "By using our amortization engine, you can visualize exactly when your payments start 'eating' into the principal significantly. This 'Tipping Point' is crucial for deciding when to sell or refinance."
@@ -1731,7 +1731,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="prepayment" className="mb-16 p-10 bg-[#e1f5fe] border border-[#03a9f4]/30 rounded-[3rem]">
+        <section id="prepayment" className="mb-16 p-10 bg-[#e1f5fe] border border-[#03a9f4]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#01579b] mb-4">2. The Power of One Extra Monthly Payment</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             Making just one extra monthly payment per year can reduce a 30-year mortgage by 4 to 6 years, saving tens of thousands in interest costs.
@@ -1787,7 +1787,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Compound Interest & Exponential Wealth</h2>
         
-        <div className="bg-[#e8f5e9] border-2 border-[#81c784]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#e8f5e9] border-2 border-[#81c784]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#81c784] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#1b5e20] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Wealth Architecture Lab</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#1b5e20] uppercase tracking-tighter">
@@ -1808,7 +1808,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
             The more frequently interest is compounded, the higher the final amount. Monthly compounding results in interest being earned on the previous month's interest, creating a faster growth curve than annual compounding.
           </p>
-          <div className="p-8 bg-white border-l-8 border-[#1b5e20] rounded-3xl shadow-sm mb-8">
+          <div className="p-8 bg-white border-l-8 border-[#1b5e20] rounded-lg shadow-sm mb-8">
              <p className="text-xs font-black text-[#202124] uppercase mb-2">Institutional Logic:</p>
              <p className="text-[11px] text-[#5f6368] leading-relaxed">
                "At an 8% annual rate, Rs. 1 Lakh compounded annually grows to Rs. 4.66 Lakhs in 20 years. If compounded monthly, it grows to Rs. 4.92 Lakhs. That 'small' frequency shift creates an extra Rs. 26,000 with zero extra effort."
@@ -1816,7 +1816,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="rule72" className="mb-16 p-10 bg-[#fffde7] border border-[#fbc02d]/30 rounded-[3rem]">
+        <section id="rule72" className="mb-16 p-10 bg-[#fffde7] border border-[#fbc02d]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#f57f17] mb-4">2. The Rule of 72: Instant Wealth Projection</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             The Rule of 72 is a quick, useful formula that is used to estimate the number of years required to double your money at a given annual rate of return.
@@ -1872,7 +1872,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Guide to Personal Income Tax in Nepal (FY 2081/82)</h2>
         
-        <div className="bg-[#E8F0FE] border-2 border-[#1a73e8]/20 rounded-[2.5rem] p-10 mb-10 shadow-sm">
+        <div className="bg-[#E8F0FE] border-2 border-[#1a73e8]/20 rounded-lg p-10 mb-10 shadow-sm">
           <h4 className="text-[#1967d2] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Tax Architecture Masterclass</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#3c4043] uppercase tracking-tighter">
              <a href="#slabs" className="flex items-center gap-2 hover:text-[#1a73e8] transition-all"><span>01.</span> Current Fiscal Slabs (Single vs Married)</a>
@@ -1935,7 +1935,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </p>
         </section>
 
-        <section id="ssf" className="mb-16 p-10 bg-[#f1f8e9] border border-[#81c784]/30 rounded-[3rem]">
+        <section id="ssf" className="mb-16 p-10 bg-[#f1f8e9] border border-[#81c784]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#1b5e20] mb-4">2. The Social Security Fund (SSF) Exemption</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             The SSF is a transformative shift in Nepal's labor relations. Under the current mandate, employees contribute 11% and employers contribute 20%, totaling a 31% monthly deposit. This is a primary factor in <strong>income tax calculation</strong> for formal sector workers.
@@ -1961,7 +1961,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
             Voluntary contributions to the <strong>Citizen Investment Trust (CIT)</strong> serve as an excellent "Tax Shield" for high earners in Nepal. By maximizing your CIT deposit, you can lower your effective tax bracket, potentially moving from the 30% slab down to the 20% slab. This is a top query for those searching for <strong>ird tax calculator</strong> benchmarks.
           </p>
-          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-3xl flex flex-col items-center text-center">
+          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-lg flex flex-col items-center text-center">
             <p className="text-sm font-black text-[#202124] mb-2 uppercase">Pro Tip for High Earners</p>
             <p className="text-xs text-[#5f6368] max-w-lg">
               "If your annual income is Rs. 15,00,000, without CIT you would pay roughly Rs. 1,60,000 in tax. By maximizing CIT, you could reduce that tax burden by over Rs. 30,000 while building a retirement nest egg."
@@ -1969,12 +1969,12 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="female" className="mb-16 bg-[#fffde7] border border-[#fff59d] p-10 rounded-[3rem]">
+        <section id="female" className="mb-16 bg-[#fffde7] border border-[#fff59d] p-10 rounded-lg">
           <h3 className="text-2xl font-black text-[#f57f17] mb-4">4. Female Tax Rebate: The 10% Advantage</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             To encourage women's participation in the formal workforce, the IRD provides a <strong>10% direct rebate</strong> on the total tax payable for female employees whose only source of income is salary. This is reflected in our <strong>salary tax calculator nepal</strong> results.
           </p>
-          <div className="bg-white/50 p-6 rounded-2xl border border-white">
+          <div className="bg-[#f8f9fa]0 p-6 rounded-2xl border border-white">
              <p className="text-xs font-bold text-[#f57f17] uppercase tracking-tighter mb-2">Calculation Logic:</p>
              <code className="text-sm font-black text-[#202124]">Net Tax = Calculated Tax - (Calculated Tax x 10%)</code>
              <p className="text-[10px] text-[#5f6368] mt-3 italic">
@@ -2013,13 +2013,13 @@ export const nepalSEO: Record<string, SEOContent> = {
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
             A common behavioral bias in Nepal is the fear of "jumping to the 30% slab." Many believe that if they earn Rs. 1 more than the limit, their entire salary will be taxed at 30%. This is <strong>incorrect</strong> and often leads to confusion when using a <strong>salary tax calculator</strong>.
           </p>
-          <div className="p-10 bg-[#1a1a2e] text-white rounded-[3rem] shadow-xl relative overflow-hidden">
+          <div className="p-10 bg-[#1a1a2e] text-[#202124] rounded-lg shadow-sm relative overflow-hidden">
              <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#1a73e8] rounded-full blur-[80px] opacity-20" />
              <h4 className="text-lg font-black text-[#4fc3f7] mb-4">The Multi-Bucket Analogy</h4>
              <p className="text-xs text-slate-400 leading-relaxed mb-6">
                 Imagine you have five buckets. The first bucket holds Rs. 5,00,000. Once it's full, the "overflow" goes into the second bucket (Next Rs. 2,00,000), then the third, and so on. The government only charges 30% on the money that is in the <strong>fourth bucket</strong>. The money in the first bucket is still only taxed at 1% (or 0% for SSF).
              </p>
-             <p className="text-xs font-black text-white uppercase tracking-widest border-l-4 border-[#1a73e8] pl-4">
+             <p className="text-xs font-black text-[#202124] uppercase tracking-widest border-l-4 border-[#1a73e8] pl-4">
                 Conclusion: Higher earnings ALWAYS lead to higher net take-home pay, regardless of the slab.
              </p>
           </div>
@@ -2066,19 +2066,19 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Systematic Investment Planning (SIP) in Nepal</h2>
         
-        <div className="bg-[#1a1a2e] border-2 border-[#1a73e8]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#1a1a2e] border-2 border-[#1a73e8]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#1a73e8] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#4fc3f7] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Wealth Architecture Masterclass</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-             <a href="#math" className="flex items-center gap-2 hover:text-white transition-all"><span>01.</span> Geometric Progression: The Math of SIP</a>
-             <a href="#rca" className="flex items-center gap-2 hover:text-white transition-all"><span>02.</span> Rupee Cost Averaging (RCA) Protocol</a>
-             <a href="#stepup" className="flex items-center gap-2 hover:text-white transition-all"><span>03.</span> Step-Up SIP: Beating Inflation</a>
-             <a href="#nepse" className="flex items-center gap-2 hover:text-white transition-all"><span>04.</span> NEPSE Volatility & NAV Arbitrage</a>
-             <a href="#mutual" className="flex items-center gap-2 hover:text-white transition-all"><span>05.</span> SEBON Regulations & Fund Types</a>
-             <a href="#swp" className="flex items-center gap-2 hover:text-white transition-all"><span>06.</span> The SIP to SWP Transition Strategy</a>
-             <a href="#behavior" className="flex items-center gap-2 hover:text-white transition-all"><span>07.</span> Behavioral Finance: Eliminating Exit Bias</a>
-             <a href="#tax" className="flex items-center gap-2 hover:text-white transition-all"><span>08.</span> Capital Gains Tax (CGT) on Dividends</a>
-             <a href="#discipline" className="flex items-center gap-2 hover:text-white transition-all"><span>09.</span> The 3 Lifecycle Epochs of Wealth</a>
+             <a href="#math" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>01.</span> Geometric Progression: The Math of SIP</a>
+             <a href="#rca" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>02.</span> Rupee Cost Averaging (RCA) Protocol</a>
+             <a href="#stepup" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>03.</span> Step-Up SIP: Beating Inflation</a>
+             <a href="#nepse" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>04.</span> NEPSE Volatility & NAV Arbitrage</a>
+             <a href="#mutual" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>05.</span> SEBON Regulations & Fund Types</a>
+             <a href="#swp" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>06.</span> The SIP to SWP Transition Strategy</a>
+             <a href="#behavior" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>07.</span> Behavioral Finance: Eliminating Exit Bias</a>
+             <a href="#tax" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>08.</span> Capital Gains Tax (CGT) on Dividends</a>
+             <a href="#discipline" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>09.</span> The 3 Lifecycle Epochs of Wealth</a>
           </div>
         </div>
 
@@ -2088,13 +2088,13 @@ export const nepalSEO: Record<string, SEOContent> = {
             An SIP is not just "saving money every month." Mathematically, it is a <strong>Series of Future Values</strong>. Each installment you pay today has more time to grow than the installment you pay next month. This is why the timing of your first payment is more critical than the amount.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <div className="p-8 border border-[#dadce0] rounded-3xl bg-white shadow-sm">
+            <div className="p-8 border border-[#dadce0] rounded-lg bg-white shadow-sm">
                <h4 className="text-xs font-black uppercase text-[#1a73e8] tracking-widest mb-4">Linear Saving</h4>
                <p className="text-xs text-[#5f6368] leading-relaxed">
                  Rs. 5,000 x 12 months x 20 years = <strong>Rs. 12,00,000</strong>. This is how most people perceive wealth—linear and slow.
                </p>
             </div>
-            <div className="p-8 border border-[#1a73e8] rounded-3xl bg-[#e8f0fe] shadow-sm">
+            <div className="p-8 border border-[#1a73e8] rounded-lg bg-[#e8f0fe] shadow-sm">
                <h4 className="text-xs font-black uppercase text-[#1a73e8] tracking-widest mb-4">SIP Compounding (15%)</h4>
                <p className="text-xs text-[#202124] font-black leading-relaxed">
                  Rs. 5,000 Monthly SIP @ 15% for 20 years = <strong>Rs. 74,86,197</strong>. The difference (Rs. 62.8 Lakhs) is the pure wealth generated by the geometric progression.
@@ -2113,7 +2113,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </p>
         </section>
 
-        <section id="stepup" className="mb-16 p-10 bg-[#fff3e0] border border-[#ffb74d]/30 rounded-[3rem]">
+        <section id="stepup" className="mb-16 p-10 bg-[#fff3e0] border border-[#ffb74d]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#e65100] mb-4">3. Step-Up SIP: The Inflation Neutralizer</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             As your career progresses in Nepal, your salary increases. A static SIP of Rs. 5,000 might be significant today, but in 10 years, its value will be eroded by inflation. The <strong>Step-Up SIP</strong> (or Top-up SIP) allows you to increase your contribution annually.
@@ -2142,7 +2142,7 @@ export const nepalSEO: Record<string, SEOContent> = {
                 <p className="text-xs font-bold text-[#202124]">The Critical Mass</p>
                 <p className="text-[10px] text-[#5f6368] mt-2">Compounding starts visible acceleration. Your annual interest earned starts to exceed your annual contribution.</p>
              </div>
-             <div className="p-6 bg-[#1a1a2e] border border-[#1a1a2e] rounded-2xl shadow-sm text-white">
+             <div className="p-6 bg-[#1a1a2e] border border-[#1a1a2e] rounded-2xl shadow-sm text-[#202124]">
                 <p className="text-[10px] font-black text-[#4fc3f7] uppercase mb-2">Years 13-25</p>
                 <p className="text-xs font-bold">The Exponential Blast</p>
                 <p className="text-[10px] text-slate-400 mt-2">The "Magic of Compounding" takes over. Your corpus grows by lakhs every single month without any extra effort.</p>
@@ -2228,7 +2228,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: NEA Billing & Energy Strategy in Nepal</h2>
         
-        <div className="bg-[#E8F0FE] border-2 border-[#1a73e8]/20 rounded-[2.5rem] p-10 mb-10 shadow-sm relative overflow-hidden">
+        <div className="bg-[#E8F0FE] border-2 border-[#1a73e8]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#1a73e8] rounded-full blur-[60px] opacity-10" />
           <h4 className="text-[#1967d2] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Energy Masterclass Navigation</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#3c4043] uppercase tracking-tighter">
@@ -2297,7 +2297,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </p>
         </section>
 
-        <section id="lifeline" className="mb-16 p-10 bg-[#fff3e0] border border-[#ffb74d]/30 rounded-[3rem]">
+        <section id="lifeline" className="mb-16 p-10 bg-[#fff3e0] border border-[#ffb74d]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#e65100] mb-4">4. The 20-Unit "Lifeline" Subsidy</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             To support low-income households, the NEA provides a 'Lifeline' tariff. For customers with a 5 Ampere connection, if the monthly consumption is 20 units or less, the energy charge is waived. Only the fixed service charge of Rs. 30 is payable. This is the <strong>price of 1 unit of electricity in nepal 2082</strong> benchmark for minimal users.
@@ -2337,7 +2337,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </p>
         </section>
 
-        <section id="solar" className="mb-16 bg-[#1a1a2e] text-white p-10 rounded-[3rem] shadow-xl relative overflow-hidden">
+        <section id="solar" className="mb-16 bg-[#1a1a2e] text-[#202124] p-10 rounded-lg shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#fbc02d] rounded-full blur-[100px] opacity-10" />
           <h3 className="text-2xl font-black text-[#fbc02d] mb-4">7. Solar Net-Metering: Generating Capital</h3>
           <p className="text-sm text-slate-300 leading-relaxed mb-6">
@@ -2388,7 +2388,7 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Fixed Deposit (FD) Strategy in Nepal</h2>
         
-        <div className="bg-[#fff7e0] border-2 border-[#fbc02d]/20 rounded-[2.5rem] p-10 mb-10 shadow-sm relative overflow-hidden">
+        <div className="bg-[#fff7e0] border-2 border-[#fbc02d]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#fbc02d] rounded-full blur-[60px] opacity-10" />
           <h4 className="text-[#f57f17] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Wealth Preservation Masterclass</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#3c4043] uppercase tracking-tighter">
@@ -2410,13 +2410,13 @@ export const nepalSEO: Record<string, SEOContent> = {
             In Nepal, the "Headline Rate" is only half the story. Most commercial banks provide <strong>Quarterly Compounding</strong> as their standard. However, some banks offer <strong>Monthly Payouts</strong>, which is preferred by retirees for monthly income.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <div className="p-8 bg-white border border-[#dadce0] rounded-3xl shadow-sm">
+            <div className="p-8 bg-white border border-[#dadce0] rounded-lg shadow-sm">
                <h4 className="text-xs font-black uppercase text-[#1a73e8] tracking-widest mb-4">Quarterly Compound</h4>
                <p className="text-xs text-[#5f6368] leading-relaxed">
                  Interest is added back to your principal every 3 months. This increases your <strong>Effective Annual Yield (EAY)</strong>. For a 9% rate, your effective rate becomes ~9.31%.
                </p>
             </div>
-            <div className="p-8 bg-white border border-[#dadce0] rounded-3xl shadow-sm">
+            <div className="p-8 bg-white border border-[#dadce0] rounded-lg shadow-sm">
                <h4 className="text-xs font-black uppercase text-[#188038] tracking-widest mb-4">Monthly Payout</h4>
                <p className="text-xs text-[#5f6368] leading-relaxed">
                  Interest is credited to your savings account every month. While this provides regular income, you lose the "interest on interest" growth, making it less effective for wealth building.
@@ -2425,7 +2425,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="tds" className="mb-16 p-10 bg-[#e8f5e9] border border-[#81c784]/30 rounded-[3rem]">
+        <section id="tds" className="mb-16 p-10 bg-[#e8f5e9] border border-[#81c784]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#1b5e20] mb-4">2. TDS Mastery: Individual vs Corporate</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             The interest you earn on an FD in Nepal is subject to <strong>Withholding Tax (TDS)</strong>. This is a final tax for individuals, meaning you don't need to pay extra tax on this interest during your annual filing.
@@ -2442,12 +2442,12 @@ export const nepalSEO: Record<string, SEOContent> = {
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
             One of the biggest advantages of a Fixed Deposit in Nepal is the <strong>Loan Against FD</strong>. If you need urgent cash, you don't have to break your FD and pay penalties.
           </p>
-          <div className="p-8 bg-[#1a1a2e] text-white rounded-[3rem] shadow-xl">
+          <div className="p-8 bg-[#1a1a2e] text-[#202124] rounded-lg shadow-sm">
              <h4 className="text-lg font-black text-[#4fc3f7] mb-4">Institutional Mechanics:</h4>
              <p className="text-xs text-slate-400 leading-relaxed mb-4">
                 Banks allow you to borrow up to 90% of your FD amount instantly. The interest rate on this loan is typically only 1.5% to 2% higher than the rate you are earning on your FD.
              </p>
-             <p className="text-xs font-black uppercase tracking-widest text-white border-l-4 border-[#1a73e8] pl-4">
+             <p className="text-xs font-black uppercase tracking-widest text-[#202124] border-l-4 border-[#1a73e8] pl-4">
                 Math: If your FD earns 9%, your loan cost is ~11%. This is significantly cheaper than a Personal Loan (13-16%).
              </p>
           </div>
@@ -2505,19 +2505,19 @@ export const nepalSEO: Record<string, SEOContent> = {
       <>
         <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Loan EMI & Amortization in Nepal</h2>
         
-        <div className="bg-[#1a1a2e] border-2 border-[#1a73e8]/20 rounded-[2.5rem] p-10 mb-10 shadow-xl relative overflow-hidden">
+        <div className="bg-[#1a1a2e] border-2 border-[#1a73e8]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#1a73e8] rounded-full blur-[120px] opacity-10" />
           <h4 className="text-[#4fc3f7] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Debt Management Masterclass</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
-             <a href="#reducing" className="flex items-center gap-2 hover:text-white transition-all"><span>01.</span> Reducing Balance vs Flat Rate Math</a>
-             <a href="#baserate" className="flex items-center gap-2 hover:text-white transition-all"><span>02.</span> NRB Base Rate + Premium Model</a>
-             <a href="#amortization" className="flex items-center gap-2 hover:text-white transition-all"><span>03.</span> The Front-Loaded Interest Trap</a>
-             <a href="#prepayment" className="flex items-center gap-2 hover:text-white transition-all"><span>04.</span> Prepayment: The Interest Shield</a>
-             <a href="#homeloan" className="flex items-center gap-2 hover:text-white transition-all"><span>05.</span> Home Loan Eligibility (DSR Rules)</a>
-             <a href="#autoloan" className="flex items-center gap-2 hover:text-white transition-all"><span>06.</span> Auto Loan: The 50% LTV Constraint</a>
-             <a href="#cycles" className="flex items-center gap-2 hover:text-white transition-all"><span>07.</span> Interest Rate Cycles: Fixed vs Floating</a>
-             <a href="#defaults" className="flex items-center gap-2 hover:text-white transition-all"><span>08.</span> Penalty & CIC Blacklisting Risks</a>
-             <a href="#optimization" className="flex items-center gap-2 hover:text-white transition-all"><span>09.</span> Refinancing & Debt Consolidation</a>
+             <a href="#reducing" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>01.</span> Reducing Balance vs Flat Rate Math</a>
+             <a href="#baserate" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>02.</span> NRB Base Rate + Premium Model</a>
+             <a href="#amortization" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>03.</span> The Front-Loaded Interest Trap</a>
+             <a href="#prepayment" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>04.</span> Prepayment: The Interest Shield</a>
+             <a href="#homeloan" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>05.</span> Home Loan Eligibility (DSR Rules)</a>
+             <a href="#autoloan" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>06.</span> Auto Loan: The 50% LTV Constraint</a>
+             <a href="#cycles" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>07.</span> Interest Rate Cycles: Fixed vs Floating</a>
+             <a href="#defaults" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>08.</span> Penalty & CIC Blacklisting Risks</a>
+             <a href="#optimization" className="flex items-center gap-2 hover:text-[#202124] transition-all"><span>09.</span> Refinancing & Debt Consolidation</a>
           </div>
         </div>
 
@@ -2526,7 +2526,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
             In Nepal, most commercial banks (Class A) are mandated to use the <strong>Reducing Balance Method</strong>. Unlike the "Flat Rate" often used by unorganized lenders, where interest is charged on the original principal for the entire duration, reducing balance only charges interest on the <strong>unpaid amount</strong>.
           </p>
-          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-3xl mb-8">
+          <div className="p-8 border-2 border-dashed border-[#dadce0] rounded-lg mb-8">
             <p className="text-xs font-black text-[#202124] uppercase mb-2">Institutional Warning:</p>
             <p className="text-[11px] text-[#5f6368] leading-relaxed">
               "A 10% Flat Rate is actually equivalent to roughly 18-19% on a Reducing Balance basis. Always ensure your banker is quoting you the <strong>Reducing EMI</strong> rate to avoid paying double the interest."
@@ -2555,7 +2555,7 @@ export const nepalSEO: Record<string, SEOContent> = {
           </div>
         </section>
 
-        <section id="prepayment" className="mb-16 p-10 bg-[#e3f2fd] border border-[#2196f3]/30 rounded-[3rem]">
+        <section id="prepayment" className="mb-16 p-10 bg-[#e3f2fd] border border-[#2196f3]/30 rounded-lg">
           <h3 className="text-2xl font-black text-[#0d47a1] mb-4">4. Prepayment: The Ultimate Wealth Strategy</h3>
           <p className="text-sm text-[#3c4043] leading-relaxed mb-6">
             The secret to paying off a 20-year loan in 12 years is <strong>Prepayment</strong>. Because interest is front-loaded, making extra principal payments in the first 5 years of the loan has a massive impact.

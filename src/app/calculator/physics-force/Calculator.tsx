@@ -40,7 +40,7 @@ export default function ForceCalc() {
             <div className="grid grid-cols-2 gap-3">
               {MODES.map(m => (
                 <button key={m.key} onClick={() => setMode(m.key)}
-                  className={`py-3 px-4 rounded-lg flex flex-col items-center justify-center border transition-all ${mode === m.key ? 'bg-blue-600 text-white border-blue-600 shadow-md' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}>
+                  className={`py-3 px-4 rounded-lg flex flex-col items-center justify-center border transition-all ${mode === m.key ? 'bg-[#1a73e8] text-[#202124] border-blue-600 shadow-md' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}>
                   <span className="font-bold text-sm">{m.label}</span>
                   <span className={`text-[10px] font-mono mt-1 ${mode === m.key ? 'text-blue-200' : 'text-slate-400'}`}>{m.formula}</span>
                 </button>

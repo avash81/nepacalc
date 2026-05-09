@@ -105,7 +105,7 @@ export default function LinearSolver() {
         <div className="space-y-6">
           {result.ok ? (
             <>
-              <div className="bg-white border border-[#DADCE0] rounded-3xl overflow-hidden text-center shadow-xl">
+              <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden text-center shadow-sm">
                 <div className="p-6 bg-[#F8F9FA] border-b border-[#DADCE0]">
                    <div className="text-[10px] font-black uppercase tracking-widest text-[#1A73E8]">Solution Vector</div>
                 </div>
@@ -126,7 +126,7 @@ export default function LinearSolver() {
               </div>
 
               {mode === '2var' && result.ok && (
-                <div className="bg-white border border-[#DADCE0] rounded-3xl overflow-hidden shadow-lg p-8">
+                <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm p-8">
                    <div className="flex items-center gap-3 mb-6">
                       <Layers className="w-5 h-5 text-[#1A73E8]" />
                       <h3 className="text-lg font-black text-[#202124]">Vector Intersection</h3>
@@ -159,7 +159,7 @@ export default function LinearSolver() {
               </div>
             </>
           ) : (
-            <div className="p-10 bg-[#FCE8E6] border border-[#FAD2CF] rounded-3xl text-center space-y-3">
+            <div className="p-10 bg-[#FCE8E6] border border-[#FAD2CF] rounded-lg text-center space-y-3">
                <div className="text-[10px] font-black uppercase text-[#D93025]">Matrix Singularity</div>
                <p className="text-sm font-bold text-[#202124]">{(result as any).msg}</p>
             </div>
@@ -168,7 +168,7 @@ export default function LinearSolver() {
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-3xl p-8 shadow-sm">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
              <div className="flex items-center gap-3 mb-6 border-l-4 border-[#1A73E8] pl-4">
                 <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Institutional Matrix Resolution</h3>
              </div>

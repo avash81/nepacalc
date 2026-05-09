@@ -202,7 +202,7 @@ export default function ScientificCalculator() {
           {sL && <span className="text-yellow-500 text-[9px] font-bold uppercase shadow-sm">{sL}</span>}
           {aL && <span className="text-pink-100 text-[9px] font-bold uppercase shadow-sm">{aL}</span>}
        </div>
-       <button onClick={()=>press(act||label, sA, aA)} className={`w-full py-2 rounded-md transition-all font-bold text-[11px] border-b-2 active:border-b-0 active:translate-y-[1px] ${cls || 'bg-slate-800 text-white border-slate-950 hover:bg-slate-700 shadow-lg'}`}>{label}</button>
+       <button onClick={()=>press(act||label, sA, aA)} className={`w-full py-2 rounded-md transition-all font-bold text-[11px] border-b-2 active:border-b-0 active:translate-y-[1px] ${cls || 'bg-slate-800 text-[#202124] border-slate-950 hover:bg-slate-700 shadow-sm'}`}>{label}</button>
     </div>
   );
 
@@ -212,7 +212,7 @@ export default function ScientificCalculator() {
           {sL && <span className="text-yellow-400 text-[9px] font-bold uppercase">{sL}</span>}
           {aL && <span className="text-pink-300 text-[9px] font-bold uppercase">{aL}</span>}
        </div>
-       <button onClick={()=>press(act||label, sA, aA)} className={`w-full py-2 rounded-md transition-all font-bold text-[13px] border-b-4 active:border-b-0 active:translate-y-[2px] ${cls || 'bg-white text-black border-slate-300 hover:bg-slate-50 shadow-lg'}`}>{label}</button>
+       <button onClick={()=>press(act||label, sA, aA)} className={`w-full py-2 rounded-md transition-all font-bold text-[13px] border-b-4 active:border-b-0 active:translate-y-[2px] ${cls || 'bg-white text-black border-slate-300 hover:bg-slate-50 shadow-sm'}`}>{label}</button>
     </div>
   );
 
@@ -257,9 +257,9 @@ export default function ScientificCalculator() {
 
               <div className="space-y-4">
                 <div className="grid grid-cols-6 gap-2">
-                  <button onClick={()=>exec('SHIFT')} className={`py-2 text-[10px] font-bold border rounded transition-all ${shift ? 'bg-[#1A73E8] border-[#1A73E8] text-white' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>SFT</button>
-                  <button onClick={()=>exec('ALPHA')} className={`py-2 text-[10px] font-bold border rounded transition-all ${alpha ? 'bg-rose-500 border-rose-500 text-white' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>ALP</button>
-                  <button onClick={()=>exec('STO')} className={`py-2 text-[10px] font-bold border rounded transition-all ${stoMode ? 'bg-amber-500 border-amber-500 text-white' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>STO</button>
+                  <button onClick={()=>exec('SHIFT')} className={`py-2 text-[10px] font-bold border rounded transition-all ${shift ? 'bg-[#1A73E8] border-[#1A73E8] text-[#202124]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>SFT</button>
+                  <button onClick={()=>exec('ALPHA')} className={`py-2 text-[10px] font-bold border rounded transition-all ${alpha ? 'bg-rose-500 border-rose-500 text-[#202124]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>ALP</button>
+                  <button onClick={()=>exec('STO')} className={`py-2 text-[10px] font-bold border rounded transition-all ${stoMode ? 'bg-amber-500 border-amber-500 text-[#202124]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>STO</button>
                   <button onClick={()=>exec('QR')} className="py-2 text-[10px] font-bold border border-[#DADCE0] bg-white text-[#5F6368] rounded">QR</button>
                   <button onClick={()=>exec('LEFT')} className="py-2 text-[10px] font-bold border border-[#DADCE0] bg-white text-[#5F6368] rounded">←</button>
                   <button onClick={()=>exec('RIGHT')} className="py-2 text-[10px] font-bold border border-[#DADCE0] bg-white text-[#5F6368] rounded">→</button>
@@ -273,11 +273,11 @@ export default function ScientificCalculator() {
 
                 <div className="grid grid-cols-4 gap-2 bg-[#F1F3F4] p-4 rounded-lg">
                   {['7','8','9','DEL','4','5','6','*','1','2','3','/','0','.','EXP','+'].map(btn => (
-                    <button key={btn} onClick={()=>exec(btn === 'DEL' ? 'DEL' : btn === '*' ? '*' : btn === '/' ? '/' : btn === 'EXP' ? '*10^' : btn)} className={`py-3 text-[14px] font-bold border rounded transition-all ${btn === 'DEL' ? 'bg-rose-500 border-rose-600 text-white' : 'bg-white border-[#DADCE0] text-[#202124]'}`}>{btn}</button>
+                    <button key={btn} onClick={()=>exec(btn === 'DEL' ? 'DEL' : btn === '*' ? '*' : btn === '/' ? '/' : btn === 'EXP' ? '*10^' : btn)} className={`py-3 text-[14px] font-bold border rounded transition-all ${btn === 'DEL' ? 'bg-rose-500 border-rose-600 text-[#202124]' : 'bg-white border-[#DADCE0] text-[#202124]'}`}>{btn}</button>
                   ))}
-                  <button onClick={()=>exec('AC')} className="py-3 text-[14px] font-bold border border-[#5F6368] bg-[#5F6368] text-white rounded">AC</button>
+                  <button onClick={()=>exec('AC')} className="py-3 text-[14px] font-bold border border-[#5F6368] bg-[#5F6368] text-[#202124] rounded">AC</button>
                   <button onClick={()=>exec('ANS')} className="py-3 text-[14px] font-bold border border-[#DADCE0] bg-white text-[#202124] rounded">Ans</button>
-                  <button onClick={()=>exec('=')} className="col-span-2 py-3 text-[14px] font-bold border border-[#1A73E8] bg-[#1A73E8] text-white rounded shadow-sm">=</button>
+                  <button onClick={()=>exec('=')} className="col-span-2 py-3 text-[14px] font-bold border border-[#1A73E8] bg-[#1A73E8] text-[#202124] rounded shadow-sm">=</button>
                 </div>
               </div>
             </div>
@@ -305,8 +305,8 @@ export default function ScientificCalculator() {
              <div className="flex items-center justify-between">
                 <h4 className="text-[10px] font-bold uppercase tracking-widest text-[#70757A]">Computation Modules</h4>
                 <div className="flex gap-2">
-                   <button onClick={()=>exec('SIMPLIFY')} className="text-[9px] font-bold bg-[#1A73E8] text-white px-3 py-1.5 rounded hover:bg-[#1557B0] transition-all uppercase">Simplify</button>
-                   <button onClick={()=>exec('DIFF')} className="text-[9px] font-bold bg-rose-600 text-white px-3 py-1.5 rounded hover:bg-rose-700 transition-all uppercase">d/dx</button>
+                   <button onClick={()=>exec('SIMPLIFY')} className="text-[9px] font-bold bg-[#1A73E8] text-[#202124] px-3 py-1.5 rounded hover:bg-[#1557B0] transition-all uppercase">Simplify</button>
+                   <button onClick={()=>exec('DIFF')} className="text-[9px] font-bold bg-rose-600 text-[#202124] px-3 py-1.5 rounded hover:bg-rose-700 transition-all uppercase">d/dx</button>
                 </div>
              </div>
           </div>
@@ -315,7 +315,7 @@ export default function ScientificCalculator() {
       details={
         <div className="space-y-20">
           {/* Section 1: Philosophy of Computation */}
-          <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm relative overflow-hidden">
+          <section className="bg-white border border-[#DADCE0] rounded-lg p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -top-12 -right-12 opacity-5">
                 <History className="w-64 h-64" />
             </div>
@@ -339,7 +339,7 @@ export default function ScientificCalculator() {
           </section>
 
           {/* Section 2: Order of Operations */}
-          <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+          <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-12 shadow-sm">
             <div className="flex items-center gap-4 mb-10">
               <div className="bg-[#E6F4EA] p-4 rounded-2xl">
                   <Binary className="w-8 h-8 text-[#188038]" />
@@ -361,7 +361,7 @@ export default function ScientificCalculator() {
                     </p>
                 </div>
               </div>
-              <div className="bg-white p-10 rounded-[2.5rem] shadow-inner border border-[#DADCE0] space-y-6">
+              <div className="bg-white p-10 rounded-lg shadow-inner border border-[#DADCE0] space-y-6">
                     <h4 className="text-lg font-black text-[#202124]">Operational Hierarchy</h4>
                     <ul className="space-y-4 text-[#5F6368]">
                         <li className="flex items-center gap-3">
@@ -386,7 +386,7 @@ export default function ScientificCalculator() {
           </section>
 
           {/* Section 3: Professional Modules */}
-          <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+          <section className="bg-white border border-[#DADCE0] rounded-lg p-12 shadow-sm">
             <div className="flex items-center gap-4 mb-8">
               <div className="bg-[#FEF7E0] p-4 rounded-2xl">
                   <GraduationCap className="w-8 h-8 text-[#F29900]" />
@@ -407,7 +407,7 @@ export default function ScientificCalculator() {
           </section>
 
           {/* Section 4: High-Altitude Trigonometry Deep Dive */}
-          <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+          <section className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-12 shadow-sm">
             <h2 className="text-3xl font-black text-[#202124] mb-8 tracking-tighter flex items-center gap-4">
                 <Target className="w-8 h-8 text-[#1A73E8]" />
                 Surveying the Himalayas: Trig in High-Altitudes
@@ -426,11 +426,11 @@ export default function ScientificCalculator() {
           </section>
 
           {/* Section 5: Advanced STEM Features */}
-          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-[#202124] rounded-lg p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -bottom-10 -left-10 opacity-10">
                 <TrendingUp className="w-64 h-64" />
             </div>
-            <h2 className="text-4xl font-black mb-10 border-b border-white/10 pb-6 tracking-tighter">Calculus & Symbolic Logic</h2>
+            <h2 className="text-4xl font-black mb-10 border-b border-[#dadce0] pb-6 tracking-tighter">Calculus & Symbolic Logic</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div className="space-y-6 text-slate-300 leading-relaxed text-sm">
                     <div className="flex gap-4">
@@ -452,8 +452,8 @@ export default function ScientificCalculator() {
                         </p>
                     </div>
                 </div>
-                <div className="bg-white/10 p-8 rounded-[2.5rem] border border-white/20 backdrop-blur-md">
-                    <h4 className="text-white font-black mb-4 flex items-center gap-2">
+                <div className="bg-white/10 p-8 rounded-lg border border-white/20 backdrop-blur-md">
+                    <h4 className="text-[#202124] font-black mb-4 flex items-center gap-2">
                          <Award className="w-5 h-5 text-[#8AB4F8]" />
                          Professional Standard
                     </h4>
@@ -469,13 +469,13 @@ export default function ScientificCalculator() {
                              <div className="w-[99%] h-full bg-[#8AB4F8] rounded-full shadow-[0_0_15px_rgba(138,180,248,0.5)]" />
                          </div>
                          <div className="grid grid-cols-2 gap-2 mt-4">
-                            <div className="p-3 bg-white/5 rounded-xl border border-white/10 text-center">
+                            <div className="p-3 bg-[#f8f9fa] rounded-xl border border-[#dadce0] text-center">
                                 <span className="block text-[8px] font-bold text-slate-400 uppercase">Architecture</span>
-                                <span className="text-xs font-mono font-black text-white">64-Bit FPU</span>
+                                <span className="text-xs font-mono font-black text-[#202124]">64-Bit FPU</span>
                             </div>
-                            <div className="p-3 bg-white/5 rounded-xl border border-white/10 text-center">
+                            <div className="p-3 bg-[#f8f9fa] rounded-xl border border-[#dadce0] text-center">
                                 <span className="block text-[8px] font-bold text-slate-400 uppercase">Engine</span>
-                                <span className="text-xs font-mono font-black text-white">CAS-Symbolic</span>
+                                <span className="text-xs font-mono font-black text-[#202124]">CAS-Symbolic</span>
                             </div>
                          </div>
                     </div>
@@ -484,7 +484,7 @@ export default function ScientificCalculator() {
           </section>
 
           {/* Section 6: Thermodynamics and Entropy */}
-          <section className="bg-white border border-[#DADCE0] rounded-[2.5rem] p-12 shadow-sm">
+          <section className="bg-white border border-[#DADCE0] rounded-lg p-12 shadow-sm">
             <h2 className="text-3xl font-black text-[#202124] mb-8 tracking-tighter flex items-center gap-4">
                 <Activity className="w-8 h-8 text-[#D93025]" />
                 Thermodynamics: Modeling Thermal Energy

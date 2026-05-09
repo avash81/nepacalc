@@ -61,7 +61,7 @@ export default function FractionCalculator() {
             <div className="grid grid-cols-2 md:grid-cols-1 gap-2 mt-4 md:mt-4">
               {(['+', '-', '*', '/'] as const).map(o => (
                 <button key={o} onClick={() => setOp(o)}
-                  className={`w-12 h-12 font-black text-2xl rounded transition-all flex items-center justify-center ${op === o ? 'bg-[#1A73E8] text-white shadow-md' : 'bg-white border border-[#DADCE0] text-[#70757A] hover:bg-[#E8F0FE] hover:text-[#1A73E8] hover:border-[#1A73E8]'}`}>
+                  className={`w-12 h-12 font-black text-2xl rounded transition-all flex items-center justify-center ${op === o ? 'bg-[#1A73E8] text-[#202124] shadow-md' : 'bg-white border border-[#DADCE0] text-[#70757A] hover:bg-[#E8F0FE] hover:text-[#1A73E8] hover:border-[#1A73E8]'}`}>
                   {o === '*' ? '×' : o === '/' ? '÷' : o}
                 </button>
               ))}
@@ -233,14 +233,14 @@ export default function FractionCalculator() {
           </section>
 
           {/* Section 4: Nepalese Academic Applications */}
-          <section className="bg-[#1A1A2E] text-white rounded-xl p-8 shadow-xl">
+          <section className="bg-[#1A1A2E] text-[#202124] rounded-xl p-8 shadow-sm">
             <div className="flex items-center gap-3 mb-6">
               <Ruler className="w-8 h-8 text-[#8AB4F8]" />
               <h2 className="text-2xl font-black">Applications in the Nepalese Institutional Framework</h2>
             </div>
             <div className="space-y-6 text-sm text-[#8AB4F8] leading-relaxed">
               <p>
-                For students under the <a href="https://neb.gov.np" className="underline decoration-[#1A73E8] hover:text-white transition-all">National Examination Board (NEB)</a>, fractions are not just a topic in Grade 6-10 math; they are the foundation of Science and Economics. In Chemistry, stoichiometry relies entirely on fractional molar ratios. In Physics, the laws of lenses and resistances use reciprocals (1/f = 1/u + 1/v).
+                For students under the <a href="https://neb.gov.np" className="underline decoration-[#1A73E8] hover:text-[#202124] transition-all">National Examination Board (NEB)</a>, fractions are not just a topic in Grade 6-10 math; they are the foundation of Science and Economics. In Chemistry, stoichiometry relies entirely on fractional molar ratios. In Physics, the laws of lenses and resistances use reciprocals (1/f = 1/u + 1/v).
               </p>
               <p>
                 In the professional sphere, Nepalese civil engineers and architects use fractional scaling for blueprints. Even in the financial sector, calculating <strong>Bonus Shares and Right Shares</strong> at the Nepal Stock Exchange (NEPSE) requires precise fractional arithmetic. A 1:10 bonus share is fundamentally a fractional increase in capital.

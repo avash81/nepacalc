@@ -68,31 +68,31 @@ export default function WACCCalculator() {
       icon={BarChart3}
       inputs={
         <div className="space-y-8">
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
              <div className="absolute top-0 right-0 p-10 opacity-10"><Zap className="w-40 h-40" /></div>
              <div className="relative z-10 space-y-6">
                 <div className="flex justify-between items-center">
-                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Inventory Batches</label>
-                   <button onClick={addCluster} className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-[9px] font-black uppercase rounded-xl transition-all shadow-lg flex items-center gap-2">
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Inventory Batches</label>
+                   <button onClick={addCluster} className="px-4 py-2 bg-[#1a73e8] hover:bg-blue-700 text-[#202124] text-[9px] font-black uppercase rounded-xl transition-all shadow-sm flex items-center gap-2">
                       <Plus className="w-3 h-3" /> Add Transaction
                    </button>
                 </div>
                 <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
                    {clusters.map((c, idx) => (
-                      <div key={c.id} className="p-6 bg-white/5 border border-white/10 rounded-[2rem] relative group transition-all hover:border-blue-500/50">
-                         <div className="absolute top-4 right-6 text-[8px] font-black text-blue-400 uppercase tracking-widest">Cluster #{idx+1}</div>
+                      <div key={c.id} className="p-6 bg-[#f8f9fa] border border-[#dadce0] rounded-[2rem] relative group transition-all hover:border-blue-500/50">
+                         <div className="absolute top-4 right-6 text-[8px] font-black text-[#1a0dab] uppercase tracking-widest">Cluster #{idx+1}</div>
                          <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
                                <label className="text-[8px] font-black text-slate-500 uppercase">Quantity</label>
-                               <input type="number" value={c.qty} onChange={e => updateCluster(c.id, 'qty', Number(e.target.value))} className="w-full h-10 px-4 bg-white/5 border border-white/10 rounded-xl text-white text-sm font-black focus:border-blue-500 outline-none" />
+                               <input type="number" value={c.qty} onChange={e => updateCluster(c.id, 'qty', Number(e.target.value))} className="w-full h-10 px-4 bg-[#f8f9fa] border border-[#dadce0] rounded-xl text-[#202124] text-sm font-black focus:border-blue-500 outline-none" />
                             </div>
                             <div className="space-y-2">
                                <label className="text-[8px] font-black text-slate-500 uppercase">Rate (NPR)</label>
-                               <input type="number" value={c.price} onChange={e => updateCluster(c.id, 'price', Number(e.target.value))} className="w-full h-10 px-4 bg-white/5 border border-white/10 rounded-xl text-white text-sm font-black focus:border-blue-500 outline-none" />
+                               <input type="number" value={c.price} onChange={e => updateCluster(c.id, 'price', Number(e.target.value))} className="w-full h-10 px-4 bg-[#f8f9fa] border border-[#dadce0] rounded-xl text-[#202124] text-sm font-black focus:border-blue-500 outline-none" />
                             </div>
                          </div>
                          {clusters.length > 1 && (
-                            <button onClick={() => removeCluster(c.id)} className="absolute -top-2 -right-2 w-8 h-8 bg-rose-600 text-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-all">
+                            <button onClick={() => removeCluster(c.id)} className="absolute -top-2 -right-2 w-8 h-8 bg-rose-600 text-[#202124] rounded-full flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-all">
                                <Trash2 className="w-4 h-4" />
                             </button>
                          )}
@@ -124,7 +124,7 @@ export default function WACCCalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Target className="w-24 h-24 text-blue-600" /></div>
              <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Institutional WACC Value</div>
              <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">Rs. {result.wacc.toFixed(2)}</div>
@@ -134,17 +134,17 @@ export default function WACCCalculator() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1 text-center">
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-1 text-center">
                 <div className="text-[9px] font-black text-slate-400 uppercase">Total Units</div>
                 <div className="text-xl font-black text-slate-900">{result.totalQty}</div>
              </div>
-             <div className="p-6 bg-emerald-50 border border-emerald-100 rounded-3xl space-y-1 text-center">
+             <div className="p-6 bg-emerald-50 border border-emerald-100 rounded-lg space-y-1 text-center">
                 <div className="text-[9px] font-black text-emerald-600 uppercase">Unrealized Gain</div>
                 <div className="text-xl font-black text-emerald-600">{formatNPR(result.profit)}</div>
              </div>
           </div>
 
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><TrendingUp className="w-24 h-24 text-blue-500" /></div>
              <div className="relative z-10 flex items-center justify-between">
                 <div className="space-y-1">
@@ -161,10 +161,10 @@ export default function WACCCalculator() {
       details={
         <div className="space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-lg p-10 shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 p-6 opacity-5"><Activity className="w-20 h-20 text-blue-600" /></div>
               <div className="flex items-center gap-2 mb-8">
-                <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                <div className="w-1.5 h-6 bg-[#1a73e8] rounded-full" />
                 <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Portfolio Cost Architecture</h3>
               </div>
               <div className="h-[300px] w-full relative">
@@ -197,7 +197,7 @@ export default function WACCCalculator() {
               </div>
             </div>
 
-            <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+            <div className="bg-[#1A1A2E] text-[#202124] rounded-lg p-10 shadow-sm relative overflow-hidden flex flex-col justify-center">
                <div className="absolute -bottom-12 -right-12 opacity-10"><ShieldCheck className="w-64 h-64 text-emerald-500" /></div>
                <h3 className="text-2xl font-black mb-8 tracking-tight text-emerald-400 uppercase tracking-widest">Valuation Trajectory</h3>
                <div className="h-[240px] w-full">
@@ -224,7 +224,7 @@ export default function WACCCalculator() {
             </div>
           </div>
 
-          <section className="bg-white border border-slate-200 rounded-[3rem] p-12 shadow-sm relative overflow-hidden">
+          <section className="bg-white border border-slate-200 rounded-lg p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -top-12 -right-12 opacity-5">
                 <Landmark className="w-64 h-64 text-blue-600" />
             </div>
@@ -239,7 +239,7 @@ export default function WACCCalculator() {
                 The <strong>Weighted Average Cost of Capital (WACC)</strong> is the fundamental metric used by <strong>CDSC (Central Depository System and Clearing Limited)</strong> in Nepal to determine an investor's profit for taxation purposes. In the <strong>Meroshare</strong> portal, "My Purchase Update" requires every investor to declare their WACC before executing a sell order. Our <strong>Institutional WACC Engine</strong> mirror-matches the statutory algorithms used by <strong>SEBON</strong> and <strong>NEPSE</strong>.
               </p>
               
-              <div className="bg-blue-50 border border-blue-100 p-8 rounded-[2.5rem] flex gap-6 items-start my-10">
+              <div className="bg-blue-50 border border-blue-100 p-8 rounded-lg flex gap-6 items-start my-10">
                  <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm shrink-0">
                     <Globe className="w-6 h-6 text-blue-600" />
                  </div>
@@ -280,7 +280,7 @@ export default function WACCCalculator() {
             </div>
           </section>
 
-          <section className="bg-slate-900 text-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+          <section className="bg-white border border-[#dadce0] text-[#202124] rounded-lg p-12 shadow-sm relative overflow-hidden">
              <div className="absolute -bottom-12 -right-12 opacity-10"><History className="w-64 h-64 text-emerald-500" /></div>
              <h2 className="text-3xl font-black mb-10 tracking-tight text-emerald-400 uppercase tracking-widest">Meroshare Compliance Guardrails</h2>
              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

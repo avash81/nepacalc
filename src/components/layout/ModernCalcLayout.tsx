@@ -167,7 +167,8 @@ export function ModernCalcLayout({
                 ))}
               </nav>
             )}
-            {!hideH1 && <h1 className="text-3xl sm:text-4xl font-bold text-[#202124] tracking-tight mb-1">{title}</h1>}
+            {!hideH1 && !seoEntry && <h1 className="text-3xl sm:text-4xl font-bold text-[#202124] tracking-tight mb-1">{title}</h1>}
+            {!hideH1 && seoEntry && <div className="text-3xl sm:text-4xl font-bold text-[#202124] tracking-tight mb-1">{title}</div>}
           </div>
           <div className="flex items-center gap-3">
              <button onClick={() => window.print()} className="hidden sm:flex items-center gap-1.5 text-[11px] font-bold text-[#5F6368] hover:text-[#1A73E8] transition-all bg-white px-3 py-1.5 border border-[#dadce0] rounded-md shadow-sm">
@@ -210,7 +211,7 @@ export function ModernCalcLayout({
                 {enrichedHowTo && (
                   <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm">
                     <div className="px-5 py-4 border-b border-[#DADCE0] flex items-center gap-2.5">
-                      <div className="w-6 h-6 rounded-full bg-[#1A73E8] flex items-center justify-center"><Info className="w-3.5 h-3.5 text-white" /></div>
+                      <div className="w-6 h-6 rounded-full bg-[#1A73E8] flex items-center justify-center"><Info className="w-3.5 h-3.5 text-[#202124]" /></div>
                       <h2 className="text-sm font-bold text-[#202124]">How to use</h2>
                     </div>
                     <div className="p-6">
@@ -228,7 +229,7 @@ export function ModernCalcLayout({
                 {enrichedFormula && (
                   <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm">
                     <div className="px-5 py-4 border-b border-[#DADCE0] flex items-center gap-2.5">
-                      <div className="w-6 h-6 rounded-full bg-[#1A73E8] flex items-center justify-center"><Sigma className="w-3.5 h-3.5 text-white" /></div>
+                      <div className="w-6 h-6 rounded-full bg-[#1A73E8] flex items-center justify-center"><Sigma className="w-3.5 h-3.5 text-[#202124]" /></div>
                       <h2 className="text-sm font-bold text-[#202124]">{enrichedFormula.title}</h2>
                     </div>
                     <div className="p-6 space-y-4">
@@ -308,9 +309,9 @@ export function ModernCalcLayout({
               <div className="relative rounded-lg overflow-hidden shadow-md group">
                 <div className="absolute inset-0 bg-[#1A73E8] opacity-90 group-hover:opacity-95 transition-opacity" />
                 <div className="relative p-6 space-y-4">
-                  <h3 className="text-base font-black text-white leading-tight">{sidebar.banner.title}</h3>
+                  <h3 className="text-base font-black text-[#202124] leading-tight">{sidebar.banner.title}</h3>
                   <p className="text-[11px] text-blue-50 font-bold leading-relaxed">{sidebar.banner.description}</p>
-                  <button className="bg-white text-[#1A73E8] text-[11px] font-black uppercase tracking-widest px-6 py-2.5 rounded-md shadow-lg hover:scale-105 transition-transform">{sidebar.banner.buttonText || 'Get Advice'}</button>
+                  <button className="bg-white text-[#1A73E8] text-[11px] font-black uppercase tracking-widest px-6 py-2.5 rounded-md shadow-sm hover:scale-105 transition-transform">{sidebar.banner.buttonText || 'Get Advice'}</button>
                 </div>
               </div>
             )}

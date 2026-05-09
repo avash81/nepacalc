@@ -112,9 +112,9 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
              className="w-full h-11 px-4 border border-slate-200 rounded-lg text-sm font-bold bg-slate-50 focus:bg-white focus:border-blue-500 outline-none transition-all" 
            />
         </div>
-        <div className="p-6 bg-slate-900 rounded-2xl text-center shadow-xl">
-           <div className="text-[9px] font-black text-blue-400 uppercase tracking-widest mb-1">Equivalent NPR</div>
-           <div className="text-2xl font-black text-white tracking-tighter uppercase font-mono">{formatNPR(results.npr)}</div>
+        <div className="p-6 bg-white border border-[#dadce0] rounded-2xl text-center shadow-sm">
+           <div className="text-[9px] font-black text-[#1a0dab] uppercase tracking-widest mb-1">Equivalent NPR</div>
+           <div className="text-2xl font-black text-[#202124] tracking-tighter uppercase font-mono">{formatNPR(results.npr)}</div>
            <div className="mt-2 text-[8px] font-black text-slate-500 uppercase">NRB Benchmark</div>
         </div>
       </div>
@@ -130,19 +130,19 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
       icon={Globe}
       inputs={
         <div className="space-y-8">
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
              <div className="absolute top-0 right-0 p-10 opacity-10"><Globe className="w-40 h-40" /></div>
              <div className="relative z-10 grid grid-cols-1 gap-8">
                 <div className="space-y-4">
-                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Capital Amount</label>
+                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Capital Amount</label>
                    <div className="relative">
                       <input 
                         type="number" 
                         value={amount} 
                         onChange={(e) => update({ amount: Number(e.target.value) })}
-                        className="w-full h-14 px-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all font-mono" 
+                        className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all font-mono" 
                       />
-                      <span className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-black text-blue-400">{fromCurrency}</span>
+                      <span className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-black text-[#1a0dab]">{fromCurrency}</span>
                    </div>
                 </div>
                 <div className="space-y-4">
@@ -152,7 +152,7 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
                         <button 
                           key={code} 
                           onClick={() => update({ fromCurrency: code })}
-                          className={`py-4 text-[10px] font-black uppercase rounded-2xl transition-all border ${fromCurrency === code ? 'bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-500/20 scale-105' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'}`}
+                          className={`py-4 text-[10px] font-black uppercase rounded-2xl transition-all border ${fromCurrency === code ? 'bg-[#1a73e8] border-blue-500 text-[#202124] shadow-sm shadow-blue-500/20 scale-105' : 'bg-[#f8f9fa] border-[#dadce0] text-slate-400 hover:bg-white/10'}`}
                         >
                           <span className="block text-xl mb-1">{CURRENCY_META[code]?.flag}</span>
                           {code}
@@ -163,7 +163,7 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
              </div>
           </div>
 
-          <div className="p-8 border border-slate-200 rounded-[2.5rem] bg-white space-y-6 shadow-sm">
+          <div className="p-8 border border-slate-200 rounded-lg bg-white space-y-6 shadow-sm">
              <div className="flex items-center gap-3">
                 <div className="p-2 bg-blue-50 rounded-lg"><RefreshCcw className="w-4 h-4 text-blue-600" /></div>
                 <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Institutional Catalog</h3>
@@ -185,7 +185,7 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
       }
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Landmark className="w-24 h-24 text-emerald-600" /></div>
              <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Institutional Valuation</div>
              <div className="text-5xl font-black tracking-tighter text-slate-900 font-mono uppercase">
@@ -197,7 +197,7 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-             <div className={`p-8 border rounded-[2.5rem] space-y-2 transition-all shadow-sm ${isLive ? 'bg-emerald-50 border-emerald-100' : 'bg-amber-50 border-amber-100'}`}>
+             <div className={`p-8 border rounded-lg space-y-2 transition-all shadow-sm ${isLive ? 'bg-emerald-50 border-emerald-100' : 'bg-amber-50 border-amber-100'}`}>
                 <div className="flex items-center justify-between">
                    <div className={`text-[10px] font-black uppercase tracking-widest ${isLive ? 'text-emerald-600' : 'text-amber-600'}`}>Engine Health</div>
                    <button onClick={fetchRates} disabled={isLoading} className="p-2 hover:bg-black/5 rounded-full transition-colors">
@@ -207,14 +207,14 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
                 <div className={`text-lg font-black ${isLive ? 'text-emerald-600' : 'text-amber-600'} uppercase tracking-tight`}>{isLive ? 'Live Sync' : 'Cache Active'}</div>
                 <div className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">Updated: {lastUpdatedStr}</div>
              </div>
-             <div className="p-8 bg-blue-50 border border-blue-100 rounded-[2.5rem] space-y-2 shadow-sm">
+             <div className="p-8 bg-blue-50 border border-blue-100 rounded-lg space-y-2 shadow-sm">
                 <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Active Rate</div>
                 <div className="text-2xl font-black text-blue-700 tracking-tighter font-mono">1:{results.rate}</div>
-                <div className="text-[9px] font-black text-blue-400 uppercase">Unit Conversion</div>
+                <div className="text-[9px] font-black text-[#1a0dab] uppercase">Unit Conversion</div>
              </div>
           </div>
 
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Zap className="w-24 h-24 text-blue-500" /></div>
              <div className="relative z-10 space-y-4">
                 <div className="flex items-center gap-2">
@@ -231,7 +231,7 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
       details={
         <div className="space-y-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white border border-slate-200 rounded-[3rem] p-10 shadow-sm relative overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-lg p-10 shadow-sm relative overflow-hidden">
                <div className="absolute top-0 right-0 p-6 opacity-5"><Activity className="w-20 h-20 text-blue-600" /></div>
                <div className="flex items-center gap-3 mb-10">
                 <div className="p-3 bg-blue-50 rounded-2xl"><Target className="w-6 h-6 text-blue-600" /></div>
@@ -248,9 +248,9 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
                       content={({ active, payload }) => {
                         if (active && payload && payload.length) {
                           return (
-                            <div className="bg-slate-900 text-white p-4 rounded-2xl shadow-2xl border border-white/10">
-                              <p className="text-[10px] font-black uppercase tracking-widest text-blue-400 mb-1">{payload[0].payload.code}</p>
-                              <p className="text-xl font-black font-mono tracking-tighter text-white">{payload[0].value} <span className="text-[10px] text-slate-500">NPR</span></p>
+                            <div className="bg-white border border-[#dadce0] text-[#202124] p-4 rounded-2xl shadow-sm border border-[#dadce0]">
+                              <p className="text-[10px] font-black uppercase tracking-widest text-[#1a0dab] mb-1">{payload[0].payload.code}</p>
+                              <p className="text-xl font-black font-mono tracking-tighter text-[#202124]">{payload[0].value} <span className="text-[10px] text-slate-500">NPR</span></p>
                             </div>
                           );
                         }
@@ -267,12 +267,12 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
               </div>
             </div>
 
-            <div className="bg-[#1A1A2E] text-white rounded-[3rem] p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+            <div className="bg-[#1A1A2E] text-[#202124] rounded-lg p-10 shadow-sm relative overflow-hidden flex flex-col justify-center">
                <div className="absolute -bottom-12 -right-12 opacity-10"><RefreshCcw className="w-64 h-64 text-emerald-500" /></div>
                <div className="relative z-10">
                   <h3 className="text-3xl font-black mb-8 tracking-tight text-emerald-400 uppercase tracking-widest">NRB Peg Audit</h3>
                   <div className="space-y-6">
-                     <div className="p-8 rounded-[2rem] bg-white/5 border border-white/10 group hover:bg-white/10 transition-all">
+                     <div className="p-8 rounded-[2rem] bg-[#f8f9fa] border border-[#dadce0] group hover:bg-white/10 transition-all">
                         <div className="flex justify-between items-center mb-4">
                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">INR Fixed Anchor</span>
                            <span className="text-3xl font-black text-emerald-400 font-mono">1.6000</span>
@@ -282,13 +282,13 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
                         </p>
                      </div>
                      <div className="grid grid-cols-2 gap-4">
-                        <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
+                        <div className="p-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl">
                            <div className="text-[9px] text-slate-400 uppercase font-black mb-2 tracking-widest">USD Base</div>
-                           <div className="text-lg font-black font-mono text-white">1:{rates['USD']}</div>
+                           <div className="text-lg font-black font-mono text-[#202124]">1:{rates['USD']}</div>
                         </div>
-                        <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
+                        <div className="p-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl">
                            <div className="text-[9px] text-slate-400 uppercase font-black mb-2 tracking-widest">QAR Base</div>
-                           <div className="text-lg font-black font-mono text-white">1:{rates['QAR']}</div>
+                           <div className="text-lg font-black font-mono text-[#202124]">1:{rates['QAR']}</div>
                         </div>
                      </div>
                   </div>

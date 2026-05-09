@@ -88,7 +88,7 @@ export default function ConcreteMixCalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-[#DADCE0] rounded-3xl text-center shadow-xl">
+          <div className="p-10 bg-white border border-[#DADCE0] rounded-lg text-center shadow-sm">
              <div className="text-[10px] font-black text-[#1A73E8] uppercase mb-4">Cement Requirement</div>
              <div className="text-6xl font-black text-[#188038] tracking-tighter">{Math.ceil(result.cementBags)} <span className="text-xl">Bags</span></div>
              <p className="text-[10px] font-bold text-[#70757A] mt-2 uppercase">Total {fmt(result.cementKg)} KG</p>
@@ -110,7 +110,7 @@ export default function ConcreteMixCalculator() {
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-3xl p-8 shadow-sm">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
              <div className="flex items-center gap-3 mb-6 border-l-4 border-[#1A73E8] pl-4">
                 <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Institutional Mix Audit</h3>
              </div>

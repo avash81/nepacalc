@@ -36,28 +36,28 @@ export function GeometrySidebar({ objects, onAddPoint, onAddSegment, onAddCircle
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-slate-50 border-r border-slate-200 shadow-xl overflow-hidden">
+    <div className="flex-1 flex flex-col h-full bg-slate-50 border-r border-slate-200 shadow-sm overflow-hidden">
       
       {/* Header Toolbar */}
       <div className="p-3 border-b border-slate-200 bg-white shadow-sm flex items-center justify-between">
          <div className="flex gap-1.5">
             <button 
               onClick={() => { setActiveMode('move'); setSelection([]); }}
-              className={`p-2 rounded transition-all ${activeMode === 'move' ? 'bg-indigo-600 text-white shadow-md' : 'hover:bg-slate-100 text-slate-400'}`}
+              className={`p-2 rounded transition-all ${activeMode === 'move' ? 'bg-indigo-600 text-[#202124] shadow-md' : 'hover:bg-slate-100 text-slate-400'}`}
               title="Move Tool"
             >
                <MousePointer2 className="w-4 h-4" />
             </button>
             <button 
               onClick={() => { setActiveMode('segment'); setSelection([]); }}
-              className={`p-2 rounded transition-all ${activeMode === 'segment' ? 'bg-indigo-600 text-white shadow-md' : 'hover:bg-slate-100 text-slate-400'}`}
+              className={`p-2 rounded transition-all ${activeMode === 'segment' ? 'bg-indigo-600 text-[#202124] shadow-md' : 'hover:bg-slate-100 text-slate-400'}`}
               title="Segment Tool"
             >
                <LinkIcon className="w-4 h-4" />
             </button>
             <button 
               onClick={() => { setActiveMode('circle'); setSelection([]); }}
-              className={`p-2 rounded transition-all ${activeMode === 'circle' ? 'bg-indigo-600 text-white shadow-md' : 'hover:bg-slate-100 text-slate-400'}`}
+              className={`p-2 rounded transition-all ${activeMode === 'circle' ? 'bg-indigo-600 text-[#202124] shadow-md' : 'hover:bg-slate-100 text-slate-400'}`}
               title="Circle Tool"
             >
                <CircleIcon className="w-4 h-4" />
@@ -73,7 +73,7 @@ export function GeometrySidebar({ objects, onAddPoint, onAddSegment, onAddCircle
 
       {/* Mode Status Bar */}
       {activeMode !== 'move' && (
-        <div className="bg-indigo-600 text-white px-4 py-2 text-[10px] font-black uppercase tracking-widest animate-pulse flex justify-between items-center">
+        <div className="bg-indigo-600 text-[#202124] px-4 py-2 text-[10px] font-black uppercase tracking-widest animate-pulse flex justify-between items-center">
            <span>
              {activeMode === 'segment' ? 'Select two points to draw segment' : 'Select center then radius point'}
              {selection.length > 0 && ` (${selection.length}/2)`}

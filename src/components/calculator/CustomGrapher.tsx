@@ -309,7 +309,7 @@ export default function CustomGrapher({ expression }: { expression: string }) {
         <button 
           onClick={() => setSettingsOpen(!settingsOpen)}
           aria-label="Toggle settings"
-          className={`p-2.5 bg-white/95 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-xl transition-all hover:bg-slate-50 active:scale-95 ${settingsOpen ? 'text-indigo-600 ring-4 ring-indigo-50/50' : 'text-slate-500'}`}
+          className={`p-2.5 bg-white/95 backdrop-blur-sm border border-slate-200 rounded-2xl shadow-sm transition-all hover:bg-slate-50 active:scale-95 ${settingsOpen ? 'text-indigo-600 ring-4 ring-indigo-50/50' : 'text-slate-500'}`}
         >
           <Settings size={22} />
         </button>
@@ -398,10 +398,10 @@ export default function CustomGrapher({ expression }: { expression: string }) {
 
       {/* Control Cluster (Bottom Right) */}
       <div className="absolute bottom-24 lg:bottom-6 right-4 lg:right-6 z-20 flex flex-col gap-2 lg:gap-3">
-        <button onClick={toggleFullscreen} aria-label="Toggle fullscreen" className="p-3.5 bg-white/95 backdrop-blur-sm border border-slate-200 rounded-full shadow-xl text-slate-600 hover:text-indigo-600 hover:scale-110 active:scale-95 transition-all">
+        <button onClick={toggleFullscreen} aria-label="Toggle fullscreen" className="p-3.5 bg-white/95 backdrop-blur-sm border border-slate-200 rounded-full shadow-sm text-slate-600 hover:text-indigo-600 hover:scale-110 active:scale-95 transition-all">
           <Maximize size={22} />
         </button>
-        <div className="flex flex-col gap-[2px] bg-slate-200 border border-slate-200 rounded-[1.5rem] shadow-2xl overflow-hidden">
+        <div className="flex flex-col gap-[2px] bg-slate-200 border border-slate-200 rounded-[1.5rem] shadow-sm overflow-hidden">
           <button onClick={() => zoomBy(0.85)} aria-label="Zoom in" className="p-3.5 bg-white hover:bg-slate-50 text-slate-600 hover:text-indigo-600 transition-colors" title="Zoom In">
             <Plus size={22} />
           </button>
@@ -409,7 +409,7 @@ export default function CustomGrapher({ expression }: { expression: string }) {
             <Minus size={22} />
           </button>
         </div>
-        <button onClick={() => { view.current = { xMin: -10, xMax: 10, yMin: -7, yMax: 7 }; draw(); }} aria-label="Recenter graph" className="p-3.5 bg-white border border-slate-200 rounded-full shadow-xl text-slate-600 hover:text-indigo-600 transition-all hover:scale-110 active:scale-90" title="Recentre">
+        <button onClick={() => { view.current = { xMin: -10, xMax: 10, yMin: -7, yMax: 7 }; draw(); }} aria-label="Recenter graph" className="p-3.5 bg-white border border-slate-200 rounded-full shadow-sm text-slate-600 hover:text-indigo-600 transition-all hover:scale-110 active:scale-90" title="Recentre">
           <Home size={22} />
         </button>
       </div>
@@ -426,7 +426,7 @@ export default function CustomGrapher({ expression }: { expression: string }) {
         />
         
         {/* Adaptive Status Pill */}
-        <div className="absolute bottom-24 lg:bottom-6 left-4 lg:left-6 p-3 lg:p-4 bg-white/90 backdrop-blur-md border border-slate-200 rounded-[1.25rem] lg:rounded-[1.5rem] shadow-2xl max-w-[180px] lg:max-w-[220px]">
+        <div className="absolute bottom-24 lg:bottom-6 left-4 lg:left-6 p-3 lg:p-4 bg-white/90 backdrop-blur-md border border-slate-200 rounded-[1.25rem] lg:rounded-[1.5rem] shadow-sm max-w-[180px] lg:max-w-[220px]">
           <div className="flex items-center gap-2 mb-1.5">
             <div className={`w-2.5 h-2.5 rounded-full ${expression ? 'bg-indigo-500 animate-pulse' : 'bg-slate-300'}`} />
             <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Precision Plotter</span>

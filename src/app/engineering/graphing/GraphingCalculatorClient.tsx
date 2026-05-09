@@ -217,7 +217,7 @@ export default function GraphingCalculatorClient() {
         <div className="w-full lg:w-[320px] flex-shrink-0 bg-white border border-slate-200 rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none overflow-hidden flex flex-col">
           <div className="p-4 border-b border-slate-100 flex items-center justify-between">
             <h1 className="text-[15px] font-bold text-[#202124]">📈 Graphing Calculator</h1>
-            <button onClick={addExpr} className="px-3 py-1.5 bg-[#4361ee] text-white text-[11px] font-bold rounded-lg hover:bg-[#3a56d4] transition-colors">
+            <button onClick={addExpr} className="px-3 py-1.5 bg-[#4361ee] text-[#202124] text-[11px] font-bold rounded-lg hover:bg-[#3a56d4] transition-colors">
               + Add
             </button>
           </div>
@@ -225,7 +225,7 @@ export default function GraphingCalculatorClient() {
             {exprs.map((expr, i) => (
               <div key={expr.id} className="flex items-center gap-2 group">
                 <button onClick={() => toggleExpr(expr.id)} className="w-5 h-5 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all" style={{ borderColor: expr.color, background: expr.visible ? expr.color : 'transparent' }}>
-                  {expr.visible && <span className="text-white text-[10px]">✓</span>}
+                  {expr.visible && <span className="text-[#202124] text-[10px]">✓</span>}
                 </button>
                 <div className="flex-1 relative">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[11px] font-mono text-slate-400">f{i+1}=</span>

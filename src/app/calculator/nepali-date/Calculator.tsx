@@ -97,15 +97,15 @@ export default function NepaliDateConverter() {
       icon={Calendar}
       inputs={
         <div className="space-y-8">
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden border border-white/5">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden border border-[#dadce0]">
              <div className="absolute top-0 right-0 p-10 opacity-10"><Clock className="w-40 h-40" /></div>
              <div className="relative z-10 space-y-6">
-                <div className="flex bg-white/5 p-1.5 rounded-2xl border border-white/10">
+                <div className="flex bg-[#f8f9fa] p-1.5 rounded-2xl border border-[#dadce0]">
                   {[ { key: 'ad2bs', label: 'AD To BS' }, { key: 'bs2ad', label: 'BS To AD' } ].map(t => (
                     <button 
                       key={t.key} 
                       onClick={() => handleTabChange(t.key as any)}
-                      className={`flex-1 py-3 text-[10px] font-black uppercase tracking-[0.2em] rounded-xl transition-all ${tab === t.key ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
+                      className={`flex-1 py-3 text-[10px] font-black uppercase tracking-[0.2em] rounded-xl transition-all ${tab === t.key ? 'bg-[#1a73e8] text-[#202124] shadow-sm' : 'text-slate-400 hover:text-[#202124]'}`}
                     >
                       {t.label}
                     </button>
@@ -114,29 +114,29 @@ export default function NepaliDateConverter() {
 
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
-                     <label className="text-[10px] font-black uppercase text-blue-400 tracking-[0.3em]">
+                     <label className="text-[10px] font-black uppercase text-[#1a0dab] tracking-[0.3em]">
                       {tab === 'ad2bs' ? 'Gregorian Origin (AD)' : 'Bikram Sambat Origin (BS)'}
                     </label>
-                    <button onClick={() => handleTabChange(tab === 'ad2bs' ? 'bs2ad' : 'ad2bs')} className="p-2 bg-white/5 text-blue-400 rounded-xl hover:bg-blue-600 hover:text-white transition-all group border border-white/10">
+                    <button onClick={() => handleTabChange(tab === 'ad2bs' ? 'bs2ad' : 'ad2bs')} className="p-2 bg-[#f8f9fa] text-[#1a0dab] rounded-xl hover:bg-[#1a73e8] hover:text-[#202124] transition-all group border border-[#dadce0]">
                        <RefreshCw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
                     </button>
                   </div>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                     <select value={inputY} onChange={e => handleDatePartChange('y', e.target.value)} className="w-full h-14 px-4 bg-white/5 border border-white/10 rounded-2xl text-white text-lg font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
-                       {(tab === 'ad2bs' ? adYears : bsYears).map(y => <option key={y} value={y} className="bg-slate-900">{y}</option>)}
+                     <select value={inputY} onChange={e => handleDatePartChange('y', e.target.value)} className="w-full h-14 px-4 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-[#202124] text-lg font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
+                       {(tab === 'ad2bs' ? adYears : bsYears).map(y => <option key={y} value={y} className="bg-white border border-[#dadce0]">{y}</option>)}
                      </select>
-                     <select value={inputM} onChange={e => handleDatePartChange('m', e.target.value)} className="w-full h-14 px-4 bg-white/5 border border-white/10 rounded-2xl text-white text-lg font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
-                       {(tab === 'ad2bs' ? adMonthsList : bsMonthsList).map(m => <option key={m.n} value={String(m.n).padStart(2, '0')} className="bg-slate-900">{m.label}</option>)}
+                     <select value={inputM} onChange={e => handleDatePartChange('m', e.target.value)} className="w-full h-14 px-4 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-[#202124] text-lg font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
+                       {(tab === 'ad2bs' ? adMonthsList : bsMonthsList).map(m => <option key={m.n} value={String(m.n).padStart(2, '0')} className="bg-white border border-[#dadce0]">{m.label}</option>)}
                      </select>
-                     <select value={inputD} onChange={e => handleDatePartChange('d', e.target.value)} className="w-full h-14 px-4 bg-white/5 border border-white/10 rounded-2xl text-white text-lg font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
+                     <select value={inputD} onChange={e => handleDatePartChange('d', e.target.value)} className="w-full h-14 px-4 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-[#202124] text-lg font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
                        {Array.from({ length: tab === 'ad2bs' ? 31 : 32 }, (_, i) => i + 1).map(d => (
-                         <option key={d} value={String(d).padStart(2, '0')} className="bg-slate-900">{d}</option>
+                         <option key={d} value={String(d).padStart(2, '0')} className="bg-white border border-[#dadce0]">{d}</option>
                        ))}
                      </select>
                   </div>
                   <button onClick={() => update({ inputDate: tab === 'ad2bs' ? todayAD : todayBS })}
-                    className="w-full py-4 bg-white/5 border border-white/10 rounded-2xl text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:bg-blue-600 hover:text-white transition-all">
+                    className="w-full py-4 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:bg-[#1a73e8] hover:text-[#202124] transition-all">
                     Reset to Institutional Present
                   </button>
                 </div>
@@ -146,24 +146,24 @@ export default function NepaliDateConverter() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-4 shadow-xl relative overflow-hidden group">
-            <div className={`absolute top-0 right-0 px-6 py-2 text-[9px] font-black uppercase tracking-widest text-white ${tab==='ad2bs' ? 'bg-rose-600':'bg-blue-600'} rounded-bl-3xl shadow-lg`}>
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-4 shadow-sm relative overflow-hidden group">
+            <div className={`absolute top-0 right-0 px-6 py-2 text-[9px] font-black uppercase tracking-widest text-[#202124] ${tab==='ad2bs' ? 'bg-rose-600':'bg-[#1a73e8]'} rounded-bl-3xl shadow-sm`}>
                {tab==='ad2bs'?'Computed BS':'Computed AD'}
             </div>
             <div className="text-[10px] font-bold uppercase text-blue-600 mb-2 tracking-[0.2em]">Validated Chronological Result</div>
             <div className="text-6xl font-black text-slate-900 tracking-tighter mb-4 font-mono uppercase">{result?.date || ', '}</div>
             {result && (
                <div className="flex justify-center items-center gap-4">
-                  <div className="text-[11px] font-black text-white bg-slate-900 px-5 py-2 rounded-full uppercase tracking-widest shadow-md">{result.dayNp}</div>
+                  <div className="text-[11px] font-black text-[#202124] bg-white border border-[#dadce0] px-5 py-2 rounded-full uppercase tracking-widest shadow-md">{result.dayNp}</div>
                   <div className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">{result.dayEn}</div>
                </div>
             )}
           </div>
 
-          <div className="bg-slate-900 rounded-[2.5rem] p-8 flex justify-between items-center text-white shadow-2xl relative overflow-hidden group">
+          <div className="bg-white border border-[#dadce0] rounded-lg p-8 flex justify-between items-center text-[#202124] shadow-sm relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Clock className="w-20 h-20 text-emerald-500" /></div>
             <div className="flex items-center gap-4 relative z-10">
-               <div className="p-3 bg-white/5 rounded-2xl border border-white/10">
+               <div className="p-3 bg-[#f8f9fa] rounded-2xl border border-[#dadce0]">
                   <Clock className="w-5 h-5 text-emerald-400" />
                </div>
                <div className="text-[10px] font-black uppercase text-emerald-400 tracking-[0.2em]">Institutional Delta</div>
@@ -174,17 +174,17 @@ export default function NepaliDateConverter() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white border border-slate-200 rounded-[2rem] p-6 text-center shadow-lg group hover:border-blue-500 transition-all">
+            <div className="bg-white border border-slate-200 rounded-[2rem] p-6 text-center shadow-sm group hover:border-blue-500 transition-all">
               <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">Reference Today (AD)</div>
               <div className="text-lg font-black text-slate-900 font-mono uppercase tracking-tighter">{todayAD}</div>
             </div>
-            <div className="bg-white border border-slate-200 rounded-[2rem] p-6 text-center shadow-lg group hover:border-rose-500 transition-all">
+            <div className="bg-white border border-slate-200 rounded-[2rem] p-6 text-center shadow-sm group hover:border-rose-500 transition-all">
               <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">Reference Today (BS)</div>
               <div className="text-lg font-black text-slate-900 font-mono uppercase tracking-tighter">{todayBS}</div>
             </div>
           </div>
           
-          <div className="p-8 bg-blue-50 border border-blue-100 rounded-[2.5rem] flex gap-6 items-start shadow-inner">
+          <div className="p-8 bg-blue-50 border border-blue-100 rounded-lg flex gap-6 items-start shadow-inner">
              <Info className="w-6 h-6 text-blue-600 shrink-0" />
              <p className="text-[11px] text-slate-600 leading-relaxed font-medium">
                The <strong>Bikram Sambat</strong> system is a lunisolar hybrid regulated by the <em>Nepal Panchanga Nirnayak Samiti</em>. This engine accounts for the dynamic month-length fluctuations (29-32 days) inherent in official Nepalese timekeeping.

@@ -41,7 +41,7 @@ export default async function BlogIndexPage() {
         </header>
 
         {publishedPosts.length === 0 ? (
-          <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-gray-200">
+          <div className="text-center py-20 bg-white rounded-lg border border-dashed border-gray-200">
             <p className="text-gray-400">No blog posts found.</p>
           </div>
         ) : (
@@ -50,7 +50,7 @@ export default async function BlogIndexPage() {
               <Link 
                 key={post.id} 
                 href={`/blog/${post.slug}/`}
-                className="group flex flex-col bg-white border border-gray-100 rounded-2xl p-6 transition-all hover:shadow-lg hover:border-blue-300"
+                className="group flex flex-col bg-white border border-gray-100 rounded-2xl p-6 transition-all hover:shadow-sm hover:border-blue-300"
               >
                 <div className="mb-4">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-1 rounded">

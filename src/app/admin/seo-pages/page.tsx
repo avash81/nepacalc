@@ -69,22 +69,22 @@ export default function SEOPagesAdmin() {
             <h1 className="text-3xl font-black text-slate-900 tracking-tight">SEO Trajectory</h1>
             <p className="text-slate-500 mt-1 text-[13px] font-bold uppercase tracking-widest">Manage Custom Landing Nodes.</p>
           </div>
-          <Link href="/admin/seo-pages/new" className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-black text-[11px] uppercase tracking-widest shadow-xl shadow-blue-500/20 active:scale-95 transition-all">
+          <Link href="/admin/seo-pages/new" className="flex items-center justify-center gap-2 px-6 py-3 bg-[#1a73e8] hover:bg-blue-700 text-[#202124] rounded-2xl font-black text-[11px] uppercase tracking-widest shadow-sm shadow-blue-500/20 active:scale-95 transition-all">
             <PlusCircle className="w-4 h-4" /> Deploy SEO Node
           </Link>
         </div>
 
         {/* Intelligence Box */}
-        <div className="bg-slate-950 text-white rounded-[2rem] p-8 shadow-2xl relative overflow-hidden border border-slate-800">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600 rounded-full blur-[100px] opacity-20 -mr-32 -mt-32 pointer-events-none" />
+        <div className="bg-slate-950 text-[#202124] rounded-[2rem] p-8 shadow-sm relative overflow-hidden border border-slate-800">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#1a73e8] rounded-full blur-[100px] opacity-20 -mr-32 -mt-32 pointer-events-none" />
           <div className="flex gap-6 relative z-10">
             <div className="w-12 h-12 rounded-2xl bg-blue-500/20 flex flex-shrink-0 items-center justify-center border border-blue-500/30">
-               <Globe className="w-5 h-5 text-blue-400" />
+               <Globe className="w-5 h-5 text-[#1a0dab]" />
             </div>
             <div>
-              <div className="text-[14px] font-black tracking-wide text-white mb-2">Tactical SEO Pages</div>
+              <div className="text-[14px] font-black tracking-wide text-[#202124] mb-2">Tactical SEO Pages</div>
               <div className="text-[12px] font-medium text-slate-300 leading-relaxed max-w-4xl">
-                Unlike temporal blog posts, these nodes are <strong className="text-white">evergreen gravity wells</strong> designed to pull high-volume queries indefinitely. Create focused guides (&quot;Calculate EMI Nepal&quot;) and seamlessly anchor them to our native calculators to achieve algorithmic dominance.
+                Unlike temporal blog posts, these nodes are <strong className="text-[#202124]">evergreen gravity wells</strong> designed to pull high-volume queries indefinitely. Create focused guides (&quot;Calculate EMI Nepal&quot;) and seamlessly anchor them to our native calculators to achieve algorithmic dominance.
               </div>
             </div>
           </div>
@@ -98,7 +98,7 @@ export default function SEOPagesAdmin() {
             ))}
           </div>
         ) : pages.length === 0 ? (
-          <div className="text-center py-24 bg-white border border-slate-100 rounded-[3rem] shadow-xl shadow-slate-200/40">
+          <div className="text-center py-24 bg-white border border-slate-100 rounded-lg shadow-sm shadow-slate-200/40">
             <div className="w-20 h-20 bg-slate-50 rounded-[2rem] flex items-center justify-center mx-auto mb-6 border border-slate-100">
                <FileText className="w-8 h-8 text-slate-300" />
             </div>
@@ -106,12 +106,12 @@ export default function SEOPagesAdmin() {
             <div className="text-[12px] font-bold text-slate-400 uppercase tracking-widest max-w-[300px] mx-auto mb-8 leading-relaxed">
               Create your first gravity well. Start with high volume targets.
             </div>
-            <Link href="/admin/seo-pages/new" className="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-white rounded-2xl font-black text-[11px] uppercase tracking-widest shadow-xl shadow-slate-900/20 active:scale-95 transition-all">
+            <Link href="/admin/seo-pages/new" className="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-[#202124] rounded-2xl font-black text-[11px] uppercase tracking-widest shadow-sm shadow-slate-900/20 active:scale-95 transition-all">
               <PlusCircle className="w-4 h-4" /> Initialize Node
             </Link>
           </div>
         ) : (
-          <div className="bg-white rounded-[2.5rem] shadow-xl shadow-slate-200/40 border border-slate-100 overflow-hidden">
+          <div className="bg-white rounded-lg shadow-sm shadow-slate-200/40 border border-slate-100 overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
@@ -176,7 +176,7 @@ export default function SEOPagesAdmin() {
         )}
 
         {/* SEO Algorithm Targets */}
-        <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-xl shadow-slate-200/40 mt-12">
+        <div className="bg-white border border-slate-100 rounded-lg p-8 shadow-sm shadow-slate-200/40 mt-12">
           <h2 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6">Algorithm Targets 2082</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[

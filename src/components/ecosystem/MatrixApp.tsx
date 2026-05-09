@@ -144,7 +144,7 @@ export function MatrixApp() {
        { label: '−', val: '-' },
        { label: '×', val: '*' },
        { label: '÷', val: '/' },
-       { label: '=', action: 'EVAL', bg: 'bg-indigo-600 text-white border-indigo-700 hover:bg-indigo-700' },
+       { label: '=', action: 'EVAL', bg: 'bg-indigo-600 text-[#202124] border-indigo-700 hover:bg-indigo-700' },
     ];
 
     return (

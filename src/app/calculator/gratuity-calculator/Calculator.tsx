@@ -21,28 +21,28 @@ export default function GratuityCalculator() {
       icon={Briefcase}
       inputs={
         <div className="space-y-8">
-           <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+           <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 p-10 opacity-10"><Briefcase className="w-40 h-40" /></div>
               <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
                  <div className="space-y-4">
-                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Monthly Basic Salary</label>
+                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Monthly Basic Salary</label>
                     <div className="relative">
                        <span className="absolute left-6 top-1/2 -translate-y-1/2 text-sm font-black text-slate-400">Rs.</span>
-                       <input type="number" value={basicSalary} min={0} onChange={e => update({ basicSalary: Number(e.target.value) })} className="w-full h-14 pl-14 pr-6 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                       <input type="number" value={basicSalary} min={0} onChange={e => update({ basicSalary: Number(e.target.value) })} className="w-full h-14 pl-14 pr-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" />
                     </div>
                     <p className="text-[9px] font-black uppercase tracking-widest text-slate-500 mt-2">Excluding allowances</p>
                  </div>
                  <div className="space-y-4">
-                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Years of Service</label>
+                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Years of Service</label>
                     <div className="relative">
-                       <input type="number" value={yearsOfService} min={0} step={0.5} onChange={e => update({ yearsOfService: Number(e.target.value) })} className="w-full h-14 px-6 pr-20 bg-white/5 border border-white/10 rounded-2xl text-xl font-black text-white focus:border-blue-500 outline-none transition-all" />
+                       <input type="number" value={yearsOfService} min={0} step={0.5} onChange={e => update({ yearsOfService: Number(e.target.value) })} className="w-full h-14 px-6 pr-20 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" />
                        <span className="absolute right-6 top-1/2 -translate-y-1/2 text-[10px] font-black uppercase tracking-widest text-slate-400">Years</span>
                     </div>
                  </div>
               </div>
            </div>
 
-           <div className={`p-8 border rounded-[2.5rem] shadow-sm relative overflow-hidden ${result.isEligible ? 'bg-emerald-50 border-emerald-100' : 'bg-rose-50 border-rose-100'}`}>
+           <div className={`p-8 border rounded-lg shadow-sm relative overflow-hidden ${result.isEligible ? 'bg-emerald-50 border-emerald-100' : 'bg-rose-50 border-rose-100'}`}>
               <div className="flex items-center gap-4 mb-4">
                  <div className={`p-3 rounded-xl ${result.isEligible ? 'bg-emerald-100' : 'bg-rose-100'}`}>
                    {result.isEligible ? <ShieldCheck className="w-6 h-6 text-emerald-600" /> : <ShieldAlert className="w-6 h-6 text-rose-600" />}
@@ -59,7 +59,7 @@ export default function GratuityCalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Briefcase className="w-24 h-24 text-emerald-600" /></div>
              <div className="text-[10px] font-bold text-emerald-600 uppercase tracking-[0.2em]">Total Accumulated Gratuity</div>
              <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">Rs. {fmt(result.totalGratuity)}</div>
@@ -68,7 +68,7 @@ export default function GratuityCalculator() {
              </div>
           </div>
 
-          <section className="bg-white border border-slate-200 rounded-[3rem] overflow-hidden shadow-sm">
+          <section className="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm">
              <div className="px-10 py-6 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                    <Gavel className="w-5 h-5 text-blue-600" />
@@ -91,12 +91,12 @@ export default function GratuityCalculator() {
              </div>
           </section>
 
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] flex gap-4 items-center text-white shadow-2xl relative overflow-hidden group">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg flex gap-4 items-center text-[#202124] shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Gavel className="w-24 h-24 text-blue-500" /></div>
              <div className="relative z-10 flex gap-4">
-                <div className="p-3 bg-white/10 rounded-xl shrink-0 h-min"><Info className="w-5 h-5 text-blue-400" /></div>
+                <div className="p-3 bg-white/10 rounded-xl shrink-0 h-min"><Info className="w-5 h-5 text-[#1a0dab]" /></div>
                 <div className="space-y-1">
-                   <h5 className="text-[10px] font-black text-blue-400 uppercase tracking-widest">Labor Act 2074 (Section 53)</h5>
+                   <h5 className="text-[10px] font-black text-[#1a0dab] uppercase tracking-widest">Labor Act 2074 (Section 53)</h5>
                    <p className="text-[11px] text-slate-300 leading-relaxed font-medium">
                       "Every employer shall deposit an amount equivalent to 8.33% of the basic remuneration of each worker in the Social Security Fund (SSF) or any other approved retirement fund."
                    </p>

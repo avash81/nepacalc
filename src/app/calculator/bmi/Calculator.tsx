@@ -106,7 +106,7 @@ export default function BMICalculator() {
 
           <button 
             onClick={saveReading}
-            className="w-full h-12 bg-[#1A73E8] hover:bg-[#1765CC] text-white font-bold uppercase tracking-widest rounded-md transition-all shadow-sm flex items-center justify-center gap-3"
+            className="w-full h-12 bg-[#1A73E8] hover:bg-[#1765CC] text-[#202124] font-bold uppercase tracking-widest rounded-md transition-all shadow-sm flex items-center justify-center gap-3"
           >
             <Activity className="w-4 h-4" /> Calculate & Archive
           </button>

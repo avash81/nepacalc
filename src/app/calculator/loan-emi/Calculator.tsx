@@ -130,7 +130,7 @@ export default function LoanEMICalculator() {
                </select>
             </div>
           </div>
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
              Calculate Repayment
           </button>
         </div>

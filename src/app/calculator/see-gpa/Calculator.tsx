@@ -141,7 +141,7 @@ export default function SEEGPACalculator() {
             copyValue={`GPA: ${results.gpa.toFixed(2)}, Grade: ${results.overallGrade}`}
           />
 
-          <div className="bg-slate-900 text-white rounded-[2rem] p-8 space-y-6 shadow-xl relative overflow-hidden">
+          <div className="bg-white border border-[#dadce0] text-[#202124] rounded-[2rem] p-8 space-y-6 shadow-sm relative overflow-hidden">
              <div className="absolute right-0 top-0 opacity-10 pointer-events-none">
                 <GraduationCap className="w-48 h-48 -mr-10 -mt-10" />
              </div>
@@ -150,9 +150,9 @@ export default function SEEGPACalculator() {
                    <GraduationCap className="w-6 h-6 text-indigo-400" />
                    <div className="text-xs font-black uppercase tracking-widest text-indigo-400">Official Report Digest</div>
                 </div>
-                <div className="bg-white/5 p-6 rounded-2xl border border-white/10 text-center backdrop-blur-sm">
+                <div className="bg-[#f8f9fa] p-6 rounded-2xl border border-[#dadce0] text-center backdrop-blur-sm">
                    <div className="text-6xl font-black mb-2">{results.overallGrade}</div>
-                   <div className="text-xs font-bold text-white/60 uppercase tracking-widest">Aggregate Final Grade</div>
+                   <div className="text-xs font-bold text-[#202124]/60 uppercase tracking-widest">Aggregate Final Grade</div>
                 </div>
                 {results.hasNG && (
                   <div className="p-4 bg-rose-500/20 border border-rose-500/30 rounded-xl flex gap-3 text-rose-300">

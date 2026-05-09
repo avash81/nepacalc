@@ -77,7 +77,7 @@ export default function PasswordGenerator() {
             <div className="flex gap-2 justify-between">
               {[8, 12, 16, 24, 32].map(v => (
                 <button key={v} onClick={() => setLength(v)}
-                  className={`flex-1 py-2 rounded-md text-xs font-bold transition-all ${length === v ? 'bg-blue-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>
+                  className={`flex-1 py-2 rounded-md text-xs font-bold transition-all ${length === v ? 'bg-[#1a73e8] text-[#202124] shadow-sm' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}>
                   {v}
                 </button>
               ))}
@@ -102,7 +102,7 @@ export default function PasswordGenerator() {
           </div>
 
           <button onClick={generate}
-            className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold transition-all flex items-center justify-center gap-2 shadow-sm">
+            className="w-full py-4 bg-[#1a73e8] hover:bg-blue-700 text-[#202124] rounded-lg font-bold transition-all flex items-center justify-center gap-2 shadow-sm">
             <RefreshCw className="w-5 h-5" /> Generate New Passwords
           </button>
         </div>
@@ -128,7 +128,7 @@ export default function PasswordGenerator() {
               <div key={i} className="p-4 bg-white border border-slate-200 rounded-xl flex items-center gap-3 shadow-sm group hover:border-blue-300 transition-colors">
                 <div className="flex-1 font-mono text-base break-all text-slate-800 font-medium">{pwd}</div>
                 <button onClick={() => copy(pwd, i)}
-                  className="shrink-0 h-10 w-10 bg-slate-50 text-slate-600 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1">
+                  className="shrink-0 h-10 w-10 bg-slate-50 text-slate-600 rounded-lg border border-slate-200 flex items-center justify-center hover:bg-[#1a73e8] hover:text-[#202124] hover:border-blue-600 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1">
                   {copied === i ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5 group-hover:scale-110 transition-transform" />}
                 </button>
               </div>

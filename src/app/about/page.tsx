@@ -91,7 +91,7 @@ export default function AboutPage() {
               <a href="mailto:support@nepacalc.com" className="bg-white border border-gray-200 text-gray-800 font-bold py-1.5 px-4 rounded-lg text-center hover:bg-gray-50 transition-colors">
                 support@nepacalc.com
               </a>
-              <Link href="/contact" className="bg-blue-600 text-white font-bold py-1.5 px-4 rounded-lg text-center hover:bg-blue-700 transition-colors">
+              <Link href="/contact" className="bg-[#1a73e8] text-[#202124] font-bold py-1.5 px-4 rounded-lg text-center hover:bg-blue-700 transition-colors">
                 Contact Form
               </Link>
             </div>

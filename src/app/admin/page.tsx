@@ -61,7 +61,7 @@ export default function AdminDashboard() {
           <div className="flex items-center gap-3">
             <Link
               href="/admin/posts/new"
-              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-[13px] font-medium px-4 py-2 rounded-lg transition-colors shadow-sm"
+              className="flex items-center gap-2 bg-[#1a73e8] hover:bg-blue-700 text-[#202124] text-[13px] font-medium px-4 py-2 rounded-lg transition-colors shadow-sm"
             >
               <PlusCircle className="w-4 h-4" />
               New post

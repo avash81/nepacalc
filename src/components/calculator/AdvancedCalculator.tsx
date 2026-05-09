@@ -55,7 +55,7 @@ function Key({ label, on, variant = 'normal', small = false, ariaLabel }: {
   const themes: Record<string, string> = {
     normal: 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm font-medium',
     num:    'bg-white border-slate-200 text-slate-900 hover:bg-slate-50 shadow-sm font-bold',
-    dark:   'bg-slate-600 border-slate-500 text-white hover:bg-slate-700 shadow-sm font-bold',
+    dark:   'bg-slate-600 border-slate-500 text-[#202124] hover:bg-slate-700 shadow-sm font-bold',
     purple: '',
   };
   return (

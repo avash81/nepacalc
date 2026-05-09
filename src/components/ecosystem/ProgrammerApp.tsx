@@ -37,21 +37,21 @@ export function ProgrammerApp() {
   const bitArray = bin.split('').map(b => b === '1').reverse();
 
   return (
-    <div className="w-full flex-1 flex flex-col bg-white overflow-hidden relative border-x border-slate-100 shadow-2xl h-full">
+    <div className="w-full flex-1 flex flex-col bg-white overflow-hidden relative border-x border-slate-100 shadow-sm h-full">
       
       {/* 💻 LABORATORY HEADER */}
-      <div className="flex justify-between items-center px-6 py-4 bg-[#1e1e1e] text-white z-30">
+      <div className="flex justify-between items-center px-6 py-4 bg-[#1e1e1e] text-[#202124] z-30">
         <div className="flex items-center gap-4">
           <span className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em]">
             <Cpu className="w-4 h-4 text-[#FFC107]" /> Logic Kernel v4.0
           </span>
           <div className="h-4 w-[1px] bg-white/20" />
-          <div className="flex bg-white/5 rounded-lg p-1 gap-1">
+          <div className="flex bg-[#f8f9fa] rounded-lg p-1 gap-1">
              {[8, 16, 32, 64].map(len => (
                <button
                  key={len}
                  onClick={() => setBitLength(len as BitLength)}
-                 className={`px-3 py-1.5 rounded-md text-[9px] font-black uppercase tracking-widest transition-all ${bitLength === len ? 'bg-[#FFC107] text-black shadow-lg shadow-yellow-500/20' : 'text-white/40 hover:text-white hover:bg-white/10'}`}
+                 className={`px-3 py-1.5 rounded-md text-[9px] font-black uppercase tracking-widest transition-all ${bitLength === len ? 'bg-[#FFC107] text-black shadow-sm shadow-yellow-500/20' : 'text-[#202124]/40 hover:text-[#202124] hover:bg-white/10'}`}
                >
                  {len}-BIT
                </button>
@@ -89,7 +89,7 @@ export function ProgrammerApp() {
             </div>
 
             {/* 🕹️ INTERACTIVE BITBOARD */}
-            <div className="bg-white border border-slate-100 rounded-[2.5rem] p-8 shadow-sm">
+            <div className="bg-white border border-slate-100 rounded-lg p-8 shadow-sm">
                <div className="flex items-center justify-between mb-8">
                   <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 flex items-center gap-2">
                      <Binary className="w-3.5 h-3.5" /> 64-Bit Interactive Matrix
@@ -106,7 +106,7 @@ export function ProgrammerApp() {
                       <button
                         key={realIdx}
                         onClick={() => toggleBit(realIdx)}
-                        className={`h-10 sm:h-12 flex flex-col items-center justify-center rounded-xl border transition-all ${isOn ? 'bg-[#FFC107] border-[#FFC107] shadow-lg shadow-yellow-500/20' : 'bg-slate-50 border-slate-100 hover:border-slate-300'}`}
+                        className={`h-10 sm:h-12 flex flex-col items-center justify-center rounded-xl border transition-all ${isOn ? 'bg-[#FFC107] border-[#FFC107] shadow-sm shadow-yellow-500/20' : 'bg-slate-50 border-slate-100 hover:border-slate-300'}`}
                       >
                          <span className={`text-base font-black ${isOn ? 'text-black' : 'text-slate-300'}`}>{isOn ? '1' : '0'}</span>
                          <span className={`text-[7px] font-bold ${isOn ? 'text-black/40' : 'text-slate-200'}`}>{realIdx}</span>
@@ -118,7 +118,7 @@ export function ProgrammerApp() {
 
             {/* ⚙️ LOGIC GATES (STATIC PREVIEW) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-               <div className="bg-[#1e1e1e] rounded-[2rem] p-8 text-white">
+               <div className="bg-[#1e1e1e] rounded-[2rem] p-8 text-[#202124]">
                   <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFC107] mb-6">Bitwise Logic Reference</h4>
                   <div className="space-y-4">
                      {[
@@ -129,9 +129,9 @@ export function ProgrammerApp() {
                        { op: 'SHL (<<)', desc: 'Shift bits left' },
                        { op: 'SHR (>>)', desc: 'Shift bits right' }
                      ].map(l => (
-                       <div key={l.op} className="flex items-center justify-between py-2 border-b border-white/5">
-                          <span className="text-[10px] font-black tracking-widest font-mono text-white">{l.op}</span>
-                          <span className="text-[9px] font-medium text-white/40">{l.desc}</span>
+                       <div key={l.op} className="flex items-center justify-between py-2 border-b border-[#dadce0]">
+                          <span className="text-[10px] font-black tracking-widest font-mono text-[#202124]">{l.op}</span>
+                          <span className="text-[9px] font-medium text-[#202124]/40">{l.desc}</span>
                        </div>
                      ))}
                   </div>

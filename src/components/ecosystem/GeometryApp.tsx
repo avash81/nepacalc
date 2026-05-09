@@ -96,7 +96,7 @@ export function GeometryApp() {
       <div className="flex h-full w-full">
          
          {/* Sidebar: 320px */}
-         <div className="w-[320px] shrink-0 border-r border-slate-200 bg-slate-50 flex flex-col z-20 shadow-lg">
+         <div className="w-[320px] shrink-0 border-r border-slate-200 bg-slate-50 flex flex-col z-20 shadow-sm">
             <GeometrySidebar 
               objects={objects} 
               onAddPoint={addPoint}

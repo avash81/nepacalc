@@ -39,7 +39,7 @@ function LandInput({ label, value, onChange, id, color = 'blue' }: { label: stri
         id={id}
         type="number"
         value={localVal}
-        className={`w-full h-11 px-4 bg-white/5 border border-white/10 rounded-xl text-white text-sm font-black outline-none transition-all ${colorClasses[color]}`}
+        className={`w-full h-11 px-4 bg-[#f8f9fa] border border-[#dadce0] rounded-xl text-[#202124] text-sm font-black outline-none transition-all ${colorClasses[color]}`}
         placeholder="0"
         step="any"
         onFocus={() => { isFocused.current = true; }}
@@ -115,12 +115,12 @@ export default function NepalLandCalculator() {
 
   const inputBlock = (
     <div className="space-y-8">
-      <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden">
+      <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
          <div className="absolute top-0 right-0 p-10 opacity-10"><Map className="w-40 h-40" /></div>
          <div className="relative z-10 space-y-6">
             <div className="flex items-center gap-3">
-               <div className="p-2 bg-blue-500/20 rounded-lg"><Compass className="w-4 h-4 text-blue-400" /></div>
-               <h3 className="text-[10px] font-black uppercase tracking-widest text-blue-400">Hill Region (R-A-P-D)</h3>
+               <div className="p-2 bg-blue-500/20 rounded-lg"><Compass className="w-4 h-4 text-[#1a0dab]" /></div>
+               <h3 className="text-[10px] font-black uppercase tracking-widest text-[#1a0dab]">Hill Region (R-A-P-D)</h3>
             </div>
             <div className="grid grid-cols-2 gap-4">
                <LandInput label="Ropani" value={values.ropani} onChange={v => update('ropani', v)} id="ropani" color="blue" />
@@ -128,7 +128,7 @@ export default function NepalLandCalculator() {
                <LandInput label="Paisa" value={values.paisa} onChange={v => update('paisa', v)} id="paisa" color="blue" />
                <LandInput label="Daam" value={values.daam} onChange={v => update('daam', v)} id="daam" color="blue" />
             </div>
-            <div className="pt-6 border-t border-white/10 flex items-center gap-3">
+            <div className="pt-6 border-t border-[#dadce0] flex items-center gap-3">
                <div className="p-2 bg-emerald-500/20 rounded-lg"><Globe className="w-4 h-4 text-emerald-400" /></div>
                <h3 className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Terai Region (B-K-D)</h3>
             </div>
@@ -169,7 +169,7 @@ export default function NepalLandCalculator() {
       inputs={inputBlock}
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><MapPin className="w-24 h-24 text-blue-600" /></div>
              <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Official notation (Hill)</div>
              <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">
@@ -181,19 +181,19 @@ export default function NepalLandCalculator() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-             <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-1 text-center">
+             <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-1 text-center">
                 <div className="text-[9px] font-black text-slate-400 uppercase">Terai B-K-D</div>
                 <div className="text-xl font-black text-slate-900">
                    {values.bigha_b}-{values.kattha_b}-{values.dhur_b.toFixed(1)}
                 </div>
              </div>
-             <div className="p-6 bg-blue-50 border border-blue-100 rounded-3xl space-y-1 text-center">
+             <div className="p-6 bg-blue-50 border border-blue-100 rounded-lg space-y-1 text-center">
                 <div className="text-[9px] font-black text-blue-600 uppercase">Gross SQFT</div>
                 <div className="text-xl font-black text-blue-600">{Math.round(values.sqft).toLocaleString()}</div>
              </div>
           </div>
 
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Landmark className="w-24 h-24 text-blue-500" /></div>
              <div className="relative z-10 flex items-center justify-between">
                 <div className="space-y-1">
@@ -210,10 +210,10 @@ export default function NepalLandCalculator() {
       details={
         <div className="space-y-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden">
+            <div className="bg-white border border-slate-200 rounded-lg p-10 shadow-sm relative overflow-hidden">
               <div className="absolute top-0 right-0 p-6 opacity-5"><PieChart className="w-20 h-20 text-blue-600" /></div>
               <div className="flex items-center gap-2 mb-8">
-                <div className="w-1.5 h-6 bg-blue-600 rounded-full" />
+                <div className="w-1.5 h-6 bg-[#1a73e8] rounded-full" />
                 <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Hilly Unit Hierarchy</h3>
               </div>
               <div className="h-[300px] w-full relative">
@@ -246,7 +246,7 @@ export default function NepalLandCalculator() {
               </div>
             </div>
 
-            <div className="bg-[#1A1A2E] text-white rounded-[2.5rem] p-10 shadow-2xl relative overflow-hidden flex flex-col justify-center">
+            <div className="bg-[#1A1A2E] text-[#202124] rounded-lg p-10 shadow-sm relative overflow-hidden flex flex-col justify-center">
                <div className="absolute -bottom-12 -right-12 opacity-10"><ShieldCheck className="w-64 h-64 text-emerald-500" /></div>
                <h3 className="text-2xl font-black mb-8 tracking-tight text-emerald-400 uppercase tracking-widest">Regional Scale Matrix</h3>
                <div className="h-[240px] w-full">
@@ -273,7 +273,7 @@ export default function NepalLandCalculator() {
             </div>
           </div>
 
-          <section className="bg-white border border-slate-200 rounded-[3rem] p-12 shadow-sm relative overflow-hidden">
+          <section className="bg-white border border-slate-200 rounded-lg p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -top-12 -right-12 opacity-5">
                 <Landmark className="w-64 h-64 text-blue-600" />
             </div>
@@ -288,7 +288,7 @@ export default function NepalLandCalculator() {
                 Land measurement in <strong>Nepal</strong> is a unique dualistic system governed by topography. The <strong>Ropani-Aana-Paisa-Daam (RAPD)</strong> system is the legal standard for hilly regions (including the Kathmandu Valley), while the <strong>Bigha-Kattha-Dhur (BKD)</strong> system is used in the Terai plains. Understanding these units is critical for property registration, banking valuation, and legal documentation (Lalpurja).
               </p>
               
-              <div className="bg-blue-50 border border-blue-100 p-8 rounded-[2.5rem] flex gap-6 items-start my-10">
+              <div className="bg-blue-50 border border-blue-100 p-8 rounded-lg flex gap-6 items-start my-10">
                  <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-sm shrink-0">
                     <Info className="w-6 h-6 text-blue-600" />
                  </div>
@@ -331,9 +331,9 @@ export default function NepalLandCalculator() {
             </div>
           </section>
 
-          <section className="bg-slate-900 text-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+          <section className="bg-white border border-[#dadce0] text-[#202124] rounded-lg p-12 shadow-sm relative overflow-hidden">
              <div className="absolute -bottom-12 -right-12 opacity-10"><Compass className="w-64 h-64 text-blue-500" /></div>
-             <h2 className="text-3xl font-black mb-10 tracking-tight text-blue-400 uppercase tracking-widest">Land Integrity Guardrails</h2>
+             <h2 className="text-3xl font-black mb-10 tracking-tight text-[#1a0dab] uppercase tracking-widest">Land Integrity Guardrails</h2>
              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="space-y-4">
                    <h4 className="text-lg font-black flex items-center gap-2 text-emerald-400"><History className="w-5 h-5" /> Kittakat Restriction</h4>

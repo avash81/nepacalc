@@ -43,7 +43,7 @@ export default function QuadraticSolver() {
       inputs={
         <div className="space-y-6">
           <div className="flex justify-center mb-4">
-             <div className="px-8 py-4 bg-white rounded-3xl border border-[#DADCE0] shadow-sm text-center">
+             <div className="px-8 py-4 bg-white rounded-lg border border-[#DADCE0] shadow-sm text-center">
                 <span className="text-2xl font-black text-[#202124] font-mono">
                    {a}x² {b >= 0 ? '+' : '−'} {Math.abs(b)}x {c >= 0 ? '+' : '−'} {Math.abs(c)} = 0
                 </span>
@@ -60,7 +60,7 @@ export default function QuadraticSolver() {
         <div className="space-y-6">
           {result.success && result.data ? (
             <>
-              <div className="bg-white border border-[#DADCE0] rounded-3xl overflow-hidden shadow-xl">
+              <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm">
                  <div className="divide-y divide-[#F1F3F4]">
                     {result.data.roots.map((root, i) => (
                       <div key={i} className="p-8 text-center">
@@ -84,7 +84,7 @@ export default function QuadraticSolver() {
               </div>
             </>
           ) : (
-            <div className="p-10 bg-[#FCE8E6] border border-[#FAD2CF] rounded-3xl text-center">
+            <div className="p-10 bg-[#FCE8E6] border border-[#FAD2CF] rounded-lg text-center">
                <p className="text-sm font-bold text-[#D93025]">{result.error}</p>
             </div>
           )}
@@ -92,7 +92,7 @@ export default function QuadraticSolver() {
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-3xl p-8 shadow-sm">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
              <div className="flex items-center gap-3 mb-6 border-l-4 border-[#1A73E8] pl-4">
                 <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Institutional Quadratic Solver</h3>
              </div>

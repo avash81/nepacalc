@@ -22,7 +22,7 @@ export function InlineCalculator({ slug }: { slug: string }) {
   if (!Component) return null;
   
   return (
-    <div className="my-12 p-1 bg-slate-100 rounded-[2.5rem] shadow-inner no-print">
+    <div className="my-12 p-1 bg-slate-100 rounded-lg shadow-inner no-print">
        <div className="bg-white rounded-[2.4rem] overflow-hidden border border-slate-200">
           <div className="p-4 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-600 px-4 py-1.5 bg-blue-50 rounded-full">Interactive Tool</span>

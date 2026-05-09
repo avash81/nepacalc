@@ -110,7 +110,7 @@ export function CalculatorLayout({
                   {cat.calculators.slice(0, 4).map(calc => (
                     <li key={calc.id} className="leading-snug">
                       <Link href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`} className="text-[13px] font-medium text-slate-500 hover:text-blue-600 transition-colors flex items-start gap-2 group">
-                        <span className="text-slate-300 group-hover:text-blue-400 mt-0.5">•</span>
+                        <span className="text-slate-300 group-hover:text-[#1a0dab] mt-0.5">•</span>
                         <span>{calc.name}</span>
                       </Link>
                     </li>
@@ -202,7 +202,7 @@ export function CalculatorLayout({
                   </button>
                   <button 
                     onClick={() => window.print()} 
-                    className="group flex items-center gap-2.5 px-6 py-3 bg-white border-2 border-slate-200 rounded-xl hover:bg-slate-50 hover:border-slate-300 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-[11px] font-black uppercase tracking-[0.2em] text-slate-700 no-print active:scale-[0.98]"
+                    className="group flex items-center gap-2.5 px-6 py-3 bg-white border-2 border-slate-200 rounded-xl hover:bg-slate-50 hover:border-slate-300 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300 text-[11px] font-black uppercase tracking-[0.2em] text-slate-700 no-print active:scale-[0.98]"
                   >
                     <Printer className="w-4 h-4 text-slate-500 group-hover:text-blue-600 transition-colors" />
                     Print Report

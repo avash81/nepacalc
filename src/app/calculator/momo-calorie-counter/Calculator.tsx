@@ -40,42 +40,42 @@ export default function MomoCalculator() {
       icon={Flame}
       inputs={
         <div className="space-y-8">
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white space-y-8 shadow-2xl relative overflow-hidden border border-white/5">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden border border-[#dadce0]">
              <div className="absolute top-0 right-0 p-10 opacity-10"><Flame className="w-40 h-40" /></div>
              <div className="relative z-10 space-y-6">
                 <div className="flex justify-between items-center">
                    <label className="text-[10px] font-black uppercase tracking-[0.3em] text-orange-400">Inventory Slabs</label>
-                   <button onClick={add} className="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white text-[9px] font-black uppercase rounded-xl transition-all shadow-lg flex items-center gap-2">
+                   <button onClick={add} className="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-[#202124] text-[9px] font-black uppercase rounded-xl transition-all shadow-sm flex items-center gap-2">
                       <Plus className="w-3 h-3" /> Add Variety
                    </button>
                 </div>
                 
                 <div className="space-y-4">
                   {items.map((item, idx) => (
-                    <div key={idx} className="p-6 bg-white/5 border border-white/10 rounded-[2rem] relative group transition-all hover:border-orange-500/50">
+                    <div key={idx} className="p-6 bg-[#f8f9fa] border border-[#dadce0] rounded-[2rem] relative group transition-all hover:border-orange-500/50">
                        <div className="grid grid-cols-1 md:grid-cols-[1fr_100px] gap-6">
                           <div className="space-y-3">
                              <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Plate Variety</label>
-                             <select value={item.typeId} onChange={e => update(idx, 'typeId', e.target.value)} className="w-full h-12 px-4 bg-white/5 border border-white/10 rounded-xl text-white text-sm font-black focus:border-orange-500 outline-none cursor-pointer">
-                                {MOMO_TYPES.map(t => <option key={t.id} value={t.id} className="bg-slate-900">{t.name}</option>)}
+                             <select value={item.typeId} onChange={e => update(idx, 'typeId', e.target.value)} className="w-full h-12 px-4 bg-[#f8f9fa] border border-[#dadce0] rounded-xl text-[#202124] text-sm font-black focus:border-orange-500 outline-none cursor-pointer">
+                                {MOMO_TYPES.map(t => <option key={t.id} value={t.id} className="bg-white border border-[#dadce0]">{t.name}</option>)}
                              </select>
                           </div>
                           <div className="space-y-3">
                              <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Piece Qty</label>
-                             <input type="number" min={1} value={item.count} onChange={e => update(idx, 'count', Number(e.target.value))} className="w-full h-12 px-4 bg-white/5 border border-white/10 rounded-xl text-white text-sm font-black focus:border-orange-500 outline-none" />
+                             <input type="number" min={1} value={item.count} onChange={e => update(idx, 'count', Number(e.target.value))} className="w-full h-12 px-4 bg-[#f8f9fa] border border-[#dadce0] rounded-xl text-[#202124] text-sm font-black focus:border-orange-500 outline-none" />
                           </div>
                        </div>
 
                        <div className="flex gap-2 mt-6">
                           {[5, 10, 20].map(p => (
-                             <button key={p} onClick={() => update(idx, 'count', p)} className={`flex-1 py-2 text-[8px] font-black uppercase rounded-lg border transition-all ${item.count === p ? 'bg-orange-600 border-orange-600 text-white shadow-lg scale-105' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'}`}>
+                             <button key={p} onClick={() => update(idx, 'count', p)} className={`flex-1 py-2 text-[8px] font-black uppercase rounded-lg border transition-all ${item.count === p ? 'bg-orange-600 border-orange-600 text-[#202124] shadow-sm scale-105' : 'bg-[#f8f9fa] border-[#dadce0] text-slate-400 hover:bg-white/10'}`}>
                                 {p === 5 ? 'Half' : p === 10 ? 'Full' : 'Double'} Plate
                              </button>
                           ))}
                        </div>
 
                        {items.length > 1 && (
-                         <button onClick={() => remove(idx)} className="absolute -top-2 -right-2 w-8 h-8 bg-rose-600 text-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-all">
+                         <button onClick={() => remove(idx)} className="absolute -top-2 -right-2 w-8 h-8 bg-rose-600 text-[#202124] rounded-full flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-all">
                             <Trash2 className="w-4 h-4" />
                          </button>
                        )}
@@ -103,7 +103,7 @@ export default function MomoCalculator() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-xl relative overflow-hidden group">
+          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Flame className="w-24 h-24 text-orange-600" /></div>
              <div className="text-[10px] font-bold text-orange-600 uppercase tracking-[0.2em]">Total Caloric Payload</div>
              <div className="text-6xl font-black tracking-tighter text-slate-900 font-mono uppercase">{result.cals}</div>
@@ -118,14 +118,14 @@ export default function MomoCalculator() {
                { l: 'FAT', v: result.fat,     c: 'text-rose-600', bg: 'bg-rose-50', b: 'border-rose-100'  },
                { l: 'CHO', v: result.carbs,   c: 'text-amber-600',bg: 'bg-amber-50',b: 'border-amber-100'},
              ].map(m => (
-               <div key={m.l} className={`p-5 rounded-3xl border ${m.b} ${m.bg} text-center space-y-1`}>
+               <div key={m.l} className={`p-5 rounded-lg border ${m.b} ${m.bg} text-center space-y-1`}>
                   <div className={`text-[9px] font-black uppercase tracking-widest ${m.c}`}>{m.l}</div>
                   <div className={`text-lg font-black ${m.c}`}>{m.v}g</div>
                </div>
              ))}
           </div>
 
-          <div className="p-8 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group">
+          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Activity className="w-24 h-24 text-orange-500" /></div>
              <div className="relative z-10 flex items-center justify-between">
                 <div className="space-y-1">
@@ -138,7 +138,7 @@ export default function MomoCalculator() {
              </div>
           </div>
 
-          <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl flex items-start gap-4">
+          <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg flex items-start gap-4">
              <div className="p-3 bg-white rounded-2xl shadow-sm"><Info className="w-5 h-5 text-blue-600" /></div>
              <p className="text-[10px] text-slate-600 leading-relaxed font-bold uppercase tracking-tight">
                {result.cals > 600

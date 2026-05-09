@@ -50,7 +50,7 @@ export default function WeightConverter() {
         icon={Scale}
         inputs={
           <div className="space-y-6">
-            <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6 shadow-inner space-y-6">
+            <div className="bg-slate-50 border border-slate-200 rounded-lg p-6 shadow-inner space-y-6">
                 <div className="space-y-3">
                   <label className="text-xs font-bold uppercase tracking-wider text-slate-700">Amount to Convert</label>
                   <input type="number" value={value} onChange={e => updateState({ value: Number(e.target.value) })} min={0}
@@ -70,8 +70,8 @@ export default function WeightConverter() {
                   </div>
 
                   <button onClick={swap}
-                    className="sm:mt-6 h-12 w-12 rounded-full border border-slate-300 bg-white flex items-center justify-center hover:bg-indigo-500 hover:text-white hover:border-indigo-500 transition-all shadow-sm z-10 shrink-0 group">
-                    <ArrowLeftRight className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" />
+                    className="sm:mt-6 h-12 w-12 rounded-full border border-slate-300 bg-white flex items-center justify-center hover:bg-indigo-500 hover:text-[#202124] hover:border-indigo-500 transition-all shadow-sm z-10 shrink-0 group">
+                    <ArrowLeftRight className="w-5 h-5 text-slate-400 group-hover:text-[#202124] transition-colors" />
                   </button>
 
                   <div className="w-full space-y-2">
@@ -114,7 +114,7 @@ export default function WeightConverter() {
         }
         results={
           <div className="space-y-6">
-            <div className="p-8 bg-indigo-600 rounded-3xl text-center shadow-lg text-white relative overflow-hidden">
+            <div className="p-8 bg-indigo-600 rounded-lg text-center shadow-sm text-[#202124] relative overflow-hidden">
                 <div className="absolute right-0 top-0 opacity-10 pointer-events-none">
                   <Scale className="w-48 h-48 -mr-10 -mt-10" />
                 </div>
@@ -140,12 +140,12 @@ export default function WeightConverter() {
               </div>
             </div>
 
-            <div className="p-8 bg-slate-900 rounded-3xl text-white space-y-6 shadow-xl relative overflow-hidden">
+            <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-6 shadow-sm relative overflow-hidden">
                 <div className="absolute right-0 bottom-0 opacity-5 pointer-events-none">
                   <Gem className="w-40 h-40 -mr-8 -mb-8" />
                 </div>
                 <div className="relative z-10">
-                    <div className="flex items-center gap-3 border-b border-white/10 pb-4">
+                    <div className="flex items-center gap-3 border-b border-[#dadce0] pb-4">
                         <div className="p-2 bg-amber-500/20 rounded-lg"><Gem className="w-5 h-5 text-amber-400" /></div>
                         <h3 className="text-xs font-black uppercase tracking-widest text-slate-300">Gold Value Estimator</h3>
                     </div>
@@ -156,10 +156,10 @@ export default function WeightConverter() {
                             <div className="relative">
                                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">Rs.</div>
                                 <input type="number" value={goldPricePerTola} onChange={e => updateState({ goldPricePerTola: Number(e.target.value) })}
-                                className="w-full h-12 pl-12 pr-4 bg-black/30 border border-white/10 rounded-xl font-mono text-lg font-bold text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all" />
+                                className="w-full h-12 pl-12 pr-4 bg-black/30 border border-[#dadce0] rounded-xl font-mono text-lg font-bold text-[#202124] focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all" />
                             </div>
                         </div>
-                        <div className="pt-4 border-t border-white/5 flex flex-col items-end">
+                        <div className="pt-4 border-t border-[#dadce0] flex flex-col items-end">
                             <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Total Estimated Value</span>
                             <span className="text-3xl font-black text-amber-400 tracking-tighter">NPR {goldValue.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
                         </div>

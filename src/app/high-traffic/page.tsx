@@ -17,7 +17,7 @@ export default function HighTrafficPage() {
            <Logo size="lg" theme="indigo" />
         </div>
 
-        <div className="w-24 h-24 rounded-full bg-[#FFC107] flex items-center justify-center mb-8 shadow-2xl shadow-yellow-500/20 animate-pulse-subtle">
+        <div className="w-24 h-24 rounded-full bg-[#FFC107] flex items-center justify-center mb-8 shadow-sm shadow-yellow-500/20 animate-pulse-subtle">
            <AlertTriangle className="w-10 h-10 text-black" />
         </div>
 
@@ -36,7 +36,7 @@ export default function HighTrafficPage() {
         <div className="flex flex-col sm:flex-row gap-4 w-full">
            <button 
              onClick={() => window.location.reload()}
-             className="flex-1 flex items-center justify-center gap-3 bg-black text-[#FFC107] px-8 py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-[11px] shadow-2xl hover:scale-105 active:scale-95 transition-all"
+             className="flex-1 flex items-center justify-center gap-3 bg-black text-[#FFC107] px-8 py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-[11px] shadow-sm hover:scale-105 active:scale-95 transition-all"
            >
              <RefreshCcw className="w-4 h-4" /> Try Again In A Minute
            </button>

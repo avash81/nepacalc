@@ -28,7 +28,7 @@ export default function ZScoreCalc() {
       icon={Sigma}
       inputs={
         <div className="space-y-6">
-          <div className="space-y-6 p-6 bg-white border border-[#DADCE0] rounded-3xl shadow-sm">
+          <div className="space-y-6 p-6 bg-white border border-[#DADCE0] rounded-lg shadow-sm">
             <div className="space-y-2">
               <label className={labelCls}>Observation (x)</label>
               <input type="number" value={x} onChange={e => setX(Number(e.target.value))} className={inputCls} />
@@ -48,7 +48,7 @@ export default function ZScoreCalc() {
       }
       results={
         <div className="space-y-6">
-          <div className="p-10 bg-white border border-[#DADCE0] rounded-3xl text-center shadow-xl">
+          <div className="p-10 bg-white border border-[#DADCE0] rounded-lg text-center shadow-sm">
             <div className="text-[10px] font-black uppercase tracking-widest text-[#1A73E8] mb-4">Computed Z-Score</div>
             <div className="text-7xl font-black text-[#202124] font-mono mb-4">{z.toFixed(4)}</div>
             <div className="inline-block px-6 py-2 bg-[#E8F0FE] text-[#1A73E8] rounded-full text-xs font-black">
@@ -64,7 +64,7 @@ export default function ZScoreCalc() {
       }
       details={
         <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-3xl p-8 shadow-sm">
+          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
              <div className="flex items-center gap-3 mb-6 border-l-4 border-[#1A73E8] pl-4">
                 <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Institutional Normalization</h3>
              </div>

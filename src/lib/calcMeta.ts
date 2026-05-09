@@ -16,8 +16,8 @@ export function calcMeta({ title, description, slug, keywords = [], canonical }:
   
   // Clean Title — Brand enforced at end with a space, NO symbols
   let seoTitle = title
-    .replace(/[|&—\-_:]/g, ' ') // Remove symbols
-    .replace(/\s+/g, ' ')       // Normalize spaces
+    .replace(/[|&—\-_:/\\(),.!?;]/g, ' ') // Remove all symbols including slashes, pipes, and punctuation
+    .replace(/\s+/g, ' ')               // Normalize spaces
     .trim();
 
   const brandSuffix = ` ${SITE_CONFIG.name}`;
@@ -32,8 +32,8 @@ export function calcMeta({ title, description, slug, keywords = [], canonical }:
   
   // Clean Description — Must end with Brand reference or CTA
   let seoDescription = description
-    .replace(/[|&—\-_:]/g, ' ') // Remove symbols
-    .replace(/\s+/g, ' ')       // Normalize spaces
+    .replace(/[|&—\-_:/\\(),.!?;]/g, ' ') // Remove all symbols
+    .replace(/\s+/g, ' ')               // Normalize spaces
     .trim();
 
   const descSuffix = ' Try NepaCalc now.';
@@ -50,7 +50,12 @@ export function calcMeta({ title, description, slug, keywords = [], canonical }:
 
   // Fix slug formatting for canonical (ensure no double slashes and ends with slash)
   const cleanSlug = slug.startsWith('/') ? slug.substring(1) : slug;
-  let canonicalPath = canonical ? canonical : (cleanSlug.includes('/') ? `/${cleanSlug}/` : `/calculator/${cleanSlug}/`);
+  
+  // Categorization Logic for Canonical URLs
+  const rootCategories = ['nepal', 'finance', 'health', 'education', 'utility', 'engineering', 'market-rates', 'forex', 'investment', 'retail', 'financial'];
+  const isRootLevel = rootCategories.includes(cleanSlug.split('/')[0]);
+
+  let canonicalPath = canonical ? canonical : (isRootLevel ? `/${cleanSlug}/` : `/calculator/${cleanSlug}/`);
   
   // Ensure it starts with / and ends with /
   if (!canonicalPath.startsWith('/')) canonicalPath = '/' + canonicalPath;
