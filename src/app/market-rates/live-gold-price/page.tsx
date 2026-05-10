@@ -41,6 +41,7 @@ export default function Page() {
         description="Daily precious metal indices synchronized with FENEGOSIDA benchmarks for the Nepalese jewelry market."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Gold Price' }]}
         isNepal={true}
+        hideHeader={true}
         relatedCalcs={[
           { name: 'Live Silver Price', slug: '/market-rates/live-silver-price/' },
           { name: 'Exchange Rates', slug: '/market-rates/exchange-rate/' },
@@ -71,3 +72,4 @@ export default function Page() {
     </div>
   );
 }
+

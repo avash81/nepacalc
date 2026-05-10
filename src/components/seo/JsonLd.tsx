@@ -168,3 +168,4 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
     />
   );
 }
+

@@ -6,4 +6,11 @@ export const metadata = calcMeta({
   slug: 'currency-converter',
   keywords: ["currency converter nepal", "usd to npr", "inr to npr", "aud to npr", "foreign exchange rate nepal", "nrb exchange rate today", "money converter nepal"],
 });
-export default function Page() { return <Calculator />; }
+export default function Page() {
+  return (
+    <div className="bg-[#F1F3F4]">
+      <Calculator />
+    </div>
+  );
+}
+

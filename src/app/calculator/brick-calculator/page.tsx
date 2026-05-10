@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["brick calculator nepal", "wall brick estimator", "how many bricks per square foot", "nepal standard brick size", "construction material calculator"],
 });
 export default function Page() { return <Calculator />; }
+

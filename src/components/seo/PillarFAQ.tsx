@@ -22,3 +22,4 @@ export function PillarFAQ({ faqs, title = "Frequently Asked Questions" }: { faqs
     </div>
   );
 }
+

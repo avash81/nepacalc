@@ -20,15 +20,15 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
   icons: {
     icon: [
-      { url: '/logo.png?v=final', sizes: '32x32', type: 'image/png' },
-      { url: '/logo.png?v=final', sizes: '48x48', type: 'image/png' },
-      { url: '/logo.png?v=final', sizes: '96x96', type: 'image/png' },
-      { url: '/logo.png?v=final', sizes: '144x144', type: 'image/png' },
-      { url: '/logo.png?v=final', sizes: '192x192', type: 'image/png' },
-      { url: '/logo.png?v=final', sizes: '512x512', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon-144x144.png', sizes: '144x144', type: 'image/png' },
+      { url: '/favicon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon-512x512.png', sizes: '512x512', type: 'image/png' },
     ],
     apple: [
-      { url: '/logo.png?v=final', sizes: '180x180', type: 'image/png' },
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
   },
   verification: {
@@ -164,7 +164,7 @@ export default function RootLayout({
         <Navbar />
         <main id="main-content" className="pt-16 min-h-[85vh]">
           <div className="flex flex-col h-full">
-            <div className="flex-grow pb-16">
+            <div className="flex-grow pb-8">
               {children}
             </div>
             <Footer />
@@ -177,3 +177,4 @@ export default function RootLayout({
     </html>
   );
 }
+

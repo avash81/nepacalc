@@ -196,3 +196,4 @@ export function PlotCanvas({ expressions, camera, setCamera }: PlotCanvasProps) 
     </div>
   );
 }
+

@@ -28,7 +28,7 @@ export default function ForceCalc() {
   const current = MODES.find(m => m.key === mode)!;
 
   return (
-    <ModernCalcLayout hideH1={true}
+    <ModernCalcLayout hideH1={false}
       crumbs={[{ label: 'Engineering', href: '/engineering/' }, { label: 'Physics Force Calculator' }]}
       title="Physics Force & Work Calculator"
       description="Calculate Newtonian mechanics including Force (F=ma), Work (W=Fd), Power (P=W/t), and Pressure (P=F/A)."
@@ -169,4 +169,5 @@ export default function ForceCalc() {
     />
   );
 }
+
 

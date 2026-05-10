@@ -6,4 +6,11 @@ export const metadata = calcMeta({
   slug: 'nepal-attendance',
   keywords: ["tu attendance calculator", "pu attendance rule", "75 percent attendance calculator", "nepal college attendance", "exam eligibility nepal"],
 });
-export default function Page() { return <Calculator />; }
+export default function Page() {
+  return (
+    <div className="bg-[#F1F3F4]">
+      <Calculator />
+    </div>
+  );
+}
+

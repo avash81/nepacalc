@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["attendance calculator", "tu attendance calculator", "exam eligibility nepal", "75 percent attendance calculator", "pu attendance tracker", "neb attendance"],
 });
 export default function Page() { return <Calculator />; }
+

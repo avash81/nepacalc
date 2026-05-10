@@ -50,7 +50,7 @@ export default function FDCalculator() {
   return (
     <ModernCalcLayout
       slug="fd-calculator"
-      crumbs={[{ label: 'Home', href: '/' }, { label: 'Financial', href: '/financial/' }, { label: 'FD Calculator' }]}
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Financial', href: '/finance/' }, { label: 'FD Calculator' }]}
       title="Fixed Deposit (FD)"
       description="The definitive engine for term deposits in Nepal. Calculate Muddati Khata returns with Class A bank compounding protocols and 5% TDS auditing."
       icon={Banknote}
@@ -178,7 +178,7 @@ export default function FDCalculator() {
               </div>
             </div>
 
-            <div className="bg-[#1A1A2E] text-[#202124] rounded-lg p-10 shadow-sm relative overflow-hidden flex flex-col justify-center">
+            <div className="bg-[#1A1A2E] text-white rounded-lg p-10 shadow-sm relative overflow-hidden flex flex-col justify-center">
                <div className="absolute -bottom-12 -right-12 opacity-10"><ShieldCheck className="w-64 h-64 text-emerald-500" /></div>
                <h3 className="text-2xl font-black mb-8 tracking-tight text-emerald-400 uppercase tracking-widest">Security & Leveraging</h3>
                <div className="space-y-6">
@@ -255,3 +255,4 @@ export default function FDCalculator() {
     />
   );
 }
+

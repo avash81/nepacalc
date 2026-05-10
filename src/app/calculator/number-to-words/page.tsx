@@ -37,6 +37,7 @@ export default function Page() {
   return (
     <div className="bg-white min-h-screen">
       <CalcWrapper
+        hideHeader={true}
         title="Numerical Verbiage Engine"
         description="High-precision linguistic tool for converting complex digits into formal words using both regional and international numbering standards."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Number to Words' }]}
@@ -70,3 +71,4 @@ export default function Page() {
       </CalcWrapper>    </div>
   );
 }
+

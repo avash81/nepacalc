@@ -37,6 +37,7 @@ export default function Page() {
   return (
     <div className="bg-white min-h-screen">
       <CalcWrapper
+        hideHeader={true}
         title="Pregnancy Due Date"
         description="Clinical-grade engine for estimating your delivery date and tracking major pregnancy milestones."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Pregnancy Due Date' }]}
@@ -69,3 +70,4 @@ export default function Page() {
       </CalcWrapper>    </div>
   );
 }
+

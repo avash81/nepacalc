@@ -37,6 +37,7 @@ export default function Page() {
   return (
     <div className="bg-white min-h-screen">
       <CalcWrapper
+        hideHeader={true}
         title="Paint Cost Calculator"
         description="Professional estimation engine for wall area, paint quantity, and material budgets tailored for Nepalese home renovations."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Paint Cost' }]}
@@ -70,3 +71,4 @@ export default function Page() {
       </CalcWrapper>    </div>
   );
 }
+

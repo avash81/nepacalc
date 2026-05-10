@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["momo calories", "nepal food calorie counter", "buff momo calories", "chicken momo nutrition", "veg momo calories", "health calculator nepal"],
 });
 export default function Page() { return <Calculator />; }
+

@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["lcm calculator", "gcf calculator", "hcf calculator", "prime factorization", "least common multiple", "greatest common factor"],
 });
 export default function Page() { return <Calculator />; }
+

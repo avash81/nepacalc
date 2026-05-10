@@ -52,7 +52,7 @@ export default function SimpleInterestCalculator() {
   return (
     <ModernCalcLayout
       slug="simple-interest"
-      crumbs={[{ label: 'Home', href: '/' }, { label: 'Financial', href: '/financial/' }, { label: 'Simple Interest' }]}
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Financial', href: '/finance/' }, { label: 'Simple Interest' }]}
       title="Simple Interest"
       description="The authoritative engine for linear interest calculations. Audit 'Tamasuk' informal lending, Sahakari credit lines, and standard P×R×T financial products with institutional precision."
       icon={TrendingUp}
@@ -179,7 +179,7 @@ export default function SimpleInterestCalculator() {
               </p>
             </div>
 
-            <div className="bg-[#1A1A2E] text-[#202124] rounded-lg p-10 shadow-sm relative overflow-hidden flex flex-col justify-center">
+            <div className="bg-[#1A1A2E] text-white rounded-lg p-10 shadow-sm relative overflow-hidden flex flex-col justify-center">
                <div className="absolute -bottom-12 -right-12 opacity-10"><PieChart className="w-64 h-64 text-emerald-500" /></div>
                <h3 className="text-2xl font-black mb-8 tracking-tight text-emerald-400 uppercase tracking-widest">Asset Composition</h3>
                <div className="h-[240px] w-full">
@@ -360,3 +360,4 @@ export default function SimpleInterestCalculator() {
     />
   );
 }
+

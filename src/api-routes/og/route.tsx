@@ -111,3 +111,4 @@ export async function GET(req: NextRequest) {
     return new Response('Failed to generate image', { status: 500 });
   }
 }
+

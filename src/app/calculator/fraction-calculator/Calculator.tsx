@@ -233,7 +233,7 @@ export default function FractionCalculator() {
           </section>
 
           {/* Section 4: Nepalese Academic Applications */}
-          <section className="bg-[#1A1A2E] text-[#202124] rounded-xl p-8 shadow-sm">
+          <section className="bg-[#1A1A2E] text-white rounded-xl p-8 shadow-sm">
             <div className="flex items-center gap-3 mb-6">
               <Ruler className="w-8 h-8 text-[#8AB4F8]" />
               <h2 className="text-2xl font-black">Applications in the Nepalese Institutional Framework</h2>
@@ -324,3 +324,4 @@ export default function FractionCalculator() {
     />
   );
 }
+

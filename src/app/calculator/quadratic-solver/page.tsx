@@ -37,6 +37,7 @@ export default function Page() {
   return (
     <div className="bg-white min-h-screen">
       <CalcWrapper
+        hideHeader={true}
         title="Quadratic Equation Solver"
         description="High-precision algebraic engine for finding the roots and discriminant of any second-degree polynomial equation instantly."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Quadratic Solver' }]}
@@ -72,3 +73,4 @@ export default function Page() {
     </div>
   );
 }
+

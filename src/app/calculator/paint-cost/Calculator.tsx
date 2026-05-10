@@ -26,7 +26,7 @@ export default function PaintCostCalculator() {
 
   return (
     <CalculatorErrorBoundary calculatorName="Paint Cost">
-      <ModernCalcLayout hideH1={true}
+      <ModernCalcLayout hideH1={false}
       crumbs={[{ label: 'Converters', href: '/converters/' }, { label: 'Paint Calculator' }]}
         title="Paint Cost Estimator"
         description="Calculate the exact volume of paint needed for your walls and get an accurate cost estimate for your interior or exterior painting project."
@@ -174,4 +174,5 @@ export default function PaintCostCalculator() {
     </CalculatorErrorBoundary>
   );
 }
+
 

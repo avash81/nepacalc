@@ -1,7 +1,7 @@
 'use client';
 import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Map, Landmark, Users, Info, Scale } from 'lucide-react';
+import { Map, Landmark, Users, Info, Scale, ShieldCheck, Activity, Receipt } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
 import { calculateNepalPropertyRegistration } from '@/utils/math/country-rules/nepal';
 
@@ -13,7 +13,7 @@ const LOCATIONS = [
 ];
 
 export default function PropertyRegistration() {
-  const [state, setState] = useSyncState('prop_reg_v1', {
+  const [state, setState] = useSyncState('prop_reg_v2', {
     price: 5000000,
     location: 'metropolitan' as 'metropolitan' | 'sub-metropolitan' | 'municipality' | 'rural',
     buyerGender: 'male' as 'male' | 'female' | 'joint',
@@ -24,126 +24,210 @@ export default function PropertyRegistration() {
   const result = useMemo(() => calculateNepalPropertyRegistration(price, location, buyerGender), [price, location, buyerGender]);
   const fmt = (n: number) => 'Rs. ' + n.toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
-  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
-  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
-
   return (
     <ModernCalcLayout
-      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Property Registration Fee' }]}
+      slug="property-registration"
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Property Registration' }]}
       title="Property Registration & Stamp Duty"
       description="Calculate Malpok registry fees and stamp duty for land/house transactions in Nepal. Includes female ownership discounts and all municipal tier rates."
       icon={Map}
       inputs={
         <div className="space-y-6">
-          <div className="space-y-2">
-            <label className={labelCls}>Registry Price (Lalpurja Amount)</label>
-            <div className="relative">
-              <input type="number" value={price} onChange={e => update({ price: Number(e.target.value) })} className={inputCls} />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70757A]">NPR</span>
+          <div className="grid grid-cols-1 gap-6">
+            <div className="space-y-2">
+               <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Registry Price (Lalpurja Amount)</label>
+               <input 
+                  type="number" 
+                  value={price} 
+                  onChange={(e) => update({ price: Number(e.target.value) })}
+                  className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all" 
+               />
+               <p className="text-[9px] text-[#5F6368] uppercase font-bold tracking-wider mt-1">Price declared for government taxation</p>
             </div>
-            <p className="text-[9px] text-[#70757A]">Price declared for government taxation</p>
-          </div>
 
-          <div className="space-y-2">
-            <label className={labelCls}>Property Location Category</label>
-            <div className="grid grid-cols-1 gap-2">
-              {LOCATIONS.map(l => (
-                <button key={l.id} onClick={() => update({ location: l.id as any })}
-                  className={`p-3 rounded-lg border text-left flex justify-between items-center transition-all ${location === l.id ? 'bg-[#E8F0FE] border-[#1A73E8]' : 'bg-white border-[#DADCE0] hover:bg-[#F8F9FA]'}`}>
-                  <span className={`text-xs font-bold ${location === l.id ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>{l.name}</span>
-                  <span className={`text-[10px] font-black px-2 py-0.5 rounded ${location === l.id ? 'bg-[#1A73E8] text-[#202124]' : 'bg-[#F1F3F4] text-[#5F6368]'}`}>{l.rate}</span>
-                </button>
-              ))}
+            <div className="space-y-2">
+               <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Property Location Category</label>
+               <div className="grid grid-cols-1 gap-2">
+                  {LOCATIONS.map(l => (
+                    <button 
+                      key={l.id} 
+                      onClick={() => update({ location: l.id as any })}
+                      className={`h-11 px-4 rounded-md border flex items-center justify-between transition-all ${location === l.id ? 'border-[#1A73E8] bg-[#E8F0FE]' : 'border-[#DADCE0] bg-white hover:border-[#1A73E8]'}`}
+                    >
+                      <span className={`text-[11px] font-black uppercase ${location === l.id ? 'text-[#1A73E8]' : 'text-[#5F6368]'}`}>{l.name}</span>
+                      <span className={`text-[9px] font-bold px-2 py-0.5 rounded ${location === l.id ? 'bg-[#1A73E8] text-white' : 'bg-[#F8F9FA] text-[#5F6368] border border-[#DADCE0]'}`}>{l.rate}</span>
+                    </button>
+                  ))}
+               </div>
             </div>
-          </div>
 
-          <div className="space-y-2">
-            <label className={labelCls}>Buyer Type</label>
-            <div className="flex bg-[#F1F3F4] p-1 rounded-lg">
-              {[['male','Male'],['female','Female'],['joint','Joint (H/W)']] .map(([id, label]) => (
-                <button key={id} onClick={() => update({ buyerGender: id as any })}
-                  className={`flex-1 py-2 text-[10px] font-bold uppercase rounded-md transition-all ${buyerGender === id ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368]'}`}>
-                  {label}
-                </button>
-              ))}
+            <div className="space-y-2">
+               <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Buyer Type (Exemptions)</label>
+               <div className="grid grid-cols-3 gap-2">
+                {[['male','Male'],['female','Female'],['joint','Joint (H/W)']] .map(([id, label]) => (
+                  <button 
+                    key={id} 
+                    onClick={() => update({ buyerGender: id as any })} 
+                    className={`h-10 rounded-md border text-[11px] font-black uppercase transition-all ${buyerGender === id ? 'border-[#1A73E8] bg-[#E8F0FE] text-[#1A73E8]' : 'border-[#DADCE0] bg-white text-[#5F6368] hover:border-[#1A73E8]'}`}
+                  >
+                    {label}
+                  </button>
+                ))}
+               </div>
             </div>
+
             {buyerGender === 'female' && (
-              <div className="flex gap-2 p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg items-center">
-                <Users className="w-4 h-4 text-[#188038] shrink-0" />
-                <p className="text-[10px] text-[#188038] font-bold">{location === 'rural' ? '30%' : '25%'} Female Ownership Rebate Applied automatically.</p>
-              </div>
+               <div className="p-4 bg-[#E6F4EA] border border-[#188038] rounded-md flex gap-3">
+                  <ShieldCheck className="w-5 h-5 text-[#188038] shrink-0" />
+                  <p className="text-[10px] text-[#188038] font-bold leading-relaxed uppercase">
+                     Rebate Applied: {location === 'rural' ? '30%' : '25%'} Female Ownership Rebate applied automatically.
+                  </p>
+               </div>
             )}
+            
             {buyerGender === 'joint' && (
-              <div className="flex gap-2 p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg items-center">
-                <Users className="w-4 h-4 text-[#188038] shrink-0" />
-                <p className="text-[10px] text-[#188038] font-bold">Rs. 100 Nominal Fee ,  Joint husband/wife registration.</p>
-              </div>
+               <div className="p-4 bg-[#E8F0FE] border border-[#1A73E8] rounded-md flex gap-3">
+                  <ShieldCheck className="w-5 h-5 text-[#1A73E8] shrink-0" />
+                  <p className="text-[10px] text-[#1A73E8] font-bold leading-relaxed uppercase">
+                     Rebate Applied: Nominal Fee of Rs. 100 for Joint husband/wife registration.
+                  </p>
+               </div>
             )}
           </div>
-
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] font-bold uppercase tracking-widest rounded-md transition-colors">Calculate Registry Fee</button>
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+             Generate Malpok Audit
+          </button>
         </div>
       }
       results={
-        <div className="space-y-6">
-          <div className="p-6 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-1">
-            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Total Registration Fee</div>
-            <div className="text-4xl font-black text-[#1A73E8]">{fmt(result.finalFee)}</div>
-            <div className="text-[9px] text-[#70757A] font-bold uppercase">Payable at Malpok Office</div>
+        <div className="space-y-6 h-full flex flex-col justify-center">
+          <div className="bg-[#E8F0FE] rounded-lg p-10 text-center space-y-2">
+             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Total Registration Fee</div>
+             <div className="text-5xl font-black text-[#1A73E8] tracking-tight">{fmt(result.finalFee)}</div>
+             <div className="flex justify-center mt-2">
+                <span className="px-4 py-1.5 bg-white rounded-full text-[10px] font-black text-[#5F6368] uppercase border border-[#DADCE0] shadow-sm">
+                   Payable at Malpok Office
+                </span>
+             </div>
           </div>
-          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
-            <div className="px-4 py-2 bg-[#1A1A2E] text-[#202124] flex justify-between items-center">
-              <span className="text-[10px] font-black uppercase">Malpok Invoice</span>
-              <span className="text-[10px] text-[#202124]/60">{LOCATIONS.find(l => l.id === location)?.name}</span>
-            </div>
-            <div className="divide-y divide-[#DADCE0]">
-              <div className="p-3 flex justify-between text-xs"><span className="text-[#5F6368]">Gross Registry Fee ({result.ratePercent}%)</span><span className="font-black">{fmt(result.baseFee)}</span></div>
-              <div className="p-3 flex justify-between text-xs"><span className="text-[#5F6368]">Discount / Exemption</span><span className="font-black text-[#188038]">− {fmt(result.discount)}</span></div>
-              <div className="p-3 flex justify-between text-xs bg-[#F8F9FA]"><span className="font-bold text-[#202124]">Final Total Payable</span><span className="font-black text-[#1A73E8] text-sm">{fmt(result.finalFee)}</span></div>
-            </div>
+
+          <div className="border border-[#DADCE0] rounded-lg overflow-hidden bg-white">
+             <div className="px-4 py-3 bg-[#F8F9FA] border-b border-[#DADCE0] flex justify-between items-center">
+                <span className="text-[10px] font-black uppercase text-[#202124]">Malpok Ledger</span>
+                <span className="text-[9px] font-bold text-[#5F6368] uppercase">{LOCATIONS.find(l => l.id === location)?.name}</span>
+             </div>
+             <div className="divide-y divide-[#F1F3F4] p-2">
+                <div className="p-3 flex justify-between items-center rounded hover:bg-[#F8F9FA] transition-colors">
+                   <span className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Gross Fee ({result.ratePercent}%)</span>
+                   <span className="text-sm font-black text-[#202124]">{fmt(result.baseFee)}</span>
+                </div>
+                {result.discount > 0 && (
+                  <div className="p-3 flex justify-between items-center rounded hover:bg-[#F8F9FA] transition-colors">
+                     <span className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Exemption/Rebate</span>
+                     <span className="text-sm font-black text-[#188038]">− {fmt(result.discount)}</span>
+                  </div>
+                )}
+                <div className="p-3 flex justify-between items-center rounded bg-[#E8F0FE] border border-[#1A73E8]">
+                   <span className="text-[11px] font-bold text-[#1A73E8] uppercase tracking-wider">Final Payable</span>
+                   <span className="text-lg font-black text-[#1A73E8]">{fmt(result.finalFee)}</span>
+                </div>
+             </div>
           </div>
-          <div className="flex gap-2 p-3 bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg items-start">
-            <Scale className="w-4 h-4 text-[#1A73E8] shrink-0 mt-0.5" />
-            <p className="text-[10px] text-[#202124] leading-tight">Rates are updated annually in the provincial budget. Additional local service fees may apply at specific Malpok offices.</p>
+
+          <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex justify-between items-center">
+             <div className="text-[10px] font-bold text-[#5F6368] uppercase">Effective Tax Rate</div>
+             <div className="text-[11px] font-black text-[#D93025]">{((result.finalFee / price) * 100).toFixed(2)}%</div>
           </div>
         </div>
       }
       details={
-        <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">The Complete Property Registration Fee Analytics</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                Transferring real estate ownership in Nepal requires exact calculation of government levies before executing the Lalpurja transfer. Our <strong className="text-[#202124]">property registration fee nepal</strong> calculator is engineered to parse the latest provincial budget directives, applying the exact municipal tax tiers (2% to 5%) based on the official asset classification (Metropolitan, Sub-Metropolitan, Municipality, or Rural).
-              </p>
-              <p>
-                When determining the final <strong className="text-[#202124]">land registration cost nepal</strong>, this tool dynamically adjusts for demographic exemptions. It operates as a highly precise <strong className="text-[#202124]">malpot fee calculator</strong>, modeling the rigorous mathematical ledger used by district land revenue offices to establish the baseline tax before applying targeted discounts.
-              </p>
-            </div>
-          </div>
+        <div className="space-y-6">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+             <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-8 opacity-5"><Landmark className="w-24 h-24 text-[#1A73E8]" /></div>
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
+                  <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Malpok Fee Analytics</h3>
+                </div>
+                <p className="text-sm text-[#5F6368] leading-relaxed relative z-10 mb-6">
+                  Transferring real estate ownership in Nepal requires exact calculation of government levies before executing the Lalpurja transfer. Our engine parses the latest provincial budget directives, applying the exact municipal tax tiers (2% to 5%) based on the official asset classification.
+                </p>
+                <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md text-center">
+                   <div className="text-[10px] font-black text-[#1A73E8] uppercase mb-1">Valuation Rule</div>
+                   <p className="text-[11px] font-bold text-[#5F6368]">Fee is calculated on Minimum Gov Valuation or Declared Price (whichever is higher).</p>
+                </div>
+             </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Discounts & Rebates</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Gender-Based Affirmative Action:</strong> A core feature of the <strong className="text-[#202124]">stamp duty calculator nepal</strong> is its automatic integration of the <strong className="text-[#202124]">female ownership discount nepal</strong>. The algorithm reduces the gross registry fee by exactly 25% for urban zones and 30% for rural Gaunpalika sectors when the buyer is female.</li>
-              <li><strong className="text-[#188038]">Joint Ownership Optimization:</strong> To encourage joint property holdings between spouses, the system overrides the percentage-based formula with a nominal flat <strong className="text-[#202124]">lalpurja pass charge</strong> of NPR 100 for Joint (Husband/Wife) registrations.</li>
-              <li><strong className="text-[#D93025]">Valuation Floor Enforcement:</strong> The calculation is strictly bound to the official government minimum valuation or the transaction price declared on the deed, whichever is mathematically greater.</li>
-            </ul>
-          </div>
+             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm flex flex-col justify-center">
+               <div className="flex items-center gap-2 mb-6">
+                 <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
+                 <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Mathematical Rebates</h3>
+               </div>
+               <div className="space-y-4">
+                  <div className="p-4 rounded-md bg-[#E6F4EA] border border-[#188038] flex flex-col gap-2">
+                     <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4 text-[#188038]" />
+                        <span className="text-[10px] font-black text-[#188038] uppercase">Female Exemption</span>
+                     </div>
+                     <p className="text-[10px] font-bold text-[#188038]">
+                        Reduces the gross registry fee by exactly 25% for urban zones and 30% for rural Gaunpalika sectors when the buyer is female.
+                     </p>
+                  </div>
+                  <div className="p-4 rounded-md bg-[#E8F0FE] border border-[#1A73E8] flex flex-col gap-2">
+                     <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4 text-[#1A73E8]" />
+                        <span className="text-[10px] font-black text-[#1A73E8] uppercase">Joint Registration</span>
+                     </div>
+                     <p className="text-[10px] font-bold text-[#1A73E8]">
+                        Overrides the percentage-based formula with a nominal flat fee of NPR 100 for Joint (Husband/Wife) registrations.
+                     </p>
+                  </div>
+               </div>
+             </div>
+           </div>
         </div>
       }
-      howToUse={{ steps: ["Enter the declared property price from the Lalpurja.", "Select the location category of the property.", "Select buyer type ,  female buyers get 25-30% rebate.", "Review the Malpok invoice showing base fee, discount, and total."] }}
-      formula={{ title: "Nepal Property Registration", description: "Registry fee is a percentage of declared value, with gender-based rebates.", raw: "Metropolitan: 5% | Sub-Metro: 4.5% | Municipality: 4% | Rural: 2%\nFemale Discount: 25% (urban) / 30% (rural)\nJoint H/W: Flat Rs. 100" }}
+      howToUse={{
+        steps: [
+          "Enter the declared property price from the Lalpurja or the government minimum valuation (whichever is higher).",
+          "Select the location category of the property (Mahanagarpalika down to Gaunpalika).",
+          "Select buyer type to automatically apply female or joint ownership rebates.",
+          "Review the final Malpok invoice showing the base fee, discount, and total payable."
+        ]
+      }}
+      formula={{
+        title: "Nepal Property Registration Fee",
+        description: "Registry fee is a percentage of declared value, with gender-based rebates.",
+        raw: "Fee = Base Value × Location Rate - Applicable Discount",
+        variables: [
+          "Location Rates: Metro (5%), Sub-Metro (4.5%), Municipality (4%), Rural (2%)",
+          "Female Rebate: 25% discount in urban, 30% discount in rural",
+          "Joint Rebate: Flat NPR 100 regardless of property value"
+        ]
+      }}
       faqs={[
-        { question: "What is the female discount on property registration in Nepal?", answer: "The Nepal government provides a 25% rebate on registration fees for properties registered in a woman's sole name in urban areas (Metropolitan, Sub-Metropolitan, Municipality), and 30% in rural/Gaunpalika areas. This policy promotes female property ownership and financial independence. The discount is applied to the gross registration fee before calculating the final payable amount." },
-        { question: "What documents are needed for property registration at Malpok?", answer: "Required documents: (1) Original Lalpurja (land ownership certificate). (2) Citizenship certificates (nagarikta) of both buyer and seller. (3) Tax clearance certificate. (4) Sale deed (Rajinama) prepared by a certified lawyer. (5) Relationship certificate if joint family property. (6) Municipality/Ward Office building completion certificate for house registration. (7) Passport-size photos of both parties." },
-        { question: "What is the difference between stamp duty and registration fee in Nepal?", answer: "In Nepal, the terms are often used interchangeably for property transfer. The 'registration fee' (malpot) is a government-mandated percentage of the declared property value paid to the Land Revenue Office (Malpok/Malpot Karyalay). There is no separate 'stamp duty' in the Indian/UK sense ,  the registration fee itself serves as the primary transfer tax. Additional minor fees exist for document copying and administrative services." },
-        { question: "What is the declared value (Lalpurja amount) for registration purposes?", answer: "The declared value must be the higher of: (a) the actual agreed transaction price between buyer and seller, OR (b) the government minimum valuation (Sarkari Mool) for that land parcel. Under-declaring the value (property valuation fraud) is a punishable offense under Nepal's revenue laws. The government updates Sarkari Mool periodically ,  always check the current year's valuation at your local Land Revenue Office." },
-        { question: "Is joint husband-wife property registration always just Rs. 100?", answer: "Yes ,  under Nepal law, when property is being transferred jointly in both the husband's and wife's names together (not individual ownership), the registration fee is a flat nominal Rs. 100 regardless of the property value. This massive incentive is designed to encourage joint ownership and protect women's property rights within marriage. Each subsequent transfer or modification of this joint deed would require standard fees." },
-        { question: "How long does property registration take at Malpok in Nepal?", answer: "In major urban offices (Kathmandu, Lalitpur, Bhaktapur), same-day registration is possible for prepared documents. Remote district offices may take 2-5 working days. The entire process: (1) Submit documents to Malpok (Day 1). (2) Document verification by Malpok staff (1-2 days). (3) Fee payment. (4) Lalpurja transfer and new ownership registration (completion day). Always schedule an appointment in advance for large transactions." }
+        { question: "What is the female discount on property registration in Nepal?", answer: "The Nepal government provides a 25% rebate on registration fees for properties registered in a woman's sole name in urban areas, and 30% in rural/Gaunpalika areas. This policy promotes female property ownership." },
+        { question: "What documents are needed for property registration at Malpok?", answer: "Original Lalpurja, Citizenship certificates, Tax clearance certificate, Sale deed (Rajinama), Relationship certificate (if joint), Municipality building completion certificate (for house), and Passport-size photos." },
+        { question: "What is the difference between stamp duty and registration fee in Nepal?", answer: "In Nepal, the 'registration fee' (malpot) itself serves as the primary transfer tax. There is no separate 'stamp duty' percentage." },
+        { question: "What is the declared value (Lalpurja amount) for registration purposes?", answer: "The declared value must be the higher of the actual agreed transaction price OR the government minimum valuation (Sarkari Mool) for that land parcel." },
+        { question: "Is joint husband-wife property registration always just Rs. 100?", answer: "Yes, when property is being transferred jointly in both the husband's and wife's names, the registration fee is a flat nominal Rs. 100 to encourage joint ownership." }
       ]}
-      sidebar={{ title: "Real Estate Tools", links: [{ label: "Property CGT", href: "/calculator/property-tax/" }, { label: "Mortgage Calc", href: "/calculator/mortgage-calculator/" }, { label: "Nepal Land", href: "/calculator/nepal-land/" }, { label: "Nepal VAT", href: "/calculator/nepal-vat/" }], banner: { title: "Buy Smart", description: "Always declare the actual transaction price on Lalpurja ,  under-declaration can result in legal penalties.", image: "/images/property-banner.jpg" } }}
-      relatedTools={[{ label: "Property CGT", href: "/calculator/property-tax/" }, { label: "Mortgage", href: "/calculator/mortgage-calculator/" }, { label: "Nepal Land", href: "/calculator/nepal-land/" }]}
+      sidebar={{
+        title: "Real Estate Hub",
+        subtitle: "Property Calculators",
+        links: [
+          { label: "Nepal Land Converter", href: "/calculator/nepal-land/", icon: Map },
+          { label: "Home Loan Calc", href: "/calculator/nepal-home-loan/", icon: Landmark },
+          { label: "VAT Calculator", href: "/calculator/nepal-vat/", icon: Receipt },
+          { label: "Property CGT", href: "/calculator/property-tax/", icon: Activity },
+        ],
+      }}
+      relatedTools={[
+        { label: "Nepal Land Converter", href: "/calculator/nepal-land/" },
+        { label: "Home Loan", href: "/calculator/nepal-home-loan/" },
+        { label: "Property Tax", href: "/calculator/property-tax/" }
+      ]}
     />
   );
 }
+

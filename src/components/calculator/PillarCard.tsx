@@ -31,3 +31,4 @@ export function PillarCard({ slug, icon, name, description, tag, isNew, isHot }:
     </div>
   );
 }
+

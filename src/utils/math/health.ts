@@ -135,3 +135,4 @@ export function calculateBodyFat(gender: 'male' | 'female', height: number, neck
   }
   return { percentage: Number(percentage.toFixed(2)) };
 }
+

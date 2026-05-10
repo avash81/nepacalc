@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["water intake calculator", "daily water requirement", "hydration calculator", "how much water per day", "water intake by weight"],
 });
 export default function Page() { return <Calculator />; }
+

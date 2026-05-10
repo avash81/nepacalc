@@ -9,3 +9,4 @@ export default function MathEcosystemLayout({ children }: { children: ReactNode 
     </div>
   );
 }
+

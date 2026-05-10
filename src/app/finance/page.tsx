@@ -8,7 +8,7 @@ import type { Metadata } from 'next';
 
 export const metadata = calcMeta({
   title: 'Nepal Finance Calculators Tax VAT Loans More',
-  description: 'Free Nepal finance calculators for income tax VAT TDS home loans FD SIP and gratuity. Updated for FY 2081 82. No signup needed.',
+  description: 'Free Nepal finance calculators for income tax VAT TDS home loans FD SIP and gratuity. Updated for FY 2082 82. No signup needed.',
   slug: 'finance',
   keywords: ['nepal finance calculator', 'tax calculator nepal', 'vat calculator nepal', 'loan emi calculator nepal', 'sip calculator nepal'],
 });
@@ -102,3 +102,4 @@ export default function FinancePillarPage() {
     </>
   );
 }
+

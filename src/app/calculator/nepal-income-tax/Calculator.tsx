@@ -1,7 +1,7 @@
 'use client';
 import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Wallet, Receipt, TrendingDown, Info, ShieldCheck, ArrowRightLeft, PieChart, Landmark, Scale, Zap, Activity, Globe, History, ChevronRight, HelpCircle } from 'lucide-react';
+import { Wallet, Receipt, TrendingDown, Info, ShieldCheck, ArrowRightLeft, PieChart, Landmark, Scale, Zap, Activity, Globe, History, ChevronRight, HelpCircle, Table } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
 import { calculateNepalIncomeTax } from '@/utils/math/country-rules/nepal';
 import { 
@@ -20,7 +20,9 @@ const DEFAULT_STATE = {
   isMonthly: false
 };
 
-function formatNPR(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
+function formatNPR(n: number) { 
+  return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); 
+}
 
 export default function NepalIncomeTaxCalculator() {
   const [state, setState] = useSyncState('nepal_tax_v5', DEFAULT_STATE);
@@ -57,9 +59,9 @@ export default function NepalIncomeTaxCalculator() {
   return (
     <ModernCalcLayout
       slug="nepal-income-tax"
-      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Tools', href: '/nepal/' }, { label: 'Income Tax' }]}
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Income Tax' }]}
       title="Nepal Income Tax"
-      description="The definitive fiscal laboratory for Nepalese salary earners. Calculate net pay with IRD-standard slabs, SSF SST-waivers, and Female Tax Credit auditing."
+      description="The authoritative fiscal engine for Nepalese salary earners. Calculate tax liability with IRD-standard slabs (FY 2082/83), SSF SST-waivers, and Female Tax Credit auditing."
       icon={Wallet}
       inputs={
         <div className="space-y-6">
@@ -86,8 +88,8 @@ export default function NepalIncomeTaxCalculator() {
                   onChange={(e) => update({ married: e.target.value === 'married' })}
                   className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all appearance-none"
                >
-                  <option value="single">Single</option>
-                  <option value="married">Married</option>
+                  <option value="single">Single Status</option>
+                  <option value="married">Married (Couple) Status</option>
                </select>
              </div>
 
@@ -99,7 +101,7 @@ export default function NepalIncomeTaxCalculator() {
                   className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all appearance-none"
                >
                   <option value="male">Male</option>
-                  <option value="female">Female</option>
+                  <option value="female">Female (10% Rebate Eligibility)</option>
                </select>
              </div>
 
@@ -109,7 +111,7 @@ export default function NepalIncomeTaxCalculator() {
              </div>
 
              <div className="space-y-2">
-                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">CIT/EPF Deduction (Annual)</label>
+                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">CIT/EPF/SSF Contribution</label>
                 <input type="number" value={citDeduction} onChange={e => update({ citDeduction: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
              </div>
 
@@ -124,8 +126,10 @@ export default function NepalIncomeTaxCalculator() {
                   <span className="text-[11px] font-bold text-[#202124] uppercase tracking-wider">SSF Contributor (1% SST Waiver)</span>
                 </label>
              </div>
-
           </div>
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+             Generate Tax Report
+          </button>
         </div>
       }
       results={
@@ -133,7 +137,7 @@ export default function NepalIncomeTaxCalculator() {
           <div className="bg-[#E8F0FE] rounded-lg p-8 text-center space-y-2">
              <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Net Take-Home Pay ({isMonthly ? 'Monthly' : 'Annual'})</div>
              <div className="text-4xl font-black text-[#1A73E8]">{formatNPR(isMonthly ? result.netMonthly : result.netAnnual)}</div>
-             <div className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Tax Efficiency: {(100 - result.effectiveRate).toFixed(1)}%</div>
+             <div className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Tax Efficiency: {(100 - result.effectiveRate).toFixed(1)}% Retained</div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -158,7 +162,7 @@ export default function NepalIncomeTaxCalculator() {
                </div>
                <div className="h-[240px] w-full mb-6">
                  <ResponsiveContainer width="100%" height="100%">
-                   <BarChart data={result.breakdown} margin={{ top: 10, right: 10, left: 10, bottom: 0 }} barSize={20}>
+                   <BarChart data={result.breakdown} margin={{ top: 10, right: 10, left: 0, bottom: 0 }} barSize={30}>
                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#DADCE0" />
                      <XAxis dataKey="slabLabel" hide />
                      <YAxis hide />
@@ -167,56 +171,118 @@ export default function NepalIncomeTaxCalculator() {
                    </BarChart>
                  </ResponsiveContainer>
                </div>
+               <p className="text-[9px] text-[#70757A] font-bold uppercase text-center tracking-wider">Visualizing the progressive tax impact across IRD slabs.</p>
              </div>
 
              <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm flex flex-col justify-center">
                <div className="flex items-center gap-2 mb-6">
                  <div className="w-1.5 h-4 bg-[#188038] rounded-full" />
-                 <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Financial DNA Audit</h3>
+                 <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Income Shield Audit</h3>
                </div>
                <div className="space-y-6">
                   <div className="p-6 rounded-md bg-[#F8F9FA] border border-[#DADCE0]">
                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Tax-Free Shield</span>
+                        <span className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Tax-Exempt Portion</span>
                         <span className="text-xl font-black text-[#188038]">{(( (result.annualGross - result.taxableIncome) / result.annualGross ) * 100).toFixed(0)}%</span>
                      </div>
                      <div className="w-full h-1.5 bg-[#E8F0FE] rounded-full overflow-hidden">
                         <div className="h-full bg-[#188038]" style={{ width: `${( (result.annualGross - result.taxableIncome) / result.annualGross ) * 100}%` }} />
                      </div>
-                     <p className="mt-4 text-[9px] text-[#5F6368] leading-relaxed uppercase tracking-widest">
-                        Portion of your income exempt from tax via deductions and primary slabs.
+                     <p className="mt-4 text-[9px] text-[#5F6368] leading-relaxed uppercase tracking-widest font-bold">
+                        Deductions and non-taxable slabs effectively shield this portion of your income.
                      </p>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                      <div className="p-4 rounded-md bg-white border border-[#DADCE0]">
-                        <div className="text-[9px] text-[#5F6368] uppercase font-bold mb-1">Total Deductions</div>
+                        <div className="text-[9px] text-[#5F6368] uppercase font-bold mb-1">Deduction Relief</div>
                         <div className="text-sm font-black text-[#202124]">{formatNPR(result.totalDeductions)}</div>
                      </div>
                      <div className="p-4 rounded-md bg-white border border-[#DADCE0]">
-                        <div className="text-[9px] text-[#5F6368] uppercase font-bold mb-1">Monthly Tax</div>
+                        <div className="text-[9px] text-[#5F6368] uppercase font-bold mb-1">Monthly SST/Tax</div>
                         <div className="text-sm font-black text-[#D93025]">{formatNPR(result.totalTax / 12)}</div>
                      </div>
                   </div>
                </div>
              </div>
            </div>
+
+           <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
+            <div className="px-6 py-4 border-b border-[#DADCE0] flex items-center justify-between bg-[#F8F9FA]">
+              <div className="flex items-center gap-2">
+                <Table className="w-4 h-4 text-[#1A73E8]" />
+                <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Progressive Slab Breakdown</h3>
+              </div>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="text-[10px] font-black uppercase text-[#5F6368] border-b border-[#DADCE0]">
+                    <th className="px-6 py-4 bg-white">Taxable Slab (NPR)</th>
+                    <th className="px-6 py-4 bg-white text-right">Rate</th>
+                    <th className="px-6 py-4 bg-white text-right text-[#D93025]">Tax Amount</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#F1F3F4]">
+                  {result.breakdown.map((row, idx) => (
+                    <tr key={idx} className="text-sm hover:bg-[#F8F9FA] transition-colors">
+                      <td className="px-6 py-4 font-bold text-[#3C4043]">{row.slabLabel}</td>
+                      <td className="px-6 py-4 text-right font-black text-[#5F6368]">{row.rate}%</td>
+                      <td className="px-6 py-4 text-right font-black text-[#D93025]">{formatNPR(row.taxAmount)}</td>
+                    </tr>
+                  ))}
+                  <tr className="bg-[#F8F9FA] font-black">
+                    <td className="px-6 py-4 text-[#202124]">Total Tax Liability</td>
+                    <td className="px-6 py-4"></td>
+                    <td className="px-6 py-4 text-right text-[#D93025]">{formatNPR(result.totalTax)}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       }
+      howToUse={{
+        steps: [
+          "Income: Enter your total annual or monthly salary before any deductions.",
+          "Status: Select 'Married' to benefit from the higher 6 Lakh non-taxable threshold.",
+          "Deductions: Input your life insurance premium (up to 40k) and CIT/SSF contributions.",
+          "Gender: Female taxpayers receive a 10% rebate on their total calculated tax.",
+          "SSF: Check 'SSF Contributor' to waive the 1% Social Security Tax on the first slab."
+        ]
+      }}
+      formula={{
+        title: "Progressive Tax Calculus (FY 2082/83)",
+        description: "Standard IRD-compliant progressive taxation model with Social Security and Health insurance provisions.",
+        raw: "Tax = Σ (Income in Slab[i] × Rate[i]) - GenderRebate",
+        variables: [
+          "1% SST: Applied to the first slab (waived for SSF contributors)",
+          "Slabs: 5%, 10%, 20%, 30%, 36% and 39% progressive jumps",
+          "Rebate: 10% rebate for female taxpayers with remuneration income"
+        ]
+      }}
+      faqs={[
+        { question: "What is the 1% SST waiver for SSF contributors?", answer: "Individuals contributing to the Social Security Fund (SSF) are exempt from the 1% Social Security Tax on their first taxable slab (5 Lakh for single, 6 Lakh for married)." },
+        { question: "How does the Female Tax Rebate work?", answer: "Female taxpayers whose source of income is only remuneration (salary) are entitled to a 10% rebate on their total calculated income tax." },
+        { question: "What is the maximum CIT/EPF deduction allowed?", answer: "You can deduct up to 1/3rd of your gross income or Rs. 5,00,000 (whichever is lower) for contributions made to approved retirement funds like CIT, EPF, or SSF." },
+        { question: "Is bonus income taxed differently in Nepal?", answer: "No, bonuses are added to your total annual remuneration and taxed according to the standard progressive slabs." }
+      ]}
       sidebar={{
-        title: "Salary Hub",
-        subtitle: "Tax & Compliance",
+        title: "Tax Hub Nepal",
+        subtitle: "Compliance Tools",
         links: [
           { label: "Salary Calculator", href: "/calculator/nepal-salary/", icon: Wallet },
           { label: "VAT Calculator", href: "/calculator/nepal-vat/", icon: Receipt },
           { label: "TDS Calculator", href: "/calculator/nepal-tds/", icon: Scale },
-          { label: "Provident Fund", href: "/calculator/nepal-provident-fund/", icon: Landmark },
+          { label: "SSF Official", href: "https://ssf.gov.np", icon: Landmark },
         ],
       }}
       relatedTools={[
         { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
         { label: "VAT Calculator", href: "/calculator/nepal-vat/" },
-        { label: "TDS Calculator", href: "/calculator/nepal-tds/" }
+        { label: "TDS Calculator", href: "/calculator/nepal-tds/" },
+        { label: "Provident Fund", href: "/calculator/nepal-provident-fund/" }
       ]}
     />
   );
 }
+

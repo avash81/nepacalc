@@ -61,3 +61,4 @@ export function ShareResult({ title, result, calcUrl }: Props) {
     </div>
   );
 }
+

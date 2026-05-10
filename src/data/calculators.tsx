@@ -28,7 +28,7 @@ export const CALCULATORS: Calculator[] = [
   // ==========================================
   // NEPAL SPECIFIC PILLAR (24)
   // ==========================================
-  { id: 'nepal-income-tax', slug: 'nepal-income-tax', name: 'Income Tax Calculator', icon: '📝', description: 'Income tax calculator for Nepal updated for latest fiscal year.', category: 'nepal', isNepal: true, isHot: true, keywords: ['Nepal Income Tax Calculator', 'IRD tax slabs 2081/82', 'salary tax Nepal', 'tax on bonus Nepal', 'social security tax'] },
+  { id: 'nepal-income-tax', slug: 'nepal-income-tax', name: 'Income Tax Calculator', icon: '📝', description: 'Income tax calculator for Nepal updated for latest fiscal year.', category: 'nepal', isNepal: true, isHot: true, keywords: ['Nepal Income Tax Calculator', 'IRD tax slabs 2082/83', 'salary tax Nepal', 'tax on bonus Nepal', 'social security tax'] },
   { id: 'nepal-salary', slug: 'nepal-salary', name: 'Salary Calculator', icon: '💵', description: 'Calculate net take home salary with IRD deductions.', category: 'nepal', isNepal: true, isNew: true, keywords: ['Salary Calculator Nepal', 'Net take home salary', 'IRD salary deductions', 'PF and CIT calculation', 'allowance tax'] },
   { id: 'nepal-home-loan', slug: 'nepal-home-loan', name: 'Home Loan Calculator', icon: '🏠', description: 'Calculate home loan EMI with Nepal bank rates.', category: 'nepal', isNepal: true, keywords: ['Home Loan EMI Nepal', 'NRB base rate', 'floating interest rate Nepal', 'housing loan eligibility', 'bank premium'] },
   { id: 'nea-bill', slug: 'nea-bill', name: 'Electricity Bill Calculator', icon: '⚡', description: 'Calculate Nepal Electricity Authority (NEA) progressive billing.', category: 'nepal', isNepal: true, isNew: true, keywords: ['NEA Bill Calculator', 'Nepal Electricity Authority tariffs', 'electricity slabs', 'NEA unit rates', 'penalty calculation'] },
@@ -45,7 +45,7 @@ export const CALCULATORS: Calculator[] = [
   { id: 'foreign-employment', slug: 'foreign-employment', name: 'Foreign Employment Fees', icon: '✈️', description: 'Check legal manpower and visa fees for Nepal.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'kukl-bill', slug: 'kukl-bill', name: 'KUKL Water Bill', icon: '💧', description: 'Calculate Kathmandu water bill slabs and sewerage tax.', category: 'nepal', isNepal: true, isNew: true },
   { id: 'nepal-attendance', slug: 'nepal-attendance', name: 'University Attendance', icon: '🎓', description: 'Track 75% exam eligibility for universities in Nepal.', category: 'nepal', isNepal: true, isNew: true },
-  { id: 'see-gpa', slug: 'see-gpa', name: 'SEE GPA Calculator', icon: '🅰️', description: 'Calculate SEE grade point average.', category: 'nepal', isNepal: true, isNew: true, keywords: ['SEE GPA Calculator', 'NEB grading system', 'SEE marks to GPA', 'GPA to percentage Nepal', 'SEE 2081 results'] },
+  { id: 'see-gpa', slug: 'see-gpa', name: 'SEE GPA Calculator', icon: '🅰️', description: 'Calculate SEE grade point average.', category: 'nepal', isNepal: true, isNew: true, keywords: ['SEE GPA Calculator', 'NEB grading system', 'SEE marks to GPA', 'GPA to percentage Nepal', 'SEE 2082 results'] },
   { id: 'nepali-date', slug: 'nepali-date', name: 'Nepali Date Converter', icon: '📅', description: 'Standard BS to AD date conversion utility.', category: 'nepal', isNepal: true },
   { id: 'nepal-vat', slug: 'nepal-vat', name: 'VAT Calculator', icon: '🔖', description: 'Calculate VAT (13%) addition and subtraction.', category: 'nepal', isNepal: true },
   { id: 'lok-sewa-age', slug: 'lok-sewa-age', name: 'Lok Sewa Age Calculator', icon: '🧑‍💼', description: 'Calculate exact age and check PSC eligibility limits.', category: 'nepal', isNepal: true, isNew: true, isHot: true, keywords: ['Lok Sewa Age Limit', 'PSC Nepal age calculator', 'kharidar eligibility', 'adhikari age limit', 'PSC exam dates'] },
@@ -164,3 +164,4 @@ export const CATEGORIES: Category[] = [
 ];
 
 export const FEATURED_NEPAL = CALCULATORS.filter(c => c.isNepal && (c.isHot || c.isNew));
+

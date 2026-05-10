@@ -5,7 +5,7 @@ import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { 
   Landmark, TrendingDown, ShieldCheck, Info, Wallet, Zap, Scale, 
   Activity, Globe, History, Receipt, Target, PieChart, ArrowRight,
-  Home, Building2, Briefcase, Calculator, ChevronRight
+  Home, Building2, Briefcase, Calculator, ChevronRight, Table
 } from 'lucide-react';
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
@@ -20,7 +20,9 @@ const KTM_BANKS = [
   { name: 'Sanima Bank', base: 8.10, premium: '1.5 - 3.0', icon: Landmark },
 ];
 
-function formatNPR(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
+function formatNPR(n: number) { 
+  return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); 
+}
 
 export default function NepalHomeLoanCalculator() {
   const [state, setState] = useSyncState('nepal_home_loan_v5', {
@@ -43,99 +45,107 @@ export default function NepalHomeLoanCalculator() {
     const totalInterest = totalPayment - principal;
 
     const pieData = [
-      { name: 'Principal', val: principal, fill: '#3b82f6' },
-      { name: 'Interest', val: totalInterest, fill: '#ef4444' }
+      { name: 'Principal Capital', value: principal },
+      { name: 'Interest Overhead', value: totalInterest }
     ];
 
-    // Simple amortization projection for chart
-    const projectionData = Array.from({ length: 11 }, (_, i) => {
-      const year = Math.round((tenureYears / 10) * i);
-      const months = year * 12;
-      const remainingBalance = principal * ((Math.pow(1 + r, n) - Math.pow(1 + r, months)) / (Math.pow(1 + r, n) - 1));
-      return {
-        year: `Yr ${year}`,
-        balance: Math.round(remainingBalance),
-        paid: Math.round(principal - remainingBalance)
-      };
-    });
+    // Amortization Schedule
+    const fullSchedule = [];
+    let balance = principal;
+    for (let i = 1; i <= n; i++) {
+        const interest = balance * r;
+        const principalPaid = emi - interest;
+        balance -= principalPaid;
+        fullSchedule.push({ 
+          month: i, 
+          interest, 
+          principal: principalPaid, 
+          balance: Math.max(0, balance),
+          emi: emi 
+        });
+    }
 
-    return { emi, totalPayment, totalInterest, pieData, projectionData };
+    // Chart Summary (First 12 months)
+    const chartSummary = fullSchedule.slice(0, 12);
+
+    return { emi, totalPayment, totalInterest, pieData, fullSchedule, chartSummary, totalMonths: n };
   }, [principal, effectiveRate, tenureYears]);
 
   return (
     <ModernCalcLayout
       slug="nepal-home-loan"
-      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Tools', href: '/nepal/' }, { label: 'Home Loan' }]}
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Home Loan' }]}
       title="Nepal Home Loan"
-      description="The authoritative mortgage auditing engine for Nepal. Calibrated to NRB 'Base Rate + Premium' models with cascading amortization and tax shield analytics."
+      description="The definitive real estate debt auditing engine for Nepal. Calibrated to NRB 'Base Rate + Premium' models with cascaded amortization and tax shield analytics."
       icon={Home}
       inputs={
-        <div className="space-y-8">
-          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
-             <div className="absolute top-0 right-0 p-10 opacity-10"><Home className="w-40 h-40" /></div>
-             <div className="relative z-10 grid grid-cols-1 gap-6">
-                <div className="space-y-4">
-                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Loan Principal (NPR)</label>
-                   <input 
-                      type="number" 
-                      value={principal} 
-                      onChange={(e) => update({ principal: Number(e.target.value) })}
-                      className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" 
-                   />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                   <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Base Rate (%)</label>
-                      <input type="number" step="0.01" value={baseRate} onChange={e => update({ baseRate: Number(e.target.value) })} className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" />
-                   </div>
-                   <div className="space-y-4">
-                      <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Premium (%)</label>
-                      <input type="number" step="0.1" value={premium} onChange={e => update({ premium: Number(e.target.value) })} className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all" />
-                   </div>
-                </div>
-                <div className="space-y-4">
-                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Tenure (Years)</label>
-                   <div className="relative">
-                      <input 
-                        type="range" 
-                        min="1" 
-                        max="30" 
-                        value={tenureYears} 
-                        onChange={(e) => update({ tenureYears: Number(e.target.value) })}
-                        className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-blue-500"
-                      />
-                      <div className="flex justify-between mt-4 text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                         <span>1 Year</span>
-                         <span className="text-[#1a0dab]">{tenureYears} Years</span>
-                         <span>30 Years</span>
-                      </div>
-                   </div>
-                </div>
-             </div>
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 gap-6">
+            <div className="space-y-2">
+               <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Loan Principal (NPR)</label>
+               <input 
+                  type="number" 
+                  value={principal} 
+                  onChange={(e) => update({ principal: Number(e.target.value) })}
+                  className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" 
+               />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+               <div className="space-y-2">
+                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Base Rate (%)</label>
+                  <input 
+                    type="number" 
+                    step="0.01" 
+                    value={baseRate} 
+                    onChange={e => update({ baseRate: Number(e.target.value) })} 
+                    className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" 
+                  />
+               </div>
+               <div className="space-y-2">
+                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Premium (%)</label>
+                  <input 
+                    type="number" 
+                    step="0.1" 
+                    value={premium} 
+                    onChange={e => update({ premium: Number(e.target.value) })} 
+                    className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" 
+                  />
+               </div>
+            </div>
+            <div className="space-y-2">
+               <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Loan Tenure ({tenureYears} Years)</label>
+               <input 
+                 type="range" 
+                 min="1" 
+                 max="30" 
+                 value={tenureYears} 
+                 onChange={(e) => update({ tenureYears: Number(e.target.value) })}
+                 className="w-full h-2 bg-[#F1F3F4] rounded-lg appearance-none cursor-pointer accent-[#1A73E8]"
+               />
+               <div className="flex justify-between text-[10px] font-bold text-[#70757A] uppercase">
+                  <span>1 Year</span>
+                  <span>30 Years</span>
+               </div>
+            </div>
           </div>
 
-          <div className="p-8 border border-slate-200 rounded-lg bg-white space-y-6 shadow-sm">
-             <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-50 rounded-lg"><Landmark className="w-4 h-4 text-blue-600" /></div>
-                <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Commercial Benchmarks</h3>
+          <div className="pt-6 border-t border-[#DADCE0] space-y-4">
+             <div className="flex items-center gap-2">
+                <Landmark className="w-4 h-4 text-[#5F6368]" />
+                <h3 className="text-[11px] font-bold uppercase tracking-widest text-[#5F6368]">Bank Benchmarks (Base Rate)</h3>
              </div>
-             <div className="divide-y divide-slate-100">
+             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {KTM_BANKS.map(bank => (
-                  <button key={bank.name} onClick={() => update({ baseRate: bank.base })}
-                    className="w-full py-4 flex justify-between items-center hover:bg-slate-50 transition-all group text-left rounded-2xl px-4">
-                    <div className="flex items-center gap-4">
-                       <div className="p-3 bg-slate-50 rounded-xl group-hover:bg-blue-100 transition-colors">
-                          <bank.icon className="w-5 h-5 text-slate-400 group-hover:text-blue-600" />
-                       </div>
-                       <div>
-                          <div className="text-[11px] font-black text-slate-900 uppercase">{bank.name}</div>
-                          <div className="text-[9px] text-slate-400 font-bold uppercase mt-1">Prem: {bank.premium}%</div>
-                       </div>
+                  <button 
+                    key={bank.name} 
+                    onClick={() => update({ baseRate: bank.base })}
+                    className="flex items-center justify-between p-3 rounded-md border border-[#DADCE0] hover:border-[#1A73E8] hover:bg-[#F8F9FA] transition-all group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <bank.icon className="w-4 h-4 text-[#5F6368] group-hover:text-[#1A73E8]" />
+                      <span className="text-[11px] font-bold text-[#3C4043] truncate">{bank.name}</span>
                     </div>
-                    <div className="text-right">
-                       <div className="text-sm font-black text-blue-600 font-mono group-hover:scale-110 transition-transform">{bank.base}%</div>
-                       <div className="text-[8px] font-black uppercase tracking-widest text-slate-400 mt-1">Base Rate</div>
-                    </div>
+                    <span className="text-[11px] font-black text-[#1A73E8]">{bank.base}%</span>
                   </button>
                 ))}
              </div>
@@ -143,185 +153,153 @@ export default function NepalHomeLoanCalculator() {
         </div>
       }
       results={
-        <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
-             <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Home className="w-24 h-24 text-blue-600" /></div>
-             <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Monthly Installment (EMI)</div>
-             <div className="text-4xl font-black tracking-tighter text-slate-900 font-mono uppercase">{formatNPR(results.emi)}</div>
-             <div className="px-5 py-2 bg-slate-100 rounded-full inline-block text-[10px] font-black uppercase tracking-tight text-slate-500">
-                Estimated Monthly Commitment
-             </div>
+        <div className="space-y-6 h-full flex flex-col justify-center">
+          <div className="bg-[#E8F0FE] rounded-lg p-8 text-center space-y-2">
+             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Monthly Installment (EMI)</div>
+             <div className="text-4xl font-black text-[#1A73E8]">{formatNPR(results.emi)}</div>
+             <div className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">{tenureYears} Years at {effectiveRate.toFixed(2)}% APR</div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-             <div className="p-6 bg-rose-50 border border-rose-100 rounded-lg space-y-1">
-                <div className="text-[9px] font-black text-rose-600 uppercase">Total Interest</div>
-                <div className="text-xl font-black text-rose-600">{formatNPR(results.totalInterest)}</div>
+             <div className="border border-[#DADCE0] rounded-md p-4 text-center bg-white">
+                <div className="text-[10px] font-bold text-[#D93025] uppercase tracking-wider mb-1">Total Interest</div>
+                <div className="text-lg font-black text-[#D93025]">{formatNPR(results.totalInterest)}</div>
              </div>
-             <div className="p-6 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
-                <div className="text-[9px] font-black text-slate-400 uppercase">Effective Rate</div>
-                <div className="text-xl font-black text-slate-900">{(baseRate + premium).toFixed(2)}%</div>
+             <div className="border border-[#DADCE0] rounded-md p-4 text-center bg-white">
+                <div className="text-[10px] font-bold text-[#202124] uppercase tracking-wider mb-1">Total Payable</div>
+                <div className="text-lg font-black text-[#202124]">{formatNPR(results.totalPayment)}</div>
              </div>
           </div>
-
-          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
-             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><ShieldCheck className="w-24 h-24 text-blue-500" /></div>
-             <div className="relative z-10 flex items-center justify-between">
-                <div className="space-y-1">
-                   <h4 className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Principal Retention</h4>
-                   <p className="text-2xl font-black">{((principal / results.totalPayment) * 100).toFixed(1)}%</p>
-                </div>
-                <div className="h-2 w-32 bg-white/10 rounded-full overflow-hidden">
-                   <div className="h-full bg-emerald-400 rounded-full" style={{ width: `${(principal / results.totalPayment) * 100}%` }} />
-                </div>
+          
+          <div className="border border-[#DADCE0] rounded-md p-4 bg-[#F8F9FA]">
+             <div className="flex justify-between items-center mb-1.5">
+                <span className="text-[10px] font-bold text-[#5F6368] uppercase">Loan to Interest Ratio</span>
+                <span className="text-[11px] font-black text-[#202124]">{((principal / results.totalPayment) * 100).toFixed(1)}% Equity</span>
+             </div>
+             <div className="h-2 w-full bg-white rounded-full overflow-hidden border border-[#DADCE0]">
+                <div className="h-full bg-[#188038]" style={{ width: `${(principal / results.totalPayment) * 100}%` }} />
              </div>
           </div>
         </div>
       }
       details={
-        <div className="space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white border border-slate-200 rounded-lg p-10 shadow-sm relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-6 opacity-5"><PieChart className="w-20 h-20 text-blue-600" /></div>
-              <div className="flex items-center gap-2 mb-8">
-                <div className="w-1.5 h-6 bg-[#1a73e8] rounded-full" />
-                <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Interest Payload Audit</h3>
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+              <div className="flex items-center gap-2 mb-6">
+                <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
+                <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Mortgage Architecture</h3>
               </div>
-              <div className="h-[300px] w-full relative">
+              <div className="flex items-center justify-center gap-4 mb-4 text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">
+                <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-[#188038]"></div> Principal</div>
+                <div className="flex items-center gap-1.5"><div className="w-2.5 h-2.5 rounded-full bg-[#D93025]"></div> Interest</div>
+              </div>
+              <div className="h-[240px] w-full relative mb-6">
                 <ResponsiveContainer width="100%" height="100%">
                   <RePieChart>
                     <Pie
                       data={results.pieData}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={70}
-                      outerRadius={95}
-                      paddingAngle={8}
-                      dataKey="val"
-                      stroke="none"
+                      cx="50%" cy="50%" innerRadius={60} outerRadius={90} paddingAngle={2} dataKey="value" stroke="none"
                     >
-                      {results.pieData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.fill} />
-                      ))}
+                      <Cell fill="#188038" />
+                      <Cell fill="#D93025" />
                     </Pie>
-                    <Tooltip 
-                       formatter={(v: number) => formatNPR(v)}
-                       contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 8px 30px rgba(0,0,0,0.12)', fontSize: '11px', fontWeight: 'bold' }}
-                    />
+                    <Tooltip formatter={(v: number) => formatNPR(v)} contentStyle={{ borderRadius: '8px', border: '1px solid #DADCE0', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', fontSize: '11px', fontWeight: 'bold' }} />
                   </RePieChart>
                 </ResponsiveContainer>
-                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center">
-                   <span className="text-[9px] font-black text-slate-400 uppercase">Gross Repayment</span>
-                   <span className="text-lg font-black text-slate-900">{formatNPR(results.totalPayment)}</span>
+                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                   <span className="text-[9px] font-bold text-[#5F6368] uppercase tracking-wider">Total Cost</span>
+                   <span className="text-lg font-black text-[#202124]">{formatNPR(results.totalPayment)}</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm relative overflow-hidden flex flex-col justify-center">
-               <div className="absolute -bottom-12 -right-12 opacity-5"><Activity className="w-64 h-64 text-[#1A73E8]" /></div>
-               <h3 className="text-base font-black mb-6 tracking-tight text-[#202124] uppercase">Amortization Trajectory</h3>
-               <div className="h-[240px] w-full">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={results.projectionData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                      <defs>
-                        <linearGradient id="colorPaid" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#1A73E8" stopOpacity={0.1}/>
-                          <stop offset="95%" stopColor="#1A73E8" stopOpacity={0}/>
-                        </linearGradient>
-                      </defs>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F1F3F4" />
-                      <XAxis dataKey="year" axisLine={false} tickLine={false} tick={{fontSize: 9, fill: '#70757A', fontWeight: 'bold'}} />
-                      <YAxis hide />
-                      <Tooltip 
-                         contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #DADCE0', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0,0,0,0.05)', color: '#202124', fontSize: '10px' }}
-                         formatter={(v: number) => formatNPR(v)}
-                      />
-                      <Area type="monotone" dataKey="paid" stroke="#1A73E8" fillOpacity={1} fill="url(#colorPaid)" strokeWidth={3} />
-                    </AreaChart>
-                  </ResponsiveContainer>
-               </div>
-               <p className="mt-6 text-[9px] text-[#70757A] leading-relaxed uppercase tracking-widest font-bold">
-                  Visualizing equity growth (Principal Paid) over the loan tenure.
-               </p>
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm flex flex-col">
+              <div className="flex items-center gap-2 mb-6">
+                <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
+                <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Initial 12-Month Trajectory</h3>
+              </div>
+              <div className="flex-1 min-h-[240px] w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={results.chartSummary} margin={{ top: 10, right: 10, left: 0, bottom: 0 }} barSize={20}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#DADCE0" />
+                    <XAxis dataKey="month" tickFormatter={(v) => `M${v}`} axisLine={false} tickLine={false} tick={{ fontSize: 10, fill: '#5F6368', fontWeight: 'bold' }} />
+                    <YAxis hide />
+                    <Tooltip cursor={{ fill: '#F8F9FA' }} formatter={(value: number) => formatNPR(value)} contentStyle={{ borderRadius: '8px', border: '1px solid #DADCE0', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', fontSize: '11px', fontWeight: 'bold' }} />
+                    <Bar dataKey="principal" stackId="a" fill="#188038" />
+                    <Bar dataKey="interest" stackId="a" fill="#D93025" radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+              <p className="text-[10px] text-[#70757A] font-medium mt-4 italic text-center uppercase tracking-tighter">Early payments are interest-heavy. Prepaying principal saves significant capital.</p>
             </div>
           </div>
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
-             <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
-                <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Mortgage Governance Audit</h3>
-             </div>
-             <p className="text-sm text-[#5F6368] leading-relaxed">
-                The institutional engine for real estate financing in Nepal. Calibrated against Nepal Rastra Bank's 
-                <strong> Base Rate + Premium</strong> framework, this tool provides a high-precision verification of 
-                monthly installment burdens, effective interest yields, and overall debt trajectories for commercial housing loans.
-             </p>
-          </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm relative overflow-hidden flex flex-col justify-center">
-             <div className="absolute -bottom-12 -right-12 opacity-5"><ShieldCheck className="w-64 h-64 text-[#1A73E8]" /></div>
-             <h3 className="text-sm font-black mb-8 tracking-widest text-[#202124] uppercase">Integrity Guardrails</h3>
-             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div className="p-5 rounded-lg bg-[#F8F9FA] border border-[#DADCE0]">
-                   <h4 className="text-[11px] font-bold flex items-center gap-2 text-[#70757A] uppercase tracking-wider mb-2"><Scale className="w-4 h-4 text-[#1A73E8]" /> Debt Service Ratio</h4>
-                   <p className="text-[10px] text-[#5F6368] leading-relaxed font-medium">
-                      Your total EMIs (including other loans) should ideally not exceed 50-60% of your verifiable monthly income to maintain financial health.
-                   </p>
-                </div>
-                <div className="p-5 rounded-lg bg-[#F8F9FA] border border-[#DADCE0]">
-                   <h4 className="text-[11px] font-bold flex items-center gap-2 text-[#70757A] uppercase tracking-wider mb-2"><Receipt className="w-4 h-4 text-[#1A73E8]" /> Prepayment Penalty</h4>
-                   <p className="text-[10px] text-[#5F6368] leading-relaxed font-medium">
-                      NRB allows banks to charge a prepayment fee if you settle the loan within 2 years. After 2 years, many banks offer zero-cost prepayment.
-                   </p>
-                </div>
-                <div className="p-5 rounded-lg bg-[#F8F9FA] border border-[#DADCE0]">
-                   <h4 className="text-[11px] font-bold flex items-center gap-2 text-[#70757A] uppercase tracking-wider mb-2"><ShieldCheck className="w-4 h-4 text-[#188038]" /> Tax Shield</h4>
-                   <p className="text-[10px] text-[#5F6368] leading-relaxed font-medium">
-                      While limited, certain corporate professionals can claim interest expenses if the property is used as a registered home-office or rental asset.
-                   </p>
-                </div>
-             </div>
+          <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
+            <div className="px-6 py-4 border-b border-[#DADCE0] flex items-center justify-between bg-[#F8F9FA]">
+              <div className="flex items-center gap-2">
+                <Activity className="w-4 h-4 text-[#1A73E8]" />
+                <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Full Amortization Schedule</h3>
+              </div>
+              <div className="text-[9px] font-bold uppercase tracking-widest text-[#70757A]">
+                {results.totalMonths} Scheduled Payments
+              </div>
+            </div>
+            <div className="overflow-x-auto max-h-[400px] overflow-y-auto custom-scrollbar">
+              <table className="w-full text-left border-collapse">
+                <thead className="sticky top-0 z-10 bg-white">
+                  <tr className="text-[10px] font-black uppercase text-[#5F6368] border-b border-[#DADCE0] shadow-sm">
+                    <th className="px-6 py-4 bg-white">Period</th>
+                    <th className="px-6 py-4 bg-white text-right">EMI</th>
+                    <th className="px-6 py-4 bg-white text-right text-[#188038]">Principal</th>
+                    <th className="px-6 py-4 bg-white text-right text-[#D93025]">Interest</th>
+                    <th className="px-6 py-4 bg-white text-right">Balance</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#F1F3F4]">
+                  {results.fullSchedule.map((row) => (
+                    <tr key={row.month} className="text-sm hover:bg-[#F8F9FA] transition-colors">
+                      <td className="px-6 py-4 font-bold text-[#1A73E8]">Month {row.month}</td>
+                      <td className="px-6 py-4 text-right font-medium text-[#5F6368]">{formatNPR(row.emi)}</td>
+                      <td className="px-6 py-4 text-right font-bold text-[#188038]">{formatNPR(row.principal)}</td>
+                      <td className="px-6 py-4 text-right font-bold text-[#D93025]">{formatNPR(row.interest)}</td>
+                      <td className="px-6 py-4 text-right font-black text-[#202124]">{formatNPR(row.balance)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       }
       howToUse={{
         steps: [
-          "Principal: Enter the total loan amount requested from the bank.",
-          "Benchmarks: Select a bank from our 'Commercial Benchmarks' to auto-populate the latest Base Rate.",
-          "Premium: Input the premium percentage quoted in your loan offer letter.",
-          "Tenure: Use the slider to adjust the repayment duration (up to 30 years).",
-          "Audit: Review the 'Interest Payload' pie chart to see how much of your total payment is interest."
+          "Principal: Enter the total home loan amount approved by your bank.",
+          "Base Rate: Select a bank benchmark or enter the current NRB-mandated base rate.",
+          "Premium: Input the fixed margin percentage quoted in your offer letter.",
+          "Tenure: Set the duration (typically 15-20 years for Nepalese housing loans).",
+          "Audit: Analyze the amortization table to see how interest drops over time."
         ]
       }}
       formula={{
-        title: "The Standard Reducing-Balance Calculus",
-        description: "Standard mathematical model for EMI calculation in the Nepalese banking sector.",
+        title: "The Mortgage Calculus (Reducing Balance)",
+        description: "The official mathematical framework used by all A-class commercial banks in Nepal for Equated Monthly Installments.",
         raw: "$$EMI = [P \\times r \\times (1 + r)^n] / [(1 + r)^n - 1]$$",
-        latex: "EMI = (Principal x Rate x (1+Rate)^n) / ((1+Rate)^n - 1)"
+        variables: [
+          "P = Principal Loan Amount",
+          "r = Monthly Interest Rate (Annual Rate / 12 / 100)",
+          "n = Total Number of Months (Years × 12)"
+        ]
       }}
       faqs={[
-        { question: "What is the 'Base Rate' in Nepal?", answer: "It is the minimum interest rate mandated by NRB, reflecting the bank's cost of funds. Banks cannot lend below this rate." },
-        { question: "How much down payment do I need in Kathmandu?", answer: "For residential loans, you generally need a 40-50% down payment as the LTV ratio is capped at 50-60% by NRB." },
-        { question: "Can I switch banks for a lower interest rate?", answer: "Yes, this is called a 'Loan Swap'. However, you must account for the new bank's processing fees and your current bank's swap charges." },
-        { question: "Does this include the processing fee?", answer: "This calculator focuses on EMI and Interest. Processing fees (usually 0.75%) are one-time costs paid during loan approval." },
-        { question: "Is home loan interest tax-deductible in Nepal?", answer: "For general salaried individuals, it is not directly deductible. However, it can be adjusted if the property generates rental income." },
-        { question: "What is the maximum tenure for a home loan?", answer: "Most commercial banks in Nepal offer a maximum tenure of 20 to 30 years, subject to the borrower's retirement age." },
-        { question: "What is 'Premium' in a housing loan?", answer: "Premium is the fixed profit margin the bank adds to the Base Rate. It is the only negotiable part of your interest rate." },
-        { question: "How often does the Base Rate change?", answer: "Banks are required to update and publish their Base Rates every quarter (every 3 months)." },
-        { question: "What is distress value in property valuation?", answer: "It is the value the bank expects to receive if the property is sold quickly in an auction, usually 15-20% lower than market value." },
-        { question: "Can I take a loan for land purchase only?", answer: "Yes, but NRB often classifies 'Land Purchase' as a higher risk, potentially leading to lower LTV ratios compared to home construction." },
-        { question: "What is the age limit for home loans?", answer: "Typically, the loan tenure must end before the borrower reaches 65-70 years of age." },
-        { question: "Do I need a guarantor for a home loan?", answer: "Yes, most banks in Nepal require at least one personal guarantor (usually a family member) for the loan." },
-        { question: "What is an 'Offer Letter'?", answer: "It is a formal document from the bank stating the approved loan amount, interest rate, premium, and all associated terms." },
-        { question: "Is insurance mandatory for home loans?", answer: "Yes, comprehensive property insurance is mandatory to protect the bank's collateral against natural disasters." },
-        { question: "Can I pay extra every month to reduce my principal?", answer: "Yes, many banks allow 'Accelerated Repayment'. Always check if there are caps on extra payments per year." },
-        { question: "What documents are required for a home loan?", answer: "Standard docs include Lalpurja, Blueprints, Tax Clearance, Salary Certificates, and Property Valuation reports." },
-        { question: "What is the 'CIC' report?", answer: "It is the Credit Information Center report that banks use to check your previous loan repayment history and creditworthiness." },
-        { question: "Can NRB change the LTV ratio?", answer: "Yes, NRB adjusts the LTV ratio periodically through the Monetary Policy to control real estate bubbles." },
-        { question: "Who pays for the valuation engineer?", answer: "The borrower is responsible for paying the valuation fees directly to the bank-assigned engineer." },
-        { question: "Is this tool updated for 2081/82?", answer: "Yes, it follows the latest NRB directives and commercial bank base rate standards for the current fiscal year." }
+        { question: "What is the 'Base Rate' in Nepal?", answer: "The Base Rate is the minimum interest rate a bank can charge, reflecting their internal cost of funds. Banks are prohibited by NRB from lending below this rate." },
+        { question: "What is the 'Premium' in my loan?", answer: "Premium is the negotiable profit margin the bank adds to the Base Rate. Once signed, it usually remains fixed even if the Base Rate changes." },
+        { question: "How often does my home loan EMI change?", answer: "In Nepal, banks update their Base Rate every quarter. If the Base Rate changes, your loan tenure is usually adjusted first. If the tenure hits a cap, your EMI amount will increase." },
+        { question: "What is the maximum tenure for a home loan?", answer: "Commercial banks in Nepal typically offer up to 20-25 years, provided the loan is settled before the borrower's retirement age (usually 65-70)." }
       ]}
       sidebar={{
-        title: "Finance Hub",
-        subtitle: "Nepal Mortgages",
+        title: "Nepal Housing Hub",
+        subtitle: "Real Estate Tools",
         links: [
           { label: "Salary Calculator", href: "/calculator/nepal-salary/", icon: Briefcase },
           { label: "Land Converter", href: "/calculator/nepal-land/", icon: Globe },
@@ -330,10 +308,12 @@ export default function NepalHomeLoanCalculator() {
         ],
       }}
       relatedTools={[
+        { label: "Loan EMI Tool", href: "/calculator/loan-emi/" },
+        { label: "Land Area Converter", href: "/calculator/nepal-land/" },
         { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
-        { label: "Land Converter", href: "/calculator/nepal-land/" },
         { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
       ]}
     />
   );
 }
+

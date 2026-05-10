@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["base converter", "hex to binary", "decimal to hex", "octal converter", "binary calculator", "bitwise logic calculator", "hexadecimal to decimal"],
 });
 export default function Page() { return <Calculator />; }
+

@@ -61,7 +61,7 @@ export default function PasswordGenerator() {
   ];
 
   return (
-    <ModernCalcLayout hideH1={true}
+    <ModernCalcLayout hideH1={false}
       crumbs={[{ label: 'Converters', href: '/converters/' }, { label: 'Password Generator' }]}
       title="Secure Password Generator"
       description="Generate strong, secure, and random passwords instantly. Your data never leaves your browser."
@@ -210,4 +210,5 @@ export default function PasswordGenerator() {
     />
   );
 }
+
 

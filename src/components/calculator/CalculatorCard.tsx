@@ -47,3 +47,4 @@ export function CalculatorCard({ calc, compact = false }: Props) {
     </Link>
   );
 }
+

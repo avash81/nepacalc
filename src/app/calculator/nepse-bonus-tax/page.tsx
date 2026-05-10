@@ -6,4 +6,11 @@ export const metadata = calcMeta({
   slug: 'nepse-bonus-tax',
   keywords: ["nepse bonus tax calculator", "dividend tax nepal", "bonus share tax nepal", "withholding tax nepse", "5 percent dividend tax", "cdsc dividend tax nepal"],
 });
-export default function Page() { return <Calculator />; }
+export default function Page() {
+  return (
+    <div className="bg-[#F1F3F4]">
+      <Calculator />
+    </div>
+  );
+}
+

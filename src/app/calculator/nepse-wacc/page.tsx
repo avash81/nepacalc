@@ -6,4 +6,11 @@ export const metadata = calcMeta({
   slug: 'nepse-wacc',
   keywords: ["nepse wacc calculator", "wacc calculation nepal", "meroshare wacc", "average cost of shares nepal", "cgt calculation nepse", "bonus share wacc"],
 });
-export default function Page() { return <Calculator />; }
+export default function Page() {
+  return (
+    <div className="bg-[#F1F3F4]">
+      <Calculator />
+    </div>
+  );
+}
+

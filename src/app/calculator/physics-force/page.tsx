@@ -37,6 +37,7 @@ export default function Page() {
   return (
     <div className="bg-white min-h-screen">
       <CalcWrapper
+        hideHeader={true}
         title="Physics Force Solver"
         description="Industrial-grade mechanics engine for calculating net force, inertial mass, and linear acceleration based on Newton's Second Law."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Force Calculator' }]}
@@ -70,3 +71,4 @@ export default function Page() {
       </CalcWrapper>    </div>
   );
 }
+

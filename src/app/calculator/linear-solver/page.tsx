@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["linear equation solver", "cramers rule calculator", "solve for x y z", "system of equations calculator", "simultaneous equations solver"],
 });
 export default function Page() { return <Calculator />; }
+

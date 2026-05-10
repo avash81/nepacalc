@@ -35,3 +35,4 @@ export function InlineCalculator({ slug }: { slug: string }) {
     </div>
   );
 }
+

@@ -6,4 +6,11 @@ export const metadata = calcMeta({
   slug: 'property-registration',
   keywords: ["property registration calculator nepal", "lalpurja tax nepal", "malpok calculator", "female discount property nepal", "stamp duty nepal", "land tax calculator nepal"],
 });
-export default function Page() { return <Calculator />; }
+export default function Page() {
+  return (
+    <div className="bg-[#F1F3F4]">
+      <Calculator />
+    </div>
+  );
+}
+

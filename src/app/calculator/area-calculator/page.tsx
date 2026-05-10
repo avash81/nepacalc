@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["area calculator", "calculate area of circle", "rectangle area calculator", "triangle area formula", "square feet calculator", "geometry calculator"],
 });
 export default function Page() { return <Calculator />; }
+

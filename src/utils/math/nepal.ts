@@ -63,3 +63,4 @@ export function calculateVat(amount: number, rate: number = 13) {
     base: amount,
   };
 }
+

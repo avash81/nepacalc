@@ -6,4 +6,11 @@ export const metadata = calcMeta({
   slug: 'foreign-employment',
   keywords: ["foreign employment fee nepal", "free visa free ticket nepal", "manpower charge nepal", "dofe fee limit", "japan ssw cost nepal", "korea eps cost nepal"],
 });
-export default function Page() { return <Calculator />; }
+export default function Page() {
+  return (
+    <div className="bg-[#F1F3F4]">
+      <Calculator />
+    </div>
+  );
+}
+

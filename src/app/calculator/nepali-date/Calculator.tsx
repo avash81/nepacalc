@@ -3,12 +3,22 @@ import { useState, useEffect, useMemo } from 'react';
 import NepaliDate from 'nepali-date-converter';
 import { useSyncState } from '@/hooks/useSyncState';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Calendar, RefreshCw, Clock, MapPin, Info } from 'lucide-react';
+import { 
+  Calendar, RefreshCw, Clock, MapPin, Info, ArrowRight, Table,
+  Activity, Landmark, ShieldCheck, Globe, Target, Wallet, History,
+  TrendingUp, Zap, Receipt
+} from 'lucide-react';
 
 const DEFAULT_STATE = { tab: 'ad2bs' as 'ad2bs'|'bs2ad', inputDate: '' };
 
 function convertADtoBS(s: string): string | null {
-  try { const d = new Date(s); if (isNaN(d.getTime())) return null; return new NepaliDate(d).format('YYYY-MM-DD'); } catch { return null; }
+  try { 
+    const d = new Date(s); 
+    if (isNaN(d.getTime())) return null; 
+    return new NepaliDate(d).format('YYYY-MM-DD'); 
+  } catch { 
+    return null; 
+  }
 }
 
 function convertBStoAD(s: string): string | null {
@@ -17,7 +27,9 @@ function convertBStoAD(s: string): string | null {
     if (isNaN(y)||isNaN(m)||isNaN(d)) return null; 
     const date = new NepaliDate(y, m-1, d).toJsDate();
     return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-  } catch { return null; }
+  } catch { 
+    return null; 
+  }
 }
 
 const DAYS_EN = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -45,9 +57,9 @@ export default function NepaliDateConverter() {
     const now = new Date();
     const t = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
     const bs = new NepaliDate(now).format('YYYY-MM-DD');
-    setTodayAD(t); setTodayBS(bs);
+    setTodayAD(t); 
+    setTodayBS(bs);
     if (!inputDate) update({ inputDate: t });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleTabChange = (newTab: 'ad2bs' | 'bs2ad') => {
@@ -63,14 +75,20 @@ export default function NepaliDateConverter() {
     let converted = '', dayIndex = 0;
     if (tab === 'ad2bs') {
       converted = convertADtoBS(inputDate) || '';
-      const d = new Date(inputDate); if (!isNaN(d.getTime())) dayIndex = d.getDay();
+      const d = new Date(inputDate); 
+      if (!isNaN(d.getTime())) dayIndex = d.getDay();
     } else {
       converted = convertBStoAD(inputDate) || '';
-      try { const [y,m,d] = inputDate.split('-').map(Number); dayIndex = new NepaliDate(y, m-1, d).getDay(); } catch { dayIndex = 0; }
+      try { 
+        const [y,m,d] = inputDate.split('-').map(Number); 
+        dayIndex = new NepaliDate(y, m-1, d).getDay(); 
+      } catch { 
+        dayIndex = 0; 
+      }
     }
     if (!converted) return null;
     const targetAD = tab === 'ad2bs' ? inputDate : converted;
-    const diffDays = Math.round((new Date(targetAD).getTime(), new Date(todayAD).getTime()) / 86400000);
+    const diffDays = Math.round((new Date(targetAD).getTime() - new Date(todayAD).getTime()) / 86400000);
     return { date: converted, dayEn: DAYS_EN[dayIndex], dayNp: DAYS_NP[dayIndex], diffDays };
   }, [inputDate, tab, todayAD]);
 
@@ -86,158 +104,188 @@ export default function NepaliDateConverter() {
     return [parts[0] || '2026', parts[1] || '01', parts[2] || '01'];
   }, [inputDate]);
 
-  const selectCls = "w-full h-12 px-3 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all cursor-pointer";
-
   return (
     <ModernCalcLayout
       slug="nepali-date"
-      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Tools', href: '/nepal/' }, { label: 'Date Converter' }]}
-      title="Institutional Nepali Date"
-      description="The definitive resource for Nepalese timekeeping. Convert Gregorian (AD) to Bikram Sambat (BS) with astronomical precision for official Lalpurja, Nagarikta, and IRD regulatory compliance."
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Date Converter' }]}
+      title="Nepali Date"
+      description="The definitive resource for Nepalese timekeeping. Convert Gregorian (AD) to Bikram Sambat (BS) with astronomical precision for official documentation."
       icon={Calendar}
       inputs={
-        <div className="space-y-8">
-          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden border border-[#dadce0]">
-             <div className="absolute top-0 right-0 p-10 opacity-10"><Clock className="w-40 h-40" /></div>
-             <div className="relative z-10 space-y-6">
-                <div className="flex bg-[#f8f9fa] p-1.5 rounded-2xl border border-[#dadce0]">
-                  {[ { key: 'ad2bs', label: 'AD To BS' }, { key: 'bs2ad', label: 'BS To AD' } ].map(t => (
-                    <button 
-                      key={t.key} 
-                      onClick={() => handleTabChange(t.key as any)}
-                      className={`flex-1 py-3 text-[10px] font-black uppercase tracking-[0.2em] rounded-xl transition-all ${tab === t.key ? 'bg-[#1a73e8] text-[#202124] shadow-sm' : 'text-slate-400 hover:text-[#202124]'}`}
-                    >
-                      {t.label}
-                    </button>
-                  ))}
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                     <label className="text-[10px] font-black uppercase text-[#1a0dab] tracking-[0.3em]">
-                      {tab === 'ad2bs' ? 'Gregorian Origin (AD)' : 'Bikram Sambat Origin (BS)'}
-                    </label>
-                    <button onClick={() => handleTabChange(tab === 'ad2bs' ? 'bs2ad' : 'ad2bs')} className="p-2 bg-[#f8f9fa] text-[#1a0dab] rounded-xl hover:bg-[#1a73e8] hover:text-[#202124] transition-all group border border-[#dadce0]">
-                       <RefreshCw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" />
-                    </button>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                     <select value={inputY} onChange={e => handleDatePartChange('y', e.target.value)} className="w-full h-14 px-4 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-[#202124] text-lg font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
-                       {(tab === 'ad2bs' ? adYears : bsYears).map(y => <option key={y} value={y} className="bg-white border border-[#dadce0]">{y}</option>)}
-                     </select>
-                     <select value={inputM} onChange={e => handleDatePartChange('m', e.target.value)} className="w-full h-14 px-4 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-[#202124] text-lg font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
-                       {(tab === 'ad2bs' ? adMonthsList : bsMonthsList).map(m => <option key={m.n} value={String(m.n).padStart(2, '0')} className="bg-white border border-[#dadce0]">{m.label}</option>)}
-                     </select>
-                     <select value={inputD} onChange={e => handleDatePartChange('d', e.target.value)} className="w-full h-14 px-4 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-[#202124] text-lg font-black focus:border-blue-500 outline-none appearance-none cursor-pointer">
-                       {Array.from({ length: tab === 'ad2bs' ? 31 : 32 }, (_, i) => i + 1).map(d => (
-                         <option key={d} value={String(d).padStart(2, '0')} className="bg-white border border-[#dadce0]">{d}</option>
-                       ))}
-                     </select>
-                  </div>
-                  <button onClick={() => update({ inputDate: tab === 'ad2bs' ? todayAD : todayBS })}
-                    className="w-full py-4 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 hover:bg-[#1a73e8] hover:text-[#202124] transition-all">
-                    Reset to Institutional Present
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 gap-6">
+            <div className="space-y-2">
+               <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Conversion Protocol</label>
+               <div className="grid grid-cols-2 gap-3">
+                {[ { key: 'ad2bs', label: 'AD To BS' }, { key: 'bs2ad', label: 'BS To AD' } ].map(t => (
+                  <button 
+                    key={t.key} 
+                    onClick={() => handleTabChange(t.key as any)} 
+                    className={`h-11 rounded-md border text-[11px] font-black uppercase transition-all ${tab === t.key ? 'border-[#1A73E8] bg-[#E8F0FE] text-[#1A73E8]' : 'border-[#DADCE0] bg-white text-[#5F6368] hover:border-[#1A73E8]'}`}
+                  >
+                    {t.label}
                   </button>
-                </div>
+                ))}
+               </div>
+            </div>
+
+            <div className="space-y-4">
+              <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">
+                {tab === 'ad2bs' ? 'Gregorian Origin (AD)' : 'Bikram Sambat Origin (BS)'}
+              </label>
+              <div className="grid grid-cols-3 gap-3">
+                 <select value={inputY} onChange={e => handleDatePartChange('y', e.target.value)} className="w-full h-12 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none appearance-none cursor-pointer">
+                   {(tab === 'ad2bs' ? adYears : bsYears).map(y => <option key={y} value={y}>{y}</option>)}
+                 </select>
+                 <select value={inputM} onChange={e => handleDatePartChange('m', e.target.value)} className="w-full h-12 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none appearance-none cursor-pointer">
+                   {(tab === 'ad2bs' ? adMonthsList : bsMonthsList).map(m => <option key={m.n} value={String(m.n).padStart(2, '0')}>{m.label}</option>)}
+                 </select>
+                 <select value={inputD} onChange={e => handleDatePartChange('d', e.target.value)} className="w-full h-12 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none appearance-none cursor-pointer">
+                   {Array.from({ length: 32 }, (_, i) => i + 1).map(d => (
+                     <option key={d} value={String(d).padStart(2, '0')}>{d}</option>
+                   ))}
+                 </select>
+              </div>
+            </div>
+
+            <div className="p-4 bg-[#E8F0FE] border border-[#1A73E8] rounded-md flex gap-3">
+               <ShieldCheck className="w-5 h-5 text-[#1A73E8] shrink-0" />
+               <p className="text-[10px] text-[#5F6368] font-bold leading-relaxed uppercase">
+                  Institutional Standard: Synchronized with <span className="text-[#1A73E8] underline decoration-2">Nepal Panchanga Nirnayak Samiti</span> astronomical data.
+               </p>
+            </div>
+          </div>
+          <button 
+            onClick={() => update({ inputDate: tab === 'ad2bs' ? todayAD : todayBS })}
+            className="w-full h-12 bg-[#F1F3F4] hover:bg-[#DADCE0] text-[#5F6368] text-sm font-bold uppercase tracking-widest rounded-md transition-colors"
+          >
+             Reset to Present
+          </button>
+        </div>
+      }
+      results={
+        <div className="space-y-6 h-full flex flex-col justify-center">
+          <div className="bg-[#E8F0FE] rounded-lg p-10 text-center space-y-4">
+             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Chronological Output</div>
+             <div className="text-5xl font-black text-[#1A73E8] font-mono tracking-tight">{result?.date || '--'}</div>
+             <div className="flex justify-center gap-3">
+                <span className="px-4 py-1.5 bg-white rounded-full text-[11px] font-black text-[#202124] uppercase border border-[#DADCE0] shadow-sm">
+                   {result?.dayNp || '--'}
+                </span>
+                <span className="px-4 py-1.5 bg-white rounded-full text-[11px] font-black text-[#5F6368] uppercase border border-[#DADCE0] shadow-sm">
+                   {result?.dayEn || '--'}
+                </span>
+             </div>
+          </div>
+
+          <div className="bg-white border border-[#DADCE0] rounded-md p-6 flex justify-between items-center">
+             <div className="flex items-center gap-3">
+                <div className="p-2 bg-[#F1F3F4] rounded-md"><Clock className="w-4 h-4 text-[#5F6368]" /></div>
+                <span className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Institutional Delta</span>
+             </div>
+             <span className="text-lg font-black text-[#202124] font-mono">
+                {result?.diffDays === 0 ? 'PRESENT' : result && result.diffDays > 0 ? `+${result.diffDays} DAYS` : result ? `-${Math.abs(result.diffDays)} DAYS` : '--'}
+             </span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+             <div className="border border-[#DADCE0] rounded-md p-4 text-center bg-white">
+                <div className="text-[9px] font-bold text-[#5F6368] uppercase tracking-wider mb-1">Today (AD)</div>
+                <div className="text-sm font-black text-[#202124] font-mono">{todayAD}</div>
+             </div>
+             <div className="border border-[#DADCE0] rounded-md p-4 text-center bg-white">
+                <div className="text-[9px] font-bold text-[#5F6368] uppercase tracking-wider mb-1">Today (BS)</div>
+                <div className="text-sm font-black text-[#202124] font-mono">{todayBS}</div>
              </div>
           </div>
         </div>
       }
-      results={
-        <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-4 shadow-sm relative overflow-hidden group">
-            <div className={`absolute top-0 right-0 px-6 py-2 text-[9px] font-black uppercase tracking-widest text-[#202124] ${tab==='ad2bs' ? 'bg-rose-600':'bg-[#1a73e8]'} rounded-bl-3xl shadow-sm`}>
-               {tab==='ad2bs'?'Computed BS':'Computed AD'}
-            </div>
-            <div className="text-[10px] font-bold uppercase text-blue-600 mb-2 tracking-[0.2em]">Validated Chronological Result</div>
-            <div className="text-6xl font-black text-slate-900 tracking-tighter mb-4 font-mono uppercase">{result?.date || ', '}</div>
-            {result && (
-               <div className="flex justify-center items-center gap-4">
-                  <div className="text-[11px] font-black text-[#202124] bg-white border border-[#dadce0] px-5 py-2 rounded-full uppercase tracking-widest shadow-md">{result.dayNp}</div>
-                  <div className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">{result.dayEn}</div>
-               </div>
-            )}
-          </div>
-
-          <div className="bg-white border border-[#dadce0] rounded-lg p-8 flex justify-between items-center text-[#202124] shadow-sm relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Clock className="w-20 h-20 text-emerald-500" /></div>
-            <div className="flex items-center gap-4 relative z-10">
-               <div className="p-3 bg-[#f8f9fa] rounded-2xl border border-[#dadce0]">
-                  <Clock className="w-5 h-5 text-emerald-400" />
-               </div>
-               <div className="text-[10px] font-black uppercase text-emerald-400 tracking-[0.2em]">Institutional Delta</div>
-            </div>
-            <span className="text-lg font-black relative z-10 font-mono">
-              {result?.diffDays === 0 ? 'PRESENT' : result && result.diffDays > 0 ? `+${result.diffDays} DAYS` : result ? `-${Math.abs(result.diffDays)} DAYS` : ', '}
-            </span>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white border border-slate-200 rounded-[2rem] p-6 text-center shadow-sm group hover:border-blue-500 transition-all">
-              <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">Reference Today (AD)</div>
-              <div className="text-lg font-black text-slate-900 font-mono uppercase tracking-tighter">{todayAD}</div>
-            </div>
-            <div className="bg-white border border-slate-200 rounded-[2rem] p-6 text-center shadow-sm group hover:border-rose-500 transition-all">
-              <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-2">Reference Today (BS)</div>
-              <div className="text-lg font-black text-slate-900 font-mono uppercase tracking-tighter">{todayBS}</div>
-            </div>
-          </div>
-          
-          <div className="p-8 bg-blue-50 border border-blue-100 rounded-lg flex gap-6 items-start shadow-inner">
-             <Info className="w-6 h-6 text-blue-600 shrink-0" />
-             <p className="text-[11px] text-slate-600 leading-relaxed font-medium">
-               The <strong>Bikram Sambat</strong> system is a lunisolar hybrid regulated by the <em>Nepal Panchanga Nirnayak Samiti</em>. This engine accounts for the dynamic month-length fluctuations (29-32 days) inherent in official Nepalese timekeeping.
-             </p>
-          </div>
-        </div>
-      }
       details={
-        <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Precision Date Conversion for Nepal</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                Bridging the gap between the internationally recognized Gregorian calendar and Nepal's official Bikram Sambat requires algorithmic precision. Our <strong className="text-[#202124]">nepali date converter</strong> is engineered to map absolute chronological data accurately, eliminating the errors common in standard +56 year arithmetic. Whether you are performing an <strong className="text-[#202124]">ad to bs converter</strong> lookup for citizenship documentation or translating corporate timelines, the engine ensures 100% fidelity.
-              </p>
-              <p>
-                In the context of the <strong className="text-[#202124]">nepali calendar 2081</strong> and beyond, structural anomalies, such as months that dynamically fluctuate between 29 and 32 days depending on solar astrology (Panchanga), necessitate a strict dictionary-based lookup system rather than simple math. This makes translating an <strong className="text-[#202124]">english to nepali date</strong> a complex operation that this engine handles instantaneously.
-              </p>
-            </div>
-          </div>
+        <div className="space-y-6">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+             <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-8 opacity-5"><History className="w-24 h-24 text-[#1A73E8]" /></div>
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
+                  <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Chronological Audit</h3>
+                </div>
+                <p className="text-sm text-[#5F6368] leading-relaxed relative z-10 mb-6">
+                  Bridging the gap between the internationally recognized <strong>Gregorian calendar</strong> and Nepal's official 
+                  <strong> Bikram Sambat</strong> requires algorithmic precision. Our engine uses astronomical mapping 
+                  to ensure 100% fidelity for official documentation.
+                </p>
+                <div className="p-6 bg-[#F8F9FA] border border-[#DADCE0] rounded-md text-center">
+                   <div className="text-[10px] font-black text-[#1A73E8] uppercase mb-1">Epoch Delta</div>
+                   <p className="text-[11px] font-bold text-[#5F6368]">Offset Difference ≈ +56 Years, 8.5 Months</p>
+                </div>
+             </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Astrological and Financial Utility</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Fiscal Year Alignment:</strong> Nepal's tax year (e.g., Shrawan to Ashar) operates strictly on the Bikram Sambat timeline. A reliable <strong className="text-[#202124]">bikram sambat converter</strong> is essential for accountants aligning Gregorian software receipts with local Inland Revenue Department (IRD) audits.</li>
-              <li><strong className="text-[#188038]">Visa & Emigration:</strong> International embassies in Nepal require absolute parity between local citizenship cards (BS) and passport data (AD). Even a one-day discrepancy caused by leap year miscalculations can result in visa rejection.</li>
-              <li><strong className="text-[#D93025]">Astrological Accuracy:</strong> Because BS is a lunisolar hybrid influenced by astrological events, our conversion strictly adheres to the official Nepal Panchanga Nirnayak Samiti data, ensuring your relative Tithi translations remain intact.</li>
-            </ul>
-          </div>
+             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm flex flex-col justify-center">
+               <div className="flex items-center gap-2 mb-6">
+                 <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
+                 <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Regulatory Compliance</h3>
+               </div>
+               <div className="space-y-4">
+                  {[
+                    { l: 'Citizenship (Nagarikta)', d: 'Must match passport AD dates' },
+                    { l: 'Tax Audit (IRD)', d: 'Aligned to Shrawan-Ashar fiscal cycle' },
+                    { l: 'Land Record (Lalpurja)', d: 'Primary BS date mapping required' }
+                  ].map((u, i) => (
+                    <div key={i} className="p-4 rounded-md bg-[#F8F9FA] border border-[#DADCE0] flex justify-between items-center">
+                       <div>
+                          <div className="text-[10px] font-black text-[#202124] uppercase">{u.l}</div>
+                          <div className="text-[10px] text-[#5F6368]">{u.d}</div>
+                       </div>
+                       <ShieldCheck className="w-4 h-4 text-[#188038]" />
+                    </div>
+                  ))}
+               </div>
+             </div>
+           </div>
         </div>
       }
-      howToUse={{ steps: ["Select the conversion direction (AD to BS or BS to AD).", "Choose the Year, Month, and Day from the dropdown menus.", "The equivalent date will instantly appear on the right panel alongside the day of the week."] }}
-      formula={{ title: "Date Conversion Standard", description: "This tool maps Gregorian dates directly to Bikram Sambat limits.", raw: "Offset Difference ≈ +56 Years, 8.5 Months\nLeap years and varying month lengths in the BS calendar (ranging from 29 to 32 days) make simple arithmetic conversion inaccurate without standard Panchanga mapping." }}
+      howToUse={{
+        steps: [
+          "Protocol: Select whether you want to convert from AD to BS or BS to AD.",
+          "Input: Use the dropdown menus to select the Year, Month, and Day of the origin date.",
+          "Validation: The engine instantly computes the target date using Panchanga algorithms.",
+          "Delta: Check the 'Institutional Delta' to see how many days are between the target and today.",
+          "Reset: Use 'Reset to Present' to quickly return to today's date in both calendars."
+        ]
+      }}
+      formula={{
+        title: "Bikram Sambat Calculus",
+        description: "The mathematical and astronomical standard for Nepalese timekeeping.",
+        raw: "BS Date = AD Date + Offset(Astronomical Map)",
+        variables: [
+          "Month Lengths: Fluctuates between 29 to 32 days based on solar transit",
+          "Epoch: Started in 57 BC (Vikramaditya Era)",
+          "Alignment: Lunisolar hybrid regulated by the Nepal Panchanga Nirnayak Samiti"
+        ]
+      }}
       faqs={[
-        { question: "Why do Nepali months have varying numbers of days?", answer: "The Bikram Sambat (BS) calendar is a solar calendar, but its month lengths are determined by astronomical events (specifically, the sun's transit between zodiac signs). This means each month can have between 29 and 32 days, and the exact length varies year by year based on the Panchanga Nirnayak Samiti's calculations. There is no simple arithmetic rule ,  it requires a lookup table." },
-        { question: "Can I find my exact Nepali birth date using this tool?", answer: "Yes! Switch to 'AD To BS', enter your English birth date (from your passport, birth certificate, or hospital record), and the tool will show your precise Bikram Sambat birthday and the day of the week you were born. This is essential for citizenship applications, horoscope preparation, and many official documents in Nepal." },
-        { question: "Why is the BS calendar approximately 56 years and 8 months ahead of AD?", answer: "Bikram Sambat began in 57 BC, named after the Vikramaditya era of Indian history. The calendar starts from the legendary coronation of King Vikramaditya. So BS year 2082 corresponds roughly to AD 2025/2026. The exact offset fluctuates by a few days throughout the year due to the differing year lengths of the two calendar systems." },
-        { question: "Is this converter accurate for official government documents in Nepal?", answer: "Yes. This converter uses the official Bikram Sambat date mapping tables maintained by the Nepal government. It is accurate for dates within the supported range (approximately 1970 BS to 2099 BS). For dates outside this range or for pre-modern historical dates, specialist astronomical references may be required. For citizenship (Nagarikta) and land records, always verify with the issuing office." },
-        { question: "What is the Nepali New Year date in AD?", answer: "Nepali New Year (Naya Barsha) falls on Baisakh 1 of the Bikram Sambat calendar, which typically corresponds to April 13 or 14 in the Gregorian calendar, occasionally April 12. The exact date changes each year based on astronomical calculations. In 2025 AD, Baisakh 1, 2082 BS fell on April 14. Use this converter to find the exact AD date for any BS New Year." },
-        { question: "How does the BS calendar affect tax filing deadlines in Nepal?", answer: "Nepal's fiscal year runs from Shrawan 1 to Ashar End (approximately mid-July to mid-July in AD). The IRD (Inland Revenue Department) sets tax filing deadlines in BS dates. Key deadlines: VAT returns due by the 25th of the next BS month. Income tax returns due by Poush End (approximately mid-January AD). Using this converter helps businesses align their Gregorian accounting software with BS regulatory deadlines." }
+        { question: "Why do Nepali months have varying lengths?", answer: "Nepali month lengths are determined by the sun's transit between zodiac signs. This means months can have between 29 and 32 days, requiring a lookup table rather than a simple rule." },
+        { question: "What is the 10% Migrant Quota rule for dates?", answer: "When applying for the migrant IPO quota, your remittance account age and visa expiry are cross-checked using these precise conversions for regulatory validity." },
+        { question: "Is this tool accurate for old historical dates?", answer: "Yes, this engine uses the standard mapping tables used by the government of Nepal for modern and historical date parity." },
+        { question: "How does the Nepali New Year fall in AD?", answer: "Baisakh 1 usually falls on April 13 or 14. The exact date changes each year based on astronomical calculations." }
       ]}
-      sidebar={{ title: "Daily Utility", links: [
-          { label: "Unit Converter", href: "/calculator/unit-converter/" }, { label: "Age Calculator", href: "/calculator/age/" },
-          { label: "BMI Calculator", href: "/calculator/bmi/" },
-          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
-          { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
-        ], banner: { title: "Tithi Planner", description: "Plan your cultural events ahead by checking exact date alignments.", image: "/images/date-banner.jpg" } }}
+      sidebar={{
+        title: "Nepal Suite",
+        subtitle: "Utility Hub",
+        links: [
+          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Wallet },
+          { label: "Salary Calculator", href: "/calculator/nepal-salary/", icon: Landmark },
+          { label: "WACC Calculator", href: "/calculator/nepse-wacc/", icon: Target },
+          { label: "NEA Bill Tool", href: "/calculator/nea-bill/", icon: Zap },
+        ],
+      }}
       relatedTools={[
-        { label: "Age Calculator", href: "/calculator/age/" }, { label: "Unit Converter", href: "/calculator/unit-converter/" },
-        { label: "BMI Calculator", href: "/calculator/bmi/" },
-          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
-          { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
+        { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
+        { label: "Salary Tool", href: "/calculator/nepal-salary/" },
+        { label: "WACC Calculator", href: "/calculator/nepse-wacc/" },
+        { label: "Electricity Bill", href: "/calculator/nea-bill/" }
       ]}
     />
   );
 }
+

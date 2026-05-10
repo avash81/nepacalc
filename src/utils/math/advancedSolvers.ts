@@ -66,3 +66,4 @@ export const AdvancedSolvers = {
     transpose: (m: number[][]) => math.transpose(m)
   }
 };
+

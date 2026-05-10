@@ -220,3 +220,4 @@ export function calculateFlatEMI(principal: number, annualRate: number, tenureYe
     totalPayment: Number((principal + totalInterest).toFixed(2)),
   };
 }
+

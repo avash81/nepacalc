@@ -60,3 +60,4 @@ export function TrendingSidebar({ currentSlug }: { currentSlug?: string }) {
     </div>
   );
 }
+

@@ -6,4 +6,11 @@ export const metadata = calcMeta({
   slug: 'nepal-home-loan',
   keywords: ["home loan nepal", "emi calculator nepal", "nrb base rate", "nepal bank interest rates", "housing loan calculator kathmandu"],
 });
-export default function Page() { return <Calculator />; }
+export default function Page() {
+  return (
+    <div className="bg-[#F1F3F4]">
+      <Calculator />
+    </div>
+  );
+}
+

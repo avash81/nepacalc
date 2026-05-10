@@ -98,7 +98,7 @@ export default function LcmGcfCalculator() {
               </div>
 
               {r.nums.length === 2 && (
-                <div className="p-8 bg-[#1A1A2E] rounded-2xl border border-slate-800 text-[#202124] shadow-sm relative overflow-hidden">
+                <div className="p-8 bg-[#1A1A2E] rounded-2xl border border-slate-800 text-white shadow-sm relative overflow-hidden">
                   <div className="absolute -bottom-8 -right-8 opacity-10">
                     <Sigma className="w-32 h-32" />
                   </div>
@@ -231,7 +231,7 @@ export default function LcmGcfCalculator() {
           </section>
 
           {/* Section 4: Academic Roadmap for Nepal */}
-          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-[#202124] rounded-lg p-10 shadow-sm">
+          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-white rounded-lg p-10 shadow-sm">
             <h2 className="text-3xl font-black mb-8 border-b border-[#dadce0] pb-4">Nepalese Academic Roadmap & SEE Alignment</h2>
             <div className="prose prose-md prose-invert max-w-none leading-relaxed space-y-6">
               <p>
@@ -323,3 +323,4 @@ export default function LcmGcfCalculator() {
     />
   );
 }
+

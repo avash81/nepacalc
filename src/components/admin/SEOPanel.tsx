@@ -146,3 +146,4 @@ export default function SEOPanel({ data, onChange, onAutoGenerateSlug }: SEOPane
     </div>
   );
 }
+

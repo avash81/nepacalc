@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["cagr calculator", "compound annual growth rate", "investment growth calculator", "nepse cagr", "return on investment calculator nepal"],
 });
 export default function Page() { return <Calculator />; }
+

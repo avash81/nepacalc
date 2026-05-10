@@ -51,7 +51,7 @@ export default function NumberToWords() {
   const copy = () => { navigator.clipboard.writeText(r); setCopied(true); setTimeout(() => setCopied(false), 2000); };
 
   return (
-    <ModernCalcLayout hideH1={true}
+    <ModernCalcLayout hideH1={false}
       crumbs={[{ label: 'Converters', href: '/converters/' }, { label: 'Number Formatter' }]}
       title="Number to Words Converter"
       description="Convert numbers into written English words using South Asian (Lakh/Crore) or International (Millions/Billions) number systems."
@@ -194,4 +194,5 @@ export default function NumberToWords() {
     />
   );
 }
+
 

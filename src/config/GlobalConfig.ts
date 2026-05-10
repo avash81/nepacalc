@@ -49,3 +49,4 @@ export const CATEGORY_URL_MAP: Record<string, string> = {
   'construction': '/engineering/',
   'conversion': '/converters/'
 };
+

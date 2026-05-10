@@ -92,3 +92,4 @@ function RateTile({ label, value, change, href, isForex }: any) {
     </Link>
   );
 }
+

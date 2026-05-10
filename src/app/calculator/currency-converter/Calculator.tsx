@@ -43,7 +43,7 @@ const CACHE_TTL = 30 * 60 * 1000;
 interface RateCache { rates: Record<string, number>; fetchedAt: number; }
 
 export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: boolean }) {
-  const [state, setState] = useSyncState('currency_v6', { fromCurrency: 'USD', amount: 100 });
+  const [state, setState] = useSyncState('currency_v7', { fromCurrency: 'USD', amount: 100 });
   const { fromCurrency, amount } = state;
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
@@ -104,18 +104,18 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
     return (
       <div className="space-y-4">
         <div className="space-y-2">
-           <label className="text-[10px] font-black uppercase tracking-wider text-slate-500">Amount ({fromCurrency})</label>
+           <label className="text-[10px] font-black uppercase tracking-wider text-[#5F6368]">Amount ({fromCurrency})</label>
            <input 
              type="number" 
              value={amount} 
              onChange={e => update({ amount: Number(e.target.value) })} 
-             className="w-full h-11 px-4 border border-slate-200 rounded-lg text-sm font-bold bg-slate-50 focus:bg-white focus:border-blue-500 outline-none transition-all" 
+             className="w-full h-11 px-4 border border-[#DADCE0] rounded-lg text-sm font-bold bg-[#F8F9FA] focus:bg-white focus:border-[#1A73E8] outline-none transition-all" 
            />
         </div>
-        <div className="p-6 bg-white border border-[#dadce0] rounded-2xl text-center shadow-sm">
-           <div className="text-[9px] font-black text-[#1a0dab] uppercase tracking-widest mb-1">Equivalent NPR</div>
+        <div className="p-6 bg-white border border-[#DADCE0] rounded-2xl text-center shadow-sm">
+           <div className="text-[9px] font-black text-[#1A73E8] uppercase tracking-widest mb-1">Equivalent NPR</div>
            <div className="text-2xl font-black text-[#202124] tracking-tighter uppercase font-mono">{formatNPR(results.npr)}</div>
-           <div className="mt-2 text-[8px] font-black text-slate-500 uppercase">NRB Benchmark</div>
+           <div className="mt-2 text-[8px] font-black text-[#5F6368] uppercase">NRB Benchmark</div>
         </div>
       </div>
     );
@@ -124,177 +124,171 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
   return (
     <ModernCalcLayout
       slug="currency-converter"
-      crumbs={[{ label: 'Home', href: '/' }, { label: 'Forex Tools', href: '/forex/' }, { label: 'Currency Converter' }]}
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Currency Converter' }]}
       title="Currency Converter"
       description="The definitive real-time exchange engine for Nepal. Convert global currencies to NPR with mid-market precision, live NRB-benchmarked rates, and INR peg auditing."
       icon={Globe}
       inputs={
-        <div className="space-y-8">
-          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
-             <div className="absolute top-0 right-0 p-10 opacity-10"><Globe className="w-40 h-40" /></div>
-             <div className="relative z-10 grid grid-cols-1 gap-8">
-                <div className="space-y-4">
-                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a0dab]">Capital Amount</label>
-                   <div className="relative">
-                      <input 
-                        type="number" 
-                        value={amount} 
-                        onChange={(e) => update({ amount: Number(e.target.value) })}
-                        className="w-full h-14 px-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl text-xl font-black text-[#202124] focus:border-blue-500 outline-none transition-all font-mono" 
-                      />
-                      <span className="absolute right-6 top-1/2 -translate-y-1/2 text-sm font-black text-[#1a0dab]">{fromCurrency}</span>
-                   </div>
-                </div>
-                <div className="space-y-4">
-                   <label className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">Quick Selection</label>
-                   <div className="grid grid-cols-3 gap-3">
-                      {['USD', 'INR', 'EUR', 'GBP', 'AUD', 'QAR'].map(code => (
-                        <button 
-                          key={code} 
-                          onClick={() => update({ fromCurrency: code })}
-                          className={`py-4 text-[10px] font-black uppercase rounded-2xl transition-all border ${fromCurrency === code ? 'bg-[#1a73e8] border-blue-500 text-[#202124] shadow-sm shadow-blue-500/20 scale-105' : 'bg-[#f8f9fa] border-[#dadce0] text-slate-400 hover:bg-white/10'}`}
-                        >
-                          <span className="block text-xl mb-1">{CURRENCY_META[code]?.flag}</span>
-                          {code}
-                        </button>
-                      ))}
-                   </div>
-                </div>
-             </div>
-          </div>
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 gap-6">
+            <div className="space-y-2">
+               <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Capital Amount</label>
+               <div className="relative">
+                  <input 
+                    type="number" 
+                    value={amount} 
+                    onChange={(e) => update({ amount: Number(e.target.value) })}
+                    className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all" 
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-black text-[#1A73E8]">{fromCurrency}</span>
+               </div>
+            </div>
 
-          <div className="p-8 border border-slate-200 rounded-lg bg-white space-y-6 shadow-sm">
-             <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-50 rounded-lg"><RefreshCcw className="w-4 h-4 text-blue-600" /></div>
-                <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Institutional Catalog</h3>
-             </div>
-             <div className="grid grid-cols-2 gap-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
-                {Object.entries(CURRENCY_META).map(([code, meta]) => (
-                  <button key={code} onClick={() => update({ fromCurrency: code })}
-                    className={`p-4 border text-left flex items-center gap-4 rounded-2xl transition-all ${fromCurrency === code ? 'bg-blue-50 border-blue-200 text-blue-600 scale-[1.02]' : 'bg-white border-slate-100 hover:bg-slate-50'}`}>
-                    <span className="text-3xl">{meta.flag}</span>
-                    <div className="overflow-hidden">
-                      <div className="text-[10px] font-black uppercase leading-none tracking-wider">{code}</div>
-                      <div className="text-[8px] font-bold text-slate-400 uppercase mt-1.5 truncate">{meta.label}</div>
-                    </div>
-                  </button>
-                ))}
-             </div>
+            <div className="space-y-2">
+               <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Quick Selection</label>
+               <div className="grid grid-cols-3 gap-3">
+                  {['USD', 'INR', 'EUR', 'GBP', 'AUD', 'QAR'].map(code => (
+                    <button 
+                      key={code} 
+                      onClick={() => update({ fromCurrency: code })}
+                      className={`h-16 flex flex-col items-center justify-center rounded-md border transition-all ${fromCurrency === code ? 'border-[#1A73E8] bg-[#E8F0FE] text-[#1A73E8]' : 'border-[#DADCE0] bg-white text-[#5F6368] hover:border-[#1A73E8]'}`}
+                    >
+                      <span className="text-xl leading-none mb-1">{CURRENCY_META[code]?.flag}</span>
+                      <span className="text-[10px] font-black uppercase">{code}</span>
+                    </button>
+                  ))}
+               </div>
+            </div>
+
+            <div className="space-y-2">
+               <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Institutional Catalog</label>
+               <div className="grid grid-cols-2 gap-2 max-h-[260px] overflow-y-auto pr-2 custom-scrollbar">
+                  {Object.entries(CURRENCY_META).map(([code, meta]) => (
+                    <button 
+                      key={code} 
+                      onClick={() => update({ fromCurrency: code })}
+                      className={`h-14 px-3 border rounded-md text-left flex items-center gap-3 transition-all ${fromCurrency === code ? 'border-[#1A73E8] bg-[#E8F0FE]' : 'border-[#DADCE0] bg-white hover:border-[#1A73E8]'}`}
+                    >
+                      <span className="text-2xl leading-none">{meta.flag}</span>
+                      <div className="overflow-hidden flex flex-col justify-center">
+                        <div className={`text-[11px] font-black uppercase leading-tight ${fromCurrency === code ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>{code}</div>
+                        <div className={`text-[9px] font-bold uppercase truncate ${fromCurrency === code ? 'text-[#1A73E8]' : 'text-[#5F6368]'}`}>{meta.label}</div>
+                      </div>
+                    </button>
+                  ))}
+               </div>
+            </div>
           </div>
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+             Generate Valuation
+          </button>
         </div>
       }
       results={
-        <div className="space-y-6">
-          <div className="p-10 bg-white border border-slate-200 rounded-[3.5rem] text-center space-y-2 shadow-sm relative overflow-hidden group">
-             <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity"><Landmark className="w-24 h-24 text-emerald-600" /></div>
-             <div className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.2em]">Institutional Valuation</div>
-             <div className="text-5xl font-black tracking-tighter text-slate-900 font-mono uppercase">
-                {formatNPR(results.npr)}
-             </div>
-             <div className="px-5 py-2 bg-emerald-50 rounded-full inline-block text-[10px] font-black uppercase tracking-tight text-emerald-600">
-                NRB Benchmark Standard
+        <div className="space-y-6 h-full flex flex-col justify-center">
+          <div className="bg-[#E8F0FE] rounded-lg p-10 text-center space-y-2">
+             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Institutional Valuation</div>
+             <div className="text-5xl font-black text-[#1A73E8] tracking-tight">{formatNPR(results.npr)}</div>
+             <div className="flex justify-center mt-2">
+                <span className="px-4 py-1.5 bg-white rounded-full text-[10px] font-black text-[#5F6368] uppercase border border-[#DADCE0] shadow-sm">
+                   NRB Benchmark Standard
+                </span>
              </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-             <div className={`p-8 border rounded-lg space-y-2 transition-all shadow-sm ${isLive ? 'bg-emerald-50 border-emerald-100' : 'bg-amber-50 border-amber-100'}`}>
-                <div className="flex items-center justify-between">
-                   <div className={`text-[10px] font-black uppercase tracking-widest ${isLive ? 'text-emerald-600' : 'text-amber-600'}`}>Engine Health</div>
-                   <button onClick={fetchRates} disabled={isLoading} className="p-2 hover:bg-black/5 rounded-full transition-colors">
-                      <RefreshCcw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
+             <div className={`border rounded-md p-4 text-center transition-colors ${isLive ? 'border-[#188038] bg-[#E6F4EA]' : 'border-[#F29900] bg-[#FFF9E6]'}`}>
+                <div className="flex justify-between items-center mb-1">
+                   <div className={`text-[10px] font-bold uppercase tracking-wider ${isLive ? 'text-[#188038]' : 'text-[#F29900]'}`}>Engine Health</div>
+                   <button onClick={fetchRates} disabled={isLoading} className="hover:opacity-70 transition-opacity">
+                      <RefreshCcw className={`w-3 h-3 ${isLive ? 'text-[#188038]' : 'text-[#F29900]'} ${isLoading ? 'animate-spin' : ''}`} />
                    </button>
                 </div>
-                <div className={`text-lg font-black ${isLive ? 'text-emerald-600' : 'text-amber-600'} uppercase tracking-tight`}>{isLive ? 'Live Sync' : 'Cache Active'}</div>
-                <div className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter">Updated: {lastUpdatedStr}</div>
+                <div className={`text-lg font-black ${isLive ? 'text-[#188038]' : 'text-[#F29900]'}`}>{isLive ? 'Live Sync' : 'Cache Active'}</div>
+                <div className="text-[8px] font-bold text-[#5F6368] uppercase mt-1">Updated: {lastUpdatedStr}</div>
              </div>
-             <div className="p-8 bg-blue-50 border border-blue-100 rounded-lg space-y-2 shadow-sm">
-                <div className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Active Rate</div>
-                <div className="text-2xl font-black text-blue-700 tracking-tighter font-mono">1:{results.rate}</div>
-                <div className="text-[9px] font-black text-[#1a0dab] uppercase">Unit Conversion</div>
+             <div className="border border-[#DADCE0] rounded-md p-4 text-center bg-white">
+                <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider mb-1">Active Rate</div>
+                <div className="text-lg font-black text-[#1A73E8]">1:{results.rate}</div>
+                <div className="text-[8px] font-bold text-[#5F6368] uppercase mt-1">Unit Conversion</div>
              </div>
           </div>
 
-          <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] shadow-sm relative overflow-hidden group">
-             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-all"><Zap className="w-24 h-24 text-blue-500" /></div>
-             <div className="relative z-10 space-y-4">
-                <div className="flex items-center gap-2">
-                   <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                   <h4 className="text-[10px] font-black uppercase tracking-widest text-emerald-400">Compliance Protocol</h4>
-                </div>
-                <p className="text-[11px] text-slate-400 leading-relaxed uppercase font-black tracking-tight">
-                   Forex valuations are mid-market benchmarks. Bank counter rates (Buying/Selling) typically deviate by 1.2% - 2.5% per transaction.
-                </p>
-             </div>
+          <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
+             <ShieldCheck className="w-5 h-5 text-[#188038] shrink-0" />
+             <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
+                Compliance Protocol: Forex valuations are mid-market benchmarks. Bank counter rates (Buying/Selling) typically deviate by 1.2% - 2.5% per transaction.
+             </p>
           </div>
         </div>
       }
       details={
-        <div className="space-y-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white border border-slate-200 rounded-lg p-10 shadow-sm relative overflow-hidden">
-               <div className="absolute top-0 right-0 p-6 opacity-5"><Activity className="w-20 h-20 text-blue-600" /></div>
-               <div className="flex items-center gap-3 mb-10">
-                <div className="p-3 bg-blue-50 rounded-2xl"><Target className="w-6 h-6 text-blue-600" /></div>
-                <h3 className="text-sm font-black text-slate-900 uppercase tracking-[0.2em]">Forex Volatility Matrix</h3>
-              </div>
-              <div className="h-[300px] w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={Object.entries(rates).slice(0, 8).map(([c, r]) => ({ code: c, rate: r }))}>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                    <XAxis dataKey="code" axisLine={false} tickLine={false} tick={{ fontSize: 10, fontWeight: 900, fill: '#64748b' }} />
-                    <YAxis hide />
-                    <Tooltip 
-                      cursor={{ fill: '#f8fafc' }}
-                      content={({ active, payload }) => {
-                        if (active && payload && payload.length) {
-                          return (
-                            <div className="bg-white border border-[#dadce0] text-[#202124] p-4 rounded-2xl shadow-sm border border-[#dadce0]">
-                              <p className="text-[10px] font-black uppercase tracking-widest text-[#1a0dab] mb-1">{payload[0].payload.code}</p>
-                              <p className="text-xl font-black font-mono tracking-tighter text-[#202124]">{payload[0].value} <span className="text-[10px] text-slate-500">NPR</span></p>
-                            </div>
-                          );
-                        }
-                        return null;
-                      }}
-                    />
-                    <Bar dataKey="rate" radius={[12, 12, 0, 0]}>
-                      {Object.entries(rates).slice(0, 8).map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry[0] === fromCurrency ? '#3b82f6' : '#e2e8f0'} />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
+        <div className="space-y-6">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-6 opacity-5"><Activity className="w-24 h-24 text-[#1A73E8]" /></div>
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
+                  <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Forex Volatility Matrix</h3>
+                </div>
+                <div className="h-[240px] w-full relative z-10">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={Object.entries(rates).slice(0, 8).map(([c, r]) => ({ code: c, rate: r }))}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F1F3F4" />
+                      <XAxis dataKey="code" axisLine={false} tickLine={false} tick={{ fontSize: 9, fontWeight: 'bold', fill: '#5F6368' }} />
+                      <YAxis hide />
+                      <Tooltip 
+                        cursor={{ fill: '#F8F9FA' }}
+                        content={({ active, payload }) => {
+                          if (active && payload && payload.length) {
+                            return (
+                              <div className="bg-[#202124] text-white p-3 rounded shadow-sm border border-[#5F6368]">
+                                <p className="text-[9px] font-bold uppercase text-[#5F6368] mb-1">{payload[0].payload.code}</p>
+                                <p className="text-sm font-black">{payload[0].value} NPR</p>
+                              </div>
+                            );
+                          }
+                          return null;
+                        }}
+                      />
+                      <Bar dataKey="rate" radius={[4, 4, 0, 0]}>
+                        {Object.entries(rates).slice(0, 8).map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry[0] === fromCurrency ? '#1A73E8' : '#DADCE0'} />
+                        ))}
+                      </Bar>
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+             </div>
 
-            <div className="bg-[#1A1A2E] text-[#202124] rounded-lg p-10 shadow-sm relative overflow-hidden flex flex-col justify-center">
-               <div className="absolute -bottom-12 -right-12 opacity-10"><RefreshCcw className="w-64 h-64 text-emerald-500" /></div>
-               <div className="relative z-10">
-                  <h3 className="text-3xl font-black mb-8 tracking-tight text-emerald-400 uppercase tracking-widest">NRB Peg Audit</h3>
-                  <div className="space-y-6">
-                     <div className="p-8 rounded-[2rem] bg-[#f8f9fa] border border-[#dadce0] group hover:bg-white/10 transition-all">
-                        <div className="flex justify-between items-center mb-4">
-                           <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">INR Fixed Anchor</span>
-                           <span className="text-3xl font-black text-emerald-400 font-mono">1.6000</span>
-                        </div>
-                        <p className="text-[11px] text-slate-500 leading-relaxed uppercase font-black tracking-tight">
-                           Since 1993, the Nepalese Rupee has been anchored to the Indian Rupee, serving as the bedrock of import price stability.
-                        </p>
+             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm flex flex-col justify-center">
+               <div className="flex items-center gap-2 mb-6">
+                 <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
+                 <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">NRB Peg Audit</h3>
+               </div>
+               <div className="space-y-4">
+                  <div className="p-4 rounded-md bg-[#F8F9FA] border border-[#DADCE0] flex flex-col gap-2 group hover:border-[#1A73E8] transition-colors">
+                     <div className="flex justify-between items-center">
+                        <span className="text-[10px] font-bold text-[#5F6368] uppercase">INR Fixed Anchor</span>
+                        <span className="text-lg font-black text-[#188038]">1.60</span>
                      </div>
-                     <div className="grid grid-cols-2 gap-4">
-                        <div className="p-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl">
-                           <div className="text-[9px] text-slate-400 uppercase font-black mb-2 tracking-widest">USD Base</div>
-                           <div className="text-lg font-black font-mono text-[#202124]">1:{rates['USD']}</div>
-                        </div>
-                        <div className="p-6 bg-[#f8f9fa] border border-[#dadce0] rounded-2xl">
-                           <div className="text-[9px] text-slate-400 uppercase font-black mb-2 tracking-widest">QAR Base</div>
-                           <div className="text-lg font-black font-mono text-[#202124]">1:{rates['QAR']}</div>
-                        </div>
+                     <p className="text-[10px] text-[#5F6368] leading-relaxed">
+                        Since 1993, the Nepalese Rupee has been anchored to the Indian Rupee, serving as the bedrock of import price stability.
+                     </p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                     <div className="p-4 rounded-md bg-[#F8F9FA] border border-[#DADCE0] text-center">
+                        <div className="text-[9px] font-bold text-[#5F6368] uppercase mb-1">USD Base</div>
+                        <div className="text-sm font-black text-[#202124]">1:{rates['USD']}</div>
+                     </div>
+                     <div className="p-4 rounded-md bg-[#F8F9FA] border border-[#DADCE0] text-center">
+                        <div className="text-[9px] font-bold text-[#5F6368] uppercase mb-1">QAR Base</div>
+                        <div className="text-sm font-black text-[#202124]">1:{rates['QAR']}</div>
                      </div>
                   </div>
                </div>
-            </div>
-          </div>
+             </div>
+           </div>
         </div>
       }
       howToUse={{
@@ -309,13 +303,35 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
       formula={{
         title: "Institutional Valuation Protocol",
         description: "Synthetic cross-rate calculation method aligned with NRB benchmarks.",
-        raw: "NPR_Value = Amount * Rate_Ref",
-        latex: "NPR_{Value} = Amount \\times Rate_{Ref}"
+        raw: "NPR_Value = Amount × Rate_Ref",
+        variables: [
+          "Mid-market Exchange Rate (Rate_Ref): Real-time aggregated interbank rate",
+          "Fixed Peg (INR): 1.60 fixed conversion for NPR to INR",
+          "Cross Rates: Determined algorithmically via USD and INR correlations"
+        ]
       }}
       faqs={[
-        { question: "Why is the bank rate different from this tool?", answer: "Banks include a Spread (profit margin). This tool provides the mid-market reference." },
-        { question: "Is the INR-NPR peg permanent?", answer: "It has been fixed at 1.6 since 1993. Any change would require a major NRB policy shift." }
+        { question: "Why is the bank rate different from this tool?", answer: "Banks include a Spread (profit margin) on their buying and selling rates. This tool provides the precise mid-market institutional reference." },
+        { question: "Is the INR-NPR peg permanent?", answer: "The 1.6 peg has been strictly maintained by Nepal Rastra Bank since 1993 to ensure macroeconomic and price stability, given high trade volumes with India." },
+        { question: "How often are rates updated?", answer: "Our engine synchronizes with global API endpoints, typically updating cached valuations every 30 minutes to capture live volatility." },
+        { question: "Does this include remittance fees?", answer: "No, this is a pure currency conversion. Remittance companies like Western Union or IME will apply their own exchange margins and transfer fees." }
+      ]}
+      sidebar={{
+        title: "Financial Hub",
+        subtitle: "Monetary Tools",
+        links: [
+          { label: "Gold Converter", href: "/calculator/gold-converter/", icon: Target },
+          { label: "Remittance Tool", href: "/calculator/remittance-calculator/", icon: Globe },
+          { label: "Salary Calculator", href: "/calculator/nepal-salary/", icon: Landmark },
+          { label: "Nepal Rastra Bank", href: "https://nrb.org.np", icon: ShieldCheck },
+        ],
+      }}
+      relatedTools={[
+        { label: "Gold Converter", href: "/calculator/gold-converter/" },
+        { label: "Remittance", href: "/calculator/remittance-calculator/" },
+        { label: "Salary Calculator", href: "/calculator/nepal-salary/" }
       ]}
     />
   );
 }
+

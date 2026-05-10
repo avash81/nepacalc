@@ -69,3 +69,4 @@ export function handleFirestoreError(
     console.error(`Firestore ${operation} on '${resource}':`, error);
   }
 }
+

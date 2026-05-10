@@ -9,3 +9,4 @@ export const metadata = calcMeta({
 });
 
 export default function Page() { return <Calculator />; }
+

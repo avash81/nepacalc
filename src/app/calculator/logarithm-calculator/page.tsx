@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["logarithm calculator", "log base calculator", "natural log calculator", "ln calculator", "log10 calculator", "change of base formula"],
 });
 export default function Page() { return <Calculator />; }
+

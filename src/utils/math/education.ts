@@ -68,3 +68,4 @@ export function calculateFraction(n1: number, d1: number, n2: number, d2: number
   const common = Math.abs(gcd(resN, resD));
   return { n: resN / common, d: resD / common, decimal: Number((resN / resD).toFixed(4)) };
 }
+

@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["engineering gpa calculator", "tu ioe gpa calculator", "ku gpa calculator", "pu cgpa calculator", "target gpa calculator", "semester gpa predictor"],
 });
 export default function Page() { return <Calculator />; }
+

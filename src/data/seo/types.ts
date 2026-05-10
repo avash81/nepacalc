@@ -9,7 +9,9 @@ export interface SEOContent {
     description: string;
     latex?: string;
     raw?: string;
+    variables?: string[];
   };
   content: React.ReactNode;
   faqs?: { question: string; answer: string }[];
 }
+

@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["3d geometry calculator", "volume calculator", "surface area calculator", "sphere volume formula", "cylinder volume", "cone surface area"],
 });
 export default function Page() { return <Calculator />; }
+

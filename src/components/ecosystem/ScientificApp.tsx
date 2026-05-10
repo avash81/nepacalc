@@ -171,3 +171,4 @@ export function ScientificApp({ mode }: { mode: 'scientific' | 'basic' }) {
     </div>
   );
 }
+

@@ -1,7 +1,7 @@
 'use client';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { useSyncState } from '@/hooks/useSyncState';
-import { Plane, ShieldAlert, ShieldCheck, HeartPulse, FileText } from 'lucide-react';
+import { Plane, ShieldAlert, ShieldCheck, HeartPulse, FileText, Globe, Landmark, Target, Scale, Activity } from 'lucide-react';
 
 const DESTINATIONS = [
   { id: 'qatar', name: 'Qatar', policy: 'Free Visa/Ticket', maxFee: 10000 },
@@ -13,7 +13,7 @@ const DESTINATIONS = [
 ];
 
 export default function ForeignEmploymentFee() {
-  const [state, setState] = useSyncState('foreign_emp_v2', { destinationId: 'qatar', medicalFee: 5000, insuranceFee: 2500, orientationFee: 700, manpowerFee: 10000 });
+  const [state, setState] = useSyncState('foreign_emp_v3', { destinationId: 'qatar', medicalFee: 5000, insuranceFee: 2500, orientationFee: 700, manpowerFee: 10000 });
   const { destinationId, medicalFee, insuranceFee, orientationFee, manpowerFee } = state;
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
@@ -22,66 +22,92 @@ export default function ForeignEmploymentFee() {
   const isOvercharged = manpowerFee > dest.maxFee;
 
   const fmt = (n: number) => n.toLocaleString('en-IN', { maximumFractionDigits: 0 });
-  const inputCls = "w-full h-12 pl-12 pr-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
-  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider block mb-1.5";
 
   return (
     <ModernCalcLayout
-      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Foreign Employment Fees' }]}
+      slug="foreign-employment"
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Foreign Employment' }]}
       title="Foreign Employment Fee Checker"
       description="Verify whether you are being overcharged for your foreign employment process. Check legal maximum fees for Qatar, UAE, Malaysia, Japan, and Korea."
       icon={Plane}
       inputs={
         <div className="space-y-6">
-           <div className="space-y-3">
-              <label className={labelCls}>Select Destination Country</label>
+           <div className="space-y-2">
+              <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Select Destination Country</label>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                  {DESTINATIONS.map(d => (
-                    <button key={d.id} onClick={() => update({ destinationId: d.id, manpowerFee: d.maxFee })}
-                      className={`p-3 border rounded-lg text-center transition-all ${destinationId === d.id ? 'bg-[#E8F0FE] border-[#1A73E8]' : 'bg-white border-[#DADCE0] hover:bg-[#F8F9FA]'}`}>
-                       <div className={`text-xs font-black uppercase tracking-tight ${destinationId === d.id ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>{d.name}</div>
-                       <div className="text-[9px] font-bold uppercase mt-1 text-[#70757A]">{d.policy}</div>
+                    <button 
+                      key={d.id} 
+                      onClick={() => update({ destinationId: d.id, manpowerFee: d.maxFee })}
+                      className={`h-16 flex flex-col justify-center items-center border rounded-md transition-all ${destinationId === d.id ? 'bg-[#E8F0FE] border-[#1A73E8]' : 'bg-white border-[#DADCE0] hover:border-[#1A73E8]'}`}
+                    >
+                       <div className={`text-[11px] font-black uppercase tracking-tight ${destinationId === d.id ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>{d.name}</div>
+                       <div className={`text-[9px] font-bold uppercase mt-1 ${destinationId === d.id ? 'text-[#1A73E8]' : 'text-[#5F6368]'}`}>{d.policy}</div>
                     </button>
                  ))}
               </div>
            </div>
 
-           <div className="pt-6 border-t border-[#DADCE0] space-y-4">
-              <div>
-                 <label className={labelCls}>Agency / Manpower Fee Charged</label>
+           <div className="pt-4 border-t border-[#F1F3F4] space-y-6">
+              <div className="space-y-2">
+                 <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Agency / Manpower Fee Charged</label>
                  <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-[#70757A]">Rs.</span>
-                    <input type="number" value={manpowerFee} min={0} onChange={e => update({ manpowerFee: Number(e.target.value) })} className={`${inputCls} ${isOvercharged ? 'border-[#D93025] focus:border-[#D93025] focus:ring-[#D93025]' : ''}`} />
+                    <span className={`absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold ${isOvercharged ? 'text-[#D93025]' : 'text-[#5F6368]'}`}>Rs.</span>
+                    <input 
+                      type="number" 
+                      value={manpowerFee} 
+                      min={0} 
+                      onChange={e => update({ manpowerFee: Number(e.target.value) })} 
+                      className={`w-full h-12 pl-12 pr-4 border rounded-md bg-white text-sm font-bold text-[#202124] outline-none transition-all ${isOvercharged ? 'border-[#D93025] focus:border-[#D93025]' : 'border-[#DADCE0] focus:border-[#1A73E8]'}`} 
+                    />
                  </div>
                  {isOvercharged && <p className="text-[10px] font-bold text-[#D93025] uppercase tracking-wider mt-1 px-1">Legal Limit is Rs. {fmt(dest.maxFee)}</p>}
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                 <div>
-                    <label className={labelCls}>Medical (GAMCA)</label>
+                 <div className="space-y-2">
+                    <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Medical (GAMCA)</label>
                     <div className="relative">
-                       <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-[#70757A]">Rs.</span>
-                       <input type="number" value={medicalFee} min={0} onChange={e => update({ medicalFee: Number(e.target.value) })} className={inputCls} />
+                       <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-[#5F6368]">Rs.</span>
+                       <input 
+                         type="number" 
+                         value={medicalFee} 
+                         min={0} 
+                         onChange={e => update({ medicalFee: Number(e.target.value) })} 
+                         className="w-full h-11 pl-9 pr-3 border border-[#DADCE0] rounded-md bg-white text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all" 
+                       />
                     </div>
                  </div>
-                 <div>
-                    <label className={labelCls}>Insurance (DOFE)</label>
+                 <div className="space-y-2">
+                    <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Insurance (DOFE)</label>
                     <div className="relative">
-                       <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-[#70757A]">Rs.</span>
-                       <input type="number" value={insuranceFee} min={0} onChange={e => update({ insuranceFee: Number(e.target.value) })} className={inputCls} />
+                       <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-[#5F6368]">Rs.</span>
+                       <input 
+                         type="number" 
+                         value={insuranceFee} 
+                         min={0} 
+                         onChange={e => update({ insuranceFee: Number(e.target.value) })} 
+                         className="w-full h-11 pl-9 pr-3 border border-[#DADCE0] rounded-md bg-white text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all" 
+                       />
                     </div>
                  </div>
-                 <div>
-                    <label className={labelCls}>Orientation</label>
+                 <div className="space-y-2">
+                    <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Orientation</label>
                     <div className="relative">
-                       <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-[#70757A]">Rs.</span>
-                       <input type="number" value={orientationFee} min={0} onChange={e => update({ orientationFee: Number(e.target.value) })} className={inputCls} />
+                       <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-[#5F6368]">Rs.</span>
+                       <input 
+                         type="number" 
+                         value={orientationFee} 
+                         min={0} 
+                         onChange={e => update({ orientationFee: Number(e.target.value) })} 
+                         className="w-full h-11 pl-9 pr-3 border border-[#DADCE0] rounded-md bg-white text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all" 
+                       />
                     </div>
                  </div>
               </div>
            </div>
 
-           <div className={`p-5 rounded-lg border flex gap-4 ${isOvercharged ? 'bg-[#FCE8E6] border-[#FAD2CF]' : 'bg-[#E6F4EA] border-[#CEEAD6]'}`}>
+           <div className={`p-5 rounded-md border flex gap-4 ${isOvercharged ? 'bg-[#FCE8E6] border-[#D93025]' : 'bg-[#E6F4EA] border-[#188038]'}`}>
               <div className="mt-0.5">
                  {isOvercharged ? <ShieldAlert className="w-6 h-6 text-[#D93025]" /> : <ShieldCheck className="w-6 h-6 text-[#188038]" />}
               </div>
@@ -89,7 +115,7 @@ export default function ForeignEmploymentFee() {
                  <h4 className={`text-[11px] font-black uppercase tracking-wider mb-1 ${isOvercharged ? 'text-[#D93025]' : 'text-[#188038]'}`}>
                     {isOvercharged ? 'OVERCHARGE DETECTED' : 'FEE COMPLIANCE OK'}
                  </h4>
-                 <p className={`text-[10px] leading-relaxed ${isOvercharged ? 'text-[#B3261E]' : 'text-[#0F5223]'}`}>
+                 <p className={`text-[10px] leading-relaxed uppercase font-bold ${isOvercharged ? 'text-[#D93025]' : 'text-[#188038]'}`}>
                     {isOvercharged ? `The recruitment agency is illegally overcharging you by Rs. ${fmt(manpowerFee - dest.maxFee)}. The government limit for ${dest.name} is Rs. ${fmt(dest.maxFee)}.` : `The manpower fee complies with the current DOFE policies for ${dest.name}. Note: Keep bank receipts for all payments.`}
                  </p>
               </div>
@@ -97,52 +123,59 @@ export default function ForeignEmploymentFee() {
         </div>
       }
       results={
-        <div className="space-y-6">
-          <div className={`p-8 rounded-lg border text-center ${isOvercharged ? 'bg-[#FCE8E6] border-[#FAD2CF]' : 'bg-[#E6F4EA] border-[#CEEAD6]'}`}>
-             <div className={`text-[10px] font-bold uppercase tracking-wider mb-2 ${isOvercharged ? 'text-[#D93025]' : 'text-[#188038]'}`}>Total Process Cost</div>
-             <div className={`text-5xl font-black tracking-tighter flex items-baseline justify-center gap-2 ${isOvercharged ? 'text-[#D93025]' : 'text-[#188038]'}`}>
+        <div className="space-y-6 h-full flex flex-col justify-center">
+          <div className={`p-10 rounded-lg text-center space-y-2 ${isOvercharged ? 'bg-[#FCE8E6]' : 'bg-[#E8F0FE]'}`}>
+             <div className={`text-[10px] font-bold uppercase tracking-wider ${isOvercharged ? 'text-[#D93025]' : 'text-[#1A73E8]'}`}>Total Process Cost</div>
+             <div className={`text-5xl font-black tracking-tight ${isOvercharged ? 'text-[#D93025]' : 'text-[#1A73E8]'}`}>
                Rs. {fmt(totalCharge)}
              </div>
-             <div className="text-[10px] font-bold text-[#70757A] uppercase mt-2">Includes statutory & agency fees</div>
+             <div className="flex justify-center mt-2">
+                <span className={`px-4 py-1.5 bg-white rounded-full text-[10px] font-black uppercase border shadow-sm ${isOvercharged ? 'border-[#FAD2CF] text-[#D93025]' : 'border-[#DADCE0] text-[#5F6368]'}`}>
+                   Includes statutory & agency fees
+                </span>
+             </div>
           </div>
 
-          <div className="bg-[#1A1A2E] rounded-lg p-6 space-y-4 border border-[#DADCE0] relative overflow-hidden">
-             <Plane className="absolute top-0 right-0 p-4 w-24 h-24 text-[#202124]/5 pointer-events-none" />
-             <div className="text-[10px] font-bold text-[#8AB4F8] uppercase tracking-wider relative z-10">Migration Ledger Tracker</div>
+          <div className="bg-white rounded-lg p-6 space-y-4 border border-[#DADCE0] shadow-sm relative overflow-hidden">
+             <Plane className="absolute top-0 right-0 p-4 w-24 h-24 text-[#1A73E8] opacity-5 pointer-events-none" />
+             <div className="flex items-center gap-2 mb-2 relative z-10">
+               <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
+               <div className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Migration Ledger Tracker</div>
+             </div>
              
-             <div className="space-y-3 relative z-10">
-                <div className="flex justify-between items-center pb-2 border-b border-[#dadce0]">
-                   <span className="text-xs text-[#202124]/70">Legal Max Service Fee</span>
-                   <span className="text-sm font-black text-[#81C995] font-mono">Rs. {fmt(dest.maxFee)}</span>
+             <div className="space-y-2 relative z-10">
+                <div className="flex justify-between items-center p-3 bg-[#F8F9FA] rounded-md border border-[#DADCE0]">
+                   <span className="text-[10px] font-bold text-[#5F6368] uppercase">Legal Max Service Fee</span>
+                   <span className="text-sm font-black text-[#188038]">Rs. {fmt(dest.maxFee)}</span>
                 </div>
-                <div className="flex justify-between items-center pb-2 border-b border-[#dadce0]">
-                   <span className="text-xs text-[#202124]/70">Statutory Expenses (Med/Ins/Ori)</span>
-                   <span className="text-sm font-black text-[#202124] font-mono">Rs. {fmt(medicalFee + insuranceFee + orientationFee)}</span>
+                <div className="flex justify-between items-center p-3 bg-[#F8F9FA] rounded-md border border-[#DADCE0]">
+                   <span className="text-[10px] font-bold text-[#5F6368] uppercase">Statutory (Med/Ins/Ori)</span>
+                   <span className="text-sm font-black text-[#202124]">Rs. {fmt(medicalFee + insuranceFee + orientationFee)}</span>
                 </div>
-                <div className="flex justify-between items-center pb-2 border-b border-[#dadce0]">
-                   <span className="text-xs text-[#202124]/70">Overcharge Amount</span>
-                   <span className={`text-sm font-black font-mono ${isOvercharged ? 'text-[#F28B82]' : 'text-[#81C995]'}`}>
+                <div className={`flex justify-between items-center p-3 rounded-md border ${isOvercharged ? 'bg-[#FCE8E6] border-[#D93025]' : 'bg-[#E6F4EA] border-[#188038]'}`}>
+                   <span className={`text-[10px] font-bold uppercase ${isOvercharged ? 'text-[#D93025]' : 'text-[#188038]'}`}>Overcharge Amount</span>
+                   <span className={`text-sm font-black ${isOvercharged ? 'text-[#D93025]' : 'text-[#188038]'}`}>
                      Rs. {isOvercharged ? fmt(manpowerFee - dest.maxFee) : '0'}
                    </span>
                 </div>
              </div>
           </div>
 
-          <div className="p-5 bg-white border border-[#DADCE0] rounded-lg flex gap-3">
-             <FileText className="w-5 h-5 text-[#E37400] shrink-0 mt-0.5" />
+          <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
+             <FileText className="w-5 h-5 text-[#F29900] shrink-0" />
              <div className="space-y-1">
-                <h5 className="text-[10px] font-bold text-[#70757A] uppercase tracking-wider">DOFE Verification</h5>
-                <p className="text-[11px] text-[#202124] leading-relaxed">
-                   Verify your demand letter strictly on the official DOFE website. Never hand over your passport to a recruitment agent without a formal receipt. Pay only via bank deposit.
+                <h5 className="text-[9px] font-black text-[#5F6368] uppercase tracking-wider">DOFE Verification Protocol</h5>
+                <p className="text-[9px] text-[#5F6368] font-bold uppercase leading-relaxed">
+                   Verify your demand letter strictly on the official DOFE website. Never hand over your passport without a formal receipt. Pay only via bank deposit.
                 </p>
              </div>
           </div>
         </div>
       }
       details={
-        <div className="space-y-8">
+        <div className="space-y-6">
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">DOFE Compliance & Financial Security</h2>
+            <h2 className="text-xl font-black text-[#202124] mb-4 uppercase">DOFE Compliance & Financial Security</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
               <p>
                 Navigating the financial requirements for overseas work requires strict adherence to Department of Foreign Employment (DOFE) guidelines. Our <strong className="text-[#202124]">foreign employment fee nepal</strong> calculator is engineered as a defensive compliance tool, instantly flagging if a recruitment agency is demanding illegal overcharges.
@@ -176,7 +209,12 @@ export default function ForeignEmploymentFee() {
       formula={{
         title: "Nepal DOFE Statutory Model",
         description: "Standard model used to differentiate between legal limits and total out-of-pocket costs.",
-        raw: "1. Legal Limit = Max Manpower Fee allowed for destination\n2. Overcharge = (Demanded Manpower Fee), (Legal Limit)\n3. Total Process Cost = Demanded Manpower Fee + Medical + Insurance + Orientation\n\n*If Overcharge > 0, the agency is violating DOFE regulations."
+        raw: "Overcharge = Demanded Manpower Fee - Legal Limit",
+        variables: [
+          "Legal Limit: Max Manpower Fee allowed for destination (e.g. 10k for Gulf)",
+          "Total Process Cost: Demanded Manpower Fee + Medical + Insurance + Orientation",
+          "If Overcharge > 0, the agency is violating DOFE regulations."
+        ]
       }}
       faqs={[
         {
@@ -204,18 +242,23 @@ export default function ForeignEmploymentFee() {
           answer: "We recommend adding your Foreign Employment Welfare Fund deposit (usually Rs. 1,500 or Rs. 2,500 depending on tenure) into the 'Insurance' or 'Orientation' box to see your total out-of-pocket expense accurately."
         }
       ]}
-      sidebar={{ title: "Public Service", links: [
-          { label: "Passport Status Checker", href: "/calculator/passport-status/" }, { label: "Remittance Calculator", href: "/calculator/remittance-calculator/" },
-          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
-          { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
-          { label: "Nepal Salary", href: "/calculator/nepal-salary/" }
-        ], banner: { title: "Migrant Safety", description: "Report illegal fee demands to the Department of Foreign Employment.", image: "/images/nepal-banner.jpg" } }}
+      sidebar={{
+        title: "Public Service",
+        subtitle: "Migration Checkers",
+        links: [
+          { label: "Remittance Tool", href: "/calculator/remittance-calculator/", icon: Globe },
+          { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/", icon: Scale },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax/", icon: Landmark },
+          { label: "Nepal Salary", href: "/calculator/nepal-salary/", icon: Activity }
+        ],
+      }}
       relatedTools={[
-        { label: "Remittance Calculator", href: "/calculator/remittance-calculator/" },
+        { label: "Remittance", href: "/calculator/remittance-calculator/" },
         { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
-          { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
-          { label: "Nepal Salary", href: "/calculator/nepal-salary/" }
+        { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
+        { label: "Nepal Salary", href: "/calculator/nepal-salary/" }
       ]}
     />
   );
 }
+

@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["concrete mix calculator", "cement bag calculator", "sand and aggregate calculator", "m20 concrete mix ratio", "dry volume factor concrete", "civil engineering calculator nepal"],
 });
 export default function Page() { return <Calculator />; }
+

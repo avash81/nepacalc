@@ -33,7 +33,7 @@ import {
   calculateFraction 
 } from '@/utils/math/education';
 
-import { calculateNepalVAT } from '@/utils/math/country-rules/nepal';
+import { calculateNepalVAT, calculateNepalIncomeTax } from '@/utils/math/country-rules/nepal';
 import { toRoman, fromRoman } from '@/utils/math/conversion';
 import { AdvancedSolvers } from '@/utils/math/advancedSolvers';
 
@@ -128,8 +128,27 @@ describe('NEPACALC MASTER ACCURACY AUDIT', () => {
       expect(res.priceIncludingVAT).toBe(11300);
     });
 
-    test('Roman Numerals: 2024', () => {
-      expect(toRoman(2024)).toBe('MMXXIV');
+    test('Roman Numerals: 2026', () => {
+      expect(toRoman(2026)).toBe('MMXXVI');
+    });
+
+    test('Nepal Income Tax (Single, 10L, No SSF)', () => {
+      const res = calculateNepalIncomeTax(1000000, false, false);
+      expect(res.totalTax).toBe(85000);
+    });
+
+    test('Nepal Income Tax (Married, 11L, No SSF)', () => {
+      const res = calculateNepalIncomeTax(1100000, true, false);
+      expect(res.totalTax).toBe(86000);
+    });
+
+    test('Nepal Income Tax (Single, 10L, SSF Contributor)', () => {
+      const res = calculateNepalIncomeTax(1000000, false, true);
+      // SSF = 11% of 10L = 110,000
+      // Taxable = 890,000
+      // Slabs: 5L (0% due to SSF), 2L (10%), 1.9L (20%)
+      // Tax = 0 + 20,000 + 38,000 = 58,000
+      expect(res.totalTax).toBe(58000);
     });
   });
 
@@ -152,3 +171,4 @@ describe('NEPACALC MASTER ACCURACY AUDIT', () => {
   });
 
 });
+

@@ -109,3 +109,4 @@ export function calcMeta({ title, description, slug, keywords = [], canonical }:
     },
   };
 }
+

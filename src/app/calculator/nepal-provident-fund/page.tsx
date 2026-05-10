@@ -8,4 +8,11 @@ export const metadata = calcMeta({
   keywords: ["nepal provident fund calculator", "epf calculator nepal", "pf gratuity nepal", "labor act 2074 pf", "ssf nepal calculator", "retirement fund nepal"],
 });
 
-export default function Page() { return <Calculator />; }
+export default function Page() {
+  return (
+    <div className="bg-[#F1F3F4]">
+      <Calculator />
+    </div>
+  );
+}
+

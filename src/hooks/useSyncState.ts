@@ -81,3 +81,4 @@ export function useSyncState<T>(
 
   return [state, setState] as const;
 }
+

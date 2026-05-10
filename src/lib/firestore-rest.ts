@@ -101,3 +101,4 @@ export async function fetchDocumentBySlug(collectionName: string, slug: string) 
     return null;
   }
 }
+

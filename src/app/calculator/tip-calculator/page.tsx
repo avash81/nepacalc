@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["tip calculator", "bill split calculator", "restaurant tip nepal", "split bill calculator", "how much to tip nepal"],
 });
 export default function Page() { return <Calculator />; }
+

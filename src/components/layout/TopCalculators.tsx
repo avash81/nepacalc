@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { TrendingUp, Wallet, Zap, GraduationCap, MapPin, Calendar, Car, Home, LineChart, Landmark } from 'lucide-react';
 
 const TOP_CALCS = [
-  { name: 'Income Tax', slug: 'nepal-income-tax', icon: Wallet, color: 'text-emerald-600', desc: 'FY 2081/82 Slabs' },
+  { name: 'Income Tax', slug: 'nepal-income-tax', icon: Wallet, color: 'text-emerald-600', desc: 'FY 2082/83 Slabs' },
   { name: 'EMI Calculator', slug: 'loan-emi', icon: Landmark, color: 'text-blue-600', desc: 'Home & Car Loans' },
-  { name: 'SEE GPA', slug: 'see-gpa', icon: GraduationCap, color: 'text-indigo-600', desc: 'New 2081 System' },
+  { name: 'SEE GPA', slug: 'see-gpa', icon: GraduationCap, color: 'text-indigo-600', desc: 'New 2082 System' },
   { name: 'NEA Bill', slug: 'nea-bill', icon: Zap, color: 'text-amber-600', desc: 'Domestic Tariff' },
   { name: 'Salary Tool', slug: 'nepal-salary', icon: Landmark, color: 'text-cyan-600', desc: 'Net Pay & SSF' },
   { name: 'Stock Market', slug: 'nepal-stocks', icon: LineChart, color: 'text-rose-600', desc: 'NEPSE Commissions' },
@@ -43,3 +43,4 @@ export function TopCalculators() {
     </section>
   );
 }
+

@@ -69,3 +69,4 @@ export function QuickPresets({ presets, onSelect }: QuickPresetsProps) {
     </div>
   );
 }
+

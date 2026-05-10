@@ -1,11 +1,11 @@
 'use client';
 import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Home, Gavel, FileCheck, Info } from 'lucide-react';
+import { Home, Gavel, FileCheck, Info, ShieldCheck, Activity, Map, Landmark } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
 
 export default function PropertyTaxCalculator() {
-  const [state, setState] = useSyncState('property_tax_v1', {
+  const [state, setState] = useSyncState('property_tax_v2', {
     sellingPrice: 5000000, costPrice: 3500000, expenses: 100000,
     holdingPeriod: 'moreThanFive' as 'moreThanFive' | 'lessThanFive',
   });
@@ -21,105 +21,182 @@ export default function PropertyTaxCalculator() {
   }, [sellingPrice, costPrice, expenses, holdingPeriod]);
 
   const fmt = (n: number) => 'Rs. ' + Math.round(n).toLocaleString('en-IN');
-  const inputCls = "w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all";
-  const labelCls = "text-[11px] font-bold uppercase text-[#70757A] tracking-wider";
 
   return (
     <ModernCalcLayout
-      crumbs={[{ label: 'Nepal Tools', href: '/nepal/' }, { label: 'Capital Gains Tax (CGT)' }]}
-      title="Property Capital Gains Tax (CGT)"
-      description="Calculate 5% or 7.5% CGT on property sale profit in Nepal based on holding period. Based on Nepal Income Tax Act FY 2081/82 mandates."
+      slug="property-tax"
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Capital Gains Tax' }]}
+      title="Property Capital Gains Tax"
+      description="Calculate 5% or 7.5% CGT on property sale profit in Nepal based on holding period. Engineered to match Nepal Inland Revenue Department (IRD) mandates."
       icon={Home}
       inputs={
         <div className="space-y-6">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Selling Price (NPR)</label>
+                <input 
+                  type="number" 
+                  value={sellingPrice} 
+                  onChange={e => update({ sellingPrice: Number(e.target.value) })} 
+                  className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-bold focus:border-[#1A73E8] outline-none transition-all" 
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Original Cost Price (NPR)</label>
+                <input 
+                  type="number" 
+                  value={costPrice} 
+                  onChange={e => update({ costPrice: Number(e.target.value) })} 
+                  className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-bold focus:border-[#1A73E8] outline-none transition-all" 
+                />
+              </div>
+            </div>
+
             <div className="space-y-2">
-              <label className={labelCls}>Selling Price (Rs.)</label>
-              <input type="number" value={sellingPrice} onChange={e => update({ sellingPrice: Number(e.target.value) })} className={inputCls} />
+              <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Deductible Expenses (NPR)</label>
+              <input 
+                type="number" 
+                value={expenses} 
+                onChange={e => update({ expenses: Number(e.target.value) })} 
+                className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-bold focus:border-[#1A73E8] outline-none transition-all" 
+              />
+              <p className="text-[9px] text-[#5F6368] font-bold uppercase tracking-wider mt-1">Registry fees, taxes paid, documented improvements</p>
             </div>
+
             <div className="space-y-2">
-              <label className={labelCls}>Original Cost Price (Rs.)</label>
-              <input type="number" value={costPrice} onChange={e => update({ costPrice: Number(e.target.value) })} className={inputCls} />
+              <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">How long was the property held?</label>
+              <div className="grid grid-cols-2 gap-3">
+                {[{ id: 'moreThanFive', label: 'More than 5 Years', rate: '5%', desc: 'Long-term' },
+                  { id: 'lessThanFive', label: 'Less than 5 Years', rate: '7.5%', desc: 'Short-term' }].map(m => (
+                  <button 
+                    key={m.id} 
+                    onClick={() => update({ holdingPeriod: m.id as any })}
+                    className={`h-16 px-4 rounded-md border text-left flex flex-col justify-center transition-all ${holdingPeriod === m.id ? 'border-[#1A73E8] bg-[#E8F0FE]' : 'border-[#DADCE0] bg-white hover:border-[#1A73E8]'}`}
+                  >
+                    <div className="flex justify-between items-center w-full mb-1">
+                      <span className={`text-[11px] font-black uppercase ${holdingPeriod === m.id ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>{m.label}</span>
+                      <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${holdingPeriod === m.id ? 'bg-[#1A73E8] text-white' : 'bg-[#F8F9FA] text-[#5F6368] border border-[#DADCE0]'}`}>{m.rate}</span>
+                    </div>
+                    <p className={`text-[9px] uppercase font-bold ${holdingPeriod === m.id ? 'text-[#1A73E8]' : 'text-[#5F6368]'}`}>{m.desc}</p>
+                  </button>
+                ))}
+              </div>
             </div>
+
+            {result.exempt && (
+              <div className="flex gap-3 p-4 bg-[#E6F4EA] border border-[#188038] rounded-md items-start">
+                <ShieldCheck className="w-5 h-5 text-[#188038] shrink-0" />
+                <p className="text-[10px] text-[#188038] font-bold leading-relaxed uppercase">
+                  Statutory Exemption: Selling price below Rs. 10,00,000 is fully exempt from Capital Gains Tax.
+                </p>
+              </div>
+            )}
           </div>
-          <div className="space-y-2">
-            <label className={labelCls}>Deductible Expenses (Rs.)</label>
-            <input type="number" value={expenses} onChange={e => update({ expenses: Number(e.target.value) })} className={inputCls} />
-            <p className="text-[9px] text-[#70757A]">Registry fees, taxes paid, improvements</p>
-          </div>
-          <div className="space-y-2">
-            <label className={labelCls}>How long was the property held?</label>
-            <div className="grid grid-cols-2 gap-3">
-              {[{ id: 'moreThanFive', label: 'More than 5 Years', rate: '5%', desc: 'Long-term' },
-                { id: 'lessThanFive', label: 'Less than 5 Years', rate: '7.5%', desc: 'Short-term' }].map(m => (
-                <button key={m.id} onClick={() => update({ holdingPeriod: m.id as any })}
-                  className={`p-4 rounded-lg border text-left transition-all ${holdingPeriod === m.id ? 'border-[#1A73E8] bg-[#E8F0FE]' : 'border-[#DADCE0] bg-white'}`}>
-                  <div className="flex justify-between mb-1">
-                    <span className={`text-[11px] font-black ${holdingPeriod === m.id ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>{m.label}</span>
-                    <span className={`text-[10px] font-black px-1.5 py-0.5 rounded ${holdingPeriod === m.id ? 'bg-[#1A73E8] text-[#202124]' : 'bg-[#F1F3F4] text-[#5F6368]'}`}>{m.rate}</span>
-                  </div>
-                  <p className="text-[9px] text-[#70757A]">{m.desc}</p>
-                </button>
-              ))}
-            </div>
-          </div>
-          {result.exempt && (
-            <div className="flex gap-2 p-3 bg-[#E6F4EA] border border-[#CEEAD6] rounded-lg items-start">
-              <FileCheck className="w-4 h-4 text-[#188038] shrink-0 mt-0.5" />
-              <p className="text-[10px] text-[#188038] font-bold">Exemption: Selling price below Rs. 10,00,000 is exempt from Capital Gains Tax.</p>
-            </div>
-          )}
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] font-bold uppercase tracking-widest rounded-md transition-colors">Calculate CGT</button>
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+             Generate CGT Audit
+          </button>
         </div>
       }
       results={
-        <div className="space-y-6">
-          <div className={`p-6 rounded-lg border text-center space-y-1 ${result.exempt ? 'bg-[#E6F4EA] border-[#CEEAD6]' : 'bg-[#FCE8E6] border-[#FAD2CF]'}`}>
-            <div className={`text-[10px] font-bold uppercase tracking-wider ${result.exempt ? 'text-[#188038]' : 'text-[#D93025]'}`}>Capital Gains Tax Payable</div>
-            <div className={`text-4xl font-black ${result.exempt ? 'text-[#188038]' : 'text-[#D93025]'}`}>{fmt(result.taxAmount)}</div>
-            <div className="text-[9px] text-[#70757A] font-bold uppercase">{result.exempt ? 'Exempt Transaction' : `${(result.taxRate * 100).toFixed(1)}% on Net Profit`}</div>
+        <div className="space-y-6 h-full flex flex-col justify-center">
+          <div className={`rounded-lg p-10 text-center space-y-2 ${result.exempt ? 'bg-[#E6F4EA]' : 'bg-[#E8F0FE]'}`}>
+             <div className={`text-[10px] font-bold uppercase tracking-wider ${result.exempt ? 'text-[#188038]' : 'text-[#1A73E8]'}`}>Capital Gains Tax Payable</div>
+             <div className={`text-5xl font-black tracking-tight ${result.exempt ? 'text-[#188038]' : 'text-[#1A73E8]'}`}>{fmt(result.taxAmount)}</div>
+             <div className="flex justify-center mt-2">
+                <span className={`px-4 py-1.5 bg-white rounded-full text-[10px] font-black uppercase border shadow-sm ${result.exempt ? 'text-[#188038] border-[#CEEAD6]' : 'text-[#5F6368] border-[#DADCE0]'}`}>
+                   {result.exempt ? 'Exempt Transaction' : `${(result.taxRate * 100).toFixed(1)}% on Net Profit`}
+                </span>
+             </div>
           </div>
-          <div className="bg-white border border-[#DADCE0] rounded-lg overflow-hidden">
-            <div className="px-4 py-2 bg-[#F8F9FA] border-b border-[#DADCE0] flex items-center gap-2">
-              <Gavel className="w-3 h-3 text-[#D93025]" />
-              <span className="text-[10px] font-bold text-[#70757A] uppercase">Tax Calculation</span>
-            </div>
-            <div className="divide-y divide-[#DADCE0]">
-              <div className="p-3 flex justify-between text-xs"><span className="text-[#5F6368]">Selling Price</span><span className="font-black">{fmt(sellingPrice)}</span></div>
-              <div className="p-3 flex justify-between text-xs"><span className="text-[#5F6368]">Cost Price + Expenses</span><span className="font-black">− {fmt(costPrice + expenses)}</span></div>
-              <div className="p-3 flex justify-between text-xs"><span className="text-[#5F6368]">Taxable Profit (Gain)</span><span className="font-black">{fmt(result.profit)}</span></div>
-              <div className="p-3 flex justify-between text-xs"><span className="text-[#5F6368]">Tax Rate</span><span className="font-black text-[#D93025]">{(result.taxRate * 100).toFixed(1)}%</span></div>
-              <div className="p-3 flex justify-between text-xs bg-[#F8F9FA]"><span className="font-bold text-[#202124]">Final CGT Payable</span><span className="font-black text-[#D93025]">{fmt(result.taxAmount)}</span></div>
-            </div>
+
+          <div className="border border-[#DADCE0] rounded-lg overflow-hidden bg-white">
+             <div className="px-4 py-3 bg-[#F8F9FA] border-b border-[#DADCE0] flex items-center gap-2">
+                <Gavel className="w-3.5 h-3.5 text-[#202124]" />
+                <span className="text-[10px] font-black text-[#202124] uppercase tracking-wider">Tax Calculation Ledger</span>
+             </div>
+             <div className="divide-y divide-[#F1F3F4] p-2">
+                <div className="p-3 flex justify-between items-center rounded hover:bg-[#F8F9FA] transition-colors">
+                   <span className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Selling Price</span>
+                   <span className="text-sm font-black text-[#202124]">{fmt(sellingPrice)}</span>
+                </div>
+                <div className="p-3 flex justify-between items-center rounded hover:bg-[#F8F9FA] transition-colors">
+                   <span className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Cost + Expenses</span>
+                   <span className="text-sm font-black text-[#D93025]">− {fmt(costPrice + expenses)}</span>
+                </div>
+                <div className="p-3 flex justify-between items-center rounded bg-[#F8F9FA] border border-[#DADCE0]">
+                   <span className="text-[11px] font-bold text-[#1A73E8] uppercase tracking-wider">Taxable Profit (Gain)</span>
+                   <span className="text-sm font-black text-[#1A73E8]">{fmt(result.profit)}</span>
+                </div>
+                <div className="p-3 flex justify-between items-center rounded hover:bg-[#F8F9FA] transition-colors">
+                   <span className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Tax Rate Multiplier</span>
+                   <span className="text-sm font-black text-[#D93025]">{(result.taxRate * 100).toFixed(1)}%</span>
+                </div>
+             </div>
           </div>
-          <div className="flex gap-2 p-3 bg-[#E8F0FE] border border-[#C5D9F7] rounded-lg items-start">
-            <Info className="w-4 h-4 text-[#1A73E8] shrink-0 mt-0.5" />
-            <p className="text-[10px] text-[#202124] leading-tight">CGT is paid at the Malpok office during registration. Tax is on profit (gain), not on total selling price.</p>
+
+          <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
+             <ShieldCheck className="w-5 h-5 text-[#188038] shrink-0" />
+             <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
+                Compliance Protocol: CGT must be cleared at the Malpok office during registration. Tax is strictly levied on net profit (gain), not the gross selling price.
+             </p>
           </div>
         </div>
       }
       details={
-        <div className="space-y-8">
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h2 className="text-xl font-black text-[#202124] mb-4">Mastering the Property Tax Framework in Nepal</h2>
-            <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">
-              <p>
-                Selling real estate involves strict regulatory overhead. Our <strong className="text-[#202124]">nepal property tax calculator</strong> is engineered to parse the exact mandates of the Inland Revenue Department (IRD). Unlike a standard income <strong className="text-[#202124]">tax calculator 2024</strong> or <strong className="text-[#202124]">tax calculator 2025</strong>, the Capital Gains Tax (CGT) on property is an exclusive levy triggered only during the transfer of ownership at the Malpot (Land Revenue) office.
-              </p>
-              <p>
-                The fundamental logic dictating the <strong className="text-[#202124]">capital gains tax nepal</strong> rate relies entirely on the holding period. Rather than applying a blanket percentage, the algorithm calculates whether the asset was held for a short-term duration (&lt; 5 years) or a long-term duration (≥ 5 years). This dynamic <strong className="text-[#202124]">cgt on property sale nepal</strong> logic mathematically mirrors the exact ledger calculations performed by government tax officers.
-              </p>
-            </div>
-          </div>
+        <div className="space-y-6">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-8 opacity-5"><Landmark className="w-24 h-24 text-[#1A73E8]" /></div>
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
+                  <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Property Tax Framework</h3>
+                </div>
+                <p className="text-sm text-[#5F6368] leading-relaxed relative z-10 mb-6">
+                  Selling real estate involves strict regulatory overhead. Our engine parses the exact mandates of the Inland Revenue Department (IRD). The Capital Gains Tax (CGT) on property is an exclusive levy triggered only during the transfer of ownership at the Malpot (Land Revenue) office.
+                </p>
+                <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md text-center">
+                   <div className="text-[10px] font-black text-[#1A73E8] uppercase mb-1">Duration Trigger</div>
+                   <p className="text-[11px] font-bold text-[#5F6368]">Logic relies strictly on holding period (Short-term vs Long-term).</p>
+                </div>
+             </div>
 
-          <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-bold text-[#202124] mb-4 border-b border-[#F1F3F4] pb-2">Mathematical Deductions & Exemptions</h3>
-            <ul className="space-y-3 text-sm text-[#5F6368] list-disc pl-5">
-              <li><strong className="text-[#1A73E8]">Net Taxable Profit:</strong> A critical error users make is calculating tax on the gross selling price. As a definitive <strong className="text-[#202124]">land tax calculator nepal</strong>, this tool strictly subtracts the original cost price and legally verified deductible expenses from the final selling price before applying the multiplier.</li>
-              <li><strong className="text-[#188038]">The Rs. 10 Lakh Exemption:</strong> To protect lower-income citizens, the algorithm enforces a hard Boolean check. If the gross selling transaction evaluates to less than NPR 1,000,000, the effective <strong className="text-[#202124]">property tax rate nepal</strong> is immediately reduced to 0%.</li>
-              <li><strong className="text-[#D93025]">Negative Gain Immunity:</strong> If the asset depreciates and the transaction results in a mathematical loss (Selling Price &lt; Cost Price), the CGT liability is nullified. Note, however, that you must provide sufficient proof of original cost to the Malpot office to claim a negative gain.</li>
-            </ul>
-          </div>
+             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm flex flex-col justify-center">
+               <div className="flex items-center gap-2 mb-6">
+                 <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
+                 <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Mathematical Exemptions</h3>
+               </div>
+               <div className="space-y-4">
+                  <div className="p-4 rounded-md bg-[#F8F9FA] border border-[#DADCE0] flex flex-col gap-2">
+                     <div className="flex items-center gap-2">
+                        <Activity className="w-4 h-4 text-[#1A73E8]" />
+                        <span className="text-[10px] font-black text-[#1A73E8] uppercase">Net Taxable Profit</span>
+                     </div>
+                     <p className="text-[10px] font-bold text-[#5F6368]">
+                        This tool strictly subtracts original cost and legally verified deductible expenses from the final selling price before applying the tax multiplier.
+                     </p>
+                  </div>
+                  <div className="p-4 rounded-md bg-[#E6F4EA] border border-[#188038] flex flex-col gap-2">
+                     <div className="flex items-center gap-2">
+                        <ShieldCheck className="w-4 h-4 text-[#188038]" />
+                        <span className="text-[10px] font-black text-[#188038] uppercase">The Rs. 10 Lakh Rule</span>
+                     </div>
+                     <p className="text-[10px] font-bold text-[#188038]">
+                        If the gross selling transaction evaluates to less than NPR 1,000,000, the effective CGT is reduced to 0%.
+                     </p>
+                  </div>
+                  <div className="p-4 rounded-md bg-[#FCE8E6] border border-[#D93025] flex flex-col gap-2">
+                     <div className="flex items-center gap-2">
+                        <ShieldCheck className="w-4 h-4 text-[#D93025]" />
+                        <span className="text-[10px] font-black text-[#D93025] uppercase">Negative Gain Immunity</span>
+                     </div>
+                     <p className="text-[10px] font-bold text-[#D93025]">
+                        If transaction results in a loss (Selling Price &lt; Cost Price), the CGT liability is nullified (0).
+                     </p>
+                  </div>
+               </div>
+             </div>
+           </div>
         </div>
       }
       howToUse={{
@@ -134,7 +211,13 @@ export default function PropertyTaxCalculator() {
       formula={{
         title: "Capital Gains Tax (CGT) Accounting Logic",
         description: "CGT is levied strictly on the net profit (gain) generated from the sale, not the gross transaction value.",
-        raw: "1. Calculate Taxable Profit:\n   Profit = Selling Price - (Cost Price + Deductible Expenses)\n\n2. Apply Holding Period Multiplier:\n   If Held ≥ 5 Years: CGT Amount = Profit × 5%\n   If Held < 5 Years: CGT Amount = Profit × 7.5%\n\n3. Evaluate Exemption Constraint:\n   If Selling Price < 1,000,000 NPR, CGT Amount = 0."
+        raw: "CGT Amount = Profit × TaxRate",
+        variables: [
+          "Profit: Selling Price - (Cost Price + Deductible Expenses)",
+          "Long-term (≥ 5 Years): TaxRate = 5%",
+          "Short-term (< 5 Years): TaxRate = 7.5%",
+          "Exemption: If Selling Price < 1,000,000, CGT Amount = 0"
+        ]
       }}
       faqs={[
         {
@@ -162,8 +245,22 @@ export default function PropertyTaxCalculator() {
           answer: "If your selling price is lower than your original cost price (resulting in a negative gain), you have zero taxable profit and therefore no Capital Gains Tax liability. However, you still have to pay standard registration processing fees."
         }
       ]}
-      sidebar={{ title: "Real Estate Tools", links: [{ label: "Property Registration", href: "/calculator/property-registration/" }, { label: "Mortgage Calc", href: "/calculator/mortgage-calculator/" }, { label: "Nepal Land", href: "/calculator/nepal-land/" }, { label: "Income Tax", href: "/calculator/nepal-income-tax/" }], banner: { title: "Plan Your Sale", description: "Factor in CGT before finalizing any property deal. It directly impacts your net proceeds.", image: "/images/property-banner.jpg" } }}
-      relatedTools={[{ label: "Property Registration", href: "/calculator/property-registration/" }, { label: "Mortgage", href: "/calculator/mortgage-calculator/" }, { label: "Income Tax", href: "/calculator/nepal-income-tax/" }]}
+      sidebar={{
+        title: "Real Estate Hub",
+        subtitle: "Property Calculators",
+        links: [
+          { label: "Property Registration", href: "/calculator/property-registration/", icon: Map },
+          { label: "Mortgage Calc", href: "/calculator/mortgage-calculator/", icon: Landmark },
+          { label: "Nepal Land", href: "/calculator/nepal-land/", icon: Activity },
+          { label: "Income Tax", href: "/calculator/nepal-income-tax/", icon: ShieldCheck },
+        ],
+      }}
+      relatedTools={[
+        { label: "Property Registration", href: "/calculator/property-registration/" },
+        { label: "Mortgage", href: "/calculator/mortgage-calculator/" },
+        { label: "Nepal Land", href: "/calculator/nepal-land/" }
+      ]}
     />
   );
 }
+

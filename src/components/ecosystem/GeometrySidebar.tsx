@@ -147,3 +147,4 @@ export function GeometrySidebar({ objects, onAddPoint, onAddSegment, onAddCircle
     </div>
   );
 }
+

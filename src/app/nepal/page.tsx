@@ -31,7 +31,7 @@ const TAGS: Record<string, string> = {
 
 export const metadata = calcMeta({
   title: 'IRD Tax Calculator Nepal | VAT Calculator Nepal',
-  description: 'Accurate IRD tax calculator, VAT calculator Nepal, and salary tax calculator. Avoid VAT fine in Nepal with precise 13% VAT return calculation for FY 2081/82.',
+  description: 'Accurate IRD tax calculator, VAT calculator Nepal, and salary tax calculator. Avoid VAT fine in Nepal with precise 13% VAT return calculation for FY 2082/83.',
   keywords: ['ird tax calculator', 'vat calculator nepal', 'vat fine calculator nepal', 'tax calculator tax refund calculator nepal', 'nepal tax calculation', 'personal income tax calculator nepal', '13% vat return', 'vat n ps calculator in nepal', 'blue book renew price in nepal'],
   slug: 'nepal',
 });
@@ -81,3 +81,4 @@ export default function NepalPillarPage() {
     </>
   );
 }
+

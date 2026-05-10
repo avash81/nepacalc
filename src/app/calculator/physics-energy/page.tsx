@@ -37,6 +37,7 @@ export default function Page() {
   return (
     <div className="bg-white min-h-screen">
       <CalcWrapper
+        hideHeader={true}
         title="Kinetic Energy Engine"
         description="High-precision physics laboratory tool for calculating kinetic energy, mass-energy relationships, and velocity variables using SI standards."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Kinetic Energy' }]}
@@ -72,3 +73,4 @@ export default function Page() {
     </div>
   );
 }
+

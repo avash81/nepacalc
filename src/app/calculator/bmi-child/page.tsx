@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["child bmi calculator", "pediatric bmi", "kids bmi percentile", "bmi calculator for teenagers", "underweight child bmi", "child obesity calculator"],
 });
 export default function Page() { return <Calculator />; }
+

@@ -39,33 +39,46 @@ export default function HTMLSitemap() {
           </header>
 
           <div className="space-y-8">
-             {CATEGORIES.map(cat => (
-                <section key={cat.id} id={cat.id}>
-                   <h2 className="text-xl font-black text-slate-900 border-b-2 border-indigo-500 inline-block pb-1 mb-6 uppercase tracking-tight">
-                      {cat.name}
-                   </h2>
-                                      <ul className="space-y-4 pl-4 border-l-2 border-slate-100 ml-2">
+             {CATEGORIES.filter(c => c.id !== 'market').map(cat => {
+                let calculators = [...cat.calculators];
+                let categoryName = cat.name;
+                
+                // Merge Market Rates into Nepal Specific for institutional grouping
+                if (cat.id === 'nepal') {
+                   const marketCat = CATEGORIES.find(c => c.id === 'market');
+                   if (marketCat) {
+                      calculators = [...calculators, ...marketCat.calculators];
+                      categoryName = "Nepal Specific & Market Rates (25 Tools)";
+                   }
+                }
 
-                      {cat.calculators.sort((a,b) => a.name.localeCompare(b.name)).map(calc => (
-                         <li key={calc.id} className="relative">
-                            <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
-                            <Link 
-                               href={calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`}
-                               className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline inline-block mr-2"
-                            >
-                               {calc.name}
-                            </Link>
-                            <span className="text-sm text-slate-500 hidden sm:inline-block">
-                               ,  {calc.description}
-                            </span>
-                            <p className="text-xs text-slate-400 sm:hidden mt-0.5 max-w-[280px] leading-tight">
-                               {calc.description}
-                            </p>
-                         </li>
-                      ))}
-                   </ul>
-                </section>
-             ))}
+                return (
+                   <section key={cat.id} id={cat.id}>
+                      <h2 className="text-xl font-black text-slate-900 border-b-2 border-indigo-500 inline-block pb-1 mb-6 uppercase tracking-tight">
+                         {categoryName}
+                      </h2>
+                      <ul className="space-y-4 pl-4 border-l-2 border-slate-100 ml-2">
+                         {calculators.sort((a,b) => a.name.localeCompare(b.name)).map(calc => (
+                            <li key={calc.id} className="relative">
+                               <span className="absolute -left-[21px] top-2.5 w-3 h-0.5 bg-slate-200"></span>
+                               <Link 
+                                  href={calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`}
+                                  className="text-base font-semibold text-blue-600 hover:text-blue-800 hover:underline inline-block mr-2"
+                               >
+                                  {calc.name}
+                               </Link>
+                               <span className="text-sm text-slate-500 hidden sm:inline-block">
+                                  , {calc.description}
+                               </span>
+                               <p className="text-xs text-slate-400 sm:hidden mt-0.5 max-w-[280px] leading-tight">
+                                  {calc.description}
+                               </p>
+                            </li>
+                         ))}
+                      </ul>
+                   </section>
+                );
+             })}
 
              <section>
                 <h2 className="text-xl font-black text-slate-900 border-b-2 border-slate-500 inline-block pb-1 mb-6 uppercase tracking-tight">
@@ -95,3 +108,4 @@ export default function HTMLSitemap() {
     </div>
   );
 }
+

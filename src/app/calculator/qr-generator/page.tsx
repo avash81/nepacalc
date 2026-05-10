@@ -37,6 +37,7 @@ export default function Page() {
   return (
     <div className="bg-white min-h-screen">
       <CalcWrapper
+        hideHeader={true}
         title="QR Encoding Engine"
         description="High-resolution generator for creating static two-dimensional barcodes for instant data sharing and mobile accessibility."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'QR Generator' }]}
@@ -70,3 +71,4 @@ export default function Page() {
       </CalcWrapper>    </div>
   );
 }
+

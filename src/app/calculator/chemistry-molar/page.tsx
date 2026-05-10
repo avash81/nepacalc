@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["molar mass calculator", "molecular weight calculator", "chemistry formula calculator", "atomic weight calculator", "molar mass of h2o", "iupac atomic weights"],
 });
 export default function Page() { return <Calculator />; }
+

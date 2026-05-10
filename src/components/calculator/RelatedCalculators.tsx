@@ -115,3 +115,4 @@ export default function RelatedCalculators({ currentSlug, category }: Props) {
     </section>
   );
 }
+

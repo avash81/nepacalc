@@ -199,7 +199,7 @@ export default function RatioProportion() {
           </section>
 
           {/* Section 4: Real-World Scenarios */}
-          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-[#202124] rounded-lg p-12 shadow-sm relative overflow-hidden">
+          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-white rounded-lg p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -bottom-10 -left-10 opacity-10">
                 <TrendingUp className="w-64 h-64" />
             </div>
@@ -330,3 +330,4 @@ export default function RatioProportion() {
     />
   );
 }
+

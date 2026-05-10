@@ -11,12 +11,13 @@ export interface MarketRate {
 }
 
 export const getLatestRates = (): MarketRate[] => {
-  // Baseline rates for Ashwin 2080 / October 2023
+  // Baseline rates for Baisakh 2083 / May 2026
   return [
-    { label: "Savings Rate (Avg)", value: "6.5% - 8.2%", trend: 'stable' },
-    { label: "Fixed Deposit (1yr)", value: "9.50%", trend: 'down' },
-    { label: "Base Rate (Commercial)", value: "9.11%", trend: 'down' },
-    { label: "Home Loan Premium", value: "2.0% - 4.5%", trend: 'stable' },
-    { label: "USD to NPR", value: "133.45", trend: 'up' }
+    { label: "Savings Rate (Avg)", value: "3.5% - 5.2%", trend: 'down' },
+    { label: "Fixed Deposit (1yr)", value: "7.25%", trend: 'down' },
+    { label: "Base Rate (Commercial)", value: "8.45%", trend: 'down' },
+    { label: "Home Loan Premium", value: "1.5% - 3.5%", trend: 'stable' },
+    { label: "USD to NPR", value: "134.15", trend: 'up' }
   ];
 };
+

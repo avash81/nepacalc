@@ -23,3 +23,4 @@ export function SeoContentBySlug({ slug, onData }: Props) {
 export function getSeoEntry(slug: string) {
   return TIER1_SEO_CONTENT[slug] || null;
 }
+

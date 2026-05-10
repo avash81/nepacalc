@@ -91,10 +91,14 @@ export function Navbar() {
 
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="p-2.5 text-[#5F6368] hover:bg-[#F1F3F4] rounded-full transition-colors group"
+              className="flex items-center gap-2 px-4 py-2 text-[#5F6368] bg-[#F1F3F4] hover:bg-[#e8eaed] rounded-full transition-all group border border-transparent hover:border-[#dadce0] shadow-sm"
               aria-label="Search Laboratory"
             >
-              <Search className="w-5 h-5 group-hover:scale-110 transition-transform" />
+              <Search className="w-4 h-4 group-hover:scale-110 transition-transform text-[#1a73e8]" />
+              <span className="hidden sm:inline text-[11px] font-black uppercase tracking-widest text-[#202124]">Search Tools</span>
+              <kbd className="hidden md:flex h-5 items-center gap-1 rounded border border-[#dadce0] bg-white px-1.5 font-mono text-[10px] font-medium text-[#70757a] opacity-100">
+                <span className="text-xs">⌘</span>K
+              </kbd>
             </button>
             {/* Mobile Menu */}
             <button
@@ -158,3 +162,4 @@ export function Navbar() {
     </>
   );
 }
+

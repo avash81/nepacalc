@@ -38,3 +38,4 @@ export async function requireAdmin(allowedRoles: string[] = ['admin', 'editor'])
 export function logout() {
   cookies().delete('admin_token');
 }
+

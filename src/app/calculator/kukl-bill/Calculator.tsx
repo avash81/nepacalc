@@ -15,7 +15,7 @@ import {
 function formatNPR(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
 
 export default function KUKLCalculator() {
-  const [state, setState] = useSyncState('kukl_institutional_v5', { 
+  const [state, setState] = useSyncState('kukl_institutional_v6', { 
     units: 15, 
     pipeSize: '0.5' as '0.5' | '0.75' 
   });
@@ -26,8 +26,8 @@ export default function KUKLCalculator() {
     const raw = calculateKUKLBill(units, pipeSize);
     
     const pieData = [
-      { name: 'Water Charge', val: raw.waterCharge, fill: '#3b82f6' },
-      { name: 'Sewerage (50%)', val: raw.sewerageTax, fill: '#60a5fa' }
+      { name: 'Water Charge', val: raw.waterCharge, fill: '#1A73E8' },
+      { name: 'Sewerage (50%)', val: raw.sewerageTax, fill: '#8AB4F8' }
     ];
 
     const chartData = [
@@ -38,104 +38,135 @@ export default function KUKLCalculator() {
     return { ...raw, pieData, chartData };
   }, [units, pipeSize]);
 
-  const inputBlock = (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-         <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider">Pipe Connection Size</label>
-            <div className="grid grid-cols-2 gap-2">
-             {['0.5', '0.75'].map(size => (
-               <button key={size} onClick={() => update({ pipeSize: size as any })} className={`py-2 text-[10px] font-bold border rounded transition-all ${pipeSize === size ? 'bg-[#1A73E8] border-[#1A73E8] text-[#202124] shadow-sm' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:border-[#1A73E8]'}`}>{size} Inch</button>
-             ))}
-            </div>
-         </div>
-         <div className="space-y-2">
-            <label className="text-[11px] font-bold uppercase text-[#70757A] tracking-wider">Consumption (Units / kL)</label>
-            <input 
-               type="number" 
-               value={units} 
-               onChange={(e) => update({ units: Number(e.target.value) })}
-               className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-lg font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" 
-            />
-            <p className="text-[9px] text-[#70757A] font-bold uppercase tracking-tighter">1 Unit = 1,000 Liters</p>
-         </div>
-      </div>
-    </div>
-  );
-
   return (
     <ModernCalcLayout
       slug="kukl-bill"
-      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Tools', href: '/nepal/' }, { label: 'KUKL Bill' }]}
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'KUKL Bill' }]}
       title="KUKL Water Bill"
       description="The definitive utility auditing engine for Kathmandu Valley. Calculate KUKL water bills with 100% precision, including volumetric charges and the 50% sewerage tax."
       icon={Droplets}
-      inputs={inputBlock}
-      results={
+      inputs={
         <div className="space-y-6">
-          <div className="p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2">
+          <div className="grid grid-cols-1 gap-6">
+             <div className="space-y-2">
+                <label className="text-[11px] font-bold uppercase text-[#5F6368] tracking-wider">Pipe Connection Size</label>
+                <div className="grid grid-cols-2 gap-2">
+                 {['0.5', '0.75'].map(size => (
+                   <button 
+                     key={size} 
+                     onClick={() => update({ pipeSize: size as any })} 
+                     className={`h-12 text-[11px] font-black border rounded-md transition-all ${pipeSize === size ? 'bg-[#E8F0FE] border-[#1A73E8] text-[#1A73E8]' : 'bg-white border-[#DADCE0] text-[#5F6368] hover:border-[#1A73E8]'}`}
+                   >
+                     {size} Inch
+                   </button>
+                 ))}
+                </div>
+             </div>
+             <div className="space-y-2">
+                <label className="text-[11px] font-bold uppercase text-[#5F6368] tracking-wider">Consumption (Units / kL)</label>
+                <div className="relative">
+                  <input 
+                     type="number" 
+                     value={units} 
+                     onChange={(e) => update({ units: Number(e.target.value) })}
+                     className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all" 
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-black text-[#1A73E8]">Units</span>
+                </div>
+                <p className="text-[9px] text-[#5F6368] font-bold uppercase tracking-wider mt-1">1 Unit = 1,000 Liters</p>
+             </div>
+          </div>
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+             Generate Utility Audit
+          </button>
+        </div>
+      }
+      results={
+        <div className="space-y-6 h-full flex flex-col justify-center">
+          <div className="bg-[#E8F0FE] border border-[#DADCE0] rounded-lg p-10 text-center space-y-2">
              <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Total Payable Bill</div>
-             <div className="text-4xl font-black text-[#1A73E8]">{formatNPR(result.totalBill)}</div>
-             <div className="text-[10px] font-bold text-[#70757A] uppercase tracking-tighter">Inclusive of 50% Sewerage Tax</div>
+             <div className="text-5xl font-black tracking-tight text-[#1A73E8]">{formatNPR(result.totalBill)}</div>
+             <div className="flex justify-center mt-2">
+               <span className="px-4 py-1.5 bg-white rounded-full text-[10px] font-black text-[#5F6368] uppercase border border-[#DADCE0] shadow-sm">
+                 Inclusive of 50% Sewerage Tax
+               </span>
+             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-             <div className="p-5 bg-white border border-[#DADCE0] rounded-md text-center space-y-1">
-                <div className="text-[9px] font-bold text-[#70757A] uppercase">Water Charge</div>
+             <div className="border border-[#DADCE0] rounded-md p-4 text-center bg-white shadow-sm">
+                <div className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider mb-1">Water Charge</div>
                 <div className="text-xl font-black text-[#202124]">{formatNPR(result.waterCharge)}</div>
              </div>
-             <div className="p-5 bg-[#E8F0FE] border border-[#DADCE0] rounded-md text-center space-y-1">
-                <div className="text-[9px] font-bold text-[#1A73E8] uppercase">Sewerage (50%)</div>
+             <div className="border border-[#1A73E8] rounded-md p-4 text-center bg-[#E8F0FE] shadow-sm">
+                <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider mb-1">Sewerage (50%)</div>
                 <div className="text-xl font-black text-[#1A73E8]">{formatNPR(result.sewerageTax)}</div>
              </div>
+          </div>
+
+          <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
+             <ShieldCheck className="w-5 h-5 text-[#188038] shrink-0" />
+             <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
+                Compliance Protocol: KUKL applies a strict 50% tax on the base water charge to fund municipal sewerage infrastructure. Minimum billing slabs apply.
+             </p>
           </div>
         </div>
       }
       details={
-        <div className="space-y-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
-               <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
-                  <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Bill Composition Audit</h3>
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm flex flex-col justify-center">
+               <div className="flex items-center gap-2 mb-6 border-b border-[#F1F3F4] pb-3">
+                  <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
+                  <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Bill Composition Audit</h3>
                </div>
-               <div className="flex flex-col md:flex-row items-center gap-8">
-                  <div className="h-[200px] w-[200px] relative">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <RePieChart>
-                        <Pie data={result.pieData} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={2} dataKey="val" stroke="none">
-                          {result.pieData.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} />)}
-                        </Pie>
-                      </RePieChart>
-                    </ResponsiveContainer>
-                  </div>
-                  <div className="flex-1 space-y-3 w-full">
-                     {result.pieData.map((d, i) => (
-                        <div key={i} className="flex items-center justify-between p-3 bg-[#F8F9FA] rounded border border-[#DADCE0]">
-                           <div className="flex items-center gap-2">
-                              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: d.fill }} />
-                              <span className="text-[11px] font-bold text-[#5F6368] uppercase">{d.name}</span>
-                           </div>
-                           <span className="text-[11px] font-black text-[#202124]">{formatNPR(d.val)}</span>
+               <div className="h-[200px] w-full relative mb-6">
+                 <ResponsiveContainer width="100%" height="100%">
+                   <RePieChart>
+                     <Pie data={result.pieData} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={2} dataKey="val" stroke="none">
+                       {result.pieData.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} />)}
+                     </Pie>
+                     <Tooltip cursor={{ fill: '#F8F9FA' }} contentStyle={{ borderRadius: '8px', border: '1px solid #DADCE0', fontSize: '11px', fontWeight: 'bold' }} formatter={(v: number) => formatNPR(v)} />
+                   </RePieChart>
+                 </ResponsiveContainer>
+                 <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                    <span className="text-[9px] font-bold text-[#5F6368] uppercase tracking-wider">Total</span>
+                    <span className="text-lg font-black text-[#202124]">{formatNPR(result.totalBill)}</span>
+                 </div>
+               </div>
+               <div className="space-y-3 w-full">
+                  {result.pieData.map((d, i) => (
+                     <div key={i} className="flex items-center justify-between p-3 bg-[#F8F9FA] rounded-md border border-[#DADCE0]">
+                        <div className="flex items-center gap-2">
+                           <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: d.fill }} />
+                           <span className="text-[10px] font-bold text-[#5F6368] uppercase">{d.name}</span>
                         </div>
-                     ))}
-                  </div>
+                        <span className="text-sm font-black text-[#202124]">{formatNPR(d.val)}</span>
+                     </div>
+                  ))}
                </div>
             </div>
 
-            <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm">
-               <div className="flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4">
-                  <h3 className="text-base font-black text-[#202124] uppercase tracking-tight">Volume Scaling Bar</h3>
+            <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm flex flex-col justify-center">
+               <div className="flex items-center gap-2 mb-6 border-b border-[#F1F3F4] pb-3">
+                  <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
+                  <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Volume Scaling Bar</h3>
                </div>
-               <div className="h-[240px] w-full">
+               <div className="h-[240px] w-full relative z-10">
                   <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={result.chartData} barSize={24}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                      <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fontSize: 9, fill: '#70757A', fontWeight: 700}} />
+                    <BarChart data={result.chartData} barSize={32}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#F1F3F4" />
+                      <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fontSize: 9, fill: '#5F6368', fontWeight: 700}} />
                       <YAxis hide />
-                      <Tooltip cursor={{ fill: '#f8fafc' }} contentStyle={{ borderRadius: '8px', border: '1px solid #DADCE0', fontSize: '11px' }} formatter={(v: number) => formatNPR(v)} />
-                      <Bar dataKey="val" fill="#1A73E8" radius={[2, 2, 0, 0]} />
+                      <Tooltip cursor={{ fill: '#F8F9FA' }} contentStyle={{ borderRadius: '8px', border: '1px solid #DADCE0', fontSize: '11px', fontWeight: 'bold' }} formatter={(v: number) => formatNPR(v)} />
+                      <Bar dataKey="val" fill="#1A73E8" radius={[4, 4, 0, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
+               </div>
+               <div className="mt-4 p-4 rounded-md bg-[#F8F9FA] border border-[#DADCE0] text-center">
+                  <p className="text-[10px] text-[#5F6368] font-bold uppercase">
+                    Compares current bill with minimum statutory charges.
+                  </p>
                </div>
             </div>
           </div>
@@ -153,8 +184,12 @@ export default function KUKLCalculator() {
       formula={{
         title: "The KUKL Volumetric Calculus",
         description: "Official KUKL tariff logic with mandatory sewerage multiplier.",
-        raw: "$$Total = (BaseCharge + ExtraUnits \\times Rate) \\times 1.50$$",
-        latex: "Bill = (Fixed + Volumetric) \times 1.50"
+        raw: "Bill = (Fixed + Volumetric) × 1.50",
+        variables: [
+          "Fixed: Minimum base charge for first 10,000 liters",
+          "Volumetric: Charge for units consumed beyond the base allowance",
+          "Multiplier: 50% additional sewerage tax applied to total water charge"
+        ]
       }}
       faqs={[
         { question: "How much is 1 unit of water in Kathmandu?", answer: "1 Unit is defined as 1,000 Liters (1 Cubic Meter). For a 0.5-inch connection, the first 10 units are covered under the base charge, with extra units billed at approx. Rs. 32 each." },
@@ -162,12 +197,11 @@ export default function KUKLCalculator() {
         { question: "What is the minimum bill for a 0.5 inch connection?", answer: "The minimum monthly bill is Rs. 150, which includes the Rs. 100 base water charge for up to 10,000 liters and the Rs. 50 sewerage tax." },
         { question: "How do I pay my KUKL bill online?", answer: "You can pay via eSewa, Khalti, or bank apps by searching for 'KUKL' and entering your CAN (Customer Account Number)." },
         { question: "What is 'Average Billing'?", answer: "If your meter is inaccessible or broken, KUKL calculates your bill based on a 3-6 month historical average. It is advisable to keep your meter accessible for accurate reading." },
-        { question: "What is the penalty for late payment?", answer: "KUKL applies progressive surcharges (10% to 25%) if the bill is not paid within the designated grace period printed on your receipt." },
-        { question: "Is this updated for the 2081/82 fiscal year?", answer: "Yes, this engine uses the latest volumetric slabs and sewerage multiplier currently mandated for Kathmandu Valley residents." }
+        { question: "What is the penalty for late payment?", answer: "KUKL applies progressive surcharges (10% to 25%) if the bill is not paid within the designated grace period printed on your receipt." }
       ]}
       sidebar={{
         title: "Utility Hub",
-        subtitle: "Nepal Water",
+        subtitle: "Nepal Utilities",
         links: [
           { label: "NEA Electricity Bill", href: "/calculator/nea-bill/", icon: Zap },
           { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Landmark },
@@ -182,3 +216,4 @@ export default function KUKLCalculator() {
     />
   );
 }
+

@@ -37,6 +37,7 @@ export default function Page() {
   return (
     <div className="bg-white min-h-screen">
       <CalcWrapper
+        hideHeader={true}
         title="Cryptographic Password Engine"
         description="High-entropy security tool for generating non-sequential, pattern-free random passwords for maximum digital protection."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Password Generator' }]}
@@ -70,3 +71,4 @@ export default function Page() {
       </CalcWrapper>    </div>
   );
 }
+

@@ -6,4 +6,11 @@ export const metadata = calcMeta({
   slug: 'kukl-bill',
   keywords: ["kukl bill calculator", "water bill nepal", "kathmandu water charge", "sewerage tax nepal", "kukl tariff structure", "water meter reading nepal"],
 });
-export default function Page() { return <Calculator />; }
+export default function Page() {
+  return (
+    <div className="bg-[#F1F3F4]">
+      <Calculator />
+    </div>
+  );
+}
+

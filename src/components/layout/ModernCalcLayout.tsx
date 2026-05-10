@@ -17,7 +17,7 @@ interface ModernCalcLayoutProps {
   inputs: ReactNode;
   results: ReactNode;
   howToUse?: { steps: string[] };
-  formula?: { title: string; description: string; latex?: string; raw?: string };
+  formula?: { title: string; description: string; latex?: string; raw?: string; variables?: string[] };
   faqs?: { question: string; answer: string }[];
   sidebar?: {
     title: string;
@@ -175,15 +175,15 @@ export function ModernCalcLayout({
           ...crumbs.map(c => ({ name: c.label, item: c.href ? `https://nepacalc.com${normalizeLink(c.href)}` : undefined })).filter((x): x is { name: string, item: string } => !!x.item)
         ]} />
       )}
-      <div className="max-w-[1280px] mx-auto px-4 pt-4 pb-32">
+      <div className="max-w-[1280px] mx-auto px-4 pt-4 pb-16">
         <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#dadce0] pb-4">
           <div>
             {crumbs && crumbs.length > 0 && (
               <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 text-[11px] font-medium text-[#5f6368] mb-2 uppercase tracking-wider">
-                <Link href="/" className="hover:text-[#1A73E8]">Home</Link>
+
                 {crumbs.map((c, i) => (
                   <Fragment key={i}>
-                    <span className="text-[#DADCE0] scale-75">/</span>
+                    {i > 0 && <span className="text-[#DADCE0] scale-75">/</span>}
                     {c.href ? <Link href={normalizeLink(c.href) as string} className="hover:text-[#1A73E8]">{c.label}</Link> : <span className="text-[#5f6368]">{c.label}</span>}
                   </Fragment>
                 ))}
@@ -203,7 +203,7 @@ export function ModernCalcLayout({
         </div>
         {intro && <div className="mb-8">{intro}</div>}
         {ads?.top && <div className="mb-6 flex justify-center no-print">{ads.top}</div>}
-        <div className="flex flex-col lg:flex-row gap-12">
+        <div className="flex flex-col lg:flex-row gap-8">
           <div className="flex-1 space-y-6">
             <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
               <div className="px-6 py-4 border-b border-[#DADCE0] flex items-center gap-3 bg-[#F8F9FA]">
@@ -259,11 +259,17 @@ export function ModernCalcLayout({
                       {enrichedFormula.raw && <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded font-mono text-[13px] text-[#202124] overflow-x-auto whitespace-pre">{enrichedFormula.raw}</div>}
                       {(enrichedFormula as any).variables && (
                         <div className="space-y-1.5 pt-2">
-                           {(enrichedFormula as any).variables.map((v: string, i: number) => (
-                             <p key={i} className="text-[11px] text-[#70757A] flex items-center gap-2">
-                               <span className="w-1 h-1 rounded-full bg-[#dadce0]" /> {v}
-                             </p>
-                           ))}
+                           {(enrichedFormula as any).variables.map((v: string, i: number) => {
+                              const eqIdx = v.indexOf(' = ');
+                              const key = eqIdx !== -1 ? v.slice(0, eqIdx) : v;
+                              const val = eqIdx !== -1 ? v.slice(eqIdx + 3) : '';
+                              return (
+                                <p key={i} className="text-sm text-[#5F6368] flex items-start gap-2 leading-relaxed">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-[#dadce0] mt-1.5 shrink-0" />
+                                  <span><strong className="text-[#202124]">{key}</strong>{val ? ` = ${val}` : ''}</span>
+                                </p>
+                              );
+                            })}
                         </div>
                       )}
                     </div>
@@ -306,8 +312,8 @@ export function ModernCalcLayout({
             )}
 
           </div>
-          <div className="w-full lg:w-[320px] space-y-8 no-print">
-            <div className="space-y-8">
+          <div className="w-full lg:w-[320px] space-y-6 no-print">
+            <div className="space-y-6">
             <RecentSidebar />
             {sidebar && (
               <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
@@ -458,3 +464,4 @@ export function ModernCalcLayout({
     </div>
   );
 }
+

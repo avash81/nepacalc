@@ -15,11 +15,12 @@ interface Props {
   relatedCalcs?: { name: string; slug: string }[];
   children: ReactNode;
   formula?: string;
+  hideHeader?: boolean;
 }
 
 export function CalcWrapper({
   title, description, crumbs, isNepal,
-  children, formula, relatedCalcs
+  children, formula, relatedCalcs, hideHeader = false
 }: Props) {
   return (
     <div lang={isNepal ? 'ne' : 'en'} className="min-h-screen bg-white">
@@ -53,37 +54,39 @@ export function CalcWrapper({
         }}
       />
 
-      <div className="max-w-[94%] mx-auto px-4 sm:px-6 pt-6">
+      <div className="max-w-[94%] mx-auto px-4 sm:px-6 pt-4">
         
-        {/* Breadcrumb Path & Back Button */}
-        <div className="mb-4 flex flex-wrap items-center gap-4">
-          <button 
-             onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
-             className="flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-[#5F6368] hover:text-blue-600 transition-all border-r border-[#dadce0] pr-4 py-1"
-          >
-             <ArrowLeft className="w-4 h-4" /> <span>Back</span>
-          </button>
+        { !hideHeader && (
+          <>
+            {/* Breadcrumb Path & Back Button */}
+            <div className="mb-2 flex flex-wrap items-center gap-4">
+              <button 
+                onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
+                className="flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-[#5F6368] hover:text-blue-600 transition-all border-r border-[#dadce0] pr-4 py-1"
+              >
+                <ArrowLeft className="w-4 h-4" /> <span>Back</span>
+              </button>
 
-          <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-2 text-[13px] font-medium text-[#5f6368]">
-            <Link href="/" className="hover:text-blue-600 hover:underline">Home</Link>
-            {crumbs.map((c, i) => (
-              <Fragment key={i}>
-                <span className="text-slate-300">/</span>
-                {c.href ? (
-                  <Link href={c.href} className="hover:text-blue-600 hover:underline">{c.label}</Link>
-                ) : (
-                  <span className="text-[#202124] font-bold">{c.label}</span>
+              <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-2 text-[13px] font-medium text-[#5f6368]">
+                {/* Only show explicit Home if not already the first crumb */}
+                {crumbs[0]?.label.toLowerCase() !== 'home' && (
+                  <Link href="/" className="hover:text-blue-600 hover:underline">Home</Link>
                 )}
-              </Fragment>
-            ))}
-          </nav>
-        </div>
+                {crumbs.map((c, i) => (
+                  <Fragment key={i}>
+                    { (i > 0 || crumbs[0]?.label.toLowerCase() !== 'home') && <span className="text-slate-300">/</span> }
+                    {c.href ? (
+                      <Link href={c.href} className="hover:text-blue-600 hover:underline">{c.label}</Link>
+                    ) : (
+                      <span className="text-[#202124] font-bold">{c.label}</span>
+                    )
+                    }
+                  </Fragment>
+                ))}
+              </nav>
+            </div>
 
-        <div>
-
-          {/* Main Content Area */}
-          <main className="w-full">
-            <header className="mb-4 pb-3 border-b border-[#dadce0]">
+            <header className="mb-2 pb-2 border-b border-[#dadce0]">
               <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-4 lowercase first-letter:uppercase">
                 {title}
               </h1>
@@ -91,6 +94,13 @@ export function CalcWrapper({
                 {description}
               </p>
             </header>
+          </>
+        )}
+
+        <div>
+          {/* Main Content Area */}
+          <main className="w-full">
+
 
             <section className="calculator-area">
               {children}
@@ -98,8 +108,8 @@ export function CalcWrapper({
 
             {/* Static Content / Strategy Layer */}
             {formula && (
-               <section className="mt-10 pt-10 border-t border-[#dadce0]">
-                  <h2 className="text-xl font-black text-[#202124] tracking-tight mb-6">How it works</h2>
+               <section className="mt-6 pt-6 border-t border-[#dadce0]">
+                  <h2 className="text-xl font-black text-[#202124] tracking-tight mb-4">How it works</h2>
                   <div className="bg-[#f8f9fa] p-6 rounded-2xl border border-[#dadce0] font-mono text-sm text-[#5f6368] overflow-x-auto">
                     {formula}
                   </div>
@@ -108,8 +118,8 @@ export function CalcWrapper({
 
             {/* Related Tools Discovery */}
             {relatedCalcs && relatedCalcs.length > 0 && (
-              <section className="mt-10 pt-10 border-t border-[#dadce0]">
-                <h2 className="text-xl font-black text-[#202124] tracking-tight mb-6">Related Calculators</h2>
+              <section className="mt-6 pt-6 border-t border-[#dadce0]">
+                <h2 className="text-xl font-black text-[#202124] tracking-tight mb-4">Related Calculators</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {relatedCalcs.map((calc, i) => (
                     <Link 
@@ -133,3 +143,4 @@ export function CalcWrapper({
     </div>
   );
 }
+

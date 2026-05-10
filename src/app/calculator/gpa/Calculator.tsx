@@ -303,7 +303,7 @@ export default function GPACalculator() {
           </section>
 
           {/* Section 4: Real-World Career Impact */}
-          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-[#202124] rounded-[2rem] p-12 shadow-sm relative overflow-hidden">
+          <section className="bg-gradient-to-br from-[#1A1A2E] to-[#16213E] text-white rounded-[2rem] p-12 shadow-sm relative overflow-hidden">
             <div className="absolute -bottom-10 -left-10 opacity-10">
                 <ShieldCheck className="w-64 h-64" />
             </div>
@@ -319,13 +319,13 @@ export default function GPACalculator() {
                 </div>
                 <div className="space-y-4">
                     <div className="bg-white/10 p-6 rounded-2xl border border-white/20 backdrop-blur-sm">
-                        <h4 className="text-[#202124] font-bold mb-4 flex items-center gap-2">
+                        <h4 className="text-white font-bold mb-4 flex items-center gap-2">
                              <Target className="w-4 h-4 text-[#8AB4F8]" />
                              Goal Benchmarks
                         </h4>
                         <ul className="space-y-3 text-xs text-[#8AB4F8]">
-                            <li><strong className="text-[#202124]">3.8+ GPA:</strong> Top 1% - Scholarship Priority</li>
-                            <li><strong className="text-[#202124]">3.6 - 3.8:</strong> Distinction - Tier 1 University Admission</li>
+                            <li><strong className="text-white">3.8+ GPA:</strong> Top 1% - Scholarship Priority</li>
+                            <li><strong className="text-white">3.6 - 3.8:</strong> Distinction - Tier 1 University Admission</li>
                             <li><strong className="text-[#202124]">3.2 - 3.6:</strong> First Class - Standard Corporate Recruitment</li>
                             <li><strong className="text-[#202124]">2.4 - 3.2:</strong> Upper Second - Standard Passing</li>
                         </ul>
@@ -423,3 +423,4 @@ export default function GPACalculator() {
     />
   );
 }
+

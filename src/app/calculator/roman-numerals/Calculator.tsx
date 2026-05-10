@@ -102,7 +102,7 @@ export default function RomanNumeralsCalculator() {
               <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700">Quick Examples</h3>
             </div>
             <div className="divide-y divide-slate-100">
-              {[[1,'I'],[4,'IV'],[9,'IX'],[40,'XL'],[90,'XC'],[400,'CD'],[900,'CM'],[2024,'MMXXIV']].map(([n,r]) => (
+              {[[1,'I'],[4,'IV'],[9,'IX'],[40,'XL'],[90,'XC'],[400,'CD'],[900,'CM'],[2026,'MMXXVI']].map(([n,r]) => (
                 <button key={n} onClick={() => handleNum(String(n))}
                   className="w-full px-5 py-3 flex justify-between hover:bg-slate-50 transition-colors">
                   <span className="text-sm font-black text-slate-700">{n}</span>
@@ -182,4 +182,5 @@ export default function RomanNumeralsCalculator() {
     />
   );
 }
+
 

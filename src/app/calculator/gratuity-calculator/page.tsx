@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["gratuity calculator nepal", "labor act 2074 gratuity", "ssf calculator nepal", "termination benefit nepal", "8.33 percent gratuity", "resignation payout nepal"],
 });
 export default function Page() { return <Calculator />; }
+

@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["matrix calculator", "determinant calculator", "inverse matrix", "3x3 matrix solver", "matrix trace", "linear algebra calculator"],
 });
 export default function Page() { return <Calculator />; }
+

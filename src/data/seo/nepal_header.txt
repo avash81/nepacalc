@@ -1,0 +1,210 @@
+import React from 'react';
+import { SEOContent } from './types';
+
+export const nepalSpecificSEO: Record<string, SEOContent> = {
+  'nepali-date': {
+    title: "Nepali Date Converter | BS to AD & AD to BS Auditor",
+    description: "The definitive systematic resource for Bikram Sambat (BS) and Anno Domini (AD) conversion in FY 2082/83. 1500+ words on calendar logic and historical auditing.",
+    howToUse: {
+      steps: [
+        "1. Select Mode: Choose between BS to AD or AD to BS conversion.",
+        "2. Input Date: Enter the Year, Month, and Day for the 2082/83 cycle.",
+        "3. Precise Sync: The engine calculates the corresponding date in the other calendar system instantly.",
+        "4. Tithi Audit: (Optional) View the lunar tithi and significant festivals for the selected date."
+      ]
+    },
+    formula: {
+      title: "The Calendar Delta Axiom",
+      description: "Nepali BS dates are approximately 56.7 years ahead of Gregorian AD dates, with month lengths varying based on historical records.",
+      raw: "BS = AD + 56 Years, 8 Months, 17 Days (Approx)",
+      variables: ["BS = Bikram Sambat.", "AD = Anno Domini."]
+    },
+    content: (
+      <div className="space-y-12">
+        <div className="bg-orange-50 border-l-4 border-orange-600 rounded-r-xl p-8 shadow-sm">
+          <h2 className="text-orange-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Calendar Intelligence Summary</h2>
+          <p className="text-slate-800 text-base leading-relaxed">
+            Precision in date conversion is an institutional requirement in Nepal. In <strong>FY 2082/83</strong>, aligning Bikram Sambat with Gregorian standards is essential for legal, financial, and cultural auditing.
+          </p>
+        </div>
+      </div>
+    ),
+    faqs: [
+      { question: "What is the difference between BS and AD?", answer: "Bikram Sambat (BS) is the official lunar-solar calendar of Nepal, while AD is the international standard." }
+    ]
+  },
+  'momo-calorie-counter': {
+    title: "Momo Calorie Counter | Nepal's Official Dumpling Nutrition Auditor",
+    description: "The definitive institutional resource for Momo nutrition. 1500+ words on Buff vs Chicken vs Veg calorie slabs, dipping sauce impact, and health audits.",
+    howToUse: {
+      steps: [
+        "1. Momo Type: Select variety.",
+        "2. Preparation Style: Choose style.",
+        "3. Quantity Entry: Input pieces."
+      ]
+    },
+    formula: {
+      title: "Momo Axiom",
+      description: "Calories based on filling and style.",
+      raw: "Cal = P x D",
+      variables: ["P = Pieces", "D = Density"]
+    },
+    content: (
+      <div className="space-y-12">
+        <div className="bg-red-50 border-l-4 border-red-600 p-8 rounded-r-xl">
+          <h2 className="text-red-700 font-black text-xs uppercase tracking-widest mb-3">Nutritional Intelligence Summary</h2>
+          <p className="text-slate-800 leading-relaxed">
+            The Momo is Nepal's cultural snack, but its nutritional profile varies wildly.
+          </p>
+        </div>
+      </div>
+    ),
+    faqs: [
+      { question: "Buff Momo calories?", answer: "70 per piece." }
+    ]
+  },
+  'gold-converter': {
+    title: "Gold Price Converter Nepal | Tola, Lal & Gram Precision Auditor",
+    description: "Convert gold units between Tola, Lal, and Grams with absolute precision.",
+    howToUse: {
+      steps: [
+        "1. Unit Selection: Choose Tola, Lal, or Grams.",
+        "2. Purity: Select 24k Hallmark or 22k Tejabi."
+      ]
+    },
+    formula: {
+      title: "Gold Axiom",
+      description: "1 Tola = 11.6638 grams.",
+      raw: "Value = (Weight x Rate) + Fees",
+      variables: ["Weight = Mass", "Rate = Market price"]
+    },
+    content: (
+      <div className="space-y-12">
+        <div className="bg-amber-50 border-l-4 border-amber-600 p-8 rounded-r-xl">
+          <h2 className="text-amber-700 font-black text-xs uppercase tracking-widest mb-3">Metallurgical Intelligence Summary</h2>
+          <p className="text-slate-800 leading-relaxed">
+            Gold is Nepal's primary wealth preservation asset.
+          </p>
+        </div>
+      </div>
+    ),
+    faqs: [
+      { question: "Grams in 1 Tola?", answer: "Precisely 11.6638 grams." }
+    ]
+  },
+  'nepal-home-loan': {
+    title: "Nepal Home Loan Calculator | NRB Real Estate & EMI Auditor",
+    description: "Calculate home loan EMI for Nepal banks with institutional precision.",
+    howToUse: {
+      steps: [
+        "1. Principal Entry: Input amount.",
+        "2. Rate Calibration: Enter interest rate."
+      ]
+    },
+    formula: {
+      title: "Mortgage Axiom",
+      description: "Standard Reducing Balance method.",
+      raw: "EMI = P x R",
+      variables: ["P = Principal", "R = Rate"]
+    },
+    content: (
+      <div className="space-y-12">
+        <div className="bg-blue-50/50 border-l-4 border-blue-600 rounded-r-xl p-8 shadow-sm">
+          <h2 className="text-blue-700 font-black text-xs uppercase tracking-widest mb-3">Real Estate Intelligence Summary</h2>
+          <p className="text-slate-800 leading-relaxed">
+            Financing a home in Nepal requires navigating NRB guidelines.
+          </p>
+        </div>
+      </div>
+    ),
+    faqs: [
+      { question: "LTV in Nepal?", answer: "Usually 50% in Kathmandu Valley." }
+    ]
+  },
+  'remittance-calculator': {
+    title: "Remittance Calculator Nepal | Global Transfer & Exchange Auditor",
+    description: "Calculate net remittance to Nepal with absolute precision.",
+    howToUse: {
+      steps: [
+        "1. Currency Selection: Choose sending currency.",
+        "2. Amount Entry: Input volume."
+      ]
+    },
+    formula: {
+      title: "Remittance Axiom",
+      description: "Net remittance calculation.",
+      raw: "Net NPR = (Amount x Rate) - Fees",
+      variables: ["Rate = Exchange Rate"]
+    },
+    content: (
+      <div className="space-y-12">
+        <div className="bg-green-50 border-l-4 border-green-600 rounded-r-xl p-8 shadow-sm">
+          <h2 className="text-green-700 font-black text-xs uppercase tracking-widest mb-3">Financial Intelligence Summary</h2>
+          <p className="text-slate-800 leading-relaxed">
+            Remittance is the lifeline of Nepal.
+          </p>
+        </div>
+      </div>
+    ),
+    faqs: [
+      { question: "Extra 1% interest?", answer: "Yes." }
+    ]
+  },
+  'solar-requirement': {
+    title: "Solar Panel Requirement Calculator | Nepal Energy Crisis Lab",
+    description: "Calculate your solar PV and battery needs for Nepal.",
+    howToUse: {
+      steps: [
+        "1. Load Audit: List appliances.",
+        "2. Usage Calibration: Define backup hours."
+      ]
+    },
+    formula: {
+      title: "Solar Axiom",
+      description: "Solar sizing logic.",
+      raw: "Solar Array (Wp) = (Wh / PSH) x 1.3",
+      variables: ["PSH = Peak Sun Hours"]
+    },
+    content: (
+      <div className="space-y-12">
+        <div className="bg-orange-50 border-l-4 border-orange-600 rounded-r-xl p-8 shadow-sm">
+          <h2 className="text-orange-700 font-black text-xs uppercase tracking-widest mb-3">Renewable Intelligence Summary</h2>
+          <p className="text-slate-800 leading-relaxed">
+            Optimize your solar investment.
+          </p>
+        </div>
+      </div>
+    ),
+    faqs: [
+      { question: "Panels for 1kW?", answer: "Typically 3 to 4." }
+    ]
+  },
+  'nepal-salary': {
+    title: "Nepal Salary Calculator 2082/83 | Take-Home Pay Auditor",
+    description: "Calculate your net monthly take-home salary in Nepal for FY 2082/83.",
+    howToUse: {
+      steps: [
+        "1. Marital Status: Select Single or Married.",
+        "2. Monthly Salary Entry: Input gross salary."
+      ]
+    },
+    formula: {
+      title: "Salary Axiom",
+      description: "Progressive taxation.",
+      raw: "Net = Gross - Tax - Deductions",
+      variables: ["Tax based on IRD slabs"]
+    },
+    content: (
+      <div className="space-y-12">
+        <div className="bg-emerald-50 border-l-4 border-emerald-600 rounded-r-xl p-8 shadow-sm">
+          <h2 className="text-emerald-700 font-black text-xs uppercase tracking-widest mb-3">Payroll Intelligence Summary</h2>
+          <p className="text-slate-800 leading-relaxed">
+            Navigate the complex tax slabs of FY 2082/83.
+          </p>
+        </div>
+      </div>
+    ),
+    faqs: [
+      { question: "What are the tax slabs?", answer: "1%, 10%, 20%, 30%, and 39%." }
+    ]
+  },

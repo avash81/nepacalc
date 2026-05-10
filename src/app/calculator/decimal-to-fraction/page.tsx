@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["decimal to fraction converter", "simplify fractions", "convert decimal to mixed number", "0.75 as a fraction", "repeating decimal to fraction", "math calculator"],
 });
 export default function Page() { return <Calculator />; }
+

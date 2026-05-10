@@ -58,3 +58,4 @@ describe('safeEval', () => {
     expect(safeEval('hack(1)')).toBe('Error');
   });
 });
+

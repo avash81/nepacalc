@@ -70,7 +70,7 @@ export function calculateNepalIncomeTax(
     if (remaining <= 0) break;
   }
 
-  // 10% Female Rebate (Remuneration income only - 2081/82 IRD rule)
+  // 10% Female Rebate (Remuneration income only - 2082/83 IRD rule)
   if (gender === 'female' && totalTax > 0) {
     const rebateAmount = totalTax * 0.10;
     totalTax = totalTax - rebateAmount;
@@ -219,7 +219,7 @@ export function calculateNepalPropertyRegistration(
 }
 
 /**
- * NEPSE Trading Commission & Profit (Jestha 2081 Tiers)
+ * NEPSE Trading Commission & Profit (FY 2082/83 Standards)
  */
 export function calculateNEPSEReturn(
   qty: number, 
@@ -297,3 +297,4 @@ export function calculateKUKLBill(units: number, pipeSize: '0.5' | '0.75' = '0.5
     totalBill: Number(totalBill.toFixed(2))
   };
 }
+

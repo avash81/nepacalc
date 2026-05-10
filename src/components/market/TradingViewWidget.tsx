@@ -54,3 +54,4 @@ export default function TradingViewWidget({ symbol, theme = 'light', containerId
     </div>
   );
 }
+

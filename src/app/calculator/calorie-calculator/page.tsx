@@ -42,6 +42,7 @@ export default function Page() {
         description="High-precision nutritional engine for calculating your total daily energy expenditure and setting personalized weight management targets."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Calorie Calculator' }]}
         isNepal={true}
+        hideHeader={true}
         relatedCalcs={[
           { name: 'BMR Calculator', slug: 'bmr' },
           { name: 'BMI Calculator', slug: 'bmi' },
@@ -71,3 +72,4 @@ export default function Page() {
       </CalcWrapper>    </div>
   );
 }
+

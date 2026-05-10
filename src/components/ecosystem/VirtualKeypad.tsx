@@ -158,3 +158,4 @@ export function VirtualKeypad({ mode, onInput, onAction }: VirtualKeypadProps) {
     </div>
   );
 }
+

@@ -145,3 +145,4 @@ export default function PostEditor({ content, onChange }: PostEditorProps) {
     </div>
   );
 }
+

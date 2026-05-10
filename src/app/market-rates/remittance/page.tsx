@@ -25,6 +25,7 @@ export default function Page() {
         description="Daily remittance indices synchronized with official provider exchange rates for the Nepalese market."
         crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Remittance Board' }]}
         isNepal={true}
+        hideHeader={true}
         relatedCalcs={[
           { name: 'Exchange Rates', slug: '/market-rates/exchange-rate/' },
           { name: 'Live Gold Price', slug: '/market-rates/live-gold-price/' },
@@ -36,3 +37,4 @@ export default function Page() {
     </div>
   );
 }
+

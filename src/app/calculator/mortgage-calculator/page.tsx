@@ -2,8 +2,9 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 export const metadata = calcMeta({
   title: 'Nepal Mortgage Calculator Monthly EMI Interest',
-  description: 'Calculate your Nepal home loan EMI total interest and repayment schedule instantly. Free mortgage calculator updated for 2081 82.',
+  description: 'Calculate your Nepal home loan EMI total interest and repayment schedule instantly. Free mortgage calculator updated for 2082 83.',
   slug: 'mortgage-calculator',
   keywords: ["mortgage calculator nepal", "home loan emi calculator", "nepal home loan calculator", "property loan emi nepal", "housing loan calculator", "nrb home loan"],
 });
 export default function Page() { return <Calculator />; }
+

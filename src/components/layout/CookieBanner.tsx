@@ -40,22 +40,22 @@ export function CookieBanner() {
   if (!show) return null;
 
   return (
-    <div className="fixed bottom-6 left-6 right-6 lg:left-auto lg:right-6 lg:w-[400px] z-[9999] animate-in fade-in slide-in-from-bottom-5 duration-700">
-      <div className="bg-[#002147] border border-[#dadce0] rounded-[2rem] p-6 shadow-sm shadow-blue-900/40 text-[#202124]">
-        <div className="flex items-start gap-4 mb-4">
-          <div className="w-10 h-10 rounded-2xl bg-[#1a73e8] flex items-center justify-center shrink-0">
-            <ShieldCheck className="w-5 h-5 text-[#202124]" />
+    <div className="fixed bottom-4 left-4 right-4 lg:left-auto lg:right-4 lg:w-[320px] z-[9999] animate-in fade-in slide-in-from-bottom-5 duration-700">
+      <div className="bg-[#002147] border border-blue-800 rounded-2xl p-4 shadow-lg shadow-blue-900/40 text-blue-50">
+        <div className="flex items-start gap-3 mb-3">
+          <div className="w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center shrink-0">
+            <ShieldCheck className="w-4 h-4 text-white" />
           </div>
           <div className="flex-1 min-w-0">
-            <span className="block text-[12px] font-black uppercase tracking-widest text-[#1a0dab] mb-1">Privacy Compliance</span>
-            <p className="text-[11px] font-medium leading-relaxed text-[#202124]">
+            <span className="block text-[10px] font-black uppercase tracking-widest text-blue-400 mb-1">Privacy Compliance</span>
+            <p className="text-[10px] font-medium leading-relaxed text-blue-100">
               NepaCalc uses session metadata to ensure calculation precision and analytical integrity.
               By continuing, you verify compliance with our professional privacy standards.
             </p>
           </div>
           <button
             onClick={() => setShow(false)}
-            className="text-[#202124]/70 hover:text-[#202124] transition-colors shrink-0"
+            className="text-blue-200/70 hover:text-white transition-colors shrink-0"
             aria-label="Close privacy notice"
           >
             <X className="w-4 h-4" />
@@ -66,13 +66,13 @@ export function CookieBanner() {
           <button
             onClick={accept}
             aria-label="Acknowledge privacy policy and continue"
-            className="flex-1 bg-white text-black text-[10px] font-black uppercase tracking-widest py-3 rounded-2xl hover:bg-blue-50 transition-all active:scale-[0.98]"
+            className="flex-1 bg-white text-[#002147] text-[9px] font-black uppercase tracking-widest py-2 rounded-xl hover:bg-blue-50 transition-all active:scale-[0.98]"
           >
             Acknowledge &amp; Sync
           </button>
           <a
             href="/privacy"
-            className="text-[10px] font-black uppercase tracking-widest text-blue-200 hover:text-[#202124] transition-colors px-2 underline decoration-blue-200/50 underline-offset-4"
+            className="text-[9px] font-black uppercase tracking-widest text-blue-300 hover:text-white transition-colors px-2 underline decoration-blue-300/50 underline-offset-4"
             aria-label="Read our privacy policy"
           >
             Policy &rarr;
@@ -82,3 +82,4 @@ export function CookieBanner() {
     </div>
   );
 }
+

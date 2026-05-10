@@ -90,3 +90,4 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Deduplicate by URL to ensure a clean sitemap
   return Array.from(new Map(allEntries.map(item => [item.url, item])).values());
 }
+

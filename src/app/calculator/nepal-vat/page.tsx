@@ -9,5 +9,10 @@ export const metadata = calcMeta({
 });
 
 export default function Page() {
-  return <Calculator />;
+  return (
+    <div className="bg-[#F1F3F4]">
+      <Calculator />
+    </div>
+  );
 }
+

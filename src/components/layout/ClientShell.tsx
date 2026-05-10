@@ -41,3 +41,4 @@ export function ClientShell({ children }: ClientShellProps) {
     </ErrorBoundary>
   );
 }
+

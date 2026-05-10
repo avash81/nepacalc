@@ -23,7 +23,7 @@ export default function PregnancyDueDateCalculator() {
   ];
 
   return (
-    <ModernCalcLayout hideH1={true}
+    <ModernCalcLayout hideH1={false}
       crumbs={[{ label: 'Health', href: '/health/' }, { label: 'Pregnancy Calculator' }]}
       title="Pregnancy Due Date Calculator"
       description="Estimate your expected due date using Naegele's Rule. Track your trimester progress, weeks pregnant, and countdown to delivery."
@@ -180,4 +180,5 @@ export default function PregnancyDueDateCalculator() {
     />
   );
 }
+
 

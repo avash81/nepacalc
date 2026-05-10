@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["savings calculator nepal", "monthly savings growth", "compound interest savings", "wealth planning nepal", "savings account interest calculator"],
 });
 export default function Page() { return <Calculator />; }
+

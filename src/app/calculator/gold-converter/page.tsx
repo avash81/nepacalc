@@ -7,4 +7,11 @@ export const metadata = calcMeta({
   canonical: '/market-rates/live-gold-price/',
   keywords: ["gold rate calculator nepal", "tola to gram converter", "live gold price nepal", "fenegosida gold rate", "jewelry valuation nepal", "gold calculator with making charges"],
 });
-export default function Page() { return <Calculator />; }
+export default function Page() {
+  return (
+    <div className="bg-[#F1F3F4]">
+      <Calculator />
+    </div>
+  );
+}
+

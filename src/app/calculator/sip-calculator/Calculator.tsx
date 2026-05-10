@@ -80,7 +80,7 @@ export default function SIPCalculator() {
   return (
     <ModernCalcLayout
       slug="sip-calculator"
-      crumbs={[{ label: 'Home', href: '/' }, { label: 'Financial', href: '/financial/' }, { label: 'SIP Calculator' }]}
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Financial', href: '/finance/' }, { label: 'SIP Calculator' }]}
       title="SIP Investment Calculator"
       description="Plan your wealth with Systematic Investment Plans (SIP) and annual step-ups for maximum growth in Nepal's mutual funds."
       icon={TrendingUp}
@@ -387,5 +387,6 @@ export default function SIPCalculator() {
     />
   );
 }
+
 
 

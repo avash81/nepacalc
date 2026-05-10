@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["marks needed calculator", "final grade calculator", "exam score needed", "target grade calculator", "university grade calculator"],
 });
 export default function Page() { return <Calculator />; }
+

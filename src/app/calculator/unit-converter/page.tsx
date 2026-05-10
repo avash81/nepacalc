@@ -6,4 +6,11 @@ export const metadata = calcMeta({
   slug: 'unit-converter',
   keywords: ["unit converter online", "metric to imperial converter", "length converter", "weight converter", "area converter", "volume calculator", "kg to lbs converter"],
 });
-export default function Page() { return <Calculator />; }
+export default function Page() {
+  return (
+    <div className="bg-[#F1F3F4]">
+      <Calculator />
+    </div>
+  );
+}
+

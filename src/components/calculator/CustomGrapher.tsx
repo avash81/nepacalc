@@ -439,3 +439,4 @@ export default function CustomGrapher({ expression }: { expression: string }) {
     </div>
   );
 }
+

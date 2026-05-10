@@ -43,3 +43,4 @@ export function CalcFAQ({ faqs, toolName }: { faqs: FAQ[]; toolName?: string }) 
     </div>
   );
 }
+

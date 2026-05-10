@@ -18,3 +18,4 @@ export function NepalFlag({ className }: Props) {
     </span>
   );
 }
+

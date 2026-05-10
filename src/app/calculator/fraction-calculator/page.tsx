@@ -7,3 +7,4 @@ export const metadata = calcMeta({
   keywords: ["fraction calculator", "simplify fractions", "add mixed numbers", "multiply fractions", "fraction to decimal", "improper fraction converter"],
 });
 export default function Page() { return <Calculator />; }
+

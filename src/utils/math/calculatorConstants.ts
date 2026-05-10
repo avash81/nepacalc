@@ -65,3 +65,4 @@ export const UNIT_CATEGORIES: UnitCategory[] = [
   { id: 'time', name: 'Time', units: ['s', 'min', 'h', 'day', 'week', 'year'] },
   { id: 'temp', name: 'Temperature', units: ['celsius', 'fahrenheit', 'kelvin'] },
 ];
+

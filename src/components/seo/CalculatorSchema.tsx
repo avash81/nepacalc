@@ -85,3 +85,4 @@ export default function CalculatorSchema({ calculator }: Props) {
     </>
   );
 }
+

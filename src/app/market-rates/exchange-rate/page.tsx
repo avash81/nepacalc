@@ -48,6 +48,7 @@ export default function Page() {
         description="Official daily exchange rates for major currencies against the Nepalese Rupee (NPR) as per NRB mandates."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Exchange Rates' }]}
         isNepal={true}
+        hideHeader={true}
         relatedCalcs={[
           { name: 'Remittance Board', slug: '/market-rates/remittance/' },
           { name: 'Live Gold Price', slug: '/market-rates/live-gold-price/' },
@@ -77,3 +78,4 @@ export default function Page() {
     </div>
   );
 }
+

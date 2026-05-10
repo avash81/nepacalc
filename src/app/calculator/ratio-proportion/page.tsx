@@ -37,6 +37,7 @@ export default function Page() {
   return (
     <div className="bg-white min-h-screen">
       <CalcWrapper
+        hideHeader={true}
         title="Ratio & Proportion Solver"
         description="High-precision algebraic engine for simplifying ratios, solving for unknown values, and calculating scaling proportions."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Ratio' }]}
@@ -71,3 +72,4 @@ export default function Page() {
         </div>
   );
 }
+

@@ -83,7 +83,7 @@ export default function LoanEMICalculator() {
   return (
     <ModernCalcLayout
       slug="loan-emi"
-      crumbs={[{ label: 'Home', href: '/' }, { label: 'Financial', href: '/financial/' }, { label: 'Loan Calculator' }]}
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Financial', href: '/finance/' }, { label: 'Loan Calculator' }]}
       title={isReverse ? "Loan Affordability" : "Loan EMI"}
       description="The definitive resource for debt intelligence in Nepal. Calculate Equated Monthly Installments for Home, Auto, and Personal loans with high-precision NRB regulatory compliance auditing."
       icon={Landmark}
@@ -291,3 +291,4 @@ export default function LoanEMICalculator() {
     />
   );
 }
+

@@ -60,3 +60,4 @@ describe('nepal math utils', () => {
     expect(calculateNepalVAT(113, 'inclusive').priceExcludingVAT).toBe(100);
   });
 });
+
