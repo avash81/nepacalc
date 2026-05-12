@@ -209,30 +209,27 @@ export default function NepalVATCalculator() {
            </div>
         </div>
       }
-      howToUse={{
-        steps: [
-          "Protocol: Select 'Add VAT' to calculate final price, or 'Extract VAT' to find the base price from a total.",
-          "Modifiers: Check 'Include 10% Service Charge' if calculating for restaurants or hospitality services.",
-          "Value: Enter the amount in Nepalese Rupees (NPR).",
-          "Audit: Review the generated breakdown to see exact tax and service charge components."
-        ]
+      customSchema={{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Nepal VAT Calculator 13%",
+        "url": "https://nepacalc.com/calculator/nepal-vat/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "description": "Professional 13% VAT calculator for Nepal. Calculate inclusive and exclusive VAT, handle 10% service charge cascading, and reverse VAT extraction. IRD compliant.",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "NPR"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "NepaCalc",
+          "url": "https://nepacalc.com"
+        }
       }}
-      formula={{
-        title: "VAT Cascading Logic",
-        description: "Official IRD prescribed calculation for combined tax scenarios.",
-        raw: "VAT = (Base + ServiceCharge) × 0.13",
-        variables: [
-          "Base: The fundamental price of goods/services",
-          "Service Charge: Typically 10% in hospitality, added before VAT",
-          "VAT: Fixed at 13% for all taxable goods and services in Nepal"
-        ]
-      }}
-      faqs={[
-        { question: "What is the VAT rate in Nepal?", answer: "The standard Value Added Tax (VAT) rate in Nepal is legally fixed at 13%." },
-        { question: "Is Service Charge calculated before or after VAT?", answer: "Service Charge (typically 10%) is calculated on the base price. VAT is then calculated on the sum of the base price and the service charge." },
-        { question: "Do all businesses charge VAT?", answer: "No, businesses must exceed a certain annual turnover threshold (e.g., 50 Lakhs for goods) to be legally required to register for VAT and collect it from customers." },
-        { question: "How do I extract VAT from a total receipt?", answer: "Use the 'Extract VAT' protocol in this tool. The math is: Total Amount / 1.13 = Base Amount. (Or / 1.243 if a 10% service charge is included)." }
-      ]}
       sidebar={{
         title: "Fiscal Hub",
         subtitle: "Tax Compliance",

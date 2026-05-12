@@ -271,31 +271,27 @@ export default function NepalLandCalculator() {
           </div>
         </div>
       }
-      howToUse={{
-        steps: [
-          "Units: Select the appropriate section (Hill or Terai) based on the land's location.",
-          "Input: Enter the area values from your Lalpurja (Land Ownership Certificate).",
-          "Conversion: The engine instantly calculates values across all standard Nepalese systems.",
-          "Validation: Check the metric results (Sq. Meters) for official government documentation.",
-          "Audit: Review the conversion table for quick reference of institutional constants."
-        ]
+      customSchema={{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Nepal Land Area Calculator Ropani Aana Bigha",
+        "url": "https://nepacalc.com/calculator/nepal-land/",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "description": "Professional Nepal land area converter for Ropani, Aana, Paisa, Daam (Hill) and Bigha, Kattha, Dhur (Terai). Support for Square Feet and Square Meters conversion.",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "NPR"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "NepaCalc",
+          "url": "https://nepacalc.com"
+        }
       }}
-      formula={{
-        title: "Standard Land Calculus (DoLMA)",
-        description: "Official area constants used by the Department of Land Management and Archive of Nepal.",
-        raw: "$$1\ Ropani = 5476\ ft^2 \\quad | \\quad 1\ Bigha = 72900\ ft^2$$",
-        variables: [
-          "Hill: 1 Ropani = 16 Aana = 64 Paisa = 256 Daam",
-          "Terai: 1 Bigha = 20 Kattha = 400 Dhur",
-          "Metric: 1 Square Foot = 0.0929 Square Meters"
-        ]
-      }}
-      faqs={[
-        { question: "How many square feet are in 1 Aana?", answer: "1 Aana is exactly 342.25 square feet in the Nepalese hilly land measurement system." },
-        { question: "What is the difference between Ropani and Bigha?", answer: "Ropani is used in the Hilly regions (including Kathmandu), whereas Bigha is used in the Terai plains. 1 Bigha is much larger, equal to 13.31 Ropani." },
-        { question: "Is the conversion rate the same for all districts?", answer: "Yes, the mathematical constants for Ropani and Bigha to square feet are institutionalized across Nepal for legal and banking purposes." },
-        { question: "What is 1 Kattha in square feet?", answer: "1 Kattha is exactly 3,645 square feet (72900 / 20)." }
-      ]}
       sidebar={{
         title: "Nepal Land Hub",
         subtitle: "Property Tools",

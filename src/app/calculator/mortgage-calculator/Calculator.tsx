@@ -219,6 +219,27 @@ export default function MortgageCalculator() {
           </div>
         </div>
       }
+      customSchema={{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Nepal Mortgage & Home Loan Calculator 2082/83",
+        "url": "https://nepacalc.com/calculator/mortgage-calculator/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "description": "Calculate your Nepal home loan EMI, total interest, and monthly mortgage breakdown including property tax and insurance. Based on 2082 NRB guidelines.",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "NPR"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "NepaCalc",
+          "url": "https://nepacalc.com"
+        }
+      }}
       sidebar={{
         title: "NepaCalc Tools",
         subtitle: "Institutional Resources",

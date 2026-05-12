@@ -237,31 +237,27 @@ export default function NepalSalaryCalculator() {
            </div>
         </div>
       }
-      howToUse={{
-        steps: [
-          "Gross Salary: Enter your basic plus allowance before any legal deductions.",
-          "Filing Status: Select 'Married' if you are filing jointly for higher tax slabs.",
-          "SSF: Toggle Social Security Fund if your company is registered for SSF pooling.",
-          "CIT: Input any voluntary Provident Fund or Citizen Investment Trust contributions.",
-          "Audit: Review the Deduction Ledger to see exact split between retirement and tax."
-        ]
+      customSchema={{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Nepal Salary Calculator 2082/83",
+        "url": "https://nepacalc.com/calculator/nepal-salary/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "description": "Calculate your take-home pay in Nepal for FY 2082/83. Support for SSF (31% contribution), CIT deductions, and automatic income tax calculation.",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "NPR"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "NepaCalc",
+          "url": "https://nepacalc.com"
+        }
       }}
-      formula={{
-        title: "The Institutional Payroll Calculus",
-        description: "Standard computational model for payroll in Nepal under the Labor Act 2074 and SSF Operation Directives.",
-        raw: "Net = Gross - (Employee_SSF + CIT + Progressive_Tax)",
-        variables: [
-          "Employee SSF: 11% of Basic Salary",
-          "Employer SSF: 20% of Basic Salary",
-          "Tax Slabs: Calculated progressively (1% to 39%)"
-        ]
-      }}
-      faqs={[
-        { question: "What is SSF (Social Security Fund)?", answer: "SSF is a statutory contribution where the employee pays 11% and the employer pays 20% of the basic salary. It covers medical, accident, disability, and retirement benefits." },
-        { question: "Is CIT deduction mandatory?", answer: "No, CIT (Citizen Investment Trust) is a voluntary contribution used for tax optimization. It reduces your taxable income, saving you money on income tax." },
-        { question: "How does 'Married' status affect my net pay?", answer: "Married status increases your non-taxable income threshold from 5 Lakh to 6 Lakh NPR annually, which reduces your monthly tax and increases your take-home pay." },
-        { question: "What is the difference between Gross Salary and CTC?", answer: "Gross Salary is what you see on your offer letter. CTC (Cost to Company) includes your gross salary plus the 20% SSF contribution paid by your employer." }
-      ]}
       sidebar={{
         title: "Salary Hub Nepal",
         subtitle: "Compliance Tools",

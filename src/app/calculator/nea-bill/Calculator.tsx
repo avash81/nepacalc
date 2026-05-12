@@ -253,31 +253,27 @@ export default function NEABillCalculator() {
           </div>
         </div>
       }
-      howToUse={{
-        steps: [
-          "Units: Enter the total electricity units (kWh) from your monthly NEA meter reading.",
-          "Capacity: Select your meter amperage (typically 5A for small households, 15A or higher for larger ones).",
-          "Window: Choose the payment timeline to account for digital rebates (within 7 days) or late fines.",
-          "Audit: Analyze the 'Progressive Slabs' to see how your consumption crosses expensive price blocks.",
-          "VAT: The engine automatically applies the 13% statutory Value Added Tax to the subtotal."
-        ]
+      customSchema={{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "NEA Electricity Bill Calculator Nepal 2082/83",
+        "url": "https://nepacalc.com/calculator/nea-bill/",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "description": "Calculate your Nepal Electricity Authority (NEA) bill for FY 2082/83. Support for all meter capacities (5A to 60A), digital rebates, and late payment fines.",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "NPR"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "NepaCalc",
+          "url": "https://nepacalc.com"
+        }
       }}
-      formula={{
-        title: "NEA Progressive Billing Calculus",
-        description: "Official piecewise tariff algorithm issued by the Electricity Regulatory Commission (ERC) of Nepal.",
-        raw: "Total = (Σ Slab_Units × Slab_Rate) + Service_Charge + 13%_VAT ± Adjustments",
-        variables: [
-          "Slab Units: Incremental units consumed in each price bracket",
-          "Service Charge: Fixed monthly meter fee based on current slab and capacity",
-          "Rebate: 2% reduction if paid digitally within 7 days of reading"
-        ]
-      }}
-      faqs={[
-        { question: "What is the rate for the first 20 units in Nepal?", answer: "For 5A residential meters, the first 20 units are heavily subsidized at Rs. 30 (fixed charge) with zero energy charge. However, if you cross 20 units, the rate for the first block changes." },
-        { question: "How much is the fine for paying after 15 days?", answer: "A 5% penalty is applied if paid between 16-30 days. This increases to 10% after 30 days and a maximum of 25% if paid after 40 days." },
-        { question: "What is the 2% Digital Rebate?", answer: "NEA offers a 2% discount (maximum Rs. 500) if you pay your bill through digital platforms like eSewa, Khalti, or Mobile Banking within 7 days of the meter reading." },
-        { question: "Does my meter amperage affect my bill?", answer: "Yes, larger capacity meters (15A, 30A, 60A) have higher fixed service charges even if your energy consumption is identical to a 5A meter." }
-      ]}
       sidebar={{
         title: "Utility Hub",
         subtitle: "Nepal Infrastructure",

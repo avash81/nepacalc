@@ -241,40 +241,35 @@ export default function NepalIncomeTaxCalculator() {
           </div>
         </div>
       }
-      howToUse={{
-        steps: [
-          "Income: Enter your total annual or monthly salary before any deductions.",
-          "Status: Select 'Married' to benefit from the higher 6 Lakh non-taxable threshold.",
-          "Deductions: Input your life insurance premium (up to 40k) and CIT/SSF contributions.",
-          "Gender: Female taxpayers receive a 10% rebate on their total calculated tax.",
-          "SSF: Check 'SSF Contributor' to waive the 1% Social Security Tax on the first slab."
-        ]
-      }}
-      formula={{
-        title: "Progressive Tax Calculus (FY 2082/83)",
-        description: "Standard IRD-compliant progressive taxation model with Social Security and Health insurance provisions.",
-        raw: "Tax = Σ (Income in Slab[i] × Rate[i]) - GenderRebate",
-        variables: [
-          "1% SST: Applied to the first slab (waived for SSF contributors)",
-          "Slabs: 5%, 10%, 20%, 30%, 36% and 39% progressive jumps",
-          "Rebate: 10% rebate for female taxpayers with remuneration income"
-        ]
-      }}
-      faqs={[
-        { question: "What is the 1% SST waiver for SSF contributors?", answer: "Individuals contributing to the Social Security Fund (SSF) are exempt from the 1% Social Security Tax on their first taxable slab (5 Lakh for single, 6 Lakh for married)." },
-        { question: "How does the Female Tax Rebate work?", answer: "Female taxpayers whose source of income is only remuneration (salary) are entitled to a 10% rebate on their total calculated income tax." },
-        { question: "What is the maximum CIT/EPF deduction allowed?", answer: "You can deduct up to 1/3rd of your gross income or Rs. 5,00,000 (whichever is lower) for contributions made to approved retirement funds like CIT, EPF, or SSF." },
-        { question: "Is bonus income taxed differently in Nepal?", answer: "No, bonuses are added to your total annual remuneration and taxed according to the standard progressive slabs." }
-      ]}
-      sidebar={{
-        title: "Tax Hub Nepal",
-        subtitle: "Compliance Tools",
-        links: [
-          { label: "Salary Calculator", href: "/calculator/nepal-salary/", icon: Wallet },
-          { label: "VAT Calculator", href: "/calculator/nepal-vat/", icon: Receipt },
-          { label: "TDS Calculator", href: "/calculator/nepal-tds/", icon: Scale },
-          { label: "SSF Official", href: "https://ssf.gov.np", icon: Landmark },
+      customSchema={{
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Nepal Income Tax Calculator 2082/83",
+        "url": "https://nepacalc.com/calculator/nepal-income-tax/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "description": "Calculate Nepal income tax for FY 2082/83. Enter salary to get slab-wise breakdown, SSF waiver, EPF/CIT deductions, female 10% rebate and net take-home pay.",
+        "inLanguage": "en",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "NPR"
+        },
+        "featureList": [
+          "Nepal income tax slab 2082/83",
+          "SSF waiver calculation",
+          "Female 10% tax rebate",
+          "EPF and CIT deduction support",
+          "Married vs single filer",
+          "Monthly TDS output"
         ],
+        "isAccessibleForFree": true,
+        "publisher": {
+          "@type": "Organization",
+          "name": "NepaCalc",
+          "url": "https://nepacalc.com"
+        }
       }}
       relatedTools={[
         { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
