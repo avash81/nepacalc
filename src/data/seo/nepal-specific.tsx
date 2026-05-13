@@ -2300,8 +2300,8 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     ]
   },
   'see-gpa': {
-    title: "SEE GPA Calculator Nepal | NEB Grading Audit Lab",
-    description: "The definitive SEE GPA calculator for 2080/81. Audits your marks against the latest NEB letter grading directive with NG (Non-Graded) detection.",
+    title: "NEPAL TELECOM :: SEE Results 2082/2083 | Official SEE GPA Calculator",
+    description: "Access the definitive SEE GPA calculator for 2082/2083. Audits your marks against the latest NEB letter grading directive with official result portal logic.",
     howToUse: {
       steps: [
         "1. Grade Entry: Input your grades (A+, A, B+, etc.) for all subjects.",
@@ -2329,7 +2329,7 @@ formula: {
           Academic Transition Executive Summary
           </h2>
           <p className="text-slate-800 text-base leading-relaxed">
-          For every student in Nepal, the Secondary Education Examination (SEE) is more than just an exam; it is a turning point that dictates future career paths. With the recent updates to the <strong>NEB grading system</strong> in 2080/81, understanding how your hard work translates into a <strong>Grade Point Average (GPA)</strong> is more important than ever. Whether you are navigating the <a href="https://www.neb.gov.np" target="_blank" rel="noopener noreferrer" className="text-sky-700 hover:text-sky-900 underline font-semibold transition-colors">neb gov np</a> website for the first time or trying to understand <strong>how to convert gpa into percentage</strong>, this guide provides a deep dive into the technical and practical aspects of your results. 
+          For every student in Nepal, the Secondary Education Examination (SEE) is more than just an exam; it is a turning point that dictates future career paths. With the recent updates to the <strong>NEB grading system</strong> in 2082/83, understanding how your hard work translates into a <strong>Grade Point Average (GPA)</strong> is more important than ever. Whether you are navigating the <a href="https://www.neb.gov.np" target="_blank" rel="noopener noreferrer" className="text-sky-700 hover:text-sky-900 underline font-semibold transition-colors">neb gov np</a> website for the first time or trying to understand <strong>how to convert gpa into percentage</strong>, this guide provides a deep dive into the technical and practical aspects of your results. 
           <br/><br/>
           The <strong>see gpa calculator</strong> is a specialized tool designed to process raw marks into a standardized numerical value. In a landscape where <strong>www neb gov np</strong> and <strong>see ntc net np</strong> are the primary sources of truth, having a local <strong>gpa calculator nepal</strong> ensures you can audit your marksheet without waiting for slow servers.
           <br/><br/>
@@ -2613,7 +2613,7 @@ formula: {
         ========================================== */}
         <div className="text-center pt-16 border-t border-slate-100">
           <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">
-          NepaCalc Academic Audit Division • Data Verified for 2082/83 • Updated for NEB 2081 Directive
+          NepaCalc Academic Audit Division • Data Verified for 2082/83 • Updated for NEB 2083 Directive
           </p>
         </div>
       </div>

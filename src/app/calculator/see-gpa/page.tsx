@@ -2,10 +2,10 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: "SEE GPA Calculator 2083 | Nepal Grading System 2026 | NepaCalc",
-  description: "Calculate your SEE GPA for 2083/2026 using Nepal's official NEB grading scale. Understand the 35% theory rule and NG results. Accurate GPA converter.",
+  title: "NEPAL TELECOM :: SEE.NTC.NET.NP :: SEE Results 2082/2083 | SEE GPA Calculator | NepaCalc",
+  description: "Check SEE Results 2082/2083 with Marksheet. Calculate your SEE GPA online based on the official NEB grading system. Official SEE.NTC.NET.NP results portal data.",
   slug: 'see-gpa',
-  keywords: ["see gpa calculator 2083", "nepal grading system 2026", "how to calculate gpa nepal", "see result 2083 marksheet", "neb grading system", "see ng results"],
+  keywords: ["see result 2082", "see result 2083", "nepal telecom see result", "see.ntc.net.np 2082", "see gpa calculator 2083", "neb gov np see result", "how to check see result with marksheet"],
 });
 
 export default function Page() {

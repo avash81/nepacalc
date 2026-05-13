@@ -201,12 +201,12 @@ export default function SEEGPACalculator() {
       customSchema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "SEE GPA Calculator Nepal 2082",
+        "name": "NEPAL TELECOM :: SEE.NTC.NET.NP :: SEE Results 2082/2083",
         "url": "https://nepacalc.com/calculator/see-gpa/",
         "applicationCategory": "EducationApplication",
         "operatingSystem": "Any",
         "browserRequirements": "Requires JavaScript",
-        "description": "Convert your SEE grades to GPA using Nepal's official NEB grading scale. 2082 NEB system with NG (Non-Graded) logic.",
+        "description": "Official SEE Result GPA Calculator for 2082/2083. Check your SEE marksheet and convert grades to GPA instantly using NEB standards.",
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",
