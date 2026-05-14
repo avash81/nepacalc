@@ -3,24 +3,21 @@ import { SEOContent } from './types';
 
 export const statisticsSEO: Record<string, SEOContent> = {
   'statistics-plus': {
-    title: "Statistics Plus Calculator | Dataset & Probability Auditor",
-    description: "The definitive institutional engine for descriptive and inferential statistics. 1500+ words on variance, standard deviation, and dataset auditing for FY 2082/83.",
+    title: "Advanced Statistics Calculator | Mean, Median & More",
+    description: "The most comprehensive calculator for descriptive and inferential statistics. Calculate mean, median, mode, variance, and standard deviation for your datasets.",
     
     howToUse: {
       steps: [
-        "1. Dataset Entry: Input your raw data points separated by commas or newlines.",
-        "2. Data Validation: The engine sanitizes the input for non-numerical characters.",
-        "3. Descriptive Audit: View Mean, Median, Mode, and Range for the 2082/83 cycle.",
-        "4. Variance Mapping: Analyze Standard Deviation and Variance to understand data dispersion.",
-        "5. Quartile Split: Identify Q1, Q2 (Median), and Q3 for box-plot analysis.",
-        "6. Outlier Detection: The system flags data points that fall outside the Interquartile Range (IQR).",
-        "7. Sampling Calibration: Toggle between 'Population' and 'Sample' variance calculations.",
-        "8. Result Export: Download the full statistical summary as a professional report."
+        "1. Enter Data: Type or paste your numbers separated by commas or spaces.",
+        "2. Review Stats: Instantly see the Mean, Median, and Mode.",
+        "3. Check Spread: View Standard Deviation and Variance to see how spread out your data is.",
+        "4. Find Outliers: Use the automatically calculated Interquartile Range (IQR) to spot unusual data points.",
+        "5. Population vs. Sample: Choose the right calculation method for your specific dataset."
       ]
     },
     
     formula: {
-      title: "The Standard Deviation Axiom",
+      title: "Standard Deviation Formula",
       description: "A measure of how much members of a group differ from the mean value for the dataset.",
       raw: "σ = √[ Σ(x - μ)² / N ]",
       variables: [
@@ -34,20 +31,19 @@ export const statisticsSEO: Record<string, SEOContent> = {
     
     content: (
         <div className="space-y-12">
-            {/* Executive Summary */}
+            {/* Overview */}
             <div className="bg-purple-50/50 border-l-4 border-purple-600 rounded-r-xl p-8 shadow-sm">
                 <h2 className="text-purple-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-                    Statistical Intelligence & Data Auditing Summary
+                    Making Sense of Your Data
                 </h2>
                 <p className="text-slate-800 text-base leading-relaxed">
-                    Data is the primary auditor of institutional performance and societal trends. In the research landscape of <strong>FY 2082/83</strong>, the ability to extract meaningful insights from raw datasets—ranging from agricultural yields in the Terai to liquidity ratios in the banking sector—is a critical competency. This <strong>Statistics Plus Auditor</strong> provides a high-precision engine for multi-variant data analysis. By strictly enforcing standard mathematical protocols for dispersion and central tendency, we ensure that your conclusions are backed by rigorous statistical logic.
+                    Statistics help us find patterns in numbers, whether you're analyzing school grades, business sales, or scientific research. This <strong>Statistics Plus</strong> tool makes it easy to calculate central tendencies like Mean and Median, while also providing deep insights into data dispersion through Standard Deviation and Variance. Understanding these metrics is key to making data-driven decisions in any field.
                 </p>
             </div>
 
-            {/* Section 1: The Hierarchy of Descriptive Stats */}
             <section>
                 <h3 className="text-2xl font-black text-slate-900 mb-6">
-                    1. The Hierarchy of Descriptive Statistics: Central Tendency
+                    1. Finding the Center: Mean vs. Median
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                     <div className="p-8 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-purple-300 transition-all">
@@ -55,7 +51,7 @@ export const statisticsSEO: Record<string, SEOContent> = {
                             <span>🎯</span> The Arithmetic Mean (μ)
                         </h4>
                         <p className="text-xs text-slate-600 leading-relaxed">
-                            The Mean is the 'gravitational center' of your data. While powerful, it is highly sensitive to outliers. In 2082/83 fiscal auditing, we use the mean to establish baseline performance across large, uniform datasets.
+                            The Mean is the average of all your data points. It's great for uniform data but can be heavily influenced by extremely high or low values (outliers).
                         </p>
                     </div>
                     <div className="p-8 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-blue-300 transition-all">
@@ -63,26 +59,25 @@ export const statisticsSEO: Record<string, SEOContent> = {
                             <span>⚖️</span> The Median (Q2)
                         </h4>
                         <p className="text-xs text-slate-600 leading-relaxed">
-                            The Median is the 'robust center'. It effectively ignores extreme outliers, making it the primary auditor for income distribution and real estate pricing in Nepal, where skewed data is common.
+                            The Median is the middle value when your data is sorted. It's a "robust" measure because it isn't affected by outliers, making it perfect for things like average income or house prices.
                         </p>
                     </div>
                 </div>
             </section>
 
-            {/* Section 2: Strategy Box - Dispersion */}
             <section className="bg-slate-900 text-white rounded-2xl p-8 border border-slate-800 shadow-xl overflow-hidden relative">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600 rounded-full blur-[120px] opacity-20 pointer-events-none" />
                 <h3 className="text-xl font-black mb-6 relative z-10 text-purple-400">
-                    🛡️ Strategic Audit: Quantifying Dataset Volatility
+                    Understanding Data Spread & Volatility
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
                     <p className="text-sm text-slate-300 leading-relaxed">
-                        A mean value without <strong>Standard Deviation (σ)</strong> is mathematically blind. Two datasets can have the same average but entirely different risk profiles. Our engine identifies <strong>Variance (σ²)</strong> to help you understand if your data is clustered or chaotic.
+                        Knowing the average isn't enough. <strong>Standard Deviation (σ)</strong> tells you how much your data varies from that average. A low standard deviation means the numbers are close together, while a high one means they are spread far apart.
                     </p>
                     <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl">
-                        <h4 className="text-[10px] font-black text-purple-400 uppercase tracking-widest mb-3">Institutional Insight: The 68-95-99.7 Rule</h4>
+                        <h4 className="text-[10px] font-black text-purple-400 uppercase tracking-widest mb-3">Quick Rule: The 68-95-99.7 Rule</h4>
                         <p className="text-xs text-slate-400 leading-relaxed italic">
-                            "In a normal distribution, 68% of data falls within one σ of the mean. If your 2082/83 production data falls outside this, your process is in 'Statistical Out-of-Control' state."
+                            "In a normal distribution, about 68% of your data will fall within one standard deviation of the mean. If your data is way outside this, it's considered an anomaly."
                         </p>
                     </div>
                 </div>
@@ -91,11 +86,11 @@ export const statisticsSEO: Record<string, SEOContent> = {
             {/* Section 3: The Interquartile Range (IQR) & Outliers */}
             <section className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
                 <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
-                    <span className="text-purple-600">📊</span> The IQR Axiom: Identifying the 'Middle 50%'
+                    <span className="text-purple-600">📊</span> spotting the Middle 50%: The IQR
                 </h3>
                 <div className="space-y-6">
                     <p className="text-sm text-slate-600 leading-relaxed">
-                        The <strong>Interquartile Range (IQR)</strong> is the distance between the 25th percentile (Q1) and the 75th percentile (Q3). This is the definitive auditor for filtering out 'noise' and focusing on the core trend of your dataset.
+                        The <strong>Interquartile Range (IQR)</strong> represents the middle 50% of your data. It's a great way to see where most of your values lie while ignoring the extremes at both ends.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div className="bg-slate-50 p-4 rounded-xl text-center border border-slate-100">
@@ -112,7 +107,7 @@ export const statisticsSEO: Record<string, SEOContent> = {
                         </div>
                     </div>
                     <p className="text-[11px] text-slate-500 italic text-center">
-                        *Values outside the fences are mathematically audited as **Outliers**.*
+                        *Anything outside these fences is usually considered an **Outlier**.*
                     </p>
                 </div>
             </section>
@@ -124,7 +119,7 @@ export const statisticsSEO: Record<string, SEOContent> = {
                     <table className="w-full text-left text-sm">
                         <thead className="bg-slate-50 text-slate-900 font-black">
                             <tr className="border-b border-slate-200">
-                                <th className="p-4">Analysis Depth</th>
+                                <th className="p-4">Feature</th>
                                 <th className="p-4">Standard Spreadsheet</th>
                                 <th className="p-4 text-purple-700">CalcPro Statistics Plus ✓</th>
                             </tr>
@@ -143,87 +138,85 @@ export const statisticsSEO: Record<string, SEOContent> = {
                             <tr>
                                 <td className="p-4 font-bold">Step-by-Step Logic</td>
                                 <td className="p-4">Hidden 'Black Box' results.</td>
-                                <td className="p-4 text-green-700 font-bold">Verifiable Math Audits</td>
+                                <td className="p-4 text-green-700 font-bold">Clear Step-by-Step Logic</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            {/* Section 5: Real-World Use Cases in Nepal */}
             <section className="bg-indigo-900 text-white p-10 rounded-3xl shadow-2xl relative overflow-hidden">
                 <div className="absolute bottom-0 right-0 w-full h-1 bg-purple-500" />
-                <h3 className="text-2xl font-black mb-4">Economic Data Auditing 2082/83</h3>
+                <h3 className="text-2xl font-black mb-4">Practical Uses of Statistics</h3>
                 <p className="text-indigo-200 leading-relaxed mb-6">
-                    Professional statisticians in Nepal use our engine to audit <strong>Consumer Price Index (CPI)</strong> baskets and export-import variance. By identifying the 'Mode' of price increases across 77 districts, we can pinpoint inflationary hotspots that the 'Mean' might mask. This is the primary tool for 2082/83 policy researchers and data scientists.
+                    From tracking stock market trends in NEPSE to analyzing agricultural output in different districts of Nepal, statistics help make sense of complex information. By using tools like the 'Mode' to find the most common price point or 'Standard Deviation' to measure risk, you can gain a much deeper understanding of any set of numbers.
                 </p>
                 <div className="flex gap-4">
-                    <div className="bg-white/10 px-4 py-2 rounded-lg border border-white/20 text-[10px] font-black uppercase">Sample n-1 logic</div>
-                    <div className="bg-white/10 px-4 py-2 rounded-lg border border-white/20 text-[10px] font-black uppercase">Box-Plot resolution</div>
+                    <div className="bg-white/10 px-4 py-2 rounded-lg border border-white/20 text-[10px] font-black uppercase">Sample vs Population Logic</div>
+                    <div className="bg-white/10 px-4 py-2 rounded-lg border border-white/20 text-[10px] font-black uppercase">Data Visualization Ready</div>
                 </div>
             </section>
 
             {/* Footer */}
             <div className="text-center pt-8 border-t border-slate-200">
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">
-                    Institutional Statistics Engine • 2082/83 Masterclass
+                    Standard Statistics Engine • Professional Analysis Tool
                 </p>
             </div>
         </div>
     ),
     faqs: [
-      { question: "What is the difference between Mean and Median?", answer: "The Mean is the arithmetic average, while the Median is the middle value. Medians are better for datasets with extreme outliers (like income in Nepal)." },
-      { question: "Why use Statistics Plus for FY 2082/83?", answer: "Our engine automates complex variance and quartile calculations, ensuring 100% mathematical integrity for professional auditing." }
+      { question: "What is the difference between Mean and Median?", answer: "The Mean is the average of all numbers, while the Median is the exact middle value. The Median is often better for data with large outliers, like income levels." },
+      { question: "Why should I use this statistics tool?", answer: "Our tool automates complex calculations like variance, IQR, and standard deviation, giving you instant and accurate results without needing complex formulas." }
     ]
   },
   'standard-deviation': {
-    title: "Standard Deviation Calculator | Dataset Variance Auditor",
-    description: "Institutional engine for calculating standard deviation and variance for FY 2082/83. 1500+ words on data dispersion.",
+    title: "Standard Deviation Calculator | Dataset Variance Estimator",
+    description: "Calculate standard deviation and variance for any dataset. Understand data dispersion and consistency with our easy-to-use tool.",
     howToUse: {
       steps: [
         "1. Enter Dataset: Input numbers separated by commas.",
         "2. Select Type: Choose between Population (σ) or Sample (s).",
-        "3. Precise Audit: View the step-by-step variance calculation."
+        "3. Precise Check: View the step-by-step variance calculation."
       ]
     },
     formula: {
-      title: "The Dispersion Axiom",
+      title: "Dispersion Formula",
       description: "Standard deviation measures the average distance from the mean.",
       raw: "σ = √[Σ(x-μ)²/N]",
       variables: ["σ = Std Dev.", "μ = Mean.", "N = Count."]
     },
     content: (
         <div className="space-y-12">
-            {/* Executive Summary */}
+            {/* Overview */}
             <div className="bg-purple-50 border-l-4 border-purple-600 rounded-r-xl p-8 shadow-sm">
                 <h2 className="text-purple-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-                    Risk Assessment & Dispersion Auditing Summary
+                    Measuring Data Consistency
                 </h2>
                 <p className="text-slate-800 text-base leading-relaxed">
-                    Standard deviation is the primary auditor of risk and consistency in <strong>FY 2082/83</strong>. While the 'Mean' tells you where your data is, the 'Standard Deviation' tells you if you can trust that average. In Nepal's volatile financial markets or hydropower production cycles, understanding the <strong>coefficient of variation</strong> is essential for fiscal survival. This engine provides institutional-grade variance audits for both population and sample datasets.
+                    Standard deviation is the most common way to measure how spread out your data is. While the "Mean" tells you the average, the "Standard Deviation" tells you how much the individual numbers vary from that average. In financial markets like NEPSE or scientific experiments, understanding this spread is essential for assessing risk and consistency.
                 </p>
             </div>
 
-            {/* Section 1: The Standard Deviation Axiom */}
             <section>
                 <h3 className="text-2xl font-black text-slate-900 mb-6">
-                    1. The Standard Deviation Axiom: Quantifying Entropy
+                    1. What is Standard Deviation?
                 </h3>
                 <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-6">
                     <p>
-                        Mathematically, standard deviation is the square root of <strong>Variance</strong>. It quantifies how much individual data points deviate from the group average. In the context of 2082/83 data science, a low standard deviation indicates high precision and reliability, while a high standard deviation suggests high risk and dispersion.
+                        In simple terms, standard deviation is the square root of <strong>Variance</strong>. It shows you if your data points are clustered closely around the average or if they are scattered far apart. A low standard deviation means high consistency, while a high one suggests more variety or risk.
                     </p>
                     <div className="bg-indigo-900 text-white p-8 rounded-2xl shadow-xl relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl" />
-                        <h4 className="text-indigo-400 font-black text-xs uppercase tracking-widest mb-4">Technical Deep-Dive: Population vs. Sample</h4>
+                        <h4 className="text-indigo-400 font-black text-xs uppercase tracking-widest mb-4">Population vs. Sample</h4>
                         <p className="text-sm leading-relaxed italic opacity-90">
-                            "When auditing a total population (N), we use the direct average. However, for a sample (n), we apply <strong>Bessel's Correction (n-1)</strong>. This adjustment accounts for the inherent bias in smaller datasets, ensuring that your 2082/83 statistical inferences remain unbiased."
+                            "If you are measuring an entire group (Population), use the standard formula. If you are only looking at a small portion (Sample) to predict a larger trend, we apply a small adjustment (n-1) to ensure the result is more accurate and unbiased."
                         </p>
                     </div>
                 </div>
             </section>
 
-            {/* Section 2: Competitive Audit Table */}
+            {/* Section 2: Competitive Check Table */}
             <section>
                 <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
                     <span className="text-purple-600">📊</span> The Variance Benchmark: σ vs s
@@ -234,14 +227,14 @@ export const statisticsSEO: Record<string, SEOContent> = {
                             <tr className="border-b border-slate-200">
                                 <th className="p-4">Dataset Scope</th>
                                 <th className="p-4">Mathematical Notation</th>
-                                <th className="p-4">Institutional Use Case</th>
+                                <th className="p-4">Typical Use Case</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100 text-slate-600">
                             <tr>
                                 <td className="p-4 font-bold">Total Population (σ)</td>
                                 <td className="p-4 font-mono">√[Σ(x-μ)² / N]</td>
-                                <td className="p-4">Auditing total 2082/83 national census data.</td>
+                                <td className="p-4">Analyzing data from an entire national census.</td>
                             </tr>
                             <tr>
                                 <td className="p-4 font-bold">Statistical Sample (s)</td>
@@ -253,29 +246,29 @@ export const statisticsSEO: Record<string, SEOContent> = {
                 </div>
             </section>
 
-            {/* Section 3: Strategic Risk Strategy */}
+            {/* Section 3: Practical Risk Strategy */}
             <section className="bg-slate-900 text-white rounded-2xl p-8 border border-slate-800 shadow-xl overflow-hidden relative">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600 rounded-full blur-[120px] opacity-20 pointer-events-none" />
                 <h3 className="text-xl font-black mb-6 flex items-center gap-3 relative z-10 text-purple-400">
-                    🛡️ Strategic Audit: Chebyshev's Theorem
+                    Useful Rule: Chebyshev's Theorem
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
                     <p className="text-sm text-slate-300 leading-relaxed">
-                        In any dataset (even non-normal ones), at least 75% of data falls within 2 standard deviations of the mean. This <strong>Institutional Axiom</strong> allows researchers in Nepal to identify anomalies in 2082/83 production lines or banking transaction volumes even before the 'Normal Curve' is established.
+                        This rule states that in almost any dataset, at least 75% of the values will fall within two standard deviations of the average. This helps researchers in Nepal and elsewhere quickly spot unusual numbers in production lines or financial reports.
                     </p>
                     <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl">
-                        <h4 className="text-[10px] font-black text-purple-400 uppercase tracking-widest mb-3">Professional Tip: The Outlier Fence</h4>
+                        <h4 className="text-[10px] font-black text-purple-400 uppercase tracking-widest mb-3">spotting Anomalies</h4>
                         <p className="text-xs text-slate-400 leading-relaxed italic">
-                            "Points beyond 3σ are often audited as 'Black Swans' or processing errors. Use our <a href="/calculator/standard-deviation" className="text-purple-400 underline font-bold">Variance Lab</a> to filter these before they contaminate your final FY 2082/83 report."
+                            "Data points that are more than 3 standard deviations away from the mean are often considered 'outliers' or errors. Use our tool to identify these before they skew your final results."
                         </p>
                     </div>
                 </div>
             </section>
 
-            {/* Section 4: Step-by-Step Variance Audit */}
+            {/* Section 4: Step-by-Step Variance Check */}
             <section className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
                 <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
-                    <span className="text-purple-600">🧮</span> Step-by-Step Mathematical Resolve
+                    <span className="text-purple-600">🧮</span> Step-by-Step Calculation
                 </h3>
                 <ol className="space-y-6">
                     <li className="flex gap-4">
@@ -312,13 +305,13 @@ export const statisticsSEO: Record<string, SEOContent> = {
             {/* Section 5: The Economic Reality */}
             <section className="bg-indigo-600 text-white p-10 rounded-3xl shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-10" />
-                <h3 className="text-2xl font-black mb-4">Volatility Auditing in NEPSE</h3>
+                <h3 className="text-2xl font-black mb-4">Volatility in the Stock Market</h3>
                 <p className="text-indigo-100 leading-relaxed mb-6">
-                    In the Nepal Stock Exchange (NEPSE), standard deviation is used to calculate <strong>Bollinger Bands</strong> and <strong>Beta</strong>. A stock with a high σ is considered volatile, requiring a higher risk premium for the 2082/83 investor. By auditing the historical σ of <a href="/calculator/nepal-stocks" className="text-white underline font-bold">Banking sector stocks</a> vs. <a href="/calculator/nepal-stocks" className="text-white underline font-bold">Hydropower stocks</a>, you can build a more resilient portfolio.
+                    In the Nepal Stock Exchange (NEPSE), standard deviation is often used to measure how much a stock's price fluctuates. A high standard deviation means the stock is more volatile, which can mean more risk for an investor. By comparing the volatility of different sectors like Banking or Hydropower, you can make more informed investment choices.
                 </p>
                 <div className="flex items-center gap-4">
                     <span className="h-px bg-white/30 flex-1" />
-                    <span className="text-[10px] font-black uppercase tracking-widest opacity-60 text-white">Institutional Grade 2082/83</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest opacity-60 text-white">Advanced Data Analysis</span>
                     <span className="h-px bg-white/30 flex-1" />
                 </div>
             </section>
@@ -326,27 +319,27 @@ export const statisticsSEO: Record<string, SEOContent> = {
             {/* Footer */}
             <div className="text-center pt-8 border-t border-slate-200">
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">
-                    Risk & Variance Auditor • FY 2082/83 Edition
+                    Risk & Variance Calculator • Easy Stats Guide
                 </p>
             </div>
         </div>
     ),
     faqs: [
-      { question: "What is a low standard deviation?", answer: "It indicates that the data points tend to be close to the mean, suggesting consistency in the 2082/83 dataset." }
+      { question: "What is a low standard deviation?", answer: "A low standard deviation means that most of the numbers in your dataset are close to the average, indicating consistency." }
     ]
   },
   'probability': {
-    title: "Probability Calculator | Likelihood & Risk Auditor",
-    description: "The definitive resource for probability audits in FY 2082/83. 1500+ words on independent events and statistical odds.",
+    title: "Probability Calculator | Likelihood & Odds Estimator",
+    description: "Calculate the probability of events. Understand independent events, statistical odds, and risk with our free probability tool.",
     howToUse: {
       steps: [
         "1. Enter Successes: Number of desired outcomes.",
         "2. Enter Total Events: Total number of possible outcomes.",
-        "3. Odds Audit: View probability as a fraction, decimal, and percentage."
+        "3. Odds Check: View probability as a fraction, decimal, and percentage."
       ]
     },
     formula: {
-      title: "The Probability Axiom",
+      title: "Probability Formula",
       description: "The likelihood of an event occurring.",
       raw: "P(A) = n(A) / n(S)",
       variables: ["n(A) = Favorable outcomes.", "n(S) = Sample space."]
@@ -354,33 +347,30 @@ export const statisticsSEO: Record<string, SEOContent> = {
     content: (
         <div className="space-y-12">
         <div className="bg-blue-50 border-l-4 border-blue-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-blue-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Likelihood Summary</h2>
+        <h2 className="text-blue-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Probability Guide</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Probability auditing is essential for risk management in <strong>FY 2082/83</strong>.
-        
-        
-        
+        Understanding probability helps us estimate the likelihood of future events. Whether you're assessing business risks or just curious about the odds of an outcome, our calculator provides quick and accurate results.
         </p>
         </div>
         </div>
     ),
     faqs: [
-      { question: "Can probability be greater than 1?", answer: "No, probability ranges from 0 (impossible) to 1 (certain) for any FY 2082/83 event." }
+      { question: "Can probability be greater than 1?", answer: "No, probability always ranges from 0 (impossible) to 1 (certain)." }
     ]
   },
   'z-score': {
-    title: "Z-Score Calculator | Standard Score Auditor",
-    description: "Institutional resource for Z-score calculation in FY 2082/83. 1500+ words on normal distribution and standardization.",
+    title: "Z-Score Calculator | Standard Score Estimator",
+    description: "Calculate Z-scores for normal distribution. Understand standardization and how to compare raw scores across different datasets.",
     howToUse: {
       steps: [
         "1. Input Value (x).",
         "2. Input Mean (μ).",
         "3. Input Standard Deviation (σ).",
-        "4. Precise Audit: View how many standard deviations the value is from the mean."
+        "4. Precise Check: View how many standard deviations the value is from the mean."
       ]
     },
     formula: {
-      title: "The Standard Score Axiom",
+      title: "Standard Score Formula",
       description: "Standardizing raw scores to compare across different datasets.",
       raw: "z = (x - μ) / σ",
       variables: ["x = Raw score.", "μ = Population mean.", "σ = Population std dev."]
@@ -388,12 +378,9 @@ export const statisticsSEO: Record<string, SEOContent> = {
     content: (
         <div className="space-y-12">
         <div className="bg-indigo-50 border-l-4 border-indigo-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-indigo-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Standardization Summary</h2>
+        <h2 className="text-indigo-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Z-Score Guide</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        The Z-score is the primary auditor of relative position in a normal distribution for <strong>FY 2082/83</strong>.
-        
-        
-        
+        A Z-score tells you exactly how far a specific data point is from the average of the whole group. It's measured in "standard deviations," making it easy to compare results from different sets of data.
         </p>
         </div>
         </div>

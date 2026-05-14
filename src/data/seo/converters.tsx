@@ -3,8 +3,8 @@ import { SEOContent } from './types';
 
 export const convertersSEO: Record<string, SEOContent> = {
   'base-converter': {
-    title: "Number Base Converter | Decimal, Binary, Hex & Octal Auditor",
-    description: "The definitive institutional resource for numeral system transformations in FY 2082/83. 1500+ words on radix mathematics, bitwise logic, and computer architecture applications.",
+    title: "Number Base Converter | Decimal, Binary, Hex & Octal Tool",
+    description: "The most comprehensive resource for numeral system transformations. Learn about radix mathematics, bitwise logic, and computer architecture with our free converter.",
     
     howToUse: {
       steps: [
@@ -12,7 +12,7 @@ export const convertersSEO: Record<string, SEOContent> = {
         "2. Value Entry: Input the number you wish to transform. The engine validates input against the selected base.",
         "3. Radix Sync: The system instantly computes equivalent values across all four major computing bases.",
         "4. Bitwise Logic: (Optional) Enter a secondary operand to perform AND, OR, and XOR logical operations.",
-        "5. ASCII Audit: View the character representation if the decimal value falls within the printable range.",
+        "5. ASCII Check: View the character representation if the decimal value falls within the printable range.",
         "6. Memory Mapping: Review the memory footprint analysis (Total Bytes) for the given numerical volume.",
         "7. Large Number Support: The engine utilizes BigInt logic to handle massive numerical values with zero precision loss.",
         "8. Result Export: Use the 'Print' function to save a hard copy of the radix transformation report."
@@ -20,8 +20,8 @@ export const convertersSEO: Record<string, SEOContent> = {
     },
     
     formula: {
-      title: "The Radix Transformation Theorem",
-      description: "Base conversion involves the positional notation principle for FY 2082/83.",
+      title: "Radix Transformation Principles",
+      description: "Base conversion involves the positional notation principle.",
       raw: "Value = Σ (Digit_i × Base^i)",
       variables: [
         "Digit_i = The numerical value at position i.",
@@ -34,10 +34,10 @@ export const convertersSEO: Record<string, SEOContent> = {
         <div className="space-y-12">
         <div className="bg-blue-50/50 border-l-4 border-blue-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-blue-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Computational Intelligence Executive Summary
+        Everything You Need to Know About Number Bases
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        In the architecture of modern computing, information is rarely stored in the base-10 decimal system favored by human biology. Instead, digital logic operates on binary (base-2) foundations, often represented in hexadecimal (base-16) for human-readable shorthand. This professional <a href="/calculator/base-converter/" className="text-blue-600 hover:text-blue-800 underline font-semibold transition-colors">Radix Auditor</a> provides the bridge between human counting and machine logic. Whether you are debugging a network protocol, auditing memory addresses, or learning the fundamentals of computer science, our engine ensures high precision results across all standard computational bases.
+        In the architecture of modern computing, information is rarely stored in the base-10 decimal system favored by human biology. Instead, digital logic operates on binary (base-2) foundations, often represented in hexadecimal (base-16) for human-readable shorthand. This professional <a href="/calculator/base-converter/" className="text-blue-600 hover:text-blue-800 underline font-semibold transition-colors">Number Base Converter</a> provides the bridge between human counting and machine logic. Whether you are debugging a network protocol, analyzing memory addresses, or learning the fundamentals of computer science, our tool ensures high precision results across all standard computational bases.
         
         
         
@@ -53,8 +53,8 @@ export const convertersSEO: Record<string, SEOContent> = {
     ]
   },
   'discount-calculator': {
-    title: "Discount Calculator | Strategic Pricing & Margin Auditor",
-    description: "Master the mathematics of retail and wholesale pricing in FY 2082/83. 1500+ words on percentage reductions, tax-inclusive discounts, and consumer psychology.",
+    title: "Discount Calculator | Practical Pricing & Savings Tool",
+    description: "Master the mathematics of retail and wholesale pricing. Learn about percentage reductions, tax-inclusive discounts, and consumer savings.",
     
     howToUse: {
       steps: [
@@ -62,14 +62,14 @@ export const convertersSEO: Record<string, SEOContent> = {
         "2. Discount Rate: Input the percentage discount (e.g., 20%).",
         "3. Secondary Discount: (Optional) Apply a second tier discount (stacking) for loyalty or seasonal offers.",
         "4. Tax Inclusion: Toggle the VAT/Tax inclusion to see the final price inclusive of legal levies.",
-        "5. Margin Check: Review the 'Savings Audit' to see the absolute amount saved in local currency.",
+        "5. Margin Check: Review the 'Savings Check' to see the absolute amount saved in local currency.",
         "6. Net Payment: Analyze the final amount due after all mathematical deductions."
       ]
     },
     
     formula: {
-      title: "The Pricing Reduction Axiom",
-      description: "A discount is a percentage-based reduction of the original price for FY 2082/83.",
+      title: "Pricing Reduction Formula",
+      description: "A discount is a percentage-based reduction of the original price.",
       raw: "Final Price = Original Price × (1 - Discount Rate)",
       variables: [
         "Original Price = The starting retail or wholesale cost.",
@@ -81,10 +81,10 @@ export const convertersSEO: Record<string, SEOContent> = {
         <div className="space-y-12">
         <div className="bg-green-50/50 border-l-4 border-green-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-green-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Economic Intelligence Executive Summary
+        Understanding Discounts and Pricing
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Pricing is the most powerful lever in commerce, and discounts are the primary psychological tool used to drive volume. This institutional <a href="/calculator/discount-calculator/" className="text-green-600 hover:text-green-800 underline font-semibold transition-colors">Pricing Auditor</a> provides absolute clarity on net savings for <strong>FY 2082/83</strong>.
+        Pricing is the most powerful lever in commerce, and discounts are the primary psychological tool used to drive volume. This <a href="/calculator/discount-calculator/" className="text-green-600 hover:text-green-800 underline font-semibold transition-colors">Discount Calculator</a> provides absolute clarity on net savings for <strong>FY Current Year</strong>.
         
         
         
@@ -100,20 +100,20 @@ export const convertersSEO: Record<string, SEOContent> = {
     ]
   },
   'word-counter': {
-    title: "Word Counter | Lexical Depth & SEO Content Auditor",
-    description: "The definitive tool for linguistic density analysis in FY 2082/83. 1500+ words on word counts, character limits, and semantic optimization.",
+    title: "Word Counter | Lexical Depth & SEO Content Tool",
+    description: "The most reliable tool for linguistic density analysis. Check word counts, character limits, and semantic density for your articles.",
     
     howToUse: {
       steps: [
         "1. Text Input: Paste or type your content into the professional editor area.",
-        "2. Real-Time Audit: The engine instantly synchronizes counts as you type or modify content.",
+        "2. Real-Time Check: The engine instantly synchronizes counts as you type or modify content.",
         "3. Lexical Decomposition: View the total word count, character count, and paragraph count."
       ]
     },
     
     formula: {
-      title: "The Lexical Density Axiom",
-      description: "Word count is determined by identifying whitespace delimiters for FY 2082/83.",
+      title: "Lexical Density Calculation",
+      description: "Word count is determined by identifying whitespace delimiters.",
       raw: "Word Count = Total Tokens",
       variables: ["Tokens = Sequences of characters bounded by spaces."]
     },
@@ -122,10 +122,10 @@ export const convertersSEO: Record<string, SEOContent> = {
         <div className="space-y-12">
         <div className="bg-indigo-50/50 border-l-4 border-indigo-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-indigo-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Linguistic Intelligence Executive Summary
+        Everything You Need to Know About Word Counts
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        In the digital age, attention is the scarcest resource, and word count is the primary metric for information density. This institutional <a href="/calculator/word-counter/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">Lexical Auditor</a> provides absolute clarity on text volume for <strong>FY 2082/83</strong>.
+        In the digital age, attention is the scarcest resource, and word count is the primary metric for information density. This <a href="/calculator/word-counter/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">Word Counter</a> provides absolute clarity on text volume for <strong>FY Current Year</strong>.
         
         
         
@@ -138,8 +138,8 @@ export const convertersSEO: Record<string, SEOContent> = {
     ]
   },
   'tip-calculator': {
-    title: "Tip Calculator | Hospitality Economics & Bill Split Auditor",
-    description: "The institutional guide to service gratuity and group bill partitioning in FY 2082/83. 1500+ words on global tipping standards, percentage math, and bill auditing.",
+    title: "Tip Calculator | Hospitality Economics & Bill Splitter",
+    description: "The complete guide to service gratuity and group bill partitioning. Learn about global tipping standards and simple bill calculation.",
     howToUse: {
       steps: [
         "1. Bill Entry: Input the total bill amount as per the receipt.",
@@ -150,17 +150,17 @@ export const convertersSEO: Record<string, SEOContent> = {
       ]
     },
     formula: {
-      title: "The Gratuity Partition Axiom",
-      description: "Tipping is a percentage of the base bill for FY 2082/83.",
+      title: "Gratuity Calculation Formula",
+      description: "Tipping is a percentage of the base bill.",
       raw: "Tip Amount = Bill × Tip %\nTotal per Person = (Bill + Tip) / N",
       variables: ["Bill = Total receipt amount.", "Tip % = Percentage of gratuity."]
     },
     content: (
         <div className="space-y-12">
         <div className="bg-slate-50/50 border-l-4 border-slate-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-slate-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Hospitality Intelligence Summary</h2>
+        <h2 className="text-slate-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Understanding Tipping and Service</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Gratuity is a critical component of the service economy in <strong>FY 2082/83</strong>. This institutional <a href="/calculator/tip-calculator/" className="text-slate-600 hover:text-slate-800 underline font-semibold transition-colors">Gratuity Auditor</a> provides absolute clarity.
+        Gratuity is a critical component of the service economy in <strong>FY Current Year</strong>. This <a href="/calculator/tip-calculator/" className="text-slate-600 hover:text-slate-800 underline font-semibold transition-colors">Tip Calculator</a> provides absolute clarity.
         
         
         
@@ -173,27 +173,27 @@ export const convertersSEO: Record<string, SEOContent> = {
     ]
   },
   'password-generator': {
-    title: "Password Generator | Cybersecurity & Entropy Auditor",
-    description: "Generate cryptographically secure passwords with absolute control in FY 2082/83. 1500+ words on entropy, brute-force resistance, and digital safety.",
+    title: "Password Generator | Cybersecurity & Password Strength Tool",
+    description: "Generate cryptographically secure passwords with absolute control. Learn about entropy, brute-force resistance, and digital safety.",
     howToUse: {
       steps: [
         "1. Length Calibration: Define the total character length (Recommended 16+).",
         "2. Complexity Toggle: Select Uppercase, Lowercase, Numbers, and Special Symbols.",
-        "3. Entropy Audit: Review the strength score calculated based on character diversity."
+        "3. Entropy Check: Review the strength score calculated based on character diversity."
       ]
     },
     formula: {
-      title: "The Cryptographic Entropy Axiom",
-      description: "Password strength is a function of character pool size and length for FY 2082/83.",
+      title: "Cryptographic Entropy Formula",
+      description: "Password strength is a function of character pool size and length.",
       raw: "Entropy = log2(Pool Size^Length)",
       variables: ["Pool Size = Number of unique characters available."]
     },
     content: (
         <div className="space-y-12">
         <div className="bg-red-50/50 border-l-4 border-red-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-red-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Cybersecurity Intelligence Summary</h2>
+        <h2 className="text-red-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Understanding Password Security</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        In an era of sophisticated brute-force attacks, a weak password is a vulnerability in <strong>FY 2082/83</strong>. This <a href="/calculator/password-generator/" className="text-red-600 hover:text-red-800 underline font-semibold transition-colors">Entropy Auditor</a> ensures secure credentials.
+        In an era of sophisticated brute-force attacks, a weak password is a vulnerability in <strong>FY Current Year</strong>. This <a href="/calculator/password-generator/" className="text-red-600 hover:text-red-800 underline font-semibold transition-colors">Password Generator</a> ensures secure credentials.
         
         
         
@@ -206,8 +206,8 @@ export const convertersSEO: Record<string, SEOContent> = {
     ]
   },
   'qr-generator': {
-    title: "QR Code Generator | Digital Bridge & Data Matrix Auditor",
-    description: "Generate high-resolution QR codes for URLs, text, and Wi-Fi in FY 2082/83. 1500+ words on QR technology, error correction, and marketing integration.",
+    title: "QR Code Generator | Digital Bridge & Matrix Tool",
+    description: "Generate high-resolution QR codes for URLs, text, and Wi-Fi. Learn about QR technology, error correction, and marketing integration.",
     howToUse: {
       steps: [
         "1. Input Data: Enter the URL, Text, or Wi-Fi credentials.",
@@ -216,8 +216,8 @@ export const convertersSEO: Record<string, SEOContent> = {
       ]
     },
     formula: {
-      title: "The Reed-Solomon Error Correction",
-      description: "QR codes use mathematical redundancy for FY 2082/83 data recovery.",
+      title: "Reed-Solomon Error Correction",
+      description: "QR codes use mathematical redundancy for data recovery.",
       raw: "Redundancy % = (Parity Bytes / Total Bytes) × 100",
       variables: ["Level H = Up to 30% damage recovery."]
     },
@@ -226,7 +226,7 @@ export const convertersSEO: Record<string, SEOContent> = {
         <div className="bg-slate-50/50 border-l-4 border-slate-900 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-slate-900 font-black text-xs uppercase tracking-[0.3em] mb-3">Digital Bridge Summary</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        QR codes are the physical-to-digital bridge in <strong>FY 2082/83</strong>. This <a href="/calculator/qr-generator/" className="text-slate-900 hover:text-slate-800 underline font-semibold transition-colors">Matrix Auditor</a> allows high-integrity code generation.
+        QR codes are the physical-to-digital bridge in <strong>FY Current Year</strong>. This <a href="/calculator/qr-generator/" className="text-slate-900 hover:text-slate-800 underline font-semibold transition-colors">QR Code Tool</a> allows high-integrity code generation.
         
         
         
@@ -239,17 +239,17 @@ export const convertersSEO: Record<string, SEOContent> = {
     ]
   },
   'roman-numerals': {
-    title: "Roman Numerals Converter | Historical Numeral Auditor",
-    description: "The definitive systematic resource for Roman to Arabic and Arabic to Roman conversion in FY 2082/83. 1500+ words on subtractive notation and ancient auditing.",
+    title: "Roman Numerals Converter | Historical Number Tool",
+    description: "The most accurate resource for Roman to Arabic and Arabic to Roman conversion. Learn about subtractive notation and ancient numbering.",
     howToUse: {
       steps: [
-        "1. Input Value: Enter an Arabic number or a Roman string for the 2082/83 cycle.",
+        "1. Input Value: Enter an Arabic number or a Roman string for the Current Year cycle.",
         "2. Precise Sync: The engine calculates the equivalent instantly.",
-        "3. Notation Audit: Review the subtractive and additive rules used."
+        "3. Notation Check: Review the subtractive and additive rules used."
       ]
     },
     formula: {
-      title: "The Roman Notation Axiom",
+      title: "Roman Notation Rules",
       description: "Roman numerals use a combination of letters from the Latin alphabet.",
       raw: "I=1, V=5, X=10, L=50, C=100, D=500, M=1000",
       variables: ["Subtractive Rule: IV = 4 (5-1).", "Additive Rule: VI = 6 (5+1)."]
@@ -257,9 +257,9 @@ export const convertersSEO: Record<string, SEOContent> = {
     content: (
         <div className="space-y-12">
         <div className="bg-amber-50 border-l-4 border-amber-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-amber-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Historical Intelligence Summary</h2>
+        <h2 className="text-amber-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Understanding Roman Numerals</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Roman numerals remain an institutional requirement for formal documentation and historical auditing. In <strong>FY 2082/83</strong>, this converter ensures accuracy for classical numbering.
+        Roman numerals remain a requirement for formal documentation and historical studies. In <strong>FY Current Year</strong>, this converter ensures accuracy for classical numbering.
         
         
         

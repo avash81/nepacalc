@@ -88,7 +88,7 @@ export default function RelatedCalculators({ currentSlug, category }: Props) {
         {related.map((calc) => (
           <Link
             key={calc.id}
-            href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`}
+            href={calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`}
             className="group p-6 bg-white border border-slate-200 rounded-[2rem] hover:border-blue-500 hover:shadow-sm hover:shadow-blue-500/5 transition-all duration-300 flex items-center justify-between"
           >
             <div className="flex items-center gap-5">

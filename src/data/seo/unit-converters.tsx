@@ -3,26 +3,24 @@ import { SEOContent } from './types';
 
 export const unitConvertersSEO: Record<string, SEOContent> = {
   'unit-converter': {
-    title: "Universal Unit Converter | Physics & Engineering Dimension Auditor",
-    description: "The definitive institutional resource for cross-dimensional transformations. 1500+ words on SI units, Imperial standards, and precision auditing for FY 2082/83.",
+    title: "Universal Unit Converter | Length, Weight & Volume Tool",
+    description: "A fast and accurate tool for converting between different measurement units. Easily switch between Metric (SI) and Imperial systems for length, weight, volume, and more.",
     
     howToUse: {
       steps: [
-        "1. Dimension Selection: Select the category (Length, Weight, Volume, Temperature, Pressure).",
-        "2. Source Unit: Choose the input unit (e.g., Meters, Kilograms, Celsius).",
-        "3. Target Unit: Select the output unit for transformation.",
-        "4. Value Entry: Input the numerical volume. The engine handles high-precision floating points.",
-        "5. Scale Audit: View the result in scientific notation for extreme magnitudes.",
-        "6. Reciprocal Check: Review the inverse conversion factor for bidirectional verification.",
-        "7. Unit History: (Optional) Learn about the origin of the selected measurement standards.",
-        "8. Result Export: Copy the conversion report to your clipboard for procurement or academic records."
+        "1. Select Category: Choose what you want to convert (Length, Weight, Temperature, etc.).",
+        "2. Choose Units: Select your 'From' and 'To' units (e.g., Meters to Feet).",
+        "3. Enter Value: Type in the number you want to convert.",
+        "4. View Result: Get an instant, high-precision result.",
+        "5. Inverse Check: See the reverse conversion factor to verify accuracy.",
+        "6. Copy & Use: Easily copy your results for reports, schoolwork, or project planning."
       ]
     },
     
     formula: {
-      title: "The Dimensional Transformation Axiom",
-      description: "Unit conversion involves multiplying the source value by a standardized constant (Conversion Factor).",
-      raw: "Target = Source × (Target Constant / Source Constant)",
+      title: "How Units are Converted",
+      description: "Conversion is done by multiplying your value by a specific conversion factor.",
+      raw: "Result = Value × Conversion Factor",
       variables: [
         "Source: The original measurement value.",
         "Constant: The standardized value relative to the SI base unit (e.g., 1 Meter = 3.28084 Feet)."
@@ -33,30 +31,30 @@ export const unitConvertersSEO: Record<string, SEOContent> = {
         <div className="space-y-12">
         <div className="bg-sky-50/50 border-l-4 border-sky-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-sky-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Dimensional Intelligence Executive Summary
+        Mastering Measurements and Conversions
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Measurement is the primary auditor of physical reality. In global trade, engineering, and daily life in <strong>FY 2082/83</strong>, the ability to seamlessly transition between the Metric (SI) and Imperial systems is an institutional requirement. Whether you are auditing a blueprint in Kathmandu using traditional units or procuring machinery from Europe in millimeters, dimensional precision is critical. This <a href="/calculator/unit-converter" className="text-sky-600 hover:text-sky-800 underline font-semibold transition-colors">Universal Unit Auditor</a> provides a high-precision engine for multi-dimensional mapping. By strictly enforcing international metrology standards, we eliminate the 'Conversion Errors' that lead to structural failures or fiscal loss.
+        Whether you're a student working on a physics problem, an engineer reading blueprints, or just trying to figure out your height in centimeters, accurate unit conversion is a daily necessity. In today's globalized world, we often need to switch between the <strong>Metric (SI) system</strong> used in most countries and the <strong>Imperial system</strong> used in the USA. This <a href="/calculator/unit-converter/" className="text-sky-600 hover:text-sky-800 underline font-semibold transition-colors">Universal Unit Converter</a> provides a simple yet powerful way to bridge that gap with 100% mathematical accuracy.
         </p>
         </div>
         <section>
-        <h3 className="text-2xl font-black text-slate-900 mb-6">1. The Hierarchy of Measurement Systems</h3>
+        <h3 className="text-2xl font-black text-slate-900 mb-6">1. Understanding the Two Major Systems</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="p-8 bg-white border border-slate-200 rounded-2xl shadow-sm">
         <h4 className="text-sm font-black uppercase text-sky-600 mb-4">The Metric System (SI)</h4>
-        <p className="text-xs text-slate-600 leading-relaxed">The decimal-based system used by 95% of the world. It relies on powers of 10, making auditing and scaling intuitive for scientific applications in FY 2082/83.</p>
+        <p className="text-xs text-slate-600 leading-relaxed">The decimal-based system used by almost every country. It's built on powers of 10 (like 100cm in a meter), making it easy to scale and understand for science and daily life.</p>
         </div>
         <div className="p-8 bg-white border border-slate-200 rounded-2xl shadow-sm">
         <h4 className="text-sm font-black uppercase text-amber-600 mb-4">The Imperial System</h4>
-        <p className="text-xs text-slate-600 leading-relaxed">Used primarily in the USA. Units like inches, feet, and pounds are based on historical human-scale benchmarks. Our engine provides 100% precision for cross-system audits.</p>
+        <p className="text-xs text-slate-600 leading-relaxed">Used primarily in the USA and a few other regions. Units like inches, feet, and pounds are based on historical benchmarks. Our tool ensures perfect accuracy when converting these to Metric units.</p>
         </div>
         </div>
         </section>
         <section className="bg-slate-900 text-white rounded-2xl p-8 border border-slate-800 shadow-xl overflow-hidden relative">
         <div className="absolute top-0 right-0 w-64 h-64 bg-sky-600 rounded-full blur-[120px] opacity-20 pointer-events-none" />
-        <h3 className="text-xl font-black mb-6 relative z-10">Institutional Advice</h3>
+        <h3 className="text-xl font-black mb-6 relative z-10">Expert Advice</h3>
         <p className="text-sm text-slate-300 leading-relaxed relative z-10">
-        For high-precision engineering in Nepal, always favor the Metric system to ensure compatibility with modern structural software. If working with land measurements, synchronize your results with our <a href="/calculator/nepal-land" className="text-sky-400 underline font-bold">Land Auditor</a> for Ropani/Aana conversions.
+        If you're working on construction or land projects in Nepal, you'll often need to switch between international units (meters/feet) and local ones. For land-specific measurements like Ropani, Aana, or Bigha, be sure to use our specialized <a href="/calculator/nepal-land/" className="text-sky-400 underline font-bold">Nepal Land Calculator</a>.
         
         
         
@@ -65,36 +63,33 @@ export const unitConvertersSEO: Record<string, SEOContent> = {
         </div>
     ),
     faqs: [
-      { question: "What is the difference between Metric and Imperial?", answer: "Metric is a decimal-based system (cm, kg, liter), while Imperial uses historical units (inch, pound, gallon). Metric is the global standard for science and engineering." },
-      { question: "Is your converter updated for 2082/83 standards?", answer: "Yes, our engine uses the latest international metrology benchmarks for all unit transformations." }
+      { question: "What is the difference between Metric and Imperial?", answer: "Metric is a decimal-based system (cm, kg, liter) used globally, while Imperial uses units like inches and pounds. Our tool helps you convert between them instantly." },
+      { question: "Is this converter accurate for scientific use?", answer: "Yes, we use standard international conversion factors to ensure our results are precise enough for both daily tasks and professional projects." }
     ]
   },
   'length-converter': {
-    title: "Length Converter | Distance & Spacing Auditor",
-    description: "Convert between KM, Meters, Feet, Inches, and Miles. 1500+ words on geometric distance and accuracy audits for FY 2082/83.",
+    title: "Length Converter | Meters, Feet, Inches & KM",
+    description: "Convert instantly between KM, Meters, Feet, Inches, and Miles. A reliable tool for measuring distance, height, and length accurately.",
     howToUse: {
       steps: [
         "1. Value Input: Enter the length to be converted.",
         "2. Source Unit: Select from Nano-meters to Light-years.",
         "3. Target Unit: Choose the desired output dimension.",
-        "4. Precision Audit: Adjust decimal places for engineering-grade accuracy."
+        "4. Accuracy Check: Adjust decimal places for engineering-grade accuracy."
       ]
     },
     formula: {
-      title: "The Linear Transformation Constant",
-      description: "Length conversion is a linear multiplier based on the SI Meter definition.",
-      raw: "L_target = L_source × Factor",
+      title: "Length Conversion Rule",
+      description: "Length is converted using a fixed multiplier based on the definition of a meter.",
+      raw: "Target Length = Source Length × Multiplier",
       variables: ["Factor: The ratio between the two length units."]
     },
     content: (
         <div className="space-y-12">
         <div className="bg-indigo-50/50 border-l-4 border-indigo-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-indigo-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Linear Intelligence Summary</h2>
+        <h2 className="text-indigo-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Understanding Linear Measurements</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Length is the most fundamental dimension of physical construction and geography. From the micro-meter precision required in electronics to the kilo-meter scales of highway engineering, auditing distance is an institutional requirement. This <a href="/calculator/length-converter" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">Distance Auditor</a> ensures your linear mapping is 100% accurate for FY 2082/83.
-        
-        
-        
+        Length is the most basic way we measure the physical world. From measuring a small piece of furniture in inches to calculating the distance between cities in kilometers, having a reliable converter is essential. This <a href="/calculator/length-converter/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">Distance Calculator</a> gives you 100% accurate results for all your length conversion needs.
         </p>
         </div>
         </div>
@@ -104,17 +99,16 @@ export const unitConvertersSEO: Record<string, SEOContent> = {
     ]
   },
   'weight-converter': {
-    title: "Weight Converter | Mass & Gravitational Load Auditor",
-    description: "Convert between Kilograms, Pounds, Ounces, and Tolas. 1500+ words on mass vs weight and fiscal load auditing for FY 2082/83.",
+    title: "Weight Converter | KG, Pounds, Ounces & More",
+    description: "Convert between Kilograms, Pounds, Ounces, and Grams. A perfect tool for shipping, cooking, and heavy weight calculations.",
     howToUse: {
       steps: [
-        "1. Mass Input: Enter the weight/mass value.",
-        "2. Unit Scale: Select the source unit (Metric or Imperial).",
-        "3. Precision Sync: The engine calculates the transformation across all major scales instantly."
+        "1. Enter Weight: Type in the value you want to convert.",
+        "2. Choose Units: Select your starting unit and target unit (e.g., KG to Lbs).",
+        "3. Instant Conversion: See the calculated result across different systems immediately."
       ]
     },
     formula: {
-      title: "The Mass Conservation Axiom",
       description: "Weight conversion assumes standard Earth gravity (9.80665 m/s²).",
       raw: "M_target = M_source × Conversion_Factor",
       variables: ["Factor: The ratio between mass units (e.g., 1kg = 2.20462 lbs)."]
@@ -122,12 +116,9 @@ export const unitConvertersSEO: Record<string, SEOContent> = {
     content: (
         <div className="space-y-12">
         <div className="bg-orange-50/50 border-l-4 border-orange-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-orange-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Mass Intelligence Summary</h2>
+        <h2 className="text-orange-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Understanding Mass and Weight</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Mass auditing is critical in logistics, retail, and construction. In <strong>FY 2082/83</strong>, precision in weight measurement ensures fiscal compliance in international shipping and local trade. This <a href="/calculator/weight-converter" className="text-orange-600 hover:text-orange-800 underline font-semibold transition-colors">Mass Auditor</a> handles everything from milligrams to metric tons.
-        
-        
-        
+        Measuring weight is crucial for everything from international shipping to daily grocery shopping. Whether you're trying to figure out your weight in pounds or converting grams for a recipe, this <a href="/calculator/weight-converter/" className="text-orange-600 hover:text-orange-800 underline font-semibold transition-colors">Weight Converter</a> makes it easy and accurate.
         </p>
         </div>
         </div>

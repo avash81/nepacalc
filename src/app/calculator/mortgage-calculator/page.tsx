@@ -1,10 +1,10 @@
 import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 export const metadata = calcMeta({
-  title: 'Nepal Mortgage Calculator 2083 | Home Loan EMI & Interest',
-  description: 'Calculate your Nepal home loan EMI, total interest, and repayment schedule instantly. Advanced mortgage calculator updated for 2083 bank rates.',
+  title: "Nepal Home Loan EMI Calculator 2082/83 | NRB Rates | NepaCalc",
+  description: "Calculate home loan EMI in Nepal with NRB base rates. Shows monthly installment, total interest and amortization schedule. Covers 20% and 30% down payment rules.",
   slug: 'mortgage-calculator',
-  keywords: ["mortgage calculator nepal", "home loan emi calculator", "nepal home loan calculator 2083", "property loan emi nepal", "housing loan calculator", "nrb home loan rules"],
+  keywords: ["home loan calculator nepal", "nepal home loan down payment 20% 30%", "emi calculator nepal", "mortgage calculator nepal", "nepal bank emi calculator"],
 });
 export default function Page() { return <Calculator />; }
 

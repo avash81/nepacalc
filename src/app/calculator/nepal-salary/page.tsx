@@ -2,10 +2,10 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: "Nepal Salary Calculator 2082/83 | Take-Home Pay & SSF | NepaCalc",
-  description: "Calculate your exact take-home pay in Nepal for FY 2082/83. Features SSF, CIT, and Income Tax auditing. Professional payroll tool with tax slab breakdown.",
+  title: "Nepal Salary Calculator 2082/83 | Net Take-Home Pay | NepaCalc",
+  description: "Find your exact take-home salary in Nepal for FY 2082/83. Calculates SSF 11%, CIT, EPF, income tax slabs. Works for single and married filers. Instant results.",
   slug: 'nepal-salary',
-  keywords: ["nepal salary calculator 2082", "take home pay nepal", "ssf calculator nepal", "salary tax nepal 2082/83", "monthly salary breakdown", "nepal payroll tool", "net salary nepal"],
+  keywords: ["nepal salary calculator 2082/83", "monthly salary", "take home pay nepal", "ssf calculator nepal", "online payroll calculator nepal free"],
 });
 
 export default function Page() {

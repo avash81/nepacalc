@@ -3,8 +3,8 @@ import { SEOContent } from './types';
 
 export const physicsSEO: Record<string, SEOContent> = {
   'physics-force': {
-    title: "Force Calculator | Newton's Second Law & Dynamics Lab",
-    description: "The definitive systematic resource for physical force. 1500+ words on Newton's laws, acceleration, and mechanical auditing.",
+    title: "Force Calculator | Newton's Second Law of Motion",
+    description: "Calculate physical force using Newton's Second Law (F=ma). Understand mass, acceleration, and the fundamental laws of motion with our easy-to-use calculator.",
     
     howToUse: {
       steps: [
@@ -13,14 +13,14 @@ export const physicsSEO: Record<string, SEOContent> = {
         "3. Formula Direction: Solve for Force (F), Mass (m), or Acceleration (a) using the toggle.",
         "4. Unit Normalization: The engine automatically converts grams to kilograms to ensure SI consistency.",
         "5. Gravitational Sync: Choose to include standard Earth gravity (9.81 m/s²) for vertical force audits.",
-        "6. Vector Audit: Define the direction of force if performing multi-axial calculations.",
+        "6. Vector Check: Define the direction of force if performing multi-axial calculations.",
         "7. Friction Check: Account for the coefficient of friction if auditing sliding forces.",
         "8. Result Validation: Review the result in Newtons (N) or KiloNewtons (kN)."
       ]
     },
     
     formula: {
-      title: "The Law of Motion Axiom",
+      title: "Newton's Second Law Formula",
       description: "Force is equal to the mass of an object multiplied by its acceleration.",
       raw: "F = m * a",
       variables: [
@@ -34,13 +34,13 @@ export const physicsSEO: Record<string, SEOContent> = {
         <div className="space-y-12">
         <div className="bg-red-50/50 border-l-4 border-red-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-red-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Dynamic Intelligence Executive Summary
+        How to Calculate Physical Force (F=ma)
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Newton's Second Law is the core operating principle of the physical universe. Whether you are auditing the structural load on a bridge or calculating the thrust required for aerospace propulsion, the relationship between <strong>Force</strong>, <strong>Mass</strong>, and <strong>Acceleration</strong> is an institutional requirement. This <a href="/calculator/physics-force" className="text-red-600 hover:text-red-800 underline font-semibold transition-colors">Physics Force Auditor</a> provides a high-precision engine for mechanical dynamics. By strictly enforcing SI unit protocols, we eliminate the conversion drift that leads to engineering failure. From simple classroom kinematics to industrial stress auditing in the <a href="/calculator/scientific-calculator" className="text-red-600 hover:text-red-800 underline font-bold transition-colors">Engineering Lab</a>, force precision is the primary auditor of physical stability.
+        Newton's Second Law is the core operating principle of the physical universe. Whether you are calculating the structural load on a bridge or the thrust required for propulsion, the relationship between <strong>Force</strong>, <strong>Mass</strong>, and <strong>Acceleration</strong> is a fundamental requirement. This <strong>Force Calculator</strong> provides a high-precision engine for mechanical dynamics. By strictly enforcing SI unit protocols, we eliminate the conversion errors that lead to engineering failure. From simple classroom kinematics to industrial calculations, force precision is the primary measure of physical stability.
         <br/><br/>
         <span className="text-sm text-slate-600 font-medium">
-        Aerospace Strategy: Thrust is just force. Audit your orbital mechanics in our <a href="/calculator/geometry-3d" className="text-red-600 hover:text-red-800 underline font-bold transition-colors">Spatial Lab</a>.
+        Aerospace Strategy: Thrust is just force. Check your orbital mechanics in our <a href="/calculator/geometry-3d/" className="text-red-600 hover:text-red-800 underline font-bold transition-colors">Spatial Tool</a>.
         </span>
         </p>
         </div>
@@ -72,7 +72,7 @@ export const physicsSEO: Record<string, SEOContent> = {
 
         <section className="bg-white border border-slate-200 rounded-2xl p-8 mb-8 shadow-sm">
         <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
-        <span className="text-red-600">⚡</span> The Auditor's Force Inventory
+        <span className="text-red-600">⚡</span> The Calculator's Force Inventory
         </h3>
         <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-4">
         <p>
@@ -84,7 +84,7 @@ export const physicsSEO: Record<string, SEOContent> = {
         <tr>
         <th className="p-4 font-black text-slate-900 uppercase">Force Type</th>
         <th className="p-4 font-black text-slate-900 uppercase">Mechanism</th>
-        <th className="p-4 font-black text-slate-900 uppercase">Audit Level</th>
+        <th className="p-4 font-black text-slate-900 uppercase">Check Level</th>
         </tr>
         </thead>
         <tbody className="divide-y divide-slate-100">
@@ -117,13 +117,13 @@ export const physicsSEO: Record<string, SEOContent> = {
         </div>
         <div className="flex items-start gap-4">
         <div className="w-8 h-8 rounded-lg bg-red-500/20 border border-red-500/40 flex items-center justify-center text-red-400 font-bold">3</div>
-        <p className="text-sm text-slate-300"><strong className="text-white">Torque Sync:</strong> Rotational force is just as critical as linear force. Audit your mechanical advantage in our <a href="/calculator/unit-converter" className="text-red-400 underline font-bold">Units Lab</a>.</p>
+        <p className="text-sm text-slate-300"><strong className="text-white">Torque Sync:</strong> Rotational force is just as critical as linear force. Check your mechanical advantage in our <a href="/calculator/unit-converter/" className="text-red-400 underline font-bold">Units Tool</a>.</p>
         </div>
         </div>
         <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl">
-        <h4 className="text-xs font-black text-red-400 uppercase tracking-widest mb-3">Institutional Advice</h4>
+        <h4 className="text-xs font-black text-red-400 uppercase tracking-widest mb-3">Standard Advice</h4>
         <p className="text-xs text-slate-400 leading-relaxed italic">
-        "A force is a vector, meaning it has both magnitude and direction. If two forces act in opposite directions, you must subtract them to find the 'Resultant'. For complex multi-body systems, utilize our <a href="/calculator/linear-solver" className="text-red-400 underline font-bold">Equations Lab</a> to solve for equilibrium points."
+        "A force is a vector, meaning it has both magnitude and direction. If two forces act in opposite directions, you must subtract them to find the 'Resultant'. For complex multi-body systems, utilize our <a href="/calculator/linear-solver/" className="text-red-400 underline font-bold">Equations Tool</a> to solve for equilibrium points."
         </p>
         </div>
         </div>
@@ -131,7 +131,7 @@ export const physicsSEO: Record<string, SEOContent> = {
 
         <section>
         <h3 className="text-2xl font-black text-slate-900 mb-6">
-        Dynamic Intelligence Silo
+        Dynamic Insights Silo
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-red-300 transition-all">
@@ -164,7 +164,7 @@ export const physicsSEO: Record<string, SEOContent> = {
         <section className="bg-red-50 border border-red-100 rounded-3xl p-10 relative overflow-hidden">
         <div className="relative z-10">
         <h3 className="text-2xl font-black text-red-900 mb-4">
-        Strategic Case Study: The Elevator Audit
+        Practical Case Study: The Elevator Check
         </h3>
         <p className="text-red-900/70 text-sm leading-relaxed mb-8">
         An elevator (Mass=1,000kg) accelerates upwards at 2 m/s². What is the tension force in the cable?
@@ -177,23 +177,23 @@ export const physicsSEO: Record<string, SEOContent> = {
         <div className="flex justify-between border-t pt-2 mt-2 font-bold text-slate-900"><span>Total Force:</span> <span>Sum of both</span></div>
         </div>
         </div>
-        <div className="bg-white p-6 rounded-2xl border border-red-200 shadow-md transform md:scale-105"><h4 className="text-xs font-black text-red-600 uppercase tracking-widest mb-4">Audit Result</h4></div>
+        <div className="bg-white p-6 rounded-2xl border border-red-200 shadow-md transform md:scale-105"><h4 className="text-xs font-black text-red-600 uppercase tracking-widest mb-4">Check Result</h4></div>
         <div className="space-y-2 text-sm text-slate-700">
         <div className="flex justify-between"><span>Cable Tension:</span> <strong>11,810 Newtons</strong></div>
         <div className="flex justify-between"><span>Safety Load:</span> <strong>~1.2 Tons</strong></div>
-        <div className="flex justify-between border-t pt-2 mt-2 font-bold text-red-700"><span>Verdict:</span> <span>Design Threshold Met</span></div>
+        <div className="flex justify-between border-t pt-2 mt-2 font-bold text-red-700"><span>Verdict:</span> <span>Design Level Met</span></div>
         </div>
         </div>
         
         <p className="text-xs text-red-900/50 mt-8 italic text-center">
-        Audit Observation: A common error is ignoring gravity or acceleration. A comprehensive force audit ensures that the cable can handle both the weight and the motion. Explore more planetary metrics in our <a href="/calculator/physics-energy" className="text-red-600 underline font-bold">Energy Lab</a>.
+        Check Observation: A common error is ignoring gravity or acceleration. A comprehensive force audit ensures that the cable can handle both the weight and the motion. Explore more planetary metrics in our <a href="/calculator/physics-energy/" className="text-red-600 underline font-bold">Energy Tool</a>.
         </p>
         
         </section>
 
         <div className="pt-10 border-t border-slate-200 text-center mt-12">
         <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
-        Compliance Audit: Last updated Baishakh 2083 (May 2026). Calculations adhere to Newtonian mechanics and SI dynamic standards.
+        Compliance Check: Last updated Baishakh 2083 (May 2026). Calculations adhere to Newtonian mechanics and SI dynamic standards.
         
         
         
@@ -215,8 +215,8 @@ export const physicsSEO: Record<string, SEOContent> = {
     ]
   },
   'physics-energy': {
-    title: "Energy Calculator | Kinetic & Potential Dynamics Lab",
-    description: "The definitive systematic resource for physical energy. 1500+ words on conservation, thermodynamics, and energy efficiency audits.",
+    title: "Kinetic & Potential Energy Calculator",
+    description: "Calculate kinetic and potential energy of objects. Learn about the conservation of energy, thermodynamics, and physical work with our free tool.",
     
     howToUse: {
       steps: [
@@ -224,7 +224,7 @@ export const physicsSEO: Record<string, SEOContent> = {
         "2. Parameter Entry: Input the Mass (kg) and Velocity (m/s) for kinetic audits.",
         "3. Height Entry: Input the vertical displacement (m) for gravitational potential audits.",
         "4. Gravity Sync: The engine defaults to Earth's gravity (9.81) but can be adjusted for lunar or planetary audits.",
-        "5. Efficiency Auditor: Enter 'Input Energy' and 'Output Energy' to calculate system waste.",
+        "5. Efficiency Calculator: Enter 'Input Energy' and 'Output Energy' to calculate system waste.",
         "6. Unit Conversion: Instantly switch results between Joules (J), Calories (cal), or Kilowatt-hours (kWh).",
         "7. Conservation Check: View the total mechanical energy of the system (KE + PE).",
         "8. Result Validation: Review the work-energy theorem results for external applied forces."
@@ -232,7 +232,7 @@ export const physicsSEO: Record<string, SEOContent> = {
     },
     
     formula: {
-      title: "The Energy Axiom",
+      title: "Energy Conservation Formula",
       description: "Energy cannot be created or destroyed, only transformed from one state to another.",
       raw: "KE = 0.5 * m * v² | PE = m * g * h",
       variables: [
@@ -246,13 +246,13 @@ export const physicsSEO: Record<string, SEOContent> = {
         <div className="space-y-12">
         <div className="bg-yellow-50/50 border-l-4 border-yellow-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-yellow-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Thermodynamic Intelligence Executive Summary
+        Understanding Kinetic and Potential Energy
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Energy is the fundamental currency of the universe. From the microscopic vibration of atoms to the macroscopic motion of galaxies, every physical process is a transaction of energy. In engineering and industrial auditing, understanding the conversion between <strong>Kinetic</strong> and <strong>Potential</strong> energy is an institutional requirement for maximizing efficiency. This <a href="/calculator/physics-energy" className="text-yellow-600 hover:text-yellow-800 underline font-semibold transition-colors">Energy Dynamics Lab</a> provides a high-precision engine for auditing mechanical work. By utilizing the <strong>Law of Conservation of Energy</strong>, we help you identify systemic waste and calculate the work required to move objects across gravitational fields. Whether you are designing a hydroelectric dam or auditing a battery's storage in the <a href="/calculator/scientific-calculator" className="text-yellow-600 hover:text-yellow-800 underline font-bold transition-colors">Physics Lab</a>, energy precision is the silent auditor of sustainability.
+        Energy is the fundamental currency of the universe. From the microscopic vibration of atoms to the macroscopic motion of galaxies, every physical process is a transaction of energy. In engineering and industrial auditing, understanding the conversion between <strong>Kinetic</strong> and <strong>Potential</strong> energy is an standard requirement for maximizing efficiency. This <a href="/calculator/physics-energy/" className="text-yellow-600 hover:text-yellow-800 underline font-semibold transition-colors">Energy Dynamics Tool</a> provides a high-precision engine for auditing mechanical work. By utilizing the <strong>Law of Conservation of Energy</strong>, we help you identify systemic waste and calculate the work required to move objects across gravitational fields. Whether you are designing a hydroelectric dam or auditing a battery's storage in the <a href="/calculator/scientific-calculator/" className="text-yellow-600 hover:text-yellow-800 underline font-bold transition-colors">Physics Tool</a>, energy precision is the silent calculator of sustainability.
         <br/><br/>
         <span className="text-sm text-slate-600 font-medium">
-        Sustainability Strategy: Waste is energy lost as heat. Audit your solar potential in our <a href="/calculator/solar-requirement" className="text-yellow-600 hover:text-yellow-800 underline font-bold transition-colors">Solar Lab</a>.
+        Sustainability Strategy: Waste is energy lost as heat. Check your solar potential in our <a href="/calculator/solar-requirement/" className="text-yellow-600 hover:text-yellow-800 underline font-bold transition-colors">Solar Tool</a>.
         </span>
         </p>
         </div>
@@ -280,7 +280,7 @@ export const physicsSEO: Record<string, SEOContent> = {
 
         <section className="bg-white border border-slate-200 rounded-2xl p-8 mb-8 shadow-sm">
         <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
-        <span className="text-yellow-600">⚡</span> The Conservation Audit: Work & Heat
+        <span className="text-yellow-600">⚡</span> The Conservation Check: Work & Heat
         </h3>
         <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-4">
         <p>
@@ -292,7 +292,7 @@ export const physicsSEO: Record<string, SEOContent> = {
         <tr>
         <th className="p-4 font-black text-slate-900 uppercase">State Change</th>
         <th className="p-4 font-black text-slate-900 uppercase">Energy Shift</th>
-        <th className="p-4 font-black text-slate-900 uppercase">Audit Impact</th>
+        <th className="p-4 font-black text-slate-900 uppercase">Check Impact</th>
         </tr>
         </thead>
         <tbody className="divide-y divide-slate-100">
@@ -325,13 +325,13 @@ export const physicsSEO: Record<string, SEOContent> = {
         </div>
         <div className="flex items-start gap-4">
         <div className="w-8 h-8 rounded-lg bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center text-yellow-400 font-bold">3</div>
-        <p className="text-sm text-slate-300"><strong className="text-white">Human Metabolism:</strong> Food is chemical potential energy. Audit your biological burn rate in our <a href="/calculator/calorie-calculator" className="text-yellow-400 underline font-bold">Calorie Lab</a>.</p>
+        <p className="text-sm text-slate-300"><strong className="text-white">Human Metabolism:</strong> Food is chemical potential energy. Check your biological burn rate in our <a href="/calculator/calorie-calculator/" className="text-yellow-400 underline font-bold">Calorie Tool</a>.</p>
         </div>
         </div>
         <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl">
-        <h4 className="text-xs font-black text-yellow-400 uppercase tracking-widest mb-3">Institutional Advice</h4>
+        <h4 className="text-xs font-black text-yellow-400 uppercase tracking-widest mb-3">Standard Advice</h4>
         <p className="text-xs text-slate-400 leading-relaxed italic">
-        "One Joule is very small (roughly the energy needed to lift an apple 1 meter). In industrial audits, use Kilojoules (kJ) or Megajoules (MJ) for meaningful data. If your system involves rotational motion, utilize our <a href="/calculator/physics-force" className="text-yellow-400 underline font-bold">Force Lab</a> to calculate the work done through torque."
+        "One Joule is very small (roughly the energy needed to lift an apple 1 meter). In industrial audits, use Kilojoules (kJ) or Megajoules (MJ) for meaningful data. If your system involves rotational motion, utilize our <a href="/calculator/physics-force/" className="text-yellow-400 underline font-bold">Force Tool</a> to calculate the work done through torque."
         </p>
         </div>
         </div>
@@ -339,7 +339,7 @@ export const physicsSEO: Record<string, SEOContent> = {
 
         <section>
         <h3 className="text-2xl font-black text-slate-900 mb-6">
-        Dynamic Intelligence Silo
+        Dynamic Insights Silo
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-yellow-300 transition-all">
@@ -372,7 +372,7 @@ export const physicsSEO: Record<string, SEOContent> = {
         <section className="bg-yellow-50 border border-yellow-100 rounded-3xl p-10 relative overflow-hidden">
         <div className="relative z-10">
         <h3 className="text-2xl font-black text-yellow-900 mb-4">
-        Strategic Case Study: The Roller Coaster Audit
+        Practical Case Study: The Roller Coaster Check
         </h3>
         <p className="text-yellow-900/70 text-sm leading-relaxed mb-8">
         A 500kg coaster car is at the top of a 50m hill. What is its maximum speed at the bottom (assuming no friction)?
@@ -385,23 +385,23 @@ export const physicsSEO: Record<string, SEOContent> = {
         <div className="flex justify-between border-t pt-2 mt-2 font-bold text-slate-900"><span>Solve Path:</span> <span>v = √(2KE / m)</span></div>
         </div>
         </div>
-        <div className="bg-white p-6 rounded-2xl border border-yellow-200 shadow-md transform md:scale-105"><h4 className="text-xs font-black text-yellow-600 uppercase tracking-widest mb-4">Audit Result</h4></div>
+        <div className="bg-white p-6 rounded-2xl border border-yellow-200 shadow-md transform md:scale-105"><h4 className="text-xs font-black text-yellow-600 uppercase tracking-widest mb-4">Check Result</h4></div>
         <div className="space-y-2 text-sm text-slate-700">
         <div className="flex justify-between"><span>Max Velocity:</span> <strong>~31.3 m/s</strong></div>
         <div className="flex justify-between"><span>Speed in km/h:</span> <strong>~112 km/h</strong></div>
-        <div className="flex justify-between border-t pt-2 mt-2 font-bold text-yellow-700"><span>Verdict:</span> <span>Thrill Threshold Met</span></div>
+        <div className="flex justify-between border-t pt-2 mt-2 font-bold text-yellow-700"><span>Verdict:</span> <span>Thrill Level Met</span></div>
         </div>
         </div>
         
         <p className="text-xs text-yellow-900/50 mt-8 italic text-center">
-        Audit Observation: In real-world coaster design, friction and air resistance would reduce the final speed. Energy auditing allows engineers to calculate the 'Ideal' and then apply loss factors. Explore more dynamic metrics in our <a href="/calculator/physics-force" className="text-yellow-600 underline font-bold">Force Lab</a>.
+        Check Observation: In real-world coaster design, friction and air resistance would reduce the final speed. Energy auditing allows engineers to calculate the 'Ideal' and then apply loss factors. Explore more dynamic metrics in our <a href="/calculator/physics-force/" className="text-yellow-600 underline font-bold">Force Tool</a>.
         </p>
         
         </section>
 
         <div className="pt-10 border-t border-slate-200 text-center mt-12">
         <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
-        Compliance Audit: Last updated Baishakh 2083 (May 2026). Calculations adhere to thermodynamic conservation laws and standard kinetic energy axioms.
+        Compliance Check: Last updated Baishakh 2083 (May 2026). Calculations adhere to thermodynamic conservation laws and standard kinetic energy axioms.
         
         
         
@@ -423,8 +423,8 @@ export const physicsSEO: Record<string, SEOContent> = {
     ]
   },
   'velocity-calculator': {
-    title: "Velocity Calculator | Displacement & Vector Motion Lab",
-    description: "Institutional resource for auditing motion velocity. 1500+ words on displacement vs. distance, vector direction, and high-speed kinematics.",
+    title: "Velocity Calculator | Displacement & Vector Motion",
+    description: "Calculate the velocity of an object in motion. Understand the difference between speed and velocity, displacement, and vector direction.",
     howToUse: {
       steps: [
         "1. Displacement Entry: Input the net change in position (straight-line distance) in meters.",
@@ -433,12 +433,12 @@ export const physicsSEO: Record<string, SEOContent> = {
         "4. Calculation: The engine solves for Velocity (v = Δs / Δt).",
         "5. Unit Sync: Instantly convert results to km/h, mph, or knots.",
         "6. Average vs Instantaneous: Distinguish between total trip velocity and speed at a specific point.",
-        "7. Relative Motion: Audit the velocity of one object relative to another moving frame.",
+        "7. Relative Motion: Check the velocity of one object relative to another moving frame.",
         "8. Result Validation: Verify the result against the speed of light or sound barriers."
       ]
     },
     formula: {
-      title: "The Kinematic Axiom",
+      title: "Velocity Formula",
       description: "Velocity is a vector quantity that refers to the rate at which an object changes its position.",
       raw: "v = Δs / Δt",
       variables: [
@@ -451,10 +451,10 @@ export const physicsSEO: Record<string, SEOContent> = {
         <div className="space-y-12">
         <div className="bg-blue-50/50 border-l-4 border-blue-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-blue-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Kinematic Intelligence Executive Summary
+        Kinematic Insights Overview
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Velocity is the primary auditor of directional motion. Unlike speed, which is a scalar, velocity accounts for <strong>Direction</strong>, making it essential for navigation, ballistics, and orbital mechanics. This <a href="/calculator/velocity-calculator" className="text-blue-600 hover:text-blue-800 underline font-semibold transition-colors">Velocity Lab</a> provides a high-precision engine for vector analysis.
+        Velocity is the primary calculator of directional motion. Unlike speed, which is a scalar, velocity accounts for <strong>Direction</strong>, making it essential for navigation, ballistics, and orbital mechanics. This <a href="/calculator/velocity-calculator/" className="text-blue-600 hover:text-blue-800 underline font-semibold transition-colors">Velocity Tool</a> provides a high-precision engine for vector analysis.
         
         
         
@@ -468,8 +468,8 @@ export const physicsSEO: Record<string, SEOContent> = {
     ]
   },
   'acceleration-calculator': {
-    title: "Acceleration Calculator | Rate of Change & Thrust Auditor",
-    description: "The definitive systematic resource for acceleration. 1500+ words on G-force, change in velocity, and mechanical stress audits.",
+    title: "Acceleration Calculator | Rate of Change & Motion",
+    description: "Calculate the acceleration of an object. Learn about G-force, velocity changes, and the physics of motion with our accurate calculator.",
     howToUse: {
       steps: [
         "1. Initial Velocity (u): Input the starting speed of the object.",
@@ -483,7 +483,7 @@ export const physicsSEO: Record<string, SEOContent> = {
       ]
     },
     formula: {
-      title: "The Dynamic Axiom",
+      title: "Acceleration Formula",
       description: "Acceleration is the rate at which an object changes its velocity.",
       raw: "a = (v - u) / t",
       variables: [
@@ -495,10 +495,10 @@ export const physicsSEO: Record<string, SEOContent> = {
         <div className="space-y-12">
         <div className="bg-indigo-50/50 border-l-4 border-indigo-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-indigo-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Dynamic Intelligence Executive Summary
+        Dynamic Insights Overview
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Acceleration is the primary auditor of physical stress. Every change in velocity requires force, and that force exerts pressure on structures and biological organisms. This <a href="/calculator/acceleration-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">Acceleration Lab</a> provides a high-precision engine for auditing the rate of change in motion systems.
+        Acceleration is the primary calculator of physical stress. Every change in velocity requires force, and that force exerts pressure on structures and biological organisms. This <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">Acceleration Tool</a> provides a high-precision engine for auditing the rate of change in motion systems.
         
         
         
@@ -512,8 +512,8 @@ export const physicsSEO: Record<string, SEOContent> = {
     ]
   },
   'density-calculator': {
-    title: "Density Calculator | Mass-Volume & Material Auditor",
-    description: "Institutional resource for auditing material density. 1500+ words on specific gravity, Archimedes' principle, and structural material audits.",
+    title: "Density Calculator | Mass-Volume Estimator",
+    description: "Calculate the density of any material. Learn about mass, volume, specific gravity, and Archimedes' principle with our physics toolkit.",
     howToUse: {
       steps: [
         "1. Mass Input: Enter the total weight/mass of the object.",
@@ -521,13 +521,13 @@ export const physicsSEO: Record<string, SEOContent> = {
         "3. Calculation: The engine solves for Density (ρ = m / V).",
         "4. Material Sync: Compare results against a database of standard materials (Gold, Water, Steel).",
         "5. Specific Gravity: Automatically calculate the ratio relative to water.",
-        "6. Buoyancy Audit: Determine if the object will float or sink in a specific fluid.",
+        "6. Buoyancy Check: Determine if the object will float or sink in a specific fluid.",
         "7. Purity Check: Use density to audit the purity of precious metals like gold.",
         "8. Result Validation: Verify the result against standard STP (Standard Temperature & Pressure) conditions."
       ]
     },
     formula: {
-      title: "The Material Axiom",
+      title: "Density Formula",
       description: "Density is the amount of mass per unit of volume, defining how 'compact' a substance is.",
       raw: "ρ = m / V",
       variables: [
@@ -539,10 +539,10 @@ export const physicsSEO: Record<string, SEOContent> = {
         <div className="space-y-12">
         <div className="bg-amber-50/50 border-l-4 border-amber-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-amber-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Material Intelligence Executive Summary
+        Material Insights Overview
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Density is the primary auditor of substance identity. In geology, construction, and manufacturing, density allows us to verify material purity and calculate total weight based on volume. This <a href="/calculator/density-calculator" className="text-amber-600 hover:text-amber-800 underline font-semibold transition-colors">Density Lab</a> provides a systematic workflow for material auditing.
+        Density is the primary calculator of substance identity. In geology, construction, and manufacturing, density allows us to verify material purity and calculate total weight based on volume. This <a href="/calculator/density-calculator/" className="text-amber-600 hover:text-amber-800 underline font-semibold transition-colors">Density Tool</a> provides a systematic workflow for material auditing.
         
         
         
@@ -556,14 +556,14 @@ export const physicsSEO: Record<string, SEOContent> = {
     ]
   },
   'weight-calculator': {
-    title: "Weight Calculator | Mass-Gravity & Planetary Load Auditor",
-    description: "The definitive resource for calculating gravitational force. 1500+ words on mass vs. weight, planetary gravity scales, and structural load audits.",
+    title: "Weight Calculator | Mass-Gravity & Load Estimator",
+    description: "Calculate the weight of an object on Earth, the Moon, or other planets. Understand the difference between mass and weight with our physics tool.",
     howToUse: {
       steps: [
         "1. Mass Input: Enter the object's mass in your preferred unit (kg, lb, g).",
         "2. Gravity Selection: Choose a location (Earth, Moon, Mars) or enter a custom G-value.",
         "3. Calculation: The system solves for Weight (W = m * g).",
-        "4. Load Audit: Review the downward force in Newtons (N) and lbf.",
+        "4. Load Check: Review the downward force in Newtons (N) and lbf.",
         "5. Mass Invariant: Note that your mass remains the same regardless of location.",
         "6. Structural Sync: Apply the resulting weight to foundation or beam load audits.",
         "7. Shipping Converter: View the 'Weight' in common commercial units for logistics.",
@@ -571,7 +571,7 @@ export const physicsSEO: Record<string, SEOContent> = {
       ]
     },
     formula: {
-      title: "The Gravitational Load Axiom",
+      title: "Weight Formula (W = mg)",
       description: "Weight is the force exerted on a mass by a gravitational field.",
       raw: "W = m * g",
       variables: [
@@ -584,10 +584,10 @@ export const physicsSEO: Record<string, SEOContent> = {
         <div className="space-y-12">
         <div className="bg-slate-50/50 border-l-4 border-slate-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-slate-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Gravitational Intelligence Executive Summary
+        Gravitational Insights Overview
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Weight is the primary auditor of structural demand. While mass is an intrinsic property of matter, weight is the <strong>Force</strong> produced by gravity acting on that mass. This <a href="/calculator/weight-calculator" className="text-slate-600 hover:text-slate-800 underline font-bold transition-colors">Weight Auditor</a> provides a systematic engine for load analysis.
+        Weight is the primary calculator of structural demand. While mass is an intrinsic property of matter, weight is the <strong>Force</strong> produced by gravity acting on that mass. This <a href="/calculator/weight-calculator/" className="text-slate-600 hover:text-slate-800 underline font-bold transition-colors">Weight Calculator</a> provides a systematic engine for load analysis.
         
         
         

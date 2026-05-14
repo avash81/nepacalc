@@ -32,16 +32,16 @@ export default function SIPCalculator() {
   ];
 
   const relatedCalcs = [
-    { label: "EMI Calculator", href: "/calculators/finance/emi-calculator/", icon: "🏠", desc: "Calculate your monthly loan repayments." },
-    { label: "Lump Sum Calculator", href: "/calculators/finance/lump-sum/", icon: "💰", desc: "Calculate returns on one-time investments." },
-    { label: "Retirement Planner", href: "/calculators/finance/retirement/", icon: "🏖️", desc: "Plan your post-retirement corpus." }
+    { label: "EMI Calculator", href: "/calculator/loan-emi/", icon: "🏠", desc: "Calculate your monthly loan repayments." },
+    { label: "Compound Interest", href: "/calculator/compound-interest/", icon: "💰", desc: "Calculate returns on your savings." },
+    { label: "Retirement Planner", href: "/calculator/nepal-provident-fund/", icon: "🏖️", desc: "Plan your post-retirement corpus." }
   ];
 
   return (
     <CalculatorLayout
       title="SIP Calculator"
       description="Verify the future value of your Systematic Investment Plan (SIP). Plan your long-term wealth growth with precision."
-      category={{ label: "Finance", href: "/calculator/category/finance/" }}
+      category={{ label: "Finance", href: "/finance/" }}
       faqs={faqs}
       leftPanel={
         <div className="space-y-6">

@@ -16,7 +16,7 @@ export function calcMeta({ title, description, slug, keywords = [], canonical }:
   
   // Clean Title — Brand enforced at end with a space, NO symbols
   let seoTitle = title
-    .replace(/[|&—\-_:/\\(),.!?;]/g, ' ') // Remove all symbols including slashes, pipes, and punctuation
+    .replace(/[|&—\-_:/\\(),!?]/g, ' ') // Remove disruptive symbols, but keep periods and percent signs
     .replace(/\s+/g, ' ')               // Normalize spaces
     .trim();
 
@@ -32,7 +32,7 @@ export function calcMeta({ title, description, slug, keywords = [], canonical }:
   
   // Clean Description — Must end with Brand reference or CTA
   let seoDescription = description
-    .replace(/[|&—\-_:/\\(),.!?;]/g, ' ') // Remove all symbols
+    .replace(/[|&—\-_:/\\(),!?]/g, ' ') // Keep periods and percent signs for descriptions
     .replace(/\s+/g, ' ')               // Normalize spaces
     .trim();
 

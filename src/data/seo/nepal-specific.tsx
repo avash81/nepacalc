@@ -3,38 +3,31 @@ import { SEOContent } from './types';
 
 export const nepalSpecificSEO: Record<string, SEOContent> = {
   'nepali-date': {
-    title: "Nepali Date Converter | BS to AD & AD to BS Auditor",
-    description: "The definitive systematic resource for Bikram Sambat (BS) and Anno Domini (AD) conversion in FY 2082/83. 1500+ words on calendar logic and historical auditing.",
+    title: "Nepali Date Converter | BS to AD & AD to BS Calculator",
+    description: "Convert Bikram Sambat (BS) to Anno Domini (AD) and vice versa instantly. Our precise Nepali date converter handles varying month lengths and religious tithis with 100% accuracy.",
     howToUse: {
       steps: [
         "1. Select Mode: Choose between BS to AD or AD to BS conversion.",
-        "2. Input Date: Enter the Year, Month, and Day for the 2082/83 cycle.",
-        "3. Precise Sync: The engine calculates the corresponding date in the other calendar system instantly.",
-        "4. Tithi Audit: (Optional) View the lunar tithi and significant festivals for the selected date."
+        "2. Input Date: Enter the Year, Month, and Day you want to convert.",
+        "3. Instant Results: The converter calculates the corresponding date in the other calendar system immediately.",
+        "4. Tithi & Festivals: Optionally view the lunar tithi and significant Nepali festivals for that day."
       ]
 
     },
     formula: {
-      title: "The Calendar Delta Axiom",
+      title: "The Calendar Delta Principle",
       description: "Nepali BS dates are approximately 56.7 years ahead of Gregorian AD dates, with month lengths varying based on historical records.",
       raw: "BS = AD + 56 Years, 8 Months, 17 Days (Approx)",
       variables: ["BS = Bikram Sambat.", "AD = Anno Domini."]
     },
     content: (
         <div className="space-y-12 text-slate-800">
-            {/* ==========================================
-            SECTION 1: EXECUTIVE SUMMARY
-            ========================================== */}
             <div className="bg-orange-50/50 border-l-4 border-orange-600 rounded-r-xl p-8 shadow-sm">
                 <h2 className="text-orange-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-                    Temporal Intelligence Executive Summary
+                    The Importance of Bikram Sambat in Nepal
                 </h2>
                 <p className="text-slate-800 text-base leading-relaxed">
-                    The Bikram Sambat (B.S.) calendar is the sovereign temporal standard of Nepal. Unlike the Gregorian calendar (A.D.), which is purely solar, the Nepali calendar is a Hindu lunisolar system that accounts for the precision of the moon's phases while maintaining alignment with the solar year. In <strong>FY 2082/83</strong>, date synchronization is not merely a cultural preference but a legal and financial imperative. From the <a href="https://mof.gov.np" target="_blank" rel="noopener noreferrer" className="text-orange-700 hover:text-orange-900 underline font-semibold transition-colors">Ministry of Finance</a> tax deadlines to the expiration of legal contracts and the audit of citizenship records, the "B.S. to A.D. Gap" creates significant administrative friction. This professional <a href="/calculator/nepali-date" className="text-orange-700 hover:text-orange-900 underline font-bold transition-colors">Date & Calendar Auditor</a> provides absolute synchronization. By utilizing verified astronomical ephemeris data, our engine eliminates the +/- 1 day error common in manual conversions and provides a definitive temporal bridge for institutional auditing.
-                    <br/><br/>
-                    <span className="text-sm text-slate-600 font-medium italic">
-                        Strategic Insight: Legal deadlines in Nepal are strictly interpreted in B.S. If your contract expires on "Chaitra 30" and the year only has 29 days, the legal deadline shifts. Verify your fiscal timelines using our <a href="/calculator/nepali-date" className="text-orange-700 hover:text-orange-900 underline font-bold transition-colors">Bikram Sambat Intelligence Lab</a>.
-                    </span>
+                    The Bikram Sambat (B.S.) calendar is the official calendar of Nepal. Unlike the Gregorian calendar (A.D.), which is purely solar, the Nepali calendar is a Hindu lunisolar system that keeps track of the moon's phases while staying in sync with the solar year. Staying on top of these dates is essential for everything from tax deadlines to legal documents and festivals. This converter provides instant synchronization between the two systems, helping you stay organized.
                 </p>
             </div>
 
@@ -43,7 +36,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             ========================================== */}
             <section>
                 <h3 className="text-2xl font-black text-slate-900 mb-6">
-                    1. Competitive Audit: Temporal Precision
+                    1. Why Our Converter is More Reliable
                 </h3>
                 <div className="overflow-hidden rounded-xl border border-slate-200">
                     <table className="w-full text-left text-sm">
@@ -108,11 +101,11 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             </section>
 
             {/* ==========================================
-            SECTION 4: THE 2082/83 FISCAL SYNC
+            SECTION 4: THE Current Year FISCAL SYNC
             ========================================== */}
             <section className="bg-slate-900 text-white rounded-[3rem] p-12 border border-slate-800 shadow-xl overflow-hidden relative mt-16">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-orange-600 rounded-full blur-[150px] opacity-20 pointer-events-none" />
-                <h3 className="text-3xl font-black mb-8 text-orange-400">3. Institutional Auditing: The B.S. Requirement</h3>
+                <h3 className="text-3xl font-black mb-8 text-orange-400">3. Official Uses of Nepali Dates</h3>
                 <div className="prose prose-invert prose-sm max-w-none">
                     <p className="text-slate-300 mb-8">
                         In the professional landscape of Nepal, certain milestones are legally required to be documented in Bikram Sambat.
@@ -120,7 +113,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
                             <code className="text-orange-400 block mb-2 font-bold uppercase tracking-widest text-[10px]">Case 01: Citizenship</code>
-                            <p className="text-xs text-slate-100">The "Nagarikta" is issued exclusively in B.S. Age eligibility for <a href="/calculator/lok-sewa-age" className="text-orange-400 underline">Lok Sewa Aayog</a> is audited strictly against the B.S. date of birth.</p>
+                            <p className="text-xs text-slate-100">The "Nagarikta" is issued exclusively in B.S. Age eligibility for <a href="/calculator/lok-sewa-age/" className="text-orange-400 underline">Lok Sewa Aayog</a> is audited strictly against the B.S. date of birth.</p>
                         </div>
                         <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
                             <code className="text-orange-400 block mb-2 font-bold uppercase tracking-widest text-[10px]">Case 02: Tax Filings</code>
@@ -128,7 +121,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
                         </div>
                         <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
                             <code className="text-orange-400 block mb-2 font-bold uppercase tracking-widest text-[10px]">Case 03: Land Registry</code>
-                            <p className="text-xs text-slate-100">"Lalpurja" transactions and <a href="/calculator/property-registration" className="text-orange-400 underline">Property Registration</a> dates are recorded in B.S. for historical consistency.</p>
+                            <p className="text-xs text-slate-100">"Lalpurja" transactions and <a href="/calculator/property-registration/" className="text-orange-400 underline">Property Registration</a> dates are recorded in B.S. for historical consistency.</p>
                         </div>
                     </div>
                 </div>
@@ -139,7 +132,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             ========================================== */}
             <section className="mt-16">
                 <h3 className="text-2xl font-black text-slate-900 mb-6">
-                    4. The Variable Month Audit
+                    4. Why Nepali Months Vary in Length
                 </h3>
                 <p className="text-slate-600 mb-8">
                     To understand why a simple formula fails, observe the variation in month lengths for the upcoming decade. There is no "Leap Year" rule like the Gregorian calendar; lengths are determined astronomically.
@@ -155,7 +148,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
                         </thead>
                         <tbody className="divide-y divide-slate-100 text-slate-700">
                             <tr><td className="p-4 font-bold">Baisakh</td><td className="p-4">30-31 Days</td><td className="p-4">April - May</td></tr>
-                            <tr><td className="p-4 font-bold">Jestha</td><td className="p-4">31-32 Days</td><td className="p-4">May - June</td></tr>
+                            <tr><td className="p-4 font-bold">June</td><td className="p-4">31-32 Days</td><td className="p-4">May - June</td></tr>
                             <tr><td className="p-4 font-bold text-orange-600 font-black">Asar</td><td className="p-4">31-32 Days</td><td className="p-4">June - July</td></tr>
                             <tr><td className="p-4 font-bold">Shrawan</td><td className="p-4">31-32 Days</td><td className="p-4">July - August</td></tr>
                             <tr><td className="p-4 font-bold">Bhadra</td><td className="p-4">31-32 Days</td><td className="p-4">August - September</td></tr>
@@ -168,49 +161,42 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Footer Trust Signal */}
             <div className="text-center pt-8 border-t border-[#dadce0]">
                 <p className="text-[10px] font-black text-[#70757a] uppercase tracking-[0.5em]">
-                    Calendar Compliance Auditor • Verified for 2000 B.S. to 2100 B.S.
+                    Calendar Compliance Calculator • Verified for 2000 B.S. to 2100 B.S.
                 </p>
             </div>
         </div>
     ),
     faqs: [
       { question: "Why does the Nepali date change every year?", answer: "Because it is a lunisolar calendar based on the sun's entry into zodiac signs (Sankranti), and the month lengths are not fixed like the 30/31 day Gregorian cycle." },
-      { question: "Is the Nepali calendar 56 or 57 years ahead?", answer: "Technically, it is 56 years, 8 months, and 17 days ahead. For the majority of the year, adding 57 to the A.D. year gives the B.S. year, but it depends on the month." },
+      { question: "Is the Nepali calendar 56 or 57 years ahead?", answer: "Technically, it is 56 years, 8 months, and 17 days ahead. Adding 57 to the A.D. year usually gives the correct B.S. year, but it depends on the specific month." },
       { question: "What is the official first month of the Nepali year?", answer: "Baisakh is the first month, usually starting around April 14th of the Gregorian calendar." },
-      { question: "Can I use this for historical birth date conversion?", answer: "Yes, our engine is pre-loaded with verified historical month lengths dating back to 2000 B.S. for absolute auditing accuracy." }
+      { question: "Can I use this for historical birth dates?", answer: "Yes, our converter uses verified historical data to ensure accurate conversion for past dates." }
     ]
   },
   'momo-calorie-counter': {
-    title: "Momo Calorie Counter | Nepal's Official Dumpling Nutrition Auditor",
-    description: "The definitive institutional resource for Momo nutrition. 1500+ words on Buff vs Chicken vs Veg calorie slabs, dipping sauce impact, and health audits.",
+    title: "Momo Calorie Counter | Nepali Dumpling Nutrition Guide",
+    description: "Find out the calorie count of your favorite momos. Compare Buff, Chicken, and Veg momos and understand their nutritional value.",
     howToUse: {
       steps: [
-        "1. Momo Type: Select variety.",
-        "2. Preparation Style: Choose style.",
-        "3. Quantity Entry: Input pieces."
+        "1. Momo Type: Select the type of momo (Buff, Chicken, Veg, etc.).",
+        "2. Preparation Style: Choose between Steamed, Fried, or C-Momo.",
+        "3. Quantity: Input the number of pieces you're eating."
       ]
     },
     formula: {
-      title: "Momo Axiom",
-      description: "Calories based on filling and style.",
-      raw: "Cal = P x D",
-      variables: ["P = Pieces", "D = Density"]
+      title: "Calories per Piece",
+      description: "Calorie estimates are based on average filling and dough weights.",
+      raw: "Total Calories = Number of Pieces x Calories per Piece",
+      variables: ["Average calorie counts vary by filling and cooking style."]
     },
     content: (
         <div className="space-y-12 text-slate-800">
-            {/* ==========================================
-            SECTION 1: EXECUTIVE SUMMARY
-            ========================================== */}
             <div className="bg-red-50/50 border-l-4 border-red-600 rounded-r-xl p-8 shadow-sm">
                 <h2 className="text-red-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-                    Culinary Intelligence Executive Summary
+                    Healthy Eating: The Momo Guide
                 </h2>
                 <p className="text-slate-800 text-base leading-relaxed">
-                    The Momo is more than a dumpling; it is the fundamental unit of Nepali urban nutrition. However, from a professional health auditing perspective, the Momo represents a "Caloric Variable" that can range from a lean protein source to a heavy lipid-dense meal. In <strong>FY 2082/83</strong>, as lifestyle diseases increase in metropolitan hubs like Kathmandu and Pokhara, understanding the math behind your plate is essential. The difference between a plate of Steamed Chicken Momo (approx. 350 kcal) and a plate of C-Momo (approx. 750 kcal) is the equivalent of a 5-kilometer run. This professional <a href="/calculator/momo-calorie-counter" className="text-red-700 hover:text-red-900 underline font-bold transition-colors">Momo Nutrition Auditor</a> provides absolute clarity. By dissecting the filling density, dough thickness, and the "Dreaded Achar Factor," our engine reveals the true metabolic cost of your favorite meal.
-                    <br/><br/>
-                    <span className="text-sm text-slate-600 font-medium">
-                        Health Strategy: One plate of Buff Momo carries enough sodium for 50% of your daily allowance. Audit your nutritional intake before your next "Momo-Party" using our <a href="/calculator/momo-calorie-counter" className="text-red-700 hover:text-red-900 underline font-bold transition-colors">Metabolic Intelligence Lab</a>.
-                    </span>
+                    Momos are a beloved staple of Nepali cuisine. While they are delicious, it's helpful to know their nutritional content, especially if you're monitoring your calorie intake. The difference between steamed momos and fried or chili momos can be significant. This tool helps you estimate the calories in your meal so you can make informed choices.
                 </p>
             </div>
 
@@ -289,7 +275,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             ========================================== */}
             <section className="bg-slate-900 text-white rounded-[3rem] p-12 border border-slate-800 shadow-xl overflow-hidden relative mt-16">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-red-600 rounded-full blur-[150px] opacity-20 pointer-events-none" />
-                <h3 className="text-3xl font-black mb-8 text-red-400">3. The Achar Audit: The Invisible 100 Calories</h3>
+                <h3 className="text-3xl font-black mb-8 text-red-400">3. The Achar Check: The Invisible 100 Calories</h3>
                 <div className="prose prose-invert prose-sm max-w-none">
                     <p className="text-slate-300 mb-8">
                         Most calorie trackers ignore the dipping sauce (Achar), but in Nepal, the Achar is often sesame or peanut-based, making it extremely calorie-dense.
@@ -316,7 +302,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Footer Trust Signal */}
             <div className="text-center pt-8 border-t border-[#dadce0]">
                 <p className="text-[10px] font-black text-[#70757a] uppercase tracking-[0.5em]">
-                    Nutritional Compliance Auditor • Based on Standardized Filling Weights
+                    Nutritional Compliance Calculator • Based on Standardized Filling Weights
                 </p>
             </div>
         </div>
@@ -329,35 +315,29 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     ]
   },
   'gold-converter': {
-    title: "Gold Price Converter Nepal | Tola, Lal & Gram Precision Auditor",
-    description: "Convert gold units between Tola, Lal, and Grams with absolute precision.",
+    title: "Gold Price Converter Nepal | Tola, Lal & Gram Calculator",
+    description: "Convert gold units between Tola, Lal, and Grams accurately. Get the latest price estimates for 24k and 22k gold in Nepal.",
     howToUse: {
       steps: [
-        "1. Unit Selection: Choose Tola, Lal, or Grams.",
-        "2. Purity: Select 24k Hallmark or 22k Tejabi."
+        "1. Select Unit: Choose between Tola, Lal, or Grams.",
+        "2. Purity Selection: Choose 24k Hallmark or 22k Tejabi gold.",
+        "3. Calculation: The tool provides the weight and price conversion instantly."
       ]
     },
     formula: {
-      title: "Gold Axiom",
-      description: "1 Tola = 11.6638 grams.",
-      raw: "Value = (Weight x Rate) + Fees",
-      variables: ["Weight = Mass", "Rate = Market price"]
+      title: "Gold Conversion Factors",
+      description: "In Nepal, gold is traditionally measured in Tolas and Lals.",
+      raw: "1 Tola = 11.6638 grams | 1 Tola = 100 Lal",
+      variables: ["Weight = The mass of gold.", "Rate = The current market price."]
     },
     content: (
         <div className="space-y-12 text-slate-800">
-            {/* ==========================================
-            SECTION 1: EXECUTIVE SUMMARY
-            ========================================== */}
             <div className="bg-amber-50/50 border-l-4 border-amber-600 rounded-r-xl p-8 shadow-sm">
                 <h2 className="text-amber-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-                    Metallurgical Intelligence Executive Summary
+                    Gold Trading in Nepal
                 </h2>
                 <p className="text-slate-800 text-base leading-relaxed">
-                    Gold remains the primary vehicle for wealth preservation and cultural expression in Nepal. Unlike global markets that trade in Troy Ounces, the <a href="https://fenegosida.org" target="_blank" rel="noopener noreferrer" className="text-amber-700 hover:text-amber-900 underline font-semibold transition-colors">Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)</a> utilizes the traditional <strong>Tola</strong> system. In <strong>FY 2082/83</strong>, with gold prices reaching historic peaks, a microscopic error in unit conversion can result in significant financial loss. A single "Lal" (1/100th of a Tola) is currently worth over Rs. 1,000. This professional <a href="/calculator/gold-converter" className="text-amber-700 hover:text-amber-900 underline font-bold transition-colors">Gold & Precious Metals Auditor</a> provides absolute decimal precision. By synchronizing the Tola-Lal-Gram matrix and accounting for "Making Charges" (Jyala) and "Wastage" (Jadao), our engine reveals the true buy/sell value of your assets.
-                    <br/><br/>
-                    <span className="text-sm text-slate-600 font-medium">
-                        Investment Strategy: Gold in Nepal is classified as Hallmark (24k) or Tejabi (22k). Never accept Tejabi rates for Hallmark assets. Verify your liquidation value using our <a href="/calculator/gold-converter" className="text-amber-700 hover:text-amber-900 underline font-bold transition-colors">Wealth Audit Lab</a>.
-                    </span>
+                    Gold is a major form of investment and savings in Nepal. While global markets use ounces, Nepal uses the traditional Tola system. With gold prices often fluctuating, having an accurate way to convert units is vital for buyers and sellers alike. This tool helps you convert between Tola, Lal, and Grams with precision, accounting for the standards set by the local gold associations.
                 </p>
             </div>
 
@@ -378,7 +358,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
                                 <tr>
                                     <th className="p-4 font-black text-slate-900">Unit</th>
                                     <th className="p-4 font-black text-slate-900">Conversion Formula</th>
-                                    <th className="p-4 font-black text-slate-900">Precision Value</th>
+                                    <th className="p-4 font-black text-slate-900">Accuracy Value</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-100">
@@ -408,7 +388,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             ========================================= */}
             <section className="mt-12">
                 <h3 className="text-2xl font-black text-slate-900 mb-6">
-                    2. The Purity Audit: Hallmark vs. Tejabi
+                    2. The Purity Check: Hallmark vs. Tejabi
                 </h3>
                 <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-4">
                     <p>
@@ -457,7 +437,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Footer Trust Signal */}
             <div className="text-center pt-8 border-t border-[#dadce0]">
                 <p className="text-[10px] font-black text-[#70757a] uppercase tracking-[0.5em]">
-                    Gold Compliance Auditor • Verified against FENEGOSIDA Standards
+                    Gold Compliance Calculator • Verified against FENEGOSIDA Standards
                 </p>
             </div>
         </div>
@@ -470,31 +450,27 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     ]
   },
   'nepal-home-loan': {
-    title: "Nepal Home Loan Calculator | NRB Real Estate & EMI Auditor",
-    description: "Calculate your home loan EMI in Nepal with institutional precision. 1500+ words on NRB LTV caps (50% in Kathmandu), Base Rate dynamics, and mortgage spreads for FY 2082/83.",
-    
+    title: "Nepal Home Loan Calculator | EMI & Mortgage Guide",
+    description: "Calculate your home loan EMI in Nepal accurately. Understand NRB LTV limits and how base rates affect your monthly payments.",
     howToUse: {
       steps: [
-        "1. Property Valuation Entry: Input the total market value of the property. Banks in Nepal use the average of government (Malpot) and fair market valuation.",
-        "2. Down Payment Allocation: Define your initial capital. Nepal Rastra Bank (NRB) requires a 50% down payment for residential purposes within the Kathmandu Valley (LTV 50%).",
-        "3. Principal Loan Amount: Enter the total amount you wish to borrow after deducting the down payment.",
-        "4. Interest Rate Configuration: Enter the bank's current Base Rate plus the agreed Spread percentage. This is the 'Floating Rate' standard in Nepal.",
-        "5. Repayment Tenure: Select the duration of the loan. Most A-class commercial banks in Nepal offer a range from 5 to 25 years.",
-        "6. EMI Output Review: The system generates the exact monthly installment required to service the debt.",
-        "7. Amortization Audit: Observe the split between principal and interest. In the early years of a Nepali mortgage, the majority of the EMI covers interest.",
-        "8. Eligibility Verification: Cross-reference your EMI against your net take-home pay to ensure your Debt-to-Income (DTI) ratio remains below the bank's 50% limit."
+        "1. Property Valuation: Input the market value of the property.",
+        "2. Down Payment: Define your initial capital. Note that NRB often requires a 50% down payment for residential purposes in Kathmandu Valley.",
+        "3. Loan Amount: Enter the total amount you wish to borrow.",
+        "4. Interest Rate: Enter the bank's current interest rate (Base Rate + Spread).",
+        "5. Tenure: Select the duration of the loan in years.",
+        "6. EMI Result: The tool calculates your exact monthly payment.",
+        "7. Amortization: Review how your payments are split between principal and interest over time."
       ]
     },
-    
     formula: {
-      title: "The Reducing Balance Mortgage Axiom",
-      description: "Nepali banks utilize the reducing balance method where interest is calculated monthly on the remaining principal, ensuring that as you pay down the loan, the interest cost decreases.",
+      title: "Mortgage Calculation Formula",
+      description: "Nepali banks typically use the reducing balance method for interest calculation.",
       raw: "EMI = [P x r x (1+r)^n] / [(1+r)^n - 1]",
       variables: [
-        "P = Principal: The sanctioned loan amount.",
-        "r = Monthly Rate: (Annual Interest Rate / 12) / 100.",
-        "n = Tenure in Months: Total years x 12.",
-        "Floating Rate = Current Base Rate + Fixed Spread (e.g., 9.5% + 2.0% = 11.5%)."
+        "P = Principal loan amount.",
+        "r = Monthly interest rate.",
+        "n = Total number of months."
       ]
     },
     
@@ -505,13 +481,13 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             ========================================== */}
             <div className="bg-sky-50/50 border-l-4 border-sky-600 rounded-r-xl p-8 shadow-sm">
                 <h2 className="text-sky-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-                    Mortgage Intelligence Executive Summary
+                    Mortgage Insights Overview
                 </h2>
                 <p className="text-slate-800 text-base leading-relaxed">
-                    Securing a home loan in Nepal is a complex maneuver governed by the strict regulatory frameworks of <strong>Nepal Rastra Bank (NRB)</strong>. In <strong>FY 2082/83</strong>, the mortgage landscape is defined by liquidity fluctuations and the <strong>Loan-to-Value (LTV)</strong> cap, which remains at 50% for residential properties within the Kathmandu Valley. For prospective homeowners, the primary hurdle is not just the interest rate, but the 'Equity Requirement'—the ability to provide 50% of the property's valuation upfront. This professional <a href="/calculator/nepal-home-loan" className="text-sky-700 hover:text-sky-900 underline font-bold transition-colors">Nepal Mortgage & EMI Auditor</a> provides absolute mathematical transparency. By synchronizing the bank's <strong>Base Rate</strong> with institutional <strong>Spreads</strong> and calculating reducing-balance interest, our engine reveals the true long-term cost of your debt.
+                    Securing a home loan in Nepal is a complex process governed by the regulatory frameworks of <strong>Nepal Rastra Bank (NRB)</strong>. The mortgage landscape is often defined by liquidity fluctuations and the <strong>Loan-to-Value (LTV)</strong> cap, which is a key factor for residential properties within the Kathmandu Valley. For prospective homeowners, the primary hurdle is not just the interest rate, but the 'Equity Requirement'—the ability to provide the necessary down payment of the property's valuation upfront. This professional <a href="/calculator/nepal-home-loan/" className="text-sky-700 hover:text-sky-900 underline font-bold transition-colors">Nepal Mortgage & EMI Calculator</a> provides absolute mathematical transparency. By synchronizing the bank's <strong>Base Rate</strong> with standard <strong>Spreads</strong> and calculating reducing-balance interest, our engine reveals the true long-term cost of your debt.
                     <br/><br/>
                     <span className="text-sm text-slate-600 font-medium">
-                        Banking Strategy: Most Nepali banks offer 'Floating Rates' tied to their quarterly Base Rate. A 0.5% shift in the Base Rate can add years to your tenure if not audited regularly. Verify your repayment trajectory using our <a href="/calculator/nepal-home-loan" className="text-sky-700 hover:text-sky-900 underline font-bold transition-colors">Debt Amortization Lab</a>.
+                        Banking Strategy: Most Nepali banks offer 'Floating Rates' tied to their quarterly Base Rate. A 0.5% shift in the Base Rate can add years to your tenure if not audited regularly. Verify your repayment trajectory using our <a href="/calculator/nepal-home-loan/" className="text-sky-700 hover:text-sky-900 underline font-bold transition-colors">Debt Amortization Tool</a>.
                     </span>
                 </p>
             </div>
@@ -594,7 +570,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             ========================================== */}
             <section className="bg-slate-900 text-white rounded-[3rem] p-12 border border-slate-800 shadow-xl overflow-hidden relative mt-16">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-sky-600 rounded-full blur-[150px] opacity-20 pointer-events-none" />
-                <h3 className="text-3xl font-black mb-8 text-sky-400">3. The Amortization Audit: Front-Loaded Interest</h3>
+                <h3 className="text-3xl font-black mb-8 text-sky-400">3. The Amortization Check: Front-Loaded Interest</h3>
                 <div className="prose prose-invert prose-sm max-w-none">
                     <p className="text-slate-300 mb-8">
                         The biggest psychological hurdle for new borrowers is seeing that their first few years of EMIs barely touch the principal amount. This is a mathematical feature of the <strong>Reducing Balance Method</strong>.
@@ -644,7 +620,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Footer Trust Signal */}
             <div className="text-center pt-8 border-t border-[#dadce0]">
                 <p className="text-[10px] font-black text-[#70757a] uppercase tracking-[0.5em]">
-                    Institutional Mortgage Auditor • Based on NRB Unified Directives
+                    Standard Mortgage Calculator • Based on NRB Unified Directives
                 </p>
             </div>
         </div>
@@ -658,27 +634,26 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     ]
   },
   'nepal-income-tax': {
-    title: "Nepal Income Tax Calculator | FY 2082/83 Salary & Payroll Auditor",
-    description: "Calculate your net salary and tax liability as per the latest Nepal Finance Bill 2082. 1,500-word guide on tax slabs, Social Security Fund (SSF) exemptions, and insurance deductions.",
+    title: "Nepal Income Tax Calculator | Salary & Tax Guide",
+    description: "Calculate your net salary and tax liability based on the latest Nepal tax laws. Comprehensive guide on tax slabs, SSF, EPF, and insurance deductions.",
     howToUse: {
       steps: [
-        "1. Assessment Category: Select 'Individual' or 'Couple'. The tax-free threshold differs by Rs. 1,00,000 between these two statuses.",
-        "2. Gross Salary Input: Enter your total monthly or annual gross salary, including all allowances and bonuses.",
-        "3. SSF Contribution: If your employer is registered with the Social Security Fund, the system automatically deducts the 11% employee contribution from taxable income.",
-        "4. Legal Deductions: Enter annual premiums for Life Insurance (up to Rs. 40,000) and Health Insurance (up to Rs. 20,000) for tax auditing.",
-        "5. Remote Area Allowance: (Optional) If working in Grade A to E remote districts, the system applies the corresponding deduction (up to Rs. 50,000).",
-        "6. Pension Fund Allocation: Account for Employee Provident Fund (EPF) and CIT contributions to maximize your tax-free slab.",
-        "7. Slab-wise Audit: Review the progressive tax breakdown from 1% (Social Security Tax) up to the 39% high-earner surcharge.",
-        "8. Net Take-Home Pay: View your final monthly salary after all statutory government deductions."
+        "1. Category: Select 'Individual' or 'Couple' (Married).",
+        "2. Salary: Enter your monthly or annual gross salary.",
+        "3. SSF/EPF: Include your Social Security Fund or Provident Fund contributions.",
+        "4. Insurance: Deduct your life and health insurance premiums.",
+        "5. Remote Area: Select your remote area grade if applicable.",
+        "6. Bonus: Include any additional bonuses or allowances.",
+        "7. Result: View your tax breakdown and net take-home pay instantly."
       ]
     },
     formula: {
-      title: "The Progressive Income Tax Axiom",
-      description: "Income tax in Nepal is calculated using a tiered 'Slab System' where different portions of your income are taxed at increasing rates.",
-      raw: "Net Salary = Gross Income - (Slab Tax + SSF + Insurance Deductions + CIT)",
+      title: "How Tax is Calculated",
+      description: "Nepal uses a progressive tax slab system based on your annual income.",
+      raw: "Net Salary = Gross Income - (Tax + Deductions)",
       variables: [
-        "Individual Slab: First Rs. 5,00,000 at 1% (SST). Next Rs. 2L (10%), Next Rs. 3L (20%), Next Rs. 10L (30%), Above Rs. 20L (36% + 3% surcharge).",
-        "Couple Slab: First Rs. 6,00,000 at 1% (SST). Remaining tiers follow the individual progression."
+        "Individual: Slabs start from 1% for the first Rs. 5,00,000.",
+        "Couple: Slabs start from 1% for the first Rs. 6,00,000."
       ]
     },
     content: (
@@ -688,21 +663,18 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             ========================================== */}
             <div className="bg-emerald-50/50 border-l-4 border-emerald-600 rounded-r-xl p-8 shadow-sm">
                 <h2 className="text-emerald-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-                    Fiscal Intelligence Executive Summary
+                    Nepal Income Tax Guide
                 </h2>
                 <p className="text-slate-800 text-base leading-relaxed">
-                    Taxation in Nepal for <strong>FY 2082/83</strong> is governed by the <strong>Income Tax Act, 2058</strong> and the subsequent amendments in the annual Finance Bill. For salaried professionals, understanding the difference between "Gross Package" and "Net Take-Home" is a mandatory institutional requirement. With the introduction of the <strong>Social Security Fund (SSF)</strong>, the tax landscape has shifted—contributions to SSF are now fully deductible, providing a significant tax shield for formal sector employees. However, high earners must now navigate the 39% marginal tax rate (36% base + 3% surcharge on income exceeding Rs. 50 Lakhs). This professional <a href="/calculator/nepal-income-tax" className="text-emerald-700 hover:text-emerald-900 underline font-bold transition-colors">Salary & Tax Auditor</a> provides absolute mathematical clarity, ensuring you maximize your legal deductions while remaining 100% compliant with the <a href="https://ird.gov.np" target="_blank" rel="noopener noreferrer" className="text-emerald-700 hover:text-emerald-900 underline font-semibold transition-colors">Inland Revenue Department (IRD)</a> directives.
+                    Taxation in Nepal is governed by the <strong>Income Tax Act, 2058</strong>. For salaried professionals, understanding how your net take-home pay is calculated is important for financial planning. This tool helps you calculate your tax liability by accounting for the latest slabs, Social Security Fund (SSF) contributions, and other legal deductions.
                 </p>
             </div>
 
-            {/* ==========================================
-            SECTION 2: TAX SLABS AUDIT
-            ========================================== */}
             <section>
-                <h3 className="text-2xl font-black text-slate-900 mb-6">1. The FY 2082/83 Progressive Tax Slabs</h3>
+                <h3 className="text-2xl font-black text-slate-900 mb-6">1. Progressive Tax Slabs in Nepal</h3>
                 <div className="prose prose-slate max-w-none text-slate-700 mb-8">
                     <p>
-                        Nepal utilizes a "Progressive Tax System," meaning as your income rises, the percentage of tax you pay on the additional income also increases. For <strong>Aarthik Barsha 2082/83</strong>, the Inland Revenue Department (IRD) has maintained the structural slabs while tightening the compliance on high-earner surcharges.
+                        Nepal uses a progressive tax system, where higher income brackets are taxed at higher rates. For the current fiscal year, the Inland Revenue Department (IRD) has set specific slabs for individuals and married couples.
                     </p>
                 </div>
                 <div className="overflow-x-auto rounded-[2rem] border border-slate-200 shadow-sm bg-white overflow-hidden">
@@ -711,56 +683,53 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
                             <tr>
                                 <th className="p-5 font-black text-slate-900 uppercase tracking-tighter">Taxable Income (Individual)</th>
                                 <th className="p-5 font-black text-slate-900 uppercase tracking-tighter">Tax Rate</th>
-                                <th className="p-5 font-black text-slate-900 uppercase tracking-tighter">Institutional Logic</th>
+                                <th className="p-5 font-black text-slate-900 uppercase tracking-tighter">Description</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100">
                             <tr className="hover:bg-slate-50/50 transition-colors">
                                 <td className="p-5 font-semibold">First Rs. 5,00,000</td>
                                 <td className="p-5 font-black text-emerald-600">1%</td>
-                                <td className="p-5 text-slate-500">Social Security Tax (SST). Waived if registered in SSF.</td>
+                                <td className="p-5 text-slate-500">Social Security Tax (SST).</td>
                             </tr>
                             <tr className="hover:bg-slate-50/50 transition-colors">
                                 <td className="p-5 font-semibold">Next Rs. 2,00,000 (Up to 7L)</td>
                                 <td className="p-5 font-black text-slate-700">10%</td>
-                                <td className="p-5 text-slate-500">Entry-level professional bracket.</td>
+                                <td className="p-5 text-slate-500">Income between 5L and 7L.</td>
                             </tr>
                             <tr className="hover:bg-slate-50/50 transition-colors">
                                 <td className="p-5 font-semibold">Next Rs. 3,00,000 (Up to 10L)</td>
                                 <td className="p-5 font-black text-slate-700">20%</td>
-                                <td className="p-5 text-slate-500">Standard mid-career bracket.</td>
+                                <td className="p-5 text-slate-500">Income between 7L and 10L.</td>
                             </tr>
                             <tr className="hover:bg-slate-50/50 transition-colors">
                                 <td className="p-5 font-semibold">Next Rs. 10,00,000 (Up to 20L)</td>
                                 <td className="p-5 font-black text-slate-700">30%</td>
-                                <td className="p-5 text-slate-500">Upper-management bracket.</td>
+                                <td className="p-5 text-slate-500">Income between 10L and 20L.</td>
                             </tr>
                             <tr className="hover:bg-slate-50/50 transition-colors">
                                 <td className="p-5 font-semibold">Above Rs. 20,00,000 (Up to 50L)</td>
                                 <td className="p-5 font-black text-slate-700">36%</td>
-                                <td className="p-5 text-slate-500">High Net Worth Individual (HNWI) bracket.</td>
+                                <td className="p-5 text-slate-500">Income between 20L and 50L.</td>
                             </tr>
                             <tr className="bg-emerald-50">
                                 <td className="p-5 font-black text-emerald-900">Above Rs. 50,00,000</td>
                                 <td className="p-5 font-black text-emerald-700 text-xl">39%*</td>
-                                <td className="p-5 text-emerald-800 font-medium">Includes 3% surcharge on the highest income tier.</td>
+                                <td className="p-5 text-emerald-800 font-medium">Income above 50L (includes surcharge).</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <p className="text-[10px] text-slate-400 mt-4 italic">
-                    *Note: For <strong>Couples</strong>, the 1% slab extends to <strong>Rs. 6,00,000</strong>. Choosing the couple status is often beneficial if one spouse has a significantly lower income or is unemployed.
+                    *Note: For <strong>Couples</strong>, the 1% slab extends to <strong>Rs. 6,00,000</strong>.
                 </p>
             </section>
 
-            {/* ==========================================
-            SECTION 3: SSF TAX SHIELD
-            ========================================== */}
             <section className="bg-slate-900 text-white rounded-[3rem] p-12 border border-slate-800 shadow-xl overflow-hidden relative mt-16">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-600 rounded-full blur-[150px] opacity-20 pointer-events-none" />
-                <h3 className="text-3xl font-black mb-8 text-emerald-400">2. The SSF vs. EPF Tax Shield: A Strategic Audit</h3>
+                <h3 className="text-3xl font-black mb-8 text-emerald-400">2. SSF & EPF: Tax Saving Tools</h3>
                 <p className="text-slate-300 mb-8 leading-relaxed">
-                    The <strong>Social Security Fund (SSF)</strong> and <strong>Employee Provident Fund (EPF)</strong> are the two primary retirement vehicles in Nepal. While they serve similar purposes, their impact on your monthly take-home pay varies due to IRD directives.
+                    The <strong>Social Security Fund (SSF)</strong> and <strong>Employee Provident Fund (EPF)</strong> are retirement schemes in Nepal that also offer tax benefits. Contributions to these funds are deducted from your gross income, reducing your taxable amount.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                     <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700">
@@ -800,7 +769,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
                 </div>
                 <div className="bg-emerald-950/40 p-6 rounded-2xl border border-emerald-900/50">
                     <p className="text-xs text-emerald-300 leading-relaxed italic">
-                        "Strategic Audit: If you earn Rs. 15 Lakhs, contributing Rs. 3 Lakhs to CIT doesn't just save you the 30% tax on that amount (Rs. 90,000 savings)—it can also drop your remaining income into a lower tax bracket. Use our <a href="/calculator/nepal-provident-fund" className="text-emerald-400 underline font-bold">EPF/CIT Lab</a> to simulate your savings."
+                        "Practical Check: If you earn Rs. 15 Lakhs, contributing Rs. 3 Lakhs to CIT doesn't just save you the 30% tax on that amount (Rs. 90,000 savings)—it can also drop your remaining income into a lower tax bracket. Use our <a href="/calculator/nepal-provident-fund/" className="text-emerald-400 underline font-bold">EPF/CIT Tool</a> to simulate your savings."
                     </p>
                 </div>
             </section>
@@ -810,7 +779,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             ========================================== */}
             <section id="verification" className="bg-slate-900 text-white rounded-[3rem] p-12 border border-slate-800 shadow-xl overflow-hidden relative mt-16">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-600 rounded-full blur-[150px] opacity-20 pointer-events-none" />
-                <h3 className="text-3xl font-black mb-8 text-emerald-400">3. Mathematical Audit: A Step-by-Step Proof</h3>
+                <h3 className="text-3xl font-black mb-8 text-emerald-400">3. Example Calculation (Individual)</h3>
                 <div className="prose prose-invert prose-sm max-w-none">
                     <p className="text-slate-300 mb-8">
                         To verify the engine's precision, let us audit an <strong>Individual Salaried Professional</strong> earning a gross annual income of <strong>Rs. 15,00,000</strong> (15 Lakhs) who contributes <strong>Rs. 3,00,000</strong> to SSF.
@@ -849,7 +818,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             SECTION 5: STRATEGIC DEDUCTIONS
             ========================================== */}
             <section className="mt-12">
-                <h3 className="text-2xl font-black text-slate-900 mb-6">4. Strategic Deductions: Insurance & CIT</h3>
+                <h3 className="text-2xl font-black text-slate-900 mb-6">4. Practical Deductions: Insurance & CIT</h3>
                 <div className="prose prose-slate max-w-none text-slate-700 space-y-6">
                     <p>To further reduce your tax liability, the Nepal government allows several statutory deductions. Failing to declare these is equivalent to leaving money on the table.</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -920,39 +889,37 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Footer Trust Signal */}
             <div className="text-center pt-8 border-t border-[#dadce0]">
                 <p className="text-[10px] font-black text-[#70757a] uppercase tracking-[0.5em]">
-                    Payroll Compliance Auditor • Verified for FY 2082/83 Finance Bill
+                    Payroll Compliance Calculator • Verified for FY Current Year Finance Bill
                 </p>
             </div>
         </div>
     ),
     faqs: [
       { question: "Is the 1% tax mandatory for everyone?", answer: "Yes, it is the Social Security Tax. However, if you are a regular contributor to the Social Security Fund (SSF), this 1% tax is waived." },
-      { question: "What is the tax-free limit for a married couple?", answer: "For FY 2082/83, the tax-free threshold for couples is Rs. 6,00,000, while for individuals, it is Rs. 5,00,000." },
+      { question: "What is the tax-free limit for a married couple?", answer: "For FY Current Year, the tax-free threshold for couples is Rs. 6,00,000, while for individuals, it is Rs. 5,00,000." },
       { question: "Can I deduct my housing loan interest from income tax?", answer: "No, currently the Nepal Income Tax Act does not allow housing loan interest deductions for salaried individuals." },
       { question: "How is the 39% tax calculated?", answer: "It applies to income exceeding Rs. 50 Lakhs. It consists of a 36% base rate for the highest slab plus a 3% additional surcharge." },
-      { question: "What is the assessment year in Nepal?", answer: "The fiscal year (Aarthik Barsha) starts from Shrawan 1st and ends on Ashad end of the following year (e.g., Shrawan 2081 to Ashad 2082)." },
+      { question: "What is the assessment year in Nepal?", answer: "The fiscal year (Fiscal Year) starts from Shrawan 1st and ends on Ashad end of the following year (e.g., Shrawan 2081 to Ashad 2082)." },
       { question: "Can I claim a tax refund in Nepal?", answer: "While the Income Tax Act allows for refunds of excess TDS, the process is administratively complex and often requires a formal audit by the IRD. Most individuals choose to adjust it against future liabilities." }
     ]
   },
   'nepal-vat': {
-    title: "Nepal VAT Calculator | 13% Value Added Tax Auditor & Compliance Lab",
-    description: "Calculate VAT inclusive and exclusive amounts with institutional precision. 1,500-word guide on IRD VAT Act 2052, exempt goods, and billing standards for FY 2082/83.",
+    title: "Nepal VAT Calculator | 13% Tax Guide",
+    description: "Calculate VAT in Nepal easily. Add or remove 13% VAT from your total and understand the VAT rules in Nepal.",
     howToUse: {
       steps: [
-        "1. Transaction Mode: Select 'Add VAT' to find the total bill amount or 'Remove VAT' to audit the base price from a VAT-inclusive total.",
-        "2. Amount Entry: Input the numerical value of the goods or services. The engine supports high-precision decimal auditing for bulk invoices.",
-        "3. Rate Verification: The standard rate is locked at 13% as per the VAT Act 2052. The system also supports zero-rated auditing for exports.",
-        "4. Taxable Value Audit: Review the breakdown of the Base Amount vs. the VAT Component.",
-        "5. Compliance Check: Verify that the resulting figures match the mandatory IRD billing format.",
-        "6. Bulk Invoice Simulation: Use the resulting data to prepare VAT returns for monthly or trimester filings."
+        "1. Mode: Select 'Add VAT' to find the total with tax, or 'Remove VAT' to find the base price.",
+        "2. Amount: Enter the value of the goods or services.",
+        "3. Rate: The standard VAT rate in Nepal is 13%.",
+        "4. Result: View the base amount, VAT component, and the final total."
       ]
     },
     formula: {
-      title: "The VAT Extraction Axiom",
-      description: "Value Added Tax in Nepal is a consumption tax. Extracting the base price from an inclusive total requires a specific algebraic reverse-calculation.",
+      title: "VAT Calculation Formula",
+      description: "VAT is calculated as a percentage of the base price.",
       raw: "Base Amount = Total / (1 + VAT Rate)",
       variables: [
-        "VAT Rate = 13% (0.13 for calculation).",
+        "VAT Rate = 13% (0.13).",
         "VAT Amount = Total - Base Amount."
       ]
     },
@@ -963,10 +930,10 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             ========================================== */}
             <div className="bg-red-50/50 border-l-4 border-red-600 rounded-r-xl p-8 shadow-sm">
                 <h2 className="text-red-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-                    Taxation Intelligence Executive Summary
+                    VAT in Nepal
                 </h2>
                 <p className="text-slate-800 text-base leading-relaxed">
-                    Value Added Tax (VAT) is the cornerstone of indirect taxation in Nepal, governed by the <strong>Value Added Tax Act, 2052</strong>. In <strong>FY 2082/83</strong>, any business with an annual turnover exceeding Rs. 50 Lakhs (for goods) or Rs. 20 Lakhs (for services/mixed) is legally mandated to register for VAT. For consumers and procurement officers, auditing the 13% levy is a critical financial control. A common error in manual accounting is calculating the 13% on the <em>inclusive</em> total instead of the <em>exclusive</em> base, leading to significant overpayment of tax. This professional <a href="/calculator/nepal-vat" className="text-red-700 hover:text-red-900 underline font-bold transition-colors">VAT Compliance Auditor</a> ensures absolute mathematical precision for IRD-compliant billing.
+                    Value Added Tax (VAT) is a consumption tax applied to goods and services in Nepal, governed by the <strong>Value Added Tax Act, 2052</strong>. The standard rate is 13%. Businesses with a turnover above a certain threshold are required to register and collect VAT. This tool helps you quickly calculate the tax component for your invoices or purchases.
                 </p>
             </div>
 
@@ -974,7 +941,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             SECTION 2: THE 13% LOGIC
             ========================================== */}
             <section>
-                <h3 className="text-2xl font-black text-slate-900 mb-6">1. The 13% Standard: Inclusive vs. Exclusive Audit</h3>
+                <h3 className="text-2xl font-black text-slate-900 mb-6">1. The 13% Standard: Inclusive vs. Exclusive Check</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
                         <h4 className="font-black text-slate-900 mb-3 flex items-center gap-2">
@@ -998,7 +965,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             ========================================== */}
             <section className="bg-slate-900 text-white rounded-[3rem] p-12 border border-slate-800 shadow-xl overflow-hidden relative mt-16">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-red-600 rounded-full blur-[150px] opacity-20 pointer-events-none" />
-                <h3 className="text-3xl font-black mb-8 text-red-400">2. The Input Tax Credit Audit</h3>
+                <h3 className="text-3xl font-black mb-8 text-red-400">2. The Input Tax Credit Check</h3>
                 <div className="prose prose-invert prose-sm max-w-none">
                     <p className="text-slate-300 mb-8">
                         The "Credit Mechanism" is what makes VAT a tax on consumption rather than a tax on production. Registered businesses only pay VAT on the <strong>Value Added</strong> at their stage.
@@ -1023,7 +990,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             SECTION 4: BILLING STANDARDS
             ========================================== */}
             <section className="mt-12">
-                <h3 className="text-2xl font-black text-slate-900 mb-6">3. IRD Billing Standards: Mandatory Audit Fields</h3>
+                <h3 className="text-2xl font-black text-slate-900 mb-6">3. IRD Billing Standards: Mandatory Check Fields</h3>
                 <p className="text-slate-700 leading-relaxed mb-6">
                     A VAT invoice in Nepal is not legally valid unless it contains specific fields. During an IRD audit, missing fields can lead to your input credits being disqualified.
                 </p>
@@ -1050,13 +1017,13 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             SECTION 5: REGISTRATION THRESHOLDS
             ========================================== */}
             <section className="mt-12">
-                <h3 className="text-2xl font-black text-slate-900 mb-6">4. Institutional Audit: Mandatory VAT Registration</h3>
+                <h3 className="text-2xl font-black text-slate-900 mb-6">4. Standard Check: Mandatory VAT Registration</h3>
                 <div className="overflow-x-auto rounded-xl border border-slate-200">
                     <table className="w-full text-left text-sm">
                         <thead className="bg-slate-50">
                             <tr>
                                 <th className="p-4 font-black text-slate-900">Business Type</th>
-                                <th className="p-4 font-black text-slate-900">Annual Threshold</th>
+                                <th className="p-4 font-black text-slate-900">Annual Level</th>
                                 <th className="p-4 font-black text-slate-900">Legal Requirement</th>
                             </tr>
                         </thead>
@@ -1073,7 +1040,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Footer Trust Signal */}
             <div className="text-center pt-8 border-t border-[#dadce0]">
                 <p className="text-[10px] font-black text-[#70757a] uppercase tracking-[0.5em]">
-                    VAT Compliance Auditor • Verified for VAT Act 2052 Standards
+                    VAT Compliance Calculator • Verified for VAT Act 2052 Standards
                 </p>
             </div>
         </div>
@@ -1088,39 +1055,34 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     ]
   },
   'property-tax': {
-    title: "Nepal Property Tax Calculator | Municipal Valuation & Malpot Auditor",
-    description: "Calculate your annual property tax in Nepal for FY 2082/83. Institutional-grade guide on municipal valuation slabs, road-access weighting, and house depreciation math.",
+    title: "Nepal Property Tax Calculator | Land & House Tax Guide",
+    description: "Calculate your annual property tax in Nepal. Understand how land valuation, road access, and building type affect your tax liability.",
     howToUse: {
       steps: [
-        "1. District & Municipality Selection: Identify your local government body. Tax rates vary by jurisdiction.",
-        "2. Land Area Input: Enter the exact land area in Ropani-Aana or Bigha-Katha.",
-        "3. Road Access Classification: Select the type of road touching your property (Main Road, Sub-Road, etc.).",
-        "4. Structure Type & Age: Select the construction type (RCC, Brick, etc.) and year to apply depreciation.",
-        "5. Valuation Slab Mapping: The engine applies the specific Finance Bill slabs of your municipality.",
-        "6. Tax Liability Output: View the final annual property tax amount (Integrated Property Tax).",
-        "7. Rebate Verification: Check if you are eligible for early payment discounts (usually 10% in Poush).",
-        "8. Legal Documentation: Use the report to prepare for your annual tax filing at the Ward Office."
+        "1. Location: Select your District and Municipality.",
+        "2. Land Area: Enter the area in Ropani-Aana or Bigha-Katha.",
+        "3. Road Access: Select the type of road touching your property.",
+        "4. Structure: Provide details about any buildings on the land.",
+        "5. Result: The tool calculates your estimated annual property tax."
       ]
     },
     formula: {
-      title: "The Municipal Valuation Axiom",
-      description: "Property tax is determined by the Government Valuation (Sarkari Mulyankan), increasing based on infrastructure access.",
-      raw: "Total Tax = (Land Value x Land Tax Rate) + (Depreciated Building Value x Building Tax Rate)",
+      title: "Property Tax Calculation",
+      description: "Property tax is based on the government valuation of your land and building.",
+      raw: "Total Tax = (Land Tax) + (Building Tax)",
       variables: [
-        "Land Value = Area x (Base Rate x Road Access Multiplier).",
-        "Building Value = (Plinth Area x Rate) - Accumulated Depreciation.",
-        "Road Access Multiplier = Highest for Pitch Road; lowest for foot-trails."
+        "Land Value is based on location and road access.",
+        "Building Value is based on area, type, and age."
       ]
     },
     content: (
-        <div className="space-y-12">
         <div className="space-y-12 text-slate-800">
-        <div className="bg-amber-50/50 border-l-4 border-amber-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-amber-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Property Wealth Executive Summary</h2>
-        <p className="text-slate-800 text-base leading-relaxed">
-        Property taxation in Nepal is governed by the Local Government Operation Act 2074. Municipalities now have the authority to determine land valuation and tax rates. This professional Nepal Property Tax Auditor provides a transparent breakdown of your annual liability based on the latest municipal Finance Bills.
-        </p>
-        </div>
+            <div className="bg-amber-50/50 border-l-4 border-amber-600 rounded-r-xl p-8 shadow-sm">
+                <h2 className="text-amber-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Property Tax in Nepal</h2>
+                <p className="text-slate-800 text-base leading-relaxed">
+                    Property tax in Nepal, often called Integrated Property Tax, is collected by local municipalities. The amount you pay depends on the government's valuation of your land and any structures on it. This calculator helps you estimate your annual tax based on common valuation rules used by local governments.
+                </p>
+            </div>
         <section>
         <h3 className="text-2xl font-black text-slate-900 mb-6">1. The Valuation Engine: Road Access & Infrastructure</h3>
         <p className="text-slate-700 leading-relaxed">
@@ -1150,7 +1112,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         </section>
         <div className="pt-10 border-t border-slate-200 text-center mt-12">
         <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
-        Compliance Audit: Last updated Baishakh 2083 (May 2026). Calculations strictly follow the Local Government Operation Act 2074.
+        Compliance Check: Last updated Baishakh 2083 (May 2026). Calculations strictly follow the Local Government Operation Act 2074.
         </p>
         </div>
         </div>
@@ -1163,56 +1125,43 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     ]
   },
   'foreign-employment': {
-    title: "Nepal Foreign Employment ROI Calculator | Migrant Labor Auditor",
-    description: "Calculate the true net savings of working abroad for Nepali migrants. Upfront costs, loan interest traps, and destination salary audits.",
+    title: "Foreign Employment Calculator | Savings & ROI Guide for Nepali Migrants",
+    description: "Calculate your true net savings when working abroad. Account for upfront costs, loan interest, and living expenses to plan your financial future.",
     howToUse: {
       steps: [
-        "1. Destination Selection: Choose the target country (e.g., South Korea (EPS), UAE, Qatar, Malaysia).",
-        "2. Upfront Capital Input: Enter the total cost paid to the Manpower agency, medical tests, visa fees, and flight tickets.",
-        "3. Financing Audit: If you took a loan for the upfront capital, enter the loan amount and the high-interest rate (often 24%+ from local lenders).",
-        "4. Expected Salary Entry: Input your guaranteed monthly basic salary in the foreign currency.",
-        "5. Living Expenses Calibration: Estimate your monthly living cost abroad (food, rent, transport) if not provided by the company.",
-        "6. Net Savings Calculation: The system isolates your true disposable income (Salary - Living Cost - Loan EMI).",
-        "7. Payback Period Output: View exactly how many months of labor it will take just to recover your initial investment.",
-        "8. Long-term Wealth Strategy: Review the projected total savings at the end of your 2-year or 3-year contract."
+        "1. Destination: Select the country (e.g., UAE, Qatar, Malaysia, etc.).",
+        "2. Upfront Costs: Enter total costs for the agency, visa, and flights.",
+        "3. Loan: If you took a loan for these costs, enter the amount and interest rate.",
+        "4. Income: Input your expected monthly salary and overtime.",
+        "5. Expenses: Estimate your monthly living costs abroad.",
+        "6. Result: See how long it takes to recover your investment and your total projected savings."
       ]
     },
     formula: {
-      title: "The Migrant Labor Wealth Axiom",
-      description: "The true financial value of foreign employment is determined by subtracting upfront debt servicing and foreign living costs from the total contract earnings.",
-      raw: "Net Contract Wealth = (Monthly Savings - Loan EMI) x Tenure - Upfront Capital",
+      title: "How Savings are Calculated",
+      description: "Net savings are calculated by subtracting loan payments and living costs from your total income.",
+      raw: "Net Savings = (Monthly Income - Living Expenses - Loan EMI) x Tenure - Upfront Costs",
       variables: [
-        "Upfront Capital = Manpower Fees + Visa + Flights + Medicals.",
-        "Monthly Savings = Basic Salary + Overtime - Foreign Living Expenses.",
-        "Loan EMI = Monthly payment to local lenders (usually calculated using high-interest simple or compound rates).",
-        "Payback Period = Upfront Capital / Monthly Savings.",
-        "Net Contract Wealth = Total cash remitted to Nepal after all debts are cleared."
+        "Income includes basic salary and overtime.",
+        "Upfront Costs include agency fees, visa, and flight tickets."
       ]
     },
     content: (
-        <div className="space-y-12">
         <div className="space-y-12 text-slate-800">
-        {/* ==========================================
-        SECTION 1: EXECUTIVE SUMMARY
-        ========================================== */}
-        <div className="bg-blue-50/50 border-l-4 border-blue-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-blue-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Migrant Economics Executive Summary
-        </h2>
-        <p className="text-slate-800 text-base leading-relaxed">
-        Foreign employment is the economic backbone of Nepal, contributing to nearly a quarter of the national GDP through remittances. Yet, for the individual migrant worker, the financial reality is often obscured by hidden agency fees, predatory local lending rates, and the high cost of living in destination countries like the UAE or Malaysia. A promised salary of Rs. 1 Lakh per month can mathematically result in zero net savings if the upfront cost was financed at 36% interest. This professional <a href="/calculator/foreign-employment" className="text-blue-700 hover:text-blue-900 underline font-semibold transition-colors">Foreign Employment Auditor</a> provides a brutal, transparent breakdown of your true Return on Investment (ROI). By calculating your exact 'Payback Period' and debt-servicing limits, our engine ensures that your years of hard labor translate into actual generational wealth for your family back home.
-        <br/><br/>
-        <span className="text-sm text-slate-600 font-medium">
-        Wealth Strategy: Do not let your remittance sit idle in a low-yield savings account. Audit how compounding your monthly transfers in our <a href="/calculator/sip-calculator" className="text-blue-700 hover:text-blue-900 underline font-bold transition-colors">SIP Lab</a> can double your total contract wealth.
-        </span>
-        </p>
-        </div>
+            <div className="bg-blue-50/50 border-l-4 border-blue-600 rounded-r-xl p-8 shadow-sm">
+                <h2 className="text-blue-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
+                    Foreign Employment: Planning Your Savings
+                </h2>
+                <p className="text-slate-800 text-base leading-relaxed">
+                    Working abroad is a significant decision for many Nepali families. While the prospect of higher earnings is attractive, it's important to understand the true cost and potential for savings. Many migrants take out high-interest loans to cover upfront costs, which can impact their net savings for months or even years. This tool helps you see the clear picture of your financial journey abroad.
+                </p>
+            </div>
         {/* ==========================================
         SECTION 2: COMPETITIVE MARKET AUDIT
         ========================================== */}
         <section>
         <h3 className="text-2xl font-black text-slate-900 mb-6">
-        1. Competitive Audit: Foreign Employment ROI
+        1. Competitive Check: Foreign Employment ROI
         </h3>
         <div className="overflow-hidden rounded-xl border border-slate-200">
         <table className="w-full text-left text-sm">
@@ -1227,7 +1176,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         <tr>
         <td className="p-4 font-semibold">Manpower Agents</td>
         <td className="p-4">Overstates 'Gross' pay; hides debt interest.</td>
-        <td className="p-4 text-blue-700 font-bold">Brutal ROI Audit</td>
+        <td className="p-4 text-blue-700 font-bold">Brutal ROI Check</td>
         </tr>
         <tr>
         <td className="p-4 font-semibold">Facebook Groups</td>
@@ -1271,7 +1220,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         </table>
         </div>
         <p className="text-sm mt-4 text-slate-500 italic">
-        Critical Audit Note: If you borrow Rs. 3 Lakhs at 36% interest from a local moneylender (Sahu), your interest alone is Rs. 9,000 per month. If your foreign savings is only Rs. 30,000, nearly 30% of your labor is just paying interest.
+        Critical Check Note: If you borrow Rs. 3 Lakhs at 36% interest from a local moneylender (Sahu), your interest alone is Rs. 9,000 per month. If your foreign savings is only Rs. 30,000, nearly 30% of your labor is just paying interest.
         </p>
         </div>
         </section>
@@ -1316,9 +1265,9 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         <p className="text-sm text-slate-300"><strong className="text-white">Remittance Exchange Rate:</strong> Your salary is paid in Riyals or Dirhams. The conversion rate to NPR fluctuates. The NPR peg to the Indian Rupee provides stability against Gulf currencies, but limits massive forex gains.</p>
         </div>
         </div>
-        <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl"><h4 className="text-xs font-black text-blue-400 uppercase tracking-widest mb-3">Institutional Strategy</h4>
+        <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl"><h4 className="text-xs font-black text-blue-400 uppercase tracking-widest mb-3">Standard Strategy</h4>
         <p className="text-xs text-slate-400 leading-relaxed italic">
-        "Always calculate your 'Payback Period'. If you pay Rs. 3 Lakhs to go abroad, and save Rs. 30,000 a month, your Payback Period is 10 months. This means for the first 10 months, you are working as an indentured servant just to return to 'Zero'. Only from Month 11 do you actually start making a profit. Check your family's financial stability during those first 10 months using our <a href="/calculator/savings" className="text-blue-400 underline font-bold">Emergency Fund Lab</a>."
+        "Always calculate your 'Payback Period'. If you pay Rs. 3 Lakhs to go abroad, and save Rs. 30,000 a month, your Payback Period is 10 months. This means for the first 10 months, you are working as an indentured servant just to return to 'Zero'. Only from Month 11 do you actually start making a profit. Check your family's financial stability during those first 10 months using our <a href="/calculator/savings/" className="text-blue-400 underline font-bold">Emergency Fund Tool</a>."
         </p></div>
         </div>
         
@@ -1328,7 +1277,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         ========================================== */}
         <section className="mt-12">
         <h3 className="text-2xl font-black text-slate-900 mb-6">
-        Migration Intelligence Silo
+        Migration Insights Silo
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
@@ -1363,7 +1312,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         <section className="bg-blue-50 border border-blue-100 rounded-3xl p-10 relative overflow-hidden mt-12">
         <div className="relative z-10">
         <h3 className="text-2xl font-black text-blue-900 mb-4">
-        Strategic Case Study: The UAE Security Guard Audit
+        Practical Case Study: The UAE Security Guard Check
         </h3>
         <p className="text-blue-900/70 text-sm leading-relaxed mb-8">
         A worker pays Rs. 2,50,000 to an agency. He borrows this at 24% annual interest. His UAE salary is 1,500 AED (approx. Rs. 54,000). Food is not provided (costs 400 AED/month). The contract is 2 years.
@@ -1399,7 +1348,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         
         
         <p className="text-xs text-blue-900/50 mt-8 italic text-center">
-        Audit Observation: The worker spent 2 years away from his family to generate a total net wealth of Rs. 6.4 Lakhs. That is an effective profit of only Rs. 26,000 per month. If a similar job in Nepal pays Rs. 25,000, the foreign contract is mathematically a loss. Validate your potential using our <a href="/calculator/nepal-salary" className="text-blue-600 underline font-bold">Local Salary Auditor</a>.
+        Check Observation: The worker spent 2 years away from his family to generate a total net wealth of Rs. 6.4 Lakhs. That is an effective profit of only Rs. 26,000 per month. If a similar job in Nepal pays Rs. 25,000, the foreign contract is mathematically a loss. Validate your potential using our <a href="/calculator/nepal-salary/" className="text-blue-600 underline font-bold">Local Salary Calculator</a>.
         </p>
         
         </section>
@@ -1408,7 +1357,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         ========================================== */}
         <div className="pt-10 border-t border-slate-200 text-center mt-12">
         <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
-        Compliance Audit: Last updated Baishakh 2083 (May 2026). Calculations strictly factor in Department of Foreign Employment (DOFE) policies and current average Forex rates.
+        Compliance Check: Last updated Baishakh 2083 (May 2026). Calculations strictly factor in Department of Foreign Employment (DOFE) policies and current average Forex rates.
         
         
         
@@ -1453,7 +1402,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         ]
         },
         'kukl-bill': {
-        title: "KUKL Water Bill Calculator | Kathmandu Utility Auditor",
+        title: "KUKL Water Bill Calculator | Kathmandu Utility Calculator",
         description: "Calculate your KUKL water bill with 50% sewage surcharge and late penalty logic. 1500+ words on pipe diameters and volumetric slabs.",
         howToUse: {
         steps: [
@@ -1463,7 +1412,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         ]
         },
         formula: {
-        title: "The Municipal Utility Axiom (KUKL Tariffs)",
+        title: "The Municipal Utility Principle (KUKL Tariffs)",
         description: "Water billing in the Kathmandu Valley is a hybrid model comprising a fixed baseline fee up to a minimum volume, plus an escalating volumetric rate for excess usage, topped with a sewage tax.",
         raw: "Total Bill = [Minimum Fee + (Excess Volume x Rate)] x (1 + Sewage Tax %) + Fines",
         variables: [
@@ -1530,15 +1479,15 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     ]
   },
   'nea-bill': {
-    title: "NEA Bill Calculator 2082/83 | Nepal Electricity Bill Auditor",
-    description: "Calculate your NEA electricity bill precisely for FY 2082/83. Includes 5A to 60A demand charges, progressive slab rates, and late payment fine logic.",
+    title: "NEA Bill Calculator Current Year | Nepal Electricity Bill Calculator",
+    description: "Calculate your NEA electricity bill precisely for FY Current Year. Includes 5A to 60A demand charges, progressive slab rates, and late payment fine logic.",
     
     howToUse: {
       steps: [
         "1. Phase & Ampere Selection: Identify your connection type (Single Phase or Three Phase) and meter capacity (e.g., 5A, 15A, 30A, 60A). This defines your fixed monthly demand charge.",
         "2. Reading Input: Enter your Previous Month's meter reading and Current Month's reading in KWh (Units).",
         "3. Volume Calculation: The system isolates your total consumed units (Current - Previous).",
-        "4. Progressive Slab Audit: Observe how your consumption is divided into the NEA's progressive tiers (0-20, 21-30, 31-50, etc.), with higher units costing exponentially more.",
+        "4. Progressive Slab Check: Observe how your consumption is divided into the NEA's progressive tiers (0-20, 21-30, 31-50, etc.), with higher units costing exponentially more.",
         "5. Fixed Charge Addition: The mandatory monthly service/demand charge is added based on your specific Ampere rating, even if your consumption is 0.",
         "6. Time of Day (ToD) Override (For 3-Phase): If applicable, input peak, off-peak, and normal hour usage for specialized industrial/commercial billing.",
         "7. Penalty/Rebate Synchronization: Input the payment date relative to the meter reading to apply the 2% early rebate or the 5% to 25% late fine.",
@@ -1547,7 +1496,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     },
     
     formula: {
-      title: "The NEA Energy Tariff Axiom",
+      title: "The NEA Energy Tariff Principle",
       description: "Electricity billing in Nepal operates on a highly progressive slab system that penalizes high consumption while subsidizing basic energy needs for low-income households (Lifeline tariff).",
       raw: "Total Bill = Fixed Demand Charge + Σ (Units in Slab × Slab Rate) + Penalty/Rebate",
       variables: [
@@ -1559,16 +1508,13 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     },
     
     content: (
-        <div className="space-y-12">
-        <div className="bg-yellow-50 border-l-4 border-yellow-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-yellow-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Energy Intelligence Summary</h2>
-        <p className="text-slate-800 leading-relaxed">
-        NEA billing is based on a progressive slab system. Higher consumption leads to exponentially higher costs.
-        
-        
-        
-        </p>
-        </div>
+        <div className="space-y-12 text-slate-800">
+            <div className="bg-yellow-50 border-l-4 border-yellow-600 rounded-r-xl p-8 shadow-sm">
+                <h2 className="text-yellow-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Understanding Your Electricity Bill</h2>
+                <p className="text-slate-800 leading-relaxed">
+                    NEA billing in Nepal uses a progressive slab system. This means that as you consume more electricity, the cost per unit increases. This system is designed to encourage energy conservation while keeping costs low for households with minimal usage.
+                </p>
+            </div>
         </div>
     ),
     faqs: [
@@ -1615,7 +1561,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     ]
   },
   'property-registration': {
-    title: "Property Registration Fee Calculator Nepal | Malpot Auditor",
+    title: "Property Registration Fee Calculator Nepal | Malpot Calculator",
     description: "Calculate land registry fees, service charges, and bagmati/local taxes for property transfer in Nepal.",
     howToUse: {
       steps: [
@@ -1625,21 +1571,19 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
       ]
     },
     formula: {
-      title: "Registry Axiom",
+      title: "Registry Principle",
       description: "Fee = Valuation x (Registry Rate + Service Charge).",
       raw: "Fee = V x R",
       variables: ["V = Official Valuation"]
     },
     content: (
-        <div className="space-y-12">
-        <div className="bg-slate-50 border-l-4 border-slate-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-slate-700 font-black text-xs uppercase tracking-widest mb-3">Real Estate Registration Summary</h2>
-        <p className="text-slate-800 leading-relaxed">
-        Registering property in Nepal involves several layers of fees including the primary registration fee and local development taxes.
-        
-        
-        </p>
-        </div>
+        <div className="space-y-12 text-slate-800">
+            <div className="bg-slate-50 border-l-4 border-slate-600 rounded-r-xl p-8 shadow-sm">
+                <h2 className="text-slate-700 font-black text-xs uppercase tracking-widest mb-3">Property Registration in Nepal</h2>
+                <p className="text-slate-800 leading-relaxed">
+                    When buying or transferring land in Nepal, you are required to pay a registration fee to the Land Revenue Office (Malpot). This fee depends on several factors, including the location of the property and the gender of the owner, as the government offers specific rebates to encourage female ownership.
+                </p>
+            </div>
         </div>
     ),
     faqs: [
@@ -1648,22 +1592,22 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
   },
 
   'nepal-provident-fund': {
-    title: "EPF & CIT Calculator Nepal | Retirement Wealth & Interest Auditor",
-    description: "Calculate your Employee Provident Fund (EPF) and Citizen Investment Trust (CIT) growth in Nepal for FY 2082/83. Statutory interest and tax audit.",
+    title: "EPF & CIT Calculator Nepal | Retirement Wealth & Interest Calculator",
+    description: "Calculate your Employee Provident Fund (EPF) and Citizen Investment Trust (CIT) growth in Nepal. Understand interest compounding, tax benefits, and loan eligibility.",
     howToUse: {
       steps: [
-        "1. Salary Entry: Enter your monthly basic salary. Note that EPF is calculated strictly on the basic component, excluding allowances.",
-        "2. Contribution Calibration: Set your contribution percentage. For EPF, the standard is 10% (employee) + 10% (employer). For CIT, you can select a flat monthly amount.",
-        "3. Tenure Input: Define your projected years of service to calculate long-term compounded wealth.",
-        "4. Interest Rate Audit: The system applies the current statutory interest rates (typically 7.5% - 8% for the 2082/83 cycle).",
-        "5. Tax Benefit Mapping: View how much income tax you save annually by making these contributions (subject to the Rs. 3 Lakh limit).",
+        "1. Salary Entry: Enter your monthly basic salary. EPF is calculated on the basic component, excluding allowances.",
+        "2. Contribution: Set your contribution percentage. For EPF, the standard is 10% (employee) + 10% (employer).",
+        "3. Tenure: Define your projected years of service to calculate long-term wealth.",
+        "4. Interest Rate: The system applies the current statutory interest rates for accurate projections.",
+        "5. Tax Benefits: View how much income tax you save annually by making these contributions.",
         "6. Loan Eligibility: See your maximum borrowing capacity (usually up to 80% of your total balance).",
         "7. Terminal Value Output: Review the total projected corpus at the time of retirement, including accumulated interest.",
         "8. Compliance Check: Verify that your employer is depositing the full 20% (10+10) into your official EPF account."
       ]
     },
     formula: {
-      title: "The Compounded Retirement Axiom",
+      title: "The Compounded Retirement Principle",
       description: "Wealth accumulation in EPF/CIT follows a monthly compounding schedule where interest is credited annually on the average balance.",
       raw: "Future Value = P × [((1 + r/n)^(nt) - 1) / (r/n)]",
       variables: [
@@ -1675,21 +1619,21 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     },
     content: (
         <div className="space-y-12 text-slate-800">
-            {/* Executive Summary */}
+            {/* Overview */}
             <section>
-                <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Retirement Intelligence Silo: Nepal EPF & CIT Audit</h2>
+                <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">Planning for Retirement: EPF & CIT in Nepal</h2>
                 <div className="bg-blue-50 border-l-4 border-blue-600 rounded-r-xl p-10 mb-10 shadow-sm relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600 rounded-full blur-[120px] opacity-10" />
-                    <h4 className="text-blue-700 font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Wealth Preservation Lab</h4>
+                    <h4 className="text-blue-700 font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Retirement Savings Guide</h4>
                     <p className="text-slate-800 text-base leading-relaxed relative z-10">
-                        In the financial landscape of Nepal, the <strong>Employee Provident Fund (EPF/Karmachari Sanchaya Kosh)</strong> and <strong>Citizen Investment Trust (CIT/Nagarik Lagani Kosh)</strong> are the twin pillars of institutional retirement planning. In <strong>FY 2082/83</strong>, these funds serve dual purposes: providing a safety net for the future and offering immediate tax relief through the IRD-approved deduction of up to Rs. 3,00,000. Navigating the compounding math of a 10% salary split requires absolute precision to avoid retirement shortfall. This <a href="/calculator/nepal-provident-fund" className="text-blue-700 hover:text-blue-900 underline font-semibold transition-colors">Retirement Wealth Auditor</a> is engineered to simulate 20-30 year growth cycles, accounting for statutory interest fluctuations and the 80% loan-against-fund provisions.
+                        In Nepal, the <strong>Employee Provident Fund (EPF/Karmachari Sanchaya Kosh)</strong> and <strong>Citizen Investment Trust (CIT/Nagarik Lagani Kosh)</strong> are the most common ways to save for retirement. These funds not only help you build long-term wealth but also offer significant tax benefits, allowing you to deduct up to Rs. 3,00,000 from your taxable income each year. This calculator helps you estimate how your savings will grow over time, accounting for interest rates and monthly contributions.
                     </p>
                 </div>
             </section>
 
             {/* Section 1: EPF vs CIT */}
             <section className="mb-16">
-                <h3 className="text-2xl font-black text-[#202124] mb-6">1. Strategic Comparison: EPF vs. CIT</h3>
+                <h3 className="text-2xl font-black text-[#202124] mb-6">1. Practical Comparison: EPF vs. CIT</h3>
                 <p className="text-sm text-[#5f6368] leading-relaxed mb-8">
                     While both funds offer tax benefits, they operate under different legal frameworks. EPF is mandatory for permanent employees in registered organizations, whereas CIT is a voluntary investment vehicle often used to bridge the gap in retirement savings.
                 </p>
@@ -1738,7 +1682,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Section 3: Mathematical Verification */}
             <section className="bg-slate-900 text-white rounded-[3rem] p-12 border border-slate-800 shadow-xl overflow-hidden relative mb-16">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600 rounded-full blur-[150px] opacity-20 pointer-events-none" />
-                <h3 className="text-3xl font-black mb-8 text-blue-400">3. Mathematical Audit: A 10-Year Simulation</h3>
+                <h3 className="text-3xl font-black mb-8 text-blue-400">3. Mathematical Check: A 10-Year Simulation</h3>
                 <div className="prose prose-invert prose-sm max-w-none">
                     <p className="text-slate-300 mb-8">
                         Let us audit a professional with a <strong>Basic Salary of Rs. 50,000</strong> contributing 10% to EPF over 10 years at a <strong>7.5% annual interest rate</strong>.
@@ -1760,7 +1704,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
                     <div className="mt-10 p-8 bg-blue-600/20 border-2 border-blue-500/50 rounded-3xl text-center">
                         <h4 className="text-xl font-black text-blue-400 mb-2">Projected Retirement Corpus</h4>
                         <p className="text-4xl font-black text-white">Rs. 17,40,000</p>
-                        <p className="text-xs text-blue-300 mt-2 uppercase tracking-widest font-bold">Audit includes interest compounding on monthly average balance.</p>
+                        <p className="text-xs text-blue-300 mt-2 uppercase tracking-widest font-bold">Check includes interest compounding on monthly average balance.</p>
                     </div>
                 </div>
             </section>
@@ -1768,35 +1712,35 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Footer Trust Signal */}
             <div className="text-center pt-8 border-t border-[#dadce0]">
                 <p className="text-[10px] font-black text-[#70757a] uppercase tracking-[0.5em]">
-                    Retirement Compliance Auditor • FY 2082/83 EPF/CIT Standard
+                    Retirement Compliance Calculator • FY Current Year EPF/CIT Standard
                 </p>
             </div>
         </div>
     ),
     faqs: [
-      { question: "What is the interest rate on EPF in Nepal?", answer: "The interest rate for FY 2082/83 is typically between 7.5% and 8% annually, determined by the EPF board." },
+      { question: "What is the interest rate on EPF in Nepal?", answer: "The interest rate for FY Current Year is typically between 7.5% and 8% annually, determined by the EPF board." },
       { question: "Can I withdraw my EPF balance before retirement?", answer: "You can withdraw up to 90% if you are unemployed or have reached a specific age, but the 80% loan facility is generally preferred." },
       { question: "Is CIT deduction mandatory?", answer: "No, CIT is a voluntary contribution. However, it is highly recommended for tax optimization up to the Rs. 3 Lakh limit." },
       { question: "Difference between SSF and EPF?", answer: "SSF is a newer integrated social security scheme, whereas EPF is a legacy provident fund. Many private companies are now migrating to SSF." }
     ]
   },
   'nepal-vehicle-tax': {
-    title: "Nepal Vehicle Tax Calculator 2082/83 | Bluebook Renewal & CC Slabs",
-    description: "Calculate annual vehicle tax for bikes and cars in Nepal. Latest FY 2082/83 CC slabs, insurance, and renewal penalties.",
+    title: "Nepal Vehicle Tax Calculator | Bluebook Renewal & CC Slabs",
+    description: "Calculate annual vehicle tax for bikes and cars in Nepal. Latest tax slabs, insurance costs, and renewal penalties for all provinces.",
     howToUse: {
       steps: [
-        "1. Vehicle Category Selection: Choose between Two-Wheeler (Bike/Scooter) or Four-Wheeler (Car/Jeep/Van).",
-        "2. Engine Capacity (CC) Input: Enter the displacement of your engine in CC (e.g., 150cc, 1200cc).",
-        "3. Provincial Audit: Select the province where your vehicle is registered (e.g., Bagmati, Gandaki). Tax slabs vary slightly by province.",
-        "4. Insurance Selection: Indicate if you are purchasing new Third-Party Insurance or Full Comprehensive Insurance.",
-        "5. Renewal Deadline Input: Enter your bluebook expiry date to check for potential late payment penalties.",
-        "6. Slab-wise Calculation: The system isolates the state tax based on the 2082/83 Finance Bill.",
-        "7. Final Total Output: View the combined cost including Tax, Insurance, and any mandatory service fees.",
-        "8. Digital Execution: Use the exact total to pay via eSewa or Khalti for remote renewal."
+        "1. Select Category: Choose between Two-Wheeler (Bike/Scooter) or Four-Wheeler (Car/Jeep/Van).",
+        "2. Engine Capacity: Enter the displacement of your engine in CC (e.g., 150cc, 1200cc).",
+        "3. Select Province: Choose where your vehicle is registered (e.g., Bagmati, Gandaki).",
+        "4. Insurance: Choose between Third-Party or Full Comprehensive Insurance.",
+        "5. Check Expiry: Enter your bluebook expiry date to check for potential late payment penalties.",
+        "6. Slab Calculation: The system automatically determines the tax based on the latest Finance Bill.",
+        "7. Final Total: View the combined cost including Tax, Insurance, and service fees.",
+        "8. Online Payment: Use the final total to renew via digital wallets like eSewa or Khalti."
       ]
     },
     formula: {
-      title: "The Automotive Taxation Axiom",
+      title: "The Automotive Taxation Principle",
       description: "Vehicle tax in Nepal is a fixed-slab annual fee based strictly on engine displacement (CC) and vehicle class.",
       raw: "Total Renewal = State Tax(CC) + Insurance Premium + Late Fines",
       variables: [
@@ -1807,21 +1751,21 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     },
     content: (
         <div className="space-y-12 text-slate-800">
-            {/* Executive Summary */}
+            {/* Overview */}
             <section>
-                <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Automotive Compliance Encyclopedia: Bluebook Renewal & State Tax</h2>
+                <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">Vehicle Tax & Bluebook Renewal in Nepal</h2>
                 <div className="bg-gray-100 border-l-4 border-gray-600 rounded-r-xl p-10 mb-10 shadow-sm relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-gray-600 rounded-full blur-[120px] opacity-10" />
-                    <h4 className="text-gray-700 font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Transport Management Intelligence</h4>
+                    <h4 className="text-gray-700 font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Annual Renewal Guide</h4>
                     <p className="text-slate-800 text-base leading-relaxed relative z-10">
-                        In Nepal, the annual renewal of the vehicle registration document, commonly known as the <strong>Bluebook</strong>, is a mandatory fiscal obligation governed by the <strong>Department of Transport Management (DOTM)</strong>. In <strong>FY 2082/83</strong>, vehicle tax is calculated using a progressive slab system based on engine capacity (CC). Failure to renew within the 90-day grace period triggers punitive fines that can exceed 32% of the base tax. This <a href="/calculator/nepal-vehicle-tax" className="text-gray-700 hover:text-gray-900 underline font-semibold transition-colors">Vehicle Tax Auditor</a> provides a precise breakdown of state taxes and mandatory insurance premiums, ensuring you are audit-ready for the next fiscal cycle.
+                        In Nepal, all vehicle owners must renew their registration document, known as the <strong>Bluebook</strong>, every year. This involves paying a vehicle tax that is determined by your engine capacity (CC) and province of registration. Paying on time is crucial to avoid late fines, which can be as high as 32%. This calculator helps you figure out exactly how much you need to pay for your tax and mandatory third-party insurance.
                     </p>
                 </div>
             </section>
 
             {/* Section 1: Two-Wheeler Slabs */}
             <section className="mb-16">
-                <h3 className="text-2xl font-black text-[#202124] mb-6">1. Two-Wheeler (Bike/Scooter) Tax Slabs 2082/83</h3>
+                <h3 className="text-2xl font-black text-[#202124] mb-6">1. Two-Wheeler (Bike/Scooter) Tax Slabs Current Year</h3>
                 <p className="text-sm text-[#5f6368] leading-relaxed mb-8">
                     For <strong>Bagmati Province</strong> (the most common registration), the following annual tax slabs apply to two-wheelers. Note that electric vehicles (EVs) operate under a separate, highly subsidized regime.
                 </p>
@@ -1844,7 +1788,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
                 </div>
             </section>
 
-            {/* Section 2: Penalty Audit */}
+            {/* Section 2: Penalty Check */}
             <section className="mb-16">
                 <h3 className="text-2xl font-black text-[#202124] mb-6">2. The Penalty Trap: 5% to 32% Fines</h3>
                 <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
@@ -1869,10 +1813,10 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Section 3: Mathematical Verification */}
             <section className="bg-slate-900 text-white rounded-[3rem] p-12 border border-slate-800 shadow-xl overflow-hidden relative mb-16">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-gray-600 rounded-full blur-[150px] opacity-20 pointer-events-none" />
-                <h3 className="text-3xl font-black mb-8 text-gray-400">3. Mathematical Audit: A Car Renewal Example</h3>
+                <h3 className="text-3xl font-black mb-8 text-gray-400">3. Mathematical Check: A Car Renewal Example</h3>
                 <div className="prose prose-invert prose-sm max-w-none">
                     <p className="text-slate-300 mb-8">
-                        Let us audit a <strong>1200cc Private Car</strong> renewal in Bagmati Province for FY 2082/83.
+                        Let us audit a <strong>1200cc Private Car</strong> renewal in Bagmati Province for FY Current Year.
                     </p>
                     <ul className="space-y-4 list-none p-0">
                         <li className="flex justify-between border-b border-slate-700 pb-2"><span>Annual State Tax (1001-1500cc):</span> <strong className="text-white">Rs. 23,500</strong></li>
@@ -1881,7 +1825,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
                         <li className="flex justify-between pt-4"><span className="text-xl font-black">Total Payable:</span> <strong className="text-2xl text-green-400">Rs. 30,500</strong></li>
                     </ul>
                     <p className="text-[10px] text-slate-500 mt-8 italic">
-                        Audit Note: This calculation assumes no late penalties. Add 32% to the State Tax if the renewal is more than one fiscal year overdue.
+                        Check Note: This calculation assumes no late penalties. Add 32% to the State Tax if the renewal is more than one fiscal year overdue.
                     </p>
                 </div>
             </section>
@@ -1889,7 +1833,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Footer Trust Signal */}
             <div className="text-center pt-8 border-t border-[#dadce0]">
                 <p className="text-[10px] font-black text-[#70757a] uppercase tracking-[0.5em]">
-                    Automotive Compliance Auditor • FY 2082/83 DOTM Standard
+                    Automotive Compliance Calculator • FY Current Year DOTM Standard
                 </p>
             </div>
         </div>
@@ -1903,7 +1847,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
   },
   'nepse-wacc': {
     title: "NEPSE WACC Calculator | Weighted Average Cost of Capital Nepal",
-    description: "Calculate your weighted average cost of capital (WACC) for Nepal Stock Exchange (NEPSE). Meroshare compliant CGT auditor for bonus and right shares.",
+    description: "Calculate your weighted average cost of capital (WACC) for Nepal Stock Exchange (NEPSE). Meroshare compliant CGT calculator for bonus and right shares.",
     howToUse: {
       steps: [
         "1. Buy Transactions: Enter all your purchase prices and the respective quantities (including broker commissions).",
@@ -1913,11 +1857,11 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         "5. Meroshare Sync: Use the final WACC output to update your 'My WACC' section in Meroshare.",
         "6. CGT Projection: View your estimated Capital Gains Tax (5% or 7.5%) based on current market prices.",
         "7. Weighted Calculation: The engine isolates the average cost per unit across multiple trading cycles.",
-        "8. Digital Audit: Download the calculation log for audit purposes during tax filing."
+        "8. Digital Check: Download the calculation log for audit purposes during tax filing."
       ]
     },
     formula: {
-      title: "The Weighted Average Cost Axiom",
+      title: "The Weighted Average Cost Principle",
       description: "In the Nepal market, WACC is the sum of all investment costs divided by the total number of shares currently held.",
       raw: "WACC = Total Cost / Total Quantity",
       variables: [
@@ -1927,23 +1871,23 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     },
     content: (
         <div className="space-y-12 text-slate-800">
-            {/* Executive Summary */}
+            {/* Overview */}
             <section>
-                <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: NEPSE WACC & Capital Gains Compliance</h2>
+                <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">NEPSE WACC & Capital Gains Guide</h2>
                 <div className="bg-green-50 border-l-4 border-green-600 rounded-r-xl p-10 mb-10 shadow-sm relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-green-600 rounded-full blur-[120px] opacity-10" />
-                    <h4 className="text-green-700 font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Capital Markets Intelligence Lab</h4>
+                    <h4 className="text-green-700 font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Stock Market Tools</h4>
                     <p className="text-slate-800 text-base leading-relaxed relative z-10">
-                        In the <strong>Nepal Stock Exchange (NEPSE)</strong>, the <strong>Weighted Average Cost of Capital (WACC)</strong> is the definitive metric used by the <strong>Securities Board of Nepal (SEBON)</strong> and <strong>CDS & Clearing Ltd (Meroshare)</strong> to determine the cost base of your equity holdings. For <strong>FY 2082/83</strong>, accurately calculating WACC is not just a trading requirement—it is a legal necessity for <strong>Capital Gains Tax (CGT)</strong> compliance. Since NEPSE operates on a 'User-Declared WACC' system in Meroshare, any error in this calculation can lead to underpayment of tax (triggering penalties) or overpayment (reducing net profits). This <a href="/calculator/nepse-wacc" className="text-green-700 hover:text-green-900 underline font-semibold transition-colors">WACC Auditor</a> serves as the high-precision engine for consolidating multiple purchase entries, bonus shares, and right shares into a single, audit-ready cost per unit.
+                        In the <strong>Nepal Stock Exchange (NEPSE)</strong>, calculating your <strong>Weighted Average Cost of Capital (WACC)</strong> is essential for determining how much profit you've made on your investments. Meroshare requires you to declare your WACC so that the correct <strong>Capital Gains Tax (CGT)</strong> can be calculated when you sell shares. This tool helps you combine multiple purchase prices, bonus shares, and right shares into a single, accurate average cost per share.
                     </p>
                 </div>
             </section>
 
-            {/* Section 1: The WACC Axiom */}
+            {/* Section 1: The WACC Principle */}
             <section className="mb-16">
-                <h3 className="text-2xl font-black text-[#202124] mb-6">1. The WACC Axiom: Beyond Simple Averages</h3>
+                <h3 className="text-2xl font-black text-[#202124] mb-6">1. The WACC Principle: Beyond Simple Averages</h3>
                 <p className="text-sm text-[#5f6368] leading-relaxed mb-8">
-                    Unlike a simple average, WACC accounts for the volume of shares at each price point. If you buy 10 shares at Rs. 500 and 100 shares at Rs. 400, your average cost is much closer to Rs. 400. This is the foundation of institutional portfolio management.
+                    Unlike a simple average, WACC accounts for the volume of shares at each price point. If you buy 10 shares at Rs. 500 and 100 shares at Rs. 400, your average cost is much closer to Rs. 400. This is the foundation of standard portfolio management.
                 </p>
                 <div className="overflow-hidden rounded-[2rem] border border-[#dadce0] shadow-sm mb-8">
                     <table className="w-full text-left text-xs bg-white">
@@ -1992,7 +1936,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Section 3: Mathematical Verification */}
             <section className="bg-slate-900 text-white rounded-[3rem] p-12 border border-slate-800 shadow-xl overflow-hidden relative mb-16">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-green-600 rounded-full blur-[150px] opacity-20 pointer-events-none" />
-                <h3 className="text-3xl font-black mb-8 text-green-400">3. Mathematical Audit: A Portfolio Rebalancing Simulation</h3>
+                <h3 className="text-3xl font-black mb-8 text-green-400">3. Mathematical Check: A Portfolio Rebalancing Simulation</h3>
                 <div className="prose prose-invert prose-sm max-w-none">
                     <p className="text-slate-300 mb-8">
                         Let us audit a portfolio for <strong>NABIL Bank</strong> with multiple buy entries and a bonus adjustment.
@@ -2022,7 +1966,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Footer Trust Signal */}
             <div className="text-center pt-8 border-t border-[#dadce0]">
                 <p className="text-[10px] font-black text-[#70757a] uppercase tracking-[0.5em]">
-                    Capital Markets Auditor • FY 2082/83 SEBON/Meroshare Standard
+                    Capital Markets Calculator • FY Current Year SEBON/Meroshare Standard
                 </p>
             </div>
         </div>
@@ -2035,20 +1979,20 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     ]
   },
   'nepse-bonus-tax': {
-    title: "NEPSE Bonus & Right Tax Calculator | Dividend Income Auditor",
-    description: "Calculate the 5% cash tax on bonus and right shares in Nepal stock market. Fiscal 2082/83 dividend audit and compliance.",
+    title: "NEPSE Bonus & Right Tax Calculator | Dividend Income Calculator",
+    description: "Calculate the 5% cash tax on bonus and right shares in the Nepal stock market. Ensure compliance with dividend tax regulations.",
     howToUse: {
       steps: [
         "1. Share Quantity: Enter the number of bonus or right shares you have been allotted.",
         "2. Face Value Verification: Ensure the face value is Rs. 100 (standard for 99% of NEPSE stocks).",
         "3. Tax Rate Selection: The system applies the statutory 5% dividend tax rate.",
-        "4. Payable Amount Audit: View the total cash amount required to clear the tax liability for these shares.",
+        "4. Payable Amount Check: View the total cash amount required to clear the tax liability for these shares.",
         "5. Cash Dividend Offset: Check if your cash dividend from the same company covers the bonus tax.",
         "6. Bank Deposit Instructions: If cash dividend is insufficient, use the exact total to deposit into the company's designated bank account."
       ]
     },
     formula: {
-      title: "The Dividend Tax Axiom",
+      title: "The Dividend Tax Principle",
       description: "In Nepal, dividend tax on bonus shares is calculated as a flat percentage of the total face value, regardless of the current market price.",
       raw: "Tax Payable = Quantity × Face Value × 0.05",
       variables: [
@@ -2059,14 +2003,14 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     },
     content: (
         <div className="space-y-12 text-slate-800">
-            {/* Executive Summary */}
+            {/* Overview */}
             <section>
-                <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Dividend Intelligence Silo: Nepal Bonus & Right Share Taxation</h2>
+                <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">Understanding Tax on Bonus & Right Shares</h2>
                 <div className="bg-emerald-50 border-l-4 border-emerald-600 rounded-r-xl p-10 mb-10 shadow-sm relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-600 rounded-full blur-[120px] opacity-10" />
-                    <h4 className="text-emerald-700 font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Dividend Compliance Lab</h4>
+                    <h4 className="text-emerald-700 font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Dividend Tax Guide</h4>
                     <p className="text-slate-800 text-base leading-relaxed relative z-10">
-                        In the <strong>Nepal Stock Exchange (NEPSE)</strong>, corporate dividends are a primary driver of investor returns. However, under the <strong>Nepal Income Tax Act</strong>, bonus shares (stock dividends) are subject to a <strong>5% cash tax</strong> based on their face value (par value). For <strong>FY 2082/83</strong>, understanding this 'Bonus Tax' is critical because if the company does not declare an equivalent cash dividend to cover the tax, the bonus shares will not be credited to your Demat account until you manually deposit the tax amount. This <a href="/calculator/nepse-bonus-tax" className="text-emerald-700 hover:text-emerald-900 underline font-semibold transition-colors">Dividend Tax Auditor</a> ensures you calculate the exact liquidity required to unlock your bonus assets.
+                        When a company in the <strong>Nepal Stock Exchange (NEPSE)</strong> issues bonus shares, you are required to pay a <strong>5% cash tax</strong> on the face value of those shares. This is often covered by a small cash dividend provided by the company, but sometimes you may need to deposit the tax amount manually at the bank. This calculator helps you determine the exact amount you need to pay to ensure your bonus shares are successfully credited to your Demat account.
                     </p>
                 </div>
             </section>
@@ -2097,9 +2041,9 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
                 </div>
             </section>
 
-            {/* Section 2: Liquidity Audit */}
+            {/* Section 2: Liquidity Check */}
             <section className="mb-16">
-                <h3 className="text-2xl font-black text-[#202124] mb-6">2. The Liquidity Audit: Clearing Your Shares</h3>
+                <h3 className="text-2xl font-black text-[#202124] mb-6">2. The Liquidity Check: Clearing Your Shares</h3>
                 <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
                     When a company announces a dividend (e.g., 20% Bonus + 1.05% Cash), the cash portion is often intended to cover the tax on the bonus.
                 </p>
@@ -2123,7 +2067,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Section 3: Mathematical Verification */}
             <section className="bg-slate-900 text-white rounded-[3rem] p-12 border border-slate-800 shadow-xl overflow-hidden relative mb-16">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-600 rounded-full blur-[150px] opacity-20 pointer-events-none" />
-                <h3 className="text-3xl font-black mb-8 text-emerald-400">3. Mathematical Audit: A Dividend Tax Proof</h3>
+                <h3 className="text-3xl font-black mb-8 text-emerald-400">3. Mathematical Check: A Dividend Tax Proof</h3>
                 <div className="prose prose-invert prose-sm max-w-none">
                     <p className="text-slate-300 mb-8">
                         Let us audit a dividend from a commercial bank for an investor holding <strong>500 shares</strong>.
@@ -2154,7 +2098,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Footer Trust Signal */}
             <div className="text-center pt-8 border-t border-[#dadce0]">
                 <p className="text-[10px] font-black text-[#70757a] uppercase tracking-[0.5em]">
-                    Dividend Compliance Auditor • FY 2082/83 IRD/SEBON Standard
+                    Dividend Compliance Calculator • FY Current Year IRD/SEBON Standard
                 </p>
             </div>
         </div>
@@ -2167,7 +2111,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     ]
   },
   'gratuity-calculator': {
-    title: "Nepal Gratuity Calculator | Labor Law Benefit Auditor",
+    title: "Nepal Gratuity Calculator | Labor Law Benefit Calculator",
     description: "Calculate your gratuity benefits as per the Nepal Labor Act 2074. Professional 1,500-word guide on accrual rates, 8.33% statutory contributions, and SSF transitions.",
     howToUse: {
       steps: [
@@ -2177,12 +2121,12 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         "4. Resignation vs. Retirement: Select the nature of your exit to audit specific exit-benefit clauses.",
         "5. SSF Transition Check: If your company has migrated to the Social Security Fund (SSF), the system adjusts for the 8.33% contribution made to the fund.",
         "6. Final Terminal Value: View the total gross gratuity amount payable upon termination of employment.",
-        "7. Tax Audit: The engine estimates the 15% flat tax on gratuity payments exceeding the threshold.",
+        "7. Tax Check: The engine estimates the 15% flat tax on gratuity payments exceeding the threshold.",
         "8. Compliance Report: Download the audit log to verify your benefits against HR department calculations."
       ]
     },
     formula: {
-      title: "The Terminal Benefit Axiom",
+      title: "The Terminal Benefit Principle",
       description: "Under the new Labor Act 2074, gratuity is no longer a 'long-service' reward but a monthly accrual equivalent to 8.33% of the basic salary.",
       raw: "Total Gratuity = (Monthly Basic Salary × 8.33%) × Total Months of Service",
       variables: [
@@ -2192,14 +2136,14 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     },
     content: (
         <div className="space-y-12 text-slate-800">
-            {/* Executive Summary */}
+            {/* Overview */}
             <section>
-                <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Nepal Labor Law & Gratuity Compliance</h2>
+                <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Standard Encyclopedia: Nepal Labor Law & Gratuity Compliance</h2>
                 <div className="bg-purple-50 border-l-4 border-purple-600 rounded-r-xl p-10 mb-10 shadow-sm relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600 rounded-full blur-[120px] opacity-10" />
-                    <h4 className="text-purple-700 font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Labor Rights Intelligence Lab</h4>
+                    <h4 className="text-purple-700 font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Labor Rights Insights Tool</h4>
                     <p className="text-slate-800 text-base leading-relaxed relative z-10">
-                        In the formal employment sector of Nepal, the <strong>Gratuity (Retirement Benefit)</strong> is a statutory right governed by the <strong>Labor Act 2074</strong> and <strong>Labor Rules 2075</strong>. Historically, gratuity was only payable after 5 years of service; however, the new legal framework has revolutionized this by mandating gratuity from the <em>very first day</em> of employment. For <strong>FY 2082/83</strong>, employers are required to accrue 8.33% of an employee's basic salary every month. Whether you are resigning, retiring, or facing redundancy, understanding the mathematical derivation of your terminal benefits is an institutional requirement. This <a href="/calculator/gratuity-calculator" className="text-purple-700 hover:text-purple-900 underline font-semibold transition-colors">Gratuity Auditor</a> ensures you receive every rupee of your legal entitlement.
+                        In the formal employment sector of Nepal, the <strong>Gratuity (Retirement Benefit)</strong> is a statutory right governed by the <strong>Labor Act 2074</strong> and <strong>Labor Rules 2075</strong>. Historically, gratuity was only payable after 5 years of service; however, the new legal framework has revolutionized this by mandating gratuity from the <em>very first day</em> of employment. For <strong>FY Current Year</strong>, employers are required to accrue 8.33% of an employee's basic salary every month. Whether you are resigning, retiring, or facing redundancy, understanding the mathematical derivation of your terminal benefits is an standard requirement. This <a href="/calculator/gratuity-calculator/" className="text-purple-700 hover:text-purple-900 underline font-semibold transition-colors">Gratuity Calculator</a> ensures you receive every rupee of your legal entitlement.
                     </p>
                 </div>
             </section>
@@ -2230,7 +2174,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
 
             {/* Section 2: SSF Transition */}
             <section className="mb-16">
-                <h3 className="text-2xl font-black text-[#202124] mb-6">2. Strategic Audit: Gratuity & The Social Security Fund (SSF)</h3>
+                <h3 className="text-2xl font-black text-[#202124] mb-6">2. Practical Check: Gratuity & The Social Security Fund (SSF)</h3>
                 <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
                     For companies registered with the <a href="https://ssf.gov.np" target="_blank" rel="noopener noreferrer" className="text-purple-600 underline">Social Security Fund</a>, the 8.33% gratuity portion is deposited monthly into the employee's SSF account. This eliminates the risk of non-payment by the employer during company liquidation.
                 </p>
@@ -2257,7 +2201,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Section 3: Mathematical Verification */}
             <section className="bg-slate-900 text-white rounded-[3rem] p-12 border border-slate-800 shadow-xl overflow-hidden relative mb-16">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-purple-600 rounded-full blur-[150px] opacity-20 pointer-events-none" />
-                <h3 className="text-3xl font-black mb-8 text-purple-400">3. Mathematical Audit: A Terminal Benefit Proof</h3>
+                <h3 className="text-3xl font-black mb-8 text-purple-400">3. Mathematical Check: A Terminal Benefit Proof</h3>
                 <div className="prose prose-invert prose-sm max-w-none">
                     <p className="text-slate-300 mb-8">
                         Let us audit a professional with a <strong>Basic Salary of Rs. 40,000</strong> who resigns after <strong>5 years and 6 months</strong> of service.
@@ -2287,7 +2231,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
             {/* Footer Trust Signal */}
             <div className="text-center pt-8 border-t border-[#dadce0]">
                 <p className="text-[10px] font-black text-[#70757a] uppercase tracking-[0.5em]">
-                    Labor Compliance Auditor • FY 2082/83 Labor Act Standard
+                    Labor Compliance Calculator • FY Current Year Labor Act Standard
                 </p>
             </div>
         </div>
@@ -2311,7 +2255,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
       ]
     },
 formula: {
-      title: "The Weighted Grade Point Average Algorithm",
+      title: "SEE GPA Calculation Formula",
       description: "GPA is calculated by dividing the total weighted grade points by the total credit hours.",
       raw: "GPA = Sum(Grade Point x Credit Hours) / Total Credit Hours",
       variables: [
@@ -2326,15 +2270,15 @@ formula: {
         ========================================== */}
         <div className="bg-sky-50/50 border-l-4 border-sky-600 rounded-r-xl p-8 shadow-sm">
           <h2 className="text-sky-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-          Academic Transition Executive Summary
+          Everything You Need to Know About SEE GPA Current Year
           </h2>
           <p className="text-slate-800 text-base leading-relaxed">
-          For every student in Nepal, the Secondary Education Examination (SEE) is more than just an exam; it is a turning point that dictates future career paths. With the recent updates to the <strong>NEB grading system</strong> in 2082/83, understanding how your hard work translates into a <strong>Grade Point Average (GPA)</strong> is more important than ever. Whether you are navigating the <a href="https://www.neb.gov.np" target="_blank" rel="noopener noreferrer" className="text-sky-700 hover:text-sky-900 underline font-semibold transition-colors">neb gov np</a> website for the first time or trying to understand <strong>how to convert gpa into percentage</strong>, this guide provides a deep dive into the technical and practical aspects of your results. 
+          For every student in Nepal, the Secondary Education Examination (SEE) is more than just an exam; it is a turning point that dictates future career paths. With the recent updates to the <strong>NEB grading system</strong> in Current Year, understanding how your hard work translates into a <strong>Grade Point Average (GPA)</strong> is more important than ever. Whether you are navigating the <a href="https://www.neb.gov.np" target="_blank" rel="noopener noreferrer" className="text-sky-700 hover:text-sky-900 underline font-semibold transition-colors">neb gov np</a> website for the first time or trying to understand <strong>how to convert gpa into percentage</strong>, this guide provides a deep dive into the technical and practical aspects of your results. 
           <br/><br/>
           The <strong>see gpa calculator</strong> is a specialized tool designed to process raw marks into a standardized numerical value. In a landscape where <strong>www neb gov np</strong> and <strong>see ntc net np</strong> are the primary sources of truth, having a local <strong>gpa calculator nepal</strong> ensures you can audit your marksheet without waiting for slow servers.
           <br/><br/>
           <span className="text-sm text-slate-600 font-medium italic">
-          Institutional Goal: To provide a transparent <a href="/calculator/see-gpa" className="text-sky-700 hover:text-sky-900 underline font-bold transition-colors">GPA Calculator Nepal</a> that eliminates mathematical ambiguity and ensures every student can audit their transcript with 100% precision.
+          Standard Goal: To provide a transparent <a href="/calculator/see-gpa/" className="text-sky-700 hover:text-sky-900 underline font-bold transition-colors">GPA Calculator Nepal</a> that eliminates mathematical ambiguity and ensures every student can audit their transcript with 100% precision.
           </span>
           </p>
         </div>
@@ -2465,7 +2409,7 @@ formula: {
             To understand <strong>how to convert gpa to percentage</strong>, you must know that the NEB uses a linear multiplier. While <strong>percentage to gpa</strong> involves range mapping, the reverse is a simple multiplication.
             </p>
             <div className="bg-slate-800/50 p-8 rounded-xl border border-slate-700 text-center space-y-4">
-              <p className="text-xl font-bold text-white uppercase tracking-tighter">The Official Conversion Axiom</p>
+              <p className="text-xl font-bold text-white uppercase tracking-tighter">The Official Conversion Principle</p>
               <p className="text-4xl font-black text-blue-400">Percentage = GPA × 25</p>
               <p className="text-sm text-slate-400">Example: A 3.60 GPA is exactly 3.60 × 25 = 90%.</p>
             </div>
@@ -2551,7 +2495,7 @@ formula: {
               </ul>
             </div>
             <div className="w-full md:w-80 bg-white p-8 rounded-2xl border border-rose-200 shadow-xl">
-              <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Institutional Warning</h4>
+              <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Standard Warning</h4>
               <p className="text-xs text-slate-600 leading-relaxed italic">
               "No higher secondary school (Class 11) in Nepal is legally permitted to admit a student with an NG status on their marksheet. You MUST clear the NG via supplementary exams before proceeding."
               </p>
@@ -2604,7 +2548,7 @@ formula: {
             </div>
           </div>
           <p className="mt-10 text-sm text-slate-600 text-center italic">
-          Exploring future career earnings? Use our <a href="/calculator/nepal-income-tax" className="text-indigo-600 font-bold underline">Nepal Salary Lab</a> or <a href="/calculator/compound-interest" className="text-indigo-600 font-bold underline">Compound Interest Lab</a> to plan your financial future from day one.
+          Exploring future career earnings? Use our <a href="/calculator/nepal-income-tax/" className="text-indigo-600 font-bold underline">Nepal Salary Tool</a> or <a href="/calculator/compound-interest/" className="text-indigo-600 font-bold underline">Compound Interest Tool</a> to plan your financial future from day one.
           </p>
         </section>
 
@@ -2613,7 +2557,7 @@ formula: {
         ========================================== */}
         <div className="text-center pt-16 border-t border-slate-100">
           <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">
-          NepaCalc Academic Audit Division • Data Verified for 2082/83 • Updated for NEB 2083 Directive
+          NepaCalc Academic Check Division • Data Verified for Current Year • Updated for NEB 2083 Directive
           </p>
         </div>
       </div>
@@ -2682,7 +2626,7 @@ formula: {
     ]
   },
   'lok-sewa-age': {
-    title: "Lok Sewa Age Limit Calculator | PSC Eligibility Auditor",
+    title: "Lok Sewa Age Limit Calculator | PSC Eligibility Calculator",
     description: "Calculate your exact age for Nepal Lok Sewa Aayog exams. 1500+ words on PSC cut-offs, gender exemptions, and Kharidar/Subba/Officer age thresholds.",
     howToUse: {
       steps: [
@@ -2690,19 +2634,19 @@ formula: {
         "2. Demographic Input: Select your gender and physical ability status (Male, Female, Differently-Abled). The PSC grants massive age exemptions based on these parameters.",
         "3. Date of Birth Entry: Input your exact Date of Birth as printed on your Nepali Citizenship Certificate (Nagarikta) using the Bikram Sambat (B.S.) calendar.",
         "4. Application Deadline Entry: Input the final deadline date for form submission as published in the official Lok Sewa Aayog vacancy advertisement.",
-        "5. Age Precision Math: The system calculates your exact age down to the day (Years, Months, Days).",
-        "6. Threshold Validation: The algorithm cross-references your exact age against the strict lower boundary (e.g., must be 18 or 21) and the upper ceiling (e.g., max 35 or 40).",
+        "5. Age Accuracy Math: The system calculates your exact age down to the day (Years, Months, Days).",
+        "6. Level Validation: The algorithm cross-references your exact age against the strict lower boundary (e.g., must be 18 or 21) and the upper ceiling (e.g., max 35 or 40).",
         "7. Final Eligibility Verdict: Receive an immediate 'Eligible' or 'Disqualified' status. If you are disqualified by a single day, the system will flag the exact violation.",
         "8. Prior Service Exemption: If you are an already permanent civil servant applying for internal promotion, acknowledge the absolute lack of age limits for internal competitions."
       ]
     },
     formula: {
-      title: "The PSC Demographic Eligibility Axiom",
+      title: "The PSC Demographic Eligibility Principle",
       description: "The Public Service Commission (Lok Sewa Aayog) of Nepal utilizes a strict, binary age-gating system designed to ensure longevity in civil service while promoting gender and demographic inclusion.",
-      raw: "Eligibility = (Target Age ≥ Minimum Threshold) AND (Target Age ≤ Maximum Ceiling)",
+      raw: "Eligibility = (Target Age ≥ Minimum Level) AND (Target Age ≤ Maximum Ceiling)",
       variables: [
         "Target Age = Application Deadline Date - Citizenship Date of Birth (calculated in precise Years, Months, and Days).",
-        "Minimum Threshold = 18 Years for Non-Gazetted (Kharidar, Subba). 21 Years for Gazetted (Section Officer, Engineering/Health).",
+        "Minimum Level = 18 Years for Non-Gazetted (Kharidar, Subba). 21 Years for Gazetted (Section Officer, Engineering/Health).",
         "Maximum Ceiling (Male) = 35 Years for standard administrative posts.",
         "Maximum Ceiling (Female/Disabled) = 40 Years (A statutory 5-year extension to promote inclusion).",
         "Prior Service Ceiling = No age limit for current permanent government employees."
@@ -2716,13 +2660,13 @@ formula: {
         ========================================== */}
         <div className="bg-rose-50/50 border-l-4 border-rose-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-rose-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Civil Service Compliance Executive Summary
+        Civil Service Compliance Overview
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Securing a permanent position via the <a href="https://psc.gov.np" target="_blank" rel="noopener noreferrer" className="text-rose-700 hover:text-rose-900 underline font-semibold transition-colors">Public Service Commission (Lok Sewa Aayog </a> is the ultimate career milestone in Nepal. However, the path to the 'Jagir' is gate-kept by uncompromising age limits. Missing a deadline by a single day due to a misunderstood Bikram Sambat (B.S.) date calculation can permanently end a candidate's eligibility. Since the implementation of the <strong>Civil Service Act 2049</strong>, the government has enforced a strict binary age-ceiling, with progressive exemptions for women and differently-abled candidates. This professional <a href="/calculator/lok-sewa-age" className="text-rose-700 hover:text-rose-900 underline font-bold transition-colors">PSC Eligibility Auditor</a> eliminates the guesswork. By synchronizing your citizenship Date of Birth with official vacancy deadlines, our engine provides a definitive verdict on your eligibility status for Kharidar, Subba, and Officer tiers in FY 2082/83.
+        Securing a permanent position via the <a href="https://psc.gov.np" target="_blank" rel="noopener noreferrer" className="text-rose-700 hover:text-rose-900 underline font-semibold transition-colors">Public Service Commission (Lok Sewa Aayog </a> is the ultimate career milestone in Nepal. However, the path to the 'Jagir' is gate-kept by uncompromising age limits. Missing a deadline by a single day due to a misunderstood Bikram Sambat (B.S.) date calculation can permanently end a candidate's eligibility. Since the implementation of the <strong>Civil Service Act 2049</strong>, the government has enforced a strict binary age-ceiling, with progressive exemptions for women and differently-abled candidates. This professional <a href="/calculator/lok-sewa-age/" className="text-rose-700 hover:text-rose-900 underline font-bold transition-colors">PSC Eligibility Calculator</a> eliminates the guesswork. By synchronizing your citizenship Date of Birth with official vacancy deadlines, our engine provides a definitive verdict on your eligibility status for Kharidar, Subba, and Officer tiers in FY Current Year.
         <br/><br/>
         <span className="text-sm text-slate-600 font-medium">
-        Career Strategy: If you are approaching the age limit, ensure your academic documents are audit-ready. Verify your GPA thresholds using our <a href="/calculator/see-gpa" className="text-rose-700 hover:text-rose-900 underline font-bold transition-colors">SEE & NEB Intelligence Lab</a>.
+        Career Strategy: If you are approaching the age limit, ensure your academic documents are audit-ready. Verify your GPA thresholds using our <a href="/calculator/see-gpa/" className="text-rose-700 hover:text-rose-900 underline font-bold transition-colors">SEE & NEB Insights Tool</a>.
         </span>
         </p>
         </div>
@@ -2731,7 +2675,7 @@ formula: {
         ========================================== */}
         <section>
         <h3 className="text-2xl font-black text-slate-900 mb-6">
-        1. Competitive Audit: PSC Age Precision
+        1. Competitive Check: PSC Age Accuracy
         </h3>
         <div className="overflow-hidden rounded-xl border border-slate-200">
         <table className="w-full text-left text-sm">
@@ -2791,7 +2735,7 @@ formula: {
         </table>
         </div>
         <p className="text-sm mt-4 text-slate-500 italic">
-        Critical Audit Note: The age is locked as of the <strong>Last Date of Application</strong>. If the deadline is Baisakh 30 and you turn 36 on Jestha 1, you are eligible. If you turn 36 on Baisakh 30, you are disqualified.
+        Critical Check Note: The age is locked as of the <strong>Last Date of Application</strong>. If the deadline is Baisakh 30 and you turn 36 on June 1, you are eligible. If you turn 36 on Baisakh 30, you are disqualified.
         </p>
         </div>
         </section>
@@ -2836,9 +2780,9 @@ formula: {
         <p className="text-sm text-slate-300"><strong className="text-white">The Contract (Karar Trap:</strong> Note that this 'No Age Limit' rule does NOT apply to contract workers. Only PSC-appointed permanent staff are exempt.</p>
         </div>
         </div>
-        <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl"><h4 className="text-xs font-black text-rose-400 uppercase tracking-widest mb-3">Institutional Strategy</h4>
+        <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl"><h4 className="text-xs font-black text-rose-400 uppercase tracking-widest mb-3">Standard Strategy</h4>
         <p className="text-xs text-slate-400 leading-relaxed italic">
-        "If you are 34 years and 11 months old, this is your last 'Open' chance. Do not wait for the double-fee period to submit your form; the PSC servers often crash in the final hours. Once you secure the job, audit your future pension wealth using our <a href="/calculator/nepal-provident-fund" className="text-rose-400 underline font-bold">EPF & CIT Lab</a>."
+        "If you are 34 years and 11 months old, this is your last 'Open' chance. Do not wait for the double-fee period to submit your form; the PSC servers often crash in the final hours. Once you secure the job, audit your future pension wealth using our <a href="/calculator/nepal-provident-fund/" className="text-rose-400 underline font-bold">EPF & CIT Tool</a>."
         </p></div>
         </div>
         
@@ -2849,7 +2793,7 @@ formula: {
         <section className="bg-rose-50 border border-rose-100 rounded-3xl p-10 relative overflow-hidden mt-12">
         <div className="relative z-10">
           <h3 className="text-2xl font-black text-rose-900 mb-4">
-          Strategic Case Study: The "Double Fee" Misconception
+          Practical Case Study: The "Double Fee" Misconception
           </h3>
           <p className="text-rose-900/70 text-sm leading-relaxed mb-8">
           A male candidate turns 35 years old on Baisakh 25. The official vacancy deadline for 'Normal Fee' is Baisakh 20, and the 'Double Fee' deadline is Baisakh 27. Is he eligible?
@@ -2868,7 +2812,7 @@ formula: {
             
             <div className="space-y-4">
               <div className="bg-white p-6 rounded-2xl border border-rose-200 shadow-md transform md:scale-105">
-                <h4 className="text-xs font-black text-rose-600 uppercase tracking-widest mb-4">The PSC Auditor's Verdict</h4>
+                <h4 className="text-xs font-black text-rose-600 uppercase tracking-widest mb-4">The PSC Calculator's Verdict</h4>
                 <div className="space-y-2 text-sm text-slate-700">
                   <div className="flex justify-between"><span>Statutory Age Lock:</span> <strong>Normal Fee Deadline (Baisakh 20)</strong></div>
                   <div className="flex justify-between"><span>Age at Lock:</span> <strong>34y 11m (Under 35)</strong></div>
@@ -2879,7 +2823,7 @@ formula: {
           </div>
           
           <p className="text-xs text-rose-900/50 mt-8 italic text-center">
-          Audit Observation: The candidate is eligible because the PSC locks the age as of the <strong>Normal Fee Deadline</strong>. Even if he submits the form during the double-fee week when he is technically over 35, the system calculates his age retrospectively to Baisakh 20. Optimize your application timing using our <a href="/calculator/nepali-date" className="text-rose-600 underline font-bold">BS-AD Sync Lab</a>.
+          Check Observation: The candidate is eligible because the PSC locks the age as of the <strong>Normal Fee Deadline</strong>. Even if he submits the form during the double-fee week when he is technically over 35, the system calculates his age retrospectively to Baisakh 20. Optimize your application timing using our <a href="/calculator/nepali-date/" className="text-rose-600 underline font-bold">BS-AD Sync Tool</a>.
           </p>
         </div>
         </section>
@@ -2888,7 +2832,7 @@ formula: {
         ========================================== */}
         <div className="pt-10 border-t border-slate-200 text-center mt-12">
         <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
-        Compliance Audit: Last updated Baishakh 2083 (May 2026). Calculations strictly conform to the Nepal Civil Service Act and PSC Examination Regulations.
+        Compliance Check: Last updated Baishakh 2083 (May 2026). Calculations strictly conform to the Nepal Civil Service Act and PSC Examination Regulations.
         
         
         
@@ -2941,7 +2885,7 @@ formula: {
     ]
   },
   'nepal-land': {
-    title: "Nepal Land Area Converter | Bigha-Katha & Ropani-Aana Auditor",
+    title: "Nepal Land Area Converter | Bigha-Katha & Ropani-Aana Calculator",
     description: "Convert Nepal land area measurements accurately. 1500+ words on Bigha-Katha-Dhur (Terai) to Ropani-Aana-Paisa (Hills), Square Feet conversions, and real estate valuation.",
     
     howToUse: {
@@ -2949,8 +2893,8 @@ formula: {
         "1. Select Regional System: Choose your primary input system. The Terai system uses Bigha-Katha-Dhur-Kanwa, while the Hilly system uses Ropani-Aana-Paisa-Daam.",
         "2. Input the Values: Enter your land measurements. For example, if your land is '2 Aana 3 Paisa', enter 2 in the Aana field and 3 in the Paisa field.",
         "3. Universal Conversion: The engine instantly translates your input into the opposing regional system (e.g., converting Aana into Katha).",
-        "4. Standardized Metrics Audit: The system simultaneously outputs the exact equivalent in standard global units: Square Feet (sq.ft), Square Meters (sq.m), and Acres.",
-        "5. Fractional Precision Validation: Because land in Kathmandu is sold by the square foot, observe the decimal precision. 1 Aana is exactly 342.25 sq.ft. Never accept a rounding down to 342 sq.ft.",
+        "4. Standardized Metrics Check: The system simultaneously outputs the exact equivalent in standard global units: Square Feet (sq.ft), Square Meters (sq.m), and Acres.",
+        "5. Fractional Accuracy Validation: Because land in Kathmandu is sold by the square foot, observe the decimal precision. 1 Aana is exactly 342.25 sq.ft. Never accept a rounding down to 342 sq.ft.",
         "6. Valuation Mapping: Use the resulting Square Feet output to calculate your total land valuation based on current local 'Aana' or 'Dhur' market rates.",
         "7. Blueprint Alignment: If you are an engineer or architect, use the Square Meter output to align with municipal building permit (Naksha Pass) requirements.",
         "8. Legal Verification: Ensure the numbers generated match the area written on your Land Ownership Certificate (Lalpurja) before executing any Malpot transaction."
@@ -2958,7 +2902,7 @@ formula: {
     },
     
     formula: {
-      title: "The Land Survey Department Axiom",
+      title: "The Land Survey Department Principle",
       description: "Nepal utilizes two distinct, non-decimal regional land measurement systems. The Department of Survey maintains strict legal conversions against the metric and imperial systems.",
       raw: "Standardization = (Regional Unit x Conversion Factor) = Base Square Feet",
       variables: [
@@ -2978,13 +2922,13 @@ formula: {
         ========================================== */}
         <div className="bg-emerald-50/50 border-l-4 border-emerald-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-emerald-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Real Estate Measurement Executive Summary
+        Real Estate Measurement Overview
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Real estate in Nepal is governed by two archaic, deeply entrenched measurement systems: the Ropani-Aana system in the hilly regions (including Kathmandu Valley) and the Bigha-Katha system in the Terai plains. In regions where a single 'Aana' of land can exceed Rs. 1 Crore (10 Million), a calculation error of a few decimal points in Square Feet translates to millions of rupees in lost capital. Furthermore, the <a href="https://dos.gov.np" target="_blank" rel="noopener noreferrer" className="text-emerald-700 hover:text-emerald-900 underline font-semibold transition-colors">Department of Survey (Napi Karyalaya)</a> and the Land Revenue Office (Malpot) mandate absolute precision when registering property ownership certificates (Lalpurja) or approving municipal building blueprints. This professional <a href="/calculator/nepal-land" className="text-emerald-700 hover:text-emerald-900 underline font-bold transition-colors">Land Area Auditor</a> eradicates the opacity of broker negotiations. By providing exact conversions down to the 'Daam' and 'Kanwa' and translating them into globally recognized Square Feet and Square Meters, our engine guarantees mathematical dominance during property transactions.
+        Real estate in Nepal is governed by two archaic, deeply entrenched measurement systems: the Ropani-Aana system in the hilly regions (including Kathmandu Valley) and the Bigha-Katha system in the Terai plains. In regions where a single 'Aana' of land can exceed Rs. 1 Crore (10 Million), a calculation error of a few decimal points in Square Feet translates to millions of rupees in lost capital. Furthermore, the <a href="https://dos.gov.np" target="_blank" rel="noopener noreferrer" className="text-emerald-700 hover:text-emerald-900 underline font-semibold transition-colors">Department of Survey (Napi Karyalaya)</a> and the Land Revenue Office (Malpot) mandate absolute precision when registering property ownership certificates (Lalpurja) or approving municipal building blueprints. This professional <a href="/calculator/nepal-land/" className="text-emerald-700 hover:text-emerald-900 underline font-bold transition-colors">Land Area Calculator</a> eradicates the opacity of broker negotiations. By providing exact conversions down to the 'Daam' and 'Kanwa' and translating them into globally recognized Square Feet and Square Meters, our engine guarantees mathematical dominance during property transactions.
         <br/><br/>
         <span className="text-sm text-slate-600 font-medium">
-        Investment Strategy: Once your exact land area is validated, use the resulting valuation to calculate your borrowing capacity with our <a href="/calculator/nepal-home-loan" className="text-emerald-700 hover:text-emerald-900 underline font-bold transition-colors">Mortgage & Home Loan Lab</a>.
+        Investment Strategy: Once your exact land area is validated, use the resulting valuation to calculate your borrowing capacity with our <a href="/calculator/nepal-home-loan/" className="text-emerald-700 hover:text-emerald-900 underline font-bold transition-colors">Mortgage & Home Loan Tool</a>.
         </span>
         </p>
         </div>
@@ -2993,7 +2937,7 @@ formula: {
         ========================================== */}
         <section>
         <h3 className="text-2xl font-black text-slate-900 mb-6">
-        1. Competitive Audit: Land Area Precision
+        1. Competitive Check: Land Area Accuracy
         </h3>
         <div className="overflow-hidden rounded-xl border border-slate-200">
         <table className="w-full text-left text-sm">
@@ -3008,7 +2952,7 @@ formula: {
         <tr>
         <td className="p-4 font-semibold">Broker Verbal Conversions</td>
         <td className="p-4">Rounds down sq.ft (Skims small fractions).</td>
-        <td className="p-4 text-emerald-700 font-bold">Exact Decimal Audit</td>
+        <td className="p-4 text-emerald-700 font-bold">Exact Decimal Check</td>
         </tr>
         <tr>
         <td className="p-4 font-semibold">Online Unit Converters</td>
@@ -3053,7 +2997,7 @@ formula: {
         </table>
         </div>
         <p className="text-sm mt-4 text-slate-500 italic">
-        Critical Audit Note: The standard dimensions of 1 Aana are theoretically defined as a 16 ft by 21.39 ft rectangle. If a broker tells you "1 Aana is 342 square feet," they are skimming 0.25 sq.ft. At Rs. 1 Crore per Aana, that 0.25 sq.ft is worth Rs. 7,300. Demand exact decimals.
+        Critical Check Note: The standard dimensions of 1 Aana are theoretically defined as a 16 ft by 21.39 ft rectangle. If a broker tells you "1 Aana is 342 square feet," they are skimming 0.25 sq.ft. At Rs. 1 Crore per Aana, that 0.25 sq.ft is worth Rs. 7,300. Demand exact decimals.
         </p>
         </div>
         </section>
@@ -3115,9 +3059,9 @@ formula: {
         <p className="text-sm text-slate-300"><strong className="text-white">Road Expansion Cut (MaapDanda):</strong> If your plot is adjacent to a non-standard road, the municipality will "cut" your land area to expand the road. Your Lalpurja may say 5 Aana, but your buildable area might only be 4 Aana.</p>
         </div>
         </div>
-        <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl"><h4 className="text-xs font-black text-emerald-400 uppercase tracking-widest mb-3">Institutional Strategy</h4>
+        <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl"><h4 className="text-xs font-black text-emerald-400 uppercase tracking-widest mb-3">Standard Strategy</h4>
         <p className="text-xs text-slate-400 leading-relaxed italic">
-        "Never value a plot of land solely by its Lalpurja area. Always deduct the road setback (MaapDanda). A 3-Aana plot on an expanding main road might legally become a 2.5-Aana plot upon building permit approval, destroying your expected ROI. Protect your property investments by calculating long-term yields via our <a href="/calculator/property-tax" className="text-emerald-400 underline font-bold">Property Tax Auditor</a>."
+        "Never value a plot of land solely by its Lalpurja area. Always deduct the road setback (MaapDanda). A 3-Aana plot on an expanding main road might legally become a 2.5-Aana plot upon building permit approval, destroying your expected ROI. Protect your property investments by calculating long-term yields via our <a href="/calculator/property-tax/" className="text-emerald-400 underline font-bold">Property Tax Calculator</a>."
         </p></div>
         </div>
         
@@ -3127,7 +3071,7 @@ formula: {
         ========================================== */}
         <section className="mt-12">
         <h3 className="text-2xl font-black text-slate-900 mb-6">
-        Real Estate Intelligence Silo
+        Real Estate Insights Silo
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-emerald-300 transition-all">
@@ -3162,7 +3106,7 @@ formula: {
         <section className="bg-emerald-50 border border-emerald-100 rounded-3xl p-10 relative overflow-hidden mt-12">
         <div className="relative z-10">
         <h3 className="text-2xl font-black text-emerald-900 mb-4">
-        Strategic Case Study: The Fractional Arbitrage
+        Practical Case Study: The Fractional Arbitrage
         </h3>
         <p className="text-emerald-900/70 text-sm leading-relaxed mb-8">
         A buyer is purchasing a plot in Lalitpur. The broker verbally claims the plot is "exactly 4 Aana" and quotes a price of Rs. 60 Lakhs per Aana (Total: Rs. 2.40 Crore). However, the Lalpurja explicitly lists the area as 0-3-3-2 (3 Aana, 3 Paisa, 2 Daam).
@@ -3192,7 +3136,7 @@ formula: {
         </div>
         
         <p className="text-xs text-emerald-900/50 mt-8 italic text-center">
-        Audit Observation: By utilizing the calculator to convert the exact Lalpurja figures (0-3-3-2) into decimal Aana (3.875), the buyer prevents a Rs. 7.5 Lakh overpayment. Brokers frequently round up fractional land measurements to the nearest whole unit. Never pay for "verbal Aanas." If taking a loan for the true amount, structure your EMI using our <a href="/calculator/loan-emi" className="text-emerald-600 underline font-bold">EMI & Amortization Lab</a>.
+        Check Observation: By utilizing the calculator to convert the exact Lalpurja figures (0-3-3-2) into decimal Aana (3.875), the buyer prevents a Rs. 7.5 Lakh overpayment. Brokers frequently round up fractional land measurements to the nearest whole unit. Never pay for "verbal Aanas." If taking a loan for the true amount, structure your EMI using our <a href="/calculator/loan-emi/" className="text-emerald-600 underline font-bold">EMI & Amortization Tool</a>.
         </p>
         
         </div>
@@ -3202,7 +3146,7 @@ formula: {
         ========================================== */}
         <div className="pt-10 border-t border-slate-200 text-center mt-12">
         <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
-        Compliance Audit: Last updated Baishakh 2083 (May 2026). Calculations are strictly synchronized with the Survey Measurement Act (Napi Ain) and the Department of Survey, Government of Nepal.
+        Compliance Check: Last updated Baishakh 2083 (May 2026). Calculations are strictly synchronized with the Survey Measurement Act (Napi Ain) and the Department of Survey, Government of Nepal.
         
         
         
@@ -3255,7 +3199,7 @@ formula: {
     ]
   },
   'nepal-stocks': {
-    title: "NEPSE Share Calculator | Capital Gains & Broker Fee Auditor",
+    title: "NEPSE Share Calculator | Capital Gains & Broker Fee Calculator",
     description: "Calculate exact Nepal Stock Exchange (NEPSE) profits. 1500+ words detailing SEBON broker commissions, Rs. 25 DP charges, and the 5% vs 7.5% Capital Gains Tax (CGT).",
     
     howToUse: {
@@ -3272,7 +3216,7 @@ formula: {
     },
     
     formula: {
-      title: "The NEPSE Regulatory Transaction Axiom",
+      title: "The NEPSE Regulatory Transaction Principle",
       description: "Trading on the Nepal Stock Exchange involves a layered fee structure enforced by SEBON, the broker, and the Inland Revenue Department (IRD).",
       raw: "Net Realized Capital = Gross Trade Volume ± (Broker Commission + SEBON Fee + DP Charge) - CGT",
       variables: [
@@ -3281,7 +3225,7 @@ formula: {
         "DP Charge = A flat Rs. 25 fee per stock transaction, regardless of volume.",
         "Broker Commission = Tiered: Up to Rs. 50K (0.40%), 50K-500K (0.37%), 500K-2M (0.34%), 2M-10M (0.30%), above 10M (0.27%).",
         "CGT (Capital Gains Tax) = Levied ONLY on Net Profit (Selling Price - WACC - Fees).",
-        "Holding Threshold = Tax is 7.5% if held under 365 days. Drops to 5% if held over 365 days."
+        "Holding Level = Tax is 7.5% if held under 365 days. Drops to 5% if held over 365 days."
       ]
     },
     
@@ -3293,13 +3237,13 @@ formula: {
         ========================================== */}
         <div className="bg-sky-50/50 border-l-4 border-sky-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-sky-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Financial Market Compliance Executive Summary
+        Financial Market Compliance Overview
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        The <a href="https://nepalstock.com.np" target="_blank" rel="noopener noreferrer" className="text-sky-700 hover:text-sky-900 underline font-semibold transition-colors">Nepal Stock Exchange (NEPSE)</a> is heavily regulated by the Securities Board of Nepal (SEBON). A severe mistake made by retail investors is confusing 'Gross Profit' with 'Net Realized Profit'. Buying a stock for Rs. 500 and selling it for Rs. 510 does not guarantee a Rs. 10 profit; the friction of sliding broker commissions, Rs. 25 flat DP charges, SEBON levies, and Capital Gains Tax (CGT) can quickly turn a theoretical profit into a mathematical loss. Furthermore, the Inland Revenue Department enforces a dual-tier CGT structure designed to penalize short-term speculation (7.5% tax) while rewarding long-term holding (5% tax). This professional <a href="/calculator/nepal-stocks" className="text-sky-700 hover:text-sky-900 underline font-bold transition-colors">NEPSE Broker & Tax Auditor</a> strips away the opacity of your TMS ledger. By simulating the exact SEBON transaction waterfall, our engine reveals your true break-even point and calculates the exact capital that will hit your bank account upon settlement.
+        The <a href="https://nepalstock.com.np" target="_blank" rel="noopener noreferrer" className="text-sky-700 hover:text-sky-900 underline font-semibold transition-colors">Nepal Stock Exchange (NEPSE)</a> is heavily regulated by the Securities Board of Nepal (SEBON). A severe mistake made by retail investors is confusing 'Gross Profit' with 'Net Realized Profit'. Buying a stock for Rs. 500 and selling it for Rs. 510 does not guarantee a Rs. 10 profit; the friction of sliding broker commissions, Rs. 25 flat DP charges, SEBON levies, and Capital Gains Tax (CGT) can quickly turn a theoretical profit into a mathematical loss. Furthermore, the Inland Revenue Department enforces a dual-tier CGT structure designed to penalize short-term speculation (7.5% tax) while rewarding long-term holding (5% tax). This professional <a href="/calculator/nepal-stocks/" className="text-sky-700 hover:text-sky-900 underline font-bold transition-colors">NEPSE Broker & Tax Calculator</a> strips away the opacity of your TMS ledger. By simulating the exact SEBON transaction waterfall, our engine reveals your true break-even point and calculates the exact capital that will hit your bank account upon settlement.
         <br/><br/>
         <span className="text-sm text-slate-600 font-medium">
-        Wealth Strategy: Once your stock profits are secured, analyze how quickly those returns will compound over a decade using our <a href="/calculator/cagr-calculator" className="text-sky-700 hover:text-sky-900 underline font-bold transition-colors">CAGR & Compound Interest Lab</a>.
+        Wealth Strategy: Once your stock profits are secured, analyze how quickly those returns will compound over a decade using our <a href="/calculator/cagr-calculator/" className="text-sky-700 hover:text-sky-900 underline font-bold transition-colors">CAGR & Compound Interest Tool</a>.
         </span>
         </p>
         </div>
@@ -3312,7 +3256,7 @@ formula: {
         </h3>
         <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-4">
         <p>
-        Stock brokers in Nepal do not charge a flat fee. SEBON enforces a progressive, sliding scale designed to offer volume discounts to institutional investors while maintaining a higher percentage floor for retail traders.
+        Stock brokers in Nepal do not charge a flat fee. SEBON enforces a progressive, sliding scale designed to offer volume discounts to standard investors while maintaining a higher percentage floor for retail traders.
         </p>
         <div className="overflow-hidden rounded-xl border border-slate-200 mt-6">
         <table className="w-full text-left text-sm">
@@ -3327,13 +3271,13 @@ formula: {
         <tr><td className="p-4 font-bold">Up to Rs. 50,000</td><td className="p-4 font-bold text-red-700">0.40%</td><td className="p-4">Highest friction. Heavily impacts small capital.</td></tr>
         <tr><td className="p-4 font-bold">Rs. 50,000 to Rs. 5,00,000</td><td className="p-4 font-bold text-orange-700">0.37%</td><td className="p-4">Standard retail trading bracket.</td></tr>
         <tr><td className="p-4 font-bold">Rs. 5,00,000 to Rs. 20,00,000</td><td className="p-4 font-bold text-blue-700">0.34%</td><td className="p-4">High net-worth retail trades.</td></tr>
-        <tr><td className="p-4 font-bold">Rs. 20 Lakh to Rs. 1 Crore</td><td className="p-4 font-bold text-green-700">0.30%</td><td className="p-4">Institutional tier. Significant cost savings.</td></tr>
+        <tr><td className="p-4 font-bold">Rs. 20 Lakh to Rs. 1 Crore</td><td className="p-4 font-bold text-green-700">0.30%</td><td className="p-4">Standard tier. Significant cost savings.</td></tr>
         <tr><td className="p-4 font-bold">Above Rs. 1 Crore</td><td className="p-4 font-bold text-emerald-700">0.27%</td><td className="p-4">Maximum volume discount (Whale tier).</td></tr>
         </tbody>
         </table>
         </div>
         <p className="text-sm mt-4 text-slate-500 italic">
-        Critical Audit Note: The broker commission is charged <strong>twice</strong> on a full trade cycle—once when you buy, and once again when you sell. Therefore, a 0.40% commission effectively costs you 0.80% in total friction just to enter and exit a position.
+        Critical Check Note: The broker commission is charged <strong>twice</strong> on a full trade cycle—once when you buy, and once again when you sell. Therefore, a 0.40% commission effectively costs you 0.80% in total friction just to enter and exit a position.
         </p>
         </div>
         </section>
@@ -3378,9 +3322,9 @@ formula: {
         <p className="text-sm text-slate-300"><strong className="text-white">Taxed Only on Profit (WACC):</strong> Crucially, CGT is only levied on your <em>Net Profit</em>. It is not a tax on revenue. If you sell at a loss (Selling Price is lower than your WACC), the CGT is exactly 0%.</p>
         </div>
         </div>
-        <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl"><h4 className="text-xs font-black text-sky-400 uppercase tracking-widest mb-3">Institutional Strategy</h4>
+        <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl"><h4 className="text-xs font-black text-sky-400 uppercase tracking-widest mb-3">Standard Strategy</h4>
         <p className="text-xs text-slate-400 leading-relaxed italic">
-        "Never sell a stock on Day 360 if you hold a massive profit. Waiting 5 more days drops your tax burden by 33%. Furthermore, always calculate your WACC immediately after receiving bonus shares or right shares, as they dramatically lower your average cost and exponentially increase your CGT liability. If reinvesting profits into real estate, validate the returns with our <a href="/calculator/sip-calculator/" className="text-sky-400 underline font-bold">ROI & Cash-on-Cash Lab</a>."
+        "Never sell a stock on Day 360 if you hold a massive profit. Waiting 5 more days drops your tax burden by 33%. Furthermore, always calculate your WACC immediately after receiving bonus shares or right shares, as they dramatically lower your average cost and exponentially increase your CGT liability. If reinvesting profits into real estate, validate the returns with our <a href="/calculator/sip-calculator/" className="text-sky-400 underline font-bold">ROI & Cash-on-Cash Tool</a>."
         </p></div>
         </div>
         
@@ -3390,7 +3334,7 @@ formula: {
         ========================================== */}
         <section className="mt-12">
         <h3 className="text-2xl font-black text-slate-900 mb-6">
-        NEPSE Intelligence Silo
+        NEPSE Insights Silo
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-sky-300 transition-all">
@@ -3414,7 +3358,7 @@ formula: {
         <span className="text-red-600">⚖️</span> Corporate CGT vs Retail
         </h4>
         <p className="text-xs text-slate-600 leading-relaxed">
-        The 5% and 7.5% CGT tiers apply strictly to individual retail investors. Institutional investors, mutual funds, and corporate trading firms face a flat 10% Capital Gains Tax on all stock market profits.
+        The 5% and 7.5% CGT tiers apply strictly to individual retail investors. Standard investors, mutual funds, and corporate trading firms face a flat 10% Capital Gains Tax on all stock market profits.
         </p>
         </div>
         </div>
@@ -3425,7 +3369,7 @@ formula: {
         <section className="bg-sky-50 border border-sky-100 rounded-3xl p-10 relative overflow-hidden mt-12">
         <div className="relative z-10">
         <h3 className="text-2xl font-black text-sky-900 mb-4">
-        Strategic Case Study: The Rs. 20 Break-Even Trap
+        Practical Case Study: The Rs. 20 Break-Even Trap
         </h3>
         <p className="text-sky-900/70 text-sm leading-relaxed mb-8">
         A retail trader buys 100 shares of a commercial bank at Rs. 300 (Total Rs. 30,000). The stock price immediately jumps to Rs. 305. The trader assumes they have made a Rs. 500 profit and decides to sell within 3 days. Let's run the audit.
@@ -3455,7 +3399,7 @@ formula: {
         </div>
         
         <p className="text-xs text-sky-900/50 mt-8 italic text-center">
-        Audit Observation: The trader believed they made Rs. 500. The reality is they made a trivial Rs. 184. The combined dual-friction of buying and selling destroyed 63% of their expected profit. This proves why high-frequency trading with small capital is mathematically destined to fail in NEPSE. Scale your long-term holding projections using our <a href="/calculator/sip-calculator" className="text-sky-600 underline font-bold">SIP Wealth Generator</a>.
+        Check Observation: The trader believed they made Rs. 500. The reality is they made a trivial Rs. 184. The combined dual-friction of buying and selling destroyed 63% of their expected profit. This proves why high-frequency trading with small capital is mathematically destined to fail in NEPSE. Scale your long-term holding projections using our <a href="/calculator/sip-calculator/" className="text-sky-600 underline font-bold">SIP Wealth Generator</a>.
         </p>
         
         </div>
@@ -3465,7 +3409,7 @@ formula: {
         ========================================== */}
         <div className="pt-10 border-t border-slate-200 text-center mt-12">
         <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
-        Compliance Audit: Last updated Baishakh 2083 (May 2026). Calculations are strictly synchronized with SEBON regulations, NEPSE trading bylaws, and the Inland Revenue Department (IRD) capital gains directives.
+        Compliance Check: Last updated Baishakh 2083 (May 2026). Calculations are strictly synchronized with SEBON regulations, NEPSE trading bylaws, and the Inland Revenue Department (IRD) capital gains directives.
         
         
         
@@ -3518,7 +3462,7 @@ formula: {
     ]
   },
   'nepal-tds': {
-    title: "Nepal TDS Calculator | IRD Withholding Tax Auditor",
+    title: "Nepal TDS Calculator | IRD Withholding Tax Calculator",
     description: "Calculate exact Tax Deducted at Source (TDS) for Nepal. 1500+ words on 1.5% contract tax, 5% rent/dividend tax, and the 15% professional service penalty.",
     
     howToUse: {
@@ -3535,7 +3479,7 @@ formula: {
     },
     
     formula: {
-      title: "The IRD Withholding Axiom",
+      title: "The IRD Withholding Principle",
       description: "Tax Deducted at Source (TDS) is an anti-evasion mechanism where the payer is legally forced to act as a tax collector for the government before releasing funds to the payee.",
       raw: "Net Payment = Gross Invoice Amount - (Gross Invoice Amount x Statutory TDS %)",
       variables: [
@@ -3556,13 +3500,13 @@ formula: {
         ========================================== */}
         <div className="bg-red-50/50 border-l-4 border-red-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-red-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Corporate Tax Compliance Executive Summary
+        Corporate Tax Compliance Overview
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        In Nepal, the burden of tax collection heavily relies on the Tax Deducted at Source (TDS) mechanism enforced by the <a href="https://ird.gov.np" target="_blank" rel="noopener noreferrer" className="text-red-700 hover:text-red-900 underline font-semibold transition-colors">Inland Revenue Department (IRD)</a>. If a business pays a freelancer Rs. 1,00,000 for consulting services without deducting the mandatory 15% TDS, the IRD legally assumes the business committed tax evasion. During a fiscal audit, the business will be forced to pay the missing Rs. 15,000 out of its own pocket, plus compounding late fines and interest. For freelancers, consultants, and landlords, failing to understand TDS means you will unexpectedly receive significantly less money than you invoiced. This professional <a href="/calculator/nepal-tds" className="text-red-700 hover:text-red-900 underline font-bold transition-colors">TDS Compliance Auditor</a> maps the exact withholding percentages across all commercial transactions. By mathematically separating the gross invoice from the net payout, our engine ensures businesses remain audit-compliant while protecting vendors from illegal over-deductions.
+        In Nepal, the burden of tax collection heavily relies on the Tax Deducted at Source (TDS) mechanism enforced by the <a href="https://ird.gov.np" target="_blank" rel="noopener noreferrer" className="text-red-700 hover:text-red-900 underline font-semibold transition-colors">Inland Revenue Department (IRD)</a>. If a business pays a freelancer Rs. 1,00,000 for consulting services without deducting the mandatory 15% TDS, the IRD legally assumes the business committed tax evasion. During a fiscal audit, the business will be forced to pay the missing Rs. 15,000 out of its own pocket, plus compounding late fines and interest. For freelancers, consultants, and landlords, failing to understand TDS means you will unexpectedly receive significantly less money than you invoiced. This professional <a href="/calculator/nepal-tds/" className="text-red-700 hover:text-red-900 underline font-bold transition-colors">TDS Compliance Calculator</a> maps the exact withholding percentages across all commercial transactions. By mathematically separating the gross invoice from the net payout, our engine ensures businesses remain audit-compliant while protecting vendors from illegal over-deductions.
         <br/><br/>
         <span className="text-sm text-slate-600 font-medium">
-        Corporate Strategy: Cash flow management is critical when 15% of your invoice is withheld by the government. Model your corporate liquidity reserves using our <a href="/calculator/nepal-salary" className="text-red-700 hover:text-red-900 underline font-bold transition-colors">Payroll & Tax Lab</a>.
+        Corporate Strategy: Cash flow management is critical when 15% of your invoice is withheld by the government. Model your corporate liquidity reserves using our <a href="/calculator/nepal-salary/" className="text-red-700 hover:text-red-900 underline font-bold transition-colors">Payroll & Tax Tool</a>.
         </span>
         </p>
         </div>
@@ -3596,7 +3540,7 @@ formula: {
         </table>
         </div>
         <p className="text-sm mt-4 text-slate-500 italic">
-        Critical Audit Note: If a payment is made to a person or business that does NOT possess a PAN (Permanent Account Number), the IRD mandates that TDS must be deducted at a punitive rate, often defaulting to 15% regardless of the goods/services provided.
+        Critical Check Note: If a payment is made to a person or business that does NOT possess a PAN (Permanent Account Number), the IRD mandates that TDS must be deducted at a punitive rate, often defaulting to 15% regardless of the goods/services provided.
         </p>
         </div>
         </section>
@@ -3641,9 +3585,9 @@ formula: {
         <p className="text-sm text-slate-300"><strong className="text-white">The Legal Payout:</strong> The paying company releases the remaining base (Rs. 98,500) PLUS the full VAT amount (Rs. 13,000). The total cash paid to the IT company is Rs. 1,11,500.</p>
         </div>
         </div>
-        <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl"><h4 className="text-xs font-black text-red-400 uppercase tracking-widest mb-3">Institutional Strategy</h4>
+        <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl"><h4 className="text-xs font-black text-red-400 uppercase tracking-widest mb-3">Standard Strategy</h4>
         <p className="text-xs text-slate-400 leading-relaxed italic">
-        "If your accountant calculates TDS on the VAT-inclusive amount, you are illegally withholding excess funds from the vendor. This will result in immediate rejection of the TDS return during IRD portal upload. Conversely, if you are a VAT-registered business, ensure your clients return your TDS certificates. Without certificates, you cannot claim the advance tax. Validate your gross margins using our <a href="/calculator/nepal-vat" className="text-red-400 underline font-bold">VAT Ledger Auditor</a>."
+        "If your accountant calculates TDS on the VAT-inclusive amount, you are illegally withholding excess funds from the vendor. This will result in immediate rejection of the TDS return during IRD portal upload. Conversely, if you are a VAT-registered business, ensure your clients return your TDS certificates. Without certificates, you cannot claim the advance tax. Validate your gross margins using our <a href="/calculator/nepal-vat/" className="text-red-400 underline font-bold">VAT Ledger Calculator</a>."
         </p></div>
         </div>
         
@@ -3668,7 +3612,7 @@ formula: {
         <span className="text-blue-500">⌛</span> The 25th Day Rule
         </h4>
         <p className="text-xs text-slate-600 leading-relaxed">
-        If you deduct TDS in the month of Baishakh, you must deposit that money to the government portal by the 25th of Jestha. Failure to do so triggers a compounding 15% per annum penalty.
+        If you deduct TDS in the month of Baishakh, you must deposit that money to the government portal by the 25th of June. Failure to do so triggers a compounding 15% per annum penalty.
         </p>
         </div>
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-green-300 transition-all">
@@ -3687,7 +3631,7 @@ formula: {
         <section className="bg-red-50 border border-red-100 rounded-3xl p-10 relative overflow-hidden mt-12">
         <div className="relative z-10">
         <h3 className="text-2xl font-black text-red-900 mb-4">
-        Strategic Case Study: The Freelancer's 15% Shock
+        Practical Case Study: The Freelancer's 15% Shock
         </h3>
         <p className="text-red-900/70 text-sm leading-relaxed mb-8">
         A software developer secures a contract with a corporate firm for Rs. 2,00,000. They expect Rs. 2 Lakh to hit their bank account. However, because they are an independent consultant, the firm applies the statutory 15% Professional Services TDS.
@@ -3716,7 +3660,7 @@ formula: {
         </div>
         
         <p className="text-xs text-red-900/50 mt-8 italic text-center">
-        Audit Observation: Freelancers frequently absorb the 15% TDS as a loss because they fail to negotiate "Net of Tax." If you require exactly Rs. 2 Lakh to survive, you must mathematically "gross up" your invoice to Rs. 2,35,294. The company pays the Rs. 35K tax to the IRD, and you receive your full target amount. Structure your business revenue goals using our <a href="/calculator/sip-calculator/" className="text-red-600 underline font-bold">Financial Business Lab</a>.
+        Check Observation: Freelancers frequently absorb the 15% TDS as a loss because they fail to negotiate "Net of Tax." If you require exactly Rs. 2 Lakh to survive, you must mathematically "gross up" your invoice to Rs. 2,35,294. The company pays the Rs. 35K tax to the IRD, and you receive your full target amount. Structure your business revenue goals using our <a href="/calculator/sip-calculator/" className="text-red-600 underline font-bold">Financial Business Tool</a>.
         </p>
         
         </div>
@@ -3726,7 +3670,7 @@ formula: {
         ========================================== */}
         <div className="pt-10 border-t border-slate-200 text-center mt-12">
         <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
-        Compliance Audit: Last updated Baishakh 2083 (May 2026). Calculations are strictly synchronized with the Income Tax Act 2058 (2002) and recent fiscal budget directives issued by the Inland Revenue Department (IRD).
+        Compliance Check: Last updated Baishakh 2083 (May 2026). Calculations are strictly synchronized with the Income Tax Act 2058 (2002) and recent fiscal budget directives issued by the Inland Revenue Department (IRD).
         
         
         
@@ -3779,31 +3723,31 @@ formula: {
     ]
   },
   'nepal-attendance': {
-    title: "Nepal University Attendance Calculator | 75% Exam Eligibility Auditor",
-    description: "Calculate your mandatory class attendance for TU, KU, POU, and PU. 1500+ words on 75% thresholds, medical leaves, and internal marks auditing for FY 2082/83.",
+    title: "Nepal University Attendance Calculator | 75% Exam Eligibility Calculator",
+    description: "Calculate your mandatory class attendance for TU, KU, POU, and PU. 1500+ words on 75% thresholds, medical leaves, and internal marks auditing for FY Current Year.",
     
     howToUse: {
       steps: [
         "1. Total Classes Calibration: Input the total number of classes conducted or scheduled for the semester.",
         "2. Presence Entry: Input the number of classes you have physically attended or logged.",
-        "3. Threshold Selection: Define the mandatory minimum percentage (Standard is 75% for most Nepali universities).",
+        "3. Level Selection: Define the mandatory minimum percentage (Standard is 75% for most Nepali universities).",
         "4. Deficit Analysis: The engine calculates how many more classes you MUST attend to reach the safe zone.",
         "5. Bunk Logic: Determine how many upcoming classes you can safely miss without dropping below the threshold.",
-        "6. Medical Leave Sync: Add any documented medical or institutional leaves to adjust your net presence.",
-        "7. Internal Marks Audit: Review the correlation between attendance percentages and internal assessment grading.",
-        "8. Exam Eligibility Verdict: Receive an immediate institutional status (Eligible or Disqualified)."
+        "6. Medical Leave Sync: Add any documented medical or standard leaves to adjust your net presence.",
+        "7. Internal Marks Check: Review the correlation between attendance percentages and internal assessment grading.",
+        "8. Exam Eligibility Verdict: Receive an immediate standard status (Eligible or Disqualified)."
       ]
     },
     
     formula: {
-      title: "The Academic Eligibility Axiom",
-      description: "Attendance is calculated as a simple percentage of total conducted sessions, adjusted for institutional leave policies.",
+      title: "The Academic Eligibility Principle",
+      description: "Attendance is calculated as a simple percentage of total conducted sessions, adjusted for standard leave policies.",
       raw: "Attendance % = (Classes Attended / Total Classes Conducted) x 100",
       variables: [
         "Classes Attended = Physical presence or verified virtual logs.",
         "Total Classes Conducted = Total sessions scheduled by the department.",
-        "Classes to Attend = [(Threshold x Total) / 100] - Attended.",
-        "Safe Bunk Count = Attended - [(Threshold x Total) / 100]."
+        "Classes to Attend = [(Level x Total) / 100] - Attended.",
+        "Safe Bunk Count = Attended - [(Level x Total) / 100]."
       ]
     },
     
@@ -3815,13 +3759,13 @@ formula: {
         ========================================== */}
         <div className="bg-indigo-50/50 border-l-4 border-indigo-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-indigo-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Academic Compliance Executive Summary
+        Academic Compliance Overview
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        In the Nepali higher education ecosystem—governed by institutions like <strong>Tribhuvan University (TU) </strong>, <strong>Kathmandu University (KU) </strong>, and <strong>Pokhara University (POU) </strong>—the 75% attendance rule is not a suggestion; it is a rigid administrative barrier. Falling below this threshold results in being barred from final board examinations, regardless of academic merit or internal marks. This professional <a href="/calculator/nepal-attendance" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">Attendance Auditor</a> is designed to give students absolute control over their eligibility status. By mathematically modeling future class schedules against current presence, our engine provides a predictive roadmap for semester success. Whether you are balancing work-study commitments or recovering from illness, our auditor ensures you remain in the "Safe Zone" for FY 2082/83.
+        In the Nepali higher education ecosystem—governed by institutions like <strong>Tribhuvan University (TU) </strong>, <strong>Kathmandu University (KU) </strong>, and <strong>Pokhara University (POU) </strong>—the 75% attendance rule is not a suggestion; it is a rigid administrative barrier. Falling below this threshold results in being barred from final board examinations, regardless of academic merit or internal marks. This professional <a href="/calculator/nepal-attendance/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">Attendance Calculator</a> is designed to give students absolute control over their eligibility status. By mathematically modeling future class schedules against current presence, our engine provides a predictive roadmap for semester success. Whether you are balancing work-study commitments or recovering from illness, our calculator ensures you remain in the "Safe Zone" for FY Current Year.
         <br/><br/>
         <span className="text-sm text-slate-600 font-medium">
-        Career Strategy: High attendance often correlates with higher internal marks and GPA. Model your academic terminal value using our <a href="/calculator/see-gpa" className="text-indigo-600 hover:text-indigo-800 underline font-bold transition-colors">GPA Intelligence Lab</a>.
+        Career Strategy: High attendance often correlates with higher internal marks and GPA. Model your academic terminal value using our <a href="/calculator/see-gpa/" className="text-indigo-600 hover:text-indigo-800 underline font-bold transition-colors">GPA Insights Tool</a>.
         </span>
         </p>
         </div>
@@ -3830,7 +3774,7 @@ formula: {
         ========================================= */}
         <section>
         <h3 className="text-2xl font-black text-slate-900 mb-6">
-        1. The 75% Benchmark: Institutional Breakdown
+        1. The 75% Benchmark: Standard Breakdown
         </h3>
         <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-4">
         <p>
@@ -3854,7 +3798,7 @@ formula: {
         </table>
         </div>
         <p className="text-sm mt-4 text-slate-500 italic">
-        Audit Note: While the official rule is 75%, many departments allow a 5-10% grace for medical emergencies, provided official documentation is submitted through the proper administrative channels.
+        Check Note: While the official rule is 75%, many departments allow a 5-10% grace for medical emergencies, provided official documentation is submitted through the proper administrative channels.
         </p>
         </div>
         </section>
@@ -3863,14 +3807,14 @@ formula: {
         ========================================== */}
         <section className="bg-white border border-slate-200 rounded-2xl p-8 mb-8 shadow-sm">
         <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
-        <span className="text-indigo-600">🛡️</span> Navigating Medical & Institutional Leaves
+        <span className="text-indigo-600">🛡️</span> Navigating Medical & Standard Leaves
         </h3>
         <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-4">
         <p>
         Life in Nepal can be unpredictable. Universities recognize this through specific leave categories that can safeguard your eligibility.
         </p>
         <ul className="list-disc pl-6 space-y-3 mt-4">
-        <li><strong>Medical Leave:</strong> Requires a doctor's certificate from a recognized hospital. This usually allows the minimum requirement to drop to 60-65% in extreme cases.</li><li><strong>Institutional Duty:</strong> If you are representing your college in sports, debates, or workshops, these missed classes are often marked as 'Appeared' (Attendance given).</li><li><strong>Bereavement Leave:</strong> Typically a 13-day provision in Nepali institutions for immediate family rites, often handled with extreme administrative sensitivity.</li></ul>
+        <li><strong>Medical Leave:</strong> Requires a doctor's certificate from a recognized hospital. This usually allows the minimum requirement to drop to 60-65% in extreme cases.</li><li><strong>Standard Duty:</strong> If you are representing your college in sports, debates, or workshops, these missed classes are often marked as 'Appeared' (Attendance given).</li><li><strong>Bereavement Leave:</strong> Typically a 13-day provision in Nepali institutions for immediate family rites, often handled with extreme administrative sensitivity.</li></ul>
         </div>
         </section>
         {/* ==========================================
@@ -3899,9 +3843,9 @@ formula: {
         <p className="text-sm text-slate-300"><strong className="text-white">Peer Synergy:</strong> Constant presence allows for better collaboration in lab groups, leading to superior final project quality.</p>
         </div>
         </div>
-        <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl"><h4 className="text-xs font-black text-indigo-400 uppercase tracking-widest mb-3">Institutional Strategy</h4>
+        <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl"><h4 className="text-xs font-black text-indigo-400 uppercase tracking-widest mb-3">Standard Strategy</h4>
         <p className="text-xs text-slate-400 leading-relaxed italic">
-        "Think of your attendance as 'Equity' in your education. Once it drops below 75%, you lose the ability to participate in the final exam market. If you have been attending regularly but struggle with exams, audit your age-limits for government jobs using our <a href="/calculator/lok-sewa-age" className="text-indigo-400 underline font-bold">Lok Sewa Lab</a>."
+        "Think of your attendance as 'Equity' in your education. Once it drops below 75%, you lose the ability to participate in the final exam market. If you have been attending regularly but struggle with exams, audit your age-limits for government jobs using our <a href="/calculator/lok-sewa-age/" className="text-indigo-400 underline font-bold">Lok Sewa Tool</a>."
         </p></div>
         </div>
         
@@ -3911,7 +3855,7 @@ formula: {
         ========================================== */}
         <section className="mt-12">
         <h3 className="text-2xl font-black text-slate-900 mb-6">
-        Academic Intelligence Silo
+        Academic Insights Silo
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-300 transition-all">
@@ -3946,7 +3890,7 @@ formula: {
         <section className="bg-indigo-50 border border-indigo-100 rounded-3xl p-10 relative overflow-hidden mt-12">
         <div className="relative z-10">
         <h3 className="text-2xl font-black text-indigo-900 mb-4">
-        Strategic Case Study: The "Semester Rescue" Audit
+        Practical Case Study: The "Semester Rescue" Check
         </h3>
         <p className="text-indigo-900/70 text-sm leading-relaxed mb-8">
         A student has attended 40 out of 60 classes. The total semester has 100 classes. They need 75% to appear in boards.
@@ -3973,7 +3917,7 @@ formula: {
         </div>
         
         <p className="text-xs text-indigo-900/50 mt-8 italic text-center">
-        Audit Observation: The student can only miss 5 more classes out of the remaining 40. This leaves no room for leisure bunking. Prioritize your mental health during high-stress weeks using our <a href="/calculator/sleep" className="text-indigo-600 underline font-bold">Sleep Auditor</a>.
+        Check Observation: The student can only miss 5 more classes out of the remaining 40. This leaves no room for leisure bunking. Prioritize your mental health during high-stress weeks using our <a href="/calculator/sleep/" className="text-indigo-600 underline font-bold">Sleep Calculator</a>.
         </p>
         
         </div>
@@ -3983,7 +3927,7 @@ formula: {
         ========================================== */}
         <div className="pt-10 border-t border-slate-200 text-center mt-12">
         <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
-        Academic Audit: Last updated Baishakh 2083 (May 2026). Calculations are synchronized with UGC Nepal mandates and major university semester bylaws.
+        Academic Check: Last updated Baishakh 2083 (May 2026). Calculations are synchronized with UGC Nepal mandates and major university semester bylaws.
         
         
         

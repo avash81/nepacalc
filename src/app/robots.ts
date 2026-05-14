@@ -12,6 +12,10 @@ export default function robots(): MetadataRoute.Robots {
           '/*?utm_',
           '/*?ref=',
           '/*?source='
+        ],
+        allow: [
+          '/',
+          '/api/og'
         ]
       },
       {

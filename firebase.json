@@ -56,12 +56,13 @@
       { "source": "/calculator/percentage-calculator", "destination": "/calculator/percentage/", "type": 301 },
       { "source": "/calculator/fixed-deposit", "destination": "/calculator/fd-calculator/", "type": 301 },
       { "source": "/calculator/ssf-calculator", "destination": "/calculator/ssf-nepal/", "type": 301 },
-      { "source": "/calculator/finance", "destination": "/finance/", "type": 301 },
-      { "source": "/calculator/health", "destination": "/health/", "type": 301 },
-      { "source": "/calculator/nepal", "destination": "/nepal/", "type": 301 },
+      { "source": "/calculator/finance/", "destination": "/finance/", "type": 301 },
+      { "source": "/calculator/health/", "destination": "/health/", "type": 301 },
+      { "source": "/calculator/nepal/", "destination": "/nepal/", "type": 301 },
       { "source": "/utility", "destination": "/converters/", "type": 301 },
       { "source": "/sitemap.html", "destination": "/sitemap/", "type": 301 },
       { "source": "/exchange-rates", "destination": "/market-rates/exchange-rate/", "type": 301 },
+      { "source": "/education/", "destination": "/math-tools/", "type": 301 },
       { "source": "/education", "destination": "/math-tools/", "type": 301 }
     ],
     "headers": [

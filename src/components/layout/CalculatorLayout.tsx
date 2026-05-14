@@ -103,20 +103,20 @@ export function CalculatorLayout({
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {CATEGORIES.map(cat => (
             <div key={cat.id} className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
-              <Link href={CATEGORY_URL_MAP[cat.id.toLowerCase()] || `/calculator/category/${cat.id}`} className="flex items-center gap-2 text-[14px] font-black text-slate-800 hover:text-blue-600 mb-4 transition-colors">
+              <Link href={CATEGORY_URL_MAP[cat.id.toLowerCase()] || "/directory/"} className="flex items-center gap-2 text-[14px] font-black text-slate-800 hover:text-blue-600 mb-4 transition-colors">
                  <span>{cat.icon}</span> {cat.name}
               </Link>
               <ul className="space-y-3">
                   {cat.calculators.slice(0, 4).map(calc => (
                     <li key={calc.id} className="leading-snug">
-                      <Link href={calc.slug.includes('/') ? `/${calc.slug}` : `/calculator/${calc.slug}`} className="text-[13px] font-medium text-slate-500 hover:text-blue-600 transition-colors flex items-start gap-2 group">
+                      <Link href={calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`} className="text-[13px] font-medium text-slate-500 hover:text-blue-600 transition-colors flex items-start gap-2 group">
                         <span className="text-slate-300 group-hover:text-[#1a0dab] mt-0.5">•</span>
                         <span>{calc.name}</span>
                       </Link>
                     </li>
                   ))}
                   {cat.calculators.length > 4 && (
-                    <li className="pt-2"><Link href={CATEGORY_URL_MAP[cat.id.toLowerCase()] || `/calculator/category/${cat.id}`} className="text-[11px] uppercase tracking-widest text-blue-600 font-bold hover:underline">View All &rarr;</Link></li>
+                    <li className="pt-2"><Link href={CATEGORY_URL_MAP[cat.id.toLowerCase()] || "/directory/"} className="text-[11px] uppercase tracking-widest text-blue-600 font-bold hover:underline">View All &rarr;</Link></li>
                   )}
               </ul>
             </div>
@@ -138,7 +138,7 @@ export function CalculatorLayout({
         ]}
         name={title}
         description={description}
-        url={`https://nepacalc.com${resolvedSlug.includes('/') ? `/${resolvedSlug}` : `/calculator/${resolvedSlug}`}`}
+        url={`https://nepacalc.com${resolvedSlug.includes('/') ? `/${resolvedSlug}/` : `/calculator/${resolvedSlug}/`}`}
         faqs={faqs}
       />
 

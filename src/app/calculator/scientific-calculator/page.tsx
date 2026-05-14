@@ -4,10 +4,10 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: "Scientific Calculator Online | Advanced Math & Trig Nepal NepaCalc",
-  description: "Professional online scientific calculator with trigonometry, logs, and power functions. Free, high-precision tool for students and engineers in Nepal.",
+  title: "Scientific Calculator Online | Advanced Math & Trigonometry | NepaCalc",
+  description: "Professional online scientific calculator with trigonometry, logarithms, and power functions. Free, high-precision tool for students and engineers.",
   slug: 'scientific-calculator',
-  keywords: ["scientific calculator nepal", "online trig calculator", "logarithm calculator", "advanced math solver", "scientific notation calc", "ioe entrance math tool"],
+  keywords: ["scientific calculator", "online trig calculator", "logarithm calculator", "advanced math solver", "scientific notation calc"],
 });
 
 const SCIENTIFIC_FAQS = [

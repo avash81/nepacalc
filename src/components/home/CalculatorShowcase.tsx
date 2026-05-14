@@ -11,6 +11,8 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 
+import { CATEGORY_URL_MAP } from '@/config/GlobalConfig';
+
 const CATEGORIES = [
   {
     id: 'finance',
@@ -59,7 +61,7 @@ export default function CalculatorShowcase() {
               Browse our extensive library of calculators organized by category. Each tool is designed for maximum usability.
             </p>
           </div>
-          <Link href="/calculators/">
+          <Link href="/directory/">
             <Button variant="outline" className="flex items-center gap-2 h-12 px-6 rounded-lg text-sm font-medium">
               View All 80+ Tools <ChevronRight className="w-4 h-4" />
             </Button>
@@ -71,7 +73,7 @@ export default function CalculatorShowcase() {
             <div
               key={cat.id}
             >
-              <Link href={`/calculators/${cat.id}`}>
+              <Link href={CATEGORY_URL_MAP[cat.id] || `/calculator/`}>
                 <div className="p-8 bg-white rounded-xl border border-cp-border group hover:border-cp-blue transition-all duration-300 overflow-hidden relative shadow-cp-sm">
                   <div className="relative z-10">
                     <div className={`w-12 h-12 ${cat.color} rounded-lg flex items-center justify-center text-[#202124] mb-6 shadow-sm`}>

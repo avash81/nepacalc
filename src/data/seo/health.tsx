@@ -3,47 +3,45 @@ import { SEOContent } from './types';
 
 export const healthSEO: Record<string, SEOContent> = {
   'bmi': {
-    title: "BMI Calculator | Quetelet Index & Body Composition Lab",
-    description: "The definitive systematic resource for Body Mass Index (BMI). 1500+ words on WHO standards, clinical thresholds, and the limitations of weight-to-height metrics.",
+    title: "BMI Calculator | Body Mass Index & Health Tool",
+    description: "Calculate your Body Mass Index (BMI) easily. Understand WHO standards, health categories, and what your BMI means for your overall wellness.",
     howToUse: {
       steps: [
-        "1. Parameter Entry: Input your current weight in kilograms or pounds.",
-        "2. Height Calibration: Enter your height in centimeters or feet/inches.",
-        "3. Gender/Age Selection: Define your profile for demographic-specific context.",
-        "4. Metric Normalization: The engine calculates the BMI using the square of height.",
-        "5. Threshold Audit: Analyze your result against WHO-standard categories (Underweight to Obese).",
-        "6. Clinical Context: Review the ideal weight range for your specific height profile.",
-        "7. Longitudinal Tracking: Monitor your BMI changes over the Jestha 2082/83 period.",
-        "8. Result Validation: Verify the BMI result against other body composition metrics like fat percentage."
+        "1. Enter Weight: Input your weight in kilograms or pounds.",
+        "2. Enter Height: Input your height in centimeters or feet/inches.",
+        "3. Profile: Select your gender and age for more relevant context.",
+        "4. Calculation: The tool calculates your BMI based on your height and weight.",
+        "5. Results: View your BMI category (Underweight to Obese) according to global standards.",
+        "6. Insight: Review the healthy weight range for your specific height."
       ]
     },
     formula: {
-      title: "The Quetelet Index Axiom",
-      description: "BMI is a simple mathematical ratio used as a proxy for body fatness in general populations for FY 2082/83.",
+      title: "BMI Formula",
+      description: "BMI is a simple mathematical ratio used as a proxy for body fatness in general populations.",
       raw: "BMI = Weight (kg) / [Height (m)]^2"
     },
     content: (
         <div className="space-y-12">
-            {/* Executive Summary */}
-            <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">The Institutional Encyclopedia: Body Mass Index & Anthropometrics</h2>
+            {/* Header */}
+            <h2 className="text-3xl font-black text-[#202124] mb-6 tracking-tighter uppercase">Your Guide to Body Mass Index (BMI)</h2>
             <div className="bg-[#e1f5fe] border-2 border-[#03a9f4]/20 rounded-lg p-10 mb-10 shadow-sm relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-[#03a9f4] rounded-full blur-[120px] opacity-10" />
-                <h4 className="text-[#01579b] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Physiology Intelligence Lab</h4>
+                <h4 className="text-[#01579b] font-black text-xs uppercase tracking-[0.4em] mb-6 mt-0">Explore BMI Topics</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-4 text-[10px] font-bold text-[#01579b] uppercase tracking-tighter">
-                    <a href="#who" className="flex items-center gap-2 hover:text-[#0288d1] transition-all"><span>01.</span> WHO Classification Thresholds</a>
-                    <a href="#limitations" className="flex items-center gap-2 hover:text-[#0288d1] transition-all"><span>02.</span> BMI Limitations: The Athlete Paradox</a>
-                    <a href="#composition" className="flex items-center gap-2 hover:text-[#0288d1] transition-all"><span>03.</span> Body Fat % vs BMI Divergence</a>
-                    <a href="#health" className="flex items-center gap-2 hover:text-[#0288d1] transition-all"><span>04.</span> Health Risks of High BMI (Type 2 Diabetes)</a>
-                    <a href="#pediatric" className="flex items-center gap-2 hover:text-[#0288d1] transition-all"><span>05.</span> BMI-for-Age: Pediatric Standards</a>
-                    <a href="#ethnicity" className="flex items-center gap-2 hover:text-[#0288d1] transition-all"><span>06.</span> Ethnic Variations in BMI Sensitivity</a>
+                    <a href="#who" className="flex items-center gap-2 hover:text-[#0288d1] transition-all"><span>01.</span> WHO Weight Categories</a>
+                    <a href="#limitations" className="flex items-center gap-2 hover:text-[#0288d1] transition-all"><span>02.</span> BMI Limitations & Athletes</a>
+                    <a href="#composition" className="flex items-center gap-2 hover:text-[#0288d1] transition-all"><span>03.</span> Body Fat % vs BMI</a>
+                    <a href="#health" className="flex items-center gap-2 hover:text-[#0288d1] transition-all"><span>04.</span> Health Risks of High BMI</a>
+                    <a href="#pediatric" className="flex items-center gap-2 hover:text-[#0288d1] transition-all"><span>05.</span> BMI for Children & Teens</a>
+                    <a href="#ethnicity" className="flex items-center gap-2 hover:text-[#0288d1] transition-all"><span>06.</span> Ethnic Variations in BMI</a>
                 </div>
             </div>
 
             {/* Section 1: WHO Standards */}
             <section id="who" className="mb-16">
-                <h3 className="text-2xl font-black text-[#202124] mb-6">1. WHO Standard Classifications: The Global Benchmark</h3>
+                <h3 className="text-2xl font-black text-[#202124] mb-6">1. WHO Weight Categories: The Global Benchmark</h3>
                 <p className="text-sm text-[#5f6368] leading-relaxed mb-6">
-                    The World Health Organization (WHO) provides a standardized framework for interpreting BMI results. These categories help identify individuals at risk for malnutrition or chronic obesity-related diseases. In the current economic and social cycle of <strong>FY 2082/83</strong>, preventative health auditing has become a cornerstone of family wellness.
+                    The World Health Organization (WHO) provides a standardized framework for interpreting BMI results. These categories help identify potential health risks associated with being underweight, overweight, or obese. Understanding where you fall on this scale is a great first step toward proactive health management.
                 </p>
                 <div className="overflow-hidden rounded-[2rem] border border-[#dadce0] shadow-sm mb-8">
                     <table className="w-full text-left text-xs bg-white">
@@ -51,33 +49,33 @@ export const healthSEO: Record<string, SEOContent> = {
                             <tr>
                                 <th className="p-5 font-black text-[#202124] uppercase tracking-widest">Category</th>
                                 <th className="p-5 font-black text-[#202124] uppercase tracking-widest">BMI Range (kg/m²)</th>
-                                <th className="p-5 font-black text-[#202124] uppercase tracking-widest">Risk Audit</th>
+                                <th className="p-5 font-black text-[#202124] uppercase tracking-widest">Health Insight</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-[#dadce0]">
-                            <tr><td className="p-5 font-bold">Underweight</td><td className="p-5 font-bold">&lt; 18.5</td><td>High (Nutritional Deficit)</td></tr>
+                            <tr><td className="p-5 font-bold">Underweight</td><td className="p-5 font-bold">&lt; 18.5</td><td>May indicate nutritional deficiency.</td></tr>
                             <tr><td className="p-5 text-[#188038] font-black">Normal Weight</td><td className="p-5 text-[#188038] font-bold">18.5 – 24.9</td><td className="text-green-600 font-bold">Optimal / Low Risk</td></tr>
-                            <tr><td className="p-5 font-bold">Overweight</td><td className="p-5 font-bold">25.0 – 29.9</td><td>Moderate (Pre-Obese)</td></tr>
-                            <tr><td className="p-5 text-[#d93025] font-black">Obese (Class I)</td><td className="p-5 text-[#d93025] font-bold">30.0 – 34.9</td><td className="text-red-600 font-bold">Critical (High Metabolic Risk)</td></tr>
+                            <tr><td className="p-5 font-bold">Overweight</td><td className="p-5 font-bold">25.0 – 29.9</td><td>Increased risk of metabolic issues.</td></tr>
+                            <tr><td className="p-5 text-[#d93025] font-black">Obese</td><td className="p-5 text-[#d93025] font-bold">30.0+</td><td className="text-red-600 font-bold">Higher risk of chronic conditions.</td></tr>
                         </tbody>
                     </table>
                 </div>
             </section>
 
-            {/* Section 2: Strategy Box - Ethnicity */}
+            {/* Section 2: Ethnicity */}
             <section id="ethnicity" className="bg-slate-900 text-white rounded-2xl p-8 border border-slate-800 shadow-xl overflow-hidden relative">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-sky-600 rounded-full blur-[120px] opacity-20 pointer-events-none" />
                 <h3 className="text-xl font-black mb-6 flex items-center gap-3 relative z-10 text-sky-400">
-                    🛡️ Strategic Audit: Asian-Specific BMI Thresholds
+                    💡 Important: BMI in South Asian Populations
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
                     <p className="text-sm text-slate-300 leading-relaxed">
-                        Clinical studies for 2082/83 indicate that South Asian populations (including Nepal) exhibit higher body fat percentages at lower BMI levels compared to Western populations. This leads to a 'Thin-Fat' phenotype where the risk of Type 2 Diabetes increases at a BMI of just <strong>23 kg/m²</strong>.
+                        Recent health studies indicate that South Asian populations (including Nepal) may experience higher health risks at lower BMI levels compared to Western populations. This means that metabolic risks like Type 2 Diabetes can increase even at a BMI that is considered "normal" in other parts of the world.
                     </p>
                     <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl">
-                        <h4 className="text-[10px] font-black text-sky-400 uppercase tracking-widest mb-3">Institutional Benchmark: The Asian Shift</h4>
+                        <h4 className="text-[10px] font-black text-sky-400 uppercase tracking-widest mb-3">Nepal-Specific Health Target</h4>
                         <p className="text-xs text-slate-400 leading-relaxed italic">
-                            "In Nepal, a BMI of 23-27.5 is often audited as 'Overweight' by local health practitioners, significantly lower than the global 25-30 range. This is the primary auditor for early cardiovascular intervention."
+                            "In Nepal, many health practitioners recommend a tighter target for a healthy BMI, often between 18.5 and 23. Maintaining a weight in this range can significantly lower the risk of cardiovascular issues."
                         </p>
                     </div>
                 </div>
@@ -85,71 +83,71 @@ export const healthSEO: Record<string, SEOContent> = {
 
             {/* Footer Links */}
             <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
-                <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Health Intelligence Silo</p>
+                <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Related Health Tools</p>
                 <div className="flex flex-wrap justify-center gap-4">
-                    <a href="/calculator/bmr" className="px-8 py-3 bg-[#f8f9fa] border border-[#dadce0] rounded-full text-[11px] font-black text-[#1a73e8] hover:bg-[#e8f0fe] transition-all uppercase tracking-tighter">BMR Auditor</a>
-                    <a href="/calculator/body-fat" className="px-8 py-3 bg-[#f8f9fa] border border-[#dadce0] rounded-full text-[11px] font-black text-[#1a73e8] hover:bg-[#e8f0fe] transition-all uppercase tracking-tighter">Body Fat Lab</a>
-                    <a href="/calculator/calorie-calculator" className="px-8 py-3 bg-[#f8f9fa] border border-[#dadce0] rounded-full text-[11px] font-black text-[#1a73e8] hover:bg-[#e8f0fe] transition-all uppercase tracking-tighter">Calorie Planner</a>
+                    <a href="/calculator/bmr/" className="px-8 py-3 bg-[#f8f9fa] border border-[#dadce0] rounded-full text-[11px] font-black text-[#1a73e8] hover:bg-[#e8f0fe] transition-all uppercase tracking-tighter">BMR Calculator</a>
+                    <a href="/calculator/body-fat/" className="px-8 py-3 bg-[#f8f9fa] border border-[#dadce0] rounded-full text-[11px] font-black text-[#1a73e8] hover:bg-[#e8f0fe] transition-all uppercase tracking-tighter">Body Fat Calculator</a>
+                    <a href="/calculator/calorie-calculator/" className="px-8 py-3 bg-[#f8f9fa] border border-[#dadce0] rounded-full text-[11px] font-black text-[#1a73e8] hover:bg-[#e8f0fe] transition-all uppercase tracking-tighter">Calorie Planner</a>
                 </div>
             </div>
         </div>
     ),
     faqs: [
-        { question: "Is BMI accurate for everyone?", answer: "BMI is a good general screening tool for most adults, but it can be inaccurate for athletes, the elderly, and pregnant women as it doesn't account for muscle mass or fluid changes." },
-        { question: "What is a 'Healthy' BMI for Nepalis?", answer: "While the global range is 18.5-24.9, many experts recommend a target of 18.5-22.9 for South Asians to minimize metabolic risks in FY 2082/83." }
+        { question: "Is BMI accurate for everyone?", answer: "BMI is a good general screening tool, but it has limitations. It doesn't distinguish between muscle mass and fat, so athletes with high muscle mass may have a high BMI despite being very healthy." },
+        { question: "What is a healthy BMI for Nepalis?", answer: "While the global range is 18.5-24.9, experts often suggest a target of 18.5-22.9 for South Asians to minimize long-term health risks." }
     ]
-},
+  },
 
 'bmr': {
-    title: "BMR Calculator | Basal Metabolic Rate Auditor",
-    description: "The definitive systematic resource for BMR. 1500+ words on the Harris-Benedict equation, metabolic auditing, and absolute caloric baselines.",
+    title: "BMR Calculator | Basal Health Rate Calculator",
+    description: "Calculate your Basal Metabolic Rate (BMR) accurately. Learn about the formulas used to determine your baseline calorie needs and how to optimize your metabolism.",
     howToUse: {
         steps: [
-            "1. Demographic Entry: Input your biological sex, current age, and weight.",
-            "2. Height Calibration: Provide your height in centimeters or feet/inches.",
-            "3. Equation Selection: Choose between Harris-Benedict or Mifflin-St Jeor protocols.",
-            "4. BMR Derivation: The engine calculates your energy expenditure at absolute rest.",
-            "5. Metabolic Sync: Review the calorie count required just to maintain basic life functions."
+            "1. Basics: Input your gender, age, and weight.",
+            "2. Height: Enter your height in centimeters or feet/inches.",
+            "3. Method: Choose between the Harris-Benedict or Mifflin-St Jeor formulas.",
+            "4. Result: The tool calculates the calories your body burns at rest.",
+            "5. Goal Setting: Use this baseline to plan your daily nutrition and weight goals."
         ]
     },
     formula: {
-        title: "The Metabolic Axiom",
-        description: "BMR is the rate at which your body burns energy while at rest to maintain vital functions in the 2082/83 cycle.",
+        title: "BMR Calculation Formula",
+        description: "BMR is the rate at which your body burns energy while at rest to maintain vital functions.",
         raw: "BMR (Mifflin-St Jeor) = 10W + 6.25H - 5A + S",
         variables: ["W = Weight (kg).", "H = Height (cm).", "A = Age (years).", "S = +5 for males, -161 for females."]
     },
     content: (
         <div className="space-y-12">
-            {/* Executive Summary */}
+            {/* Overview */}
             <div className="bg-emerald-50/50 border-l-4 border-emerald-600 rounded-r-xl p-8 shadow-sm">
                 <h2 className="text-emerald-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-                    Metabolic Intelligence & BMR Auditing Summary
+                    Everything You Need to Know About BMR
                 </h2>
                 <p className="text-slate-800 text-base leading-relaxed">
-                    Your Basal Metabolic Rate (BMR) is the fundamental floor of your body's energy economy. It represents the calories required to sustain critical involuntary functions—breathing, blood circulation, and cell production. In <strong>FY 2082/83</strong>, auditing the BMR is an institutional requirement for preventing metabolic drift and designing precise nutritional protocols. This <strong>BMR Auditor</strong> utilizes the most advanced Mifflin-St Jeor axioms to ensure your baseline expenditure is calculated with 100% precision.
+                    Your Basal Metabolic Rate (BMR) is the fundamental foundation of your body's energy balance. It represents the calories required to sustain critical involuntary functions—breathing, blood circulation, and cell production. Understanding your BMR is essential for preventing weight gain and designing effective nutritional plans. This <strong>BMR Calculator</strong> utilizes the advanced Mifflin-St Jeor formula to ensure your baseline expenditure is calculated with high precision.
                 </p>
             </div>
 
-            {/* Section 1: The Hierarchy of Metabolic Equations */}
+            {/* Section 1: The Hierarchy of Health Equations */}
             <section>
                 <h3 className="text-2xl font-black text-slate-900 mb-6">
-                    1. The Hierarchy of Metabolic Equations: Mifflin vs. Harris-Benedict
+                    1. The Hierarchy of Health Equations: Mifflin vs. Harris-Benedict
                 </h3>
                 <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-6">
                     <p>
-                        There are two primary auditors for metabolic expenditure. The <strong>Mifflin-St Jeor Equation</strong> is the current clinical gold standard, offering higher precision for sedentary and overweight individuals. The <strong>Harris-Benedict Equation</strong>, established in 1919, remains a valuable historical benchmark but can overestimate requirements in modern lifestyles.
+                        There are two primary auditors for metabolic expenditure. The <strong>Mifflin-St Jeor Equation</strong> is the current health gold standard, offering higher precision for sedentary and overweight individuals. The <strong>Harris-Benedict Equation</strong>, established in 1919, remains a valuable historical benchmark but can overestimate requirements in modern lifestyles.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
                         <div className="p-8 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-emerald-300 transition-all">
                             <h4 className="text-sm font-black uppercase text-emerald-600 mb-4">Mifflin-St Jeor (Modern)</h4>
                             <p className="text-xs text-slate-600 leading-relaxed">
-                                Calibrated for the 2082/83 metabolism. Offers approximately 5% higher accuracy for adult populations compared to legacy formulas.
+                                The current gold standard for most adults. It offers high accuracy for calculating the daily energy needs of modern, diverse populations.
                             </p>
                         </div>
                         <div className="p-8 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-indigo-300 transition-all">
                             <h4 className="text-sm font-black uppercase text-indigo-600 mb-4">Harris-Benedict (Legacy)</h4>
                             <p className="text-xs text-slate-600 leading-relaxed">
-                                The original auditor of metabolic rate. Still used by some clinicians for athletes with high lean muscle mass.
+                                The original calculator of metabolic rate. Still used by some clinicians for athletes with high lean muscle mass.
                             </p>
                         </div>
                     </div>
@@ -160,16 +158,16 @@ export const healthSEO: Record<string, SEOContent> = {
             <section className="bg-slate-900 text-white rounded-2xl p-8 border border-slate-800 shadow-xl overflow-hidden relative">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-600 rounded-full blur-[120px] opacity-20 pointer-events-none" />
                 <h3 className="text-xl font-black mb-6 flex items-center gap-3 relative z-10 text-emerald-400">
-                    🛡️ Metabolic Scaling: The TDEE Multiplier Axiom
+                    🛡️ TDEE Multiplier Guide: How to Scale Your BMR
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
                     <p className="text-sm text-slate-300 leading-relaxed">
-                        BMR represents your "coma" burn—what you burn if you were motionless in bed. To find your actual daily requirement for 2082/83, you must apply the <strong>Physical Activity Level (PAL)</strong> multiplier. This converts BMR into <strong>Total Daily Energy Expenditure (TDEE)</strong>.
+                        BMR represents your "at-rest" burn—what you would burn if you were resting in bed all day. To find your actual daily requirement, you must apply the <strong>Physical Activity Level (PAL)</strong> multiplier. This converts BMR into <strong>Total Daily Energy Expenditure (TDEE)</strong>.
                     </p>
                     <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl">
-                        <h4 className="text-[10px] font-black text-emerald-400 uppercase tracking-widest mb-3">Institutional Benchmark: Activity Multipliers</h4>
+                        <h4 className="text-[10px] font-black text-emerald-400 uppercase tracking-widest mb-3">Standard Benchmark: Activity Multipliers</h4>
                         <ul className="text-[10px] text-slate-400 space-y-2 list-disc pl-4 italic">
-                            <li>Sedentary: BMR × 1.2 (Standard 2082/83 Office worker)</li>
+                            <li>Sedentary: BMR × 1.2 (Office worker with little exercise)</li>
                             <li>Light: BMR × 1.375 (1-3 days exercise)</li>
                             <li>Moderate: BMR × 1.55 (3-5 days intensive)</li>
                             <li>Athlete: BMR × 1.725 (6-7 days professional training)</li>
@@ -178,16 +176,16 @@ export const healthSEO: Record<string, SEOContent> = {
                 </div>
             </section>
 
-            {/* Section 3: Strategic Audit Table */}
+            {/* Section 3: Practical Check Table */}
             <section>
-                <h3 className="text-xl font-black text-slate-900 mb-6">Metabolic Variance Table: Age & Gender Deltas</h3>
+                <h3 className="text-xl font-black text-slate-900 mb-6">Health Variance Table: Age & Gender Deltas</h3>
                 <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
                     <table className="w-full text-left text-sm">
                         <thead className="bg-slate-50 text-slate-900 font-black">
                             <tr className="border-b border-slate-200">
                                 <th className="p-4">Demographic Factor</th>
-                                <th className="p-4">Impact on BMR Audit</th>
-                                <th className="p-4">Fiscal/Health Implication</th>
+                                <th className="p-4">Impact on BMR</th>
+                                <th className="p-4">Health Implication</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100 text-slate-600">
@@ -211,10 +209,9 @@ export const healthSEO: Record<string, SEOContent> = {
                 </div>
             </section>
 
-            {/* Footer */}
             <div className="text-center pt-8 border-t border-slate-200">
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">
-                    Metabolic Rate Auditor • FY 2082/83 Clinical Standard
+                    Basal Metabolic Rate Guide • Professional Health Standards
                 </p>
             </div>
         </div>
@@ -226,25 +223,25 @@ export const healthSEO: Record<string, SEOContent> = {
         },
         
         'calorie-calculator': {
-        title: "Calorie Calculator | Nutritional Requirement Auditor",
-        description: "The definitive systematic resource for caloric planning. 1500+ words on energy balance, macronutrient ratios, and sustainable weight management audits.",
+        title: "Calorie Calculator | Daily Energy Needs Tool",
+        description: "Calculate your daily calorie requirements for weight loss, gain, or maintenance. Includes personalized macronutrient breakdowns and activity-based tracking.",
         
         howToUse: {
         steps: [
-        "1. Personal Data Entry: Input your age, weight, height, and biological sex.",
-        "2. Activity Level Audit: Select your exercise frequency (Sedentary to Extra Active).",
-        "3. Goal Selection: Choose between Weight Loss, Maintenance, or Weight Gain.",
-        "4. TDEE Derivation: The engine calculates your total daily burn for FY 2082/83.",
-        "5. Deficit/Surplus Logic: Apply the standard 500 or 1000 calorie shifts.",
-        "6. Macronutrient Sync: Review the recommended breakdown of Proteins, Fats, and Carbs.",
-        "7. Unit Normalization: Toggle between Calories (kcal) and Kilojoules (kJ).",
-        "8. Result Validation: Verify your daily target against the 'starvation threshold' (BMR)."
+        "1. Personal Data: Input your age, weight, height, and gender.",
+        "2. Activity Level: Select your daily exercise frequency.",
+        "3. Your Goal: Choose to lose, maintain, or gain weight.",
+        "4. TDEE Calculation: The tool calculates your Total Daily Energy Expenditure.",
+        "5. Plan: Apply a calorie deficit or surplus based on your goals.",
+        "6. Macros: Review your recommended protein, fat, and carb breakdown.",
+        "7. Units: Toggle between Calories (kcal) and Kilojoules (kJ).",
+        "8. Healthy Limits: Ensure your target is above your BMR for safety."
         ]
         },
         
         formula: {
-        title: "The Energy Balance Axiom",
-        description: "Weight change is determined by the net difference between energy intake and energy expenditure for the 2082/83 cycle.",
+        title: "TDEE Calculation Formula",
+        description: "Weight change is determined by the difference between your energy intake and energy expenditure.",
         raw: "TDEE = BMR * Activity Factor",
         variables: [
         "TDEE = Total Daily Energy Expenditure.",
@@ -260,10 +257,10 @@ export const healthSEO: Record<string, SEOContent> = {
         <div className="space-y-12">
         <div className="bg-sky-50/50 border-l-4 border-sky-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-sky-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Nutritional Intelligence Executive Summary
+        Understanding Your Daily Calorie Needs
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Caloric auditing is the foundation of scientific body composition management. In <strong>FY 2082/83</strong>, understanding the <strong>Total Daily Energy Expenditure (TDEE)</strong> is an institutional requirement. This <a href="/calculator/calorie-calculator" className="text-sky-600 hover:text-sky-800 underline font-semibold transition-colors">Calorie Lab</a> provides a high-precision engine for energy mapping.
+        Managing your calories is the foundation of healthy weight management. By understanding your <strong>Total Daily Energy Expenditure (TDEE)</strong>, you can make informed decisions about your diet and exercise. This <a href="/calculator/calorie-calculator/" className="text-sky-600 hover:text-sky-800 underline font-semibold transition-colors">Calorie Tool</a> provides a high-precision calculation of your daily energy needs.
         </p>
         
         </div>
@@ -273,7 +270,7 @@ export const healthSEO: Record<string, SEOContent> = {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="p-8 bg-white border border-slate-200 rounded-2xl shadow-sm">
         <h4 className="text-sm font-black uppercase text-sky-600 mb-4">BMR (60-75%)</h4>
-        <p className="text-xs text-slate-600 leading-relaxed">The energy required for vital functions at rest. This is the 'Fixed Cost' of being alive in 2082/83.</p>
+        <p className="text-xs text-slate-600 leading-relaxed">The energy required for vital functions at rest. This is the baseline energy needed to stay alive.</p>
         </div>
         <div className="p-8 bg-white border border-slate-200 rounded-2xl shadow-sm">
         <h4 className="text-sm font-black uppercase text-indigo-600 mb-4">TEF (10%)</h4>
@@ -283,63 +280,60 @@ export const healthSEO: Record<string, SEOContent> = {
         </section>
         <section className="bg-slate-900 text-white rounded-2xl p-8 border border-slate-800 shadow-xl overflow-hidden relative">
         <div className="absolute top-0 right-0 w-64 h-64 bg-sky-600 rounded-full blur-[120px] opacity-20 pointer-events-none" />
-        <h3 className="text-xl font-black mb-6 relative z-10">Institutional Advice</h3>
+        <h3 className="text-xl font-black mb-6 relative z-10">Standard Advice</h3>
         <p className="text-sm text-slate-300 leading-relaxed relative z-10">
-        For precise hydration auditing, synchronize your intake with our <a href="/calculator/water-intake" className="text-sky-400 underline font-bold">Water Lab</a>. Weight loss is 80% nutrition and 20% activity.
+        For personalized advice, combine your calorie planning with our <a href="/calculator/water-intake/" className="text-sky-400 underline font-bold">Hydration Tool</a>. Remember, sustainable weight loss is a combination of healthy nutrition and regular activity.
         </p>
         </section>
         </div>
         </>
     ),
     faqs: [
-      { question: "How many calories should I eat?", answer: "It depends on your age, weight, height, and activity level. Use our auditor for the 2082/83 daily target." },
+      { question: "How many calories should I eat?", answer: "It depends on your age, weight, height, and activity level. Use our calculator to find your personalized daily target." },
       { question: "What is TDEE?", answer: "Total Daily Energy Expenditure is the total number of calories you burn in a day." }
     ]
   },
   'body-fat': {
-    title: "Body Fat Calculator | Body Composition Auditor",
-    description: "The institutional engine for adipose tissue auditing. 1500+ words on body composition, health risks, and FY 2082/83 fitness standards.",
+    title: "Body Fat Calculator | Body Composition Tool",
+    description: "Calculate your body fat percentage using the U.S. Navy method. Understand your body composition and track your fitness progress accurately.",
     howToUse: {
       steps: [
-        "1. Demographic Entry: Select Gender and input Age.",
-        "2. Weight Sync: Input current weight in kg or lbs.",
-        "3. Circumference Audit: Use a tape measure for Neck, Waist, and Hips (for females).",
-        "4. U.S. Navy Method: The engine uses the Navy algorithm for compositional mapping.",
-        "5. Result Analysis: View your percentage and category (Fitness, Average, Obese).",
-        "6. Trend Tracking: Audit changes in body fat over the 2082/83 fitness cycle."
+        "1. Basics: Select your gender and age.",
+        "2. Weight: Enter your current weight.",
+        "3. Measurements: Use a tape measure for your neck, waist, and hips (for females).",
+        "4. Calculation: The tool uses the U.S. Navy formula for accurate mapping.",
+        "5. Results: View your body fat percentage and fitness category.",
+        "6. Tracking: Monitor changes in your body composition over time."
       ]
     },
     formula: {
-      title: "The Adipose Mapping Algorithm",
-      description: "Based on the U.S. Navy Body Fat equations for the 2082/83 cycle.",
-      raw: "BF% (Male) = 86.010 × log10(waist - neck) - 70.041 × log10(height) + 36.76",
-      variables: ["Circumferences in cm.", "Height in cm."]
+      title: "Body Fat Formula (US Navy Method)",
+        description: "Based on the U.S. Navy Body Fat equations for body composition analysis.",
+        raw: "BF% (Male) = 86.010 × log10(waist - neck) - 70.041 × log10(height) + 36.76",
+        variables: ["Circumferences in cm.", "Height in cm."]
     },
     content: (
         <div className="space-y-12">
         <div className="bg-rose-50/50 border-l-4 border-rose-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-rose-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Composition Intelligence Summary</h2>
+        <h2 className="text-rose-700 font-black text-xs uppercase tracking-[0.3em] mb-3">How to Measure Body Fat Percentage</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Body fat percentage is a superior auditor of health compared to weight alone. In <strong>FY 2082/83</strong>, understanding your body composition allows for targeted metabolic optimization. This <a href="/calculator/body-fat" className="text-rose-600 hover:text-rose-800 underline font-semibold transition-colors">Body Fat Auditor</a> provides institutional-grade precision.
-        
-        
-        
+        Body fat percentage is a much better indicator of health than weight alone. Understanding your body composition allows for more effective fitness and health planning. This <a href="/calculator/body-fat/" className="text-rose-600 hover:text-rose-800 underline font-semibold transition-colors">Body Fat Calculator</a> provides high-precision results using proven methods.
         </p>
         </div>
         </div>
     ),
     faqs: [
-      { question: "What is a healthy body fat percentage?", answer: "For men, 10-20% is generally healthy; for women, 20-30% is considered the fitness range for FY 2082/83." }
+      { question: "What is a healthy body fat percentage?", answer: "For men, 10-20% is generally healthy; for women, 20-30% is typically considered a healthy fitness range." }
     ]
   },
   'ideal-weight': {
-    title: "Ideal Weight Calculator | Healthy Range Auditor",
-    description: "Determine your medically ideal weight range for FY 2082/83 based on height and frame. 1500+ words on healthy weight benchmarks.",
+    title: "Ideal Weight Calculator | Healthy Range Calculator",
+    description: "Find your ideal weight range based on height, gender, and frame size. Compare results from multiple trusted formulas used by health professionals.",
     howToUse: {
       steps: [
         "1. Input Height and Gender.",
         "2. Select Formula: Choose from Robinson, Miller, or Devine formulas.",
-        "3. Range Audit: View your target weight for optimal metabolic health."
+        "3. Range Check: View your target weight for optimal metabolic health."
       ]
     },
     formula: {
@@ -351,23 +345,20 @@ export const healthSEO: Record<string, SEOContent> = {
     content: (
         <div className="space-y-12">
         <div className="bg-teal-50 border-l-4 border-teal-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-teal-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Metabolic Target Summary</h2>
+        <h2 className="text-teal-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Healthy Weight Range Guide</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Ideal weight is a benchmark for long-term physiological stability. This auditor helps you target a weight that minimizes risk for metabolic disorders in <strong>FY 2082/83</strong>.
-        
-        
-        
+        An ideal weight range is a benchmark for long-term health and stability. This calculator helps you determine a target weight that minimizes the risk of metabolic and cardiovascular issues.
         </p>
         </div>
         </div>
     ),
     faqs: [
-      { question: "Is ideal weight the same for everyone?", answer: "No, it depends on height, gender, and frame size. Our auditor uses multiple formulas for a comprehensive FY 2082/83 review." }
+      { question: "Is ideal weight the same for everyone?", answer: "No, it depends on height, gender, and frame size. Our calculator provides a comprehensive view based on multiple established formulas." }
     ]
   },
   'water-intake': {
-    title: "Water Intake Calculator | Hydration Precision Auditor",
-    description: "Calculate your daily hydration requirements for FY 2082/83. 1500+ words on metabolic water needs and activity-based auditing.",
+    title: "Water Intake Calculator | Hydration Accuracy Calculator",
+    description: "Calculate your personalized daily hydration requirements based on your weight and activity level. Ensure you stay properly hydrated for optimal health.",
     howToUse: {
       steps: [
         "1. Enter Body Weight.",
@@ -377,98 +368,89 @@ export const healthSEO: Record<string, SEOContent> = {
       ]
     },
     formula: {
-      title: "The Hydration Algorithm",
-      description: "Based on body mass and metabolic activity for 2082/83.",
+      title: "Daily Hydration Formula",
+      description: "Calculated based on your body weight and daily activity level.",
       raw: "Water (Liters) = (Weight in kg × 0.033) + Activity Offset",
       variables: ["Activity Offset: Extra 0.5L to 1L per hour of exercise."]
     },
     content: (
         <div className="space-y-12">
         <div className="bg-blue-50 border-l-4 border-blue-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-blue-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Hydration Intelligence Summary</h2>
+        <h2 className="text-blue-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Personalized Hydration Guide</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Hydration is the primary fuel for cellular auditing. In <strong>FY 2082/83</strong>, maintaining precise fluid balance is critical for cognitive and physical performance.
-        
-        
-        
+        Staying hydrated is essential for every function in your body. Maintaining a precise fluid balance is critical for cognitive focus and physical performance throughout the day.
         </p>
         </div>
         </div>
     ),
     faqs: [
-      { question: "How much water should I drink?", answer: "A common benchmark is 2-3 liters, but our FY 2082/83 auditor provides a personalized volume based on your weight and activity." }
+      { question: "How much water should I drink?", answer: "While a common benchmark is 2-3 liters, our calculator provides a personalized volume based on your specific weight and daily activity level." }
     ]
   },
   'pregnancy-due-date': {
-    title: "Pregnancy Due Date Calculator | Obstetric Timeline Auditor",
-    description: "Calculate your estimated due date (EDD) for the 2082/83 cycle. 1500+ words on gestational development and prenatal auditing.",
+    title: "Pregnancy Due Date Calculator | Obstetric Timeline Calculator",
+    description: "Calculate your estimated due date (EDD) easily. Track your pregnancy journey with milestones and gestational development insights.",
     howToUse: {
       steps: [
         "1. LMP Entry: Select the date of your Last Menstrual Period.",
         "2. Cycle Calibration: Adjust for your average menstrual cycle length.",
         "3. EDD Sync: The engine uses Naegele's Rule for timeline mapping.",
-        "4. Milestone Audit: View key dates for the first, second, and third trimesters."
+        "4. Milestone Check: View key dates for the first, second, and third trimesters."
       ]
     },
     formula: {
       title: "Naegele's Rule",
-      description: "Standard obstetric formula for the 2082/83 gestational cycle.",
+      description: "The standard obstetric formula for calculating gestational age.",
       raw: "EDD = LMP + 7 Days + 9 Months",
       variables: ["Adjusted for average 28-day cycle."]
     },
     content: (
         <div className="space-y-12">
         <div className="bg-pink-50 border-l-4 border-pink-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-pink-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Obstetric Intelligence Summary</h2>
+        <h2 className="text-pink-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Estimated Due Date (EDD) Timeline</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Precision in gestational timing is an institutional requirement for prenatal care. This <a href="/calculator/pregnancy-due-date" className="text-pink-600 hover:text-pink-800 underline font-semibold transition-colors">Due Date Auditor</a> provides the definitive timeline for the <strong>FY 2082/83</strong> cycle.
-        
-        
-        
+        Accuracy in tracking your pregnancy is essential for proper prenatal care. This <a href="/calculator/pregnancy-due-date/" className="text-pink-600 hover:text-pink-800 underline font-semibold transition-colors">Due Date Calculator</a> provides a reliable timeline for your journey.
         </p>
         </div>
         </div>
     ),
     faqs: [
-      { question: "How accurate is the due date?", answer: "Most babies are born within two weeks of the EDD. Our FY 2082/83 auditor provides the best medical estimate based on standard gestational logic." }
+      { question: "How accurate is the due date?", answer: "Most babies are born within two weeks of their estimated due date. Our calculator provides a reliable medical estimate based on standard gestational logic." }
     ]
   },
   'bmi-child': {
-    title: "Child BMI Calculator | Pediatric Growth Auditor",
-    description: "Calculate BMI and Percentiles for children and teens in FY 2082/83. 1500+ words on pediatric development and growth chart auditing.",
+    title: "Child BMI Calculator | Pediatric Growth Calculator",
+    description: "Calculate BMI and growth percentiles for children and teens. Monitor pediatric development and track growth trends accurately.",
     howToUse: {
       steps: [
         "1. Enter Age (2-20 years) and Gender.",
-        "2. Height & Weight Sync: Input measurements for the 2082/83 audit.",
-        "3. Percentile Calibration: The engine maps results against WHO/CDC growth charts."
+        "2. Measurements: Input the child's current height and weight.",
+        "3. Percentiles: The engine maps results against standard WHO/CDC growth charts."
       ]
     },
     formula: {
       title: "Pediatric BMI Logic",
-      description: "Calculated as raw BMI then mapped to age-specific percentiles for 2082/83.",
+      description: "Calculated as BMI then mapped to age-appropriate percentiles.",
       raw: "BMI = Weight(kg) / Height(m)²",
       variables: ["Percentile: The child's relative rank among peers of the same age."]
     },
     content: (
         <div className="space-y-12">
         <div className="bg-emerald-50 border-l-4 border-emerald-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-emerald-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Pediatric Intelligence Summary</h2>
+        <h2 className="text-emerald-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Child BMI & Growth Chart Guide</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Child BMI must be interpreted via percentiles. In <strong>FY 2082/83</strong>, monitoring pediatric growth trends is the primary auditor of child health.
-        
-        
-        
+        Child BMI is interpreted differently than adults, using percentiles to account for growth. Monitoring these trends is an important way to track a child's health and development.
         </p>
         </div>
         </div>
     ),
     faqs: [
-      { question: "Is Child BMI the same as Adult BMI?", answer: "The formula is the same, but for children, we must use percentiles to account for growth spurts in FY 2082/83." }
+      { question: "Is Child BMI the same as Adult BMI?", answer: "The formula is the same, but for children, we use percentiles to account for growth spurts and development stages." }
     ]
   },
   'sleep': {
-    title: "Sleep Calculator | Circadian Rhythm & Recovery Auditor",
-    description: "Calculate optimal wake-up and sleep times based on 90-minute sleep cycles for FY 2082/83. 1500+ words on sleep hygiene.",
+    title: "Sleep Calculator | Circadian Rhythm & Recovery Calculator",
+    description: "Optimize your sleep schedule using 90-minute sleep cycles. Find the perfect time to wake up feeling refreshed and well-rested.",
     howToUse: {
       steps: [
         "1. Wake Time Entry: When do you need to be out of bed?",
@@ -477,7 +459,7 @@ export const healthSEO: Record<string, SEOContent> = {
       ]
     },
     formula: {
-      title: "The Circadian Cycle Axiom",
+      title: "Sleep Cycle Calculation Formula",
       description: "Human sleep naturally occurs in 90-minute ultrasonic rhythms.",
       raw: "Sleep Time = Wake Time - (1.5 Hours × N Cycles) - 15 mins",
       variables: ["N = Number of cycles (typically 5 or 6).", "15 mins = Average time to fall asleep."]
@@ -485,32 +467,29 @@ export const healthSEO: Record<string, SEOContent> = {
     content: (
         <div className="space-y-12">
         <div className="bg-indigo-50 border-l-4 border-indigo-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-indigo-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Recovery Intelligence Summary</h2>
+        <h2 className="text-indigo-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Sleep Cycle & Recovery Guide</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Sleep is the primary auditor of cognitive performance. In <strong>FY 2082/83</strong>, waking up at the end of a sleep cycle prevents 'sleep inertia'.
-        
-        
-        
+        Sleep is a fundamental pillar of cognitive performance and health. Waking up at the end of a sleep cycle helps you avoid 'sleep inertia' and feel more alert.
         </p>
         </div>
         </div>
     ),
     faqs: [
-      { question: "How many hours of sleep do I need?", answer: "Most adults need 7.5 to 9 hours (5-6 cycles). Our FY 2082/83 auditor helps you find the perfect rhythm." }
+      { question: "How many hours of sleep do I need?", answer: "Most adults benefit from 7.5 to 9 hours of sleep, which is roughly 5 to 6 full cycles. Our calculator helps you find your perfect rhythm." }
     ]
   },
   'ovulation-calculator': {
-    title: "Ovulation Calculator | Fertility & Conception Auditor",
-    description: "The definitive systematic resource for tracking fertility windows in FY 2082/83. 1500+ words on menstrual cycles and reproductive auditing.",
+    title: "Ovulation Calculator | Fertility & Conception Calculator",
+    description: "Track your fertility window and find your most fertile days. A helpful tool for family planning and understanding your reproductive cycle.",
     howToUse: {
       steps: [
-        "1. LMP Entry: Select the first day of your last period for the 2082/83 cycle.",
+        "1. Period Start: Select the first day of your last period.",
         "2. Cycle Length: Input your average menstrual duration (typically 28 days).",
         "3. Fertility Sync: View the most fertile days for conception."
       ]
     },
     formula: {
-      title: "The Fertility Axiom",
+      title: "The Fertility Principle",
       description: "Ovulation typically occurs 14 days before the next period starts.",
       raw: "Ovulation = Next Period - 14 Days",
       variables: ["Window = +/- 2 days around ovulation."]
@@ -518,12 +497,9 @@ export const healthSEO: Record<string, SEOContent> = {
     content: (
         <div className="space-y-12">
         <div className="bg-rose-50 border-l-4 border-rose-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-rose-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Reproductive Intelligence Summary</h2>
+        <h2 className="text-rose-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Understanding Your Fertility Window</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Understanding your biological clock is an institutional requirement for family planning in <strong>FY 2082/83</strong>. This auditor provides precise fertile window mapping.
-        
-        
-        
+        Understanding your cycle is a key part of family planning and reproductive health. This calculator provides a clear map of your fertile window to help you stay informed.
         </p>
         </div>
         </div>
@@ -533,8 +509,8 @@ export const healthSEO: Record<string, SEOContent> = {
     ]
   },
   'period-calculator': {
-    title: "Period Calculator | Menstrual Cycle & Wellness Auditor",
-    description: "Predict your next menstrual cycle with high-precision tracking for FY 2082/83. 1500+ words on menstrual health.",
+    title: "Period Calculator | Menstrual Cycle & Wellness Calculator",
+    description: "Predict your next period and track your menstrual cycle with ease. Stay organized and understand your body's natural rhythms.",
     howToUse: {
       steps: [
         "1. Start Date: Input the first day of your last period.",
@@ -543,7 +519,7 @@ export const healthSEO: Record<string, SEOContent> = {
       ]
     },
     formula: {
-      title: "The Menstrual Frequency Axiom",
+      title: "The Menstrual Frequency Principle",
       description: "Cycle tracking is a simple modular arithmetic operation.",
       raw: "Next Period = Last Period + Cycle Length",
       variables: ["Cycle Length = Days between start dates."]
@@ -551,12 +527,9 @@ export const healthSEO: Record<string, SEOContent> = {
     content: (
         <div className="space-y-12">
         <div className="bg-fuchsia-50 border-l-4 border-fuchsia-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-fuchsia-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Wellness Intelligence Summary</h2>
+        <h2 className="text-fuchsia-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Understanding Your Cycle</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Menstrual auditing is essential for proactive health management. In <strong>FY 2082/83</strong>, this engine ensures you are never caught off guard.
-        
-        
-        
+        Tracking your cycle is essential for proactive health management. This tool helps you stay organized and prepared for your next period.
         </p>
         </div>
         </div>
@@ -566,17 +539,17 @@ export const healthSEO: Record<string, SEOContent> = {
     ]
   },
   'age-calculator': {
-    title: "Age Calculator | Chronological & Life Stage Auditor",
-    description: "Calculate precise age in years, months, and days for FY 2082/83. The definitive systematic tool for age auditing.",
+    title: "Age Calculator | Chronological & Life Stage Calculator",
+    description: "Calculate your exact age in years, months, and days. A fast and accurate tool for personal use, legal documents, and milestone tracking.",
     howToUse: {
       steps: [
-        "1. Date of Birth: Input your birth date using the calendar.",
-        "2. Comparison Date: Default to 'Today' or choose a specific date in 2082/83.",
+        "1. Date of Birth: Select your birth date from the calendar.",
+        "2. Today's Date: The tool defaults to today, but you can choose any comparison date.",
         "3. Precise Sync: View your age down to the total number of hours and minutes."
       ]
     },
     formula: {
-      title: "The Chronological Axiom",
+      title: "The Chronological Principle",
       description: "Age is the elapsed time between two timestamps.",
       raw: "Age = Comparison Date - Date of Birth",
       variables: ["Leap years are automatically audited."]
@@ -584,12 +557,9 @@ export const healthSEO: Record<string, SEOContent> = {
     content: (
         <div className="space-y-12">
         <div className="bg-slate-50 border-l-4 border-slate-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-slate-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Chronological Intelligence Summary</h2>
+        <h2 className="text-slate-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Age Calculation Insights</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Age auditing is required for everything from insurance eligibility to academic enrollment in <strong>FY 2082/83</strong>. This tool provides absolute precision.
-        
-        
-        
+        Knowing your exact age is useful for everything from insurance applications to educational enrollment. This tool provides absolute precision for all your age-tracking needs.
         </p>
         </div>
         </div>
@@ -599,17 +569,17 @@ export const healthSEO: Record<string, SEOContent> = {
     ]
   },
   'lean-body-mass': {
-    title: "Lean Body Mass Calculator | Muscle Integrity Auditor",
-    description: "Calculate your body composition excluding fat for FY 2082/83. 1500+ words on muscle mass and metabolic health.",
+    title: "Lean Body Mass Calculator | Muscle Integrity Calculator",
+    description: "Calculate your lean body mass and understand your body composition. Essential for athletes and fitness enthusiasts tracking muscle growth.",
     howToUse: {
       steps: [
         "1. Weight & Height: Input current measurements.",
-        "2. Body Fat %: Enter your fat percentage from our Body Fat Lab.",
+        "2. Body Fat %: Enter your fat percentage from our Body Fat Tool.",
         "3. Result Sync: View the total weight of your bones, organs, and muscle."
       ]
     },
     formula: {
-      title: "The LBM Axiom",
+      title: "The LBM Principle",
       description: "Lean Body Mass is the total weight minus the weight of fat.",
       raw: "LBM = Total Weight * (1 - Body Fat %)",
       variables: ["Body Fat % in decimal form."]
@@ -617,12 +587,9 @@ export const healthSEO: Record<string, SEOContent> = {
     content: (
         <div className="space-y-12">
         <div className="bg-orange-50 border-l-4 border-orange-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-orange-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Muscle Intelligence Summary</h2>
+        <h2 className="text-orange-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Understanding Lean Body Mass</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        LBM is a critical auditor for athletes and fitness enthusiasts in <strong>FY 2082/83</strong>. It helps determine protein requirements and basal metabolism.
-        
-        
-        
+        Lean Body Mass (LBM) is an important metric for anyone focused on fitness and muscle health. It helps determine your protein needs and gives you a better picture of your physical composition.
         </p>
         </div>
         </div>

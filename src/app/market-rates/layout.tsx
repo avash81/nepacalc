@@ -1,14 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Live Market Rates Nepal Gold Silver and Exchange Rate Today',
-  description:
-    'Real-time financial dashboard for Nepal: Live gold price per tola, silver chandi rates, and current USD/INR to NPR exchange rates. Official federation & NRB sync.',
-  keywords: [
-    'gold price nepal today', 'exchange rate nepal live', 'usd to npr live',
-    'silver price nepal 2082', 'gold per tola today', 'remittance rates nepal',
-    'nrb exchange rates live', 'fenegosida gold rates today', 'nepalc gold price'
-  ],
+  title: "Market Rates Nepal | Gold, Silver, Foreign Exchange | NepaCalc",
+  description: "Live market rates for Gold, Silver, and Currency Exchange (Forex) in Nepal. Updated daily with official rates from NRB and FENEGOSIDA.",
+  keywords: ["gold price nepal", "exchange rate nepal", "usd to npr", "silver price nepal", "market rates nepal today"],
   alternates: { canonical: 'https://NepaCalc.com/market-rates/' },
   openGraph: {
     title: 'Live Market Rates & Gold Price Nepal | NepaCalc',
