@@ -2,10 +2,10 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: "Nepal Income Tax Calculator 2082/83 | Tax Slabs & SSF | NepaCalc",
-  description: "Calculate your Nepal income tax for FY 2082/83. Covers SSF waiver, EPF/CIT deductions, female 10% rebate, and married thresholds. Instant slab-wise breakdown.",
+  title: "Nepal Income Tax Calculator 2083/84 | IRD Slabs | NepaCalc",
+  description: "Calculate Nepal income tax for FY 2083/84. IRD-verified slabs, SSF waiver, EPF/CIT deductions, female 10% rebate. Instant slab-wise result — no signup.",
   slug: 'nepal-income-tax',
-  keywords: ["nepal income tax calculator 2082/83", "ird tax calculator", "income tax slab nepal 2082", "nepal tax calculator", "salary tax calculator nepal"],
+  keywords: ["nepal income tax calculator 2083/84", "ird tax calculator", "income tax slab nepal 2083", "salary tax calculator nepal"],
 });
 
 export default function Page() {

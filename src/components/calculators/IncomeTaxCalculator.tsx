@@ -27,7 +27,7 @@ export default function IncomeTaxCalculator() {
 
   const faqs = [
     {
-      question: "What are the tax slabs for FY 2082/83 in Nepal?",
+      question: "What are the tax slabs for FY 2083/84 in Nepal?",
       answer: "For individuals, the first Rs. 500,000 (Single) or Rs. 600,000 (Married) is taxed at 1%. However, if you are enrolled in SSF, this 1% is exempted. Subsequent slabs are 10%, 20%, 30%, 36%, and 39%."
     },
     {
@@ -39,7 +39,7 @@ export default function IncomeTaxCalculator() {
   return (
     <CalculatorLayout
       title="Nepal Income Tax Calculator"
-      description="Plan your finances with the latest Nepal Income Tax rules for FY 2082/83. Includes SSF exemptions and marital status benefits."
+      description="Plan your finances with the latest Nepal Income Tax rules for FY 2083/84. Includes SSF exemptions and marital status benefits."
       category={{ label: "Nepal Tools", href: "/nepal/" }}
       faqs={faqs}
       leftPanel={

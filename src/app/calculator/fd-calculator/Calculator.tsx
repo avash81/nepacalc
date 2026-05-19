@@ -51,9 +51,15 @@ export default function FDCalculator() {
     <ModernCalcLayout
       slug="fd-calculator"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Financial', href: '/finance/' }, { label: 'FD Calculator' }]}
-      title="Fixed Deposit (FD)"
-      description="The definitive engine for term deposits in Nepal. Calculate Muddati Khata returns with Class A bank compounding protocols and 5% TDS auditing."
+      title="Fixed Deposit (FD) Calculator Nepal 2083/84"
+      description="The definitive engine for term deposits in Nepal. Calculate Muddati Khata returns with Class A bank compounding protocols and 5% TDS auditing for FY 2083/84."
       icon={Banknote}
+      relatedTools={[
+        { label: "SIP Calculator", href: "/calculator/sip-calculator/" },
+        { label: "Loan EMI Tool", href: "/calculator/loan-emi/" },
+        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" },
+        { label: "Compound Interest", href: "/calculator/compound-interest/" }
+      ]}
       inputs={
         <div className="space-y-8">
           <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
@@ -245,13 +251,8 @@ export default function FDCalculator() {
           { label: "Loan EMI tool", href: "/calculator/loan-emi/", icon: Banknote },
           { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Wallet },
           { label: "Compound Interest", href: "/calculator/compound-interest/", icon: Activity },
-        ],
+        ]
       }}
-      relatedTools={[
-        { label: "SIP Calculator", href: "/calculator/sip-calculator/" },
-        { label: "Loan EMI", href: "/calculator/loan-emi/" },
-        { label: "Compound Interest", href: "/calculator/compound-interest/" }
-      ]}
     />
   );
 }

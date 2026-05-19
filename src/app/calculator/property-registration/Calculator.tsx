@@ -28,7 +28,7 @@ export default function PropertyRegistration() {
     <ModernCalcLayout
       slug="property-registration"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Property Registration' }]}
-      title="Property Registration & Stamp Duty"
+      title="Property Registration Fee 2083/84"
       description="Calculate Malpok registry fees and stamp duty for land/house transactions in Nepal. Includes female ownership discounts and all municipal tier rates."
       icon={Map}
       inputs={

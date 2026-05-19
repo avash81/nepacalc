@@ -60,9 +60,15 @@ export default function NepalIncomeTaxCalculator() {
     <ModernCalcLayout
       slug="nepal-income-tax"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Income Tax' }]}
-      title="Nepal Income Tax"
-      description="The authoritative fiscal engine for Nepalese salary earners. Calculate tax liability with IRD-standard slabs (FY 2082/83), SSF SST-waivers, and Female Tax Credit auditing."
+      title="Nepal Income Tax Calculator 2083/84 — Salary Tax & IRD Slabs"
+      description="The authoritative fiscal engine for Nepalese salary earners. Calculate tax liability with IRD-standard slabs (FY 2083/84), SSF SST-waivers, and Female Tax Credit auditing."
       icon={Wallet}
+      relatedTools={[
+        { label: "Salary Calculator (Net Pay)", href: "/calculator/nepal-salary/" },
+        { label: "TDS Calculator", href: "/calculator/nepal-tds/" },
+        { label: "VAT Calculator", href: "/calculator/nepal-vat/" },
+        { label: "Provident Fund", href: "/calculator/nepal-provident-fund/" }
+      ]}
       inputs={
         <div className="space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -244,12 +250,12 @@ export default function NepalIncomeTaxCalculator() {
       customSchema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Nepal Income Tax Calculator 2082/83",
+        "name": "Nepal Income Tax Calculator 2083/84",
         "url": "https://nepacalc.com/calculator/nepal-income-tax/",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Any",
         "browserRequirements": "Requires JavaScript",
-        "description": "Calculate Nepal income tax for FY 2082/83. Enter salary to get slab-wise breakdown, SSF waiver, EPF/CIT deductions, female 10% rebate and net take-home pay.",
+        "description": "Calculate Nepal income tax for FY 2083/84. Enter salary to get slab-wise breakdown, SSF waiver, EPF/CIT deductions, female 10% rebate and net take-home pay.",
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",
@@ -257,7 +263,7 @@ export default function NepalIncomeTaxCalculator() {
           "priceCurrency": "NPR"
         },
         "featureList": [
-          "Nepal income tax slab 2082/83",
+          "Nepal income tax slab 2083/84",
           "SSF waiver calculation",
           "Female 10% tax rebate",
           "EPF and CIT deduction support",
@@ -271,12 +277,6 @@ export default function NepalIncomeTaxCalculator() {
           "url": "https://nepacalc.com"
         }
       }}
-      relatedTools={[
-        { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
-        { label: "VAT Calculator", href: "/calculator/nepal-vat/" },
-        { label: "TDS Calculator", href: "/calculator/nepal-tds/" },
-        { label: "Provident Fund", href: "/calculator/nepal-provident-fund/" }
-      ]}
     />
   );
 }

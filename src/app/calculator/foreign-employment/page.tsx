@@ -1,10 +1,10 @@
 import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 export const metadata = calcMeta({
-  title: "Foreign Employment Fee Checker Nepal | DOFE Limit NepaCalc",
-  description: "Verify if your manpower agency is overcharging you. Check legal DOFE fees for Qatar, UAE, Malaysia, Japan (SSW), and Korea (EPS).",
+  title: "Foreign Employment Fee Checker Nepal 2083/84 | DOFE Limits",
+  description: "Check legal DOFE fees and manpower agency limits for FY 2083/84. Verify costs for Malaysia, Qatar, Japan (SSW), and EPS Korea. Avoid overcharging.",
   slug: 'foreign-employment',
-  keywords: ["foreign employment fee nepal", "free visa free ticket nepal", "manpower charge nepal", "dofe fee limit", "japan ssw cost nepal", "korea eps cost nepal"],
+  keywords: ["foreign employment fee nepal 2083", "free visa free ticket rule", "manpower agency cost 2084", "dofe fee limit nepal", "japan ssw fees nepal"],
 });
 export default function Page() {
   return (

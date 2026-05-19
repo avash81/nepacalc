@@ -94,7 +94,7 @@ export default function NEABillCalculator() {
       slug="nea-bill"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Electricity Bill' }]}
       title="NEA Bill"
-      description="The definitive utility auditing engine for Nepal. Calculate monthly electricity bills with 100% precision based on NEA 2082/83 progressive tariff slabs."
+      description="The definitive utility auditing engine for Nepal. Calculate monthly electricity bills with 100% precision based on NEA 2083/84 progressive tariff slabs."
       icon={Zap}
       inputs={
         <div className="space-y-6">
@@ -227,7 +227,7 @@ export default function NEABillCalculator() {
             <div className="px-6 py-4 border-b border-[#DADCE0] flex items-center justify-between bg-[#F8F9FA]">
               <div className="flex items-center gap-2">
                 <Table className="w-4 h-4 text-[#1A73E8]" />
-                <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">NEA 2082/83 Tariff Audit</h3>
+                <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">NEA 2083/84 Tariff Audit</h3>
               </div>
             </div>
             <div className="overflow-x-auto">
@@ -256,12 +256,12 @@ export default function NEABillCalculator() {
       customSchema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "NEA Electricity Bill Calculator Nepal 2082/83",
+        "name": "NEA Electricity Bill Calculator Nepal 2083/84",
         "url": "https://nepacalc.com/calculator/nea-bill/",
         "applicationCategory": "UtilityApplication",
         "operatingSystem": "Any",
         "browserRequirements": "Requires JavaScript",
-        "description": "Calculate your Nepal Electricity Authority (NEA) bill for FY 2082/83. Support for all meter capacities (5A to 60A), digital rebates, and late payment fines.",
+        "description": "Calculate your Nepal Electricity Authority (NEA) bill for FY 2083/84. Support for all meter capacities (5A to 60A), digital rebates, and late payment fines.",
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",

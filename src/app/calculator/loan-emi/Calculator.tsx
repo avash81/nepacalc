@@ -84,9 +84,15 @@ export default function LoanEMICalculator() {
     <ModernCalcLayout
       slug="loan-emi"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Financial', href: '/finance/' }, { label: 'Loan Calculator' }]}
-      title={isReverse ? "Loan Affordability" : "Loan EMI"}
-      description="The definitive resource for debt intelligence in Nepal. Calculate Equated Monthly Installments for Home, Auto, and Personal loans with high-precision NRB regulatory compliance auditing."
+      title={isReverse ? "Loan Affordability" : "Loan EMI Calculator Nepal 2083/84 — Home, Car & Personal Loans"}
+      description="Calculate EMI for home, car and personal loans in Nepal. Full amortization schedule, total interest payable, and NRB base rate context."
       icon={Landmark}
+      relatedTools={[
+        { label: "Home Loan Calculator", href: "/calculator/nepal-home-loan/" },
+        { label: "Auto Loan Calculator", href: "/calculator/auto-loan/" },
+        { label: "Loan Eligibility", href: "/calculator/nepal-loan-eligibility/" },
+        { label: "Fixed Deposit", href: "/calculator/fd-calculator/" }
+      ]}
       inputs={
         <div className="space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -282,12 +288,6 @@ export default function LoanEMICalculator() {
 
         </div>
       }
-      relatedTools={[
-        { label: "Home Loan Tool", href: "/calculator/home-loan/" },
-        { label: "Vehicle Loan", href: "/calculator/auto-loan/" },
-        { label: "Personal Loan", href: "/calculator/personal-loan/" },
-        { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
-      ]}
     />
   );
 }

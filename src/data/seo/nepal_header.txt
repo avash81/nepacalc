@@ -4,11 +4,11 @@ import { SEOContent } from './types';
 export const nepalSpecificSEO: Record<string, SEOContent> = {
   'nepali-date': {
     title: "Nepali Date Converter | BS to AD & AD to BS Auditor",
-    description: "The definitive systematic resource for Bikram Sambat (BS) and Anno Domini (AD) conversion in FY 2082/83. 1500+ words on calendar logic and historical auditing.",
+    description: "The definitive systematic resource for Bikram Sambat (BS) and Anno Domini (AD) conversion in FY 2083/84. 1500+ words on calendar logic and historical auditing.",
     howToUse: {
       steps: [
         "1. Select Mode: Choose between BS to AD or AD to BS conversion.",
-        "2. Input Date: Enter the Year, Month, and Day for the 2082/83 cycle.",
+        "2. Input Date: Enter the Year, Month, and Day for the 2083/84 cycle.",
         "3. Precise Sync: The engine calculates the corresponding date in the other calendar system instantly.",
         "4. Tithi Audit: (Optional) View the lunar tithi and significant festivals for the selected date."
       ]
@@ -24,7 +24,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         <div className="bg-orange-50 border-l-4 border-orange-600 rounded-r-xl p-8 shadow-sm">
           <h2 className="text-orange-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Calendar Intelligence Summary</h2>
           <p className="text-slate-800 text-base leading-relaxed">
-            Precision in date conversion is an institutional requirement in Nepal. In <strong>FY 2082/83</strong>, aligning Bikram Sambat with Gregorian standards is essential for legal, financial, and cultural auditing.
+            Precision in date conversion is an institutional requirement in Nepal. In <strong>FY 2083/84</strong>, aligning Bikram Sambat with Gregorian standards is essential for legal, financial, and cultural auditing.
           </p>
         </div>
       </div>
@@ -180,8 +180,8 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     ]
   },
   'nepal-salary': {
-    title: "Nepal Salary Calculator 2082/83 | Take-Home Pay Auditor",
-    description: "Calculate your net monthly take-home salary in Nepal for FY 2082/83.",
+    title: "Nepal Salary Calculator 2083/84 | Take-Home Pay Auditor",
+    description: "Calculate your net monthly take-home salary in Nepal for FY 2083/84.",
     howToUse: {
       steps: [
         "1. Marital Status: Select Single or Married.",
@@ -199,7 +199,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         <div className="bg-emerald-50 border-l-4 border-emerald-600 rounded-r-xl p-8 shadow-sm">
           <h2 className="text-emerald-700 font-black text-xs uppercase tracking-widest mb-3">Payroll Intelligence Summary</h2>
           <p className="text-slate-800 leading-relaxed">
-            Navigate the complex tax slabs of FY 2082/83.
+            Navigate the complex tax slabs of FY 2083/84.
           </p>
         </div>
       </div>

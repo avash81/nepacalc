@@ -14,9 +14,9 @@ export const SITE_CONFIG = {
 export function calcMeta({ title, description, slug, keywords = [], canonical }: { title: string; description: string; slug: string; keywords?: string[]; canonical?: string }): Metadata {
   const ogImage = `${SITE_CONFIG.baseUrl}/api/og?title=${encodeURIComponent(title)}`;
   
-  // Clean Title — Brand enforced at end with a space, NO symbols
+  // Clean Title — Brand enforced at end with a space, NO symbols (except / for years)
   let seoTitle = title
-    .replace(/[|&—\-_:/\\(),!?]/g, ' ') // Remove disruptive symbols, but keep periods and percent signs
+    .replace(/[|&—\-_:\\(),!?]/g, ' ') // Removed / from restricted list
     .replace(/\s+/g, ' ')               // Normalize spaces
     .trim();
 
@@ -32,18 +32,18 @@ export function calcMeta({ title, description, slug, keywords = [], canonical }:
   
   // Clean Description — Must end with Brand reference or CTA
   let seoDescription = description
-    .replace(/[|&—\-_:/\\(),!?]/g, ' ') // Keep periods and percent signs for descriptions
+    .replace(/[|&—\-_:\\(),!?]/g, ' ') // Removed / from restricted list
     .replace(/\s+/g, ' ')               // Normalize spaces
     .trim();
 
   const descSuffix = ' Try NepaCalc now.';
   if (!seoDescription.toLowerCase().includes('nepacalc')) {
-    if (seoDescription.length + descSuffix.length > 160) {
-      seoDescription = seoDescription.substring(0, 160 - descSuffix.length).trim();
+    if (seoDescription.length + descSuffix.length > 155) {
+      seoDescription = seoDescription.substring(0, 155 - descSuffix.length).trim();
     }
     seoDescription = `${seoDescription}${descSuffix}`;
-  } else if (seoDescription.length > 160) {
-    seoDescription = seoDescription.substring(0, 160).trim();
+  } else if (seoDescription.length > 155) {
+    seoDescription = seoDescription.substring(0, 155).trim();
   }
 
   const globalKeywords = [...new Set([...keywords, 'NepaCalc', 'Nepal Calculator', 'Free Online Tools'])];

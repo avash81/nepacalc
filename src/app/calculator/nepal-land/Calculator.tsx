@@ -111,9 +111,14 @@ export default function NepalLandCalculator() {
     <ModernCalcLayout
       slug="nepal-land"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Land Converter' }]}
-      title="Nepal Land"
+      title="Nepal Land Area Converter — Ropani, Aana, Bigha, Kattha, Dhur"
       description="The definitive real estate auditing engine for Nepal. Convert Ropani, Aana, Bigha, and Kattha with 100% Lalpurja precision based on DoLMA standards."
       icon={Map}
+      relatedTools={[
+        { label: "General Area Calculator", href: "/calculator/area-calculator/" },
+        { label: "Home Loan Calculator", href: "/calculator/mortgage-calculator/" },
+        { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax/" }
+      ]}
       inputs={
         <div className="space-y-6">
           <div className="space-y-4">
@@ -302,12 +307,6 @@ export default function NepalLandCalculator() {
           { label: "DoLMA Official", href: "https://dolma.gov.np", icon: MapPin },
         ],
       }}
-      relatedTools={[
-        { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
-        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" },
-        { label: "Home Loan EMI", href: "/calculator/nepal-home-loan/" },
-        { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax/" }
-      ]}
     />
   );
 }

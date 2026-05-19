@@ -140,7 +140,7 @@ export default function GoldDashboardClient() {
       }
       seoSection={
          <div className="prose prose-slate max-w-none">
-            <h2 className="text-[20px] font-black text-slate-900 mb-4 tracking-tighter">Understanding Gold Prices in Nepal 2082/83</h2>
+            <h2 className="text-[20px] font-black text-slate-900 mb-4 tracking-tighter">Understanding Gold Prices in Nepal 2083/84</h2>
             <p className="text-[14px] text-slate-600 leading-relaxed font-medium">
                Gold prices in the Nepalese market are determined by two primary factors: the **International Spot Price (XAU/USD)** and the domestic **Customs Duty & Taxes**. As of April 2026, Nepal applies a approximately 20% customs duty effectively calculated based on official benchmarks. Our dashboard tracks the **FENEGOSIDA** (Federation of Nepal Gold and Silver Dealers' Association) daily rates ensuring you have the exact market valuation for your jewelry and investments.
             </p>

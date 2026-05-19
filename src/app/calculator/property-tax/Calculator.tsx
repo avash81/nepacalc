@@ -26,9 +26,15 @@ export default function PropertyTaxCalculator() {
     <ModernCalcLayout
       slug="property-tax"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Capital Gains Tax' }]}
-      title="Property Capital Gains Tax"
-      description="Calculate 5% or 7.5% CGT on property sale profit in Nepal based on holding period. Engineered to match Nepal Inland Revenue Department (IRD) mandates."
+      title="Nepal Property Tax & Capital Gains (CGT) Calculator 2083/84"
+      description="Calculate 5% or 7.5% CGT on property sale profit in Nepal based on holding period. Engineered to match Nepal Inland Revenue Department (IRD) mandates for FY 2083/84."
       icon={Home}
+      relatedTools={[
+        { label: "Property Registration", href: "/calculator/property-registration/" },
+        { label: "Home Loan Calculator", href: "/calculator/mortgage-calculator/" },
+        { label: "Nepal Land Converter", href: "/calculator/nepal-land/" },
+        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" }
+      ]}
       inputs={
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6">
@@ -255,11 +261,6 @@ export default function PropertyTaxCalculator() {
           { label: "Income Tax", href: "/calculator/nepal-income-tax/", icon: ShieldCheck },
         ],
       }}
-      relatedTools={[
-        { label: "Property Registration", href: "/calculator/property-registration/" },
-        { label: "Mortgage", href: "/calculator/mortgage-calculator/" },
-        { label: "Nepal Land", href: "/calculator/nepal-land/" }
-      ]}
     />
   );
 }

@@ -4,9 +4,9 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata: Metadata = {
-  title: 'Live Silver Price Today Nepal | Chandi Tola & Gram NepaCalc',
-  description: 'Current silver (Chandi) prices in Nepal per tola and gram. Live market benchmarks and official FENEGOSIDA daily silver rates.',
-  keywords: ['silver price nepal today', 'chandi rate today', 'silver price per tola', 'silver rate kathmandu', 'silver converter nepal'],
+  title: 'Live Silver Price Today Nepal 2083/84 | Chandi Rate NepaCalc',
+  description: 'Track live silver (Chandi) rates in Nepal for FY 2083/84. Daily FENEGOSIDA updates per tola and gram. Historical charts and conversion tools.',
+  keywords: ['silver price nepal 2083', 'chandi rate today nepal', 'silver price per tola nepal', 'silver rate 2084', 'kathmandu silver price'],
   alternates: {
     canonical: 'https://NepaCalc.com/market-rates/live-silver-price/',
   },
@@ -39,7 +39,7 @@ export default function Page() {
   return (
     <div className="bg-white min-h-screen">
       <CalcWrapper
-        title="Live Silver Price"
+        title="Live Silver Price 2083/84"
         description="Real-time silver indices and conversion tools synchronized with FENEGOSIDA benchmarks."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Silver Price' }]}
         isNepal={true}

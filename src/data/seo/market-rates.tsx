@@ -151,8 +151,8 @@ export const marketRatesSEO: Record<string, SEOContent> = {
     ]
   },
   'market-rates/remittance': {
-    title: "Remittance Board Nepal | Live Exchange Rates for Migrant Workers",
-    description: "Compare real-time exchange rates for sending money to Nepal.",
+    title: "Nepal Remittance Board | Exchange Rates & Savings Guide 2082",
+    description: "Compare remittance exchange rates for Nepal. Understand NRB rules for Remittance Savings Accounts, 1% extra interest, and legal channels (IPPS/Hundi).",
     howToUse: { steps: ["1. Select Country.", "2. Enter Amount.", "3. Compare Rates."] },
     formula: { title: "Remittance Calculation Formula", description: "Principal minus fees times rate.", raw: "Net = (P - F) x R", variables: ["P=Principal", "F=Fee", "R=Rate"] },
     content: (

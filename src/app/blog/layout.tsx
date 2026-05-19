@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'NepaCalc Blog & Nepal Calculator Guides',
-  description: 'Expert guides on Nepal income tax 2082/83, investment tips for mutual funds and stocks, and detailed tutorials for all our 80+ calculators.',
+  description: 'Expert guides on Nepal income tax 2083/84, investment tips for mutual funds and stocks, and detailed tutorials for all our 80+ calculators.',
   keywords: 'nepal finance blog, tax guide nepal 2082, sip investment nepal, mutual fund nepal tips, emi calculation guide',
   openGraph: {
     title: 'NepaCalc Blog & Nepal Calculator Guides',

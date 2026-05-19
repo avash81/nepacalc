@@ -84,7 +84,7 @@ export default function SEEGPACalculator() {
       slug="see-gpa"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Education', href: '/education/' }, { label: 'SEE GPA Calculator' }]}
       title="SEE GPA Calculator"
-      description="Calculate your Secondary Education Examination (SEE) GPA using the official Nepal Letter Grading Directive 2082 rules."
+      description="Calculate your Secondary Education Examination (SEE) GPA using the official Nepal Letter Grading Directive 2083 rules."
       icon={GraduationCap}
       inputs={
         <div className="space-y-6">
@@ -201,12 +201,12 @@ export default function SEEGPACalculator() {
       customSchema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "NEPAL TELECOM :: SEE.NTC.NET.NP :: SEE Results 2082/2083",
+        "name": "NEPAL TELECOM :: SEE.NTC.NET.NP :: SEE Results 2083/2084",
         "url": "https://nepacalc.com/calculator/see-gpa/",
         "applicationCategory": "EducationApplication",
         "operatingSystem": "Any",
         "browserRequirements": "Requires JavaScript",
-        "description": "Official SEE Result GPA Calculator for 2082/2083. Check your SEE marksheet and convert grades to GPA instantly using NEB standards.",
+        "description": "Official SEE Result GPA Calculator for 2083/2084. Check your SEE marksheet and convert grades to GPA instantly using NEB standards.",
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",

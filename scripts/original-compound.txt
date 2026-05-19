@@ -1,0 +1,241 @@
+
+
+  'compound-interest': {
+    title: "Compound Interest Calculator Nepal | Exponential Wealth Lab",
+    description: "Calculate exponential wealth growth with absolute precision. Professional guide on NRB compounding standards, inflation impact, and the power of time.",
+    
+    howToUse: {
+      steps: [
+        "1. Principal Initialization: Input the initial lump sum amount (Corpus) you are starting with in NPR.",
+        "2. Yield Configuration: Define the annual interest rate. Commercial banks in Nepal currently offer 7% to 11% depending on the instrument.",
+        "3. Compounding Frequency: Select how often interest is calculated. In Nepal, 'Quarterly' is the regulatory standard for most savings and FD products.",
+        "4. Time Horizon: Set the total duration of the investment in years. Remember, time is the most powerful variable in this equation.",
+        "5. Periodic Contributions: Add optional monthly deposits to simulate a systematic investment plan (SIP) alongside your lump sum.",
+        "6. Tax Leakage Audit: Account for the mandatory 5% tax on interest income to determine your true net future value.",
+        "7. Inflation Calibration: Review the 'Real Rate of Return' by comparing your nominal yield against the current CPI inflation in Nepal.",
+        "8. Output Analysis: Observe the 'Interest on Interest' component which represents the snowball effect of compounding."
+      ]
+    },
+    
+    formula: {
+      title: "The Exponential Growth Axiom (Multi-Frequency Model)",
+      description: "Compound interest is calculated by applying the periodic interest rate to the principal plus all interest accumulated from previous periods.",
+      raw: "A = P(1 + r/n)^(nt)",
+      variables: [
+        "A = Final Amount: The total value of the investment including interest.",
+        "P = Principal: The initial capital invested.",
+        "r = Annual Rate: The nominal interest rate in decimal form (10% = 0.10).",
+        "n = Compounding Frequency: Number of times interest is applied per year (Quarterly = 4).",
+        "t = Time: Total number of years the money is invested.",
+        "Worked Example (Standard Growth)",
+        "Principal: Rs. 1,00,000",
+        "Rate: 10% (Quarterly Compounding)",
+        "Tenure: 10 Years",
+        "Calculation: 1,00,000 × (1 + 0.10/4)^(4 × 10)",
+        "Final Value: Rs. 2,68,506.38"
+      ]
+    },
+    
+    content: (
+        <div className="space-y-12">
+        
+        <div className="bg-blue-50/50 border-l-4 border-blue-600 rounded-r-xl p-8 shadow-sm">
+        <h2 className="text-blue-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
+        Institutional Executive Summary
+        </h2>
+        <p className="text-slate-800 text-base leading-relaxed">
+        Compound interest is the fundamental engine of wealth creation, often described as the "8th Wonder of the World" due to its ability to turn modest savings into significant fortunes over time. In the context of the Nepalese financial system, compounding is the core mechanism behind Fixed Deposits, Recurring Savings, and Mutual Fund returns. This institutional grade calculator allows investors to move beyond simple linear projections and understand the exponential "Snowball Effect" where interest starts earning its own interest. By factoring in the <a href="https://www.nrb.org.np" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline font-semibold transition-colors">Nepal Rastra Bank (NRB) </a> quarterly standards and statutory tax deductions, we provide a definitive audit of your future purchasing power.
+        <br/><br/>
+        <span className="text-sm text-slate-600 font-medium">
+        Tax Efficiency: Ensure your interest earnings are audited for tax liability using our <a href="/calculator/nepal-income-tax" className="text-blue-600 hover:text-blue-800 underline font-bold transition-colors">Nepal Income Tax Lab</a> to maximize net returns.
+        </span>
+        </p>
+        
+        <section>
+        <h3 className="text-2xl font-black text-slate-900 mb-6">
+        Compounding Frequency: The Hidden Yield Optimizer
+        </h3>
+        <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-4">
+        <p>
+        In the mathematics of compounding, the frequency (n) at which interest is calculated can significantly impact the final maturity amount, even if the nominal rate remains the same.
+        </p>
+        <ul className="list-disc pl-6 space-y-3 mt-4">
+        <li><strong>Annual Compounding:</strong> Interest is calculated once a year. This is the simplest but least effective growth model.</li>
+        <li><strong>Quarterly Compounding (NRB) Standard :</strong> The most common method in Nepal. Interest is calculated every three months and added to the principal, allowing for "Interest on Interest" to start working faster.</li>
+        <li><strong>Monthly Compounding:</strong> Common in high yield savings accounts and micro-finance institutions. This provides the highest effective annual rate (EAR) .</li>
+        </ul>
+        <p>
+        When comparing two banks in Nepal, always check if they offer "Quarterly" or "Semi-Annual" compounding. A lower nominal rate with higher frequency can often outperform a higher nominal rate with lower frequency. For a direct comparison with fixed yield products, refer to our <a href="/calculator/fd-calculator" className="text-blue-600 hover:text-blue-800 underline font-semibold transition-colors">FD Lab</a>.
+        </p>
+        
+        
+        <section className="bg-white border border-slate-200 rounded-2xl p-8 mb-8 shadow-sm">
+        <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
+        <span className="text-red-600">⏳</span> The Cost of Delay: Why Time Beats Timing
+        </h3>
+        <div className="prose prose-slate max-w-none text-slate-700 leading-relaxed space-y-4">
+        <p>
+        The most critical variable in the compounding formula is not the interest rate, but <strong>Time (t) </strong>. Because the growth is exponential, the vast majority of the wealth is generated in the final few years of the investment horizon.
+        </p>
+        <p>
+        If a 25-year-old in Kathmandu starts saving Rs. 10,000 monthly, they will retire significantly wealthier than a 35-year-old who starts saving Rs. 20,000 monthly. This "head start" allows the compounding engine more cycles to multiply. To model your own monthly systematic growth, audit our <a href="/calculator/sip-calculator" className="text-blue-600 hover:text-blue-800 underline font-semibold transition-colors">SIP Lab</a>.
+        </p>
+        
+        
+        <section className="bg-slate-900 text-white rounded-2xl p-8 border border-slate-800 shadow-xl overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-green-600 rounded-full blur-[120px] opacity-20 pointer-events-none" />
+        <h3 className="text-xl font-black mb-6 flex items-center gap-3 relative z-10">
+        <span className="text-green-400">🔢</span> The Rule of 72: Instant Wealth Auditing
+        </h3>
+        <p className="text-sm text-slate-300 leading-relaxed mb-8 relative z-10">
+        The Rule of 72 is a mental shortcut used to determine how long it will take for your money to double at a fixed annual rate of interest.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+        <div className="space-y-4">
+        <div className="flex items-start gap-4"><div className="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/40 flex items-center justify-center text-green-400 font-bold">1
+        <p className="text-sm text-slate-300"><strong className="text-white">The Formula:</strong> Divide 72 by the annual interest rate. The result is the number of years required to double your principal.</p></div>
+        <div className="flex items-start gap-4">
+        <div className="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/40 flex items-center justify-center text-green-400 font-bold">2
+        <p className="text-sm text-slate-300"><strong className="text-white">Example:</strong> If a Nepal bank offers 9% on a fixed deposit, your money doubles in 72 / 9 = 8 years.</p>
+        <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl"><h4 className="text-xs font-black text-green-400 uppercase tracking-widest mb-3">Institutional Strategy</h4>
+        <p className="text-xs text-slate-400 leading-relaxed italic">
+        "In high inflation environments like Nepal, the Rule of 72 helps you quickly realize if your investment is growing fast enough to maintain your lifestyle. If doubling takes more than 10 years, you are likely losing purchasing power."
+        </p></div>
+        
+        
+        <section className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+        <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
+        <span className="text-orange-600">🔥</span> Inflation: The Silent Killer of Wealth
+        </h3>
+        <p className="text-sm text-slate-700 leading-relaxed">
+        While compound interest grows your balance, inflation erodes the value of that balance. In Nepal, where inflation often hovers around 6% to 8%, a 10% nominal return only provides a 2% to 4% "Real Rate of Return". This is why aggressive compounding in equity or business is often necessary to build actual wealth.
+        </p>
+        <div className="mt-6 p-5 bg-orange-50 border border-orange-100 rounded-xl">
+        <p className="text-xs font-bold text-orange-800 uppercase mb-2">Wealth Audit:</p>
+        <p className="text-sm text-orange-900 leading-relaxed">
+        Rs. 1 Crore in 20 years might sound like a fortune, but at 7% average inflation, its purchasing power will be equivalent to roughly Rs. 25 Lakhs in today's terms. Use our <a href="/calculator/cagr-calculator" className="text-blue-600 underline font-bold">CAGR Auditor</a> to track your inflation adjusted performance.
+        </p>
+        
+        
+        <section>
+        <h3 className="text-2xl font-black text-slate-900 mb-6">
+        Wealth Engineering Essentials
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-blue-300 transition-all">
+        <h4 className="font-black text-slate-900 mb-3 flex items-center gap-2">
+        <span className="text-blue-500">🏢</span> Corporate FD
+        </h4>
+        <p className="text-xs text-slate-600 leading-relaxed">
+        Some finance companies in Nepal offer higher rates than A-Class banks. While the compounding math is the same, always audit the 'Risk Premium' before chasing the extra 1% yield.
+        </p>
+        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-orange-300 transition-all">
+        <h4 className="font-black text-slate-900 mb-3 flex items-center gap-2">
+        <span className="text-orange-500">🏦</span> Tax Leakage
+        </h4>
+        <p className="text-xs text-slate-600 leading-relaxed">
+        The 5% TDS in Nepal is deducted every time interest is credited (usually quarterly . This reduces the amount of money available for the next compounding cycle.
+        </p>
+        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-green-300 transition-all">
+        <h4 className="font-black text-slate-900 mb-3 flex items-center gap-2">
+        <span className="text-green-600">📊</span> Reinvestment
+        </h4>
+        <p className="text-xs text-slate-600 leading-relaxed">
+        To truly experience compounding, you must reinvest your interest. Taking monthly payouts from an FD is 'Simple Interest' in practice, not compounding.
+        </p>
+        
+        
+        <section className="bg-indigo-50 border border-indigo-100 rounded-3xl p-10 relative overflow-hidden">
+        <div className="relative z-10">
+        <h3 className="text-2xl font-black text-indigo-900 mb-4">
+        Strategic Case Study: The 10-Year Head Start
+        </h3>
+        <p className="text-indigo-900/70 text-sm leading-relaxed mb-8">
+        Let's audit two investors, Rahul and Sita, both targeting 12% annual returns in the NEPSE secondary market. Let's see the impact of their starting age:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6"><div className="bg-white p-6 rounded-2xl border border-indigo-200 shadow-sm"><h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Investor A (Rahul </h4></div>
+        <div className="space-y-2 text-sm text-slate-700">
+        <div className="flex justify-between"><span>Starts at Age:</span> <strong>20</strong></div>
+        <div className="flex justify-between"><span>Invests for:</span> <strong>40 Years</strong></div>
+        <div className="flex justify-between border-t pt-2 mt-2 font-bold text-slate-900"><span>Multiplier:</span> <span>93.05 Times</span>
+        <div className="bg-white p-6 rounded-2xl border border-green-200 shadow-md transform md:scale-105"><h4 className="text-xs font-black text-green-600 uppercase tracking-widest mb-4">Investor B (Sita </h4></div>
+        <div className="space-y-2 text-sm text-slate-700">
+        <div className="flex justify-between"><span>Starts at Age:</span> <strong>30</strong></div>
+        <div className="flex justify-between"><span>Invests for:</span> <strong>30 Years</strong></div>
+        <div className="flex justify-between border-t pt-2 mt-2 font-bold text-green-700"><span>Multiplier:</span> <span>29.96 Times</span>
+        <p className="text-xs text-indigo-900/50 mt-8 italic text-center">
+        Audit Observation: By starting just 10 years earlier, Rahul's corpus becomes <strong>3 times larger</strong> than Sita's, even though they invested with the same skill level. This highlights the absolute dominance of 'Time' in the compounding equation. Verify your own growth trajectory with our <a href="/calculator/compound-interest" className="text-blue-600 underline font-bold">Compound Interest Suite</a>.
+        </p></div></div></div></div></div></div>
+        </section>
+        
+        <div className="pt-10 border-t border-slate-200 text-center mt-12">
+        <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
+        Compliance Audit: Last updated Jestha 2083 (June 2026 . Calculations strictly conform to the NRB Unified Directives for commercial banking.
+        
+        
+        
+        </p>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
+        </div>
+        </section>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
+        </div>
+        </section>
+        </div>
+        </section>
+        </div>
+        </div>
+    ),
+    faqs: [
+      { 
+        question: "What is the difference between simple and compound interest?", 
+        answer: "Simple interest is calculated only on the initial principal. Compound interest is calculated on the principal plus all accumulated interest from previous periods, leading to exponential growth over time." 
+      },
+      { 
+        question: "How often do banks in Nepal compound interest?", 
+        answer: "Most commercial banks (A-Class) and development banks in Nepal compound interest on a quarterly basis. Some specific monthly savings schemes may offer monthly compounding, while some treasury bonds use semi-annual compounding." 
+      },
+      { 
+        question: "Is compound interest taxable in Nepal?", 
+        answer: "Yes. For individuals, interest income from savings and fixed deposits is subject to a 5% Tax Deducted at Source (TDS). This tax is deducted automatically by the bank every time interest is credited to your account." 
+      },
+      { 
+        question: "What is the Rule of 72?", 
+        answer: "The Rule of 72 is a quick way to estimate how many years it takes to double your money. Divide 72 by your annual interest rate. For example, at 8% interest, your money doubles in approximately 9 years." 
+      },
+      { 
+        question: "Can I use the compound interest calculator for SIP?", 
+        answer: "Yes, our calculator has a 'Periodic Contribution' feature that allows you to simulate monthly deposits alongside your initial corpus, making it perfect for auditing Mutual Fund or SIP projections." 
+      },
+      { 
+        question: "Does compounding apply to the Nepal stock market (NEPSE)?", 
+        answer: "Yes, but indirectly. In stocks, compounding happens when you reinvest your dividends to buy more shares, or when the company reinvests its profits to grow its business, leading to higher stock prices over the long term." 
+      },
+      { 
+        question: "Which is better: monthly or quarterly compounding?", 
+        answer: "Monthly compounding is technically better for the investor because interest is added to your principal more frequently, allowing it to start earning interest sooner. However, the difference is usually quite small unless the corpus is very large." 
+      },
+      { 
+        question: "What is the real rate of return?", 
+        answer: "The real rate of return is your interest rate minus the inflation rate. If you earn 10% interest but inflation is 7%, your real growth in purchasing power is only 3%." 
+      },
+      { 
+        question: "How do I maximize compounding returns in Nepal?", 
+        answer: "Start early, choose the highest frequency of compounding (quarterly or monthly), reinvest all earnings, and most importantly, stay invested for at least 10-15 years to reach the 'vertical' part of the growth curve." 
+      },
+      { 
+        question: "What happens to compounding if I withdraw interest monthly?", 
+        answer: "If you withdraw the interest as soon as it is credited, you are essentially receiving 'Simple Interest'. The compounding effect stops because the principal remains stagnant and never grows through reinvested earnings." 
+      }
+    ]
+  },

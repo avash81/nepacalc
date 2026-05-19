@@ -414,26 +414,25 @@ export const financialSEO: Record<string, SEOContent> = {
         </div>
     ),
   },
-
-  'mortgage-calculator': {
-    title: "Home Loan & Mortgage Calculator Nepal | Monthly EMI Planner",
-    description: "Calculate your home loan EMI in Nepal. Understand mortgage rules, down payment requirements, and repayment schedules for your new home.",
+'mortgage-calculator': {
+    title: "Mortgage & Home Loan Auditor Nepal | Institutional Amortization Lab",
+    description: "Professional systematic resource for home mortgage planning in Nepal. 1500+ words on NRB mortgage caps, LTV ratios, and interest-shaving strategies for FY 2082/83.",
     
     howToUse: {
       steps: [
-        "1. Property Value: Enter the total price of the house or land you want to buy.",
-        "2. Down Payment: Enter the amount you will pay upfront. In Nepal, banks usually require a 30% to 50% down payment.",
-        "3. Interest Rate: Enter the annual interest rate offered by your bank.",
-        "4. Loan Period: Choose how many years you want to take the loan for (typically 5 to 25 years).",
-        "5. Monthly Payment (EMI): The calculator will show you exactly how much you need to pay each month.",
-        "6. Payment Schedule: See how much of each payment goes toward interest and how much goes toward the actual loan balance.",
-        "7. Extra Payments: See how much time and money you can save by making occasional extra payments.",
-        "8. Total Cost: Check the total interest you will pay over the entire life of the loan."
+        "1. Property Valuation Entry: Input the total market value of the land and building based on recent independent valuation reports.",
+        "2. Down Payment Allocation: Define your initial capital. Nepal Rastra Bank (NRB) requires a 30% to 50% down payment for residential purposes.",
+        "3. Interest Rate Sync: Enter the bank's current Base Rate plus the agreed Spread percentage (Total Lending Rate).",
+        "4. Tenure Definition: Select the repayment period. Commercial banks in Nepal typically offer a range from 5 to 25 years.",
+        "5. Repayment Type Selection: Choose between standard EMI (Equal Monthly Installments) or custom repayment structures if applicable.",
+        "6. Amortization Schedule Generation: Observe how the monthly payment is split between principal reduction and interest cost.",
+        "7. Prepayment Simulation: Use the auditor to see how paying an extra 10% principal annually can shave years off your debt.",
+        "8. Net Interest Audit: Review the total interest payable over the life of the loan to understand the true cost of the asset."
       ]
     },
     
     formula: {
-      title: "Mortgage Calculation Formula",
+      title: "The Reducing Balance Amortization Algorithm",
       description: "Mortgages in Nepal utilize the reducing balance method where interest is calculated monthly on the remaining principal balance, not the original loan amount.",
       raw: "EMI = [P x r x (1+r)^n] / [(1+r)^n - 1]",
       variables: [
@@ -450,13 +449,13 @@ export const financialSEO: Record<string, SEOContent> = {
         
         <div className="bg-[#1a1a2e] border-l-4 border-purple-500 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-purple-400 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Buying a Home in Nepal
+        Real Estate Finance Executive Summary
         </h2>
         <p className="text-white text-base leading-relaxed">
-        Buying a home is one of the biggest financial decisions you'll ever make. In Nepal, understanding how loans work is key to making the right choice. This <a href="/calculator/mortgage-calculator/" className="text-purple-400 hover:text-purple-300 underline font-bold transition-colors">Mortgage Calculator</a> helps you see the long-term cost of your loan. From understanding down payment rules to seeing how interest rates affect your monthly payments, this tool gives you the clarity you need. Whether you're buying your first home or investing in land, use this planner to stay in control of your debt.
+        In the rapidly evolving real estate market of Nepal, particularly within the Kathmandu Valley, securing a mortgage is a multi-dimensional strategic decision. The <a href="/calculator/mortgage-calculator" className="text-purple-400 hover:text-purple-300 underline font-bold transition-colors">Mortgage Auditor</a> is engineered to provide professional transparency into the long-term fiscal implications of home ownership. From navigating the strict <a href="https://www.nrb.org.np" target="_blank" rel="noopener noreferrer" className="text-purple-400 underline font-bold transition-colors">Nepal Rastra Bank (NRB) </a> Loan-to-Value (LTV) caps to auditing the "Reducing Balance" amortization schedules of A-class commercial banks, this tool serves as your definitive financial advisor. Whether you are budgeting for a first-time residential purchase or a strategic land investment, understanding the interplay between interest spreads and tenure is the key to minimizing your total debt service.
         <br/><br/>
         <span className="text-sm text-slate-400">
-        Quick Tip: Make sure your monthly income can comfortably cover the loan payments. You can use our <a href="/calculator/nepal-income-tax/" className="text-purple-400 hover:text-purple-300 underline font-bold transition-colors">Income Tax Tool</a> to check your take-home pay.
+        Strategic Asset Audit: Real estate is the most significant investment for most Nepalese households. Ensure your income supports the debt using our <a href="/calculator/nepal-income-tax" className="text-purple-400 hover:text-purple-300 underline font-bold transition-colors">Income Lab</a> before committing to a 20-year liability.
         </span>
         </p>
         
@@ -477,7 +476,7 @@ export const financialSEO: Record<string, SEOContent> = {
         
         <section className="bg-[#16213e] border border-purple-900/30 rounded-2xl p-8 mb-8 shadow-sm">
         <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3">
-        <span className="text-purple-500">📉</span> How Your Monthly Payments are Calculated
+        <span className="text-purple-500">📉</span> Amortization Science: Principal vs. Interest Decay
         </h3>
         <div className="prose prose-slate max-w-none text-slate-300 leading-relaxed space-y-4">
         <p>
@@ -517,9 +516,9 @@ export const financialSEO: Record<string, SEOContent> = {
         <div className="flex items-start gap-4"><div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 font-bold">3
         <p className="text-sm text-slate-300"><strong className="text-white">Distress Value:</strong> Often set at 70% to 80% of the FMV. This is the amount the bank expects to recover in a forced auction scenario.</p>
         <div className="bg-black/40 border border-slate-700 p-6 rounded-xl">
-        <h4 className="text-xs font-black text-purple-400 uppercase tracking-widest mb-3">Standard Strategy</h4>
+        <h4 className="text-xs font-black text-purple-400 uppercase tracking-widest mb-3">Institutional Strategy</h4>
         <p className="text-xs text-slate-400 leading-relaxed italic">
-        "In Nepal, banks usually calculate your loan eligibility as a percentage of the average of the Malpot and FMV valuations. If you are buying a property in a high-growth area like Bhaisepati or Budhanilkantha where market prices are skyrocketing, be prepared for a 'Valuation Gap' that requires a higher out-of-pocket down payment. Map your savings growth in our <a href="/calculator/sip-calculator/" className="text-purple-400 underline font-bold">SIP Tool</a> to bridge this gap."
+        "In Nepal, banks usually calculate your loan eligibility as a percentage of the average of the Malpot and FMV valuations. If you are buying a property in a high-growth area like Bhaisepati or Budhanilkantha where market prices are skyrocketing, be prepared for a 'Valuation Gap' that requires a higher out-of-pocket down payment. Map your savings growth in our <a href="/calculator/sip-calculator" className="text-purple-400 underline font-bold">SIP Lab</a> to bridge this gap."
         </p></div>
         
         
@@ -544,7 +543,7 @@ export const financialSEO: Record<string, SEOContent> = {
         </p>
         <div className="bg-[#16213e] p-6 rounded-2xl border border-purple-900/30 shadow-sm hover:border-blue-500 transition-all">
         <h4 className="font-black text-white mb-3 flex items-center gap-2">
-        <span className="text-blue-500">📑</span> Prepayment Check
+        <span className="text-blue-500">📑</span> Prepayment Audit
         </h4>
         <p className="text-xs text-slate-400 leading-relaxed">
         Paying just one extra EMI per year towards your principal can reduce a 20-year mortgage to approximately 16 years. Always check for 'Prepayment Penalties' in your loan agreement.
@@ -554,13 +553,13 @@ export const financialSEO: Record<string, SEOContent> = {
         <section className="bg-[#0f172a] border border-purple-900/30 rounded-3xl p-10 relative overflow-hidden">
         <div className="relative z-10">
         <h3 className="text-2xl font-black text-white mb-4">
-        Practical Case Study: The Kathmandu Family Home
+        Strategic Case Study: The Kathmandu Family Home
         </h3>
         <p className="text-slate-400 text-sm leading-relaxed mb-8">
         Consider a family purchasing a house in Imadol valued at Rs. 2.5 Crore. They secure a loan of Rs. 1 Crore (40% LTV at an interest rate of 11% for 20 years.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6"><div className="bg-[#1e293b] p-6 rounded-2xl border border-slate-700 shadow-sm">
-        <h4 className="text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Liability Check</h4>
+        <h4 className="text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Liability Audit</h4>
         <div className="space-y-2 text-sm text-slate-300">
         <div className="flex justify-between"><span>Loan Amount:</span> <strong>Rs. 1 Crore</strong></div>
         <div className="flex justify-between"><span>Monthly EMI:</span> <strong>Rs. 1,03,219</strong></div>
@@ -572,13 +571,13 @@ export const financialSEO: Record<string, SEOContent> = {
         <div className="flex justify-between"><span>Interest Paid:</span> <strong>Rs. 1.47 Crore</strong></div>
         <div className="flex justify-between border-t border-purple-900/50 pt-2 mt-2 font-bold text-purple-400"><span>Interest-to-Principal:</span> <span>147%</span>
         <p className="text-xs text-slate-500 mt-8 italic text-center">
-        Check Observation: Over 20 years, you pay back nearly 2.5 times what you borrowed. This underscores why auditing your mortgage with our <a href="/calculator/mortgage-calculator/" className="text-purple-400 underline font-bold">Mortgage Suite</a> and planning for prepayments is the most effective way to build generational wealth in Nepal.
+        Audit Observation: Over 20 years, you pay back nearly 2.5 times what you borrowed. This underscores why auditing your mortgage with our <a href="/calculator/mortgage-calculator" className="text-purple-400 underline font-bold">Mortgage Suite</a> and planning for prepayments is the most effective way to build generational wealth in Nepal.
         </p></div></div></div></div></div></div></div>
         
         
         <div className="pt-10 border-t border-slate-800 text-center mt-12">
         <p className="text-[11px] text-slate-500 italic bg-[#1a1a2e] inline-block px-6 py-2 rounded-full border border-purple-900/30">
-        Standard Compliance: Last updated Baishakh 2083 (May 2026 . Calculations strictly conform to NRB's Unified Directives and the reducing balance interest standard.
+        Institutional Compliance: Last updated Baishakh 2083 (May 2026 . Calculations strictly conform to NRB's Unified Directives and the reducing balance interest standard.
         
         
         
@@ -590,8 +589,86 @@ export const financialSEO: Record<string, SEOContent> = {
         </div>
         </div>
         </div>
+        </section>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
+        </div>
+        </div>
+        </section>
+        </div>
+        </section>
+        </div>
+        </div>
+        </div>
+    ),
+    faqs: [
+      { 
+        question: "What is the maximum home loan tenure in Nepal?", 
+        answer: "Most commercial banks in Nepal offer a maximum tenure of 20 to 25 years. However, this is also limited by the age of the borrower; the loan must typically be fully repaid before the borrower reaches 65 or 70 years of age." 
+      },
+      { 
+        question: "How does the Base Rate affect my home loan EMI in Nepal?", 
+        answer: "Most home loans in Nepal are 'Floating Rate' loans linked to the bank's Base Rate. If the Base Rate increases due to a liquidity crunch in the banking system, your interest rate and subsequently your EMI (or tenure) will also increase." 
+      },
+      { 
+        question: "Can I get a 100% home loan in Nepal?", 
+        answer: "No. According to Nepal Rastra Bank (NRB) regulations, banks must maintain a Loan-to-Value (LTV) ratio. For residential housing within Kathmandu Valley, you typically need to provide at least 50% of the property's valuation as a down payment." 
+      },
+      { 
+        question: "Is it better to choose a Fixed or Floating interest rate?", 
+        answer: "A Fixed Rate provides certainty and protection against rising interest rates, which is valuable in Nepal's volatile market. A Floating Rate might be cheaper initially but carries the risk of significant increases if market liquidity tightens." 
+      },
+      { 
+        question: "What are the hidden costs of a mortgage in Nepal?", 
+        answer: "Beyond the EMI, borrowers must account for Loan Processing Fees (typically 0.25% to 1%), Property Valuation Fees, Legal/Notary Fees, Mortgage Deed Registration Taxes, and mandatory Insurance premiums." 
+      },
+      { 
+        question: "How much is the mortgage registration fee in Nepal?", 
+        answer: "The mortgage deed (Dhito Lekhpass) registration fee is a statutory tax paid to the Land Revenue Office (Malpot). It is usually a small percentage of the loan amount, much lower than the 5% property transfer tax." 
+      },
+      { 
+        question: "Can I refinance my home loan from one bank to another in Nepal?", 
+        answer: "Yes, this is known as a 'Loan Swap'. If another bank offers a significantly lower interest spread, you can move your loan. However, be mindful of the 'Swap Fee' and the costs of re-valuing the property and re-registering the mortgage." 
+      },
+      { 
+        question: "What is the difference between a Home Loan and a Land Loan?", 
+        answer: "A Home Loan is for residential construction or purchase and has more favorable LTV limits and interest rates. A Land Loan (Ghar Jagga Karja) is for purchasing a plot of land for investment and often faces stricter LTV caps and higher spreads." 
+      },
+      { 
+        question: "How does prepayment help in reducing my mortgage interest?", 
+        answer: "In a reducing balance loan, any amount paid over the EMI goes directly towards reducing your principal. This immediately lowers the interest calculation for all subsequent months, leading to massive savings over time." 
+      },
+      { 
+        question: "Does the bank value my property at market price?", 
+        answer: "Rarely. Banks use a conservative valuation that is usually the average of the Government (Malpot) rate and the Fair Market Value determined by an independent engineer. This 'Bank Valuation' is almost always lower than the actual market selling price." 
+      }
+    ]
+  },
+
+'compound-interest': {
+    title: "Compound Interest Calculator Nepal | Exponential Wealth Lab",
+    description: "Calculate exponential wealth growth with absolute precision. Professional guide on NRB compounding standards, inflation impact, and the power of time.",
+    
+    howToUse: {
+      steps: [
+        "1. Principal Initialization: Input the initial lump sum amount (Corpus) you are starting with in NPR.",
+        "2. Yield Configuration: Define the annual interest rate. Commercial banks in Nepal currently offer 7% to 11% depending on the instrument.",
+        "3. Compounding Frequency: Select how often interest is calculated. In Nepal, 'Quarterly' is the regulatory standard for most savings and FD products.",
+        "4. Time Horizon: Set the total duration of the investment in years. Remember, time is the most powerful variable in this equation.",
+        "5. Periodic Contributions: Add optional monthly deposits to simulate a systematic investment plan (SIP) alongside your lump sum.",
+        "6. Tax Leakage Audit: Account for the mandatory 5% tax on interest income to determine your true net future value.",
+        "7. Inflation Calibration: Review the 'Real Rate of Return' by comparing your nominal yield against the current CPI inflation in Nepal.",
+        "8. Output Analysis: Observe the 'Interest on Interest' component which represents the snowball effect of compounding."
+      ]
+    },
+    
     formula: {
-      title: "The Exponential Growth Principle (Multi-Frequency Model)",
+      title: "The Exponential Growth Axiom (Multi-Frequency Model)",
       description: "Compound interest is calculated by applying the periodic interest rate to the principal plus all interest accumulated from previous periods.",
       raw: "A = P(1 + r/n)^(nt)",
       variables: [
@@ -614,13 +691,13 @@ export const financialSEO: Record<string, SEOContent> = {
         
         <div className="bg-blue-50/50 border-l-4 border-blue-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-blue-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Standard Overview
+        Institutional Executive Summary
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Compound interest is the fundamental engine of wealth creation, often described as the \"8th Wonder of the World\" due to its ability to turn modest savings into significant fortunes over time. In the context of the Nepalese financial system, compounding is the core mechanism behind Fixed Deposits, Recurring Savings, and Mutual Fund returns. This professional calculator allows investors to move beyond simple linear projections and understand the exponential \"Snowball Effect\" where interest starts earning its own interest. By factoring in the <a href=\"https://www.nrb.org.np\" target=\"_blank\" rel=\"noopener noreferrer\" className=\"text-blue-600 hover:text-blue-800 underline font-semibold transition-all\">Nepal Rastra Bank (NRB) </a> quarterly standards and statutory tax deductions, we provide a definitive view of your future purchasing power.
+        Compound interest is the fundamental engine of wealth creation, often described as the "8th Wonder of the World" due to its ability to turn modest savings into significant fortunes over time. In the context of the Nepalese financial system, compounding is the core mechanism behind Fixed Deposits, Recurring Savings, and Mutual Fund returns. This institutional grade calculator allows investors to move beyond simple linear projections and understand the exponential "Snowball Effect" where interest starts earning its own interest. By factoring in the <a href="https://www.nrb.org.np" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline font-semibold transition-colors">Nepal Rastra Bank (NRB) </a> quarterly standards and statutory tax deductions, we provide a definitive audit of your future purchasing power.
         <br/><br/>
         <span className="text-sm text-slate-600 font-medium">
-        Tax Efficiency: Ensure your interest earnings are audited for tax liability using our <a href="/calculator/nepal-income-tax/" className="text-blue-600 hover:text-blue-800 underline font-bold transition-colors">Nepal Income Tax Tool</a> to maximize net returns.
+        Tax Efficiency: Ensure your interest earnings are audited for tax liability using our <a href="/calculator/nepal-income-tax" className="text-blue-600 hover:text-blue-800 underline font-bold transition-colors">Nepal Income Tax Lab</a> to maximize net returns.
         </span>
         </p>
         
@@ -638,7 +715,7 @@ export const financialSEO: Record<string, SEOContent> = {
         <li><strong>Monthly Compounding:</strong> Common in high yield savings accounts and micro-finance institutions. This provides the highest effective annual rate (EAR) .</li>
         </ul>
         <p>
-        When comparing two banks in Nepal, always check if they offer "Quarterly" or "Semi-Annual" compounding. A lower nominal rate with higher frequency can often outperform a higher nominal rate with lower frequency. For a direct comparison with fixed yield products, refer to our <a href="/calculator/fd-calculator/" className="text-blue-600 hover:text-blue-800 underline font-semibold transition-colors">FD Tool</a>.
+        When comparing two banks in Nepal, always check if they offer "Quarterly" or "Semi-Annual" compounding. A lower nominal rate with higher frequency can often outperform a higher nominal rate with lower frequency. For a direct comparison with fixed yield products, refer to our <a href="/calculator/fd-calculator" className="text-blue-600 hover:text-blue-800 underline font-semibold transition-colors">FD Lab</a>.
         </p>
         
         
@@ -651,14 +728,14 @@ export const financialSEO: Record<string, SEOContent> = {
         The most critical variable in the compounding formula is not the interest rate, but <strong>Time (t) </strong>. Because the growth is exponential, the vast majority of the wealth is generated in the final few years of the investment horizon.
         </p>
         <p>
-        If a 25-year-old in Kathmandu starts saving Rs. 10,000 monthly, they will retire significantly wealthier than a 35-year-old who starts saving Rs. 20,000 monthly. This "head start" allows the compounding engine more cycles to multiply. To model your own monthly systematic growth, audit our <a href="/calculator/sip-calculator/" className="text-blue-600 hover:text-blue-800 underline font-semibold transition-colors">SIP Tool</a>.
+        If a 25-year-old in Kathmandu starts saving Rs. 10,000 monthly, they will retire significantly wealthier than a 35-year-old who starts saving Rs. 20,000 monthly. This "head start" allows the compounding engine more cycles to multiply. To model your own monthly systematic growth, audit our <a href="/calculator/sip-calculator" className="text-blue-600 hover:text-blue-800 underline font-semibold transition-colors">SIP Lab</a>.
         </p>
         
         
         <section className="bg-slate-900 text-white rounded-2xl p-8 border border-slate-800 shadow-xl overflow-hidden relative">
         <div className="absolute top-0 right-0 w-64 h-64 bg-green-600 rounded-full blur-[120px] opacity-20 pointer-events-none" />
         <h3 className="text-xl font-black mb-6 flex items-center gap-3 relative z-10">
-        <span className="text-green-400">🔢</span> The Rule of 72: Quick Wealth Estimator
+        <span className="text-green-400">🔢</span> The Rule of 72: Instant Wealth Auditing
         </h3>
         <p className="text-sm text-slate-300 leading-relaxed mb-8 relative z-10">
         The Rule of 72 is a mental shortcut used to determine how long it will take for your money to double at a fixed annual rate of interest.
@@ -670,7 +747,7 @@ export const financialSEO: Record<string, SEOContent> = {
         <div className="flex items-start gap-4">
         <div className="w-8 h-8 rounded-lg bg-green-500/20 border border-green-500/40 flex items-center justify-center text-green-400 font-bold">2
         <p className="text-sm text-slate-300"><strong className="text-white">Example:</strong> If a Nepal bank offers 9% on a fixed deposit, your money doubles in 72 / 9 = 8 years.</p>
-        <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl"><h4 className="text-xs font-black text-green-400 uppercase tracking-widest mb-3">Standard Strategy</h4>
+        <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl"><h4 className="text-xs font-black text-green-400 uppercase tracking-widest mb-3">Institutional Strategy</h4>
         <p className="text-xs text-slate-400 leading-relaxed italic">
         "In high inflation environments like Nepal, the Rule of 72 helps you quickly realize if your investment is growing fast enough to maintain your lifestyle. If doubling takes more than 10 years, you are likely losing purchasing power."
         </p></div>
@@ -684,9 +761,9 @@ export const financialSEO: Record<string, SEOContent> = {
         While compound interest grows your balance, inflation erodes the value of that balance. In Nepal, where inflation often hovers around 6% to 8%, a 10% nominal return only provides a 2% to 4% "Real Rate of Return". This is why aggressive compounding in equity or business is often necessary to build actual wealth.
         </p>
         <div className="mt-6 p-5 bg-orange-50 border border-orange-100 rounded-xl">
-        <p className="text-xs font-bold text-orange-800 uppercase mb-2">Wealth Check:</p>
+        <p className="text-xs font-bold text-orange-800 uppercase mb-2">Wealth Audit:</p>
         <p className="text-sm text-orange-900 leading-relaxed">
-        Rs. 1 Crore in 20 years might sound like a fortune, but at 7% average inflation, its purchasing power will be equivalent to roughly Rs. 25 Lakhs in today's terms. Use our <a href="/calculator/cagr-calculator/" className="text-blue-600 underline font-bold">CAGR Calculator</a> to track your inflation adjusted performance.
+        Rs. 1 Crore in 20 years might sound like a fortune, but at 7% average inflation, its purchasing power will be equivalent to roughly Rs. 25 Lakhs in today's terms. Use our <a href="/calculator/cagr-calculator" className="text-blue-600 underline font-bold">CAGR Auditor</a> to track your inflation adjusted performance.
         </p>
         
         
@@ -721,7 +798,7 @@ export const financialSEO: Record<string, SEOContent> = {
         <section className="bg-indigo-50 border border-indigo-100 rounded-3xl p-10 relative overflow-hidden">
         <div className="relative z-10">
         <h3 className="text-2xl font-black text-indigo-900 mb-4">
-        Practical Case Study: The 10-Year Head Start
+        Strategic Case Study: The 10-Year Head Start
         </h3>
         <p className="text-indigo-900/70 text-sm leading-relaxed mb-8">
         Let's audit two investors, Rahul and Sita, both targeting 12% annual returns in the NEPSE secondary market. Let's see the impact of their starting age:
@@ -737,13 +814,13 @@ export const financialSEO: Record<string, SEOContent> = {
         <div className="flex justify-between"><span>Invests for:</span> <strong>30 Years</strong></div>
         <div className="flex justify-between border-t pt-2 mt-2 font-bold text-green-700"><span>Multiplier:</span> <span>29.96 Times</span>
         <p className="text-xs text-indigo-900/50 mt-8 italic text-center">
-        Check Observation: By starting just 10 years earlier, Rahul's corpus becomes <strong>3 times larger</strong> than Sita's, even though they invested with the same skill level. This highlights the absolute dominance of 'Time' in the compounding equation. Verify your own growth trajectory with our <a href="/calculator/compound-interest/" className="text-blue-600 underline font-bold">Compound Interest Suite</a>.
+        Audit Observation: By starting just 10 years earlier, Rahul's corpus becomes <strong>3 times larger</strong> than Sita's, even though they invested with the same skill level. This highlights the absolute dominance of 'Time' in the compounding equation. Verify your own growth trajectory with our <a href="/calculator/compound-interest" className="text-blue-600 underline font-bold">Compound Interest Suite</a>.
         </p></div></div></div></div></div></div>
         </section>
         
         <div className="pt-10 border-t border-slate-200 text-center mt-12">
         <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
-        Compliance Check: Last updated June 2083 (June 2026 . Calculations strictly conform to the NRB Unified Directives for commercial banking.
+        Compliance Audit: Last updated Jestha 2083 (June 2026 . Calculations strictly conform to the NRB Unified Directives for commercial banking.
         
         
         
@@ -812,6 +889,8 @@ export const financialSEO: Record<string, SEOContent> = {
       }
     ]
   },
+
+
 
   'simple-interest': {
     title: "Simple Interest Calculator Nepal | Standard Byaj Tool",
@@ -1547,69 +1626,6 @@ export const financialSEO: Record<string, SEOContent> = {
         answer: "Because of the 1/n exponent in the formula, the impact of a single very good or very bad year is diluted over a longer holding period. CAGR is best used for evaluating long-term performance (3-10 years)." 
       },
       { 
-        Standard Compliance: Calculations strictly conform to geometric mean standards used by global financial analysts and SEBON-registered mutual funds.
-        
-        
-        
-        </p>
-        </div>
-        </div>
-        </section>
-        </div>
-        </div>
-        </div>
-        </div>
-        </section>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </section>
-        </div>
-        </div>
-        </section>
-        </div>
-        </section>
-        </div>
-        </div>
-        </div>
-    ),
-    faqs: [
-      { 
-        question: "What does CAGR stand for?", 
-        answer: "CAGR stands for Compound Annual Growth Rate. It is the mean annual growth rate of an investment over a specified period of time longer than one year." 
-      },
-      { 
-        question: "Why is CAGR better than simple average returns?", 
-        answer: "Simple average returns do not account for the compounding effect. For example, if you lose 50% one year and gain 50% the next, your simple average is 0%, but your actual investment is down by 25%. CAGR accurately reflects this loss." 
-      },
-      { 
-        question: "How do I calculate CAGR for stocks in Nepal?", 
-        answer: "You need the initial purchase amount, the current market value (including the value of any bonus or right shares), and the number of years you've held the shares. Input these into our calculator for an instant result." 
-      },
-      { 
-        question: "What is a good CAGR for a NEPSE portfolio?", 
-        answer: "Historically, the NEPSE index has provided a long-term CAGR of around 10% to 15%. A portfolio CAGR that consistently beats the market (generating 'Alpha') is considered excellent performance." 
-      },
-      { 
-        question: "Does CAGR include dividends?", 
-        answer: "Standard price-based CAGR does not include dividends. To calculate your 'Total Return CAGR', you must add all received cash dividends back into your 'Ending Value' before running the calculation." 
-      },
-      { 
-        question: "Can CAGR be negative?", 
-        answer: "Yes. If your investment's final value is lower than your initial investment, the CAGR will be negative, representing an annualized loss of capital." 
-      },
-      { 
-        question: "What is the 'Real CAGR'?", 
-        answer: "The Real CAGR is your nominal growth rate minus the rate of inflation. It tells you how much your actual purchasing power has increased, which is the most important metric for long-term wealth building." 
-      },
-      { 
-        question: "How does the holding period affect CAGR?", 
-        answer: "Because of the 1/n exponent in the formula, the impact of a single very good or very bad year is diluted over a longer holding period. CAGR is best used for evaluating long-term performance (3-10 years)." 
-      },
-      { 
         question: "Is CAGR useful for comparing FDs and Stocks?", 
         answer: "Absolutely. Since FDs offer a fixed annual interest rate (which is essentially their CAGR), you can directly compare that figure against your stock portfolio's CAGR to see if the extra risk of the market was worth it." 
       },
@@ -1746,10 +1762,9 @@ export const financialSEO: Record<string, SEOContent> = {
       { question: "What is the government's minimum valuation based on?", answer: "Valuation is usually calculated per Ropani (Hilly) or per Kattha (Terai), depending on the district and road access." }
     ]
   },
-
-  'nepal-salary': {
-    title: "Salary Calculator Nepal | Take-Home Pay Tool",
-    description: "Calculate your net take-home salary in Nepal accurately. Includes Social Security Fund (SSF), Provident Fund, CIT, and the latest income tax slabs.",
+'nepal-salary': {
+    title: "Salary Calculator Nepal | Institutional Payroll Auditor",
+    description: "Calculate net take-home salary with absolute precision. Professional guide on SSF, PF, CIT, and Income Tax slabs for FY 2082/83 in Nepal.",
     howToUse: {
       steps: [
         "1. Gross Entry: Input your Monthly or Annual Gross Salary in NPR.",
@@ -1759,11 +1774,11 @@ export const financialSEO: Record<string, SEOContent> = {
         "5. Insurance Credits: Enter your annual life and health insurance premiums.",
         "6. Allowance Mapping: Separate taxable allowances from non-taxable reimbursements.",
         "7. Women's Rebate: Toggle the female tax rebate if applicable (10%).",
-        "8. Output Check: Review the detailed monthly and annual tax liability breakdown."
+        "8. Output Audit: Review the detailed monthly and annual tax liability breakdown."
       ]
     },
     formula: {
-      title: "The Net Disbursement Principle",
+      title: "The Net Disbursement Axiom",
       description: "Net Salary is the liquid amount remaining after subtracting statutory retirement contributions and monthly income tax from your gross earnings.",
       raw: "Net Salary = Gross - (SSF/PF + CIT) - Income Tax",
       variables: [
@@ -1776,13 +1791,13 @@ export const financialSEO: Record<string, SEOContent> = {
         <div className="space-y-12">
         <div className="bg-indigo-50/50 border-l-4 border-indigo-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-indigo-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-        Payroll Insights Overview
+        Payroll Intelligence Executive Summary
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Navigating the payroll landscape in Nepal requires a clear understanding of the latest fiscal regulations. From the progressive income tax slabs of the Inland Revenue Department (IRD) to Social Security Fund (SSF) contributions, every deduction impacts your final take-home pay. This <a href="/calculator/nepal-salary/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">Salary Calculator</a> is designed to provide high-precision results based on current tax laws. Whether you are an employee checking your payslip or an HR professional verifying compliance, our tool ensures all statutory credits and marital status adjustments are correctly calculated.
+        Navigating the payroll landscape in Nepal requires a precise understanding of the latest fiscal mandates. From the progressive income tax slabs of the Inland Revenue Department (IRD) to the comprehensive Social Security Fund (SSF contributions, every deduction impacts your final take-home pay. This institutional <a href="/calculator/nepal-salary" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">Salary Auditor</a> is designed to provide high precision results for the fiscal year 2082/83. Whether you are an employee auditing your payslip or an HR professional verifying payroll compliance, our engine ensures all statutory credits, including insurance rebates and marital status adjustments, are perfectly calibrated.
         <br/><br/>
         <span className="text-sm text-slate-600 font-medium">
-        Tax Tip: Strategic investments in CIT or provident funds can significantly reduce your taxable income. See your potential savings with our <a href="/calculator/nepal-income-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-bold transition-colors">Income Tax Tool</a>.
+        Tax Strategy: Strategic investments in CIT or provident funds can significantly reduce your taxable income. Audit your savings potential in our <a href="/calculator/nepal-income-tax" className="text-indigo-600 hover:text-indigo-800 underline font-bold transition-colors">Tax Lab</a>.
         </span>
         </p>
         <section>
@@ -1809,7 +1824,7 @@ export const financialSEO: Record<string, SEOContent> = {
         <section className="bg-indigo-50 border border-indigo-100 rounded-3xl p-10 relative overflow-hidden">
         <div className="relative z-10">
         <h3 className="text-2xl font-black text-indigo-900 mb-4">
-        Practical Case Study: Private Sector Payroll Check
+        Strategic Case Study: Private Sector Payroll Audit
         </h3>
         <p className="text-indigo-900/70 text-sm leading-relaxed mb-8">
         A mid-level software engineer in Kathmandu is offered a gross salary of <strong>Rs. 1,20,000</strong> per month. Let's compare their take-home under SSF vs a traditional firm with no benefits:
@@ -1822,12 +1837,45 @@ export const financialSEO: Record<string, SEOContent> = {
         <div className="bg-white p-6 rounded-2xl border border-green-200 shadow-md transform md:scale-105"><h4 className="text-xs font-black text-green-600 uppercase tracking-widest mb-4">Firm B: No Benefits</h4></div>
         <div className="space-y-2 text-sm text-slate-700">
         <div className="flex justify-between"><span>Deductions:</span> <strong>None</strong></div>
-        <div className="flex justify-between text-green-600"><span>Net Tax:</span> <strong>Rs. 16,800</strong></div>
-        <div className="flex justify-between border-t pt-2 mt-2 font-bold text-green-700"><span>Take-Home:</span> <span>Rs. 1,03,200</span></div>
-        </div>
-        </div>
-        </div>
+        <div className="flex justify-between text-green-600"><span>Net Tax:</span> <strong>Rs. 16,800</strong>
+        <div className="flex justify-between border-t pt-2 mt-2 font-bold text-green-700"><span>Take-Home:</span> <span>Rs. 1,03,200</span>
         <p className="text-xs text-indigo-900/50 mt-8 italic text-center">
+        Audit Observation: While Firm B offers Rs. 7,850 more in liquid cash, the employee in Firm A is accumulating <strong>Rs. 37,200</strong> every month in their retirement fund (including the 20% employer contribution . Firm A offers a vastly superior total compensation package. Reinvest your surplus into our <a href="/calculator/cagr-calculator" className="text-blue-600 underline font-bold">Growth Auditor</a> to see the long-term impact.
+        </p></div></div></div></div></div></div></div>
+        </section>
+        
+        <div className="pt-10 border-t border-slate-200 text-center mt-12">
+        <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
+        Compliance Audit: Last updated Jestha 2083 (June 2026 . Calculations strictly conform to the Income Tax Act 2058 and Social Security Act 2075.
+        
+        
+        
+        </p>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
+        </div>
+        </div>
+    ),
+    faqs: [
+      { 
+        question: "What are the income tax slabs for FY 2082/83 in Nepal?", 
+        answer: "The slabs start at 1% for the first Rs. 5 Lakh (Single) or Rs. 6 Lakh (Married). Subsequent income is taxed at 10%, 20%, 30%, 36%, and 39% respectively." 
+      },
+      { 
+        question: "What is the employee contribution rate for SSF?", 
+        answer: "Employees contribute 11% of their basic salary to the Social Security Fund, while employers contribute 20%, making it a total of 31%." 
+      },
+      { 
+        question: "Is the 1% Social Security Tax mandatory for everyone?", 
+        answer: "Yes, for the first slab of income. However, employees contributing to the Social Security Fund (SSF) are currently exempt from this 1% tax." 
+      },
+      { 
+        question: "How much tax rebate do women get in Nepal?", 
+        answer: "Female taxpayers in Nepal are entitled to a 10% rebate on their total calculated income tax liability from salary income." 
+      },
       { 
         question: "How much can I invest in CIT to save tax?", 
         answer: "You can invest up to 1/3rd of your taxable income or Rs. 3,00,000 per year, whichever is lower, to reduce your taxable salary." 
@@ -1850,10 +1898,12 @@ export const financialSEO: Record<string, SEOContent> = {
       },
       { 
         question: "What happens if I have multiple sources of income?", 
-        answer: "You must disclose all sources of income (salary, rent, dividends) in your annual tax return. Our calculator focuses on salary, but you can audit other sources in our Income Tax Tool." 
+        answer: "You must disclose all sources of income (salary, rent, dividends) in your annual tax return. Our calculator focuses on salary, but you can audit other sources in our Income Tax Lab." 
       }
     ]
   },
+
+
   'nepal-stocks': {
     title: "NEPSE Stock Calculator | Broker Commission & Profit Tool",
     description: "The definitive NEPSE trading utility for Nepal. Calculate broker commissions, SEBON fees, DP charges, and CGT with 1500+ words of depth and holding-period logic.",

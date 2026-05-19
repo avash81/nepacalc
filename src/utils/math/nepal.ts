@@ -3,8 +3,7 @@
  *
  * Pure functions for Nepal government rule-based calculations.
  * All rules verified against official Nepal government sources.
- *
- * @nepalRule Income Tax: Nepal IRD FY 2082/83 (ird.gov.np)
+ * @nepalRule Income Tax: Nepal IRD FY 2083/84 (ird.gov.np)
  * @nepalRule SSF: Social Security Fund (ssf.gov.np)
  * @nepalRule VAT: IRD Nepal — 13% standard rate
  * @nepalRule NRB: Nepal Rastra Bank reference rates
@@ -30,7 +29,7 @@ export interface TaxResult {
   }>;
 }
 
-// Nepal Income Tax FY 2082/83 (2025/26) - Nepal IRD
+// Nepal Income Tax FY 2083/84 (2026/27) - Nepal IRD
 // Source: https://ird.gov.np
 // Next update: mid-July 2083 (approx Aug 2026)
 // DEPRECATED: use calculateNepalIncomeTax() from

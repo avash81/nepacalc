@@ -4,15 +4,15 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata: Metadata = {
-  title: 'Live Exchange Rate Nepal Today | USD INR to NPR NepaCalc',
-  description: 'Official foreign exchange rates in Nepal. Real-time USD, INR, EUR, and GBP to NPR conversions synchronized with latest NRB benchmarks.',
-  keywords: ['exchange rate nepal today', 'usd to npr live', 'inr to npr rate', 'nrb forex rates', 'nepal currency converter'],
+  title: 'Live Exchange Rate Nepal Today 2083/84 | USD INR to NPR',
+  description: 'Official foreign exchange rates in Nepal for FY 2083/84. Real-time USD, INR, EUR, and GBP to NPR conversions synchronized with NRB benchmarks.',
+  keywords: ['exchange rate nepal 2083', 'usd to npr live 2084', 'inr to npr rate nepal', 'nrb forex today'],
   alternates: {
     canonical: 'https://NepaCalc.com/market-rates/exchange-rate/',
   },
   openGraph: {
-    title: 'Live Foreign Exchange Rates Nepal | NepaCalc',
-    description: 'Track live currency exchange rates against the Nepalese Rupee (NPR). Official indices and NRB sync.',
+    title: 'Live Foreign Exchange Rates Nepal 2083/84 | NepaCalc',
+    description: 'Track live currency exchange rates against the Nepalese Rupee (NPR) for FY 2083/84. Official NRB sync.',
     type: 'article',
   },
 };
@@ -44,7 +44,7 @@ export default function Page() {
   return (
     <div className="bg-white min-h-screen">
       <CalcWrapper
-        title="Forex & Exchange Rates"
+        title="Forex & Exchange Rates 2083/84"
         description="Official daily exchange rates for major currencies against the Nepalese Rupee (NPR) as per NRB mandates."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Exchange Rates' }]}
         isNepal={true}

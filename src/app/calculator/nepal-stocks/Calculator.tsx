@@ -64,9 +64,14 @@ export default function NEPSECalculator() {
     <ModernCalcLayout
       slug="nepal-stocks"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'NEPSE Profit' }]}
-      title="NEPSE Profit"
+      title="NEPSE Profit & Broker Commission Calculator 2083/84"
       description="The authoritative trading audit engine for Nepal. Calculate net profit after tiered broker commissions, SEBON fees, and CGT with T+2 settlement precision."
       icon={TrendingUp}
+      relatedTools={[
+        { label: "WACC Calculator", href: "/calculator/nepse-wacc/" },
+        { label: "Bonus Share Tax", href: "/calculator/nepse-bonus-tax/" },
+        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" }
+      ]}
       inputs={
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6">
@@ -218,7 +223,7 @@ export default function NEPSECalculator() {
       }}
       formula={{
         title: "The NEPSE Trading Calculus",
-        description: "Standardized computation for net returns in the Nepal Stock Exchange based on FY 2082/83 standards.",
+        description: "Standardized computation for net returns in the Nepal Stock Exchange based on FY 2083/84 standards.",
         raw: "Net Profit = (Qty × SellPrice) - (Qty × BuyPrice) - BuyFees - SellFees - CGT",
         variables: [
           "Broker Commission: Tiered from 0.40% to 0.27% based on volume",
@@ -242,12 +247,6 @@ export default function NEPSECalculator() {
           { label: "TMS Portal", href: "https://tms.nepse.com.np", icon: Globe },
         ],
       }}
-      relatedTools={[
-        { label: "WACC Calculator", href: "/calculator/nepse-wacc/" },
-        { label: "Bonus Tax Tool", href: "/calculator/nepse-bonus-tax/" },
-        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" },
-        { label: "Salary Calculator", href: "/calculator/nepal-salary/" }
-      ]}
     />
   );
 }

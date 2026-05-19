@@ -27,7 +27,7 @@ export default function ForeignEmploymentFee() {
     <ModernCalcLayout
       slug="foreign-employment"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Foreign Employment' }]}
-      title="Foreign Employment Fee Checker"
+      title="Migrant Worker Fee Checker 2083/84"
       description="Verify whether you are being overcharged for your foreign employment process. Check legal maximum fees for Qatar, UAE, Malaysia, Japan, and Korea."
       icon={Plane}
       inputs={

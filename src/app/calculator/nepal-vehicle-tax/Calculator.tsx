@@ -86,7 +86,7 @@ export default function NepalVehicleTaxCalculator() {
       slug="nepal-vehicle-tax"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Vehicle Tax' }]}
       title="Nepal Vehicle Tax"
-      description="The definitive blue-book renewal engine for Nepal. Calibrated to Bagmati Province tax slabs for motorbikes and cars (FY 2082/83), including statutory insurance audits."
+      description="The definitive blue-book renewal engine for Nepal. Calibrated to Bagmati Province tax slabs for motorbikes and cars (FY 2083/84), including statutory insurance audits."
       icon={Car}
       inputs={
         <div className="space-y-6">
@@ -151,7 +151,7 @@ export default function NepalVehicleTaxCalculator() {
           <div className="bg-[#E8F0FE] rounded-lg p-8 text-center space-y-2">
              <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Total Renewal Liability</div>
              <div className="text-4xl font-black text-[#1A73E8]">{formatNPR(result.total)}</div>
-             <div className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Province: Bagmati Std FY 2082/83</div>
+             <div className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Province: Bagmati Std FY 2083/84</div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -226,7 +226,7 @@ export default function NepalVehicleTaxCalculator() {
             <div className="px-6 py-4 border-b border-[#DADCE0] flex items-center justify-between bg-[#F8F9FA]">
               <div className="flex items-center gap-2">
                 <Table className="w-4 h-4 text-[#1A73E8]" />
-                <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Bagmati Province Tax Matrix (FY 2082/83)</h3>
+                <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Bagmati Province Tax Matrix (FY 2083/84)</h3>
               </div>
             </div>
             <div className="overflow-x-auto">

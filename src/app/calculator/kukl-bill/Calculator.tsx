@@ -42,7 +42,7 @@ export default function KUKLCalculator() {
     <ModernCalcLayout
       slug="kukl-bill"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'KUKL Bill' }]}
-      title="KUKL Water Bill"
+      title="KUKL Water Bill 2083/84"
       description="The definitive utility auditing engine for Kathmandu Valley. Calculate KUKL water bills with 100% precision, including volumetric charges and the 50% sewerage tax."
       icon={Droplets}
       inputs={

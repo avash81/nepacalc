@@ -7,7 +7,7 @@ interface SourceLink {
 }
 
 interface AuthorBylineProps {
-  /** The fiscal year this content is verified for, e.g. "2082/83 (2025/26)" */
+  /** The fiscal year this content is verified for, e.g. "2083/84 (2026/27)" */
   fiscalYear?: string;
   /** Official government/authority source links */
   sources?: SourceLink[];
@@ -20,7 +20,7 @@ interface AuthorBylineProps {
  * Adds author credentials, last-updated date, and source citations.
  * Place at the BOTTOM of major guide pages (Tax, Salary, NEA, Land).
  */
-export function AuthorByline({ fiscalYear = "2082/83 (2025/26)", sources = [], compact = false }: AuthorBylineProps) {
+export function AuthorByline({ fiscalYear = "2083/84 (2026/27)", sources = [], compact = false }: AuthorBylineProps) {
   // Disabled for now as per user request
   return null;
 }

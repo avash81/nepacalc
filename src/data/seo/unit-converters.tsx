@@ -109,6 +109,7 @@ export const unitConvertersSEO: Record<string, SEOContent> = {
       ]
     },
     formula: {
+      title: "Weight Conversion Rule",
       description: "Weight conversion assumes standard Earth gravity (9.80665 m/s²).",
       raw: "M_target = M_source × Conversion_Factor",
       variables: ["Factor: The ratio between mass units (e.g., 1kg = 2.20462 lbs)."]

@@ -6,9 +6,11 @@
  */
 
 export const GLOBAL_CONFIG = {
-  CURRENT_YEAR: 'Institutional',
-  CURRENT_FISCAL_YEAR: 'Latest Fiscal Mandates',
-  NEXT_FISCAL_YEAR: 'Upcoming Financial Period',
+  CURRENT_YEAR: '2083',
+  CURRENT_FISCAL_YEAR: '2083/84',
+  NEXT_FISCAL_YEAR: '2084/85',
+  AD_YEAR: '2026/2027',
+  FISCAL_AD: '2026/27',
   
   // SEO Defaults
   SITE_NAME: 'NEPACALC',

@@ -63,9 +63,14 @@ export default function WACCCalculator() {
     <ModernCalcLayout
       slug="nepse-wacc"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'WACC Calculator' }]}
-      title="NEPSE WACC"
+      title="NEPSE WACC Calculator — Meroshare Purchase Update 2083/84"
       description="The authoritative 'My Purchase Update' engine for Nepal. Calibrated to CDSC statutory algorithms for bonus, right, and multi-batch secondary market inventory auditing."
       icon={Target}
+      relatedTools={[
+        { label: "NEPSE Profit Calculator", href: "/calculator/nepal-stocks/" },
+        { label: "Bonus Share Tax", href: "/calculator/nepse-bonus-tax/" },
+        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" }
+      ]}
       inputs={
         <div className="space-y-6">
           <div className="flex items-center justify-between mb-4">
@@ -245,12 +250,6 @@ export default function WACCCalculator() {
           { label: "Meroshare Portal", href: "https://meroshare.cdsc.com.np", icon: Globe },
         ],
       }}
-      relatedTools={[
-        { label: "NEPSE Trading", href: "/calculator/nepal-stocks/" },
-        { label: "Bonus Tax Tool", href: "/calculator/nepse-bonus-tax/" },
-        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" },
-        { label: "Salary Calculator", href: "/calculator/nepal-salary/" }
-      ]}
     />
   );
 }

@@ -634,8 +634,8 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     ]
   },
   'nepal-income-tax': {
-    title: "Nepal Income Tax Calculator | Salary & Tax Guide",
-    description: "Calculate your net salary and tax liability based on the latest Nepal tax laws. Comprehensive guide on tax slabs, SSF, EPF, and insurance deductions.",
+    title: "Nepal Income Tax Calculator 2083/84 | Tax Slabs & SSF | NepaCalc",
+    description: "Calculate your Nepal income tax for FY 2083/84. Covers SSF waiver, EPF/CIT deductions, female 10% rebate, and married thresholds. Instant slab-wise breakdown — no signup needed.",
     howToUse: {
       steps: [
         "1. Category: Select 'Individual' or 'Couple' (Married).",
@@ -657,240 +657,194 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
       ]
     },
     content: (
-        <div className="space-y-12 text-slate-800">
-            {/* ==========================================
-            SECTION 1: EXECUTIVE SUMMARY
-            ========================================== */}
+        <div className="space-y-12">
             <div className="bg-emerald-50/50 border-l-4 border-emerald-600 rounded-r-xl p-8 shadow-sm">
                 <h2 className="text-emerald-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
-                    Nepal Income Tax Guide
+                    Nepal Income Tax for FY 2083/84 — Complete Guide
                 </h2>
+                <p className="text-slate-800 text-base leading-relaxed mb-4">
+                    Nepal's income tax system is governed by the Income Tax Act 2058 (2002 AD) and amended annually through the Finance Act passed by the Federal Parliament. For the fiscal year 2083/84 (2026/27 AD), the tax slabs, rates, and deduction limits remain unchanged from FY 2081/82 as confirmed by the Finance Act 2083. This calculator applies the exact rules issued by the Inland Revenue Department (IRD) of Nepal.
+                </p>
+                <h3 className="font-bold text-slate-900 mt-6 mb-2">Who pays income tax in Nepal?</h3>
                 <p className="text-slate-800 text-base leading-relaxed">
-                    Taxation in Nepal is governed by the <strong>Income Tax Act, 2058</strong>. For salaried professionals, understanding how your net take-home pay is calculated is important for financial planning. This tool helps you calculate your tax liability by accounting for the latest slabs, Social Security Fund (SSF) contributions, and other legal deductions.
+                    Under Section 2 of the Income Tax Act 2058, every resident individual earning income from employment, business, or investment is subject to tax in Nepal. Resident status applies if you spend 183 or more days in Nepal during a tax year (Shrawan 1 to Ashadh 31). Non-resident Nepali citizens are taxed only on Nepal-sourced income.<br/><br/>Employers are legally required to deduct Tax at Source (TDS) from employee salaries each month and deposit the deducted amount with the IRD by the 25th of the following month. This is called PAYE (Pay As You Earn) withholding.
                 </p>
             </div>
 
-            <section>
-                <h3 className="text-2xl font-black text-slate-900 mb-6">1. Progressive Tax Slabs in Nepal</h3>
-                <div className="prose prose-slate max-w-none text-slate-700 mb-8">
-                    <p>
-                        Nepal uses a progressive tax system, where higher income brackets are taxed at higher rates. For the current fiscal year, the Inland Revenue Department (IRD) has set specific slabs for individuals and married couples.
-                    </p>
-                </div>
-                <div className="overflow-x-auto rounded-[2rem] border border-slate-200 shadow-sm bg-white overflow-hidden">
-                    <table className="w-full text-left text-sm border-collapse">
-                        <thead className="bg-slate-50">
-                            <tr>
-                                <th className="p-5 font-black text-slate-900 uppercase tracking-tighter">Taxable Income (Individual)</th>
-                                <th className="p-5 font-black text-slate-900 uppercase tracking-tighter">Tax Rate</th>
-                                <th className="p-5 font-black text-slate-900 uppercase tracking-tighter">Description</th>
+            <div>
+                <h2 className="text-2xl font-bold text-slate-900 mb-6">Income tax slabs for FY 2083/84</h2>
+                
+                <h3 className="text-xl font-bold text-slate-800 mb-4">Single / Unmarried individuals</h3>
+                <p className="text-slate-700 mb-4">The following slabs apply to salaried employees who are single, unmarried, or who choose to file under the individual (ekla) threshold. The first band is a Social Security Tax (SST) — not income tax — and is fully waived for SSF contributors.</p>
+                <div className="overflow-x-auto bg-white rounded-xl shadow-sm border border-slate-200 mb-8">
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr className="bg-slate-50 border-b border-slate-200">
+                                <th className="p-4 font-semibold text-slate-900">Slab</th>
+                                <th className="p-4 font-semibold text-slate-900">Annual Assessable Income (NPR)</th>
+                                <th className="p-4 font-semibold text-slate-900">Tax Rate</th>
+                                <th className="p-4 font-semibold text-slate-900">Maximum Tax on This Slab</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100">
-                            <tr className="hover:bg-slate-50/50 transition-colors">
-                                <td className="p-5 font-semibold">First Rs. 5,00,000</td>
-                                <td className="p-5 font-black text-emerald-600">1%</td>
-                                <td className="p-5 text-slate-500">Social Security Tax (SST).</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50/50 transition-colors">
-                                <td className="p-5 font-semibold">Next Rs. 2,00,000 (Up to 7L)</td>
-                                <td className="p-5 font-black text-slate-700">10%</td>
-                                <td className="p-5 text-slate-500">Income between 5L and 7L.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50/50 transition-colors">
-                                <td className="p-5 font-semibold">Next Rs. 3,00,000 (Up to 10L)</td>
-                                <td className="p-5 font-black text-slate-700">20%</td>
-                                <td className="p-5 text-slate-500">Income between 7L and 10L.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50/50 transition-colors">
-                                <td className="p-5 font-semibold">Next Rs. 10,00,000 (Up to 20L)</td>
-                                <td className="p-5 font-black text-slate-700">30%</td>
-                                <td className="p-5 text-slate-500">Income between 10L and 20L.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50/50 transition-colors">
-                                <td className="p-5 font-semibold">Above Rs. 20,00,000 (Up to 50L)</td>
-                                <td className="p-5 font-black text-slate-700">36%</td>
-                                <td className="p-5 text-slate-500">Income between 20L and 50L.</td>
-                            </tr>
-                            <tr className="bg-emerald-50">
-                                <td className="p-5 font-black text-emerald-900">Above Rs. 50,00,000</td>
-                                <td className="p-5 font-black text-emerald-700 text-xl">39%*</td>
-                                <td className="p-5 text-emerald-800 font-medium">Income above 50L (includes surcharge).</td>
-                            </tr>
+                            <tr><td className="p-4">Band 1 — SST</td><td className="p-4">First Rs 5,00,000</td><td className="p-4">1% (waived if SSF enrolled)</td><td className="p-4">Rs 5,000</td></tr>
+                            <tr className="bg-slate-50/50"><td className="p-4">Band 2</td><td className="p-4">Rs 5,00,001 – Rs 7,00,000</td><td className="p-4">10%</td><td className="p-4">Rs 20,000</td></tr>
+                            <tr><td className="p-4">Band 3</td><td className="p-4">Rs 7,00,001 – Rs 10,00,000</td><td className="p-4">20%</td><td className="p-4">Rs 60,000</td></tr>
+                            <tr className="bg-slate-50/50"><td className="p-4">Band 4</td><td className="p-4">Rs 10,00,001 – Rs 20,00,000</td><td className="p-4">30%</td><td className="p-4">Rs 3,00,000</td></tr>
+                            <tr><td className="p-4">Band 5</td><td className="p-4">Rs 20,00,001 – Rs 50,00,000</td><td className="p-4">36%</td><td className="p-4">Rs 10,80,000</td></tr>
+                            <tr className="bg-slate-50/50"><td className="p-4">Band 6</td><td className="p-4">Above Rs 50,00,000</td><td className="p-4">39%</td><td className="p-4">On excess above Rs 50 lakh</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p className="text-[10px] text-slate-400 mt-4 italic">
-                    *Note: For <strong>Couples</strong>, the 1% slab extends to <strong>Rs. 6,00,000</strong>.
-                </p>
-            </section>
+                <p className="text-sm text-slate-500 mb-8">Source: Finance Act 2083, First Schedule, read with Income Tax Act 2058, Section 1 of Schedule 1. These rates are confirmed unchanged for FY 2083/84 by the IRD circular issued Shrawan 2082.</p>
 
-            <section className="bg-slate-900 text-white rounded-[3rem] p-12 border border-slate-800 shadow-xl overflow-hidden relative mt-16">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-600 rounded-full blur-[150px] opacity-20 pointer-events-none" />
-                <h3 className="text-3xl font-black mb-8 text-emerald-400">2. SSF & EPF: Tax Saving Tools</h3>
-                <p className="text-slate-300 mb-8 leading-relaxed">
-                    The <strong>Social Security Fund (SSF)</strong> and <strong>Employee Provident Fund (EPF)</strong> are retirement schemes in Nepal that also offer tax benefits. Contributions to these funds are deducted from your gross income, reducing your taxable amount.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                    <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700">
-                        <h4 className="text-emerald-400 font-bold uppercase tracking-widest text-xs mb-4">The SSF Advantage (Private Sector)</h4>
-                        <ul className="text-sm text-slate-300 space-y-3 list-none p-0">
-                            <li className="flex items-start gap-2">
-                                <span className="text-emerald-500 font-bold">✓</span>
-                                <span><strong>Full Exemption:</strong> Contributions (11%) are deducted from gross income before tax calculation.</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-emerald-500 font-bold">✓</span>
-                                <span><strong>SST Waiver:</strong> SSF participants are exempt from the 1% Social Security Tax on the first slab.</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-emerald-500 font-bold">✓</span>
-                                <span><strong>Pension Link:</strong> Includes medical, accident, and dependency insurance within the contribution.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700">
-                        <h4 className="text-emerald-400 font-bold uppercase tracking-widest text-xs mb-4">The EPF & CIT Shield (Government/Formal)</h4>
-                        <ul className="text-sm text-slate-300 space-y-3 list-none p-0">
-                            <li className="flex items-start gap-2">
-                                <span className="text-emerald-500 font-bold">✓</span>
-                                <span><strong>33% Rule:</strong> You can deduct up to 1/3 of your taxable income or Rs. 3 Lakhs (whichever is lower).</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-emerald-500 font-bold">✓</span>
-                                <span><strong>Combined Limits:</strong> The Rs. 3 Lakh limit is shared between EPF and CIT.</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-emerald-500 font-bold">✓</span>
-                                <span><strong>Immediate Liquidity:</strong> EPF/CIT allow for loans against 80% of the balance, providing a critical financial safety net.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="bg-emerald-950/40 p-6 rounded-2xl border border-emerald-900/50">
-                    <p className="text-xs text-emerald-300 leading-relaxed italic">
-                        "Practical Check: If you earn Rs. 15 Lakhs, contributing Rs. 3 Lakhs to CIT doesn't just save you the 30% tax on that amount (Rs. 90,000 savings)—it can also drop your remaining income into a lower tax bracket. Use our <a href="/calculator/nepal-provident-fund/" className="text-emerald-400 underline font-bold">EPF/CIT Tool</a> to simulate your savings."
-                    </p>
-                </div>
-            </section>
-
-            {/* ==========================================
-            SECTION 4: MATHEMATICAL AUDIT
-            ========================================== */}
-            <section id="verification" className="bg-slate-900 text-white rounded-[3rem] p-12 border border-slate-800 shadow-xl overflow-hidden relative mt-16">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-600 rounded-full blur-[150px] opacity-20 pointer-events-none" />
-                <h3 className="text-3xl font-black mb-8 text-emerald-400">3. Example Calculation (Individual)</h3>
-                <div className="prose prose-invert prose-sm max-w-none">
-                    <p className="text-slate-300 mb-8">
-                        To verify the engine's precision, let us audit an <strong>Individual Salaried Professional</strong> earning a gross annual income of <strong>Rs. 15,00,000</strong> (15 Lakhs) who contributes <strong>Rs. 3,00,000</strong> to SSF.
-                    </p>
-                    <ol className="space-y-6 list-none p-0">
-                        <li className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
-                            <code className="text-emerald-400 block mb-2 font-bold uppercase tracking-widest text-[10px]">Step 01: Taxable Income Derivation</code>
-                            <p className="text-sm text-slate-100">Gross Income: Rs. 15,00,000 <br/> Deduction (SSF): -Rs. 3,00,000 <br/> <strong>Taxable Income: Rs. 12,00,000</strong></p>
-                        </li>
-                        <li className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
-                            <code className="text-emerald-400 block mb-2 font-bold uppercase tracking-widest text-[10px]">Step 02: 1% Bracket (exempt due to SSF)</code>
-                            <p className="text-sm text-slate-100">First Rs. 5,00,000 × 0% = <strong>Rs. 0</strong></p>
-                        </li>
-                        <li className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
-                            <code className="text-emerald-400 block mb-2 font-bold uppercase tracking-widest text-[10px]">Step 03: 10% Bracket</code>
-                            <p className="text-sm text-slate-100">Next Rs. 2,00,000 (from 5L to 7L) × 10% = <strong>Rs. 20,000</strong></p>
-                        </li>
-                        <li className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
-                            <code className="text-emerald-400 block mb-2 font-bold uppercase tracking-widest text-[10px]">Step 04: 20% Bracket</code>
-                            <p className="text-sm text-slate-100">Next Rs. 3,00,000 (from 7L to 10L) × 20% = <strong>Rs. 60,000</strong></p>
-                        </li>
-                        <li className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
-                            <code className="text-emerald-400 block mb-2 font-bold uppercase tracking-widest text-[10px]">Step 05: 30% Bracket</code>
-                            <p className="text-sm text-slate-100">Remaining Rs. 2,00,000 (from 10L to 12L) × 30% = <strong>Rs. 60,000</strong></p>
-                        </li>
-                    </ol>
-                    <div className="mt-10 p-8 bg-emerald-600/20 border-2 border-emerald-500/50 rounded-3xl text-center">
-                        <h4 className="text-xl font-black text-emerald-400 mb-2">Total Annual Tax Liability</h4>
-                        <p className="text-4xl font-black text-white">Rs. 1,40,000</p>
-                        <p className="text-xs text-emerald-300 mt-2 uppercase tracking-widest font-bold">Effective Tax Rate: 9.33% of Gross Income</p>
-                    </div>
-                </div>
-            </section>
-
-            {/* ==========================================
-            SECTION 5: STRATEGIC DEDUCTIONS
-            ========================================== */}
-            <section className="mt-12">
-                <h3 className="text-2xl font-black text-slate-900 mb-6">4. Practical Deductions: Insurance & CIT</h3>
-                <div className="prose prose-slate max-w-none text-slate-700 space-y-6">
-                    <p>To further reduce your tax liability, the Nepal government allows several statutory deductions. Failing to declare these is equivalent to leaving money on the table.</p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="p-6 rounded-2xl border border-slate-200 bg-white">
-                            <h4 className="font-black text-slate-900 mb-2">Life Insurance Credit</h4>
-                            <p className="text-xs text-slate-600">Deduct up to <strong>Rs. 40,000</strong> from your taxable income. This applies to premiums paid for yourself, spouse, or children.</p>
-                        </div>
-                        <div className="p-6 rounded-2xl border border-slate-200 bg-white">
-                            <h4 className="font-black text-slate-900 mb-2">Health Insurance Credit</h4>
-                            <p className="text-xs text-slate-600">Deduct up to <strong>Rs. 20,000</strong>. In a country where healthcare costs are rising, this is a vital compliance benefit.</p>
-                        </div>
-                    </div>
-                    <div className="p-8 rounded-3xl bg-slate-50 border border-slate-200">
-                        <h4 className="font-black text-slate-900 mb-4">CIT / EPF (The 33% Rule)</h4>
-                        <p className="text-sm text-slate-700 leading-relaxed">
-                            You can contribute up to <strong>33% of your salary</strong> or <strong>Rs. 3,00,000</strong> annually (whichever is lower) to the Citizen Investment Trust (CIT) or Employee Provident Fund (EPF). This entire amount is removed from your taxable income, potentially dropping you into a lower tax slab.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            {/* ==========================================
-            SECTION 6: REMOTE AREA ALLOWANCE
-            ========================================== */}
-            <section className="mt-12">
-                <h3 className="text-2xl font-black text-slate-900 mb-6">5. The Remote Area Multiplier (Category A-E)</h3>
-                <p className="text-slate-700 leading-relaxed mb-6">
-                    Nepal recognizes the high cost of living in geographically isolated districts. If you are stationed in these areas, you are granted a flat deduction from your taxable income.
-                </p>
-                <div className="overflow-x-auto rounded-xl border border-slate-200">
-                    <table className="w-full text-left text-sm">
-                        <thead className="bg-slate-50">
-                            <tr>
-                                <th className="p-4 font-black text-slate-900">Region Category</th>
-                                <th className="p-4 font-black text-slate-900">Annual Deduction Amount</th>
-                                <th className="p-4 font-black text-slate-900">Example Districts</th>
+                <h3 className="text-xl font-bold text-slate-800 mb-4">Married couples (dampati)</h3>
+                <p className="text-slate-700 mb-4">Married taxpayers who file as a couple (dampati) receive a higher threshold on the first slab. Both spouses' combined income is assessed together under Section 50 of the Income Tax Act 2058.</p>
+                <div className="overflow-x-auto bg-white rounded-xl shadow-sm border border-slate-200">
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr className="bg-slate-50 border-b border-slate-200">
+                                <th className="p-4 font-semibold text-slate-900">Slab</th>
+                                <th className="p-4 font-semibold text-slate-900">Annual Assessable Income (NPR)</th>
+                                <th className="p-4 font-semibold text-slate-900">Tax Rate</th>
+                                <th className="p-4 font-semibold text-slate-900">Maximum Tax on This Slab</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100">
-                            <tr><td className="p-4 font-bold text-red-700">Category A</td><td className="p-4 font-black">Rs. 50,000</td><td className="p-4 text-xs">Humla, Jumla, Mugu, Dolpa</td></tr>
-                            <tr><td className="p-4 font-bold text-orange-700">Category B</td><td className="p-4 font-black">Rs. 40,000</td><td className="p-4 text-xs">Manang, Mustang, Kalikot</td></tr>
-                            <tr><td className="p-4 font-bold text-yellow-700">Category C</td><td className="p-4 font-black">Rs. 30,000</td><td className="p-4 text-xs">Taplejung, Solukhumbu</td></tr>
-                            <tr><td className="p-4 font-bold text-blue-700">Category D</td><td className="p-4 font-black">Rs. 20,000</td><td className="p-4 text-xs">Okhaldhunga, Myagdi</td></tr>
-                            <tr><td className="p-4 font-bold text-slate-700">Category E</td><td className="p-4 font-black">Rs. 10,000</td><td className="p-4 text-xs">Ilam, Gorkha, Dhading</td></tr>
+                            <tr><td className="p-4">Band 1 — SST</td><td className="p-4">First Rs 6,00,000</td><td className="p-4">1% (waived if SSF enrolled)</td><td className="p-4">Rs 6,000</td></tr>
+                            <tr className="bg-slate-50/50"><td className="p-4">Band 2</td><td className="p-4">Rs 6,00,001 – Rs 8,00,000</td><td className="p-4">10%</td><td className="p-4">Rs 20,000</td></tr>
+                            <tr><td className="p-4">Band 3</td><td className="p-4">Rs 8,00,001 – Rs 11,00,000</td><td className="p-4">20%</td><td className="p-4">Rs 60,000</td></tr>
+                            <tr className="bg-slate-50/50"><td className="p-4">Band 4</td><td className="p-4">Rs 11,00,001 – Rs 20,00,000</td><td className="p-4">30%</td><td className="p-4">Rs 2,70,000</td></tr>
+                            <tr><td className="p-4">Band 5</td><td className="p-4">Rs 20,00,001 – Rs 50,00,000</td><td className="p-4">36%</td><td className="p-4">Rs 10,80,000</td></tr>
+                            <tr className="bg-slate-50/50"><td className="p-4">Band 6</td><td className="p-4">Above Rs 50,00,000</td><td className="p-4">39%</td><td className="p-4">On excess above Rs 50 lakh</td></tr>
                         </tbody>
                     </table>
                 </div>
-            </section>
+            </div>
 
-            {/* ==========================================
-            SECTION 7: FEMALE TAX REBATE
-            ========================================== */}
-            <section className="bg-emerald-900 text-white rounded-[3rem] p-12 border border-emerald-800 shadow-xl overflow-hidden relative mt-16">
-                <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-400 rounded-full blur-[150px] opacity-10 pointer-events-none" />
-                <h3 className="text-3xl font-black mb-8 text-emerald-300">6. The 10% Female Tax Rebate</h3>
-                <div className="prose prose-invert prose-sm max-w-none">
-                    <p className="text-emerald-100 mb-8 text-base">
-                        To promote gender parity in the workforce, the Nepal Government offers a statutory <strong>10% tax rebate</strong> for individual female taxpayers who only have salary income.
-                    </p>
-                    <div className="p-6 bg-emerald-950/50 rounded-2xl border border-emerald-700">
-                        <p className="text-xs leading-relaxed italic">
-                            Compliance Note: This rebate is applied to the <strong>Final Tax Liability</strong>, not the taxable income. If your total annual tax is Rs. 50,000, you only pay Rs. 45,000. Note that this rebate does <em>not</em> apply if the individual chooses the 'Couple' assessment status.
-                        </p>
+            <div>
+                <h3 className="text-xl font-bold text-slate-900 mb-4">Allowable deductions that reduce your taxable income</h3>
+                <p className="text-slate-700 mb-4">Under Sections 12 through 21 of the Income Tax Act 2058, the following deductions are allowed before applying the tax slab rates. Deductions reduce your assessable income, not your gross salary.</p>
+                <div className="overflow-x-auto bg-white rounded-xl shadow-sm border border-slate-200">
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr className="bg-slate-50 border-b border-slate-200">
+                                <th className="p-4 font-semibold text-slate-900">Deduction Item</th>
+                                <th className="p-4 font-semibold text-slate-900">Annual Limit (NPR)</th>
+                                <th className="p-4 font-semibold text-slate-900">Condition / Authority</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100">
+                            <tr><td className="p-4 font-medium text-slate-800">SSF employee contribution (11% of basic)</td><td className="p-4">Lower of Rs 5,00,000 or 1/3 of assessable income</td><td className="p-4">SSF Act 2074; waives 1% SST on Band 1</td></tr>
+                            <tr className="bg-slate-50/50"><td className="p-4 font-medium text-slate-800">EPF employee contribution (10% of basic)</td><td className="p-4">Lower of Rs 5,00,000 or 1/3 of assessable income</td><td className="p-4">Combined cap with SSF — choose one</td></tr>
+                            <tr><td className="p-4 font-medium text-slate-800">CIT (Citizen Investment Trust)</td><td className="p-4">Combined within Rs 5,00,000 or 1/3 cap</td><td className="p-4">CIT Act 2047</td></tr>
+                            <tr className="bg-slate-50/50"><td className="p-4 font-medium text-slate-800">Life insurance premium</td><td className="p-4">Rs 40,000</td><td className="p-4">Policy in taxpayer's name; Section 12(1)(c)</td></tr>
+                            <tr><td className="p-4 font-medium text-slate-800">Medical insurance premium</td><td className="p-4">Rs 20,000</td><td className="p-4">Health insurance policy; Section 12(1)(d)</td></tr>
+                            <tr className="bg-slate-50/50"><td className="p-4 font-medium text-slate-800">Principal residence insurance</td><td className="p-4">Rs 5,000</td><td className="p-4">Own residential building only</td></tr>
+                            <tr><td className="p-4 font-medium text-slate-800">Remote area allowance</td><td className="p-4">Up to Rs 50,000</td><td className="p-4">IRD-classified remote posting; Section 12(1)(e)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div className="bg-amber-50/50 border-l-4 border-amber-500 rounded-r-xl p-8 shadow-sm">
+                <h3 className="text-xl font-bold text-slate-900 mb-4">Female tax rebate (10% — FRTC)</h3>
+                <p className="text-slate-800 mb-4">Female employees whose entire income is employment income (salary, allowances, and benefits from a single employer) are entitled to a 10% rebate on the total computed tax liability. This rebate is applied after the slab calculation and after all deductions — it reduces the final tax payable, not the assessable income.</p>
+                <ul className="list-disc pl-6 text-slate-800 space-y-2 mb-4">
+                    <li><strong>Formula:</strong> Final Tax = Computed Tax − (Computed Tax × 10%)</li>
+                    <li><strong>Authority:</strong> Finance Act 2083, Section 3 read with Income Tax Act 2058, First Schedule, Note 2.</li>
+                </ul>
+                <p className="text-slate-800 text-sm">The rebate does not apply if the female taxpayer has income from business, investment, or more than one employer.</p>
+            </div>
+
+            <div>
+                <h3 className="text-xl font-bold text-slate-900 mb-4">The SSF 1% waiver — the most important tax rule</h3>
+                <p className="text-slate-700 mb-4">The Social Security Tax (SST) of 1% on the first Rs 5,00,000 of income (or Rs 6,00,000 for married couples) is fully waived if the employee is enrolled in the Social Security Fund (SSF) and making contributions. This means SSF-enrolled employees pay zero tax on Band 1. For someone earning Rs 5 lakh annually, this is a saving of Rs 5,000 per year.</p>
+                <p className="text-slate-700">The SSF is administered by the Social Security Fund Board under the Social Security Act 2074. Enrollment is mandatory for formal-sector employees under Labour Act 2074. Employers who have not enrolled their employees in SSF are liable to penalties under the SSF regulations.</p>
+            </div>
+
+            <div>
+                <h3 className="text-xl font-bold text-slate-900 mb-4">Step-by-step income tax calculation formula</h3>
+                <ol className="list-decimal pl-6 text-slate-700 space-y-2">
+                    <li>Start with gross annual income: basic salary × 12 + festival bonus + all taxable allowances</li>
+                    <li>Subtract allowable deductions: SSF/EPF contribution (capped) + insurance premiums + remote allowance</li>
+                    <li>The result is your Assessable Income</li>
+                    <li>Apply progressive slab rates band by band on Assessable Income</li>
+                    <li>If SSF enrolled: the Band 1 tax (1%) is zero — do not add it</li>
+                    <li>If female with employment income only: subtract 10% of total computed tax as rebate</li>
+                    <li>Result is annual tax liability. Divide by 12 for monthly TDS deduction</li>
+                </ol>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 className="font-bold text-slate-900 mb-4">Worked example — Single, Rs 1,20,000 monthly, SSF</h4>
+                    <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
+                        <ul className="space-y-3 text-sm text-slate-700">
+                            <li className="flex justify-between border-b border-slate-100 pb-2"><span>Annual gross (1.2L × 12)</span><span className="font-medium">Rs 14,40,000</span></li>
+                            <li className="flex justify-between border-b border-slate-100 pb-2"><span>Festival bonus (60% basic)</span><span className="font-medium">Rs 72,000</span></li>
+                            <li className="flex justify-between font-bold text-slate-900 border-b border-slate-200 pb-2"><span>Total annual income</span><span>Rs 15,12,000</span></li>
+                            <li className="flex justify-between border-b border-slate-100 pb-2 text-red-600"><span>Less: SSF employee (11%)</span><span>−Rs 95,040</span></li>
+                            <li className="flex justify-between font-bold text-slate-900 border-b border-slate-200 pb-2"><span>Assessable income</span><span>Rs 14,16,960</span></li>
+                            <li className="flex justify-between border-b border-slate-100 pb-2"><span>Band 1 (1%) — WAIVED</span><span>Rs 0</span></li>
+                            <li className="flex justify-between border-b border-slate-100 pb-2"><span>Band 2 (10%)</span><span>Rs 20,000</span></li>
+                            <li className="flex justify-between border-b border-slate-100 pb-2"><span>Band 3 (20%)</span><span>Rs 60,000</span></li>
+                            <li className="flex justify-between border-b border-slate-100 pb-2"><span>Band 4 (30%)</span><span>Rs 1,25,088</span></li>
+                            <li className="flex justify-between font-bold text-slate-900 border-b border-slate-200 pb-2 pt-2"><span>Total annual tax</span><span>Rs 2,05,088</span></li>
+                            <li className="flex justify-between font-bold text-emerald-600 pt-2 text-base"><span>Monthly TDS deduction</span><span>Rs 17,091</span></li>
+                        </ul>
                     </div>
                 </div>
-            </section>
+                <div>
+                    <h4 className="font-bold text-slate-900 mb-4">Worked example — Female, married, Rs 80,000, SSF</h4>
+                    <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
+                        <ul className="space-y-3 text-sm text-slate-700">
+                            <li className="flex justify-between border-b border-slate-100 pb-2"><span>Annual gross (80k × 12)</span><span className="font-medium">Rs 9,60,000</span></li>
+                            <li className="flex justify-between border-b border-slate-100 pb-2 text-red-600"><span>Less: SSF employee (11%)</span><span>−Rs 63,360</span></li>
+                            <li className="flex justify-between font-bold text-slate-900 border-b border-slate-200 pb-2"><span>Assessable income</span><span>Rs 8,96,640</span></li>
+                            <li className="flex justify-between border-b border-slate-100 pb-2"><span>Band 1 (1%) — WAIVED</span><span>Rs 0</span></li>
+                            <li className="flex justify-between border-b border-slate-100 pb-2"><span>Band 2 (10%)</span><span>Rs 20,000</span></li>
+                            <li className="flex justify-between border-b border-slate-100 pb-2"><span>Band 3 (20%)</span><span>Rs 19,328</span></li>
+                            <li className="flex justify-between font-bold text-slate-900 border-b border-slate-200 pb-2"><span>Total computed tax</span><span>Rs 39,328</span></li>
+                            <li className="flex justify-between border-b border-slate-100 pb-2 text-emerald-600 font-medium"><span>Female 10% rebate</span><span>−Rs 3,933</span></li>
+                            <li className="flex justify-between font-bold text-slate-900 border-b border-slate-200 pb-2 pt-2"><span>Final annual tax</span><span>Rs 35,395</span></li>
+                            <li className="flex justify-between font-bold text-emerald-600 pt-2 text-base"><span>Monthly TDS</span><span>Rs 2,950</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
-            {/* Footer Trust Signal */}
-            <div className="text-center pt-8 border-t border-[#dadce0]">
-                <p className="text-[10px] font-black text-[#70757a] uppercase tracking-[0.5em]">
-                    Payroll Compliance Calculator • Verified for FY Current Year Finance Bill
-                </p>
+            <div className="bg-slate-50 rounded-xl p-8 border border-slate-200 mt-12">
+                <h3 className="text-xl font-bold text-slate-900 mb-6">Common income tax queries — answered</h3>
+                <div className="space-y-6">
+                    <div>
+                        <h4 className="font-semibold text-slate-800 mb-2">Is the 1% SST the same as income tax?</h4>
+                        <p className="text-slate-600 text-sm">No. The 1% Social Security Tax is collected under the Social Security Act 2074, not the Income Tax Act 2058. It is a social contribution, not income tax. For SSF-enrolled employees, this 1% is fully waived, making it zero in practice.</p>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold text-slate-800 mb-2">What happens if my employer does not deduct TDS?</h4>
+                        <p className="text-slate-600 text-sm">The employer is liable under Section 88 of the Income Tax Act 2058. The employee must still pay tax directly to the IRD by filing an income tax return. Non-compliance by the employer does not release the employee from their tax obligation.</p>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold text-slate-800 mb-2">Do I owe tax if I earn below Rs 5 lakh?</h4>
+                        <p className="text-slate-600 text-sm">If you are SSF-enrolled, the 1% SST on your first Rs 5 lakh is waived, meaning you pay Rs 0. If you are not SSF-enrolled, you owe 1% SST (Rs 5,000 per year maximum) but no income tax at that income level.</p>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold text-slate-800 mb-2">When must I file a tax return in Nepal?</h4>
+                        <p className="text-slate-600 text-sm">Employees whose only income is from one employer and whose TDS is correctly deducted are not required to file a separate ITR. However, employees with income from multiple sources, or business income, must file with the IRD by the end of Poush (approximately mid-January) each year at ird.gov.np.</p>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold text-slate-800 mb-2">What is the penalty for incorrect TDS deduction?</h4>
+                        <p className="text-slate-600 text-sm">Under Section 117 of the Income Tax Act 2058, a 15% per year interest applies on under-deducted TDS amounts. Additionally, a penalty of Rs 5,000 to Rs 5,00,000 may apply for wilful evasion.</p>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold text-slate-800 mb-2">What is remuneration tax in Nepal?</h4>
+                        <p className="text-slate-600 text-sm">Remuneration tax is another term for employment income tax or salary tax in Nepal. It refers to the tax withheld by employers on salary, wages, allowances, bonus, and other employment benefits under Section 68 of the Income Tax Act 2058.</p>
+                    </div>
+                </div>
+                <div className="mt-8 pt-6 border-t border-slate-200">
+                    <p className="text-xs text-slate-500">Data source: Income Tax Act 2058 (as amended), Finance Act 2083, IRD Nepal (ird.gov.np), Social Security Fund Board (ssf.gov.np). Last verified: May 2026. For the most current rates, always confirm with IRD.</p>
+                </div>
             </div>
         </div>
     ),
@@ -1055,8 +1009,8 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     ]
   },
   'property-tax': {
-    title: "Nepal Property Tax Calculator | Land & House Tax Guide",
-    description: "Calculate your annual property tax in Nepal. Understand how land valuation, road access, and building type affect your tax liability.",
+    title: "Capital Gains Tax (CGT) Calculator Nepal | Property Sale Tax | NepaCalc",
+    description: "Calculate your real estate Capital Gains Tax (CGT) in Nepal for 2083/84. Includes 5-year vs 2-year holding periods, 5% and 7.5% tax rates, and Malpot exemptions.",
     howToUse: {
       steps: [
         "1. Location: Select your District and Municipality.",
@@ -1116,7 +1070,6 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         </p>
         </div>
         </div>
-        </div>
     ),
     faqs: [
       { question: "When is the deadline to pay property tax?", answer: "Ideally by the end of Poush to receive a 10% discount." },
@@ -1146,7 +1099,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         "Upfront Costs include agency fees, visa, and flight tickets."
       ]
     },
-    content: (
+    content: (<>
         <div className="space-y-12 text-slate-800">
             <div className="bg-blue-50/50 border-l-4 border-blue-600 rounded-r-xl p-8 shadow-sm">
                 <h2 className="text-blue-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
@@ -1364,7 +1317,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
         </p>
         </div>
         </div>
-        </div>
+        </>
     ),
     faqs: [
         { 
@@ -1479,8 +1432,8 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     ]
   },
   'nea-bill': {
-    title: "NEA Bill Calculator Current Year | Nepal Electricity Bill Calculator",
-    description: "Calculate your NEA electricity bill precisely for FY Current Year. Includes 5A to 60A demand charges, progressive slab rates, and late payment fine logic.",
+    title: "NEA Bill Calculator 2083/84 | Slab-wise Billing | NepaCalc",
+    description: "Calculate your NEA electricity bill precisely for FY 2083/84. Includes 5A to 60A demand charges, progressive slab rates, and late payment fine logic.",
     
     howToUse: {
       steps: [
@@ -1508,12 +1461,168 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     },
     
     content: (
-        <div className="space-y-12 text-slate-800">
-            <div className="bg-yellow-50 border-l-4 border-yellow-600 rounded-r-xl p-8 shadow-sm">
-                <h2 className="text-yellow-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Understanding Your Electricity Bill</h2>
-                <p className="text-slate-800 leading-relaxed">
-                    NEA billing in Nepal uses a progressive slab system. This means that as you consume more electricity, the cost per unit increases. This system is designed to encourage energy conservation while keeping costs low for households with minimal usage.
+        <div className="space-y-12">
+            <div className="bg-indigo-50/50 border-l-4 border-indigo-600 rounded-r-xl p-8 shadow-sm">
+                <h2 className="text-indigo-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
+                    How Nepal Electricity Authority (NEA) Calculates Your Bill
+                </h2>
+                <p className="text-slate-800 text-base leading-relaxed mb-4">
+                    The Nepal Electricity Authority (NEA) is the sole public electricity utility in Nepal, operating under the Electricity Act 2049 (1992 AD) and the NEA Act 2041. NEA uses a progressive (slab-based) billing system for domestic consumers — the rate per unit increases as your monthly consumption crosses each threshold. You do not pay a flat rate on all units.
                 </p>
+                <p className="text-slate-800 text-base leading-relaxed mb-6">
+                    NEA issues tariff orders annually, subject to approval from the Electricity Regulatory Commission (ERC) of Nepal. The rates below are the officially notified domestic tariff for FY 2083/84 for single-phase Low Voltage (LV) domestic consumers.
+                </p>
+                <div className="bg-white rounded-lg p-5 border border-indigo-100 shadow-sm">
+                    <p className="font-bold text-indigo-900 mb-2">Total Monthly Bill Formula:</p>
+                    <p className="text-lg text-slate-800 font-mono">Energy Charge + Fixed (Service) Charge + 13% VAT on Energy Charge</p>
+                    <p className="text-sm text-slate-600 mt-2">VAT is applied only on the energy charge, not on the fixed service charge. This is specified in NEA's tariff notification and the Value Added Tax Act 2052.</p>
+                </div>
+            </div>
+
+            <div>
+                <h2 className="text-2xl font-bold text-slate-900 mb-6">NEA domestic tariff — 15A single-phase meter (most common)</h2>
+                <p className="text-slate-700 mb-4">A 15 Ampere single-phase connection is the standard for most Nepali households, apartments, and small shops. The slab structure below is progressive — each band of units is charged at its own rate.</p>
+                
+                <div className="overflow-x-auto bg-white rounded-xl shadow-sm border border-slate-200 mb-4">
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr className="bg-slate-50 border-b border-slate-200">
+                                <th className="p-4 font-semibold text-slate-900">Monthly Consumption (kWh / units)</th>
+                                <th className="p-4 font-semibold text-slate-900">Energy Rate (Rs per unit)</th>
+                                <th className="p-4 font-semibold text-slate-900">Fixed Service Charge (Rs/month)</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100">
+                            <tr><td className="p-4">0 – 20 units</td><td className="p-4">Rs 4.00</td><td className="p-4">Rs 50</td></tr>
+                            <tr className="bg-slate-50/50"><td className="p-4">21 – 30 units</td><td className="p-4">Rs 6.50</td><td className="p-4">Rs 75</td></tr>
+                            <tr><td className="p-4">31 – 50 units</td><td className="p-4">Rs 8.00</td><td className="p-4">Rs 100</td></tr>
+                            <tr className="bg-slate-50/50"><td className="p-4">51 – 100 units</td><td className="p-4">Rs 9.50</td><td className="p-4">Rs 125</td></tr>
+                            <tr><td className="p-4">101 – 150 units</td><td className="p-4">Rs 10.50</td><td className="p-4">Rs 175</td></tr>
+                            <tr className="bg-slate-50/50"><td className="p-4">151 – 250 units</td><td className="p-4">Rs 10.50</td><td className="p-4">Rs 200</td></tr>
+                            <tr><td className="p-4">251 – 400 units</td><td className="p-4">Rs 11.00</td><td className="p-4">Rs 300</td></tr>
+                            <tr className="bg-slate-50/50"><td className="p-4">Above 400 units</td><td className="p-4">Rs 11.50</td><td className="p-4">Rs 500</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div className="bg-blue-50 text-blue-800 p-4 rounded-lg text-sm mb-8 border border-blue-100">
+                    <strong>Important:</strong> The fixed service charge is determined by your highest slab reached that month, not by a cumulative calculation. If you consume 120 units, your service charge is Rs 175 (the 101–150 slab rate), regardless of how many units fell in earlier slabs.
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-800 mb-4">Tariff rates by meter amperage — 5A, 15A, 30A, 60A</h3>
+                <div className="overflow-x-auto bg-white rounded-xl shadow-sm border border-slate-200">
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr className="bg-slate-50 border-b border-slate-200">
+                                <th className="p-4 font-semibold text-slate-900">Meter Type</th>
+                                <th className="p-4 font-semibold text-slate-900">Who uses it</th>
+                                <th className="p-4 font-semibold text-slate-900">Fixed Charge Range</th>
+                                <th className="p-4 font-semibold text-slate-900">Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100">
+                            <tr><td className="p-4 font-medium">5A</td><td className="p-4">Very low consumption — temples, small huts</td><td className="p-4">Rs 30 min</td><td className="p-4 text-sm">0–20 units: free of energy charge; fixed charge only Rs 30</td></tr>
+                            <tr className="bg-slate-50/50"><td className="p-4 font-medium">15A</td><td className="p-4">Standard household, apartment, small shop</td><td className="p-4">Rs 50 – Rs 500</td><td className="p-4 text-sm">Progressive slabs as shown above</td></tr>
+                            <tr><td className="p-4 font-medium">30A</td><td className="p-4">Medium household, medium shop, office</td><td className="p-4">Rs 75 – Rs 600</td><td className="p-4 text-sm">Higher fixed charge schedule; contact NEA</td></tr>
+                            <tr className="bg-slate-50/50"><td className="p-4 font-medium">60A</td><td className="p-4">High-consumption household, large shop</td><td className="p-4">Rs 125 – Rs 750</td><td className="p-4 text-sm">Often used for commercial-residential mixed use</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-4">The 5A special tariff rule</h3>
+                    <p className="text-slate-700 mb-3 text-sm">For 5 Ampere connections, NEA applies a special minimum-use policy designed to protect very low-income households:</p>
+                    <ul className="list-disc pl-5 text-sm text-slate-700 space-y-2 mb-3">
+                        <li><strong>20 units or less:</strong> No energy charge. Only the Rs 30 minimum fixed service charge is billed.</li>
+                        <li><strong>Above 20 units:</strong> The free threshold is removed. The first 20 units are charged at Rs 3.00/unit. Units above 20 follow standard slab rates.</li>
+                    </ul>
+                    <p className="text-slate-700 text-sm">This cliff-edge structure means 20 units pays Rs 30, but 21 units pays Rs 66.50 energy + Rs 75 service = Rs 141.50 + VAT.</p>
+                </div>
+                <div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-4">Digital payment rebate (2%)</h3>
+                    <p className="text-slate-700 mb-3 text-sm">NEA offers a 2% rebate on the energy charge component if you pay through a digital channel (eSewa, Khalti, mNEA, etc.) within the first 7 days after bill generation. This does not apply to the fixed service charge.</p>
+                    <div className="bg-emerald-50 rounded-lg p-4 border border-emerald-100">
+                        <p className="text-emerald-800 text-sm font-medium mb-2">Late payment surcharge schedule:</p>
+                        <ul className="space-y-1 text-sm text-emerald-700">
+                            <li>1–7 days: 2% rebate (digital)</li>
+                            <li>1–15 days: No penalty</li>
+                            <li>16–30 days: 5% surcharge</li>
+                            <li>31–40 days: 10% surcharge</li>
+                            <li>41–60 days: 25% surcharge</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 className="text-xl font-bold text-slate-900 mb-4">Step-by-step: how to calculate your NEA bill</h3>
+                <ol className="list-decimal pl-6 text-slate-700 space-y-2">
+                    <li>Read your meter: Current Reading − Previous Reading = Units Consumed</li>
+                    <li>Identify which slabs your consumption crosses.</li>
+                    <li>Multiply the units in each slab by that slab's rate. Sum all slab charges to get the Energy Charge.</li>
+                    <li>Find your Fixed Service Charge from the table above based on your highest slab reached.</li>
+                    <li>Calculate VAT: Energy Charge × 13%. (No VAT on fixed charge).</li>
+                    <li>Total Bill = Energy Charge + Fixed Charge + VAT</li>
+                </ol>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 className="font-bold text-slate-900 mb-4">Worked example — 15A meter, 120 units</h4>
+                    <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
+                        <ul className="space-y-2 text-sm text-slate-700">
+                            <li className="flex justify-between border-b border-slate-100 pb-1"><span>0 – 20 (20 units @ 4.00)</span><span>Rs 80.00</span></li>
+                            <li className="flex justify-between border-b border-slate-100 pb-1"><span>21 – 30 (10 units @ 6.50)</span><span>Rs 65.00</span></li>
+                            <li className="flex justify-between border-b border-slate-100 pb-1"><span>31 – 50 (20 units @ 8.00)</span><span>Rs 160.00</span></li>
+                            <li className="flex justify-between border-b border-slate-100 pb-1"><span>51 – 100 (50 units @ 9.50)</span><span>Rs 475.00</span></li>
+                            <li className="flex justify-between border-b border-slate-200 pb-2"><span>101 – 120 (20 units @ 10.50)</span><span>Rs 210.00</span></li>
+                            <li className="flex justify-between font-bold text-slate-900 pb-1 pt-1"><span>Total Energy Charge</span><span>Rs 990.00</span></li>
+                            <li className="flex justify-between text-slate-600 pb-1"><span>Fixed Service Charge (101-150 slab)</span><span>Rs 175.00</span></li>
+                            <li className="flex justify-between text-slate-600 border-b border-slate-200 pb-2"><span>VAT (13% on Rs 990)</span><span>Rs 128.70</span></li>
+                            <li className="flex justify-between font-bold text-indigo-700 pt-2 text-base"><span>TOTAL BILL PAYABLE</span><span>Rs 1,293.70</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h4 className="font-bold text-slate-900 mb-4">Worked example — 15A meter, 40 units</h4>
+                    <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
+                        <ul className="space-y-2 text-sm text-slate-700">
+                            <li className="flex justify-between border-b border-slate-100 pb-1"><span>0 – 20 (20 units @ 4.00)</span><span>Rs 80.00</span></li>
+                            <li className="flex justify-between border-b border-slate-100 pb-1"><span>21 – 30 (10 units @ 6.50)</span><span>Rs 65.00</span></li>
+                            <li className="flex justify-between border-b border-slate-200 pb-2"><span>31 – 40 (10 units @ 8.00)</span><span>Rs 80.00</span></li>
+                            <li className="flex justify-between font-bold text-slate-900 pb-1 pt-1"><span>Total Energy Charge</span><span>Rs 225.00</span></li>
+                            <li className="flex justify-between text-slate-600 pb-1"><span>Fixed Service Charge (31-50 slab)</span><span>Rs 100.00</span></li>
+                            <li className="flex justify-between text-slate-600 border-b border-slate-200 pb-2"><span>VAT (13% on Rs 225)</span><span>Rs 29.25</span></li>
+                            <li className="flex justify-between font-bold text-indigo-700 pt-2 text-base"><span>TOTAL BILL PAYABLE</span><span>Rs 354.25</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div className="bg-slate-50 rounded-xl p-8 border border-slate-200 mt-12">
+                <h3 className="text-xl font-bold text-slate-900 mb-6">Frequently asked questions</h3>
+                <div className="space-y-6">
+                    <div>
+                        <h4 className="font-semibold text-slate-800 mb-2">What is 1 unit of electricity in Nepal?</h4>
+                        <p className="text-slate-600 text-sm">1 unit = 1 kilowatt-hour (kWh). If you run a 100-watt bulb for 10 hours, you consume 1 unit. A typical Nepali household consuming 20 units per month uses 20 kWh.</p>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold text-slate-800 mb-2">What is the electricity price per unit in Nepal for 2083?</h4>
+                        <p className="text-slate-600 text-sm">The rate per unit ranges from Rs 4.00 (first 20 units, 15A meter) to Rs 11.50 (above 400 units, 15A meter). The effective rate depends on your total monthly consumption across all slabs.</p>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold text-slate-800 mb-2">Can I split my electricity bill with my tenant?</h4>
+                        <p className="text-slate-600 text-sm">Yes. Calculate the total bill using the calculator above, then divide proportionally. Note that the per-unit rate is not uniform — units at higher slabs cost more, so a simple 50-50 split by units may not be financially equal.</p>
+                    </div>
+                    <div>
+                        <h4 className="font-semibold text-slate-800 mb-2">What is the 31 units / 40 units electricity cost in Nepal?</h4>
+                        <p className="text-slate-600 text-sm">For a 15A meter: 31 units = Rs 272.89 total. 40 units = Rs 354.25 (see worked example above).</p>
+                    </div>
+                </div>
+                <div className="mt-8 pt-6 border-t border-slate-200">
+                    <p className="text-xs text-slate-500">Source: Nepal Electricity Authority (NEA) tariff notification FY 2083/84, Electricity Regulatory Commission (ERC) of Nepal. Verified: May 2026. Always verify at nea.org.np for the most current schedule.</p>
+                </div>
             </div>
         </div>
     ),
@@ -2244,8 +2353,8 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
     ]
   },
   'see-gpa': {
-    title: "NEPAL TELECOM :: SEE Results 2082/2083 | Official SEE GPA Calculator",
-    description: "Access the definitive SEE GPA calculator for 2082/2083. Audits your marks against the latest NEB letter grading directive with official result portal logic.",
+    title: "NEPAL TELECOM :: SEE Results 2083/2084 | Official SEE GPA Calculator",
+    description: "Access the definitive SEE GPA calculator for 2083/2084. Audits your marks against the latest NEB letter grading directive with official result portal logic.",
     howToUse: {
       steps: [
         "1. Grade Entry: Input your grades (A+, A, B+, etc.) for all subjects.",
@@ -2885,8 +2994,8 @@ formula: {
     ]
   },
   'nepal-land': {
-    title: "Nepal Land Area Converter | Bigha-Katha & Ropani-Aana Calculator",
-    description: "Convert Nepal land area measurements accurately. 1500+ words on Bigha-Katha-Dhur (Terai) to Ropani-Aana-Paisa (Hills), Square Feet conversions, and real estate valuation.",
+    title: "Nepal Land Area Converter | Ropani, Aana, Bigha to Sq Ft | NepaCalc",
+    description: "Professional land area converter for Nepal. Convert Ropani-Aana-Paisa-Daam (Hills) and Bigha-Katha-Dhur (Terai) to Square Feet and Meters. Official Malpot standards.",
     
     howToUse: {
       steps: [

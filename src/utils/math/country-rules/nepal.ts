@@ -1,7 +1,7 @@
 import taxSlabs from '../../../data/nepal-tax-slabs.json';
 
 /**
- * Nepal Income Tax Calculation FY 2082/83 (V3 Engine)
+ * Nepal Income Tax Calculation FY 2083/84 (V3 Engine)
  */
 export function calculateNepalIncomeTax(
   annualIncome: number,
@@ -70,7 +70,7 @@ export function calculateNepalIncomeTax(
     if (remaining <= 0) break;
   }
 
-  // 10% Female Rebate (Remuneration income only - 2082/83 IRD rule)
+  // 10% Female Rebate (Remuneration income only - 2083/84 IRD rule)
   if (gender === 'female' && totalTax > 0) {
     const rebateAmount = totalTax * 0.10;
     totalTax = totalTax - rebateAmount;
@@ -219,7 +219,7 @@ export function calculateNepalPropertyRegistration(
 }
 
 /**
- * NEPSE Trading Commission & Profit (FY 2082/83 Standards)
+ * NEPSE Trading Commission & Profit (FY 2083/84 Standards)
  */
 export function calculateNEPSEReturn(
   qty: number, 

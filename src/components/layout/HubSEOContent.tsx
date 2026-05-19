@@ -13,7 +13,7 @@ export const HubSEOContent: React.FC<HubContentProps> = ({ category }) => {
         <section>
           <h2 className="text-3xl font-black text-[#202124] mb-6">The Evolution of Digital Computation in Nepal</h2>
           <p className="mb-6">
-            In the rapidly digitizing landscape of 2082 BS, access to precision mathematical tools is no longer a luxury but a fundamental necessity for students, professionals, and entrepreneurs across Nepal. <strong>NepaCalc</strong> was founded on the principle of institutional accuracy—combining high-performance cloud computing with local legislative compliance. Our platform serves as the digital heartbeat for financial auditing, educational excellence, and engineering precision in the Himalayan region.
+            In the rapidly digitizing landscape of 2083 BS, access to precision mathematical tools is no longer a luxury but a fundamental necessity for students, professionals, and entrepreneurs across Nepal. <strong>NepaCalc</strong> was founded on the principle of institutional accuracy—combining high-performance cloud computing with local legislative compliance. Our platform serves as the digital heartbeat for financial auditing, educational excellence, and engineering precision in the Himalayan region.
           </p>
           <p className="mb-6">
             Historically, calculating complex parameters like <strong>Income Tax TDS</strong> or <strong>Loan Amortization</strong> required hours of manual labor or expensive proprietary software. Today, NepaCalc democratizes this data, providing bank-grade algorithms for free. Our 3D Graphing Engine and Scientific Labs are designed to meet the rigorous standards of IOE, TU, and international universities, ensuring that every result delivered is scientifically sound and audit-ready.
@@ -59,7 +59,7 @@ export const HubSEOContent: React.FC<HubContentProps> = ({ category }) => {
     finance: (
       <div className="space-y-12 text-[#4d5156] leading-relaxed">
         <section>
-          <h2 className="text-3xl font-black text-[#202124] mb-6">Professional Financial Auditing in Nepal: A 2082 BS Perspective</h2>
+          <h2 className="text-3xl font-black text-[#202124] mb-6">Professional Financial Auditing in Nepal: A 2083 BS Perspective</h2>
           <p className="mb-6">
             Financial planning in Nepal has evolved from simple bookkeeping to a complex landscape of progressive taxes, social security contributions, and varying interest rates. The <strong>NepaCalc Finance Hub</strong> is engineered to help you navigate these complexities with bank-grade precision. Our tools are updated annually following the release of the Finance Bill to ensure that every <strong>TDS</strong>, <strong>Income Tax</strong>, and <strong>VAT</strong> calculation is 100% accurate.
           </p>

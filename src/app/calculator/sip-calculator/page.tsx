@@ -2,10 +2,10 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: "SIP Calculator Nepal 2082/83 | Systematic Investment | NepaCalc",
-  description: "Calculate your SIP returns for Nepal mutual funds. Features compounding, step-up SIP, and inflation adjustment. Plan your wealth with NepaCalc 2082/83 rates.",
+  title: "SIP Calculator Nepal 2083/84 | NEPSE Mutual Fund | NepaCalc",
+  description: "Calculate SIP returns for Nepal's mutual funds. Step-up SIP, annual growth projection, corpus breakdown. Reference rates: NIBL Sunrise, NMB Sulav, NEPSE funds.",
   slug: 'sip-calculator',
-  keywords: ["sip calculator nepal", "nepal mutual fund sip", "sip return calculator", "systematic investment plan nepal", "best sip calculator nepal"],
+  keywords: ["sip calculator nepal", "nepse mutual fund", "nibl sunrise sip", "sip returns nepal"],
 });
 
 export default function Page() {

@@ -33,10 +33,16 @@ export default function AreaCalculator() {
 
   return (
     <ModernCalcLayout
+      slug="area-calculator"
       crumbs={[{ label: 'Math Tools', href: '/math-tools/' }, { label: 'Area Calculator' }]}
-      title="Area Calculator"
+      title="Area Calculator — Calculate Area in Any Unit"
       description="Calculate the exact area of geometric 2D shapes including Squares, Rectangles, Circles, Triangles, and Trapezoids."
       icon={Shapes}
+      relatedTools={[
+        { label: "Nepal Land Converter", href: "/calculator/nepal-land/" },
+        { label: "Unit Converter", href: "/calculator/unit-converter/" },
+        { label: "Percentage Calculator", href: "/calculator/percentage-calculator/" }
+      ]}
       inputs={
         <div className="space-y-6">
           <div className="space-y-3">
@@ -132,12 +138,6 @@ export default function AreaCalculator() {
           { label: "Percentage Calc", href: "/calculator/percentage/" },
           { label: "Age Calculator", href: "/calculator/age-calculator/" }
         ], banner: { title: "Geometry Solver", description: "Quickly determine the 2D surface footprint of any primary shape.", image: "/images/math-banner.jpg" } }}
-      relatedTools={[
-        { label: "Unit Converter", href: "/calculator/unit-converter/" },
-        { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" },
-          { label: "Percentage Calc", href: "/calculator/percentage/" },
-          { label: "Age Calculator", href: "/calculator/age-calculator/" }
-      ]}
     />
   );
 }

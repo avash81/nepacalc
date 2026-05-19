@@ -123,9 +123,6 @@ export const algebraSEO: Record<string, SEOContent> = {
         </div>
         </div>
         </div>
-        </div>
-        </div>
-        </div>
         </section>
         <section>
         <h3 className="text-2xl font-black text-slate-900 mb-6">
@@ -185,18 +182,6 @@ export const algebraSEO: Record<string, SEOContent> = {
         Insight: Without proper math, managing a fleet is mostly guesswork. Finding the exact number of trucks ensures you don't waste fuel or space. Learn more about proportions in our <a href="/calculator/ratio-proportion/" className="text-indigo-600 underline font-bold">Ratio Tool</a>.
         </p></div>
         </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        
-        
-        
-        
-        
-        
         </section>
         <div className="pt-10 border-t border-slate-200 text-center mt-12">
         <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
@@ -339,9 +324,6 @@ export const algebraSEO: Record<string, SEOContent> = {
         </div>
         </div>
         </div>
-        </div>
-        </div>
-        </div>
         </section>
         <section>
         <h3 className="text-2xl font-black text-slate-900 mb-6">
@@ -401,18 +383,6 @@ export const algebraSEO: Record<string, SEOContent> = {
         Insight: Selling too cheap means low profit, and selling too high means nobody buys. Quadratic math helps you find that "Sweet Spot" in the middle. See more ways to grow your business in our <a href="/calculator/percentage/" className="text-sky-600 underline font-bold">Percentage Tool</a>.
         </p></div>
         </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        
-        
-        
-        
-        
-        
         </section>
         <div className="pt-10 border-t border-slate-200 text-center mt-12">
         <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
@@ -476,6 +446,7 @@ export const algebraSEO: Record<string, SEOContent> = {
         Tech Tip: Modern AI and machine learning are built on massive matrix calculations. See more math in our <a href="/calculator/scientific-calculator/" className="text-violet-600 hover:text-violet-800 underline font-bold transition-colors">Scientific Tool</a>.
         </span>
         </p>
+        </div>
         <section>
         <h3 className="text-2xl font-black text-slate-900 mb-6">
         1. The Calculator's Matrix Glossary
@@ -557,9 +528,6 @@ export const algebraSEO: Record<string, SEOContent> = {
         </div>
         </div>
         </div>
-        </div>
-        </div>
-        </div>
         </section>
         <section>
         <h3 className="text-2xl font-black text-slate-900 mb-6">
@@ -621,25 +589,11 @@ export const algebraSEO: Record<string, SEOContent> = {
         <p className="text-xs text-violet-900/50 mt-8 italic text-center">
         Insight: Simple scalar math is the starting point for complex AI models. Accurate matrix calculations keep your digital data stable and reliable. Explore more about computer numbers in our <a href="/calculator/binary-converter/" className="text-violet-600 underline font-bold">Base Tool</a>.
         </p></div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        
-        
-        
-        
-        
-        
         </section>
         <div className="pt-10 border-t border-slate-200 text-center mt-12">
         <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
         Math Note: Last updated May 2026. Calculations follow standard matrix algebra rules for reliable results.
         </p>
-        </div>
         </div>
         </div>
     ),

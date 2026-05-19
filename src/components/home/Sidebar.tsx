@@ -32,7 +32,7 @@ export function Sidebar() {
 
         <div className="space-y-3">
           {[
-            { name: 'Income Tax 2082/83', slug: 'nepal-income-tax', hot: true, icon: Clipboard },
+            { name: 'Income Tax 2083/84', slug: 'nepal-income-tax', hot: true, icon: Clipboard },
             { name: 'Salary Calculator', slug: 'nepal-salary', hot: true, icon: Briefcase },
             { name: 'Nepali Date Converter', slug: 'nepali-date', icon: CalendarDays },
             { name: 'VAT Calculator', slug: 'nepal-vat', icon: ReceiptText },

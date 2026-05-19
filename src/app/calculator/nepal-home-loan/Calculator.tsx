@@ -75,9 +75,15 @@ export default function NepalHomeLoanCalculator() {
     <ModernCalcLayout
       slug="nepal-home-loan"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Home Loan' }]}
-      title="Nepal Home Loan"
-      description="The definitive real estate debt auditing engine for Nepal. Calibrated to NRB 'Base Rate + Premium' models with cascaded amortization and tax shield analytics."
+      title="Nepal Home Loan EMI Calculator 2083/84 — NRB Base Rate"
+      description="The definitive real estate debt auditing engine for Nepal. Calibrated to NRB 'Base Rate + Premium' models with latest bank rates for FY 2083/84."
       icon={Home}
+      relatedTools={[
+        { label: "Loan EMI Calculator", href: "/calculator/loan-emi/" },
+        { label: "Auto Loan Calculator", href: "/calculator/auto-loan/" },
+        { label: "Loan Eligibility", href: "/calculator/nepal-loan-eligibility/" },
+        { label: "Property Tax (CGT)", href: "/calculator/property-tax/" }
+      ]}
       inputs={
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6">
@@ -307,12 +313,6 @@ export default function NepalHomeLoanCalculator() {
           { label: "NRB Official", href: "https://nrb.org.np", icon: Landmark },
         ],
       }}
-      relatedTools={[
-        { label: "Loan EMI Tool", href: "/calculator/loan-emi/" },
-        { label: "Land Area Converter", href: "/calculator/nepal-land/" },
-        { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
-        { label: "Income Tax", href: "/calculator/nepal-income-tax/" }
-      ]}
     />
   );
 }

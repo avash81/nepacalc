@@ -2,17 +2,12 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: "Nepal Provident Fund Calculator | EPF & Gratuity NepaCalc",
-  description: "Calculate your total EPF corpus and gratuity under Nepal Labor Act 2074. Shows PF accumulation with compound interest and gratuity projections.",
+  title: "Nepal Provident Fund (EPF) Calculator 2083/84 | PF & Gratuity | NepaCalc",
+  description: "Calculate your EPF (Employee Provident Fund) contributions and interest in Nepal. Estimate retirement corpus based on 10% + 10% rule and current Kosh interest rates.",
   slug: 'nepal-provident-fund',
-  keywords: ["nepal provident fund calculator", "epf calculator nepal", "pf gratuity nepal", "labor act 2074 pf", "ssf nepal calculator", "retirement fund nepal"],
+  keywords: ["provident fund calculator nepal", "epf calculator nepal", "pf interest rate nepal", "retirement fund calculator nepal", "kosh pf calculator"],
 });
 
 export default function Page() {
-  return (
-    <div className="bg-[#F1F3F4]">
-      <Calculator />
-    </div>
-  );
+  return <Calculator />;
 }
-

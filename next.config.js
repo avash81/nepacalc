@@ -40,7 +40,51 @@ const nextConfig = {
     ignoreBuildErrors: false,
   },
 
-  // Webpack: tree shaking only — no manual splitting (caused 1MB bundle bloat)
+  async redirects() {
+    return [
+      {
+        source: '/calculator/nepal-income-tax',
+        destination: '/calculator/nepal-income-tax/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/nepal-salary',
+        destination: '/calculator/nepal-salary/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/nepal-vehicle-tax',
+        destination: '/calculator/nepal-vehicle-tax/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/nea-bill',
+        destination: '/calculator/nea-bill/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/loan-emi',
+        destination: '/calculator/loan-emi/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/nepal-land',
+        destination: '/calculator/nepal-land/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/property-tax',
+        destination: '/calculator/property-tax/',
+        permanent: true,
+      },
+      {
+        source: '/market-rates/remittance',
+        destination: '/market-rates/remittance/',
+        permanent: true,
+      },
+    ];
+  },
+  // Webpack: tree shaking only
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
       config.optimization = {

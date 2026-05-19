@@ -7,7 +7,7 @@
  *
  * Dynamic metadata generated from Firestore data.
  *
- * @example URL: /guide/nepal-income-tax-guide-2082-83
+ * @example URL: /guide/nepal-income-tax-guide-2083-83
  */
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';

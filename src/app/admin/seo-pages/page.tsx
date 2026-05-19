@@ -177,17 +177,17 @@ export default function SEOPagesAdmin() {
 
         {/* SEO Algorithm Targets */}
         <div className="bg-white border border-slate-100 rounded-lg p-8 shadow-sm shadow-slate-200/40 mt-12">
-          <h2 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6">Algorithm Targets 2082</h2>
+          <h2 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6">Algorithm Targets 2083</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
-              { kw: 'nepal income tax 2082 83', slug: 'nepal-income-tax-guide-2082-83', vol: 'Very High' },
+              { kw: 'nepal income tax 2083 83', slug: 'nepal-income-tax-guide-2083-83', vol: 'Very High' },
               { kw: 'how to calculate emi nepal', slug: 'emi-calculator-guide-nepal', vol: 'High' },
               { kw: 'nepali date converter bs ad', slug: 'nepali-date-converter-guide', vol: 'Very High' },
-              { kw: 'nepal salary calculator ssf', slug: 'nepal-salary-ssf-guide-2082', vol: 'High' },
+              { kw: 'nepal salary calculator ssf', slug: 'nepal-salary-ssf-guide-2083', vol: 'High' },
               { kw: 'gpa calculator nepal tu ku', slug: 'gpa-calculator-nepal-guide', vol: 'High' },
               { kw: 'bmi calculator nepal', slug: 'bmi-calculator-guide-nepal', vol: 'Medium' },
               { kw: 'sip vs fd nepal which better', slug: 'sip-vs-fd-nepal-guide', vol: 'Medium' },
-              { kw: 'nepal home loan interest rate 2082', slug: 'nepal-home-loan-guide-2082', vol: 'High' },
+              { kw: 'nepal home loan interest rate 2083', slug: 'nepal-home-loan-guide-2083', vol: 'High' },
             ].map((item, idx) => {
               const alreadyCreated = pages.some(p => p.slug === item.slug);
               return (

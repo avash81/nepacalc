@@ -1,18 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import dynamic from 'next/dynamic';
-
-const inter = Inter({ 
-  subsets: ["latin"], 
-  variable: "--font-inter",
-  display: 'swap',
-  preload: true,
-  fallback: ['system-ui', 'arial']
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL('https://nepacalc.com'),
   title: "Free Online Calculators for Nepal ,  NepaCalc",
@@ -144,13 +134,14 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         {/* Explicit Favicon for Google Search Results (managed by metadata export) */}
       </head>
-      <body className={`${inter.variable} font-sans`}>
+      <body className="font-sans">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}

@@ -8,8 +8,8 @@
 export const TAX_YEARS = {
   '2082/83': {
     year: '2082/83',
-    label: 'FY 2082/83 (Current)',
-    status: 'active' as const,
+    label: 'FY 2082/83 (Previous)',
+    status: 'archived' as const,
     slabs: [
       { min: 0, max: 500000, rate: 0.01, label: 'First 5 lakhs @ 1%' },
       { min: 500000, max: 700000, rate: 0.10, label: 'Next 2 lakhs @ 10%' },
@@ -21,8 +21,8 @@ export const TAX_YEARS = {
   },
   '2083/84': {
     year: '2083/84',
-    label: 'FY 2083/84 (Projection)',
-    status: 'upcoming' as const,
+    label: 'FY 2083/84 (Current)',
+    status: 'active' as const,
     slabs: [
       { min: 0, max: 550000, rate: 0.01, label: 'First 5.5 lakhs @ 1%' },
       { min: 550000, max: 750000, rate: 0.10, label: 'Next 2 lakhs @ 10%' },

@@ -4,8 +4,8 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
-  title: 'Live Gold Price in Nepal Today Per Tola Gram',
-  description: 'Real-time gold price in Nepal. 24K and 22K rates per tola and gram. Updated daily.',
+  title: 'Live Gold Price in Nepal Today 2083/84 — 24K & 22K Rates',
+  description: 'Check today\'s official gold rate in Nepal from FENEGOSIDA. Real-time 24K Hallmark and 22K Tejabi gold prices per tola and gram with history charts.',
   slug: 'market-rates/live-gold-price',
   keywords: ['gold price nepal today', 'gold rate per tola', '24k gold price nepal', '22k gold price nepal', 'gold price kathmandu', 'fenegosida gold rate'],
 });
@@ -43,9 +43,9 @@ export default function Page() {
         isNepal={true}
         hideHeader={true}
         relatedCalcs={[
+          { name: 'Gold Tax Calculator', slug: '/calculator/gold-tax/' },
           { name: 'Live Silver Price', slug: '/market-rates/live-silver-price/' },
-          { name: 'Exchange Rates', slug: '/market-rates/exchange-rate/' },
-          { name: 'Unit Converter', slug: '/calculator/gold-converter/' }
+          { name: 'Exchange Rates', slug: '/market-rates/exchange-rate/' }
         ]}
       >
         <GoldDashboardClient />

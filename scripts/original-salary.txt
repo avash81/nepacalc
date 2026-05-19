@@ -1,0 +1,142 @@
+
+
+  'nepal-salary': {
+    title: "Salary Calculator Nepal | Institutional Payroll Auditor",
+    description: "Calculate net take-home salary with absolute precision. Professional guide on SSF, PF, CIT, and Income Tax slabs for FY 2082/83 in Nepal.",
+    howToUse: {
+      steps: [
+        "1. Gross Entry: Input your Monthly or Annual Gross Salary in NPR.",
+        "2. Marital Status: Select 'Single' or 'Married' for tax threshold calibration.",
+        "3. SSF Toggle: Choose if your employer is registered with the Social Security Fund (31%).",
+        "4. Retirement Fund: Input your Provident Fund and CIT contributions.",
+        "5. Insurance Credits: Enter your annual life and health insurance premiums.",
+        "6. Allowance Mapping: Separate taxable allowances from non-taxable reimbursements.",
+        "7. Women's Rebate: Toggle the female tax rebate if applicable (10%).",
+        "8. Output Audit: Review the detailed monthly and annual tax liability breakdown."
+      ]
+    },
+    formula: {
+      title: "The Net Disbursement Axiom",
+      description: "Net Salary is the liquid amount remaining after subtracting statutory retirement contributions and monthly income tax from your gross earnings.",
+      raw: "Net Salary = Gross - (SSF/PF + CIT) - Income Tax",
+      variables: [
+        "Net Salary = Your monthly take-home cash flow.",
+        "SSF Deduction = 11% of Basic Salary (if registered).",
+        "Income Tax = Calculated based on progressive IRD slabs (1% to 39%)."
+      ]
+    },
+    content: (
+        <div className="space-y-12">
+        <div className="bg-indigo-50/50 border-l-4 border-indigo-600 rounded-r-xl p-8 shadow-sm">
+        <h2 className="text-indigo-700 font-black text-xs uppercase tracking-[0.3em] mb-3">
+        Payroll Intelligence Executive Summary
+        </h2>
+        <p className="text-slate-800 text-base leading-relaxed">
+        Navigating the payroll landscape in Nepal requires a precise understanding of the latest fiscal mandates. From the progressive income tax slabs of the Inland Revenue Department (IRD) to the comprehensive Social Security Fund (SSF contributions, every deduction impacts your final take-home pay. This institutional <a href="/calculator/nepal-salary" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">Salary Auditor</a> is designed to provide high precision results for the fiscal year 2082/83. Whether you are an employee auditing your payslip or an HR professional verifying payroll compliance, our engine ensures all statutory credits, including insurance rebates and marital status adjustments, are perfectly calibrated.
+        <br/><br/>
+        <span className="text-sm text-slate-600 font-medium">
+        Tax Strategy: Strategic investments in CIT or provident funds can significantly reduce your taxable income. Audit your savings potential in our <a href="/calculator/nepal-income-tax" className="text-indigo-600 hover:text-indigo-800 underline font-bold transition-colors">Tax Lab</a>.
+        </span>
+        </p>
+        <section>
+        <h3 className="text-2xl font-black text-slate-900 mb-6">
+        Employment Standards & Rules
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-orange-300 transition-all">
+        <h4 className="font-black text-slate-900 mb-3 flex items-center gap-2">
+        <span className="text-orange-500">⏳</span> Overtime Rule
+        </h4>
+        <p className="text-xs text-slate-600 leading-relaxed">
+        Employees are entitled to overtime pay at 1.5 times their regular hourly rate if they work beyond 8 hours a day or 48 hours a week.
+        </p>
+        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-green-300 transition-all">
+        <h4 className="font-black text-slate-900 mb-3 flex items-center gap-2">
+        <span className="text-green-600">⚖️</span> Probation Period
+        </h4>
+        <p className="text-xs text-slate-600 leading-relaxed">
+        The standard probation period is 6 months. After successful completion, the employee must be confirmed, and all permanent benefits begin to accrue.
+        </p>
+        
+        
+        <section className="bg-indigo-50 border border-indigo-100 rounded-3xl p-10 relative overflow-hidden">
+        <div className="relative z-10">
+        <h3 className="text-2xl font-black text-indigo-900 mb-4">
+        Strategic Case Study: Private Sector Payroll Audit
+        </h3>
+        <p className="text-indigo-900/70 text-sm leading-relaxed mb-8">
+        A mid-level software engineer in Kathmandu is offered a gross salary of <strong>Rs. 1,20,000</strong> per month. Let's compare their take-home under SSF vs a traditional firm with no benefits:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6"><div className="bg-white p-6 rounded-2xl border border-indigo-200 shadow-sm"><h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Firm A: SSF Registered</h4></div>
+        <div className="space-y-2 text-sm text-slate-700">
+        <div className="flex justify-between"><span>Employee SSF (11% :</span> <strong>Rs. 13,200</strong></div>
+        <div className="flex justify-between"><span>Net Tax:</span> <strong>Rs. 11,450</strong></div>
+        <div className="flex justify-between border-t pt-2 mt-2 font-bold text-slate-900"><span>Take-Home:</span> <span>Rs. 95,350</span>
+        <div className="bg-white p-6 rounded-2xl border border-green-200 shadow-md transform md:scale-105"><h4 className="text-xs font-black text-green-600 uppercase tracking-widest mb-4">Firm B: No Benefits</h4></div>
+        <div className="space-y-2 text-sm text-slate-700">
+        <div className="flex justify-between"><span>Deductions:</span> <strong>None</strong></div>
+        <div className="flex justify-between text-green-600"><span>Net Tax:</span> <strong>Rs. 16,800</strong>
+        <div className="flex justify-between border-t pt-2 mt-2 font-bold text-green-700"><span>Take-Home:</span> <span>Rs. 1,03,200</span>
+        <p className="text-xs text-indigo-900/50 mt-8 italic text-center">
+        Audit Observation: While Firm B offers Rs. 7,850 more in liquid cash, the employee in Firm A is accumulating <strong>Rs. 37,200</strong> every month in their retirement fund (including the 20% employer contribution . Firm A offers a vastly superior total compensation package. Reinvest your surplus into our <a href="/calculator/cagr-calculator" className="text-blue-600 underline font-bold">Growth Auditor</a> to see the long-term impact.
+        </p></div></div></div></div></div></div></div>
+        </section>
+        
+        <div className="pt-10 border-t border-slate-200 text-center mt-12">
+        <p className="text-[11px] text-slate-400 italic bg-slate-50 inline-block px-6 py-2 rounded-full border border-slate-100">
+        Compliance Audit: Last updated Jestha 2083 (June 2026 . Calculations strictly conform to the Income Tax Act 2058 and Social Security Act 2075.
+        
+        
+        
+        </p>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
+        </div>
+        </div>
+    ),
+    faqs: [
+      { 
+        question: "What are the income tax slabs for FY 2082/83 in Nepal?", 
+        answer: "The slabs start at 1% for the first Rs. 5 Lakh (Single) or Rs. 6 Lakh (Married). Subsequent income is taxed at 10%, 20%, 30%, 36%, and 39% respectively." 
+      },
+      { 
+        question: "What is the employee contribution rate for SSF?", 
+        answer: "Employees contribute 11% of their basic salary to the Social Security Fund, while employers contribute 20%, making it a total of 31%." 
+      },
+      { 
+        question: "Is the 1% Social Security Tax mandatory for everyone?", 
+        answer: "Yes, for the first slab of income. However, employees contributing to the Social Security Fund (SSF) are currently exempt from this 1% tax." 
+      },
+      { 
+        question: "How much tax rebate do women get in Nepal?", 
+        answer: "Female taxpayers in Nepal are entitled to a 10% rebate on their total calculated income tax liability from salary income." 
+      },
+      { 
+        question: "How much can I invest in CIT to save tax?", 
+        answer: "You can invest up to 1/3rd of your taxable income or Rs. 3,00,000 per year, whichever is lower, to reduce your taxable salary." 
+      },
+      { 
+        question: "Are allowances like fuel and communication taxable?", 
+        answer: "If they are paid as a fixed monthly allowance, they are taxable. If they are paid on an actual reimbursement basis against valid bills, they are generally non-taxable." 
+      },
+      { 
+        question: "What is the tax credit for life insurance premiums?", 
+        answer: "You can claim a tax credit on life insurance premiums paid up to a maximum of Rs. 40,000 per year." 
+      },
+      { 
+        question: "How is the Dashain bonus taxed?", 
+        answer: "The Dashain bonus is treated as part of your total annual income and is taxed according to your applicable income tax slabs." 
+      },
+      { 
+        question: "Can I choose not to join the SSF?", 
+        answer: "For employees in the formal private sector where the company is registered with SSF, participation is mandatory as per the Social Security Act." 
+      },
+      { 
+        question: "What happens if I have multiple sources of income?", 
+        answer: "You must disclose all sources of income (salary, rent, dividends) in your annual tax return. Our calculator focuses on salary, but you can audit other sources in our Income Tax Lab." 
+      }
+    ]
+  },

@@ -25,7 +25,7 @@ const CATEGORIES = [
   {
     id: 'nepal',
     title: 'Nepal Specific',
-    description: 'Income Tax (2082/83), VAT, and Salary breakdown.',
+    description: 'Income Tax (2083/84), VAT, and Salary breakdown.',
     icon: Flag,
     color: 'bg-cp-red',
     count: 8

@@ -72,7 +72,7 @@ export default function SEOPanel({ data, onChange, onAutoGenerateSlug }: SEOPane
           label="Focus Keyword"
           value={data.focusKeyword}
           onChange={(v) => onChange('focusKeyword', v)}
-          placeholder="e.g. Nepal Income Tax 2082"
+          placeholder="e.g. Nepal Income Tax 2083"
         />
 
         <div className="space-y-1.5">

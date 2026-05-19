@@ -58,9 +58,15 @@ export default function NepalSalaryCalculator() {
     <ModernCalcLayout
       slug="nepal-salary"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Salary Calculator' }]}
-      title="Nepal Salary Calculator"
+      title="Nepal Salary Calculator 2083/84 — Free Online Payroll Calculator"
       description="The definitive institutional payroll auditing engine for Nepal. Calculate take-home pay with Labor Act 2074 compliance, SSF statutory pooling, and CIT tax optimization."
       icon={Wallet}
+      relatedTools={[
+        { label: "Income Tax Slab Audit", href: "/calculator/nepal-income-tax/" },
+        { label: "TDS Calculator", href: "/calculator/nepal-tds/" },
+        { label: "Provident Fund", href: "/calculator/nepal-provident-fund/" },
+        { label: "Vehicle Tax", href: "/calculator/nepal-vehicle-tax/" }
+      ]}
       inputs={
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6">
@@ -240,12 +246,12 @@ export default function NepalSalaryCalculator() {
       customSchema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Nepal Salary Calculator 2082/83",
+        "name": "Nepal Salary Calculator 2083/84",
         "url": "https://nepacalc.com/calculator/nepal-salary/",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Any",
         "browserRequirements": "Requires JavaScript",
-        "description": "Calculate your take-home pay in Nepal for FY 2082/83. Support for SSF (31% contribution), CIT deductions, and automatic income tax calculation.",
+        "description": "Calculate your take-home pay in Nepal for FY 2083/84. Support for SSF (31% contribution), CIT deductions, and automatic income tax calculation.",
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",
@@ -268,12 +274,6 @@ export default function NepalSalaryCalculator() {
           { label: "Labor Act 2074", href: "https://moless.gov.np", icon: Landmark },
         ],
       }}
-      relatedTools={[
-        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" },
-        { label: "VAT Calculator", href: "/calculator/nepal-vat/" },
-        { label: "TDS Calculator", href: "/calculator/nepal-tds/" },
-        { label: "Provident Fund", href: "/calculator/nepal-provident-fund/" }
-      ]}
     />
   );
 }

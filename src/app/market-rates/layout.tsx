@@ -1,16 +1,11 @@
-import type { Metadata } from 'next';
+import { calcMeta } from '@/lib/calcMeta';
 
-export const metadata: Metadata = {
-  title: "Market Rates Nepal | Gold, Silver, Foreign Exchange | NepaCalc",
-  description: "Live market rates for Gold, Silver, and Currency Exchange (Forex) in Nepal. Updated daily with official rates from NRB and FENEGOSIDA.",
-  keywords: ["gold price nepal", "exchange rate nepal", "usd to npr", "silver price nepal", "market rates nepal today"],
-  alternates: { canonical: 'https://NepaCalc.com/market-rates/' },
-  openGraph: {
-    title: 'Live Market Rates & Gold Price Nepal | NepaCalc',
-    description: 'Track live gold, silver, and currency exchange rates in Nepal. Real-time data from official indices.',
-    url: 'https://NepaCalc.com/market-rates',
-  },
-};
+export const metadata = calcMeta({
+  title: "Nepal Gold Silver Rate Today | Live Market Rates | NepaCalc",
+  description: "Live gold price per tola in Nepal — 24K Tejabi and 22K standard. Plus silver chandi rate and USD/INR to NPR exchange rate. Updated daily from FENEGOSIDA.",
+  slug: 'market-rates',
+  keywords: ["nepal gold rate today", "silver price nepal", "exchange rate npr", "live market rates nepal"],
+});
 
 export default function MarketRatesLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;

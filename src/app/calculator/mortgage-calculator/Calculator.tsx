@@ -28,10 +28,16 @@ export default function MortgageCalculator() {
 
   return (
     <ModernCalcLayout
+      slug="mortgage-calculator"
       crumbs={[{ label: 'Finance', href: '/finance/' }, { label: 'Mortgage Calculator' }]}
-      title="Mortgage Calculator"
-      description="Calculate full monthly mortgage payment including Principal & Interest, property tax, and insurance. Based on Nepal bank home loan rates."
+      title="Nepal Home Loan Calculator 2083/84 — NRB Base Rate"
+      description="Calculate home loan EMI in Nepal with NRB base rates. Shows monthly installment, total interest, and amortization. Covers 20% and 30% down payment rules."
       icon={Home}
+      relatedTools={[
+        { label: "General EMI Calculator", href: "/calculator/loan-emi/" },
+        { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
+        { label: "SIP Calculator", href: "/calculator/sip-calculator/" }
+      ]}
       inputs={
         <div className="space-y-8">
           <div className="p-8 bg-white border border-[#dadce0] rounded-lg text-[#202124] space-y-8 shadow-sm relative overflow-hidden">
@@ -222,7 +228,7 @@ export default function MortgageCalculator() {
       customSchema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Nepal Mortgage & Home Loan Calculator 2082/83",
+        "name": "Nepal Mortgage & Home Loan Calculator 2083/84",
         "url": "https://nepacalc.com/calculator/mortgage-calculator/",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Any",
@@ -251,11 +257,6 @@ export default function MortgageCalculator() {
           { label: "NRB Website", href: "https://www.nrb.org.np", icon: Globe },
         ],
       }}
-      relatedTools={[
-        { label: "Loan EMI", href: "/calculator/loan-emi/" },
-        { label: "Property Tax", href: "/calculator/property-tax/" },
-        { label: "Nepal Land Converter", href: "/calculator/nepal-land/" }
-      ]}
     />
   );
 }

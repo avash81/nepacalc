@@ -18,10 +18,10 @@ function evalExpr(raw: string, x: number): number | null {
       .replace(/sin\(/g,'Math.sin(').replace(/cos\(/g,'Math.cos(').replace(/tan\(/g,'Math.tan(')
       .replace(/asin\(/g,'Math.asin(').replace(/acos\(/g,'Math.acos(').replace(/atan\(/g,'Math.atan(')
       .replace(/sqrt\(/g,'Math.sqrt(').replace(/log\(/g,'Math.log10(').replace(/ln\(/g,'Math.log(')
-      .replace(/abs\(/g,'Math.abs(').replace(/\^/g,'**');
+      .replace(/exp\(/g,'Math.exp(').replace(/abs\(/g,'Math.abs(').replace(/\^/g,'**');
     const open = (e.match(/\(/g)||[]).length;
     const close = (e.match(/\)/g)||[]).length;
-    e += ')'.repeat(Math.max(0, open, close));
+    e += ')'.repeat(Math.max(0, open - close));
     const r = new Function(`"use strict"; return (${e})`)();
     return typeof r === 'number' && isFinite(r) ? r : null;
   } catch { return null; }
@@ -31,7 +31,7 @@ function hasX(expr: string) {
   if (!expr) return false;
   const clean = expr.replace(/exp/gi,'');
   return /\b[a-df-z]\b/i.test(clean) || 
-         /sin\(|cos\(|tan\(|log\(|ln\(|sqrt\(|abs\(/.test(expr) ||
+         /sin\(|cos\(|tan\(|log\(|ln\(|sqrt\(|abs\(|exp\(/.test(expr) ||
          /^[0-9.+\-*\/^() \t]+$/.test(expr.trim());
 }
 
@@ -47,7 +47,7 @@ function fmt(v: number) { return Math.abs(v) < 1e-10 ? '0' : String(parseFloat(v
 interface Expr { id: number; text: string; color: string; visible: boolean; }
 
 export default function GraphingCalculatorClient() {
-  const [exprs, setExprs] = useState<Expr[]>([{ id: 1, text: '', color: COLORS[0], visible: true }]);
+  const [exprs, setExprs] = useState<Expr[]>([{ id: 1, text: 'sin(x)', color: COLORS[0], visible: true }]);
   const nextId = useRef(2);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -96,17 +96,23 @@ export default function GraphingCalculatorClient() {
     ctx.stroke();
 
     // Labels
-    ctx.font = '11px Inter,system-ui,sans-serif'; ctx.fillStyle = '#94a3b8';
-    const ox = Math.min(Math.max(toX(0), 0), W), oy = Math.min(Math.max(toY(0), 0), H);
+    ctx.font = '10px Inter,system-ui,sans-serif'; ctx.fillStyle = '#94a3b8';
+    const ox = Math.min(Math.max(toX(0), 5), W - 5), oy = Math.min(Math.max(toY(0), 5), H - 5);
+    
     ctx.textAlign = 'center';
     for (let x = Math.floor(xMin / xs) * xs; x <= xMax; x += xs) {
       if (Math.abs(x) < xs * 0.01) continue;
-      ctx.fillText(fmt(x), toX(x), Math.min(H, 4, Math.max(14, oy + 14)));
+      const lx = toX(x);
+      if (lx < 0 || lx > W) continue;
+      ctx.fillText(fmt(x), lx, Math.min(H - 5, Math.max(15, oy + 15)));
     }
+
     ctx.textAlign = 'right';
     for (let y = Math.floor(yMin / ys) * ys; y <= yMax; y += ys) {
       if (Math.abs(y) < ys * 0.01) continue;
-      ctx.fillText(fmt(y), Math.max(30, Math.min(W, 4, ox, 6)), toY(y) + 4);
+      const ly = toY(y);
+      if (ly < 0 || ly > H) continue;
+      ctx.fillText(fmt(y), Math.max(25, Math.min(W - 5, ox - 5)), ly + 4);
     }
 
     // Axes
@@ -140,10 +146,10 @@ export default function GraphingCalculatorClient() {
 
     // Empty hint
     if (exprs.every(e => !e.text.trim())) {
-      ctx.fillStyle = '#cbd5e1'; ctx.font = 'bold 14px Inter,system-ui,sans-serif';
-      ctx.textAlign = 'center'; ctx.fillText('Type a function in the sidebar to plot', W/2, H/2, 10);
-      ctx.font = '12px Inter,system-ui,sans-serif'; ctx.fillStyle = '#94a3b8';
-      ctx.fillText('e.g.  sin(x)  ·  x^2 - 4  ·  1/x  ·  cos(2*x)', W/2, H/2 + 14);
+      ctx.fillStyle = '#cbd5e1'; ctx.font = 'bold 16px Inter,system-ui,sans-serif';
+      ctx.textAlign = 'center'; ctx.fillText('Type a function in the sidebar to plot', W/2, H/2 - 10);
+      ctx.font = '13px Inter,system-ui,sans-serif'; ctx.fillStyle = '#94a3b8';
+      ctx.fillText('e.g.  sin(x)  ·  x^2 - 4  ·  1/x  ·  cos(2*x)', W/2, H/2 + 20);
     }
   }, [exprs]);
 
@@ -217,7 +223,7 @@ export default function GraphingCalculatorClient() {
         <div className="w-full lg:w-[320px] flex-shrink-0 bg-white border border-slate-200 rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none overflow-hidden flex flex-col">
           <div className="p-4 border-b border-slate-100 flex items-center justify-between">
             <h1 className="text-[15px] font-bold text-[#202124]">📈 Graphing Calculator</h1>
-            <button onClick={addExpr} className="px-3 py-1.5 bg-[#4361ee] text-[#202124] text-[11px] font-bold rounded-lg hover:bg-[#3a56d4] transition-colors">
+            <button onClick={addExpr} className="px-3 py-1.5 bg-[#4361ee] text-white text-[11px] font-bold rounded-lg hover:bg-[#3a56d4] transition-colors">
               + Add
             </button>
           </div>
@@ -225,7 +231,7 @@ export default function GraphingCalculatorClient() {
             {exprs.map((expr, i) => (
               <div key={expr.id} className="flex items-center gap-2 group">
                 <button onClick={() => toggleExpr(expr.id)} className="w-5 h-5 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all" style={{ borderColor: expr.color, background: expr.visible ? expr.color : 'transparent' }}>
-                  {expr.visible && <span className="text-[#202124] text-[10px]">✓</span>}
+                  {expr.visible && <span className="text-white text-[10px]">✓</span>}
                 </button>
                 <div className="flex-1 relative">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[11px] font-mono text-slate-400">f{i+1}=</span>

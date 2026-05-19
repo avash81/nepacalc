@@ -92,7 +92,7 @@ export default function BlogPostContent({ post, related }: { post: any; related:
     label: 'Salary Calculator'
   } : isTaxPost ? {
     title: 'Tax Season Readiness',
-    desc: 'Calculate your personal income tax liability with latest 2082/83 slabs.',
+    desc: 'Calculate your personal income tax liability with latest 2083/84 slabs.',
     href: '/calculator/nepal-income-tax/',
     label: 'Tax Optimizer'
   } : isGPAPost ? {

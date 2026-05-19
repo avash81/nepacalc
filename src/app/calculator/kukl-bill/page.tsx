@@ -1,10 +1,10 @@
 import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 export const metadata = calcMeta({
-  title: "KUKL Water Bill Calculator | Kathmandu Nepal NepaCalc",
-  description: "Estimate your monthly water bill from Kathmandu Upatyaka Khanepani Limited (KUKL). Calculates slab-based charges and the mandatory 50% sewerage tax.",
+  title: "KUKL Water Bill Calculator Nepal 2083/84 | Kathmandu Water",
+  description: "Calculate your Kathmandu Upatyaka Khanepani Limited (KUKL) water bill for FY 2083/84. Slab-based charges, 50% sewerage tax, and meter reading logic.",
   slug: 'kukl-bill',
-  keywords: ["kukl bill calculator", "water bill nepal", "kathmandu water charge", "sewerage tax nepal", "kukl tariff structure", "water meter reading nepal"],
+  keywords: ["kukl bill calculator 2083", "kathmandu water bill 2084", "water bill nepal", "kukl tariff rates", "sewerage tax calculation nepal"],
 });
 export default function Page() {
   return (

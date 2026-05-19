@@ -2,10 +2,10 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: "Nepal Land Converter | Ropani-Aana to Bigha-Kattha | NepaCalc",
-  description: "Official Nepal land area converter. Convert Ropani, Aana, Paisa, Daam to Bigha, Kattha, Dhur and Square Feet/Meters. Precise Lalpurja measurements.",
+  title: "Nepal Land Area Converter | Ropani Aana Bigha Kattha | NepaCalc",
+  description: "Convert Nepal land measurements instantly. Ropani, Aana, Paisa, Bigha, Kattha, Dhur to Sq Ft and Sq Meter. Survey Dept standards. Hilly and Terai systems.",
   slug: 'nepal-land',
-  keywords: ["nepal land converter", "ropani to sq ft", "bigha to sq ft", "aana to sq ft", "land area calculator nepal"],
+  keywords: ["nepal land area converter", "ropani to aana", "bigha to kattha", "nepal land units"],
 });
 
 export default function Page() { 

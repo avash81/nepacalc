@@ -1,0 +1,237 @@
+
+
+  'mortgage-calculator': {
+    title: "Mortgage & Home Loan Auditor Nepal | Institutional Amortization Lab",
+    description: "Professional systematic resource for home mortgage planning in Nepal. 1500+ words on NRB mortgage caps, LTV ratios, and interest-shaving strategies for FY 2082/83.",
+    
+    howToUse: {
+      steps: [
+        "1. Property Valuation Entry: Input the total market value of the land and building based on recent independent valuation reports.",
+        "2. Down Payment Allocation: Define your initial capital. Nepal Rastra Bank (NRB) requires a 30% to 50% down payment for residential purposes.",
+        "3. Interest Rate Sync: Enter the bank's current Base Rate plus the agreed Spread percentage (Total Lending Rate).",
+        "4. Tenure Definition: Select the repayment period. Commercial banks in Nepal typically offer a range from 5 to 25 years.",
+        "5. Repayment Type Selection: Choose between standard EMI (Equal Monthly Installments) or custom repayment structures if applicable.",
+        "6. Amortization Schedule Generation: Observe how the monthly payment is split between principal reduction and interest cost.",
+        "7. Prepayment Simulation: Use the auditor to see how paying an extra 10% principal annually can shave years off your debt.",
+        "8. Net Interest Audit: Review the total interest payable over the life of the loan to understand the true cost of the asset."
+      ]
+    },
+    
+    formula: {
+      title: "The Reducing Balance Amortization Algorithm",
+      description: "Mortgages in Nepal utilize the reducing balance method where interest is calculated monthly on the remaining principal balance, not the original loan amount.",
+      raw: "EMI = [P x r x (1+r)^n] / [(1+r)^n - 1]",
+      variables: [
+        "<strong>P = Principal</strong>: The total loan amount sanctioned by the bank.",
+        "<strong>r = Monthly Rate</strong>: The annual interest rate divided by 12 and 100.",
+        "<strong>n = Number of Months</strong>: The total repayment tenure in months.",
+        "<strong>EMI</strong>: The fixed monthly amount covering both principal and interest."
+      ]
+    },
+    
+    content: (
+        <div className="space-y-12">
+        <div className="space-y-12 text-slate-300">
+        
+        <div className="bg-[#1a1a2e] border-l-4 border-purple-500 rounded-r-xl p-8 shadow-sm">
+        <h2 className="text-purple-400 font-black text-xs uppercase tracking-[0.3em] mb-3">
+        Real Estate Finance Executive Summary
+        </h2>
+        <p className="text-white text-base leading-relaxed">
+        In the rapidly evolving real estate market of Nepal, particularly within the Kathmandu Valley, securing a mortgage is a multi-dimensional strategic decision. The <a href="/calculator/mortgage-calculator" className="text-purple-400 hover:text-purple-300 underline font-bold transition-colors">Mortgage Auditor</a> is engineered to provide professional transparency into the long-term fiscal implications of home ownership. From navigating the strict <a href="https://www.nrb.org.np" target="_blank" rel="noopener noreferrer" className="text-purple-400 underline font-bold transition-colors">Nepal Rastra Bank (NRB) </a> Loan-to-Value (LTV) caps to auditing the "Reducing Balance" amortization schedules of A-class commercial banks, this tool serves as your definitive financial advisor. Whether you are budgeting for a first-time residential purchase or a strategic land investment, understanding the interplay between interest spreads and tenure is the key to minimizing your total debt service.
+        <br/><br/>
+        <span className="text-sm text-slate-400">
+        Strategic Asset Audit: Real estate is the most significant investment for most Nepalese households. Ensure your income supports the debt using our <a href="/calculator/nepal-income-tax" className="text-purple-400 hover:text-purple-300 underline font-bold transition-colors">Income Lab</a> before committing to a 20-year liability.
+        </span>
+        </p>
+        
+        <section>
+        <h3 className="text-2xl font-black text-white mb-6">
+        1. The LTV Anchor: NRB Caps on Property Value
+        </h3>
+        <div className="prose prose-slate max-w-none text-slate-300 leading-relaxed space-y-4">
+        <p>
+        The <strong>Loan-to-Value (LTV) Ratio</strong> is the most critical regulatory constraint in Nepal's mortgage landscape. NRB utilizes this ratio as a macro-prudential tool to prevent overheating in the real estate sector.
+        </p>
+        <ul className="list-disc pl-6 space-y-3 mt-4">
+        <li><strong>Residential Housing:</strong> For self-occupied residential houses within the Kathmandu Valley, the LTV is typically capped at 50%. This means for a property valued at Rs. 2 Crore, the bank can only lend a maximum of Rs. 1 Crore.</li>
+        <li><strong>Real Estate Loans:</strong> Loans for speculative land purchase or commercial development often face stricter LTV limits, sometimes as low as 30% to 40%.</li>
+        <li><strong>First-Time Home Buyers:</strong> Some recent directives have offered slight relaxations for first-time buyers, emphasizing the government's push towards housing stability.</li>
+        </ul>
+        
+        
+        <section className="bg-[#16213e] border border-purple-900/30 rounded-2xl p-8 mb-8 shadow-sm">
+        <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3">
+        <span className="text-purple-500">📉</span> Amortization Science: Principal vs. Interest Decay
+        </h3>
+        <div className="prose prose-slate max-w-none text-slate-300 leading-relaxed space-y-4">
+        <p>
+        Many borrowers in Nepal are surprised to see that in the first 5 years of a 20-year mortgage, nearly 80% of their EMI goes toward interest rather than principal reduction. This is the nature of the "Front-Loaded" interest model.
+        </p>
+        <div className="overflow-hidden rounded-xl border border-purple-900/50 mt-6">
+        <table className="w-full text-left text-sm">
+        <thead className="bg-[#1a1a2e]">
+        <tr>
+        <th className="p-4 font-black text-white uppercase">Phase of Loan</th>
+        <th className="p-4 font-black text-white uppercase">Interest Component</th>
+        <th className="p-4 font-black text-white uppercase">Principal Component</th>
+        </tr>
+        </thead>
+        <tbody className="divide-y divide-purple-900/30">
+        <tr><td className="p-4 font-bold text-white">Year 1 - 5</td><td className="p-4 text-red-400">High (70%+ </td><td className="p-4">Low (30%- </td></tr>
+        <tr><td className="p-4 font-bold text-white">Year 10 - 15</td><td className="p-4 text-amber-400">Moderate (50% </td><td className="p-4 text-green-400">Moderate (50% </td></tr>
+        <tr><td className="p-4 font-bold text-white">Year 20 - 25</td><td className="p-4 text-green-400">Low (10% </td><td className="p-4 text-green-500 font-bold">High (90% </td></tr>
+        </tbody>
+        </table>
+        
+        
+        <section className="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-2xl p-8 border border-slate-700 shadow-xl overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-purple-600 rounded-full blur-[120px] opacity-20 pointer-events-none" />
+        <h3 className="text-xl font-black mb-6 flex items-center gap-3 relative z-10">
+        <span className="text-purple-400">🏗️</span> Valuation Mechanics: The Bank's Perspective
+        </h3>
+        <p className="text-sm text-slate-300 leading-relaxed mb-8 relative z-10">
+        A common point of friction in Nepal is the gap between "Market Price" and "Bank Valuation". Understanding how banks arrive at their numbers is vital for your down-payment planning.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+        <div className="space-y-4">
+        <div className="flex items-start gap-4"><div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 font-bold">1
+        <p className="text-sm text-slate-300"><strong className="text-white">The Malpot Rate:</strong> The official government valuation used for registration taxes. This is usually the lowest benchmark.</p></div>
+        <div className="flex items-start gap-4"><div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 font-bold">2
+        <p className="text-sm text-slate-300"><strong className="text-white">Fair Market Value (FMV) :</strong> The price a willing buyer pays a willing seller. Banks hire independent valuators to determine this scientifically.</p></div>
+        <div className="flex items-start gap-4"><div className="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-400 font-bold">3
+        <p className="text-sm text-slate-300"><strong className="text-white">Distress Value:</strong> Often set at 70% to 80% of the FMV. This is the amount the bank expects to recover in a forced auction scenario.</p>
+        <div className="bg-black/40 border border-slate-700 p-6 rounded-xl">
+        <h4 className="text-xs font-black text-purple-400 uppercase tracking-widest mb-3">Institutional Strategy</h4>
+        <p className="text-xs text-slate-400 leading-relaxed italic">
+        "In Nepal, banks usually calculate your loan eligibility as a percentage of the average of the Malpot and FMV valuations. If you are buying a property in a high-growth area like Bhaisepati or Budhanilkantha where market prices are skyrocketing, be prepared for a 'Valuation Gap' that requires a higher out-of-pocket down payment. Map your savings growth in our <a href="/calculator/sip-calculator" className="text-purple-400 underline font-bold">SIP Lab</a> to bridge this gap."
+        </p></div>
+        
+        
+        <section>
+        <h3 className="text-2xl font-black text-white mb-6">
+        Mortgage Optimization Silos
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="bg-[#16213e] p-6 rounded-2xl border border-purple-900/30 shadow-sm hover:border-purple-500 transition-all">
+        <h4 className="font-black text-white mb-3 flex items-center gap-2">
+        <span className="text-purple-500">📈</span> The Spread Rate
+        </h4>
+        <p className="text-xs text-slate-400 leading-relaxed">
+        Your interest rate is 'Base Rate + Spread'. While the Base Rate fluctuates with market liquidity, the 'Spread' is usually fixed for the tenure. Negotiate this spread aggressively!
+        </p>
+        <div className="bg-[#16213e] p-6 rounded-2xl border border-purple-900/30 shadow-sm hover:border-green-500 transition-all">
+        <h4 className="font-black text-white mb-3 flex items-center gap-2">
+        <span className="text-green-500">🛡️</span> EMI Insurance
+        </h4>
+        <p className="text-xs text-slate-400 leading-relaxed">
+        Most commercial banks in Nepal mandate Credit Term Life Insurance. This ensures that in the event of the borrower's demise, the loan is paid off by the insurer, protecting the family home.
+        </p>
+        <div className="bg-[#16213e] p-6 rounded-2xl border border-purple-900/30 shadow-sm hover:border-blue-500 transition-all">
+        <h4 className="font-black text-white mb-3 flex items-center gap-2">
+        <span className="text-blue-500">📑</span> Prepayment Audit
+        </h4>
+        <p className="text-xs text-slate-400 leading-relaxed">
+        Paying just one extra EMI per year towards your principal can reduce a 20-year mortgage to approximately 16 years. Always check for 'Prepayment Penalties' in your loan agreement.
+        </p>
+        
+        
+        <section className="bg-[#0f172a] border border-purple-900/30 rounded-3xl p-10 relative overflow-hidden">
+        <div className="relative z-10">
+        <h3 className="text-2xl font-black text-white mb-4">
+        Strategic Case Study: The Kathmandu Family Home
+        </h3>
+        <p className="text-slate-400 text-sm leading-relaxed mb-8">
+        Consider a family purchasing a house in Imadol valued at Rs. 2.5 Crore. They secure a loan of Rs. 1 Crore (40% LTV at an interest rate of 11% for 20 years.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6"><div className="bg-[#1e293b] p-6 rounded-2xl border border-slate-700 shadow-sm">
+        <h4 className="text-xs font-black text-slate-500 uppercase tracking-widest mb-4">Liability Audit</h4>
+        <div className="space-y-2 text-sm text-slate-300">
+        <div className="flex justify-between"><span>Loan Amount:</span> <strong>Rs. 1 Crore</strong></div>
+        <div className="flex justify-between"><span>Monthly EMI:</span> <strong>Rs. 1,03,219</strong></div>
+        <div className="flex justify-between border-t border-slate-700 pt-2 mt-2 font-bold text-white"><span>Total Payout:</span> <span>Rs. 2.47 Crore</span>
+        <div className="bg-[#1e293b] p-6 rounded-2xl border border-purple-900/50 shadow-md transform md:scale-105">
+        <h4 className="text-xs font-black text-purple-400 uppercase tracking-widest mb-4">Interest Cost View</h4>
+        <div className="space-y-2 text-sm text-slate-300">
+        <div className="flex justify-between"><span>Principal Paid:</span> <strong>Rs. 1.00 Crore</strong></div>
+        <div className="flex justify-between"><span>Interest Paid:</span> <strong>Rs. 1.47 Crore</strong></div>
+        <div className="flex justify-between border-t border-purple-900/50 pt-2 mt-2 font-bold text-purple-400"><span>Interest-to-Principal:</span> <span>147%</span>
+        <p className="text-xs text-slate-500 mt-8 italic text-center">
+        Audit Observation: Over 20 years, you pay back nearly 2.5 times what you borrowed. This underscores why auditing your mortgage with our <a href="/calculator/mortgage-calculator" className="text-purple-400 underline font-bold">Mortgage Suite</a> and planning for prepayments is the most effective way to build generational wealth in Nepal.
+        </p></div></div></div></div></div></div></div>
+        
+        
+        <div className="pt-10 border-t border-slate-800 text-center mt-12">
+        <p className="text-[11px] text-slate-500 italic bg-[#1a1a2e] inline-block px-6 py-2 rounded-full border border-purple-900/30">
+        Institutional Compliance: Last updated Baishakh 2083 (May 2026 . Calculations strictly conform to NRB's Unified Directives and the reducing balance interest standard.
+        
+        
+        
+        </p>
+        </div>
+        </div>
+        </section>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
+        </div>
+        </div>
+        </section>
+        </div>
+        </section>
+        </div>
+        </div>
+        </div>
+    ),
+    faqs: [
+      { 
+        question: "What is the maximum home loan tenure in Nepal?", 
+        answer: "Most commercial banks in Nepal offer a maximum tenure of 20 to 25 years. However, this is also limited by the age of the borrower; the loan must typically be fully repaid before the borrower reaches 65 or 70 years of age." 
+      },
+      { 
+        question: "How does the Base Rate affect my home loan EMI in Nepal?", 
+        answer: "Most home loans in Nepal are 'Floating Rate' loans linked to the bank's Base Rate. If the Base Rate increases due to a liquidity crunch in the banking system, your interest rate and subsequently your EMI (or tenure) will also increase." 
+      },
+      { 
+        question: "Can I get a 100% home loan in Nepal?", 
+        answer: "No. According to Nepal Rastra Bank (NRB) regulations, banks must maintain a Loan-to-Value (LTV) ratio. For residential housing within Kathmandu Valley, you typically need to provide at least 50% of the property's valuation as a down payment." 
+      },
+      { 
+        question: "Is it better to choose a Fixed or Floating interest rate?", 
+        answer: "A Fixed Rate provides certainty and protection against rising interest rates, which is valuable in Nepal's volatile market. A Floating Rate might be cheaper initially but carries the risk of significant increases if market liquidity tightens." 
+      },
+      { 
+        question: "What are the hidden costs of a mortgage in Nepal?", 
+        answer: "Beyond the EMI, borrowers must account for Loan Processing Fees (typically 0.25% to 1%), Property Valuation Fees, Legal/Notary Fees, Mortgage Deed Registration Taxes, and mandatory Insurance premiums." 
+      },
+      { 
+        question: "How much is the mortgage registration fee in Nepal?", 
+        answer: "The mortgage deed (Dhito Lekhpass) registration fee is a statutory tax paid to the Land Revenue Office (Malpot). It is usually a small percentage of the loan amount, much lower than the 5% property transfer tax." 
+      },
+      { 
+        question: "Can I refinance my home loan from one bank to another in Nepal?", 
+        answer: "Yes, this is known as a 'Loan Swap'. If another bank offers a significantly lower interest spread, you can move your loan. However, be mindful of the 'Swap Fee' and the costs of re-valuing the property and re-registering the mortgage." 
+      },
+      { 
+        question: "What is the difference between a Home Loan and a Land Loan?", 
+        answer: "A Home Loan is for residential construction or purchase and has more favorable LTV limits and interest rates. A Land Loan (Ghar Jagga Karja) is for purchasing a plot of land for investment and often faces stricter LTV caps and higher spreads." 
+      },
+      { 
+        question: "How does prepayment help in reducing my mortgage interest?", 
+        answer: "In a reducing balance loan, any amount paid over the EMI goes directly towards reducing your principal. This immediately lowers the interest calculation for all subsequent months, leading to massive savings over time." 
+      },
+      { 
+        question: "Does the bank value my property at market price?", 
+        answer: "Rarely. Banks use a conservative valuation that is usually the average of the Government (Malpot) rate and the Fair Market Value determined by an independent engineer. This 'Bank Valuation' is almost always lower than the actual market selling price." 
+      }
+    ]
+  },
