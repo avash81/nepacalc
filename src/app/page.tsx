@@ -3,7 +3,6 @@ import { CATEGORIES } from '@/data/calculators';
 import { InstitutionalBlock } from '@/components/layout/InstitutionalBlock';
 import { HomeHero } from './HomeHero';
 import { RecentCalculators } from '@/components/layout/RecentCalculators';
-import { DirectoryIndex } from '@/components/home/DirectoryIndex';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -95,8 +94,6 @@ export default function HomePage() {
           <div className="mt-12">
              <InstitutionalBlock />
           </div>
-
-          <DirectoryIndex />
         </main>
       </div>
     </>
