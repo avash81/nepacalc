@@ -16,6 +16,54 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+const STATIC_POSTS = [
+  {
+    id: 'static-nepal-income-tax-guide-2082-83',
+    slug: 'nepal-income-tax-guide-2082-83',
+    category: 'Finance & Tax',
+    title: 'Nepal Income Tax 2082/83 — Complete Guide to Slabs, SSF Waiver and TDS Rules',
+    excerpt: 'Complete guide to Nepal income tax for FY 2082/83. Covers IRD-verified tax slabs for single and married filers, SSF waiver, EPF/CIT deductions, female 10% rebate, TDS process, and worked examples.',
+    date: '2026-05-20',
+    status: 'published'
+  },
+  {
+    id: 'static-nea-electricity-bill-guide-2082',
+    slug: 'nea-electricity-bill-guide-2082',
+    category: 'Utility Guide',
+    title: 'How to Calculate Your NEA Electricity Bill in Nepal 2082/83 — Slab Rates, Unit Cost & Late Fines',
+    excerpt: 'Complete guide to calculating your Nepal NEA electricity bill for 2082/83. Official progressive slab rates for 5A, 15A, 30A meters. Unit cost table, VAT rules, digital payment rebate and late fine schedule.',
+    date: '2026-05-20',
+    status: 'published'
+  },
+  {
+    id: 'static-income-tax-filing-guide',
+    slug: 'income-tax-filing-guide',
+    category: 'Finance Guide',
+    title: 'How to File Income Tax in Nepal 2083/84: A Step-by-Step Guide',
+    excerpt: 'Learn how to file your income tax in Nepal for FY 2083/84. Complete guide on IRD registration, PAN, tax slabs, and SSF deductions.',
+    date: '2026-05-16',
+    status: 'published'
+  },
+  {
+    id: 'static-nepal-tds-guide-2083',
+    slug: 'nepal-tds-guide-2083',
+    category: 'Taxation',
+    title: 'Nepal TDS Guide 2083/84: Essential Tax Rules for Professionals and Landlords',
+    excerpt: 'Learn about the latest Tax Deducted at Source (TDS) rates in Nepal for FY 2083/84. Comprehensive guide for freelancers, rent owners, and businesses.',
+    date: '2026-05-16',
+    status: 'published'
+  },
+  {
+    id: 'static-nrb-base-rate-trends',
+    slug: 'nrb-base-rate-trends',
+    category: 'Market Analysis',
+    title: 'NRB Base Rate Trends 2083/84: A Guide for Loan Borrowers in Nepal',
+    excerpt: 'Analyze the latest Nepal Rastra Bank base rate trends for FY 2083/84. How falling interest rates impact your Home, Auto, and Personal loan EMIs.',
+    date: '2026-05-16',
+    status: 'published'
+  }
+];
+
 export default async function BlogIndexPage() {
   let posts: any[] = [];
   try {
@@ -24,9 +72,18 @@ export default async function BlogIndexPage() {
     console.error('Firestore fetch error:', error);
   }
 
-  const publishedPosts = (posts || [])
-    .filter((p: any) => p && p.status === 'published')
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const combined = [...STATIC_POSTS, ...(posts || [])];
+  const uniquePostsMap = new Map();
+  combined.forEach(p => {
+    if (p && p.slug && p.status === 'published') {
+      if (!uniquePostsMap.has(p.slug)) {
+        uniquePostsMap.set(p.slug, p);
+      }
+    }
+  });
+
+  const publishedPosts = Array.from(uniquePostsMap.values())
+    .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <div className="min-h-screen bg-[#F8FAFB]">
