@@ -1,7 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
 import { ChevronRight, Calendar, User, Clock, Tag, Share2, Facebook, Twitter, Linkedin, Copy } from 'lucide-react';
 
 interface BlogPostLayoutProps {
@@ -25,8 +23,6 @@ export function BlogPostLayout({
 }: BlogPostLayoutProps) {
   return (
     <div className="bg-[#F8F9FA] min-h-screen">
-      <Navbar />
-      
       {/* Article Header */}
       <div className="bg-white border-b border-slate-200 pt-24 pb-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,8 +92,6 @@ export function BlogPostLayout({
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }
