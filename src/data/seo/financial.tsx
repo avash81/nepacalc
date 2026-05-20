@@ -1812,6 +1812,7 @@ export const financialSEO: Record<string, SEOContent> = {
         <p className="text-xs text-slate-600 leading-relaxed">
         Employees are entitled to overtime pay at 1.5 times their regular hourly rate if they work beyond 8 hours a day or 48 hours a week.
         </p>
+        </div>
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-green-300 transition-all">
         <h4 className="font-black text-slate-900 mb-3 flex items-center gap-2">
         <span className="text-green-600">⚖️</span> Probation Period
@@ -1819,6 +1820,8 @@ export const financialSEO: Record<string, SEOContent> = {
         <p className="text-xs text-slate-600 leading-relaxed">
         The standard probation period is 6 months. After successful completion, the employee must be confirmed, and all permanent benefits begin to accrue.
         </p>
+        </div>
+        </div>
         
         
         <section className="bg-indigo-50 border border-indigo-100 rounded-3xl p-10 relative overflow-hidden">
@@ -1851,9 +1854,6 @@ export const financialSEO: Record<string, SEOContent> = {
         
         
         </p>
-        </div>
-        </div>
-        </div>
         </div>
         </section>
         </div>
