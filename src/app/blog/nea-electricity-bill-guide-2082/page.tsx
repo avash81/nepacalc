@@ -4,7 +4,7 @@ import { BlogPostLayout } from '@/components/blog/BlogPostLayout';
 import Link from 'next/link';
 
 export const metadata = calcMeta({
-  title: "How to Calculate Your NEA Electricity Bill in Nepal 2082/83 — Slab Rates, Unit Cost and Late Fines",
+  title: "How to Calculate Your NEA Electricity Bill in Nepal 2082/83: Slab Rates, Unit Cost and Late Fines",
   description: "Complete guide to calculating your Nepal NEA electricity bill for 2082/83. Official progressive slab rates for 5A, 15A, 30A meters. Unit cost table, VAT rules, digital payment rebate and late fine schedule.",
   slug: "blog/nea-electricity-bill-guide-2082",
   keywords: ["nea bill calculator", "electricity bill calculator nepal", "nea billing", "1 unit electricity cost nepal 2082", "nepal electricity bill rate 2082", "nea electricity bill", "how to calculate electricity bill nepal", "31 units electricity cost nepal", "5a meter 20 units free nepal", "female 10 rebate nea", "nea late fine", "digital payment rebate nea"],
@@ -15,7 +15,7 @@ export default function NeaBillGuideBlog() {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "How to Calculate Your NEA Electricity Bill in Nepal 2082/83 — Slab Rates, Unit Cost and Late Fines",
+    "headline": "How to Calculate Your NEA Electricity Bill in Nepal 2082/83: Slab Rates, Unit Cost and Late Fines",
     "description": "Complete guide to calculating your Nepal NEA electricity bill for 2082/83. Official progressive slab rates for 5A, 15A, 30A meters. Unit cost table, VAT rules, digital payment rebate and late fine schedule.",
     "url": "https://nepacalc.com/blog/nea-electricity-bill-guide-2082/",
     "datePublished": "2026-05-20",
@@ -93,7 +93,7 @@ export default function NeaBillGuideBlog() {
       />
 
       <BlogPostLayout
-        title="How to Calculate Your NEA Electricity Bill in Nepal 2082/83 — Slab Rates, Unit Cost & Late Fines"
+        title="How to Calculate Your NEA Electricity Bill in Nepal 2082/83: Slab Rates, Unit Cost & Late Fines"
         date="May 20, 2026"
         author="NepaCalc Editorial Desk"
         category="Utility Guide"
@@ -157,7 +157,7 @@ export default function NeaBillGuideBlog() {
             </p>
           </div>
 
-          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">2. NEA domestic tariff slabs 2082/83 — 15A single-phase meter</h2>
+          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">2. NEA domestic tariff slabs 2082/83: 15A single-phase meter</h2>
           <p>
             The 15-ampere single-phase meter is the most common connection type in Nepali urban and peri-urban households. The rates below apply to domestic consumers for FY 2082/83. Industrial, commercial, and three-phase connections have different tariff schedules.
           </p>
@@ -229,7 +229,7 @@ export default function NeaBillGuideBlog() {
             One unit = 1 kilowatt-hour (kWh). The cost of your <em>next</em> unit depends on which slab your total monthly consumption has reached. A 60-watt LED bulb running for 17 hours uses exactly 1 unit. A 1.5-tonne AC running for 1 hour uses approximately 1.5 units.
           </p>
 
-          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">4. Full electricity bill reference table — 20 to 200 units (15A meter)</h2>
+          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">4. Full electricity bill reference table: 20 to 200 units (15A meter)</h2>
           <p>
             This table directly answers the GSC queries "how much does 31 units cost", "40 units electricity price nepal", and similar. All amounts include 13% VAT on energy charge. Fixed charge by slab applied. No late fine, no digital rebate.
           </p>
@@ -261,7 +261,7 @@ export default function NeaBillGuideBlog() {
             </table>
           </div>
 
-          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">5. The 5A meter special rule — when are 20 units free?</h2>
+          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">5. The 5A meter special rule: when are 20 units free?</h2>
           <p>
             The 5A connection (low-power, rural/subsidised category) has a unique billing rule designed to protect very low-income households. This rule has two parts:
           </p>
@@ -316,7 +316,7 @@ export default function NeaBillGuideBlog() {
             </table>
           </div>
 
-          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">7. Save 2% on your NEA bill — digital payment rebate</h2>
+          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">7. Save 2% on your NEA bill: digital payment rebate</h2>
           <p>
             NEA offers a <strong>2% rebate on the energy charge</strong> for digital payments made within 7 days of bill generation. Approved channels include:
           </p>
@@ -331,7 +331,7 @@ export default function NeaBillGuideBlog() {
             Cash payment at NEA counters does NOT qualify. The rebate is applied automatically at checkout — you do not need to request it. For a typical household spending Rs 1,00,000/month? No, 'spending Rs 1,000/month on energy, the 2% rebate saves Rs 240 per year.'
           </p>
 
-          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">8. Late payment penalty schedule — know your deadlines</h2>
+          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">8. Late payment penalty schedule: know your deadlines</h2>
 
           <div className="overflow-x-auto my-6 border border-slate-200 rounded-xl">
             <table className="w-full border-collapse text-left text-sm m-0">
@@ -395,7 +395,7 @@ export default function NeaBillGuideBlog() {
             <li><strong>Add or subtract adjustments:</strong> Apply late fine if applicable, subtract digital rebate if applicable</li>
           </ol>
 
-          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">10. Worked example — 15A meter, 120 units consumed, paid on day 10</h2>
+          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">10. Worked example: 15A meter, 120 units consumed, paid on day 10</h2>
 
           <div className="bg-amber-50/60 border border-amber-200 rounded-xl p-6 my-6">
             <div className="text-sm font-bold text-amber-900 mb-4">💡 Standard Kathmandu household — 120 units, 15A meter, paid on day 10 (no penalty, no digital rebate)</div>
@@ -493,7 +493,7 @@ export default function NeaBillGuideBlog() {
           <div className="space-y-4 my-6 not-prose">
             <details className="group border border-slate-200 rounded-lg overflow-hidden" open>
               <summary className="p-4 bg-slate-50 font-bold text-slate-700 cursor-pointer flex justify-between items-center select-none list-none [&::-webkit-details-marker]:hidden">
-                <span>How much does 1 unit of electricity cost in Nepal in 2082 — is there a single rate?</span>
+                <span>How much does 1 unit of electricity cost in Nepal in 2082: is there a single rate?</span>
                 <span className="text-xs transition-transform group-open:rotate-180">▼</span>
               </summary>
               <div className="p-4 border-t border-slate-100 text-sm text-slate-600 leading-relaxed">
@@ -513,7 +513,7 @@ export default function NeaBillGuideBlog() {
 
             <details className="group border border-slate-200 rounded-lg overflow-hidden">
               <summary className="p-4 bg-slate-50 font-bold text-slate-700 cursor-pointer flex justify-between items-center select-none list-none [&::-webkit-details-marker]:hidden">
-                <span>What is NEA.billing — is nea.billing a website?</span>
+                <span>What is NEA.billing: is nea.billing a website?</span>
                 <span className="text-xs transition-transform group-open:rotate-180">▼</span>
               </summary>
               <div className="p-4 border-t border-slate-100 text-sm text-slate-600 leading-relaxed">
@@ -523,7 +523,7 @@ export default function NeaBillGuideBlog() {
 
             <details className="group border border-slate-200 rounded-lg overflow-hidden">
               <summary className="p-4 bg-slate-50 font-bold text-slate-700 cursor-pointer flex justify-between items-center select-none list-none [&::-webkit-details-marker]:hidden">
-                <span>What is the NEA electricity bill rate in Nepal for 2082 — has it increased from 2081?</span>
+                <span>What is the NEA electricity bill rate in Nepal for 2082: has it increased from 2081?</span>
                 <span className="text-xs transition-transform group-open:rotate-180">▼</span>
               </summary>
               <div className="p-4 border-t border-slate-100 text-sm text-slate-600 leading-relaxed">

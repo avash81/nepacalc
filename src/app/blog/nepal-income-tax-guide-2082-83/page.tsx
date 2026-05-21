@@ -4,7 +4,7 @@ import { BlogPostLayout } from '@/components/blog/BlogPostLayout';
 import Link from 'next/link';
 
 export const metadata = calcMeta({
-  title: "Nepal Income Tax 2082/83 — Complete Guide to Slabs, SSF Waiver and TDS Rules",
+  title: "Nepal Income Tax 2082/83: Complete Guide to Slabs, SSF Waiver and TDS Rules",
   description: "Comprehensive guide to Nepal income tax FY 2082/83. IRD-verified progressive tax slabs for single and married filers, SSF waiver mechanics, EPF/CIT deductions, female 10% FRTC rebate, TDS deposit rules, and two fully worked payslip examples at Rs 60,000 and Rs 1,20,000 monthly gross.",
   slug: "blog/nepal-income-tax-guide-2082-83",
   keywords: ["nepal income tax 2082/83", "income tax slab nepal", "ird tax calculator", "ssf waiver nepal", "tds calculator nepal", "nepal income tax slab 1% up to 500000", "nepal individual income tax slab 2081/82", "salary tax calculator nepal", "nepal income tax married couple 600000"],
@@ -15,7 +15,7 @@ export default function TaxGuideBlog() {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Nepal Income Tax 2082/83 — Complete Guide to Slabs, SSF Waiver and TDS Rules",
+    "headline": "Nepal Income Tax 2082/83: Complete Guide to Slabs, SSF Waiver and TDS Rules",
     "description": "Comprehensive guide to Nepal income tax FY 2082/83. IRD-verified progressive tax slabs for single and married filers, SSF waiver mechanics, EPF/CIT deductions, female 10% FRTC rebate, TDS deposit rules, and two fully worked payslip examples at Rs 60,000 and Rs 1,20,000 monthly gross.",
     "url": "https://nepacalc.com/blog/nepal-income-tax-guide-2082-83/",
     "datePublished": "2026-05-20",
@@ -116,7 +116,7 @@ export default function TaxGuideBlog() {
       />
 
       <BlogPostLayout
-        title="Nepal Income Tax 2082/83 — Complete Guide to Slabs, SSF Waiver & TDS Rules"
+        title="Nepal Income Tax 2082/83: Complete Guide to Slabs, SSF Waiver & TDS Rules"
         date="May 20, 2026"
         author="NepaCalc Editorial Team"
         category="Finance & Tax"
@@ -295,7 +295,7 @@ export default function TaxGuideBlog() {
             </p>
           </div>
 
-          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">2. Income tax slabs FY 2082/83 — single / unmarried filers</h2>
+          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">2. Income tax slabs FY 2082/83: Single and Unmarried Filers</h2>
           <p>
             Nepal applies <strong>six progressive income bands</strong> to individual income. The critical rule: each band is taxed at its own rate independently. You never pay your highest applicable rate on your full income. If you earn Rs 15,00,000 per year, you do not pay 30% on Rs 15 lakhs — you pay 30% only on the income above Rs 10,00,000, with lower rates applying to the income in lower bands.
           </p>
@@ -501,7 +501,7 @@ export default function TaxGuideBlog() {
             SSF enrollment data is verifiable at ssf.gov.np using your SSF number. All benefit details are sourced from the SSF Management Board's official benefit schedule published under Social Security Regulations 2075.
           </div>
 
-          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">6. All deductions that reduce your taxable income — complete list</h2>
+          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">6. All Deductions That Reduce Your Taxable Income: Complete List</h2>
           <p>
             Before applying progressive slab rates, Nepal's tax law allows specified deductions from gross income to arrive at <strong>assessable income</strong> — the figure on which bands are applied. Every rupee of qualifying deduction reduces your assessable income, potentially dropping income from a higher band into a lower one. This is where proactive tax planning (within legal limits) can meaningfully reduce your annual liability.
           </p>
@@ -561,7 +561,7 @@ export default function TaxGuideBlog() {
             <strong>How the combined deduction cap works in practice:</strong> An employee earning Rs 1,20,000/month gross (Rs 14,40,000/year) with annual SSF contribution of Rs 95,040: The cap is the lower of Rs 5,00,000 or Rs 14,40,000 ÷ 3 = Rs 4,80,000. Since Rs 95,040 is below Rs 4,80,000, the full SSF contribution is deductible. Add life insurance Rs 40,000 + health insurance Rs 20,000 = total deductions Rs 1,55,040. Assessable income = Rs 14,40,000 − Rs 1,55,040 = Rs 12,84,960.
           </p>
 
-          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">7. Female 10% tax rebate (FRTC) — calculation and qualifying conditions</h2>
+          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">7. Female 10% Tax Rebate (FRTC): Calculation and Qualifying Conditions</h2>
           <p>
             The <strong>Female Rebate on Tax Computation (FRTC)</strong>, maintained under Finance Act 2082, provides female employees a 10% reduction on their total computed income tax. This was introduced by Nepal's Parliament as a gender-equity fiscal measure. Understanding what "10% rebate on tax" means (as opposed to 10% off assessable income) is critical to computing it correctly.
           </p>
@@ -642,7 +642,7 @@ export default function TaxGuideBlog() {
             <strong>When you change employers mid-year:</strong> Your new employer must compute TDS based on your full-year projected income — including what your previous employer already paid you. Submit your previous employer's Form 2 or income statement to your new HR department. Failure to do this results in under-deduction from the new employer and a potentially large tax liability at year end that you must settle personally with IRD.
           </p>
 
-          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">9. Worked example 1 — Rs 60,000/month gross, single, SSF enrolled</h2>
+          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">9. Worked Example 1: Rs 60,000 Monthly Gross, Single Filer, SSF Enrolled</h2>
           <div className="bg-amber-50/70 border border-amber-200 rounded-2xl p-6 my-6 text-slate-800">
             <div className="font-black text-amber-950 mb-3 flex items-center gap-2">
               💡 Entry-level professional, Rs 60,000 gross salary/month, SSF enrolled, single filer, no additional deductions
@@ -723,7 +723,7 @@ export default function TaxGuideBlog() {
             </div>
           </div>
 
-          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">10. Worked example 2 — Rs 1,20,000/month gross, married, SSF enrolled</h2>
+          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">10. Worked Example 2: Rs 1,20,000 Monthly Gross, Married Filer, SSF Enrolled</h2>
           <div className="bg-amber-50/70 border border-amber-200 rounded-2xl p-6 my-6 text-slate-800">
             <div className="font-black text-amber-950 mb-3 flex items-center gap-2">
               💡 Senior professional, Rs 1,20,000 gross/month, SSF enrolled, married filer, life insurance Rs 40,000/year
@@ -816,7 +816,7 @@ export default function TaxGuideBlog() {
             </div>
           </div>
 
-          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">11. IRD filing deadlines and penalties — FY 2082/83</h2>
+          <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">11. IRD filing deadlines and penalties: FY 2082/83</h2>
           <div className="overflow-x-auto my-6 border border-slate-200 rounded-xl">
             <table className="w-full border-collapse text-left text-sm m-0">
               <thead>

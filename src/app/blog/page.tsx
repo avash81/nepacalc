@@ -21,7 +21,7 @@ const STATIC_POSTS = [
     id: 'static-nepal-income-tax-guide-2082-83',
     slug: 'nepal-income-tax-guide-2082-83',
     category: 'Finance & Tax',
-    title: 'Nepal Income Tax 2082/83 — Complete Guide to Slabs, SSF Waiver and TDS Rules',
+    title: 'Nepal Income Tax 2082/83: Complete Guide to Slabs, SSF Waiver and TDS Rules',
     excerpt: 'Complete guide to Nepal income tax for FY 2082/83. Covers IRD-verified tax slabs for single and married filers, SSF waiver, EPF/CIT deductions, female 10% rebate, TDS process, and worked examples.',
     date: '2026-05-20',
     status: 'published'
@@ -30,7 +30,7 @@ const STATIC_POSTS = [
     id: 'static-nea-electricity-bill-guide-2082',
     slug: 'nea-electricity-bill-guide-2082',
     category: 'Utility Guide',
-    title: 'How to Calculate Your NEA Electricity Bill in Nepal 2082/83 — Slab Rates, Unit Cost & Late Fines',
+    title: 'How to Calculate Your NEA Electricity Bill in Nepal 2082/83: Slab Rates, Unit Cost & Late Fines',
     excerpt: 'Complete guide to calculating your Nepal NEA electricity bill for 2082/83. Official progressive slab rates for 5A, 15A, 30A meters. Unit cost table, VAT rules, digital payment rebate and late fine schedule.',
     date: '2026-05-20',
     status: 'published'
