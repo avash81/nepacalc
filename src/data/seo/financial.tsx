@@ -1832,19 +1832,29 @@ export const financialSEO: Record<string, SEOContent> = {
         <p className="text-indigo-900/70 text-sm leading-relaxed mb-8">
         A mid-level software engineer in Kathmandu is offered a gross salary of <strong>Rs. 1,20,000</strong> per month. Let's compare their take-home under SSF vs a traditional firm with no benefits:
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6"><div className="bg-white p-6 rounded-2xl border border-indigo-200 shadow-sm"><h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Firm A: SSF Registered</h4></div>
-        <div className="space-y-2 text-sm text-slate-700">
-        <div className="flex justify-between"><span>Employee SSF (11% :</span> <strong>Rs. 13,200</strong></div>
-        <div className="flex justify-between"><span>Net Tax:</span> <strong>Rs. 11,450</strong></div>
-        <div className="flex justify-between border-t pt-2 mt-2 font-bold text-slate-900"><span>Take-Home:</span> <span>Rs. 95,350</span>
-        <div className="bg-white p-6 rounded-2xl border border-green-200 shadow-md transform md:scale-105"><h4 className="text-xs font-black text-green-600 uppercase tracking-widest mb-4">Firm B: No Benefits</h4></div>
-        <div className="space-y-2 text-sm text-slate-700">
-        <div className="flex justify-between"><span>Deductions:</span> <strong>None</strong></div>
-        <div className="flex justify-between text-green-600"><span>Net Tax:</span> <strong>Rs. 16,800</strong>
-        <div className="flex justify-between border-t pt-2 mt-2 font-bold text-green-700"><span>Take-Home:</span> <span>Rs. 1,03,200</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white p-6 rounded-2xl border border-indigo-200 shadow-sm">
+            <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Firm A: SSF Registered</h4>
+            <div className="space-y-2 text-sm text-slate-700">
+              <div className="flex justify-between"><span>Employee SSF (11%):</span> <strong>Rs. 13,200</strong></div>
+              <div className="flex justify-between"><span>Net Tax:</span> <strong>Rs. 11,450</strong></div>
+              <div className="flex justify-between border-t border-slate-100 pt-2 mt-2 font-bold text-slate-900"><span>Take-Home:</span> <span>Rs. 95,350</span></div>
+            </div>
+          </div>
+          
+          <div className="bg-white p-6 rounded-2xl border border-green-200 shadow-md transform md:scale-105">
+            <h4 className="text-xs font-black text-green-600 uppercase tracking-widest mb-4">Firm B: No Benefits</h4>
+            <div className="space-y-2 text-sm text-slate-700">
+              <div className="flex justify-between"><span>Deductions:</span> <strong>None</strong></div>
+              <div className="flex justify-between text-green-600"><span>Net Tax:</span> <strong>Rs. 16,800</strong></div>
+              <div className="flex justify-between border-t border-slate-100 pt-2 mt-2 font-bold text-green-700"><span>Take-Home:</span> <span>Rs. 1,03,200</span></div>
+            </div>
+          </div>
+        </div>
+        
         <p className="text-xs text-indigo-900/50 mt-8 italic text-center">
-        Audit Observation: While Firm B offers Rs. 7,850 more in liquid cash, the employee in Firm A is accumulating <strong>Rs. 37,200</strong> every month in their retirement fund (including the 20% employer contribution . Firm A offers a vastly superior total compensation package. Reinvest your surplus into our <a href="/calculator/cagr-calculator" className="text-blue-600 underline font-bold">Growth Auditor</a> to see the long-term impact.
-        </p></div></div></div></div></div></div></div>
+        Audit Observation: While Firm B offers Rs. 7,850 more in liquid cash, the employee in Firm A is accumulating <strong>Rs. 37,200</strong> every month in their retirement fund (including the 20% employer contribution). Firm A offers a vastly superior total compensation package. Reinvest your surplus into our <a href="/calculator/cagr-calculator" className="text-blue-600 underline font-bold">Growth Auditor</a> to see the long-term impact.
+        </p></div>
         </section>
         
         <div className="pt-10 border-t border-slate-200 text-center mt-12">
