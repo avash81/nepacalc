@@ -281,14 +281,14 @@ export default function NepalVehicleTaxCalculator() {
         title: "Auto Hub Nepal",
         subtitle: "Compliance Tools",
         links: [
-          { label: "Fuel Cost Tool", href: "/calculator/nepal-fuel-cost/", icon: Activity },
+          { label: "Fuel Cost Tool", href: "/calculator/nepal-vehicle-tax", icon: Activity },
           { label: "Salary Calculator", href: "/calculator/nepal-salary/", icon: Wallet },
           { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Landmark },
           { label: "DoTM Official", href: "https://dotm.gov.np", icon: Globe },
         ],
       }}
       relatedTools={[
-        { label: "Fuel Cost Tool", href: "/calculator/nepal-fuel-cost/" },
+        { label: "Fuel Cost Tool", href: "/calculator/nepal-vehicle-tax" },
         { label: "Home Loan EMI", href: "/calculator/nepal-home-loan/" },
         { label: "Salary Calculator", href: "/calculator/nepal-salary/" },
         { label: "Income Tax", href: "/calculator/nepal-income-tax/" }

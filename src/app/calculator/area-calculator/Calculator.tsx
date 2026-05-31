@@ -41,7 +41,7 @@ export default function AreaCalculator() {
       relatedTools={[
         { label: "Nepal Land Converter", href: "/calculator/nepal-land/" },
         { label: "Unit Converter", href: "/calculator/unit-converter/" },
-        { label: "Percentage Calculator", href: "/calculator/percentage-calculator/" }
+        { label: "Percentage Calculator", href: "/calculator/percentage" }
       ]}
       inputs={
         <div className="space-y-6">

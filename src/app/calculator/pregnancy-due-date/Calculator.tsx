@@ -111,7 +111,7 @@ export default function PregnancyDueDateCalculator() {
       sidebar={{
         title: "Health & Fitness",
         links: [
-          { label: 'BMI Calculator', href: '/calculator/bmi-calculator/' },
+          { label: 'BMI Calculator', href: '/calculator/bmi' },
           { label: 'Sleep Calculator', href: '/calculator/sleep/' },
           { label: "BMI Calculator", href: "/calculator/bmi/" },
           { label: "Percentage Calc", href: "/calculator/percentage/" },

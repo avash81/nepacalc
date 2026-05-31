@@ -205,7 +205,7 @@ export default function CGPACalculator() {
         title: "Academic Toolkit",
         links: [
           { label: "SEE GPA Calc", href: "/calculator/see-gpa/" },
-          { label: "GPA to % Tool", href: "/calculator/gpa-to-percentage/" },
+          { label: "GPA to % Tool", href: "/calculator/cgpa" },
           { label: "Engineering GPA", href: "/calculator/engineering-gpa/" },
           { label: "Attendance Calc", href: "/calculator/attendance/" },
         ],
@@ -217,7 +217,7 @@ export default function CGPACalculator() {
       }}
       relatedTools={[
         { label: "SEE GPA", href: "/calculator/see-gpa/" },
-        { label: "GPA to %", href: "/calculator/gpa-to-percentage/" },
+        { label: "GPA to %", href: "/calculator/cgpa" },
         { label: "Engineering GPA", href: "/calculator/engineering-gpa/" }
       ]}
     />
