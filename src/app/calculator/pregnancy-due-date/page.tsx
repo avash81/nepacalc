@@ -42,9 +42,9 @@ export default function Page() {
         description="Clinical-grade engine for estimating your delivery date and tracking major pregnancy milestones."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Pregnancy Due Date' }]}
         relatedCalcs={[
-          { name: 'Ovulation Calc', slug: 'ovulation-calculator' },
-          { name: 'Period Tracker', slug: 'period-calculator' },
-          { name: 'Child BMI', slug: 'child-bmi' }
+          { name: 'BMI Calculator', slug: 'bmi' },
+          { name: 'BMR Calc', slug: 'bmr' },
+          { name: 'Ideal Weight', slug: 'ideal-weight' }
         ]}
         formula="EDD = LMP + 280 Days [Naegele's Rule]"
       >
