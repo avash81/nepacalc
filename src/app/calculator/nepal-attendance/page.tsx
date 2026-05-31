@@ -1,10 +1,10 @@
 import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 export const metadata = calcMeta({
-  title: "TU/PU Attendance Tracker | Exam Eligibility NepaCalc",
-  description: "Calculate your university attendance percentage and eligibility for end-semester exams. Based on the mandatory 75% minimum for Tribhuvan University (TU) and Pokhara University (PU).",
+  title: "TU/PU Attendance Calculator Nepal | 75% Exam Eligibility | NepaCalc",
+  description: "Calculate your Tribhuvan University, Pokhara University attendance percentage. Check if you meet the mandatory 75% attendance threshold for NEB/TU exams 2081/82.",
   slug: 'nepal-attendance',
-  keywords: ["tu attendance calculator", "pu attendance rule", "75 percent attendance calculator", "nepal college attendance", "exam eligibility nepal"],
+  keywords: ["TU attendance calculator", "nepal attendance percentage", "75 percent attendance nepal", "exam eligibility attendance nepal"],
 });
 export default function Page() {
   return (

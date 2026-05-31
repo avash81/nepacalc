@@ -2,10 +2,10 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: "Nepal VAT Calculator 13% | Inclusive & Exclusive Tax | NepaCalc",
-  description: "Calculate 13% Value Added Tax (VAT) in Nepal instantly. Reverse VAT from total amount, add 10% service charge, and generate tax invoices. 100% IRD compliant.",
+  title: "Nepal VAT Calculator 2083/84 | 13% VAT Inclusive & Exclusive | NepaCalc",
+  description: "Calculate 13% VAT in Nepal for FY 2083/84. Add or remove VAT from any amount. IRD-compliant VAT inclusive and exclusive calculations for businesses and consumers.",
   slug: 'nepal-vat',
-  keywords: ["nepal vat calculator", "vat calculator 13%", "extract vat nepal", "service charge nepal", "vat act 2052 nepal", "ird tax calculator nepal", "reverse vat calculator nepal"],
+  keywords: ["nepal vat calculator", "13 percent vat nepal", "vat calculator 2083", "ird nepal vat", "vat inclusive exclusive nepal"],
 });
 
 export default function Page() {

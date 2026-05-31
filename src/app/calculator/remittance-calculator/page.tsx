@@ -2,10 +2,10 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: "Remittance Calculator Nepal | Highest Exchange Rate Tracker NepaCalc",
-  description: "Compare remittance rates from Western Union, IME, and Banks in Nepal. Calculate net NPR received with latest exchange rates and IPO quota benefits.",
+  title: "Nepal Remittance Calculator 2083 | Best Exchange Rate Tracker | NepaCalc",
+  description: "Find the best exchange rate for remittance to Nepal in 2083. Compare Western Union, IME, Prabhu Money, and bank rates. Calculate exact NPR received from USD, AED, QAR, SAR.",
   slug: 'remittance-calculator',
-  keywords: ["remittance calculator nepal", "highest exchange rate nepal", "ime remittance rate", "western union nepal rate", "remittance ipo quota", "send money to nepal"],
+  keywords: ["remittance calculator nepal", "best exchange rate nepal", "ime western union compare nepal", "send money nepal rate 2083"],
 });
 
 export default function Page() {

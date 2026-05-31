@@ -1,11 +1,11 @@
 import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 export const metadata = calcMeta({
-  title: "Gold Rate Calculator Nepal | Tola to Gram Converter NepaCalc",
-  description: "Calculate live gold and silver prices in Nepal. Convert Tola, Lal to Grams. Add making charges (Jarti) to estimate final jewelry valuation.",
+  title: "Gold Price Calculator Nepal 2082/83 | Tola, Lal & Gram Converter | NepaCalc",
+  description: "Convert gold between Tola, Lal, and Grams at today's live Nepal gold rates (2082/83). FENEGOSIDA verified prices. Calculate 24K, 22K, and 18K gold values instantly.",
   slug: 'gold-converter',
   canonical: '/market-rates/live-gold-price/',
-  keywords: ["gold rate calculator nepal", "tola to gram converter", "live gold price nepal", "fenegosida gold rate", "jewelry valuation nepal", "gold calculator with making charges"],
+  keywords: ["gold converter nepal", "tola to gram nepal", "1 tola gold price nepal today", "gold price 2083", "gold lal gram converter", "suvarna nepal"],
 });
 export default function Page() {
   return (

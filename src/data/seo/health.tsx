@@ -374,125 +374,124 @@ export const healthSEO: Record<string, SEOContent> = {
       variables: ["Activity Offset: Extra 0.5L to 1L per hour of exercise."]
     },
     content: (
-        <div className="space-y-16 font-sans">
-            <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
-                <div className="relative z-10">
-                    <h2 className="text-blue-400 font-black text-sm uppercase tracking-[0.4em] mb-4">Hydration Analytics</h2>
-                    <h3 className="text-4xl font-black mb-8 leading-tight">Optimizing Daily Water Intake & Fluid Balance</h3>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        Hydration is the cornerstone of metabolic function, cellular health, and cognitive performance. Yet, the universal "eight glasses a day" rule is scientifically outdated. Your daily water requirement is highly dynamic, influenced by your body mass index, local climate conditions (such as the humid summers in Nepal's Terai vs. the dry cold of the Himalayas), and daily activity levels.
-                    </p>
-                </div>
+        <div className="space-y-12">
+            <div className="bg-blue-50 border-l-4 border-blue-600 rounded-r-xl p-8 shadow-sm">
+                <h2 className="text-blue-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Daily Water Intake Guide</h2>
+                <p className="text-slate-800 text-base leading-relaxed">
+                    Proper hydration is foundational to human health—water regulates body temperature, transports nutrients, lubricates joints, and supports kidney function. The <strong>Water Intake Calculator</strong> provides a personalized daily hydration target based on your body weight, activity level, and climate. The outdated "8 glasses a day" rule ignores individual variation; this tool delivers science-backed recommendations.
+                </p>
             </div>
-            
-            <section className="space-y-8">
-                <h3 className="text-3xl font-black text-slate-900">1. The Physiology of Hydration</h3>
-                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                    <p>Water comprises approximately 60% of an adult human body. It acts as the primary solvent for biochemical reactions, a transport medium for nutrients and oxygen, and the main component of synovial fluid which lubricates joints. Even a mild dehydration level of 1-2% of body weight can impair cognitive function, reduce physical endurance, and cause severe headaches.</p>
-                    <p>The calculation of baseline water intake generally follows a weight-based formula. A commonly accepted baseline by health institutions is approximately 30-35 milliliters of water per kilogram of body weight per day for a healthy adult.</p>
-                    <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100 mt-4">
-                        <h4 className="font-bold text-blue-900 mb-2">Scientific Calculation (Example):</h4>
-                        <p>For a person weighing 70 kg in a temperate climate:</p>
-                        <p className="font-mono text-sm mt-2">70 kg × 35 ml = 2,450 ml (or ~2.5 Liters) per day.</p>
+
+            {/* Quick Facts */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">1. Hydration Quick Facts</h3>
+                <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+                    <table className="w-full text-left text-sm">
+                        <thead className="bg-blue-50 border-b border-blue-200">
+                            <tr>
+                                <th className="p-4 font-black text-blue-900 uppercase tracking-widest">Factor</th>
+                                <th className="p-4 font-black text-blue-900 uppercase tracking-widest">Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100 text-slate-600">
+                            <tr><td className="p-4 font-bold">Baseline Formula</td><td className="p-4">35 ml × body weight (kg) per day</td></tr>
+                            <tr><td className="p-4 font-bold">Exercise Addition</td><td className="p-4">+350–500 ml per 30 min of exercise</td></tr>
+                            <tr><td className="p-4 font-bold">Hot Climate Adjustment</td><td className="p-4">+500–1,000 ml in Nepal's Terai summer</td></tr>
+                            <tr><td className="p-4 font-bold">High Altitude (Nepal)</td><td className="p-4">+500–700 ml (faster dehydration above 3,500m)</td></tr>
+                            <tr><td className="p-4 font-bold">Pregnancy</td><td className="p-4">+300 ml above daily baseline</td></tr>
+                            <tr><td className="p-4 font-bold">Breastfeeding</td><td className="p-4">+700–1,000 ml above daily baseline</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            {/* How It Works */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">2. How Daily Water Requirement Is Calculated</h3>
+                <div className="bg-slate-900 text-white rounded-2xl p-8">
+                    <p className="font-mono text-lg text-blue-300 font-black mb-4 text-center">Daily Water (L) = (Weight kg × 0.035) + Activity Offset</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mt-6">
+                        <div className="bg-slate-800 rounded-xl p-4">
+                            <p className="text-blue-300 font-bold mb-2">Example (70 kg, sedentary)</p>
+                            <p className="font-mono text-xs text-slate-300">70 × 0.035 = 2.45 L/day</p>
+                        </div>
+                        <div className="bg-slate-800 rounded-xl p-4">
+                            <p className="text-blue-300 font-bold mb-2">Example (70 kg, moderate)</p>
+                            <p className="font-mono text-xs text-slate-300">2.45 + 0.5 = 2.95 L/day</p>
+                        </div>
+                        <div className="bg-slate-800 rounded-xl p-4">
+                            <p className="text-blue-300 font-bold mb-2">Example (70 kg, athlete)</p>
+                            <p className="font-mono text-xs text-slate-300">2.45 + 1.5 = 3.95 L/day</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section className="space-y-8">
-                <h3 className="text-3xl font-black text-slate-900">2. Environmental and Lifestyle Adjustments</h3>
-                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                    <p>Your baseline requirement must be dynamically adjusted based on external stressors. If you live in high-altitude areas of Nepal like Mustang or Solukhumbu, your respiration rate increases due to lower oxygen density. This leads to higher insensible water loss through breathing. Thus, high-altitude trekkers require significantly more water than those at sea level.</p>
-                    <ul className="list-disc pl-6 space-y-2">
-                        <li><strong>Exercise:</strong> Add 350-500 ml for every 30 minutes of intense physical activity.</li>
-                        <li><strong>Pregnancy and Lactation:</strong> The Institute of Medicine (IOM) recommends an additional 300 ml during pregnancy and 700-1000 ml during breastfeeding.</li>
-                        <li><strong>Illness:</strong> Fever, vomiting, or diarrhea dramatically increase water and electrolyte loss. Oral Rehydration Solutions (Jeevan Jal in Nepal) are critical during these periods.</li>
+            {/* Nepal Climate Context */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">3. Nepal Climate Zones & Hydration Impact</h3>
+                <p className="text-slate-600 leading-relaxed mb-4">Nepal's unique geography creates dramatically different hydration needs across its three ecological zones:</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="bg-red-50 border border-red-200 rounded-xl p-5">
+                        <h4 className="font-black text-red-700 mb-2">🌡️ Terai (Hot & Humid)</h4>
+                        <p className="text-slate-600 text-sm">Summer temperatures exceed 40°C with high humidity. Heavy sweating significantly increases fluid loss. Add 500–1,000 ml to baseline requirements.</p>
+                    </div>
+                    <div className="bg-green-50 border border-green-200 rounded-xl p-5">
+                        <h4 className="font-black text-green-700 mb-2">🌿 Hills & Valleys</h4>
+                        <p className="text-slate-600 text-sm">Kathmandu's moderate climate (15–30°C average) requires the standard calculated amount. Dry winters may increase invisible respiratory water loss.</p>
+                    </div>
+                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-5">
+                        <h4 className="font-black text-blue-700 mb-2">🏔️ Mountains (High Altitude)</h4>
+                        <p className="text-slate-600 text-sm">Above 3,500m, faster breathing causes accelerated respiratory moisture loss. Trekkers on the Everest or Annapurna trails need 4–5 liters per day.</p>
+                    </div>
+                </div>
+            </section>
+
+            {/* Signs of Dehydration */}
+            <section className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+                <h3 className="text-xl font-black text-yellow-900 mb-4">4. Signs of Dehydration to Watch For</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-700">
+                    <ul className="space-y-2">
+                        <li>🟡 <strong>Mild (1–2% loss):</strong> Thirst, darker urine, slight fatigue</li>
+                        <li>🟠 <strong>Moderate (3–5% loss):</strong> Headache, dry mouth, reduced concentration</li>
+                        <li>🔴 <strong>Severe (6%+):</strong> Rapid heartbeat, confusion, dizziness—seek medical help</li>
+                    </ul>
+                    <ul className="space-y-2">
+                        <li>✅ <strong>Well hydrated:</strong> Pale yellow or clear urine</li>
+                        <li>⚠️ <strong>Dehydrated:</strong> Dark yellow to amber urine</li>
+                        <li>🚨 <strong>Severely dehydrated:</strong> Orange or brown urine</li>
                     </ul>
                 </div>
             </section>
-        
-        <section className="space-y-8 mt-12">
-            <h3 className="text-3xl font-black text-slate-900">Deep Dive: Comprehensive Analysis of Hydration Tracking</h3>
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Hydration Tracking is crucial for individuals looking to optimize their water consumption. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of water consumption allows you to make informed, data-driven decisions. Historically, dealing with water consumption involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of water consumption remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous water consumption assessments to ensure compliance with both local and international standards. The intersection of modern technology and water consumption has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated water consumption analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Hydration Tracking is crucial for individuals looking to optimize their water consumption. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of water consumption allows you to make informed, data-driven decisions. Historically, dealing with water consumption involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of water consumption remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous water consumption assessments to ensure compliance with both local and international standards. The intersection of modern technology and water consumption has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated water consumption analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Hydration Tracking is crucial for individuals looking to optimize their water consumption. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of water consumption allows you to make informed, data-driven decisions. Historically, dealing with water consumption involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of water consumption remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous water consumption assessments to ensure compliance with both local and international standards. The intersection of modern technology and water consumption has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated water consumption analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Hydration Tracking is crucial for individuals looking to optimize their water consumption. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of water consumption allows you to make informed, data-driven decisions. Historically, dealing with water consumption involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of water consumption remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous water consumption assessments to ensure compliance with both local and international standards. The intersection of modern technology and water consumption has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated water consumption analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Hydration Tracking is crucial for individuals looking to optimize their water consumption. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of water consumption allows you to make informed, data-driven decisions. Historically, dealing with water consumption involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of water consumption remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous water consumption assessments to ensure compliance with both local and international standards. The intersection of modern technology and water consumption has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated water consumption analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Hydration Tracking is crucial for individuals looking to optimize their water consumption. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of water consumption allows you to make informed, data-driven decisions. Historically, dealing with water consumption involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of water consumption remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous water consumption assessments to ensure compliance with both local and international standards. The intersection of modern technology and water consumption has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated water consumption analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Hydration Tracking is crucial for individuals looking to optimize their water consumption. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of water consumption allows you to make informed, data-driven decisions. Historically, dealing with water consumption involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of water consumption remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous water consumption assessments to ensure compliance with both local and international standards. The intersection of modern technology and water consumption has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated water consumption analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Hydration Tracking is crucial for individuals looking to optimize their water consumption. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of water consumption allows you to make informed, data-driven decisions. Historically, dealing with water consumption involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of water consumption remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous water consumption assessments to ensure compliance with both local and international standards. The intersection of modern technology and water consumption has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated water consumption analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Hydration Tracking is crucial for individuals looking to optimize their water consumption. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of water consumption allows you to make informed, data-driven decisions. Historically, dealing with water consumption involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of water consumption remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous water consumption assessments to ensure compliance with both local and international standards. The intersection of modern technology and water consumption has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated water consumption analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Hydration Tracking is crucial for individuals looking to optimize their water consumption. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of water consumption allows you to make informed, data-driven decisions. Historically, dealing with water consumption involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of water consumption remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous water consumption assessments to ensure compliance with both local and international standards. The intersection of modern technology and water consumption has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated water consumption analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Hydration Tracking is crucial for individuals looking to optimize their water consumption. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of water consumption allows you to make informed, data-driven decisions. Historically, dealing with water consumption involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of water consumption remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous water consumption assessments to ensure compliance with both local and international standards. The intersection of modern technology and water consumption has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated water consumption analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Hydration Tracking is crucial for individuals looking to optimize their water consumption. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of water consumption allows you to make informed, data-driven decisions. Historically, dealing with water consumption involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of water consumption remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous water consumption assessments to ensure compliance with both local and international standards. The intersection of modern technology and water consumption has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated water consumption analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-            </div>
-        </section>
-        
-        <section className="space-y-8 mt-12">
-            <h3 className="text-3xl font-black text-slate-900">Advanced Methodologies and Strategies</h3>
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                <p className="text-slate-600 leading-relaxed text-lg mb-4">
-                    To truly master water consumption, one must look beyond basic calculations and delve into advanced methodologies. This involves a comprehensive understanding of the underlying variables and how they interact within the broader ecosystem.
-                </p>
-                <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg mb-6">
-                    <li><strong>Precision Tracking:</strong> Implementing rigorous data collection methods to ensure all inputs are perfectly accurate.</li>
-                    <li><strong>Historical Comparison:</strong> Analyzing past data to identify cyclical patterns and establish baselines.</li>
-                    <li><strong>Scenario Planning:</strong> Running multiple simulations to prepare for varying future conditions.</li>
-                    <li><strong>Regulatory Alignment:</strong> Ensuring all calculations adhere to the latest guidelines set forth by relevant authorities in Nepal.</li>
-                    <li><strong>Continuous Auditing:</strong> Regularly reviewing the mathematical models to guarantee ongoing validity.</li>
+
+            {/* Tips */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">5. Practical Hydration Tips for Nepal</h3>
+                <ul className="space-y-3 text-slate-600 text-sm">
+                    <li className="flex gap-3 items-start"><span className="text-blue-600 font-black mt-0.5">→</span><span>Start each day with a glass of water before tea or coffee—this rehydrates after overnight fluid loss.</span></li>
+                    <li className="flex gap-3 items-start"><span className="text-blue-600 font-black mt-0.5">→</span><span>During load-shedding (power cuts), keep water in sealed containers. Nepal's tap water should be boiled or filtered.</span></li>
+                    <li className="flex gap-3 items-start"><span className="text-blue-600 font-black mt-0.5">→</span><span>During monsoon season, ensure water sources are not contaminated; diarrheal illness dramatically increases fluid needs.</span></li>
+                    <li className="flex gap-3 items-start"><span className="text-blue-600 font-black mt-0.5">→</span><span>For Terai residents in summer, <em>ORS (Oral Rehydration Solution / Jeevan Jal)</em> is essential when sweating heavily or during illness.</span></li>
                 </ul>
-                
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous assessments to ensure compliance with both local and international standards. The intersection of modern technology and analysis has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts.
-        </p>
-    
+            </section>
+
+            <div className="pt-8 border-t border-slate-200 text-center">
+                <div className="flex flex-wrap justify-center gap-3">
+                    <a href="/calculator/bmi/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-blue-700 hover:bg-blue-50 transition-all">BMI Calculator</a>
+                    <a href="/calculator/calorie-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-blue-700 hover:bg-blue-50 transition-all">Calorie Calculator</a>
+                    <a href="/calculator/bmr/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-blue-700 hover:bg-blue-50 transition-all">BMR Calculator</a>
+                    <a href="/calculator/sleep/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-blue-700 hover:bg-blue-50 transition-all">Sleep Calculator</a>
+                </div>
             </div>
-        </section>
-    
         </div>
     ),
     faqs: [
-        { question: "Does tea or coffee count towards my water intake?", answer: "Yes. While caffeine is a mild diuretic, the fluid content in a standard cup of tea or coffee outweighs the diuretic effect, contributing to your net hydration." },
-        { question: "How can I tell if I am properly hydrated?", answer: "The easiest indicator is urine color. A pale, straw-like color indicates proper hydration. Dark yellow or amber indicates dehydration." },
-        { question: "Is it possible to drink too much water?", answer: "Yes, extreme overconsumption of water can lead to hyponatremia (water intoxication), a dangerous condition where sodium levels in the blood become fatally diluted." }
+        { question: "How much water should I drink per day?", answer: "A general baseline is 35 ml per kilogram of body weight. For a 70 kg person, that's approximately 2.45 liters. Add extra for exercise (350–500 ml per 30 minutes), hot weather, and altitude in Nepal." },
+        { question: "Does tea and coffee count towards daily water intake?", answer: "Caffeinated beverages have a mild diuretic effect, but research shows they still contribute to net hydration. Moderate tea and coffee (2–3 cups daily) can count as roughly 80% of their volume toward your water intake." },
+        { question: "Do I need more water in Kathmandu's winter?", answer: "Yes. Although it's cold and you may not feel thirsty, the dry winter air in Kathmandu's hills significantly increases respiratory water loss. Aim to maintain at least your baseline water intake year-round." },
+        { question: "Is it possible to drink too much water?", answer: "Yes—hyponatremia (water intoxication) can occur when drinking extremely large volumes rapidly, diluting blood sodium. This is rare but can happen to marathon runners. Stick to 0.8–1 liter per hour maximum during intense exercise." },
+        { question: "How does altitude affect hydration in Nepal?", answer: "At high altitudes (above 3,500m), breathing faster causes rapid moisture loss through the lungs. Trekkers on routes like Everest Base Camp or Annapurna Circuit need 4–5 liters per day to prevent altitude-related dehydration." },
+        { question: "What are the best signs of good hydration?", answer: "Pale yellow or nearly clear urine is the best indicator of adequate hydration. Dark yellow, amber, or strongly scented urine suggests you need to drink more water." }
     ]
   },
   'pregnancy-due-date': {
@@ -699,122 +698,115 @@ export const healthSEO: Record<string, SEOContent> = {
       variables: ["N = Number of cycles (typically 5 or 6).", "15 mins = Average time to fall asleep."]
     },
     content: (
-        <div className="space-y-16 font-sans">
-            <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
-                <div className="relative z-10">
-                    <h2 className="text-indigo-400 font-black text-sm uppercase tracking-[0.4em] mb-4">Circadian Mechanics</h2>
-                    <h3 className="text-4xl font-black mb-8 leading-tight">Optimizing REM and Non-REM Sleep Cycles</h3>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        Sleep is not a uniform state of rest, but a highly structured neurological cycle. Humans sleep in continuous 90-minute to 110-minute cycles. Waking up in the middle of a deep sleep phase leads to sleep inertia—that groggy, exhausted feeling. This calculator uses biological chronometry to find the exact times you should fall asleep or wake up to ensure you rise between cycles.
-                    </p>
-                </div>
+        <div className="space-y-12">
+            <div className="bg-indigo-50 border-l-4 border-indigo-600 rounded-r-xl p-8 shadow-sm">
+                <h2 className="text-indigo-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Sleep Calculator Guide</h2>
+                <p className="text-slate-800 text-base leading-relaxed">
+                    The <strong>Sleep Calculator</strong> helps you determine the optimal bedtime or wake-up time by aligning with your natural sleep cycles. Human sleep consists of 90-minute cycles, each containing light sleep, deep sleep, and REM (Rapid Eye Movement) stages. Waking up at the end of a complete cycle—rather than mid-cycle—dramatically reduces grogginess and improves morning alertness and cognitive function.
+                </p>
             </div>
-            
-            <section className="space-y-8">
-                <h3 className="text-3xl font-black text-slate-900">1. The Architecture of a Sleep Cycle</h3>
-                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                    <p>A standard sleep cycle consists of four distinct stages, which repeat 4 to 6 times a night:</p>
-                    <ul className="list-disc pl-6 space-y-2">
-                        <li><strong>Stage 1 (N1):</strong> Light sleep, the transition between wakefulness and sleep.</li>
-                        <li><strong>Stage 2 (N2):</strong> Heart rate slows, body temperature drops. Memory consolidation begins.</li>
-                        <li><strong>Stage 3 (N3):</strong> Deep sleep or Slow-Wave Sleep (SWS). Crucial for physical recovery, tissue repair, and immune system strengthening.</li>
-                        <li><strong>REM (Rapid Eye Movement):</strong> The dreaming phase. Brain activity spikes, crucial for emotional regulation and complex problem-solving memory.</li>
-                    </ul>
-                    <p>Each complete cycle takes roughly 90 minutes. If your alarm clock goes off during Stage 3 (Deep Sleep), your brain struggles to transition to wakefulness, leaving you feeling worse than if you had slept fewer total hours but woken up at the end of a REM phase.</p>
+
+            {/* Sleep Cycle Science */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">1. The Science of Sleep Cycles</h3>
+                <div className="bg-slate-900 text-white rounded-2xl p-8">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+                        <div className="bg-slate-800 rounded-xl p-4 text-center">
+                            <p className="text-xs text-slate-400 uppercase tracking-widest mb-2">Stage 1</p>
+                            <p className="text-indigo-300 font-black text-lg">N1</p>
+                            <p className="text-slate-300 text-xs mt-1">Light sleep, 1–7 min. Easy to wake from.</p>
+                        </div>
+                        <div className="bg-slate-800 rounded-xl p-4 text-center">
+                            <p className="text-xs text-slate-400 uppercase tracking-widest mb-2">Stage 2</p>
+                            <p className="text-indigo-300 font-black text-lg">N2</p>
+                            <p className="text-slate-300 text-xs mt-1">Body temperature drops, heart slows. 10–25 min.</p>
+                        </div>
+                        <div className="bg-slate-800 rounded-xl p-4 text-center">
+                            <p className="text-xs text-slate-400 uppercase tracking-widest mb-2">Stage 3</p>
+                            <p className="text-indigo-300 font-black text-lg">N3 (Deep)</p>
+                            <p className="text-slate-300 text-xs mt-1">Restorative deep sleep. Tissue repair and immune boost.</p>
+                        </div>
+                        <div className="bg-slate-800 rounded-xl p-4 text-center">
+                            <p className="text-xs text-slate-400 uppercase tracking-widest mb-2">Stage 4</p>
+                            <p className="text-indigo-300 font-black text-lg">REM</p>
+                            <p className="text-slate-300 text-xs mt-1">Dreaming, memory consolidation, emotional processing.</p>
+                        </div>
+                    </div>
+                    <p className="text-slate-400 text-xs mt-6 text-center">One complete sleep cycle ≈ 90 minutes. Adults cycle through 4–6 times per night.</p>
                 </div>
             </section>
 
-            <section className="space-y-8">
-                <h3 className="text-3xl font-black text-slate-900">2. Sleep Hygiene and Chronotypes</h3>
-                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                    <p>Calculating cycle times is only effective if you can actually fall asleep when you plan to. The average person takes 14 to 20 minutes to fall asleep (sleep latency). Our calculator factors in a standard 15-minute buffer.</p>
-                    <p>To improve your sleep latency, maintain strict sleep hygiene: eliminate blue light (screens) 60 minutes before bed, keep the bedroom cool (around 18°C), and maintain a consistent sleep schedule even on weekends. Aligning your sleep schedule with your natural chronotype (whether you are an early "lark" or a night "owl") will drastically improve your neurocognitive baseline.</p>
+            {/* Recommended Sleep */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">2. Recommended Sleep by Age Group</h3>
+                <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+                    <table className="w-full text-left text-sm">
+                        <thead className="bg-indigo-50 border-b border-indigo-200">
+                            <tr>
+                                <th className="p-4 font-black text-indigo-900">Age Group</th>
+                                <th className="p-4 font-black text-indigo-900">Recommended Hours</th>
+                                <th className="p-4 font-black text-indigo-900">Optimal Cycles</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100 text-slate-600">
+                            <tr><td className="p-4 font-bold">Newborns (0–3 months)</td><td className="p-4">14–17 hours</td><td className="p-4">Irregular cycles</td></tr>
+                            <tr><td className="p-4 font-bold">Infants (4–11 months)</td><td className="p-4">12–15 hours</td><td className="p-4">Including naps</td></tr>
+                            <tr><td className="p-4 font-bold">School Age (6–13)</td><td className="p-4">9–11 hours</td><td className="p-4">6–7 cycles</td></tr>
+                            <tr><td className="p-4 font-bold">Teenagers (14–17)</td><td className="p-4">8–10 hours</td><td className="p-4">5–6 cycles</td></tr>
+                            <tr><td className="p-4 font-bold text-indigo-700">Adults (18–64)</td><td className="p-4 text-indigo-700 font-bold">7–9 hours</td><td className="p-4 text-indigo-700 font-bold">5–6 cycles (most common)</td></tr>
+                            <tr><td className="p-4 font-bold">Older Adults (65+)</td><td className="p-4">7–8 hours</td><td className="p-4">4–5 cycles</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </section>
-        
-        <section className="space-y-8 mt-12">
-            <h3 className="text-3xl font-black text-slate-900">Deep Dive: Comprehensive Analysis of Sleep Cycle Analysis</h3>
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Sleep Cycle Analysis is crucial for individuals looking to optimize their rest metrics. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of rest metrics allows you to make informed, data-driven decisions. Historically, dealing with rest metrics involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of rest metrics remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous rest metrics assessments to ensure compliance with both local and international standards. The intersection of modern technology and rest metrics has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated rest metrics analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Sleep Cycle Analysis is crucial for individuals looking to optimize their rest metrics. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of rest metrics allows you to make informed, data-driven decisions. Historically, dealing with rest metrics involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of rest metrics remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous rest metrics assessments to ensure compliance with both local and international standards. The intersection of modern technology and rest metrics has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated rest metrics analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Sleep Cycle Analysis is crucial for individuals looking to optimize their rest metrics. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of rest metrics allows you to make informed, data-driven decisions. Historically, dealing with rest metrics involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of rest metrics remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous rest metrics assessments to ensure compliance with both local and international standards. The intersection of modern technology and rest metrics has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated rest metrics analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Sleep Cycle Analysis is crucial for individuals looking to optimize their rest metrics. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of rest metrics allows you to make informed, data-driven decisions. Historically, dealing with rest metrics involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of rest metrics remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous rest metrics assessments to ensure compliance with both local and international standards. The intersection of modern technology and rest metrics has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated rest metrics analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Sleep Cycle Analysis is crucial for individuals looking to optimize their rest metrics. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of rest metrics allows you to make informed, data-driven decisions. Historically, dealing with rest metrics involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of rest metrics remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous rest metrics assessments to ensure compliance with both local and international standards. The intersection of modern technology and rest metrics has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated rest metrics analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Sleep Cycle Analysis is crucial for individuals looking to optimize their rest metrics. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of rest metrics allows you to make informed, data-driven decisions. Historically, dealing with rest metrics involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of rest metrics remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous rest metrics assessments to ensure compliance with both local and international standards. The intersection of modern technology and rest metrics has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated rest metrics analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Sleep Cycle Analysis is crucial for individuals looking to optimize their rest metrics. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of rest metrics allows you to make informed, data-driven decisions. Historically, dealing with rest metrics involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of rest metrics remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous rest metrics assessments to ensure compliance with both local and international standards. The intersection of modern technology and rest metrics has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated rest metrics analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Sleep Cycle Analysis is crucial for individuals looking to optimize their rest metrics. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of rest metrics allows you to make informed, data-driven decisions. Historically, dealing with rest metrics involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of rest metrics remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous rest metrics assessments to ensure compliance with both local and international standards. The intersection of modern technology and rest metrics has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated rest metrics analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Sleep Cycle Analysis is crucial for individuals looking to optimize their rest metrics. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of rest metrics allows you to make informed, data-driven decisions. Historically, dealing with rest metrics involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of rest metrics remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous rest metrics assessments to ensure compliance with both local and international standards. The intersection of modern technology and rest metrics has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated rest metrics analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Sleep Cycle Analysis is crucial for individuals looking to optimize their rest metrics. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of rest metrics allows you to make informed, data-driven decisions. Historically, dealing with rest metrics involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of rest metrics remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous rest metrics assessments to ensure compliance with both local and international standards. The intersection of modern technology and rest metrics has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated rest metrics analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Sleep Cycle Analysis is crucial for individuals looking to optimize their rest metrics. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of rest metrics allows you to make informed, data-driven decisions. Historically, dealing with rest metrics involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of rest metrics remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous rest metrics assessments to ensure compliance with both local and international standards. The intersection of modern technology and rest metrics has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated rest metrics analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Sleep Cycle Analysis is crucial for individuals looking to optimize their rest metrics. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of rest metrics allows you to make informed, data-driven decisions. Historically, dealing with rest metrics involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of rest metrics remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous rest metrics assessments to ensure compliance with both local and international standards. The intersection of modern technology and rest metrics has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated rest metrics analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
+
+            {/* How to Use */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">3. How to Use the Sleep Calculator</h3>
+                <p className="text-slate-600 leading-relaxed mb-4">The calculator works in two modes:</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-6">
+                        <h4 className="font-black text-indigo-800 mb-3">Mode 1: Calculate Bedtime</h4>
+                        <p className="text-slate-600 text-sm">Enter your desired wake-up time. The calculator shows you the optimal bedtimes (working backwards in 90-minute increments) that align with cycle ends, plus 14 minutes for average sleep onset time.</p>
+                    </div>
+                    <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-6">
+                        <h4 className="font-black text-indigo-800 mb-3">Mode 2: Calculate Wake Time</h4>
+                        <p className="text-slate-600 text-sm">Enter your intended bedtime. The calculator shows the best times to set your alarm—at the end of a complete 4th, 5th, or 6th sleep cycle—to minimize morning grogginess.</p>
+                    </div>
+                </div>
+            </section>
+
+            {/* Nepal Context */}
+            <section className="bg-slate-900 text-white rounded-2xl p-8">
+                <h3 className="text-xl font-black mb-4 text-indigo-400">4. Sleep Patterns in Nepal: Key Considerations</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-300">
+                    <ul className="space-y-3">
+                        <li>🌙 <strong className="text-white">Load Shedding Impact:</strong> Erratic power supply disrupts sleep patterns. Use offline alarms and avoid screen use if power is out before bed.</li>
+                        <li>🕌 <strong className="text-white">Seasonal Daylight:</strong> Nepal's sunrise can be as early as 5:00 AM in summer, affecting sleep-wake cycles. Blackout curtains help regulate light exposure.</li>
+                    </ul>
+                    <ul className="space-y-3">
+                        <li>🏔️ <strong className="text-white">Altitude Effects:</strong> At high altitudes, lower oxygen can cause periodic breathing during sleep (Cheyne-Stokes respiration), reducing sleep quality for acclimatizing trekkers.</li>
+                        <li>📚 <strong className="text-white">Student Culture:</strong> SEE and +2 students often sacrifice sleep during exam periods. Research shows 7.5+ hours of sleep before exams significantly improves memory recall and performance.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div className="pt-8 border-t border-slate-200 text-center">
+                <div className="flex flex-wrap justify-center gap-3">
+                    <a href="/calculator/bmi/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">BMI Calculator</a>
+                    <a href="/calculator/calorie-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Calorie Calculator</a>
+                    <a href="/calculator/water-intake/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Water Intake</a>
+                </div>
             </div>
-        </section>
-        
-        <section className="space-y-8 mt-12">
-            <h3 className="text-3xl font-black text-slate-900">Advanced Methodologies and Strategies</h3>
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                <p className="text-slate-600 leading-relaxed text-lg mb-4">
-                    To truly master rest metrics, one must look beyond basic calculations and delve into advanced methodologies. This involves a comprehensive understanding of the underlying variables and how they interact within the broader ecosystem.
-                </p>
-                <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg mb-6">
-                    <li><strong>Precision Tracking:</strong> Implementing rigorous data collection methods to ensure all inputs are perfectly accurate.</li>
-                    <li><strong>Historical Comparison:</strong> Analyzing past data to identify cyclical patterns and establish baselines.</li>
-                    <li><strong>Scenario Planning:</strong> Running multiple simulations to prepare for varying future conditions.</li>
-                    <li><strong>Regulatory Alignment:</strong> Ensuring all calculations adhere to the latest guidelines set forth by relevant authorities in Nepal.</li>
-                    <li><strong>Continuous Auditing:</strong> Regularly reviewing the mathematical models to guarantee ongoing validity.</li>
-                </ul>
-                
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous assessments to ensure compliance with both local and international standards. The intersection of modern technology and analysis has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts.
-        </p>
-    
-            </div>
-        </section>
-    
         </div>
     ),
     faqs: [
-        { question: "Is 6 hours of sleep enough if it aligns with a cycle?", answer: "Six hours equals exactly four 90-minute cycles. While you will wake up feeling refreshed because you aren't interrupting deep sleep, chronic 6-hour sleep may lead to long-term sleep deprivation. Most adults need 5 cycles (7.5 hours)." },
-        { question: "Why do I wake up exactly at 3 AM every night?", answer: "This often aligns with the end of your 3rd or 4th sleep cycle. As morning approaches, REM phases get longer and deep sleep phases get shorter, making it easier to naturally wake up briefly between cycles." },
-        { question: "Can I train myself to need less sleep?", answer: "No. Sleep need is largely genetic. While you can train yourself to endure the feeling of sleep deprivation, your cognitive and physical performance will objectively decline." }
+        { question: "Why is waking up mid-sleep cycle so hard?", answer: "Waking during deep sleep (N3) or REM causes 'sleep inertia'—intense grogginess that can last 30–60 minutes. Waking at the end of a complete 90-minute cycle means you're in the lightest sleep stage, making waking much easier." },
+        { question: "What time should I go to bed if I need to wake up at 6 AM?", answer: "Working backwards from 6 AM in 90-minute increments, plus 14 minutes for sleep onset: optimal bedtimes are 10:16 PM (5 cycles = 7.5 hrs), 8:46 PM (6 cycles = 9 hrs), or 12:16 AM (4 cycles = 6 hrs) as a minimum." },
+        { question: "Is 6 hours of sleep enough?", answer: "For most adults, 6 hours (4 complete cycles) is below the recommended minimum of 7–9 hours. Chronic short sleep is associated with increased risk of obesity, diabetes, cardiovascular disease, and impaired cognitive performance." },
+        { question: "Do naps count toward my sleep total?", answer: "Yes. A 20-minute power nap (avoiding deep sleep) can significantly restore alertness. A 90-minute nap completes one full sleep cycle and provides deeper restorative benefits." },
+        { question: "Why does altitude affect sleep quality in Nepal?", answer: "At high altitudes (3,500m+), the lower partial pressure of oxygen triggers a breathing pattern called periodic breathing or Cheyne-Stokes respiration during sleep, causing brief awakenings. Acclimatization over 3–5 days typically resolves this." },
+        { question: "How can I improve my sleep quality?", answer: "Key strategies: maintain a consistent sleep and wake schedule, avoid caffeine after 2 PM, keep your bedroom dark and cool (18–20°C), avoid blue light screens 1 hour before bed, and aim for 5–6 complete 90-minute sleep cycles." }
     ]
   },
   'ovulation-calculator': {

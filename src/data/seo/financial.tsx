@@ -1698,155 +1698,320 @@ export const financialSEO: Record<string, SEOContent> = {
       raw: "Net Profit = (Selling Price - Buying Price) - (Buy Costs + Sell Costs) - CGT"
     },
     content: (
-        <div className="space-y-16">
+
+        <div className="space-y-16 font-sans">
+            {/* 1. Calculator Introduction */}
             <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
                 <div className="relative z-10">
-                    <h2 className="text-blue-400 font-black text-xs uppercase tracking-[0.4em] mb-4">
-                        Professional Computational Guidance
-                    </h2>
-                    <h3 className="text-4xl font-black mb-8 leading-tight">
-                        Optimized Calculations & Analytical Intelligence
-                    </h3>
+                    <h2 className="text-indigo-400 font-black text-sm uppercase tracking-[0.4em] mb-4">Educational Resources & Guide</h2>
+                    <h3 className="text-4xl font-black mb-8 leading-tight">NEPSE Share Buying & Selling Cost Calculator | Stock Commission Guide</h3>
                     <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        Welcome to our high-precision technical platform. This tool is designed to deliver absolute mathematical clarity, empowering professionals, students, and institutions to execute complex audits with total confidence. By translating theoretical formulations into high-fidelity digital matrices, we eliminate calculation anomalies and drive strategic decision-making across personal, academic, and industrial workflows.
+                        Trading stocks on the Nepal Stock Exchange (NEPSE) involves various costs beyond the price of the stock. Every purchase or sale transaction incurs SEBON regulatory fees, DP fees, broker commissions, and potentially capital gains tax. This stock calculator helps you estimate the exact total costs and calculate profit margins or break-even prices. Knowing these costs is essential for active traders and long-term investors aiming to optimize their returns in Nepal's capital market.
                     </p>
+                    <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">
+                        <span className="text-slate-400">Quick Links:</span>
+                                        <a href="/calculator/nepse-wacc/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
+                <a href="/calculator/nepse-bonus-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Bonus Share Tax Calculator</a>
+                <a href="/calculator/property-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
+                    </div>
                 </div>
             </div>
 
-            <section className="space-y-8">
-                <h3 className="text-3xl font-black text-slate-900">Core Operational Walkthrough and Technical Overview</h3>
-                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-12 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                    <p className="text-slate-600 leading-relaxed text-base">
-                        This specialized tool is constructed to provide rapid, verified results for your immediate computational needs.
-                        Whether you are analyzing physical variables, calculating financial structures, or mapping geometric coordinates,
-                        the underlying algorithmic engine provides unparalleled precision. We have integrated edge-case detection to ensure
-                        that extreme input parameters are processed gracefully, yielding results that comply with rigorous international standards.
-                    </p>
-                    <p className="text-slate-600 leading-relaxed text-base">
-                        To utilize the calculator effectively, simply select your desired operation mode, input the known variables into the
-                        responsive fields, and let the computational engine perform the heavy lifting. The interface is specifically tailored
-                        to reduce cognitive load, presenting actionable insights immediately without the necessity of manual cross-verification.
-                        This dynamic system ensures that users from all disciplines can reliably model their scenarios.
-                    </p>
+            {/* 2. Quick Facts Table */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">1. Quick Facts and Specifications</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Here is an overview of the key operational rules, parameters, and guidelines concerning NEPSE share transactions in Nepal:</p>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100 text-slate-800">
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Feature / Parameter</th>
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Broker Commission Slabs</td><td className="p-4 text-slate-600">0.27% to 0.40% depending on transaction volume</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">SEBON Regulatory Fee</td><td className="p-4 text-slate-600">0.015% of transaction amount</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">DP Fee</td><td className="p-4 text-slate-600">Rs. 25 per transaction per company (buying & selling)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Capital Gains Tax (Individual)</td><td className="p-4 text-slate-600">5% (Long-term: held &gt; 365 days) or 7.5% (Short-term: held &lt;= 365 days)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Capital Gains Tax (Corporate)</td><td className="p-4 text-slate-600">10% on net gains</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Regulator</td><td className="p-4 text-slate-600">Securities Board of Nepal (SEBON)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Trading System</td><td className="p-4 text-slate-600">NEPSE TMS (Trade Management System)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
 
-
-            <section className="mt-12 bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-2xl font-black text-slate-900 mb-6">1. Theoretical Foundations and Advanced Computational Mechanics</h3>
-                <div className="text-slate-700 leading-relaxed space-y-6">
-                    <p>
-                        In the modern era of automated computing, the principles of applied mathematics form the structural bedrock of all technical advancement. Every software algorithm, physical simulation, and data visualization is fundamentally an exercise in algebraic relations and numerical modeling. By translating abstract human requirements into linear, quadratic, or matrix models, computer scientists can process complex real-world variables at lightning speed. Fostering mathematical proficiency is key to preparing the next generation of engineers, data scientists, and researchers for the global digital economy.
-                    </p>
-                    <p>
-                        Applied mathematics teaches us to think systematically, to identify underlying patterns under tight constraints, and to break down multi-variable challenges into manageable logical steps. This cognitive framework is an invaluable asset across all professional fields, from structural engineering to public policy formulation. By isolating variables, identifying direct and inverse proportions, and predicting outcomes with high statistical confidence, practitioners can design optimal solutions that are highly relevant to their communities' sustainable development.
-                    </p>
-                    <p>
-                        Furthermore, the continuous integration of automated computational engines ensures that human calculation errors are entirely mitigated. By leveraging high-precision online tools, practitioners can double-check complex structural equations, optimize industrial resource allocation, and gain a profound understanding of mathematical systems. These analytical exercises build a high level of mathematical confidence, proving that every successful modern operation is rooted in structural mathematical precision.
-                    </p>
-                    <p>
-                        Beyond simple calculation, this tool acts as a comprehensive analytical platform that integrates seamlessly into complex professional workflows. In today's data-driven environment, the ability to rapidly process numerical inputs and generate verified outputs is a critical competitive advantage. Whether you are conducting academic research, managing a construction project, optimizing an investment portfolio, or auditing financial statements, precision is paramount. By replacing manual calculation methods with our rigorous digital engine, you mitigate the risk of human error and ensure that every analytical decision is based on verified mathematical logic.
-                    </p>
-                    <p>
-                        The architecture of this calculator has been engineered to handle edge cases and extreme variable ranges without compromising speed or accuracy. Our underlying algorithms undergo continuous testing against established academic models and industry benchmarks. This commitment to computational integrity means that results remain consistent regardless of the complexity of the inputs. Furthermore, the responsive design of the platform ensures that this high-fidelity modeling capability is accessible across all devices, empowering you to perform critical analysis whether you are in the office, the classroom, or on the field.
-                    </p>
-                </div>
-            
-                    <p>
-                        In addition to the core analytical frameworks, the deployment of machine learning algorithms and heuristic models is increasingly pivotal in modern computational workflows. As data scales exponentially, traditional linear models may encounter performance bottlenecks. By integrating predictive heuristics, we allow for near-instantaneous approximations of highly complex, non-linear problems. This hybrid approach ensures that professionals can maintain operational velocity without sacrificing analytical rigor, especially when dealing with massive datasets in real-time environments.
-                    </p>
-                    <p>
-                        Furthermore, the architectural resilience of digital modeling tools is a primary concern for enterprise-level applications. Ensuring high availability, fault tolerance, and secure data transmission protocols is essential when financial and structural data are being processed. Our platform is built on modern web standards, utilizing robust error-handling and isolated runtime environments to guarantee that your computational sessions are both secure and highly reliable, regardless of external network conditions.
-                    </p>
-
-            </section>
-
-            <section className="mt-12 bg-slate-900 text-white rounded-3xl p-10 relative overflow-hidden">
-                <h3 className="text-2xl font-black mb-6">2. Regional Integration, Strategic Audits, and Practical Case Studies</h3>
-                <div className="text-slate-300 leading-relaxed space-y-6">
-                    <p>
-                        For users in South Asia, and particularly in Nepal, the calculator is meticulously tailored to align with local regulatory frameworks and market conditions. From the Nepal Rastra Bank's monetary policies to local real estate measurement conventions like Ropani and Aana, context-specific parameters are deeply embedded into the logic. This regional focus ensures that the tool is not just a generic mathematical engine, but a specialized professional utility that delivers actionable, localized insights. By bridging international mathematical standards with precise local context, we provide unparalleled support for regional professionals navigating complex socio-economic landscapes.
-                    </p>
-                    <p>
-                        Ultimately, mastering numerical analysis requires both practical experience and reliable technological support. We encourage users to actively experiment with the calculator's input parameters to observe real-time output variance, effectively conducting sensitivity analysis on the fly. This interactive learning loop fosters a deeper, more intuitive grasp of the underlying variables, transforming raw data into strategic intelligence. Embrace the power of verified digital computation to streamline your operations, enhance your academic performance, and secure your professional success in FY Current Year and beyond.
-                    </p>
-                    <p>
-                        Continuous engagement with these verified digital modeling tools empowers users to rapidly iterate on complex scenarios, enabling precise forecasting, robust structural analysis, and highly informed strategic planning. Embracing this analytical rigor fundamentally transforms standard operational workflows into optimized, high-fidelity quantitative processes that guarantee absolute computational reliability.
-                    </p>
-                    <p>
-                        In the civil engineering and material logistics sectors, precise project estimation is the primary safeguard against budget overruns and structural compromise. Volumetric calculations are the fundamental starting point for any construction project, translating three-dimensional design blueprints into actionable procurement orders. Whether casting a massive retaining wall, building a partition wall, or calculating the paint requirements for a commercial complex, understanding dry-to-wet shrinkage dynamics and density metrics is essential for maintaining strict material audits.
-                    </p>
-                    <p>
-                        Dry materials such as cement, sand, and aggregate contain high proportions of air voids. When water is added, the particles compact and fill these voids, causing a significant reduction in total volume. In concrete mix design, this is accounted for by applying a dry-volume multiplier, typically standardized as 1.54. Similarly, mortar volume in brick masonry requires a distinct dry multiplier (usually 1.33) to account for compaction. Failing to apply these mathematical constants leads to the 'Procurement Gap'—a common site anomaly where raw materials run out mid-project, leading to cold joints, construction delays, and increased transport costs.
-                    </p>
+            {/* 3. How it Works */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">2. How the Process Works (Step-by-Step)</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">To achieve the most accurate outcomes when dealing with NEPSE share transactions, it is important to follow a structured method:</p>
+                    <ul className="space-y-6">
+                        <li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">1</span><div><strong>Select Transaction Type:</strong> Choose whether you are calculating a Buy or Sell transaction.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">2</span><div><strong>Enter Shares and Price:</strong> Input the number of shares and the share price in NPR.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">3</span><div><strong>Calculate Commission & Fees:</strong> The tool applies the SEBON rate (0.015%) and the tiered broker commission rates (0.27% to 0.40%).</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">4</span><div><strong>Apply CGT (For Sales):</strong> For sales, input your purchase cost to compute net gain, then apply 5% or 7.5% CGT depending on the holding period.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">5</span><div><strong>Analyze Net Amount:</strong> Review the net payable amount (for buying) or net receivable amount (for selling) after all deductions.</div></li>
+                    </ul>
                 </div>
             </section>
 
-            <section className="mt-12 bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-2xl font-black text-slate-900 mb-6">3. Deep Analytical Frameworks and Multi-Dimensional Metrics</h3>
-                <div className="text-slate-700 leading-relaxed space-y-6">
-                    <p>
-                        Expanding upon foundational principles, advanced predictive modeling allows for unprecedented foresight into operational and financial outcomes. When assessing long-term investment vehicles or complex structural projects, standard deterministic calculations often fall short. Incorporating probabilistic elements into our models allows users to visualize a spectrum of possible scenarios, from best-case high-yield projections to conservative risk-adjusted baselines. This multi-dimensional approach is critical for resilient strategic planning in volatile macroeconomic environments.
-                    </p>
-                    <p>
-                        Data validation is another cornerstone of our digital infrastructure. Every input provided by the user is subjected to rigorous boundary checks and type validations before reaching the core processing algorithms. This robust sanitization prevents memory overflows and logical fallacies that can skew analytical outputs. For academic researchers and financial auditors, knowing that the calculation engine is fortified against erroneous inputs provides profound confidence in the integrity of the final report. This strict adherence to data quality sets our computational tools apart as true professional-grade instruments.
-                    </p>
-                    <p>
-                        Moreover, we recognize the importance of interoperability in modern digital workspaces. The ability to cross-reference outputs from a financial calculator with a tax auditing tool or to pair structural load calculations with material estimators ensures a cohesive analytical workflow. Our platform is structured as an ecosystem of complementary mathematical engines, designed to work in tandem. By bridging discrete computational models, professionals can synthesize holistic, overarching strategies that account for every technical variable and financial constraint.
-                    </p>
-                    <p>
-                        To further maximize the utility of these calculations, we recommend establishing a consistent auditing cadence. Mathematical models are most effective when used iteratively over time, allowing for the tracking of performance variances against historical benchmarks. Whether tracking the amortization schedule of a corporate loan or monitoring the specific gravity variations in a concrete batch plant, longitudinal data analysis unlocks deep operational insights. Utilizing these tools as persistent monitoring systems rather than one-off estimators drives a culture of continuous improvement and unyielding technical precision.
-                    </p>
-                    <p>
-                        In conclusion, the mastery of advanced numerical algorithms is indistinguishable from professional excellence. We invite you to explore the full depth of our computational ecosystem, leveraging these verified mathematical models to drive innovation, ensure compliance, and achieve structural perfection in all your professional endeavors. Through strict adherence to mathematical truth and continuous technological refinement, we empower the global community of analysts, engineers, and students to build a smarter, more resilient future.
-                    </p>
+            {/* 4. Mathematical Formula */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">3. Mathematical Formula and Theory</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">The mathematical modeling of NEPSE share transactions is based on exact algebraic equations. The standard model is defined as:</p>
+                    <div className="p-6 bg-slate-50 border border-slate-100 rounded-2xl text-center my-6 font-mono text-xl font-bold text-slate-900">
+                        Total Purchase Cost = Share Value + Broker Commission + SEBON Fee + DP Fee
+                    </div>
+                    <p className="mb-4">Where the variables are defined as:</p>
+                    <ul className="list-disc pl-6 space-y-2 text-slate-600 text-lg mb-6">
+                        <li><strong>Share Value:</strong>  Quantity * Share Price</li><li><strong>Broker Commission:</strong>  Tiered percentage based on transaction value (0.27% to 0.40%)</li><li><strong>SEBON Fee:</strong>  Share Value * 0.00015</li><li><strong>DP Fee:</strong>  Fixed Rs. 25 per transaction per company</li>
+                    </ul>
+                    <p className="text-slate-500 text-sm mt-4">For selling, the broker commission, SEBON fee, and DP fee are subtracted, and CGT is calculated on the positive difference between the selling value and buying value.</p>
                 </div>
             </section>
 
+            {/* 5. Worked Example */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">4. Practical Worked Example (NPR/Local Context)</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Let's walk through a realistic scenario to demonstrate how NEPSE share transactions operates in Nepal:</p>
+                    <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 mb-6">
+                        <h4 className="text-xl font-bold text-indigo-900 mb-4">Inputs:</h4>
+                        <ul className="list-disc pl-6 space-y-2 text-indigo-950 font-semibold mb-6">
+                            <li>Transaction Type: Buying Shares</li><li>Quantity: 100 Shares</li><li>Price per Share: Rs. 300</li><li>Share Value: Rs. 30,000</li>
+                        </ul>
+                        <h4 className="text-xl font-bold text-indigo-900 mb-4">Calculation Steps:</h4>
+                        <ol className="list-decimal pl-6 space-y-3 text-indigo-950/80 mb-6">
+                            <li>Share Value: 100 * 300 = Rs. 30,000</li><li>Broker Commission: For Rs. 30,000 (slab &lt;= 50k is 0.40%), Commission = 30,000 * 0.40 / 100 = Rs. 120</li><li>SEBON Fee: 30,000 * 0.015 / 100 = Rs. 4.50</li><li>DP Fee: Rs. 25</li><li>Total Purchase Cost: 30,000 + 120 + 4.50 + 25 = Rs. 30,149.50</li>
+                        </ol>
+                        <h4 className="text-2xl font-black text-indigo-950">Result: Total cost to buy 100 shares at Rs. 300 is Rs. 30,149.50. The effective purchase cost per share increases to Rs. 301.50.</h4>
+                    </div>
+                </div>
+            </section>
 
-            <section className="mt-12 bg-white border border-slate-200 rounded-[3rem] p-12 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-4">Explore Related Computational Tools</h3>
-                <p className="text-slate-600 mb-8 leading-relaxed text-lg">
-                    To further enhance your computational accuracy, we highly recommend integrating your current workflow with these related specialized calculators. Auditing your values across multiple models ensures complete structural consistency and absolute precision.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
-                            Analyze 3D Visualizer &rarr;
-                        </a>
+            {/* 6. Understanding Core Concepts */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">5. Understanding Core Concepts</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                        Investors in Nepal must understand the concept of WACC (Weighted Average Cost of Capital) and how it affects their taxable capital gains. WACC includes all purchase costs (share price plus purchase commissions and fees). When you sell your shares, the CDSC MeroShare system computes your CGT based on the difference between the selling price (minus sell fees) and your self-declared WACC. Ensuring your WACC is calculated correctly prevents overpaying capital gains taxes.
+                    </p>
+                    <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider mb-6">
+                        <span className="text-slate-400">Contextual Reference Links:</span>
+                                        <a href="/calculator/fd-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
+                <a href="/calculator/sip-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
+                <a href="/calculator/nepal-salary/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal Salary Calculator</a>
                     </div>
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
-                            Analyze Acceleration Calculator &rarr;
-                        </a>
-                    </div>
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
-                            Analyze Age Calculator &rarr;
-                        </a>
-                    </div>
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
-                            Analyze Angle Calculator &rarr;
-                        </a>
-                    </div>
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
-                            Analyze Area Calculator &rarr;
-                        </a>
-                    </div>
+                </div>
+            </section>
 
+            {/* 7. Official Rules & Guidelines */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">6. Official Rules & Regulatory Guidelines in Nepal</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                        The Securities Board of Nepal (SEBON) regulates all transaction fees and broker commissions. Currently, broker commissions are tiered: 0.40% for transactions up to Rs. 50,000; 0.37% up to Rs. 5,00,000; 0.34% up to Rs. 20,00,000; 0.30% up to Rs. 1 Crore; and 0.27% for amounts above Rs. 1 Crore. The Capital Gains Tax is governed by the Inland Revenue Department (IRD) and is deducted at source by DP/brokers during settlement.
+                    </p>
+                    <div className="p-6 bg-slate-50 border border-slate-100 rounded-2xl my-6">
+                        <h4 className="text-lg font-bold text-slate-800 mb-3">Official Regulatory References:</h4>
+                                        <a href="http://www.sebon.gov.np/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline font-semibold transition-colors mr-4">Securities Board of Nepal (SEBON) &rarr;</a>
+                <a href="http://www.nepalstock.com/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline font-semibold transition-colors mr-4">Nepal Stock Exchange (NEPSE) &rarr;</a>
+                    </div>
+                </div>
+            </section>
+
+            {/* 8. Eligibility and Required Documents */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">7. Eligibility & Required Documents</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 className="text-xl font-bold text-slate-900 mb-4">Eligibility Requirements</h4>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse">
+                                <thead>
+                                    <tr className="bg-slate-100 text-slate-800">
+                                        <th className="p-4 border-b border-slate-200 font-bold">Requirement</th>
+                                        <th className="p-4 border-b border-slate-200 font-bold">Criteria</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">DMAT Account</td><td className="p-4 text-slate-600">Required to hold shares digitally. Can be opened at any licensed DP (Depository Participant).</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">MeroShare</td><td className="p-4 text-slate-600">Online portal by CDSC to manage shares, apply for IPOs, and transfer shares.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">TMS Account</td><td className="p-4 text-slate-600">Trade Management System account opened with a registered broker to buy/sell.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">PAN Card</td><td className="p-4 text-slate-600">Optional for small individual traders, but mandatory for high-volume traders or corporate accounts.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Bank Account</td><td className="p-4 text-slate-600">Linked bank account with CRN (C-ASBA) registration for IPOs and payouts.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="text-xl font-bold text-slate-900 mb-4">Required Documents</h4>
+                        <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg">
+                            <li>DMAT account confirmation statement.</li><li>MeroShare login credentials.</li><li>TMS registration form with PAN copy (if applicable).</li><li>Bank account details and citizenship photocopy.</li><li>C-ASBA registration form (obtained from your bank).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            {/* 9. Factors Affecting Your Calculations */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">8. Key Factors Affecting Your Calculations</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Broker Commission Slab</h4><p className="text-slate-600 leading-relaxed">Larger transactions fall into lower commission percentage slabs (as low as 0.27%), reducing transaction friction.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Holding Period (CGT)</h4><p className="text-slate-600 leading-relaxed">Selling shares held for more than 365 days qualifies for the long-term CGT rate of 5%, saving 2.5% compared to the short-term 7.5% rate.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">DP and SEBON Fees</h4><p className="text-slate-600 leading-relaxed">These fees are non-negotiable and fixed by CDSC and SEBON respectively for all market participants.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Bonus/Right Share Adjustments</h4><p className="text-slate-600 leading-relaxed">Receiving bonus shares or right shares alters your WACC, which must be adjusted in MeroShare to avoid incorrect CGT billing during sale.</p></div>
+                </div>
+            </section>
+
+            {/* 10. Comparisons / Analysis */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">9. Long-Term vs. Short-Term Trading Costs</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Holding periods significantly affect tax liabilities for retail stock investors in Nepal:</p>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100 text-slate-800">
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Tax Parameter</th><th className="p-4 border-b-2 border-slate-200 font-bold">Short-Term Investor</th><th className="p-4 border-b-2 border-slate-200 font-bold">Long-Term Investor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-slate-100"><td className="p-4">Holding Period</td><td className="p-4">365 days or less</td><td className="p-4">More than 365 days</td></tr><tr className="border-b border-slate-100"><td className="p-4">Capital Gains Tax Rate</td><td className="p-4">7.5% on net profit</td><td className="p-4">5.0% on net profit</td></tr><tr className="border-b border-slate-100"><td className="p-4">Broker Commission</td><td className="p-4">Same tiered rates (0.27% to 0.40%)</td><td className="p-4">Same tiered rates (0.27% to 0.40%)</td></tr><tr className="border-b border-slate-100"><td className="p-4">SEBON Regulatory Fee</td><td className="p-4">0.015% of transaction value</td><td className="p-4">0.015% of transaction value</td></tr><tr className="border-b border-slate-100"><td className="p-4">DP Fee</td><td className="p-4">Rs. 25 per transaction</td><td className="p-4">Rs. 25 per transaction</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            {/* 11. Cost / Parameter Breakdown */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">10. Parameter and Cost Breakdown</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Here is how the main cost categories or parameters break down in practice:</p>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100 text-slate-800">
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Component</th>
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Typical Status / Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Share Price Value</td><td className="p-4 text-slate-600">The actual price times quantity traded in NEPSE</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Broker Commission</td><td className="p-4 text-slate-600">Commission paid to the brokerage house (tiered 0.27% to 0.40%)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">SEBON Fee</td><td className="p-4 text-slate-600">0.015% regulatory fee paid to SEBON</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">DP Fee</td><td className="p-4 text-slate-600">Rs. 25 charged by CDSC for transferring shares</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Capital Gains Tax (CGT)</td><td className="p-4 text-slate-600">Deducted on net profit (5% or 7.5%)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">MeroShare Fee</td><td className="p-4 text-slate-600">Annual renewal fee of Rs. 50 paid to CDSC</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            {/* 12. Tips to Optimize / Improve Outcomes */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">11. Tips to Optimize and Reduce Cost / Improve Outcome</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg">
+                        <li>Consolidate multiple small buy orders into a single transaction to fall into lower broker commission slabs.</li><li>Hold quality stocks for over 1 year to qualify for the 5% long-term capital gains tax rate.</li><li>Always calculate and update your WACC in MeroShare after bonus/right share distributions.</li><li>Keep track of broker dues to avoid penalties or trading restrictions on your TMS account.</li>
+                    </ul>
+                </div>
+            </section>
+
+            {/* 13. Common Mistakes Borrowers/Users Make */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">12. Common Mistakes to Avoid</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg">
+                        <li>Ignoring transaction costs when calculating short-term scalping profits, which can wipe out small gains.</li><li>Incorrectly self-declaring WACC in MeroShare, leading to penalties or tax audits from the Inland Revenue Department.</li><li>Failing to renew MeroShare or DMAT accounts annually, which freezes share transfers.</li><li>Not verifying the calculation sheet provided by the broker after trading.</li>
+                    </ul>
+                </div>
+            </section>
+
+            {/* 14. Inline Frequently Asked Questions */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">13. In-Depth Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={0}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">1. How do I open a trading account in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">You can register online with any of the licensed stock brokers in Nepal. You need your DMAT number, PAN (optional for individuals), bank account, and citizenship copy.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={1}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">2. What is WACC in NEPSE?</h4>
+                    <p className="text-slate-600 leading-relaxed">WACC stands for Weighted Average Cost of Capital. It is the average cost at which you purchased a stock, including all purchasing commissions and fees.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={2}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">3. Who collects the Capital Gains Tax?</h4>
+                    <p className="text-slate-600 leading-relaxed">Capital Gains Tax is deducted at source (TDS) by the broker or DP during the clearing process and deposited with the Inland Revenue Department.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={3}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">4. What are the current broker commission rates?</h4>
+                    <p className="text-slate-600 leading-relaxed">They range from 0.40% for amounts up to Rs. 50,000, sliding down to 0.27% for transactions above Rs. 1 Crore.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={4}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">5. Do I pay VAT on stock broker commission in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">No, broker commissions are exempted from VAT as per the latest regulatory guidelines in Nepal.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={5}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">6. Is there a minimum broker commission?</h4>
+                    <p className="text-slate-600 leading-relaxed">No, commissions are strictly percentage-based, but a DP fee of Rs. 25 is applicable per transaction regardless of volume.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={6}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">7. How is the CGT calculated on bonus shares?</h4>
+                    <p className="text-slate-600 leading-relaxed">Bonus shares are usually taxed at 5% of their face value (usually Rs. 100 per share) when distributed, and the WACC is adjusted to Rs. 100 for capital gains when sold.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={7}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">8. What is a DP fee in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">It is a Depository Participant fee of Rs. 25 charged by CDSC for the digital transfer of shares in or out of your DMAT account.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={8}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">9. Can I trade shares without a DMAT account?</h4>
+                    <p className="text-slate-600 leading-relaxed">No, NEPSE is fully dematerialized. A DMAT account is mandatory for holding and trading securities.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={9}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">10. What is the settlement period for NEPSE transactions?</h4>
+                    <p className="text-slate-600 leading-relaxed">The settlement period is T+2, meaning the shares or funds must be settled within two working days of the transaction.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={10}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">11. What happens if I fail to transfer shares via MeroShare?</h4>
+                    <p className="text-slate-600 leading-relaxed">If you sell shares but fail to perform the "My EDIS" transfer on MeroShare before the deadline, you will face a closeout penalty of 20% of the transaction value.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={11}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">12. Can foreign nationals trade in NEPSE?</h4>
+                    <p className="text-slate-600 leading-relaxed">Currently, direct stock market trading in NEPSE is restricted for foreign nationals, except through registered mutual funds or institutional channels.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={12}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">13. What is C-ASBA in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">C-ASBA is an online system that blocks application money in your bank account when you apply for IPOs until the shares are allotted.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={13}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">14. How much is the annual charge for DMAT and MeroShare?</h4>
+                    <p className="text-slate-600 leading-relaxed">DMAT annual charge is Rs. 100, and MeroShare renewal is Rs. 50, both payable to your Depository Participant.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={14}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">15. What is the SEBON fee?</h4>
+                    <p className="text-slate-600 leading-relaxed">SEBON (Securities Board of Nepal) charges a flat regulatory fee of 0.015% on the transaction value of every trade.</p>
+                </div>
+                </div>
+            </section>
+
+            {/* 15. Related Tools Navigation */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">14. Related Tools and Clusters</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis:</p>
+                    <div className="flex flex-wrap gap-4">
+                                        <a href="/calculator/remittance-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Remittance Calculator</a>
+                <a href="/calculator/rounding/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Inflation Calculator</a>
+                    </div>
                 </div>
             </section>
         </div>
+    
     ),
     faqs: [
-      { question: "What is the broker commission on a Rs. 10 Lakh trade in Nepal?", answer: "For a transaction of Rs. 10,00,000, the commission rate is 0.31%, which amounts to Rs. 3,100. Additionally, a SEBON fee of 0.015% (Rs. 150) and a DP fee of Rs. 25 will apply." },
-      { question: "How is CGT calculated if I sell shares at a loss?", answer: "Capital Gains Tax is only applied to the profit. If you sell at a loss, no CGT is deducted. Furthermore, you cannot currently offset losses from one trade against profits from another in the same fiscal year for individuals in Nepal." },
-      { question: "What is the DP charge in NEPSE?", answer: "The Depository Participant (DP) fee is a fixed charge of Rs. 25 per company per day, regardless of the number of shares sold. This is paid to the institution holding your DEMAT account." },
-      { question: "When should I update my WACC on MeroShare?", answer: "You must update your WACC after every purchase of shares or after receiving bonus/right shares. This ensures that the TMS calculates your CGT accurately when you sell." },
-      { question: "Is there any tax on cash dividends from NEPSE companies?", answer: "Yes. Cash dividends are subject to a 5% Final Withholding Tax (TDS). This is usually deducted at the source by the company before the dividend is credited to your bank account." },
-      { question: "Can I trade on NEPSE without a TMS account?", answer: "No. To buy or sell shares on NEPSE, you need a Trade Management System (TMS) account provided by a licensed stockbroker, along with a DEMAT account and a linked bank account." }
+      { question: "How do I open a trading account in Nepal?", answer: "You can register online with any of the licensed stock brokers in Nepal. You need your DMAT number, PAN (optional for individuals), bank account, and citizenship copy." },
+      { question: "What is WACC in NEPSE?", answer: "WACC stands for Weighted Average Cost of Capital. It is the average cost at which you purchased a stock, including all purchasing commissions and fees." },
+      { question: "Who collects the Capital Gains Tax?", answer: "Capital Gains Tax is deducted at source (TDS) by the broker or DP during the clearing process and deposited with the Inland Revenue Department." },
+      { question: "What are the current broker commission rates?", answer: "They range from 0.40% for amounts up to Rs. 50,000, sliding down to 0.27% for transactions above Rs. 1 Crore." },
+      { question: "Do I pay VAT on stock broker commission in Nepal?", answer: "No, broker commissions are exempted from VAT as per the latest regulatory guidelines in Nepal." },
+      { question: "Is there a minimum broker commission?", answer: "No, commissions are strictly percentage-based, but a DP fee of Rs. 25 is applicable per transaction regardless of volume." },
+      { question: "How is the CGT calculated on bonus shares?", answer: "Bonus shares are usually taxed at 5% of their face value (usually Rs. 100 per share) when distributed, and the WACC is adjusted to Rs. 100 for capital gains when sold." },
+      { question: "What is a DP fee in Nepal?", answer: "It is a Depository Participant fee of Rs. 25 charged by CDSC for the digital transfer of shares in or out of your DMAT account." },
+      { question: "Can I trade shares without a DMAT account?", answer: "No, NEPSE is fully dematerialized. A DMAT account is mandatory for holding and trading securities." },
+      { question: "What is the settlement period for NEPSE transactions?", answer: "The settlement period is T+2, meaning the shares or funds must be settled within two working days of the transaction." },
+      { question: "What happens if I fail to transfer shares via MeroShare?", answer: "If you sell shares but fail to perform the \"My EDIS\" transfer on MeroShare before the deadline, you will face a closeout penalty of 20% of the transaction value." },
+      { question: "Can foreign nationals trade in NEPSE?", answer: "Currently, direct stock market trading in NEPSE is restricted for foreign nationals, except through registered mutual funds or institutional channels." },
+      { question: "What is C-ASBA in Nepal?", answer: "C-ASBA is an online system that blocks application money in your bank account when you apply for IPOs until the shares are allotted." },
+      { question: "How much is the annual charge for DMAT and MeroShare?", answer: "DMAT annual charge is Rs. 100, and MeroShare renewal is Rs. 50, both payable to your Depository Participant." },
+      { question: "What is the SEBON fee?", answer: "SEBON (Securities Board of Nepal) charges a flat regulatory fee of 0.015% on the transaction value of every trade." },
     ]
   },
   'property-tax': {
@@ -3265,58 +3430,320 @@ export const financialSEO: Record<string, SEOContent> = {
       raw: "Tax = (Cash Amount x 5%) or (Bonus Shares x Face Value x 5%)"
     },
     content: (
+
         <div className="space-y-16 font-sans">
+            {/* 1. Calculator Introduction */}
             <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+                <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
                 <div className="relative z-10">
-                    <h2 className="text-blue-400 font-black text-sm uppercase tracking-[0.4em] mb-4">NEPSE Bonus Tax Framework</h2>
-                    <h3 className="text-4xl font-black mb-8 leading-tight">Mastering Bonus Share Taxation in Nepal</h3>
+                    <h2 className="text-indigo-400 font-black text-sm uppercase tracking-[0.4em] mb-4">Educational Resources & Guide</h2>
+                    <h3 className="text-4xl font-black mb-8 leading-tight">NEPSE Bonus Share & Cash Dividend Tax Calculator Nepal</h3>
                     <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        Navigating the stock market in Nepal (NEPSE) involves not just selecting the right stocks, but also understanding the intricate tax implications of corporate actions. When a company issues bonus shares, shareholders are required to navigate the taxation on the par value of these shares. This comprehensive guide breaks down the capital gains tax (CGT) and dividend tax mechanisms in Nepal.
+                        When listed companies on the Nepal Stock Exchange (NEPSE) declare bonuses, investors receive cash dividends, bonus shares (stock dividends), or both. Under the Income Tax Act of Nepal, these distributions are taxable. Calculating the exact tax on bonus shares—which is computed on their face value (usually Rs. 100)—and matching it with cash dividends is essential. This calculator helps investors determine their net cash receipt and the tax payable to avoid settlement issues on MeroShare.
                     </p>
+                    <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">
+                        <span className="text-slate-400">Quick Links:</span>
+                                        <a href="/calculator/nepse-wacc/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
+                <a href="/calculator/nepal-stocks/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Share Transaction Cost Calculator</a>
+                <a href="/calculator/property-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
+                    </div>
                 </div>
             </div>
-            
-            <section className="space-y-8">
-                <h3 className="text-3xl font-black text-slate-900">1. Understanding Bonus Shares in NEPSE</h3>
-                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                    <p>Bonus shares are additional shares given to the current shareholders without any additional cost, based upon the number of shares that a shareholder owns. In Nepal, companies listed on the Nepal Stock Exchange (NEPSE) frequently distribute bonus shares instead of cash dividends to retain capital for future growth.</p>
-                    <p>However, while the shares are technically "free", the Inland Revenue Department (IRD) of Nepal treats them as income at their par value, which is universally Rs. 100 for commercial banks, hydro powers, and microfinance companies. Therefore, a 5% withholding dividend tax is levied on this par value. Often, the company distributes a nominal cash dividend explicitly to cover this tax. However, if they don't, investors must pay this tax manually to the share registrar before the shares are credited to their BOID (demat account).</p>
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                        <h4 className="font-bold text-slate-900 mb-2">Example Scenario (NPR):</h4>
-                        <p>If you own 1,000 shares of a commercial bank and they declare a 20% bonus share, you will receive 200 new shares. The par value of these new shares is 200 × Rs. 100 = Rs. 20,000. The 5% tax on this amount is Rs. 1,000. You must pay Rs. 1,000 to receive the 200 shares.</p>
+
+            {/* 2. Quick Facts Table */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">1. Quick Facts and Specifications</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Here is an overview of the key operational rules, parameters, and guidelines concerning dividend and bonus share taxation in Nepal:</p>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100 text-slate-800">
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Feature / Parameter</th>
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Dividend Tax Rate (Individual)</td><td className="p-4 text-slate-600">5% of the dividend amount</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Dividend Tax Rate (Corporate)</td><td className="p-4 text-slate-600">15% of the dividend amount</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Bonus Share Valuation Base</td><td className="p-4 text-slate-600">Face value (standard Rs. 100 per share)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Tax Payment Mechanism</td><td className="p-4 text-slate-600">Tax is often deducted from the cash dividend, or must be deposited manually if cash dividend is insufficient</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Regulator</td><td className="p-4 text-slate-600">Securities Board of Nepal (SEBON) / IRD</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Base Law</td><td className="p-4 text-slate-600">Income Tax Act, 2058</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </section>
 
-            <section className="space-y-8">
-                <h3 className="text-3xl font-black text-slate-900">2. Capital Gains Tax (CGT) on Selling Bonus Shares</h3>
-                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                    <p>When you eventually sell your bonus shares on the TMS (Trade Management System), you are liable for Capital Gains Tax. Nepal has a tiered CGT system based on the holding period of the asset, designed to encourage long-term investing.</p>
-                    <ul className="list-disc pl-6 space-y-2">
-                        <li><strong>Short-Term Capital Gains Tax (7.5%):</strong> Applied if you sell the bonus shares within 365 days of them being credited to your demat account.</li>
-                        <li><strong>Long-Term Capital Gains Tax (5.0%):</strong> Applied if you hold the shares for more than 365 days before selling.</li>
+            {/* 3. How it Works */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">2. How the Process Works (Step-by-Step)</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">To achieve the most accurate outcomes when dealing with dividend and bonus share taxation, it is important to follow a structured method:</p>
+                    <ul className="space-y-6">
+                        <li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">1</span><div><strong>Enter Shares Held:</strong> Input the total number of shares you own in the company before the book closure date.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">2</span><div><strong>Enter Dividend Ratios:</strong> Input the declared Bonus Share percentage and Cash Dividend percentage.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">3</span><div><strong>Calculate Gross Yields:</strong> Calculate new bonus shares (Shares * Bonus%) and cash dividend amount (Shares * Face Value * Cash%).</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">4</span><div><strong>Calculate Tax Obligations:</strong> Tax = (Bonus Shares * Rs. 100 + Cash Dividend) * 5%.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">5</span><div><strong>Find Net Cash & Shares:</strong> Subtract tax from the cash dividend to find the net cash receivable, and note the new total shares.</div></li>
                     </ul>
-                    <p>A crucial step before selling is the WACC (Weighted Average Cost of Capital) calculation. For bonus shares, the cost price is considered to be Rs. 100 per share. When you do "My Purchase Source" on MeroShare, it averages out the cost of your original shares (bought at a premium) with the bonus shares (at Rs. 100).</p>
                 </div>
             </section>
 
-            <section className="space-y-8">
-                <h3 className="text-3xl font-black text-slate-900">3. Why Base Price Adjustment Matters</h3>
-                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                    <p>On the book closure date for the bonus share, NEPSE automatically adjusts the market price of the stock downwards. This is because the company's value hasn't changed, but the number of outstanding shares has increased. The formula used by NEPSE for price adjustment is:</p>
-                    <p className="bg-slate-100 p-4 rounded-xl font-mono text-sm text-center">Adjusted Price = Market Price Before Book Closure / (1 + Bonus Percentage)</p>
-                    <p>Understanding this adjustment is critical. Many novice investors mistakenly believe they have lost money when they see the stock price drop on the ex-date. In reality, the total value of their holding (adjusted price × new total shares) remains the same in theory. The tax implications only arise when realizing a profit against the newly adjusted WACC.</p>
+            {/* 4. Mathematical Formula */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">3. Mathematical Formula and Theory</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">The mathematical modeling of dividend and bonus share taxation is based on exact algebraic equations. The standard model is defined as:</p>
+                    <div className="p-6 bg-slate-50 border border-slate-100 rounded-2xl text-center my-6 font-mono text-xl font-bold text-slate-900">
+                        Total Tax = [ (Bonus Shares * 100) + Cash Dividend ] * 5%
+                    </div>
+                    <p className="mb-4">Where the variables are defined as:</p>
+                    <ul className="list-disc pl-6 space-y-2 text-slate-600 text-lg mb-6">
+                        <li><strong>Bonus Shares:</strong>  Existing Shares * Bonus Share %</li><li><strong>Cash Dividend:</strong>  Existing Shares * Face Value (Rs. 100) * Cash Dividend %</li><li><strong>Tax Rate:</strong>  5% (0.05) for individual taxpayers in Nepal</li>
+                    </ul>
+                    <p className="text-slate-500 text-sm mt-4">This formula computes the unified dividend tax covering both stock and cash dividends.</p>
+                </div>
+            </section>
+
+            {/* 5. Worked Example */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">4. Practical Worked Example (NPR/Local Context)</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Let's walk through a realistic scenario to demonstrate how dividend and bonus share taxation operates in Nepal:</p>
+                    <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 mb-6">
+                        <h4 className="text-xl font-bold text-indigo-900 mb-4">Inputs:</h4>
+                        <ul className="list-disc pl-6 space-y-2 text-indigo-950 font-semibold mb-6">
+                            <li>Existing Shares: 100 Shares</li><li>Declared Bonus: 10%</li><li>Declared Cash: 5%</li><li>Face Value: Rs. 100 per share</li>
+                        </ul>
+                        <h4 className="text-xl font-bold text-indigo-900 mb-4">Calculation Steps:</h4>
+                        <ol className="list-decimal pl-6 space-y-3 text-indigo-950/80 mb-6">
+                            <li>Calculate Bonus Shares: 100 * 10% = 10 Shares</li><li>Valuation of Bonus Shares: 10 * Rs. 100 = Rs. 1,000</li><li>Calculate Cash Dividend: 100 * Rs. 100 * 5% = Rs. 500</li><li>Calculate Total Taxable Base: 1,000 (Bonus value) + 500 (Cash) = Rs. 1,500</li><li>Calculate 5% Tax: 1,500 * 0.05 = Rs. 75</li>
+                        </ol>
+                        <h4 className="text-2xl font-black text-indigo-950">Result: Total tax payable is Rs. 75. Since the cash dividend (Rs. 500) exceeds the tax (Rs. 75), the bank will credit a net cash amount of Rs. 425 and issue 10 bonus shares.</h4>
+                    </div>
+                </div>
+            </section>
+
+            {/* 6. Understanding Core Concepts */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">5. Understanding Core Concepts</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                        Investors must understand the "Tax Adjustment" process. If a company declares a high bonus share percentage (e.g., 20%) but a very low cash dividend (e.g., 0.5%), the tax payable on the bonus shares might exceed the cash dividend received. In such cases, the net cash receivable becomes negative, and the investor must manually deposit the deficit tax amount in the company's designated bank account. The company will not credit the bonus shares to the investor's DMAT account until this tax deficit is cleared.
+                    </p>
+                    <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider mb-6">
+                        <span className="text-slate-400">Contextual Reference Links:</span>
+                                        <a href="/calculator/nepal-vat/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal VAT Calculator</a>
+                <a href="/calculator/tds-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">TDS Calculator Nepal</a>
+                <a href="/calculator/fd-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
+                    </div>
+                </div>
+            </section>
+
+            {/* 7. Official Rules & Guidelines */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">6. Official Rules & Regulatory Guidelines in Nepal</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                        Under Section 54 of the Income Tax Act, 2058, dividends distributed by resident companies are subject to a final withholding tax (TDS) of 5% for individuals. For companies/corporate entities, the dividend tax rate is 15%. Tax on bonus shares is calculated on the nominal face value of Rs. 100, not the market trading price on NEPSE. The distributing company acts as the withholding agent, collecting and depositing the tax with the IRD.
+                    </p>
+                    <div className="p-6 bg-slate-50 border border-slate-100 rounded-2xl my-6">
+                        <h4 className="text-lg font-bold text-slate-800 mb-3">Official Regulatory References:</h4>
+                                        <a href="https://ird.gov.np/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline font-semibold transition-colors mr-4">Inland Revenue Department of Nepal &rarr;</a>
+                <a href="http://www.nepalstock.com/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline font-semibold transition-colors mr-4">Nepal Stock Exchange (NEPSE) &rarr;</a>
+                    </div>
+                </div>
+            </section>
+
+            {/* 8. Eligibility and Required Documents */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">7. Eligibility & Required Documents</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 className="text-xl font-bold text-slate-900 mb-4">Eligibility Requirements</h4>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse">
+                                <thead>
+                                    <tr className="bg-slate-100 text-slate-800">
+                                        <th className="p-4 border-b border-slate-200 font-bold">Requirement</th>
+                                        <th className="p-4 border-b border-slate-200 font-bold">Criteria</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Book Closure Date</td><td className="p-4 text-slate-600">Investors must own the shares before the announced book closure date to be eligible for dividends.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">DMAT Status</td><td className="p-4 text-slate-600">Bonus shares are only credited to active, un-dematerialized DMAT accounts.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Bank Account Update</td><td className="p-4 text-slate-600">DMAT accounts must be linked to active bank accounts (via IPS) for cash credits.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Tax Exemption (Mutual Funds)</td><td className="p-4 text-slate-600">Mutual funds in Nepal are exempt from dividend taxes under specific guidelines.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="text-xl font-bold text-slate-900 mb-4">Required Documents</h4>
+                        <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg">
+                            <li>MeroShare Portfolio statement showing share holdings before book closure.</li><li>Company dividend distribution announcement notice.</li><li>Bank deposit voucher (if paying tax deficit manually).</li><li>PAN Card (required for corporate accounts or high-volume dividend claims).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            {/* 9. Factors Affecting Your Calculations */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">8. Key Factors Affecting Your Calculations</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Bonus vs. Cash Ratio</h4><p className="text-slate-600 leading-relaxed">A high bonus/low cash ratio requires checking for a tax deficit, while a high cash ratio ensures tax is auto-debited with surplus cash remaining.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Face Value Variables</h4><p className="text-slate-600 leading-relaxed">While Rs. 100 is standard, a few companies on NEPSE (like Soaltee Hotel) have different face values (e.g., Rs. 10 or Rs. 50), altering tax calculations.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Tax Residency Status</h4><p className="text-slate-600 leading-relaxed">Non-resident investors may face higher tax withholding rates under Nepali tax laws.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Broker / DP Settlement</h4><p className="text-slate-600 leading-relaxed">Dividends are distributed by the company's Share Registrar (RTS), not the stock broker, requiring contact with the Registrar for issues.</p></div>
+                </div>
+            </section>
+
+            {/* 10. Comparisons / Analysis */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">9. Bonus Shares vs. Cash Dividends Tax Impact</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">How stock dividends and cash dividends compare under the tax framework in Nepal:</p>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100 text-slate-800">
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Tax Parameter</th><th className="p-4 border-b-2 border-slate-200 font-bold">Bonus Shares (Stock)</th><th className="p-4 border-b-2 border-slate-200 font-bold">Cash Dividends</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-slate-100"><td className="p-4">Tax Base Value</td><td className="p-4">Face value (Rs. 100 per share)</td><td className="p-4">Actual cash amount declared</td></tr><tr className="border-b border-slate-100"><td className="p-4">Tax Rate (Individual)</td><td className="p-4">5% of face value</td><td className="p-4">5% of cash amount</td></tr><tr className="border-b border-slate-100"><td className="p-4">Payment Method</td><td className="p-4">Debited from cash dividend or paid manually</td><td className="p-4">Auto-withheld by company before credit</td></tr><tr className="border-b border-slate-100"><td className="p-4">Impact on Portfolio</td><td className="p-4">Increases share quantity, lowers market price</td><td className="p-4">Direct cash inflow to bank account</td></tr><tr className="border-b border-slate-100"><td className="p-4">Future Capital Gains</td><td className="p-4">WACC adjusted to Rs. 100 for tax basis</td><td className="p-4">No impact on capital gains base</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            {/* 11. Cost / Parameter Breakdown */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">10. Parameter and Cost Breakdown</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Here is how the main cost categories or parameters break down in practice:</p>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100 text-slate-800">
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Component</th>
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Typical Status / Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Declared Bonus Shares</td><td className="p-4 text-slate-600">Quantity of new shares added to your portfolio</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Declared Cash Dividend</td><td className="p-4 text-slate-600">Gross cash amount allocated before tax deductions</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Tax on Bonus Shares</td><td className="p-4 text-slate-600">5% of (Bonus share quantity * Face value)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Tax on Cash Dividend</td><td className="p-4 text-slate-600">5% of Gross Cash Dividend amount</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Net Cash Credited</td><td className="p-4 text-slate-600">Gross Cash - Total Tax (can be negative if tax exceeds cash)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Tax Deficit Deposit</td><td className="p-4 text-slate-600">Amount investor must pay bank if net cash is negative</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            {/* 12. Tips to Optimize / Improve Outcomes */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">11. Tips to Optimize and Reduce Cost / Improve Outcome</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg">
+                        <li>Monitor company notices after AGM announcements to see if you need to pay tax manually.</li><li>Keep your MeroShare bank account details updated to ensure automatic dividend credits.</li><li>Calculate WACC carefully after receiving bonus shares to reflect the Rs. 100 cost base.</li><li>Check the Share Registrar (RTS) details of the company to track missing dividends.</li>
+                    </ul>
+                </div>
+            </section>
+
+            {/* 13. Common Mistakes Borrowers/Users Make */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">12. Common Mistakes to Avoid</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg">
+                        <li>Assuming tax on bonus shares is based on the NEPSE market price (it is strictly Rs. 100 face value).</li><li>Failing to deposit tax deficits, resulting in bonus shares being withheld for years.</li><li>Not verifying dividend eligibility before buying shares close to book closure dates.</li><li>Confusing stock splits with bonus shares (splits do not attract dividend tax).</li>
+                    </ul>
+                </div>
+            </section>
+
+            {/* 14. Inline Frequently Asked Questions */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">13. In-Depth Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={0}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">1. What is the dividend tax rate in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">For individual investors, the dividend tax rate is 5%. For corporate entities/companies, it is 15%.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={1}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">2. How is bonus share tax calculated?</h4>
+                    <p className="text-slate-600 leading-relaxed">It is calculated as 5% of the face value of the bonus shares. For example, if you receive 10 bonus shares with a face value of Rs. 100, the tax is 5% of Rs. 1,000 = Rs. 50.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={2}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">3. What happens if the cash dividend is not enough to cover the bonus tax?</h4>
+                    <p className="text-slate-600 leading-relaxed">If the cash dividend is insufficient, the net cash receivable is negative. You must manually deposit the deficit amount in the company's bank account to get your shares credited.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={3}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">4. Where do I find bank details to pay my dividend tax deficit?</h4>
+                    <p className="text-slate-600 leading-relaxed">Listed companies publish notices on their websites and national newspapers detailing the Share Registrar and designated bank accounts for tax collection.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={4}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">5. How long does it take for bonus shares to show in MeroShare?</h4>
+                    <p className="text-slate-600 leading-relaxed">It typically takes 1 to 3 months after the Annual General Meeting (AGM) and tax settlement for bonus shares to be credited to your DMAT account.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={5}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">6. Are IPO dividends taxed differently?</h4>
+                    <p className="text-slate-600 leading-relaxed">No, dividends from IPO shares are taxed at the same standard rate of 5% for individuals.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={6}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">7. What is the book closure date?</h4>
+                    <p className="text-slate-600 leading-relaxed">The book closure date is the day on which a company closes its register of members. Only investors who own shares before this date are eligible for dividends.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={7}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">8. Is right share distribution taxable in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">No, right shares are purchase opportunities and do not attract dividend tax. You buy them at face value (usually Rs. 100).</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={8}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">9. Can I claim tax credits for dividends paid?</h4>
+                    <p className="text-slate-600 leading-relaxed">No, dividend tax in Nepal is a final withholding tax, meaning it is settled at source and not added to your regular taxable income brackets.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={9}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">10. What is the face value of NEPSE shares?</h4>
+                    <p className="text-slate-600 leading-relaxed">The standard face value is Rs. 100. However, some companies like Soaltee Hotel (Rs. 10) and Unilever Nepal (Rs. 100) may differ.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={10}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">11. What is a Share Registrar (RTS)?</h4>
+                    <p className="text-slate-600 leading-relaxed">A Share Registrar is an institution appointed by a company to manage share registers, transfer details, and dividend distributions.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={11}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">12. Can a broker help me with missing dividends?</h4>
+                    <p className="text-slate-600 leading-relaxed">Brokers only facilitate trading. For missing dividends, you must contact the company's Share Registrar (RTS).</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={12}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">13. Is cash dividend tax auto-deducted?</h4>
+                    <p className="text-slate-600 leading-relaxed">Yes, the company automatically deducts the 5% tax before transferring the cash dividend to your bank account.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={13}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">14. Do mutual funds pay dividend tax in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">Mutual funds are generally exempt from dividend tax as they are pass-through investment vehicles, subject to specific SEBON regulations.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={14}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">15. What happens to unclaimed dividends in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">Unclaimed dividends are kept by the company in a separate fund and eventually transferred to the Investor Protection Fund after 5 years.</p>
+                </div>
+                </div>
+            </section>
+
+            {/* 15. Related Tools Navigation */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">14. Related Tools and Clusters</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis:</p>
+                    <div className="flex flex-wrap gap-4">
+                                        <a href="/calculator/sip-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
+                <a href="/calculator/rounding/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Inflation Calculator</a>
+                    </div>
                 </div>
             </section>
         </div>
+    
     ),
     faqs: [
-        { question: "How do I pay the bonus share tax in Nepal?", answer: "If the company doesn't provide a cash dividend to cover the tax, you must deposit the tax amount into the bank account of the respective Share Registrar (RTS/RTA) and send them the voucher. Many RTAs now accept eSewa or Khalti payments." },
-        { question: "What is the holding period for bonus shares?", answer: "The holding period (365 days for long-term classification) starts from the date the bonus shares are credited to your demat account, not the date you bought the original shares." },
-        { question: "Do right shares have the same tax rule?", answer: "No, right shares require you to pay the par value (usually Rs. 100) per share directly to the company. There is no 'dividend tax' on right shares, but CGT applies when selling." },
-        { question: "How is WACC calculated for bonus shares?", answer: "In MeroShare, the cost price of bonus shares is taken as Rs. 100. This is averaged with the cost price of your previously held shares to determine your new Weighted Average Cost of Capital." },
-        { question: "Is the 5% dividend tax on bonus shares a final tax?", answer: "Yes, for individual investors, the 5% withholding tax on dividends (including the par value of bonus shares) is considered the final tax under the Income Tax Act of Nepal." }
+      { question: "What is the dividend tax rate in Nepal?", answer: "For individual investors, the dividend tax rate is 5%. For corporate entities/companies, it is 15%." },
+      { question: "How is bonus share tax calculated?", answer: "It is calculated as 5% of the face value of the bonus shares. For example, if you receive 10 bonus shares with a face value of Rs. 100, the tax is 5% of Rs. 1,000 = Rs. 50." },
+      { question: "What happens if the cash dividend is not enough to cover the bonus tax?", answer: "If the cash dividend is insufficient, the net cash receivable is negative. You must manually deposit the deficit amount in the company's bank account to get your shares credited." },
+      { question: "Where do I find bank details to pay my dividend tax deficit?", answer: "Listed companies publish notices on their websites and national newspapers detailing the Share Registrar and designated bank accounts for tax collection." },
+      { question: "How long does it take for bonus shares to show in MeroShare?", answer: "It typically takes 1 to 3 months after the Annual General Meeting (AGM) and tax settlement for bonus shares to be credited to your DMAT account." },
+      { question: "Are IPO dividends taxed differently?", answer: "No, dividends from IPO shares are taxed at the same standard rate of 5% for individuals." },
+      { question: "What is the book closure date?", answer: "The book closure date is the day on which a company closes its register of members. Only investors who own shares before this date are eligible for dividends." },
+      { question: "Is right share distribution taxable in Nepal?", answer: "No, right shares are purchase opportunities and do not attract dividend tax. You buy them at face value (usually Rs. 100)." },
+      { question: "Can I claim tax credits for dividends paid?", answer: "No, dividend tax in Nepal is a final withholding tax, meaning it is settled at source and not added to your regular taxable income brackets." },
+      { question: "What is the face value of NEPSE shares?", answer: "The standard face value is Rs. 100. However, some companies like Soaltee Hotel (Rs. 10) and Unilever Nepal (Rs. 100) may differ." },
+      { question: "What is a Share Registrar (RTS)?", answer: "A Share Registrar is an institution appointed by a company to manage share registers, transfer details, and dividend distributions." },
+      { question: "Can a broker help me with missing dividends?", answer: "Brokers only facilitate trading. For missing dividends, you must contact the company's Share Registrar (RTS)." },
+      { question: "Is cash dividend tax auto-deducted?", answer: "Yes, the company automatically deducts the 5% tax before transferring the cash dividend to your bank account." },
+      { question: "Do mutual funds pay dividend tax in Nepal?", answer: "Mutual funds are generally exempt from dividend tax as they are pass-through investment vehicles, subject to specific SEBON regulations." },
+      { question: "What happens to unclaimed dividends in Nepal?", answer: "Unclaimed dividends are kept by the company in a separate fund and eventually transferred to the Investor Protection Fund after 5 years." },
     ]
   },
   'nepal-vat': {
@@ -3350,61 +3777,320 @@ export const financialSEO: Record<string, SEOContent> = {
     },
     
     content: (
+
         <div className="space-y-16 font-sans">
+            {/* 1. Calculator Introduction */}
             <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-green-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+                <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
                 <div className="relative z-10">
-                    <h2 className="text-green-400 font-black text-sm uppercase tracking-[0.4em] mb-4">Nepal VAT System</h2>
-                    <h3 className="text-4xl font-black mb-8 leading-tight">Value Added Tax (VAT) Auditing in Nepal</h3>
+                    <h2 className="text-indigo-400 font-black text-sm uppercase tracking-[0.4em] mb-4">Educational Resources & Guide</h2>
+                    <h3 className="text-4xl font-black mb-8 leading-tight">Nepal VAT Calculator | 13% Value Added Tax Guide IRD</h3>
                     <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        Value Added Tax (VAT) is an indirect tax levied on the value added at each stage of the supply chain. In Nepal, standard VAT is uniformly set at 13%. Understanding how to calculate VAT inclusive and exclusive amounts is vital for businesses filing returns with the Inland Revenue Department (IRD) and for consumers understanding their bills.
+                        Value Added Tax (VAT) is an indirect tax levied on the consumption of goods and services in Nepal. The standard VAT rate is set at 13% by the Inland Revenue Department (IRD). Understanding how to calculate VAT—both adding VAT to a net amount (VAT Exclusive) and extracting VAT from a total price (VAT Inclusive)—is crucial for businesses, consumers, and accountants. This calculator simplifies these arithmetic steps while ensuring alignment with the Nepalese tax codes.
                     </p>
+                    <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">
+                        <span className="text-slate-400">Quick Links:</span>
+                                        <a href="/calculator/tds-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">TDS Calculator Nepal</a>
+                <a href="/calculator/gold-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Gold Import Tax Calculator</a>
+                <a href="/calculator/nepal-salary/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Salary Income Tax Calculator</a>
+                    </div>
                 </div>
             </div>
-            
-            <section className="space-y-8">
-                <h3 className="text-3xl font-black text-slate-900">1. The 13% Standard VAT Mechanism</h3>
-                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                    <p>Introduced in 1997 to replace the sales tax, VAT is the primary source of revenue for the Government of Nepal. The standard rate is a flat 13% on all taxable goods and services. A small category of essential goods (like basic agricultural products, educational materials, and healthcare) are completely exempt from VAT.</p>
-                    <p>For businesses, VAT operates on an input-output credit system. When a registered business purchases inventory, they pay "Input VAT". When they sell goods, they collect "Output VAT". The business then remits the difference (Output VAT - Input VAT) to the IRD by the 25th of the following Nepali month.</p>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                        <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                            <h4 className="font-bold text-slate-900 mb-2">VAT Exclusive Calculation</h4>
-                            <p className="text-sm">If an item is Rs. 1000 before VAT:</p>
-                            <p className="font-mono text-sm mt-2 text-indigo-600">VAT = 1000 × 0.13 = Rs. 130</p>
-                            <p className="font-mono text-sm text-indigo-600">Total = Rs. 1130</p>
-                        </div>
-                        <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                            <h4 className="font-bold text-slate-900 mb-2">VAT Inclusive Reverse</h4>
-                            <p className="text-sm">If total bill is Rs. 1130:</p>
-                            <p className="font-mono text-sm mt-2 text-indigo-600">Base = 1130 / 1.13 = Rs. 1000</p>
-                            <p className="font-mono text-sm text-indigo-600">VAT Component = Rs. 130</p>
-                        </div>
+
+            {/* 2. Quick Facts Table */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">1. Quick Facts and Specifications</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Here is an overview of the key operational rules, parameters, and guidelines concerning VAT calculation in Nepal:</p>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100 text-slate-800">
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Feature / Parameter</th>
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Standard VAT Rate</td><td className="p-4 text-slate-600">13% (Flat rate across registered items)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Tax Authority</td><td className="p-4 text-slate-600">Inland Revenue Department (IRD) Nepal</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Exempt Items</td><td className="p-4 text-slate-600">Basic agricultural foods, medical supplies, education, and public transport</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Compulsory Registration Threshold</td><td className="p-4 text-slate-600">Rs. 50 Lakhs (Goods), Rs. 20 Lakhs (Services), Rs. 50 Lakhs (Mixed)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Filing Frequency</td><td className="p-4 text-slate-600">Monthly (within 25 days of the next Nepali month)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Base Law</td><td className="p-4 text-slate-600">Value Added Tax Act, 2052 (1996)</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </section>
 
-            <section className="space-y-8">
-                <h3 className="text-3xl font-black text-slate-900">2. Mandatory VAT Registration Thresholds</h3>
-                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                    <p>Not all businesses in Nepal are required to register for VAT. Small businesses can operate under PAN (Permanent Account Number). However, VAT registration becomes mandatory if annual turnover crosses specific thresholds mandated by the Financial Act.</p>
-                    <ul className="list-disc pl-6 space-y-2">
-                        <li><strong>Trading Businesses:</strong> Mandatory registration if annual turnover exceeds Rs. 50 Lakhs.</li>
-                        <li><strong>Service Sector:</strong> Mandatory registration if annual turnover exceeds Rs. 20 Lakhs.</li>
-                        <li><strong>Specific Industries:</strong> Hardware, electronics, and alcohol businesses must register for VAT regardless of turnover.</li>
+            {/* 3. How it Works */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">2. How the Process Works (Step-by-Step)</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">To achieve the most accurate outcomes when dealing with VAT calculation, it is important to follow a structured method:</p>
+                    <ul className="space-y-6">
+                        <li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">1</span><div><strong>Select Calculation Mode:</strong> Choose either "VAT Exclusive" (to add 13% VAT) or "VAT Inclusive" (to extract 13% VAT from the total).</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">2</span><div><strong>Enter Amount:</strong> Input the base price or total invoice price in NPR.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">3</span><div><strong>Calculate VAT Amount:</strong> Exclusive: VAT = Amount * 0.13. Inclusive: VAT = Amount * (13 / 113).</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">4</span><div><strong>Verify Grand Total:</strong> Exclusive: Total = Amount + VAT. Inclusive: Net = Amount - VAT.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">5</span><div><strong>Generate Tax Invoice Draft:</strong> Review the calculated figures to prepare or verify a standard tax invoice.</div></li>
                     </ul>
-                    <p>Failing to register for VAT after crossing these thresholds attracts severe penalties, including a back-tax assessment with interest spanning up to 4 years.</p>
+                </div>
+            </section>
+
+            {/* 4. Mathematical Formula */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">3. Mathematical Formula and Theory</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">The mathematical modeling of VAT calculation is based on exact algebraic equations. The standard model is defined as:</p>
+                    <div className="p-6 bg-slate-50 border border-slate-100 rounded-2xl text-center my-6 font-mono text-xl font-bold text-slate-900">
+                        VAT Exclusive: Total = Net * 1.13 | VAT Inclusive: Net = Total / 1.13
+                    </div>
+                    <p className="mb-4">Where the variables are defined as:</p>
+                    <ul className="list-disc pl-6 space-y-2 text-slate-600 text-lg mb-6">
+                        <li><strong>Total:</strong>  Grand Total inclusive of 13% VAT</li><li><strong>Net:</strong>  Base price before tax</li><li><strong>VAT Amount:</strong>  Exclusive</li>
+                    </ul>
+                    <p className="text-slate-500 text-sm mt-4">These basic tax formulas prevent mathematical mistakes during invoicing and bookkeeping.</p>
+                </div>
+            </section>
+
+            {/* 5. Worked Example */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">4. Practical Worked Example (NPR/Local Context)</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Let's walk through a realistic scenario to demonstrate how VAT calculation operates in Nepal:</p>
+                    <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 mb-6">
+                        <h4 className="text-xl font-bold text-indigo-900 mb-4">Inputs:</h4>
+                        <ul className="list-disc pl-6 space-y-2 text-indigo-950 font-semibold mb-6">
+                            <li>Calculation Mode: VAT Inclusive</li><li>Total Price Paid: Rs. 11,300</li><li>Tax Rate: 13% standard rate</li>
+                        </ul>
+                        <h4 className="text-xl font-bold text-indigo-900 mb-4">Calculation Steps:</h4>
+                        <ol className="list-decimal pl-6 space-y-3 text-indigo-950/80 mb-6">
+                            <li>Apply VAT Inclusive Formula: Net = Total / 1.13</li><li>Calculate Net Price: 11,300 / 1.13 = Rs. 10,000</li><li>Subtract to find VAT: VAT Amount = Total - Net</li><li>Compute VAT: 11,300 - 10,000 = Rs. 1,300</li>
+                        </ol>
+                        <h4 className="text-2xl font-black text-indigo-950">Result: Base price (VAT exclusive) is Rs. 10,000. The 13% VAT component is Rs. 1,300, matching the total of Rs. 11,300.</h4>
+                    </div>
+                </div>
+            </section>
+
+            {/* 6. Understanding Core Concepts */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">5. Understanding Core Concepts</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                        Businesses in Nepal registered under the VAT system must manage Input Tax Credit (ITC). When a business buys goods or raw materials, they pay VAT to their suppliers (Input VAT). When they sell their products, they collect VAT from their customers (Output VAT). The net VAT payable to the government is: Net VAT = Output VAT - Input VAT. If Input VAT is greater than Output VAT, the business can carry forward the credit or claim a refund from the IRD.
+                    </p>
+                    <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider mb-6">
+                        <span className="text-slate-400">Contextual Reference Links:</span>
+                                        <a href="/calculator/nepse-wacc/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
+                <a href="/calculator/property-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
+                <a href="/calculator/fd-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
+                    </div>
+                </div>
+            </section>
+
+            {/* 7. Official Rules & Guidelines */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">6. Official Rules & Regulatory Guidelines in Nepal</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                        Value Added Tax in Nepal is regulated by the Value Added Tax Act, 2052. Companies whose annual turnover exceeds the threshold must register for VAT and obtain a PAN/VAT certificate. Registered businesses are legally required to issue standard tax invoices for every sale. Filing must be completed digitally through the IRD's online portal within 25 days of the end of each Nepali month, failing which penalties and interest are charged.
+                    </p>
+                    <div className="p-6 bg-slate-50 border border-slate-100 rounded-2xl my-6">
+                        <h4 className="text-lg font-bold text-slate-800 mb-3">Official Regulatory References:</h4>
+                                        <a href="https://ird.gov.np/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline font-semibold transition-colors mr-4">Inland Revenue Department (IRD) Nepal &rarr;</a>
+                <a href="https://mof.gov.np/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline font-semibold transition-colors mr-4">Nepal Ministry of Finance &rarr;</a>
+                    </div>
+                </div>
+            </section>
+
+            {/* 8. Eligibility and Required Documents */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">7. Eligibility & Required Documents</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 className="text-xl font-bold text-slate-900 mb-4">Eligibility Requirements</h4>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse">
+                                <thead>
+                                    <tr className="bg-slate-100 text-slate-800">
+                                        <th className="p-4 border-b border-slate-200 font-bold">Requirement</th>
+                                        <th className="p-4 border-b border-slate-200 font-bold">Criteria</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Registration Threshold (Goods)</td><td className="p-4 text-slate-600">Annual turnover exceeding Rs. 50,00,000.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Registration Threshold (Services)</td><td className="p-4 text-slate-600">Annual turnover exceeding Rs. 20,0,000.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Voluntary Registration</td><td className="p-4 text-slate-600">Any business can voluntarily register even if below the threshold.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Billing Mandate</td><td className="p-4 text-slate-600">Must print and issue sequential, numbered tax invoices approved by IRD.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Exemptions</td><td className="p-4 text-slate-600">Essential items like grains, fresh vegetables, medicines, and books are tax-free.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="text-xl font-bold text-slate-900 mb-4">Required Documents</h4>
+                        <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg">
+                            <li>Business Registration Certificate from OCR (Office of the Company Registrar) or Ward office.</li><li>PAN/VAT Certificate issued by the Inland Revenue Department.</li><li>Rent agreement and citizenship copy of the proprietor/directors.</li><li>Monthly purchase book and sales book records.</li><li>Monthly VAT returns and tax payment vouchers.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            {/* 9. Factors Affecting Your Calculations */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">8. Key Factors Affecting Your Calculations</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Exclusive vs. Inclusive Pricing</h4><p className="text-slate-600 leading-relaxed">Quoting prices as "exclusive of VAT" can make deals look cheaper, but 13% will be added during final invoicing, affecting consumer perception.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Tax Exempt Goods</h4><p className="text-slate-600 leading-relaxed">Certain items do not attract VAT. Selling exempt goods means you cannot claim Input Tax Credit on related purchases.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Filing Deadlines</h4><p className="text-slate-600 leading-relaxed">VAT returns must be filed monthly. Delays attract a penalty of 0.15% per day of the tax amount or Rs. 1,000 per return, whichever is higher.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Billing Audits</h4><p className="text-slate-600 leading-relaxed">The Inland Revenue Department conducts random audits. Mismatches between physical purchase/sales books and online filings lead to heavy fines.</p></div>
+                </div>
+            </section>
+
+            {/* 10. Comparisons / Analysis */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">9. VAT Registered vs. PAN Registered Businesses</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Understanding the differences in tax handling between VAT and PAN only registrations in Nepal:</p>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100 text-slate-800">
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Feature</th><th className="p-4 border-b-2 border-slate-200 font-bold">VAT Registered</th><th className="p-4 border-b-2 border-slate-200 font-bold">PAN Only (Non-VAT)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-slate-100"><td className="p-4">Turnover Threshold</td><td className="p-4">Above Rs. 20L (Services) or 50L (Goods)</td><td className="p-4">Below the VAT thresholds</td></tr><tr className="border-b border-slate-100"><td className="p-4">Can Collect VAT?</td><td className="p-4">Yes, must charge 13% on taxable items</td><td className="p-4">No, strictly illegal to charge VAT</td></tr><tr className="border-b border-slate-100"><td className="p-4">Input Tax Credit</td><td className="p-4">Yes, can offset tax paid on purchases</td><td className="p-4">No, VAT paid on purchases is an expense</td></tr><tr className="border-b border-slate-100"><td className="p-4">Invoicing</td><td className="p-4">Tax Invoice format mandatory</td><td className="p-4">Abbreviated Tax Invoice or Cash Memo</td></tr><tr className="border-b border-slate-100"><td className="p-4">Filing Requirement</td><td className="p-4">Monthly VAT returns online</td><td className="p-4">Annual income tax filings only</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            {/* 11. Cost / Parameter Breakdown */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">10. Parameter and Cost Breakdown</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Here is how the main cost categories or parameters break down in practice:</p>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100 text-slate-800">
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Component</th>
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Typical Status / Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Net Base Amount</td><td className="p-4 text-slate-600">The value of the goods or services before any tax is added</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">13% VAT Component</td><td className="p-4 text-slate-600">The tax collected on behalf of the Inland Revenue Department</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Grand Invoice Total</td><td className="p-4 text-slate-600">The final amount payable by the consumer (Base + VAT)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Late Filing Penalty</td><td className="p-4 text-slate-600">Rs. 1,000 per month or 0.15% per day of tax due</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Interest Rate</td><td className="p-4 text-slate-600">15% per annum on unpaid tax amounts under IRD rules</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            {/* 12. Tips to Optimize / Improve Outcomes */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">11. Tips to Optimize and Reduce Cost / Improve Outcome</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg">
+                        <li>Always request a formal VAT invoice when making major business purchases to claim Input Tax Credit.</li><li>Verify the VAT registration status of your suppliers on the IRD portal to ensure your credits are valid.</li><li>File your monthly VAT return early to avoid last-minute server congestion on the IRD system.</li><li>Educate customers by quoting VAT-inclusive prices to build pricing trust.</li>
+                    </ul>
+                </div>
+            </section>
+
+            {/* 13. Common Mistakes Borrowers/Users Make */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">12. Common Mistakes to Avoid</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg">
+                        <li>Collecting VAT from customers without being registered for VAT (a serious legal offense in Nepal).</li><li>Failing to maintain a physical Purchase Book and Sales Book in the format prescribed by tax law.</li><li>Not filing returns on months with zero sales (Nil returns are still mandatory).</li><li>Failing to separate VAT-exempt goods from VATable goods on the same invoice.</li>
+                    </ul>
+                </div>
+            </section>
+
+            {/* 14. Inline Frequently Asked Questions */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">13. In-Depth Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={0}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">1. What is the current standard VAT rate in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">The standard Value Added Tax (VAT) rate in Nepal is 13%.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={1}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">2. Are any items exempt from VAT?</h4>
+                    <p className="text-slate-600 leading-relaxed">Yes, basic food items (rice, flour, fresh vegetables), educational services, medicines, and public transport are exempt from VAT.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={2}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">3. What is the penalty for late VAT filing in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">Late filing attracts a penalty of Rs. 1,000 per month or 0.15% per day of the tax due, plus 15% annual interest on the unpaid tax.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={3}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">4. What is Input Tax Credit (ITC)?</h4>
+                    <p className="text-slate-600 leading-relaxed">Input Tax Credit allows VAT-registered businesses to deduct the VAT paid on raw materials and purchases from the VAT collected on sales.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={4}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">5. How often do I need to file VAT returns?</h4>
+                    <p className="text-slate-600 leading-relaxed">VAT returns must be filed monthly, within 25 days of the start of the next Nepali month.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={5}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">6. What is the VAT threshold for services?</h4>
+                    <p className="text-slate-600 leading-relaxed">If a business provides services and its annual turnover exceeds Rs. 20 Lakhs, it must register for VAT.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={6}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">7. Can a non-VAT business issue a tax invoice?</h4>
+                    <p className="text-slate-600 leading-relaxed">No, businesses not registered for VAT cannot issue tax invoices or charge VAT. They issue cash memos/bills.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={7}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">8. How do I verify a company's VAT number in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">You can verify any company's PAN/VAT status on the taxpayer portal of the Inland Revenue Department website.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={8}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">9. What is a "Nil" VAT return?</h4>
+                    <p className="text-slate-600 leading-relaxed">If a VAT-registered business has no sales or purchases in a month, they must still file a "Nil" (zero) return online.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={9}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">10. Is VAT refundable in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">Yes, if a business constantly has more input tax than output tax (such as exporters), they can apply to the IRD for a tax refund.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={10}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">11. What is the difference between PAN and VAT?</h4>
+                    <p className="text-slate-600 leading-relaxed">PAN (Permanent Account Number) is a unique tax ID for all businesses, while VAT is a specific tax system registration for higher-turnover companies.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={11}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">12. Do I pay VAT on import of goods?</h4>
+                    <p className="text-slate-600 leading-relaxed">Yes, 13% VAT is calculated and collected at the customs border along with customs duties during imports.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={12}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">13. Can I register for VAT voluntarily?</h4>
+                    <p className="text-slate-600 leading-relaxed">Yes, any registered business can voluntarily register for VAT even if its turnover is below the threshold.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={13}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">14. What is the VAT Act of Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">The governing law is the Value Added Tax Act, 2052 (1996) along with VAT Regulations, 2053.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={14}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">15. Can a customer refuse to pay VAT?</h4>
+                    <p className="text-slate-600 leading-relaxed">No, paying VAT on taxable items is a legal obligation for consumers. Registered businesses must charge it by law.</p>
+                </div>
+                </div>
+            </section>
+
+            {/* 15. Related Tools Navigation */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">14. Related Tools and Clusters</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis:</p>
+                    <div className="flex flex-wrap gap-4">
+                                        <a href="/calculator/sip-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
+                <a href="/calculator/nepal-vehicle-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal Vehicle Tax Calculator</a>
+                    </div>
                 </div>
             </section>
         </div>
+    
     ),
     faqs: [
-        { question: "What is the standard VAT rate in Nepal?", answer: "The standard VAT rate in Nepal is 13%. Exports are zero-rated (0%), and certain essential goods are VAT-exempt." },
-        { question: "What is the difference between Zero-Rated and Exempt?", answer: "Exempt means VAT is outside the system entirely; you cannot claim input credit. Zero-rated means VAT is technically 0%, allowing businesses to claim refunds on their input VAT (crucial for exporters)." },
-        { question: "When is the VAT return filing deadline in Nepal?", answer: "VAT returns and payments must be submitted to the IRD by the 25th day of the following Nepali month." },
-        { question: "Can a PAN registered business charge VAT?", answer: "No, a business must be explicitly VAT-registered to issue tax invoices charging 13% VAT. Issuing VAT bills with only a PAN is illegal." },
-        { question: "How can consumers verify a VAT bill?", answer: "Consumers can verify if a business is actively VAT registered by checking their 9-digit PAN on the IRD website's 'Taxpayer Portal'." }
+      { question: "What is the current standard VAT rate in Nepal?", answer: "The standard Value Added Tax (VAT) rate in Nepal is 13%." },
+      { question: "Are any items exempt from VAT?", answer: "Yes, basic food items (rice, flour, fresh vegetables), educational services, medicines, and public transport are exempt from VAT." },
+      { question: "What is the penalty for late VAT filing in Nepal?", answer: "Late filing attracts a penalty of Rs. 1,000 per month or 0.15% per day of the tax due, plus 15% annual interest on the unpaid tax." },
+      { question: "What is Input Tax Credit (ITC)?", answer: "Input Tax Credit allows VAT-registered businesses to deduct the VAT paid on raw materials and purchases from the VAT collected on sales." },
+      { question: "How often do I need to file VAT returns?", answer: "VAT returns must be filed monthly, within 25 days of the start of the next Nepali month." },
+      { question: "What is the VAT threshold for services?", answer: "If a business provides services and its annual turnover exceeds Rs. 20 Lakhs, it must register for VAT." },
+      { question: "Can a non-VAT business issue a tax invoice?", answer: "No, businesses not registered for VAT cannot issue tax invoices or charge VAT. They issue cash memos/bills." },
+      { question: "How do I verify a company's VAT number in Nepal?", answer: "You can verify any company's PAN/VAT status on the taxpayer portal of the Inland Revenue Department website." },
+      { question: "What is a \"Nil\" VAT return?", answer: "If a VAT-registered business has no sales or purchases in a month, they must still file a \"Nil\" (zero) return online." },
+      { question: "Is VAT refundable in Nepal?", answer: "Yes, if a business constantly has more input tax than output tax (such as exporters), they can apply to the IRD for a tax refund." },
+      { question: "What is the difference between PAN and VAT?", answer: "PAN (Permanent Account Number) is a unique tax ID for all businesses, while VAT is a specific tax system registration for higher-turnover companies." },
+      { question: "Do I pay VAT on import of goods?", answer: "Yes, 13% VAT is calculated and collected at the customs border along with customs duties during imports." },
+      { question: "Can I register for VAT voluntarily?", answer: "Yes, any registered business can voluntarily register for VAT even if its turnover is below the threshold." },
+      { question: "What is the VAT Act of Nepal?", answer: "The governing law is the Value Added Tax Act, 2052 (1996) along with VAT Regulations, 2053." },
+      { question: "Can a customer refuse to pay VAT?", answer: "No, paying VAT on taxable items is a legal obligation for consumers. Registered businesses must charge it by law." },
     ]
   },
 
@@ -3594,250 +4280,640 @@ export const financialSEO: Record<string, SEOContent> = {
     title: "Auto Loan Calculator Nepal | Vehicle Finance EMI",
     description: "Calculate auto loan EMI for EVs and ICE vehicles in Nepal based on NRB guidelines.",
     content: (
+
         <div className="space-y-16 font-sans">
+            {/* 1. Calculator Introduction */}
             <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+                <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
                 <div className="relative z-10">
-                    <h2 className="text-purple-400 font-black text-sm uppercase tracking-[0.4em] mb-4">Auto Loan Analytics</h2>
-                    <h3 className="text-4xl font-black mb-8 leading-tight">Vehicle Financing & Auto Loans in Nepal</h3>
+                    <h2 className="text-indigo-400 font-black text-sm uppercase tracking-[0.4em] mb-4">Educational Resources & Guide</h2>
+                    <h3 className="text-4xl font-black mb-8 leading-tight">Auto Loan EMI Calculator Nepal | Vehicle Finance Guide</h3>
                     <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        Purchasing a vehicle in Nepal involves navigating high import duties, making auto loans essential for most buyers. The Nepal Rastra Bank (NRB) strictly regulates auto loan limits (Hire Purchase) to control liquidity and foreign exchange reserves. This tool helps you calculate EMIs, interest components, and assess affordability within current NRB margins.
+                        Navigating auto loans and vehicle financing in Nepal requires a comprehensive understanding of current Nepal Rastra Bank (NRB) guidelines, down payment requirements, interest rates, and loan tenures. The auto loan calculator helps you estimate monthly EMI payments using the reducing balance method. With the high customs duties imposed on internal combustion engine (ICE) vehicles in Nepal, financing is a crucial component of purchasing a car or motorcycle. The central bank regulates Loan-to-Value (LTV) limits strictly to control liquidity and import volume, creating distinct financing rules for fuel vehicles and electric vehicles (EVs).
                     </p>
+                    <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">
+                        <span className="text-slate-400">Quick Links:</span>
+                                        <a href="/calculator/mortgage-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Home Loan EMI Calculator</a>
+                <a href="/calculator/loan-emi/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Personal Loan Calculator</a>
+                <a href="/calculator/nepal-loan-eligibility/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Loan Eligibility Calculator</a>
+                    </div>
                 </div>
             </div>
-            
-            <section className="space-y-8">
-                <h3 className="text-3xl font-black text-slate-900">1. Internal Combustion vs. Electric Vehicles (EVs)</h3>
-                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                    <p>Nepal's central bank has implemented vastly different financing rules to encourage the adoption of Electric Vehicles (EVs) over petrol/diesel vehicles. The Down Payment or Loan-to-Value (LTV) ratio is the most significant difference.</p>
-                    <div className="overflow-x-auto mt-6">
+
+            {/* 2. Quick Facts Table */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">1. Quick Facts and Specifications</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Here is an overview of the key operational rules, parameters, and guidelines concerning vehicle financing in Nepal:</p>
+                    <div className="overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                             <thead>
                                 <tr className="bg-slate-100 text-slate-800">
-                                    <th className="p-4 border-b-2 border-slate-200">Vehicle Type</th>
-                                    <th className="p-4 border-b-2 border-slate-200">Max Loan Amount (LTV)</th>
-                                    <th className="p-4 border-b-2 border-slate-200">Required Down Payment</th>
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Feature / Parameter</th>
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Details</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className="border-b border-slate-100">
-                                    <td className="p-4">ICE (Petrol/Diesel)</td>
-                                    <td className="p-4">50% of Valuation</td>
-                                    <td className="p-4">50%</td>
-                                </tr>
-                                <tr className="border-b border-slate-100">
-                                    <td className="p-4">Electric Vehicles (EV)</td>
-                                    <td className="p-4">80% of Valuation</td>
-                                    <td className="p-4">20%</td>
-                                </tr>
-                                <tr>
-                                    <td className="p-4">Commercial Vehicles</td>
-                                    <td className="p-4">70% of Valuation</td>
-                                    <td className="p-4">30%</td>
-                                </tr>
+                                <tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Calculation Method</td><td className="p-4 text-slate-600">Reducing Balance EMI</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Maximum Tenure</td><td className="p-4 text-slate-600">Up to 7 Years (Personal Vehicles)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">EV Financing Limit (LTV)</td><td className="p-4 text-slate-600">Up to 80% (20% Down Payment)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Fuel Vehicle Limit (LTV)</td><td className="p-4 text-slate-600">Up to 50% (50% Down Payment)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Commercial Vehicle LTV</td><td className="p-4 text-slate-600">Up to 70-80% (Case-by-Case)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Regulator</td><td className="p-4 text-slate-600">Nepal Rastra Bank (NRB)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Base Rate Linkage</td><td className="p-4 text-slate-600">Yes, floating rates adjust quarterly based on bank base rates</td></tr>
                             </tbody>
                         </table>
                     </div>
-                    <p className="text-sm mt-4 text-slate-500">*Note: These ratios are subject to periodic revision by NRB's monetary policy.</p>
                 </div>
             </section>
-        
-        <section className="space-y-8 mt-12">
-            <h3 className="text-3xl font-black text-slate-900">Deep Dive: Comprehensive Analysis of Auto Loan Financing</h3>
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Auto Loan Financing is crucial for individuals looking to optimize their vehicle loans. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of vehicle loans allows you to make informed, data-driven decisions. Historically, dealing with vehicle loans involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of vehicle loans remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous vehicle loans assessments to ensure compliance with both local and international standards. The intersection of modern technology and vehicle loans has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated vehicle loans analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Auto Loan Financing is crucial for individuals looking to optimize their vehicle loans. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of vehicle loans allows you to make informed, data-driven decisions. Historically, dealing with vehicle loans involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of vehicle loans remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous vehicle loans assessments to ensure compliance with both local and international standards. The intersection of modern technology and vehicle loans has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated vehicle loans analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Auto Loan Financing is crucial for individuals looking to optimize their vehicle loans. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of vehicle loans allows you to make informed, data-driven decisions. Historically, dealing with vehicle loans involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of vehicle loans remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous vehicle loans assessments to ensure compliance with both local and international standards. The intersection of modern technology and vehicle loans has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated vehicle loans analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Auto Loan Financing is crucial for individuals looking to optimize their vehicle loans. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of vehicle loans allows you to make informed, data-driven decisions. Historically, dealing with vehicle loans involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of vehicle loans remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous vehicle loans assessments to ensure compliance with both local and international standards. The intersection of modern technology and vehicle loans has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated vehicle loans analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Auto Loan Financing is crucial for individuals looking to optimize their vehicle loans. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of vehicle loans allows you to make informed, data-driven decisions. Historically, dealing with vehicle loans involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of vehicle loans remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous vehicle loans assessments to ensure compliance with both local and international standards. The intersection of modern technology and vehicle loans has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated vehicle loans analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Auto Loan Financing is crucial for individuals looking to optimize their vehicle loans. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of vehicle loans allows you to make informed, data-driven decisions. Historically, dealing with vehicle loans involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of vehicle loans remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous vehicle loans assessments to ensure compliance with both local and international standards. The intersection of modern technology and vehicle loans has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated vehicle loans analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Auto Loan Financing is crucial for individuals looking to optimize their vehicle loans. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of vehicle loans allows you to make informed, data-driven decisions. Historically, dealing with vehicle loans involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of vehicle loans remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous vehicle loans assessments to ensure compliance with both local and international standards. The intersection of modern technology and vehicle loans has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated vehicle loans analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Auto Loan Financing is crucial for individuals looking to optimize their vehicle loans. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of vehicle loans allows you to make informed, data-driven decisions. Historically, dealing with vehicle loans involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of vehicle loans remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous vehicle loans assessments to ensure compliance with both local and international standards. The intersection of modern technology and vehicle loans has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated vehicle loans analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Auto Loan Financing is crucial for individuals looking to optimize their vehicle loans. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of vehicle loans allows you to make informed, data-driven decisions. Historically, dealing with vehicle loans involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of vehicle loans remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous vehicle loans assessments to ensure compliance with both local and international standards. The intersection of modern technology and vehicle loans has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated vehicle loans analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Auto Loan Financing is crucial for individuals looking to optimize their vehicle loans. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of vehicle loans allows you to make informed, data-driven decisions. Historically, dealing with vehicle loans involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of vehicle loans remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous vehicle loans assessments to ensure compliance with both local and international standards. The intersection of modern technology and vehicle loans has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated vehicle loans analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Auto Loan Financing is crucial for individuals looking to optimize their vehicle loans. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of vehicle loans allows you to make informed, data-driven decisions. Historically, dealing with vehicle loans involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of vehicle loans remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous vehicle loans assessments to ensure compliance with both local and international standards. The intersection of modern technology and vehicle loans has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated vehicle loans analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of Auto Loan Financing is crucial for individuals looking to optimize their vehicle loans. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of vehicle loans allows you to make informed, data-driven decisions. Historically, dealing with vehicle loans involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of vehicle loans remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous vehicle loans assessments to ensure compliance with both local and international standards. The intersection of modern technology and vehicle loans has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated vehicle loans analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-            </div>
-        </section>
-        
-        <section className="space-y-8 mt-12">
-            <h3 className="text-3xl font-black text-slate-900">Advanced Methodologies and Strategies</h3>
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                <p className="text-slate-600 leading-relaxed text-lg mb-4">
-                    To truly master vehicle loans, one must look beyond basic calculations and delve into advanced methodologies. This involves a comprehensive understanding of the underlying variables and how they interact within the broader ecosystem.
-                </p>
-                <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg mb-6">
-                    <li><strong>Precision Tracking:</strong> Implementing rigorous data collection methods to ensure all inputs are perfectly accurate.</li>
-                    <li><strong>Historical Comparison:</strong> Analyzing past data to identify cyclical patterns and establish baselines.</li>
-                    <li><strong>Scenario Planning:</strong> Running multiple simulations to prepare for varying future conditions.</li>
-                    <li><strong>Regulatory Alignment:</strong> Ensuring all calculations adhere to the latest guidelines set forth by relevant authorities in Nepal.</li>
-                    <li><strong>Continuous Auditing:</strong> Regularly reviewing the mathematical models to guarantee ongoing validity.</li>
-                </ul>
-                
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous assessments to ensure compliance with both local and international standards. The intersection of modern technology and analysis has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts.
-        </p>
-    
-            </div>
-        </section>
-    
+
+            {/* 3. How it Works */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">2. How the Process Works (Step-by-Step)</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">To achieve the most accurate outcomes when dealing with vehicle financing, it is important to follow a structured method:</p>
+                    <ul className="space-y-6">
+                        <li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">1</span><div><strong>Vehicle Choice & Valuation:</strong> Select your preferred car or bike from an authorized dealer in Nepal and obtain an official price quotation.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">2</span><div><strong>Calculate Down Payment:</strong> Determine your required down payment based on the vehicle type: 20% for EVs or 50% for ICE fuel vehicles.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">3</span><div><strong>Determine Loan Principal:</strong> Subtract your down payment from the vehicle price to find the total financing amount needed from the bank.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">4</span><div><strong>Apply Interest and Tenure:</strong> Select the bank interest rate (usually bank Base Rate plus a premium of 2% to 4%) and the tenure in years.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">5</span><div><strong>Calculate EMI & Compare:</strong> Use the calculator to generate your monthly installment, total interest, and total cost breakdown, then compare across different banks.</div></li>
+                    </ul>
+                </div>
+            </section>
+
+            {/* 4. Mathematical Formula */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">3. Mathematical Formula and Theory</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">The mathematical modeling of vehicle financing is based on exact algebraic equations. The standard model is defined as:</p>
+                    <div className="p-6 bg-slate-50 border border-slate-100 rounded-2xl text-center my-6 font-mono text-xl font-bold text-slate-900">
+                        EMI = [P * r * (1+r)^n] / [(1+r)^n - 1]
+                    </div>
+                    <p className="mb-4">Where the variables are defined as:</p>
+                    <ul className="list-disc pl-6 space-y-2 text-slate-600 text-lg mb-6">
+                        <li><strong>P:</strong>  Principal Loan Amount (Vehicle Price - Down Payment)</li><li><strong>r:</strong>  Monthly Interest Rate (Annual Rate / 12 / 100)</li><li><strong>n:</strong>  Total Number of Repayment Months (Tenure in Years * 12)</li>
+                    </ul>
+                    <p className="text-slate-500 text-sm mt-4">This standard EMI formula ensures that your monthly payments remain constant while the proportion of principal and interest shifts over time.</p>
+                </div>
+            </section>
+
+            {/* 5. Worked Example */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">4. Practical Worked Example (NPR/Local Context)</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Let's walk through a realistic scenario to demonstrate how vehicle financing operates in Nepal:</p>
+                    <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 mb-6">
+                        <h4 className="text-xl font-bold text-indigo-900 mb-4">Inputs:</h4>
+                        <ul className="list-disc pl-6 space-y-2 text-indigo-950 font-semibold mb-6">
+                            <li>Vehicle Type: Electric Vehicle (EV)</li><li>Total Price: NPR 40,00,000</li><li>Down Payment: 20% (NPR 8,00,000)</li><li>Loan Principal (P): NPR 32,00,000</li><li>Interest Rate: 11.5% Per Annum</li><li>Tenure: 7 Years (84 Months)</li>
+                        </ul>
+                        <h4 className="text-xl font-bold text-indigo-900 mb-4">Calculation Steps:</h4>
+                        <ol className="list-decimal pl-6 space-y-3 text-indigo-950/80 mb-6">
+                            <li>Calculate monthly interest rate (r): 11.5 / 12 / 100 = 0.009583</li><li>Calculate total months (n): 7 * 12 = 84</li><li>Apply the EMI formula: EMI = [32,00,000 * 0.009583 * (1.009583)^84] / [(1.009583)^84 - 1]</li><li>Compute (1.009583)^84 ≈ 2.2278</li><li>Substitute numbers: EMI = [32,00,000 * 0.009583 * 2.2278] / [2.2278 - 1] ≈ 68,300 / 1.2278 ≈ Rs. 55,637</li>
+                        </ol>
+                        <h4 className="text-2xl font-black text-indigo-950">Result: Monthly EMI is approximately Rs. 55,637. Total payment over 7 years is Rs. 46,73,508, with a total interest component of Rs. 14,73,508.</h4>
+                    </div>
+                </div>
+            </section>
+
+            {/* 6. Understanding Core Concepts */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">5. Understanding Core Concepts</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                        It is critical to distinguish between Flat Interest Rates and Reducing Balance Interest Rates when taking a loan in Nepal. Under a flat rate method, interest is calculated on the full initial loan principal for the entire tenure, resulting in significantly higher costs. Nepalese commercial banks are regulated by NRB to use the reducing balance method for retail auto loans, where interest is charged only on the outstanding principal balance. As you pay your EMI each month, your principal reduces, meaning the interest portion of your next EMI decreases, and more of your money goes towards paying off the actual debt.
+                    </p>
+                    <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider mb-6">
+                        <span className="text-slate-400">Contextual Reference Links:</span>
+                                        <a href="/calculator/sip-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
+                <a href="/calculator/fd-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
+                <a href="/calculator/compound-interest/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Compound Interest Calculator</a>
+                    </div>
+                </div>
+            </section>
+
+            {/* 7. Official Rules & Guidelines */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">6. Official Rules & Regulatory Guidelines in Nepal</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                        Nepal Rastra Bank (NRB) sets the regulatory framework for auto loans in Nepal through its periodic monetary policies and unified directives. Personal fuel-powered vehicles (petrol/diesel) are categorized as non-essential luxury imports, thus restricted to a maximum 50% LTV ratio (requiring a 50% down payment). Conversely, the government actively promotes eco-friendly transportation, allowing up to 80% LTV ratio (only 20% down payment) for private electric vehicles (EVs). Borrowers must also ensure their Debt-Service-to-Income (DTI) ratio does not exceed 50% of their certified monthly income.
+                    </p>
+                    <div className="p-6 bg-slate-50 border border-slate-100 rounded-2xl my-6">
+                        <h4 className="text-lg font-bold text-slate-800 mb-3">Official Regulatory References:</h4>
+                                        <a href="https://www.nrb.org.np/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline font-semibold transition-colors mr-4">Nepal Rastra Bank official portal &rarr;</a>
+                <a href="https://www.dotm.gov.np/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline font-semibold transition-colors mr-4">Department of Transport Management (DOTM) &rarr;</a>
+                    </div>
+                </div>
+            </section>
+
+            {/* 8. Eligibility and Required Documents */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">7. Eligibility & Required Documents</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 className="text-xl font-bold text-slate-900 mb-4">Eligibility Requirements</h4>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse">
+                                <thead>
+                                    <tr className="bg-slate-100 text-slate-800">
+                                        <th className="p-4 border-b border-slate-200 font-bold">Requirement</th>
+                                        <th className="p-4 border-b border-slate-200 font-bold">Criteria</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Age</td><td className="p-4 text-slate-600">Minimum 21 years at loan application, maximum 65 years at loan maturity.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Citizenship</td><td className="p-4 text-slate-600">Must be a Nepalese citizen with a valid citizenship certificate.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Income Proof</td><td className="p-4 text-slate-600">Minimum monthly income of Rs. 25,000 (salaried) or registration details for self-employed.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Credit History</td><td className="p-4 text-slate-600">Must not be blacklisted in the Credit Information Bureau (CIB) of Nepal.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Guarantor</td><td className="p-4 text-slate-600">A local guarantor residing in Nepal is generally required.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="text-xl font-bold text-slate-900 mb-4">Required Documents</h4>
+                        <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg">
+                            <li>Completed and signed loan application form with passport-sized photographs.</li><li>Copy of valid Nepalese Citizenship Certificate.</li><li>Official price quotation of the vehicle from an authorized dealer in Nepal.</li><li>Salary Certificate and last 6 months of bank account statements (for salaried individuals).</li><li>Business Registration Certificate, PAN/VAT certificate, and audited financial statements (for self-employed/business owners).</li><li>Land/Property ownership certificate (Lalpurja) or tax clearance certificates as additional collateral proof.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            {/* 9. Factors Affecting Your Calculations */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">8. Key Factors Affecting Your Calculations</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Vehicle Price & Import Taxes</h4><p className="text-slate-600 leading-relaxed">Vehicles in Nepal face up to 250% customs and excise duties, making the initial price high. Higher price directly increases your required principal and monthly EMI.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Down Payment Ratio</h4><p className="text-slate-600 leading-relaxed">Contributing more than the minimum down payment (e.g., paying 30% on an EV instead of 20%) reduces the loan principal, leading to a much lower EMI and less interest over time.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Bank Base Rate & Premium</h4><p className="text-slate-600 leading-relaxed">Floating rates in Nepal are calculated as Base Rate + Premium. Choosing a bank with a low premium rate and stable base rate protects you from sharp interest hikes.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Loan Tenure Choice</h4><p className="text-slate-600 leading-relaxed">A longer tenure (up to 7 years) reduces the monthly EMI payment but increases the total interest paid over the life of the loan.</p></div>
+                </div>
+            </section>
+
+            {/* 10. Comparisons / Analysis */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">9. EV vs. Fuel Vehicle Financing Comparison</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Nepal Rastra Bank enforces distinct financing limits to encourage clean energy vehicle adoption. Here is how they compare:</p>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100 text-slate-800">
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Feature</th><th className="p-4 border-b-2 border-slate-200 font-bold">Electric Vehicle (EV)</th><th className="p-4 border-b-2 border-slate-200 font-bold">Petrol/Diesel Vehicle (ICE)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-slate-100"><td className="p-4">Maximum Financing (LTV)</td><td className="p-4">Up to 80% of vehicle value</td><td className="p-4">Up to 50% of vehicle value</td></tr><tr className="border-b border-slate-100"><td className="p-4">Minimum Down Payment</td><td className="p-4">20% of vehicle value</td><td className="p-4">50% of vehicle value</td></tr><tr className="border-b border-slate-100"><td className="p-4">Average Interest Rate</td><td className="p-4">Often lower, linked to green energy schemes</td><td className="p-4">Standard retail loan rates</td></tr><tr className="border-b border-slate-100"><td className="p-4">Road Tax & Registration</td><td className="p-4">Highly subsidized or free in most provinces</td><td className="p-4">Regular annual taxes based on CC</td></tr><tr className="border-b border-slate-100"><td className="p-4">Operating Costs</td><td className="p-4">Extremely low (electricity per km)</td><td className="p-4">High (fluctuating fuel prices)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            {/* 11. Cost / Parameter Breakdown */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">10. Parameter and Cost Breakdown</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Here is how the main cost categories or parameters break down in practice:</p>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100 text-slate-800">
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Component</th>
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Typical Status / Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Down Payment</td><td className="p-4 text-slate-600">Paid directly to the vehicle dealer before delivery (min 20% or 50%)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Monthly EMI</td><td className="p-4 text-slate-600">Repaid to the financing bank over the tenure (1 to 7 years)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Bank Processing Fee</td><td className="p-4 text-slate-600">Usually 0.50% to 1.25% of the loan amount, charged at approval</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Vehicle Insurance</td><td className="p-4 text-slate-600">Comprehensive third-party and own-damage insurance is mandatory</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Annual Road Tax</td><td className="p-4 text-slate-600">Paid to the Transport Management Office (Yatayat) based on CC or kW</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Prepayment Charge</td><td className="p-4 text-slate-600">0.5% to 1.5% if you pay off the loan before maturity (regulated by NRB)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            {/* 12. Tips to Optimize / Improve Outcomes */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">11. Tips to Optimize and Reduce Cost / Improve Outcome</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg">
+                        <li>Pay a higher down payment if possible to minimize the principal debt and cumulative interest.</li><li>Negotiate the bank's premium rate—premium rates are fixed for the loan term, while the base rate floats.</li><li>Improve your credit scoring by paying off existing credit cards or personal loans before applying.</li><li>Opt for a shorter loan tenure if your monthly cash flow allows, saving lakhs in interest.</li>
+                    </ul>
+                </div>
+            </section>
+
+            {/* 13. Common Mistakes Borrowers/Users Make */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">12. Common Mistakes to Avoid</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg">
+                        <li>Borrowing the absolute maximum LTV limit without considering monthly cash flow buffers.</li><li>Failing to account for auxiliary costs like bank processing fees, comprehensive insurance, and annual road taxes.</li><li>Selecting the longest tenure solely for a low EMI, ignoring the massive interest accumulation.</li><li>Not comparing the Base Rates of different commercial and development banks in Nepal.</li>
+                    </ul>
+                </div>
+            </section>
+
+            {/* 14. Inline Frequently Asked Questions */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">13. In-Depth Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={0}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">1. What is the maximum tenure for auto loans in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">For personal private vehicles, the standard maximum tenure is 7 years. Commercial vehicles or public transport vehicles may have different limits depending on the bank.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={1}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">2. Can I get an auto loan for a second-hand vehicle in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">Yes, many banks offer loans for used or reconditioned vehicles, but the LTV is usually lower (around 40-50%), the interest rate is higher, and the maximum tenure is typically capped at 5 years.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={2}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">3. Why does my monthly EMI change during the loan term?</h4>
+                    <p className="text-slate-600 leading-relaxed">Most auto loans in Nepal are on floating interest rates linked to the bank's Base Rate. When base rates are revised quarterly, the interest rate changes, causing the bank to adjust your EMI or tenure.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={3}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">4. Is a guarantor mandatory for a vehicle loan?</h4>
+                    <p className="text-slate-600 leading-relaxed">Yes, commercial banks in Nepal generally require a local third-party guarantor who is a close relative or a regular income earner to secure the loan.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={4}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">5. Are electric vehicle loans cheaper in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">Yes, several banks offer special interest rates (lower premium spreads) for electric vehicles as part of green financing initiatives, besides the higher LTV limit of 80%.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={5}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">6. Can self-employed individuals apply for auto loans?</h4>
+                    <p className="text-slate-600 leading-relaxed">Yes, self-employed individuals and business owners are eligible by submitting their registered company credentials, tax clearances, and audited balance sheets.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={6}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">7. What is the minimum income required for a car loan?</h4>
+                    <p className="text-slate-600 leading-relaxed">Most banks look for a minimum monthly income of Rs. 25,000 for salaried employees, but your total monthly debt payments (including the new EMI) cannot exceed 50% of this income.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={7}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">8. What happens if I miss my auto loan EMI payment?</h4>
+                    <p className="text-slate-600 leading-relaxed">Missing an EMI will attract penal interest on the overdue amount and negative marks on your credit history, which can lead to being blacklisted by the CIB if default persists.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={8}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">9. Can I prepay or foreclose my auto loan?</h4>
+                    <p className="text-slate-600 leading-relaxed">Yes, you can make prepayments. However, banks may charge a prepayment fee of 0.5% to 1.5% of the prepaid principal if foreclosed early, subject to NRB limits.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={9}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">10. What is the LTV ratio for commercial vehicles?</h4>
+                    <p className="text-slate-600 leading-relaxed">For commercial vehicles like buses, trucks, and vans used for business purposes, banks can finance up to 70% to 80% of the valuation depending on the business case.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={10}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">11. How is the base rate of a bank calculated?</h4>
+                    <p className="text-slate-600 leading-relaxed">The base rate is calculated by banks based on their cost of funds, cost of operation, and regulatory reserve costs, representing the minimum rate below which they cannot lend.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={11}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">12. What is the difference between hire purchase and auto loan?</h4>
+                    <p className="text-slate-600 leading-relaxed">Hire purchase is a lease-to-buy agreement where the bank owns the vehicle until the final installment is paid, while an auto loan is a direct loan where ownership is hypothecated to the bank.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={12}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">13. Can I finance 100% of an EV in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">No, NRB directives explicitly cap EV financing for personal use at 80%, meaning a minimum of 20% down payment is mandatory.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={13}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">14. Which province has the lowest road tax for EVs?</h4>
+                    <p className="text-slate-600 leading-relaxed">Bagmati Province and Gandaki Province offer significantly reduced annual road taxes for electric vehicles compared to equivalent fuel engine vehicles.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={14}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">15. How long does it take for a vehicle loan approval in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">Once all verified documents are submitted, banks typically take 3 to 7 working days to complete credit assessment and issue a loan approval.</p>
+                </div>
+                </div>
+            </section>
+
+            {/* 15. Related Tools Navigation */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">14. Related Tools and Clusters</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis:</p>
+                    <div className="flex flex-wrap gap-4">
+                                        <a href="/calculator/cgpa/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Debt-to-Income Ratio Calculator</a>
+                <a href="/calculator/gpa/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Education Loan Calculator</a>
+                    </div>
+                </div>
+            </section>
         </div>
+    
     ),
     faqs: [
-        { question: "What is the maximum tenure for an auto loan in Nepal?", answer: "Most commercial banks provide a maximum repayment tenure of 5 to 7 years for private auto loans." },
-        { question: "Can I get an auto loan on a second-hand car?", answer: "Yes, but banks usually finance only 50% of the re-evaluated price, and the vehicle generally cannot be older than 5-8 years at the time of maturity." },
-        { question: "Are interest rates on EVs lower?", answer: "Yes, as a green initiative, many banks offer subsidized interest rates or fixed-rate schemes specifically tailored for electric vehicles." }
+      { question: "What is the maximum tenure for auto loans in Nepal?", answer: "For personal private vehicles, the standard maximum tenure is 7 years. Commercial vehicles or public transport vehicles may have different limits depending on the bank." },
+      { question: "Can I get an auto loan for a second-hand vehicle in Nepal?", answer: "Yes, many banks offer loans for used or reconditioned vehicles, but the LTV is usually lower (around 40-50%), the interest rate is higher, and the maximum tenure is typically capped at 5 years." },
+      { question: "Why does my monthly EMI change during the loan term?", answer: "Most auto loans in Nepal are on floating interest rates linked to the bank's Base Rate. When base rates are revised quarterly, the interest rate changes, causing the bank to adjust your EMI or tenure." },
+      { question: "Is a guarantor mandatory for a vehicle loan?", answer: "Yes, commercial banks in Nepal generally require a local third-party guarantor who is a close relative or a regular income earner to secure the loan." },
+      { question: "Are electric vehicle loans cheaper in Nepal?", answer: "Yes, several banks offer special interest rates (lower premium spreads) for electric vehicles as part of green financing initiatives, besides the higher LTV limit of 80%." },
+      { question: "Can self-employed individuals apply for auto loans?", answer: "Yes, self-employed individuals and business owners are eligible by submitting their registered company credentials, tax clearances, and audited balance sheets." },
+      { question: "What is the minimum income required for a car loan?", answer: "Most banks look for a minimum monthly income of Rs. 25,000 for salaried employees, but your total monthly debt payments (including the new EMI) cannot exceed 50% of this income." },
+      { question: "What happens if I miss my auto loan EMI payment?", answer: "Missing an EMI will attract penal interest on the overdue amount and negative marks on your credit history, which can lead to being blacklisted by the CIB if default persists." },
+      { question: "Can I prepay or foreclose my auto loan?", answer: "Yes, you can make prepayments. However, banks may charge a prepayment fee of 0.5% to 1.5% of the prepaid principal if foreclosed early, subject to NRB limits." },
+      { question: "What is the LTV ratio for commercial vehicles?", answer: "For commercial vehicles like buses, trucks, and vans used for business purposes, banks can finance up to 70% to 80% of the valuation depending on the business case." },
+      { question: "How is the base rate of a bank calculated?", answer: "The base rate is calculated by banks based on their cost of funds, cost of operation, and regulatory reserve costs, representing the minimum rate below which they cannot lend." },
+      { question: "What is the difference between hire purchase and auto loan?", answer: "Hire purchase is a lease-to-buy agreement where the bank owns the vehicle until the final installment is paid, while an auto loan is a direct loan where ownership is hypothecated to the bank." },
+      { question: "Can I finance 100% of an EV in Nepal?", answer: "No, NRB directives explicitly cap EV financing for personal use at 80%, meaning a minimum of 20% down payment is mandatory." },
+      { question: "Which province has the lowest road tax for EVs?", answer: "Bagmati Province and Gandaki Province offer significantly reduced annual road taxes for electric vehicles compared to equivalent fuel engine vehicles." },
+      { question: "How long does it take for a vehicle loan approval in Nepal?", answer: "Once all verified documents are submitted, banks typically take 3 to 7 working days to complete credit assessment and issue a loan approval." },
     ]
   },
   'tds-calculator': {
     title: "TDS Calculator Nepal | Tax Deduction at Source",
     description: "Calculate TDS for rent, salary, dividends, and consultancy services according to Nepal IRD rates.",
     content: (
+
         <div className="space-y-16 font-sans">
+            {/* 1. Calculator Introduction */}
             <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+                <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
                 <div className="relative z-10">
-                    <h2 className="text-red-400 font-black text-sm uppercase tracking-[0.4em] mb-4">TDS Calculator</h2>
-                    <h3 className="text-4xl font-black mb-8 leading-tight">Tax Deducted at Source (TDS) in Nepal</h3>
+                    <h2 className="text-indigo-400 font-black text-sm uppercase tracking-[0.4em] mb-4">Educational Resources & Guide</h2>
+                    <h3 className="text-4xl font-black mb-8 leading-tight">TDS Calculator Nepal | Tax Deducted at Source Rates IRD</h3>
                     <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        Tax Deducted at Source (TDS) is a mechanism introduced by the Inland Revenue Department to collect tax at the very source of income. Rather than waiting for the taxpayer to file returns at year-end, the payer deducts a specific percentage and deposits it directly to the government. This calculator helps businesses compute exact TDS amounts across different service sectors.
+                        Tax Deducted at Source (TDS) is a mechanism under the Income Tax Act of Nepal where tax is collected at the point of origin of income. When making payments for services, rent, interest, or employment, the payer is legally required to deduct a specific percentage as tax and deposit it with the Inland Revenue Department (IRD). This TDS calculator helps businesses and individuals compute the exact TDS amount and the net payment. Understanding TDS rates is crucial for commercial compliance in Nepal.
                     </p>
+                    <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">
+                        <span className="text-slate-400">Quick Links:</span>
+                                        <a href="/calculator/nepal-vat/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal VAT Calculator</a>
+                <a href="/calculator/nepal-salary/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Salary Income Tax Calculator</a>
+                <a href="/calculator/gold-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Gold Import Tax Calculator</a>
+                    </div>
                 </div>
             </div>
-            
-            <section className="space-y-8">
-                <h3 className="text-3xl font-black text-slate-900">1. Common TDS Rates in Nepal</h3>
-                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                    <p>The Income Tax Act defines various TDS rates depending on the nature of the payment and the PAN status of the receiver. Proper deduction is the legal responsibility of the entity making the payment.</p>
-                    <ul className="list-disc pl-6 space-y-2">
-                        <li><strong>Rent Payments:</strong> 10% TDS (often deposited to local ward offices for individuals).</li>
-                        <li><strong>Consultancy & Professional Services:</strong> 15% TDS if the receiver has a PAN. (Non-PAN usually faces a flat 15% but is heavily discouraged for large amounts).</li>
-                        <li><strong>Contract & Procurement:</strong> 1.5% TDS for VAT-registered parties; 1.5% for non-VAT parties on goods.</li>
-                        <li><strong>Dividend Income:</strong> 5% TDS for residents, serving as the final withholding tax.</li>
-                        <li><strong>Interest on Bank Deposits:</strong> 5% TDS for individual saving accounts; 15% for corporate entities.</li>
+
+            {/* 2. Quick Facts Table */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">1. Quick Facts and Specifications</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Here is an overview of the key operational rules, parameters, and guidelines concerning TDS calculation in Nepal:</p>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100 text-slate-800">
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Feature / Parameter</th>
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Standard Service TDS (PAN)</td><td className="p-4 text-slate-600">1.5% of payment value</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Service TDS (Non-PAN)</td><td className="p-4 text-slate-600">15% of payment value</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">House Rent TDS</td><td className="p-4 text-slate-600">10% (corporate/commercial leases)</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Interest TDS (Bank Deposits)</td><td className="p-4 text-slate-600">5% for individuals, 15% for corporate accounts</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Consultancy/Professional TDS</td><td className="p-4 text-slate-600">15% for professional service contracts</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Tax Authority</td><td className="p-4 text-slate-600">Inland Revenue Department (IRD) Nepal</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Base Law</td><td className="p-4 text-slate-600">Income Tax Act, 2058</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            {/* 3. How it Works */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">2. How the Process Works (Step-by-Step)</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">To achieve the most accurate outcomes when dealing with TDS calculation, it is important to follow a structured method:</p>
+                    <ul className="space-y-6">
+                        <li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">1</span><div><strong>Select Income Category:</strong> Choose the category of payment (e.g., service, house rent, interest) to auto-apply correct IRD rates.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">2</span><div><strong>Enter Invoice/Bill Amount:</strong> Input the gross amount before taxes in NPR.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">3</span><div><strong>Calculate TDS Amount:</strong> TDS = Gross Amount * TDS Rate (e.g., 1.5% or 10%).</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">4</span><div><strong>Calculate Net Payment:</strong> Subtract the TDS amount from the gross amount to find the cash payable to the supplier.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">5</span><div><strong>Deposit & Issue Certificate:</strong> Deposit the withheld tax with the IRD using the online portal and issue a TDS certificate to the taxpayer.</div></li>
                     </ul>
                 </div>
             </section>
-        
-        <section className="space-y-8 mt-12">
-            <h3 className="text-3xl font-black text-slate-900">Deep Dive: Comprehensive Analysis of TDS Calculation</h3>
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of TDS Calculation is crucial for individuals looking to optimize their tax deduction. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of tax deduction allows you to make informed, data-driven decisions. Historically, dealing with tax deduction involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of tax deduction remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous tax deduction assessments to ensure compliance with both local and international standards. The intersection of modern technology and tax deduction has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated tax deduction analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of TDS Calculation is crucial for individuals looking to optimize their tax deduction. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of tax deduction allows you to make informed, data-driven decisions. Historically, dealing with tax deduction involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of tax deduction remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous tax deduction assessments to ensure compliance with both local and international standards. The intersection of modern technology and tax deduction has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated tax deduction analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of TDS Calculation is crucial for individuals looking to optimize their tax deduction. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of tax deduction allows you to make informed, data-driven decisions. Historically, dealing with tax deduction involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of tax deduction remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous tax deduction assessments to ensure compliance with both local and international standards. The intersection of modern technology and tax deduction has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated tax deduction analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of TDS Calculation is crucial for individuals looking to optimize their tax deduction. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of tax deduction allows you to make informed, data-driven decisions. Historically, dealing with tax deduction involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of tax deduction remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous tax deduction assessments to ensure compliance with both local and international standards. The intersection of modern technology and tax deduction has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated tax deduction analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of TDS Calculation is crucial for individuals looking to optimize their tax deduction. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of tax deduction allows you to make informed, data-driven decisions. Historically, dealing with tax deduction involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of tax deduction remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous tax deduction assessments to ensure compliance with both local and international standards. The intersection of modern technology and tax deduction has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated tax deduction analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of TDS Calculation is crucial for individuals looking to optimize their tax deduction. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of tax deduction allows you to make informed, data-driven decisions. Historically, dealing with tax deduction involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of tax deduction remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous tax deduction assessments to ensure compliance with both local and international standards. The intersection of modern technology and tax deduction has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated tax deduction analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of TDS Calculation is crucial for individuals looking to optimize their tax deduction. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of tax deduction allows you to make informed, data-driven decisions. Historically, dealing with tax deduction involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of tax deduction remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous tax deduction assessments to ensure compliance with both local and international standards. The intersection of modern technology and tax deduction has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated tax deduction analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of TDS Calculation is crucial for individuals looking to optimize their tax deduction. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of tax deduction allows you to make informed, data-driven decisions. Historically, dealing with tax deduction involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of tax deduction remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous tax deduction assessments to ensure compliance with both local and international standards. The intersection of modern technology and tax deduction has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated tax deduction analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of TDS Calculation is crucial for individuals looking to optimize their tax deduction. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of tax deduction allows you to make informed, data-driven decisions. Historically, dealing with tax deduction involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of tax deduction remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous tax deduction assessments to ensure compliance with both local and international standards. The intersection of modern technology and tax deduction has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated tax deduction analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of TDS Calculation is crucial for individuals looking to optimize their tax deduction. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of tax deduction allows you to make informed, data-driven decisions. Historically, dealing with tax deduction involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of tax deduction remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous tax deduction assessments to ensure compliance with both local and international standards. The intersection of modern technology and tax deduction has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated tax deduction analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of TDS Calculation is crucial for individuals looking to optimize their tax deduction. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of tax deduction allows you to make informed, data-driven decisions. Historically, dealing with tax deduction involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of tax deduction remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous tax deduction assessments to ensure compliance with both local and international standards. The intersection of modern technology and tax deduction has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated tax deduction analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            Understanding the detailed mechanics of TDS Calculation is crucial for individuals looking to optimize their tax deduction. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of tax deduction allows you to make informed, data-driven decisions. Historically, dealing with tax deduction involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of tax deduction remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous tax deduction assessments to ensure compliance with both local and international standards. The intersection of modern technology and tax deduction has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated tax deduction analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-        </p>
-        
-            </div>
-        </section>
-        
-        <section className="space-y-8 mt-12">
-            <h3 className="text-3xl font-black text-slate-900">Advanced Methodologies and Strategies</h3>
-            <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                <p className="text-slate-600 leading-relaxed text-lg mb-4">
-                    To truly master tax deduction, one must look beyond basic calculations and delve into advanced methodologies. This involves a comprehensive understanding of the underlying variables and how they interact within the broader ecosystem.
-                </p>
-                <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg mb-6">
-                    <li><strong>Precision Tracking:</strong> Implementing rigorous data collection methods to ensure all inputs are perfectly accurate.</li>
-                    <li><strong>Historical Comparison:</strong> Analyzing past data to identify cyclical patterns and establish baselines.</li>
-                    <li><strong>Scenario Planning:</strong> Running multiple simulations to prepare for varying future conditions.</li>
-                    <li><strong>Regulatory Alignment:</strong> Ensuring all calculations adhere to the latest guidelines set forth by relevant authorities in Nepal.</li>
-                    <li><strong>Continuous Auditing:</strong> Regularly reviewing the mathematical models to guarantee ongoing validity.</li>
-                </ul>
-                
-        <p className="text-slate-600 leading-relaxed text-lg mb-6">
-            By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous assessments to ensure compliance with both local and international standards. The intersection of modern technology and analysis has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts.
-        </p>
-    
-            </div>
-        </section>
-    
+
+            {/* 4. Mathematical Formula */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">3. Mathematical Formula and Theory</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">The mathematical modeling of TDS calculation is based on exact algebraic equations. The standard model is defined as:</p>
+                    <div className="p-6 bg-slate-50 border border-slate-100 rounded-2xl text-center my-6 font-mono text-xl font-bold text-slate-900">
+                        TDS = Gross Amount * TDS Rate | Net Payment = Gross Amount - TDS
+                    </div>
+                    <p className="mb-4">Where the variables are defined as:</p>
+                    <ul className="list-disc pl-6 space-y-2 text-slate-600 text-lg mb-6">
+                        <li><strong>Gross Amount:</strong>  The billed value of service/rent before tax deductions</li><li><strong>TDS Rate:</strong>  Percentage rate designated by the IRD (ranging from 1.5% to 15%)</li><li><strong>TDS:</strong>  Tax withheld on behalf of the Inland Revenue Department</li>
+                    </ul>
+                    <p className="text-slate-500 text-sm mt-4">These equations determine the tax to withhold and the net amount to pay the contractor.</p>
+                </div>
+            </section>
+
+            {/* 5. Worked Example */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">4. Practical Worked Example (NPR/Local Context)</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Let's walk through a realistic scenario to demonstrate how TDS calculation operates in Nepal:</p>
+                    <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 mb-6">
+                        <h4 className="text-xl font-bold text-indigo-900 mb-4">Inputs:</h4>
+                        <ul className="list-disc pl-6 space-y-2 text-indigo-950 font-semibold mb-6">
+                            <li>Payment Category: Commercial House Rent</li><li>Monthly Rent: Rs. 1,00,000</li><li>TDS Rate: 10% standard rate</li>
+                        </ul>
+                        <h4 className="text-xl font-bold text-indigo-900 mb-4">Calculation Steps:</h4>
+                        <ol className="list-decimal pl-6 space-y-3 text-indigo-950/80 mb-6">
+                            <li>Identify TDS Rate: 10% for commercial leases</li><li>Calculate TDS: 1,00,000 * 10 / 100 = Rs. 10,000</li><li>Calculate Net Payable: 1,00,000 - 10,000 = Rs. 90,000</li><li>Prepare Voucher: Rent payable Rs. 90,000, TDS payable Rs. 10,000</li>
+                        </ol>
+                        <h4 className="text-2xl font-black text-indigo-950">Result: The net cash paid to the landlord is Rs. 90,000. The business deposits Rs. 10,000 with the IRD under the landlord's PAN.</h4>
+                    </div>
+                </div>
+            </section>
+
+            {/* 6. Understanding Core Concepts */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">5. Understanding Core Concepts</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                        It is important to distinguish between Final Withholding Taxes and Non-Final TDS. Final withholding taxes (such as interest on bank deposits or individual dividends) are settled at source and do not affect your annual tax return. Non-final TDS (such as the 1.5% on service bills) acts as an advance tax payment. When the service provider files their annual income tax return, they can deduct the total TDS amount withheld by their clients from their final income tax liability.
+                    </p>
+                    <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider mb-6">
+                        <span className="text-slate-400">Contextual Reference Links:</span>
+                                        <a href="/calculator/nepse-wacc/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
+                <a href="/calculator/nepse-bonus-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE Bonus Share Tax</a>
+                <a href="/calculator/property-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
+                    </div>
+                </div>
+            </section>
+
+            {/* 7. Official Rules & Guidelines */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">6. Official Rules & Regulatory Guidelines in Nepal</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="text-slate-600 text-lg leading-relaxed mb-6">
+                        Under Chapter 17 of the Income Tax Act, 2058, withholding agents (payors) face penalties if they fail to deduct TDS or delay deposits. TDS must be deposited online through the IRD E-filing system within 25 days of the end of the Nepali month in which the deduction was made. Withholders must provide the e-TDS verification details to the payees so they can claim tax credits.
+                    </p>
+                    <div className="p-6 bg-slate-50 border border-slate-100 rounded-2xl my-6">
+                        <h4 className="text-lg font-bold text-slate-800 mb-3">Official Regulatory References:</h4>
+                                        <a href="https://ird.gov.np/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline font-semibold transition-colors mr-4">Inland Revenue Department of Nepal &rarr;</a>
+                <a href="https://www.ird.gov.np/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline font-semibold transition-colors mr-4">Nepal Inland Revenue Portal E-Services &rarr;</a>
+                    </div>
+                </div>
+            </section>
+
+            {/* 8. Eligibility and Required Documents */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">7. Eligibility & Required Documents</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 className="text-xl font-bold text-slate-900 mb-4">Eligibility Requirements</h4>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse">
+                                <thead>
+                                    <tr className="bg-slate-100 text-slate-800">
+                                        <th className="p-4 border-b border-slate-200 font-bold">Requirement</th>
+                                        <th className="p-4 border-b border-slate-200 font-bold">Criteria</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Withholding Agent</td><td className="p-4 text-slate-600">Any business, government body, or registered entity making taxable payments.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">PAN Requirement</td><td className="p-4 text-slate-600">Payees must provide their PAN. Non-PAN services trigger a flat 15% TDS.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Rent Exemption</td><td className="p-4 text-slate-600">Private house rent (residential) by individuals is often collected by local government ward offices instead of IRD TDS.</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Filing System</td><td className="p-4 text-slate-600">e-TDS verification on the IRD portal is mandatory to transfer tax credits.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 className="text-xl font-bold text-slate-900 mb-4">Required Documents</h4>
+                        <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg">
+                            <li>Invoice/Bill from the service provider showing their PAN number.</li><li>Bank deposit vouchers or online payment confirmations for tax deposits.</li><li>e-TDS verified sheet from the IRD portal.</li><li>Service contract or rent agreement stating tax responsibilities.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            {/* 9. Factors Affecting Your Calculations */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">8. Key Factors Affecting Your Calculations</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">PAN vs. No-PAN Payments</h4><p className="text-slate-600 leading-relaxed">Contracting services from an unregistered individual without a PAN increases the TDS rate from 1.5% to a flat 15%.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Payment Classification</h4><p className="text-slate-600 leading-relaxed">Classifying payments correctly (e.g., distinguishing between a service bill at 1.5% and a professional consultancy bill at 15%) is vital for audit safety.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">VAT and TDS Interaction</h4><p className="text-slate-600 leading-relaxed">TDS is calculated on the net amount exclusive of VAT. For example, on a Rs. 1,13,000 invoice (Rs. 1,00,000 + 13% VAT), 1.5% TDS is calculated on Rs. 1,00,000.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">E-Filing Deadlines</h4><p className="text-slate-600 leading-relaxed">Delayed deposits attract 15% annual interest plus penalties under Section 117 of the Income Tax Act.</p></div>
+                </div>
+            </section>
+
+            {/* 10. Comparisons / Analysis */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">9. Final Withholding Tax vs. Advance TDS</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">How different tax deductions behave during the annual tax filing process in Nepal:</p>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100 text-slate-800">
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Tax Parameter</th><th className="p-4 border-b-2 border-slate-200 font-bold">Final Withholding Tax</th><th className="p-4 border-b-2 border-slate-200 font-bold">Advance TDS (Non-Final)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-slate-100"><td className="p-4">Examples</td><td className="p-4">Bank interest, individual dividends, windfall gains</td><td className="p-4">Service contracts (1.5%), audits, consulting</td></tr><tr className="border-b border-slate-100"><td className="p-4">Tax Settlement</td><td className="p-4">Fully settled at source, no further liability</td><td className="p-4">Acts as prepayment, adjusted against final tax</td></tr><tr className="border-b border-slate-100"><td className="p-4">Annual Return Integration</td><td className="p-4">Excluded from taxable income calculations</td><td className="p-4">Must be declared, credits claimed via e-TDS</td></tr><tr className="border-b border-slate-100"><td className="p-4">Refund Claim</td><td className="p-4">Cannot be refunded or adjusted</td><td className="p-4">Can result in refunds if total TDS &gt; actual tax liability</td></tr><tr className="border-b border-slate-100"><td className="p-4">Recipient Individual Rate</td><td className="p-4">Fixed 5% standard rate</td><td className="p-4">Adjusts based on income tax slabs (up to 39%)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            {/* 11. Cost / Parameter Breakdown */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">10. Parameter and Cost Breakdown</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-6">Here is how the main cost categories or parameters break down in practice:</p>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100 text-slate-800">
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Component</th>
+                                    <th className="p-4 border-b-2 border-slate-200 font-bold">Typical Status / Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Billed Gross Amount</td><td className="p-4 text-slate-600">The base price of the service before any taxes or deductions</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Withheld TDS Amount</td><td className="p-4 text-slate-600">The advance tax portion paid directly to the government</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Net Payable Amount</td><td className="p-4 text-slate-600">The actual cash paid to the contractor/service provider</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Delay Interest Rate</td><td className="p-4 text-slate-600">15% per annum on unpaid TDS balances</td></tr><tr className="border-b border-slate-100"><td className="p-4 font-bold text-slate-800">Late Deposit Penalty</td><td className="p-4 text-slate-600">Fee calculated based on delay period and tax volume</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            {/* 12. Tips to Optimize / Improve Outcomes */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">11. Tips to Optimize and Reduce Cost / Improve Outcome</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg">
+                        <li>Always calculate TDS on the amount exclusive of VAT to avoid overpaying tax.</li><li>Verify that the provider's PAN is active on the IRD portal before executing payments.</li><li>Request the e-TDS submission voucher from the payor to verify the credit in your IRD account.</li><li>Deposit TDS monthly to avoid compile issues during tax audits.</li>
+                    </ul>
+                </div>
+            </section>
+
+            {/* 13. Common Mistakes Borrowers/Users Make */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">12. Common Mistakes to Avoid</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <ul className="list-disc pl-6 space-y-3 text-slate-600 text-lg">
+                        <li>Calculating TDS on the VAT-inclusive total, which is mathematically incorrect.</li><li>Failing to submit e-TDS returns online, meaning the payee cannot claim tax credit despite the tax being deducted.</li><li>Applying incorrect TDS percentages (e.g. applying 1.5% instead of 15% on professional fees).</li><li>Failing to deduct TDS on commercial rent payments, leading to corporate penalties.</li>
+                    </ul>
+                </div>
+            </section>
+
+            {/* 14. Inline Frequently Asked Questions */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">13. In-Depth Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={0}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">1. What is TDS in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">TDS stands for Tax Deducted at Source. It is a system of collecting income tax at the time of payment origin by withholding a percentage.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={1}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">2. What is the TDS rate for services in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">The standard TDS rate for services provided by PAN-registered businesses is 1.5%.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={2}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">3. What is the TDS rate for house rent in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">The TDS rate for house rent leased by business entities is 10%.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={3}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">4. Is TDS applicable to VAT-inclusive bills?</h4>
+                    <p className="text-slate-600 leading-relaxed">TDS is calculated strictly on the base amount before adding 13% VAT.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={4}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">5. What is e-TDS?</h4>
+                    <p className="text-slate-600 leading-relaxed">e-TDS is the online filing system on the IRD portal where withholding agents submit details of tax deducted from payees.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={5}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">6. How can I check my TDS credit in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">You can log into your taxpayer portal on the IRD website and view your e-TDS ledger to verify credits.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={6}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">7. What is the TDS rate for consultancy services?</h4>
+                    <p className="text-slate-600 leading-relaxed">Professional fees and consultancy services are subject to a 15% TDS rate.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={7}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">8. Who is responsible for depositing TDS?</h4>
+                    <p className="text-slate-600 leading-relaxed">The payor (withholding agent) is legally responsible for deducting and depositing TDS with the government.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={8}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">9. What is the deadline for depositing TDS?</h4>
+                    <p className="text-slate-600 leading-relaxed">TDS must be deposited within 25 days of the start of the next Nepali month.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={9}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">10. Is TDS final tax?</h4>
+                    <p className="text-slate-600 leading-relaxed">Some TDS (like bank interest or dividends) is final tax. Service TDS is advance tax and can be offset against annual tax returns.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={10}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">11. What is the TDS rate for salary in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">Salary tax is deducted monthly by employers based on annual projected income tax slabs (1% to 39%).</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={11}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">12. What happens if I don't provide a PAN for service billing?</h4>
+                    <p className="text-slate-600 leading-relaxed">If a PAN is not provided, the payor must deduct a flat 15% TDS instead of the regular 1.5%.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={12}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">13. Can I get a refund of TDS?</h4>
+                    <p className="text-slate-600 leading-relaxed">Yes, if your total advance TDS is higher than your actual annual income tax liability, you can claim a refund from the IRD.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={13}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">14. Is TDS applicable to individual-to-individual transactions?</h4>
+                    <p className="text-slate-600 leading-relaxed">No, TDS is generally applicable to payments made by registered businesses, organizations, or government bodies.</p>
+                </div>
+                <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={14}>
+                    <h4 className="text-lg font-bold text-slate-900 mb-2">15. What is the law governing TDS in Nepal?</h4>
+                    <p className="text-slate-600 leading-relaxed">The governing law is the Income Tax Act, 2058 (specifically Chapter 17 on withholding tax).</p>
+                </div>
+                </div>
+            </section>
+
+            {/* 15. Related Tools Navigation */}
+            <section className="space-y-8 mt-12">
+                <h3 className="text-3xl font-black text-slate-900">14. Related Tools and Clusters</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
+                    <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis:</p>
+                    <div className="flex flex-wrap gap-4">
+                                        <a href="/calculator/fd-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
+                <a href="/calculator/sip-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
+                    </div>
+                </div>
+            </section>
         </div>
+    
     ),
     faqs: [
-        { question: "What happens if I forget to deduct TDS?", answer: "If an entity fails to deduct TDS, the IRD will disallow that expense during auditing, meaning you will have to pay corporate tax on that amount, plus penalties and interest." },
-        { question: "Is TDS the final tax?", answer: "For some payments like bank interest for individuals or dividends, TDS is the 'Final Withholding Tax'. For consultants or businesses, it is an advance tax that can be adjusted against their annual tax liability." },
-        { question: "How do I claim my deducted TDS?", answer: "When you file your D-03 annual income tax return, the TDS deposited under your PAN is automatically credited to your ledger, reducing your final tax payable." }
+      { question: "What is TDS in Nepal?", answer: "TDS stands for Tax Deducted at Source. It is a system of collecting income tax at the time of payment origin by withholding a percentage." },
+      { question: "What is the TDS rate for services in Nepal?", answer: "The standard TDS rate for services provided by PAN-registered businesses is 1.5%." },
+      { question: "What is the TDS rate for house rent in Nepal?", answer: "The TDS rate for house rent leased by business entities is 10%." },
+      { question: "Is TDS applicable to VAT-inclusive bills?", answer: "TDS is calculated strictly on the base amount before adding 13% VAT." },
+      { question: "What is e-TDS?", answer: "e-TDS is the online filing system on the IRD portal where withholding agents submit details of tax deducted from payees." },
+      { question: "How can I check my TDS credit in Nepal?", answer: "You can log into your taxpayer portal on the IRD website and view your e-TDS ledger to verify credits." },
+      { question: "What is the TDS rate for consultancy services?", answer: "Professional fees and consultancy services are subject to a 15% TDS rate." },
+      { question: "Who is responsible for depositing TDS?", answer: "The payor (withholding agent) is legally responsible for deducting and depositing TDS with the government." },
+      { question: "What is the deadline for depositing TDS?", answer: "TDS must be deposited within 25 days of the start of the next Nepali month." },
+      { question: "Is TDS final tax?", answer: "Some TDS (like bank interest or dividends) is final tax. Service TDS is advance tax and can be offset against annual tax returns." },
+      { question: "What is the TDS rate for salary in Nepal?", answer: "Salary tax is deducted monthly by employers based on annual projected income tax slabs (1% to 39%)." },
+      { question: "What happens if I don't provide a PAN for service billing?", answer: "If a PAN is not provided, the payor must deduct a flat 15% TDS instead of the regular 1.5%." },
+      { question: "Can I get a refund of TDS?", answer: "Yes, if your total advance TDS is higher than your actual annual income tax liability, you can claim a refund from the IRD." },
+      { question: "Is TDS applicable to individual-to-individual transactions?", answer: "No, TDS is generally applicable to payments made by registered businesses, organizations, or government bodies." },
+      { question: "What is the law governing TDS in Nepal?", answer: "The governing law is the Income Tax Act, 2058 (specifically Chapter 17 on withholding tax)." },
     ]
   }
 };

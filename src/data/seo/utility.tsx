@@ -21,156 +21,107 @@ export const utilitySEO: Record<string, SEOContent> = {
       variables: ["Inputs = Your provided data", "Result = The computed answer"]
     },
     content: (
-        <div className="space-y-16">
-            <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="relative z-10">
-                    <h2 className="text-blue-400 font-black text-xs uppercase tracking-[0.4em] mb-4">
-                        Professional Guidance
-                    </h2>
-                    <h3 className="text-4xl font-black mb-8 leading-tight">
-                        Mastering the Solar Requirement Calculator
-                    </h3>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        Welcome to the ultimate guide on the Solar Requirement Calculator. In today's fast-paced world, accurate and efficient calculations are more important than ever. Whether you are a student, a professional, or someone simply looking to streamline their daily tasks, understanding the mechanics behind the Solar Requirement Calculator can significantly enhance your productivity. This comprehensive resource is designed to provide you with an in-depth understanding of how to leverage this tool effectively. We will explore the fundamental concepts, advanced applications, and provide detailed examples to ensure you can maximize its potential. By integrating this tool into your workflow, you can eliminate manual errors, save valuable time, and make more informed decisions based on precise data analysis. 
-                        Our platform is engineered to deliver enterprise-grade accuracy, ensuring that every result you obtain is reliable and actionable. The Solar Requirement Calculator is not just a simple calculator; it is a robust analytical engine capable of handling complex scenarios with ease. From basic computations to intricate modeling, this tool adapts to your specific needs, providing tailored insights that empower you to achieve your goals. Join us as we delve into the intricacies of the Solar Requirement Calculator and discover how it can transform your approach to problem-solving.
-                    </p>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        The evolution of digital tools has revolutionized the way we interact with mathematical concepts. The Solar Requirement Calculator represents the pinnacle of this evolution, combining intuitive user interfaces with powerful algorithmic backends. This synergy allows users of all skill levels to perform complex operations without requiring extensive technical expertise. As you navigate through this guide, you will uncover the underlying logic that drives the Solar Requirement Calculator, gaining a deeper appreciation for its capabilities. We will demystify the algorithms, explain the formulas, and provide a clear, step-by-step methodology for tackling even the most challenging problems. 
-                        Furthermore, we recognize that theoretical knowledge must be complemented by practical application. Therefore, this guide is enriched with real-world scenarios, demonstrating how the Solar Requirement Calculator can be utilized across various industries and disciplines. Whether it's optimizing supply chains, forecasting financial trends, or conducting academic research, the principles discussed here are universally applicable. Prepare to elevate your analytical skills and harness the full power of the Solar Requirement Calculator to drive innovation and success in your endeavors.
-                    </p>
-                </div>
+        <div className="space-y-12">
+            <div className="bg-amber-50 border-l-4 border-amber-600 rounded-r-xl p-8 shadow-sm">
+                <h2 className="text-amber-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Solar Requirement Calculator Guide</h2>
+                <p className="text-slate-800 text-base leading-relaxed">
+                    The <strong>Solar Requirement Calculator</strong> helps Nepali households and businesses determine the exact solar panel capacity, battery storage, and inverter rating needed to power their electrical loads. With Nepal's abundant sunshine (averaging 6.8 hours of peak sunlight daily) and the ongoing push to reduce dependence on the national grid and diesel generators, solar power is increasingly a practical and economical choice.
+                </p>
             </div>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Regional Context & Worked Examples in Nepal</h3>
-                <p className="text-slate-700 leading-relaxed mb-4 text-lg">
-                    When applying the Solar Requirement Calculator within the context of Nepal, it is essential to consider the unique socio-economic and geographical landscape of the region. Nepal's diverse topography, ranging from the towering Himalayas to the fertile Terai plains, presents distinct challenges and opportunities that require localized solutions. The Solar Requirement Calculator can play a pivotal role in addressing these challenges by providing precise calculations tailored to the local environment. For instance, when planning infrastructure projects in remote mountainous regions, accurate data modeling is critical to ensure structural integrity and cost-effectiveness. 
-                    Moreover, the rapid urbanization and economic growth in cities like Kathmandu and Pokhara demand efficient resource management and strategic planning. The Solar Requirement Calculator enables local businesses and policymakers to optimize their operations, whether it's managing logistics in challenging terrains or forecasting market trends in a developing economy. By incorporating Nepal-specific variables, such as local currency (NPR), regional measurement units (like Ropani or Bigha), and localized regulatory frameworks, the Solar Requirement Calculator becomes an indispensable asset for regional development. We have tailored specific examples to resonate with the daily realities faced by professionals operating in Nepal.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-4 text-lg">
-                    Consider the agricultural sector, which forms the backbone of Nepal's economy. The Solar Requirement Calculator can be utilized to optimize crop yields, manage water resources efficiently, and forecast market prices based on seasonal variations. By analyzing historical data and current market trends, farmers and agricultural cooperatives can make informed decisions that enhance productivity and profitability. Similarly, in the renewable energy sector, particularly solar and hydropower, the Solar Requirement Calculator is vital for assessing energy potential, calculating return on investment, and designing sustainable energy systems that cater to both urban centers and off-grid rural communities.
-                    The integration of the Solar Requirement Calculator into educational curriculums across Nepal is also crucial for building a mathematically proficient workforce. By providing students with access to advanced analytical tools, we can foster a culture of innovation and critical thinking. This empowers the next generation of engineers, scientists, and entrepreneurs to tackle complex challenges and drive sustainable development across the nation. Let's explore some specific worked examples that highlight the practical utility of the Solar Requirement Calculator in the Nepalese context.
-                </p>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-6">
-                    <h4 className="font-bold text-xl mb-3 text-slate-800">Worked Example 1: Urban Development in Kathmandu</h4>
-                    <p className="text-slate-700 text-lg">
-                        Imagine a civil engineering firm planning a new commercial complex in the heart of Kathmandu. They need to calculate the precise material requirements while accounting for local supply chain constraints and fluctuating costs in Nepalese Rupees (NPR). By utilizing the Solar Requirement Calculator, the project managers can input specific variables such as the cost of cement per bag, the required volume of concrete, and the estimated labor costs. The tool processes these inputs to generate a comprehensive budget forecast, highlighting potential cost overruns and identifying areas for optimization. This level of precision is critical for ensuring the project remains within budget and is completed on schedule, despite the logistical challenges inherent in Kathmandu's dense urban environment.
-                    </p>
-                </div>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-6">
-                    <h4 className="font-bold text-xl mb-3 text-slate-800">Worked Example 2: Renewable Energy in the Annapurna Region</h4>
-                    <p className="text-slate-700 text-lg">
-                        In a remote village in the Annapurna region, a local cooperative is planning to install a community solar micro-grid. To ensure the system can meet the energy demands of the village throughout the year, including the cloudy monsoon season, they must accurately size the solar panels and battery storage. The Solar Requirement Calculator allows them to calculate the exact solar irradiance based on their geographical coordinates and altitude. By inputting the daily energy consumption of the village, the tool determines the optimal configuration for the solar array and battery bank. This ensures a reliable and sustainable energy supply, reducing reliance on expensive and polluting diesel generators, and significantly improving the quality of life for the local residents.
-                    </p>
-                </div>
-            </section>
-
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Comparative Analysis and Benchmarking</h3>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    To truly appreciate the value of the Solar Requirement Calculator, it is helpful to compare it against traditional methodologies. The following table illustrates the key differences and highlights the advantages of adopting a digital, automated approach. This comparison underscores the transformative impact of the Solar Requirement Calculator on operational efficiency, accuracy, and strategic decision-making. By moving away from manual calculations and embracing advanced computational tools, organizations can achieve a significant competitive advantage.
-                </p>
-                <div className="overflow-x-auto rounded-xl border border-slate-200">
-                    <table className="w-full text-left border-collapse">
-                        <thead>
-                            <tr className="bg-slate-100 text-slate-800">
-                                <th className="p-4 border-b border-slate-300 font-bold">Feature / Metric</th>
-                                <th className="p-4 border-b border-slate-300 font-bold">Traditional Manual Approach</th>
-                                <th className="p-4 border-b border-slate-300 font-bold">Using the Solar Requirement Calculator</th>
+            {/* Quick Facts */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">1. Nepal Solar Energy Quick Facts</h3>
+                <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+                    <table className="w-full text-left text-sm">
+                        <thead className="bg-amber-50 border-b border-amber-200">
+                            <tr>
+                                <th className="p-4 font-black text-amber-900">Parameter</th>
+                                <th className="p-4 font-black text-amber-900">Nepal Value</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Calculation Speed</td>
-                                <td className="p-4 border-b border-slate-200">Slow, prone to human error, requires extensive cross-checking.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Instantaneous, automated, and mathematically verified.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Accuracy & Precision</td>
-                                <td className="p-4 border-b border-slate-200">High risk of transcription errors and formula misapplication.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">100% accuracy based on rigorously tested algorithmic models.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Complex Scenario Modeling</td>
-                                <td className="p-4 border-b border-slate-200">Difficult to manage multiple variables; sensitivity analysis is tedious.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Effortlessly handles multi-variable inputs with real-time updates.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Data Integration</td>
-                                <td className="p-4 border-b border-slate-200">Siloed data, requiring manual transfer between different documents.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Seamless integration capabilities, allowing for holistic data analysis.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Cost Efficiency</td>
-                                <td className="p-4 border-b border-slate-200">High hidden costs due to time spent on corrections and audits.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Significantly reduces operational overhead and audit time.</td>
-                            </tr>
+                        <tbody className="divide-y divide-slate-100 text-slate-600">
+                            <tr><td className="p-4 font-bold">Average Peak Sun Hours</td><td className="p-4">5.0–6.8 hours/day (varies by region)</td></tr>
+                            <tr><td className="p-4 font-bold">Best Solar Region</td><td className="p-4">Mustang, Manang, Karnali (high altitude, minimal clouds)</td></tr>
+                            <tr><td className="p-4 font-bold">Grid Solar Tariff (NEA)</td><td className="p-4">Net metering available; Rs. 5.97/kWh buyback rate</td></tr>
+                            <tr><td className="p-4 font-bold">Tax Exemption</td><td className="p-4">Solar panels & equipment VAT exempted in Nepal</td></tr>
+                            <tr><td className="p-4 font-bold">Typical Home System</td><td className="p-4">1–5 kW for residential, 10–100 kW for commercial</td></tr>
+                            <tr><td className="p-4 font-bold">Average System Cost (Nepal)</td><td className="p-4">Rs. 1,20,000–1,50,000 per kW installed (2024)</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p className="text-slate-700 leading-relaxed mt-6 text-lg">
-                    As demonstrated in the table above, the transition to using the Solar Requirement Calculator offers clear and measurable benefits. The elimination of human error alone can save organizations countless hours and significant financial resources. Furthermore, the ability to rapidly model complex scenarios enables proactive decision-making, allowing businesses to adapt quickly to changing market conditions. This agility is particularly crucial in today's dynamic economic environment, where the ability to quickly analyze and interpret data can dictate success or failure.
-                    We encourage all users to fully explore the features of the Solar Requirement Calculator and integrate it deeply into their standard operating procedures. The initial investment in learning the tool will yield exponential returns in productivity and analytical capability.
-                </p>
             </section>
 
-            <section className="bg-slate-50 border border-slate-200 rounded-[3rem] p-12 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Explore Related Analytical Tools</h3>
-                <p className="text-slate-600 mb-8 leading-relaxed text-lg">
-                    To build a comprehensive analytical toolkit, we recommend integrating the Solar Requirement Calculator with other specialized calculators available on our platform. Cross-referencing data across multiple tools provides a holistic view of your operations and ensures maximum structural integrity. Here are five highly recommended tools to enhance your computational workflow:
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <a href="/calculator/financial-roi/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Financial ROI Calculator &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Analyze return on investment for complex financial portfolios.</p>
-                    </a>
-                    <a href="/calculator/statistical-variance/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Statistical Variance &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Determine data dispersion and standard deviation accurately.</p>
-                    </a>
-                    <a href="/calculator/structural-load/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Structural Load Estimator &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Calculate precise load-bearing requirements for civil engineering.</p>
-                    </a>
-                    <a href="/calculator/currency-converter/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Live Currency Converter &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Convert NPR to USD and other global currencies in real-time.</p>
-                    </a>
-                    <a href="/calculator/project-timeline/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Project Timeline Manager &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Optimize project schedules using critical path methodology.</p>
-                    </a>
+            {/* How to Calculate */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">2. Step-by-Step Solar Sizing Calculation</h3>
+                <div className="bg-slate-900 text-white rounded-2xl p-8">
+                    <h4 className="text-amber-400 font-black mb-4">Formula: Solar Panel Wattage Required</h4>
+                    <p className="font-mono text-sm text-amber-200 mb-6">Panel Capacity (W) = Daily Energy Need (Wh) ÷ Peak Sun Hours ÷ System Efficiency</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                        <div className="bg-slate-800 rounded-xl p-4">
+                            <p className="text-amber-300 font-bold mb-2">Step 1: Calculate Daily Load</p>
+                            <p className="text-slate-300 text-xs">List all appliances × wattage × hours used. E.g.: 5 LED bulbs (10W × 5h) + fridge (150W × 24h) = 4,100 Wh/day</p>
+                        </div>
+                        <div className="bg-slate-800 rounded-xl p-4">
+                            <p className="text-amber-300 font-bold mb-2">Step 2: Apply System Losses</p>
+                            <p className="text-slate-300 text-xs">Divide by efficiency (typically 0.75–0.80 for inverter + wiring losses): 4,100 ÷ 0.80 = 5,125 Wh needed from panels</p>
+                        </div>
+                        <div className="bg-slate-800 rounded-xl p-4">
+                            <p className="text-amber-300 font-bold mb-2">Step 3: Divide by Sun Hours</p>
+                            <p className="text-slate-300 text-xs">5,125 Wh ÷ 5.5 peak hours = <strong className="text-white">932W ≈ 1 kW solar array needed</strong></p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Deep Dive: Advanced Technical Considerations and Strategic Implementation</h3>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    To achieve mastery over the Solar Requirement Calculator, one must delve into the advanced technical considerations that govern its operation. The underlying algorithms are designed to handle not just standard inputs, but also extreme edge cases that often cause standard models to fail. This robustness is achieved through continuous integration of feedback from academic institutions and industry professionals. By implementing sophisticated error-handling routines and validation checks, the Solar Requirement Calculator ensures that output data remains pristine, even when subjected to anomalous input parameters. This level of computational integrity is vital for applications where precision is non-negotiable, such as structural engineering or high-frequency financial trading.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Furthermore, the strategic implementation of the Solar Requirement Calculator requires a paradigm shift in organizational workflows. It is not sufficient to merely provide access to the tool; organizations must foster a culture of data literacy and analytical rigor. This involves comprehensive training programs to ensure all team members understand the theoretical principles behind the calculations, as well as the practical mechanics of using the interface. By elevating the overall mathematical proficiency of the workforce, organizations can unlock new levels of innovation and operational efficiency. The Solar Requirement Calculator serves as a catalyst for this transformation, providing a tangible platform for continuous learning and skill development.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    In the context of data visualization, the Solar Requirement Calculator offers seamless export capabilities that allow users to generate comprehensive reports and graphical representations of their findings. Translating raw numerical data into intuitive charts and graphs is essential for communicating complex analytical insights to non-technical stakeholders. Whether you are presenting a financial forecast to a board of directors or explaining a structural analysis to a municipal planning committee, the ability to present data clearly and compellingly is paramount. The Solar Requirement Calculator facilitates this process, ensuring that your insights are not only accurate but also highly persuasive.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Another critical aspect of the Solar Requirement Calculator is its scalability. As your data processing requirements grow, the tool scales effortlessly to accommodate larger datasets and more complex modeling scenarios. This scalability is powered by cloud-based computational infrastructure, ensuring high availability and rapid processing speeds, regardless of the user's local hardware limitations. This means that a freelance consultant in a remote location can leverage the same computational power as a large multinational corporation. This democratization of advanced analytical tools is a key driver of global innovation and economic development.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Finally, we must consider the ethical implications of automated data analysis. As reliance on tools like the Solar Requirement Calculator increases, it is crucial to maintain human oversight and critical judgment. The tool is designed to augment human intelligence, not replace it. Users must remain vigilant, validating the inputs and critically interpreting the outputs to ensure they align with real-world constraints and ethical guidelines. By combining the processing power of the Solar Requirement Calculator with the nuanced judgment of experienced professionals, we can achieve outcomes that are both technically brilliant and socially responsible. We are committed to continuously refining the Solar Requirement Calculator to meet the evolving needs of our global user base, ensuring it remains the premier choice for professional-grade computation.
-                </p>
+            {/* Battery Sizing */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">3. Battery Storage Sizing</h3>
+                <p className="text-slate-600 leading-relaxed mb-4">Battery capacity ensures you have power at night or during cloudy days (common during Nepal's monsoon season June–September). Key formula:</p>
+                <div className="bg-amber-50 border border-amber-200 rounded-xl p-6">
+                    <p className="font-mono text-sm text-amber-800 mb-3">Battery Capacity (Ah) = (Daily Wh × Backup Days) ÷ Battery Voltage ÷ Depth of Discharge (DoD)</p>
+                    <p className="text-slate-600 text-sm"><strong>Example:</strong> 4,100 Wh/day, 1 backup day, 48V system, 80% DoD (lithium): 4,100 × 1 ÷ 48 ÷ 0.80 = <strong>107 Ah</strong> → use a 120 Ah 48V battery bank.</p>
+                </div>
             </section>
+
+            {/* System Types */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">4. Off-Grid vs. Grid-Tied vs. Hybrid Systems in Nepal</h3>
+                <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+                    <table className="w-full text-left text-sm">
+                        <thead className="bg-slate-50 border-b border-slate-200">
+                            <tr>
+                                <th className="p-4 font-black text-slate-800">System Type</th>
+                                <th className="p-4 font-black text-slate-800">Best For</th>
+                                <th className="p-4 font-black text-slate-800">Nepal Suitability</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100 text-slate-600">
+                            <tr><td className="p-4 font-bold">Off-Grid</td><td className="p-4">Remote villages with no NEA connection</td><td className="p-4">High – Rural hills and mountains</td></tr>
+                            <tr><td className="p-4 font-bold">Grid-Tied</td><td className="p-4">Urban areas with net metering benefit</td><td className="p-4">Moderate – Available in Kathmandu, Pokhara</td></tr>
+                            <tr><td className="p-4 font-bold text-amber-700">Hybrid</td><td className="p-4 text-amber-700">Both grid backup and battery storage</td><td className="p-4 text-amber-700">Best for Nepal – handles load shedding</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <div className="pt-8 border-t border-slate-200 text-center">
+                <div className="flex flex-wrap justify-center gap-3">
+                    <a href="/calculator/nea-bill/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-amber-700 hover:bg-amber-50 transition-all">NEA Bill Calculator</a>
+                    <a href="/calculator/word-counter/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-amber-700 hover:bg-amber-50 transition-all">Word Counter</a>
+                    <a href="/calculator/nepal-vat/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-amber-700 hover:bg-amber-50 transition-all">VAT Calculator</a>
+                </div>
+            </div>
         </div>
     ),
     faqs: [
-      { question: "How accurate is the Solar Requirement Calculator?", answer: "The tool is built on enterprise-grade algorithms, ensuring 100% mathematical accuracy. It is continuously tested against industry benchmarks to guarantee precision." },
-      { question: "Can I use the Solar Requirement Calculator for professional projects in Nepal?", answer: "Absolutely. The tool is designed to handle context-specific variables and is highly recommended for professional audits, planning, and structural calculations across all regions, including Nepal." },
-      { question: "What should I do if I have anomalous input data?", answer: "The Solar Requirement Calculator features built-in edge-case detection and data validation protocols. It will handle extreme parameters gracefully and alert you to any mathematically impossible inputs." },
-      { question: "Does this tool support complex, multi-variable modeling?", answer: "Yes, the advanced engine is specifically engineered for multi-dimensional metrics, allowing you to perform sensitivity analysis and scenario forecasting effortlessly." },
-      { question: "Is the data I input into the Solar Requirement Calculator secure?", answer: "We utilize modern web standards and isolated runtime environments to ensure that all your computational sessions are secure and your data remains private." },
-      { question: "How often are the underlying algorithms updated?", answer: "Our computational logic is subject to continuous review and refinement. Updates are deployed seamlessly to ensure you always have access to the most advanced mathematical models available." },
-      { question: "Can I export the results for my reports?", answer: "Yes, the interface allows you to easily copy the verified results and integrate them directly into your professional documentation, financial audits, or academic papers." }
+        { question: "How many solar panels do I need for a typical Nepali home?", answer: "A typical Nepali home consuming 5–10 kWh/day needs a 2–4 kW solar system (approximately 6–12 standard 350W panels). Exact sizing depends on your specific appliance list, location, and whether it's off-grid or grid-tied." },
+        { question: "Is solar power VAT exempt in Nepal?", answer: "Yes. Solar panels, solar home systems, inverters, and related equipment are exempt from Value Added Tax (VAT) in Nepal as part of the government's renewable energy promotion policy." },
+        { question: "What is net metering in Nepal?", answer: "NEA's net metering policy allows households with grid-tied solar systems to sell excess electricity back to the grid at Rs. 5.97 per kWh. The exported units offset your electricity bill each month." },
+        { question: "How does the monsoon season affect solar in Nepal?", answer: "Nepal's monsoon (June–September) significantly reduces solar generation due to cloud cover and rainfall. A hybrid system with battery backup or grid connection is recommended to maintain power supply during these months." },
+        { question: "What is the payback period for solar in Nepal?", answer: "At current electricity and installation costs, most residential solar systems in Nepal have a payback period of 5–8 years. The system lifespan is 20–25 years, offering 12–18 years of savings." },
+        { question: "What size inverter do I need?", answer: "The inverter must handle your peak simultaneous load plus a 20% safety margin. If your largest appliances together draw 1,500W simultaneously, you need at least a 2,000W (2 kW) inverter." }
     ]
   },
   'ratio-proportion': {
@@ -192,156 +143,81 @@ export const utilitySEO: Record<string, SEOContent> = {
       variables: ["Inputs = Your provided data", "Result = The computed answer"]
     },
     content: (
-        <div className="space-y-16">
-            <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="relative z-10">
-                    <h2 className="text-blue-400 font-black text-xs uppercase tracking-[0.4em] mb-4">
-                        Professional Guidance
-                    </h2>
-                    <h3 className="text-4xl font-black mb-8 leading-tight">
-                        Mastering the Ratio and Proportion Calculator
-                    </h3>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        Welcome to the ultimate guide on the Ratio and Proportion Calculator. In today's fast-paced world, accurate and efficient calculations are more important than ever. Whether you are a student, a professional, or someone simply looking to streamline their daily tasks, understanding the mechanics behind the Ratio and Proportion Calculator can significantly enhance your productivity. This comprehensive resource is designed to provide you with an in-depth understanding of how to leverage this tool effectively. We will explore the fundamental concepts, advanced applications, and provide detailed examples to ensure you can maximize its potential. By integrating this tool into your workflow, you can eliminate manual errors, save valuable time, and make more informed decisions based on precise data analysis. 
-                        Our platform is engineered to deliver enterprise-grade accuracy, ensuring that every result you obtain is reliable and actionable. The Ratio and Proportion Calculator is not just a simple calculator; it is a robust analytical engine capable of handling complex scenarios with ease. From basic computations to intricate modeling, this tool adapts to your specific needs, providing tailored insights that empower you to achieve your goals. Join us as we delve into the intricacies of the Ratio and Proportion Calculator and discover how it can transform your approach to problem-solving.
-                    </p>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        The evolution of digital tools has revolutionized the way we interact with mathematical concepts. The Ratio and Proportion Calculator represents the pinnacle of this evolution, combining intuitive user interfaces with powerful algorithmic backends. This synergy allows users of all skill levels to perform complex operations without requiring extensive technical expertise. As you navigate through this guide, you will uncover the underlying logic that drives the Ratio and Proportion Calculator, gaining a deeper appreciation for its capabilities. We will demystify the algorithms, explain the formulas, and provide a clear, step-by-step methodology for tackling even the most challenging problems. 
-                        Furthermore, we recognize that theoretical knowledge must be complemented by practical application. Therefore, this guide is enriched with real-world scenarios, demonstrating how the Ratio and Proportion Calculator can be utilized across various industries and disciplines. Whether it's optimizing supply chains, forecasting financial trends, or conducting academic research, the principles discussed here are universally applicable. Prepare to elevate your analytical skills and harness the full power of the Ratio and Proportion Calculator to drive innovation and success in your endeavors.
-                    </p>
-                </div>
+        <div className="space-y-12">
+            <div className="bg-violet-50 border-l-4 border-violet-600 rounded-r-xl p-8 shadow-sm">
+                <h2 className="text-violet-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Ratio &amp; Proportion Calculator Guide</h2>
+                <p className="text-slate-800 text-base leading-relaxed">
+                    The <strong>Ratio and Proportion Calculator</strong> solves ratio comparisons, finds the missing value in proportions, scales quantities up or down, and simplifies ratios to their lowest terms. Ratios and proportions are fundamental to everyday mathematics—from dividing land and business partnerships to mixing cement for construction and preparing recipes—all highly relevant in the Nepalese context.
+                </p>
             </div>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Regional Context & Worked Examples in Nepal</h3>
-                <p className="text-slate-700 leading-relaxed mb-4 text-lg">
-                    When applying the Ratio and Proportion Calculator within the context of Nepal, it is essential to consider the unique socio-economic and geographical landscape of the region. Nepal's diverse topography, ranging from the towering Himalayas to the fertile Terai plains, presents distinct challenges and opportunities that require localized solutions. The Ratio and Proportion Calculator can play a pivotal role in addressing these challenges by providing precise calculations tailored to the local environment. For instance, when planning infrastructure projects in remote mountainous regions, accurate data modeling is critical to ensure structural integrity and cost-effectiveness. 
-                    Moreover, the rapid urbanization and economic growth in cities like Kathmandu and Pokhara demand efficient resource management and strategic planning. The Ratio and Proportion Calculator enables local businesses and policymakers to optimize their operations, whether it's managing logistics in challenging terrains or forecasting market trends in a developing economy. By incorporating Nepal-specific variables, such as local currency (NPR), regional measurement units (like Ropani or Bigha), and localized regulatory frameworks, the Ratio and Proportion Calculator becomes an indispensable asset for regional development. We have tailored specific examples to resonate with the daily realities faced by professionals operating in Nepal.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-4 text-lg">
-                    Consider the agricultural sector, which forms the backbone of Nepal's economy. The Ratio and Proportion Calculator can be utilized to optimize crop yields, manage water resources efficiently, and forecast market prices based on seasonal variations. By analyzing historical data and current market trends, farmers and agricultural cooperatives can make informed decisions that enhance productivity and profitability. Similarly, in the renewable energy sector, particularly solar and hydropower, the Ratio and Proportion Calculator is vital for assessing energy potential, calculating return on investment, and designing sustainable energy systems that cater to both urban centers and off-grid rural communities.
-                    The integration of the Ratio and Proportion Calculator into educational curriculums across Nepal is also crucial for building a mathematically proficient workforce. By providing students with access to advanced analytical tools, we can foster a culture of innovation and critical thinking. This empowers the next generation of engineers, scientists, and entrepreneurs to tackle complex challenges and drive sustainable development across the nation. Let's explore some specific worked examples that highlight the practical utility of the Ratio and Proportion Calculator in the Nepalese context.
-                </p>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-6">
-                    <h4 className="font-bold text-xl mb-3 text-slate-800">Worked Example 1: Urban Development in Kathmandu</h4>
-                    <p className="text-slate-700 text-lg">
-                        Imagine a civil engineering firm planning a new commercial complex in the heart of Kathmandu. They need to calculate the precise material requirements while accounting for local supply chain constraints and fluctuating costs in Nepalese Rupees (NPR). By utilizing the Ratio and Proportion Calculator, the project managers can input specific variables such as the cost of cement per bag, the required volume of concrete, and the estimated labor costs. The tool processes these inputs to generate a comprehensive budget forecast, highlighting potential cost overruns and identifying areas for optimization. This level of precision is critical for ensuring the project remains within budget and is completed on schedule, despite the logistical challenges inherent in Kathmandu's dense urban environment.
-                    </p>
-                </div>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-6">
-                    <h4 className="font-bold text-xl mb-3 text-slate-800">Worked Example 2: Renewable Energy in the Annapurna Region</h4>
-                    <p className="text-slate-700 text-lg">
-                        In a remote village in the Annapurna region, a local cooperative is planning to install a community solar micro-grid. To ensure the system can meet the energy demands of the village throughout the year, including the cloudy monsoon season, they must accurately size the solar panels and battery storage. The Ratio and Proportion Calculator allows them to calculate the exact solar irradiance based on their geographical coordinates and altitude. By inputting the daily energy consumption of the village, the tool determines the optimal configuration for the solar array and battery bank. This ensures a reliable and sustainable energy supply, reducing reliance on expensive and polluting diesel generators, and significantly improving the quality of life for the local residents.
-                    </p>
+            {/* Core Concepts */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">1. Ratios vs. Proportions: Key Definitions</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="bg-violet-50 border border-violet-200 rounded-xl p-6">
+                        <h4 className="font-black text-violet-800 mb-3">What is a Ratio?</h4>
+                        <p className="text-slate-600 text-sm leading-relaxed mb-3">A ratio compares two or more quantities of the same kind. Written as <strong>A : B</strong> or <strong>A/B</strong>. It tells you how much of one thing there is relative to another.</p>
+                        <p className="text-slate-600 text-sm"><strong>Example:</strong> If a concrete mix uses 1 bag cement, 2 bags sand, and 4 bags aggregate, the ratio is 1:2:4.</p>
+                    </div>
+                    <div className="bg-violet-50 border border-violet-200 rounded-xl p-6">
+                        <h4 className="font-black text-violet-800 mb-3">What is a Proportion?</h4>
+                        <p className="text-slate-600 text-sm leading-relaxed mb-3">A proportion states that two ratios are equal: <strong>A/B = C/D</strong>. The missing value (cross multiplication) is found by: <strong>A × D = B × C</strong>.</p>
+                        <p className="text-slate-600 text-sm"><strong>Example:</strong> If 5 workers complete a task in 8 days, how many days for 10 workers? 5/10 = x/8 → x = 4 days.</p>
+                    </div>
                 </div>
             </section>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Comparative Analysis and Benchmarking</h3>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    To truly appreciate the value of the Ratio and Proportion Calculator, it is helpful to compare it against traditional methodologies. The following table illustrates the key differences and highlights the advantages of adopting a digital, automated approach. This comparison underscores the transformative impact of the Ratio and Proportion Calculator on operational efficiency, accuracy, and strategic decision-making. By moving away from manual calculations and embracing advanced computational tools, organizations can achieve a significant competitive advantage.
-                </p>
-                <div className="overflow-x-auto rounded-xl border border-slate-200">
-                    <table className="w-full text-left border-collapse">
-                        <thead>
-                            <tr className="bg-slate-100 text-slate-800">
-                                <th className="p-4 border-b border-slate-300 font-bold">Feature / Metric</th>
-                                <th className="p-4 border-b border-slate-300 font-bold">Traditional Manual Approach</th>
-                                <th className="p-4 border-b border-slate-300 font-bold">Using the Ratio and Proportion Calculator</th>
+            {/* Nepal Applications */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">2. Real-World Applications in Nepal</h3>
+                <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+                    <table className="w-full text-left text-sm">
+                        <thead className="bg-slate-50 border-b border-slate-200">
+                            <tr>
+                                <th className="p-4 font-black text-slate-800">Application</th>
+                                <th className="p-4 font-black text-slate-800">Example</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Calculation Speed</td>
-                                <td className="p-4 border-b border-slate-200">Slow, prone to human error, requires extensive cross-checking.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Instantaneous, automated, and mathematically verified.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Accuracy & Precision</td>
-                                <td className="p-4 border-b border-slate-200">High risk of transcription errors and formula misapplication.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">100% accuracy based on rigorously tested algorithmic models.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Complex Scenario Modeling</td>
-                                <td className="p-4 border-b border-slate-200">Difficult to manage multiple variables; sensitivity analysis is tedious.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Effortlessly handles multi-variable inputs with real-time updates.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Data Integration</td>
-                                <td className="p-4 border-b border-slate-200">Siloed data, requiring manual transfer between different documents.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Seamless integration capabilities, allowing for holistic data analysis.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Cost Efficiency</td>
-                                <td className="p-4 border-b border-slate-200">High hidden costs due to time spent on corrections and audits.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Significantly reduces operational overhead and audit time.</td>
-                            </tr>
+                        <tbody className="divide-y divide-slate-100 text-slate-600">
+                            <tr><td className="p-4 font-bold">Land Partition</td><td className="p-4">Dividing 20 Ropani of inherited land among 4 siblings in ratio 3:2:2:1 → each gets 6, 4, 4, and 2 Ropani.</td></tr>
+                            <tr><td className="p-4 font-bold">Construction Mixing</td><td className="p-4">A 1:3:6 cement:sand:aggregate mix. If you need 45 bags total, you need 5 cement, 15 sand, 25 aggregate bags.</td></tr>
+                            <tr><td className="p-4 font-bold">Business Partnership</td><td className="p-4">Partners investing Rs. 3 lakhs, Rs. 5 lakhs, and Rs. 2 lakhs share profits in ratio 3:5:2.</td></tr>
+                            <tr><td className="p-4 font-bold">Currency Exchange</td><td className="p-4">If 1 USD = Rs. 133, then 250 USD = ? → proportion: 1/133 = 250/x → x = Rs. 33,250.</td></tr>
+                            <tr><td className="p-4 font-bold">Map Scale</td><td className="p-4">A map scale of 1:50,000 means 1 cm on the map = 50,000 cm (500 m) on the ground.</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p className="text-slate-700 leading-relaxed mt-6 text-lg">
-                    As demonstrated in the table above, the transition to using the Ratio and Proportion Calculator offers clear and measurable benefits. The elimination of human error alone can save organizations countless hours and significant financial resources. Furthermore, the ability to rapidly model complex scenarios enables proactive decision-making, allowing businesses to adapt quickly to changing market conditions. This agility is particularly crucial in today's dynamic economic environment, where the ability to quickly analyze and interpret data can dictate success or failure.
-                    We encourage all users to fully explore the features of the Ratio and Proportion Calculator and integrate it deeply into their standard operating procedures. The initial investment in learning the tool will yield exponential returns in productivity and analytical capability.
-                </p>
             </section>
 
-            <section className="bg-slate-50 border border-slate-200 rounded-[3rem] p-12 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Explore Related Analytical Tools</h3>
-                <p className="text-slate-600 mb-8 leading-relaxed text-lg">
-                    To build a comprehensive analytical toolkit, we recommend integrating the Ratio and Proportion Calculator with other specialized calculators available on our platform. Cross-referencing data across multiple tools provides a holistic view of your operations and ensures maximum structural integrity. Here are five highly recommended tools to enhance your computational workflow:
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <a href="/calculator/financial-roi/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Financial ROI Calculator &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Analyze return on investment for complex financial portfolios.</p>
-                    </a>
-                    <a href="/calculator/statistical-variance/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Statistical Variance &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Determine data dispersion and standard deviation accurately.</p>
-                    </a>
-                    <a href="/calculator/structural-load/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Structural Load Estimator &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Calculate precise load-bearing requirements for civil engineering.</p>
-                    </a>
-                    <a href="/calculator/currency-converter/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Live Currency Converter &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Convert NPR to USD and other global currencies in real-time.</p>
-                    </a>
-                    <a href="/calculator/project-timeline/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Project Timeline Manager &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Optimize project schedules using critical path methodology.</p>
-                    </a>
+            {/* Solving Methods */}
+            <section className="bg-slate-900 text-white rounded-2xl p-8">
+                <h3 className="text-xl font-black text-violet-400 mb-6">3. Cross Multiplication Method</h3>
+                <p className="text-slate-300 text-sm mb-4">The most reliable method for solving proportions (finding a missing value):</p>
+                <div className="bg-slate-800 rounded-xl p-6 font-mono text-sm">
+                    <p className="text-violet-300 mb-2">Given: A/B = C/D (solve for D)</p>
+                    <p className="text-white mb-2">Step 1: Cross multiply: A × D = B × C</p>
+                    <p className="text-white mb-2">Step 2: Isolate D: D = (B × C) / A</p>
+                    <p className="text-amber-300 mt-4">Example: 3/5 = 12/D → 3D = 5×12 → 3D = 60 → D = 20</p>
                 </div>
             </section>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Deep Dive: Advanced Technical Considerations and Strategic Implementation</h3>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    To achieve mastery over the Ratio and Proportion Calculator, one must delve into the advanced technical considerations that govern its operation. The underlying algorithms are designed to handle not just standard inputs, but also extreme edge cases that often cause standard models to fail. This robustness is achieved through continuous integration of feedback from academic institutions and industry professionals. By implementing sophisticated error-handling routines and validation checks, the Ratio and Proportion Calculator ensures that output data remains pristine, even when subjected to anomalous input parameters. This level of computational integrity is vital for applications where precision is non-negotiable, such as structural engineering or high-frequency financial trading.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Furthermore, the strategic implementation of the Ratio and Proportion Calculator requires a paradigm shift in organizational workflows. It is not sufficient to merely provide access to the tool; organizations must foster a culture of data literacy and analytical rigor. This involves comprehensive training programs to ensure all team members understand the theoretical principles behind the calculations, as well as the practical mechanics of using the interface. By elevating the overall mathematical proficiency of the workforce, organizations can unlock new levels of innovation and operational efficiency. The Ratio and Proportion Calculator serves as a catalyst for this transformation, providing a tangible platform for continuous learning and skill development.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    In the context of data visualization, the Ratio and Proportion Calculator offers seamless export capabilities that allow users to generate comprehensive reports and graphical representations of their findings. Translating raw numerical data into intuitive charts and graphs is essential for communicating complex analytical insights to non-technical stakeholders. Whether you are presenting a financial forecast to a board of directors or explaining a structural analysis to a municipal planning committee, the ability to present data clearly and compellingly is paramount. The Ratio and Proportion Calculator facilitates this process, ensuring that your insights are not only accurate but also highly persuasive.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Another critical aspect of the Ratio and Proportion Calculator is its scalability. As your data processing requirements grow, the tool scales effortlessly to accommodate larger datasets and more complex modeling scenarios. This scalability is powered by cloud-based computational infrastructure, ensuring high availability and rapid processing speeds, regardless of the user's local hardware limitations. This means that a freelance consultant in a remote location can leverage the same computational power as a large multinational corporation. This democratization of advanced analytical tools is a key driver of global innovation and economic development.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Finally, we must consider the ethical implications of automated data analysis. As reliance on tools like the Ratio and Proportion Calculator increases, it is crucial to maintain human oversight and critical judgment. The tool is designed to augment human intelligence, not replace it. Users must remain vigilant, validating the inputs and critically interpreting the outputs to ensure they align with real-world constraints and ethical guidelines. By combining the processing power of the Ratio and Proportion Calculator with the nuanced judgment of experienced professionals, we can achieve outcomes that are both technically brilliant and socially responsible. We are committed to continuously refining the Ratio and Proportion Calculator to meet the evolving needs of our global user base, ensuring it remains the premier choice for professional-grade computation.
-                </p>
-            </section>
+            <div className="pt-8 border-t border-slate-200 text-center">
+                <div className="flex flex-wrap justify-center gap-3">
+                    <a href="/calculator/percentage-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-violet-700 hover:bg-violet-50 transition-all">Percentage Calculator</a>
+                    <a href="/calculator/fraction-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-violet-700 hover:bg-violet-50 transition-all">Fraction Calculator</a>
+                    <a href="/calculator/scientific-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-violet-700 hover:bg-violet-50 transition-all">Scientific Calculator</a>
+                </div>
+            </div>
         </div>
     ),
     faqs: [
-      { question: "How accurate is the Ratio and Proportion Calculator?", answer: "The tool is built on enterprise-grade algorithms, ensuring 100% mathematical accuracy. It is continuously tested against industry benchmarks to guarantee precision." },
-      { question: "Can I use the Ratio and Proportion Calculator for professional projects in Nepal?", answer: "Absolutely. The tool is designed to handle context-specific variables and is highly recommended for professional audits, planning, and structural calculations across all regions, including Nepal." },
-      { question: "What should I do if I have anomalous input data?", answer: "The Ratio and Proportion Calculator features built-in edge-case detection and data validation protocols. It will handle extreme parameters gracefully and alert you to any mathematically impossible inputs." },
-      { question: "Does this tool support complex, multi-variable modeling?", answer: "Yes, the advanced engine is specifically engineered for multi-dimensional metrics, allowing you to perform sensitivity analysis and scenario forecasting effortlessly." },
-      { question: "Is the data I input into the Ratio and Proportion Calculator secure?", answer: "We utilize modern web standards and isolated runtime environments to ensure that all your computational sessions are secure and your data remains private." },
-      { question: "How often are the underlying algorithms updated?", answer: "Our computational logic is subject to continuous review and refinement. Updates are deployed seamlessly to ensure you always have access to the most advanced mathematical models available." },
-      { question: "Can I export the results for my reports?", answer: "Yes, the interface allows you to easily copy the verified results and integrate them directly into your professional documentation, financial audits, or academic papers." }
+        { question: "What is the difference between a ratio and a proportion?", answer: "A ratio compares two quantities (e.g., 3:4). A proportion is an equation stating two ratios are equal (e.g., 3/4 = 6/8). Proportions are used to find unknown values when one ratio is known." },
+        { question: "How do I simplify a ratio?", answer: "To simplify a ratio, find the GCF (Greatest Common Factor) of all terms and divide each by it. For example, 12:18 → GCF is 6 → simplified ratio is 2:3." },
+        { question: "How do I divide a quantity in a given ratio?", answer: "To divide an amount X in ratio A:B: Total parts = A+B. Part for A = X × A/(A+B). Part for B = X × B/(A+B). Example: Divide Rs. 1,000 in ratio 3:2 → A gets Rs. 600, B gets Rs. 400." },
+        { question: "What is inverse proportion?", answer: "In inverse proportion, as one quantity increases, the other decreases proportionally. Example: more workers → fewer days to complete a task. Formula: x₁y₁ = x₂y₂." },
+        { question: "How are ratios used in Nepal land division?", answer: "When families partition ancestral land in Nepal, the area is divided according to the heir's ratio. For example, if 3 brothers share 30 Ropani in ratio 2:2:1, they receive 12, 12, and 6 Ropani respectively." },
+        { question: "What is a ratio in cement mixing?", answer: "Common concrete mix ratios in Nepal: 1:2:4 (cement:sand:aggregate) for general construction, 1:1.5:3 for reinforced concrete, and 1:4:8 for simple foundations. The ratio ensures proper structural strength." }
     ]
   },
   'scientific-calculator': {
@@ -363,156 +239,90 @@ export const utilitySEO: Record<string, SEOContent> = {
       variables: ["Inputs = Your provided data", "Result = The computed answer"]
     },
     content: (
-        <div className="space-y-16">
-            <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="relative z-10">
-                    <h2 className="text-blue-400 font-black text-xs uppercase tracking-[0.4em] mb-4">
-                        Professional Guidance
-                    </h2>
-                    <h3 className="text-4xl font-black mb-8 leading-tight">
-                        Mastering the Scientific Calculator
-                    </h3>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        Welcome to the ultimate guide on the Scientific Calculator. In today's fast-paced world, accurate and efficient calculations are more important than ever. Whether you are a student, a professional, or someone simply looking to streamline their daily tasks, understanding the mechanics behind the Scientific Calculator can significantly enhance your productivity. This comprehensive resource is designed to provide you with an in-depth understanding of how to leverage this tool effectively. We will explore the fundamental concepts, advanced applications, and provide detailed examples to ensure you can maximize its potential. By integrating this tool into your workflow, you can eliminate manual errors, save valuable time, and make more informed decisions based on precise data analysis. 
-                        Our platform is engineered to deliver enterprise-grade accuracy, ensuring that every result you obtain is reliable and actionable. The Scientific Calculator is not just a simple calculator; it is a robust analytical engine capable of handling complex scenarios with ease. From basic computations to intricate modeling, this tool adapts to your specific needs, providing tailored insights that empower you to achieve your goals. Join us as we delve into the intricacies of the Scientific Calculator and discover how it can transform your approach to problem-solving.
-                    </p>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        The evolution of digital tools has revolutionized the way we interact with mathematical concepts. The Scientific Calculator represents the pinnacle of this evolution, combining intuitive user interfaces with powerful algorithmic backends. This synergy allows users of all skill levels to perform complex operations without requiring extensive technical expertise. As you navigate through this guide, you will uncover the underlying logic that drives the Scientific Calculator, gaining a deeper appreciation for its capabilities. We will demystify the algorithms, explain the formulas, and provide a clear, step-by-step methodology for tackling even the most challenging problems. 
-                        Furthermore, we recognize that theoretical knowledge must be complemented by practical application. Therefore, this guide is enriched with real-world scenarios, demonstrating how the Scientific Calculator can be utilized across various industries and disciplines. Whether it's optimizing supply chains, forecasting financial trends, or conducting academic research, the principles discussed here are universally applicable. Prepare to elevate your analytical skills and harness the full power of the Scientific Calculator to drive innovation and success in your endeavors.
-                    </p>
-                </div>
+        <div className="space-y-12">
+            <div className="bg-slate-50 border-l-4 border-slate-700 rounded-r-xl p-8 shadow-sm">
+                <h2 className="text-slate-800 font-black text-xs uppercase tracking-[0.3em] mb-3">Scientific Calculator Guide</h2>
+                <p className="text-slate-800 text-base leading-relaxed">
+                    The <strong>Scientific Calculator</strong> provides access to all advanced mathematical functions needed for engineering, science, and academic coursework—including trigonometry (sin, cos, tan), logarithms (log, ln), exponents, roots, factorial, and complex number operations. This is a comprehensive tool for SEE, NEB (+2 Science), and engineering entrance exam (IOE, CTEVT) preparation in Nepal.
+                </p>
             </div>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Regional Context & Worked Examples in Nepal</h3>
-                <p className="text-slate-700 leading-relaxed mb-4 text-lg">
-                    When applying the Scientific Calculator within the context of Nepal, it is essential to consider the unique socio-economic and geographical landscape of the region. Nepal's diverse topography, ranging from the towering Himalayas to the fertile Terai plains, presents distinct challenges and opportunities that require localized solutions. The Scientific Calculator can play a pivotal role in addressing these challenges by providing precise calculations tailored to the local environment. For instance, when planning infrastructure projects in remote mountainous regions, accurate data modeling is critical to ensure structural integrity and cost-effectiveness. 
-                    Moreover, the rapid urbanization and economic growth in cities like Kathmandu and Pokhara demand efficient resource management and strategic planning. The Scientific Calculator enables local businesses and policymakers to optimize their operations, whether it's managing logistics in challenging terrains or forecasting market trends in a developing economy. By incorporating Nepal-specific variables, such as local currency (NPR), regional measurement units (like Ropani or Bigha), and localized regulatory frameworks, the Scientific Calculator becomes an indispensable asset for regional development. We have tailored specific examples to resonate with the daily realities faced by professionals operating in Nepal.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-4 text-lg">
-                    Consider the agricultural sector, which forms the backbone of Nepal's economy. The Scientific Calculator can be utilized to optimize crop yields, manage water resources efficiently, and forecast market prices based on seasonal variations. By analyzing historical data and current market trends, farmers and agricultural cooperatives can make informed decisions that enhance productivity and profitability. Similarly, in the renewable energy sector, particularly solar and hydropower, the Scientific Calculator is vital for assessing energy potential, calculating return on investment, and designing sustainable energy systems that cater to both urban centers and off-grid rural communities.
-                    The integration of the Scientific Calculator into educational curriculums across Nepal is also crucial for building a mathematically proficient workforce. By providing students with access to advanced analytical tools, we can foster a culture of innovation and critical thinking. This empowers the next generation of engineers, scientists, and entrepreneurs to tackle complex challenges and drive sustainable development across the nation. Let's explore some specific worked examples that highlight the practical utility of the Scientific Calculator in the Nepalese context.
-                </p>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-6">
-                    <h4 className="font-bold text-xl mb-3 text-slate-800">Worked Example 1: Urban Development in Kathmandu</h4>
-                    <p className="text-slate-700 text-lg">
-                        Imagine a civil engineering firm planning a new commercial complex in the heart of Kathmandu. They need to calculate the precise material requirements while accounting for local supply chain constraints and fluctuating costs in Nepalese Rupees (NPR). By utilizing the Scientific Calculator, the project managers can input specific variables such as the cost of cement per bag, the required volume of concrete, and the estimated labor costs. The tool processes these inputs to generate a comprehensive budget forecast, highlighting potential cost overruns and identifying areas for optimization. This level of precision is critical for ensuring the project remains within budget and is completed on schedule, despite the logistical challenges inherent in Kathmandu's dense urban environment.
-                    </p>
-                </div>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-6">
-                    <h4 className="font-bold text-xl mb-3 text-slate-800">Worked Example 2: Renewable Energy in the Annapurna Region</h4>
-                    <p className="text-slate-700 text-lg">
-                        In a remote village in the Annapurna region, a local cooperative is planning to install a community solar micro-grid. To ensure the system can meet the energy demands of the village throughout the year, including the cloudy monsoon season, they must accurately size the solar panels and battery storage. The Scientific Calculator allows them to calculate the exact solar irradiance based on their geographical coordinates and altitude. By inputting the daily energy consumption of the village, the tool determines the optimal configuration for the solar array and battery bank. This ensures a reliable and sustainable energy supply, reducing reliance on expensive and polluting diesel generators, and significantly improving the quality of life for the local residents.
-                    </p>
-                </div>
-            </section>
-
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Comparative Analysis and Benchmarking</h3>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    To truly appreciate the value of the Scientific Calculator, it is helpful to compare it against traditional methodologies. The following table illustrates the key differences and highlights the advantages of adopting a digital, automated approach. This comparison underscores the transformative impact of the Scientific Calculator on operational efficiency, accuracy, and strategic decision-making. By moving away from manual calculations and embracing advanced computational tools, organizations can achieve a significant competitive advantage.
-                </p>
-                <div className="overflow-x-auto rounded-xl border border-slate-200">
-                    <table className="w-full text-left border-collapse">
-                        <thead>
-                            <tr className="bg-slate-100 text-slate-800">
-                                <th className="p-4 border-b border-slate-300 font-bold">Feature / Metric</th>
-                                <th className="p-4 border-b border-slate-300 font-bold">Traditional Manual Approach</th>
-                                <th className="p-4 border-b border-slate-300 font-bold">Using the Scientific Calculator</th>
+            {/* Key Functions */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">1. Key Scientific Functions Reference</h3>
+                <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+                    <table className="w-full text-left text-sm">
+                        <thead className="bg-slate-100 border-b border-slate-200">
+                            <tr>
+                                <th className="p-4 font-black text-slate-800">Function</th>
+                                <th className="p-4 font-black text-slate-800">Symbol</th>
+                                <th className="p-4 font-black text-slate-800">Description</th>
+                                <th className="p-4 font-black text-slate-800">Example</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Calculation Speed</td>
-                                <td className="p-4 border-b border-slate-200">Slow, prone to human error, requires extensive cross-checking.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Instantaneous, automated, and mathematically verified.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Accuracy & Precision</td>
-                                <td className="p-4 border-b border-slate-200">High risk of transcription errors and formula misapplication.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">100% accuracy based on rigorously tested algorithmic models.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Complex Scenario Modeling</td>
-                                <td className="p-4 border-b border-slate-200">Difficult to manage multiple variables; sensitivity analysis is tedious.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Effortlessly handles multi-variable inputs with real-time updates.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Data Integration</td>
-                                <td className="p-4 border-b border-slate-200">Siloed data, requiring manual transfer between different documents.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Seamless integration capabilities, allowing for holistic data analysis.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Cost Efficiency</td>
-                                <td className="p-4 border-b border-slate-200">High hidden costs due to time spent on corrections and audits.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Significantly reduces operational overhead and audit time.</td>
-                            </tr>
+                        <tbody className="divide-y divide-slate-100 text-slate-600 text-xs">
+                            <tr><td className="p-4 font-bold">Sine</td><td className="p-4 font-mono">sin(x)</td><td className="p-4">Ratio of opposite to hypotenuse</td><td className="p-4 font-mono">sin(30°) = 0.5</td></tr>
+                            <tr><td className="p-4 font-bold">Cosine</td><td className="p-4 font-mono">cos(x)</td><td className="p-4">Ratio of adjacent to hypotenuse</td><td className="p-4 font-mono">cos(60°) = 0.5</td></tr>
+                            <tr><td className="p-4 font-bold">Tangent</td><td className="p-4 font-mono">tan(x)</td><td className="p-4">Ratio of opposite to adjacent</td><td className="p-4 font-mono">tan(45°) = 1</td></tr>
+                            <tr><td className="p-4 font-bold">Common Log</td><td className="p-4 font-mono">log(x)</td><td className="p-4">Base-10 logarithm</td><td className="p-4 font-mono">log(1000) = 3</td></tr>
+                            <tr><td className="p-4 font-bold">Natural Log</td><td className="p-4 font-mono">ln(x)</td><td className="p-4">Base-e logarithm</td><td className="p-4 font-mono">ln(e) = 1</td></tr>
+                            <tr><td className="p-4 font-bold">Square Root</td><td className="p-4 font-mono">√x</td><td className="p-4">Principal square root</td><td className="p-4 font-mono">√144 = 12</td></tr>
+                            <tr><td className="p-4 font-bold">Exponent</td><td className="p-4 font-mono">xʸ</td><td className="p-4">x raised to the power y</td><td className="p-4 font-mono">2⁸ = 256</td></tr>
+                            <tr><td className="p-4 font-bold">Factorial</td><td className="p-4 font-mono">n!</td><td className="p-4">Product of all integers from 1 to n</td><td className="p-4 font-mono">5! = 120</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p className="text-slate-700 leading-relaxed mt-6 text-lg">
-                    As demonstrated in the table above, the transition to using the Scientific Calculator offers clear and measurable benefits. The elimination of human error alone can save organizations countless hours and significant financial resources. Furthermore, the ability to rapidly model complex scenarios enables proactive decision-making, allowing businesses to adapt quickly to changing market conditions. This agility is particularly crucial in today's dynamic economic environment, where the ability to quickly analyze and interpret data can dictate success or failure.
-                    We encourage all users to fully explore the features of the Scientific Calculator and integrate it deeply into their standard operating procedures. The initial investment in learning the tool will yield exponential returns in productivity and analytical capability.
-                </p>
             </section>
 
-            <section className="bg-slate-50 border border-slate-200 rounded-[3rem] p-12 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Explore Related Analytical Tools</h3>
-                <p className="text-slate-600 mb-8 leading-relaxed text-lg">
-                    To build a comprehensive analytical toolkit, we recommend integrating the Scientific Calculator with other specialized calculators available on our platform. Cross-referencing data across multiple tools provides a holistic view of your operations and ensures maximum structural integrity. Here are five highly recommended tools to enhance your computational workflow:
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <a href="/calculator/financial-roi/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Financial ROI Calculator &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Analyze return on investment for complex financial portfolios.</p>
-                    </a>
-                    <a href="/calculator/statistical-variance/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Statistical Variance &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Determine data dispersion and standard deviation accurately.</p>
-                    </a>
-                    <a href="/calculator/structural-load/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Structural Load Estimator &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Calculate precise load-bearing requirements for civil engineering.</p>
-                    </a>
-                    <a href="/calculator/currency-converter/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Live Currency Converter &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Convert NPR to USD and other global currencies in real-time.</p>
-                    </a>
-                    <a href="/calculator/project-timeline/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Project Timeline Manager &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Optimize project schedules using critical path methodology.</p>
-                    </a>
+            {/* Nepal Exam Context */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">2. Scientific Calculator Use in Nepal's Exams</h3>
+                <div className="bg-slate-900 text-white rounded-2xl p-8">
+                    <p className="text-slate-300 text-sm mb-6">Different Nepali examinations have specific rules about calculator use:</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                        <div className="bg-slate-800 rounded-xl p-4">
+                            <h4 className="text-amber-300 font-bold mb-2">SEE (Grade 10)</h4>
+                            <p className="text-slate-300 text-xs">Scientific calculators are <strong className="text-white">not permitted</strong> in SEE. Students must perform all calculations manually, making mental math and written calculation skills critical.</p>
+                        </div>
+                        <div className="bg-slate-800 rounded-xl p-4">
+                            <h4 className="text-amber-300 font-bold mb-2">NEB +2 Science</h4>
+                            <p className="text-slate-300 text-xs">In some +2 science papers (Physics, Chemistry), non-programmable scientific calculators are <strong className="text-white">allowed</strong>. Check the specific NEB exam rules for each subject.</p>
+                        </div>
+                        <div className="bg-slate-800 rounded-xl p-4">
+                            <h4 className="text-amber-300 font-bold mb-2">IOE Entrance</h4>
+                            <p className="text-slate-300 text-xs">IOE and Pulchowk entrance exams are MCQ-based. Scientific calculators are generally <strong className="text-white">not allowed</strong>. Mental estimation and quick computation methods are essential.</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Deep Dive: Advanced Technical Considerations and Strategic Implementation</h3>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    To achieve mastery over the Scientific Calculator, one must delve into the advanced technical considerations that govern its operation. The underlying algorithms are designed to handle not just standard inputs, but also extreme edge cases that often cause standard models to fail. This robustness is achieved through continuous integration of feedback from academic institutions and industry professionals. By implementing sophisticated error-handling routines and validation checks, the Scientific Calculator ensures that output data remains pristine, even when subjected to anomalous input parameters. This level of computational integrity is vital for applications where precision is non-negotiable, such as structural engineering or high-frequency financial trading.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Furthermore, the strategic implementation of the Scientific Calculator requires a paradigm shift in organizational workflows. It is not sufficient to merely provide access to the tool; organizations must foster a culture of data literacy and analytical rigor. This involves comprehensive training programs to ensure all team members understand the theoretical principles behind the calculations, as well as the practical mechanics of using the interface. By elevating the overall mathematical proficiency of the workforce, organizations can unlock new levels of innovation and operational efficiency. The Scientific Calculator serves as a catalyst for this transformation, providing a tangible platform for continuous learning and skill development.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    In the context of data visualization, the Scientific Calculator offers seamless export capabilities that allow users to generate comprehensive reports and graphical representations of their findings. Translating raw numerical data into intuitive charts and graphs is essential for communicating complex analytical insights to non-technical stakeholders. Whether you are presenting a financial forecast to a board of directors or explaining a structural analysis to a municipal planning committee, the ability to present data clearly and compellingly is paramount. The Scientific Calculator facilitates this process, ensuring that your insights are not only accurate but also highly persuasive.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Another critical aspect of the Scientific Calculator is its scalability. As your data processing requirements grow, the tool scales effortlessly to accommodate larger datasets and more complex modeling scenarios. This scalability is powered by cloud-based computational infrastructure, ensuring high availability and rapid processing speeds, regardless of the user's local hardware limitations. This means that a freelance consultant in a remote location can leverage the same computational power as a large multinational corporation. This democratization of advanced analytical tools is a key driver of global innovation and economic development.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Finally, we must consider the ethical implications of automated data analysis. As reliance on tools like the Scientific Calculator increases, it is crucial to maintain human oversight and critical judgment. The tool is designed to augment human intelligence, not replace it. Users must remain vigilant, validating the inputs and critically interpreting the outputs to ensure they align with real-world constraints and ethical guidelines. By combining the processing power of the Scientific Calculator with the nuanced judgment of experienced professionals, we can achieve outcomes that are both technically brilliant and socially responsible. We are committed to continuously refining the Scientific Calculator to meet the evolving needs of our global user base, ensuring it remains the premier choice for professional-grade computation.
-                </p>
+            {/* Angle Mode Note */}
+            <section className="bg-amber-50 border border-amber-200 rounded-xl p-6">
+                <h3 className="text-xl font-black text-amber-900 mb-3">3. Important: Degree vs. Radian Mode</h3>
+                <p className="text-slate-700 text-sm leading-relaxed mb-3">The most common mistake when using a scientific calculator is having the wrong angle mode selected:</p>
+                <ul className="space-y-2 text-slate-700 text-sm">
+                    <li>📐 <strong>Degree Mode (DEG):</strong> Use for everyday geometry, construction calculations, and most high school problems. sin(90°) = 1.</li>
+                    <li>📐 <strong>Radian Mode (RAD):</strong> Use for advanced calculus, physics problems involving angular velocity, and engineering calculations. sin(π/2) = 1.</li>
+                    <li>⚠️ <strong>Always verify</strong> the mode before starting a calculation to avoid systematic errors in exam papers.</li>
+                </ul>
             </section>
+
+            <div className="pt-8 border-t border-slate-200 text-center">
+                <div className="flex flex-wrap justify-center gap-3">
+                    <a href="/calculator/statistics-plus/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-slate-700 hover:bg-slate-200 transition-all">Statistics Calculator</a>
+                    <a href="/calculator/ratio-proportion/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-slate-700 hover:bg-slate-200 transition-all">Ratio &amp; Proportion</a>
+                    <a href="/calculator/logarithm-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-slate-700 hover:bg-slate-200 transition-all">Logarithm Calculator</a>
+                </div>
+            </div>
         </div>
     ),
     faqs: [
-      { question: "How accurate is the Scientific Calculator?", answer: "The tool is built on enterprise-grade algorithms, ensuring 100% mathematical accuracy. It is continuously tested against industry benchmarks to guarantee precision." },
-      { question: "Can I use the Scientific Calculator for professional projects in Nepal?", answer: "Absolutely. The tool is designed to handle context-specific variables and is highly recommended for professional audits, planning, and structural calculations across all regions, including Nepal." },
-      { question: "What should I do if I have anomalous input data?", answer: "The Scientific Calculator features built-in edge-case detection and data validation protocols. It will handle extreme parameters gracefully and alert you to any mathematically impossible inputs." },
-      { question: "Does this tool support complex, multi-variable modeling?", answer: "Yes, the advanced engine is specifically engineered for multi-dimensional metrics, allowing you to perform sensitivity analysis and scenario forecasting effortlessly." },
-      { question: "Is the data I input into the Scientific Calculator secure?", answer: "We utilize modern web standards and isolated runtime environments to ensure that all your computational sessions are secure and your data remains private." },
-      { question: "How often are the underlying algorithms updated?", answer: "Our computational logic is subject to continuous review and refinement. Updates are deployed seamlessly to ensure you always have access to the most advanced mathematical models available." },
-      { question: "Can I export the results for my reports?", answer: "Yes, the interface allows you to easily copy the verified results and integrate them directly into your professional documentation, financial audits, or academic papers." }
+        { question: "What is the difference between DEG and RAD mode?", answer: "DEG (degree) mode measures angles in degrees (0°–360°). RAD (radian) mode measures angles in radians (0–2π). For most school-level geometry problems in Nepal use DEG. For calculus and physics use RAD." },
+        { question: "What does log vs. ln mean on a calculator?", answer: "log(x) is the base-10 logarithm (common logarithm): log(1000) = 3 because 10³ = 1000. ln(x) is the natural logarithm with base e ≈ 2.718: ln(e) = 1." },
+        { question: "Are calculators allowed in SEE exams in Nepal?", answer: "No. Scientific calculators are not permitted in the SEE (Secondary Education Examination). Students must solve all calculations manually using written methods." },
+        { question: "How do I calculate factorial using this calculator?", answer: "Enter the number and press the n! button. Factorial (n!) = n × (n−1) × (n−2) × ... × 2 × 1. Example: 6! = 720. Note: factorial grows rapidly—20! = 2.43 × 10¹⁸." },
+        { question: "What is EXP or scientific notation on a calculator?", answer: "Scientific notation represents very large or small numbers as a × 10ⁿ. For example, 6.022 × 10²³ (Avogadro's number). The EXP button allows you to input the exponent directly." },
+        { question: "How do I find sin, cos, tan of angles?", answer: "Make sure you are in the correct angle mode (DEG or RAD). Then press sin, cos, or tan followed by the angle value. Example in DEG: sin(30) = 0.5, cos(60) = 0.5, tan(45) = 1." }
     ]
   },
   'word-counter': {
@@ -534,156 +344,90 @@ export const utilitySEO: Record<string, SEOContent> = {
       variables: ["Inputs = Your provided data", "Result = The computed answer"]
     },
     content: (
-        <div className="space-y-16">
-            <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="relative z-10">
-                    <h2 className="text-blue-400 font-black text-xs uppercase tracking-[0.4em] mb-4">
-                        Professional Guidance
-                    </h2>
-                    <h3 className="text-4xl font-black mb-8 leading-tight">
-                        Mastering the Word Counter Tool
-                    </h3>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        Welcome to the ultimate guide on the Word Counter Tool. In today's fast-paced world, accurate and efficient calculations are more important than ever. Whether you are a student, a professional, or someone simply looking to streamline their daily tasks, understanding the mechanics behind the Word Counter Tool can significantly enhance your productivity. This comprehensive resource is designed to provide you with an in-depth understanding of how to leverage this tool effectively. We will explore the fundamental concepts, advanced applications, and provide detailed examples to ensure you can maximize its potential. By integrating this tool into your workflow, you can eliminate manual errors, save valuable time, and make more informed decisions based on precise data analysis. 
-                        Our platform is engineered to deliver enterprise-grade accuracy, ensuring that every result you obtain is reliable and actionable. The Word Counter Tool is not just a simple calculator; it is a robust analytical engine capable of handling complex scenarios with ease. From basic computations to intricate modeling, this tool adapts to your specific needs, providing tailored insights that empower you to achieve your goals. Join us as we delve into the intricacies of the Word Counter Tool and discover how it can transform your approach to problem-solving.
-                    </p>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        The evolution of digital tools has revolutionized the way we interact with mathematical concepts. The Word Counter Tool represents the pinnacle of this evolution, combining intuitive user interfaces with powerful algorithmic backends. This synergy allows users of all skill levels to perform complex operations without requiring extensive technical expertise. As you navigate through this guide, you will uncover the underlying logic that drives the Word Counter Tool, gaining a deeper appreciation for its capabilities. We will demystify the algorithms, explain the formulas, and provide a clear, step-by-step methodology for tackling even the most challenging problems. 
-                        Furthermore, we recognize that theoretical knowledge must be complemented by practical application. Therefore, this guide is enriched with real-world scenarios, demonstrating how the Word Counter Tool can be utilized across various industries and disciplines. Whether it's optimizing supply chains, forecasting financial trends, or conducting academic research, the principles discussed here are universally applicable. Prepare to elevate your analytical skills and harness the full power of the Word Counter Tool to drive innovation and success in your endeavors.
-                    </p>
-                </div>
+        <div className="space-y-12">
+            <div className="bg-teal-50 border-l-4 border-teal-600 rounded-r-xl p-8 shadow-sm">
+                <h2 className="text-teal-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Word Counter Tool Guide</h2>
+                <p className="text-slate-800 text-base leading-relaxed">
+                    The <strong>Word Counter</strong> is an essential writing tool that instantly analyzes your text to provide word count, character count, sentence count, paragraph count, reading time, and speaking time. Whether you are writing an academic essay, a professional report, a social media post, or content for a Nepali news portal, meeting precise word limits is critical for compliance and quality.
+                </p>
             </div>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Regional Context & Worked Examples in Nepal</h3>
-                <p className="text-slate-700 leading-relaxed mb-4 text-lg">
-                    When applying the Word Counter Tool within the context of Nepal, it is essential to consider the unique socio-economic and geographical landscape of the region. Nepal's diverse topography, ranging from the towering Himalayas to the fertile Terai plains, presents distinct challenges and opportunities that require localized solutions. The Word Counter Tool can play a pivotal role in addressing these challenges by providing precise calculations tailored to the local environment. For instance, when planning infrastructure projects in remote mountainous regions, accurate data modeling is critical to ensure structural integrity and cost-effectiveness. 
-                    Moreover, the rapid urbanization and economic growth in cities like Kathmandu and Pokhara demand efficient resource management and strategic planning. The Word Counter Tool enables local businesses and policymakers to optimize their operations, whether it's managing logistics in challenging terrains or forecasting market trends in a developing economy. By incorporating Nepal-specific variables, such as local currency (NPR), regional measurement units (like Ropani or Bigha), and localized regulatory frameworks, the Word Counter Tool becomes an indispensable asset for regional development. We have tailored specific examples to resonate with the daily realities faced by professionals operating in Nepal.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-4 text-lg">
-                    Consider the agricultural sector, which forms the backbone of Nepal's economy. The Word Counter Tool can be utilized to optimize crop yields, manage water resources efficiently, and forecast market prices based on seasonal variations. By analyzing historical data and current market trends, farmers and agricultural cooperatives can make informed decisions that enhance productivity and profitability. Similarly, in the renewable energy sector, particularly solar and hydropower, the Word Counter Tool is vital for assessing energy potential, calculating return on investment, and designing sustainable energy systems that cater to both urban centers and off-grid rural communities.
-                    The integration of the Word Counter Tool into educational curriculums across Nepal is also crucial for building a mathematically proficient workforce. By providing students with access to advanced analytical tools, we can foster a culture of innovation and critical thinking. This empowers the next generation of engineers, scientists, and entrepreneurs to tackle complex challenges and drive sustainable development across the nation. Let's explore some specific worked examples that highlight the practical utility of the Word Counter Tool in the Nepalese context.
-                </p>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-6">
-                    <h4 className="font-bold text-xl mb-3 text-slate-800">Worked Example 1: Urban Development in Kathmandu</h4>
-                    <p className="text-slate-700 text-lg">
-                        Imagine a civil engineering firm planning a new commercial complex in the heart of Kathmandu. They need to calculate the precise material requirements while accounting for local supply chain constraints and fluctuating costs in Nepalese Rupees (NPR). By utilizing the Word Counter Tool, the project managers can input specific variables such as the cost of cement per bag, the required volume of concrete, and the estimated labor costs. The tool processes these inputs to generate a comprehensive budget forecast, highlighting potential cost overruns and identifying areas for optimization. This level of precision is critical for ensuring the project remains within budget and is completed on schedule, despite the logistical challenges inherent in Kathmandu's dense urban environment.
-                    </p>
-                </div>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-6">
-                    <h4 className="font-bold text-xl mb-3 text-slate-800">Worked Example 2: Renewable Energy in the Annapurna Region</h4>
-                    <p className="text-slate-700 text-lg">
-                        In a remote village in the Annapurna region, a local cooperative is planning to install a community solar micro-grid. To ensure the system can meet the energy demands of the village throughout the year, including the cloudy monsoon season, they must accurately size the solar panels and battery storage. The Word Counter Tool allows them to calculate the exact solar irradiance based on their geographical coordinates and altitude. By inputting the daily energy consumption of the village, the tool determines the optimal configuration for the solar array and battery bank. This ensures a reliable and sustainable energy supply, reducing reliance on expensive and polluting diesel generators, and significantly improving the quality of life for the local residents.
-                    </p>
+            {/* What It Measures */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">1. What the Word Counter Measures</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-white border border-teal-200 rounded-xl p-5 shadow-sm">
+                        <h4 className="font-black text-teal-700 mb-2">Word Count</h4>
+                        <p className="text-slate-600 text-sm">Total number of space-separated words. Essential for academic submissions (500-word minimum essays), SEO content (minimum 800–1,500 words for ranking articles), and grant applications.</p>
+                    </div>
+                    <div className="bg-white border border-teal-200 rounded-xl p-5 shadow-sm">
+                        <h4 className="font-black text-teal-700 mb-2">Character Count</h4>
+                        <p className="text-slate-600 text-sm">Total characters with and without spaces. Critical for Twitter/X (280 chars), SMS (160 chars), meta descriptions (150–160 chars), and title tags (50–60 chars).</p>
+                    </div>
+                    <div className="bg-white border border-teal-200 rounded-xl p-5 shadow-sm">
+                        <h4 className="font-black text-teal-700 mb-2">Reading Time</h4>
+                        <p className="text-slate-600 text-sm">Estimated based on average adult reading speed of 200–250 words per minute (WPM). Helps content creators optimize article length for target reader attention spans.</p>
+                    </div>
+                    <div className="bg-white border border-teal-200 rounded-xl p-5 shadow-sm">
+                        <h4 className="font-black text-teal-700 mb-2">Speaking Time</h4>
+                        <p className="text-slate-600 text-sm">Estimated at 130–150 WPM (average speaking pace). Invaluable for preparing speeches, conference presentations, and video scripts for YouTube or training content.</p>
+                    </div>
                 </div>
             </section>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Comparative Analysis and Benchmarking</h3>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    To truly appreciate the value of the Word Counter Tool, it is helpful to compare it against traditional methodologies. The following table illustrates the key differences and highlights the advantages of adopting a digital, automated approach. This comparison underscores the transformative impact of the Word Counter Tool on operational efficiency, accuracy, and strategic decision-making. By moving away from manual calculations and embracing advanced computational tools, organizations can achieve a significant competitive advantage.
-                </p>
-                <div className="overflow-x-auto rounded-xl border border-slate-200">
-                    <table className="w-full text-left border-collapse">
-                        <thead>
-                            <tr className="bg-slate-100 text-slate-800">
-                                <th className="p-4 border-b border-slate-300 font-bold">Feature / Metric</th>
-                                <th className="p-4 border-b border-slate-300 font-bold">Traditional Manual Approach</th>
-                                <th className="p-4 border-b border-slate-300 font-bold">Using the Word Counter Tool</th>
+            {/* Word Limits Reference */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">2. Common Word Limit Reference Table</h3>
+                <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+                    <table className="w-full text-left text-sm">
+                        <thead className="bg-teal-50 border-b border-teal-200">
+                            <tr>
+                                <th className="p-4 font-black text-teal-900">Document Type</th>
+                                <th className="p-4 font-black text-teal-900">Typical Word Count</th>
+                                <th className="p-4 font-black text-teal-900">Context</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Calculation Speed</td>
-                                <td className="p-4 border-b border-slate-200">Slow, prone to human error, requires extensive cross-checking.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Instantaneous, automated, and mathematically verified.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Accuracy & Precision</td>
-                                <td className="p-4 border-b border-slate-200">High risk of transcription errors and formula misapplication.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">100% accuracy based on rigorously tested algorithmic models.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Complex Scenario Modeling</td>
-                                <td className="p-4 border-b border-slate-200">Difficult to manage multiple variables; sensitivity analysis is tedious.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Effortlessly handles multi-variable inputs with real-time updates.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Data Integration</td>
-                                <td className="p-4 border-b border-slate-200">Siloed data, requiring manual transfer between different documents.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Seamless integration capabilities, allowing for holistic data analysis.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Cost Efficiency</td>
-                                <td className="p-4 border-b border-slate-200">High hidden costs due to time spent on corrections and audits.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Significantly reduces operational overhead and audit time.</td>
-                            </tr>
+                        <tbody className="divide-y divide-slate-100 text-slate-600">
+                            <tr><td className="p-4 font-bold">Tweet / X Post</td><td className="p-4">≤ 280 characters</td><td className="p-4">Social media</td></tr>
+                            <tr><td className="p-4 font-bold">Meta Description</td><td className="p-4">150–160 characters</td><td className="p-4">SEO / Google snippet</td></tr>
+                            <tr><td className="p-4 font-bold">SEE/+2 Essay (Nepal)</td><td className="p-4">200–400 words</td><td className="p-4">Academic exam writing</td></tr>
+                            <tr><td className="p-4 font-bold">Short Blog Article</td><td className="p-4">500–800 words</td><td className="p-4">News/media sites</td></tr>
+                            <tr><td className="p-4 font-bold">SEO-Optimized Article</td><td className="p-4">1,200–2,000 words</td><td className="p-4">Google ranking content</td></tr>
+                            <tr><td className="p-4 font-bold">TU Research Paper</td><td className="p-4">3,000–8,000 words</td><td className="p-4">Tribhuvan University submissions</td></tr>
+                            <tr><td className="p-4 font-bold">Masters Thesis</td><td className="p-4">15,000–40,000 words</td><td className="p-4">Graduate academic work</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p className="text-slate-700 leading-relaxed mt-6 text-lg">
-                    As demonstrated in the table above, the transition to using the Word Counter Tool offers clear and measurable benefits. The elimination of human error alone can save organizations countless hours and significant financial resources. Furthermore, the ability to rapidly model complex scenarios enables proactive decision-making, allowing businesses to adapt quickly to changing market conditions. This agility is particularly crucial in today's dynamic economic environment, where the ability to quickly analyze and interpret data can dictate success or failure.
-                    We encourage all users to fully explore the features of the Word Counter Tool and integrate it deeply into their standard operating procedures. The initial investment in learning the tool will yield exponential returns in productivity and analytical capability.
-                </p>
             </section>
 
-            <section className="bg-slate-50 border border-slate-200 rounded-[3rem] p-12 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Explore Related Analytical Tools</h3>
-                <p className="text-slate-600 mb-8 leading-relaxed text-lg">
-                    To build a comprehensive analytical toolkit, we recommend integrating the Word Counter Tool with other specialized calculators available on our platform. Cross-referencing data across multiple tools provides a holistic view of your operations and ensures maximum structural integrity. Here are five highly recommended tools to enhance your computational workflow:
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <a href="/calculator/financial-roi/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Financial ROI Calculator &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Analyze return on investment for complex financial portfolios.</p>
-                    </a>
-                    <a href="/calculator/statistical-variance/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Statistical Variance &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Determine data dispersion and standard deviation accurately.</p>
-                    </a>
-                    <a href="/calculator/structural-load/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Structural Load Estimator &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Calculate precise load-bearing requirements for civil engineering.</p>
-                    </a>
-                    <a href="/calculator/currency-converter/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Live Currency Converter &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Convert NPR to USD and other global currencies in real-time.</p>
-                    </a>
-                    <a href="/calculator/project-timeline/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Project Timeline Manager &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Optimize project schedules using critical path methodology.</p>
-                    </a>
+            {/* Nepali Language Note */}
+            <section className="bg-slate-900 text-white rounded-2xl p-8">
+                <h3 className="text-xl font-black text-teal-400 mb-4">3. Word Counting in Nepali (Devanagari Script)</h3>
+                <p className="text-slate-300 text-sm leading-relaxed mb-4">Counting words in Nepali text written in Devanagari script follows the same space-separation principle as English. However, be aware:</p>
+                <ul className="space-y-2 text-sm text-slate-300">
+                    <li>→ <strong className="text-white">Half characters (halanta forms)</strong> in Nepali may affect character count but not word count.</li>
+                    <li>→ <strong className="text-white">Conjunct consonants</strong> (samyukta akshara) are counted as part of the word they appear in.</li>
+                    <li>→ For Nepali news submissions to outlets like Setopati, Ratopati, or Onlinekhabar, word count tools should handle Unicode Devanagari text accurately—this tool does.</li>
+                    <li>→ When writing bilingual content (Nepali + English), paste each language separately for accurate individual counts.</li>
+                </ul>
+            </section>
+
+            <div className="pt-8 border-t border-slate-200 text-center">
+                <div className="flex flex-wrap justify-center gap-3">
+                    <a href="/calculator/date-duration/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-teal-700 hover:bg-teal-50 transition-all">Date Duration</a>
+                    <a href="/calculator/scientific-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-teal-700 hover:bg-teal-50 transition-all">Scientific Calculator</a>
+                    <a href="/calculator/ratio-proportion/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-teal-700 hover:bg-teal-50 transition-all">Ratio Calculator</a>
                 </div>
-            </section>
-
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Deep Dive: Advanced Technical Considerations and Strategic Implementation</h3>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    To achieve mastery over the Word Counter Tool, one must delve into the advanced technical considerations that govern its operation. The underlying algorithms are designed to handle not just standard inputs, but also extreme edge cases that often cause standard models to fail. This robustness is achieved through continuous integration of feedback from academic institutions and industry professionals. By implementing sophisticated error-handling routines and validation checks, the Word Counter Tool ensures that output data remains pristine, even when subjected to anomalous input parameters. This level of computational integrity is vital for applications where precision is non-negotiable, such as structural engineering or high-frequency financial trading.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Furthermore, the strategic implementation of the Word Counter Tool requires a paradigm shift in organizational workflows. It is not sufficient to merely provide access to the tool; organizations must foster a culture of data literacy and analytical rigor. This involves comprehensive training programs to ensure all team members understand the theoretical principles behind the calculations, as well as the practical mechanics of using the interface. By elevating the overall mathematical proficiency of the workforce, organizations can unlock new levels of innovation and operational efficiency. The Word Counter Tool serves as a catalyst for this transformation, providing a tangible platform for continuous learning and skill development.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    In the context of data visualization, the Word Counter Tool offers seamless export capabilities that allow users to generate comprehensive reports and graphical representations of their findings. Translating raw numerical data into intuitive charts and graphs is essential for communicating complex analytical insights to non-technical stakeholders. Whether you are presenting a financial forecast to a board of directors or explaining a structural analysis to a municipal planning committee, the ability to present data clearly and compellingly is paramount. The Word Counter Tool facilitates this process, ensuring that your insights are not only accurate but also highly persuasive.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Another critical aspect of the Word Counter Tool is its scalability. As your data processing requirements grow, the tool scales effortlessly to accommodate larger datasets and more complex modeling scenarios. This scalability is powered by cloud-based computational infrastructure, ensuring high availability and rapid processing speeds, regardless of the user's local hardware limitations. This means that a freelance consultant in a remote location can leverage the same computational power as a large multinational corporation. This democratization of advanced analytical tools is a key driver of global innovation and economic development.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Finally, we must consider the ethical implications of automated data analysis. As reliance on tools like the Word Counter Tool increases, it is crucial to maintain human oversight and critical judgment. The tool is designed to augment human intelligence, not replace it. Users must remain vigilant, validating the inputs and critically interpreting the outputs to ensure they align with real-world constraints and ethical guidelines. By combining the processing power of the Word Counter Tool with the nuanced judgment of experienced professionals, we can achieve outcomes that are both technically brilliant and socially responsible. We are committed to continuously refining the Word Counter Tool to meet the evolving needs of our global user base, ensuring it remains the premier choice for professional-grade computation.
-                </p>
-            </section>
+            </div>
         </div>
     ),
     faqs: [
-      { question: "How accurate is the Word Counter Tool?", answer: "The tool is built on enterprise-grade algorithms, ensuring 100% mathematical accuracy. It is continuously tested against industry benchmarks to guarantee precision." },
-      { question: "Can I use the Word Counter Tool for professional projects in Nepal?", answer: "Absolutely. The tool is designed to handle context-specific variables and is highly recommended for professional audits, planning, and structural calculations across all regions, including Nepal." },
-      { question: "What should I do if I have anomalous input data?", answer: "The Word Counter Tool features built-in edge-case detection and data validation protocols. It will handle extreme parameters gracefully and alert you to any mathematically impossible inputs." },
-      { question: "Does this tool support complex, multi-variable modeling?", answer: "Yes, the advanced engine is specifically engineered for multi-dimensional metrics, allowing you to perform sensitivity analysis and scenario forecasting effortlessly." },
-      { question: "Is the data I input into the Word Counter Tool secure?", answer: "We utilize modern web standards and isolated runtime environments to ensure that all your computational sessions are secure and your data remains private." },
-      { question: "How often are the underlying algorithms updated?", answer: "Our computational logic is subject to continuous review and refinement. Updates are deployed seamlessly to ensure you always have access to the most advanced mathematical models available." },
-      { question: "Can I export the results for my reports?", answer: "Yes, the interface allows you to easily copy the verified results and integrate them directly into your professional documentation, financial audits, or academic papers." }
+        { question: "How are words counted in the word counter?", answer: "Words are counted by splitting text on whitespace (spaces, tabs, newlines). Punctuation attached to a word does not create a separate word—'Nepal,' counts as one word. Consecutive spaces are treated as single word separators." },
+        { question: "Does this tool count Nepali (Devanagari) words?", answer: "Yes. The word counter accurately handles Unicode Devanagari text. Nepali words are separated by spaces, and the tool counts them using the same whitespace-splitting logic as Latin-script languages." },
+        { question: "How is reading time calculated?", answer: "Reading time is estimated using an average adult reading speed of 200–250 words per minute (WPM). For a 1,000-word article, estimated reading time is approximately 4–5 minutes." },
+        { question: "What is the ideal word count for a blog post?", answer: "For SEO purposes, articles targeting competitive keywords typically need 1,500–2,500 words. Longer content tends to rank better because it provides comprehensive topical coverage. However, word count alone does not guarantee ranking—content quality matters most." },
+        { question: "How many words is a 5-minute speech?", answer: "At an average speaking pace of 130–150 WPM, a 5-minute speech contains approximately 650–750 words. Our word counter estimates speaking time based on 140 WPM as a default pace." },
+        { question: "What is the character limit for a Google meta description?", answer: "Google typically displays meta descriptions up to 155–160 characters. Keep meta descriptions between 120–155 characters to ensure the full description appears in search results without being cut off." }
     ]
   },
   'date-duration': {
@@ -705,156 +449,82 @@ export const utilitySEO: Record<string, SEOContent> = {
       variables: ["Inputs = Your provided data", "Result = The computed answer"]
     },
     content: (
-        <div className="space-y-16">
-            <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="relative z-10">
-                    <h2 className="text-blue-400 font-black text-xs uppercase tracking-[0.4em] mb-4">
-                        Professional Guidance
-                    </h2>
-                    <h3 className="text-4xl font-black mb-8 leading-tight">
-                        Mastering the Date Duration Calculator
-                    </h3>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        Welcome to the ultimate guide on the Date Duration Calculator. In today's fast-paced world, accurate and efficient calculations are more important than ever. Whether you are a student, a professional, or someone simply looking to streamline their daily tasks, understanding the mechanics behind the Date Duration Calculator can significantly enhance your productivity. This comprehensive resource is designed to provide you with an in-depth understanding of how to leverage this tool effectively. We will explore the fundamental concepts, advanced applications, and provide detailed examples to ensure you can maximize its potential. By integrating this tool into your workflow, you can eliminate manual errors, save valuable time, and make more informed decisions based on precise data analysis. 
-                        Our platform is engineered to deliver enterprise-grade accuracy, ensuring that every result you obtain is reliable and actionable. The Date Duration Calculator is not just a simple calculator; it is a robust analytical engine capable of handling complex scenarios with ease. From basic computations to intricate modeling, this tool adapts to your specific needs, providing tailored insights that empower you to achieve your goals. Join us as we delve into the intricacies of the Date Duration Calculator and discover how it can transform your approach to problem-solving.
-                    </p>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        The evolution of digital tools has revolutionized the way we interact with mathematical concepts. The Date Duration Calculator represents the pinnacle of this evolution, combining intuitive user interfaces with powerful algorithmic backends. This synergy allows users of all skill levels to perform complex operations without requiring extensive technical expertise. As you navigate through this guide, you will uncover the underlying logic that drives the Date Duration Calculator, gaining a deeper appreciation for its capabilities. We will demystify the algorithms, explain the formulas, and provide a clear, step-by-step methodology for tackling even the most challenging problems. 
-                        Furthermore, we recognize that theoretical knowledge must be complemented by practical application. Therefore, this guide is enriched with real-world scenarios, demonstrating how the Date Duration Calculator can be utilized across various industries and disciplines. Whether it's optimizing supply chains, forecasting financial trends, or conducting academic research, the principles discussed here are universally applicable. Prepare to elevate your analytical skills and harness the full power of the Date Duration Calculator to drive innovation and success in your endeavors.
-                    </p>
-                </div>
+        <div className="space-y-12">
+            <div className="bg-sky-50 border-l-4 border-sky-600 rounded-r-xl p-8 shadow-sm">
+                <h2 className="text-sky-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Date Duration Calculator Guide</h2>
+                <p className="text-slate-800 text-base leading-relaxed">
+                    The <strong>Date Duration Calculator</strong> computes the exact number of days, weeks, months, and years between any two dates. It is an essential tool for legal deadline tracking, loan tenure calculations, employment duration (for gratuity and provident fund), project timelines, and calculating age for official documents. The calculator accurately handles leap years, month-end edge cases, and supports both AD (Gregorian) and BS (Bikram Sambat) calendar systems relevant to Nepal.
+                </p>
             </div>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Regional Context & Worked Examples in Nepal</h3>
-                <p className="text-slate-700 leading-relaxed mb-4 text-lg">
-                    When applying the Date Duration Calculator within the context of Nepal, it is essential to consider the unique socio-economic and geographical landscape of the region. Nepal's diverse topography, ranging from the towering Himalayas to the fertile Terai plains, presents distinct challenges and opportunities that require localized solutions. The Date Duration Calculator can play a pivotal role in addressing these challenges by providing precise calculations tailored to the local environment. For instance, when planning infrastructure projects in remote mountainous regions, accurate data modeling is critical to ensure structural integrity and cost-effectiveness. 
-                    Moreover, the rapid urbanization and economic growth in cities like Kathmandu and Pokhara demand efficient resource management and strategic planning. The Date Duration Calculator enables local businesses and policymakers to optimize their operations, whether it's managing logistics in challenging terrains or forecasting market trends in a developing economy. By incorporating Nepal-specific variables, such as local currency (NPR), regional measurement units (like Ropani or Bigha), and localized regulatory frameworks, the Date Duration Calculator becomes an indispensable asset for regional development. We have tailored specific examples to resonate with the daily realities faced by professionals operating in Nepal.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-4 text-lg">
-                    Consider the agricultural sector, which forms the backbone of Nepal's economy. The Date Duration Calculator can be utilized to optimize crop yields, manage water resources efficiently, and forecast market prices based on seasonal variations. By analyzing historical data and current market trends, farmers and agricultural cooperatives can make informed decisions that enhance productivity and profitability. Similarly, in the renewable energy sector, particularly solar and hydropower, the Date Duration Calculator is vital for assessing energy potential, calculating return on investment, and designing sustainable energy systems that cater to both urban centers and off-grid rural communities.
-                    The integration of the Date Duration Calculator into educational curriculums across Nepal is also crucial for building a mathematically proficient workforce. By providing students with access to advanced analytical tools, we can foster a culture of innovation and critical thinking. This empowers the next generation of engineers, scientists, and entrepreneurs to tackle complex challenges and drive sustainable development across the nation. Let's explore some specific worked examples that highlight the practical utility of the Date Duration Calculator in the Nepalese context.
-                </p>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-6">
-                    <h4 className="font-bold text-xl mb-3 text-slate-800">Worked Example 1: Urban Development in Kathmandu</h4>
-                    <p className="text-slate-700 text-lg">
-                        Imagine a civil engineering firm planning a new commercial complex in the heart of Kathmandu. They need to calculate the precise material requirements while accounting for local supply chain constraints and fluctuating costs in Nepalese Rupees (NPR). By utilizing the Date Duration Calculator, the project managers can input specific variables such as the cost of cement per bag, the required volume of concrete, and the estimated labor costs. The tool processes these inputs to generate a comprehensive budget forecast, highlighting potential cost overruns and identifying areas for optimization. This level of precision is critical for ensuring the project remains within budget and is completed on schedule, despite the logistical challenges inherent in Kathmandu's dense urban environment.
-                    </p>
-                </div>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-6">
-                    <h4 className="font-bold text-xl mb-3 text-slate-800">Worked Example 2: Renewable Energy in the Annapurna Region</h4>
-                    <p className="text-slate-700 text-lg">
-                        In a remote village in the Annapurna region, a local cooperative is planning to install a community solar micro-grid. To ensure the system can meet the energy demands of the village throughout the year, including the cloudy monsoon season, they must accurately size the solar panels and battery storage. The Date Duration Calculator allows them to calculate the exact solar irradiance based on their geographical coordinates and altitude. By inputting the daily energy consumption of the village, the tool determines the optimal configuration for the solar array and battery bank. This ensures a reliable and sustainable energy supply, reducing reliance on expensive and polluting diesel generators, and significantly improving the quality of life for the local residents.
-                    </p>
+            {/* Calendar Context */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">1. Nepal's Dual Calendar System</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="bg-sky-50 border border-sky-200 rounded-xl p-6">
+                        <h4 className="font-black text-sky-800 mb-3">Bikram Sambat (BS) – Official Calendar</h4>
+                        <p className="text-slate-600 text-sm leading-relaxed">Nepal officially uses the Bikram Sambat calendar. BS is approximately 56 years and 8 months ahead of the Gregorian (AD) calendar. Government documents, legal contracts, NRB filings, and official dates use BS. The BS year has 12 months but each month has variable days (29–32 days).</p>
+                    </div>
+                    <div className="bg-slate-50 border border-slate-200 rounded-xl p-6">
+                        <h4 className="font-black text-slate-800 mb-3">Gregorian (AD) – International Calendar</h4>
+                        <p className="text-slate-600 text-sm leading-relaxed">The Gregorian calendar is used internationally and in Nepal for business contracts, international trade, visa dates, and academic records. Conversion between BS and AD is essential for cross-referencing documents.</p>
+                    </div>
                 </div>
             </section>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Comparative Analysis and Benchmarking</h3>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    To truly appreciate the value of the Date Duration Calculator, it is helpful to compare it against traditional methodologies. The following table illustrates the key differences and highlights the advantages of adopting a digital, automated approach. This comparison underscores the transformative impact of the Date Duration Calculator on operational efficiency, accuracy, and strategic decision-making. By moving away from manual calculations and embracing advanced computational tools, organizations can achieve a significant competitive advantage.
-                </p>
-                <div className="overflow-x-auto rounded-xl border border-slate-200">
-                    <table className="w-full text-left border-collapse">
-                        <thead>
-                            <tr className="bg-slate-100 text-slate-800">
-                                <th className="p-4 border-b border-slate-300 font-bold">Feature / Metric</th>
-                                <th className="p-4 border-b border-slate-300 font-bold">Traditional Manual Approach</th>
-                                <th className="p-4 border-b border-slate-300 font-bold">Using the Date Duration Calculator</th>
+            {/* Practical Uses */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">2. Common Use Cases in Nepal</h3>
+                <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+                    <table className="w-full text-left text-sm">
+                        <thead className="bg-sky-50 border-b border-sky-200">
+                            <tr>
+                                <th className="p-4 font-black text-sky-900">Use Case</th>
+                                <th className="p-4 font-black text-sky-900">Why Duration Matters</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Calculation Speed</td>
-                                <td className="p-4 border-b border-slate-200">Slow, prone to human error, requires extensive cross-checking.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Instantaneous, automated, and mathematically verified.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Accuracy & Precision</td>
-                                <td className="p-4 border-b border-slate-200">High risk of transcription errors and formula misapplication.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">100% accuracy based on rigorously tested algorithmic models.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Complex Scenario Modeling</td>
-                                <td className="p-4 border-b border-slate-200">Difficult to manage multiple variables; sensitivity analysis is tedious.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Effortlessly handles multi-variable inputs with real-time updates.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Data Integration</td>
-                                <td className="p-4 border-b border-slate-200">Siloed data, requiring manual transfer between different documents.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Seamless integration capabilities, allowing for holistic data analysis.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Cost Efficiency</td>
-                                <td className="p-4 border-b border-slate-200">High hidden costs due to time spent on corrections and audits.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Significantly reduces operational overhead and audit time.</td>
-                            </tr>
+                        <tbody className="divide-y divide-slate-100 text-slate-600">
+                            <tr><td className="p-4 font-bold">Gratuity Calculation</td><td className="p-4">Nepal's Labor Act requires exact years of service to compute gratuity (one month salary per year after 1 year). Partial years are prorated based on exact days.</td></tr>
+                            <tr><td className="p-4 font-bold">Citizenship Age Eligibility</td><td className="p-4">Nepal citizenship applications for those over 16 require exact date calculations from DOB to application date.</td></tr>
+                            <tr><td className="p-4 font-bold">Loan Tenure</td><td className="p-4">Bank loan terms in Nepal are specified in months. Converting years to exact days helps verify EMI payment counts.</td></tr>
+                            <tr><td className="p-4 font-bold">Contract Deadlines</td><td className="p-4">Construction and government procurement contracts specify completion deadlines in days. Tracking exact days remaining prevents penalties.</td></tr>
+                            <tr><td className="p-4 font-bold">Visa Duration</td><td className="p-4">Tourist and work visas specify maximum stay in days. Overstaying even by one day attracts penalties.</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p className="text-slate-700 leading-relaxed mt-6 text-lg">
-                    As demonstrated in the table above, the transition to using the Date Duration Calculator offers clear and measurable benefits. The elimination of human error alone can save organizations countless hours and significant financial resources. Furthermore, the ability to rapidly model complex scenarios enables proactive decision-making, allowing businesses to adapt quickly to changing market conditions. This agility is particularly crucial in today's dynamic economic environment, where the ability to quickly analyze and interpret data can dictate success or failure.
-                    We encourage all users to fully explore the features of the Date Duration Calculator and integrate it deeply into their standard operating procedures. The initial investment in learning the tool will yield exponential returns in productivity and analytical capability.
-                </p>
             </section>
 
-            <section className="bg-slate-50 border border-slate-200 rounded-[3rem] p-12 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Explore Related Analytical Tools</h3>
-                <p className="text-slate-600 mb-8 leading-relaxed text-lg">
-                    To build a comprehensive analytical toolkit, we recommend integrating the Date Duration Calculator with other specialized calculators available on our platform. Cross-referencing data across multiple tools provides a holistic view of your operations and ensures maximum structural integrity. Here are five highly recommended tools to enhance your computational workflow:
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <a href="/calculator/financial-roi/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Financial ROI Calculator &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Analyze return on investment for complex financial portfolios.</p>
-                    </a>
-                    <a href="/calculator/statistical-variance/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Statistical Variance &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Determine data dispersion and standard deviation accurately.</p>
-                    </a>
-                    <a href="/calculator/structural-load/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Structural Load Estimator &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Calculate precise load-bearing requirements for civil engineering.</p>
-                    </a>
-                    <a href="/calculator/currency-converter/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Live Currency Converter &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Convert NPR to USD and other global currencies in real-time.</p>
-                    </a>
-                    <a href="/calculator/project-timeline/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Project Timeline Manager &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Optimize project schedules using critical path methodology.</p>
-                    </a>
+            {/* How Leap Years Work */}
+            <section className="bg-slate-900 text-white rounded-2xl p-8">
+                <h3 className="text-xl font-black text-sky-400 mb-4">3. Leap Year Handling</h3>
+                <p className="text-slate-300 text-sm leading-relaxed mb-4">The Date Duration Calculator automatically handles leap years in both AD and BS calendars:</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                    <div className="bg-slate-800 rounded-xl p-4">
+                        <h4 className="text-sky-300 font-bold mb-2">AD Leap Year Rule</h4>
+                        <p className="text-slate-300">A year is a leap year if: divisible by 4, UNLESS divisible by 100, EXCEPT if also divisible by 400. E.g., 2000 and 2024 are leap years; 1900 was not.</p>
+                    </div>
+                    <div className="bg-slate-800 rounded-xl p-4">
+                        <h4 className="text-sky-300 font-bold mb-2">BS Leap Year</h4>
+                        <p className="text-slate-300">BS months have variable days (29–32) defined by astronomical calculations. Chaitra (12th month) has 30 days in a regular BS year and 31 in a BS leap year.</p>
+                    </div>
                 </div>
             </section>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Deep Dive: Advanced Technical Considerations and Strategic Implementation</h3>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    To achieve mastery over the Date Duration Calculator, one must delve into the advanced technical considerations that govern its operation. The underlying algorithms are designed to handle not just standard inputs, but also extreme edge cases that often cause standard models to fail. This robustness is achieved through continuous integration of feedback from academic institutions and industry professionals. By implementing sophisticated error-handling routines and validation checks, the Date Duration Calculator ensures that output data remains pristine, even when subjected to anomalous input parameters. This level of computational integrity is vital for applications where precision is non-negotiable, such as structural engineering or high-frequency financial trading.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Furthermore, the strategic implementation of the Date Duration Calculator requires a paradigm shift in organizational workflows. It is not sufficient to merely provide access to the tool; organizations must foster a culture of data literacy and analytical rigor. This involves comprehensive training programs to ensure all team members understand the theoretical principles behind the calculations, as well as the practical mechanics of using the interface. By elevating the overall mathematical proficiency of the workforce, organizations can unlock new levels of innovation and operational efficiency. The Date Duration Calculator serves as a catalyst for this transformation, providing a tangible platform for continuous learning and skill development.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    In the context of data visualization, the Date Duration Calculator offers seamless export capabilities that allow users to generate comprehensive reports and graphical representations of their findings. Translating raw numerical data into intuitive charts and graphs is essential for communicating complex analytical insights to non-technical stakeholders. Whether you are presenting a financial forecast to a board of directors or explaining a structural analysis to a municipal planning committee, the ability to present data clearly and compellingly is paramount. The Date Duration Calculator facilitates this process, ensuring that your insights are not only accurate but also highly persuasive.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Another critical aspect of the Date Duration Calculator is its scalability. As your data processing requirements grow, the tool scales effortlessly to accommodate larger datasets and more complex modeling scenarios. This scalability is powered by cloud-based computational infrastructure, ensuring high availability and rapid processing speeds, regardless of the user's local hardware limitations. This means that a freelance consultant in a remote location can leverage the same computational power as a large multinational corporation. This democratization of advanced analytical tools is a key driver of global innovation and economic development.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Finally, we must consider the ethical implications of automated data analysis. As reliance on tools like the Date Duration Calculator increases, it is crucial to maintain human oversight and critical judgment. The tool is designed to augment human intelligence, not replace it. Users must remain vigilant, validating the inputs and critically interpreting the outputs to ensure they align with real-world constraints and ethical guidelines. By combining the processing power of the Date Duration Calculator with the nuanced judgment of experienced professionals, we can achieve outcomes that are both technically brilliant and socially responsible. We are committed to continuously refining the Date Duration Calculator to meet the evolving needs of our global user base, ensuring it remains the premier choice for professional-grade computation.
-                </p>
-            </section>
+            <div className="pt-8 border-t border-slate-200 text-center">
+                <div className="flex flex-wrap justify-center gap-3">
+                    <a href="/calculator/nepali-date/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-sky-700 hover:bg-sky-50 transition-all">BS/AD Date Converter</a>
+                    <a href="/calculator/nepal-citizenship-age/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-sky-700 hover:bg-sky-50 transition-all">Age Calculator</a>
+                    <a href="/calculator/gratuity-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-sky-700 hover:bg-sky-50 transition-all">Gratuity Calculator</a>
+                </div>
+            </div>
         </div>
     ),
     faqs: [
-      { question: "How accurate is the Date Duration Calculator?", answer: "The tool is built on enterprise-grade algorithms, ensuring 100% mathematical accuracy. It is continuously tested against industry benchmarks to guarantee precision." },
-      { question: "Can I use the Date Duration Calculator for professional projects in Nepal?", answer: "Absolutely. The tool is designed to handle context-specific variables and is highly recommended for professional audits, planning, and structural calculations across all regions, including Nepal." },
-      { question: "What should I do if I have anomalous input data?", answer: "The Date Duration Calculator features built-in edge-case detection and data validation protocols. It will handle extreme parameters gracefully and alert you to any mathematically impossible inputs." },
-      { question: "Does this tool support complex, multi-variable modeling?", answer: "Yes, the advanced engine is specifically engineered for multi-dimensional metrics, allowing you to perform sensitivity analysis and scenario forecasting effortlessly." },
-      { question: "Is the data I input into the Date Duration Calculator secure?", answer: "We utilize modern web standards and isolated runtime environments to ensure that all your computational sessions are secure and your data remains private." },
-      { question: "How often are the underlying algorithms updated?", answer: "Our computational logic is subject to continuous review and refinement. Updates are deployed seamlessly to ensure you always have access to the most advanced mathematical models available." },
-      { question: "Can I export the results for my reports?", answer: "Yes, the interface allows you to easily copy the verified results and integrate them directly into your professional documentation, financial audits, or academic papers." }
+        { question: "How many days between two dates?", answer: "Enter both dates in the calculator and it instantly computes the exact number of days. It correctly handles all month lengths, leap years, and cross-year calculations." },
+        { question: "Can I calculate date duration in the Nepali BS calendar?", answer: "Yes. The calculator supports Bikram Sambat (BS) date input. Select the BS mode, enter your start and end dates in BS format, and the tool converts internally to compute the exact duration." },
+        { question: "Why is the Date Duration Calculator important for gratuity in Nepal?", answer: "Nepal's Labor Act 2074 mandates gratuity for employees who complete at least 1 year of service. The gratuity amount depends on exact years and days of service. An accurate duration calculation prevents under- or over-payment disputes." },
+        { question: "Does the calculator account for leap years?", answer: "Yes, the calculator automatically accounts for all leap years (both AD and BS) within the date range, ensuring the calculated day count is always accurate." },
+        { question: "What is the difference between BS and AD calendar?", answer: "BS (Bikram Sambat) is Nepal's official national calendar, currently about 56 years and 8 months ahead of the Gregorian (AD) calendar. For example, 2081 BS corresponds approximately to 2024/2025 AD." }
     ]
   },
   'lead-time': {

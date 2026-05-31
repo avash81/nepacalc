@@ -1,10 +1,10 @@
 import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 export const metadata = calcMeta({
-  title: "NEPSE Dividend Tax Calculator | Bonus Share WHT NepaCalc",
-  description: "Calculate 5% withholding tax on NEPSE bonus shares and cash dividends. Shows total tax liability and net in-hand amount for Nepal stock investors.",
+  title: "NEPSE Bonus Share Tax Calculator 2083/84 | Dividend WHT Nepal | NepaCalc",
+  description: "Calculate 5% withholding tax on NEPSE bonus shares and cash dividends for FY 2083/84. Shows net shares received and cash receivable after tax deduction.",
   slug: 'nepse-bonus-tax',
-  keywords: ["nepse bonus tax calculator", "dividend tax nepal", "bonus share tax nepal", "withholding tax nepse", "5 percent dividend tax", "cdsc dividend tax nepal"],
+  keywords: ["nepse bonus tax calculator", "bonus share tax nepal", "dividend tax nepal 2083", "5 percent bonus tax nepse"],
 });
 export default function Page() {
   return (

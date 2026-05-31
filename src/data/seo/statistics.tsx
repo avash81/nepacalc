@@ -21,156 +21,118 @@ export const statisticsSEO: Record<string, SEOContent> = {
       variables: ["Inputs = Your provided data", "Result = The computed answer"]
     },
     content: (
-        <div className="space-y-16">
-            <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="relative z-10">
-                    <h2 className="text-blue-400 font-black text-xs uppercase tracking-[0.4em] mb-4">
-                        Professional Guidance
-                    </h2>
-                    <h3 className="text-4xl font-black mb-8 leading-tight">
-                        Mastering the Statistics Plus Calculator
-                    </h3>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        Welcome to the ultimate guide on the Statistics Plus Calculator. In today's fast-paced world, accurate and efficient calculations are more important than ever. Whether you are a student, a professional, or someone simply looking to streamline their daily tasks, understanding the mechanics behind the Statistics Plus Calculator can significantly enhance your productivity. This comprehensive resource is designed to provide you with an in-depth understanding of how to leverage this tool effectively. We will explore the fundamental concepts, advanced applications, and provide detailed examples to ensure you can maximize its potential. By integrating this tool into your workflow, you can eliminate manual errors, save valuable time, and make more informed decisions based on precise data analysis. 
-                        Our platform is engineered to deliver enterprise-grade accuracy, ensuring that every result you obtain is reliable and actionable. The Statistics Plus Calculator is not just a simple calculator; it is a robust analytical engine capable of handling complex scenarios with ease. From basic computations to intricate modeling, this tool adapts to your specific needs, providing tailored insights that empower you to achieve your goals. Join us as we delve into the intricacies of the Statistics Plus Calculator and discover how it can transform your approach to problem-solving.
-                    </p>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        The evolution of digital tools has revolutionized the way we interact with mathematical concepts. The Statistics Plus Calculator represents the pinnacle of this evolution, combining intuitive user interfaces with powerful algorithmic backends. This synergy allows users of all skill levels to perform complex operations without requiring extensive technical expertise. As you navigate through this guide, you will uncover the underlying logic that drives the Statistics Plus Calculator, gaining a deeper appreciation for its capabilities. We will demystify the algorithms, explain the formulas, and provide a clear, step-by-step methodology for tackling even the most challenging problems. 
-                        Furthermore, we recognize that theoretical knowledge must be complemented by practical application. Therefore, this guide is enriched with real-world scenarios, demonstrating how the Statistics Plus Calculator can be utilized across various industries and disciplines. Whether it's optimizing supply chains, forecasting financial trends, or conducting academic research, the principles discussed here are universally applicable. Prepare to elevate your analytical skills and harness the full power of the Statistics Plus Calculator to drive innovation and success in your endeavors.
-                    </p>
-                </div>
+        <div className="space-y-12">
+            {/* Header */}
+            <div className="bg-indigo-50 border-l-4 border-indigo-600 rounded-r-xl p-8 shadow-sm">
+                <h2 className="text-indigo-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Advanced Statistics Guide</h2>
+                <p className="text-slate-800 text-base leading-relaxed">
+                    The <strong>Statistics Plus Calculator</strong> computes all key descriptive statistics—mean, median, mode, variance, standard deviation, range, quartiles, and more—from any dataset you provide. Whether you are a student analyzing survey data, a researcher summarizing field measurements, or a business analyst reviewing sales figures, this tool eliminates manual computation errors and delivers verified results instantly.
+                </p>
             </div>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Regional Context & Worked Examples in Nepal</h3>
-                <p className="text-slate-700 leading-relaxed mb-4 text-lg">
-                    When applying the Statistics Plus Calculator within the context of Nepal, it is essential to consider the unique socio-economic and geographical landscape of the region. Nepal's diverse topography, ranging from the towering Himalayas to the fertile Terai plains, presents distinct challenges and opportunities that require localized solutions. The Statistics Plus Calculator can play a pivotal role in addressing these challenges by providing precise calculations tailored to the local environment. For instance, when planning infrastructure projects in remote mountainous regions, accurate data modeling is critical to ensure structural integrity and cost-effectiveness. 
-                    Moreover, the rapid urbanization and economic growth in cities like Kathmandu and Pokhara demand efficient resource management and strategic planning. The Statistics Plus Calculator enables local businesses and policymakers to optimize their operations, whether it's managing logistics in challenging terrains or forecasting market trends in a developing economy. By incorporating Nepal-specific variables, such as local currency (NPR), regional measurement units (like Ropani or Bigha), and localized regulatory frameworks, the Statistics Plus Calculator becomes an indispensable asset for regional development. We have tailored specific examples to resonate with the daily realities faced by professionals operating in Nepal.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-4 text-lg">
-                    Consider the agricultural sector, which forms the backbone of Nepal's economy. The Statistics Plus Calculator can be utilized to optimize crop yields, manage water resources efficiently, and forecast market prices based on seasonal variations. By analyzing historical data and current market trends, farmers and agricultural cooperatives can make informed decisions that enhance productivity and profitability. Similarly, in the renewable energy sector, particularly solar and hydropower, the Statistics Plus Calculator is vital for assessing energy potential, calculating return on investment, and designing sustainable energy systems that cater to both urban centers and off-grid rural communities.
-                    The integration of the Statistics Plus Calculator into educational curriculums across Nepal is also crucial for building a mathematically proficient workforce. By providing students with access to advanced analytical tools, we can foster a culture of innovation and critical thinking. This empowers the next generation of engineers, scientists, and entrepreneurs to tackle complex challenges and drive sustainable development across the nation. Let's explore some specific worked examples that highlight the practical utility of the Statistics Plus Calculator in the Nepalese context.
-                </p>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-6">
-                    <h4 className="font-bold text-xl mb-3 text-slate-800">Worked Example 1: Urban Development in Kathmandu</h4>
-                    <p className="text-slate-700 text-lg">
-                        Imagine a civil engineering firm planning a new commercial complex in the heart of Kathmandu. They need to calculate the precise material requirements while accounting for local supply chain constraints and fluctuating costs in Nepalese Rupees (NPR). By utilizing the Statistics Plus Calculator, the project managers can input specific variables such as the cost of cement per bag, the required volume of concrete, and the estimated labor costs. The tool processes these inputs to generate a comprehensive budget forecast, highlighting potential cost overruns and identifying areas for optimization. This level of precision is critical for ensuring the project remains within budget and is completed on schedule, despite the logistical challenges inherent in Kathmandu's dense urban environment.
-                    </p>
-                </div>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-6">
-                    <h4 className="font-bold text-xl mb-3 text-slate-800">Worked Example 2: Renewable Energy in the Annapurna Region</h4>
-                    <p className="text-slate-700 text-lg">
-                        In a remote village in the Annapurna region, a local cooperative is planning to install a community solar micro-grid. To ensure the system can meet the energy demands of the village throughout the year, including the cloudy monsoon season, they must accurately size the solar panels and battery storage. The Statistics Plus Calculator allows them to calculate the exact solar irradiance based on their geographical coordinates and altitude. By inputting the daily energy consumption of the village, the tool determines the optimal configuration for the solar array and battery bank. This ensures a reliable and sustainable energy supply, reducing reliance on expensive and polluting diesel generators, and significantly improving the quality of life for the local residents.
-                    </p>
-                </div>
-            </section>
-
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Comparative Analysis and Benchmarking</h3>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    To truly appreciate the value of the Statistics Plus Calculator, it is helpful to compare it against traditional methodologies. The following table illustrates the key differences and highlights the advantages of adopting a digital, automated approach. This comparison underscores the transformative impact of the Statistics Plus Calculator on operational efficiency, accuracy, and strategic decision-making. By moving away from manual calculations and embracing advanced computational tools, organizations can achieve a significant competitive advantage.
-                </p>
-                <div className="overflow-x-auto rounded-xl border border-slate-200">
-                    <table className="w-full text-left border-collapse">
-                        <thead>
-                            <tr className="bg-slate-100 text-slate-800">
-                                <th className="p-4 border-b border-slate-300 font-bold">Feature / Metric</th>
-                                <th className="p-4 border-b border-slate-300 font-bold">Traditional Manual Approach</th>
-                                <th className="p-4 border-b border-slate-300 font-bold">Using the Statistics Plus Calculator</th>
+            {/* Section 1: Core Measures */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-6">1. Core Statistical Measures Explained</h3>
+                <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm mb-6">
+                    <table className="w-full text-left text-sm">
+                        <thead className="bg-slate-50 border-b border-slate-200">
+                            <tr>
+                                <th className="p-4 font-black text-slate-800 uppercase tracking-widest">Measure</th>
+                                <th className="p-4 font-black text-slate-800 uppercase tracking-widest">Formula</th>
+                                <th className="p-4 font-black text-slate-800 uppercase tracking-widest">Purpose</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Calculation Speed</td>
-                                <td className="p-4 border-b border-slate-200">Slow, prone to human error, requires extensive cross-checking.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Instantaneous, automated, and mathematically verified.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Accuracy & Precision</td>
-                                <td className="p-4 border-b border-slate-200">High risk of transcription errors and formula misapplication.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">100% accuracy based on rigorously tested algorithmic models.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Complex Scenario Modeling</td>
-                                <td className="p-4 border-b border-slate-200">Difficult to manage multiple variables; sensitivity analysis is tedious.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Effortlessly handles multi-variable inputs with real-time updates.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Data Integration</td>
-                                <td className="p-4 border-b border-slate-200">Siloed data, requiring manual transfer between different documents.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Seamless integration capabilities, allowing for holistic data analysis.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Cost Efficiency</td>
-                                <td className="p-4 border-b border-slate-200">High hidden costs due to time spent on corrections and audits.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Significantly reduces operational overhead and audit time.</td>
-                            </tr>
+                        <tbody className="divide-y divide-slate-100 text-slate-600">
+                            <tr><td className="p-4 font-bold">Mean (Average)</td><td className="p-4 font-mono text-xs">Σx / n</td><td className="p-4">Central tendency; the arithmetic average of all values.</td></tr>
+                            <tr><td className="p-4 font-bold">Median</td><td className="p-4 font-mono text-xs">Middle value when sorted</td><td className="p-4">Robust center; unaffected by extreme outliers.</td></tr>
+                            <tr><td className="p-4 font-bold">Mode</td><td className="p-4 font-mono text-xs">Most frequent value</td><td className="p-4">Most common observation in a dataset.</td></tr>
+                            <tr><td className="p-4 font-bold">Variance (σ²)</td><td className="p-4 font-mono text-xs">Σ(x−μ)² / n</td><td className="p-4">Average squared deviation from the mean.</td></tr>
+                            <tr><td className="p-4 font-bold">Std Deviation (σ)</td><td className="p-4 font-mono text-xs">√Variance</td><td className="p-4">Average spread of data points from the mean.</td></tr>
+                            <tr><td className="p-4 font-bold">Range</td><td className="p-4 font-mono text-xs">Max − Min</td><td className="p-4">Total spread of the dataset.</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p className="text-slate-700 leading-relaxed mt-6 text-lg">
-                    As demonstrated in the table above, the transition to using the Statistics Plus Calculator offers clear and measurable benefits. The elimination of human error alone can save organizations countless hours and significant financial resources. Furthermore, the ability to rapidly model complex scenarios enables proactive decision-making, allowing businesses to adapt quickly to changing market conditions. This agility is particularly crucial in today's dynamic economic environment, where the ability to quickly analyze and interpret data can dictate success or failure.
-                    We encourage all users to fully explore the features of the Statistics Plus Calculator and integrate it deeply into their standard operating procedures. The initial investment in learning the tool will yield exponential returns in productivity and analytical capability.
-                </p>
             </section>
 
-            <section className="bg-slate-50 border border-slate-200 rounded-[3rem] p-12 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Explore Related Analytical Tools</h3>
-                <p className="text-slate-600 mb-8 leading-relaxed text-lg">
-                    To build a comprehensive analytical toolkit, we recommend integrating the Statistics Plus Calculator with other specialized calculators available on our platform. Cross-referencing data across multiple tools provides a holistic view of your operations and ensures maximum structural integrity. Here are five highly recommended tools to enhance your computational workflow:
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <a href="/calculator/financial-roi/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Financial ROI Calculator &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Analyze return on investment for complex financial portfolios.</p>
-                    </a>
-                    <a href="/calculator/statistical-variance/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Statistical Variance &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Determine data dispersion and standard deviation accurately.</p>
-                    </a>
-                    <a href="/calculator/structural-load/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Structural Load Estimator &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Calculate precise load-bearing requirements for civil engineering.</p>
-                    </a>
-                    <a href="/calculator/currency-converter/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Live Currency Converter &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Convert NPR to USD and other global currencies in real-time.</p>
-                    </a>
-                    <a href="/calculator/project-timeline/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Project Timeline Manager &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Optimize project schedules using critical path methodology.</p>
-                    </a>
+            {/* Section 2: Worked Example */}
+            <section className="bg-slate-900 text-white rounded-2xl p-8 border border-slate-800 shadow-xl">
+                <h3 className="text-xl font-black mb-6 text-indigo-400">2. Worked Example: Analyzing Nepal School Exam Scores</h3>
+                <p className="text-slate-300 text-sm mb-4 leading-relaxed">Dataset: Marks of 8 students: 55, 62, 70, 73, 73, 80, 88, 95</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="bg-slate-800 rounded-xl p-4 space-y-2 text-sm">
+                        <p className="text-indigo-300 font-bold">Step 1: Mean</p>
+                        <p className="text-slate-300 font-mono text-xs">(55+62+70+73+73+80+88+95) / 8 = 596 / 8 = <strong className="text-white">74.5</strong></p>
+                        <p className="text-indigo-300 font-bold mt-3">Step 2: Median (sorted)</p>
+                        <p className="text-slate-300 font-mono text-xs">Middle pair: (73+73)/2 = <strong className="text-white">73.0</strong></p>
+                        <p className="text-indigo-300 font-bold mt-3">Step 3: Mode</p>
+                        <p className="text-slate-300 font-mono text-xs">73 appears twice → Mode = <strong className="text-white">73</strong></p>
+                    </div>
+                    <div className="bg-slate-800 rounded-xl p-4 space-y-2 text-sm">
+                        <p className="text-indigo-300 font-bold">Step 4: Variance</p>
+                        <p className="text-slate-300 font-mono text-xs">Σ(x−74.5)² / 8 ≈ <strong className="text-white">151.75</strong></p>
+                        <p className="text-indigo-300 font-bold mt-3">Step 5: Std Deviation</p>
+                        <p className="text-slate-300 font-mono text-xs">√151.75 ≈ <strong className="text-white">12.32</strong></p>
+                        <p className="text-indigo-300 font-bold mt-3">Step 6: Range</p>
+                        <p className="text-slate-300 font-mono text-xs">95 − 55 = <strong className="text-white">40</strong></p>
+                    </div>
                 </div>
             </section>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Deep Dive: Advanced Technical Considerations and Strategic Implementation</h3>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    To achieve mastery over the Statistics Plus Calculator, one must delve into the advanced technical considerations that govern its operation. The underlying algorithms are designed to handle not just standard inputs, but also extreme edge cases that often cause standard models to fail. This robustness is achieved through continuous integration of feedback from academic institutions and industry professionals. By implementing sophisticated error-handling routines and validation checks, the Statistics Plus Calculator ensures that output data remains pristine, even when subjected to anomalous input parameters. This level of computational integrity is vital for applications where precision is non-negotiable, such as structural engineering or high-frequency financial trading.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Furthermore, the strategic implementation of the Statistics Plus Calculator requires a paradigm shift in organizational workflows. It is not sufficient to merely provide access to the tool; organizations must foster a culture of data literacy and analytical rigor. This involves comprehensive training programs to ensure all team members understand the theoretical principles behind the calculations, as well as the practical mechanics of using the interface. By elevating the overall mathematical proficiency of the workforce, organizations can unlock new levels of innovation and operational efficiency. The Statistics Plus Calculator serves as a catalyst for this transformation, providing a tangible platform for continuous learning and skill development.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    In the context of data visualization, the Statistics Plus Calculator offers seamless export capabilities that allow users to generate comprehensive reports and graphical representations of their findings. Translating raw numerical data into intuitive charts and graphs is essential for communicating complex analytical insights to non-technical stakeholders. Whether you are presenting a financial forecast to a board of directors or explaining a structural analysis to a municipal planning committee, the ability to present data clearly and compellingly is paramount. The Statistics Plus Calculator facilitates this process, ensuring that your insights are not only accurate but also highly persuasive.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Another critical aspect of the Statistics Plus Calculator is its scalability. As your data processing requirements grow, the tool scales effortlessly to accommodate larger datasets and more complex modeling scenarios. This scalability is powered by cloud-based computational infrastructure, ensuring high availability and rapid processing speeds, regardless of the user's local hardware limitations. This means that a freelance consultant in a remote location can leverage the same computational power as a large multinational corporation. This democratization of advanced analytical tools is a key driver of global innovation and economic development.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Finally, we must consider the ethical implications of automated data analysis. As reliance on tools like the Statistics Plus Calculator increases, it is crucial to maintain human oversight and critical judgment. The tool is designed to augment human intelligence, not replace it. Users must remain vigilant, validating the inputs and critically interpreting the outputs to ensure they align with real-world constraints and ethical guidelines. By combining the processing power of the Statistics Plus Calculator with the nuanced judgment of experienced professionals, we can achieve outcomes that are both technically brilliant and socially responsible. We are committed to continuously refining the Statistics Plus Calculator to meet the evolving needs of our global user base, ensuring it remains the premier choice for professional-grade computation.
-                </p>
+            {/* Section 3: Population vs Sample */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">3. Population vs. Sample Statistics</h3>
+                <p className="text-slate-600 leading-relaxed mb-4">A critical distinction in statistics is whether you are analyzing an entire <strong>population</strong> (all members of a group) or a <strong>sample</strong> (a subset). This affects which formula you use for variance and standard deviation:</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
+                        <h4 className="font-black text-blue-800 mb-2">Population (σ²)</h4>
+                        <p className="font-mono text-sm text-blue-700">σ² = Σ(x−μ)² / N</p>
+                        <p className="text-slate-600 text-sm mt-2">Divide by N (total count). Use when you have data for every member of the group.</p>
+                    </div>
+                    <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+                        <h4 className="font-black text-green-800 mb-2">Sample (s²)</h4>
+                        <p className="font-mono text-sm text-green-700">s² = Σ(x−x̄)² / (n−1)</p>
+                        <p className="text-slate-600 text-sm mt-2">Divide by n−1 (Bessel's correction). Use when your data is a subset of a larger group.</p>
+                    </div>
+                </div>
             </section>
+
+            {/* Section 4: Quartiles and IQR */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">4. Quartiles and the Interquartile Range (IQR)</h3>
+                <p className="text-slate-600 leading-relaxed mb-4">Quartiles split your sorted data into four equal parts. The <strong>Interquartile Range (IQR = Q3 − Q1)</strong> measures the spread of the middle 50% of your data, making it highly resistant to outliers. IQR is frequently used in box-and-whisker plots and for detecting outliers (values beyond 1.5 × IQR from Q1 or Q3).</p>
+            </section>
+
+            {/* Section 5: Nepal Application */}
+            <section className="bg-indigo-50 border border-indigo-200 rounded-xl p-6">
+                <h3 className="text-xl font-black text-indigo-800 mb-4">5. Statistics in Nepal: Practical Applications</h3>
+                <ul className="space-y-3 text-slate-700 text-sm">
+                    <li className="flex gap-3"><span className="text-indigo-600 font-black">→</span> <span><strong>Agricultural Research:</strong> Analyzing crop yield data across districts using standard deviation to assess variability.</span></li>
+                    <li className="flex gap-3"><span className="text-indigo-600 font-black">→</span> <span><strong>SEE/NEB Grading:</strong> Understanding class average and score distribution for competitive exam preparation.</span></li>
+                    <li className="flex gap-3"><span className="text-indigo-600 font-black">→</span> <span><strong>Business Analysis:</strong> Summarizing daily sales data for Kathmandu-based retailers.</span></li>
+                    <li className="flex gap-3"><span className="text-indigo-600 font-black">→</span> <span><strong>Health Research:</strong> Measuring BMI or blood pressure distributions across community health posts.</span></li>
+                </ul>
+            </section>
+
+            {/* Internal Links */}
+            <div className="pt-8 border-t border-slate-200">
+                <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 text-center">Related Calculators</p>
+                <div className="flex flex-wrap justify-center gap-3">
+                    <a href="/calculator/standard-deviation/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Standard Deviation</a>
+                    <a href="/calculator/z-score/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Z-Score Calculator</a>
+                    <a href="/calculator/probability/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Probability Calculator</a>
+                    <a href="/calculator/scientific-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Scientific Calculator</a>
+                </div>
+            </div>
         </div>
     ),
     faqs: [
-      { question: "How accurate is the Statistics Plus Calculator?", answer: "The tool is built on enterprise-grade algorithms, ensuring 100% mathematical accuracy. It is continuously tested against industry benchmarks to guarantee precision." },
-      { question: "Can I use the Statistics Plus Calculator for professional projects in Nepal?", answer: "Absolutely. The tool is designed to handle context-specific variables and is highly recommended for professional audits, planning, and structural calculations across all regions, including Nepal." },
-      { question: "What should I do if I have anomalous input data?", answer: "The Statistics Plus Calculator features built-in edge-case detection and data validation protocols. It will handle extreme parameters gracefully and alert you to any mathematically impossible inputs." },
-      { question: "Does this tool support complex, multi-variable modeling?", answer: "Yes, the advanced engine is specifically engineered for multi-dimensional metrics, allowing you to perform sensitivity analysis and scenario forecasting effortlessly." },
-      { question: "Is the data I input into the Statistics Plus Calculator secure?", answer: "We utilize modern web standards and isolated runtime environments to ensure that all your computational sessions are secure and your data remains private." },
-      { question: "How often are the underlying algorithms updated?", answer: "Our computational logic is subject to continuous review and refinement. Updates are deployed seamlessly to ensure you always have access to the most advanced mathematical models available." },
-      { question: "Can I export the results for my reports?", answer: "Yes, the interface allows you to easily copy the verified results and integrate them directly into your professional documentation, financial audits, or academic papers." }
+        { question: "What is the difference between mean and median?", answer: "The mean is the arithmetic average of all values. The median is the middle value when data is sorted. The median is more robust for skewed datasets or when outliers are present, while the mean is better for symmetric distributions." },
+        { question: "When should I use population variance vs. sample variance?", answer: "Use population variance (÷N) when you have data for the entire group. Use sample variance (÷n−1) when your data is a subset of a larger population—this is by far the more common scenario in research and surveys." },
+        { question: "What is a standard deviation of zero?", answer: "A standard deviation of zero means all values in the dataset are identical—there is no variation at all. For example, the dataset {5, 5, 5, 5} has a standard deviation of 0." },
+        { question: "What is the interquartile range used for?", answer: "The IQR (Q3 − Q1) measures the spread of the middle 50% of data. It is used to detect outliers: any data point more than 1.5×IQR below Q1 or above Q3 is considered a potential outlier." },
+        { question: "How do I enter data into the statistics calculator?", answer: "Simply enter your numbers separated by commas (e.g., 10, 20, 35, 42, 55) and the tool will instantly compute all descriptive statistics including mean, median, mode, variance, standard deviation, and quartiles." },
+        { question: "Can this calculator handle large datasets?", answer: "Yes, the Statistics Plus Calculator can handle datasets with hundreds of values. Simply paste your comma-separated numbers and the tool processes them instantly." },
+        { question: "What is the coefficient of variation (CV)?", answer: "The CV is the ratio of standard deviation to the mean, expressed as a percentage: CV = (σ/μ) × 100. It allows comparison of variability between datasets with different units or scales." }
     ]
   },
   'standard-deviation': {
@@ -518,156 +480,103 @@ export const statisticsSEO: Record<string, SEOContent> = {
       variables: ["Inputs = Your provided data", "Result = The computed answer"]
     },
     content: (
-        <div className="space-y-16">
-            <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
-                <div className="relative z-10">
-                    <h2 className="text-blue-400 font-black text-xs uppercase tracking-[0.4em] mb-4">
-                        Professional Guidance
-                    </h2>
-                    <h3 className="text-4xl font-black mb-8 leading-tight">
-                        Mastering the Z-Score Calculator
-                    </h3>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        Welcome to the ultimate guide on the Z-Score Calculator. In today's fast-paced world, accurate and efficient calculations are more important than ever. Whether you are a student, a professional, or someone simply looking to streamline their daily tasks, understanding the mechanics behind the Z-Score Calculator can significantly enhance your productivity. This comprehensive resource is designed to provide you with an in-depth understanding of how to leverage this tool effectively. We will explore the fundamental concepts, advanced applications, and provide detailed examples to ensure you can maximize its potential. By integrating this tool into your workflow, you can eliminate manual errors, save valuable time, and make more informed decisions based on precise data analysis. 
-                        Our platform is engineered to deliver enterprise-grade accuracy, ensuring that every result you obtain is reliable and actionable. The Z-Score Calculator is not just a simple calculator; it is a robust analytical engine capable of handling complex scenarios with ease. From basic computations to intricate modeling, this tool adapts to your specific needs, providing tailored insights that empower you to achieve your goals. Join us as we delve into the intricacies of the Z-Score Calculator and discover how it can transform your approach to problem-solving.
-                    </p>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        The evolution of digital tools has revolutionized the way we interact with mathematical concepts. The Z-Score Calculator represents the pinnacle of this evolution, combining intuitive user interfaces with powerful algorithmic backends. This synergy allows users of all skill levels to perform complex operations without requiring extensive technical expertise. As you navigate through this guide, you will uncover the underlying logic that drives the Z-Score Calculator, gaining a deeper appreciation for its capabilities. We will demystify the algorithms, explain the formulas, and provide a clear, step-by-step methodology for tackling even the most challenging problems. 
-                        Furthermore, we recognize that theoretical knowledge must be complemented by practical application. Therefore, this guide is enriched with real-world scenarios, demonstrating how the Z-Score Calculator can be utilized across various industries and disciplines. Whether it's optimizing supply chains, forecasting financial trends, or conducting academic research, the principles discussed here are universally applicable. Prepare to elevate your analytical skills and harness the full power of the Z-Score Calculator to drive innovation and success in your endeavors.
-                    </p>
-                </div>
+        <div className="space-y-12">
+            <div className="bg-purple-50 border-l-4 border-purple-600 rounded-r-xl p-8 shadow-sm">
+                <h2 className="text-purple-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Z-Score Complete Guide</h2>
+                <p className="text-slate-800 text-base leading-relaxed">
+                    A <strong>Z-Score</strong> (also called a standard score) measures how many standard deviations a data point is from the population mean. Z-scores are foundational to hypothesis testing, quality control, exam result normalization, and financial risk analysis. A positive Z-score means the value is above average; a negative one means it is below average.
+                </p>
             </div>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Regional Context & Worked Examples in Nepal</h3>
-                <p className="text-slate-700 leading-relaxed mb-4 text-lg">
-                    When applying the Z-Score Calculator within the context of Nepal, it is essential to consider the unique socio-economic and geographical landscape of the region. Nepal's diverse topography, ranging from the towering Himalayas to the fertile Terai plains, presents distinct challenges and opportunities that require localized solutions. The Z-Score Calculator can play a pivotal role in addressing these challenges by providing precise calculations tailored to the local environment. For instance, when planning infrastructure projects in remote mountainous regions, accurate data modeling is critical to ensure structural integrity and cost-effectiveness. 
-                    Moreover, the rapid urbanization and economic growth in cities like Kathmandu and Pokhara demand efficient resource management and strategic planning. The Z-Score Calculator enables local businesses and policymakers to optimize their operations, whether it's managing logistics in challenging terrains or forecasting market trends in a developing economy. By incorporating Nepal-specific variables, such as local currency (NPR), regional measurement units (like Ropani or Bigha), and localized regulatory frameworks, the Z-Score Calculator becomes an indispensable asset for regional development. We have tailored specific examples to resonate with the daily realities faced by professionals operating in Nepal.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-4 text-lg">
-                    Consider the agricultural sector, which forms the backbone of Nepal's economy. The Z-Score Calculator can be utilized to optimize crop yields, manage water resources efficiently, and forecast market prices based on seasonal variations. By analyzing historical data and current market trends, farmers and agricultural cooperatives can make informed decisions that enhance productivity and profitability. Similarly, in the renewable energy sector, particularly solar and hydropower, the Z-Score Calculator is vital for assessing energy potential, calculating return on investment, and designing sustainable energy systems that cater to both urban centers and off-grid rural communities.
-                    The integration of the Z-Score Calculator into educational curriculums across Nepal is also crucial for building a mathematically proficient workforce. By providing students with access to advanced analytical tools, we can foster a culture of innovation and critical thinking. This empowers the next generation of engineers, scientists, and entrepreneurs to tackle complex challenges and drive sustainable development across the nation. Let's explore some specific worked examples that highlight the practical utility of the Z-Score Calculator in the Nepalese context.
-                </p>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-6">
-                    <h4 className="font-bold text-xl mb-3 text-slate-800">Worked Example 1: Urban Development in Kathmandu</h4>
-                    <p className="text-slate-700 text-lg">
-                        Imagine a civil engineering firm planning a new commercial complex in the heart of Kathmandu. They need to calculate the precise material requirements while accounting for local supply chain constraints and fluctuating costs in Nepalese Rupees (NPR). By utilizing the Z-Score Calculator, the project managers can input specific variables such as the cost of cement per bag, the required volume of concrete, and the estimated labor costs. The tool processes these inputs to generate a comprehensive budget forecast, highlighting potential cost overruns and identifying areas for optimization. This level of precision is critical for ensuring the project remains within budget and is completed on schedule, despite the logistical challenges inherent in Kathmandu's dense urban environment.
-                    </p>
-                </div>
-                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 mb-6">
-                    <h4 className="font-bold text-xl mb-3 text-slate-800">Worked Example 2: Renewable Energy in the Annapurna Region</h4>
-                    <p className="text-slate-700 text-lg">
-                        In a remote village in the Annapurna region, a local cooperative is planning to install a community solar micro-grid. To ensure the system can meet the energy demands of the village throughout the year, including the cloudy monsoon season, they must accurately size the solar panels and battery storage. The Z-Score Calculator allows them to calculate the exact solar irradiance based on their geographical coordinates and altitude. By inputting the daily energy consumption of the village, the tool determines the optimal configuration for the solar array and battery bank. This ensures a reliable and sustainable energy supply, reducing reliance on expensive and polluting diesel generators, and significantly improving the quality of life for the local residents.
-                    </p>
+            {/* Formula Section */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-6">1. The Z-Score Formula</h3>
+                <div className="bg-slate-900 text-white rounded-2xl p-8">
+                    <p className="font-mono text-2xl text-center text-purple-300 font-black mb-6">Z = (X − μ) / σ</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                        <div className="bg-slate-800 rounded-xl p-4"><p className="text-purple-300 font-bold mb-1">X</p><p className="text-slate-300">The individual data point you are analyzing</p></div>
+                        <div className="bg-slate-800 rounded-xl p-4"><p className="text-purple-300 font-bold mb-1">μ (mu)</p><p className="text-slate-300">The population or group mean (average)</p></div>
+                        <div className="bg-slate-800 rounded-xl p-4"><p className="text-purple-300 font-bold mb-1">σ (sigma)</p><p className="text-slate-300">The population standard deviation</p></div>
+                    </div>
                 </div>
             </section>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Comparative Analysis and Benchmarking</h3>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    To truly appreciate the value of the Z-Score Calculator, it is helpful to compare it against traditional methodologies. The following table illustrates the key differences and highlights the advantages of adopting a digital, automated approach. This comparison underscores the transformative impact of the Z-Score Calculator on operational efficiency, accuracy, and strategic decision-making. By moving away from manual calculations and embracing advanced computational tools, organizations can achieve a significant competitive advantage.
-                </p>
-                <div className="overflow-x-auto rounded-xl border border-slate-200">
-                    <table className="w-full text-left border-collapse">
-                        <thead>
-                            <tr className="bg-slate-100 text-slate-800">
-                                <th className="p-4 border-b border-slate-300 font-bold">Feature / Metric</th>
-                                <th className="p-4 border-b border-slate-300 font-bold">Traditional Manual Approach</th>
-                                <th className="p-4 border-b border-slate-300 font-bold">Using the Z-Score Calculator</th>
+            {/* Worked Example */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">2. Worked Example: SEE Exam Score in Nepal</h3>
+                <p className="text-slate-600 leading-relaxed mb-4">A student scores 78 marks in the SEE Mathematics exam. The national average (μ) is 65, and the standard deviation (σ) is 10. What is the student's Z-score?</p>
+                <div className="bg-purple-50 border border-purple-200 rounded-xl p-6 space-y-3">
+                    <p className="font-mono text-sm text-purple-800">Z = (X − μ) / σ</p>
+                    <p className="font-mono text-sm text-purple-800">Z = (78 − 65) / 10</p>
+                    <p className="font-mono text-sm text-purple-800">Z = 13 / 10 = <strong>+1.30</strong></p>
+                    <p className="text-slate-600 text-sm mt-2">A Z-score of +1.30 means the student scored 1.3 standard deviations above the national average—a performance in approximately the top 10% of students.</p>
+                </div>
+            </section>
+
+            {/* Z-Score Table */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">3. Z-Score Interpretation Table</h3>
+                <div className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+                    <table className="w-full text-left text-sm">
+                        <thead className="bg-slate-50 border-b border-slate-200">
+                            <tr>
+                                <th className="p-4 font-black text-slate-800">Z-Score Range</th>
+                                <th className="p-4 font-black text-slate-800">% of Data Below</th>
+                                <th className="p-4 font-black text-slate-800">Interpretation</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Calculation Speed</td>
-                                <td className="p-4 border-b border-slate-200">Slow, prone to human error, requires extensive cross-checking.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Instantaneous, automated, and mathematically verified.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Accuracy & Precision</td>
-                                <td className="p-4 border-b border-slate-200">High risk of transcription errors and formula misapplication.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">100% accuracy based on rigorously tested algorithmic models.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Complex Scenario Modeling</td>
-                                <td className="p-4 border-b border-slate-200">Difficult to manage multiple variables; sensitivity analysis is tedious.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Effortlessly handles multi-variable inputs with real-time updates.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Data Integration</td>
-                                <td className="p-4 border-b border-slate-200">Siloed data, requiring manual transfer between different documents.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Seamless integration capabilities, allowing for holistic data analysis.</td>
-                            </tr>
-                            <tr className="hover:bg-slate-50 transition-colors">
-                                <td className="p-4 border-b border-slate-200 font-medium">Cost Efficiency</td>
-                                <td className="p-4 border-b border-slate-200">High hidden costs due to time spent on corrections and audits.</td>
-                                <td className="p-4 border-b border-slate-200 text-green-700 font-medium">Significantly reduces operational overhead and audit time.</td>
-                            </tr>
+                        <tbody className="divide-y divide-slate-100 text-slate-600">
+                            <tr><td className="p-4 font-bold">Below −2.0</td><td className="p-4">~2.3%</td><td className="p-4">Very far below average (outlier)</td></tr>
+                            <tr><td className="p-4 font-bold">−1.0 to −2.0</td><td className="p-4">~16%</td><td className="p-4">Below average</td></tr>
+                            <tr><td className="p-4 font-bold text-green-700">−1.0 to +1.0</td><td className="p-4 text-green-700">68%</td><td className="p-4 text-green-700 font-bold">Within 1 standard deviation (Normal range)</td></tr>
+                            <tr><td className="p-4 font-bold">+1.0 to +2.0</td><td className="p-4">~84%</td><td className="p-4">Above average</td></tr>
+                            <tr><td className="p-4 font-bold">Above +2.0</td><td className="p-4">~97.7%</td><td className="p-4">Very far above average (outlier)</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <p className="text-slate-700 leading-relaxed mt-6 text-lg">
-                    As demonstrated in the table above, the transition to using the Z-Score Calculator offers clear and measurable benefits. The elimination of human error alone can save organizations countless hours and significant financial resources. Furthermore, the ability to rapidly model complex scenarios enables proactive decision-making, allowing businesses to adapt quickly to changing market conditions. This agility is particularly crucial in today's dynamic economic environment, where the ability to quickly analyze and interpret data can dictate success or failure.
-                    We encourage all users to fully explore the features of the Z-Score Calculator and integrate it deeply into their standard operating procedures. The initial investment in learning the tool will yield exponential returns in productivity and analytical capability.
-                </p>
             </section>
 
-            <section className="bg-slate-50 border border-slate-200 rounded-[3rem] p-12 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Explore Related Analytical Tools</h3>
-                <p className="text-slate-600 mb-8 leading-relaxed text-lg">
-                    To build a comprehensive analytical toolkit, we recommend integrating the Z-Score Calculator with other specialized calculators available on our platform. Cross-referencing data across multiple tools provides a holistic view of your operations and ensures maximum structural integrity. Here are five highly recommended tools to enhance your computational workflow:
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <a href="/calculator/financial-roi/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Financial ROI Calculator &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Analyze return on investment for complex financial portfolios.</p>
-                    </a>
-                    <a href="/calculator/statistical-variance/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Statistical Variance &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Determine data dispersion and standard deviation accurately.</p>
-                    </a>
-                    <a href="/calculator/structural-load/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Structural Load Estimator &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Calculate precise load-bearing requirements for civil engineering.</p>
-                    </a>
-                    <a href="/calculator/currency-converter/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Live Currency Converter &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Convert NPR to USD and other global currencies in real-time.</p>
-                    </a>
-                    <a href="/calculator/project-timeline/" className="block bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
-                        <h4 className="font-bold text-lg text-indigo-700 group-hover:text-indigo-900 mb-2">Project Timeline Manager &rarr;</h4>
-                        <p className="text-slate-500 text-sm">Optimize project schedules using critical path methodology.</p>
-                    </a>
+            {/* Applications */}
+            <section>
+                <h3 className="text-2xl font-black text-slate-900 mb-4">4. Real-World Applications of Z-Scores</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                        <h4 className="font-black text-purple-700 mb-3">Education (Nepal Context)</h4>
+                        <p className="text-slate-600 text-sm leading-relaxed">NEB and Tribhuvan University use standardized scores to rank students across different subjects and faculties. Z-scores allow comparing a student's relative performance in Physics vs. Nepali Literature on an equal scale.</p>
+                    </div>
+                    <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                        <h4 className="font-black text-purple-700 mb-3">Finance & Risk</h4>
+                        <p className="text-slate-600 text-sm leading-relaxed">The Altman Z-Score model predicts corporate bankruptcy risk. In banking, Z-scores assess credit default risk by measuring how far a borrower's metrics deviate from safe averages.</p>
+                    </div>
+                    <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                        <h4 className="font-black text-purple-700 mb-3">Healthcare</h4>
+                        <p className="text-slate-600 text-sm leading-relaxed">WHO uses Z-scores to assess children's growth (Weight-for-Age, Height-for-Age). A Z-score below −2 indicates moderate malnutrition; below −3 indicates severe malnutrition.</p>
+                    </div>
+                    <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                        <h4 className="font-black text-purple-700 mb-3">Quality Control</h4>
+                        <p className="text-slate-600 text-sm leading-relaxed">Manufacturing plants use control charts based on Z-scores to detect when a production process is deviating from target specifications, triggering quality alerts.</p>
+                    </div>
                 </div>
             </section>
 
-            <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-6">Deep Dive: Advanced Technical Considerations and Strategic Implementation</h3>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    To achieve mastery over the Z-Score Calculator, one must delve into the advanced technical considerations that govern its operation. The underlying algorithms are designed to handle not just standard inputs, but also extreme edge cases that often cause standard models to fail. This robustness is achieved through continuous integration of feedback from academic institutions and industry professionals. By implementing sophisticated error-handling routines and validation checks, the Z-Score Calculator ensures that output data remains pristine, even when subjected to anomalous input parameters. This level of computational integrity is vital for applications where precision is non-negotiable, such as structural engineering or high-frequency financial trading.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Furthermore, the strategic implementation of the Z-Score Calculator requires a paradigm shift in organizational workflows. It is not sufficient to merely provide access to the tool; organizations must foster a culture of data literacy and analytical rigor. This involves comprehensive training programs to ensure all team members understand the theoretical principles behind the calculations, as well as the practical mechanics of using the interface. By elevating the overall mathematical proficiency of the workforce, organizations can unlock new levels of innovation and operational efficiency. The Z-Score Calculator serves as a catalyst for this transformation, providing a tangible platform for continuous learning and skill development.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    In the context of data visualization, the Z-Score Calculator offers seamless export capabilities that allow users to generate comprehensive reports and graphical representations of their findings. Translating raw numerical data into intuitive charts and graphs is essential for communicating complex analytical insights to non-technical stakeholders. Whether you are presenting a financial forecast to a board of directors or explaining a structural analysis to a municipal planning committee, the ability to present data clearly and compellingly is paramount. The Z-Score Calculator facilitates this process, ensuring that your insights are not only accurate but also highly persuasive.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Another critical aspect of the Z-Score Calculator is its scalability. As your data processing requirements grow, the tool scales effortlessly to accommodate larger datasets and more complex modeling scenarios. This scalability is powered by cloud-based computational infrastructure, ensuring high availability and rapid processing speeds, regardless of the user's local hardware limitations. This means that a freelance consultant in a remote location can leverage the same computational power as a large multinational corporation. This democratization of advanced analytical tools is a key driver of global innovation and economic development.
-                </p>
-                <p className="text-slate-700 leading-relaxed mb-6 text-lg">
-                    Finally, we must consider the ethical implications of automated data analysis. As reliance on tools like the Z-Score Calculator increases, it is crucial to maintain human oversight and critical judgment. The tool is designed to augment human intelligence, not replace it. Users must remain vigilant, validating the inputs and critically interpreting the outputs to ensure they align with real-world constraints and ethical guidelines. By combining the processing power of the Z-Score Calculator with the nuanced judgment of experienced professionals, we can achieve outcomes that are both technically brilliant and socially responsible. We are committed to continuously refining the Z-Score Calculator to meet the evolving needs of our global user base, ensuring it remains the premier choice for professional-grade computation.
-                </p>
-            </section>
+            {/* Links */}
+            <div className="pt-8 border-t border-slate-200 text-center">
+                <div className="flex flex-wrap justify-center gap-3">
+                    <a href="/calculator/statistics-plus/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-purple-700 hover:bg-purple-50 transition-all">Statistics Plus</a>
+                    <a href="/calculator/standard-deviation/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-purple-700 hover:bg-purple-50 transition-all">Standard Deviation</a>
+                    <a href="/calculator/probability/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-purple-700 hover:bg-purple-50 transition-all">Probability Calculator</a>
+                </div>
+            </div>
         </div>
     ),
     faqs: [
-      { question: "How accurate is the Z-Score Calculator?", answer: "The tool is built on enterprise-grade algorithms, ensuring 100% mathematical accuracy. It is continuously tested against industry benchmarks to guarantee precision." },
-      { question: "Can I use the Z-Score Calculator for professional projects in Nepal?", answer: "Absolutely. The tool is designed to handle context-specific variables and is highly recommended for professional audits, planning, and structural calculations across all regions, including Nepal." },
-      { question: "What should I do if I have anomalous input data?", answer: "The Z-Score Calculator features built-in edge-case detection and data validation protocols. It will handle extreme parameters gracefully and alert you to any mathematically impossible inputs." },
-      { question: "Does this tool support complex, multi-variable modeling?", answer: "Yes, the advanced engine is specifically engineered for multi-dimensional metrics, allowing you to perform sensitivity analysis and scenario forecasting effortlessly." },
-      { question: "Is the data I input into the Z-Score Calculator secure?", answer: "We utilize modern web standards and isolated runtime environments to ensure that all your computational sessions are secure and your data remains private." },
-      { question: "How often are the underlying algorithms updated?", answer: "Our computational logic is subject to continuous review and refinement. Updates are deployed seamlessly to ensure you always have access to the most advanced mathematical models available." },
-      { question: "Can I export the results for my reports?", answer: "Yes, the interface allows you to easily copy the verified results and integrate them directly into your professional documentation, financial audits, or academic papers." }
+        { question: "What is a Z-score?", answer: "A Z-score measures how many standard deviations a value is from the population mean. Z = (X − μ) / σ. A Z-score of 0 means the value equals the mean; +1 means one standard deviation above the mean." },
+        { question: "Is a Z-score of 2 good or bad?", answer: "It depends on context. In exams, Z = +2 means you are in the top ~2.3% of performers—excellent. In medical screening, Z = +2 for blood pressure would be a concern, as it indicates unusually high readings." },
+        { question: "What is the 68-95-99.7 rule?", answer: "In a normal distribution: 68% of data falls within ±1 standard deviation (Z between −1 and +1), 95% within ±2 (Z between −2 and +2), and 99.7% within ±3 (Z between −3 and +3)." },
+        { question: "Can a Z-score be negative?", answer: "Yes. A negative Z-score simply means the data point is below the mean. For example, Z = −1.5 means the value is 1.5 standard deviations below the average." },
+        { question: "What is the difference between a Z-score and a T-score?", answer: "Z-scores use the population standard deviation and are best for large samples (n &gt; 30). T-scores use sample standard deviation and are appropriate for small samples (n ≤ 30) where population parameters are unknown." },
+        { question: "How do I use Z-scores to find probabilities?", answer: "After calculating a Z-score, you look up the corresponding probability in a standard normal table (Z-table). The value gives you the probability that a random observation from the distribution is less than your data point." },
+        { question: "What Z-score is considered an outlier?", answer: "Data points with Z-scores beyond ±3 are typically considered extreme outliers (they occur only 0.3% of the time in a normal distribution). Z-scores beyond ±2 are often flagged for further review." }
     ]
   }
 };

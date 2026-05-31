@@ -2,10 +2,10 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: "Nepal Citizenship Age Calculator | 16 Year Eligibility | NepaCalc",
-  description: "Check if you are eligible for a Nepalese citizenship certificate. Calculate exact age from birth date (BS/AD) to verify the 16-year minimum requirement.",
+  title: "Nepal Citizenship Age Calculator | 16 Year Eligibility 2081 BS | NepaCalc",
+  description: "Calculate your exact age for Nepal citizenship eligibility (16 years+). Accurate BS/AD date conversion. Check documents required for Nagarikta in 2081/82 BS.",
   slug: 'nepal-citizenship-age',
-  keywords: ["citizenship age nepal", "16 year citizenship nepal", "age calculator for citizenship nepal", "nagarkita age calculator"],
+  keywords: ["nepal citizenship age calculator", "nagarikta age nepal", "16 year citizenship nepal", "citizenship eligibility nepal 2081"],
 });
 
 export default function Page() {
