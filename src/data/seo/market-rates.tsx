@@ -44,7 +44,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                     <h3 className="text-4xl font-black mb-8 leading-tight">Live Gold Price Calculator Nepal | Gold Valuation Guide</h3>
                     <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
                         Gold holds immense cultural and financial significance in Nepal, serving as a primary wedding gift, festival ornament, and a trusted hedge against inflation. The Federation of Nepal Gold and Silver Dealers Association (FENEGOSIDA) sets the benchmark gold rates daily in Nepal based on international market pricing and local import duties. This calculator helps consumers, jewellers, and investors convert gold weights (Grams to Tolas) and estimate the final price of gold ornaments including making charges, wastage, and VAT.
-                    </p>
+                     For a broader understanding, you may also want to explore <a href="/calculator/circumference-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">our circumference calculation tool</a>.</p>
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">
                         <span className="text-slate-400">Quick Links:</span>
                                         <a href="/calculator/gold-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Gold Import Tax Calculator</a>
@@ -79,7 +79,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
             <section className="space-y-8 mt-12">
                 <h3 className="text-3xl font-black text-slate-900">2. How the Process Works (Step-by-Step)</h3>
                 <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
-                    <p className="mb-6">To achieve the most accurate outcomes when dealing with gold pricing and valuation, it is important to follow a structured method:</p>
+                    <p className="mb-6">To achieve the most accurate outcomes when dealing with gold pricing and valuation, it is important to follow a structured method: Additionally, <a href="/calculator/physics-energy" className="text-blue-600 hover:text-blue-800 underline transition-colors">the kinetic & potential</a> is highly recommended for related estimations.</p>
                     <ul className="space-y-6">
                         <li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">1</span><div><strong>Select Gold Purity:</strong> Choose between 24K Fine Gold or 22K Tejaabi Gold standard.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">2</span><div><strong>Enter Gold Weight:</strong> Input the weight of the gold in Tolas or Grams.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">3</span><div><strong>Set Making Charges & Wastage:</strong> Enter the jeweller's design making charge (percentage or flat rate) and wastage (Jahari) percentage.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">4</span><div><strong>Apply VAT (13%):</strong> Toggle the 13% VAT standard to ensure tax compliance.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">5</span><div><strong>Calculate Grand Total:</strong> Review the breakdown showing the pure gold cost, making cost, tax, and final payable amount.</div></li>
                     </ul>
@@ -185,7 +185,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
             <section className="space-y-8 mt-12">
                 <h3 className="text-3xl font-black text-slate-900">8. Key Factors Affecting Your Calculations</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">International Bullion Market</h4><p className="text-slate-600 leading-relaxed">Local gold rates are directly pegged to the London Bullion Market Association (LBMA) USD rates, adjusting for currency exchange fluctuations.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Nepal Customs Duty and Tariffs</h4><p className="text-slate-600 leading-relaxed">Any change in the government's customs duty rate during the annual budget directly shifts local gold prices.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Melting and Design Wastage</h4><p className="text-slate-600 leading-relaxed">Complex traditional Nepali designs (like Tilhari or Jantar) require higher making charges and result in higher wastage percentages.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Seasonality & Demand</h4><p className="text-slate-600 leading-relaxed">Prices and dealer premiums can rise during wedding seasons (Mangsir, Magh) due to high demand.</p></div>
+                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">International Bullion Market</h4><p className="text-slate-600 leading-relaxed">Local gold rates are directly pegged to the London Bullion Market Association (LBMA) USD rates, adjusting for currency exchange fluctuations. Additionally, <a href="/calculator/probability" className="text-blue-600 hover:text-blue-800 underline transition-colors">Probability Calculator</a> is highly recommended for related estimations.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Nepal Customs Duty and Tariffs</h4><p className="text-slate-600 leading-relaxed">Any change in the government's customs duty rate during the annual budget directly shifts local gold prices.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Melting and Design Wastage</h4><p className="text-slate-600 leading-relaxed">Complex traditional Nepali designs (like Tilhari or Jantar) require higher making charges and result in higher wastage percentages.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Seasonality & Demand</h4><p className="text-slate-600 leading-relaxed">Prices and dealer premiums can rise during wedding seasons (Mangsir, Magh) due to high demand. You can gain deeper insights by using <a href="/calculator/programmer-calc" className="text-blue-600 hover:text-blue-800 underline transition-colors">our programmer calculation tool</a>.</p></div>
                 </div>
             </section>
 
@@ -261,7 +261,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={1}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">2. What is 1 Tola of gold in grams?</h4>
-                    <p className="text-slate-600 leading-relaxed">1 Tola of gold is equal to exactly 11.6638 grams.</p>
+                    <p className="text-slate-600 leading-relaxed">1 Tola of gold is equal to exactly 11.6638 grams. Official regulatory standards and data benchmarks are frequently aligned with references from the <a href="https://fenegosida.org/" target="_blank" rel="dofollow noopener" className="text-blue-600 hover:text-blue-800 underline transition-colors">Federation of Nepal Gold and Silver Dealers</a>.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={2}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">3. What is the difference between Fine Gold and Tejaabi Gold?</h4>
@@ -322,7 +322,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
             <section className="space-y-8 mt-12">
                 <h3 className="text-3xl font-black text-slate-900">14. Related Tools and Clusters</h3>
                 <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
-                    <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis:</p>
+                    <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis: Additionally, <a href="/calculator/pythagorean-theorem" className="text-blue-600 hover:text-blue-800 underline transition-colors">Pythagorean Theorem Calculator</a> is highly recommended for related estimations.</p>
                     <div className="flex flex-wrap gap-4">
                                         <a href="/calculator/nepse-wacc/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
                 <a href="/calculator/property-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
@@ -413,7 +413,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
             <section className="space-y-8 mt-12">
                 <h3 className="text-3xl font-black text-slate-900">2. How the Process Works (Step-by-Step)</h3>
                 <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
-                    <p className="mb-6">To achieve the most accurate outcomes when dealing with foreign exchange rates, it is important to follow a structured method:</p>
+                    <p className="mb-6">To achieve the most accurate outcomes when dealing with foreign exchange rates, it is important to follow a structured method: Many users also utilize <a href="/calculator/loan-emi" className="text-blue-600 hover:text-blue-800 underline transition-colors">our loan calculation tool</a> alongside this analysis.</p>
                     <ul className="space-y-6">
                         <li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">1</span><div><strong>Select Currency Pair:</strong> Choose the source currency (e.g., USD, EUR) and target currency (typically NPR).</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">2</span><div><strong>Select Rate Type:</strong> Select "Buy Rate" (if converting foreign currency to NPR) or "Sell Rate" (if buying foreign currency using NPR).</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">3</span><div><strong>Enter Amount:</strong> Input the currency volume to convert.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">4</span><div><strong>Fetch Live Rates:</strong> The calculator utilizes daily reference rates set by Nepal Rastra Bank.</div></li><li className="flex gap-4 text-slate-600 text-lg mb-4"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 font-black shrink-0">5</span><div><strong>Apply Bank Spreads:</strong> Calculate the final converted amount including standard commercial bank spreads or commission charges.</div></li>
                     </ul>
@@ -432,7 +432,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                     <ul className="list-disc pl-6 space-y-2 text-slate-600 text-lg mb-6">
                         <li><strong>Foreign Currency Amount:</strong>  The volume of foreign currency to convert</li><li><strong>Exchange Rate:</strong>  The currency-specific buy or sell reference rate (expressed in NPR per unit)</li>
                     </ul>
-                    <p className="text-slate-500 text-sm mt-4">For currency purchases, division is used: Foreign Currency = NPR Amount / Sell Rate.</p>
+                    <p className="text-slate-500 text-sm mt-4">For currency purchases, division is used: Foreign Currency = NPR Amount / Sell Rate. If you find this useful, checking out <a href="/calculator/water-intake" className="text-blue-600 hover:text-blue-800 underline transition-colors">Water Intake Calculator</a> can provide further context.</p>
                 </div>
             </section>
 
@@ -591,7 +591,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                     
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={0}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">1. Why is the Nepalese Rupee pegged to the Indian Rupee?</h4>
-                    <p className="text-slate-600 leading-relaxed">Nepal shares a long open border and heavy trade relationship with India. The 1.60 fixed peg provides exchange rate stability and reduces transaction risks.</p>
+                    <p className="text-slate-600 leading-relaxed">Nepal shares a long open border and heavy trade relationship with India. The 1.60 fixed peg provides exchange rate stability and reduces transaction risks. You can gain deeper insights by using <a href="/calculator/lead-time" className="text-blue-600 hover:text-blue-800 underline transition-colors">lead time calculator</a>.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={1}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">2. Who publishes the official exchange rates in Nepal?</h4>
@@ -611,7 +611,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={5}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">6. Is the Indian Rupee widely accepted in Nepal?</h4>
-                    <p className="text-slate-600 leading-relaxed">Yes, INR is widely accepted, but only in denominations of Rs. 100 or below. Higher denominations are legally restricted unless specifically allowed.</p>
+                    <p className="text-slate-600 leading-relaxed">Yes, INR is widely accepted, but only in denominations of Rs. 100 or below. Higher denominations are legally restricted unless specifically allowed. You can gain deeper insights by using <a href="/calculator/nepali-date" className="text-blue-600 hover:text-blue-800 underline transition-colors">Nepali Date Converter</a>.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={6}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">7. Can I exchange currency online in Nepal?</h4>
@@ -619,7 +619,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={7}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">8. What is a money exchange spread?</h4>
-                    <p className="text-slate-600 leading-relaxed">It is the difference between the buying and selling rates of a currency, which represents the money changer's service fee and profit.</p>
+                    <p className="text-slate-600 leading-relaxed">It is the difference between the buying and selling rates of a currency, which represents the money changer's service fee and profit. For a broader understanding, you may also want to explore <a href="/calculator/nepal-attendance" className="text-blue-600 hover:text-blue-800 underline transition-colors">Nepal University Attendance Calculator</a>.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={8}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">9. What happens if I exchange money through illegal channels?</h4>
@@ -751,7 +751,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                     <div className="p-6 bg-slate-50 border border-slate-100 rounded-2xl text-center my-6 font-mono text-xl font-bold text-slate-900">
                         Net Received (NPR) = (Sent Amount - Transfer Fee) * Exchange Rate
                     </div>
-                    <p className="mb-4">Where the variables are defined as:</p>
+                    <p className="mb-4">Where the variables are defined as: To complement these results, consider running the numbers through <a href="/calculator/number-to-words" className="text-blue-600 hover:text-blue-800 underline transition-colors">number to words converter</a>.</p>
                     <ul className="list-disc pl-6 space-y-2 text-slate-600 text-lg mb-6">
                         <li><strong>Sent Amount:</strong>  Foreign currency sent by the sender</li><li><strong>Transfer Fee:</strong>  Flat or percentage fee charged by the exchange house</li><li><strong>Exchange Rate:</strong>  The specific transfer conversion rate in NPR</li>
                     </ul>
@@ -800,7 +800,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                 <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
                     <p className="text-slate-600 text-lg leading-relaxed mb-6">
                         Nepal Rastra Bank actively encourages formal remittance channels. To promote banking transfers, NRB mandates that commercial banks offer a minimum of 1% additional interest rate on savings and fixed deposit accounts opened using remittance funds. Sending money through informal channels (like Hundi) is illegal under the Foreign Exchange Regulation Act and can lead to confiscation and prosecution.
-                    </p>
+                     Additionally, <a href="/calculator/date-duration" className="text-blue-600 hover:text-blue-800 underline transition-colors">this date estimator</a> is highly recommended for related estimations.</p>
                     <div className="p-6 bg-slate-50 border border-slate-100 rounded-2xl my-6">
                         <h4 className="text-lg font-bold text-slate-800 mb-3">Official Regulatory References:</h4>
                                         <a href="https://www.nrb.org.np/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline font-semibold transition-colors mr-4">Nepal Rastra Bank Remittance Data &rarr;</a>
@@ -850,7 +850,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
             <section className="space-y-8 mt-12">
                 <h3 className="text-3xl font-black text-slate-900">9. Bank-to-Bank Transfer vs. Instant Cash Pickup</h3>
                 <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
-                    <p className="mb-6">Comparing the two primary remittance payout options in Nepal:</p>
+                    <p className="mb-6">Comparing the two primary remittance payout options in Nepal: Additionally, <a href="/calculator/standard-deviation" className="text-blue-600 hover:text-blue-800 underline transition-colors">our standard calculation tool</a> is highly recommended for related estimations.</p>
                     <div className="overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                             <thead>
@@ -934,7 +934,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={5}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">6. What is the limit for receiving cash remittance?</h4>
-                    <p className="text-slate-600 leading-relaxed">Cash payouts are usually capped at Rs. 1,00,000 per transaction by NRB. Amounts above this must be credited to a bank account.</p>
+                    <p className="text-slate-600 leading-relaxed">Cash payouts are usually capped at Rs. 1,00,000 per transaction by NRB. Amounts above this must be credited to a bank account. You can gain deeper insights by using <a href="/calculator/foreign-employment" className="text-blue-600 hover:text-blue-800 underline transition-colors">this foreign estimator</a>.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={6}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">7. Can I receive remittance directly in my eSewa or IME Pay wallet?</h4>
@@ -962,7 +962,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={12}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">13. What is the C-ASBA system linked to remittance?</h4>
-                    <p className="text-slate-600 leading-relaxed">There are no direct links, but having a bank account with remittance funds helps you invest in NEPSE IPOs.</p>
+                    <p className="text-slate-600 leading-relaxed">There are no direct links, but having a bank account with remittance funds helps you invest in NEPSE IPOs. For a broader understanding, you may also want to explore <a href="/calculator/rounding" className="text-blue-600 hover:text-blue-800 underline transition-colors">the rounding calculator</a>.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={13}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">14. Can I send money out of Nepal?</h4>
@@ -1237,15 +1237,15 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                     
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={0}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">1. Who sets the daily silver price in Nepal?</h4>
-                    <p className="text-slate-600 leading-relaxed">The Federation of Nepal Gold and Silver Dealers Association (FENEGOSIDA) sets the rate daily.</p>
+                    <p className="text-slate-600 leading-relaxed">The Federation of Nepal Gold and Silver Dealers Association (FENEGOSIDA) sets the rate daily. To complement these results, consider running the numbers through <a href="/calculator/linear-solver" className="text-blue-600 hover:text-blue-800 underline transition-colors">linear equation solver</a>.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={1}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">2. What is the weight of 1 Tola of silver in grams?</h4>
-                    <p className="text-slate-600 leading-relaxed">1 Tola of silver equals exactly 11.6638 grams.</p>
+                    <p className="text-slate-600 leading-relaxed">1 Tola of silver equals exactly 11.6638 grams. If you find this useful, checking out <a href="/calculator/nepal-stocks" className="text-blue-600 hover:text-blue-800 underline transition-colors">the nepse stock calculator</a> can provide further context.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={2}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">3. What is Sterling Silver?</h4>
-                    <p className="text-slate-600 leading-relaxed">Sterling Silver is an alloy containing 92.5% pure silver and 7.5% other metals (usually copper) for strength.</p>
+                    <p className="text-slate-600 leading-relaxed">Sterling Silver is an alloy containing 92.5% pure silver and 7.5% other metals (usually copper) for strength. Additionally, <a href="/calculator/simple-interest" className="text-blue-600 hover:text-blue-800 underline transition-colors">our simple calculation tool</a> is highly recommended for related estimations.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={3}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">4. Why is silver cheaper than gold?</h4>
@@ -1253,7 +1253,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={4}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">5. Do silversmiths charge making fees per gram or per Tola?</h4>
-                    <p className="text-slate-600 leading-relaxed">Making fees for silver are usually charged as a flat amount per Tola or gram, rather than a percentage.</p>
+                    <p className="text-slate-600 leading-relaxed">Making fees for silver are usually charged as a flat amount per Tola or gram, rather than a percentage. Additionally, <a href="/calculator/full-scientific" className="text-blue-600 hover:text-blue-800 underline transition-colors">scientific engine fullscreen</a> is highly recommended for related estimations.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={5}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">6. Is VAT applicable to silver purchases?</h4>
@@ -1261,7 +1261,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={6}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">7. How much silver can I bring to Nepal from abroad?</h4>
-                    <p className="text-slate-600 leading-relaxed">Passengers can bring up to 500 grams of silver ornaments, subject to customs duty payments.</p>
+                    <p className="text-slate-600 leading-relaxed">Passengers can bring up to 500 grams of silver ornaments, subject to customs duty payments. For a broader understanding, you may also want to explore <a href="/calculator/3d-visualizer" className="text-blue-600 hover:text-blue-800 underline transition-colors">this 3d estimator</a>.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={7}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">8. What is the stamp "925" on silver?</h4>
