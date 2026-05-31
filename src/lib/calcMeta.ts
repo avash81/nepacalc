@@ -52,7 +52,7 @@ export function calcMeta({ title, description, slug, keywords = [], canonical }:
   const cleanSlug = slug.startsWith('/') ? slug.substring(1) : slug;
   
   // Categorization Logic for Canonical URLs
-  const rootCategories = ['nepal', 'finance', 'health', 'education', 'utility', 'engineering', 'market-rates', 'forex', 'investment', 'retail', 'financial'];
+  const rootCategories = ['nepal', 'finance', 'health', 'education', 'utility', 'engineering', 'market-rates', 'forex', 'investment', 'retail', 'financial', 'math-tools', 'converters', 'directory', 'guide', 'blog', 'search', 'sitemap', 'pricing', 'about', 'contact', 'terms', 'privacy'];
   const isRootLevel = rootCategories.includes(cleanSlug.split('/')[0]);
 
   let canonicalPath = canonical ? canonical : (isRootLevel ? `/${cleanSlug}/` : `/calculator/${cleanSlug}/`);
