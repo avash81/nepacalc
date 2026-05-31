@@ -126,7 +126,7 @@ export const convertersSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Moreover, we recognize the importance of interoperability in modern digital workspaces. The ability to cross-reference outputs from a financial calculator with a tax auditing tool or to pair structural load calculations with material estimators ensures a cohesive analytical workflow. Our platform is structured as an ecosystem of complementary mathematical engines, designed to work in tandem. By bridging discrete computational models, professionals can synthesize holistic, overarching strategies that account for every technical variable and financial constraint.
-                     Many users also utilize <a href="/calculator/percentage-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">Percentage Calculator</a> alongside this analysis.</p>
+                     Many users also utilize <a href="/calculator/percentage" className="text-blue-600 hover:text-blue-800 underline transition-colors">Percentage Calculator</a> alongside this analysis.</p>
                     <p>
                         To further maximize the utility of these calculations, we recommend establishing a consistent auditing cadence. Mathematical models are most effective when used iteratively over time, allowing for the tracking of performance variances against historical benchmarks. Whether tracking the amortization schedule of a corporate loan or monitoring the specific gravity variations in a concrete batch plant, longitudinal data analysis unlocks deep operational insights. Utilizing these tools as persistent monitoring systems rather than one-off estimators drives a culture of continuous improvement and unyielding technical precision.
                     </p>
@@ -144,27 +144,27 @@ export const convertersSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -316,30 +316,30 @@ export const convertersSEO: Record<string, SEOContent> = {
                 <h3 className="text-3xl font-black text-slate-900 mb-4">Explore Related Computational Tools</h3>
                 <p className="text-slate-600 mb-8 leading-relaxed text-lg">
                     To further enhance your computational accuracy, we highly recommend integrating your current workflow with these related specialized calculators. Auditing your values across multiple models ensures complete structural consistency and absolute precision.
-                 If you find this useful, checking out <a href="/calculator/circumference-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">our circumference calculation tool</a> can provide further context.</p>
+                 If you find this useful, checking out <a href="/calculator/geometry-3d" className="text-blue-600 hover:text-blue-800 underline transition-colors">our circumference calculation tool</a> can provide further context.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -462,7 +462,7 @@ export const convertersSEO: Record<string, SEOContent> = {
                 <div className="text-slate-700 leading-relaxed space-y-6">
                     <p>
                         Expanding upon foundational principles, advanced predictive modeling allows for unprecedented foresight into operational and financial outcomes. When assessing long-term investment vehicles or complex structural projects, standard deterministic calculations often fall short. Incorporating probabilistic elements into our models allows users to visualize a spectrum of possible scenarios, from best-case high-yield projections to conservative risk-adjusted baselines. This multi-dimensional approach is critical for resilient strategic planning in volatile macroeconomic environments.
-                     For a broader understanding, you may also want to explore <a href="/calculator/velocity-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">Velocity Calculator</a>.</p>
+                     For a broader understanding, you may also want to explore <a href="/calculator/physics-force" className="text-blue-600 hover:text-blue-800 underline transition-colors">Velocity Calculator</a>.</p>
                     <p>
                         Data validation is another cornerstone of our digital infrastructure. Every input provided by the user is subjected to rigorous boundary checks and type validations before reaching the core processing algorithms. This robust sanitization prevents memory overflows and logical fallacies that can skew analytical outputs. For academic researchers and financial auditors, knowing that the calculation engine is fortified against erroneous inputs provides profound confidence in the integrity of the final report. This strict adherence to data quality sets our computational tools apart as true professional-grade instruments.
                      You can gain deeper insights by using <a href="/calculator/sip-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">the sip calculator nepal</a>.</p>
@@ -486,27 +486,27 @@ export const convertersSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -575,7 +575,7 @@ export const convertersSEO: Record<string, SEOContent> = {
                 <div className="text-slate-700 leading-relaxed space-y-6">
                     <p>
                         In the modern era of automated computing, the principles of applied mathematics form the structural bedrock of all technical advancement. Every software algorithm, physical simulation, and data visualization is fundamentally an exercise in algebraic relations and numerical modeling. By translating abstract human requirements into linear, quadratic, or matrix models, computer scientists can process complex real-world variables at lightning speed. Fostering mathematical proficiency is key to preparing the next generation of engineers, data scientists, and researchers for the global digital economy.
-                     If you find this useful, checking out <a href="/calculator/graphing-pro" className="text-blue-600 hover:text-blue-800 underline transition-colors">the graphing pro</a> can provide further context.</p>
+                     If you find this useful, checking out <a href="/calculator/quadratic-solver" className="text-blue-600 hover:text-blue-800 underline transition-colors">the graphing pro</a> can provide further context.</p>
                     <p>
                         Applied mathematics teaches us to think systematically, to identify underlying patterns under tight constraints, and to break down multi-variable challenges into manageable logical steps. This cognitive framework is an invaluable asset across all professional fields, from structural engineering to public policy formulation. By isolating variables, identifying direct and inverse proportions, and predicting outcomes with high statistical confidence, practitioners can design optimal solutions that are highly relevant to their communities' sustainable development.
                     </p>
@@ -587,7 +587,7 @@ export const convertersSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         The architecture of this calculator has been engineered to handle edge cases and extreme variable ranges without compromising speed or accuracy. Our underlying algorithms undergo continuous testing against established academic models and industry benchmarks. This commitment to computational integrity means that results remain consistent regardless of the complexity of the inputs. Furthermore, the responsive design of the platform ensures that this high-fidelity modeling capability is accessible across all devices, empowering you to perform critical analysis whether you are in the office, the classroom, or on the field.
-                     To complement these results, consider running the numbers through <a href="/calculator/lean-body-mass" className="text-blue-600 hover:text-blue-800 underline transition-colors">this lean estimator</a>.</p>
+                     To complement these results, consider running the numbers through <a href="/calculator/bmi" className="text-blue-600 hover:text-blue-800 underline transition-colors">this lean estimator</a>.</p>
                 </div>
             
                     <p>
@@ -649,27 +649,27 @@ export const convertersSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -812,27 +812,27 @@ export const convertersSEO: Record<string, SEOContent> = {
                  Additionally, <a href="/calculator/market-rates/live-silver-price" className="text-blue-600 hover:text-blue-800 underline transition-colors">the live silver price</a> is highly recommended for related estimations.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -975,27 +975,27 @@ export const convertersSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>

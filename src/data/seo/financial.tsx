@@ -96,7 +96,7 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Furthermore, the architectural resilience of digital modeling tools is a primary concern for enterprise-level applications. Ensuring high availability, fault tolerance, and secure data transmission protocols is essential when financial and structural data are being processed. Our platform is built on modern web standards, utilizing robust error-handling and isolated runtime environments to guarantee that your computational sessions are both secure and highly reliable, regardless of external network conditions.
-                     Additionally, <a href="/calculator/formulas-lab" className="text-blue-600 hover:text-blue-800 underline transition-colors">the engineering formula library</a> is highly recommended for related estimations.</p>
+                     Additionally, <a href="/calculator/linear-solver" className="text-blue-600 hover:text-blue-800 underline transition-colors">the engineering formula library</a> is highly recommended for related estimations.</p>
 
             </section>
 
@@ -126,7 +126,7 @@ export const financialSEO: Record<string, SEOContent> = {
                 <div className="text-slate-700 leading-relaxed space-y-6">
                     <p>
                         Expanding upon foundational principles, advanced predictive modeling allows for unprecedented foresight into operational and financial outcomes. When assessing long-term investment vehicles or complex structural projects, standard deterministic calculations often fall short. Incorporating probabilistic elements into our models allows users to visualize a spectrum of possible scenarios, from best-case high-yield projections to conservative risk-adjusted baselines. This multi-dimensional approach is critical for resilient strategic planning in volatile macroeconomic environments.
-                     You can gain deeper insights by using <a href="/calculator/geometry-lab" className="text-blue-600 hover:text-blue-800 underline transition-colors">this geometry estimator</a>.</p>
+                     You can gain deeper insights by using <a href="/calculator/geometry-3d" className="text-blue-600 hover:text-blue-800 underline transition-colors">this geometry estimator</a>.</p>
                     <p>
                         Data validation is another cornerstone of our digital infrastructure. Every input provided by the user is subjected to rigorous boundary checks and type validations before reaching the core processing algorithms. This robust sanitization prevents memory overflows and logical fallacies that can skew analytical outputs. For academic researchers and financial auditors, knowing that the calculation engine is fortified against erroneous inputs provides profound confidence in the integrity of the final report. This strict adherence to data quality sets our computational tools apart as true professional-grade instruments.
                     </p>
@@ -150,27 +150,27 @@ export const financialSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -253,7 +253,7 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Applied mathematics teaches us to think systematically, to identify underlying patterns under tight constraints, and to break down multi-variable challenges into manageable logical steps. This cognitive framework is an invaluable asset across all professional fields, from structural engineering to public policy formulation. By isolating variables, identifying direct and inverse proportions, and predicting outcomes with high statistical confidence, practitioners can design optimal solutions that are highly relevant to their communities' sustainable development.
-                     You can gain deeper insights by using <a href="/calculator/velocity-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">velocity calculator</a>.</p>
+                     You can gain deeper insights by using <a href="/calculator/physics-force" className="text-blue-600 hover:text-blue-800 underline transition-colors">velocity calculator</a>.</p>
                     <p>
                         Furthermore, the continuous integration of automated computational engines ensures that human calculation errors are entirely mitigated. By leveraging high-precision online tools, practitioners can double-check complex structural equations, optimize industrial resource allocation, and gain a profound understanding of mathematical systems. These analytical exercises build a high level of mathematical confidence, proving that every successful modern operation is rooted in structural mathematical precision.
                      To complement these results, consider running the numbers through <a href="/calculator/nepal-citizenship-age" className="text-blue-600 hover:text-blue-800 underline transition-colors">the nepal citizenship age</a>.</p>
@@ -324,27 +324,27 @@ export const financialSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/loan-emi/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/loan-emi" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Loan EMI &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/compound-interest/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/compound-interest" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Compound Interest &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/nepal-home-loan/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/nepal-home-loan" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Nepal Home Loan &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/property-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/property-tax" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Property Tax &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/nepal-land/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/nepal-land" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Nepal Land &rarr;
                         </a>
                     </div>
@@ -514,7 +514,7 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Dry materials such as cement, sand, and aggregate contain high proportions of air voids. When water is added, the particles compact and fill these voids, causing a significant reduction in total volume. In concrete mix design, this is accounted for by applying a dry-volume multiplier, typically standardized as 1.54. Similarly, mortar volume in brick masonry requires a distinct dry multiplier (usually 1.33) to account for compaction. Failing to apply these mathematical constants leads to the 'Procurement Gap'—a common site anomaly where raw materials run out mid-project, leading to cold joints, construction delays, and increased transport costs.
-                     If you find this useful, checking out <a href="/calculator/velocity-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">this velocity estimator</a> can provide further context.</p>
+                     If you find this useful, checking out <a href="/calculator/physics-force" className="text-blue-600 hover:text-blue-800 underline transition-colors">this velocity estimator</a> can provide further context.</p>
                 </div>
             </section>
 
@@ -547,27 +547,27 @@ export const financialSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -751,7 +751,7 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Data validation is another cornerstone of our digital infrastructure. Every input provided by the user is subjected to rigorous boundary checks and type validations before reaching the core processing algorithms. This robust sanitization prevents memory overflows and logical fallacies that can skew analytical outputs. For academic researchers and financial auditors, knowing that the calculation engine is fortified against erroneous inputs provides profound confidence in the integrity of the final report. This strict adherence to data quality sets our computational tools apart as true professional-grade instruments.
-                     To complement these results, consider running the numbers through <a href="/calculator/lean-body-mass" className="text-blue-600 hover:text-blue-800 underline transition-colors">the lean body mass</a>.</p>
+                     To complement these results, consider running the numbers through <a href="/calculator/bmi" className="text-blue-600 hover:text-blue-800 underline transition-colors">the lean body mass</a>.</p>
                     <p>
                         Moreover, we recognize the importance of interoperability in modern digital workspaces. The ability to cross-reference outputs from a financial calculator with a tax auditing tool or to pair structural load calculations with material estimators ensures a cohesive analytical workflow. Our platform is structured as an ecosystem of complementary mathematical engines, designed to work in tandem. By bridging discrete computational models, professionals can synthesize holistic, overarching strategies that account for every technical variable and financial constraint.
                     </p>
@@ -772,27 +772,27 @@ export const financialSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -973,7 +973,7 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Data validation is another cornerstone of our digital infrastructure. Every input provided by the user is subjected to rigorous boundary checks and type validations before reaching the core processing algorithms. This robust sanitization prevents memory overflows and logical fallacies that can skew analytical outputs. For academic researchers and financial auditors, knowing that the calculation engine is fortified against erroneous inputs provides profound confidence in the integrity of the final report. This strict adherence to data quality sets our computational tools apart as true professional-grade instruments.
-                     For a broader understanding, you may also want to explore <a href="/calculator/geometry-lab" className="text-blue-600 hover:text-blue-800 underline transition-colors">this geometry estimator</a>.</p>
+                     For a broader understanding, you may also want to explore <a href="/calculator/geometry-3d" className="text-blue-600 hover:text-blue-800 underline transition-colors">this geometry estimator</a>.</p>
                     <p>
                         Moreover, we recognize the importance of interoperability in modern digital workspaces. The ability to cross-reference outputs from a financial calculator with a tax auditing tool or to pair structural load calculations with material estimators ensures a cohesive analytical workflow. Our platform is structured as an ecosystem of complementary mathematical engines, designed to work in tandem. By bridging discrete computational models, professionals can synthesize holistic, overarching strategies that account for every technical variable and financial constraint.
                     </p>
@@ -991,30 +991,30 @@ export const financialSEO: Record<string, SEOContent> = {
                 <h3 className="text-3xl font-black text-slate-900 mb-4">Explore Related Computational Tools</h3>
                 <p className="text-slate-600 mb-8 leading-relaxed text-lg">
                     To further enhance your computational accuracy, we highly recommend integrating your current workflow with these related specialized calculators. Auditing your values across multiple models ensures complete structural consistency and absolute precision.
-                 To complement these results, consider running the numbers through <a href="/calculator/velocity-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">velocity calculator</a>.</p>
+                 To complement these results, consider running the numbers through <a href="/calculator/physics-force" className="text-blue-600 hover:text-blue-800 underline transition-colors">velocity calculator</a>.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -1211,27 +1211,27 @@ export const financialSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -1406,7 +1406,7 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Moreover, we recognize the importance of interoperability in modern digital workspaces. The ability to cross-reference outputs from a financial calculator with a tax auditing tool or to pair structural load calculations with material estimators ensures a cohesive analytical workflow. Our platform is structured as an ecosystem of complementary mathematical engines, designed to work in tandem. By bridging discrete computational models, professionals can synthesize holistic, overarching strategies that account for every technical variable and financial constraint.
-                     If you find this useful, checking out <a href="/calculator/lean-body-mass" className="text-blue-600 hover:text-blue-800 underline transition-colors">lean body mass calculator</a> can provide further context.</p>
+                     If you find this useful, checking out <a href="/calculator/bmi" className="text-blue-600 hover:text-blue-800 underline transition-colors">lean body mass calculator</a> can provide further context.</p>
                     <p>
                         To further maximize the utility of these calculations, we recommend establishing a consistent auditing cadence. Mathematical models are most effective when used iteratively over time, allowing for the tracking of performance variances against historical benchmarks. Whether tracking the amortization schedule of a corporate loan or monitoring the specific gravity variations in a concrete batch plant, longitudinal data analysis unlocks deep operational insights. Utilizing these tools as persistent monitoring systems rather than one-off estimators drives a culture of continuous improvement and unyielding technical precision.
                     </p>
@@ -1424,27 +1424,27 @@ export const financialSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -1587,7 +1587,7 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Moreover, we recognize the importance of interoperability in modern digital workspaces. The ability to cross-reference outputs from a financial calculator with a tax auditing tool or to pair structural load calculations with material estimators ensures a cohesive analytical workflow. Our platform is structured as an ecosystem of complementary mathematical engines, designed to work in tandem. By bridging discrete computational models, professionals can synthesize holistic, overarching strategies that account for every technical variable and financial constraint.
-                     For a broader understanding, you may also want to explore <a href="/calculator/statistics-lab" className="text-blue-600 hover:text-blue-800 underline transition-colors">the statistics & data</a>.</p>
+                     For a broader understanding, you may also want to explore <a href="/calculator/statistics-plus" className="text-blue-600 hover:text-blue-800 underline transition-colors">the statistics & data</a>.</p>
                     <p>
                         To further maximize the utility of these calculations, we recommend establishing a consistent auditing cadence. Mathematical models are most effective when used iteratively over time, allowing for the tracking of performance variances against historical benchmarks. Whether tracking the amortization schedule of a corporate loan or monitoring the specific gravity variations in a concrete batch plant, longitudinal data analysis unlocks deep operational insights. Utilizing these tools as persistent monitoring systems rather than one-off estimators drives a culture of continuous improvement and unyielding technical precision.
                     </p>
@@ -1605,27 +1605,27 @@ export const financialSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/loan-emi/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/loan-emi" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Loan EMI &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/compound-interest/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/compound-interest" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Compound Interest &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/nepal-home-loan/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/nepal-home-loan" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Nepal Home Loan &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/property-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/property-tax" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Property Tax &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/nepal-land/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/nepal-land" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Nepal Land &rarr;
                         </a>
                     </div>
@@ -1711,9 +1711,9 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">
                         <span className="text-slate-400">Quick Links:</span>
-                                        <a href="/calculator/nepse-wacc/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
-                <a href="/calculator/nepse-bonus-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Bonus Share Tax Calculator</a>
-                <a href="/calculator/property-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
+                                        <a href="/calculator/nepse-wacc" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
+                <a href="/calculator/nepse-bonus-tax" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Bonus Share Tax Calculator</a>
+                <a href="/calculator/property-tax" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
                     </div>
                 </div>
             </div>
@@ -1794,9 +1794,9 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider mb-6">
                         <span className="text-slate-400">Contextual Reference Links:</span>
-                                        <a href="/calculator/fd-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
-                <a href="/calculator/sip-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
-                <a href="/calculator/nepal-salary/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal Salary Calculator</a>
+                                        <a href="/calculator/fd-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
+                <a href="/calculator/sip-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
+                <a href="/calculator/nepal-salary" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal Salary Calculator</a>
                     </div>
                 </div>
             </section>
@@ -1849,7 +1849,7 @@ export const financialSEO: Record<string, SEOContent> = {
             <section className="space-y-8 mt-12">
                 <h3 className="text-3xl font-black text-slate-900">8. Key Factors Affecting Your Calculations</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Broker Commission Slab</h4><p className="text-slate-600 leading-relaxed">Larger transactions fall into lower commission percentage slabs (as low as 0.27%), reducing transaction friction.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Holding Period (CGT)</h4><p className="text-slate-600 leading-relaxed">Selling shares held for more than 365 days qualifies for the long-term CGT rate of 5%, saving 2.5% compared to the short-term 7.5% rate.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">DP and SEBON Fees</h4><p className="text-slate-600 leading-relaxed">These fees are non-negotiable and fixed by CDSC and SEBON respectively for all market participants. You can gain deeper insights by using <a href="/calculator/acceleration-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">this acceleration estimator</a>.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Bonus/Right Share Adjustments</h4><p className="text-slate-600 leading-relaxed">Receiving bonus shares or right shares alters your WACC, which must be adjusted in MeroShare to avoid incorrect CGT billing during sale.</p></div>
+                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Broker Commission Slab</h4><p className="text-slate-600 leading-relaxed">Larger transactions fall into lower commission percentage slabs (as low as 0.27%), reducing transaction friction.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Holding Period (CGT)</h4><p className="text-slate-600 leading-relaxed">Selling shares held for more than 365 days qualifies for the long-term CGT rate of 5%, saving 2.5% compared to the short-term 7.5% rate.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">DP and SEBON Fees</h4><p className="text-slate-600 leading-relaxed">These fees are non-negotiable and fixed by CDSC and SEBON respectively for all market participants. You can gain deeper insights by using <a href="/calculator/physics-force" className="text-blue-600 hover:text-blue-800 underline transition-colors">this acceleration estimator</a>.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Bonus/Right Share Adjustments</h4><p className="text-slate-600 leading-relaxed">Receiving bonus shares or right shares alters your WACC, which must be adjusted in MeroShare to avoid incorrect CGT billing during sale.</p></div>
                 </div>
             </section>
 
@@ -1933,7 +1933,7 @@ export const financialSEO: Record<string, SEOContent> = {
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={3}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">4. What are the current broker commission rates?</h4>
-                    <p className="text-slate-600 leading-relaxed">They range from 0.40% for amounts up to Rs. 50,000, sliding down to 0.27% for transactions above Rs. 1 Crore. Many users also utilize <a href="/calculator/density-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">our density calculation tool</a> alongside this analysis.</p>
+                    <p className="text-slate-600 leading-relaxed">They range from 0.40% for amounts up to Rs. 50,000, sliding down to 0.27% for transactions above Rs. 1 Crore. Many users also utilize <a href="/calculator/physics-force" className="text-blue-600 hover:text-blue-800 underline transition-colors">our density calculation tool</a> alongside this analysis.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={4}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">5. Do I pay VAT on stock broker commission in Nepal?</h4>
@@ -1988,8 +1988,8 @@ export const financialSEO: Record<string, SEOContent> = {
                 <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
                     <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis:</p>
                     <div className="flex flex-wrap gap-4">
-                                        <a href="/calculator/remittance-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Remittance Calculator</a>
-                <a href="/calculator/rounding/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Inflation Calculator</a>
+                                        <a href="/calculator/remittance-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Remittance Calculator</a>
+                <a href="/calculator/rounding" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Inflation Calculator</a>
                     </div>
                 </div>
             </section>
@@ -2146,27 +2146,27 @@ export const financialSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -2274,7 +2274,7 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Ultimately, mastering numerical analysis requires both practical experience and reliable technological support. We encourage users to actively experiment with the calculator's input parameters to observe real-time output variance, effectively conducting sensitivity analysis on the fly. This interactive learning loop fosters a deeper, more intuitive grasp of the underlying variables, transforming raw data into strategic intelligence. Embrace the power of verified digital computation to streamline your operations, enhance your academic performance, and secure your professional success in FY Current Year and beyond.
-                     You can gain deeper insights by using <a href="/calculator/lean-body-mass" className="text-blue-600 hover:text-blue-800 underline transition-colors">our lean calculation tool</a>.</p>
+                     You can gain deeper insights by using <a href="/calculator/bmi" className="text-blue-600 hover:text-blue-800 underline transition-colors">our lean calculation tool</a>.</p>
                     <p>
                         Continuous engagement with these verified digital modeling tools empowers users to rapidly iterate on complex scenarios, enabling precise forecasting, robust structural analysis, and highly informed strategic planning. Embracing this analytical rigor fundamentally transforms standard operational workflows into optimized, high-fidelity quantitative processes that guarantee absolute computational reliability.
                     </p>
@@ -2316,27 +2316,27 @@ export const financialSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -2412,7 +2412,7 @@ export const financialSEO: Record<string, SEOContent> = {
                         Whether you are analyzing physical variables, calculating financial structures, or mapping geometric coordinates,
                         the underlying algorithmic engine provides unparalleled precision. We have integrated edge-case detection to ensure
                         that extreme input parameters are processed gracefully, yielding results that comply with rigorous international standards.
-                     For a broader understanding, you may also want to explore <a href="/calculator/acceleration-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">our acceleration calculation tool</a>.</p>
+                     For a broader understanding, you may also want to explore <a href="/calculator/physics-force" className="text-blue-600 hover:text-blue-800 underline transition-colors">our acceleration calculation tool</a>.</p>
                     <p className="text-slate-600 leading-relaxed text-base">
                         To utilize the calculator effectively, simply select your desired operation mode, input the known variables into the
                         responsive fields, and let the computational engine perform the heavy lifting. The interface is specifically tailored
@@ -2431,7 +2431,7 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Applied mathematics teaches us to think systematically, to identify underlying patterns under tight constraints, and to break down multi-variable challenges into manageable logical steps. This cognitive framework is an invaluable asset across all professional fields, from structural engineering to public policy formulation. By isolating variables, identifying direct and inverse proportions, and predicting outcomes with high statistical confidence, practitioners can design optimal solutions that are highly relevant to their communities' sustainable development.
-                     If you find this useful, checking out <a href="/calculator/geometry-lab" className="text-blue-600 hover:text-blue-800 underline transition-colors">Geometry Canvas</a> can provide further context.</p>
+                     If you find this useful, checking out <a href="/calculator/geometry-3d" className="text-blue-600 hover:text-blue-800 underline transition-colors">Geometry Canvas</a> can provide further context.</p>
                     <p>
                         Furthermore, the continuous integration of automated computational engines ensures that human calculation errors are entirely mitigated. By leveraging high-precision online tools, practitioners can double-check complex structural equations, optimize industrial resource allocation, and gain a profound understanding of mathematical systems. These analytical exercises build a high level of mathematical confidence, proving that every successful modern operation is rooted in structural mathematical precision.
                      Additionally, <a href="/calculator/attendance" className="text-blue-600 hover:text-blue-800 underline transition-colors">our attendance calculation tool</a> is highly recommended for related estimations.</p>
@@ -2502,27 +2502,27 @@ export const financialSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -2633,7 +2633,7 @@ export const financialSEO: Record<string, SEOContent> = {
                         Whether you are analyzing physical variables, calculating financial structures, or mapping geometric coordinates,
                         the underlying algorithmic engine provides unparalleled precision. We have integrated edge-case detection to ensure
                         that extreme input parameters are processed gracefully, yielding results that comply with rigorous international standards.
-                     For a broader understanding, you may also want to explore <a href="/calculator/percentage-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">this percentage estimator</a>.</p>
+                     For a broader understanding, you may also want to explore <a href="/calculator/percentage" className="text-blue-600 hover:text-blue-800 underline transition-colors">this percentage estimator</a>.</p>
                     <p className="text-slate-600 leading-relaxed text-base">
                         To utilize the calculator effectively, simply select your desired operation mode, input the known variables into the
                         responsive fields, and let the computational engine perform the heavy lifting. The interface is specifically tailored
@@ -2681,7 +2681,7 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Ultimately, mastering numerical analysis requires both practical experience and reliable technological support. We encourage users to actively experiment with the calculator's input parameters to observe real-time output variance, effectively conducting sensitivity analysis on the fly. This interactive learning loop fosters a deeper, more intuitive grasp of the underlying variables, transforming raw data into strategic intelligence. Embrace the power of verified digital computation to streamline your operations, enhance your academic performance, and secure your professional success in FY Current Year and beyond.
-                     If you find this useful, checking out <a href="/calculator/angle-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">this angle estimator</a> can provide further context.</p>
+                     If you find this useful, checking out <a href="/calculator/geometry-3d" className="text-blue-600 hover:text-blue-800 underline transition-colors">this angle estimator</a> can provide further context.</p>
                     <p>
                         Continuous engagement with these verified digital modeling tools empowers users to rapidly iterate on complex scenarios, enabling precise forecasting, robust structural analysis, and highly informed strategic planning. Embracing this analytical rigor fundamentally transforms standard operational workflows into optimized, high-fidelity quantitative processes that guarantee absolute computational reliability.
                     </p>
@@ -2705,7 +2705,7 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Moreover, we recognize the importance of interoperability in modern digital workspaces. The ability to cross-reference outputs from a financial calculator with a tax auditing tool or to pair structural load calculations with material estimators ensures a cohesive analytical workflow. Our platform is structured as an ecosystem of complementary mathematical engines, designed to work in tandem. By bridging discrete computational models, professionals can synthesize holistic, overarching strategies that account for every technical variable and financial constraint.
-                     To complement these results, consider running the numbers through <a href="/calculator/full-scientific" className="text-blue-600 hover:text-blue-800 underline transition-colors">this scientific estimator</a>.</p>
+                     To complement these results, consider running the numbers through <a href="/calculator/scientific-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">this scientific estimator</a>.</p>
                     <p>
                         To further maximize the utility of these calculations, we recommend establishing a consistent auditing cadence. Mathematical models are most effective when used iteratively over time, allowing for the tracking of performance variances against historical benchmarks. Whether tracking the amortization schedule of a corporate loan or monitoring the specific gravity variations in a concrete batch plant, longitudinal data analysis unlocks deep operational insights. Utilizing these tools as persistent monitoring systems rather than one-off estimators drives a culture of continuous improvement and unyielding technical precision.
                     </p>
@@ -2723,27 +2723,27 @@ export const financialSEO: Record<string, SEOContent> = {
                  You can gain deeper insights by using <a href="/calculator/nea-bill" className="text-blue-600 hover:text-blue-800 underline transition-colors">this nea estimator</a>.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -2871,7 +2871,7 @@ export const financialSEO: Record<string, SEOContent> = {
             
                     <p>
                         In addition to the core analytical frameworks, the deployment of machine learning algorithms and heuristic models is increasingly pivotal in modern computational workflows. As data scales exponentially, traditional linear models may encounter performance bottlenecks. By integrating predictive heuristics, we allow for near-instantaneous approximations of highly complex, non-linear problems. This hybrid approach ensures that professionals can maintain operational velocity without sacrificing analytical rigor, especially when dealing with massive datasets in real-time environments.
-                     Additionally, <a href="/calculator/distance-formula" className="text-blue-600 hover:text-blue-800 underline transition-colors">this distance estimator</a> is highly recommended for related estimations.</p>
+                     Additionally, <a href="/calculator/quadratic-solver" className="text-blue-600 hover:text-blue-800 underline transition-colors">this distance estimator</a> is highly recommended for related estimations.</p>
                     <p>
                         Furthermore, the architectural resilience of digital modeling tools is a primary concern for enterprise-level applications. Ensuring high availability, fault tolerance, and secure data transmission protocols is essential when financial and structural data are being processed. Our platform is built on modern web standards, utilizing robust error-handling and isolated runtime environments to guarantee that your computational sessions are both secure and highly reliable, regardless of external network conditions.
                     </p>
@@ -2928,27 +2928,27 @@ export const financialSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -3116,27 +3116,27 @@ export const financialSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -3338,27 +3338,27 @@ export const financialSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -3443,9 +3443,9 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">
                         <span className="text-slate-400">Quick Links:</span>
-                                        <a href="/calculator/nepse-wacc/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
-                <a href="/calculator/nepal-stocks/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Share Transaction Cost Calculator</a>
-                <a href="/calculator/property-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
+                                        <a href="/calculator/nepse-wacc" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
+                <a href="/calculator/nepal-stocks" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Share Transaction Cost Calculator</a>
+                <a href="/calculator/property-tax" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
                     </div>
                 </div>
             </div>
@@ -3526,9 +3526,9 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider mb-6">
                         <span className="text-slate-400">Contextual Reference Links:</span>
-                                        <a href="/calculator/nepal-vat/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal VAT Calculator</a>
-                <a href="/calculator/tds-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">TDS Calculator Nepal</a>
-                <a href="/calculator/fd-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
+                                        <a href="/calculator/nepal-vat" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal VAT Calculator</a>
+                <a href="/calculator/tds-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">TDS Calculator Nepal</a>
+                <a href="/calculator/fd-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
                     </div>
                 </div>
             </section>
@@ -3720,8 +3720,8 @@ export const financialSEO: Record<string, SEOContent> = {
                 <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
                     <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis:</p>
                     <div className="flex flex-wrap gap-4">
-                                        <a href="/calculator/sip-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
-                <a href="/calculator/rounding/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Inflation Calculator</a>
+                                        <a href="/calculator/sip-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
+                <a href="/calculator/rounding" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Inflation Calculator</a>
                     </div>
                 </div>
             </section>
@@ -3790,9 +3790,9 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">
                         <span className="text-slate-400">Quick Links:</span>
-                                        <a href="/calculator/tds-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">TDS Calculator Nepal</a>
-                <a href="/calculator/gold-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Gold Import Tax Calculator</a>
-                <a href="/calculator/nepal-salary/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Salary Income Tax Calculator</a>
+                                        <a href="/calculator/tds-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">TDS Calculator Nepal</a>
+                <a href="/calculator/gold-tax" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Gold Import Tax Calculator</a>
+                <a href="/calculator/nepal-salary" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Salary Income Tax Calculator</a>
                     </div>
                 </div>
             </div>
@@ -3873,9 +3873,9 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider mb-6">
                         <span className="text-slate-400">Contextual Reference Links:</span>
-                                        <a href="/calculator/nepse-wacc/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
-                <a href="/calculator/property-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
-                <a href="/calculator/fd-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
+                                        <a href="/calculator/nepse-wacc" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
+                <a href="/calculator/property-tax" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
+                <a href="/calculator/fd-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
                     </div>
                 </div>
             </section>
@@ -4067,8 +4067,8 @@ export const financialSEO: Record<string, SEOContent> = {
                 <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
                     <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis:</p>
                     <div className="flex flex-wrap gap-4">
-                                        <a href="/calculator/sip-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
-                <a href="/calculator/nepal-vehicle-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal Vehicle Tax Calculator</a>
+                                        <a href="/calculator/sip-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
+                <a href="/calculator/nepal-vehicle-tax" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal Vehicle Tax Calculator</a>
                     </div>
                 </div>
             </section>
@@ -4164,7 +4164,7 @@ export const financialSEO: Record<string, SEOContent> = {
                 <div className="text-slate-700 leading-relaxed space-y-6">
                     <p>
                         In the modern era of automated computing, the principles of applied mathematics form the structural bedrock of all technical advancement. Every software algorithm, physical simulation, and data visualization is fundamentally an exercise in algebraic relations and numerical modeling. By translating abstract human requirements into linear, quadratic, or matrix models, computer scientists can process complex real-world variables at lightning speed. Fostering mathematical proficiency is key to preparing the next generation of engineers, data scientists, and researchers for the global digital economy.
-                     To complement these results, consider running the numbers through <a href="/calculator/calculus-lab" className="text-blue-600 hover:text-blue-800 underline transition-colors">our calculus calculation tool</a>.</p>
+                     To complement these results, consider running the numbers through <a href="/calculator/linear-solver" className="text-blue-600 hover:text-blue-800 underline transition-colors">our calculus calculation tool</a>.</p>
                     <p>
                         Applied mathematics teaches us to think systematically, to identify underlying patterns under tight constraints, and to break down multi-variable challenges into manageable logical steps. This cognitive framework is an invaluable asset across all professional fields, from structural engineering to public policy formulation. By isolating variables, identifying direct and inverse proportions, and predicting outcomes with high statistical confidence, practitioners can design optimal solutions that are highly relevant to their communities' sustainable development.
                     </p>
@@ -4238,27 +4238,27 @@ export const financialSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -4293,9 +4293,9 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">
                         <span className="text-slate-400">Quick Links:</span>
-                                        <a href="/calculator/mortgage-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Home Loan EMI Calculator</a>
-                <a href="/calculator/loan-emi/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Personal Loan Calculator</a>
-                <a href="/calculator/nepal-loan-eligibility/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Loan Eligibility Calculator</a>
+                                        <a href="/calculator/mortgage-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Home Loan EMI Calculator</a>
+                <a href="/calculator/loan-emi" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Personal Loan Calculator</a>
+                <a href="/calculator/nepal-loan-eligibility" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Loan Eligibility Calculator</a>
                     </div>
                 </div>
             </div>
@@ -4340,7 +4340,7 @@ export const financialSEO: Record<string, SEOContent> = {
                     <div className="p-6 bg-slate-50 border border-slate-100 rounded-2xl text-center my-6 font-mono text-xl font-bold text-slate-900">
                         EMI = [P * r * (1+r)^n] / [(1+r)^n - 1]
                     </div>
-                    <p className="mb-4">Where the variables are defined as: If you find this useful, checking out <a href="/calculator/velocity-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">our velocity calculation tool</a> can provide further context.</p>
+                    <p className="mb-4">Where the variables are defined as: If you find this useful, checking out <a href="/calculator/physics-force" className="text-blue-600 hover:text-blue-800 underline transition-colors">our velocity calculation tool</a> can provide further context.</p>
                     <ul className="list-disc pl-6 space-y-2 text-slate-600 text-lg mb-6">
                         <li><strong>P:</strong>  Principal Loan Amount (Vehicle Price - Down Payment)</li><li><strong>r:</strong>  Monthly Interest Rate (Annual Rate / 12 / 100)</li><li><strong>n:</strong>  Total Number of Repayment Months (Tenure in Years * 12)</li>
                     </ul>
@@ -4376,9 +4376,9 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider mb-6">
                         <span className="text-slate-400">Contextual Reference Links:</span>
-                                        <a href="/calculator/sip-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
-                <a href="/calculator/fd-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
-                <a href="/calculator/compound-interest/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Compound Interest Calculator</a>
+                                        <a href="/calculator/sip-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
+                <a href="/calculator/fd-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
+                <a href="/calculator/compound-interest" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Compound Interest Calculator</a>
                     </div>
                 </div>
             </section>
@@ -4431,7 +4431,7 @@ export const financialSEO: Record<string, SEOContent> = {
             <section className="space-y-8 mt-12">
                 <h3 className="text-3xl font-black text-slate-900">8. Key Factors Affecting Your Calculations</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Vehicle Price & Import Taxes</h4><p className="text-slate-600 leading-relaxed">Vehicles in Nepal face up to 250% customs and excise duties, making the initial price high. Higher price directly increases your required principal and monthly EMI.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Down Payment Ratio</h4><p className="text-slate-600 leading-relaxed">Contributing more than the minimum down payment (e.g., paying 30% on an EV instead of 20%) reduces the loan principal, leading to a much lower EMI and less interest over time.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Bank Base Rate & Premium</h4><p className="text-slate-600 leading-relaxed">Floating rates in Nepal are calculated as Base Rate + Premium. Choosing a bank with a low premium rate and stable base rate protects you from sharp interest hikes.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Loan Tenure Choice</h4><p className="text-slate-600 leading-relaxed">A longer tenure (up to 7 years) reduces the monthly EMI payment but increases the total interest paid over the life of the loan. For a broader understanding, you may also want to explore <a href="/calculator/ovulation-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">ovulation calculator</a>.</p></div>
+                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Vehicle Price & Import Taxes</h4><p className="text-slate-600 leading-relaxed">Vehicles in Nepal face up to 250% customs and excise duties, making the initial price high. Higher price directly increases your required principal and monthly EMI.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Down Payment Ratio</h4><p className="text-slate-600 leading-relaxed">Contributing more than the minimum down payment (e.g., paying 30% on an EV instead of 20%) reduces the loan principal, leading to a much lower EMI and less interest over time.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Bank Base Rate & Premium</h4><p className="text-slate-600 leading-relaxed">Floating rates in Nepal are calculated as Base Rate + Premium. Choosing a bank with a low premium rate and stable base rate protects you from sharp interest hikes.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Loan Tenure Choice</h4><p className="text-slate-600 leading-relaxed">A longer tenure (up to 7 years) reduces the monthly EMI payment but increases the total interest paid over the life of the loan. For a broader understanding, you may also want to explore <a href="/calculator/pregnancy-due-date" className="text-blue-600 hover:text-blue-800 underline transition-colors">ovulation calculator</a>.</p></div>
                 </div>
             </section>
 
@@ -4527,7 +4527,7 @@ export const financialSEO: Record<string, SEOContent> = {
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={6}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">7. What is the minimum income required for a car loan?</h4>
-                    <p className="text-slate-600 leading-relaxed">Most banks look for a minimum monthly income of Rs. 25,000 for salaried employees, but your total monthly debt payments (including the new EMI) cannot exceed 50% of this income. Many users also utilize <a href="/calculator/graphing-pro" className="text-blue-600 hover:text-blue-800 underline transition-colors">this graphing estimator</a> alongside this analysis.</p>
+                    <p className="text-slate-600 leading-relaxed">Most banks look for a minimum monthly income of Rs. 25,000 for salaried employees, but your total monthly debt payments (including the new EMI) cannot exceed 50% of this income. Many users also utilize <a href="/calculator/quadratic-solver" className="text-blue-600 hover:text-blue-800 underline transition-colors">this graphing estimator</a> alongside this analysis.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={7}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">8. What happens if I miss my auto loan EMI payment?</h4>
@@ -4570,8 +4570,8 @@ export const financialSEO: Record<string, SEOContent> = {
                 <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
                     <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis:</p>
                     <div className="flex flex-wrap gap-4">
-                                        <a href="/calculator/cgpa/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Debt-to-Income Ratio Calculator</a>
-                <a href="/calculator/gpa/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Education Loan Calculator</a>
+                                        <a href="/calculator/cgpa" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Debt-to-Income Ratio Calculator</a>
+                <a href="/calculator/gpa" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Education Loan Calculator</a>
                     </div>
                 </div>
             </section>
@@ -4613,9 +4613,9 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">
                         <span className="text-slate-400">Quick Links:</span>
-                                        <a href="/calculator/nepal-vat/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal VAT Calculator</a>
-                <a href="/calculator/nepal-salary/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Salary Income Tax Calculator</a>
-                <a href="/calculator/gold-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Gold Import Tax Calculator</a>
+                                        <a href="/calculator/nepal-vat" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal VAT Calculator</a>
+                <a href="/calculator/nepal-salary" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Salary Income Tax Calculator</a>
+                <a href="/calculator/gold-tax" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Gold Import Tax Calculator</a>
                     </div>
                 </div>
             </div>
@@ -4696,9 +4696,9 @@ export const financialSEO: Record<string, SEOContent> = {
                     </p>
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider mb-6">
                         <span className="text-slate-400">Contextual Reference Links:</span>
-                                        <a href="/calculator/nepse-wacc/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
-                <a href="/calculator/nepse-bonus-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE Bonus Share Tax</a>
-                <a href="/calculator/property-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
+                                        <a href="/calculator/nepse-wacc" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
+                <a href="/calculator/nepse-bonus-tax" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE Bonus Share Tax</a>
+                <a href="/calculator/property-tax" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
                     </div>
                 </div>
             </section>
@@ -4890,8 +4890,8 @@ export const financialSEO: Record<string, SEOContent> = {
                 <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
                     <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis: You can gain deeper insights by using <a href="/calculator/nepal-home-loan" className="text-blue-600 hover:text-blue-800 underline transition-colors">the nepal home loan</a>.</p>
                     <div className="flex flex-wrap gap-4">
-                                        <a href="/calculator/fd-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
-                <a href="/calculator/sip-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
+                                        <a href="/calculator/fd-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
+                <a href="/calculator/sip-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
                     </div>
                 </div>
             </section>

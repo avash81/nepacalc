@@ -85,9 +85,9 @@ export const healthSEO: Record<string, SEOContent> = {
             <div className="mt-12 pt-10 border-t border-[#dadce0] text-center">
                 <p className="text-[10px] font-black text-[#70757a] uppercase tracking-widest mb-4">Related Health Tools You can gain deeper insights by using <a href="/calculator/concrete-mix" className="text-blue-600 hover:text-blue-800 underline transition-colors">our concrete calculation tool</a>.</p>
                 <div className="flex flex-wrap justify-center gap-4">
-                    <a href="/calculator/bmr/" className="px-8 py-3 bg-[#f8f9fa] border border-[#dadce0] rounded-full text-[11px] font-black text-[#1a73e8] hover:bg-[#e8f0fe] transition-all uppercase tracking-tighter">BMR Calculator</a>
-                    <a href="/calculator/body-fat/" className="px-8 py-3 bg-[#f8f9fa] border border-[#dadce0] rounded-full text-[11px] font-black text-[#1a73e8] hover:bg-[#e8f0fe] transition-all uppercase tracking-tighter">Body Fat Calculator</a>
-                    <a href="/calculator/calorie-calculator/" className="px-8 py-3 bg-[#f8f9fa] border border-[#dadce0] rounded-full text-[11px] font-black text-[#1a73e8] hover:bg-[#e8f0fe] transition-all uppercase tracking-tighter">Calorie Planner</a>
+                    <a href="/calculator/bmr" className="px-8 py-3 bg-[#f8f9fa] border border-[#dadce0] rounded-full text-[11px] font-black text-[#1a73e8] hover:bg-[#e8f0fe] transition-all uppercase tracking-tighter">BMR Calculator</a>
+                    <a href="/calculator/body-fat" className="px-8 py-3 bg-[#f8f9fa] border border-[#dadce0] rounded-full text-[11px] font-black text-[#1a73e8] hover:bg-[#e8f0fe] transition-all uppercase tracking-tighter">Body Fat Calculator</a>
+                    <a href="/calculator/calorie-calculator" className="px-8 py-3 bg-[#f8f9fa] border border-[#dadce0] rounded-full text-[11px] font-black text-[#1a73e8] hover:bg-[#e8f0fe] transition-all uppercase tracking-tighter">Calorie Planner</a>
                 </div>
             </div>
         </div>
@@ -136,7 +136,7 @@ export const healthSEO: Record<string, SEOContent> = {
                 <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed space-y-6">
                     <p>
                         There are two primary auditors for metabolic expenditure. The <strong>Mifflin-St Jeor Equation</strong> is the current health gold standard, offering higher precision for sedentary and overweight individuals. The <strong>Harris-Benedict Equation</strong>, established in 1919, remains a valuable historical benchmark but can overestimate requirements in modern lifestyles.
-                     Many users also utilize <a href="/calculator/prime-factor-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">this prime estimator</a> alongside this analysis.</p>
+                     Many users also utilize <a href="/calculator/lcm-gcf-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">this prime estimator</a> alongside this analysis.</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
                         <div className="p-8 bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-emerald-300 transition-all">
                             <h4 className="text-sm font-black uppercase text-emerald-600 mb-4">Mifflin-St Jeor (Modern)</h4>
@@ -212,7 +212,7 @@ export const healthSEO: Record<string, SEOContent> = {
             <div className="text-center pt-8 border-t border-slate-200">
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.5em]">
                     Basal Metabolic Rate Guide • Professional Health Standards
-                 If you find this useful, checking out <a href="/calculator/matrix-lab" className="text-blue-600 hover:text-blue-800 underline transition-colors">this matrix estimator</a> can provide further context.</p>
+                 If you find this useful, checking out <a href="/calculator/matrices" className="text-blue-600 hover:text-blue-800 underline transition-colors">this matrix estimator</a> can provide further context.</p>
             </div>
         </div>
     ),
@@ -260,7 +260,7 @@ export const healthSEO: Record<string, SEOContent> = {
         Understanding Your Daily Calorie Needs
         </h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Managing your calories is the foundation of healthy weight management. By understanding your <strong>Total Daily Energy Expenditure (TDEE)</strong>, you can make informed decisions about your diet and exercise. This <a href="/calculator/calorie-calculator/" className="text-sky-600 hover:text-sky-800 underline font-semibold transition-colors">Calorie Tool</a> provides a high-precision calculation of your daily energy needs.
+        Managing your calories is the foundation of healthy weight management. By understanding your <strong>Total Daily Energy Expenditure (TDEE)</strong>, you can make informed decisions about your diet and exercise. This <a href="/calculator/calorie-calculator" className="text-sky-600 hover:text-sky-800 underline font-semibold transition-colors">Calorie Tool</a> provides a high-precision calculation of your daily energy needs.
          For a broader understanding, you may also want to explore <a href="/calculator/linear-solver" className="text-blue-600 hover:text-blue-800 underline transition-colors">Linear Equation Solver</a>.</p>
         
         </div>
@@ -282,7 +282,7 @@ export const healthSEO: Record<string, SEOContent> = {
         <div className="absolute top-0 right-0 w-64 h-64 bg-sky-600 rounded-full blur-[120px] opacity-20 pointer-events-none" />
         <h3 className="text-xl font-black mb-6 relative z-10">Standard Advice</h3>
         <p className="text-sm text-slate-300 leading-relaxed relative z-10">
-        For personalized advice, combine your calorie planning with our <a href="/calculator/water-intake/" className="text-sky-400 underline font-bold">Hydration Tool</a>. Remember, sustainable weight loss is a combination of healthy nutrition and regular activity.
+        For personalized advice, combine your calorie planning with our <a href="/calculator/water-intake" className="text-sky-400 underline font-bold">Hydration Tool</a>. Remember, sustainable weight loss is a combination of healthy nutrition and regular activity.
          Official regulatory standards and data benchmarks are frequently aligned with references from the <a href="https://www.fao.org/nutrition/en/" target="_blank" rel="dofollow noopener" className="text-blue-600 hover:text-blue-800 underline transition-colors">FAO Nutrition Standards</a>.</p>
         </section>
         </div>
@@ -317,7 +317,7 @@ export const healthSEO: Record<string, SEOContent> = {
         <div className="bg-rose-50/50 border-l-4 border-rose-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-rose-700 font-black text-xs uppercase tracking-[0.3em] mb-3">How to Measure Body Fat Percentage</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Body fat percentage is a much better indicator of health than weight alone. Understanding your body composition allows for more effective fitness and health planning. This <a href="/calculator/body-fat/" className="text-rose-600 hover:text-rose-800 underline font-semibold transition-colors">Body Fat Calculator</a> provides high-precision results using proven methods.
+        Body fat percentage is a much better indicator of health than weight alone. Understanding your body composition allows for more effective fitness and health planning. This <a href="/calculator/body-fat" className="text-rose-600 hover:text-rose-800 underline font-semibold transition-colors">Body Fat Calculator</a> provides high-precision results using proven methods.
          Many users also utilize <a href="/calculator/nepali-date" className="text-blue-600 hover:text-blue-800 underline transition-colors">nepali date converter</a> alongside this analysis.</p>
         </div>
         </div>
@@ -430,7 +430,7 @@ export const healthSEO: Record<string, SEOContent> = {
             {/* Nepal Climate Context */}
             <section>
                 <h3 className="text-2xl font-black text-slate-900 mb-4">3. Nepal Climate Zones & Hydration Impact</h3>
-                <p className="text-slate-600 leading-relaxed mb-4">Nepal's unique geography creates dramatically different hydration needs across its three ecological zones: Additionally, <a href="/calculator/percentage-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">percentage calculator</a> is highly recommended for related estimations.</p>
+                <p className="text-slate-600 leading-relaxed mb-4">Nepal's unique geography creates dramatically different hydration needs across its three ecological zones: Additionally, <a href="/calculator/percentage" className="text-blue-600 hover:text-blue-800 underline transition-colors">percentage calculator</a> is highly recommended for related estimations.</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="bg-red-50 border border-red-200 rounded-xl p-5">
                         <h4 className="font-black text-red-700 mb-2">🌡️ Terai (Hot & Humid)</h4>
@@ -477,10 +477,10 @@ export const healthSEO: Record<string, SEOContent> = {
 
             <div className="pt-8 border-t border-slate-200 text-center">
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/bmi/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-blue-700 hover:bg-blue-50 transition-all">BMI Calculator</a>
-                    <a href="/calculator/calorie-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-blue-700 hover:bg-blue-50 transition-all">Calorie Calculator</a>
-                    <a href="/calculator/bmr/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-blue-700 hover:bg-blue-50 transition-all">BMR Calculator</a>
-                    <a href="/calculator/sleep/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-blue-700 hover:bg-blue-50 transition-all">Sleep Calculator</a>
+                    <a href="/calculator/bmi" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-blue-700 hover:bg-blue-50 transition-all">BMI Calculator</a>
+                    <a href="/calculator/calorie-calculator" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-blue-700 hover:bg-blue-50 transition-all">Calorie Calculator</a>
+                    <a href="/calculator/bmr" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-blue-700 hover:bg-blue-50 transition-all">BMR Calculator</a>
+                    <a href="/calculator/sleep" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-blue-700 hover:bg-blue-50 transition-all">Sleep Calculator</a>
                 </div>
             </div>
         </div>
@@ -516,7 +516,7 @@ export const healthSEO: Record<string, SEOContent> = {
         <div className="bg-pink-50 border-l-4 border-pink-600 rounded-r-xl p-8 shadow-sm">
         <h2 className="text-pink-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Estimated Due Date (EDD) Timeline</h2>
         <p className="text-slate-800 text-base leading-relaxed">
-        Accuracy in tracking your pregnancy is essential for proper prenatal care. This <a href="/calculator/pregnancy-due-date/" className="text-pink-600 hover:text-pink-800 underline font-semibold transition-colors">Due Date Calculator</a> provides a reliable timeline for your journey.
+        Accuracy in tracking your pregnancy is essential for proper prenatal care. This <a href="/calculator/pregnancy-due-date" className="text-pink-600 hover:text-pink-800 underline font-semibold transition-colors">Due Date Calculator</a> provides a reliable timeline for your journey.
          For a broader understanding, you may also want to explore <a href="/calculator/nepal-tds" className="text-blue-600 hover:text-blue-800 underline transition-colors">the tds calculator nepal</a>.</p>
         </div>
         </div>
@@ -607,7 +607,7 @@ export const healthSEO: Record<string, SEOContent> = {
         
         <p className="text-slate-600 leading-relaxed text-lg mb-6">
             Understanding the detailed mechanics of Child BMI Tracking is crucial for individuals looking to optimize their pediatric metrics. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of pediatric metrics allows you to make informed, data-driven decisions. Historically, dealing with pediatric metrics involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of pediatric metrics remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous pediatric metrics assessments to ensure compliance with both local and international standards. The intersection of modern technology and pediatric metrics has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated pediatric metrics analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
-         To complement these results, consider running the numbers through <a href="/calculator/programmer-calc" className="text-blue-600 hover:text-blue-800 underline transition-colors">the programmer calculator</a>.</p>
+         To complement these results, consider running the numbers through <a href="/calculator/base-converter" className="text-blue-600 hover:text-blue-800 underline transition-colors">the programmer calculator</a>.</p>
         
         <p className="text-slate-600 leading-relaxed text-lg mb-6">
             Understanding the detailed mechanics of Child BMI Tracking is crucial for individuals looking to optimize their pediatric metrics. In Nepal's rapidly evolving socio-economic landscape, grasping the nuances of pediatric metrics allows you to make informed, data-driven decisions. Historically, dealing with pediatric metrics involved tedious manual calculations and was highly susceptible to human error. Today, utilizing digital calculation frameworks empowers you to forecast accurately, align with regulatory guidelines, and mitigate potential risks effectively. Whether you are addressing short-term requirements or developing a long-term strategic plan, the core principles of pediatric metrics remain a fundamental cornerstone. By integrating these precise metrics into your continuous workflow, you can achieve unparalleled accuracy. Furthermore, professionals and analysts across various sectors rely heavily on meticulous pediatric metrics assessments to ensure compliance with both local and international standards. The intersection of modern technology and pediatric metrics has completely democratized access to these once-complex mathematical models, making them accessible to everyone from everyday users to seasoned industry experts. As the digital infrastructure within Nepal continues to advance, the role of automated pediatric metrics analysis will only grow more significant, profoundly shaping the future of how we interact with quantitative data and regulatory frameworks.
@@ -793,9 +793,9 @@ export const healthSEO: Record<string, SEOContent> = {
 
             <div className="pt-8 border-t border-slate-200 text-center">
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/bmi/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">BMI Calculator</a>
-                    <a href="/calculator/calorie-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Calorie Calculator</a>
-                    <a href="/calculator/water-intake/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Water Intake</a>
+                    <a href="/calculator/bmi" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">BMI Calculator</a>
+                    <a href="/calculator/calorie-calculator" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Calorie Calculator</a>
+                    <a href="/calculator/water-intake" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Water Intake</a>
                 </div>
             </div>
         </div>
@@ -831,7 +831,7 @@ export const healthSEO: Record<string, SEOContent> = {
         <h2 className="text-rose-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Understanding Your Fertility Window</h2>
         <p className="text-slate-800 text-base leading-relaxed">
         Understanding your cycle is a key part of family planning and reproductive health. This calculator provides a clear map of your fertile window to help you stay informed.
-         To complement these results, consider running the numbers through <a href="/calculator/programmer-calc" className="text-blue-600 hover:text-blue-800 underline transition-colors">the programmer calculator</a>.</p>
+         To complement these results, consider running the numbers through <a href="/calculator/base-converter" className="text-blue-600 hover:text-blue-800 underline transition-colors">the programmer calculator</a>.</p>
         </div>
         </div>
     ),

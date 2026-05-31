@@ -44,10 +44,10 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                     <h3 className="text-4xl font-black mb-8 leading-tight">Live Gold Price Calculator Nepal | Gold Valuation Guide</h3>
                     <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
                         Gold holds immense cultural and financial significance in Nepal, serving as a primary wedding gift, festival ornament, and a trusted hedge against inflation. The Federation of Nepal Gold and Silver Dealers Association (FENEGOSIDA) sets the benchmark gold rates daily in Nepal based on international market pricing and local import duties. This calculator helps consumers, jewellers, and investors convert gold weights (Grams to Tolas) and estimate the final price of gold ornaments including making charges, wastage, and VAT.
-                     For a broader understanding, you may also want to explore <a href="/calculator/circumference-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">our circumference calculation tool</a>.</p>
+                     For a broader understanding, you may also want to explore <a href="/calculator/geometry-3d" className="text-blue-600 hover:text-blue-800 underline transition-colors">our circumference calculation tool</a>.</p>
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">
                         <span className="text-slate-400">Quick Links:</span>
-                                        <a href="/calculator/gold-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Gold Import Tax Calculator</a>
+                                        <a href="/calculator/gold-tax" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Gold Import Tax Calculator</a>
                 <a href="/market-rates/live-silver-price/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Live Silver Price Calculator</a>
                 <a href="/market-rates/exchange-rate/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Exchange Rate Converter</a>
                     </div>
@@ -131,8 +131,8 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider mb-6">
                         <span className="text-slate-400">Contextual Reference Links:</span>
                                         <a href="/market-rates/remittance/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Remittance Calculator</a>
-                <a href="/calculator/nepal-vat/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal VAT Calculator</a>
-                <a href="/calculator/tds-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">TDS Calculator Nepal</a>
+                <a href="/calculator/nepal-vat" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal VAT Calculator</a>
+                <a href="/calculator/tds-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">TDS Calculator Nepal</a>
                     </div>
                 </div>
             </section>
@@ -185,7 +185,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
             <section className="space-y-8 mt-12">
                 <h3 className="text-3xl font-black text-slate-900">8. Key Factors Affecting Your Calculations</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">International Bullion Market</h4><p className="text-slate-600 leading-relaxed">Local gold rates are directly pegged to the London Bullion Market Association (LBMA) USD rates, adjusting for currency exchange fluctuations. Additionally, <a href="/calculator/probability" className="text-blue-600 hover:text-blue-800 underline transition-colors">Probability Calculator</a> is highly recommended for related estimations.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Nepal Customs Duty and Tariffs</h4><p className="text-slate-600 leading-relaxed">Any change in the government's customs duty rate during the annual budget directly shifts local gold prices.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Melting and Design Wastage</h4><p className="text-slate-600 leading-relaxed">Complex traditional Nepali designs (like Tilhari or Jantar) require higher making charges and result in higher wastage percentages.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Seasonality & Demand</h4><p className="text-slate-600 leading-relaxed">Prices and dealer premiums can rise during wedding seasons (Mangsir, Magh) due to high demand. You can gain deeper insights by using <a href="/calculator/programmer-calc" className="text-blue-600 hover:text-blue-800 underline transition-colors">our programmer calculation tool</a>.</p></div>
+                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">International Bullion Market</h4><p className="text-slate-600 leading-relaxed">Local gold rates are directly pegged to the London Bullion Market Association (LBMA) USD rates, adjusting for currency exchange fluctuations. Additionally, <a href="/calculator/probability" className="text-blue-600 hover:text-blue-800 underline transition-colors">Probability Calculator</a> is highly recommended for related estimations.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Nepal Customs Duty and Tariffs</h4><p className="text-slate-600 leading-relaxed">Any change in the government's customs duty rate during the annual budget directly shifts local gold prices.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Melting and Design Wastage</h4><p className="text-slate-600 leading-relaxed">Complex traditional Nepali designs (like Tilhari or Jantar) require higher making charges and result in higher wastage percentages.</p></div><div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm"><h4 className="text-xl font-bold text-slate-900 mb-2">Seasonality & Demand</h4><p className="text-slate-600 leading-relaxed">Prices and dealer premiums can rise during wedding seasons (Mangsir, Magh) due to high demand. You can gain deeper insights by using <a href="/calculator/base-converter" className="text-blue-600 hover:text-blue-800 underline transition-colors">our programmer calculation tool</a>.</p></div>
                 </div>
             </section>
 
@@ -322,10 +322,10 @@ export const marketRatesSEO: Record<string, SEOContent> = {
             <section className="space-y-8 mt-12">
                 <h3 className="text-3xl font-black text-slate-900">14. Related Tools and Clusters</h3>
                 <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
-                    <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis: Additionally, <a href="/calculator/pythagorean-theorem" className="text-blue-600 hover:text-blue-800 underline transition-colors">Pythagorean Theorem Calculator</a> is highly recommended for related estimations.</p>
+                    <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis: Additionally, <a href="/calculator/geometry-3d" className="text-blue-600 hover:text-blue-800 underline transition-colors">Pythagorean Theorem Calculator</a> is highly recommended for related estimations.</p>
                     <div className="flex flex-wrap gap-4">
-                                        <a href="/calculator/nepse-wacc/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
-                <a href="/calculator/property-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
+                                        <a href="/calculator/nepse-wacc" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
+                <a href="/calculator/property-tax" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
                     </div>
                 </div>
             </section>
@@ -464,9 +464,9 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                     </p>
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider mb-6">
                         <span className="text-slate-400">Contextual Reference Links:</span>
-                                        <a href="/calculator/nepal-salary/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Salary Income Tax Calculator</a>
-                <a href="/calculator/tds-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">TDS Calculator Nepal</a>
-                <a href="/calculator/nepse-wacc/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
+                                        <a href="/calculator/nepal-salary" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Salary Income Tax Calculator</a>
+                <a href="/calculator/tds-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">TDS Calculator Nepal</a>
+                <a href="/calculator/nepse-wacc" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
                     </div>
                 </div>
             </section>
@@ -658,8 +658,8 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                 <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
                     <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis:</p>
                     <div className="flex flex-wrap gap-4">
-                                        <a href="/calculator/fd-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
-                <a href="/calculator/sip-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
+                                        <a href="/calculator/fd-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
+                <a href="/calculator/sip-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
                     </div>
                 </div>
             </section>
@@ -787,9 +787,9 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                     </p>
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider mb-6">
                         <span className="text-slate-400">Contextual Reference Links:</span>
-                                        <a href="/calculator/nepal-salary/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Salary Income Tax Calculator</a>
-                <a href="/calculator/tds-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">TDS Calculator Nepal</a>
-                <a href="/calculator/nepse-wacc/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
+                                        <a href="/calculator/nepal-salary" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Salary Income Tax Calculator</a>
+                <a href="/calculator/tds-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">TDS Calculator Nepal</a>
+                <a href="/calculator/nepse-wacc" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
                     </div>
                 </div>
             </section>
@@ -981,8 +981,8 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                 <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
                     <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis:</p>
                     <div className="flex flex-wrap gap-4">
-                                        <a href="/calculator/fd-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
-                <a href="/calculator/sip-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
+                                        <a href="/calculator/fd-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Fixed Deposit Calculator</a>
+                <a href="/calculator/sip-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">SIP Calculator</a>
                     </div>
                 </div>
             </section>
@@ -1028,7 +1028,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider">
                         <span className="text-slate-400">Quick Links:</span>
                                         <a href="/market-rates/live-gold-price/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Live Gold Price Calculator</a>
-                <a href="/calculator/gold-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Gold Import Tax Calculator</a>
+                <a href="/calculator/gold-tax" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Gold Import Tax Calculator</a>
                 <a href="/market-rates/exchange-rate/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Exchange Rate Converter</a>
                     </div>
                 </div>
@@ -1111,8 +1111,8 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                     <div className="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-wrap gap-4 text-xs font-semibold uppercase tracking-wider mb-6">
                         <span className="text-slate-400">Contextual Reference Links:</span>
                                         <a href="/market-rates/remittance/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Remittance Calculator</a>
-                <a href="/calculator/nepal-vat/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal VAT Calculator</a>
-                <a href="/calculator/tds-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">TDS Calculator Nepal</a>
+                <a href="/calculator/nepal-vat" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Nepal VAT Calculator</a>
+                <a href="/calculator/tds-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">TDS Calculator Nepal</a>
                     </div>
                 </div>
             </section>
@@ -1253,7 +1253,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={4}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">5. Do silversmiths charge making fees per gram or per Tola?</h4>
-                    <p className="text-slate-600 leading-relaxed">Making fees for silver are usually charged as a flat amount per Tola or gram, rather than a percentage. Additionally, <a href="/calculator/full-scientific" className="text-blue-600 hover:text-blue-800 underline transition-colors">scientific engine fullscreen</a> is highly recommended for related estimations.</p>
+                    <p className="text-slate-600 leading-relaxed">Making fees for silver are usually charged as a flat amount per Tola or gram, rather than a percentage. Additionally, <a href="/calculator/scientific-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">scientific engine fullscreen</a> is highly recommended for related estimations.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={5}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">6. Is VAT applicable to silver purchases?</h4>
@@ -1261,7 +1261,7 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={6}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">7. How much silver can I bring to Nepal from abroad?</h4>
-                    <p className="text-slate-600 leading-relaxed">Passengers can bring up to 500 grams of silver ornaments, subject to customs duty payments. For a broader understanding, you may also want to explore <a href="/calculator/3d-visualizer" className="text-blue-600 hover:text-blue-800 underline transition-colors">this 3d estimator</a>.</p>
+                    <p className="text-slate-600 leading-relaxed">Passengers can bring up to 500 grams of silver ornaments, subject to customs duty payments. For a broader understanding, you may also want to explore <a href="/calculator/geometry-3d" className="text-blue-600 hover:text-blue-800 underline transition-colors">this 3d estimator</a>.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={7}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">8. What is the stamp "925" on silver?</h4>
@@ -1304,8 +1304,8 @@ export const marketRatesSEO: Record<string, SEOContent> = {
                 <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
                     <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis:</p>
                     <div className="flex flex-wrap gap-4">
-                                        <a href="/calculator/nepse-wacc/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
-                <a href="/calculator/property-tax/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
+                                        <a href="/calculator/nepse-wacc" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">NEPSE WACC Calculator</a>
+                <a href="/calculator/property-tax" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Capital Gain Tax Calculator</a>
                     </div>
                 </div>
             </section>

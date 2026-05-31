@@ -111,7 +111,7 @@ export const constructionSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Dry materials such as cement, sand, and aggregate contain high proportions of air voids. When water is added, the particles compact and fill these voids, causing a significant reduction in total volume. In concrete mix design, this is accounted for by applying a dry-volume multiplier, typically standardized as 1.54. Similarly, mortar volume in brick masonry requires a distinct dry multiplier (usually 1.33) to account for compaction. Failing to apply these mathematical constants leads to the 'Procurement Gap'—a common site anomaly where raw materials run out mid-project, leading to cold joints, construction delays, and increased transport costs.
-                     If you find this useful, checking out <a href="/calculator/lean-body-mass" className="text-blue-600 hover:text-blue-800 underline transition-colors">Lean Body Mass Calculator</a> can provide further context.</p>
+                     If you find this useful, checking out <a href="/calculator/bmi" className="text-blue-600 hover:text-blue-800 underline transition-colors">Lean Body Mass Calculator</a> can provide further context.</p>
                 </div>
             </section>
 
@@ -144,27 +144,27 @@ export const constructionSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -324,27 +324,27 @@ export const constructionSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>

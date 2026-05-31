@@ -54,7 +54,7 @@ export const physicsSEO: Record<string, SEOContent> = {
                         Whether you are analyzing physical variables, calculating financial structures, or mapping geometric coordinates,
                         the underlying algorithmic engine provides unparalleled precision. We have integrated edge-case detection to ensure
                         that extreme input parameters are processed gracefully, yielding results that comply with rigorous international standards.
-                     Many users also utilize <a href="/calculator/3d-visualizer" className="text-blue-600 hover:text-blue-800 underline transition-colors">our 3d calculation tool</a> alongside this analysis.</p>
+                     Many users also utilize <a href="/calculator/geometry-3d" className="text-blue-600 hover:text-blue-800 underline transition-colors">our 3d calculation tool</a> alongside this analysis.</p>
                     <p className="text-slate-600 leading-relaxed text-base">
                         To utilize the calculator effectively, simply select your desired operation mode, input the known variables into the
                         responsive fields, and let the computational engine perform the heavy lifting. The interface is specifically tailored
@@ -129,7 +129,7 @@ export const physicsSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         To further maximize the utility of these calculations, we recommend establishing a consistent auditing cadence. Mathematical models are most effective when used iteratively over time, allowing for the tracking of performance variances against historical benchmarks. Whether tracking the amortization schedule of a corporate loan or monitoring the specific gravity variations in a concrete batch plant, longitudinal data analysis unlocks deep operational insights. Utilizing these tools as persistent monitoring systems rather than one-off estimators drives a culture of continuous improvement and unyielding technical precision.
-                     To complement these results, consider running the numbers through <a href="/calculator/weight-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">weight calculator</a>.</p>
+                     To complement these results, consider running the numbers through <a href="/calculator/bmi" className="text-blue-600 hover:text-blue-800 underline transition-colors">weight calculator</a>.</p>
                     <p>
                         In conclusion, the mastery of advanced numerical algorithms is indistinguishable from professional excellence. We invite you to explore the full depth of our computational ecosystem, leveraging these verified mathematical models to drive innovation, ensure compliance, and achieve structural perfection in all your professional endeavors. Through strict adherence to mathematical truth and continuous technological refinement, we empower the global community of analysts, engineers, and students to build a smarter, more resilient future.
                      Official regulatory standards and data benchmarks are frequently aligned with references from the <a href="https://physics.nist.gov/" target="_blank" rel="dofollow noopener" className="text-blue-600 hover:text-blue-800 underline transition-colors">NIST Physical Measurement Laboratory</a>.</p>
@@ -144,27 +144,27 @@ export const physicsSEO: Record<string, SEOContent> = {
                  Additionally, <a href="/calculator/nepal-income-tax" className="text-blue-600 hover:text-blue-800 underline transition-colors">this nepal estimator</a> is highly recommended for related estimations.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -328,27 +328,27 @@ export const physicsSEO: Record<string, SEOContent> = {
                  Additionally, <a href="/calculator/z-score" className="text-blue-600 hover:text-blue-800 underline transition-colors">the z-score calculator -</a> is highly recommended for related estimations.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -441,7 +441,7 @@ export const physicsSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Furthermore, the continuous integration of automated computational engines ensures that human calculation errors are entirely mitigated. By leveraging high-precision online tools, practitioners can double-check complex structural equations, optimize industrial resource allocation, and gain a profound understanding of mathematical systems. These analytical exercises build a high level of mathematical confidence, proving that every successful modern operation is rooted in structural mathematical precision.
-                     Many users also utilize <a href="/calculator/geometry-lab" className="text-blue-600 hover:text-blue-800 underline transition-colors">this geometry estimator</a> alongside this analysis.</p>
+                     Many users also utilize <a href="/calculator/geometry-3d" className="text-blue-600 hover:text-blue-800 underline transition-colors">this geometry estimator</a> alongside this analysis.</p>
                     <p>
                         Beyond simple calculation, this tool acts as a comprehensive analytical platform that integrates seamlessly into complex professional workflows. In today's data-driven environment, the ability to rapidly process numerical inputs and generate verified outputs is a critical competitive advantage. Whether you are conducting academic research, managing a construction project, optimizing an investment portfolio, or auditing financial statements, precision is paramount. By replacing manual calculation methods with our rigorous digital engine, you mitigate the risk of human error and ensure that every analytical decision is based on verified mathematical logic.
                     </p>
@@ -476,7 +476,7 @@ export const physicsSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Dry materials such as cement, sand, and aggregate contain high proportions of air voids. When water is added, the particles compact and fill these voids, causing a significant reduction in total volume. In concrete mix design, this is accounted for by applying a dry-volume multiplier, typically standardized as 1.54. Similarly, mortar volume in brick masonry requires a distinct dry multiplier (usually 1.33) to account for compaction. Failing to apply these mathematical constants leads to the 'Procurement Gap'—a common site anomaly where raw materials run out mid-project, leading to cold joints, construction delays, and increased transport costs.
-                     Additionally, <a href="/calculator/pythagorean-theorem" className="text-blue-600 hover:text-blue-800 underline transition-colors">pythagorean theorem calculator</a> is highly recommended for related estimations.</p>
+                     Additionally, <a href="/calculator/geometry-3d" className="text-blue-600 hover:text-blue-800 underline transition-colors">pythagorean theorem calculator</a> is highly recommended for related estimations.</p>
                 </div>
             </section>
 
@@ -509,27 +509,27 @@ export const physicsSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -681,27 +681,27 @@ export const physicsSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/attendance/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/attendance" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Attendance &rarr;
                         </a>
                     </div>
@@ -820,7 +820,7 @@ export const physicsSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Dry materials such as cement, sand, and aggregate contain high proportions of air voids. When water is added, the particles compact and fill these voids, causing a significant reduction in total volume. In concrete mix design, this is accounted for by applying a dry-volume multiplier, typically standardized as 1.54. Similarly, mortar volume in brick masonry requires a distinct dry multiplier (usually 1.33) to account for compaction. Failing to apply these mathematical constants leads to the 'Procurement Gap'—a common site anomaly where raw materials run out mid-project, leading to cold joints, construction delays, and increased transport costs.
-                     For a broader understanding, you may also want to explore <a href="/calculator/prime-factor-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">our prime calculation tool</a>.</p>
+                     For a broader understanding, you may also want to explore <a href="/calculator/lcm-gcf-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">our prime calculation tool</a>.</p>
                 </div>
             </section>
 
@@ -835,7 +835,7 @@ export const physicsSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Moreover, we recognize the importance of interoperability in modern digital workspaces. The ability to cross-reference outputs from a financial calculator with a tax auditing tool or to pair structural load calculations with material estimators ensures a cohesive analytical workflow. Our platform is structured as an ecosystem of complementary mathematical engines, designed to work in tandem. By bridging discrete computational models, professionals can synthesize holistic, overarching strategies that account for every technical variable and financial constraint.
-                     Additionally, <a href="/calculator/graphing-pro" className="text-blue-600 hover:text-blue-800 underline transition-colors">this graphing estimator</a> is highly recommended for related estimations.</p>
+                     Additionally, <a href="/calculator/quadratic-solver" className="text-blue-600 hover:text-blue-800 underline transition-colors">this graphing estimator</a> is highly recommended for related estimations.</p>
                     <p>
                         To further maximize the utility of these calculations, we recommend establishing a consistent auditing cadence. Mathematical models are most effective when used iteratively over time, allowing for the tracking of performance variances against historical benchmarks. Whether tracking the amortization schedule of a corporate loan or monitoring the specific gravity variations in a concrete batch plant, longitudinal data analysis unlocks deep operational insights. Utilizing these tools as persistent monitoring systems rather than one-off estimators drives a culture of continuous improvement and unyielding technical precision.
                     </p>
@@ -853,27 +853,27 @@ export const physicsSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -955,7 +955,7 @@ export const physicsSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Applied mathematics teaches us to think systematically, to identify underlying patterns under tight constraints, and to break down multi-variable challenges into manageable logical steps. This cognitive framework is an invaluable asset across all professional fields, from structural engineering to public policy formulation. By isolating variables, identifying direct and inverse proportions, and predicting outcomes with high statistical confidence, practitioners can design optimal solutions that are highly relevant to their communities' sustainable development.
-                     For a broader understanding, you may also want to explore <a href="/calculator/matrix-lab" className="text-blue-600 hover:text-blue-800 underline transition-colors">the matrix algebra console</a>.</p>
+                     For a broader understanding, you may also want to explore <a href="/calculator/matrices" className="text-blue-600 hover:text-blue-800 underline transition-colors">the matrix algebra console</a>.</p>
                     <p>
                         Furthermore, the continuous integration of automated computational engines ensures that human calculation errors are entirely mitigated. By leveraging high-precision online tools, practitioners can double-check complex structural equations, optimize industrial resource allocation, and gain a profound understanding of mathematical systems. These analytical exercises build a high level of mathematical confidence, proving that every successful modern operation is rooted in structural mathematical precision.
                     </p>
@@ -1026,27 +1026,27 @@ export const physicsSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>

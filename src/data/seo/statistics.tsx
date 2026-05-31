@@ -117,10 +117,10 @@ export const statisticsSEO: Record<string, SEOContent> = {
             <div className="pt-8 border-t border-slate-200">
                 <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 text-center">Related Calculators</p>
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/standard-deviation/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Standard Deviation</a>
-                    <a href="/calculator/z-score/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Z-Score Calculator</a>
-                    <a href="/calculator/probability/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Probability Calculator</a>
-                    <a href="/calculator/scientific-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Scientific Calculator</a>
+                    <a href="/calculator/standard-deviation" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Standard Deviation</a>
+                    <a href="/calculator/z-score" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Z-Score Calculator</a>
+                    <a href="/calculator/probability" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Probability Calculator</a>
+                    <a href="/calculator/scientific-calculator" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Scientific Calculator</a>
                 </div>
             </div>
         </div>
@@ -244,7 +244,7 @@ export const statisticsSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Data validation is another cornerstone of our digital infrastructure. Every input provided by the user is subjected to rigorous boundary checks and type validations before reaching the core processing algorithms. This robust sanitization prevents memory overflows and logical fallacies that can skew analytical outputs. For academic researchers and financial auditors, knowing that the calculation engine is fortified against erroneous inputs provides profound confidence in the integrity of the final report. This strict adherence to data quality sets our computational tools apart as true professional-grade instruments.
-                     You can gain deeper insights by using <a href="/calculator/3d-visualizer" className="text-blue-600 hover:text-blue-800 underline transition-colors">3D Surface Visualizer</a>.</p>
+                     You can gain deeper insights by using <a href="/calculator/geometry-3d" className="text-blue-600 hover:text-blue-800 underline transition-colors">3D Surface Visualizer</a>.</p>
                     <p>
                         Moreover, we recognize the importance of interoperability in modern digital workspaces. The ability to cross-reference outputs from a financial calculator with a tax auditing tool or to pair structural load calculations with material estimators ensures a cohesive analytical workflow. Our platform is structured as an ecosystem of complementary mathematical engines, designed to work in tandem. By bridging discrete computational models, professionals can synthesize holistic, overarching strategies that account for every technical variable and financial constraint.
                      For a broader understanding, you may also want to explore <a href="/calculator/sip-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">the sip calculator nepal</a>.</p>
@@ -265,27 +265,27 @@ export const statisticsSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -428,27 +428,27 @@ export const statisticsSEO: Record<string, SEOContent> = {
                  Additionally, <a href="/calculator/nepal-vat" className="text-blue-600 hover:text-blue-800 underline transition-colors">nepal vat calculator current year</a> is highly recommended for related estimations.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -562,9 +562,9 @@ export const statisticsSEO: Record<string, SEOContent> = {
             {/* Links */}
             <div className="pt-8 border-t border-slate-200 text-center">
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/statistics-plus/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-purple-700 hover:bg-purple-50 transition-all">Statistics Plus</a>
-                    <a href="/calculator/standard-deviation/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-purple-700 hover:bg-purple-50 transition-all">Standard Deviation</a>
-                    <a href="/calculator/probability/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-purple-700 hover:bg-purple-50 transition-all">Probability Calculator</a>
+                    <a href="/calculator/statistics-plus" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-purple-700 hover:bg-purple-50 transition-all">Statistics Plus</a>
+                    <a href="/calculator/standard-deviation" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-purple-700 hover:bg-purple-50 transition-all">Standard Deviation</a>
+                    <a href="/calculator/probability" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-purple-700 hover:bg-purple-50 transition-all">Probability Calculator</a>
                 </div>
             </div>
         </div>

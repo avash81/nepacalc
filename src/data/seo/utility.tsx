@@ -26,7 +26,7 @@ export const utilitySEO: Record<string, SEOContent> = {
                 <h2 className="text-amber-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Solar Requirement Calculator Guide</h2>
                 <p className="text-slate-800 text-base leading-relaxed">
                     The <strong>Solar Requirement Calculator</strong> helps Nepali households and businesses determine the exact solar panel capacity, battery storage, and inverter rating needed to power their electrical loads. With Nepal's abundant sunshine (averaging 6.8 hours of peak sunlight daily) and the ongoing push to reduce dependence on the national grid and diesel generators, solar power is increasingly a practical and economical choice.
-                 You can gain deeper insights by using <a href="/calculator/matrix-lab" className="text-blue-600 hover:text-blue-800 underline transition-colors">the matrix algebra console</a>.</p>
+                 You can gain deeper insights by using <a href="/calculator/matrices" className="text-blue-600 hover:text-blue-800 underline transition-colors">the matrix algebra console</a>.</p>
             </div>
 
             {/* Quick Facts */}
@@ -108,9 +108,9 @@ export const utilitySEO: Record<string, SEOContent> = {
 
             <div className="pt-8 border-t border-slate-200 text-center">
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/nea-bill/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-amber-700 hover:bg-amber-50 transition-all">NEA Bill Calculator</a>
-                    <a href="/calculator/word-counter/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-amber-700 hover:bg-amber-50 transition-all">Word Counter</a>
-                    <a href="/calculator/nepal-vat/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-amber-700 hover:bg-amber-50 transition-all">VAT Calculator</a>
+                    <a href="/calculator/nea-bill" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-amber-700 hover:bg-amber-50 transition-all">NEA Bill Calculator</a>
+                    <a href="/calculator/word-counter" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-amber-700 hover:bg-amber-50 transition-all">Word Counter</a>
+                    <a href="/calculator/nepal-vat" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-amber-700 hover:bg-amber-50 transition-all">VAT Calculator</a>
                 </div>
             </div>
         </div>
@@ -196,7 +196,7 @@ export const utilitySEO: Record<string, SEOContent> = {
                 <p className="text-slate-300 text-sm mb-4">The most reliable method for solving proportions (finding a missing value): Additionally, <a href="/calculator/engineering-gpa" className="text-blue-600 hover:text-blue-800 underline transition-colors">engineering gpa calculator</a> is highly recommended for related estimations.</p>
                 <div className="bg-slate-800 rounded-xl p-6 font-mono text-sm">
                     <p className="text-violet-300 mb-2">Given: A/B = C/D (solve for D)</p>
-                    <p className="text-white mb-2">Step 1: Cross multiply: A × D = B × C If you find this useful, checking out <a href="/calculator/prime-factor-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">this prime estimator</a> can provide further context.</p>
+                    <p className="text-white mb-2">Step 1: Cross multiply: A × D = B × C If you find this useful, checking out <a href="/calculator/lcm-gcf-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">this prime estimator</a> can provide further context.</p>
                     <p className="text-white mb-2">Step 2: Isolate D: D = (B × C) / A Many users also utilize <a href="/calculator/lead-time" className="text-blue-600 hover:text-blue-800 underline transition-colors">Lead Time Calculator</a> alongside this analysis.</p>
                     <p className="text-amber-300 mt-4">Example: 3/5 = 12/D → 3D = 5×12 → 3D = 60 → D = 20</p>
                 </div>
@@ -204,9 +204,9 @@ export const utilitySEO: Record<string, SEOContent> = {
 
             <div className="pt-8 border-t border-slate-200 text-center">
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/percentage-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-violet-700 hover:bg-violet-50 transition-all">Percentage Calculator</a>
-                    <a href="/calculator/fraction-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-violet-700 hover:bg-violet-50 transition-all">Fraction Calculator</a>
-                    <a href="/calculator/scientific-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-violet-700 hover:bg-violet-50 transition-all">Scientific Calculator</a>
+                    <a href="/calculator/percentage" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-violet-700 hover:bg-violet-50 transition-all">Percentage Calculator</a>
+                    <a href="/calculator/fraction-calculator" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-violet-700 hover:bg-violet-50 transition-all">Fraction Calculator</a>
+                    <a href="/calculator/scientific-calculator" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-violet-700 hover:bg-violet-50 transition-all">Scientific Calculator</a>
                 </div>
             </div>
         </div>
@@ -244,7 +244,7 @@ export const utilitySEO: Record<string, SEOContent> = {
                 <h2 className="text-slate-800 font-black text-xs uppercase tracking-[0.3em] mb-3">Scientific Calculator Guide</h2>
                 <p className="text-slate-800 text-base leading-relaxed">
                     The <strong>Scientific Calculator</strong> provides access to all advanced mathematical functions needed for engineering, science, and academic coursework—including trigonometry (sin, cos, tan), logarithms (log, ln), exponents, roots, factorial, and complex number operations. This is a comprehensive tool for SEE, NEB (+2 Science), and engineering entrance exam (IOE, CTEVT) preparation in Nepal.
-                 For a broader understanding, you may also want to explore <a href="/calculator/graphing-pro" className="text-blue-600 hover:text-blue-800 underline transition-colors">Graphing Pro</a>.</p>
+                 For a broader understanding, you may also want to explore <a href="/calculator/quadratic-solver" className="text-blue-600 hover:text-blue-800 underline transition-colors">Graphing Pro</a>.</p>
             </div>
 
             {/* Key Functions */}
@@ -278,7 +278,7 @@ export const utilitySEO: Record<string, SEOContent> = {
             <section>
                 <h3 className="text-2xl font-black text-slate-900 mb-4">2. Scientific Calculator Use in Nepal's Exams</h3>
                 <div className="bg-slate-900 text-white rounded-2xl p-8">
-                    <p className="text-slate-300 text-sm mb-6">Different Nepali examinations have specific rules about calculator use: Additionally, <a href="/calculator/programmer-calc" className="text-blue-600 hover:text-blue-800 underline transition-colors">this programmer estimator</a> is highly recommended for related estimations.</p>
+                    <p className="text-slate-300 text-sm mb-6">Different Nepali examinations have specific rules about calculator use: Additionally, <a href="/calculator/base-converter" className="text-blue-600 hover:text-blue-800 underline transition-colors">this programmer estimator</a> is highly recommended for related estimations.</p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                         <div className="bg-slate-800 rounded-xl p-4">
                             <h4 className="text-amber-300 font-bold mb-2">SEE (Grade 10)</h4>
@@ -290,7 +290,7 @@ export const utilitySEO: Record<string, SEOContent> = {
                         </div>
                         <div className="bg-slate-800 rounded-xl p-4">
                             <h4 className="text-amber-300 font-bold mb-2">IOE Entrance</h4>
-                            <p className="text-slate-300 text-xs">IOE and Pulchowk entrance exams are MCQ-based. Scientific calculators are generally <strong className="text-white">not allowed</strong>. Mental estimation and quick computation methods are essential. If you find this useful, checking out <a href="/calculator/full-scientific" className="text-blue-600 hover:text-blue-800 underline transition-colors">the scientific engine fullscreen</a> can provide further context.</p>
+                            <p className="text-slate-300 text-xs">IOE and Pulchowk entrance exams are MCQ-based. Scientific calculators are generally <strong className="text-white">not allowed</strong>. Mental estimation and quick computation methods are essential. If you find this useful, checking out <a href="/calculator/scientific-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">the scientific engine fullscreen</a> can provide further context.</p>
                         </div>
                     </div>
                 </div>
@@ -309,9 +309,9 @@ export const utilitySEO: Record<string, SEOContent> = {
 
             <div className="pt-8 border-t border-slate-200 text-center">
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/statistics-plus/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-slate-700 hover:bg-slate-200 transition-all">Statistics Calculator</a>
-                    <a href="/calculator/ratio-proportion/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-slate-700 hover:bg-slate-200 transition-all">Ratio &amp; Proportion</a>
-                    <a href="/calculator/logarithm-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-slate-700 hover:bg-slate-200 transition-all">Logarithm Calculator</a>
+                    <a href="/calculator/statistics-plus" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-slate-700 hover:bg-slate-200 transition-all">Statistics Calculator</a>
+                    <a href="/calculator/ratio-proportion" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-slate-700 hover:bg-slate-200 transition-all">Ratio &amp; Proportion</a>
+                    <a href="/calculator/logarithm-calculator" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-slate-700 hover:bg-slate-200 transition-all">Logarithm Calculator</a>
                 </div>
             </div>
         </div>
@@ -370,7 +370,7 @@ export const utilitySEO: Record<string, SEOContent> = {
                     </div>
                     <div className="bg-white border border-teal-200 rounded-xl p-5 shadow-sm">
                         <h4 className="font-black text-teal-700 mb-2">Speaking Time</h4>
-                        <p className="text-slate-600 text-sm">Estimated at 130–150 WPM (average speaking pace). Invaluable for preparing speeches, conference presentations, and video scripts for YouTube or training content. To complement these results, consider running the numbers through <a href="/calculator/angle-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">Angle Calculator</a>.</p>
+                        <p className="text-slate-600 text-sm">Estimated at 130–150 WPM (average speaking pace). Invaluable for preparing speeches, conference presentations, and video scripts for YouTube or training content. To complement these results, consider running the numbers through <a href="/calculator/geometry-3d" className="text-blue-600 hover:text-blue-800 underline transition-colors">Angle Calculator</a>.</p>
                     </div>
                 </div>
             </section>
@@ -403,7 +403,7 @@ export const utilitySEO: Record<string, SEOContent> = {
             {/* Nepali Language Note */}
             <section className="bg-slate-900 text-white rounded-2xl p-8">
                 <h3 className="text-xl font-black text-teal-400 mb-4">3. Word Counting in Nepali (Devanagari Script)</h3>
-                <p className="text-slate-300 text-sm leading-relaxed mb-4">Counting words in Nepali text written in Devanagari script follows the same space-separation principle as English. However, be aware: If you find this useful, checking out <a href="/calculator/velocity-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">our velocity calculation tool</a> can provide further context.</p>
+                <p className="text-slate-300 text-sm leading-relaxed mb-4">Counting words in Nepali text written in Devanagari script follows the same space-separation principle as English. However, be aware: If you find this useful, checking out <a href="/calculator/physics-force" className="text-blue-600 hover:text-blue-800 underline transition-colors">our velocity calculation tool</a> can provide further context.</p>
                 <ul className="space-y-2 text-sm text-slate-300">
                     <li>→ <strong className="text-white">Half characters (halanta forms)</strong> in Nepali may affect character count but not word count.</li>
                     <li>→ <strong className="text-white">Conjunct consonants</strong> (samyukta akshara) are counted as part of the word they appear in.</li>
@@ -414,9 +414,9 @@ export const utilitySEO: Record<string, SEOContent> = {
 
             <div className="pt-8 border-t border-slate-200 text-center">
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/date-duration/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-teal-700 hover:bg-teal-50 transition-all">Date Duration</a>
-                    <a href="/calculator/scientific-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-teal-700 hover:bg-teal-50 transition-all">Scientific Calculator</a>
-                    <a href="/calculator/ratio-proportion/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-teal-700 hover:bg-teal-50 transition-all">Ratio Calculator</a>
+                    <a href="/calculator/date-duration" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-teal-700 hover:bg-teal-50 transition-all">Date Duration</a>
+                    <a href="/calculator/scientific-calculator" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-teal-700 hover:bg-teal-50 transition-all">Scientific Calculator</a>
+                    <a href="/calculator/ratio-proportion" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-teal-700 hover:bg-teal-50 transition-all">Ratio Calculator</a>
                 </div>
             </div>
         </div>
@@ -505,16 +505,16 @@ export const utilitySEO: Record<string, SEOContent> = {
                     </div>
                     <div className="bg-slate-800 rounded-xl p-4">
                         <h4 className="text-sky-300 font-bold mb-2">BS Leap Year</h4>
-                        <p className="text-slate-300">BS months have variable days (29–32) defined by astronomical calculations. Chaitra (12th month) has 30 days in a regular BS year and 31 in a BS leap year. Additionally, <a href="/calculator/prime-factor-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">prime factor calculator</a> is highly recommended for related estimations.</p>
+                        <p className="text-slate-300">BS months have variable days (29–32) defined by astronomical calculations. Chaitra (12th month) has 30 days in a regular BS year and 31 in a BS leap year. Additionally, <a href="/calculator/lcm-gcf-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">prime factor calculator</a> is highly recommended for related estimations.</p>
                     </div>
                 </div>
             </section>
 
             <div className="pt-8 border-t border-slate-200 text-center">
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/nepali-date/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-sky-700 hover:bg-sky-50 transition-all">BS/AD Date Converter</a>
-                    <a href="/calculator/nepal-citizenship-age/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-sky-700 hover:bg-sky-50 transition-all">Age Calculator</a>
-                    <a href="/calculator/gratuity-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-sky-700 hover:bg-sky-50 transition-all">Gratuity Calculator</a>
+                    <a href="/calculator/nepali-date" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-sky-700 hover:bg-sky-50 transition-all">BS/AD Date Converter</a>
+                    <a href="/calculator/nepal-citizenship-age" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-sky-700 hover:bg-sky-50 transition-all">Age Calculator</a>
+                    <a href="/calculator/gratuity-calculator" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-sky-700 hover:bg-sky-50 transition-all">Gratuity Calculator</a>
                 </div>
             </div>
         </div>
@@ -567,13 +567,13 @@ export const utilitySEO: Record<string, SEOContent> = {
                         Whether you are analyzing physical variables, calculating financial structures, or mapping geometric coordinates,
                         the underlying algorithmic engine provides unparalleled precision. We have integrated edge-case detection to ensure
                         that extreme input parameters are processed gracefully, yielding results that comply with rigorous international standards.
-                     Many users also utilize <a href="/calculator/acceleration-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">acceleration calculator</a> alongside this analysis.</p>
+                     Many users also utilize <a href="/calculator/physics-force" className="text-blue-600 hover:text-blue-800 underline transition-colors">acceleration calculator</a> alongside this analysis.</p>
                     <p className="text-slate-600 leading-relaxed text-base">
                         To utilize the calculator effectively, simply select your desired operation mode, input the known variables into the
                         responsive fields, and let the computational engine perform the heavy lifting. The interface is specifically tailored
                         to reduce cognitive load, presenting actionable insights immediately without the necessity of manual cross-verification.
                         This dynamic system ensures that users from all disciplines can reliably model their scenarios.
-                     You can gain deeper insights by using <a href="/calculator/distance-formula" className="text-blue-600 hover:text-blue-800 underline transition-colors">this distance estimator</a>.</p>
+                     You can gain deeper insights by using <a href="/calculator/quadratic-solver" className="text-blue-600 hover:text-blue-800 underline transition-colors">this distance estimator</a>.</p>
                 </div>
             </section>
 
@@ -657,27 +657,27 @@ export const utilitySEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -821,27 +821,27 @@ export const utilitySEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -984,27 +984,27 @@ export const utilitySEO: Record<string, SEOContent> = {
                  Additionally, <a href="/calculator/percentage" className="text-blue-600 hover:text-blue-800 underline transition-colors">this percentage estimator</a> is highly recommended for related estimations.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/3d-visualizer/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/acceleration-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/angle-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
