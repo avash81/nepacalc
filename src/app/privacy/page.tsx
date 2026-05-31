@@ -2,11 +2,12 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | NepaCal',
-  description: 'NepaCal privacy policy ,  cookies, Google AdSense, Analytics, and your rights. Plain language. Updated May 2026.',
+  title: 'Privacy Policy | NepaCalc',
+  description: 'NepaCalc privacy policy — cookies, Google AdSense, Analytics, and your rights. Plain language. Updated May 2026.',
   alternates: {
     canonical: 'https://nepacalc.com/privacy/',
   },
+  robots: { index: false, follow: true },
 };
 
 export default function PrivacyPage() {

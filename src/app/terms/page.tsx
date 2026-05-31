@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://nepacalc.com/terms/',
   },
+  robots: { index: false, follow: true },
 };
 
 export default function TermsPage() {

@@ -60,7 +60,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     };
   });
 
-  // 4. Dynamic Content (Blogs & Guides)
+  // 4. Static Blog Posts (hardcoded routes in /src/app/blog/)
+  const staticBlogPosts = [
+    { slug: 'nepal-income-tax-guide-2082-83',   date: '2026-05-20' },
+    { slug: 'nea-electricity-bill-guide-2082',   date: '2026-05-20' },
+    { slug: 'income-tax-filing-guide',           date: '2026-05-16' },
+    { slug: 'nepal-tds-guide-2083',              date: '2026-05-16' },
+    { slug: 'nrb-base-rate-trends',              date: '2026-05-16' },
+    { slug: 'nepal-gold-price-analysis-2083',    date: '2026-05-30' },
+  ].map(({ slug, date }) => ({
+    url: `${baseUrl}/blog/${slug}/`,
+    lastModified: new Date(date),
+    changeFrequency: 'monthly' as const,
+    priority: 0.75,
+  }));
+
+  // 5. Dynamic Content (Blogs & Guides from Firestore)
   let dynamicPages: any[] = [];
   try {
     const posts = await fetchFirestoreCollection('posts');
@@ -85,7 +100,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Sitemap dynamic fetch failed:', e);
   }
 
-  const allEntries = [...staticPages, ...pillarPages, ...calculatorPages, ...dynamicPages];
+  const allEntries = [...staticPages, ...pillarPages, ...calculatorPages, ...staticBlogPosts, ...dynamicPages];
   
   // Deduplicate by URL to ensure a clean sitemap
   return Array.from(new Map(allEntries.map(item => [item.url, item])).values());

@@ -11,9 +11,14 @@ import { fetchFirestoreCollection } from '@/lib/firestore-rest';
 
 export const metadata: Metadata = {
   title: 'Blog & Financial Guides | NepaCalc',
-  description: 'Expert tips on Nepal income tax, salary planning, and professional calculator tutorials.',
+  description: 'Expert financial guides on Nepal income tax, salary planning, NEA electricity bills, TDS rules, and NRB base rates — written by the NepaCalc Editorial Team.',
   alternates: { canonical: 'https://nepacalc.com/blog/' },
-  robots: { index: false, follow: false },
+  openGraph: {
+    title: 'Blog & Financial Guides | NepaCalc',
+    description: 'Expert financial guides for Nepal — income tax, salary, electricity bills, TDS, and market rates.',
+    url: 'https://nepacalc.com/blog/',
+    type: 'website',
+  },
 };
 
 const STATIC_POSTS = [
@@ -60,6 +65,15 @@ const STATIC_POSTS = [
     title: 'NRB Base Rate Trends 2083/84: A Guide for Loan Borrowers in Nepal',
     excerpt: 'Analyze the latest Nepal Rastra Bank base rate trends for FY 2083/84. How falling interest rates impact your Home, Auto, and Personal loan EMIs.',
     date: '2026-05-16',
+    status: 'published'
+  },
+  {
+    id: 'static-nepal-gold-price-analysis-2083',
+    slug: 'nepal-gold-price-analysis-2083',
+    category: 'Market Analysis',
+    title: 'Nepal Gold Price Analysis 2083/84: Should You Buy, Hold or Sell?',
+    excerpt: 'In-depth analysis of Nepal gold price trends for FY 2083/84. Covers NEGOSIDA rate mechanics, VAT on jewelry, making charges, CGT on gold sales, hallmarking rules, and a buy/hold/sell investment framework.',
+    date: '2026-05-30',
     status: 'published'
   }
 ];

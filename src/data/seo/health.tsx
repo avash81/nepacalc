@@ -374,17 +374,48 @@ export const healthSEO: Record<string, SEOContent> = {
       variables: ["Activity Offset: Extra 0.5L to 1L per hour of exercise."]
     },
     content: (
-        <div className="space-y-12">
-        <div className="bg-blue-50 border-l-4 border-blue-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-blue-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Personalized Hydration Guide</h2>
-        <p className="text-slate-800 text-base leading-relaxed">
-        Staying hydrated is essential for every function in your body. Maintaining a precise fluid balance is critical for cognitive focus and physical performance throughout the day.
-        </p>
-        </div>
+        <div className="space-y-16 font-sans">
+            <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+                <div className="relative z-10">
+                    <h2 className="text-blue-400 font-black text-sm uppercase tracking-[0.4em] mb-4">Hydration Analytics</h2>
+                    <h3 className="text-4xl font-black mb-8 leading-tight">Optimizing Daily Water Intake & Fluid Balance</h3>
+                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
+                        Hydration is the cornerstone of metabolic function, cellular health, and cognitive performance. Yet, the universal "eight glasses a day" rule is scientifically outdated. Your daily water requirement is highly dynamic, influenced by your body mass index, local climate conditions (such as the humid summers in Nepal's Terai vs. the dry cold of the Himalayas), and daily activity levels.
+                    </p>
+                </div>
+            </div>
+            
+            <section className="space-y-8">
+                <h3 className="text-3xl font-black text-slate-900">1. The Physiology of Hydration</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
+                    <p>Water comprises approximately 60% of an adult human body. It acts as the primary solvent for biochemical reactions, a transport medium for nutrients and oxygen, and the main component of synovial fluid which lubricates joints. Even a mild dehydration level of 1-2% of body weight can impair cognitive function, reduce physical endurance, and cause severe headaches.</p>
+                    <p>The calculation of baseline water intake generally follows a weight-based formula. A commonly accepted baseline by health institutions is approximately 30-35 milliliters of water per kilogram of body weight per day for a healthy adult.</p>
+                    <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100 mt-4">
+                        <h4 className="font-bold text-blue-900 mb-2">Scientific Calculation (Example):</h4>
+                        <p>For a person weighing 70 kg in a temperate climate:</p>
+                        <p className="font-mono text-sm mt-2">70 kg × 35 ml = 2,450 ml (or ~2.5 Liters) per day.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section className="space-y-8">
+                <h3 className="text-3xl font-black text-slate-900">2. Environmental and Lifestyle Adjustments</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
+                    <p>Your baseline requirement must be dynamically adjusted based on external stressors. If you live in high-altitude areas of Nepal like Mustang or Solukhumbu, your respiration rate increases due to lower oxygen density. This leads to higher insensible water loss through breathing. Thus, high-altitude trekkers require significantly more water than those at sea level.</p>
+                    <ul className="list-disc pl-6 space-y-2">
+                        <li><strong>Exercise:</strong> Add 350-500 ml for every 30 minutes of intense physical activity.</li>
+                        <li><strong>Pregnancy and Lactation:</strong> The Institute of Medicine (IOM) recommends an additional 300 ml during pregnancy and 700-1000 ml during breastfeeding.</li>
+                        <li><strong>Illness:</strong> Fever, vomiting, or diarrhea dramatically increase water and electrolyte loss. Oral Rehydration Solutions (Jeevan Jal in Nepal) are critical during these periods.</li>
+                    </ul>
+                </div>
+            </section>
         </div>
     ),
     faqs: [
-      { question: "How much water should I drink?", answer: "While a common benchmark is 2-3 liters, our calculator provides a personalized volume based on your specific weight and daily activity level." }
+        { question: "Does tea or coffee count towards my water intake?", answer: "Yes. While caffeine is a mild diuretic, the fluid content in a standard cup of tea or coffee outweighs the diuretic effect, contributing to your net hydration." },
+        { question: "How can I tell if I am properly hydrated?", answer: "The easiest indicator is urine color. A pale, straw-like color indicates proper hydration. Dark yellow or amber indicates dehydration." },
+        { question: "Is it possible to drink too much water?", answer: "Yes, extreme overconsumption of water can lead to hyponatremia (water intoxication), a dangerous condition where sodium levels in the blood become fatally diluted." }
     ]
   },
   'pregnancy-due-date': {
@@ -435,17 +466,66 @@ export const healthSEO: Record<string, SEOContent> = {
       variables: ["Percentile: The child's relative rank among peers of the same age."]
     },
     content: (
-        <div className="space-y-12">
-        <div className="bg-emerald-50 border-l-4 border-emerald-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-emerald-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Child BMI & Growth Chart Guide</h2>
-        <p className="text-slate-800 text-base leading-relaxed">
-        Child BMI is interpreted differently than adults, using percentiles to account for growth. Monitoring these trends is an important way to track a child's health and development.
-        </p>
-        </div>
+        <div className="space-y-16 font-sans">
+            <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+                <div className="relative z-10">
+                    <h2 className="text-pink-400 font-black text-sm uppercase tracking-[0.4em] mb-4">Pediatric Growth Tracking</h2>
+                    <h3 className="text-4xl font-black mb-8 leading-tight">Child BMI & WHO Growth Percentiles</h3>
+                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
+                        Unlike adults, calculating the Body Mass Index (BMI) for children and teenagers (ages 2 to 19) is not a straightforward number. Because children's body fat changes significantly with age and varies between boys and girls, pediatric BMI must be plotted on a growth chart to determine a percentile ranking based on World Health Organization (WHO) or CDC standards.
+                    </p>
+                </div>
+            </div>
+            
+            <section className="space-y-8">
+                <h3 className="text-3xl font-black text-slate-900">1. Why Children's BMI is Different</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
+                    <p>For adults, a BMI of 22 is considered healthy regardless of age or gender. However, a BMI of 22 for a 6-year-old boy indicates severe obesity, while the same BMI for a 15-year-old boy is perfectly normal. This is why the raw BMI number for a child is mathematically converted into a percentile relative to a reference population of the same age and sex.</p>
+                    <div className="overflow-x-auto mt-6">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-slate-100 text-slate-800">
+                                    <th className="p-4 border-b-2 border-slate-200">Percentile Range</th>
+                                    <th className="p-4 border-b-2 border-slate-200">Weight Status Category</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="border-b border-slate-100">
+                                    <td className="p-4 font-mono">Below 5th Percentile</td>
+                                    <td className="p-4 text-red-600 font-semibold">Underweight</td>
+                                </tr>
+                                <tr className="border-b border-slate-100">
+                                    <td className="p-4 font-mono">5th to less than 85th</td>
+                                    <td className="p-4 text-green-600 font-semibold">Healthy Weight</td>
+                                </tr>
+                                <tr className="border-b border-slate-100">
+                                    <td className="p-4 font-mono">85th to less than 95th</td>
+                                    <td className="p-4 text-orange-500 font-semibold">Overweight</td>
+                                </tr>
+                                <tr>
+                                    <td className="p-4 font-mono">95th Percentile or greater</td>
+                                    <td className="p-4 text-red-600 font-semibold">Obesity</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section className="space-y-8">
+                <h3 className="text-3xl font-black text-slate-900">2. Nutritional Interventions in Nepal</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
+                    <p>In developing nations like Nepal, pediatric BMI tracking is crucial for identifying both malnutrition (stunting and wasting) and the rising epidemic of childhood obesity in urban centers like Kathmandu. A low percentile (Underweight) often correlates with protein-energy malnutrition, requiring interventions like Balvita or fortified foods.</p>
+                    <p>Conversely, the rapid shift towards processed foods has led to an increase in children falling above the 85th percentile. Managing this requires a family-centric approach to diet—incorporating local, whole foods like lentils (dal), fresh vegetables (tarkari), and limiting refined sugars, rather than placing the child on a restrictive diet which can stunt vertical growth.</p>
+                </div>
+            </section>
         </div>
     ),
     faqs: [
-      { question: "Is Child BMI the same as Adult BMI?", answer: "The formula is the same, but for children, we use percentiles to account for growth spurts and development stages." }
+        { question: "At what age should I start calculating my child's BMI?", answer: "BMI-for-age is used for children starting at 2 years old. For infants under 2, WHO weight-for-length charts are used instead." },
+        { question: "What does it mean if my child is in the 75th percentile?", answer: "It means your child's BMI is greater than 75% of children of the same age and sex. This falls into the 'Healthy Weight' category." },
+        { question: "Should an overweight child be put on a diet?", answer: "Generally, no. Weight loss diets can deprive children of nutrients needed for growth. The goal is usually weight maintenance while the child grows taller, naturally lowering their BMI over time. Always consult a pediatrician." }
     ]
   },
   'sleep': {
@@ -465,17 +545,45 @@ export const healthSEO: Record<string, SEOContent> = {
       variables: ["N = Number of cycles (typically 5 or 6).", "15 mins = Average time to fall asleep."]
     },
     content: (
-        <div className="space-y-12">
-        <div className="bg-indigo-50 border-l-4 border-indigo-600 rounded-r-xl p-8 shadow-sm">
-        <h2 className="text-indigo-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Sleep Cycle & Recovery Guide</h2>
-        <p className="text-slate-800 text-base leading-relaxed">
-        Sleep is a fundamental pillar of cognitive performance and health. Waking up at the end of a sleep cycle helps you avoid 'sleep inertia' and feel more alert.
-        </p>
-        </div>
+        <div className="space-y-16 font-sans">
+            <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+                <div className="relative z-10">
+                    <h2 className="text-indigo-400 font-black text-sm uppercase tracking-[0.4em] mb-4">Circadian Mechanics</h2>
+                    <h3 className="text-4xl font-black mb-8 leading-tight">Optimizing REM and Non-REM Sleep Cycles</h3>
+                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
+                        Sleep is not a uniform state of rest, but a highly structured neurological cycle. Humans sleep in continuous 90-minute to 110-minute cycles. Waking up in the middle of a deep sleep phase leads to sleep inertia—that groggy, exhausted feeling. This calculator uses biological chronometry to find the exact times you should fall asleep or wake up to ensure you rise between cycles.
+                    </p>
+                </div>
+            </div>
+            
+            <section className="space-y-8">
+                <h3 className="text-3xl font-black text-slate-900">1. The Architecture of a Sleep Cycle</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
+                    <p>A standard sleep cycle consists of four distinct stages, which repeat 4 to 6 times a night:</p>
+                    <ul className="list-disc pl-6 space-y-2">
+                        <li><strong>Stage 1 (N1):</strong> Light sleep, the transition between wakefulness and sleep.</li>
+                        <li><strong>Stage 2 (N2):</strong> Heart rate slows, body temperature drops. Memory consolidation begins.</li>
+                        <li><strong>Stage 3 (N3):</strong> Deep sleep or Slow-Wave Sleep (SWS). Crucial for physical recovery, tissue repair, and immune system strengthening.</li>
+                        <li><strong>REM (Rapid Eye Movement):</strong> The dreaming phase. Brain activity spikes, crucial for emotional regulation and complex problem-solving memory.</li>
+                    </ul>
+                    <p>Each complete cycle takes roughly 90 minutes. If your alarm clock goes off during Stage 3 (Deep Sleep), your brain struggles to transition to wakefulness, leaving you feeling worse than if you had slept fewer total hours but woken up at the end of a REM phase.</p>
+                </div>
+            </section>
+
+            <section className="space-y-8">
+                <h3 className="text-3xl font-black text-slate-900">2. Sleep Hygiene and Chronotypes</h3>
+                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed space-y-6">
+                    <p>Calculating cycle times is only effective if you can actually fall asleep when you plan to. The average person takes 14 to 20 minutes to fall asleep (sleep latency). Our calculator factors in a standard 15-minute buffer.</p>
+                    <p>To improve your sleep latency, maintain strict sleep hygiene: eliminate blue light (screens) 60 minutes before bed, keep the bedroom cool (around 18°C), and maintain a consistent sleep schedule even on weekends. Aligning your sleep schedule with your natural chronotype (whether you are an early "lark" or a night "owl") will drastically improve your neurocognitive baseline.</p>
+                </div>
+            </section>
         </div>
     ),
     faqs: [
-      { question: "How many hours of sleep do I need?", answer: "Most adults benefit from 7.5 to 9 hours of sleep, which is roughly 5 to 6 full cycles. Our calculator helps you find your perfect rhythm." }
+        { question: "Is 6 hours of sleep enough if it aligns with a cycle?", answer: "Six hours equals exactly four 90-minute cycles. While you will wake up feeling refreshed because you aren't interrupting deep sleep, chronic 6-hour sleep may lead to long-term sleep deprivation. Most adults need 5 cycles (7.5 hours)." },
+        { question: "Why do I wake up exactly at 3 AM every night?", answer: "This often aligns with the end of your 3rd or 4th sleep cycle. As morning approaches, REM phases get longer and deep sleep phases get shorter, making it easier to naturally wake up briefly between cycles." },
+        { question: "Can I train myself to need less sleep?", answer: "No. Sleep need is largely genetic. While you can train yourself to endure the feeling of sleep deprivation, your cognitive and physical performance will objectively decline." }
     ]
   },
   'ovulation-calculator': {
