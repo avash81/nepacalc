@@ -71,7 +71,7 @@ export function CookieBanner() {
             Acknowledge &amp; Sync
           </button>
           <a
-            href="/privacy"
+            href="/privacy/"
             className="text-[9px] font-black uppercase tracking-widest text-blue-300 hover:text-white transition-colors px-2 underline decoration-blue-300/50 underline-offset-4"
             aria-label="Read our privacy policy"
           >

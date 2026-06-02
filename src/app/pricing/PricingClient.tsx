@@ -94,7 +94,7 @@ export default function PricingClient() {
         {/* Support Section */}
         <div className="mt-24 text-center">
            <h3 className="text-[13px] font-black text-slate-400 uppercase tracking-[0.3em] mb-4">Have a question?</h3>
-           <Link href="/contact" className="text-sm font-bold text-blue-600 hover:underline">Contact our research team →</Link>
+           <Link href="/contact/" className="text-sm font-bold text-blue-600 hover:underline">Contact our research team →</Link>
         </div>
 
       </div>

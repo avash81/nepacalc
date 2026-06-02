@@ -31,7 +31,7 @@ import {
   calculateLog, 
   calculateSD, 
   calculateFraction 
-} from '@/utils/math/education';
+} from '@/utils/math/directory';
 
 import { calculateNepalVAT, calculateNepalIncomeTax } from '@/utils/math/country-rules/nepal';
 import { toRoman, fromRoman } from '@/utils/math/conversion';

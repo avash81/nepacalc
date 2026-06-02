@@ -147,13 +147,13 @@ export default function BmiChildCalculator() {
         }
       ]}
       sidebar={{ title: "Health Tools", links: [
-          { label: "Adult BMI Calculator", href: "/calculator/bmi" }, { label: "Pregnancy Due Date", href: "/calculator/pregnancy-due-date/" },
+          { label: "Adult BMI Calculator", href: "/calculator/bmi/" }, { label: "Pregnancy Due Date", href: "/calculator/pregnancy-due-date/" },
           { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" }
         ], banner: { title: "Pediatric Health", description: "Ensure your child maintains a balanced diet and regular physical activity.", image: "/images/health-banner.jpg" } }}
       relatedTools={[
-        { label: "BMI Calculator", href: "/calculator/bmi" },
+        { label: "BMI Calculator", href: "/calculator/bmi/" },
         { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" }

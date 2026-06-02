@@ -18,8 +18,8 @@ export default function GeometryPage() {
         type="breadcrumb"
         breadcrumbItems={[
           { name: 'Home', item: 'https://nepacalc.com' },
-          { name: 'Engineering', item: 'https://nepacalc.com/engineering' },
-          { name: 'Geometry Calculator', item: 'https://nepacalc.com/engineering/geometry' }
+          { name: 'Engineering', item: 'https://nepacalc.com/engineering/' },
+          { name: 'Geometry Calculator', item: 'https://nepacalc.com/engineering/geometry/' }
         ]}
       />
 
@@ -176,7 +176,7 @@ export default function GeometryPage() {
                     <Link href="/engineering/3d/" className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold text-[#202124] no-underline transition-all">3D Graph Calculator</Link>
                     <Link href="/calculator/ratio-proportion/" className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold text-[#202124] no-underline transition-all">Ratio & Proportion</Link>
                     <Link href="/calculator/quadratic-solver/" className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold text-[#202124] no-underline transition-all">Quadratic Solver</Link>
-                    <Link href="/calculator/nepal-land/" className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold text-[#202124] no-underline transition-all">Nepal Land Converter</Link>
+                    <Link href="/calculator/area-calculator/" className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-xs font-bold text-[#202124] no-underline transition-all">Nepal Land Converter</Link>
                   </div>
                 </div>
               </div>

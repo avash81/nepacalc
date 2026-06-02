@@ -40,7 +40,7 @@ export default function Page() {
         hideHeader={true}
         title="Kinetic Energy Engine"
         description="High-precision physics laboratory tool for calculating kinetic energy, mass-energy relationships, and velocity variables using SI standards."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Kinetic Energy' }]}
+        crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Kinetic Energy' }]}
         isNepal={true}
         relatedCalcs={[
           { name: 'Force Calc', slug: 'physics-force' },

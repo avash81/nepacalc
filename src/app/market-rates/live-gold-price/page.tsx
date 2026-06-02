@@ -39,7 +39,7 @@ export default function Page() {
       <CalcWrapper
         title="Live Gold Price"
         description="Daily precious metal indices synchronized with FENEGOSIDA benchmarks for the Nepalese jewelry market."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Gold Price' }]}
+        crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Gold Price' }]}
         isNepal={true}
         hideHeader={true}
         relatedCalcs={[

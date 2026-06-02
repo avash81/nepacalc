@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Full Tool Directory ,  80+ Precision Calculators | NepaCalc',
     description: 'Explore our complete index of scientific, financial, health, and engineering calculators.',
-    url: 'https://NepaCalc.com/directory',
+    url: 'https://NepaCalc.com/directory/',
   }
 };
 
@@ -37,7 +37,7 @@ export default function DirectoryPage() {
           
           <h4 className="text-xl font-semibold mt-6 mb-3">1. Mathematical & Algebraic Tools</h4>
           <p className="mb-4">
-            Mathematics is the universal language, but solving complex equations can be time-consuming. Our mathematical calculators are designed to simplify these processes. You can explore tools like our <a href="/math-tools/fourfunction" className="text-blue-500 hover:underline">Four-Function Calculator</a> for basic arithmetic, or dive deeper with our <a href="/math-tools/calculus" className="text-blue-500 hover:underline">Calculus & Algebra Laboratory</a> for advanced limits, derivatives, and integrals. We also offer specialized tools for geometry, trigonometry, statistics, and probability, ensuring that students and researchers have everything they need to verify their manual calculations or explore new concepts.
+            Mathematics is the universal language, but solving complex equations can be time-consuming. Our mathematical calculators are designed to simplify these processes. You can explore tools like our <a href="/math-tools/fourfunction/" className="text-blue-500 hover:underline">Four-Function Calculator</a> for basic arithmetic, or dive deeper with our <a href="/math-tools/calculus/" className="text-blue-500 hover:underline">Calculus & Algebra Laboratory</a> for advanced limits, derivatives, and integrals. We also offer specialized tools for geometry, trigonometry, statistics, and probability, ensuring that students and researchers have everything they need to verify their manual calculations or explore new concepts.
           </p>
 
           <h4 className="text-xl font-semibold mt-6 mb-3">2. Financial & Business Calculators</h4>

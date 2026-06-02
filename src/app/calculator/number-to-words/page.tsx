@@ -40,7 +40,7 @@ export default function Page() {
         hideHeader={true}
         title="Numerical Verbiage Engine"
         description="High-precision linguistic tool for converting complex digits into formal words using both regional and international numbering standards."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Number to Words' }]}
+        crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Number to Words' }]}
         isNepal={true}
         relatedCalcs={[
           { name: 'Unit Converter', slug: 'unit-converter' },

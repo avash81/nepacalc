@@ -40,7 +40,7 @@ export default function Page() {
         hideHeader={true}
         title="Cryptographic Password Engine"
         description="High-entropy security tool for generating non-sequential, pattern-free random passwords for maximum digital protection."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Password Generator' }]}
+        crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Password Generator' }]}
         isNepal={true}
         relatedCalcs={[
           { name: 'QR Generator', slug: 'qr-generator' },

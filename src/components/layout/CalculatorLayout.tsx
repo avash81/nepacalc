@@ -133,7 +133,7 @@ export function CalculatorLayout({
         type="unified"
         breadcrumbItems={[
           { name: 'Home', item: 'https://nepacalc.com' },
-          ...(catLabel ? [{ name: catLabel, item: `https://nepacalc.com${catLink || '/directory'}` }] : []),
+          ...(catLabel ? [{ name: catLabel, item: `https://nepacalc.com${catLink || '/directory/'}` }] : []),
           { name: title, item: `https://nepacalc.com${resolvedSlug.includes('/') ? `/${resolvedSlug}` : `/calculator/${resolvedSlug}`}` }
         ]}
         name={title}
@@ -158,7 +158,7 @@ export function CalculatorLayout({
             {catLabel && (
               <>
                 <span className="opacity-40 text-slate-300 hidden sm:inline-block">/</span>
-                <Link href={catLink || '/calculator'} className="hover:text-[#1A73E8] transition-all text-[#5F6368] hidden sm:inline-block border-b border-transparent hover:border-[#1A73E8]">
+                <Link href={catLink || '/calculator/'} className="hover:text-[#1A73E8] transition-all text-[#5F6368] hidden sm:inline-block border-b border-transparent hover:border-[#1A73E8]">
                   {catLabel}
                 </Link>
               </>

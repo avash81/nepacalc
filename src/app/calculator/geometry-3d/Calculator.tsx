@@ -182,13 +182,13 @@ export default function Geometry3D() {
         }
       ]}
       sidebar={{ title: "Mathematics", links: [
-          { label: "Area Calculator (2D)", href: "/calculator/area-calculator/" }, { label: "Unit Converter", href: "/calculator/unit-converter/" },
+          { label: "Area Calculator (2D)", href: "/calculator/nepal-land/" }, { label: "Unit Converter", href: "/calculator/unit-converter/" },
           { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
           { label: "Nepal Salary", href: "/calculator/nepal-salary/" }
         ], banner: { title: "Spatial Logic", description: "Volume represents capacity, while surface area represents the outer boundary footprint.", image: "/images/math-banner.jpg" } }}
       relatedTools={[
-        { label: "Area Calculator", href: "/calculator/area-calculator/" },
+        { label: "Area Calculator", href: "/calculator/nepal-land/" },
         { label: "Lok Sewa Age", href: "/calculator/lok-sewa-age/" },
           { label: "Income Tax", href: "/calculator/nepal-income-tax/" },
           { label: "Nepal Salary", href: "/calculator/nepal-salary/" }

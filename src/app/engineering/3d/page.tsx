@@ -17,11 +17,11 @@ export default function ThreeDPage() {
         type="breadcrumb"
         breadcrumbItems={[
           { name: 'Home', item: 'https://nepacalc.com' },
-          { name: 'Engineering', item: 'https://nepacalc.com/engineering' },
-          { name: '3D Graph Calculator', item: 'https://nepacalc.com/engineering/3d' }
+          { name: 'Engineering', item: 'https://nepacalc.com/engineering/' },
+          { name: '3D Graph Calculator', item: 'https://nepacalc.com/engineering/3d/' }
         ]}
       />
-      <JsonLd type="calculator" name="3D Graph Calculator" description="Use our free 3D graph calculator to plot functions and visualize 3D graphs online. Graph equations like z=sin(x,y), paraboloids, spheres, and more." url="https://nepacalc.com/engineering/3d" category="EducationalApplication" />
+      <JsonLd type="calculator" name="3D Graph Calculator" description="Use our free 3D graph calculator to plot functions and visualize 3D graphs online. Graph equations like z=sin(x,y), paraboloids, spheres, and more." url="https://nepacalc.com/engineering/3d/" category="EducationalApplication" />
       <ThreeDCalculatorClient />
 
       {/* SEO Rich Content ,  Server Rendered */}

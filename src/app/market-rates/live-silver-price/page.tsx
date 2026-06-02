@@ -41,7 +41,7 @@ export default function Page() {
       <CalcWrapper
         title="Live Silver Price 2083/84"
         description="Real-time silver indices and conversion tools synchronized with FENEGOSIDA benchmarks."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Silver Price' }]}
+        crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Silver Price' }]}
         isNepal={true}
         hideHeader={true}
         relatedCalcs={[

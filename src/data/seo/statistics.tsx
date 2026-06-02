@@ -73,7 +73,7 @@ export const statisticsSEO: Record<string, SEOContent> = {
                         <p className="text-indigo-300 font-bold mt-3">Step 5: Std Deviation</p>
                         <p className="text-slate-300 font-mono text-xs">√151.75 ≈ <strong className="text-white">12.32</strong></p>
                         <p className="text-indigo-300 font-bold mt-3">Step 6: Range</p>
-                        <p className="text-slate-300 font-mono text-xs">95 − 55 = <strong className="text-white">40</strong> To complement these results, consider running the numbers through <a href="/calculator/z-score" className="text-blue-600 hover:text-blue-800 underline transition-colors">our z-score calculation tool</a>.</p>
+                        <p className="text-slate-300 font-mono text-xs">95 − 55 = <strong className="text-white">40</strong> To complement these results, consider running the numbers through <a href="/calculator/z-score/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our z-score calculation tool</a>.</p>
                     </div>
                 </div>
             </section>
@@ -85,13 +85,13 @@ export const statisticsSEO: Record<string, SEOContent> = {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
                         <h4 className="font-black text-blue-800 mb-2">Population (σ²)</h4>
-                        <p className="font-mono text-sm text-blue-700">σ² = Σ(x−μ)² / N For a broader understanding, you may also want to explore <a href="/calculator/ideal-weight" className="text-blue-600 hover:text-blue-800 underline transition-colors">ideal weight calculator</a>.</p>
+                        <p className="font-mono text-sm text-blue-700">σ² = Σ(x−μ)² / N For a broader understanding, you may also want to explore <a href="/calculator/ideal-weight/" className="text-blue-600 hover:text-blue-800 underline transition-colors">ideal weight calculator</a>.</p>
                         <p className="text-slate-600 text-sm mt-2">Divide by N (total count). Use when you have data for every member of the group.</p>
                     </div>
                     <div className="bg-green-50 border border-green-200 rounded-xl p-6">
                         <h4 className="font-black text-green-800 mb-2">Sample (s²)</h4>
                         <p className="font-mono text-sm text-green-700">s² = Σ(x−x̄)² / (n−1)</p>
-                        <p className="text-slate-600 text-sm mt-2">Divide by n−1 (Bessel's correction). Use when your data is a subset of a larger group. To complement these results, consider running the numbers through <a href="/calculator/nepal-land" className="text-blue-600 hover:text-blue-800 underline transition-colors">our nepal calculation tool</a>.</p>
+                        <p className="text-slate-600 text-sm mt-2">Divide by n−1 (Bessel's correction). Use when your data is a subset of a larger group. To complement these results, consider running the numbers through <a href="/calculator/area-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our nepal calculation tool</a>.</p>
                     </div>
                 </div>
             </section>
@@ -99,7 +99,7 @@ export const statisticsSEO: Record<string, SEOContent> = {
             {/* Section 4: Quartiles and IQR */}
             <section>
                 <h3 className="text-2xl font-black text-slate-900 mb-4">4. Quartiles and the Interquartile Range (IQR)</h3>
-                <p className="text-slate-600 leading-relaxed mb-4">Quartiles split your sorted data into four equal parts. The <strong>Interquartile Range (IQR = Q3 − Q1)</strong> measures the spread of the middle 50% of your data, making it highly resistant to outliers. IQR is frequently used in box-and-whisker plots and for detecting outliers (values beyond 1.5 × IQR from Q1 or Q3). Additionally, <a href="/calculator/property-tax" className="text-blue-600 hover:text-blue-800 underline transition-colors">our real calculation tool</a> is highly recommended for related estimations.</p>
+                <p className="text-slate-600 leading-relaxed mb-4">Quartiles split your sorted data into four equal parts. The <strong>Interquartile Range (IQR = Q3 − Q1)</strong> measures the spread of the middle 50% of your data, making it highly resistant to outliers. IQR is frequently used in box-and-whisker plots and for detecting outliers (values beyond 1.5 × IQR from Q1 or Q3). Additionally, <a href="/calculator/property-tax/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our real calculation tool</a> is highly recommended for related estimations.</p>
             </section>
 
             {/* Section 5: Nepal Application */}
@@ -117,10 +117,10 @@ export const statisticsSEO: Record<string, SEOContent> = {
             <div className="pt-8 border-t border-slate-200">
                 <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 text-center">Related Calculators</p>
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/standard-deviation" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Standard Deviation</a>
-                    <a href="/calculator/z-score" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Z-Score Calculator</a>
-                    <a href="/calculator/probability" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Probability Calculator</a>
-                    <a href="/calculator/scientific-calculator" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Scientific Calculator</a>
+                    <a href="/calculator/standard-deviation/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Standard Deviation</a>
+                    <a href="/calculator/z-score/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Z-Score Calculator</a>
+                    <a href="/calculator/probability/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Probability Calculator</a>
+                    <a href="/calculator/scientific-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-indigo-700 hover:bg-indigo-50 transition-all">Scientific Calculator</a>
                 </div>
             </div>
         </div>
@@ -208,7 +208,7 @@ export const statisticsSEO: Record<string, SEOContent> = {
             
                     <p>
                         In addition to the core analytical frameworks, the deployment of machine learning algorithms and heuristic models is increasingly pivotal in modern computational workflows. As data scales exponentially, traditional linear models may encounter performance bottlenecks. By integrating predictive heuristics, we allow for near-instantaneous approximations of highly complex, non-linear problems. This hybrid approach ensures that professionals can maintain operational velocity without sacrificing analytical rigor, especially when dealing with massive datasets in real-time environments.
-                     If you find this useful, checking out <a href="/calculator/compound-interest" className="text-blue-600 hover:text-blue-800 underline transition-colors">our compound calculation tool</a> can provide further context.</p>
+                     If you find this useful, checking out <a href="/calculator/compound-interest/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our compound calculation tool</a> can provide further context.</p>
                     <p>
                         Furthermore, the architectural resilience of digital modeling tools is a primary concern for enterprise-level applications. Ensuring high availability, fault tolerance, and secure data transmission protocols is essential when financial and structural data are being processed. Our platform is built on modern web standards, utilizing robust error-handling and isolated runtime environments to guarantee that your computational sessions are both secure and highly reliable, regardless of external network conditions.
                     </p>
@@ -229,7 +229,7 @@ export const statisticsSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         In the civil engineering and material logistics sectors, precise project estimation is the primary safeguard against budget overruns and structural compromise. Volumetric calculations are the fundamental starting point for any construction project, translating three-dimensional design blueprints into actionable procurement orders. Whether casting a massive retaining wall, building a partition wall, or calculating the paint requirements for a commercial complex, understanding dry-to-wet shrinkage dynamics and density metrics is essential for maintaining strict material audits.
-                     You can gain deeper insights by using <a href="/calculator/calorie-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">this calorie estimator</a>.</p>
+                     You can gain deeper insights by using <a href="/calculator/calorie-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this calorie estimator</a>.</p>
                     <p>
                         Dry materials such as cement, sand, and aggregate contain high proportions of air voids. When water is added, the particles compact and fill these voids, causing a significant reduction in total volume. In concrete mix design, this is accounted for by applying a dry-volume multiplier, typically standardized as 1.54. Similarly, mortar volume in brick masonry requires a distinct dry multiplier (usually 1.33) to account for compaction. Failing to apply these mathematical constants leads to the 'Procurement Gap'—a common site anomaly where raw materials run out mid-project, leading to cold joints, construction delays, and increased transport costs.
                     </p>
@@ -244,10 +244,10 @@ export const statisticsSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Data validation is another cornerstone of our digital infrastructure. Every input provided by the user is subjected to rigorous boundary checks and type validations before reaching the core processing algorithms. This robust sanitization prevents memory overflows and logical fallacies that can skew analytical outputs. For academic researchers and financial auditors, knowing that the calculation engine is fortified against erroneous inputs provides profound confidence in the integrity of the final report. This strict adherence to data quality sets our computational tools apart as true professional-grade instruments.
-                     You can gain deeper insights by using <a href="/calculator/geometry-3d" className="text-blue-600 hover:text-blue-800 underline transition-colors">3D Surface Visualizer</a>.</p>
+                     You can gain deeper insights by using <a href="/calculator/geometry-3d/" className="text-blue-600 hover:text-blue-800 underline transition-colors">3D Surface Visualizer</a>.</p>
                     <p>
                         Moreover, we recognize the importance of interoperability in modern digital workspaces. The ability to cross-reference outputs from a financial calculator with a tax auditing tool or to pair structural load calculations with material estimators ensures a cohesive analytical workflow. Our platform is structured as an ecosystem of complementary mathematical engines, designed to work in tandem. By bridging discrete computational models, professionals can synthesize holistic, overarching strategies that account for every technical variable and financial constraint.
-                     For a broader understanding, you may also want to explore <a href="/calculator/sip-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">the sip calculator nepal</a>.</p>
+                     For a broader understanding, you may also want to explore <a href="/calculator/sip-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the sip calculator nepal</a>.</p>
                     <p>
                         To further maximize the utility of these calculations, we recommend establishing a consistent auditing cadence. Mathematical models are most effective when used iteratively over time, allowing for the tracking of performance variances against historical benchmarks. Whether tracking the amortization schedule of a corporate loan or monitoring the specific gravity variations in a concrete batch plant, longitudinal data analysis unlocks deep operational insights. Utilizing these tools as persistent monitoring systems rather than one-off estimators drives a culture of continuous improvement and unyielding technical precision.
                     </p>
@@ -265,27 +265,27 @@ export const statisticsSEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -371,10 +371,10 @@ export const statisticsSEO: Record<string, SEOContent> = {
             
                     <p>
                         In addition to the core analytical frameworks, the deployment of machine learning algorithms and heuristic models is increasingly pivotal in modern computational workflows. As data scales exponentially, traditional linear models may encounter performance bottlenecks. By integrating predictive heuristics, we allow for near-instantaneous approximations of highly complex, non-linear problems. This hybrid approach ensures that professionals can maintain operational velocity without sacrificing analytical rigor, especially when dealing with massive datasets in real-time environments.
-                     To complement these results, consider running the numbers through <a href="/calculator/gratuity-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">this gratuity estimator</a>.</p>
+                     To complement these results, consider running the numbers through <a href="/calculator/gratuity-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this gratuity estimator</a>.</p>
                     <p>
                         Furthermore, the architectural resilience of digital modeling tools is a primary concern for enterprise-level applications. Ensuring high availability, fault tolerance, and secure data transmission protocols is essential when financial and structural data are being processed. Our platform is built on modern web standards, utilizing robust error-handling and isolated runtime environments to guarantee that your computational sessions are both secure and highly reliable, regardless of external network conditions.
-                     To complement these results, consider running the numbers through <a href="/calculator/linear-solver" className="text-blue-600 hover:text-blue-800 underline transition-colors">our linear calculation tool</a>.</p>
+                     To complement these results, consider running the numbers through <a href="/calculator/linear-solver/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our linear calculation tool</a>.</p>
 
             </section>
 
@@ -410,7 +410,7 @@ export const statisticsSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Moreover, we recognize the importance of interoperability in modern digital workspaces. The ability to cross-reference outputs from a financial calculator with a tax auditing tool or to pair structural load calculations with material estimators ensures a cohesive analytical workflow. Our platform is structured as an ecosystem of complementary mathematical engines, designed to work in tandem. By bridging discrete computational models, professionals can synthesize holistic, overarching strategies that account for every technical variable and financial constraint.
-                     For a broader understanding, you may also want to explore <a href="/calculator/water-intake" className="text-blue-600 hover:text-blue-800 underline transition-colors">the water intake calculator</a>.</p>
+                     For a broader understanding, you may also want to explore <a href="/calculator/water-intake/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the water intake calculator</a>.</p>
                     <p>
                         To further maximize the utility of these calculations, we recommend establishing a consistent auditing cadence. Mathematical models are most effective when used iteratively over time, allowing for the tracking of performance variances against historical benchmarks. Whether tracking the amortization schedule of a corporate loan or monitoring the specific gravity variations in a concrete batch plant, longitudinal data analysis unlocks deep operational insights. Utilizing these tools as persistent monitoring systems rather than one-off estimators drives a culture of continuous improvement and unyielding technical precision.
                     </p>
@@ -425,30 +425,30 @@ export const statisticsSEO: Record<string, SEOContent> = {
                 <h3 className="text-3xl font-black text-slate-900 mb-4">Explore Related Computational Tools</h3>
                 <p className="text-slate-600 mb-8 leading-relaxed text-lg">
                     To further enhance your computational accuracy, we highly recommend integrating your current workflow with these related specialized calculators. Auditing your values across multiple models ensures complete structural consistency and absolute precision.
-                 Additionally, <a href="/calculator/nepal-vat" className="text-blue-600 hover:text-blue-800 underline transition-colors">nepal vat calculator current year</a> is highly recommended for related estimations.</p>
+                 Additionally, <a href="/calculator/nepal-vat/" className="text-blue-600 hover:text-blue-800 underline transition-colors">nepal vat calculator current year</a> is highly recommended for related estimations.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -485,7 +485,7 @@ export const statisticsSEO: Record<string, SEOContent> = {
                 <h2 className="text-purple-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Z-Score Complete Guide</h2>
                 <p className="text-slate-800 text-base leading-relaxed">
                     A <strong>Z-Score</strong> (also called a standard score) measures how many standard deviations a data point is from the population mean. Z-scores are foundational to hypothesis testing, quality control, exam result normalization, and financial risk analysis. A positive Z-score means the value is above average; a negative one means it is below average.
-                 You can gain deeper insights by using <a href="/calculator/word-counter" className="text-blue-600 hover:text-blue-800 underline transition-colors">Word Counter Tool - Advanced Tool & Guide</a>.</p>
+                 You can gain deeper insights by using <a href="/calculator/word-counter/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Word Counter Tool - Advanced Tool & Guide</a>.</p>
             </div>
 
             {/* Formula Section */}
@@ -495,8 +495,8 @@ export const statisticsSEO: Record<string, SEOContent> = {
                     <p className="font-mono text-2xl text-center text-purple-300 font-black mb-6">Z = (X − μ) / σ</p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                         <div className="bg-slate-800 rounded-xl p-4"><p className="text-purple-300 font-bold mb-1">X</p><p className="text-slate-300">The individual data point you are analyzing</p></div>
-                        <div className="bg-slate-800 rounded-xl p-4"><p className="text-purple-300 font-bold mb-1">μ (mu) You can gain deeper insights by using <a href="/calculator/engineering-gpa" className="text-blue-600 hover:text-blue-800 underline transition-colors">this engineering estimator</a>.</p><p className="text-slate-300">The population or group mean (average)</p></div>
-                        <div className="bg-slate-800 rounded-xl p-4"><p className="text-purple-300 font-bold mb-1">σ (sigma) For a broader understanding, you may also want to explore <a href="/calculator/statistics-plus" className="text-blue-600 hover:text-blue-800 underline transition-colors">the statistics plus calculator</a>.</p><p className="text-slate-300">The population standard deviation</p></div>
+                        <div className="bg-slate-800 rounded-xl p-4"><p className="text-purple-300 font-bold mb-1">μ (mu) You can gain deeper insights by using <a href="/calculator/engineering-gpa/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this engineering estimator</a>.</p><p className="text-slate-300">The population or group mean (average)</p></div>
+                        <div className="bg-slate-800 rounded-xl p-4"><p className="text-purple-300 font-bold mb-1">σ (sigma) For a broader understanding, you may also want to explore <a href="/calculator/statistics-plus/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the statistics plus calculator</a>.</p><p className="text-slate-300">The population standard deviation</p></div>
                     </div>
                 </div>
             </section>
@@ -542,7 +542,7 @@ export const statisticsSEO: Record<string, SEOContent> = {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
                         <h4 className="font-black text-purple-700 mb-3">Education (Nepal Context)</h4>
-                        <p className="text-slate-600 text-sm leading-relaxed">NEB and Tribhuvan University use standardized scores to rank students across different subjects and faculties. Z-scores allow comparing a student's relative performance in Physics vs. Nepali Literature on an equal scale. Additionally, <a href="/calculator/discount-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">the discount calculator</a> is highly recommended for related estimations.</p>
+                        <p className="text-slate-600 text-sm leading-relaxed">NEB and Tribhuvan University use standardized scores to rank students across different subjects and faculties. Z-scores allow comparing a student's relative performance in Physics vs. Nepali Literature on an equal scale. Additionally, <a href="/calculator/discount-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the discount calculator</a> is highly recommended for related estimations.</p>
                     </div>
                     <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
                         <h4 className="font-black text-purple-700 mb-3">Finance & Risk</h4>
@@ -562,9 +562,9 @@ export const statisticsSEO: Record<string, SEOContent> = {
             {/* Links */}
             <div className="pt-8 border-t border-slate-200 text-center">
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/statistics-plus" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-purple-700 hover:bg-purple-50 transition-all">Statistics Plus</a>
-                    <a href="/calculator/standard-deviation" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-purple-700 hover:bg-purple-50 transition-all">Standard Deviation</a>
-                    <a href="/calculator/probability" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-purple-700 hover:bg-purple-50 transition-all">Probability Calculator</a>
+                    <a href="/calculator/statistics-plus/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-purple-700 hover:bg-purple-50 transition-all">Statistics Plus</a>
+                    <a href="/calculator/standard-deviation/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-purple-700 hover:bg-purple-50 transition-all">Standard Deviation</a>
+                    <a href="/calculator/probability/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-purple-700 hover:bg-purple-50 transition-all">Probability Calculator</a>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@ type FAQItem = {
   answer: string;
 };
 
-export function PillarFAQ({ faqs, title = "Frequently Asked Questions" }: { faqs: FAQItem[], title?: string, disableSchema?: boolean }) {
+export function PillarFAQ({ faqs, title = "Frequently Asked Questions", disableSchema = false }: { faqs: FAQItem[], title?: string, disableSchema?: boolean }) {
   return (
     <div className="mt-16 pt-12 border-t border-[#dadce0]">
       {!disableSchema && <JsonLd type="faq" faqs={faqs} />}

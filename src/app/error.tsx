@@ -47,7 +47,7 @@ export default function Error({
           </button>
           
           <Link
-            href="/directory"
+            href="/directory/"
             className="w-full sm:w-auto px-8 py-4 bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-900 dark:text-[#202124] rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-3 border border-gray-100 dark:border-gray-800 transition-all hover:-translate-y-1 active:scale-95 shadow-sm"
           >
             <Search className="w-4 h-4" />

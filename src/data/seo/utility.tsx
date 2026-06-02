@@ -26,7 +26,7 @@ export const utilitySEO: Record<string, SEOContent> = {
                 <h2 className="text-amber-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Solar Requirement Calculator Guide</h2>
                 <p className="text-slate-800 text-base leading-relaxed">
                     The <strong>Solar Requirement Calculator</strong> helps Nepali households and businesses determine the exact solar panel capacity, battery storage, and inverter rating needed to power their electrical loads. With Nepal's abundant sunshine (averaging 6.8 hours of peak sunlight daily) and the ongoing push to reduce dependence on the national grid and diesel generators, solar power is increasingly a practical and economical choice.
-                 You can gain deeper insights by using <a href="/calculator/matrices" className="text-blue-600 hover:text-blue-800 underline transition-colors">the matrix algebra console</a>.</p>
+                 You can gain deeper insights by using <a href="/calculator/matrices/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the matrix algebra console</a>.</p>
             </div>
 
             {/* Quick Facts */}
@@ -57,19 +57,19 @@ export const utilitySEO: Record<string, SEOContent> = {
                 <h3 className="text-2xl font-black text-slate-900 mb-4">2. Step-by-Step Solar Sizing Calculation</h3>
                 <div className="bg-slate-900 text-white rounded-2xl p-8">
                     <h4 className="text-amber-400 font-black mb-4">Formula: Solar Panel Wattage Required</h4>
-                    <p className="font-mono text-sm text-amber-200 mb-6">Panel Capacity (W) = Daily Energy Need (Wh) ÷ Peak Sun Hours ÷ System Efficiency Additionally, <a href="/calculator/ideal-weight" className="text-blue-600 hover:text-blue-800 underline transition-colors">the ideal weight calculator</a> is highly recommended for related estimations.</p>
+                    <p className="font-mono text-sm text-amber-200 mb-6">Panel Capacity (W) = Daily Energy Need (Wh) ÷ Peak Sun Hours ÷ System Efficiency Additionally, <a href="/calculator/ideal-weight/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the ideal weight calculator</a> is highly recommended for related estimations.</p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                         <div className="bg-slate-800 rounded-xl p-4">
-                            <p className="text-amber-300 font-bold mb-2">Step 1: Calculate Daily Load Many users also utilize <a href="/calculator/probability" className="text-blue-600 hover:text-blue-800 underline transition-colors">Probability Calculator</a> alongside this analysis.</p>
+                            <p className="text-amber-300 font-bold mb-2">Step 1: Calculate Daily Load Many users also utilize <a href="/calculator/probability/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Probability Calculator</a> alongside this analysis.</p>
                             <p className="text-slate-300 text-xs">List all appliances × wattage × hours used. E.g.: 5 LED bulbs (10W × 5h) + fridge (150W × 24h) = 4,100 Wh/day</p>
                         </div>
                         <div className="bg-slate-800 rounded-xl p-4">
-                            <p className="text-amber-300 font-bold mb-2">Step 2: Apply System Losses For a broader understanding, you may also want to explore <a href="/calculator/auto-loan" className="text-blue-600 hover:text-blue-800 underline transition-colors">this auto estimator</a>.</p>
+                            <p className="text-amber-300 font-bold mb-2">Step 2: Apply System Losses For a broader understanding, you may also want to explore <a href="/calculator/auto-loan/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this auto estimator</a>.</p>
                             <p className="text-slate-300 text-xs">Divide by efficiency (typically 0.75–0.80 for inverter + wiring losses): 4,100 ÷ 0.80 = 5,125 Wh needed from panels</p>
                         </div>
                         <div className="bg-slate-800 rounded-xl p-4">
                             <p className="text-amber-300 font-bold mb-2">Step 3: Divide by Sun Hours</p>
-                            <p className="text-slate-300 text-xs">5,125 Wh ÷ 5.5 peak hours = <strong className="text-white">932W ≈ 1 kW solar array needed</strong> If you find this useful, checking out <a href="/calculator/length-converter" className="text-blue-600 hover:text-blue-800 underline transition-colors">the length converter</a> can provide further context.</p>
+                            <p className="text-slate-300 text-xs">5,125 Wh ÷ 5.5 peak hours = <strong className="text-white">932W ≈ 1 kW solar array needed</strong> If you find this useful, checking out <a href="/calculator/length-converter/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the length converter</a> can provide further context.</p>
                         </div>
                     </div>
                 </div>
@@ -108,9 +108,9 @@ export const utilitySEO: Record<string, SEOContent> = {
 
             <div className="pt-8 border-t border-slate-200 text-center">
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/nea-bill" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-amber-700 hover:bg-amber-50 transition-all">NEA Bill Calculator</a>
-                    <a href="/calculator/word-counter" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-amber-700 hover:bg-amber-50 transition-all">Word Counter</a>
-                    <a href="/calculator/nepal-vat" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-amber-700 hover:bg-amber-50 transition-all">VAT Calculator</a>
+                    <a href="/calculator/nea-bill/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-amber-700 hover:bg-amber-50 transition-all">NEA Bill Calculator</a>
+                    <a href="/calculator/word-counter/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-amber-700 hover:bg-amber-50 transition-all">Word Counter</a>
+                    <a href="/calculator/nepal-vat/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-amber-700 hover:bg-amber-50 transition-all">VAT Calculator</a>
                 </div>
             </div>
         </div>
@@ -158,11 +158,11 @@ export const utilitySEO: Record<string, SEOContent> = {
                     <div className="bg-violet-50 border border-violet-200 rounded-xl p-6">
                         <h4 className="font-black text-violet-800 mb-3">What is a Ratio?</h4>
                         <p className="text-slate-600 text-sm leading-relaxed mb-3">A ratio compares two or more quantities of the same kind. Written as <strong>A : B</strong> or <strong>A/B</strong>. It tells you how much of one thing there is relative to another.</p>
-                        <p className="text-slate-600 text-sm"><strong>Example:</strong> If a concrete mix uses 1 bag cement, 2 bags sand, and 4 bags aggregate, the ratio is 1:2:4. You can gain deeper insights by using <a href="/calculator/momo-calorie-counter" className="text-blue-600 hover:text-blue-800 underline transition-colors">the momo calorie counter</a>.</p>
+                        <p className="text-slate-600 text-sm"><strong>Example:</strong> If a concrete mix uses 1 bag cement, 2 bags sand, and 4 bags aggregate, the ratio is 1:2:4. You can gain deeper insights by using <a href="/calculator/momo-calorie-counter/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the momo calorie counter</a>.</p>
                     </div>
                     <div className="bg-violet-50 border border-violet-200 rounded-xl p-6">
                         <h4 className="font-black text-violet-800 mb-3">What is a Proportion?</h4>
-                        <p className="text-slate-600 text-sm leading-relaxed mb-3">A proportion states that two ratios are equal: <strong>A/B = C/D</strong>. The missing value (cross multiplication) is found by: <strong>A × D = B × C</strong>. For a broader understanding, you may also want to explore <a href="/calculator/physics-energy" className="text-blue-600 hover:text-blue-800 underline transition-colors">the kinetic & potential</a>.</p>
+                        <p className="text-slate-600 text-sm leading-relaxed mb-3">A proportion states that two ratios are equal: <strong>A/B = C/D</strong>. The missing value (cross multiplication) is found by: <strong>A × D = B × C</strong>. For a broader understanding, you may also want to explore <a href="/calculator/physics-energy/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the kinetic & potential</a>.</p>
                         <p className="text-slate-600 text-sm"><strong>Example:</strong> If 5 workers complete a task in 8 days, how many days for 10 workers? 5/10 = x/8 → x = 4 days.</p>
                     </div>
                 </div>
@@ -193,20 +193,20 @@ export const utilitySEO: Record<string, SEOContent> = {
             {/* Solving Methods */}
             <section className="bg-slate-900 text-white rounded-2xl p-8">
                 <h3 className="text-xl font-black text-violet-400 mb-6">3. Cross Multiplication Method</h3>
-                <p className="text-slate-300 text-sm mb-4">The most reliable method for solving proportions (finding a missing value): Additionally, <a href="/calculator/engineering-gpa" className="text-blue-600 hover:text-blue-800 underline transition-colors">engineering gpa calculator</a> is highly recommended for related estimations.</p>
+                <p className="text-slate-300 text-sm mb-4">The most reliable method for solving proportions (finding a missing value): Additionally, <a href="/calculator/engineering-gpa/" className="text-blue-600 hover:text-blue-800 underline transition-colors">engineering gpa calculator</a> is highly recommended for related estimations.</p>
                 <div className="bg-slate-800 rounded-xl p-6 font-mono text-sm">
                     <p className="text-violet-300 mb-2">Given: A/B = C/D (solve for D)</p>
-                    <p className="text-white mb-2">Step 1: Cross multiply: A × D = B × C If you find this useful, checking out <a href="/calculator/lcm-gcf-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">this prime estimator</a> can provide further context.</p>
-                    <p className="text-white mb-2">Step 2: Isolate D: D = (B × C) / A Many users also utilize <a href="/calculator/lead-time" className="text-blue-600 hover:text-blue-800 underline transition-colors">Lead Time Calculator</a> alongside this analysis.</p>
+                    <p className="text-white mb-2">Step 1: Cross multiply: A × D = B × C If you find this useful, checking out <a href="/calculator/lcm-gcf-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this prime estimator</a> can provide further context.</p>
+                    <p className="text-white mb-2">Step 2: Isolate D: D = (B × C) / A Many users also utilize <a href="/calculator/lead-time/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Lead Time Calculator</a> alongside this analysis.</p>
                     <p className="text-amber-300 mt-4">Example: 3/5 = 12/D → 3D = 5×12 → 3D = 60 → D = 20</p>
                 </div>
             </section>
 
             <div className="pt-8 border-t border-slate-200 text-center">
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/percentage" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-violet-700 hover:bg-violet-50 transition-all">Percentage Calculator</a>
-                    <a href="/calculator/fraction-calculator" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-violet-700 hover:bg-violet-50 transition-all">Fraction Calculator</a>
-                    <a href="/calculator/scientific-calculator" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-violet-700 hover:bg-violet-50 transition-all">Scientific Calculator</a>
+                    <a href="/calculator/percentage/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-violet-700 hover:bg-violet-50 transition-all">Percentage Calculator</a>
+                    <a href="/calculator/fraction-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-violet-700 hover:bg-violet-50 transition-all">Fraction Calculator</a>
+                    <a href="/calculator/scientific-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-violet-700 hover:bg-violet-50 transition-all">Scientific Calculator</a>
                 </div>
             </div>
         </div>
@@ -244,7 +244,7 @@ export const utilitySEO: Record<string, SEOContent> = {
                 <h2 className="text-slate-800 font-black text-xs uppercase tracking-[0.3em] mb-3">Scientific Calculator Guide</h2>
                 <p className="text-slate-800 text-base leading-relaxed">
                     The <strong>Scientific Calculator</strong> provides access to all advanced mathematical functions needed for engineering, science, and academic coursework—including trigonometry (sin, cos, tan), logarithms (log, ln), exponents, roots, factorial, and complex number operations. This is a comprehensive tool for SEE, NEB (+2 Science), and engineering entrance exam (IOE, CTEVT) preparation in Nepal.
-                 For a broader understanding, you may also want to explore <a href="/calculator/quadratic-solver" className="text-blue-600 hover:text-blue-800 underline transition-colors">Graphing Pro</a>.</p>
+                 For a broader understanding, you may also want to explore <a href="/calculator/quadratic-solver/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Graphing Pro</a>.</p>
             </div>
 
             {/* Key Functions */}
@@ -278,7 +278,7 @@ export const utilitySEO: Record<string, SEOContent> = {
             <section>
                 <h3 className="text-2xl font-black text-slate-900 mb-4">2. Scientific Calculator Use in Nepal's Exams</h3>
                 <div className="bg-slate-900 text-white rounded-2xl p-8">
-                    <p className="text-slate-300 text-sm mb-6">Different Nepali examinations have specific rules about calculator use: Additionally, <a href="/calculator/base-converter" className="text-blue-600 hover:text-blue-800 underline transition-colors">this programmer estimator</a> is highly recommended for related estimations.</p>
+                    <p className="text-slate-300 text-sm mb-6">Different Nepali examinations have specific rules about calculator use: Additionally, <a href="/calculator/base-converter/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this programmer estimator</a> is highly recommended for related estimations.</p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                         <div className="bg-slate-800 rounded-xl p-4">
                             <h4 className="text-amber-300 font-bold mb-2">SEE (Grade 10)</h4>
@@ -286,11 +286,11 @@ export const utilitySEO: Record<string, SEOContent> = {
                         </div>
                         <div className="bg-slate-800 rounded-xl p-4">
                             <h4 className="text-amber-300 font-bold mb-2">NEB +2 Science</h4>
-                            <p className="text-slate-300 text-xs">In some +2 science papers (Physics, Chemistry), non-programmable scientific calculators are <strong className="text-white">allowed</strong>. Check the specific NEB exam rules for each subject. You can gain deeper insights by using <a href="/calculator/brick-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">brick calculator</a>.</p>
+                            <p className="text-slate-300 text-xs">In some +2 science papers (Physics, Chemistry), non-programmable scientific calculators are <strong className="text-white">allowed</strong>. Check the specific NEB exam rules for each subject. You can gain deeper insights by using <a href="/calculator/brick-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">brick calculator</a>.</p>
                         </div>
                         <div className="bg-slate-800 rounded-xl p-4">
                             <h4 className="text-amber-300 font-bold mb-2">IOE Entrance</h4>
-                            <p className="text-slate-300 text-xs">IOE and Pulchowk entrance exams are MCQ-based. Scientific calculators are generally <strong className="text-white">not allowed</strong>. Mental estimation and quick computation methods are essential. If you find this useful, checking out <a href="/calculator/scientific-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">the scientific engine fullscreen</a> can provide further context.</p>
+                            <p className="text-slate-300 text-xs">IOE and Pulchowk entrance exams are MCQ-based. Scientific calculators are generally <strong className="text-white">not allowed</strong>. Mental estimation and quick computation methods are essential. If you find this useful, checking out <a href="/calculator/scientific-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the scientific engine fullscreen</a> can provide further context.</p>
                         </div>
                     </div>
                 </div>
@@ -299,7 +299,7 @@ export const utilitySEO: Record<string, SEOContent> = {
             {/* Angle Mode Note */}
             <section className="bg-amber-50 border border-amber-200 rounded-xl p-6">
                 <h3 className="text-xl font-black text-amber-900 mb-3">3. Important: Degree vs. Radian Mode</h3>
-                <p className="text-slate-700 text-sm leading-relaxed mb-3">The most common mistake when using a scientific calculator is having the wrong angle mode selected: Additionally, <a href="/calculator/solar-requirement" className="text-blue-600 hover:text-blue-800 underline transition-colors">our solar calculation tool</a> is highly recommended for related estimations.</p>
+                <p className="text-slate-700 text-sm leading-relaxed mb-3">The most common mistake when using a scientific calculator is having the wrong angle mode selected: Additionally, <a href="/calculator/solar-requirement/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our solar calculation tool</a> is highly recommended for related estimations.</p>
                 <ul className="space-y-2 text-slate-700 text-sm">
                     <li>📐 <strong>Degree Mode (DEG):</strong> Use for everyday geometry, construction calculations, and most high school problems. sin(90°) = 1.</li>
                     <li>📐 <strong>Radian Mode (RAD):</strong> Use for advanced calculus, physics problems involving angular velocity, and engineering calculations. sin(π/2) = 1.</li>
@@ -309,9 +309,9 @@ export const utilitySEO: Record<string, SEOContent> = {
 
             <div className="pt-8 border-t border-slate-200 text-center">
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/statistics-plus" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-slate-700 hover:bg-slate-200 transition-all">Statistics Calculator</a>
-                    <a href="/calculator/ratio-proportion" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-slate-700 hover:bg-slate-200 transition-all">Ratio &amp; Proportion</a>
-                    <a href="/calculator/logarithm-calculator" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-slate-700 hover:bg-slate-200 transition-all">Logarithm Calculator</a>
+                    <a href="/calculator/statistics-plus/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-slate-700 hover:bg-slate-200 transition-all">Statistics Calculator</a>
+                    <a href="/calculator/ratio-proportion/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-slate-700 hover:bg-slate-200 transition-all">Ratio &amp; Proportion</a>
+                    <a href="/calculator/logarithm-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-slate-700 hover:bg-slate-200 transition-all">Logarithm Calculator</a>
                 </div>
             </div>
         </div>
@@ -358,7 +358,7 @@ export const utilitySEO: Record<string, SEOContent> = {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-white border border-teal-200 rounded-xl p-5 shadow-sm">
                         <h4 className="font-black text-teal-700 mb-2">Word Count</h4>
-                        <p className="text-slate-600 text-sm">Total number of space-separated words. Essential for academic submissions (500-word minimum essays), SEO content (minimum 800–1,500 words for ranking articles), and grant applications. For a broader understanding, you may also want to explore <a href="/calculator/attendance" className="text-blue-600 hover:text-blue-800 underline transition-colors">our attendance calculation tool</a>.</p>
+                        <p className="text-slate-600 text-sm">Total number of space-separated words. Essential for academic submissions (500-word minimum essays), SEO content (minimum 800–1,500 words for ranking articles), and grant applications. For a broader understanding, you may also want to explore <a href="/calculator/attendance/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our attendance calculation tool</a>.</p>
                     </div>
                     <div className="bg-white border border-teal-200 rounded-xl p-5 shadow-sm">
                         <h4 className="font-black text-teal-700 mb-2">Character Count</h4>
@@ -366,11 +366,11 @@ export const utilitySEO: Record<string, SEOContent> = {
                     </div>
                     <div className="bg-white border border-teal-200 rounded-xl p-5 shadow-sm">
                         <h4 className="font-black text-teal-700 mb-2">Reading Time</h4>
-                        <p className="text-slate-600 text-sm">Estimated based on average adult reading speed of 200–250 words per minute (WPM). Helps content creators optimize article length for target reader attention spans. Many users also utilize <a href="/calculator/bmi-child" className="text-blue-600 hover:text-blue-800 underline transition-colors">child bmi calculator</a> alongside this analysis.</p>
+                        <p className="text-slate-600 text-sm">Estimated based on average adult reading speed of 200–250 words per minute (WPM). Helps content creators optimize article length for target reader attention spans. Many users also utilize <a href="/calculator/bmi-child/" className="text-blue-600 hover:text-blue-800 underline transition-colors">child bmi calculator</a> alongside this analysis.</p>
                     </div>
                     <div className="bg-white border border-teal-200 rounded-xl p-5 shadow-sm">
                         <h4 className="font-black text-teal-700 mb-2">Speaking Time</h4>
-                        <p className="text-slate-600 text-sm">Estimated at 130–150 WPM (average speaking pace). Invaluable for preparing speeches, conference presentations, and video scripts for YouTube or training content. To complement these results, consider running the numbers through <a href="/calculator/geometry-3d" className="text-blue-600 hover:text-blue-800 underline transition-colors">Angle Calculator</a>.</p>
+                        <p className="text-slate-600 text-sm">Estimated at 130–150 WPM (average speaking pace). Invaluable for preparing speeches, conference presentations, and video scripts for YouTube or training content. To complement these results, consider running the numbers through <a href="/calculator/geometry-3d/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Angle Calculator</a>.</p>
                     </div>
                 </div>
             </section>
@@ -403,7 +403,7 @@ export const utilitySEO: Record<string, SEOContent> = {
             {/* Nepali Language Note */}
             <section className="bg-slate-900 text-white rounded-2xl p-8">
                 <h3 className="text-xl font-black text-teal-400 mb-4">3. Word Counting in Nepali (Devanagari Script)</h3>
-                <p className="text-slate-300 text-sm leading-relaxed mb-4">Counting words in Nepali text written in Devanagari script follows the same space-separation principle as English. However, be aware: If you find this useful, checking out <a href="/calculator/physics-force" className="text-blue-600 hover:text-blue-800 underline transition-colors">our velocity calculation tool</a> can provide further context.</p>
+                <p className="text-slate-300 text-sm leading-relaxed mb-4">Counting words in Nepali text written in Devanagari script follows the same space-separation principle as English. However, be aware: If you find this useful, checking out <a href="/calculator/physics-force/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our velocity calculation tool</a> can provide further context.</p>
                 <ul className="space-y-2 text-sm text-slate-300">
                     <li>→ <strong className="text-white">Half characters (halanta forms)</strong> in Nepali may affect character count but not word count.</li>
                     <li>→ <strong className="text-white">Conjunct consonants</strong> (samyukta akshara) are counted as part of the word they appear in.</li>
@@ -414,9 +414,9 @@ export const utilitySEO: Record<string, SEOContent> = {
 
             <div className="pt-8 border-t border-slate-200 text-center">
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/date-duration" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-teal-700 hover:bg-teal-50 transition-all">Date Duration</a>
-                    <a href="/calculator/scientific-calculator" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-teal-700 hover:bg-teal-50 transition-all">Scientific Calculator</a>
-                    <a href="/calculator/ratio-proportion" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-teal-700 hover:bg-teal-50 transition-all">Ratio Calculator</a>
+                    <a href="/calculator/date-duration/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-teal-700 hover:bg-teal-50 transition-all">Date Duration</a>
+                    <a href="/calculator/scientific-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-teal-700 hover:bg-teal-50 transition-all">Scientific Calculator</a>
+                    <a href="/calculator/ratio-proportion/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-teal-700 hover:bg-teal-50 transition-all">Ratio Calculator</a>
                 </div>
             </div>
         </div>
@@ -463,11 +463,11 @@ export const utilitySEO: Record<string, SEOContent> = {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-sky-50 border border-sky-200 rounded-xl p-6">
                         <h4 className="font-black text-sky-800 mb-3">Bikram Sambat (BS) – Official Calendar</h4>
-                        <p className="text-slate-600 text-sm leading-relaxed">Nepal officially uses the Bikram Sambat calendar. BS is approximately 56 years and 8 months ahead of the Gregorian (AD) calendar. Government documents, legal contracts, NRB filings, and official dates use BS. The BS year has 12 months but each month has variable days (29–32 days). To complement these results, consider running the numbers through <a href="/calculator/physics-energy" className="text-blue-600 hover:text-blue-800 underline transition-colors">this kinetic estimator</a>.</p>
+                        <p className="text-slate-600 text-sm leading-relaxed">Nepal officially uses the Bikram Sambat calendar. BS is approximately 56 years and 8 months ahead of the Gregorian (AD) calendar. Government documents, legal contracts, NRB filings, and official dates use BS. The BS year has 12 months but each month has variable days (29–32 days). To complement these results, consider running the numbers through <a href="/calculator/physics-energy/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this kinetic estimator</a>.</p>
                     </div>
                     <div className="bg-slate-50 border border-slate-200 rounded-xl p-6">
                         <h4 className="font-black text-slate-800 mb-3">Gregorian (AD) – International Calendar</h4>
-                        <p className="text-slate-600 text-sm leading-relaxed">The Gregorian calendar is used internationally and in Nepal for business contracts, international trade, visa dates, and academic records. Conversion between BS and AD is essential for cross-referencing documents. To complement these results, consider running the numbers through <a href="/calculator/bmi" className="text-blue-600 hover:text-blue-800 underline transition-colors">this bmi estimator</a>.</p>
+                        <p className="text-slate-600 text-sm leading-relaxed">The Gregorian calendar is used internationally and in Nepal for business contracts, international trade, visa dates, and academic records. Conversion between BS and AD is essential for cross-referencing documents. To complement these results, consider running the numbers through <a href="/calculator/bmi/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this bmi estimator</a>.</p>
                     </div>
                 </div>
             </section>
@@ -497,24 +497,24 @@ export const utilitySEO: Record<string, SEOContent> = {
             {/* How Leap Years Work */}
             <section className="bg-slate-900 text-white rounded-2xl p-8">
                 <h3 className="text-xl font-black text-sky-400 mb-4">3. Leap Year Handling</h3>
-                <p className="text-slate-300 text-sm leading-relaxed mb-4">The Date Duration Calculator automatically handles leap years in both AD and BS calendars: For a broader understanding, you may also want to explore <a href="/calculator/nepal-stocks" className="text-blue-600 hover:text-blue-800 underline transition-colors">our nepse calculation tool</a>.</p>
+                <p className="text-slate-300 text-sm leading-relaxed mb-4">The Date Duration Calculator automatically handles leap years in both AD and BS calendars: For a broader understanding, you may also want to explore <a href="/calculator/nepal-stocks/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our nepse calculation tool</a>.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
                     <div className="bg-slate-800 rounded-xl p-4">
                         <h4 className="text-sky-300 font-bold mb-2">AD Leap Year Rule</h4>
-                        <p className="text-slate-300">A year is a leap year if: divisible by 4, UNLESS divisible by 100, EXCEPT if also divisible by 400. E.g., 2000 and 2024 are leap years; 1900 was not. If you find this useful, checking out <a href="/calculator/word-counter" className="text-blue-600 hover:text-blue-800 underline transition-colors">the word counter tool</a> can provide further context.</p>
+                        <p className="text-slate-300">A year is a leap year if: divisible by 4, UNLESS divisible by 100, EXCEPT if also divisible by 400. E.g., 2000 and 2024 are leap years; 1900 was not. If you find this useful, checking out <a href="/calculator/word-counter/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the word counter tool</a> can provide further context.</p>
                     </div>
                     <div className="bg-slate-800 rounded-xl p-4">
                         <h4 className="text-sky-300 font-bold mb-2">BS Leap Year</h4>
-                        <p className="text-slate-300">BS months have variable days (29–32) defined by astronomical calculations. Chaitra (12th month) has 30 days in a regular BS year and 31 in a BS leap year. Additionally, <a href="/calculator/lcm-gcf-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">prime factor calculator</a> is highly recommended for related estimations.</p>
+                        <p className="text-slate-300">BS months have variable days (29–32) defined by astronomical calculations. Chaitra (12th month) has 30 days in a regular BS year and 31 in a BS leap year. Additionally, <a href="/calculator/lcm-gcf-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">prime factor calculator</a> is highly recommended for related estimations.</p>
                     </div>
                 </div>
             </section>
 
             <div className="pt-8 border-t border-slate-200 text-center">
                 <div className="flex flex-wrap justify-center gap-3">
-                    <a href="/calculator/nepali-date" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-sky-700 hover:bg-sky-50 transition-all">BS/AD Date Converter</a>
-                    <a href="/calculator/nepal-citizenship-age" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-sky-700 hover:bg-sky-50 transition-all">Age Calculator</a>
-                    <a href="/calculator/gratuity-calculator" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-sky-700 hover:bg-sky-50 transition-all">Gratuity Calculator</a>
+                    <a href="/calculator/nepali-date/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-sky-700 hover:bg-sky-50 transition-all">BS/AD Date Converter</a>
+                    <a href="/calculator/nepal-citizenship-age/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-sky-700 hover:bg-sky-50 transition-all">Age Calculator</a>
+                    <a href="/calculator/gratuity-calculator/" className="px-6 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs font-black text-sky-700 hover:bg-sky-50 transition-all">Gratuity Calculator</a>
                 </div>
             </div>
         </div>
@@ -567,13 +567,13 @@ export const utilitySEO: Record<string, SEOContent> = {
                         Whether you are analyzing physical variables, calculating financial structures, or mapping geometric coordinates,
                         the underlying algorithmic engine provides unparalleled precision. We have integrated edge-case detection to ensure
                         that extreme input parameters are processed gracefully, yielding results that comply with rigorous international standards.
-                     Many users also utilize <a href="/calculator/physics-force" className="text-blue-600 hover:text-blue-800 underline transition-colors">acceleration calculator</a> alongside this analysis.</p>
+                     Many users also utilize <a href="/calculator/physics-force/" className="text-blue-600 hover:text-blue-800 underline transition-colors">acceleration calculator</a> alongside this analysis.</p>
                     <p className="text-slate-600 leading-relaxed text-base">
                         To utilize the calculator effectively, simply select your desired operation mode, input the known variables into the
                         responsive fields, and let the computational engine perform the heavy lifting. The interface is specifically tailored
                         to reduce cognitive load, presenting actionable insights immediately without the necessity of manual cross-verification.
                         This dynamic system ensures that users from all disciplines can reliably model their scenarios.
-                     You can gain deeper insights by using <a href="/calculator/quadratic-solver" className="text-blue-600 hover:text-blue-800 underline transition-colors">this distance estimator</a>.</p>
+                     You can gain deeper insights by using <a href="/calculator/quadratic-solver/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this distance estimator</a>.</p>
                 </div>
             </section>
 
@@ -583,7 +583,7 @@ export const utilitySEO: Record<string, SEOContent> = {
                 <div className="text-slate-700 leading-relaxed space-y-6">
                     <p>
                         In the modern era of automated computing, the principles of applied mathematics form the structural bedrock of all technical advancement. Every software algorithm, physical simulation, and data visualization is fundamentally an exercise in algebraic relations and numerical modeling. By translating abstract human requirements into linear, quadratic, or matrix models, computer scientists can process complex real-world variables at lightning speed. Fostering mathematical proficiency is key to preparing the next generation of engineers, data scientists, and researchers for the global digital economy.
-                     For a broader understanding, you may also want to explore <a href="/calculator/bmi-child" className="text-blue-600 hover:text-blue-800 underline transition-colors">this child estimator</a>.</p>
+                     For a broader understanding, you may also want to explore <a href="/calculator/bmi-child/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this child estimator</a>.</p>
                     <p>
                         Applied mathematics teaches us to think systematically, to identify underlying patterns under tight constraints, and to break down multi-variable challenges into manageable logical steps. This cognitive framework is an invaluable asset across all professional fields, from structural engineering to public policy formulation. By isolating variables, identifying direct and inverse proportions, and predicting outcomes with high statistical confidence, practitioners can design optimal solutions that are highly relevant to their communities' sustainable development.
                     </p>
@@ -592,7 +592,7 @@ export const utilitySEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Beyond simple calculation, this tool acts as a comprehensive analytical platform that integrates seamlessly into complex professional workflows. In today's data-driven environment, the ability to rapidly process numerical inputs and generate verified outputs is a critical competitive advantage. Whether you are conducting academic research, managing a construction project, optimizing an investment portfolio, or auditing financial statements, precision is paramount. By replacing manual calculation methods with our rigorous digital engine, you mitigate the risk of human error and ensure that every analytical decision is based on verified mathematical logic.
-                     To complement these results, consider running the numbers through <a href="/calculator/lcm-gcf-calculator" className="text-blue-600 hover:text-blue-800 underline transition-colors">this lcm estimator</a>.</p>
+                     To complement these results, consider running the numbers through <a href="/calculator/lcm-gcf-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this lcm estimator</a>.</p>
                     <p>
                         The architecture of this calculator has been engineered to handle edge cases and extreme variable ranges without compromising speed or accuracy. Our underlying algorithms undergo continuous testing against established academic models and industry benchmarks. This commitment to computational integrity means that results remain consistent regardless of the complexity of the inputs. Furthermore, the responsive design of the platform ensures that this high-fidelity modeling capability is accessible across all devices, empowering you to perform critical analysis whether you are in the office, the classroom, or on the field.
                     </p>
@@ -645,7 +645,7 @@ export const utilitySEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         In conclusion, the mastery of advanced numerical algorithms is indistinguishable from professional excellence. We invite you to explore the full depth of our computational ecosystem, leveraging these verified mathematical models to drive innovation, ensure compliance, and achieve structural perfection in all your professional endeavors. Through strict adherence to mathematical truth and continuous technological refinement, we empower the global community of analysts, engineers, and students to build a smarter, more resilient future.
-                     If you find this useful, checking out <a href="/calculator/property-tax" className="text-blue-600 hover:text-blue-800 underline transition-colors">our real calculation tool</a> can provide further context.</p>
+                     If you find this useful, checking out <a href="/calculator/property-tax/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our real calculation tool</a> can provide further context.</p>
                 </div>
             </section>
 
@@ -657,27 +657,27 @@ export const utilitySEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -753,10 +753,10 @@ export const utilitySEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Furthermore, the continuous integration of automated computational engines ensures that human calculation errors are entirely mitigated. By leveraging high-precision online tools, practitioners can double-check complex structural equations, optimize industrial resource allocation, and gain a profound understanding of mathematical systems. These analytical exercises build a high level of mathematical confidence, proving that every successful modern operation is rooted in structural mathematical precision.
-                     To complement these results, consider running the numbers through <a href="/calculator/market-rates/remittance" className="text-blue-600 hover:text-blue-800 underline transition-colors">the nepal remittance board</a>.</p>
+                     To complement these results, consider running the numbers through <a href="/calculator/market-rates/remittance/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the nepal remittance board</a>.</p>
                     <p>
                         Beyond simple calculation, this tool acts as a comprehensive analytical platform that integrates seamlessly into complex professional workflows. In today's data-driven environment, the ability to rapidly process numerical inputs and generate verified outputs is a critical competitive advantage. Whether you are conducting academic research, managing a construction project, optimizing an investment portfolio, or auditing financial statements, precision is paramount. By replacing manual calculation methods with our rigorous digital engine, you mitigate the risk of human error and ensure that every analytical decision is based on verified mathematical logic.
-                     You can gain deeper insights by using <a href="/calculator/chemistry-molar" className="text-blue-600 hover:text-blue-800 underline transition-colors">our molar calculation tool</a>.</p>
+                     You can gain deeper insights by using <a href="/calculator/chemistry-molar/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our molar calculation tool</a>.</p>
                     <p>
                         The architecture of this calculator has been engineered to handle edge cases and extreme variable ranges without compromising speed or accuracy. Our underlying algorithms undergo continuous testing against established academic models and industry benchmarks. This commitment to computational integrity means that results remain consistent regardless of the complexity of the inputs. Furthermore, the responsive design of the platform ensures that this high-fidelity modeling capability is accessible across all devices, empowering you to perform critical analysis whether you are in the office, the classroom, or on the field.
                     </p>
@@ -764,7 +764,7 @@ export const utilitySEO: Record<string, SEOContent> = {
             
                     <p>
                         In addition to the core analytical frameworks, the deployment of machine learning algorithms and heuristic models is increasingly pivotal in modern computational workflows. As data scales exponentially, traditional linear models may encounter performance bottlenecks. By integrating predictive heuristics, we allow for near-instantaneous approximations of highly complex, non-linear problems. This hybrid approach ensures that professionals can maintain operational velocity without sacrificing analytical rigor, especially when dealing with massive datasets in real-time environments.
-                     If you find this useful, checking out <a href="/calculator/ideal-weight" className="text-blue-600 hover:text-blue-800 underline transition-colors">the ideal weight calculator</a> can provide further context.</p>
+                     If you find this useful, checking out <a href="/calculator/ideal-weight/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the ideal weight calculator</a> can provide further context.</p>
                     <p>
                         Furthermore, the architectural resilience of digital modeling tools is a primary concern for enterprise-level applications. Ensuring high availability, fault tolerance, and secure data transmission protocols is essential when financial and structural data are being processed. Our platform is built on modern web standards, utilizing robust error-handling and isolated runtime environments to guarantee that your computational sessions are both secure and highly reliable, regardless of external network conditions.
                     </p>
@@ -785,7 +785,7 @@ export const utilitySEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         In the civil engineering and material logistics sectors, precise project estimation is the primary safeguard against budget overruns and structural compromise. Volumetric calculations are the fundamental starting point for any construction project, translating three-dimensional design blueprints into actionable procurement orders. Whether casting a massive retaining wall, building a partition wall, or calculating the paint requirements for a commercial complex, understanding dry-to-wet shrinkage dynamics and density metrics is essential for maintaining strict material audits.
-                     If you find this useful, checking out <a href="/calculator/nepal-loan-eligibility" className="text-blue-600 hover:text-blue-800 underline transition-colors">this nepal estimator</a> can provide further context.</p>
+                     If you find this useful, checking out <a href="/calculator/nepal-loan-eligibility/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this nepal estimator</a> can provide further context.</p>
                     <p>
                         Dry materials such as cement, sand, and aggregate contain high proportions of air voids. When water is added, the particles compact and fill these voids, causing a significant reduction in total volume. In concrete mix design, this is accounted for by applying a dry-volume multiplier, typically standardized as 1.54. Similarly, mortar volume in brick masonry requires a distinct dry multiplier (usually 1.33) to account for compaction. Failing to apply these mathematical constants leads to the 'Procurement Gap'—a common site anomaly where raw materials run out mid-project, leading to cold joints, construction delays, and increased transport costs.
                     </p>
@@ -809,7 +809,7 @@ export const utilitySEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         In conclusion, the mastery of advanced numerical algorithms is indistinguishable from professional excellence. We invite you to explore the full depth of our computational ecosystem, leveraging these verified mathematical models to drive innovation, ensure compliance, and achieve structural perfection in all your professional endeavors. Through strict adherence to mathematical truth and continuous technological refinement, we empower the global community of analysts, engineers, and students to build a smarter, more resilient future.
-                     For a broader understanding, you may also want to explore <a href="/calculator/foreign-employment" className="text-blue-600 hover:text-blue-800 underline transition-colors">this foreign estimator</a>.</p>
+                     For a broader understanding, you may also want to explore <a href="/calculator/foreign-employment/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this foreign estimator</a>.</p>
                 </div>
             </section>
 
@@ -821,27 +821,27 @@ export const utilitySEO: Record<string, SEOContent> = {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>
@@ -910,7 +910,7 @@ export const utilitySEO: Record<string, SEOContent> = {
                 <div className="text-slate-700 leading-relaxed space-y-6">
                     <p>
                         In the modern era of automated computing, the principles of applied mathematics form the structural bedrock of all technical advancement. Every software algorithm, physical simulation, and data visualization is fundamentally an exercise in algebraic relations and numerical modeling. By translating abstract human requirements into linear, quadratic, or matrix models, computer scientists can process complex real-world variables at lightning speed. Fostering mathematical proficiency is key to preparing the next generation of engineers, data scientists, and researchers for the global digital economy.
-                     For a broader understanding, you may also want to explore <a href="/calculator/quadratic-solver" className="text-blue-600 hover:text-blue-800 underline transition-colors">the quadratic equation solver</a>.</p>
+                     For a broader understanding, you may also want to explore <a href="/calculator/quadratic-solver/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the quadratic equation solver</a>.</p>
                     <p>
                         Applied mathematics teaches us to think systematically, to identify underlying patterns under tight constraints, and to break down multi-variable challenges into manageable logical steps. This cognitive framework is an invaluable asset across all professional fields, from structural engineering to public policy formulation. By isolating variables, identifying direct and inverse proportions, and predicting outcomes with high statistical confidence, practitioners can design optimal solutions that are highly relevant to their communities' sustainable development.
                     </p>
@@ -939,13 +939,13 @@ export const utilitySEO: Record<string, SEOContent> = {
                 <div className="text-slate-300 leading-relaxed space-y-6">
                     <p>
                         For users in South Asia, and particularly in Nepal, the calculator is meticulously tailored to align with local regulatory frameworks and market conditions. From the Nepal Rastra Bank's monetary policies to local real estate measurement conventions like Ropani and Aana, context-specific parameters are deeply embedded into the logic. This regional focus ensures that the tool is not just a generic mathematical engine, but a specialized professional utility that delivers actionable, localized insights. By bridging international mathematical standards with precise local context, we provide unparalleled support for regional professionals navigating complex socio-economic landscapes.
-                     If you find this useful, checking out <a href="/calculator/nepal-vat" className="text-blue-600 hover:text-blue-800 underline transition-colors">this nepal estimator</a> can provide further context.</p>
+                     If you find this useful, checking out <a href="/calculator/nepal-vat/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this nepal estimator</a> can provide further context.</p>
                     <p>
                         Ultimately, mastering numerical analysis requires both practical experience and reliable technological support. We encourage users to actively experiment with the calculator's input parameters to observe real-time output variance, effectively conducting sensitivity analysis on the fly. This interactive learning loop fosters a deeper, more intuitive grasp of the underlying variables, transforming raw data into strategic intelligence. Embrace the power of verified digital computation to streamline your operations, enhance your academic performance, and secure your professional success in FY Current Year and beyond.
                     </p>
                     <p>
                         Continuous engagement with these verified digital modeling tools empowers users to rapidly iterate on complex scenarios, enabling precise forecasting, robust structural analysis, and highly informed strategic planning. Embracing this analytical rigor fundamentally transforms standard operational workflows into optimized, high-fidelity quantitative processes that guarantee absolute computational reliability.
-                     To complement these results, consider running the numbers through <a href="/calculator/momo-calorie-counter" className="text-blue-600 hover:text-blue-800 underline transition-colors">our momo calculation tool</a>.</p>
+                     To complement these results, consider running the numbers through <a href="/calculator/momo-calorie-counter/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our momo calculation tool</a>.</p>
                     <p>
                         In the civil engineering and material logistics sectors, precise project estimation is the primary safeguard against budget overruns and structural compromise. Volumetric calculations are the fundamental starting point for any construction project, translating three-dimensional design blueprints into actionable procurement orders. Whether casting a massive retaining wall, building a partition wall, or calculating the paint requirements for a commercial complex, understanding dry-to-wet shrinkage dynamics and density metrics is essential for maintaining strict material audits.
                     </p>
@@ -981,30 +981,30 @@ export const utilitySEO: Record<string, SEOContent> = {
                 <h3 className="text-3xl font-black text-slate-900 mb-4">Explore Related Computational Tools</h3>
                 <p className="text-slate-600 mb-8 leading-relaxed text-lg">
                     To further enhance your computational accuracy, we highly recommend integrating your current workflow with these related specialized calculators. Auditing your values across multiple models ensures complete structural consistency and absolute precision.
-                 Additionally, <a href="/calculator/percentage" className="text-blue-600 hover:text-blue-800 underline transition-colors">this percentage estimator</a> is highly recommended for related estimations.</p>
+                 Additionally, <a href="/calculator/percentage/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this percentage estimator</a> is highly recommended for related estimations.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze 3D Visualizer &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/physics-force" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/physics-force/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Acceleration Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Age Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/geometry-3d" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/geometry-3d/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Angle Calculator &rarr;
                         </a>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
+                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
                             Analyze Area Calculator &rarr;
                         </a>
                     </div>

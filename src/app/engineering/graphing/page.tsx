@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Free Graphing Calculator | NepaCalc',
     description: 'Plot multiple functions with custom colors, pan, zoom, and real-time rendering.',
-    url: 'https://NepaCalc.com/engineering/graphing',
+    url: 'https://NepaCalc.com/engineering/graphing/',
   },
 };
 
@@ -20,15 +20,15 @@ export default function GraphingPage() {
         type="breadcrumb"
         breadcrumbItems={[
           { name: 'Home', item: 'https://NepaCalc.com' },
-          { name: 'Engineering', item: 'https://NepaCalc.com/engineering' },
-          { name: 'Graphing Calculator', item: 'https://NepaCalc.com/engineering/graphing' }
+          { name: 'Engineering', item: 'https://NepaCalc.com/engineering/' },
+          { name: 'Graphing Calculator', item: 'https://NepaCalc.com/engineering/graphing/' }
         ]}
       />
       <JsonLd
         type="calculator"
         name="NepaCalc Graphing Calculator"
         description="Interactive graphing calculator with multi-expression support, custom colors, infinite pan & zoom."
-        url="https://NepaCalc.com/engineering/graphing"
+        url="https://NepaCalc.com/engineering/graphing/"
         category="EducationalApplication"
       />
       <GraphingCalculatorClient />

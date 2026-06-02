@@ -201,7 +201,7 @@ export default function MomoCalculator() {
         }
       ]}
       sidebar={{ title: "Health & Fitness", links: [
-          { label: "BMI Calculator", href: "/calculator/bmi/" }, { label: "Blood Pressure", href: "/calculator/bmr" },
+          { label: "BMI Calculator", href: "/calculator/bmi/" }, { label: "Blood Pressure", href: "/calculator/bmr/" },
           { label: "Age Calculator", href: "/calculator/age-calculator/" },
           { label: "BMI Calculator", href: "/calculator/bmi/" },
           { label: "Gratuity Calc", href: "/calculator/gratuity-calculator/" }

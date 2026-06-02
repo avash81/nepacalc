@@ -40,7 +40,7 @@ export default function Page() {
         hideHeader={true}
         title="Ratio & Proportion Solver"
         description="High-precision algebraic engine for simplifying ratios, solving for unknown values, and calculating scaling proportions."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Ratio' }]}
+        crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Ratio' }]}
         isNepal={true}
         relatedCalcs={[
           { name: 'Simple Calculator', slug: 'simple-calculator' },

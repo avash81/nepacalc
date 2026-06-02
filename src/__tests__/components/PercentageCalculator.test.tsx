@@ -8,7 +8,7 @@ jest.mock('next/navigation', () => ({
     return { push: jest.fn(), back: jest.fn() };
   },
   usePathname() {
-    return '/calculator/percentage';
+    return '/calculator/percentage/';
   }
 }));
 

@@ -82,7 +82,7 @@ export default function SEEGPACalculator() {
   return (
     <ModernCalcLayout
       slug="see-gpa"
-      crumbs={[{ label: 'Home', href: '/' }, { label: 'Education', href: '/education/' }, { label: 'SEE GPA Calculator' }]}
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Education', href: '/directory/' }, { label: 'SEE GPA Calculator' }]}
       title="SEE GPA Calculator"
       description="Calculate your Secondary Education Examination (SEE) GPA using the official Nepal Letter Grading Directive 2083 rules."
       icon={GraduationCap}
@@ -193,7 +193,7 @@ export default function SEEGPACalculator() {
         title: "Education Tools",
         subtitle: "Academic Planners",
         links: [
-          { label: '+2 NEB GPA Calculator', href: '/calculator/gpa', icon: BookOpen },
+          { label: '+2 NEB GPA Calculator', href: '/calculator/gpa/', icon: BookOpen },
           { label: 'Percentage Calculator', href: '/calculator/percentage/', icon: Activity },
           { label: "SEE Board Website", href: "https://see.gov.np", icon: Globe }
         ],
@@ -220,7 +220,7 @@ export default function SEEGPACalculator() {
         }
       }}
       relatedTools={[
-        { label: "+2 NEB GPA", href: "/calculator/gpa" },
+        { label: "+2 NEB GPA", href: "/calculator/gpa/" },
         { label: "Percentage", href: "/calculator/percentage/" },
         { label: "Age Calculator", href: "/calculator/age-calculator/" }
       ]}

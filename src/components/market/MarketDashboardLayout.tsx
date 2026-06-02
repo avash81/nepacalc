@@ -43,7 +43,7 @@ export function MarketDashboardLayout({
           <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#5F6368] mb-8">
             <button 
               type="button"
-              onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/market-rates')}
+              onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/market-rates/')}
               className="flex items-center gap-1 hover:text-[#1A73E8] text-[#5F6368] border-r border-[#DADCE0] pr-3 mr-1 transition-colors"
             >
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="15 18 9 12 15 6"/></svg>

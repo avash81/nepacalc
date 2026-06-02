@@ -115,7 +115,7 @@ export default function NepalLandCalculator() {
       description="The definitive real estate auditing engine for Nepal. Convert Ropani, Aana, Bigha, and Kattha with 100% Lalpurja precision based on DoLMA standards."
       icon={Map}
       relatedTools={[
-        { label: "General Area Calculator", href: "/calculator/area-calculator/" },
+        { label: "General Area Calculator", href: "/calculator/nepal-land/" },
         { label: "Home Loan Calculator", href: "/calculator/mortgage-calculator/" },
         { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax/" }
       ]}

@@ -46,7 +46,7 @@ export default function Page() {
       <CalcWrapper
         title="Forex & Exchange Rates 2083/84"
         description="Official daily exchange rates for major currencies against the Nepalese Rupee (NPR) as per NRB mandates."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Exchange Rates' }]}
+        crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Exchange Rates' }]}
         isNepal={true}
         hideHeader={true}
         relatedCalcs={[

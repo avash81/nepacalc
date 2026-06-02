@@ -104,7 +104,7 @@ export default function PaintCostCalculator() {
           links: [
           { label: 'Brick Calculator', href: '/calculator/brick-calculator/' },
             { label: 'Concrete Mix', href: '/calculator/concrete-mix/' },
-            { label: 'Area Calculator', href: '/calculator/area-calculator/' },
+            { label: 'Area Calculator', href: '/calculator/nepal-land/' },
             { label: 'Length Converter', href: '/calculator/length-converter/' },
           { label: "Nepal Salary", href: "/calculator/nepal-salary/" },
           { label: "Percentage Calc", href: "/calculator/percentage/" },

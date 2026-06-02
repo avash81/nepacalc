@@ -40,7 +40,7 @@ export default function Page() {
         hideHeader={true}
         title="Pregnancy Due Date"
         description="Clinical-grade engine for estimating your delivery date and tracking major pregnancy milestones."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Pregnancy Due Date' }]}
+        crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Pregnancy Due Date' }]}
         relatedCalcs={[
           { name: 'BMI Calculator', slug: 'bmi' },
           { name: 'BMR Calc', slug: 'bmr' },

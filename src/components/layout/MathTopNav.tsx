@@ -8,14 +8,14 @@ import { useState } from 'react';
 import { JsonLd } from '@/components/seo/JsonLd';
 
 const ECO_LINKS = [
-  { name: 'Graphing Calculator', path: '/math-tools/calculator', icon: Activity },
-  { name: 'Scientific Calculator', path: '/math-tools/scientific', icon: Calculator },
-  { name: 'Calculus & Algebra', path: '/math-tools/calculus', icon: FunctionSquare },
-  { name: 'Statistics Laboratory', path: '/math-tools/statistics', icon: Sigma },
-  { name: 'Matrix Calculator', path: '/math-tools/matrix', icon: Grid },
-  { name: 'Programmer Console', path: '/math-tools/programmer', icon: Binary },
-  { name: 'Geometry Tool', path: '/math-tools/geometry', icon: Hexagon },
-  { name: '3D Calculator', path: '/math-tools/3d', icon: Hexagon }
+  { name: 'Graphing Calculator', path: '/math-tools/calculator/', icon: Activity },
+  { name: 'Scientific Calculator', path: '/math-tools/scientific/', icon: Calculator },
+  { name: 'Calculus & Algebra', path: '/math-tools/calculus/', icon: FunctionSquare },
+  { name: 'Statistics Laboratory', path: '/math-tools/statistics/', icon: Sigma },
+  { name: 'Matrix Calculator', path: '/math-tools/matrix/', icon: Grid },
+  { name: 'Programmer Console', path: '/math-tools/programmer/', icon: Binary },
+  { name: 'Geometry Tool', path: '/engineering/geometry/', icon: Hexagon },
+  { name: '3D Calculator', path: '/math-tools/3d/', icon: Hexagon }
 ];
 
 export function MathTopNav() {
@@ -30,7 +30,7 @@ export function MathTopNav() {
          type="breadcrumb"
          breadcrumbItems={[
            { name: 'Home', item: 'https://NepaCalc.com' },
-           { name: 'Math Tools', item: 'https://NepaCalc.com/directory' },
+           { name: 'Math Tools', item: 'https://NepaCalc.com/directory/' },
            { name: activeLink.name, item: `https://NepaCalc.com${activeLink.path}` }
          ]}
       />

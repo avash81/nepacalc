@@ -40,7 +40,7 @@ export default function Page() {
       <CalcWrapper disableSchema={true}
         title="Daily Calorie Estimator"
         description="High-precision nutritional engine for calculating your total daily energy expenditure and setting personalized weight management targets."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Calorie Calculator' }]}
+        crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Calorie Calculator' }]}
         isNepal={true}
         hideHeader={true}
         relatedCalcs={[

@@ -62,7 +62,7 @@ export default function FourFunctionPage() {
           </ul>
 
           <p className="mb-4">
-            If you find that your mathematical needs go beyond basic arithmetic, NepaCalc has you covered. You can easily upgrade your toolset by exploring our <a href="/math-tools/calculus" className="text-teal-600 hover:underline">Calculus & Algebra Laboratory</a> for advanced mathematics, or browse our <a href="/directory" className="text-teal-600 hover:underline">Complete Calculator Directory</a> to find specialized tools for finance, engineering, health, and unit conversions tailored for Nepal.
+            If you find that your mathematical needs go beyond basic arithmetic, NepaCalc has you covered. You can easily upgrade your toolset by exploring our <a href="/math-tools/calculus/" className="text-teal-600 hover:underline">Calculus & Algebra Laboratory</a> for advanced mathematics, or browse our <a href="/directory/" className="text-teal-600 hover:underline">Complete Calculator Directory</a> to find specialized tools for finance, engineering, health, and unit conversions tailored for Nepal.
           </p>
 
           <h3 className="text-2xl font-bold mt-10 mb-4 text-slate-900 dark:text-white">Everyday Scenarios for the 4-Function Calculator in Nepal</h3>

@@ -167,7 +167,7 @@ export default function LengthConverter() {
         }
       ]}
       sidebar={{ title: "Conversion Tools", links: [
-          { label: "Weight Converter", href: "/calculator/weight-converter/" }, { label: "Temperature Converter", href: "/calculator/unit-converter" },
+          { label: "Weight Converter", href: "/calculator/weight-converter/" }, { label: "Temperature Converter", href: "/calculator/unit-converter/" },
           { label: "BMI Calculator", href: "/calculator/bmi/" },
           { label: "Percentage Calc", href: "/calculator/percentage/" },
           { label: "Age Calculator", href: "/calculator/age-calculator/" }

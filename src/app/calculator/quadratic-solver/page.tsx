@@ -40,7 +40,7 @@ export default function Page() {
         hideHeader={true}
         title="Quadratic Equation Solver"
         description="High-precision algebraic engine for finding the roots and discriminant of any second-degree polynomial equation instantly."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Quadratic Solver' }]}
+        crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Quadratic Solver' }]}
         isNepal={true}
         relatedCalcs={[
           { name: 'Linear Solver', slug: 'linear-solver' },

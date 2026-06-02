@@ -40,7 +40,7 @@ export default function Page() {
         hideHeader={true}
         title="Physics Force Solver"
         description="Industrial-grade mechanics engine for calculating net force, inertial mass, and linear acceleration based on Newton's Second Law."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Force Calculator' }]}
+        crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Force Calculator' }]}
         isNepal={true}
         relatedCalcs={[
           { name: 'Energy Calc', slug: 'physics-energy' },

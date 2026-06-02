@@ -404,7 +404,7 @@ export default function GPACalculator() {
         links: [
           { label: "CGPA Calculator", href: "/calculator/cgpa/" },
           { label: "SEE GPA Calc", href: "/calculator/see-gpa/" },
-          { label: "Attendance tool", href: "/calculator/attendance/" },
+          { label: "Attendance tool", href: "/calculator/nepal-attendance/" },
           { label: "NEB Official Site", href: "https://neb.gov.np" },
           { label: "TU Exam Portal", href: "https://tuexam.edu.np" },
         ],
@@ -417,7 +417,7 @@ export default function GPACalculator() {
       relatedTools={[
         { label: "CGPA Calculator", href: "/calculator/cgpa/" },
         { label: "SEE GPA Tool", href: "/calculator/see-gpa/" },
-        { label: "Attendance tool", href: "/calculator/attendance/" },
+        { label: "Attendance tool", href: "/calculator/nepal-attendance/" },
         { label: "Marks to GPA", href: "/calculator/marks-needed/" }
       ]}
     />

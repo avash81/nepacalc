@@ -40,7 +40,7 @@ export default function Page() {
         hideHeader={true}
         title="Paint Cost Calculator"
         description="Professional estimation engine for wall area, paint quantity, and material budgets tailored for Nepalese home renovations."
-        crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Paint Cost' }]}
+        crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Paint Cost' }]}
         isNepal={true}
         relatedCalcs={[
           { name: 'Brick Calculator', slug: 'brick-calculator' },
