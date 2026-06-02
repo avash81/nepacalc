@@ -36,7 +36,7 @@ const RATIO_FAQS = [
 export default function Page() {
   return (
     <div className="bg-white min-h-screen">
-      <CalcWrapper
+      <CalcWrapper disableSchema={true}
         hideHeader={true}
         title="Ratio & Proportion Solver"
         description="High-precision algebraic engine for simplifying ratios, solving for unknown values, and calculating scaling proportions."
@@ -65,7 +65,7 @@ export default function Page() {
               </p>
             </div>
 
-            <PillarFAQ faqs={RATIO_FAQS} title="Ratios & Proportions FAQ" />
+            <PillarFAQ disableSchema={true} faqs={RATIO_FAQS} title="Ratios & Proportions FAQ" />
           </div>
         </div>
       </CalcWrapper>

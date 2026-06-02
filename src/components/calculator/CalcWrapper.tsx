@@ -16,11 +16,12 @@ interface Props {
   children: ReactNode;
   formula?: string;
   hideHeader?: boolean;
+  disableSchema?: boolean;
 }
 
 export function CalcWrapper({
   title, description, crumbs, isNepal,
-  children, formula, relatedCalcs, hideHeader = false
+  children, formula, relatedCalcs, hideHeader = false, disableSchema = false
 }: Props) {
   return (
     <div lang={isNepal ? 'ne' : 'en'} className="min-h-screen bg-white">
@@ -35,24 +36,26 @@ export function CalcWrapper({
         ]}
       />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": title,
-            "description": description,
-            "applicationCategory": "UtilitiesApplication",
-            "operatingSystem": "All",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            }
-          })
-        }}
-      />
+      {!disableSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": title,
+              "description": description,
+              "applicationCategory": "UtilitiesApplication",
+              "operatingSystem": "All",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              }
+            })
+          }}
+        />
+      )}
 
       <div className="max-w-[94%] mx-auto px-4 sm:px-6 pt-4">
         

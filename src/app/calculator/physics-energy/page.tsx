@@ -36,7 +36,7 @@ const ENERGY_FAQS = [
 export default function Page() {
   return (
     <div className="bg-white min-h-screen">
-      <CalcWrapper
+      <CalcWrapper disableSchema={true}
         hideHeader={true}
         title="Kinetic Energy Engine"
         description="High-precision physics laboratory tool for calculating kinetic energy, mass-energy relationships, and velocity variables using SI standards."
@@ -65,7 +65,7 @@ export default function Page() {
               </p>
             </div>
 
-            <PillarFAQ faqs={ENERGY_FAQS} title="Energy & Physics FAQ" />
+            <PillarFAQ disableSchema={true} faqs={ENERGY_FAQS} title="Energy & Physics FAQ" />
           </div>
         </div>
       </CalcWrapper>

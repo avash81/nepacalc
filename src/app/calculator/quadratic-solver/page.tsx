@@ -36,7 +36,7 @@ const QUADRATIC_FAQS = [
 export default function Page() {
   return (
     <div className="bg-white min-h-screen">
-      <CalcWrapper
+      <CalcWrapper disableSchema={true}
         hideHeader={true}
         title="Quadratic Equation Solver"
         description="High-precision algebraic engine for finding the roots and discriminant of any second-degree polynomial equation instantly."
@@ -65,7 +65,7 @@ export default function Page() {
               </p>
             </div>
 
-            <PillarFAQ faqs={QUADRATIC_FAQS} title="Quadratic Formula & Roots FAQ" />
+            <PillarFAQ disableSchema={true} faqs={QUADRATIC_FAQS} title="Quadratic Formula & Roots FAQ" />
           </div>
         </div>
       </CalcWrapper>

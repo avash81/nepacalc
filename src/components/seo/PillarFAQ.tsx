@@ -6,10 +6,10 @@ type FAQItem = {
   answer: string;
 };
 
-export function PillarFAQ({ faqs, title = "Frequently Asked Questions" }: { faqs: FAQItem[], title?: string }) {
+export function PillarFAQ({ faqs, title = "Frequently Asked Questions" }: { faqs: FAQItem[], title?: string, disableSchema?: boolean }) {
   return (
     <div className="mt-16 pt-12 border-t border-[#dadce0]">
-      <JsonLd type="faq" faqs={faqs} />
+      {!disableSchema && <JsonLd type="faq" faqs={faqs} />}
       <h2 className="text-[13px] font-black tracking-widest text-[#202124] mb-6 uppercase">{title}</h2>
       <div className="space-y-6">
         {faqs.map((faq, idx) => (

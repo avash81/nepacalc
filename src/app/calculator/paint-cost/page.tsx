@@ -36,7 +36,7 @@ const PAINT_FAQS = [
 export default function Page() {
   return (
     <div className="bg-white min-h-screen">
-      <CalcWrapper
+      <CalcWrapper disableSchema={true}
         hideHeader={true}
         title="Paint Cost Calculator"
         description="Professional estimation engine for wall area, paint quantity, and material budgets tailored for Nepalese home renovations."
@@ -65,7 +65,7 @@ export default function Page() {
               </p>
             </div>
 
-            <PillarFAQ faqs={PAINT_FAQS} title="Painting & Material FAQ" />
+            <PillarFAQ disableSchema={true} faqs={PAINT_FAQS} title="Painting & Material FAQ" />
           </div>
         </div>
       </CalcWrapper>    </div>

@@ -37,7 +37,7 @@ const CALORIE_FAQS = [
 export default function Page() {
   return (
     <div className="bg-white min-h-screen">
-      <CalcWrapper
+      <CalcWrapper disableSchema={true}
         title="Daily Calorie Estimator"
         description="High-precision nutritional engine for calculating your total daily energy expenditure and setting personalized weight management targets."
         crumbs={[{ label: 'Directory', href: '/directory' }, { label: 'Calorie Calculator' }]}
@@ -66,7 +66,7 @@ export default function Page() {
               </p>
             </div>
 
-            <PillarFAQ faqs={CALORIE_FAQS} title="Calories & Nutrition FAQ" />
+            <PillarFAQ disableSchema={true} faqs={CALORIE_FAQS} title="Calories & Nutrition FAQ" />
           </div>
         </div>
       </CalcWrapper>    </div>

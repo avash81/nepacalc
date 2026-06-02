@@ -36,7 +36,7 @@ const FORCE_FAQS = [
 export default function Page() {
   return (
     <div className="bg-white min-h-screen">
-      <CalcWrapper
+      <CalcWrapper disableSchema={true}
         hideHeader={true}
         title="Physics Force Solver"
         description="Industrial-grade mechanics engine for calculating net force, inertial mass, and linear acceleration based on Newton's Second Law."
@@ -65,7 +65,7 @@ export default function Page() {
               </p>
             </div>
 
-            <PillarFAQ faqs={FORCE_FAQS} title="Force & Mechanics FAQ" />
+            <PillarFAQ disableSchema={true} faqs={FORCE_FAQS} title="Force & Mechanics FAQ" />
           </div>
         </div>
       </CalcWrapper>    </div>

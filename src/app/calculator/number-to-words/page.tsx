@@ -36,7 +36,7 @@ const WORDS_FAQS = [
 export default function Page() {
   return (
     <div className="bg-white min-h-screen">
-      <CalcWrapper
+      <CalcWrapper disableSchema={true}
         hideHeader={true}
         title="Numerical Verbiage Engine"
         description="High-precision linguistic tool for converting complex digits into formal words using both regional and international numbering standards."
@@ -65,7 +65,7 @@ export default function Page() {
               </p>
             </div>
 
-            <PillarFAQ faqs={WORDS_FAQS} title="Numbering Systems & Usage FAQ" />
+            <PillarFAQ disableSchema={true} faqs={WORDS_FAQS} title="Numbering Systems & Usage FAQ" />
           </div>
         </div>
       </CalcWrapper>    </div>

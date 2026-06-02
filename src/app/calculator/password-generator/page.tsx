@@ -36,7 +36,7 @@ const PASSWORD_FAQS = [
 export default function Page() {
   return (
     <div className="bg-white min-h-screen">
-      <CalcWrapper
+      <CalcWrapper disableSchema={true}
         hideHeader={true}
         title="Cryptographic Password Engine"
         description="High-entropy security tool for generating non-sequential, pattern-free random passwords for maximum digital protection."
@@ -65,7 +65,7 @@ export default function Page() {
               </p>
             </div>
 
-            <PillarFAQ faqs={PASSWORD_FAQS} title="Online Security & Passwords FAQ" />
+            <PillarFAQ disableSchema={true} faqs={PASSWORD_FAQS} title="Online Security & Passwords FAQ" />
           </div>
         </div>
       </CalcWrapper>    </div>

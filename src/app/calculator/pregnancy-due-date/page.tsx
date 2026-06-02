@@ -36,7 +36,7 @@ const PREGNANCY_FAQS = [
 export default function Page() {
   return (
     <div className="bg-white min-h-screen">
-      <CalcWrapper
+      <CalcWrapper disableSchema={true}
         hideHeader={true}
         title="Pregnancy Due Date"
         description="Clinical-grade engine for estimating your delivery date and tracking major pregnancy milestones."
@@ -64,7 +64,7 @@ export default function Page() {
               </p>
             </div>
 
-            <PillarFAQ faqs={PREGNANCY_FAQS} title="Maternal Health & Due Date FAQ" />
+            <PillarFAQ disableSchema={true} faqs={PREGNANCY_FAQS} title="Maternal Health & Due Date FAQ" />
           </div>
         </div>
       </CalcWrapper>    </div>
