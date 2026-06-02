@@ -12,7 +12,7 @@ export const SITE_CONFIG = {
  * No pipes, no dashes, no ampersands, no colons.
  */
 export function calcMeta({ title, description, slug, keywords = [], canonical }: { title: string; description: string; slug: string; keywords?: string[]; canonical?: string }): Metadata {
-  const ogImage = `${SITE_CONFIG.baseUrl}/api/og?title=${encodeURIComponent(title)}`;
+  const ogImage = `${SITE_CONFIG.baseUrl}/og-image.png`;
   
   // Clean Title — Brand enforced at end with a space, NO symbols (except / for years)
   let seoTitle = title
