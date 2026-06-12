@@ -14,6 +14,8 @@ export const NeaBillSEO = (
     </div>
 
     <p>Managing monthly household utilities across Kathmandu, Pokhara, Lalitpur, or any region in Nepal requires clear visibility into how utility bills are calculated. This free, online NEA electricity bill calculator handles complex progressive calculations instantly, ensuring tenants, landlords, and commercial property owners can easily verify their actual electricity expenses without guessing the math. Using our dedicated <strong>nea calculator</strong> ensures you are looking at an authorized <strong>bill estimator</strong> that breaks down every <strong>1 unit electricity cost in nepal calculator</strong> metric automatically. Whether you are using a standard domestic line or an advanced <strong>3 phase electricity cost per unit in nepal</strong> framework, our <strong>nepa bill</strong> engine handles it all perfectly.</p>
+    
+    <p className="mt-4 mb-6">Planning your overall household budget? After calculating your utility expenses, you can accurately estimate your net take-home pay and corporate deductions using our <a href="/calculator/nepal-salary/" className="text-[#0056b3] underline font-medium">Nepal Salary Tax Calculator</a>.</p>
 
     <hr style={{ border: 0, borderTop: '1px dashed #ccc', margin: '30px 0' }} />
 
@@ -56,7 +58,7 @@ export const NeaBillSEO = (
     </ol>
     <p className="mb-6">Once you hit <strong>"Generate"</strong>, you can take your exact consumed unit metrics (Previous Meter Reading subtracted from your Current Meter Reading in kWh) and drop them directly into our <strong>NEA electricity bill calculator</strong> to review an itemized progressive slab subtotal verification instantly.</p>
 
-    <p className="mb-6">Before computing your progressive slabs, you can also fetch your live, un-calculated consumption metrics directly from the official <a href="https://www.neabilling.com/viewonline/" target="_blank" rel="noopener noreferrer" className="text-[#0056b3] underline font-medium">neabilling.com portal</a>. Once you have logged into their online system using your Consumer ID and SCNO, return here to break down the exact mathematical logic of your statement.</p>
+    <p className="mb-6">Before computing your progressive slabs, you can also fetch your live, un-calculated consumption metrics directly from the official <strong>neabilling.com portal</strong>. Once you have logged into their online system using your Consumer ID and SCNO, return here to break down the exact mathematical logic of your statement.</p>
 
     <hr className="border-t border-dashed border-[#ccc] my-8" />
 
@@ -94,10 +96,9 @@ export const NeaBillSEO = (
     <hr className="border-t border-dashed border-[#ccc] my-8" />
 
     <h2 className="text-xl font-bold text-[#202124] mb-4">🛠️ Explore Our Other Local Nepalese Financial Tools</h2>
-    <p className="mb-4">Finished analyzing your home energy utility expenses? Keep your financial management streamlined by trying out our companion calculation engines:</p>
+    <p className="mb-4">Finished analyzing your home energy utility expenses? Keep your financial management streamlined by trying out our companion calculation engine:</p>
     <ul className="list-disc pl-6 space-y-2">
-      <li>📊 <strong>Income Planning:</strong> Estimate your net take-home salary or corporate deductions with our <a href="/calculator/nepal-salary/" className="text-blue-600 hover:underline">Nepal Salary Tax Calculator</a>.</li>
-      <li>🚘 <strong>Vehicle Management:</strong> Stay ahead of regional transport office renewal deadlines with our updated <a href="/calculator/nepal-vehicle-tax/" className="text-blue-600 hover:underline">Nepal Vehicle Tax Calculator</a>.</li>
+      <li>🚘 <strong>Vehicle Management:</strong> Stay ahead of regional transport office renewal deadlines with our updated <a href="/calculator/nepal-vehicle-tax/" className="text-[#0056b3] hover:underline font-medium">Nepal Vehicle Tax Calculator</a>.</li>
     </ul>
   </div>
 );
