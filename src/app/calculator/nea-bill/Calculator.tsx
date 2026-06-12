@@ -26,9 +26,11 @@ function formatNPR(n: number) {
 }
 
 export default function NEABillCalculator() {
+  const today = new Date().toISOString().split('T')[0];
   const [units, setUnits] = useState(150);
   const [connectionAmps, setConnectionAmps] = useState<'5A' | '15A' | '30A' | '60A'>('5A');
-  const [paymentWindow, setPaymentWindow] = useState<number>(1); // 1: 8-15
+  const [billingDate, setBillingDate] = useState<string>(today);
+  const [paymentDate, setPaymentDate] = useState<string>(today);
 
   const result = useMemo(() => {
     let remaining = units;
@@ -73,6 +75,18 @@ export default function NEABillCalculator() {
     const vat = subtotal * 0.13;
     const baseTotal = subtotal + vat;
 
+    const bDate = new Date(billingDate);
+    const pDate = new Date(paymentDate);
+    const diffTime = pDate.getTime() - bDate.getTime();
+    const diffDays = Math.max(0, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+
+    let paymentWindow = 1;
+    if (diffDays <= 7) paymentWindow = 0;
+    else if (diffDays <= 15) paymentWindow = 1;
+    else if (diffDays <= 30) paymentWindow = 2;
+    else if (diffDays <= 40) paymentWindow = 3;
+    else paymentWindow = 4;
+
     let adjustment = 0;
     if (paymentWindow === 0) adjustment = -(baseTotal * 0.02);
     else if (paymentWindow === 2) adjustment = (baseTotal * 0.05);
@@ -87,8 +101,8 @@ export default function NEABillCalculator() {
       { name: 'VAT (13%)', value: vat }
     ].filter(d => d.value > 0);
 
-    return { energyCharge, fixedCharge, vat, baseTotal, adjustment, finalTotal, slabBreakdown, pieData };
-  }, [units, connectionAmps, paymentWindow]);
+    return { energyCharge, fixedCharge, vat, baseTotal, adjustment, finalTotal, slabBreakdown, pieData, diffDays };
+  }, [units, connectionAmps, billingDate, paymentDate]);
 
   return (
     <ModernCalcLayout
@@ -124,19 +138,35 @@ export default function NEABillCalculator() {
                   </select>
                </div>
                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Payment Window</label>
-                  <select 
-                    value={paymentWindow} 
-                    onChange={(e) => setPaymentWindow(Number(e.target.value))}
+                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Meter Reading Date</label>
+                  <input 
+                    type="date"
+                    value={billingDate} 
+                    onChange={(e) => setBillingDate(e.target.value)}
                     className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all appearance-none"
-                  >
-                    <option value={0}>1-7 Days (2% Digital Rebate)</option>
-                    <option value={1}>8-15 Days (Standard)</option>
-                    <option value={2}>16-30 Days (5% Fine)</option>
-                    <option value={3}>31-40 Days (10% Fine)</option>
-                    <option value={4}>41+ Days (25% Fine)</option>
-                  </select>
+                  />
                </div>
+               <div className="space-y-2">
+                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Estimated Payment Date</label>
+                  <input 
+                    type="date"
+                    value={paymentDate} 
+                    onChange={(e) => setPaymentDate(e.target.value)}
+                    className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all appearance-none"
+                  />
+               </div>
+            </div>
+            
+            <div className="flex items-center gap-2 text-xs text-[#5F6368] bg-[#F8F9FA] p-3 rounded-md border border-[#DADCE0]">
+               <Clock className="w-4 h-4 text-[#1A73E8]" />
+               <span>
+                 Payment window: <strong className="text-[#202124]">{result.diffDays} Days</strong>. 
+                 {result.diffDays <= 7 && <span className="text-emerald-600 ml-1">Qualifies for 2% Early Rebate.</span>}
+                 {result.diffDays > 7 && result.diffDays <= 15 && <span className="text-gray-600 ml-1">Standard Rate. No fine.</span>}
+                 {result.diffDays > 15 && result.diffDays <= 30 && <span className="text-rose-600 ml-1">5% Late Fine applied.</span>}
+                 {result.diffDays > 30 && result.diffDays <= 40 && <span className="text-rose-600 ml-1">10% Late Fine applied.</span>}
+                 {result.diffDays > 40 && <span className="text-rose-600 ml-1">25% Late Fine applied. Disconnection risk.</span>}
+               </span>
             </div>
           </div>
           <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">

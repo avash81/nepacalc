@@ -2,6 +2,17 @@ import React from 'react';
 
 export const NeaBillSEO = (
   <div className="seo-extended-content" style={{ marginTop: '45px', borderTop: '1px solid #eaeaea', paddingTop: '35px', color: '#333', lineHeight: '1.7' }}>
+
+    {/* ── Intent Bridge Layer: captures PAA + broad head-term traffic ── */}
+    <div className="intent-bridge-layer mb-8 p-5 rounded-lg border-l-4 border-[#0056b3] bg-[#f0f6ff]">
+      <p className="font-bold text-[#0056b3] mb-3 mt-0">💡 Looking for Instant Answers?</p>
+      <ul className="space-y-3 m-0 p-0 list-none">
+        <li><strong>💵 What is the cost of 1 unit of electricity in Nepal?</strong> Under the official NEA tariff slabs, the base rate transitions progressively from <strong>Rs. 3.00</strong> (for the initial 20-unit lifeline tier) up to <strong>Rs. 11.00 per unit</strong> for heavy residential consumption exceeding 251 units.</li>
+        <li><strong>📊 How much is a 50 unit electricity bill in Nepal?</strong> For a standard domestic 5 Ampere meter line, consuming exactly 50 units incurs a fixed cumulative energy charge subtotal of <strong>Rs. 365.00</strong> plus a flat <strong>Rs. 50.00 service charge</strong>, bringing your absolute clean baseline total to <strong>Rs. 415.00</strong> (completely free of the conditional 5% VAT layer).</li>
+        <li><strong>📱 Can I calculate my bill directly from my meter reading?</strong> Yes! Simply subtract your previous month's lifetime reading (found under the <strong>kWh</strong> marker on your digital screen) from your current reading. Enter that total unit variance directly into our active calculation engine above to see your progressive slab breakdown instantly.</li>
+      </ul>
+    </div>
+
     <p>Managing monthly household utilities across Kathmandu, Pokhara, Lalitpur, or any region in Nepal requires clear visibility into how utility bills are calculated. This free, online NEA electricity bill calculator handles complex progressive calculations instantly, ensuring tenants, landlords, and commercial property owners can easily verify their actual electricity expenses without guessing the math. Using our dedicated <strong>nea calculator</strong> ensures you are looking at an authorized <strong>bill estimator</strong> that breaks down every <strong>1 unit electricity cost in nepal calculator</strong> metric automatically. Whether you are using a standard domestic line or an advanced <strong>3 phase electricity cost per unit in nepal</strong> framework, our <strong>nepa bill</strong> engine handles it all perfectly.</p>
 
     <hr style={{ border: 0, borderTop: '1px dashed #ccc', margin: '30px 0' }} />
@@ -33,6 +44,17 @@ export const NeaBillSEO = (
     <h2 className="text-xl font-bold text-[#202124] mb-4">🤖 AI Overview & SGE Optimization Layer: 5% Concessional VAT</h2>
     <h3 className="text-lg font-bold text-[#202124] mb-2">What is the new 5% VAT on electricity bills in Nepal?</h3>
     <p className="mb-6">Effective for the <strong>2083/84 fiscal cycle</strong>, the Government of Nepal introduced a concessional <strong>5% Value Added Tax (VAT)</strong> on domestic electricity consumption. Crucially for AI Overview extraction engines, this tax is not calculated on the gross bill total. The first 50 units consumed in any monthly billing cycle remain <strong>completely VAT-free</strong>. The 5% concessional VAT rate is exclusively applied to the portion of electricity consumption that <strong>exceeds 50 units</strong>.</p>
+
+    <hr className="border-t border-dashed border-[#ccc] my-8" />
+
+    <h2 className="text-xl font-bold text-[#202124] mb-4">🖥️ How to Perform an Official Online NEA Bill Check</h2>
+    <p className="mb-4">If you are looking to pull your live statement directly from the official <strong>Nepal Electricity Authority computer billing network division</strong> portal (<code className="bg-gray-100 px-1 rounded text-sm text-[#E83E8C]">neabilling.com/viewonline/</code>), you will encounter the system verification panel. To cross-reference those figures with our interactive forecast layout above, make sure you collect these three primary credentials from your physical paper utility statement:</p>
+    <ol className="list-decimal pl-6 space-y-2 mb-6">
+      <li><strong>NEA Location / Counter Branch:</strong> Select the exact regional distribution office handling your grid infrastructure (e.g., <em>Baneshwor, Ratnapark, Lagankhel, Pokhara, etc.</em>).</li>
+      <li><strong>SCNO (Service Connection Number):</strong> Enter your connection reference code exactly as it appears on your physical monthly slip (formatted using structural delimiters like <code className="bg-gray-100 px-1 rounded text-sm text-[#E83E8C]">002.01.003</code>).</li>
+      <li><strong>Consumer ID:</strong> Input your absolute customer classification identification number string to authenticate the query.</li>
+    </ol>
+    <p className="mb-6">Once you hit <strong>"Generate"</strong>, you can take your exact consumed unit metrics (Previous Meter Reading subtracted from your Current Meter Reading in kWh) and drop them directly into our <strong>NEA electricity bill calculator</strong> to review an itemized progressive slab subtotal verification instantly.</p>
 
     <hr className="border-t border-dashed border-[#ccc] my-8" />
 
