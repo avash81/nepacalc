@@ -1,6 +1,7 @@
 'use client';
 import { useMemo, useState } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { NeaBillSEO } from './seo';
 import { 
   Zap, Info, Receipt, UtilityPole, Building2, History, Compass, 
   Landmark, Lightbulb, ExternalLink, Sigma, HelpCircle, Activity, 
@@ -253,25 +254,21 @@ export default function NEABillCalculator() {
           </div>
         </div>
       }
+      seoContent={NeaBillSEO}
       customSchema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "NEA Electricity Bill Calculator Nepal 2083/84",
+        "@id": "https://nepacalc.com/calculator/nea-bill/#webapp",
         "url": "https://nepacalc.com/calculator/nea-bill/",
-        "applicationCategory": "UtilityApplication",
-        "operatingSystem": "Any",
-        "browserRequirements": "Requires JavaScript",
-        "description": "Calculate your Nepal Electricity Authority (NEA) bill for FY 2083/84. Support for all meter capacities (5A to 60A), digital rebates, and late payment fines.",
-        "inLanguage": "en",
+        "name": "NEA Electricity Bill Calculator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript. Requires HTML5.",
+        "description": "An interactive digital utility calculator for computing monthly progressive electricity bills based on the official Nepal Electricity Authority (NEA) tariff rates for fiscal year 2083/84.",
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "NPR"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "NepaCalc",
-          "url": "https://nepacalc.com"
         }
       }}
       sidebar={{

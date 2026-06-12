@@ -3,7 +3,7 @@ import Calculator from './Calculator';
 
 export const metadata = calcMeta({
   title: "NEA Electricity Bill Calculator Nepal 2083/84 | NepaCalc",
-  description: "Calculate your NEA electricity bill using 2083/84 official tariff slabs. Supports 5A–60A meters. Shows energy charge, fixed charge, VAT and late penalty instantly.",
+  description: "Calculate your Nepal Electricity Authority utility bill instantly using updated 2083/84 progressive tariff rates.",
   slug: 'nea-bill',
   keywords: ["nea bill calculator", "electricity bill calculator nepal", "nea bill calculator 2083", "nea tariff 2083"],
 });
