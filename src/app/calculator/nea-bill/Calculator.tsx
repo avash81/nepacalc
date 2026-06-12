@@ -257,7 +257,7 @@ export default function NEABillCalculator() {
       faqs={[
         {
           question: "How do I check my current billing unit value on an NEA digital meter?",
-          answer: "To learn how to calculate electricity unit in nepal, locate your physical wall-mounted meter box. The LCD indicator screen automatically transitions through multiple diagnostic numbers. Keep an eye out for the screen showing a numeric decimal value immediately followed by the \"kWh\" (Kilowatt-hour) label. This reading represents your cumulative lifetime units used. To track monthly use, subtract last month's statement total from this current number."
+          answer: "To learn how to calculate electricity bill from meter reading in nepal or decipher how to manage your monthly electricity bill, locate your physical wall-mounted meter box. The LCD indicator screen automatically transitions through multiple diagnostic numbers. Keep an eye out for the screen showing a numeric decimal value immediately followed by the \"kWh\" (Kilowatt-hour) label. This reading represents your cumulative lifetime units used. To track monthly use, subtract last month's statement total from this current number."
         },
         {
           question: "What is a \"Demand Charge\" in an electricity bill in Nepal?",
@@ -265,7 +265,7 @@ export default function NEABillCalculator() {
         },
         {
           question: "What are the late payment fines for NEA bills?",
-          answer: "Failing to settle your invoice within the baseline window on the official neabilling or nea.billing app triggers progressive penalty fees: 1 to 7 Days: Eligible for a 2% discount rebate. 8-15 Days (Standard): Normal base billing rate. 16 to 30 Days: A 5% fine is added. 31 to 40 Days: A 10% fine is added. Beyond 41 Days: A 25% penalty is added, and lines are subject to disconnection."
+          answer: "Failing to settle your invoice within the baseline window on the official neabilling or nea.billing app triggers progressive penalty fees: 1 to 7 Days: Eligible for a 2% digital rebate discount. 8-15 Days (Standard): Normal base billing rate. 16 to 30 Days: A 5% fine is added. 31 to 40 Days: A 10% fine is added. Beyond 41 Days: A 25% penalty is added, and lines are subject to disconnection."
         },
         {
           question: "Can landlords demand flat premium rates per unit from tenants in Nepal?",
@@ -273,7 +273,7 @@ export default function NEABillCalculator() {
         },
         {
           question: "Where can I double-check official electricity tariff changes or complete an online nepal electricity authority bill check?",
-          answer: "All base data points are tracked using historical documentation published by the official Nepal Electricity Authority (NEA) Official Portal, where you can also process a digital nepal electricity bill check."
+          answer: "All base data points are tracked using historical documentation published by the official Nepal Electricity Authority (NEA) Official Portal, where you can also process a digital nepal electricity bill check or cross-verify figures with local financial gateways like eSewa and Khalti."
         }
       ]}
       seoContent={NeaBillSEO}
