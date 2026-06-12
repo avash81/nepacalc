@@ -27,7 +27,7 @@ export const NeaBillSEO = (
     <p className="mb-4">To demystify how the <strong>Nepal electricity bill rate 2083</strong> framework operates under the hood, let's examine a standard household consuming <strong>150 units</strong> on a typical <strong>5 Ampere meter</strong> with standard timely payment options chosen:</p>
 
     <ol className="list-decimal pl-6 space-y-4 mb-6">
-      <li><strong>Base Units Allocation:</strong> Because the consumption crosses the 50-unit threshold into the 51–150 slab, the base 50 units are evaluated together at the intermediate flat rate structure rather than individual sequential micro-slabs: <br /> <span className="font-mono bg-gray-100 px-1 rounded text-sm">50 units × Rs. 7.30 = Rs. 365.00</span></li>
+      <li><strong>Base Units Allocation:</strong> For any consumption crossing above 50 units, the cumulative baseline energy charge for your first 50 units is fixed at a combined total of Rs. 365.00 (calculated sequentially across the 0-20, 21-30, and 31-50 tier boundaries).</li>
       <li><strong>Remaining Higher Tier Units:</strong> The remaining 100 units (from 51 to 150) are computed directly at the targeted slab energy charge rate: <br /> <span className="font-mono bg-gray-100 px-1 rounded text-sm">100 units × Rs. 9.50 = Rs. 950.00</span></li>
       <li><strong>Total Energy Charge Subtotal:</strong> <br /> <span className="font-mono bg-gray-100 px-1 rounded text-sm">Rs. 365.00 + Rs. 950.00 = Rs. 1,315.00</span></li>
       <li><strong>Fixed Service Charge Addition:</strong> Rs. 100.00 <em>(Standard 5A allocation fee for the 51–150 units tier consumption level)</em></li>
@@ -61,7 +61,7 @@ export const NeaBillSEO = (
         <p className="mb-2">Failing to settle your invoice within the baseline window triggers progressive penalty fees:</p>
         <ul className="list-disc pl-6 space-y-1">
           <li><strong>1 to 7 Days:</strong> Eligible for a 2% discount rebate.</li>
-          <li><strong>8 to 15 Days:</strong> Normal base billing rate (Standard).</li>
+          <li><strong>8-15 Days (Standard):</strong> Normal base billing rate.</li>
           <li><strong>16 to 30 Days:</strong> A 5% fine is added.</li>
           <li><strong>31 to 40 Days:</strong> A 10% fine is added.</li>
           <li><strong>Beyond 41 Days:</strong> A 25% penalty is added, and lines are subject to disconnection.</li>
@@ -75,7 +75,7 @@ export const NeaBillSEO = (
 
       <div>
         <h4 className="font-bold text-[#202124] mb-2">Where can I double-check official electricity tariff changes?</h4>
-        <p>All base data points are tracked using historical documentation published by the official <a href="https://www.nea.org.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Nepal Electricity Authority (NEA)</a>.</p>
+        <p>All base data points are tracked using historical documentation published by the official <a href="https://www.nea.org.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Nepal Electricity Authority (NEA) Official Portal</a>.</p>
       </div>
     </div>
 
