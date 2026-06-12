@@ -172,6 +172,59 @@ export default function NEABillCalculator() {
           <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
              Calculate Utility Bill
           </button>
+
+          {/* ── Official NEA Bill Lookup Card ── */}
+          <div className="border border-[#DADCE0] rounded-lg overflow-hidden bg-white shadow-sm">
+            <div className="bg-[#003087] px-4 py-3 flex items-center gap-3">
+              <Landmark className="w-4 h-4 text-white flex-shrink-0" />
+              <div>
+                <p className="text-white text-[11px] font-black uppercase tracking-wider leading-none">Check NEA Bill Online</p>
+                <p className="text-[#93C5FD] text-[9px] mt-0.5">Computerized Billing and Network Division, NEA</p>
+              </div>
+            </div>
+            <div className="p-4 space-y-3">
+              <div className="space-y-1">
+                <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">NEA Location / Branch</label>
+                <select className="w-full h-10 px-3 bg-white border border-[#DADCE0] rounded-md text-xs font-bold text-[#202124] focus:border-[#1A73E8] outline-none appearance-none">
+                  <option value="">SELECT...</option>
+                  <option>Baneshwor</option>
+                  <option>Ratnapark</option>
+                  <option>Lagankhel</option>
+                  <option>Balaju</option>
+                  <option>Kalanki</option>
+                  <option>Pokhara</option>
+                  <option>Biratnagar</option>
+                  <option>Birgunj</option>
+                  <option>Butwal</option>
+                  <option>Dharan</option>
+                  <option>Bharatpur</option>
+                  <option>Nepalgunj</option>
+                  <option>Baitadi</option>
+                  <option>Dhangadhi</option>
+                  <option>Hetauda</option>
+                </select>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">SCNO</label>
+                  <input type="text" placeholder="e.g. 002.01.003" className="w-full h-10 px-3 bg-white border border-[#DADCE0] rounded-md text-xs font-bold text-[#202124] focus:border-[#1A73E8] outline-none placeholder:text-gray-300" />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Consumer ID</label>
+                  <input type="text" placeholder="Your ID" className="w-full h-10 px-3 bg-white border border-[#DADCE0] rounded-md text-xs font-bold text-[#202124] focus:border-[#1A73E8] outline-none placeholder:text-gray-300" />
+                </div>
+              </div>
+              <a
+                href="https://www.neabilling.com/viewonline/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full h-10 bg-[#003087] hover:bg-[#001f5e] text-white text-[11px] font-black uppercase tracking-wider rounded-md transition-colors"
+              >
+                <ExternalLink className="w-3 h-3" />
+                View Statement on NEA Portal
+              </a>
+            </div>
+          </div>
         </div>
       }
       results={
