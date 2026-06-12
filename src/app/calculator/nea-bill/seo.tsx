@@ -60,7 +60,7 @@ export const NeaBillSEO = (
 
     <hr className="border-t border-dashed border-[#ccc] my-8" />
 
-    <p className="mb-6">If you are calculating utility bills for a rented property, flat, or plotting grid, you can also easily map out your structural property footprint using our companion <a href="/calculator/land-measurement/" className="text-[#0056b3] underline font-medium">Nepal Land Measurement Converter</a> to transition between Ropani, Aana, Bigha, and Kattha metrics automatically.</p>
+    <p className="mb-6">If you are calculating utility bills for a rented property, flat, or plotting grid, you can also easily map out your structural property footprint using our companion <a href="/calculator/nepal-land/" className="text-[#0056b3] underline font-medium">Nepal Land Measurement Converter</a> to transition between Ropani, Aana, Bigha, and Kattha metrics automatically.</p>
 
     <h2 className="text-xl font-bold text-[#202124] mb-4">📊 Quick Milestone Estimation: What Does a Standard Bill Cost?</h2>
     <p className="mb-4">Many users want to know the <strong>price of 1 unit of electricity in nepal 2083</strong> (or look for old baseline references like the <strong>price of 1 unit of electricity in nepal 2082</strong>) and wonder how specific milestones are configured. Below is an approximate cost breakdown for common household usage brackets on a standard 5A meter line:</p>
