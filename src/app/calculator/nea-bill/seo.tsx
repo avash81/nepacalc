@@ -56,7 +56,11 @@ export const NeaBillSEO = (
     </ol>
     <p className="mb-6">Once you hit <strong>"Generate"</strong>, you can take your exact consumed unit metrics (Previous Meter Reading subtracted from your Current Meter Reading in kWh) and drop them directly into our <strong>NEA electricity bill calculator</strong> to review an itemized progressive slab subtotal verification instantly.</p>
 
+    <p className="mb-6">Before computing your progressive slabs, you can also fetch your live, un-calculated consumption metrics directly from the official <a href="https://www.neabilling.com/viewonline/" target="_blank" rel="noopener noreferrer" className="text-[#0056b3] underline font-medium">neabilling.com portal</a>. Once you have logged into their online system using your Consumer ID and SCNO, return here to break down the exact mathematical logic of your statement.</p>
+
     <hr className="border-t border-dashed border-[#ccc] my-8" />
+
+    <p className="mb-6">If you are calculating utility bills for a rented property, flat, or plotting grid, you can also easily map out your structural property footprint using our companion <a href="/calculator/land-measurement/" className="text-[#0056b3] underline font-medium">Nepal Land Measurement Converter</a> to transition between Ropani, Aana, Bigha, and Kattha metrics automatically.</p>
 
     <h2 className="text-xl font-bold text-[#202124] mb-4">📊 Quick Milestone Estimation: What Does a Standard Bill Cost?</h2>
     <p className="mb-4">Many users want to know the <strong>price of 1 unit of electricity in nepal 2083</strong> (or look for old baseline references like the <strong>price of 1 unit of electricity in nepal 2082</strong>) and wonder how specific milestones are configured. Below is an approximate cost breakdown for common household usage brackets on a standard 5A meter line:</p>
@@ -69,6 +73,8 @@ export const NeaBillSEO = (
       <li><strong>100 unit / 120 unit electricity cost:</strong> Stays safely inside the mid-tier threshold bounds.</li>
       <li><strong>150 unit electricity bill price / 151 units electricity bill:</strong> Once you scale into and cross these brackets, your base 50 units cost a cumulative fixed total of Rs. 365, and any remaining units are billed at the corresponding higher tier rate.</li>
     </ul>
+
+    <p className="mt-6 mb-6">Tracking your complete domestic monthly checklist? To balance your traditional household assets alongside progressive utility charges, check out our live <a href="/market-rates/live-gold-price/" className="text-[#0056b3] underline font-medium">Gold Price Converter in Nepal</a> to translate Tola and Lal weights directly into modern metric gram factors instantly.</p>
 
     <hr className="border-t border-dashed border-[#ccc] my-8" />
 
