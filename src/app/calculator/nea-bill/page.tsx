@@ -3,7 +3,7 @@ import Calculator from './Calculator';
 
 export const metadata = calcMeta({
   title: "NEA Electricity Bill Calculator Nepal 2083/84 | NepaCalc",
-  description: "Calculate your Nepal Electricity Authority utility bill instantly. Check the official price of 1 unit of electricity in nepal 2083 and progressive tariff rates.",
+  description: "Calculate your Nepal Electricity Authority utility bill instantly. Check the official price of 1 unit of electricity in nepal 2083 and progressive tariff rates dynamically.",
   slug: 'nea-bill',
   keywords: ["nea bill calculator", "electricity bill calculator nepal", "nea bill calculator 2083", "nea tariff 2083"],
 });

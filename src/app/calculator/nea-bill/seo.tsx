@@ -2,7 +2,7 @@ import React from 'react';
 
 export const NeaBillSEO = (
   <div className="seo-extended-content" style={{ marginTop: '45px', borderTop: '1px solid #eaeaea', paddingTop: '35px', color: '#333', lineHeight: '1.7' }}>
-    <p>Managing monthly household utilities across Kathmandu, Pokhara, Lalitpur, or any region in Nepal requires clear visibility into how utility bills are calculated. This free, online <strong>NEA electricity bill calculator</strong> handles complex progressive calculations instantly, ensuring tenants, landlords, and commercial property owners can easily verify their actual electricity expenses without guessing the math. Whether you are using a standard domestic line or an advanced <strong>3 phase electricity cost per unit in nepal</strong> framework, our <strong>nepa bill</strong> estimator handles it all.</p>
+    <p>Managing monthly household utilities across Kathmandu, Pokhara, Lalitpur, or any region in Nepal requires clear visibility into how utility bills are calculated. This free, online NEA electricity bill calculator handles complex progressive calculations instantly, ensuring tenants, landlords, and commercial property owners can easily verify their actual electricity expenses without guessing the math. Whether you are using a standard domestic line or an advanced <strong>3 phase electricity cost per unit in nepal</strong> framework, our <strong>nepa bill</strong> estimator handles it all.</p>
 
     <hr style={{ border: 0, borderTop: '1px dashed #ccc', margin: '30px 0' }} />
 

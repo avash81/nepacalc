@@ -94,7 +94,7 @@ export default function NEABillCalculator() {
     <ModernCalcLayout
       slug="nea-bill"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Electricity Bill' }]}
-      title="NEA Bill"
+      title="NEA Electricity Bill Calculator"
       description="The definitive utility auditing engine for Nepal. Calculate monthly electricity bills with 100% precision based on NEA 2083/84 progressive tariff slabs."
       icon={Zap}
       inputs={
