@@ -51,41 +51,7 @@ export const NeaBillSEO = (
 
     <hr className="border-t border-dashed border-[#ccc] my-8" />
 
-    <h3 className="text-lg font-bold text-[#202124] mb-4">❓ Frequently Asked Questions (FAQ)</h3>
 
-    <div className="space-y-6 mb-8">
-      <div>
-        <h4 className="font-bold text-[#202124] mb-2">How do I check my current billing unit value on an NEA digital meter?</h4>
-        <p>To learn <strong>how to calculate electricity unit in nepal</strong>, locate your physical wall-mounted meter box. The LCD indicator screen automatically transitions through multiple diagnostic numbers. Keep an eye out for the screen showing a numeric decimal value immediately followed by the <strong>"kWh"</strong> (Kilowatt-hour) label. This reading represents your cumulative lifetime units used. To track monthly use, subtract last month's statement total from this current number.</p>
-      </div>
-
-      <div>
-        <h4 className="font-bold text-[#202124] mb-2">What is a "Demand Charge" in an electricity bill in Nepal?</h4>
-        <p>A <strong>demand charge in electricity bill in nepal</strong> is a fixed fee applied based on the maximum power your electrical setup can draw at any single moment. For basic single-phase consumers, this is tied directly to your selected meter capacity (such as 5A, 15A, or 30A). However, for larger commercial setups or three-phase consumers, the demand charge is measured dynamically by the meter based on peak utilization.</p>
-      </div>
-
-      <div>
-        <h4 className="font-bold text-[#202124] mb-2">What are the late payment fines for NEA bills?</h4>
-        <p className="mb-2">Failing to settle your invoice within the baseline window on the official <strong>neabilling</strong> or <strong>nea.billing</strong> app triggers progressive penalty fees:</p>
-        <ul className="list-disc pl-6 space-y-1">
-          <li><strong>1 to 7 Days:</strong> Eligible for a 2% discount rebate.</li>
-          <li><strong>8-15 Days (Standard):</strong> Normal base billing rate.</li>
-          <li><strong>16 to 30 Days:</strong> A 5% fine is added.</li>
-          <li><strong>31 to 40 Days:</strong> A 10% fine is added.</li>
-          <li><strong>Beyond 41 Days:</strong> A 25% penalty is added, and lines are subject to disconnection.</li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 className="font-bold text-[#202124] mb-2">Can landlords demand flat premium rates per unit from tenants in Nepal?</h4>
-        <p>Under national consumer protection standards, landlords are highly encouraged to charge tenants transparently by tracking individual usage proportions via secondary sub-meters rather than guessing an arbitrary <strong>electricity bill per unit in nepal</strong>. Utilizing our reliable utility evaluation tools helps maintain transparent accounting between all parties.</p>
-      </div>
-
-      <div>
-        <h4 className="font-bold text-[#202124] mb-2">Where can I double-check official electricity tariff changes or complete an online nepal electricity authority bill check?</h4>
-        <p>All base data points are tracked using historical documentation published by the official <a href="https://www.nea.org.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Nepal Electricity Authority (NEA) Official Portal</a>, where you can also process a digital <strong>nepal electricity bill check</strong>.</p>
-      </div>
-    </div>
 
     <hr className="border-t border-dashed border-[#ccc] my-8" />
 

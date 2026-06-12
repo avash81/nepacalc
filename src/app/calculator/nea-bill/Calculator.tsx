@@ -254,6 +254,28 @@ export default function NEABillCalculator() {
           </div>
         </div>
       }
+      faqs={[
+        {
+          question: "How do I check my current billing unit value on an NEA digital meter?",
+          answer: "To learn how to calculate electricity unit in nepal, locate your physical wall-mounted meter box. The LCD indicator screen automatically transitions through multiple diagnostic numbers. Keep an eye out for the screen showing a numeric decimal value immediately followed by the \"kWh\" (Kilowatt-hour) label. This reading represents your cumulative lifetime units used. To track monthly use, subtract last month's statement total from this current number."
+        },
+        {
+          question: "What is a \"Demand Charge\" in an electricity bill in Nepal?",
+          answer: "A demand charge in electricity bill in nepal is a fixed fee applied based on the maximum power your electrical setup can draw at any single moment. For basic single-phase consumers, this is tied directly to your selected meter capacity (such as 5A, 15A, or 30A). However, for larger commercial setups or three-phase consumers, the demand charge is measured dynamically by the meter based on peak utilization."
+        },
+        {
+          question: "What are the late payment fines for NEA bills?",
+          answer: "Failing to settle your invoice within the baseline window on the official neabilling or nea.billing app triggers progressive penalty fees: 1 to 7 Days: Eligible for a 2% discount rebate. 8-15 Days (Standard): Normal base billing rate. 16 to 30 Days: A 5% fine is added. 31 to 40 Days: A 10% fine is added. Beyond 41 Days: A 25% penalty is added, and lines are subject to disconnection."
+        },
+        {
+          question: "Can landlords demand flat premium rates per unit from tenants in Nepal?",
+          answer: "Under national consumer protection standards, landlords are highly encouraged to charge tenants transparently by tracking individual usage proportions via secondary sub-meters rather than guessing an arbitrary electricity bill per unit in nepal. Utilizing our reliable utility evaluation tools helps maintain transparent accounting between all parties."
+        },
+        {
+          question: "Where can I double-check official electricity tariff changes or complete an online nepal electricity authority bill check?",
+          answer: "All base data points are tracked using historical documentation published by the official Nepal Electricity Authority (NEA) Official Portal, where you can also process a digital nepal electricity bill check."
+        }
+      ]}
       seoContent={NeaBillSEO}
       customSchema={{
         "@context": "https://schema.org",
