@@ -125,17 +125,22 @@ export default function NEABillCalculator() {
             </div>
             <div className="grid grid-cols-2 gap-4">
                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Meter Capacity</label>
-                  <select 
-                    value={connectionAmps} 
-                    onChange={(e) => setConnectionAmps(e.target.value as any)}
-                    className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all appearance-none"
-                  >
-                    <option value="5A">5 Ampere (Residential)</option>
-                    <option value="15A">15 Ampere</option>
-                    <option value="30A">30 Ampere</option>
-                    <option value="60A">60 Ampere</option>
-                  </select>
+                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Meter Capacity (Ampere)</label>
+                  <input
+                    type="number"
+                    value={connectionAmps.replace('A', '')}
+                    min={1}
+                    step={1}
+                    onChange={(e) => {
+                      const v = Number(e.target.value);
+                      if (v <= 5) setConnectionAmps('5A');
+                      else if (v <= 15) setConnectionAmps('15A');
+                      else if (v <= 30) setConnectionAmps('30A');
+                      else setConnectionAmps('60A');
+                    }}
+                    className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
+                  />
+                  <p className="text-[10px] text-[#5F6368]">Standard tiers: 5A · 15A · 30A · 60A</p>
                </div>
                <div className="space-y-2">
                   <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Meter Reading Date</label>
@@ -182,38 +187,7 @@ export default function NEABillCalculator() {
                 <p className="text-[#93C5FD] text-[9px] mt-0.5">Computerized Billing and Network Division, NEA</p>
               </div>
             </div>
-            <div className="p-4 space-y-3">
-              <div className="space-y-1">
-                <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">NEA Location / Branch</label>
-                <select className="w-full h-10 px-3 bg-white border border-[#DADCE0] rounded-md text-xs font-bold text-[#202124] focus:border-[#1A73E8] outline-none appearance-none">
-                  <option value="">SELECT...</option>
-                  <option>Baneshwor</option>
-                  <option>Ratnapark</option>
-                  <option>Lagankhel</option>
-                  <option>Balaju</option>
-                  <option>Kalanki</option>
-                  <option>Pokhara</option>
-                  <option>Biratnagar</option>
-                  <option>Birgunj</option>
-                  <option>Butwal</option>
-                  <option>Dharan</option>
-                  <option>Bharatpur</option>
-                  <option>Nepalgunj</option>
-                  <option>Baitadi</option>
-                  <option>Dhangadhi</option>
-                  <option>Hetauda</option>
-                </select>
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">SCNO</label>
-                  <input type="text" placeholder="e.g. 002.01.003" className="w-full h-10 px-3 bg-white border border-[#DADCE0] rounded-md text-xs font-bold text-[#202124] focus:border-[#1A73E8] outline-none placeholder:text-gray-300" />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Consumer ID</label>
-                  <input type="text" placeholder="Your ID" className="w-full h-10 px-3 bg-white border border-[#DADCE0] rounded-md text-xs font-bold text-[#202124] focus:border-[#1A73E8] outline-none placeholder:text-gray-300" />
-                </div>
-              </div>
+            <div className="p-4">
               <a
                 href="https://www.neabilling.com/viewonline/"
                 target="_blank"
