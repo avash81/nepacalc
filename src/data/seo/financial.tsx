@@ -1988,7 +1988,7 @@ export const financialSEO: Record<string, SEOContent> = {
                 <div className="bg-white border border-slate-200 rounded-[2.5rem] p-10 shadow-sm text-slate-700 leading-relaxed">
                     <p className="mb-4">Explore these additional calculators to complete your mathematical, statistical, and financial analysis:</p>
                     <div className="flex flex-wrap gap-4">
-                                        <a href="/calculator/remittance-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Remittance Calculator</a>
+                                        <a href="/market-rates/remittance/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Remittance Board</a>
                 <a href="/calculator/rounding/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors mr-4">Inflation Calculator</a>
                     </div>
                 </div>
@@ -4843,7 +4843,7 @@ export const financialSEO: Record<string, SEOContent> = {
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={5}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">6. How can I check my TDS credit in Nepal?</h4>
-                    <p className="text-slate-600 leading-relaxed">You can log into your taxpayer portal on the IRD website and view your e-TDS ledger to verify credits. Additionally, <a href="/calculator/gold-converter/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our gold calculation tool</a> is highly recommended for related estimations.</p>
+                    <p className="text-slate-600 leading-relaxed">You can log into your taxpayer portal on the IRD website and view your e-TDS ledger to verify credits. Additionally, <a href="/market-rates/live-gold-price/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our gold calculation tool</a> is highly recommended for related estimations.</p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm" key={6}>
                     <h4 className="text-lg font-bold text-slate-900 mb-2">7. What is the TDS rate for consultancy services?</h4>

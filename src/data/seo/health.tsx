@@ -517,7 +517,7 @@ export const healthSEO: Record<string, SEOContent> = {
         <h2 className="text-pink-700 font-black text-xs uppercase tracking-[0.3em] mb-3">Estimated Due Date (EDD) Timeline</h2>
         <p className="text-slate-800 text-base leading-relaxed">
         Accuracy in tracking your pregnancy is essential for proper prenatal care. This <a href="/calculator/pregnancy-due-date/" className="text-pink-600 hover:text-pink-800 underline font-semibold transition-colors">Due Date Calculator</a> provides a reliable timeline for your journey.
-         For a broader understanding, you may also want to explore <a href="/calculator/nepal-tds/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the tds calculator nepal</a>.</p>
+         For a broader understanding, you may also want to explore <a href="/calculator/tds-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the tds calculator nepal</a>.</p>
         </div>
         </div>
     ),

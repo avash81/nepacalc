@@ -125,7 +125,7 @@ export default function GoldAnalysisBlog() {
         <div className="prose prose-slate max-w-none">
           <p className="lead text-xl text-slate-600 mb-8 border-l-4 border-yellow-500 pl-4 bg-yellow-50/50 py-4 rounded-r-xl">
             Gold has always been Nepal&apos;s preferred store of value — from wedding ornaments to generational wealth. In FY 2083/84, global macroeconomic volatility, a weakening NPR, and rising international gold prices have brought record-high gold prices to Nepal. Whether you are a first-time buyer, a long-term holder, or considering selling, this guide gives you a complete, data-driven picture of Nepal&apos;s gold market — including NEGOSIDA rate mechanics, VAT and making charge calculations, capital gains tax obligations, hallmarking rules, and investment strategies. Use the{' '}
-            <Link href="/calculator/market-rates/live-gold-price/">NepaCalc live gold price calculator</Link> to verify today&apos;s rate in real time.
+            <Link href="/market-rates/live-gold-price/">NepaCalc live gold price calculator</Link> to verify today&apos;s rate in real time.
           </p>
 
           {/* Author EEAT Box */}
@@ -281,7 +281,7 @@ export default function GoldAnalysisBlog() {
             Note: VAT exemption applies only to raw gold value. Making charges are a taxable service. Always insist on a proper VAT invoice from IRD-registered jewelers.
           </p>
           <p>
-            Use our <Link href="/calculator/market-rates/live-gold-price/"><strong>Nepal Gold Price Calculator</strong></Link> to compute the exact cost including making charges and VAT for any gold weight and karat.
+            Use our <Link href="/market-rates/live-gold-price/"><strong>Nepal Gold Price Calculator</strong></Link> to compute the exact cost including making charges and VAT for any gold weight and karat.
           </p>
 
           <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">4. Capital Gains Tax (CGT) When You Sell Gold</h2>
@@ -382,8 +382,8 @@ export default function GoldAnalysisBlog() {
             <h3 className="text-xl font-black mb-4">Calculate Your Gold Costs & Investment Returns</h3>
             <p className="text-slate-400 mb-6">Use our precision tools to plan gold purchases, calculate true costs with VAT and making charges, and track live market rates.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <Link href="/calculator/market-rates/live-gold-price/" className="flex items-center justify-between p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all text-white no-underline font-bold">
-                <span>Gold Price Calculator</span>
+              <Link href="/calculator/gold-tax/" className="flex items-center justify-between p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all text-white no-underline font-bold">
+                <span>Gold Tax Calculator</span>
                 <ArrowRight className="w-4 h-4 text-yellow-400" />
               </Link>
               <Link href="/market-rates/live-gold-price/" className="flex items-center justify-between p-4 bg-white/10 rounded-xl hover:bg-white/20 transition-all text-white no-underline font-bold">

@@ -922,7 +922,7 @@ export const educationSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Dry materials such as cement, sand, and aggregate contain high proportions of air voids. When water is added, the particles compact and fill these voids, causing a significant reduction in total volume. In concrete mix design, this is accounted for by applying a dry-volume multiplier, typically standardized as 1.54. Similarly, mortar volume in brick masonry requires a distinct dry multiplier (usually 1.33) to account for compaction. Failing to apply these mathematical constants leads to the 'Procurement Gap'—a common site anomaly where raw materials run out mid-project, leading to cold joints, construction delays, and increased transport costs.
-                     You can gain deeper insights by using <a href="/calculator/nepal-tds/" className="text-blue-600 hover:text-blue-800 underline transition-colors">TDS Calculator Nepal</a>.</p>
+                     You can gain deeper insights by using <a href="/calculator/tds-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">TDS Calculator Nepal</a>.</p>
                 </div>
             </section>
 
@@ -1553,7 +1553,7 @@ export const educationSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         The architecture of this calculator has been engineered to handle edge cases and extreme variable ranges without compromising speed or accuracy. Our underlying algorithms undergo continuous testing against established academic models and industry benchmarks. This commitment to computational integrity means that results remain consistent regardless of the complexity of the inputs. Furthermore, the responsive design of the platform ensures that this high-fidelity modeling capability is accessible across all devices, empowering you to perform critical analysis whether you are in the office, the classroom, or on the field.
-                     Many users also utilize <a href="/calculator/nepal-tds/" className="text-blue-600 hover:text-blue-800 underline transition-colors">tds calculator nepal</a> alongside this analysis.</p>
+                     Many users also utilize <a href="/calculator/tds-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">tds calculator nepal</a> alongside this analysis.</p>
                 </div>
             
                     <p>

@@ -245,7 +245,7 @@ export const convertersSEO: Record<string, SEOContent> = {
                 <div className="text-slate-700 leading-relaxed space-y-6">
                     <p>
                         In the modern era of automated computing, the principles of applied mathematics form the structural bedrock of all technical advancement. Every software algorithm, physical simulation, and data visualization is fundamentally an exercise in algebraic relations and numerical modeling. By translating abstract human requirements into linear, quadratic, or matrix models, computer scientists can process complex real-world variables at lightning speed. Fostering mathematical proficiency is key to preparing the next generation of engineers, data scientists, and researchers for the global digital economy.
-                     For a broader understanding, you may also want to explore <a href="/calculator/gold-converter/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the gold price converter</a>.</p>
+                     For a broader understanding, you may also want to explore <a href="/market-rates/live-gold-price/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the gold price converter</a>.</p>
                     <p>
                         Applied mathematics teaches us to think systematically, to identify underlying patterns under tight constraints, and to break down multi-variable challenges into manageable logical steps. This cognitive framework is an invaluable asset across all professional fields, from structural engineering to public policy formulation. By isolating variables, identifying direct and inverse proportions, and predicting outcomes with high statistical confidence, practitioners can design optimal solutions that are highly relevant to their communities' sustainable development.
                     </p>
@@ -616,7 +616,7 @@ export const convertersSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         Dry materials such as cement, sand, and aggregate contain high proportions of air voids. When water is added, the particles compact and fill these voids, causing a significant reduction in total volume. In concrete mix design, this is accounted for by applying a dry-volume multiplier, typically standardized as 1.54. Similarly, mortar volume in brick masonry requires a distinct dry multiplier (usually 1.33) to account for compaction. Failing to apply these mathematical constants leads to the 'Procurement Gap'—a common site anomaly where raw materials run out mid-project, leading to cold joints, construction delays, and increased transport costs.
-                     Additionally, <a href="/calculator/nepal-tds/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this tds estimator</a> is highly recommended for related estimations.</p>
+                     Additionally, <a href="/calculator/tds-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this tds estimator</a> is highly recommended for related estimations.</p>
                 </div>
             </section>
 
