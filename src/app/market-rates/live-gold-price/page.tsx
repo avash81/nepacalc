@@ -3,14 +3,15 @@ import GoldDashboardClient from './GoldDashboardClient';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 
 export const metadata = calcMeta({
-  title: 'Gold Price Weight Converter in Nepal (Tola, Ana, Lal) | NepaCalc',
-  description: 'Calculate today\'s official gold price in Nepal. Convert Tola, Ana, and Lal directly to Grams based on live FENEGOSIDA 24K, 22K, and silver benchmarks.',
+  title: 'Gold Price in Nepal Today (2083/84) — Live 24K & 22K Rates | NepaCalc',
+  description: 'Live FENEGOSIDA gold price in Nepal today. Official 24K Hallmark (छापावाल) and 22K Tejabi rates per Tola. Updated daily for Kathmandu jewelry market traders and investors.',
   slug: 'market-rates/live-gold-price',
   keywords: [
-    'gold price in nepal', 'aajako sunko vau', '1 lal gold price in nepal today', '24k gold price today',
-    'tejabi sunko rate', 'tola to gram nepal', 'chandi ko vau aajako', 'FENEGOSIDA', '2083 BS',
-    '22k gold price nepal', 'gold price kathmandu', '4 ana gold price in nepal',
-    'hallmark gold nepal', 'chhapawal sun', 'gold price nepal 2026', 'sunko vau calculator'
+    'gold price in nepal today', 'aajako sunko bhaau', '1 tola gold price nepal today',
+    '24k gold rate nepal', 'tejabi sunko rate aaja', 'fenegosida gold rate',
+    'chandi ko bhaau aajako', 'hallmark gold nepal rate', 'gold price kathmandu 2083',
+    '22k gold price nepal today', 'live gold rate nepal', 'chhapawal sun ko bhaau',
+    'gold silver price nepal 2026', 'nepali suna rate', 'sunko bhaau aaja nepal'
   ],
 });
 
@@ -62,7 +63,7 @@ const customSchema = {
           "name": "How many lal make up 1 ana of gold?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "In traditional Nepalese gold and silver trading systems, exactly 10 lal combine to form 1 ana, which is equivalent to 1.1664 grams of mass weight."
+            "text": "In traditional Nepalese gold and silver trading systems, exactly 6.25 Lal combine to form 1 Ana (Aana), which is equivalent to approximately 0.7290 grams of mass weight. 16 Ana make up 1 full Tola."
           }
         },
         {
