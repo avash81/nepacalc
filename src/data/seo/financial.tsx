@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { SEOContent } from './types';
 
 export const financialSEO: Record<string, SEOContent> = {
@@ -2797,21 +2797,19 @@ export const financialSEO: Record<string, SEOContent> = {
   },
 
   'nepal-vehicle-tax': {
-    title: "Vehicle Tax Calculator Nepal Current Year | Bluebook Renewal & DoTM Tool",
-    description: "The definitive systematic resource for road tax and bluebook renewal in Nepal. Calculate bike and car taxes with 1500+ words of CC-based depth and provincial penalty logic.",
+    title: "Vehicle Tax Calculator Nepal 2083/84 | Bluebook Renewal & DoTM Tool",
+    description: "The definitive systematic resource for road tax and bluebook renewal in Nepal for FY 2083/84. Calculate bike, car, bus, truck, and EV taxes with CC/kW depth and provincial penalty logic.",
     howToUse: {
       steps: [
-        "Vehicle Category: Select between 'Motorbike/Scooter', 'Private Car', or 'Electric Vehicle'.",
+        "Vehicle Category: Select between 'Motorbike/Scooter', 'Private Car', 'Public Taxi', 'Bus/Microbus', 'Cargo Truck', 'Agricultural', or 'Electric Vehicle'.",
         "Engine Capacity: Input the CC (Cubic Capacity) or KW (Kilowatts) for EVs as per your bluebook.",
-        "Province Selection: Choose your registration province (e.g., Bagmati, Koshi) for accurate slab application.",
-        "Last Renewal Date: Define the last tax payment date to calculate any applicable late-payment penalties.",
-        "Insurance Integration: Account for the mandatory Third-Party Insurance cost required for renewal.",
-        "Total Disbursement: Review the final amount including road tax, renewal fee, and penal interest."
+        "Province/Delay Status: Choose your province and current renewal delay timeframe.",
+        "Total Disbursement: Review the final breakdown including base road tax, renewal fee, late penalty, and mandatory insurance."
       ]
     },
     formula: {
       title: "The Road Tax Surcharge Principle",
-      description: "Vehicle tax in Nepal is a fixed annual fee based on engine capacity tiers. Penalties are progressive, increasing based on the number of days past the 90-day grace period.",
+      description: "Vehicle tax in Nepal is an annual fee based on CC/kW capacity. Fines are progressive past the 90-day grace period.",
       raw: "Total Tax = Annual Slab Rate + (Annual Slab Rate x Penalty %) + Insurance + Renewal Fee"
     },
     content: (
@@ -2823,49 +2821,47 @@ export const financialSEO: Record<string, SEOContent> = {
                     style={{ backgroundImage: 'radial-gradient(circle at 80% 50%, #1A73E8 0%, transparent 60%)' }} />
                 <div className="relative z-10">
                     <h2 className="text-blue-400 font-black text-xs uppercase tracking-[0.4em] mb-3">
-                        Nepal Vehicle Tax Guide — FY 2082/83 (2025/26)
+                        Nepal Vehicle Tax Guide — FY 2083/84 (2026/2027)
                     </h2>
                     <h3 className="text-3xl font-black mb-5 leading-tight">
                         How Nepal's Road Tax &amp; Bluebook Renewal Works
                     </h3>
                     <p className="text-slate-300 text-base leading-relaxed max-w-3xl">
-                        Every registered vehicle in Nepal must pay an annual road tax and renew its Bluebook (vehicle registration certificate) through the Department of Transport Management (DoTM / DOTM). Failure to renew on time triggers progressive penalty interest that compounds each fiscal year. This calculator covers bikes, scooters, cars, jeeps, buses, trucks, and electric vehicles using the FY 2082/83 provincial slab rates.
+                        Every registered vehicle in Nepal must pay an annual road tax and renew its Bluebook (vehicle registration certificate) through the Department of Transport Management (DoTM). Failure to renew on time triggers progressive penalty interest that compounds across fiscal years. This calculator covers motorbikes, private cars, commercial buses, cargo trucks, and electric vehicles (EVs) using the latest FY 2083/84 provincial slab rates.
                     </p>
                 </div>
             </div>
 
             {/* ── SECTION 1 — HOW THE TAX SYSTEM WORKS ──────────── */}
             <section className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-xl font-black text-slate-900 mb-5">1. How Nepal's Vehicle Tax System Works (FY 2082/83)</h3>
+                <h3 className="text-xl font-black text-slate-900 mb-5">1. How Nepal's Vehicle Tax System Works</h3>
                 <div className="text-slate-700 leading-relaxed space-y-4 text-sm">
                     <p>
-                        Nepal's vehicle road tax is governed by the <strong>Vehicle and Transport Management Act (VTMA)</strong> and administered by each province's Transport Management Office (TMO). Since federalisation, provinces set their own slab rates while following the federal framework. The DoTM's online TMIS portal (<a href="https://dotm.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">dotm.gov.np</a>) provides vehicle status checks, and digital payment is accepted via eSewa, Khalti, and MyPay in Bagmati and Gandaki provinces.
+                        Nepal's vehicle road tax is governed by the <strong>Vehicle and Transport Management Act (VTMA)</strong> and administered by each province's Transport Management Office (Yatayat Karyalaya). Tax slabs are strictly determined by engine cubic capacity (CC) for combustion engines and by motor power kilowatts (kW) for electric vehicles. If you are planning to purchase a vehicle via bank financing, check our <a href="/calculator/auto-loan/" className="text-blue-600 hover:text-blue-800 underline font-semibold">Auto Loan EMI Calculator</a> to estimate your monthly commitments.
                     </p>
                     <p>
-                        Tax slabs are determined by <strong>engine cubic capacity (CC) for petrol/diesel vehicles</strong> and by <strong>motor kilowatts (KW) for electric vehicles (EVs)</strong>. The fiscal year runs from Shrawan 1 to Ashad end (mid-July to mid-July). Renewal is required annually, and vehicle owners get a <strong>90-day grace period</strong> after the fiscal year begins before penalties apply.
-                    </p>
-                    <p>
-                        The FY 2082/83 federal budget introduced key changes: <strong>EVs with motors above 100 KW</strong> now fall under a higher slab, import duty on petrol vehicles above 1,500 CC was revised upward under the new CIF-value-based import scale, and all provinces must now integrate with the national TMIS database for bluebook stamping.
+                        The fiscal year runs from Shrawan 1 to Ashad end. While taxes are technically due by the end of the fiscal year, vehicle owners are granted a rolling <strong>90-day grace period</strong> from the exact date of their last registration expiry stamp before penalty rates apply. All entries must now be integrated with the national Transport Management Information System (TMIS) database for verified bluebook stamping. The DoTM's online portal (<a href="https://dotm.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">dotm.gov.np</a>) provides vehicle status checks, and digital payments are accepted via eSewa, Khalti, and MyPay in several provinces.
                     </p>
                 </div>
             </section>
 
             {/* ── SECTION 2 — RATE TABLES ────────────────────────── */}
             <section className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-xl font-black text-slate-900 mb-5">2. FY 2082/83 Road Tax Rate Tables (All Vehicle Types)</h3>
+                <h3 className="text-xl font-black text-slate-900 mb-5">2. FY 2083/84 Road Tax Rate Tables (All Vehicle Types)</h3>
 
                 <div className="space-y-6 text-sm">
                     <div>
-                        <h4 className="font-bold text-slate-800 mb-2">🏍️ Motorbike / Scooter (Petrol)</h4>
+                        <h4 className="font-bold text-slate-800 mb-2">🏍️ Motorbike / Scooter (Petrol/Diesel)</h4>
                         <div className="overflow-x-auto">
                             <table className="w-full border-collapse">
-                                <thead><tr className="bg-slate-100"><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Engine CC</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Annual Tax (NPR)</th></tr></thead>
+                                <thead><tr className="bg-slate-100"><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Engine Capacity (CC)</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Annual Base Tax Rate (NPR)</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Mandatory Renewal Fee</th></tr></thead>
                                 <tbody>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Up to 125 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 3,500</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">126 CC – 150 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 5,000</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">151 CC – 225 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 7,500</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">226 CC – 400 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 10,000</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Above 400 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 15,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Up to 125 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 3,000</td><td className="p-3 border border-slate-200">Rs. 300</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">126 CC to 150 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 5,000</td><td className="p-3 border border-slate-200">Rs. 300</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">151 CC to 225 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 6,500</td><td className="p-3 border border-slate-200">Rs. 300</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">226 CC to 400 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 12,000</td><td className="p-3 border border-slate-200">Rs. 300</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">401 CC to 650 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 25,000</td><td className="p-3 border border-slate-200">Rs. 300</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">651 CC and Above</td><td className="p-3 border border-slate-200 font-semibold">Rs. 35,000</td><td className="p-3 border border-slate-200">Rs. 300</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -2875,59 +2871,55 @@ export const financialSEO: Record<string, SEOContent> = {
                         <h4 className="font-bold text-slate-800 mb-2">🚗 Private Car / Jeep / Van (Petrol/Diesel)</h4>
                         <div className="overflow-x-auto">
                             <table className="w-full border-collapse">
-                                <thead><tr className="bg-slate-100"><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Engine CC</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Annual Tax (NPR)</th></tr></thead>
+                                <thead><tr className="bg-slate-100"><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Engine Capacity (CC)</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Annual Base Tax Rate (NPR)</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Mandatory Renewal Fee</th></tr></thead>
                                 <tbody>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Up to 1,000 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 5,000</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">1,001 – 1,500 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 7,500</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">1,501 – 2,000 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 12,000</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">2,001 – 2,500 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 18,000</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Above 2,500 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 25,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Up to 1,000 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 22,000</td><td className="p-3 border border-slate-200">Rs. 500</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">1,001 CC to 1,500 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 25,000</td><td className="p-3 border border-slate-200">Rs. 500</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">1,501 CC to 2,000 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 27,000</td><td className="p-3 border border-slate-200">Rs. 500</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">2,001 CC to 2,500 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 37,000</td><td className="p-3 border border-slate-200">Rs. 500</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">2,501 CC to 3,000 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 50,000</td><td className="p-3 border border-slate-200">Rs. 500</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">3,001 CC to 3,500 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 65,000</td><td className="p-3 border border-slate-200">Rs. 500</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Above 3,500 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 70,000</td><td className="p-3 border border-slate-200">Rs. 500</td></tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
                     <div>
-                        <h4 className="font-bold text-slate-800 mb-2">⚡ Electric Vehicle (EV) — Road Tax Only</h4>
+                        <h4 className="font-bold text-slate-800 mb-2">⚡ Electric Vehicle (EV) — Running Road Tax Only</h4>
                         <div className="overflow-x-auto">
                             <table className="w-full border-collapse">
-                                <thead><tr className="bg-slate-100"><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Motor Power (KW)</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Annual Tax (NPR)</th></tr></thead>
+                                <thead><tr className="bg-slate-100"><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Motor Power (kW)</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Annual Base Tax Rate (NPR)</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Mandatory Renewal Fee</th></tr></thead>
                                 <tbody>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Up to 10 KW (E-Scooter)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 1,500</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">11 – 50 KW</td><td className="p-3 border border-slate-200 font-semibold">Rs. 2,500</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">51 – 100 KW</td><td className="p-3 border border-slate-200 font-semibold">Rs. 5,000</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Above 100 KW</td><td className="p-3 border border-slate-200 font-semibold">Rs. 8,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">10 kW to 50 kW</td><td className="p-3 border border-slate-200 font-semibold">Rs. 5,000</td><td className="p-3 border border-slate-200">Rs. 300</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">51 kW to 125 kW</td><td className="p-3 border border-slate-200 font-semibold">Rs. 15,000</td><td className="p-3 border border-slate-200">Rs. 300</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">126 kW to 200 kW</td><td className="p-3 border border-slate-200 font-semibold">Rs. 20,000</td><td className="p-3 border border-slate-200">Rs. 300</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Above 200 kW</td><td className="p-3 border border-slate-200 font-semibold">Rs. 30,000</td><td className="p-3 border border-slate-200">Rs. 300</td></tr>
                                 </tbody>
                             </table>
                         </div>
-                        <p className="text-slate-500 text-xs mt-2">Note: EVs are exempt from the road tax surcharge but must pay the Rs. 300 renewal fee and mandatory third-party insurance.</p>
+                        <p className="text-slate-500 text-xs mt-2">Note: Public/rental electric vehicles get a flat 50% statutory discount on these standard running tax slabs. EVs still pay the renewal fee and mandatory third-party insurance.</p>
                     </div>
 
                     <div>
-                        <h4 className="font-bold text-slate-800 mb-2">🚌 Bus / Minibus / Microbus (Commercial)</h4>
+                        <h4 className="font-bold text-slate-800 mb-2">🚌 Public &amp; Commercial Vehicles (Buses, Taxis, Trucks)</h4>
+                        <p className="text-slate-600 text-xs mb-3">
+                            Under the Bagmati Province Finance Act for FY 2083/84, commercial carriers are assessed by seating maps or weight capacity:
+                        </p>
                         <div className="overflow-x-auto">
                             <table className="w-full border-collapse">
-                                <thead><tr className="bg-slate-100"><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Seating Capacity</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Annual Tax (NPR)</th></tr></thead>
+                                <thead><tr className="bg-slate-100"><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Commercial Category</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Annual Base Tax Rate (NPR)</th></tr></thead>
                                 <tbody>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Microbus (up to 15 seats)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 7,000</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Minibus (16–35 seats)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 12,000</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Bus (36–50 seats)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 18,000</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Large Bus (above 50 seats)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 25,000</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h4 className="font-bold text-slate-800 mb-2">🚛 Truck / Mini-Truck / Tempo</h4>
-                        <div className="overflow-x-auto">
-                            <table className="w-full border-collapse">
-                                <thead><tr className="bg-slate-100"><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Payload Capacity</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Annual Tax (NPR)</th></tr></thead>
-                                <tbody>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Tempo / 3-Wheeler</td><td className="p-3 border border-slate-200 font-semibold">Rs. 5,000</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Mini-Truck (up to 3 tonnes)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 10,000</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Medium Truck (3–8 tonnes)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 18,000</td></tr>
-                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Heavy Truck (above 8 tonnes)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 25,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Public Taxis (Up to 1500 CC)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 4,000 to Rs. 6,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Public Microbus (1–14 seats)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 8,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Minibus (15–25 seats)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 12,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Medium Bus (26–35 seats)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 18,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Large Bus (36+ seats)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 35,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Cargo Truck (Up to 3 Tonnes)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 10,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Medium Cargo Truck (3–5 Tonnes)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 15,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Heavy Goods Carrier (5–10 Tonnes)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 25,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Heavy Truck / Lorry (Above 10 Tonnes)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 35,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Agricultural Tractor / Three-Wheeler</td><td className="p-3 border border-slate-200 font-semibold">Rs. 3,000</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -2937,24 +2929,50 @@ export const financialSEO: Record<string, SEOContent> = {
 
             {/* ── SECTION 3 — PENALTY & RENEWAL ─────────────────── */}
             <section className="bg-slate-900 text-white rounded-2xl p-8 shadow-sm">
-                <h3 className="text-xl font-black mb-5">3. Late Penalty Rules &amp; Renewal Checklist (FY 2082/83)</h3>
+                <h3 className="text-xl font-black mb-5">3. Late Penalty Rules &amp; Renewal Checklist (FY 2083/84)</h3>
                 <div className="text-slate-300 leading-relaxed space-y-4 text-sm">
                     <p>
-                        If you miss the fiscal-year deadline (Ashad end), a <strong>progressive penalty interest</strong> is applied on the base annual tax. The penalty structure as of FY 2082/83 is:
+                        Missing your renewal timeline automatically activates progressive penalty tiers. In Nepal, you are granted a <strong>90-day grace period</strong> from the exact date of your physical bluebook expiry stamp to clear your road tax without fines. Ensure you check your TMIS status via <a href="https://dotm.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">dotm.gov.np</a>.
                     </p>
                     <div className="overflow-x-auto">
                         <table className="w-full border-collapse">
-                            <thead><tr className="bg-slate-700"><th className="p-3 border border-slate-600 text-left font-bold">Delay Period</th><th className="p-3 border border-slate-600 text-left font-bold">Penalty Rate</th></tr></thead>
+                            <thead><tr className="bg-slate-700"><th className="p-3 border border-slate-600 text-left font-bold">Delay Window</th><th className="p-3 border border-slate-600 text-left font-bold">Penalty Rate Assessed</th><th className="p-3 border border-slate-600 text-left font-bold">Applied To</th></tr></thead>
                             <tbody>
-                                <tr className="hover:bg-slate-800"><td className="p-3 border border-slate-600">Within 90-day grace period</td><td className="p-3 border border-slate-600 text-green-400 font-semibold">No Penalty</td></tr>
-                                <tr className="hover:bg-slate-800"><td className="p-3 border border-slate-600">After grace (same fiscal year)</td><td className="p-3 border border-slate-600 text-yellow-400 font-semibold">5% – 10% of annual tax</td></tr>
-                                <tr className="hover:bg-slate-800"><td className="p-3 border border-slate-600">1 year overdue</td><td className="p-3 border border-slate-600 text-orange-400 font-semibold">20% + previous year penalty</td></tr>
-                                <tr className="hover:bg-slate-800"><td className="p-3 border border-slate-600">2+ years overdue</td><td className="p-3 border border-slate-600 text-red-400 font-semibold">Up to 32% per year, capped at 4 years</td></tr>
+                                <tr className="hover:bg-slate-800"><td className="p-3 border border-slate-600">Within 90-Day Grace</td><td className="p-3 border border-slate-600 text-green-400 font-semibold">0% (Clear Compliance)</td><td className="p-3 border border-slate-600">Base Annual Tax Only</td></tr>
+                                <tr className="hover:bg-slate-800"><td className="p-3 border border-slate-600">1 to 30 Days Past Grace</td><td className="p-3 border border-slate-600 text-yellow-400 font-semibold">5% Penalty</td><td className="p-3 border border-slate-600">Base Annual Tax Only</td></tr>
+                                <tr className="hover:bg-slate-800"><td className="p-3 border border-slate-600">31 to 45 Days Past Grace</td><td className="p-3 border border-slate-600 text-orange-400 font-semibold">10% Penalty</td><td className="p-3 border border-slate-600">Base Annual Tax Only</td></tr>
+                                <tr className="hover:bg-slate-800"><td className="p-3 border border-slate-600">46 Days to End of Current FY</td><td className="p-3 border border-slate-600 text-orange-500 font-semibold">20% Penalty</td><td className="p-3 border border-slate-600">Base Annual Tax Only</td></tr>
+                                <tr className="hover:bg-slate-800"><td className="p-3 border border-slate-600">1 to 4 Full Fiscal Years Late</td><td className="p-3 border border-slate-600 text-red-400 font-semibold">32% Per Year Compounded</td><td className="p-3 border border-slate-600">Capped at 4 Years Max</td></tr>
                             </tbody>
                         </table>
                     </div>
                     <p>
-                        Every renewal requires: a <strong>Rs. 300 Renewal Fee</strong> payable to the TMO, and a valid <strong>Third-Party Insurance</strong> policy (approximately Rs. 2,200 for bikes, Rs. 4,500+ for cars). Check your DoTM TMIS vehicle status at <a href="https://dotm.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">dotm.gov.np</a> before visiting your Transport Management Office.
+                        Aside from the base tax penalty, if you miss the 90-day grace period, a <strong>100% fine on the flat renewal fee</strong> applies, doubling the Rs. 300 renewal charge to Rs. 600. Every renewal requires a valid <strong>compulsory Third-Party Insurance</strong> policy (approx. Rs. 2,200 for bikes, Rs. 4,500+ for cars). Calculate your remaining income after deductions using our <a href="/calculator/nepal-salary/" className="text-blue-400 hover:text-blue-300 underline font-semibold">Nepal Salary Tax Calculator</a>, or verify corporate payments using the <a href="/calculator/tds-calculator/" className="text-blue-400 hover:text-blue-300 underline font-semibold">TDS Calculator Nepal</a>.
+                    </p>
+                </div>
+            </section>
+
+            {/* ── SECTION 4 — EV IMPORT DUTY ────────────────────── */}
+            <section className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+                <h3 className="text-xl font-black text-slate-900 mb-5">4. Electric Vehicle (EV) Import &amp; Valuation Structure (CIF Model)</h3>
+                <div className="text-slate-700 leading-relaxed space-y-4 text-sm">
+                    <p>
+                        The FY 2083/84 federal budget structurally overhauled passenger EV imports by abolishing excise duties entirely and moving to a baseline <strong>CIF (Cost, Insurance, and Freight)</strong> valuation model. All passenger EVs now face a flat <strong>20% customs duty</strong> on their net CIF value. In addition, a progressive <strong>Clean Infrastructure Investment Fee</strong> is levied based on asset valuation tiers:
+                    </p>
+                    <div className="overflow-x-auto rounded-xl border border-slate-200 mt-4">
+                        <table className="w-full text-left text-sm border-collapse">
+                            <thead><tr className="bg-slate-100"><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Vehicle CIF Valuation Tier</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Clean Infrastructure Investment Fee Rate</th></tr></thead>
+                            <tbody>
+                                <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Vehicles up to Rs. 20 Lakh</td><td className="p-3 border border-slate-200 font-bold text-slate-900">2.5% Levy</td></tr>
+                                <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Vehicles from Rs. 20 Lakh to Rs. 30 Lakh</td><td className="p-3 border border-slate-200 font-bold text-slate-900">7.5% Levy</td></tr>
+                                <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Vehicles from Rs. 30 Lakh to Rs. 40 Lakh</td><td className="p-3 border border-slate-200 font-bold text-slate-900">15% Levy</td></tr>
+                                <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Vehicles from Rs. 40 Lakh to Rs. 50 Lakh</td><td className="p-3 border border-slate-200 font-bold text-slate-900">70% Levy</td></tr>
+                                <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Vehicles exceeding Rs. 50 Lakh</td><td className="p-3 border border-slate-200 font-bold text-slate-900">Up to 112.5% Maximum Effective Rate</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        This infrastructure fee consolidates previous green taxes. For gold imports, you can also refer to the <a href="/calculator/gold-tax/" className="text-blue-600 hover:text-blue-800 underline font-semibold">Gold Import Tax Calculator</a> to see how customs apply to personal assets.
                     </p>
                 </div>
             </section>
@@ -2964,7 +2982,7 @@ export const financialSEO: Record<string, SEOContent> = {
                 <h3 className="text-xl font-black text-slate-900 mb-5">Related Nepal Tax &amp; Finance Tools</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
                     <div className="bg-slate-50 p-5 rounded-xl border border-slate-100"><a href="/calculator/auto-loan/" className="text-blue-600 hover:text-blue-800 underline font-semibold">Auto Loan EMI Calculator →</a><p className="text-slate-500 mt-1 text-xs">Calculate monthly vehicle loan EMI from Nepali banks.</p></div>
-                    <div className="bg-slate-50 p-5 rounded-xl border border-slate-100"><a href="/calculator/nepal-salary/" className="text-blue-600 hover:text-blue-800 underline font-semibold">Nepal Salary Tax Calculator →</a><p className="text-slate-500 mt-1 text-xs">Compute income tax under FY 2082/83 rates.</p></div>
+                    <div className="bg-slate-50 p-5 rounded-xl border border-slate-100"><a href="/calculator/nepal-salary/" className="text-blue-600 hover:text-blue-800 underline font-semibold">Nepal Salary Tax Calculator →</a><p className="text-slate-500 mt-1 text-xs">Compute income tax under FY 2083/84 rates.</p></div>
                     <div className="bg-slate-50 p-5 rounded-xl border border-slate-100"><a href="/calculator/gold-tax/" className="text-blue-600 hover:text-blue-800 underline font-semibold">Gold Import Tax Calculator →</a><p className="text-slate-500 mt-1 text-xs">Estimate Nepal customs duty for gold imports.</p></div>
                     <div className="bg-slate-50 p-5 rounded-xl border border-slate-100"><a href="/calculator/nea-bill/" className="text-blue-600 hover:text-blue-800 underline font-semibold">NEA Electricity Bill Calculator →</a><p className="text-slate-500 mt-1 text-xs">Forecast your NEA bill using current tariff slabs.</p></div>
                     <div className="bg-slate-50 p-5 rounded-xl border border-slate-100"><a href="/calculator/loan-emi/" className="text-blue-600 hover:text-blue-800 underline font-semibold">Loan EMI Calculator →</a><p className="text-slate-500 mt-1 text-xs">Plan home or vehicle loan repayments in NPR.</p></div>
@@ -2993,11 +3011,27 @@ export const financialSEO: Record<string, SEOContent> = {
       },
       {
         question: "How is Electric Vehicle (EV) road tax calculated in Nepal?",
-        answer: "EV road tax is based on the motor's kilowatt (KW) rating as listed in the Bluebook, not CC. FY 2082/83 rates: up to 10 KW = Rs. 1,500, 11–50 KW = Rs. 2,500, 51–100 KW = Rs. 5,000, above 100 KW = Rs. 8,000. EVs still pay the Rs. 300 renewal fee and mandatory Third-Party Insurance but are not subject to the CIF-based import surcharge that applies to new petrol/diesel vehicle imports."
+        answer: "EV road tax is based on the motor's kilowatt (kW) rating as listed in the Bluebook, not CC. FY 2083/84 rates: 10–50 kW = Rs. 5,000, 51–125 kW = Rs. 15,000, 126–200 kW = Rs. 20,000, above 200 kW = Rs. 30,000. EVs still pay the renewal fee and mandatory Third-Party Insurance but are not subject to the CIF-based import surcharge that applies to new petrol/diesel vehicle imports."
       },
       {
         question: "Is vehicle tax different across Nepal's provinces?",
         answer: "Yes. Since federalisation, vehicle road tax is a provincial subject. Bagmati (Kathmandu), Koshi, Lumbini, Gandaki, and Madhesh provinces may apply different slab rates and penalty structures. This calculator uses Bagmati Province rates as the default (the most commonly searched benchmark). Select your province in the calculator for more accurate results."
+      },
+      {
+        question: "How is bus or microbus tax calculated in Nepal?",
+        answer: "Public and commercial four-wheelers like buses, minibuses, and microbuses are calculated strictly based on their seating capacity profiles rather than engine displacement. Under the Bagmati Province Finance Act for FY 2083/84, public microbuses (1–14 seats) carry a base tax of Rs. 8,000, minibuses (15–25 seats) cost Rs. 12,000, medium buses (26–35 seats) cost Rs. 18,000, and large buses with 36+ seats are charged Rs. 35,000 annually."
+      },
+      {
+        question: "What is the EV import duty structure for 2083/84?",
+        answer: "The FY 2083/84 federal budget structurally overhauled passenger EV imports by abolishing excise duties entirely and moving to a baseline CIF (Cost, Insurance, and Freight) valuation model. All passenger EVs now face a flat 20% customs duty on their net CIF value. In addition, a progressive Clean Infrastructure Investment Fee is levied based on asset valuation tiers, starting from a low 2.5% levy up to a maximum 112.5% effective rate for high-end luxury electric models."
+      },
+      {
+        question: "What happens if I do not renew my bluebook for over 5 years?",
+        answer: "If your registration lapses beyond 5 consecutive years, your vehicle details are flagged as delinquent and automatically blacklisted within the central DoTM TMIS server. While your base tax penalty is legally capped at a maximum of 4 years of liabilities, the 32% annual compound fine continues to stack against those active billing cycles. Furthermore, a blacklisted vehicle cannot undergo a legal name transfer (Naamshari) during a resale until all historical back-taxes are manually cleared at the Yatayat office."
+      },
+      {
+        question: "Do public or rental EVs get a discount on road tax?",
+        answer: "Yes. To promote green public transit infrastructures across local transport networks, eco-conscious fleet operators, public electric microbuses, and registered rental electric vehicles receive a flat 50% statutory concession on their annual running kilowatt (kW) tax slabs. This brings their recurring annual registration costs significantly lower than privately owned consumer EVs."
       }
     ]
   },
