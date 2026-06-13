@@ -5,7 +5,7 @@ import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
   title: 'Gold Price Weight Converter in Nepal (Tola, Ana, Lal) | NepaCalc',
-  description: 'Calculate today\'s official gold price in Nepal. Converts Tola, Ana, and Lal directly to Grams based on FENEGOSIDA benchmark rates. Check live 24K Fine Gold, 22K Tejabi, and Silver values instantly.',
+  description: 'Calculate today\'s official gold price in Nepal. Convert Tola, Ana, and Lal directly to Grams based on live FENEGOSIDA 24K, 22K, and silver benchmarks.',
   slug: 'market-rates/live-gold-price',
   keywords: [
     'gold price in nepal', 'aajako sunko vau', '1 lal gold price in nepal today', '24k gold price today',
