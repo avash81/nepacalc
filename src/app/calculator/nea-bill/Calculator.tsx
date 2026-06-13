@@ -115,9 +115,12 @@ export default function NEABillCalculator() {
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6">
             <div className="space-y-2">
-               <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Monthly Consumption (Units/kWh)</label>
+               <label htmlFor="consumed-units-field" className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Monthly Consumption (Units/kWh)</label>
                <input 
+                  id="consumed-units-field"
                   type="number" 
+                  aria-required="true"
+                  placeholder="e.g. 150"
                   value={units} 
                   onChange={(e) => setUnits(Number(e.target.value))}
                   className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" 
@@ -125,9 +128,11 @@ export default function NEABillCalculator() {
             </div>
             <div className="grid grid-cols-2 gap-4">
                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Meter Capacity (Ampere)</label>
+                  <label htmlFor="meter-capacity-field" className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Meter Capacity (Ampere)</label>
                   <input
+                    id="meter-capacity-field"
                     type="number"
+                    aria-required="true"
                     value={connectionAmps.replace('A', '')}
                     min={1}
                     step={1}
@@ -143,18 +148,22 @@ export default function NEABillCalculator() {
                   <p className="text-[10px] text-[#5F6368]">Standard tiers: 5A · 15A · 30A · 60A</p>
                </div>
                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Meter Reading Date</label>
+                  <label htmlFor="billing-date-field" className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Meter Reading Date</label>
                   <input 
+                    id="billing-date-field"
                     type="date"
+                    aria-required="true"
                     value={billingDate} 
                     onChange={(e) => setBillingDate(e.target.value)}
                     className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all appearance-none"
                   />
                </div>
                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Estimated Payment Date</label>
+                  <label htmlFor="payment-date-field" className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Estimated Payment Date</label>
                   <input 
+                    id="payment-date-field"
                     type="date"
+                    aria-required="true"
                     value={paymentDate} 
                     onChange={(e) => setPaymentDate(e.target.value)}
                     className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all appearance-none"
@@ -336,19 +345,45 @@ export default function NEABillCalculator() {
       seoContent={NeaBillSEO}
       customSchema={{
         "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "@id": "https://nepacalc.com/calculator/nea-bill/#webapp",
-        "url": "https://nepacalc.com/calculator/nea-bill/",
-        "name": "NEA Electricity Bill Calculator",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "All",
-        "browserRequirements": "Requires JavaScript. Requires HTML5.",
-        "description": "An interactive digital utility calculator for computing monthly progressive electricity bills based on the official Nepal Electricity Authority (NEA) tariff rates for fiscal year 2083/84.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "NPR"
-        }
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "@id": "https://nepacalc.com/calculator/nea-bill/#webapp",
+            "url": "https://nepacalc.com/calculator/nea-bill/",
+            "name": "NepaCalc NEA Electricity Bill Calculator",
+            "applicationCategory": "FinancialApplication",
+            "operatingSystem": "All",
+            "browserRequirements": "Requires HTML5 and JavaScript support.",
+            "description": "An interactive utility bill estimator designed to calculate progressive Nepal Electricity Authority slab fees, fixed charges, and conditional VAT frameworks.",
+            "offers": {
+              "@type": "Offer",
+              "price": "0.00",
+              "priceCurrency": "NPR"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://nepacalc.com/calculator/nea-bill/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is the cost of 1 unit of electricity in Nepal for 2083?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Under the current NEA tariff rates for 2083, the price of 1 unit of electricity ranges from a baseline lifeline rate of Rs. 3.00 (for domestic 5 Ampere connections under 20 units) up to Rs. 11.00 per unit for high-consumption tiers above 251 units."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do you calculate an electricity bill from a meter reading in Nepal?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "To calculate your NEA bill, subtract your previous month's meter reading from the current reading to find your total consumed units (kWh). Apply the corresponding progressive slab rates for your meter capacity (5A, 15A, 30A, or 60A), adding the minimum service charge and any applicable concessional VAT or rebates."
+                }
+              }
+            ]
+          }
+        ]
       }}
       sidebar={{
         title: "Utility Hub",
