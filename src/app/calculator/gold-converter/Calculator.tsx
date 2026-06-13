@@ -79,13 +79,6 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
     };
   }, [activeRate, quantityTola, quantityLal, makingChargeType, makingChargeValue, manualGrams, unitMode]);
 
-  return (
-    <ModernCalcLayout
-      slug="gold-converter"
-      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: content.label }]}
-      title={content.title}
-      description={content.desc}
-      icon={Landmark}
   const inputsComponent = (
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6">
