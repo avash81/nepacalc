@@ -18,14 +18,16 @@ export default function GoldDashboardClient() {
 
   const fmt = (n: number) => n.toLocaleString('en-IN');
   const tolaNPR = rates.gold.tolaNPR;
+  // FENEGOSIDA sets Tejabi (22K) at a fixed NPR 2,900 spread below the 24K rate
+  const tejabiTolaNPR = tolaNPR.current - 2900;
 
   const silverTolaNPR = rates.silver?.tolaNPR?.current ?? 4840;
 
   const tables = [
     { label: '24K Hallmark Gold', np: 'छापावाल सुन (प्रति तोला)', rate: tolaNPR.current, unit: '1 Tola' },
     { label: '24K Hallmark Gold', np: 'छापावाल सुन (१० ग्राम)', rate: Math.round(tolaNPR.current / 1.1664), unit: '10 Gram' },
-    { label: '22K Tejabi Gold', np: 'तेजाबी सुन (प्रति तोला)', rate: Math.round(tolaNPR.current * 0.916), unit: '1 Tola' },
-    { label: '22K Tejabi Gold', np: 'तेजाबी सुन (१० ग्राम)', rate: Math.round(tolaNPR.current * 0.916 / 1.1664), unit: '10 Gram' },
+    { label: '22K Tejabi Gold', np: 'तेजाबी सुन (प्रति तोला)', rate: tejabiTolaNPR, unit: '1 Tola' },
+    { label: '22K Tejabi Gold', np: 'तेजाबी सुन (१० ग्राम)', rate: Math.round(tejabiTolaNPR / 1.1664), unit: '10 Gram' },
     { label: 'Silver (Chandi)', np: 'चाँदी (प्रति तोला)', rate: silverTolaNPR, unit: '1 Tola' },
     { label: 'Silver (Chandi)', np: 'चाँदी (१० ग्राम)', rate: Math.round(silverTolaNPR / 1.1664), unit: '10 Gram' },
   ];
