@@ -86,7 +86,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
       title={content.title}
       description={content.desc}
       icon={Landmark}
-      inputs={
+  const inputsComponent = (
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6">
             <div className="space-y-2">
@@ -148,8 +148,9 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
              Generate Metal Audit
           </button>
         </div>
-      }
-      results={
+  );
+
+  const resultsComponent = (
         <div className="space-y-6 h-full flex flex-col justify-center">
           <div className="bg-[#E8F0FE] rounded-lg p-8 text-center space-y-2">
              <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Estimated Jewelry Valuation</div>
@@ -180,7 +181,30 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
              </div>
           </div>
         </div>
-      }
+  );
+
+  if (isEmbed) {
+    return (
+      <div className="space-y-8">
+        <div>
+          {inputsComponent}
+        </div>
+        <div className="pt-8 border-t border-[#DADCE0]">
+          {resultsComponent}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <ModernCalcLayout
+      slug="gold-converter"
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: content.label }]}
+      title={content.title}
+      description={content.desc}
+      icon={Landmark}
+      inputs={inputsComponent}
+      results={resultsComponent}
       details={
         <div className="space-y-6">
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
