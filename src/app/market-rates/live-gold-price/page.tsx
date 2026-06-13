@@ -360,14 +360,17 @@ export default function Page() {
             {/* ── Market Insight ── */}
             <section>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">
-                Market Insight: Gold Trading in Nepal 2083/84
+                Introduction & Baseline Mechanics
               </h2>
               <div className="prose prose-slate max-w-none">
                 <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-                  Gold is more than just a metal in Nepal; it is a vital asset for financial security and cultural heritage. The daily <strong>Gold Rate in Nepal</strong> is influenced by international LBMA (London Bullion Market Association) spot prices and the USD-to-NPR exchange rate published by Nepal Rastra Bank (NRB). Nepal applies approximately 20% customs duty on imported bullion, which creates the significant premium between the international spot price and the FENEGOSIDA domestic benchmark.
+                  When tracking precious metal valuations across South Asia, accessing authentic, non-manipulated data is essential for both retail consumers and commercial investors. The baseline numbers used to write physical invoices are governed by a central regulatory group that balancing international market trends with localized supply constraints.
                 </p>
-                <p className="text-slate-700 text-base leading-relaxed mb-6">
-                  Our dashboard provides high-precision data mapping directly to the <strong>FENEGOSIDA</strong> (Federation of Nepal Gold and Silver Dealers&apos; Association) official list, ensuring you have the most reliable figures for hallmark jewelry or investment biscuits. For all three trading boards — <strong>Fine Gold (छापावाल / 24K)</strong>, <strong>Tejabi Gold (तेजाबी / 22K)</strong>, and <strong>Silver (चाँदी / Chandi)</strong> — our calculator engine applies the exact conversion coefficients: 11.6638125 grams per Tola and 100 Lal per Tola.
+                <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
+                  For maximum market transparency, buyers should cross-reference their showroom quotes with the daily benchmarks published directly by the{' '}
+                  <a href="https://www.fenegosida.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">
+                    Federation of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA)
+                  </a>, which fixes the baseline index at approximately 11:00 AM every morning from Sunday to Friday.
                 </p>
               </div>
             </section>
@@ -434,168 +437,90 @@ export default function Page() {
             </section>
 
             {/* ══════════════════════════════════════════ */}
-            {/* §2  MACRO-ECONOMIC DRIVERS                */}
+            {/* §2  MACROECONOMIC DRIVERS & TARIFFS       */}
             {/* ══════════════════════════════════════════ */}
             <section>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">
-                Macro-Economic Drivers: How the Nepalese Gold Market Operates
+                Macroeconomic Drivers & Domestic Import Tariffs
               </h2>
-
-              <h3 className="text-lg font-black text-slate-900 tracking-tight mb-3">The Regulatory Framework of FENEGOSIDA and FNGSGJA</h3>
               <p className="text-slate-700 text-sm leading-relaxed mb-5 font-medium">
-                Evaluating the <strong>official gold rate in Nepal today</strong> requires analyzing the central banking and regulatory bodies that manage the supply chain. The primary pricing mandate is issued daily by the{' '}
-                <a href="https://www.fenegosida.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">
-                  Federation of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA)
-                </a>. However, alternative tracking boards, such as the <strong>FNGSGJA bullion index 2026</strong> (Federation of Nepal Gold Silver Gem &amp; Jewellery Associations), closely monitor secondary merchant behaviors, market transparency, and retail distribution networks.
+                These baseline numbers do not tell the whole story. The price of fine bullion in local showrooms carries a significant premium over raw international spot quotes because of domestic fiscal policies. Every ounce of gold legally entering the country passes through customs checkpoints where it encounters strict entry fees.
               </p>
-              <p className="text-slate-600 text-sm font-medium mb-4">Together, these associations evaluate three core components to calculate the opening rate each morning:</p>
-              <div className="space-y-3 mb-8">
-                {[
-                  { icon: '🌐', title: 'International Spot Price (XAU/USD)', body: 'The baseline value of fine bullion traded on global exchanges like the London Bullion Market Association (LBMA) or the London Metal Exchange (LME).', link: null },
-                  { icon: '💱', title: 'USD-to-NPR Forex Rate', body: 'Because gold is purchased internationally in US Dollars, fluctuations in the Nepalese Rupee (NPR) can shift domestic costs even if global spot prices remain flat.', link: { href: '/market-rates/exchange-rate/', label: 'Track live currency pairs via our Live Forex Exchange Rates Engine' } },
-                  { icon: '🏦', title: 'Commercial Bank Import Quota', body: 'The Nepal Rastra Bank (NRB) strictly regulates the volume of gold that commercial banks can legally import daily to manage foreign cash reserves.', link: { href: 'https://www.nrb.org.np/', label: 'Nepal Rastra Bank (NRB) official portal', external: true } },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4 bg-slate-50 border border-slate-200 rounded-xl px-5 py-4">
-                    <span className="text-xl">{item.icon}</span>
-                    <div>
-                      <p className="text-sm font-black text-slate-900 mb-1">{item.title}</p>
-                      <p className="text-sm text-slate-600 font-medium leading-relaxed">{item.body}{' '}
-                        {item.link && (
-                          <a
-                            href={item.link.href}
-                            {...(item.link.external ? { target: '_blank', rel: 'noopener noreferrer nofollow' } : {})}
-                            className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors"
-                          >
-                            {item.link.label}
-                          </a>
-                        )}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <h3 className="text-lg font-black text-slate-900 tracking-tight mb-3">Customs Duties, Tariffs, and Import Costs</h3>
-              <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                The retail value of <strong>gold price in Nepal</strong> carries a significant premium over raw international spot quotes due to domestic fiscal policies. Nepal enforces a <strong>20% customs duty</strong> on imported raw gold bars. This import tariff is calculated alongside handling fees, banking commissions, and insurance overhead before bullion is distributed to regional jewelry associations. Consequently, any shifts in national fiscal policy instantly alter the baseline price per Tola. Use our interactive{' '}
+              <p className="text-slate-700 text-sm leading-relaxed mb-5 font-medium">
+                As of 2026, the government applies a 20% customs import duty on all incoming raw bullion bars. This tariff protects foreign currency reserves and regulates domestic consumption during peak wedding and festival seasons. Because these import taxes are calculated alongside bank handling commissions, transport logistics, and local insurance overhead, even minor adjustments to national fiscal policy can cause instant price shifts across local showrooms.
+              </p>
+              <p className="text-slate-700 text-sm leading-relaxed mb-5 font-medium">
+                If you are trying to calculate exactly how these state boundaries and import duties change the baseline cost of raw bullion bars before craftsmanship fees are added, you can compute the exact structural customs markup automatically using our interactive{' '}
                 <a href="/calculator/gold-tax/" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">
                   Gold Tax Calculator
-                </a>{' '}to compute your structural customs and import markup.
+                </a>.
+              </p>
+              <p className="text-slate-700 text-sm leading-relaxed mb-8 font-medium">
+                Understanding these fiscal barriers explains why local retail prices diverge from global spot trends, transforming raw gold from a simple global commodity into a highly regulated domestic asset.
+              </p>
+
+              <h3 className="text-lg font-black text-slate-900 tracking-tight mb-3">Commercial Banking Restrictions & Liquidation Rules</h3>
+              <p className="text-slate-700 text-sm leading-relaxed mb-5 font-medium">
+                Beyond custom duties, physical supply limits play a major role in local market behavior. To maintain macroeconomic stability and prevent a drop in foreign cash reserves, the central banking authority strictly limits how much bullion can legally enter the country.
+              </p>
+              <p className="text-slate-700 text-sm leading-relaxed mb-5 font-medium">
+                The{' '}
+                <a href="https://www.nrb.org.np/" target="_blank" rel="noopener noreferrer nofollow" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">
+                  Nepal Rastra Bank (NRB)
+                </a>{' '}
+                manages a strict daily import quota system for commercial banks, typically limiting total entry to 20 kilograms per day, though this can shift depending on foreign reserve health. When demand outpaces this daily bank quota, local markets can face sudden supply shortages. This raw physical scarcity often forces retail associations to raise premiums, causing domestic street prices to spike even if global spot indicators drop.
+              </p>
+              <p className="text-slate-700 text-sm leading-relaxed mb-5 font-medium">
+                Conversely, when individuals look to liquidate family assets during economic downturns, these supply dynamics shift again. Storefronts run a reverse calculation, ignoring the original making charges or VAT paid during purchase. Instead, they run your jewelry through an acid or XRF purity test and apply a standard 2% to 5% melting loss deduction against the daily raw index. This covers the processing costs required to turn scrap gold back into pure investment-grade bullion.
               </p>
             </section>
 
             {/* ══════════════════════════════════════════ */}
-            {/* §3  WEIGHT PROTOCOL                       */}
+            {/* §3  TRADITIONAL WEIGHTS VS METRIC         */}
             {/* ══════════════════════════════════════════ */}
             <section>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">
-                Technical Weight Protocol: Traditional vs. Metric Systems
+                Traditional Fractional Weights vs. Metric Protocol
               </h2>
-
-              <h3 className="text-lg font-black text-slate-900 tracking-tight mb-3">Universal Tola-to-Gram Conversion Standard</h3>
               <p className="text-slate-700 text-sm leading-relaxed mb-5 font-medium">
-                When utilizing an online <strong>tola to gram converter Nepal</strong>, developers and consumers must align with precise legal and commercial parameters. The mathematical constants used by our calculation engine are defined as follows:
+                To accurately calculate your final costs, you need to understand how traditional weight systems map onto modern metric measurements. Local marketplaces rely heavily on historical South Asian terms like Tolas, Anas, and Lals, while modern refiners use grams and kilograms.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                {[
-                  { from: '1 Tola', to: '11.6638 Grams', dir: '→' },
-                  { from: '1 Gram', to: '0.085735 Tola', dir: '→' },
-                  { from: '10 Grams', to: '0.85735 Tola', dir: '→' },
-                ].map((item, i) => (
-                  <div key={i} className="bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 text-center">
-                    <div className="text-sm font-black text-slate-900">{item.from}</div>
-                    <div className="text-amber-500 font-black text-lg my-1">{item.dir}</div>
-                    <div className="text-sm font-black text-amber-700">{item.to}</div>
-                  </div>
-                ))}
-              </div>
-
-              <h3 className="text-lg font-black text-slate-900 tracking-tight mb-3">Fractional Weight Breakdown: Lal and Ana Rules</h3>
               <p className="text-slate-700 text-sm leading-relaxed mb-5 font-medium">
-                For traditional jewelry, weights are subdivided into smaller fractions known as <strong>Lal (लाल)</strong> and <strong>Ana (आना)</strong>. To avoid transactional errors, understand these exact relationships:
+                To bridge this gap cleanly, our calculation engine relies on precise mathematical constants. One full Tola equals exactly 11.6638 grams, which means 10 grams of fine gold represents 0.85735 Tola. For smaller custom pieces, a Tola is broken down into 100 Lals, meaning a single Lal equals 0.1166 grams of metal.
               </p>
-              <div className="space-y-3 mb-6">
-                <div className="bg-slate-50 border-l-4 border-amber-400 rounded-r-xl px-5 py-4">
-                  <p className="text-sm font-black text-slate-900 mb-1">Tola-to-Lal Matrix</p>
-                  <p className="text-sm text-slate-600 font-medium">One full Tola consists of exactly <strong>100 Lals</strong>. Therefore, 1 Lal = <strong>0.1166 grams</strong> of metal.</p>
-                </div>
-                <div className="bg-slate-50 border-l-4 border-amber-400 rounded-r-xl px-5 py-4">
-                  <p className="text-sm font-black text-slate-900 mb-1">Ana-to-Lal Matrix</p>
-                  <p className="text-sm text-slate-600 font-medium">One full Tola is divided into <strong>16 Anas</strong>. This means 1 Ana = exactly <strong>6.25 Lals</strong>, or <strong>0.7290 grams</strong>.</p>
-                </div>
-              </div>
-
-              <div className="bg-slate-900 rounded-2xl px-6 py-5 font-mono text-sm text-slate-300 mb-6 overflow-x-auto">
-                <pre className="whitespace-pre text-xs leading-relaxed">{`          ┌── 1 Tola (11.6638g) ──┐
-          │                       │
-16 Ana (0.7290g per Ana)   100 Lal (0.1166g per Lal)`}</pre>
-              </div>
-
-              <p className="text-slate-600 text-sm font-medium mb-4">These fractional values convert into today&apos;s raw 24K material costs as follows:</p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {[
-                  { label: '1 Lal Gold Price Today', value: 'Rs. 2,920.00', note: 'Base Material Cost' },
-                  { label: '2 Lal Gold Price Today', value: 'Rs. 5,840.00', note: 'Base Material Cost' },
-                  { label: '4 Ana Gold Price Today', value: 'Rs. 73,000.00', note: '25 Lal / 2.9160g / Quarter Tola' },
-                ].map((item, i) => (
-                  <div key={i} className="border border-amber-200 rounded-xl px-5 py-4 bg-amber-50 text-center">
-                    <div className="text-[10px] font-black text-amber-700 uppercase tracking-widest mb-1">{item.label}</div>
-                    <div className="text-xl font-black text-slate-900">{item.value}</div>
-                    <div className="text-[10px] text-slate-500 font-medium mt-1">{item.note}</div>
-                  </div>
-                ))}
-              </div>
+              <p className="text-slate-700 text-sm leading-relaxed mb-5 font-medium">
+                Because local gold prices are ultimately tied to international contracts priced in US Dollars per troy ounce, any shift in the value of the local currency will immediately alter your counter price. If you want to see how these currency shifts change your purchasing power, you can track real-time global currency pairs using our automated{' '}
+                <a href="/market-rates/exchange-rate/" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">
+                  Live Forex Exchange Rates Engine
+                </a>.
+              </p>
+              <p className="text-slate-700 text-sm leading-relaxed mb-5 font-medium">
+                Monitoring this currency layer helps you anticipate domestic price spikes driven by exchange rate fluctuations, even when global gold prices remain completely flat.
+              </p>
             </section>
 
             {/* ══════════════════════════════════════════ */}
-            {/* §4  RETAIL STORE MECHANICS                */}
+            {/* §4  RETAIL JEWELRY INVOICING FORMULA      */}
             {/* ══════════════════════════════════════════ */}
             <section>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">
-                Retail Store Mechanics: Real-World Cost Calculations
+                The Retail Jewelry Invoicing Formula
               </h2>
-
-              <h3 className="text-lg font-black text-slate-900 tracking-tight mb-3">Consumer Purchase Invoicing Formula</h3>
               <p className="text-slate-700 text-sm leading-relaxed mb-5 font-medium">
-                When entering a retail showroom in Kathmandu, Pokhara, or Lalitpur, the final price on your invoice will be higher than the raw bullion benchmark. Showrooms add manufacturing labor fees (<strong>Jyala</strong>) and material loss margins (<strong>Jarti</strong> or wastage).
+                When you buy finished jewelry at a retail store, the price on your invoice will always be higher than the raw material benchmarks listed online. Showrooms have to account for craftsmanship labor costs (Jyala) and material loss margins (Jarti or wastage).
               </p>
-
-              <div className="bg-amber-50 border border-amber-200 rounded-2xl px-6 py-5 mb-6">
-                <p className="text-[10px] font-black text-amber-700 uppercase tracking-widest mb-3">Definitive Buying Formula</p>
-                <code className="block text-xs bg-white border border-amber-200 rounded-xl px-4 py-3 text-amber-900 font-mono leading-relaxed">
-                  Final Counter Price = (Total Weight in Tolas × Today&apos;s FENEGOSIDA Rate)<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Jyala (Making Charges)<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ Jarti (Wastage Fee)<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ 13% VAT
-                </code>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                {[
-                  { icon: '🔨', label: 'Making Charges (Jyala)', body: 'Craftsmanship fee charged per Tola or as a flat percentage of gold value. Ranges from 5% for simple pieces to over 12% for intricate handmade bridal jewelry.' },
-                  { icon: '⚖️', label: 'Wastage (Jarti)', body: 'Accounts for minute amounts of precious metal lost during melting, cutting, and polishing. Typically 1–3% of the base metal value.' },
-                ].map((item, i) => (
-                  <div key={i} className="bg-slate-50 border border-slate-200 rounded-xl px-5 py-4">
-                    <p className="text-sm font-black text-slate-900 mb-2">{item.icon} {item.label}</p>
-                    <p className="text-sm text-slate-600 font-medium leading-relaxed">{item.body}</p>
-                  </div>
-                ))}
-              </div>
-
-              <h3 className="text-lg font-black text-slate-900 tracking-tight mb-3">Asset Liquidation: How Much Value Do Jewelers Deduct for Old Gold?</h3>
-              <p className="text-slate-700 text-sm leading-relaxed mb-4 font-medium">
-                If you are planning to sell old family heirlooms for cash, retail stores run a reverse calculation. Merchants do <strong>not</strong> reimburse you for the original making charges, wastage fees, or VAT paid during purchase.
+              <p className="text-slate-700 text-sm leading-relaxed mb-5 font-medium">
+                Making charges vary based on the complexity of the piece, ranging from 5% for simple bands to over 12% for intricate bridal sets. On top of that, a mandatory 13% Value Added Tax (VAT) is applied to the combined cost of the metal and labor.
               </p>
-              <div className="bg-slate-50 border border-slate-200 rounded-2xl px-6 py-5">
-                <p className="text-[10px] font-black text-slate-600 uppercase tracking-widest mb-3">Liquidation / Scrap Gold Calculation</p>
-                <code className="block text-xs bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-800 font-mono leading-relaxed">
-                  Cash Value = (Verified Raw Weight in Tolas − Purity Refining Variance)<br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;× Today&apos;s Daily Buying Benchmark
-                </code>
-                <p className="text-xs text-slate-500 font-medium mt-3">
-                  Merchants test purity via acid test or XRF scrap analyzer, then deduct a standard <strong>2%–5% refining melting loss margin</strong> from the active daily raw gold index.
-                </p>
-              </div>
+              <p className="text-slate-700 text-sm leading-relaxed mb-5 font-medium">
+                While gold remains the primary asset for financial security and heritage across the country, silver follows a similar retail logic. Silver prices track independently based on industrial demand and regional silversmithing needs. To check raw benchmarks, calculate metric conversions, or view current rates for custom gemstone settings, check out our companion{' '}
+                <a href="/market-rates/live-silver-price/" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">
+                  Live Silver Price Calculator
+                </a>.
+              </p>
+              <p className="text-slate-700 text-sm leading-relaxed mb-5 font-medium">
+                Reviewing both metals gives you a complete overview of the market, helping you budget accurately before stepping into a showroom.
+              </p>
             </section>
 
             {/* ══════════════════════════════════════════ */}

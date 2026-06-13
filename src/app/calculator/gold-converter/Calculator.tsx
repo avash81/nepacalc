@@ -61,7 +61,8 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
   }, [selectedAssetId]);
 
   const result = useMemo(() => {
-    const totalGrams = unitMode === 'gram' ? manualGrams : (quantityTola * TOLA_GRAMS) + (quantityLal * (TOLA_GRAMS/100));
+    // If they are synchronized, we just use quantityTola
+    const totalGrams = unitMode === 'gram' ? manualGrams : quantityTola * TOLA_GRAMS;
     const basePrice = (totalGrams / TOLA_GRAMS) * activeRate;
     const makingCharges = makingChargeType === 'fixed' ? makingChargeValue : (basePrice * makingChargeValue) / 100;
     
@@ -77,7 +78,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
       totalPrice: Math.round(basePrice + makingCharges),
       pieData
     };
-  }, [activeRate, quantityTola, quantityLal, makingChargeType, makingChargeValue, manualGrams, unitMode]);
+  }, [activeRate, quantityTola, makingChargeType, makingChargeValue, manualGrams, unitMode]);
 
   const inputsComponent = (
         <div className="space-y-6">
@@ -106,11 +107,11 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
                <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                      <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Tola</label>
-                     <input type="number" value={quantityTola} onChange={e => update({ quantityTola: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all" />
+                     <input type="number" value={quantityTola} onChange={e => { const val = Number(e.target.value); update({ quantityTola: val, quantityLal: val * 100 }); }} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all" />
                   </div>
                   <div className="space-y-2">
-                     <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Lal (1/100 Tola)</label>
-                     <input type="number" value={quantityLal} onChange={e => update({ quantityLal: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all" />
+                     <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Lal (Equivalent)</label>
+                     <input type="number" value={quantityLal} onChange={e => { const val = Number(e.target.value); update({ quantityLal: val, quantityTola: val / 100 }); }} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all" />
                   </div>
                </div>
             )}
