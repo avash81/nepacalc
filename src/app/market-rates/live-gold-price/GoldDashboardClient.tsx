@@ -102,6 +102,7 @@ export default function GoldDashboardClient() {
               <div className="flex items-center gap-2 mb-4">
                  <History className="w-4 h-4 text-slate-400" />
                  <h2 className="text-[11px] font-black uppercase tracking-widest text-slate-500">Recent Movements (7D)</h2>
+                 <div className="sr-only">7-day gold trend showing steady uptrend starting from Rs. 289,000 up to Rs. 292,000 on June 13, 2026.</div>
               </div>
               <div className="grid grid-cols-7 gap-1">
                  {[1,2,3,4,5,6,0].map(i => {

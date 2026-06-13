@@ -153,13 +153,13 @@ export default function Page() {
       >
         <GoldDashboardClient />
 
-        {/* ── SEO Content Section ── */}
+                {/* ── SEO Content Section ── */}
         <div className="hp-container pb-16 border-t border-slate-100 pt-12">
           <div className="max-w-4xl mx-auto space-y-16">
 
             <section>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">
-                Introduction &amp; Baseline Mechanics
+                Understanding Gold Prices in Nepal 2083/84 (2026 AD)
               </h2>
               <div className="prose prose-slate max-w-none space-y-5">
                 <p className="text-slate-700 text-sm leading-relaxed font-medium">
@@ -169,24 +169,21 @@ export default function Page() {
                   As of 2026, the government applies a 20% customs import duty on all incoming raw gold bars. This tariff protects foreign currency reserves and regulates domestic consumption during peak wedding and festival seasons. Because these import taxes are calculated alongside bank handling commissions, transport logistics, and local insurance overhead, even minor adjustments to national fiscal policy can cause instant price shifts across local showrooms.
                 </p>
                 <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  If you are trying to calculate exactly how these state boundaries and import duties change the baseline cost of raw bullion bars before craftsmanship fees are added, you can compute the exact structural customs markup automatically using our interactive{' '}
-                  <a href="/calculator/gold-tax/" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">
-                    Gold Tax Calculator
-                  </a>. Understanding these fiscal barriers explains why local retail prices diverge from global spot trends, transforming raw gold from a simple global commodity into a highly regulated domestic asset.
+                  If you are trying to calculate exactly how these state boundaries and import duties change the baseline cost of raw bullion bars before craftsmanship fees are added, you can compute the exact structural customs markup automatically using our interactive <a href="/calculator/gold-tax/" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">Gold Tax Calculator</a>. Understanding these fiscal barriers explains why local retail prices diverge from global spot trends, transforming raw gold from a simple global commodity into a highly regulated domestic asset.
                 </p>
               </div>
             </section>
 
             <section>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">
-                Macroeconomic Drivers &amp; Domestic Import Tariffs
+                Official Gold Weight &amp; Valuation Standards in Nepal
               </h2>
               <div className="space-y-5">
                 <p className="text-slate-700 text-sm leading-relaxed font-medium">
                   Beyond custom duties, physical supply limits play a major role in local market behavior. To maintain macroeconomic stability and prevent a sudden drop in foreign cash reserves, the central banking authority strictly limits how much bullion can legally enter the country. The central bank manages a strict daily import quota system for commercial banks, typically limiting total entry to 20 kilograms per day, though this shifts depending on foreign reserve health. When demand outpaces this daily bank quota, local markets face sudden supply shortages. This raw physical scarcity often forces retail associations to raise premiums, causing domestic street prices to spike even if global spot indicators drop.
                 </p>
                 <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  Evaluating the opening market rate requires analyzing the central regulatory body that manages this complex supply chain. The primary pricing mandate is issued daily by the Federation of Nepal Gold and Silver Dealers&apos; Association (<a href="https://www.fenegosida.org/" target="_blank" rel="noopener noreferrer nofollow" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">FENEGOSIDA</a>), which fixes the baseline index at approximately 11:00 AM every morning from Sunday to Friday. Alternative tracking boards closely monitor secondary merchant behaviors, market transparency, and retail distribution networks across regional showrooms to ensure consumer protections remain intact.
+                  Evaluating the opening market rate requires analyzing the central regulatory body that manages this complex supply chain. The primary pricing mandate is issued daily by the <a href="https://www.fenegosida.org/" target="_blank" rel="noopener noreferrer" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)</a>, which fixes the baseline index at approximately 11:00 AM every morning from Sunday to Friday. Alternative tracking boards closely monitor secondary merchant behaviors, market transparency, and retail distribution networks across regional showrooms to ensure consumer protections remain intact.
                 </p>
                 <p className="text-slate-700 text-sm leading-relaxed font-medium">
                   When individuals look to liquidate family assets during economic downturns, storefronts run a reverse calculation using this same benchmark, ignoring the original making charges or VAT paid during purchase. Instead, they run your jewelry through an acid or XRF purity test and apply a standard melting loss deduction.
@@ -203,20 +200,17 @@ export default function Page() {
                   To accurately calculate your final costs, you need to understand how traditional weight systems map onto modern metric measurements. Local marketplaces rely heavily on historical South Asian terms like Tolas, Anas, and Lals, while modern refiners use grams and kilograms. One full Tola equals exactly 11.6638 grams, which means 10 grams of fine gold represents 0.85735 Tola. For smaller custom pieces, a Tola is broken down into 100 Lals, meaning a single Lal equals 0.1166 grams of metal.
                 </p>
                 <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  Because local gold prices are ultimately tied to international contracts priced in US Dollars per troy ounce, any shift in the value of the local currency will immediately alter your counter price. If you want to see how these currency shifts change your purchasing power, you can track real-time global currency pairs using our automated{' '}
-                  <a href="/market-rates/exchange-rate/" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">
-                    Live Forex Exchange Rates Engine
-                  </a>.
+                  Because local gold prices are ultimately tied to international contracts priced in US Dollars per troy ounce, any shift in the value of the local currency will immediately alter your counter price. If you want to see how these currency shifts change your purchasing power, you can track real-time global currency pairs using our automated <a href="/market-rates/exchange-rate/" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">Live Forex Exchange Rates Engine</a>. Monitoring this currency layer helps you anticipate domestic price spikes driven by exchange rate fluctuations, even when global gold prices remain completely flat.
                 </p>
                 <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  Monitoring this currency layer helps you anticipate domestic price spikes driven by exchange rate fluctuations, even when global gold prices remain completely flat. This dynamic ensures retail buyers never make an uneducated transaction when buying raw bullion investments, providing peace of mind whether you are tracking localized remittance distributions or evaluating personal jewelry asset balances.
+                  This dynamic ensures retail buyers never make an uneducated transaction when buying raw bullion investments, providing peace of mind whether you are tracking localized remittance distributions or evaluating personal jewelry asset balances.
                 </p>
               </div>
             </section>
 
             <section>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">
-                The Retail Jewelry Invoicing Formula
+                Real-World Jewelry Pricing Equations (Buying vs. Selling)
               </h2>
               <div className="space-y-5">
                 <p className="text-slate-700 text-sm leading-relaxed font-medium">
@@ -228,30 +222,13 @@ export default function Page() {
                   </code>
                 </div>
                 <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  While gold remains the primary asset for financial security and heritage across the country, silver follows a similar retail logic. Silver prices track independently based on industrial demand and regional silversmithing needs. To check raw benchmarks, calculate metric conversions, or view current rates for custom gemstone settings, check out our companion{' '}
-                  <a href="/market-rates/live-silver-price/" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">
-                    Live Silver Price Calculator
-                  </a>. Reviewing both metals gives you a complete overview of the market, helping you budget accurately before stepping into a showroom showroom layout.
+                  While gold remains the primary asset for financial security and heritage across the country, silver follows a similar retail logic. Silver prices track independently based on industrial demand and regional silversmithing needs. To check raw benchmarks, calculate metric conversions, or view current rates for custom gemstone settings, check out our companion <a href="/market-rates/live-silver-price/" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">Live Silver Price Calculator</a>. Reviewing both metals gives you a complete overview of the market, helping you budget accurately before stepping into a showroom layout.
                 </p>
-              </div>
-            </section>
-
-            <section>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">
-                Asset Diversification &amp; Collateral Liquidity
-              </h2>
-              <div className="space-y-5">
                 <p className="text-slate-700 text-sm leading-relaxed font-medium">
                   In the modern Nepalese financial ecosystem, gold operates as more than an ornament; it functions as a highly liquid tier-one asset class. During contractionary economic cycles, commercial banks and corporate liquidity funds accept hallmark gold biscuits and structural jewelry as premier collateral for emergency cash lines. This collateral system provides instant operational funding for small business owners who use their personal metal reserves to sustain corporate cash flow requirements.
                 </p>
                 <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  However, advanced investors often balance their physical commodity holdings against paper equities and public infrastructure funds. Diversifying capital across various asset classes ensures your personal wealth portfolio remains robust against sudden regulatory changes or mining supply shocks.
-                </p>
-                <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  If you are tracking capital allocations outside of precious metals to maximize your compound interest yield, you can analyze active stock indices and portfolio values through our automated{' '}
-                  <a href="/calculator/nepse/" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">
-                    NEPSE Trading Calculator
-                  </a>. Balancing your physical bullion against liquid equities builds a highly protective defensive barrier around your generational savings.
+                  However, advanced investors often balance their physical commodity holdings against paper equities and public infrastructure funds. Diversifying capital across various asset classes ensures your personal wealth portfolio remains robust against sudden regulatory changes or mining supply shocks. If you are tracking capital allocations outside of precious metals to maximize your compound interest yield, you can analyze active stock indices and portfolio values through our automated <a href="/calculator/nepse/" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">NEPSE Trading Calculator</a>. Balancing your physical bullion against liquid equities builds a highly protective defensive barrier around your generational savings.
                 </p>
               </div>
             </section>
@@ -267,23 +244,85 @@ export default function Page() {
                 
                 <div className="pb-4 border-b border-slate-100 last:border-0 last:pb-0">
                   <h3 className="text-[14px] font-bold text-[#1a73e8] mb-1">
-                    What is the difference between 24K Hallmark and 22K Tejabi gold in Nepal?
+                    1. Who determines the daily gold price in Nepal?
                   </h3>
-                  <p className="text-[13px] text-[#5f6368] leading-relaxed font-medium">
-                    24K Hallmark Gold represents 99.99% pure fine gold, making it the ideal asset for investment bars and capital reserves. 22K Tejabi Gold contains roughly 91.6% pure gold blended with copper or zinc for added strength, making it the structural standard for traditional Nepalese jewelry design like Tilhari and Naugedi malas.
-                  </p>
+                  <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
+                    <p>The official daily bullion benchmarks are established by the Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA). The federation calculates this domestic index every morning from Sunday to Friday at approximately 11:00 AM NPT.</p>
+                    <p>The baseline equation combines the global spot price from the London Bullion Market Association (LBMA), the current USD to NPR exchange rates regulated by the Nepal Rastra Bank (NRB), and the domestic 20% customs import tariff. On Saturdays and national public holidays, the market is closed, and the preceding Friday closing rate carries forward automatically.</p>
+                  </div>
                 </div>
 
                 <div className="pb-4 border-b border-slate-100 last:border-0 last:pb-0">
                   <h3 className="text-[14px] font-bold text-[#1a73e8] mb-1">
-                    Does the daily FENEGOSIDA price list include retail VAT?
+                    2. How many grams are in 1 Tola of gold in Nepal?
                   </h3>
-                  <p className="text-[13px] text-[#5f6368] leading-relaxed font-medium">
-                    No. The baseline price list issued by the federation represents raw, unworked bullion values. Under national accounting codes, retail showrooms must add crafting labor charges alongside the mandatory state 13% value-added tax when finalizing a sales invoice. If you need to map out your broader annual wealth allocations alongside asset purchases to balance your net revenue returns, check your standard deductions with our comprehensive{' '}
-                    <a href="/calculator/income-tax/" className="text-[#1a73e8] underline underline-offset-2 hover:text-[#174ea6] transition-colors">
-                      Nepal Income Tax Calculator
-                    </a>. This grid keeps your household bookkeeping compliant with current Inland Revenue Department rules.
-                  </p>
+                  <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
+                    <p>In standard Nepalese jewelry metrics, 1 Tola of gold is equal to exactly 11.6638 grams. While retail storefronts often round this number to 11.66 grams for rapid over-the-counter quotes, precision refiners use the absolute fractional value. For cross-conversions, 10 grams of gold represents exactly 0.85735 Tola, and a single metric gram translates to 0.085735 Tola.</p>
+                  </div>
+                </div>
+
+                <div className="pb-4 border-b border-slate-100 last:border-0 last:pb-0">
+                  <h3 className="text-[14px] font-bold text-[#1a73e8] mb-1">
+                    3. What is the difference between Hallmark, Chhapawal, and Tejabi Gold?
+                  </h3>
+                  <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
+                    <p><strong>Hallmark / Chhapawal Gold (24K):</strong> This is pure gold at 99.99% refinement with no added metallic alloys. It trades at the peak benchmark rate of Rs. 2,92,000 per Tola and is typically purchased in the form of raw mint bars or investment-grade biscuits.</p>
+                    <p><strong>Tejabi Gold (22K):</strong> Also recognized as Standard Gold, this configuration features roughly 91.6% pure gold mixed with a minor alloy balance (such as copper or silver) to structuralize the metal for daily wear. It carries a set federation discount and trades at Rs. 2,89,100 per Tola.</p>
+                  </div>
+                </div>
+
+                <div className="pb-4 border-b border-slate-100 last:border-0 last:pb-0">
+                  <h3 className="text-[14px] font-bold text-[#1a73e8] mb-1">
+                    4. What is 1 Lal of gold in grams and price today?
+                  </h3>
+                  <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
+                    <p>Exactly 1 Lal equals 0.1166 grams. Because there are precisely 100 Lals in a single traditional Tola, the price of 1 Lal is mathematically equivalent to exactly 1% of the daily Tola rate:</p>
+                    <ul className="list-disc pl-5 space-y-1">
+                        <li>For 24K Fine Chhapawal Gold, 1 Lal costs exactly Rs. 2,920.00.</li>
+                        <li>For 22K Tejabi Gold, 1 Lal costs exactly Rs. 2,891.00.</li>
+                    </ul>
+                    <p className="italic">Note: This represents the raw material value; retail storefront invoices will add customized fabrication fees on top of this baseline.</p>
+                  </div>
+                </div>
+
+                <div className="pb-4 border-b border-slate-100 last:border-0 last:pb-0">
+                  <h3 className="text-[14px] font-bold text-[#1a73e8] mb-1">
+                    5. How much is 4 Ana of gold in Nepal?
+                  </h3>
+                  <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
+                    <p>In local weight protocols, 10 Lals make up 1 Ana. Therefore, 4 Ana equals 40 Lals, representing exactly 40% of a Tola, which translates to a precise metric weight of 4.6655 grams.</p>
+                    <ul className="list-disc pl-5 space-y-1">
+                        <li>The raw bullion value for 4 Ana of 24K Chhapawal Gold is Rs. 1,16,800.00.</li>
+                        <li>The raw bullion value for 4 Ana of 22K Tejabi Gold is Rs. 1,15,640.00.</li>
+                    </ul>
+                    <p className="italic">(Note: If calculating a traditional quarter-tola ornament, which equals exactly 25 Lals/2.5 Ana, the baseline cost sits at Rs. 73,000 for 24K and Rs. 72,275 for 22K).</p>
+                  </div>
+                </div>
+
+                <div className="pb-4 border-b border-slate-100 last:border-0 last:pb-0">
+                  <h3 className="text-[14px] font-bold text-[#1a73e8] mb-1">
+                    6. Does the daily FENEGOSIDA price list include retail VAT and making charges?
+                  </h3>
+                  <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
+                    <p>No. The daily published prices are for raw, unworked bullion metal assets only. When you purchase finished jewelry from a retail showroom, the store owners append two mandatory cost tiers to your final invoice:</p>
+                    <ul className="list-disc pl-5 space-y-1">
+                        <li><strong>Jyala &amp; Jarti:</strong> The crafting labor charges and structural material wastage fees, which typically add an extra 5% to 15% onto the raw metal's base cost.</li>
+                        <li><strong>Value Added Tax (VAT):</strong> A mandatory state-enforced 13% tax applied directly to the combined total of the raw gold and the labor costs.</li>
+                    </ul>
+                    <p>Conversely, when liquidating old jewelry items back to a shop for cash, making charges and taxes are stripped from the payout—you are only paid for the true weight of the raw melted gold minus a standard 2% to 5% melting loss adjustment.</p>
+                  </div>
+                </div>
+
+                <div className="pb-4 border-b border-slate-100 last:border-0 last:pb-0">
+                  <h3 className="text-[14px] font-bold text-[#1a73e8] mb-1">
+                    7. What is the price of Silver (Chandi) per Tola and Lal in Nepal today?
+                  </h3>
+                  <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
+                    <p>Just like gold, silver trading across Nepal utilizes traditional South Asian weight metrics. Based on current market support levels, raw Silver (Chandi) is priced at Rs. 4,840 per Tola.</p>
+                    <p>Broken down into smaller weight fractions, silver costs Rs. 48.40 per Lal. For an ornament weighing exactly 1 Ana (10 Lals), the raw silver value is Rs. 484.00.</p>
+                    <p>Translated into modern metric protocols, silver trades at approximately Rs. 415.00 per 10 Grams.</p>
+                    <p>If you are mapping out your personal portfolio assets or budgeting for major life events alongside precious metal purchases, verify your standard annual household deductions using our comprehensive <a href="/calculator/income-tax/" className="text-[#1a73e8] underline underline-offset-2 hover:text-blue-800 transition-colors">Nepal Income Tax Calculator</a> to keep your financial accounting fully optimized.</p>
+                  </div>
                 </div>
 
               </div>
@@ -295,4 +334,3 @@ export default function Page() {
     </div>
   );
 }
-
