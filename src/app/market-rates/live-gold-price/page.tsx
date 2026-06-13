@@ -321,7 +321,7 @@ export default function Page() {
                     <p>Just like gold, silver trading across Nepal utilizes traditional South Asian weight metrics. Based on current market support levels, raw Silver (Chandi) is priced at Rs. 4,840 per Tola.</p>
                     <p>Broken down into smaller weight fractions, silver costs Rs. 48.40 per Lal. For an ornament weighing exactly 1 Ana (10 Lals), the raw silver value is Rs. 484.00.</p>
                     <p>Translated into modern metric protocols, silver trades at approximately Rs. 415.00 per 10 Grams.</p>
-                    <p>If you are mapping out your personal portfolio assets or budgeting for major life events alongside precious metal purchases, verify your standard annual household deductions using our comprehensive <a href="/calculator/income-tax/" className="text-[#1a73e8] underline underline-offset-2 hover:text-blue-800 transition-colors">Nepal Income Tax Calculator</a> to keep your financial accounting fully optimized.</p>
+                    <p>If you are mapping out your personal portfolio assets or budgeting for major life events alongside precious metal purchases, verify your standard annual household deductions using our comprehensive <a href="/calculator/nepal-income-tax/" className="text-[#1a73e8] underline underline-offset-2 hover:text-blue-800 transition-colors">Nepal Income Tax Calculator</a> to keep your financial accounting fully optimized.</p>
                   </div>
                 </div>
 
