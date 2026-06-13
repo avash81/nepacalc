@@ -11,8 +11,8 @@ export const SITE_CONFIG = {
  * SEO Generator — Strictly follows "No Special Characters" Rule
  * No pipes, no dashes, no ampersands, no colons.
  */
-export function calcMeta({ title, description, slug, keywords = [], canonical }: { title: string; description: string; slug: string; keywords?: string[]; canonical?: string }): Metadata {
-  const ogImage = `${SITE_CONFIG.baseUrl}/og-image.png`;
+export function calcMeta({ title, description, slug, keywords = [], canonical, ogImage: customOgImage }: { title: string; description: string; slug: string; keywords?: string[]; canonical?: string; ogImage?: string }): Metadata {
+  const ogImage = customOgImage ? customOgImage : `${SITE_CONFIG.baseUrl}/og-image.png`;
   
   // Clean Title — Brand enforced at end with a space, NO symbols (except / for years)
   let seoTitle = title
