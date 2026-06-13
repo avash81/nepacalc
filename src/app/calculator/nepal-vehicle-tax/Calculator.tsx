@@ -627,12 +627,7 @@ export default function NepalVehicleTaxCalculator() {
           "Clean Infrastructure Fee: Tiered 2.5% to 112.5% based on vehicle CIF value"
         ]
       }}
-      faqs={[
-        { question: "How is bus or microbus tax calculated in Nepal?", answer: "Bus and microbus annual road tax is determined by the total number of registered passenger seats, not engine CC. A 14-seat microbus pays approximately Rs. 8,000 per year under Bagmati Province rates for FY 2083/84." },
-        { question: "What is the EV import duty structure for 2083/84?", answer: "Under Budget 2083/84, all imported passenger EVs face a flat 20% customs duty on the CIF (Cost, Insurance & Freight) value. Excise duty has been completely abolished. A tiered Clean Infrastructure Investment Fee (2.5% to 112.5% of CIF) is also applied based on vehicle valuation." },
-        { question: "What happens if I do not renew my bluebook for over 5 years?", answer: "You will face heavy financial penalties, but under DoTM's 4-year cap regulation, you are only liable to pay a maximum of 4 years of pending base vehicle tax. However, the 32% per year compounding late fine still applies across all 4 years. Extended delinquency will blacklist your vehicle in the TMIS database." },
-        { question: "Do public or rental EVs get a discount on road tax?", answer: "Yes. Public electric vehicles and registered green rental fleets receive a 50% discount on the standard annual EV road tax slabs, making eco-friendly conversions highly profitable for commercial transport operators." }
-      ]}
+
       sidebar={{
         title: "Auto Hub Nepal",
         subtitle: "Compliance Tools",
