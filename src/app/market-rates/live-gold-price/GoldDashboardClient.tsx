@@ -19,11 +19,15 @@ export default function GoldDashboardClient() {
   const fmt = (n: number) => n.toLocaleString('en-IN');
   const tolaNPR = rates.gold.tolaNPR;
 
+  const silverTolaNPR = rates.silver?.tolaNPR?.current ?? 4840;
+
   const tables = [
     { label: '24K Hallmark Gold', np: 'छापावाल सुन (प्रति तोला)', rate: tolaNPR.current, unit: '1 Tola' },
     { label: '24K Hallmark Gold', np: 'छापावाल सुन (१० ग्राम)', rate: Math.round(tolaNPR.current / 1.1664), unit: '10 Gram' },
     { label: '22K Tejabi Gold', np: 'तेजाबी सुन (प्रति तोला)', rate: Math.round(tolaNPR.current * 0.916), unit: '1 Tola' },
     { label: '22K Tejabi Gold', np: 'तेजाबी सुन (१० ग्राम)', rate: Math.round(tolaNPR.current * 0.916 / 1.1664), unit: '10 Gram' },
+    { label: 'Silver (Chandi)', np: 'चाँदी (प्रति तोला)', rate: silverTolaNPR, unit: '1 Tola' },
+    { label: 'Silver (Chandi)', np: 'चाँदी (१० ग्राम)', rate: Math.round(silverTolaNPR / 1.1664), unit: '10 Gram' },
   ];
 
   return (
@@ -127,22 +131,22 @@ export default function GoldDashboardClient() {
             <div className="space-y-4">
                <h3 className="text-[13px] font-black text-slate-900 uppercase tracking-widest border-l-4 border-amber-500 pl-4">Market Authority</h3>
                <p className="text-[13px] text-slate-500 leading-relaxed font-medium">
-                  The primary regulator of gold rates in Nepal is **FENEGOSIDA**. We utilize their daily benchmarks published at 10:00 AM each morning, adjusted for real-time international spot volatility.
+                 The primary regulator of gold rates in Nepal is <strong>FENEGOSIDA</strong>. We utilize their daily benchmarks published at 10:00 AM each morning, adjusted for real-time international spot volatility.
                </p>
             </div>
             <div className="space-y-4">
                <h3 className="text-[13px] font-black text-slate-900 uppercase tracking-widest border-l-4 border-amber-500 pl-4">Quality Standards</h3>
                <p className="text-[13px] text-slate-500 leading-relaxed font-medium">
-                  **24K Hallmark** is the purest form (99.9%) used for investments and bullion. **22K Tejabi** is used for jewelry, mixed with small amounts of copper or silver for durability.
+                 <strong>24K Hallmark (छापावाल सुन)</strong> is the purest form (99.9%) used for investments and bullion. <strong>22K Tejabi (तेजाबी सुन)</strong> is used for jewelry, mixed with small amounts of copper or silver for durability.
                </p>
             </div>
          </div>
       }
       seoSection={
          <div className="prose prose-slate max-w-none">
-            <h2 className="text-[20px] font-black text-slate-900 mb-4 tracking-tighter">Understanding Gold Prices in Nepal 2083/84</h2>
+            <h2 className="text-[20px] font-black text-slate-900 mb-4 tracking-tighter">Understanding Gold Prices in Nepal 2083/84 (2026 AD)</h2>
             <p className="text-[14px] text-slate-600 leading-relaxed font-medium">
-               Gold prices in the Nepalese market are determined by two primary factors: the **International Spot Price (XAU/USD)** and the domestic **Customs Duty & Taxes**. As of April 2026, Nepal applies a approximately 20% customs duty effectively calculated based on official benchmarks. Our dashboard tracks the **FENEGOSIDA** (Federation of Nepal Gold and Silver Dealers' Association) daily rates ensuring you have the exact market valuation for your jewelry and investments.
+               Gold prices in the Nepalese market are determined by two primary factors: the <strong>International Spot Price (XAU/USD)</strong> and domestic <strong>Customs Duty &amp; Taxes</strong>. Nepal applies approximately 20% customs duty calculated on official benchmarks. Our dashboard tracks <strong>FENEGOSIDA</strong> (Federation of Nepal Gold and Silver Dealers&apos; Association) daily rates — covering <strong>Fine Gold (छापावाल/24K)</strong>, <strong>Tejabi Gold (तेजाबी/22K)</strong>, and <strong>Silver (चाँदी/Chandi)</strong> — ensuring you have the exact market valuation for your jewelry and investments.
             </p>
          </div>
       }
