@@ -131,12 +131,17 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
                </div>
             </div>
 
-            <div className="p-4 bg-[#FFF9E6] border border-[#F29900] rounded-md flex gap-3">
-               <Zap className="w-5 h-5 text-[#F29900] shrink-0" />
-               <p className="text-[10px] text-[#5F6368] font-bold leading-relaxed uppercase">
-                  Rates are automatically synced with <span className="text-[#F29900] underline decoration-2">FENEGOSIDA</span> daily benchmarks.
-               </p>
-            </div>
+             <div className="p-4 bg-[#FFF9E6] border border-[#F29900] rounded-md flex gap-3">
+                <Zap className="w-5 h-5 text-[#F29900] shrink-0" />
+                <div className="flex flex-col gap-1">
+                  <p className="text-[10px] text-[#5F6368] font-bold leading-relaxed uppercase">
+                     Rates are automatically synced with <span className="text-[#F29900] underline decoration-2">FENEGOSIDA</span> daily benchmarks.
+                  </p>
+                  <p className="text-[10px] text-[#5F6368] font-bold">
+                    Calculations are based on today's live rate. <a href="/market-rates/live-gold-price/" className="text-[#1A73E8] hover:underline">View the Official Daily Gold Price History here.</a>
+                  </p>
+                </div>
+             </div>
           </div>
           <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
              Generate Metal Audit

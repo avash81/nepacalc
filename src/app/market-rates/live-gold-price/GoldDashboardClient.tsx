@@ -95,6 +95,12 @@ export default function GoldDashboardClient() {
                     </tbody>
                  </table>
               </div>
+              <div className="mt-6">
+                <a href="/calculator/gold-converter/" className="block w-full py-4 px-6 bg-amber-50 border border-amber-200 rounded-xl text-center hover:bg-amber-100 transition-colors">
+                  <span className="block text-amber-800 font-black uppercase text-[12px] tracking-widest mb-1">🧮 Have specific jewelry to weigh?</span>
+                  <span className="block text-amber-700 font-bold text-[11px]">Use our Gold Weight & Tola Converter to calculate the exact value of your gold in Grams, Lal, or Ratti instantly.</span>
+                </a>
+              </div>
            </div>
 
            {/* Mini History Section */}
