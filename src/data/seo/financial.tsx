@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { SEOContent } from './types';
 
 export const financialSEO: Record<string, SEOContent> = {
@@ -2815,155 +2815,190 @@ export const financialSEO: Record<string, SEOContent> = {
       raw: "Total Tax = Annual Slab Rate + (Annual Slab Rate x Penalty %) + Insurance + Renewal Fee"
     },
     content: (
-        <div className="space-y-16">
-            <div className="bg-[#0f172a] text-white rounded-[2.5rem] p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
+        <div className="space-y-10">
+
+            {/* ── HERO BANNER ────────────────────────────────────── */}
+            <div className="bg-[#0f172a] text-white rounded-2xl p-10 border border-slate-800 shadow-xl relative overflow-hidden">
+                <div className="absolute inset-0 opacity-10"
+                    style={{ backgroundImage: 'radial-gradient(circle at 80% 50%, #1A73E8 0%, transparent 60%)' }} />
                 <div className="relative z-10">
-                    <h2 className="text-blue-400 font-black text-xs uppercase tracking-[0.4em] mb-4">
-                        Professional Computational Guidance
+                    <h2 className="text-blue-400 font-black text-xs uppercase tracking-[0.4em] mb-3">
+                        Nepal Vehicle Tax Guide — FY 2082/83 (2025/26)
                     </h2>
-                    <h3 className="text-4xl font-black mb-8 leading-tight">
-                        Optimized Calculations & Analytical Intelligence
+                    <h3 className="text-3xl font-black mb-5 leading-tight">
+                        How Nepal's Road Tax &amp; Bluebook Renewal Works
                     </h3>
-                    <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-4xl">
-                        Welcome to our high-precision technical platform. This tool is designed to deliver absolute mathematical clarity, empowering professionals, students, and institutions to execute complex audits with total confidence. By translating theoretical formulations into high-fidelity digital matrices, we eliminate calculation anomalies and drive strategic decision-making across personal, academic, and industrial workflows.
+                    <p className="text-slate-300 text-base leading-relaxed max-w-3xl">
+                        Every registered vehicle in Nepal must pay an annual road tax and renew its Bluebook (vehicle registration certificate) through the Department of Transport Management (DoTM / DOTM). Failure to renew on time triggers progressive penalty interest that compounds each fiscal year. This calculator covers bikes, scooters, cars, jeeps, buses, trucks, and electric vehicles using the FY 2082/83 provincial slab rates.
                     </p>
                 </div>
             </div>
 
-            <section className="space-y-8">
-                <h3 className="text-3xl font-black text-slate-900">Core Operational Walkthrough and Technical Overview</h3>
-                <div className="bg-white border border-slate-200 rounded-[2.5rem] p-12 shadow-sm text-slate-700 leading-relaxed space-y-6">
-                    <p className="text-slate-600 leading-relaxed text-base">
-                        This specialized tool is constructed to provide rapid, verified results for your immediate computational needs.
-                        Whether you are analyzing physical variables, calculating financial structures, or mapping geometric coordinates,
-                        the underlying algorithmic engine provides unparalleled precision. We have integrated edge-case detection to ensure
-                        that extreme input parameters are processed gracefully, yielding results that comply with rigorous international standards.
+            {/* ── SECTION 1 — HOW THE TAX SYSTEM WORKS ──────────── */}
+            <section className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+                <h3 className="text-xl font-black text-slate-900 mb-5">1. How Nepal's Vehicle Tax System Works (FY 2082/83)</h3>
+                <div className="text-slate-700 leading-relaxed space-y-4 text-sm">
+                    <p>
+                        Nepal's vehicle road tax is governed by the <strong>Vehicle and Transport Management Act (VTMA)</strong> and administered by each province's Transport Management Office (TMO). Since federalisation, provinces set their own slab rates while following the federal framework. The DoTM's online TMIS portal (<a href="https://dotm.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">dotm.gov.np</a>) provides vehicle status checks, and digital payment is accepted via eSewa, Khalti, and MyPay in Bagmati and Gandaki provinces.
                     </p>
-                    <p className="text-slate-600 leading-relaxed text-base">
-                        To utilize the calculator effectively, simply select your desired operation mode, input the known variables into the
-                        responsive fields, and let the computational engine perform the heavy lifting. The interface is specifically tailored
-                        to reduce cognitive load, presenting actionable insights immediately without the necessity of manual cross-verification.
-                        This dynamic system ensures that users from all disciplines can reliably model their scenarios.
+                    <p>
+                        Tax slabs are determined by <strong>engine cubic capacity (CC) for petrol/diesel vehicles</strong> and by <strong>motor kilowatts (KW) for electric vehicles (EVs)</strong>. The fiscal year runs from Shrawan 1 to Ashad end (mid-July to mid-July). Renewal is required annually, and vehicle owners get a <strong>90-day grace period</strong> after the fiscal year begins before penalties apply.
+                    </p>
+                    <p>
+                        The FY 2082/83 federal budget introduced key changes: <strong>EVs with motors above 100 KW</strong> now fall under a higher slab, import duty on petrol vehicles above 1,500 CC was revised upward under the new CIF-value-based import scale, and all provinces must now integrate with the national TMIS database for bluebook stamping.
                     </p>
                 </div>
             </section>
 
+            {/* ── SECTION 2 — RATE TABLES ────────────────────────── */}
+            <section className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+                <h3 className="text-xl font-black text-slate-900 mb-5">2. FY 2082/83 Road Tax Rate Tables (All Vehicle Types)</h3>
 
-            <section className="mt-12 bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-2xl font-black text-slate-900 mb-6">1. Theoretical Foundations and Advanced Computational Mechanics</h3>
-                <div className="text-slate-700 leading-relaxed space-y-6">
-                    <p>
-                        In the modern era of automated computing, the principles of applied mathematics form the structural bedrock of all technical advancement. Every software algorithm, physical simulation, and data visualization is fundamentally an exercise in algebraic relations and numerical modeling. By translating abstract human requirements into linear, quadratic, or matrix models, computer scientists can process complex real-world variables at lightning speed. Fostering mathematical proficiency is key to preparing the next generation of engineers, data scientists, and researchers for the global digital economy.
-                    </p>
-                    <p>
-                        Applied mathematics teaches us to think systematically, to identify underlying patterns under tight constraints, and to break down multi-variable challenges into manageable logical steps. This cognitive framework is an invaluable asset across all professional fields, from structural engineering to public policy formulation. By isolating variables, identifying direct and inverse proportions, and predicting outcomes with high statistical confidence, practitioners can design optimal solutions that are highly relevant to their communities' sustainable development.
-                    </p>
-                    <p>
-                        Furthermore, the continuous integration of automated computational engines ensures that human calculation errors are entirely mitigated. By leveraging high-precision online tools, practitioners can double-check complex structural equations, optimize industrial resource allocation, and gain a profound understanding of mathematical systems. These analytical exercises build a high level of mathematical confidence, proving that every successful modern operation is rooted in structural mathematical precision.
-                    </p>
-                    <p>
-                        Beyond simple calculation, this tool acts as a comprehensive analytical platform that integrates seamlessly into complex professional workflows. In today's data-driven environment, the ability to rapidly process numerical inputs and generate verified outputs is a critical competitive advantage. Whether you are conducting academic research, managing a construction project, optimizing an investment portfolio, or auditing financial statements, precision is paramount. By replacing manual calculation methods with our rigorous digital engine, you mitigate the risk of human error and ensure that every analytical decision is based on verified mathematical logic.
-                    </p>
-                    <p>
-                        The architecture of this calculator has been engineered to handle edge cases and extreme variable ranges without compromising speed or accuracy. Our underlying algorithms undergo continuous testing against established academic models and industry benchmarks. This commitment to computational integrity means that results remain consistent regardless of the complexity of the inputs. Furthermore, the responsive design of the platform ensures that this high-fidelity modeling capability is accessible across all devices, empowering you to perform critical analysis whether you are in the office, the classroom, or on the field.
-                     Many users also utilize <a href="/calculator/length-converter/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our length calculation tool</a> alongside this analysis.</p>
-                </div>
-            
-                    <p>
-                        In addition to the core analytical frameworks, the deployment of machine learning algorithms and heuristic models is increasingly pivotal in modern computational workflows. As data scales exponentially, traditional linear models may encounter performance bottlenecks. By integrating predictive heuristics, we allow for near-instantaneous approximations of highly complex, non-linear problems. This hybrid approach ensures that professionals can maintain operational velocity without sacrificing analytical rigor, especially when dealing with massive datasets in real-time environments.
-                     Additionally, <a href="/calculator/quadratic-solver/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this distance estimator</a> is highly recommended for related estimations.</p>
-                    <p>
-                        Furthermore, the architectural resilience of digital modeling tools is a primary concern for enterprise-level applications. Ensuring high availability, fault tolerance, and secure data transmission protocols is essential when financial and structural data are being processed. Our platform is built on modern web standards, utilizing robust error-handling and isolated runtime environments to guarantee that your computational sessions are both secure and highly reliable, regardless of external network conditions.
-                    </p>
-
-            </section>
-
-            <section className="mt-12 bg-slate-900 text-white rounded-3xl p-10 relative overflow-hidden">
-                <h3 className="text-2xl font-black mb-6">2. Regional Integration, Strategic Audits, and Practical Case Studies</h3>
-                <div className="text-slate-300 leading-relaxed space-y-6">
-                    <p>
-                        For users in South Asia, and particularly in Nepal, the calculator is meticulously tailored to align with local regulatory frameworks and market conditions. From the Nepal Rastra Bank's monetary policies to local real estate measurement conventions like Ropani and Aana, context-specific parameters are deeply embedded into the logic. This regional focus ensures that the tool is not just a generic mathematical engine, but a specialized professional utility that delivers actionable, localized insights. By bridging international mathematical standards with precise local context, we provide unparalleled support for regional professionals navigating complex socio-economic landscapes.
-                    </p>
-                    <p>
-                        Ultimately, mastering numerical analysis requires both practical experience and reliable technological support. We encourage users to actively experiment with the calculator's input parameters to observe real-time output variance, effectively conducting sensitivity analysis on the fly. This interactive learning loop fosters a deeper, more intuitive grasp of the underlying variables, transforming raw data into strategic intelligence. Embrace the power of verified digital computation to streamline your operations, enhance your academic performance, and secure your professional success in FY Current Year and beyond.
-                     Many users also utilize <a href="/calculator/logarithm-calculator/" className="text-blue-600 hover:text-blue-800 underline transition-colors">logarithm calculator</a> alongside this analysis.</p>
-                    <p>
-                        Continuous engagement with these verified digital modeling tools empowers users to rapidly iterate on complex scenarios, enabling precise forecasting, robust structural analysis, and highly informed strategic planning. Embracing this analytical rigor fundamentally transforms standard operational workflows into optimized, high-fidelity quantitative processes that guarantee absolute computational reliability.
-                    </p>
-                    <p>
-                        In the civil engineering and material logistics sectors, precise project estimation is the primary safeguard against budget overruns and structural compromise. Volumetric calculations are the fundamental starting point for any construction project, translating three-dimensional design blueprints into actionable procurement orders. Whether casting a massive retaining wall, building a partition wall, or calculating the paint requirements for a commercial complex, understanding dry-to-wet shrinkage dynamics and density metrics is essential for maintaining strict material audits.
-                     Official regulatory standards and data benchmarks are frequently aligned with references from the <a href="https://ird.gov.np/" target="_blank" rel="dofollow noopener" className="text-blue-600 hover:text-blue-800 underline transition-colors">Inland Revenue Department (IRD)</a>.</p>
-                    <p>
-                        Dry materials such as cement, sand, and aggregate contain high proportions of air voids. When water is added, the particles compact and fill these voids, causing a significant reduction in total volume. In concrete mix design, this is accounted for by applying a dry-volume multiplier, typically standardized as 1.54. Similarly, mortar volume in brick masonry requires a distinct dry multiplier (usually 1.33) to account for compaction. Failing to apply these mathematical constants leads to the 'Procurement Gap'—a common site anomaly where raw materials run out mid-project, leading to cold joints, construction delays, and increased transport costs.
-                    </p>
-                </div>
-            </section>
-
-            <section className="mt-12 bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-                <h3 className="text-2xl font-black text-slate-900 mb-6">3. Deep Analytical Frameworks and Multi-Dimensional Metrics</h3>
-                <div className="text-slate-700 leading-relaxed space-y-6">
-                    <p>
-                        Expanding upon foundational principles, advanced predictive modeling allows for unprecedented foresight into operational and financial outcomes. When assessing long-term investment vehicles or complex structural projects, standard deterministic calculations often fall short. Incorporating probabilistic elements into our models allows users to visualize a spectrum of possible scenarios, from best-case high-yield projections to conservative risk-adjusted baselines. This multi-dimensional approach is critical for resilient strategic planning in volatile macroeconomic environments.
-                     For a broader understanding, you may also want to explore <a href="/calculator/market-rates/exchange-rate/" className="text-blue-600 hover:text-blue-800 underline transition-colors">our live calculation tool</a>.</p>
-                    <p>
-                        Data validation is another cornerstone of our digital infrastructure. Every input provided by the user is subjected to rigorous boundary checks and type validations before reaching the core processing algorithms. This robust sanitization prevents memory overflows and logical fallacies that can skew analytical outputs. For academic researchers and financial auditors, knowing that the calculation engine is fortified against erroneous inputs provides profound confidence in the integrity of the final report. This strict adherence to data quality sets our computational tools apart as true professional-grade instruments.
-                    </p>
-                    <p>
-                        Moreover, we recognize the importance of interoperability in modern digital workspaces. The ability to cross-reference outputs from a financial calculator with a tax auditing tool or to pair structural load calculations with material estimators ensures a cohesive analytical workflow. Our platform is structured as an ecosystem of complementary mathematical engines, designed to work in tandem. By bridging discrete computational models, professionals can synthesize holistic, overarching strategies that account for every technical variable and financial constraint.
-                    </p>
-                    <p>
-                        To further maximize the utility of these calculations, we recommend establishing a consistent auditing cadence. Mathematical models are most effective when used iteratively over time, allowing for the tracking of performance variances against historical benchmarks. Whether tracking the amortization schedule of a corporate loan or monitoring the specific gravity variations in a concrete batch plant, longitudinal data analysis unlocks deep operational insights. Utilizing these tools as persistent monitoring systems rather than one-off estimators drives a culture of continuous improvement and unyielding technical precision.
-                    </p>
-                    <p>
-                        In conclusion, the mastery of advanced numerical algorithms is indistinguishable from professional excellence. We invite you to explore the full depth of our computational ecosystem, leveraging these verified mathematical models to drive innovation, ensure compliance, and achieve structural perfection in all your professional endeavors. Through strict adherence to mathematical truth and continuous technological refinement, we empower the global community of analysts, engineers, and students to build a smarter, more resilient future.
-                    </p>
-                </div>
-            </section>
-
-
-            <section className="mt-12 bg-white border border-slate-200 rounded-[3rem] p-12 shadow-sm">
-                <h3 className="text-3xl font-black text-slate-900 mb-4">Explore Related Computational Tools</h3>
-                <p className="text-slate-600 mb-8 leading-relaxed text-lg">
-                    To further enhance your computational accuracy, we highly recommend integrating your current workflow with these related specialized calculators. Auditing your values across multiple models ensures complete structural consistency and absolute precision.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/geometry-3d/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
-                            Analyze 3D Visualizer &rarr;
-                        </a>
-                    </div>
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/physics-force/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
-                            Analyze Acceleration Calculator &rarr;
-                        </a>
-                    </div>
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/age-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
-                            Analyze Age Calculator &rarr;
-                        </a>
-                    </div>
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/geometry-3d/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
-                            Analyze Angle Calculator &rarr;
-                        </a>
-                    </div>
-                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
-                        <a href="/calculator/area-calculator/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">
-                            Analyze Area Calculator &rarr;
-                        </a>
+                <div className="space-y-6 text-sm">
+                    <div>
+                        <h4 className="font-bold text-slate-800 mb-2">🏍️ Motorbike / Scooter (Petrol)</h4>
+                        <div className="overflow-x-auto">
+                            <table className="w-full border-collapse">
+                                <thead><tr className="bg-slate-100"><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Engine CC</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Annual Tax (NPR)</th></tr></thead>
+                                <tbody>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Up to 125 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 3,500</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">126 CC – 150 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 5,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">151 CC – 225 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 7,500</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">226 CC – 400 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 10,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Above 400 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 15,000</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
+                    <div>
+                        <h4 className="font-bold text-slate-800 mb-2">🚗 Private Car / Jeep / Van (Petrol/Diesel)</h4>
+                        <div className="overflow-x-auto">
+                            <table className="w-full border-collapse">
+                                <thead><tr className="bg-slate-100"><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Engine CC</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Annual Tax (NPR)</th></tr></thead>
+                                <tbody>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Up to 1,000 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 5,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">1,001 – 1,500 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 7,500</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">1,501 – 2,000 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 12,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">2,001 – 2,500 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 18,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Above 2,500 CC</td><td className="p-3 border border-slate-200 font-semibold">Rs. 25,000</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 className="font-bold text-slate-800 mb-2">⚡ Electric Vehicle (EV) — Road Tax Only</h4>
+                        <div className="overflow-x-auto">
+                            <table className="w-full border-collapse">
+                                <thead><tr className="bg-slate-100"><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Motor Power (KW)</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Annual Tax (NPR)</th></tr></thead>
+                                <tbody>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Up to 10 KW (E-Scooter)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 1,500</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">11 – 50 KW</td><td className="p-3 border border-slate-200 font-semibold">Rs. 2,500</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">51 – 100 KW</td><td className="p-3 border border-slate-200 font-semibold">Rs. 5,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Above 100 KW</td><td className="p-3 border border-slate-200 font-semibold">Rs. 8,000</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p className="text-slate-500 text-xs mt-2">Note: EVs are exempt from the road tax surcharge but must pay the Rs. 300 renewal fee and mandatory third-party insurance.</p>
+                    </div>
+
+                    <div>
+                        <h4 className="font-bold text-slate-800 mb-2">🚌 Bus / Minibus / Microbus (Commercial)</h4>
+                        <div className="overflow-x-auto">
+                            <table className="w-full border-collapse">
+                                <thead><tr className="bg-slate-100"><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Seating Capacity</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Annual Tax (NPR)</th></tr></thead>
+                                <tbody>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Microbus (up to 15 seats)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 7,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Minibus (16–35 seats)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 12,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Bus (36–50 seats)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 18,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Large Bus (above 50 seats)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 25,000</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 className="font-bold text-slate-800 mb-2">🚛 Truck / Mini-Truck / Tempo</h4>
+                        <div className="overflow-x-auto">
+                            <table className="w-full border-collapse">
+                                <thead><tr className="bg-slate-100"><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Payload Capacity</th><th className="p-3 border border-slate-200 text-left font-bold text-slate-700">Annual Tax (NPR)</th></tr></thead>
+                                <tbody>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Tempo / 3-Wheeler</td><td className="p-3 border border-slate-200 font-semibold">Rs. 5,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Mini-Truck (up to 3 tonnes)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 10,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Medium Truck (3–8 tonnes)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 18,000</td></tr>
+                                    <tr className="hover:bg-slate-50"><td className="p-3 border border-slate-200">Heavy Truck (above 8 tonnes)</td><td className="p-3 border border-slate-200 font-semibold">Rs. 25,000</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </section>
+
+            {/* ── SECTION 3 — PENALTY & RENEWAL ─────────────────── */}
+            <section className="bg-slate-900 text-white rounded-2xl p-8 shadow-sm">
+                <h3 className="text-xl font-black mb-5">3. Late Penalty Rules &amp; Renewal Checklist (FY 2082/83)</h3>
+                <div className="text-slate-300 leading-relaxed space-y-4 text-sm">
+                    <p>
+                        If you miss the fiscal-year deadline (Ashad end), a <strong>progressive penalty interest</strong> is applied on the base annual tax. The penalty structure as of FY 2082/83 is:
+                    </p>
+                    <div className="overflow-x-auto">
+                        <table className="w-full border-collapse">
+                            <thead><tr className="bg-slate-700"><th className="p-3 border border-slate-600 text-left font-bold">Delay Period</th><th className="p-3 border border-slate-600 text-left font-bold">Penalty Rate</th></tr></thead>
+                            <tbody>
+                                <tr className="hover:bg-slate-800"><td className="p-3 border border-slate-600">Within 90-day grace period</td><td className="p-3 border border-slate-600 text-green-400 font-semibold">No Penalty</td></tr>
+                                <tr className="hover:bg-slate-800"><td className="p-3 border border-slate-600">After grace (same fiscal year)</td><td className="p-3 border border-slate-600 text-yellow-400 font-semibold">5% – 10% of annual tax</td></tr>
+                                <tr className="hover:bg-slate-800"><td className="p-3 border border-slate-600">1 year overdue</td><td className="p-3 border border-slate-600 text-orange-400 font-semibold">20% + previous year penalty</td></tr>
+                                <tr className="hover:bg-slate-800"><td className="p-3 border border-slate-600">2+ years overdue</td><td className="p-3 border border-slate-600 text-red-400 font-semibold">Up to 32% per year, capped at 4 years</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        Every renewal requires: a <strong>Rs. 300 Renewal Fee</strong> payable to the TMO, and a valid <strong>Third-Party Insurance</strong> policy (approximately Rs. 2,200 for bikes, Rs. 4,500+ for cars). Check your DoTM TMIS vehicle status at <a href="https://dotm.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">dotm.gov.np</a> before visiting your Transport Management Office.
+                    </p>
+                </div>
+            </section>
+
+            {/* ── RELATED TOOLS ──────────────────────────────────── */}
+            <section className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
+                <h3 className="text-xl font-black text-slate-900 mb-5">Related Nepal Tax &amp; Finance Tools</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+                    <div className="bg-slate-50 p-5 rounded-xl border border-slate-100"><a href="/calculator/auto-loan/" className="text-blue-600 hover:text-blue-800 underline font-semibold">Auto Loan EMI Calculator →</a><p className="text-slate-500 mt-1 text-xs">Calculate monthly vehicle loan EMI from Nepali banks.</p></div>
+                    <div className="bg-slate-50 p-5 rounded-xl border border-slate-100"><a href="/calculator/nepal-salary/" className="text-blue-600 hover:text-blue-800 underline font-semibold">Nepal Salary Tax Calculator →</a><p className="text-slate-500 mt-1 text-xs">Compute income tax under FY 2082/83 rates.</p></div>
+                    <div className="bg-slate-50 p-5 rounded-xl border border-slate-100"><a href="/calculator/gold-tax/" className="text-blue-600 hover:text-blue-800 underline font-semibold">Gold Import Tax Calculator →</a><p className="text-slate-500 mt-1 text-xs">Estimate Nepal customs duty for gold imports.</p></div>
+                    <div className="bg-slate-50 p-5 rounded-xl border border-slate-100"><a href="/calculator/nea-bill/" className="text-blue-600 hover:text-blue-800 underline font-semibold">NEA Electricity Bill Calculator →</a><p className="text-slate-500 mt-1 text-xs">Forecast your NEA bill using current tariff slabs.</p></div>
+                    <div className="bg-slate-50 p-5 rounded-xl border border-slate-100"><a href="/calculator/loan-emi/" className="text-blue-600 hover:text-blue-800 underline font-semibold">Loan EMI Calculator →</a><p className="text-slate-500 mt-1 text-xs">Plan home or vehicle loan repayments in NPR.</p></div>
+                    <div className="bg-slate-50 p-5 rounded-xl border border-slate-100"><a href="/calculator/tds-calculator/" className="text-blue-600 hover:text-blue-800 underline font-semibold">TDS Calculator Nepal →</a><p className="text-slate-500 mt-1 text-xs">Calculate TDS on salary and contractor payments.</p></div>
+                </div>
+            </section>
+
         </div>
     ),
     faqs: [
-      { question: "Is vehicle tax different in each province of Nepal?", answer: "Yes. Since the federalization, vehicle tax is a provincial subject. While rates are similar, Bagmati Province (Kathmandu) and Lumbini Province often have different slabs and penalty calculations." },
-      { question: "How is the tax for electric vehicles (EV) calculated in Nepal?", answer: "EV tax is calculated based on the Kilowatt (KW) rating of the motor. Currently, EVs enjoy significantly lower road tax compared to petrol/diesel vehicles as an incentive for clean energy." },
-      { question: "What documents are required for bluebook renewal?", answer: "You need the original Bluebook, a valid Third-Party Insurance policy, and the tax payment receipt from the previous year. If paying online, you must still visit the TMO to get the physical stamp." },
-      { question: "Can I pay my vehicle tax through the Nagarik App?", answer: "Yes. The Nagarik App and several digital wallets like eSewa/Khalti now support vehicle tax payment for Bagmati and Gandaki provinces, with more being added." },
-      { question: "What is the penalty if I miss the 90-day grace period?", answer: "The penalty starts at 5% for the first month after the grace period, increases to 10% for the rest of the fiscal year, and hits a maximum of 20% if delayed to the following fiscal year." },
-      { question: "Do I need to pay road tax if my vehicle is not in use?", answer: "If a vehicle is not in use, you can 'suspend' the bluebook at the TMO to avoid annual taxes. However, you must pay all outstanding dues and a small suspension fee." }
+      {
+        question: "Where can I pay my vehicle tax in Nepal?",
+        answer: "You can pay vehicle road tax at your registered Transport Management Office (TMO) in person. For Bagmati and Gandaki provinces, online payment is available through the Nagarik App, eSewa, Khalti, and MyPay digital wallets. After online payment, you must still visit the TMO to get the physical Bluebook renewal stamp. Verify current payment options at dotm.gov.np."
+      },
+      {
+        question: "What is the penalty for late Bluebook renewal in Nepal?",
+        answer: "If you renew after the 90-day grace period, penalties start at 5%–10% of your annual road tax for delays within the same fiscal year, rising to 20% for the next year, and compounding up to 32% per year for multi-year delays, capped at 4 years. A bike with Rs. 5,000 annual tax delayed 2 fiscal years could owe Rs. 5,000 base + accumulated compounding penalties + Rs. 300 renewal fee + insurance."
+      },
+      {
+        question: "How often should I renew my vehicle tax in Nepal?",
+        answer: "Vehicle road tax must be renewed every year. The fiscal year runs from Shrawan 1 to Ashad end (mid-July to mid-July). You have a 90-day grace period after Shrawan 1 to renew without any penalty. Missing this window triggers progressive penalty interest. Renewal also requires a valid Third-Party Insurance policy for the new year."
+      },
+      {
+        question: "Is Third-Party Insurance mandatory for vehicle tax renewal in Nepal?",
+        answer: "Yes. Third-Party Insurance is legally mandatory for all vehicles in Nepal and is a required document for Bluebook renewal at the TMO. Without a valid insurance certificate, the TMO will not process your renewal. Annual premiums are approximately Rs. 2,200 for motorcycles/scooters and Rs. 4,500–Rs. 8,000 for private cars, depending on engine capacity and the insurance company."
+      },
+      {
+        question: "How is Electric Vehicle (EV) road tax calculated in Nepal?",
+        answer: "EV road tax is based on the motor's kilowatt (KW) rating as listed in the Bluebook, not CC. FY 2082/83 rates: up to 10 KW = Rs. 1,500, 11–50 KW = Rs. 2,500, 51–100 KW = Rs. 5,000, above 100 KW = Rs. 8,000. EVs still pay the Rs. 300 renewal fee and mandatory Third-Party Insurance but are not subject to the CIF-based import surcharge that applies to new petrol/diesel vehicle imports."
+      },
+      {
+        question: "Is vehicle tax different across Nepal's provinces?",
+        answer: "Yes. Since federalisation, vehicle road tax is a provincial subject. Bagmati (Kathmandu), Koshi, Lumbini, Gandaki, and Madhesh provinces may apply different slab rates and penalty structures. This calculator uses Bagmati Province rates as the default (the most commonly searched benchmark). Select your province in the calculator for more accurate results."
+      }
     ]
   },
 

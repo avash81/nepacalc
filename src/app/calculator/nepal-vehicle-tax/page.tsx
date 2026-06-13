@@ -34,34 +34,50 @@ const customSchema = {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How can I check my vehicle tax online in Nepal?",
+          "name": "Where can I pay my vehicle tax in Nepal?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You can check your vehicle tax liabilities online by accessing your provincial Transport Management Information System (TMIS) portal or by utilizing trusted digital financial applications like Khalti, eSewa, or MyPay. Alternatively, input your registration details into our online Nepal Vehicle Tax Calculator to get an instant itemized cost breakdown."
+            "text": "You can pay vehicle road tax at your registered Transport Management Office (TMO) in person. For Bagmati and Gandaki provinces, online payment is available through the Nagarik App, eSewa, Khalti, and MyPay digital wallets. After online payment, you must still visit the TMO to get the physical Bluebook renewal stamp. Verify current payment options at dotm.gov.np."
           }
         },
         {
           "@type": "Question",
-          "name": "What happens if I do not renew my bluebook for over 5 years?",
+          "name": "What is the penalty for late Bluebook renewal in Nepal?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "If you fail to renew your bluebook for over 5 consecutive years, your vehicle risks getting completely blacklisted or blocked in the Department of Transport Management (DoTM) master database. You will face heavy financial penalties up to the legal 4-year tax cap, and traffic police can impound your vehicle instantly on public roads."
+            "text": "If you renew after the 90-day grace period, penalties start at 5%–10% of your annual road tax for delays within the same fiscal year, rising to 20% for the next year, and compounding up to 32% per year for multi-year delays, capped at 4 years. A bike with Rs. 5,000 annual tax delayed 2 fiscal years could owe Rs. 5,000 base plus accumulated compounding penalties plus the Rs. 300 renewal fee and insurance."
           }
         },
         {
           "@type": "Question",
-          "name": "Do electric vehicles pay road tax in Nepal?",
+          "name": "How often should I renew my vehicle tax in Nepal?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes, electric vehicles pay an annual road tax in Nepal. For the 2083/84 fiscal year, EV four-wheelers are taxed between Rs. 5,000 and Rs. 30,000 based entirely on their motor capacity in Kilowatts (kW)."
+            "text": "Vehicle road tax must be renewed every year. The fiscal year runs from Shrawan 1 to Ashad end (mid-July to mid-July). You have a 90-day grace period after Shrawan 1 to renew without any penalty. Missing this window triggers progressive penalty interest. Renewal also requires a valid Third-Party Insurance policy for the new year."
           }
         },
         {
           "@type": "Question",
-          "name": "Can I pay my vehicle tax in a different province?",
+          "name": "Is Third-Party Insurance mandatory for vehicle tax renewal in Nepal?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Vehicle tax rates and rules are governed provincially. You must pay your annual vehicle tax to the specific province where your vehicle was initially registered (e.g., Bagmati Province, Koshi Province, Gandaki Province), or go through an official provincial transfer process if you have permanently relocated your asset."
+            "text": "Yes. Third-Party Insurance is legally mandatory for all vehicles in Nepal and is a required document for Bluebook renewal at the TMO. Without a valid insurance certificate, the TMO will not process your renewal. Annual premiums are approximately Rs. 2,200 for motorcycles/scooters and Rs. 4,500–Rs. 8,000 for private cars, depending on engine capacity and the insurance company."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Electric Vehicle (EV) road tax calculated in Nepal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "EV road tax is based on the motor's kilowatt (KW) rating as listed in the Bluebook, not CC. FY 2082/83 rates: up to 10 KW = Rs. 1,500, 11–50 KW = Rs. 2,500, 51–100 KW = Rs. 5,000, above 100 KW = Rs. 8,000. EVs still pay the Rs. 300 renewal fee and mandatory Third-Party Insurance but are not subject to the CIF-based import surcharge that applies to new petrol/diesel vehicle imports."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is vehicle tax different across Nepal's provinces?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Since federalisation, vehicle road tax is a provincial subject. Bagmati (Kathmandu), Koshi, Lumbini, Gandaki, and Madhesh provinces may apply different slab rates and penalty structures. This calculator uses Bagmati Province rates as the default (the most commonly searched benchmark). Select your province in the calculator for more accurate results."
           }
         }
       ]
