@@ -49,7 +49,7 @@ export default function Page() {
         ]}
       >
         <GoldDashboardClient />
-        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
+        <div className="hp-container pb-16 border-t border-slate-100 pt-12">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-amber-50 px-6 py-3 rounded-2xl inline-block">
               Market Insight: Gold Trading in Nepal

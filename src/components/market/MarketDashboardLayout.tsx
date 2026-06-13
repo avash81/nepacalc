@@ -36,9 +36,9 @@ export function MarketDashboardLayout({
   const isPositive = Number(changePercent || 0) >= 0;
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
+    <div className="w-full bg-[#F8FAFC]">
       {/* 1. Header & Billboard */}
-      <section className="bg-white border-b border-slate-200 pt-20 pb-12">
+      <section className="bg-white border-b border-slate-200 pt-8 pb-8">
         <div className="max-w-7xl mx-auto px-6">
           <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#5F6368] mb-8">
             <button 
@@ -101,7 +101,7 @@ export function MarketDashboardLayout({
       </section>
 
       {/* 2. Primary Dashboard Layout */}
-      <main className="max-w-7xl mx-auto px-6 py-12">
+      <main className="max-w-7xl mx-auto px-6 pt-8 pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           {/* Main Board Area (Table / Chart) */}
