@@ -14,7 +14,7 @@ export const metadata = calcMeta({
   ],
 });
 
-export const customSchema = {
+const customSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
