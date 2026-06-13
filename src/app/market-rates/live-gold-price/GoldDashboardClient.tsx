@@ -3,9 +3,9 @@
 import React from 'react';
 import { MarketDashboardLayout } from '@/components/market/MarketDashboardLayout';
 import { useLiveRates } from '@/hooks/useLiveRates';
-import GoldConverter from '@/app/calculator/gold-converter/Calculator';
+import QuickPriceEstimator from '@/app/market-rates/live-gold-price/QuickPriceEstimator';
 import TradingViewWidget from '@/components/market/TradingViewWidget';
-import { Trophy, ShieldCheck, ArrowRight, Table, History, BarChart3 } from 'lucide-react';
+import { Trophy, Table, History } from 'lucide-react';
 
 export default function GoldDashboardClient() {
   const { rates, loading, refresh } = useLiveRates();
@@ -125,15 +125,7 @@ export default function GoldDashboardClient() {
         </div>
       }
       calculatorSection={
-        <div className="space-y-6">
-           <div className="p-4 bg-blue-50 border border-blue-100 rounded-2xl flex items-start gap-3">
-              <ShieldCheck className="w-5 h-5 text-blue-600 mt-0.5" />
-              <p className="text-[11px] leading-relaxed text-blue-800 font-medium italic">
-                Our evaluator includes exact hallmark purity adjustments and traditional FENEGOSIDA making charges (jyaala).
-              </p>
-           </div>
-           <GoldConverter isEmbed={true} />
-        </div>
+        <QuickPriceEstimator />
       }
       faqSection={
          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
