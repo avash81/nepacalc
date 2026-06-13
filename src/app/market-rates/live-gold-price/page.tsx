@@ -1,7 +1,6 @@
 import { calcMeta } from '@/lib/calcMeta';
 import GoldDashboardClient from './GoldDashboardClient';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
-import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata = calcMeta({
   title: 'Gold Price Weight Converter in Nepal (Tola, Ana, Lal) | NepaCalc',
@@ -15,50 +14,7 @@ export const metadata = calcMeta({
   ],
 });
 
-const GOLD_FAQS = [
-  {
-    question: "Who determines the daily gold price in Nepal?",
-    answer: "The official daily gold and silver rates in Nepal are determined by the Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA), also referred to by the FNGSGJA acronym. Rates are set based on international LBMA spot prices and the USD to NPR exchange rate published by Nepal Rastra Bank (NRB). Rates are published daily at 10:00–11:00 AM NPT except Saturdays and major national holidays — when Friday's closing price carries forward."
-  },
-  {
-    question: "How many grams are in 1 Tola of gold?",
-    answer: "In Nepal, 1 Tola of gold is officially equal to exactly 11.6638 grams (precisely 11.6638125g). Jewelers often round this to 11.66g for general calculations. 1 Tola = 10 Ana = 100 Lal. For reverse conversions: 10 Grams = 0.85735 Tola, and 1 Gram = 0.085735 Tola."
-  },
-  {
-    question: "What is 1 Lal of gold in grams and price today?",
-    answer: "1 Lal (लाल्) of gold equals exactly 0.1166 grams. Since there are 100 Lals in 1 Tola, the price of 1 Lal is exactly 1% of the daily Tola rate. At the current FENEGOSIDA rate of NPR 292,000 per tola (24K Fine), 1 Lal costs NPR 2,920.00. For 22K Tejabi gold at NPR 289,100/tola, 1 Lal costs NPR 2,891.00. Retail jewelry adds 10–15% making charge (jyala) on top."
-  },
-  {
-    question: "What is the difference between Hallmark, Chhapawal, and Tejabi Gold in Nepal?",
-    answer: "Fine Gold (99.99% purity / 24K) is interchangeably called Hallmark Gold or Chhapawal Sun (छापावाल सुन). It trades at NPR 292,000 per Tola. Tejabi Gold (तेजाबी सुन), also referred to as Standard Gold by FNGSGJA, operates at approximately 99.50% purity (22K), carrying a structural discount of NPR 2,900 per Tola (NPR 289,100/Tola). Tejabi is the standard for traditional jewelry production."
-  },
-  {
-    question: "How much is 4 Ana of gold in Nepal?",
-    answer: "4 Ana equals 25 Lal, or exactly a quarter of 1 Tola (0.25 Tola), which is 2.9160 grams. At the current FENEGOSIDA rate of NPR 292,000 per tola, 4 Ana of 24K Fine gold costs NPR 73,000. For 22K Tejabi at NPR 289,100/tola, 4 Ana equals NPR 72,275."
-  },
-  {
-    question: "What is 'Aajako Sunko Vau' (आजको सुनको भाउ)?",
-    answer: "'Aajako Sunko Vau' (आजको सुनको भाउ) is the Nepali phrase for 'today's gold price'. The official daily rate is published by FENEGOSIDA every morning at approximately 11:00 AM NPT. Important: On Saturdays and national public holidays, no new rate is issued — Friday's closing benchmark carries forward. For 2083 BS (2026 AD), the current rates are: Fine Gold (छापावाल सुन) NPR 292,000/tola, Tejabi Gold (तेजाबी सुन) NPR 289,100/tola, Silver (चाँदी) NPR 4,840/tola."
-  },
-  {
-    question: "What is 2 Lal gold price in Nepal today?",
-    answer: "The base raw value of 2 Lal of 24K pure gold is NPR 5,840.00 (NPR 292,000 × 0.02). For 22K Tejabi gold, 2 Lal is priced at NPR 5,782.00 (NPR 289,100 × 0.02). This calculation excludes individual jewelry store fabrication fees (jyala)."
-  },
-  {
-    question: "Does the price shown include making charges and VAT?",
-    answer: "No. The rates displayed are for raw bullion metal only. Retailers add Jyala (making charges, typically 5–15% of base metal value) and 13% VAT on finished jewelry. When selling old gold, making charges are excluded — only the raw metal value at the daily buying benchmark is returned."
-  },
-  {
-    question: "How do you convert Silver (Chandi) from Tola to Grams?",
-    answer: "Just like gold, silver (चाँदी) trading in Nepal uses the Tola unit. 1 Tola of Silver equals exactly 11.6638 grams. The current FENEGOSIDA baseline is NPR 4,840 per tola, which equals NPR 48.40 per Lal and approximately NPR 415 per 10 grams."
-  },
-  {
-    question: "What is the price of silver per Lal in Nepal?",
-    answer: "At the official FENEGOSIDA baseline rate of NPR 4,840 per Tola, silver costs NPR 48.40 per Lal (0.1166 grams). For 1 Ana (10 Lal) of silver, the raw cost is NPR 484.00. Per 10 grams, silver is approximately NPR 4,150."
-  }
-];
-
-const customSchema = {
+export const customSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
