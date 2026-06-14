@@ -1,245 +1,375 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { useSyncState } from '@/hooks/useSyncState';
 import { 
-  Plus, Trash2, ShieldCheck, BarChart3, Info, PieChart, Table as TableIcon, 
-  Landmark, TrendingUp, History, Search, Scale, ArrowRight, Zap, Activity, Globe, Target,
-  Receipt, Wallet, ChevronRight
+  Plus, Trash2, TrendingUp, Receipt, Wallet, Globe, Target, Calculator as CalcIcon, Percent, AlertCircle, FileText
 } from 'lucide-react';
 import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  PieChart as RePieChart, Pie, Cell
+  PieChart as RePieChart, Pie, Cell, ResponsiveContainer, Tooltip
 } from 'recharts';
 
-interface PurchaseCluster { id: string; qty: number; price: number; type: 'secondary' | 'ipo' | 'bonus' | 'right'; }
+type BatchType = 'ipo' | 'fpo' | 'secondary' | 'bonus' | 'right' | 'auction';
+
+interface PurchaseBatch { 
+  id: string; 
+  type: BatchType; 
+  qty: number; 
+  price: number; 
+  bonusRatioPercent: number; 
+  rightRatioPercent: number;
+}
 
 function formatNPR(n: number) { 
-  return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); 
+  return 'Rs. ' + n.toLocaleString('en-IN', { maximumFractionDigits: 2, minimumFractionDigits: 2 }); 
+}
+
+function formatInt(n: number) {
+  return Math.floor(n).toLocaleString('en-IN');
+}
+
+function calculateBrokerCommission(amount: number): number {
+  if (amount <= 50000) return amount * 0.0040;
+  if (amount <= 500000) return amount * 0.0037;
+  if (amount <= 2000000) return amount * 0.0034;
+  if (amount <= 10000000) return amount * 0.0030;
+  return amount * 0.0027;
+}
+
+function calculateActualCost(qty: number, price: number, type: BatchType): { totalCost: number, broker: number, sebon: number, dp: number } {
+  if (type === 'bonus') return { totalCost: 0, broker: 0, sebon: 0, dp: 0 };
+  
+  let principal = qty * price;
+  
+  if (type === 'ipo' || type === 'fpo' || type === 'right') {
+     // Standard MeroShare WACC usually just adds the principal cost for primary markets.
+     // Some platforms may add DP charge, but MeroShare WACC formula is strictly based on face value/issue price.
+     return { totalCost: principal, broker: 0, sebon: 0, dp: 0 };
+  }
+  
+  if (type === 'secondary' || type === 'auction') {
+    let broker = calculateBrokerCommission(principal);
+    let sebon = principal * 0.00015; // 0.015%
+    let dp = 25;
+    return { totalCost: principal + broker + sebon + dp, broker, sebon, dp };
+  }
+  
+  return { totalCost: principal, broker: 0, sebon: 0, dp: 0 };
 }
 
 export default function WACCCalculator() {
-  const [state, setState] = useSyncState('nepse_wacc_v5', {
-    clusters: [ 
-      { id: '1', qty: 100, price: 1500, type: 'secondary' }, 
-      { id: '2', qty: 100, price: 1200, type: 'secondary' } 
-    ] as PurchaseCluster[],
-    currentLTP: 1800
+  const [state, setState] = useSyncState('nepse_wacc_v6', {
+    batches: [ 
+      { id: '1', type: 'secondary', qty: 100, price: 500, bonusRatioPercent: 0, rightRatioPercent: 0 } 
+    ] as PurchaseBatch[],
+    currentLTP: 600,
+    sellQty: 100,
+    sellingPrice: 600,
+    cgtRate: 0.05 // 5% default
   });
-  const { clusters, currentLTP } = state;
+
+  const { batches, currentLTP, sellQty, sellingPrice, cgtRate } = state;
 
   const result = useMemo(() => {
-    let totalQty = 0; 
-    let totalInvestment = 0;
-    clusters.forEach(c => { 
-      totalQty += c.qty; 
-      totalInvestment += c.qty * c.price; 
+    let accumulatedQty = 0;
+    let accumulatedInvestment = 0;
+    let processedBatches: (PurchaseBatch & { calculatedQty: number, calculatedCost: number, accumulatedQty: number, accumulatedInvestment: number })[] = [];
+
+    batches.forEach(batch => {
+        let calculatedQty = batch.qty;
+        let calculatedCost = 0;
+
+        if (batch.type === 'bonus') {
+            calculatedQty = Math.floor(accumulatedQty * (batch.bonusRatioPercent / 100));
+            calculatedCost = 0; 
+        } else if (batch.type === 'right') {
+            calculatedQty = Math.floor(accumulatedQty * (batch.rightRatioPercent / 100));
+            calculatedCost = calculatedQty * batch.price;
+        } else {
+            const costData = calculateActualCost(batch.qty, batch.price, batch.type);
+            calculatedCost = costData.totalCost;
+        }
+        
+        accumulatedQty += calculatedQty;
+        accumulatedInvestment += calculatedCost;
+        
+        processedBatches.push({
+           ...batch,
+           calculatedQty,
+           calculatedCost,
+           accumulatedQty,
+           accumulatedInvestment
+        });
     });
-    const wacc = totalQty > 0 ? totalInvestment / totalQty : 0;
-    const marketValue = totalQty * currentLTP;
-    const profit = marketValue - totalInvestment;
-    const estCGT = Math.max(0, profit * 0.05);
 
-    const pieData = [
-      { name: 'Initial Capital', value: totalInvestment },
-      { name: 'Unrealized Gain', value: Math.max(0, profit) }
-    ];
+    const wacc = accumulatedQty > 0 ? accumulatedInvestment / accumulatedQty : 0;
+    const marketValue = accumulatedQty * currentLTP;
+    const profit = marketValue - accumulatedInvestment;
 
-    const batchData = clusters.map((c, i) => ({
-      name: `Batch ${i+1}`,
-      value: c.qty * c.price,
-      fill: ['#1A73E8', '#188038', '#fbbf24', '#D93025', '#8b5cf6'][i % 5]
+    // Sell Calculation
+    const effectiveSellQty = Math.min(accumulatedQty, sellQty);
+    const sellPrincipal = effectiveSellQty * sellingPrice;
+    const sellBroker = calculateBrokerCommission(sellPrincipal);
+    const sellSebon = sellPrincipal * 0.00015;
+    const sellDp = 25;
+    const netSellAmount = sellPrincipal - sellBroker - sellSebon - sellDp;
+    
+    const costBasis = effectiveSellQty * wacc;
+    const sellProfit = netSellAmount - costBasis;
+    const cgtAmount = sellProfit > 0 ? sellProfit * cgtRate : 0;
+    const netReceivable = netSellAmount - cgtAmount;
+
+    // Visuals
+    const batchData = processedBatches.map((c, i) => ({
+      name: `Batch ${i+1} (${c.type.toUpperCase()})`,
+      value: c.calculatedCost,
+      fill: ['#1A73E8', '#188038', '#fbbf24', '#D93025', '#8b5cf6', '#0ea5e9'][i % 6]
     })).filter(d => d.value > 0);
 
-    return { wacc, totalQty, totalInvestment, marketValue, profit, estCGT, pieData, batchData };
-  }, [clusters, currentLTP]);
+    return { 
+      wacc, totalQty: accumulatedQty, totalInvestment: accumulatedInvestment, marketValue, profit, 
+      processedBatches, batchData,
+      sell: { effectiveSellQty, sellPrincipal, sellBroker, sellSebon, sellDp, netSellAmount, costBasis, sellProfit, cgtAmount, netReceivable }
+    };
+  }, [batches, currentLTP, sellQty, sellingPrice, cgtRate]);
 
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
-  const addCluster = () => update({ clusters: [...clusters, { id: Math.random().toString(), qty: 0, price: 0, type: 'secondary' }] });
-  const removeCluster = (id: string) => { if (clusters.length > 1) update({ clusters: clusters.filter(c => c.id !== id) }); };
-  const updateCluster = (id: string, field: keyof PurchaseCluster, val: any) => update({ clusters: clusters.map(c => c.id === id ? { ...c, [field]: val } : c) });
+  
+  const addBatch = () => update({ 
+    batches: [...batches, { id: Math.random().toString(), type: 'secondary', qty: 0, price: 0, bonusRatioPercent: 0, rightRatioPercent: 0 }] 
+  });
+  
+  const removeBatch = (id: string) => { 
+    if (batches.length > 1) update({ batches: batches.filter(c => c.id !== id) }); 
+  };
+  
+  const updateBatch = (id: string, field: keyof PurchaseBatch, val: any) => {
+    update({ batches: batches.map(c => c.id === id ? { ...c, [field]: val } : c) });
+  };
+
+  const getBatchLabel = (type: string) => {
+    switch(type) {
+      case 'secondary': return 'Secondary Market';
+      case 'ipo': return 'IPO';
+      case 'fpo': return 'FPO';
+      case 'bonus': return 'Bonus Share';
+      case 'right': return 'Right Share';
+      case 'auction': return 'Auction';
+      default: return type;
+    }
+  };
 
   return (
     <ModernCalcLayout
       slug="nepse-wacc"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'WACC Calculator' }]}
-      title="NEPSE WACC Calculator — Meroshare Purchase Update 2083/84"
-      description="The authoritative 'My Purchase Update' engine for Nepal. Calibrated to CDSC statutory algorithms for bonus, right, and multi-batch secondary market inventory auditing."
+      title="NEPSE WACC & Capital Gain Calculator"
+      description="The definitive NEPSE investment tracking engine. Automatically calculate MeroShare WACC, adjust for bonus/rights shares, factor in exact SEBON broker commissions, and estimate net capital gains."
       icon={Target}
-      relatedTools={[
-        { label: "NEPSE Profit Calculator", href: "/calculator/nepal-stocks/" },
-        { label: "Bonus Share Tax", href: "/calculator/nepse-bonus-tax/" },
-        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" }
-      ]}
       inputs={
         <div className="space-y-6">
           <div className="flex items-center justify-between mb-4">
              <div className="flex items-center gap-2">
-                <TableIcon className="w-4 h-4 text-[#5F6368]" />
-                <h3 className="text-[11px] font-bold uppercase tracking-widest text-[#5F6368]">Purchase Inventory</h3>
+                <CalcIcon className="w-4 h-4 text-[#5F6368]" />
+                <h3 className="text-[11px] font-bold uppercase tracking-widest text-[#5F6368]">Transaction Builder</h3>
              </div>
              <button 
-               onClick={addCluster}
+               onClick={addBatch}
                className="h-9 px-4 bg-[#E8F0FE] hover:bg-[#D2E3FC] text-[#1A73E8] text-[10px] font-black uppercase rounded-md transition-all flex items-center gap-2"
              >
                 <Plus className="w-3 h-3" /> Add Batch
              </button>
           </div>
 
-          <div className="space-y-3 max-h-[380px] overflow-y-auto pr-2 custom-scrollbar">
-             {clusters.map((c, idx) => (
-                <div key={c.id} className="p-4 bg-white border border-[#DADCE0] rounded-md relative group transition-all hover:border-[#1A73E8]">
+          <div className="space-y-4 max-h-[480px] overflow-y-auto pr-2 custom-scrollbar">
+             {batches.map((c, idx) => (
+                <div key={c.id} className="p-4 bg-white border border-[#DADCE0] rounded-md relative group transition-all hover:border-[#1A73E8] shadow-sm">
                    <div className="flex justify-between items-center mb-3">
-                      <span className="text-[9px] font-black text-[#1A73E8] uppercase tracking-wider">Batch #{idx+1}</span>
-                      {clusters.length > 1 && (
-                        <button onClick={() => removeCluster(c.id)} className="p-1 hover:bg-rose-50 rounded text-rose-600 transition-colors">
+                      <div className="flex items-center gap-3 w-full">
+                        <span className="text-[9px] font-black text-[#1A73E8] uppercase tracking-wider bg-[#E8F0FE] px-2 py-1 rounded">Batch #{idx+1}</span>
+                        <select 
+                          value={c.type} 
+                          onChange={e => updateBatch(c.id, 'type', e.target.value)}
+                          className="text-xs font-bold bg-transparent text-slate-700 outline-none cursor-pointer hover:text-[#1A73E8] flex-1"
+                        >
+                          <option value="secondary">Secondary Market</option>
+                          <option value="ipo">IPO (Initial Public Offering)</option>
+                          <option value="fpo">FPO</option>
+                          <option value="auction">Auction Shares</option>
+                          <option value="bonus">Bonus Shares</option>
+                          <option value="right">Right Shares</option>
+                        </select>
+                      </div>
+                      
+                      {batches.length > 1 && (
+                        <button onClick={() => removeBatch(c.id)} className="p-1.5 hover:bg-rose-50 rounded-md text-rose-600 transition-colors shrink-0 ml-2">
                            <Trash2 className="w-3.5 h-3.5" />
                         </button>
                       )}
                    </div>
-                   <div className="grid grid-cols-2 gap-3">
-                      <div className="space-y-1">
-                         <label className="text-[8px] font-black text-[#5F6368] uppercase">Quantity</label>
-                         <input type="number" value={c.qty} onChange={e => updateCluster(c.id, 'qty', Number(e.target.value))} className="w-full h-10 px-3 bg-[#F8F9FA] border border-[#DADCE0] rounded text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none" placeholder="Units" />
-                      </div>
-                      <div className="space-y-1">
-                         <label className="text-[8px] font-black text-[#5F6368] uppercase">Purchase Rate</label>
-                         <input type="number" value={c.price} onChange={e => updateCluster(c.id, 'price', Number(e.target.value))} className="w-full h-10 px-3 bg-[#F8F9FA] border border-[#DADCE0] rounded text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none" placeholder="Price" />
-                      </div>
+                   
+                   <div className="grid grid-cols-2 gap-3 pt-2">
+                      {c.type === 'bonus' ? (
+                        <>
+                          <div className="space-y-1 col-span-2">
+                             <label className="text-[9px] font-black text-[#5F6368] uppercase">Bonus Ratio (%)</label>
+                             <div className="relative">
+                               <input type="number" value={c.bonusRatioPercent} onChange={e => updateBatch(c.id, 'bonusRatioPercent', Number(e.target.value))} className="w-full h-10 pl-3 pr-8 bg-[#F8F9FA] border border-[#DADCE0] rounded text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none" placeholder="e.g. 15 for 15%" />
+                               <Percent className="w-3.5 h-3.5 absolute right-3 top-3 text-[#5F6368]" />
+                             </div>
+                             <p className="text-[10px] text-blue-600 mt-1">Calculated Kitta: {result.processedBatches[idx]?.calculatedQty || 0} (from previous batches)</p>
+                          </div>
+                        </>
+                      ) : c.type === 'right' ? (
+                        <>
+                          <div className="space-y-1">
+                             <label className="text-[9px] font-black text-[#5F6368] uppercase">Right Ratio (%)</label>
+                             <div className="relative">
+                               <input type="number" value={c.rightRatioPercent} onChange={e => updateBatch(c.id, 'rightRatioPercent', Number(e.target.value))} className="w-full h-10 pl-3 pr-8 bg-[#F8F9FA] border border-[#DADCE0] rounded text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none" placeholder="e.g. 50 for 1:0.5" />
+                               <Percent className="w-3.5 h-3.5 absolute right-3 top-3 text-[#5F6368]" />
+                             </div>
+                             <p className="text-[10px] text-blue-600 mt-1">Calculated Kitta: {result.processedBatches[idx]?.calculatedQty || 0}</p>
+                          </div>
+                          <div className="space-y-1">
+                             <label className="text-[9px] font-black text-[#5F6368] uppercase">Issue Price</label>
+                             <input type="number" value={c.price} onChange={e => updateBatch(c.id, 'price', Number(e.target.value))} className="w-full h-10 px-3 bg-[#F8F9FA] border border-[#DADCE0] rounded text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none" placeholder="Usually 100" />
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="space-y-1">
+                             <label className="text-[9px] font-black text-[#5F6368] uppercase">Quantity</label>
+                             <input type="number" value={c.qty} onChange={e => updateBatch(c.id, 'qty', Number(e.target.value))} className="w-full h-10 px-3 bg-[#F8F9FA] border border-[#DADCE0] rounded text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none" placeholder="Units" />
+                          </div>
+                          <div className="space-y-1">
+                             <label className="text-[9px] font-black text-[#5F6368] uppercase">Purchase Rate</label>
+                             <input type="number" value={c.price} onChange={e => updateBatch(c.id, 'price', Number(e.target.value))} className="w-full h-10 px-3 bg-[#F8F9FA] border border-[#DADCE0] rounded text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none" placeholder="Price" />
+                          </div>
+                          {(c.type === 'secondary' || c.type === 'auction') && result.processedBatches[idx]?.calculatedCost > 0 && (
+                             <div className="col-span-2 text-[10px] text-slate-500 bg-slate-50 p-2 rounded border border-slate-100 flex justify-between">
+                               <span>Includes Broker Fee, SEBON & DP</span>
+                               <span className="font-bold text-slate-700">Actual Cost: {formatNPR(result.processedBatches[idx].calculatedCost)}</span>
+                             </div>
+                          )}
+                        </>
+                      )}
                    </div>
                 </div>
              ))}
           </div>
 
-          <div className="pt-6 border-t border-[#DADCE0] space-y-2">
-             <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Market Benchmark (LTP)</label>
-             <input 
-                type="number" 
-                value={currentLTP} 
-                onChange={(e) => update({ currentLTP: Number(e.target.value) })}
-                className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" 
-                placeholder="Current Share Price"
-             />
+          <div className="pt-6 border-t border-[#DADCE0] space-y-4 bg-[#F8F9FA] p-4 rounded-xl">
+             <div className="flex items-center gap-2 mb-2">
+                <Wallet className="w-4 h-4 text-[#1A73E8]" />
+                <h3 className="text-[11px] font-bold uppercase tracking-widest text-[#1A73E8]">Sell & Tax Scenario</h3>
+             </div>
+             
+             <div className="grid grid-cols-2 gap-3">
+               <div className="space-y-1 col-span-2 sm:col-span-1">
+                  <label className="text-[9px] font-black text-[#5F6368] uppercase">Sell Quantity</label>
+                  <input type="number" value={sellQty} onChange={e => update({ sellQty: Number(e.target.value) })} className="w-full h-10 px-3 bg-white border border-[#DADCE0] rounded text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none" />
+               </div>
+               <div className="space-y-1 col-span-2 sm:col-span-1">
+                  <label className="text-[9px] font-black text-[#5F6368] uppercase">Selling Price (LTP)</label>
+                  <input type="number" value={sellingPrice} onChange={e => update({ sellingPrice: Number(e.target.value), currentLTP: Number(e.target.value) })} className="w-full h-10 px-3 bg-white border border-[#DADCE0] rounded text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none" />
+               </div>
+             </div>
+
+             <div className="space-y-2 pt-2 border-t border-[#DADCE0]">
+                <label className="text-[9px] font-black text-[#5F6368] uppercase block">Capital Gain Tax (CGT) Rate</label>
+                <div className="flex gap-3">
+                   <button 
+                     onClick={() => update({ cgtRate: 0.05 })}
+                     className={`flex-1 h-9 rounded-md text-xs font-bold transition-colors ${cgtRate === 0.05 ? 'bg-[#1A73E8] text-white' : 'bg-white border border-[#DADCE0] text-[#5F6368] hover:bg-slate-50'}`}
+                   >
+                     5% (Long Term)
+                   </button>
+                   <button 
+                     onClick={() => update({ cgtRate: 0.075 })}
+                     className={`flex-1 h-9 rounded-md text-xs font-bold transition-colors ${cgtRate === 0.075 ? 'bg-[#1A73E8] text-white' : 'bg-white border border-[#DADCE0] text-[#5F6368] hover:bg-slate-50'}`}
+                   >
+                     7.5% (Short Term)
+                   </button>
+                </div>
+             </div>
           </div>
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-             Generate Inventory Audit
-          </button>
         </div>
       }
       results={
-        <div className="space-y-6 h-full flex flex-col justify-center">
-          <div className="bg-[#E8F0FE] rounded-lg p-8 text-center space-y-2">
-             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Weighted Avg Cost (WACC)</div>
-             <div className="text-4xl font-black text-[#1A73E8]">Rs. {result.wacc.toFixed(2)}</div>
-             <div className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Meroshare Statutory Value</div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-             <div className="border border-[#DADCE0] rounded-md p-4 text-center bg-white">
-                <div className="text-[10px] font-bold text-[#202124] uppercase tracking-wider mb-1">Total Units</div>
-                <div className="text-lg font-black text-[#202124]">{result.totalQty}</div>
+        <div className="space-y-6 h-full flex flex-col justify-start">
+          
+          <div className="bg-[#E8F0FE] rounded-xl p-6 text-center space-y-2 border border-blue-100 shadow-sm relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-3 opacity-10 pointer-events-none">
+                <FileText className="w-16 h-16 text-blue-900" />
              </div>
-             <div className="border border-[#DADCE0] rounded-md p-4 text-center bg-white">
-                <div className="text-[10px] font-bold text-[#188038] uppercase tracking-wider mb-1">Unrealized P/L</div>
-                <div className={`text-lg font-black ${result.profit >= 0 ? 'text-[#188038]' : 'text-[#D93025]'}`}>
-                   {formatNPR(result.profit)}
+             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider relative z-10 flex items-center justify-center gap-1"><AlertCircle className="w-3 h-3"/> MeroShare Target WACC</div>
+             <div className="text-4xl font-black text-[#1A73E8] relative z-10">Rs. {result.wacc.toFixed(2)}</div>
+             <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-blue-200 relative z-10">
+                <div>
+                   <div className="text-[10px] font-bold text-[#5F6368] uppercase mb-1">Total Kitta</div>
+                   <div className="text-lg font-bold text-slate-800">{formatInt(result.totalQty)}</div>
+                </div>
+                <div>
+                   <div className="text-[10px] font-bold text-[#5F6368] uppercase mb-1">Total Investment</div>
+                   <div className="text-lg font-bold text-slate-800">{formatNPR(result.totalInvestment)}</div>
                 </div>
              </div>
           </div>
 
-          <div className="border border-[#DADCE0] rounded-md p-4 bg-[#F8F9FA]">
-             <div className="flex justify-between items-center mb-1.5">
-                <span className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Portfolio Market Depth</span>
-                <span className="text-[11px] font-black text-[#202124]">{((result.marketValue / result.totalInvestment) * 100).toFixed(1)}%</span>
+          <div className="bg-white border border-[#DADCE0] rounded-xl p-5 shadow-sm space-y-4">
+             <div className="flex items-center gap-2 mb-2 pb-3 border-b border-slate-100">
+                <Wallet className="w-4 h-4 text-green-600" />
+                <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-800">Sell Calculation & Profit</h3>
              </div>
-             <div className="h-1.5 w-full bg-white rounded-full overflow-hidden border border-[#DADCE0]">
-                <div className={`h-full ${result.profit >= 0 ? 'bg-[#188038]' : 'bg-[#D93025]'}`} style={{ width: `${Math.min(100, (result.marketValue / result.totalInvestment) * 50)}%` }} />
+             
+             <div className="space-y-3">
+                <div className="flex justify-between items-center text-sm">
+                   <span className="text-slate-500">Gross Sell Amount</span>
+                   <span className="font-bold text-slate-800">{formatNPR(result.sell.sellPrincipal)}</span>
+                </div>
+                <div className="flex justify-between items-center text-xs">
+                   <span className="text-slate-500 flex items-center gap-1">Broker Commission <span className="text-[9px] bg-slate-100 px-1 rounded text-slate-400">Tiered</span></span>
+                   <span className="font-bold text-rose-500">-{formatNPR(result.sell.sellBroker)}</span>
+                </div>
+                <div className="flex justify-between items-center text-xs">
+                   <span className="text-slate-500">SEBON Fee + DP</span>
+                   <span className="font-bold text-rose-500">-{formatNPR(result.sell.sellSebon + result.sell.sellDp)}</span>
+                </div>
+                
+                <div className="pt-2 border-t border-slate-100 flex justify-between items-center text-sm">
+                   <span className="font-bold text-slate-600">Net Sell Amount</span>
+                   <span className="font-bold text-slate-800">{formatNPR(result.sell.netSellAmount)}</span>
+                </div>
+                
+                <div className="flex justify-between items-center text-sm">
+                   <span className="text-slate-500">WACC Cost Basis</span>
+                   <span className="font-bold text-slate-800">{formatNPR(result.sell.costBasis)}</span>
+                </div>
+
+                <div className="flex justify-between items-center text-sm">
+                   <span className="font-bold text-slate-600">Gross Profit / Loss</span>
+                   <span className={`font-black ${result.sell.sellProfit >= 0 ? 'text-[#188038]' : 'text-[#D93025]'}`}>
+                      {formatNPR(result.sell.sellProfit)}
+                   </span>
+                </div>
+
+                {result.sell.sellProfit > 0 && (
+                   <div className="flex justify-between items-center text-xs bg-rose-50 p-2 rounded">
+                      <span className="text-rose-700 font-bold flex items-center gap-1">CGT ({cgtRate * 100}%)</span>
+                      <span className="font-bold text-rose-700">-{formatNPR(result.sell.cgtAmount)}</span>
+                   </div>
+                )}
+
+                <div className="pt-3 border-t-2 border-slate-800 flex justify-between items-center">
+                   <span className="font-black text-slate-900 uppercase tracking-wide">Net Receivable</span>
+                   <span className="text-xl font-black text-[#1A73E8]">
+                      {formatNPR(result.sell.netReceivable)}
+                   </span>
+                </div>
              </div>
           </div>
         </div>
       }
-      details={
-        <div className="space-y-6">
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-               <div className="flex items-center gap-2 mb-6">
-                 <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
-                 <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Capital Architecture</h3>
-               </div>
-               <div className="h-[240px] w-full relative mb-6">
-                 <ResponsiveContainer width="100%" height="100%">
-                   <RePieChart>
-                     <Pie
-                       data={result.batchData}
-                       cx="50%" cy="50%" innerRadius={60} outerRadius={90} paddingAngle={2} dataKey="value" stroke="none"
-                     >
-                       {result.batchData.map((entry, index) => <Cell key={index} fill={entry.fill} />)}
-                     </Pie>
-                     <Tooltip formatter={(v: number) => formatNPR(v)} contentStyle={{ borderRadius: '8px', border: '1px solid #DADCE0', fontSize: '11px', fontWeight: 'bold' }} />
-                   </RePieChart>
-                 </ResponsiveContainer>
-                 <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center">
-                    <span className="text-[9px] font-bold text-[#5F6368] uppercase tracking-wider">Net Capital</span>
-                    <span className="text-lg font-black text-[#202124]">{formatNPR(result.totalInvestment)}</span>
-                 </div>
-               </div>
-               <div className="flex flex-wrap items-center justify-center gap-4 text-[9px] font-bold text-[#5F6368] uppercase tracking-wider">
-                  {result.batchData.map((d, i) => (
-                    <div key={i} className="flex items-center gap-1.5"><div className="w-2 h-2 rounded-full" style={{backgroundColor: d.fill}}></div> {d.name}</div>
-                  ))}
-               </div>
-             </div>
-
-             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm flex flex-col justify-center">
-               <div className="flex items-center gap-2 mb-6">
-                 <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
-                 <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Inventory Intelligence</h3>
-               </div>
-               <div className="space-y-4">
-                  <div className="p-4 rounded-md bg-[#F8F9FA] border border-[#DADCE0] flex justify-between items-center">
-                     <span className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Total Market Value</span>
-                     <span className="text-sm font-black text-[#202124]">{formatNPR(result.marketValue)}</span>
-                  </div>
-                  <div className="p-4 rounded-md bg-[#F8F9FA] border border-[#DADCE0] flex justify-between items-center">
-                     <span className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Est. Long-Term CGT (5%)</span>
-                     <span className="text-sm font-black text-rose-600">{formatNPR(result.estCGT)}</span>
-                  </div>
-                  <div className="p-6 rounded-md bg-[#E8F0FE] border border-[#1A73E8] text-center">
-                     <div className="text-[9px] font-black text-[#1A73E8] uppercase mb-1">Meroshare Standard</div>
-                     <p className="text-[11px] font-bold text-[#5F6368] leading-tight">
-                        WACC is mandatory for 'My Purchase Update'. Use the Rs. {result.wacc.toFixed(2)} baseline for accurate tax declarations.
-                     </p>
-                  </div>
-               </div>
-             </div>
-           </div>
-        </div>
-      }
-      howToUse={{
-        steps: [
-          "Batches: Add each separate purchase (lot) from your TMS ledger.",
-          "Secondary Market: Enter the exact quantity and unit price for secondary buys.",
-          "Bonus/Rights: Add bonus shares as Rs. 0 and right shares as Rs. 100 per unit.",
-          "WACC Audit: The engine computes the weighted average required for Meroshare.",
-          "LTP: Enter the current market price to see your real-time valuation and ROI."
-        ]
-      }}
-      formula={{
-        title: "The Weighted Average Calculus",
-        description: "Official CDSC statutory standard for calculating the cost-basis of stock holdings.",
-        raw: "WACC = Σ(Quantity × Price) / Σ(Total Quantity)",
-        variables: [
-          "Price: Net purchase price including broker commission for accuracy",
-          "Bonus: Cost set to 0 as mandated by Nepal's tax policy",
-          "Rights: Cost set to Face Value (usually Rs. 100)"
-        ]
-      }}
-      faqs={[
-        { question: "What is WACC in NEPSE?", answer: "WACC (Weighted Average Cost of Capital) is the average price paid for shares across multiple purchase batches. It is used by Meroshare to calculate capital gains tax." },
-        { question: "How do I calculate WACC for bonus shares?", answer: "Bonus shares are recieved at zero cost. To calculate the new WACC, add the bonus quantity as a new batch with a purchase price of Rs. 0." },
-        { question: "What is the CGT rate in Nepal?", answer: "For individual investors, it is 5% for long-term holdings (over 365 days) and 7.5% for short-term holdings." },
-        { question: "Do I need to include broker commissions in WACC?", answer: "Yes, the IRD allows you to include statutory transaction costs (brokerage and SEBON fees) in your cost-basis to lower your tax liability." }
-      ]}
       sidebar={{
         title: "Portfolio Hub",
         subtitle: "NEPSE Auditing",
@@ -253,4 +383,3 @@ export default function WACCCalculator() {
     />
   );
 }
-
