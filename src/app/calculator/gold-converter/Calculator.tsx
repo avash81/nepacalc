@@ -197,9 +197,9 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
             Rates synced with <span className="text-[#F29900]">FENEGOSIDA</span> daily benchmarks.
           </p>
           <p className="text-[10px] text-[#5F6368] font-bold">
-            Based on today's live rate.{' '}
+            Calibrated to current FENEGOSIDA benchmarks.{' '}
             <a href="/market-rates/live-gold-price/" className="text-[#1A73E8] hover:underline">
-              View Official Daily Gold Price →
+              View Daily Pricing Index →
             </a>
           </p>
         </div>
@@ -237,7 +237,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
           {/* Breakdown grid */}
           <div className="grid grid-cols-2 gap-3">
             <div className="border border-[#DADCE0] rounded-xl p-4 text-center bg-white">
-              <div className="text-[9px] font-black text-[#202124] uppercase tracking-wider mb-1">Live Market Rate</div>
+              <div className="text-[9px] font-black text-[#202124] uppercase tracking-wider mb-1">Calculation Base Rate</div>
               <div className="text-base font-black text-[#202124]">{fmt(liveRate)}<span className="text-[9px] text-slate-400">/Tola</span></div>
             </div>
             <div className="border border-[#DADCE0] rounded-xl p-4 text-center bg-white">

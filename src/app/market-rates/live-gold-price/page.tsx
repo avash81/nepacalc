@@ -83,6 +83,30 @@ const customSchema = {
           }
         }
       ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://nepacalc.com/market-rates/live-gold-price/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://nepacalc.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Market Rates",
+          "item": "https://nepacalc.com/market-rates/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Live Gold Price",
+          "item": "https://nepacalc.com/market-rates/live-gold-price/"
+        }
+      ]
     }
   ]
 };

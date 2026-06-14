@@ -18,9 +18,39 @@ export const metadata = calcMeta({
   ],
 });
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://nepacalc.com/calculator/gold-converter/#breadcrumb",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://nepacalc.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculators",
+      "item": "https://nepacalc.com/calculator/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Gold Converter",
+      "item": "https://nepacalc.com/calculator/gold-converter/"
+    }
+  ]
+};
+
 export default function Page() {
   return (
     <div className="bg-[#F1F3F4]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Calculator />
     </div>
   );
