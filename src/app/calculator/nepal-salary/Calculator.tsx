@@ -283,7 +283,6 @@ export default function NepalSalaryCalculator() {
       }}
       faqs={[]}
       seoContent={null}
-      details={null}
     />
   );
 }
