@@ -42,3 +42,10 @@ jobs:
           local-dir: ./out/
           server-dir: public_html/
           state-name: .ftp-deploy-sync-state-v3.json
+          dangerous-clean-slate: false
+          timeout: 30000
+          exclude: |
+            **/.htaccess
+            **/cgi-bin/**
+            **/.well-known/**
+            **/*.log
