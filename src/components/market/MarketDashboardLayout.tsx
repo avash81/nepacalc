@@ -38,9 +38,9 @@ export function MarketDashboardLayout({
   return (
     <div className="w-full bg-[#F8FAFC]">
       {/* 1. Header & Billboard */}
-      <section className="bg-white border-b border-slate-200 pt-8 pb-8">
+      <section className="bg-white border-b border-slate-200 pt-4 pb-4">
         <div className="max-w-7xl mx-auto px-6">
-          <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#5F6368] mb-8">
+          <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#5F6368] mb-4">
             <button 
               type="button"
               onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/market-rates/')}
@@ -101,7 +101,7 @@ export function MarketDashboardLayout({
       </section>
 
       {/* 2. Primary Dashboard Layout */}
-      <main className="max-w-7xl mx-auto px-6 pt-8 pb-12">
+      <main className="max-w-7xl mx-auto px-6 pt-6 pb-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           {/* Main Board Area (Table / Chart) */}

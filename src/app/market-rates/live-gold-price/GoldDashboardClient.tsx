@@ -43,7 +43,7 @@ export default function GoldDashboardClient() {
       mainBoard={
         <div className="flex flex-col">
            {/* Chart Section */}
-           <div className="p-8 border-b border-slate-100 bg-slate-50/30">
+           <div className="p-4 sm:p-6 border-b border-slate-100 bg-slate-50/30">
               <div className="flex items-center justify-between mb-6">
                  <div className="flex items-center gap-2">
                     <Trophy className="w-5 h-5 text-amber-500" />
@@ -63,7 +63,7 @@ export default function GoldDashboardClient() {
            </div>
 
            {/* Table Section */}
-           <div className="p-8">
+           <div className="p-4 sm:p-6">
               <div className="flex items-center gap-2 mb-6">
                  <Table className="w-4 h-4 text-amber-500" />
                  <h2 className="text-[12px] font-black uppercase tracking-widest text-slate-900">Nepal Benchmark Rates</h2>
