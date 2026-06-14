@@ -3,20 +3,18 @@
   "effectiveFrom": "2026-07-17",
   "individual": {
     "single": [
-      { "upTo": 550000,  "rate": 0.01, "label": "1% SST" },
-      { "upTo": 750000,  "rate": 0.10, "label": "10%" },
-      { "upTo": 1050000, "rate": 0.20, "label": "20%" },
-      { "upTo": 2050000, "rate": 0.30, "label": "30%" },
-      { "upTo": 5050000, "rate": 0.36, "label": "36%" },
-      { "upTo": null,    "rate": 0.39, "label": "39%" }
+      { "upTo": 1000000, "rate": 0.01, "label": "1% SST" },
+      { "upTo": 1500000, "rate": 0.10, "label": "10%" },
+      { "upTo": 2500000, "rate": 0.20, "label": "20%" },
+      { "upTo": 4000000, "rate": 0.27, "label": "27%" },
+      { "upTo": null,    "rate": 0.29, "label": "29%" }
     ],
     "married": [
-      { "upTo": 650000,  "rate": 0.01, "label": "1% SST" },
-      { "upTo": 850000,  "rate": 0.10, "label": "10%" },
-      { "upTo": 1150000, "rate": 0.20, "label": "20%" },
-      { "upTo": 2050000, "rate": 0.30, "label": "30%" },
-      { "upTo": 5050000, "rate": 0.36, "label": "36%" },
-      { "upTo": null,    "rate": 0.39, "label": "39%" }
+      { "upTo": 1000000, "rate": 0.01, "label": "1% SST" },
+      { "upTo": 1500000, "rate": 0.10, "label": "10%" },
+      { "upTo": 2500000, "rate": 0.20, "label": "20%" },
+      { "upTo": 4000000, "rate": 0.27, "label": "27%" },
+      { "upTo": null,    "rate": 0.29, "label": "29%" }
     ]
   },
   "ssfDiscount": true,

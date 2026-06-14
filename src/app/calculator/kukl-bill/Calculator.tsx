@@ -172,47 +172,11 @@ export default function KUKLCalculator() {
           </div>
         </div>
       }
-      howToUse={{
-        steps: [
-          "Connection: Select your pipe gauge (0.5 inch is standard for residential).",
-          "Consumption: Enter the total units consumed (1 unit = 1,000L).",
-          "Audit: Review the split between Water Charge and Sewerage Tax.",
-          "Payment: Use digital wallets for real-time receipt generation.",
-          "Optimization: Check for leaks if your units exceed 25 per month for a family of four."
-        ]
-      }}
-      formula={{
-        title: "The KUKL Volumetric Calculus",
-        description: "Official KUKL tariff logic with mandatory sewerage multiplier.",
-        raw: "Bill = (Fixed + Volumetric) × 1.50",
-        variables: [
-          "Fixed: Minimum base charge for first 10,000 liters",
-          "Volumetric: Charge for units consumed beyond the base allowance",
-          "Multiplier: 50% additional sewerage tax applied to total water charge"
-        ]
-      }}
-      faqs={[
-        { question: "How much is 1 unit of water in Kathmandu?", answer: "1 Unit is defined as 1,000 Liters (1 Cubic Meter). For a 0.5-inch connection, the first 10 units are covered under the base charge, with extra units billed at approx. Rs. 32 each." },
-        { question: "Why is my KUKL bill 50% higher than the water charge?", answer: "KUKL adds a mandatory 50% Sewerage Charge to every bill to fund the maintenance of the valley's wastewater and drainage infrastructure." },
-        { question: "What is the minimum bill for a 0.5 inch connection?", answer: "The minimum monthly bill is Rs. 150, which includes the Rs. 100 base water charge for up to 10,000 liters and the Rs. 50 sewerage tax." },
-        { question: "How do I pay my KUKL bill online?", answer: "You can pay via eSewa, Khalti, or bank apps by searching for 'KUKL' and entering your CAN (Customer Account Number)." },
-        { question: "What is 'Average Billing'?", answer: "If your meter is inaccessible or broken, KUKL calculates your bill based on a 3-6 month historical average. It is advisable to keep your meter accessible for accurate reading." },
-        { question: "What is the penalty for late payment?", answer: "KUKL applies progressive surcharges (10% to 25%) if the bill is not paid within the designated grace period printed on your receipt." }
-      ]}
-      sidebar={{
-        title: "Utility Hub",
-        subtitle: "Nepal Utilities",
-        links: [
-          { label: "NEA Electricity Bill", href: "/calculator/nea-bill/", icon: Zap },
-          { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/", icon: Landmark },
-          { label: "KUKL Official", href: "https://kathmanduwater.org", icon: Globe },
-        ],
-      }}
-      relatedTools={[
-        { label: "NEA Electricity Bill", href: "/calculator/nea-bill/" },
-        { label: "Income Tax Tool", href: "/calculator/nepal-income-tax/" },
-        { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax/" }
-      ]}
+      howToUse={{ steps: [] }}
+      formula={{ title: "", description: "", raw: "", variables: [] }}
+      faqs={[]}
+      sidebar={{ title: "", subtitle: "", links: [] }}
+      relatedTools={[]}
     />
   );
 }
