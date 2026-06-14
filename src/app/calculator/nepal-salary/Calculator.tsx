@@ -69,6 +69,22 @@ export default function NepalSalaryCalculator() {
       ]}
       inputs={
         <div className="space-y-6">
+          {/* Plain-language how-it-works */}
+          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-4 space-y-2">
+            <p className="text-[11px] font-black text-[#202124] uppercase tracking-wider mb-2">How this calculator works</p>
+            <div className="flex items-start gap-2 text-xs text-[#5F6368]">
+              <span className="bg-[#1A73E8] text-white rounded-full w-4 h-4 flex items-center justify-center text-[9px] font-black shrink-0 mt-0.5">1</span>
+              <span>Enter your <strong className="text-[#202124]">gross monthly salary</strong> and select your deduction options (SSF, CIT/PF).</span>
+            </div>
+            <div className="flex items-start gap-2 text-xs text-[#5F6368]">
+              <span className="bg-[#1A73E8] text-white rounded-full w-4 h-4 flex items-center justify-center text-[9px] font-black shrink-0 mt-0.5">2</span>
+              <span>Your <strong className="text-[#202124]">retirement contributions</strong> (SSF + CIT) are subtracted first to find your net taxable income.</span>
+            </div>
+            <div className="flex items-start gap-2 text-xs text-[#5F6368]">
+              <span className="bg-[#1A73E8] text-white rounded-full w-4 h-4 flex items-center justify-center text-[9px] font-black shrink-0 mt-0.5">3</span>
+              <span>The FY 2083/84 <strong className="text-[#202124]">progressive tax slabs</strong> (1% → 29%) are applied, and any eligible rebates are deducted from the final tax.</span>
+            </div>
+          </div>
           <div className="grid grid-cols-1 gap-6">
             <div className="space-y-2">
                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Gross Monthly Salary (NPR)</label>
@@ -101,10 +117,11 @@ export default function NepalSalaryCalculator() {
                </div>
                <div className="grid grid-cols-2 gap-3">
                   <label className={`flex flex-col p-4 border rounded-md cursor-pointer transition-all ${ssf ? 'border-[#1A73E8] bg-[#E8F0FE]' : 'border-[#DADCE0] hover:bg-[#F8F9FA]'}`}>
-                    <input type="checkbox" checked={ssf} onChange={() => update({ ssf: !ssf })} className="hidden" />
-                    <span className={`text-[11px] font-black uppercase ${ssf ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>SSF (31%)</span>
-                    <span className="text-[9px] font-bold text-[#5F6368] mt-1">Social Security Pool</span>
-                  </label>
+                     <input type="checkbox" checked={ssf} onChange={() => update({ ssf: !ssf })} className="hidden" />
+                     <span className={`text-[11px] font-black uppercase ${ssf ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>SSF (31%)</span>
+                     <span className="text-[9px] font-bold text-[#5F6368] mt-1">Social Security Fund</span>
+                     <span className="text-[9px] text-emerald-600 font-bold mt-0.5">★ 0% tax on first bracket</span>
+                   </label>
                   <label className={`flex flex-col p-4 border rounded-md cursor-pointer transition-all ${cit ? 'border-[#1A73E8] bg-[#E8F0FE]' : 'border-[#DADCE0] hover:bg-[#F8F9FA]'}`}>
                     <input type="checkbox" checked={cit} onChange={() => update({ cit: !cit })} className="hidden" />
                     <span className={`text-[11px] font-black uppercase ${cit ? 'text-[#1A73E8]' : 'text-[#202124]'}`}>CIT / PF</span>
@@ -124,8 +141,8 @@ export default function NepalSalaryCalculator() {
                )}
             </div>
           </div>
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm mt-4">
-             Execute Payroll Audit
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm mt-4">
+             Calculate My Take-Home Pay
           </button>
         </div>
       }
@@ -167,6 +184,28 @@ export default function NepalSalaryCalculator() {
                 </div>
              </div>
           </div>
+
+          {/* SSF 0% Waiver Note */}
+          {ssf && (
+            <div className="flex items-start gap-3 p-4 bg-emerald-50 border border-emerald-200 rounded-lg text-sm">
+              <span className="text-emerald-600 text-lg">✅</span>
+              <div>
+                <p className="font-bold text-emerald-800">SSF 0% Tax Benefit Active</p>
+                <p className="text-emerald-700 text-xs mt-0.5">Because you are enrolled in the Social Security Fund (SSF), the standard 1% social security tax on your first Rs. 10,00,000 of income is completely waived. This is one of the biggest tax advantages for salaried employees in Nepal.</p>
+              </div>
+            </div>
+          )}
+
+          {/* Female Tax Rebate Note */}
+          {gender === 'female' && (
+            <div className="flex items-start gap-3 p-4 bg-blue-50 border border-blue-200 rounded-lg text-sm">
+              <span className="text-blue-600 text-lg">ℹ️</span>
+              <div>
+                <p className="font-bold text-blue-800">10% Female Tax Rebate Applied</p>
+                <p className="text-blue-700 text-xs mt-0.5">As a female taxpayer, a 10% rebate on your total calculated income tax has been automatically applied. This is why your tax figure may appear lower than expected — it is correct per IRD rules for FY 2083/84.</p>
+              </div>
+            </div>
+          )}
         </div>
       }
       details={
