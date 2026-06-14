@@ -5,7 +5,6 @@ import { Info, Sigma, HelpCircle, ChevronRight, Calculator, ArrowLeft, Heart, Se
 import { JsonLd } from '@/components/seo/JsonLd';
 import { TIER1_SEO_CONTENT } from '@/data/seo-content';
 import { usePathname } from 'next/navigation';
-import { RecentSidebar } from './RecentSidebar';
 import { CALCULATORS } from '@/data/calculators';
 import type { MarketRate } from '@/utils/market/fetchRates';
 
@@ -304,6 +303,29 @@ export function ModernCalcLayout({
                       </button>
                       <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openFaq === idx ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
                         <div className="px-6 pb-6 text-sm leading-relaxed text-[#5F6368] border-t border-[#F1F3F4] pt-4">{faq.answer}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+          </div>
+          <div className="w-full lg:w-[320px] space-y-6 no-print">
+            <div className="space-y-6">
+            {/* Financial Toolkit Block */}
+            <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm p-6 space-y-4">
+               <h3 className="text-xl font-bold text-[#202124] mb-4">Explore More Nepal Financial Tools</h3>
+               <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-[#3C4043]">
+                 <li><a href="/calculator/nea-bill/" className="flex items-center gap-2 hover:text-[#1A73E8] transition-colors"><span className="text-xl">⚡</span> <span className="font-medium underline underline-offset-2">NEA Electricity Bill Calculator</span></a></li>
+                 <li><a href="/calculator/property-tax/" className="flex items-center gap-2 hover:text-[#1A73E8] transition-colors"><span className="text-xl">🏡</span> <span className="font-medium underline underline-offset-2">Property Tax Calculator</span></a></li>
+                 <li><a href="/calculator/nepal-salary/" className="flex items-center gap-2 hover:text-[#1A73E8] transition-colors"><span className="text-xl">💼</span> <span className="font-medium underline underline-offset-2">Salary Tax Calculator Nepal</span></a></li>
+                 <li><a href="/calculator/nepal-income-tax/" className="flex items-center gap-2 hover:text-[#1A73E8] transition-colors"><span className="text-xl">💸</span> <span className="font-medium underline underline-offset-2">Income Tax Calculator</span></a></li>
+               </ul>
+            </div>
+            
+            {sidebar && (
+              <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
                 <div className="px-5 py-4 bg-white border-b border-[#DADCE0]">
                   <h2 className="text-[13px] font-black text-[#202124] uppercase tracking-wider">{sidebar.title}</h2>
                   {sidebar.subtitle && <p className="text-[10px] font-bold text-[#70757A] uppercase mt-1">{sidebar.subtitle}</p>}
