@@ -55,7 +55,7 @@ const customSchema = {
           "name": "What is the price of 1 lal gold in Nepal today?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Based on current official FENEGOSIDA baseline indicators, the raw cost of 1 Lal of 24K Fine Gold (Chhapawal) is NPR 2,920.00, while 22K Tejabi Gold tracks at NPR 2,891.00 per Lal. For Silver (Chandi), 1 Lal costs NPR 48.40."
+            "text": "Based on official FENEGOSIDA baseline indicators, the price of 1 Lal of gold fluctuates daily. Check the live pricing board above for today's exact 24K Chhapawal and 22K Tejabi rates per Lal."
           }
         },
         {
@@ -247,8 +247,8 @@ export default function Page() {
                     3. What is the difference between Hallmark, Chhapawal, and Tejabi Gold?
                   </h3>
                   <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
-                    <p><strong>Hallmark / Chhapawal Gold (24K):</strong> This is pure gold at 99.99% refinement with no added metallic alloys. It trades at the peak benchmark rate of Rs. 2,92,000 per Tola and is typically purchased in the form of raw mint bars or investment-grade biscuits.</p>
-                    <p><strong>Tejabi Gold (22K):</strong> Also recognized as Standard Gold, this configuration features roughly 91.6% pure gold mixed with a minor alloy balance (such as copper or silver) to structuralize the metal for daily wear. It carries a set federation discount and trades at Rs. 2,89,100 per Tola.</p>
+                    <p><strong>Hallmark / Chhapawal Gold (24K):</strong> This is pure gold at 99.99% refinement with no added metallic alloys. It trades at the peak benchmark rate and is typically purchased in the form of raw mint bars or investment-grade biscuits.</p>
+                    <p><strong>Tejabi Gold (22K):</strong> Also recognized as Standard Gold, this configuration features roughly 91.6% pure gold mixed with a minor alloy balance (such as copper or silver) to structuralize the metal for daily wear. It carries a set federation discount relative to 24K gold.</p>
                   </div>
                 </div>
 
@@ -258,10 +258,7 @@ export default function Page() {
                   </h3>
                   <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
                     <p>Exactly 1 Lal equals 0.1166 grams. Because there are precisely 100 Lals in a single traditional Tola, the price of 1 Lal is mathematically equivalent to exactly 1% of the daily Tola rate:</p>
-                    <ul className="list-disc pl-5 space-y-1">
-                        <li>For 24K Fine Chhapawal Gold, 1 Lal costs exactly Rs. 2,920.00.</li>
-                        <li>For 22K Tejabi Gold, 1 Lal costs exactly Rs. 2,891.00.</li>
-                    </ul>
+                    <p>Please refer to our live pricing board above to see the precise value of 1 Lal of gold for today's market session.</p>
                     <p className="italic">Note: This represents the raw material value; retail storefront invoices will add customized fabrication fees on top of this baseline.</p>
                   </div>
                 </div>
@@ -272,11 +269,7 @@ export default function Page() {
                   </h3>
                   <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
                     <p>In local weight protocols, 10 Lals make up 1 Ana. Therefore, 4 Ana equals 40 Lals, representing exactly 40% of a Tola, which translates to a precise metric weight of 4.6655 grams.</p>
-                    <ul className="list-disc pl-5 space-y-1">
-                        <li>The raw bullion value for 4 Ana of 24K Chhapawal Gold is Rs. 1,16,800.00.</li>
-                        <li>The raw bullion value for 4 Ana of 22K Tejabi Gold is Rs. 1,15,640.00.</li>
-                    </ul>
-                    <p className="italic">(Note: If calculating a traditional quarter-tola ornament, which equals exactly 25 Lals/2.5 Ana, the baseline cost sits at Rs. 73,000 for 24K and Rs. 72,275 for 22K).</p>
+                    <p>You can use our <a href="/calculator/gold-converter/" className="text-[#1a73e8] underline underline-offset-2 hover:text-blue-800 transition-colors">Nepal Gold Unit Converter</a> to automatically calculate the exact price of 4 Ana based on today's live rates.</p>
                   </div>
                 </div>
 
@@ -299,9 +292,7 @@ export default function Page() {
                     7. What is the price of Silver (Chandi) per Tola and Lal in Nepal today?
                   </h3>
                   <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
-                    <p>Just like gold, silver trading across Nepal utilizes traditional South Asian weight metrics. Based on current market support levels, raw Silver (Chandi) is priced at Rs. 4,840 per Tola.</p>
-                    <p>Broken down into smaller weight fractions, silver costs Rs. 48.40 per Lal. For an ornament weighing exactly 1 Ana (10 Lals), the raw silver value is Rs. 484.00.</p>
-                    <p>Translated into modern metric protocols, silver trades at approximately Rs. 415.00 per 10 Grams.</p>
+                    <p>Just like gold, silver trading across Nepal utilizes traditional South Asian weight metrics. Check the live silver price on our board above for today's exact Tola and Lal rates.</p>
                     <p>If you are mapping out your personal portfolio assets or budgeting for major life events alongside precious metal purchases, verify your standard annual household deductions using our comprehensive <a href="/calculator/nepal-income-tax/" className="text-[#1a73e8] underline underline-offset-2 hover:text-blue-800 transition-colors">Nepal Income Tax Calculator</a> to keep your financial accounting fully optimized.</p>
                   </div>
                 </div>
