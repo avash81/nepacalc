@@ -71,7 +71,7 @@ const customSchema = {
           "name": "What is the official difference between Hallmark Gold, Chhapawal, and Tejabi Gold in Nepal?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Fine Gold (9999 Purity) is interchangeably referred to as Hallmark Gold or Chhapawal Sun (छापावाल सुन), representing 99.99% pure bullion at NPR 292,000/Tola. Tejabi Gold (तेजाबी सुन), classified by FNGSGJA as Standard Gold, operates at 99.50% purity with a structural discount of NPR 2,900 per Tola (NPR 289,100/Tola)."
+            "text": "Fine Gold (9999 Purity) is interchangeably referred to as Hallmark Gold or Chhapawal Sun (छापावाल सुन), representing 99.99% pure bullion. Tejabi Gold (तेजाबी सुन), classified by FENEGOSIDA as Standard Gold, operates at 99.50% purity and carries a set structural discount per Tola below the Hallmark rate. Check the live board above for today's exact rates."
           }
         },
         {
@@ -79,7 +79,7 @@ const customSchema = {
           "name": "What is the price of silver in Nepal today per tola?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The official baseline price of silver (Chandi / चाँदी) in Nepal is NPR 4,840.00 per Tola, which breaks down to NPR 48.40 per Lal and approximately NPR 415.00 per 10 grams."
+            "text": "The official baseline price of silver (Chandi / चाँदी) in Nepal changes daily as set by FENEGOSIDA. Check the live pricing board on this page for today's exact silver rate per Tola and per 10 grams."
           }
         }
       ]
