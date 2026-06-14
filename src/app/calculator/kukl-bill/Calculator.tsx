@@ -43,7 +43,7 @@ export default function KUKLCalculator() {
       slug="kukl-bill"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'KUKL Bill' }]}
       title="KUKL Water Bill 2083/84"
-      description="The definitive utility auditing engine for Kathmandu Valley. Calculate KUKL water bills with 100% precision, including volumetric charges and the 50% sewerage tax."
+      description="Calculate your KUKL water bill instantly. Enter your meter reading and pipe size to get your Water Charge + Sewerage Charge breakdown for FY 2083/84."
       icon={Droplets}
       inputs={
         <div className="space-y-6">
@@ -76,8 +76,8 @@ export default function KUKLCalculator() {
                 <p className="text-[9px] text-[#5F6368] font-bold uppercase tracking-wider mt-1">1 Unit = 1,000 Liters</p>
              </div>
           </div>
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-             Generate Utility Audit
+          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+             Calculate My Water Bill
           </button>
         </div>
       }
@@ -104,11 +104,12 @@ export default function KUKLCalculator() {
              </div>
           </div>
 
-          <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
-             <ShieldCheck className="w-5 h-5 text-[#188038] shrink-0" />
-             <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
-                Compliance Protocol: KUKL applies a strict 50% tax on the base water charge to fund municipal sewerage infrastructure. Minimum billing slabs apply.
-             </p>
+          <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-start">
+             <ShieldCheck className="w-5 h-5 text-[#188038] shrink-0 mt-0.5" />
+             <div>
+               <p className="text-[11px] font-bold text-[#202124] mb-0.5">How your bill is calculated</p>
+               <p className="text-[9px] text-[#5F6368] font-medium leading-relaxed">KUKL automatically adds a 50% sewerage fee on top of your water charge. This pays for Kathmandu Valley's wastewater system. Minimum charges apply even for low usage months.</p>
+             </div>
           </div>
         </div>
       }
@@ -118,7 +119,7 @@ export default function KUKLCalculator() {
             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm flex flex-col justify-center">
                <div className="flex items-center gap-2 mb-6 border-b border-[#F1F3F4] pb-3">
                   <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
-                  <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Bill Composition Audit</h3>
+                  <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Bill Breakdown</h3>
                </div>
                <div className="h-[200px] w-full relative mb-6">
                  <ResponsiveContainer width="100%" height="100%">
@@ -150,7 +151,7 @@ export default function KUKLCalculator() {
             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm flex flex-col justify-center">
                <div className="flex items-center gap-2 mb-6 border-b border-[#F1F3F4] pb-3">
                   <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
-                  <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Volume Scaling Bar</h3>
+                  <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Compared to Minimum Bill</h3>
                </div>
                <div className="h-[240px] w-full relative z-10">
                   <ResponsiveContainer width="100%" height="100%">

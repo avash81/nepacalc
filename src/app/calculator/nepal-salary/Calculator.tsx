@@ -59,7 +59,7 @@ export default function NepalSalaryCalculator() {
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Salary Calculator' }]}
       title="Nepal Salary Calculator 2083/84"
       hideH1={true}
-      description="The definitive institutional payroll auditing engine for Nepal. Calculate take-home pay with Labor Act 2074 compliance, SSF statutory pooling, and CIT tax optimization."
+      description="Calculate your exact take-home pay for FY 2083/84. Enter your gross salary, choose SSF or CIT/PF deductions, and instantly see your tax, deductions, and net monthly pay."
       icon={Wallet}
       relatedTools={[
         { label: "Income Tax Slab Audit", href: "/calculator/nepal-income-tax/" },

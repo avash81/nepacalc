@@ -85,7 +85,7 @@ const customSchema = {
           "name": "What are the latest KUKL water rates?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "For a standard residential 0.5-inch tap with an active meter, the latest rates include a fixed charge of Rs. 100 for the first 10 units, and Rs. 32 for each additional unit consumed. Unmetered connections face a flat fee of Rs. 648 per month."
+            "text": "Tariff rates are updated each fiscal year by KUKL. For the current rates, enter your pipe size and units into the calculator above — it applies the latest official tariff automatically so you always get an accurate result."
           }
         },
         {
@@ -93,7 +93,7 @@ const customSchema = {
           "name": "What is the minimum KUKL bill?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The absolute minimum monthly bill for an operational 0.5-inch residential tap is Rs. 150. This fee structure is mandatory even if a house remains completely vacant or uses less than 10,000 litres of water during the month."
+            "text": "There is a mandatory minimum monthly charge even if you use zero water. The exact amount depends on your pipe connection size (0.5-inch or 0.75-inch). Use the calculator above and enter 0 units to see the minimum payable for your connection."
           }
         }
       ]
@@ -435,12 +435,12 @@ export default function Page() {
 
           <section className="pt-8 border-t border-slate-200">
             <div className="p-6 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-600 mb-8">
-              <h4 className="font-bold text-slate-800 mb-2">⚖️ Institutional Disclaimer & E-E-A-T Compliance Note</h4>
+              <h4 className="font-bold text-slate-800 mb-2">⚖️ Disclaimer</h4>
               <p>
-                This digital platform functions as an independent calculator designed for educational guidance based on public tariff rules from Kathmandu Upatyaka Khanepani Limited (KUKL) and the Nepal Water Supply Corporation (NWSC). While NepaCalc continually reviews software calculation matrices against official branch publications, final customer ledgers may fluctuate due to cumulative historical arrears, manual meter adjustments, or specialized branch maintenance costs. Always verify your final balance values on your official printed KUKL or NWSC payment receipt or bank authorization panels before completing a transfer.
+                This calculator is for guidance only, based on publicly available KUKL and NWSC tariff rules. Your actual printed bill may vary due to arrears, meter adjustments, or local branch fees. Always verify your final amount on your official KUKL receipt before making a payment.
               </p>
               <p className="mt-2">
-                <strong>📞 Official Electronic Service Support Helpline:</strong> Having technical issues with your online portal entry or payment drops? Contact the official KUKL IT Section at 01-4117362 during office hours, or reach out to the customer technical supervisor helpline at 9700000717. For out-of-valley accounts, contact your respective regional NWSC branch administrative desk directly.
+                <strong>KUKL Helpline:</strong> 01-4117362 | Customer support: 9700000717
               </p>
             </div>
 
