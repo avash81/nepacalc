@@ -271,27 +271,6 @@ export default function NepalSalaryCalculator() {
            </div>
         </div>
       }
-      customSchema={{
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Nepal Salary Calculator 2083/84",
-        "url": "https://nepacalc.com/calculator/nepal-salary/",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "Any",
-        "browserRequirements": "Requires JavaScript",
-        "description": "Calculate your take-home pay in Nepal for FY 2083/84. Support for SSF (31% contribution), CIT deductions, and automatic income tax calculation.",
-        "inLanguage": "en",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "NPR"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "NepaCalc",
-          "url": "https://nepacalc.com"
-        }
-      }}
       sidebar={{
         title: "Salary Hub Nepal",
         subtitle: "Compliance Tools",
@@ -302,6 +281,9 @@ export default function NepalSalaryCalculator() {
           { label: "Labor Act 2074", href: "https://moless.gov.np", icon: Landmark },
         ],
       }}
+      faqs={[]}
+      seoContent={null}
+      details={null}
     />
   );
 }
