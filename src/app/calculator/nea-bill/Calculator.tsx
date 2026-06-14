@@ -52,6 +52,8 @@ export default function NEABillCalculator() {
     }
     prevLimit = 20;
 
+    let vatableEnergyCharge = 0;
+
     for (let i = 1; i < TARIFF_SLABS.length; i++) {
       const slab = TARIFF_SLABS[i];
       const limit = slab.upTo === null ? Infinity : slab.upTo;
@@ -62,6 +64,11 @@ export default function NEABillCalculator() {
         const rate = slab.energy || 0;
         const amount = consumed * rate;
         energyCharge += amount;
+        
+        if (prevLimit >= 50) {
+          vatableEnergyCharge += amount;
+        }
+
         slabBreakdown.push({ label: slab.label, amount, units: consumed, rate });
         remaining -= consumed;
       }
@@ -72,7 +79,9 @@ export default function NEABillCalculator() {
     const bracketSlab = TARIFF_SLABS.find((s) => s.upTo === null || units <= s.upTo) || TARIFF_SLABS[TARIFF_SLABS.length - 1];
     const fixedCharge = (bracketSlab.rates as any)[connectionAmps] || 0;
     const subtotal = energyCharge + fixedCharge;
-    const vat = subtotal * 0.13;
+    
+    // FY 2083/84 Update: 5% VAT applied ONLY to the energy charge of consumption exceeding 50 units
+    const vat = vatableEnergyCharge * 0.05;
     const baseTotal = subtotal + vat;
 
     const bDate = new Date(billingDate);
@@ -125,6 +134,22 @@ export default function NEABillCalculator() {
                   onChange={(e) => setUnits(Number(e.target.value))}
                   className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" 
                />
+               <div className="flex flex-wrap gap-2 mt-2">
+                 {[20, 50, 100, 200, 300].map(val => (
+                   <button 
+                     key={val} 
+                     onClick={() => setUnits(val)}
+                     className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium rounded-md transition-colors"
+                   >
+                     {val} units
+                   </button>
+                 ))}
+               </div>
+               <div className="pt-2">
+                 <p className="text-[11px] text-[#5F6368] leading-relaxed">
+                   <strong>Note:</strong> As per the FY 2083/84 budget, electricity consumption up to 50 units per month is VAT-exempt. A 5% VAT is applied only to usage exceeding 50 units.
+                 </p>
+               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
                <div className="space-y-2">

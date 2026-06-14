@@ -15,7 +15,6 @@ import {
 
 const DEFAULT_STATE = {
   grossSalary: 80000,
-  married: false,
   ssf: true,
   cit: true,
   citAmount: 10000,
@@ -29,7 +28,7 @@ function formatNPR(n: number) {
 
 export default function NepalSalaryCalculator() {
   const [state, setState] = useSyncState('salary_institutional_v6', DEFAULT_STATE);
-  const { grossSalary, married, ssf, cit, citAmount, gender } = state;
+  const { grossSalary, ssf, cit, citAmount, gender } = state;
 
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
@@ -58,7 +57,8 @@ export default function NepalSalaryCalculator() {
     <ModernCalcLayout
       slug="nepal-salary"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Salary Calculator' }]}
-      title="Nepal Salary Calculator 2083/84 — Free Online Payroll Calculator"
+      title="Nepal Salary Calculator 2083/84"
+      hideH1={true}
       description="The definitive institutional payroll auditing engine for Nepal. Calculate take-home pay with Labor Act 2074 compliance, SSF statutory pooling, and CIT tax optimization."
       icon={Wallet}
       relatedTools={[
@@ -80,18 +80,7 @@ export default function NepalSalaryCalculator() {
                />
             </div>
             
-            <div className="grid grid-cols-2 gap-4">
-               <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Marital Status</label>
-                  <select 
-                    value={married ? 'married' : 'single'} 
-                    onChange={(e) => update({ married: e.target.value === 'married' })}
-                    className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all appearance-none cursor-pointer"
-                  >
-                    <option value="single">Single</option>
-                    <option value="married">Married</option>
-                  </select>
-               </div>
+            <div className="grid grid-cols-1 gap-4">
                <div className="space-y-2">
                   <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Gender</label>
                   <select 

@@ -304,19 +304,6 @@ export function ModernCalcLayout({
                       </button>
                       <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openFaq === idx ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
                         <div className="px-6 pb-6 text-sm leading-relaxed text-[#5F6368] border-t border-[#F1F3F4] pt-4">{faq.answer}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-          </div>
-          <div className="w-full lg:w-[320px] space-y-6 no-print">
-            <div className="space-y-6">
-            <RecentSidebar />
-            {sidebar && (
-              <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
                 <div className="px-5 py-4 bg-white border-b border-[#DADCE0]">
                   <h2 className="text-[13px] font-black text-[#202124] uppercase tracking-wider">{sidebar.title}</h2>
                   {sidebar.subtitle && <p className="text-[10px] font-bold text-[#70757A] uppercase mt-1">{sidebar.subtitle}</p>}
