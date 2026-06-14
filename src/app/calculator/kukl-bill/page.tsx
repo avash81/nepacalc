@@ -146,16 +146,36 @@ export default function Page() {
                   <li><strong>Water Charge</strong> = Fixed Monthly Minimum Charge + Variable Consumption Charge</li>
                   <li><strong>Sewerage Charge</strong> = 50% of Total Water Charge (where applicable)</li>
                 </ul>
+
+                <div className="mt-6 p-5 bg-white border border-slate-200 rounded-lg">
+                  <h4 className="font-bold text-slate-900 mb-3 flex items-center gap-2">
+                    <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Formula</span>
+                    Edge-Case Computational Math Block (Metered)
+                  </h4>
+                  <p className="text-sm text-slate-600 mb-3">
+                    For a user input where <code className="font-mono bg-slate-100 px-1 py-0.5 rounded text-blue-700">U_consumed</code> represents the volume of Units entered into the text field:
+                  </p>
+                  <div className="overflow-x-auto bg-slate-800 rounded-lg p-4 font-mono text-sm">
+                    <div className="text-slate-300">Net Water Charge = </div>
+                    <div className="pl-4 border-l-2 border-slate-600 mt-2 space-y-2">
+                      <div><span className="text-emerald-400">Base_Fee</span> <span className="text-slate-500 italic">// if U_consumed &le; 10</span></div>
+                      <div><span className="text-emerald-400">Base_Fee</span> + ((<span className="text-blue-300">U_consumed</span> - 10) &times; <span className="text-amber-300">Per_Unit_Rate</span>) <span className="text-slate-500 italic">// if U_consumed &gt; 10</span></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
 
           <section>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">What Is 1 Unit Of Water In Nepal?</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">1 Unit Conversion Standard</h2>
             <div className="prose prose-slate max-w-none text-slate-700 space-y-4">
               <p>
-                <strong>1 unit of water equals 1,000 litres (1 kilolitre).</strong> Public utility networks across Nepal, including Kathmandu Upatyaka Khanepani Limited (KUKL) and the Nepal Water Supply Corporation (NWSC), standardize their physical water meters to track volume in cubic meters. One cubic meter corresponds precisely to 1,000 litres of water.
+                <strong>1 unit of water equals 1,000 litres (1 kilolitre).</strong> Public utility networks across Nepal, including Kathmandu Upatyaka Khanepani Limited (KUKL) and the Nepal Water Supply Corporation (NWSC), standardize their physical water meters to track volume in cubic meters. One cubic meter corresponds precisely to 1,000 litres of water:
               </p>
+              <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl text-center font-mono text-slate-800 font-bold mb-4">
+                1 Unit = 1 Cubic Meter (m&sup3;) = 1,000 Liters
+              </div>
               <ul className="list-disc pl-6">
                 <li>5 Units = 5,000 Litres</li>
                 <li>10 Units = 10,000 Litres</li>
@@ -232,6 +252,17 @@ export default function Page() {
             <p className="text-slate-700 mb-4">
               When an unmetered connection or a broken residential system is operating without verified meter readings, KUKL assesses flat baseline fees determined entirely by the pipe diameter size:
             </p>
+            
+            <div className="mb-6 p-5 bg-white border border-slate-200 rounded-lg">
+              <h4 className="font-bold text-slate-900 mb-2">The Meter Status Variable</h4>
+              <p className="text-sm text-slate-600 mb-3">
+                If a user toggles their meter status from "Metered" to "Unmetered" on a standard 0.5-inch tap line, the computational engine drops progressive variable inputs and swaps the subtotal processing to a flat minimum calculation:
+              </p>
+              <div className="bg-slate-800 text-slate-300 font-mono text-sm p-3 rounded text-center">
+                Flat Unmetered Bill = Rs. 432 (Base Fee) + Rs. 216 (50% Sewerage Tax) = <span className="text-amber-400 font-bold">Rs. 648 Total Monthly Liability</span>
+              </div>
+            </div>
+
             <ul className="list-disc pl-6 text-slate-700 space-y-2 mb-8">
               <li><strong>0.5-Inch Pipe:</strong> Rs. 432.00 Water Fee + Rs. 216.00 Sewerage Fee = <strong>Rs. 648.00 Fixed Total per month.</strong></li>
               <li><strong>0.75-Inch Pipe:</strong> Rs. 2,535.00 Water Fee + Rs. 1,267.50 Sewerage Fee = <strong>Rs. 3,802.50 Fixed Total per month.</strong></li>

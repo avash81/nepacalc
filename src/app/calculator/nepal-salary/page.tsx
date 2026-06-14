@@ -268,6 +268,39 @@ export default function Page() {
 
           <section>
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-6">🧮 Practical Example: Rs. 80,000 Monthly Salary Matrix</h2>
+            
+            <div className="mb-8 p-6 bg-slate-800 text-slate-300 rounded-xl overflow-x-auto border border-slate-700 shadow-inner">
+              <h4 className="font-bold text-white mb-4 text-sm flex items-center gap-2">
+                <span className="bg-blue-600 text-white px-2 py-1 rounded text-xs">Blueprint</span> 
+                Salary Tax Deductions Hierarchy (The Order of Operations)
+              </h4>
+              <pre className="font-mono text-sm leading-relaxed whitespace-pre">
+{`[Gross Monthly Salary × 12] + [13th-Month Dashain Bonus]
+                        │
+                        ▼
+           [ Gross Annual Income Subtotal ]
+                        │
+                        ▼  (Subtract SSF / EPF / CIT Contributions)
+                        │  *Max Cap: 1/3 of Income or Rs. 5,00,000
+                        │
+                        ▼  (Subtract Health/Life Insurance Premiums)
+                        │  *Max Cap: Rs. 40,000 (Life) & Rs. 20,000 (Health)
+                        │
+                        ▼
+            [ Net Taxable Income Balance ]
+                        │
+                        ▼  (Map to Progressive Slabs: 0% to 29%)
+                        │
+                        ▼  (Apply 10% Female Tax Rebate if Applicable)
+                        │
+                        ▼
+            [ Final Annual Tax Liability ] ÷ 12 
+                        │
+                        ▼
+           [ Final Monthly TDS Withholding ]`}
+              </pre>
+            </div>
+
             <p className="text-slate-700 mb-6">
               This highly structured breakdown demonstrates how a gross monthly salary of <strong>Rs. 80,000</strong> scales for an employee enrolled in the Social Security Fund who additionally deposits <strong>Rs. 10,000</strong> monthly into CIT. Because their net taxable income falls completely below the new Rs. 10 Lakh threshold and they enjoy the SSF tax waiver, their monthly withholding tax drops to zero.
             </p>
