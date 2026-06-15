@@ -3,6 +3,14 @@ import React from 'react';
 export const NeaBillSEO = (
   <div className="seo-extended-content" style={{ marginTop: '45px', borderTop: '1px solid #eaeaea', paddingTop: '35px', color: '#333', lineHeight: '1.7' }}>
 
+    {/* ── Quick Answer Block: AI Overview magnet ── */}
+    <div className="mb-8 p-5 rounded-xl border border-[#1A73E8] bg-[#E8F0FE]">
+      <h2 className="text-lg font-bold text-[#1A73E8] mb-2 mt-0">Quick Answer: How is an NEA Electricity Bill Calculated?</h2>
+      <p className="text-[#202124] mb-0">
+        The <strong>NEA Electricity Bill Calculator</strong> estimates your monthly bill based on the official <strong>Nepal Electricity Authority (NEA)</strong> tariff rates for FY 2083/84. Enter your electricity consumption in units (kWh), select your meter capacity (5A, 15A, 30A, or 60A), and the calculator applies the progressive slab system — ranging from <strong>Rs. 3.00 to Rs. 11.00 per unit</strong> — to give you an instant, itemized breakdown including the fixed demand charge and 5% concessional VAT.
+      </p>
+    </div>
+
     {/* ── Intent Bridge Layer: captures PAA + broad head-term traffic ── */}
     <div className="intent-bridge-layer mb-8 p-5 rounded-lg border-l-4 border-[#0056b3] bg-[#f0f6ff]">
       <p className="font-bold text-[#0056b3] mb-3 mt-0">💡 Looking for Instant Answers?</p>
@@ -13,7 +21,7 @@ export const NeaBillSEO = (
       </ul>
     </div>
 
-    <p>Managing monthly household utilities across Kathmandu, Pokhara, Lalitpur, or any region in Nepal requires clear visibility into how utility bills are calculated. This free, online NEA electricity bill calculator handles complex progressive calculations instantly, ensuring tenants, landlords, and commercial property owners can easily verify their actual electricity expenses without guessing the math. Using our dedicated <strong>nea calculator</strong> ensures you are looking at an authorized <strong>bill estimator</strong> that breaks down every <strong>1 unit electricity cost in nepal calculator</strong> metric automatically. Whether you are using a standard domestic line or an advanced <strong>3 phase electricity cost per unit in nepal</strong> framework, our <strong>nepa bill</strong> engine handles it all perfectly.</p>
+    <p>The <strong>NEA Electricity Bill Calculator</strong> helps households and businesses across Nepal estimate their monthly electricity bills based on the latest <strong>Nepal Electricity Authority (NEA)</strong> tariff structure for FY 2083/84. Whether you are a tenant in Kathmandu, a landlord in Pokhara, or a small business owner in Lalitpur, this tool breaks down your <strong>energy charge</strong>, fixed <strong>demand charge</strong>, and applicable <strong>VAT</strong> — giving you a transparent, itemized view of your monthly utility cost.</p>
     
     <p className="mt-4 mb-6">Planning your overall household budget? After calculating your utility expenses, you can accurately estimate your net take-home pay and corporate deductions using our <a href="/calculator/nepal-salary/" className="text-[#0056b3] underline font-medium">Nepal Salary Tax Calculator</a>.</p>
 
@@ -64,19 +72,62 @@ export const NeaBillSEO = (
 
     <p className="mb-6">If you are calculating utility bills for a rented property, flat, or plotting grid, you can also easily map out your structural property footprint using our companion <a href="/calculator/nepal-land/" className="text-[#0056b3] underline font-medium">Nepal Land Measurement Converter</a> to transition between Ropani, Aana, Bigha, and Kattha metrics automatically.</p>
 
-    <h2 className="text-xl font-bold text-[#202124] mb-4">📊 Quick Milestone Estimation: What Does a Standard Bill Cost?</h2>
-    <p className="mb-4">Many users want to know the <strong>price of 1 unit of electricity in nepal 2083</strong> (or look for old baseline references like the <strong>price of 1 unit of electricity in nepal 2082</strong>) and wonder how specific milestones are configured. Below is an approximate cost breakdown for common household usage brackets on a standard 5A meter line:</p>
-    <ul className="list-disc pl-6 space-y-2 mb-6">
-      <li><strong>10 unit electricity bill:</strong> Stays entirely inside the minimum baseline tier, costing just the base service charge of Rs. 30.</li>
-      <li><strong>20 unit electricity price:</strong> Hits the exact limit of the minimum charge threshold before jumping tiers.</li>
-      <li><strong>25 unit electricity bill:</strong> Crosses into the secondary progressive tier wrapper seamlessly.</li>
-      <li><strong>31 units of electricity cost / 40 unit electricity bill:</strong> Entering this bracket results in an energy charge of Rs. 145 plus a flat Rs. 50 service charge, totaling <strong>Rs. 195</strong>.</li>
-      <li><strong>50 unit electricity bill:</strong> Hitting this exact threshold maximizes the third slab tier before an escalation occurs. If you wonder <strong>how much is 50 units of electricity</strong> or <strong>how much is 50 unit of electricity</strong>, it serves as the ultimate benchmark household cushion.</li>
-      <li><strong>100 unit / 120 unit electricity cost:</strong> Stays safely inside the mid-tier threshold bounds.</li>
-      <li><strong>150 unit electricity bill price / 151 units electricity bill:</strong> Once you scale into and cross these brackets, your base 50 units cost a cumulative fixed total of Rs. 365, and any remaining units are billed at the corresponding higher tier rate.</li>
-    </ul>
+    <h2 className="text-xl font-bold text-[#202124] mb-4">NEA Residential Tariff Rates 2083/84 (5A Meter)</h2>
+    <p className="mb-4">For a standard <strong>5 Ampere domestic connection</strong>, the Nepal Electricity Authority applies the following progressive slab rates for FY 2083/84:</p>
+    <div className="overflow-x-auto mb-6">
+      <table className="w-full text-left border-collapse border border-[#DADCE0] text-sm">
+        <thead>
+          <tr className="bg-[#F8F9FA]">
+            <th className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Units (kWh)</th>
+            <th className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Energy Rate (per unit)</th>
+            <th className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Fixed Charge</th>
+            <th className="p-3 border border-[#DADCE0] font-bold text-[#202124]">VAT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td className="p-3 border border-[#DADCE0]">0 – 20 units</td><td className="p-3 border border-[#DADCE0]">Rs. 0 (free for 5A)</td><td className="p-3 border border-[#DADCE0]">Rs. 30</td><td className="p-3 border border-[#DADCE0]">None</td></tr>
+          <tr className="bg-[#F8F9FA]"><td className="p-3 border border-[#DADCE0]">21 – 30 units</td><td className="p-3 border border-[#DADCE0]">Rs. 6.50</td><td className="p-3 border border-[#DADCE0]">Rs. 50</td><td className="p-3 border border-[#DADCE0]">None</td></tr>
+          <tr><td className="p-3 border border-[#DADCE0]">31 – 50 units</td><td className="p-3 border border-[#DADCE0]">Rs. 8.00</td><td className="p-3 border border-[#DADCE0]">Rs. 50</td><td className="p-3 border border-[#DADCE0]">None</td></tr>
+          <tr className="bg-[#F8F9FA]"><td className="p-3 border border-[#DADCE0]">51 – 150 units</td><td className="p-3 border border-[#DADCE0]">Rs. 9.50</td><td className="p-3 border border-[#DADCE0]">Rs. 75</td><td className="p-3 border border-[#DADCE0]">5% on excess over 50 units</td></tr>
+          <tr><td className="p-3 border border-[#DADCE0]">151 – 250 units</td><td className="p-3 border border-[#DADCE0]">Rs. 9.50</td><td className="p-3 border border-[#DADCE0]">Rs. 100</td><td className="p-3 border border-[#DADCE0]">5%</td></tr>
+          <tr className="bg-[#F8F9FA]"><td className="p-3 border border-[#DADCE0]">251+ units</td><td className="p-3 border border-[#DADCE0]">Rs. 11.00</td><td className="p-3 border border-[#DADCE0]">Rs. 150</td><td className="p-3 border border-[#DADCE0]">5%</td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <p className="mt-6 mb-6">Tracking your complete domestic monthly checklist? To balance your traditional household assets alongside progressive utility charges, check out our live <a href="/market-rates/live-gold-price/" className="text-[#0056b3] underline font-medium">Gold Price Converter in Nepal</a> to translate Tola and Lal weights directly into modern metric gram factors instantly.</p>
+    <h2 className="text-xl font-bold text-[#202124] mb-3">What is the cost of 100 units of electricity in Nepal?</h2>
+    <p className="mb-6">For a standard <strong>5 Ampere residential connection</strong>, consuming <strong>100 units</strong> of electricity costs approximately <strong>Rs. 1,040</strong> under the current NEA tariff. This includes the cumulative energy charge of Rs. 965 (Rs. 365 for first 50 units + Rs. 475 for the next 50 units at Rs. 9.50/unit) plus a fixed service charge of Rs. 75. VAT of 5% applies on the energy charged above 50 units.</p>
+
+    <h2 className="text-xl font-bold text-[#202124] mb-3">How much is a 150 unit electricity bill in Nepal?</h2>
+    <p className="mb-6">A <strong>5A meter consuming 150 units</strong> per month incurs an estimated bill of <strong>Rs. 1,440</strong>. The first 50 units cost Rs. 365 cumulatively, units 51–150 are charged at Rs. 9.50 each (Rs. 950), and a Rs. 75 fixed service charge is added. A 5% concessional VAT applies to the energy consumption above 50 units.</p>
+
+    <h2 className="text-xl font-bold text-[#202124] mb-3">How much is a 200 unit electricity bill in Nepal?</h2>
+    <p className="mb-6">For <strong>200 units</strong> on a 5A meter, the estimated NEA electricity bill is approximately <strong>Rs. 1,940</strong>. Units 1–150 cost Rs. 1,315 cumulatively, and the remaining 50 units (151–200) at Rs. 9.50/unit add Rs. 475, plus a Rs. 100 fixed charge and applicable 5% VAT on usage above 50 units.</p>
+
+    <h2 className="text-xl font-bold text-[#202124] mb-4">NEA Tariff Comparison: 2082/83 vs 2083/84</h2>
+    <p className="mb-4">The NEA tariff structure has remained broadly stable with minor adjustments. Here is how the key slab rates compare for residential 5A connections:</p>
+    <div className="overflow-x-auto mb-6">
+      <table className="w-full text-left border-collapse border border-[#DADCE0] text-sm">
+        <thead>
+          <tr className="bg-[#F8F9FA]">
+            <th className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Consumption Slab</th>
+            <th className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Rate FY 2082/83</th>
+            <th className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Rate FY 2083/84</th>
+            <th className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td className="p-3 border border-[#DADCE0]">0–20 units (5A)</td><td className="p-3 border border-[#DADCE0]">Rs. 0 (lifeline)</td><td className="p-3 border border-[#DADCE0]">Rs. 0 (lifeline)</td><td className="p-3 border border-[#DADCE0] text-green-700">No change</td></tr>
+          <tr className="bg-[#F8F9FA]"><td className="p-3 border border-[#DADCE0]">21–30 units</td><td className="p-3 border border-[#DADCE0]">Rs. 6.50</td><td className="p-3 border border-[#DADCE0]">Rs. 6.50</td><td className="p-3 border border-[#DADCE0] text-green-700">No change</td></tr>
+          <tr><td className="p-3 border border-[#DADCE0]">31–50 units</td><td className="p-3 border border-[#DADCE0]">Rs. 8.00</td><td className="p-3 border border-[#DADCE0]">Rs. 8.00</td><td className="p-3 border border-[#DADCE0] text-green-700">No change</td></tr>
+          <tr className="bg-[#F8F9FA]"><td className="p-3 border border-[#DADCE0]">51–150 units</td><td className="p-3 border border-[#DADCE0]">Rs. 9.50</td><td className="p-3 border border-[#DADCE0]">Rs. 9.50</td><td className="p-3 border border-[#DADCE0] text-green-700">No change</td></tr>
+          <tr><td className="p-3 border border-[#DADCE0]">251+ units</td><td className="p-3 border border-[#DADCE0]">Rs. 11.00</td><td className="p-3 border border-[#DADCE0]">Rs. 11.00</td><td className="p-3 border border-[#DADCE0] text-green-700">No change</td></tr>
+          <tr className="bg-[#F8F9FA]"><td className="p-3 border border-[#DADCE0]">VAT threshold</td><td className="p-3 border border-[#DADCE0]">Not applicable</td><td className="p-3 border border-[#DADCE0]">5% on 51+ units</td><td className="p-3 border border-[#DADCE0] text-amber-700">New in 2083/84</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p className="mt-4 mb-6">Tracking your complete domestic monthly checklist? Check out our live <a href="/market-rates/live-gold-price/" className="text-[#0056b3] underline font-medium">Gold Price Converter in Nepal</a> to translate Tola and Lal weights directly into modern metric gram factors instantly.</p>
 
     <hr className="border-t border-dashed border-[#ccc] my-8" />
 
@@ -95,10 +146,24 @@ export const NeaBillSEO = (
 
     <hr className="border-t border-dashed border-[#ccc] my-8" />
 
-    <h2 className="text-xl font-bold text-[#202124] mb-4">🛠️ Explore Our Other Local Nepalese Financial Tools</h2>
-    <p className="mb-4">Finished analyzing your home energy utility expenses? Keep your financial management streamlined by trying out our companion calculation engine:</p>
-    <ul className="list-disc pl-6 space-y-2">
-      <li>🚘 <strong>Vehicle Management:</strong> Stay ahead of regional transport office renewal deadlines with our updated <a href="/calculator/nepal-vehicle-tax/" className="text-[#0056b3] hover:underline font-medium">Nepal Vehicle Tax Calculator</a>.</li>
+    <h2 className="text-xl font-bold text-[#202124] mb-4">Related Nepal Utility Calculators</h2>
+    <p className="mb-4">Finished checking your NEA electricity bill? Explore these related tools:</p>
+    <ul className="list-none p-0 space-y-3 mb-6">
+      <li>💧 <strong>KUKL Water Bill:</strong> Estimate your monthly Kathmandu Upatyaka Khanepani Limited water charges using official slab rates. <a href="/calculator/kukl-bill/" className="text-[#0056b3] hover:underline font-medium">KUKL Water Bill Calculator →</a></li>
+      <li>☀️ <strong>Solar Requirement:</strong> Calculate how many solar panels you need to offset your electricity consumption. <a href="/calculator/solar-requirement/" className="text-[#0056b3] hover:underline font-medium">Solar Requirement Calculator →</a></li>
+      <li>🚘 <strong>Vehicle Tax Calculator:</strong> Stay ahead of transport office renewal deadlines. <a href="/calculator/nepal-vehicle-tax/" className="text-[#0056b3] hover:underline font-medium">Nepal Vehicle Tax Calculator →</a></li>
+      <li>💼 <strong>Salary Tax Calculator:</strong> Calculate your net take-home pay and monthly TDS. <a href="/calculator/nepal-salary/" className="text-[#0056b3] hover:underline font-medium">Nepal Salary Calculator →</a></li>
     </ul>
+
+    <div className="mt-6 pt-5 border-t border-[#DADCE0] text-xs text-[#5F6368] flex flex-col sm:flex-row justify-between gap-4">
+      <div>
+        <span className="font-bold text-[#202124] block">Official Sources</span>
+        <a href="https://nea.org.np" target="_blank" rel="nofollow noopener noreferrer" className="text-[#0056b3] hover:underline">Nepal Electricity Authority (NEA)</a> · <a href="https://www.neabilling.com" target="_blank" rel="nofollow noopener noreferrer" className="text-[#0056b3] hover:underline">NEA Billing Portal</a>
+      </div>
+      <div className="text-right">
+        <span className="font-bold text-[#202124] block">Last Updated</span>
+        <span>June 2026 · FY 2083/84</span>
+      </div>
+    </div>
   </div>
 );
