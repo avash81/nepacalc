@@ -68,6 +68,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { slug: 'nepal-tds-guide-2083',              date: '2026-05-16' },
     { slug: 'nrb-base-rate-trends',              date: '2026-05-16' },
     { slug: 'nepal-gold-price-analysis-2083',    date: '2026-05-30' },
+    { slug: 'nea-tariff-rates-2083-84',          date: '2026-06-15' },
   ].map(({ slug, date }) => ({
     url: `${baseUrl}/blog/${slug}/`,
     lastModified: new Date(date),

@@ -27,6 +27,14 @@ export const NeaBillSEO = (
 
     <hr style={{ border: 0, borderTop: '1px dashed #ccc', margin: '30px 0' }} />
 
+    {/* ── Intent Section: targets "nea bill 2083" SERP query ── */}
+    <h2 className="text-xl font-bold text-[#202124] mb-3">NEA Bill 2083/84</h2>
+    <p className="mb-4">The <strong>NEA Bill 2083/84</strong> is calculated according to the latest <strong>Nepal Electricity Authority</strong> tariff structure introduced for fiscal year 2083/84. Residential consumers are charged using a <strong>progressive slab rate</strong> system — meaning the more units you consume, the higher the per-unit rate applied to additional consumption. A <strong>5% concessional VAT</strong> applies only to consumption exceeding 50 units per month, introduced under the 2083/84 budget.</p>
+    <p className="mb-4">Whether you search for <em>nea bill 2083</em>, <em>nea bill 2084</em>, <em>electricity bill 2083</em>, or <em>electricity bill nepal 2083</em> — all refer to the same tariff framework currently in effect. Use the calculator above to instantly compute your bill based on your actual meter reading and ampere connection.</p>
+    <p className="mb-6">For a complete breakdown of all slab rates and meter categories, see our dedicated guide: <a href="/blog/nea-tariff-rates-2083-84/" className="text-[#0056b3] underline font-medium">NEA Tariff Rates 2083/84 — Complete Guide →</a></p>
+
+    <hr style={{ border: 0, borderTop: '1px dashed #ccc', margin: '30px 0' }} />
+
     <h2 className="text-xl font-bold text-[#202124] mb-4">Understanding the Official NEA Tariff Rates in Nepal (2083/84)</h2>
     <p className="mb-4">The Nepal Electricity Authority (NEA) divides residential energy use into progressive slabs. This configuration ensures that minimal energy consumers pay lower baseline fees, while higher energy consumption draws higher rates. While looking back at historical data like the <strong>nepal electricity unit rate 2082</strong> or the <strong>nepal electricity bill rate 2082</strong> displays subtle baseline variances, the current fiscal cycle has fully transitioned to the updated <strong>nepal electricity bill rate 2083</strong> framework mapped below.</p>
 

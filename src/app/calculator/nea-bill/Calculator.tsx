@@ -373,6 +373,18 @@ export default function NEABillCalculator() {
         {
           question: "What is the NEA tariff rate for 2083/84?",
           answer: "The NEA tariff for FY 2083/84 uses a progressive slab system: 0-20 units at Rs. 3.00/unit, 21-30 units at Rs. 6.50/unit, 31-50 units at Rs. 8.00/unit, 51-150 units at Rs. 9.50/unit, 151-250 units at Rs. 9.50/unit, and above 251 units at Rs. 11.00/unit. A 5% concessional VAT applies on consumption exceeding 50 units."
+        },
+        {
+          question: "What is the NEA Bill 2083?",
+          answer: "NEA Bill 2083 refers to electricity charges calculated under the Nepal Electricity Authority tariff structure for fiscal year 2083/84. It uses a progressive slab-rate system where residential consumers pay between Rs. 3 to Rs. 11 per unit depending on their monthly consumption and meter capacity (5A, 15A, 30A, or 60A)."
+        },
+        {
+          question: "What are the latest NEA tariff rates?",
+          answer: "The latest NEA tariff rates for FY 2083/84 range from Rs. 3.00 per unit (0-20 unit lifeline slab for 5A meters) to Rs. 11.00 per unit for consumption above 251 units. Fixed service charges range from Rs. 30 to Rs. 250 depending on meter capacity and consumption bracket."
+        },
+        {
+          question: "Is there VAT on electricity bills in Nepal?",
+          answer: "Yes. Under the fiscal year 2083/84 provisions, a 5% concessional VAT applies only to electricity consumption above 50 units per month. The first 50 units consumed are completely VAT-exempt. This VAT is applied only to the energy charge, not the fixed service charge."
         }
       ]}
       seoContent={NeaBillSEO}
