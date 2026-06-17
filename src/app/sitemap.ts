@@ -18,6 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/privacy',
     '/terms',
     '/directory/',
+    '/electricity/nepal-unit-price/',
     '/engineering/',
     '/engineering/3d/',
     '/engineering/geometry/',
