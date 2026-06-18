@@ -88,7 +88,7 @@ export default function NEATariffRatesPage() {
       {
         "@type": "Question",
         "name": "What are the latest NEA tariff rates?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The latest residential NEA tariff rates range from Rs. 3.00/unit to Rs. 11.00/unit depending on the monthly consumption slab. The lifeline tariff (0-20 units) is Rs. 3.00/unit for a 5A meter. Different service charges apply based on the meter capacity." }
+        "acceptedAnswer": { "@type": "Answer", "text": "The latest residential NEA tariff rates range from Rs. 3.00 to Rs. 11.00 per unit (kWh) depending on the monthly consumption slab. For 5A lifeline users consuming 20 units or fewer, the energy charge is Rs. 0 and only a Rs. 30 service charge applies. Different service charges apply based on meter capacity (5A, 15A, 30A, 60A)." }
       },
       {
         "@type": "Question",
@@ -108,7 +108,7 @@ export default function NEATariffRatesPage() {
       {
         "@type": "Question",
         "name": "What is the lifeline tariff in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The lifeline tariff in Nepal is a subsidized electricity rate designed for low-income households. For domestic consumers using a 5A meter and consuming 0-20 units per month, the energy rate is set to Rs. 3.00 per unit (or essentially free up to 20 units with a minimum service charge of Rs. 30)." }
+        "acceptedAnswer": { "@type": "Answer", "text": "The lifeline tariff in Nepal is a subsidized electricity rate for low-income households with a 5A meter. If total monthly consumption is 20 units or fewer, the energy charge is completely waived (Rs. 0). The household only pays a minimum fixed service charge of Rs. 30 per month. If consumption exceeds 20 units even by one unit, standard progressive slab rates apply to all units." }
       }
     ]
   };
@@ -466,10 +466,13 @@ export default function NEATariffRatesPage() {
           <section id="tariff-changes" className="mb-10">
             <h2 className="text-2xl font-black text-[#202124] mb-4">10. How Often Does NEA Change Tariffs?</h2>
             <p className="text-slate-700 mb-4 leading-relaxed">
-              Complete revisions of electricity rates in Nepal do not occur on a fixed annual schedule. Changes are proposed by the Nepal Electricity Authority (NEA) based on power purchasing agreements, domestic production capacity, and operational costs. 
+              Complete revisions of electricity rates in Nepal do not occur on a fixed annual schedule. Changes are proposed by the Nepal Electricity Authority (NEA) based on power purchasing agreements, domestic production capacity, and operational costs.
             </p>
             <p className="text-slate-700 mb-4 leading-relaxed">
-              These proposals must undergo public hearings and receive formal approval from the **Electricity Regulatory Commission (ERC)** before they are officially implemented. 
+              These proposals must undergo public hearings and receive formal approval from the <strong>Electricity Regulatory Commission (ERC)</strong> before they are officially implemented. The ERC is the independent statutory body mandated under the Electricity Act to set and review tariffs in Nepal.
+            </p>
+            <p className="text-slate-700 mb-4 leading-relaxed">
+              To understand how individual unit costs add up to your final bill, read our guide on the <Link href="/electricity/nepal-unit-price/" className="text-blue-600 font-semibold hover:underline">price of 1 unit of electricity in Nepal</Link>.
             </p>
             <div className="bg-[#F8F9FA] border border-slate-200 rounded-xl p-5 mt-4 flex items-center justify-between">
               <div>
@@ -477,7 +480,7 @@ export default function NEATariffRatesPage() {
                 <p className="text-sm text-slate-600 mt-1">Get an accurate bill calculation with current rates applied instantly.</p>
               </div>
               <Link href="/calculator/nea-bill/" className="bg-[#003087] text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-blue-800 transition-colors whitespace-nowrap ml-4">
-                Use our NEA Bill Calculator →
+                Use NEA Bill Calculator →
               </Link>
             </div>
           </section>
@@ -505,7 +508,7 @@ export default function NEATariffRatesPage() {
                 },
                 { 
                   q: "What is the lifeline tariff in Nepal?", 
-                  a: "The lifeline tariff in Nepal is a subsidized electricity rate designed for low-income households. For domestic consumers using a 5A meter and consuming 0-20 units per month, the energy rate is set to Rs. 3.00 per unit (or essentially free up to 20 units with a minimum service charge of Rs. 30)." 
+                  a: "The lifeline tariff in Nepal is a subsidized electricity rate for low-income households with a 5A meter. If monthly consumption is 20 units or fewer, the energy charge is completely waived — Rs. 0. The household only pays a fixed minimum service charge of Rs. 30. If consumption exceeds 20 units even by one unit, the standard slab rates apply to all units consumed." 
                 }
               ].map(({ q, a }, i) => (
                 <details key={i} className="bg-white border border-slate-200 rounded-xl group">
@@ -528,24 +531,31 @@ export default function NEATariffRatesPage() {
 
           {/* SOURCES */}
           <section id="sources" className="mb-10 text-sm border-t border-slate-200 pt-6">
-            <h3 className="font-bold text-slate-800 mb-3">Sources</h3>
+            <h3 className="font-bold text-slate-800 mb-3">Sources &amp; References</h3>
             <ul className="list-disc pl-5 text-slate-600 space-y-2">
               <li>
-                Nepal Electricity Authority (NEA) - <a href="https://nea.org.np/en/pages/consumer-tariff-rates" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Consumer Tariff Rates</a>
+                Nepal Electricity Authority (NEA) — <a href="https://nea.org.np/en/pages/consumer-tariff-rates" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Official Consumer Tariff Rates</a>
               </li>
               <li>
-                Nepal Energy Forum - <a href="http://www.nepalenergyforum.com/nea-electricity-tariff-rates/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">NEA Electricity Tariff Rates</a>
+                Electricity Regulatory Commission (ERC), Nepal — <a href="https://www.erc.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">erc.gov.np</a> (Regulatory Authority for Tariff Approval)
+              </li>
+              <li>
+                Nepal Energy Forum — <a href="http://www.nepalenergyforum.com/nea-electricity-tariff-rates/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">NEA Electricity Tariff Rates Reference</a>
+              </li>
+              <li>
+                Department of Electricity Development (DoED), Nepal — <a href="https://doed.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">doed.gov.np</a> (Electricity Sector Regulator)
               </li>
             </ul>
           </section>
 
           {/* SIDEBAR / FOOTER CLUSTER BLOCK */}
           <div className="mt-12 bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-            <h2 className="text-xl font-bold text-[#003087] mb-4 border-b border-slate-100 pb-3">Electricity Resources</h2>
+            <h2 className="text-xl font-bold text-[#003087] mb-4 border-b border-slate-100 pb-3">Related Electricity Resources</h2>
             <ul className="space-y-3">
-              <li><Link href="/calculator/nea-bill/" className="text-slate-700 hover:text-blue-600 font-medium transition-colors">NEA Bill Calculator</Link></li>
-              <li><Link href="/electricity/nepal-unit-price/" className="text-slate-700 hover:text-blue-600 font-medium transition-colors">Electricity Unit Price in Nepal</Link></li>
-              <li><Link href="/electricity/nea-tariff-rates/" className="text-slate-700 hover:text-blue-600 font-medium transition-colors">Official NEA Tariff Rates</Link></li>
+              <li>⚡ <Link href="/calculator/nea-bill/" className="text-slate-700 hover:text-blue-600 font-medium transition-colors">NEA Bill Calculator — Estimate Your Monthly Bill</Link></li>
+              <li>💡 <Link href="/electricity/nepal-unit-price/" className="text-slate-700 hover:text-blue-600 font-medium transition-colors">Price of 1 Unit Electricity in Nepal</Link></li>
+              <li>💧 <Link href="/calculator/kukl-bill/" className="text-slate-700 hover:text-blue-600 font-medium transition-colors">KUKL Water Bill Calculator</Link></li>
+              <li>☀️ <Link href="/calculator/solar-requirement/" className="text-slate-700 hover:text-blue-600 font-medium transition-colors">Solar Requirement Calculator for Nepal</Link></li>
             </ul>
           </div>
 

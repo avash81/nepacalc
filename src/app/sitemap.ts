@@ -19,6 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/terms',
     '/directory',
     '/electricity/nepal-unit-price',
+    '/electricity/nea-tariff-rates',
     '/engineering',
     '/engineering/3d',
     '/engineering/geometry',
@@ -30,7 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/guide',
   ].map((route) => ({
     url: `${baseUrl}${route}/`.replace(/([^:]\/)\/+/g, "$1"),
-    lastModified: route === '/electricity/nepal-unit-price' ? new Date('2026-06-18T10:00:00Z') : lastModDate,
+    lastModified: (route === '/electricity/nepal-unit-price' || route === '/electricity/nea-tariff-rates') ? new Date('2026-06-18T10:00:00Z') : lastModDate,
     changeFrequency: 'weekly' as const,
     priority: route === '' ? 1.0 : route === '/directory' ? 0.95 : 0.85,
   }));

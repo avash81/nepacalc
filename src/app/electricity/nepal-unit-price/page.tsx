@@ -609,6 +609,14 @@ export default function NepalElectricityUnitPricePage() {
               <li>💧 <Link href="/calculator/kukl-bill/" className="text-blue-600 hover:underline font-medium">KUKL Water Bill Calculator</Link></li>
               <li>☀️ <Link href="/calculator/solar-requirement/" className="text-blue-600 hover:underline font-medium">Solar Panel Requirement Calculator</Link></li>
             </ul>
+            <div className="mt-4 pt-4 border-t border-slate-100">
+              <p className="text-xs font-bold text-slate-600 mb-2">Official External Sources</p>
+              <ul className="space-y-1.5 text-xs text-slate-600">
+                <li>🏛️ <a href="https://nea.org.np/en/pages/consumer-tariff-rates" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Electricity Authority (NEA) — Official Tariff Schedule</a></li>
+                <li>⚖️ <a href="https://www.erc.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Electricity Regulatory Commission (ERC) Nepal — Tariff Regulator</a></li>
+                <li>📋 <a href="http://www.nepalenergyforum.com/nea-electricity-tariff-rates/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Energy Forum — NEA Tariff Reference Data</a></li>
+              </ul>
+            </div>
           </div>
 
           {/* ─────────────────────────────────
