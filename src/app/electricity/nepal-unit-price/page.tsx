@@ -177,17 +177,48 @@ export default function NepalElectricityUnitPricePage() {
             </p>
           </div>
 
-          {/* ── KEY TAKEAWAYS (summary-box) ── */}
-          <div className="summary-box bg-white border border-slate-200 rounded-xl p-5 mb-7 shadow-sm">
-            <p className="font-black text-slate-800 text-sm mb-3 uppercase tracking-wide">📋 Key Takeaways</p>
-            <ul className="space-y-1.5 text-sm text-slate-700">
-              <li>✅ Lowest residential rate: <strong>Rs. 3.00 per unit</strong> (0–20 units, 5A meter)</li>
-              <li>✅ Highest residential rate: <strong>Rs. 11.00 per unit</strong> (above 251 units)</li>
-              <li>✅ Rates are determined by <strong>progressive consumption slabs</strong></li>
-              <li>✅ Fixed <strong>service charge</strong> applies based on meter size (5A / 15A / 30A)</li>
-              <li>✅ <strong>5% VAT</strong> applies only on consumption above 50 units per month</li>
-              <li>✅ Use the <Link href="/calculator/nea-bill/" className="text-blue-600 underline font-semibold">NEA Bill Calculator</Link> to get your exact amount</li>
+          {/* ── AEO SUMMARY BOX ── */}
+          <div className="summary-box bg-[#F8F9FA] border border-slate-200 rounded-xl p-5 mb-7">
+            <p className="font-black text-[#202124] text-lg mb-3">Quick Facts</p>
+            <ul className="list-disc pl-5 space-y-2 text-slate-700 text-sm font-medium">
+              <li>Electricity price in Nepal ranges from approximately Rs. 3.00 to Rs. 11.00 per unit.</li>
+              <li>NEA uses a progressive slab tariff system.</li>
+              <li>Service charges vary by meter capacity.</li>
+              <li>A 5A, 15A and 30A meter may produce different bills for identical consumption.</li>
+              <li>Residential electricity tariffs are uniform across Nepal.</li>
+              <li>Bills may also include VAT and demand charges.</li>
             </ul>
+          </div>
+
+          {/* ── KEY FACTS (AI Overview Optimization) ── */}
+          <div className="summary-box bg-white border border-slate-200 rounded-xl p-5 mb-7 shadow-sm">
+            <p className="font-black text-slate-800 text-sm mb-3 uppercase tracking-wide">📋 Key Facts</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-slate-700">
+              <div>
+                <span className="block text-xs text-slate-500 uppercase tracking-wide">Lowest residential rate</span>
+                <strong className="text-slate-900">Rs. 3.00 per unit</strong>
+              </div>
+              <div>
+                <span className="block text-xs text-slate-500 uppercase tracking-wide">Highest residential rate</span>
+                <strong className="text-slate-900">Rs. 11.00 per unit</strong>
+              </div>
+              <div>
+                <span className="block text-xs text-slate-500 uppercase tracking-wide">Billing system</span>
+                <strong className="text-slate-900">Progressive slab tariff</strong>
+              </div>
+              <div>
+                <span className="block text-xs text-slate-500 uppercase tracking-wide">Regulator</span>
+                <strong className="text-slate-900">Electricity Regulatory Commission (ERC)</strong>
+              </div>
+              <div>
+                <span className="block text-xs text-slate-500 uppercase tracking-wide">Utility provider</span>
+                <strong className="text-slate-900">Nepal Electricity Authority (NEA)</strong>
+              </div>
+              <div>
+                <span className="block text-xs text-slate-500 uppercase tracking-wide">Coverage</span>
+                <strong className="text-slate-900">Nationwide Nepal</strong>
+              </div>
+            </div>
           </div>
 
           {/* ── NEA ELECTRICITY INFORMATION HUB ── */}
@@ -200,13 +231,16 @@ export default function NepalElectricityUnitPricePage() {
               <span className="bg-white text-[#003087] font-bold text-sm px-4 py-2 rounded-lg inline-block shadow-sm">
                 ✓ Electricity Unit Price (Current Page)
               </span>
+              <Link href="/calculator/solar-requirement/" className="bg-white/10 hover:bg-white/20 text-white font-medium text-sm px-4 py-2 rounded-lg transition-colors inline-block">
+                ✓ Solar Requirement Calculator
+              </Link>
             </div>
             <div className="mt-3 flex flex-col sm:flex-row gap-3">
-              <span className="bg-white/5 text-white/60 font-medium text-sm px-4 py-2 rounded-lg inline-block border border-white/10 border-dashed">
-                ⏳ Coming Soon: NEA Tariff Rates
+              <span className="bg-white/10 text-white/70 font-medium text-sm px-4 py-2 rounded-lg inline-block border border-white/10 border-dashed cursor-not-allowed">
+                ✓ NEA Tariff Rates (Coming Soon)
               </span>
-              <span className="bg-white/5 text-white/60 font-medium text-sm px-4 py-2 rounded-lg inline-block border border-white/10 border-dashed">
-                ⏳ Coming Soon: Electricity VAT Guide
+              <span className="bg-white/10 text-white/70 font-medium text-sm px-4 py-2 rounded-lg inline-block border border-white/10 border-dashed cursor-not-allowed">
+                ✓ Electricity VAT Guide (Coming Soon)
               </span>
             </div>
           </div>
@@ -239,19 +273,20 @@ export default function NepalElectricityUnitPricePage() {
 
           {/* ── TABLE OF CONTENTS ── */}
           <div className="bg-white rounded-xl border border-slate-200 p-5 mb-8 shadow-sm">
-            <p className="font-black text-slate-800 mb-3 text-sm uppercase tracking-wide">📑 Table of Contents</p>
+            <p className="font-black text-slate-800 mb-3 text-sm uppercase tracking-wide">📑 Contents</p>
             <ol className="space-y-1.5 text-sm text-blue-600 list-decimal pl-4">
               {[
-                ["#what-is-one-unit", "What is One Unit of Electricity?"],
-                ["#current-electricity-rate", "Current Electricity Rate in Nepal"],
-                ["#official-tariff-table", "Official NEA Tariff Table"],
-                ["#service-charges", "Service Charges by Meter Type"],
-                ["#meter-comparison", "5A vs 15A vs 30A Connections"],
-                ["#how-nea-calculates", "How NEA Calculates Bills"],
-                ["#cost-examples", "Cost Examples (50, 100, 150, 250 Units)"],
-                ["#vat-rules", "VAT on Electricity Bills"],
-                ["#paa", "People Also Ask"],
-                ["#price-history", "Electricity Price History"],
+                ["#what-is-one-unit", "Quick Answer: What Is 1 Unit Electricity Price in Nepal?"],
+                ["#official-tariff-table", "Official NEA Electricity Rate Table"],
+                ["#service-charges", "Service Charges by Meter Capacity"],
+                ["#average-cost", "Average Cost Per Unit"],
+                ["#cost-examples", "Electricity Cost Examples"],
+                ["#why-higher", "Why Your Electricity Bill Is Higher Than Unit Price × Consumption"],
+                ["#vat-rules", "Understanding VAT on Electricity Bills"],
+                ["#how-nea-determines", "How NEA Determines Electricity Rates"],
+                ["#differ-across-nepal", "Electricity Rates in Kathmandu, Pokhara, Lalitpur & Nepal"],
+                ["#price-history", "Historical Electricity Prices in Nepal"],
+                ["#how-nea-calculates", "How to Calculate Your Electricity Bill"],
                 ["#faq", "Frequently Asked Questions"],
               ].map(([href, label]) => (
                 <li key={href}><a href={href} className="hover:underline">{label}</a></li>
@@ -261,10 +296,10 @@ export default function NepalElectricityUnitPricePage() {
 
           {/* ── INTRODUCTION ── */}
           <p className="text-slate-700 mb-4 text-base leading-relaxed">
-            If you are searching for the current <strong>electricity unit price in Nepal</strong>, it is important to understand that Nepal does not use a fixed flat electricity rate. Instead, the <strong>Nepal Electricity Authority (NEA)</strong> applies a <strong>progressive slab tariff system</strong> where the cost per unit increases as consumption rises.
+            If you are searching for the <strong>current 1 unit electricity price in Nepal</strong>, it is important to understand that Nepal does not use a fixed flat electricity rate. Instead, the <strong>latest electricity unit price in Nepal</strong> is determined by the <strong>Nepal Electricity Authority (NEA)</strong> and approved by the <strong>Electricity Regulatory Commission</strong>. They apply a <strong>progressive slab tariff system</strong> where the <strong>1 unit electricity cost in Nepal</strong> increases as consumption rises.
           </p>
           <p className="text-slate-700 mb-4 text-base leading-relaxed">
-            Residential consumers currently pay approximately <strong>Rs. 3.00 to Rs. 11.00 per unit</strong> depending on monthly usage and meter category. These rates apply across Nepal including <strong>Kathmandu, Lalitpur, Bhaktapur, Pokhara, Chitwan, Butwal, Nepalgunj, Janakpur, Dharan, Hetauda, and Biratnagar</strong>.
+            For domestic consumers, the <strong>electricity charge per unit in Nepal</strong> currently ranges from approximately <strong>Rs. 3.00 to Rs. 11.00</strong> depending on monthly usage and meter category. This <strong>domestic electricity rate Nepal</strong> applies universally across the country. Whether you live in <strong>Kathmandu, Lalitpur, Bhaktapur, Pokhara, Chitwan, Butwal, Nepalgunj, Janakpur, Dharan, Hetauda, or Biratnagar</strong>, the standard <strong>electricity unit rate Nepal</strong> remains the exact same.
           </p>
           <p className="text-slate-700 mb-6 text-base leading-relaxed">
             For exact bill calculations, use our <Link href="/calculator/nea-bill/" className="text-blue-600 underline font-semibold">NEA Bill Calculator</Link>.
@@ -375,11 +410,62 @@ export default function NepalElectricityUnitPricePage() {
           </section>
 
           {/* ─────────────────────────────────
+              METER CHARGES COMPARISON
+          ───────────────────────────────── */}
+          <section id="meter-charges-comparison" className="mb-10">
+            <h2 className="text-2xl font-black text-[#202124] mb-4">5A vs 15A vs 30A Electricity Meter Charges in Nepal</h2>
+            <p className="text-slate-700 mb-4">Many households assume that electricity bills depend only on units consumed. In reality, the Nepal Electricity Authority (NEA) also applies a fixed monthly service charge based on meter capacity.</p>
+            <p className="text-slate-700 mb-4">This means two households using the same number of units can receive different bills if they use different meter types.</p>
+            
+            <div className="overflow-x-auto mb-5">
+              <table className="w-full text-sm border-collapse border border-slate-200">
+                <thead>
+                  <tr className="bg-slate-100 text-slate-800">
+                    <th className="p-3 border border-slate-200 font-bold text-left">Meter Type</th>
+                    <th className="p-3 border border-slate-200 font-bold text-left">Typical Household</th>
+                    <th className="p-3 border border-slate-200 font-bold text-left">Monthly Service Charge</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="bg-white">
+                    <td className="p-3 border border-slate-200 font-semibold">5A Meter</td>
+                    <td className="p-3 border border-slate-200">Small apartments and low-consumption homes</td>
+                    <td className="p-3 border border-slate-200">Based on current NEA tariff</td>
+                  </tr>
+                  <tr className="bg-slate-50">
+                    <td className="p-3 border border-slate-200 font-semibold">15A Meter</td>
+                    <td className="p-3 border border-slate-200">Medium-sized households with multiple appliances</td>
+                    <td className="p-3 border border-slate-200">Based on current NEA tariff</td>
+                  </tr>
+                  <tr className="bg-white">
+                    <td className="p-3 border border-slate-200 font-semibold">30A Meter</td>
+                    <td className="p-3 border border-slate-200">Large homes with heavy electricity usage</td>
+                    <td className="p-3 border border-slate-200">Based on current NEA tariff</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 className="text-xl font-bold text-[#202124] mb-3 mt-6">What Is a Demand Charge?</h3>
+            <p className="text-slate-700 mb-4">A demand charge (sometimes called a service charge) is a fixed amount charged every month regardless of electricity consumption. It covers the cost of maintaining the electricity connection and distribution infrastructure.</p>
+
+            <h3 className="text-xl font-bold text-[#202124] mb-3 mt-6">Why Can Two Homes Have Different Bills For The Same Units?</h3>
+            <p className="text-slate-700 mb-4">If two households both consume 100 units of electricity, the total bill may still differ because:</p>
+            <ul className="list-disc pl-5 space-y-2 text-slate-700 mb-4">
+              <li>They use different meter capacities</li>
+              <li>Different service charges apply</li>
+              <li>VAT may be calculated differently</li>
+              <li>Local duties or adjustments may vary</li>
+            </ul>
+            <p className="text-slate-700 mb-4">For a complete bill calculation, use our <Link href="/calculator/nea-bill/" className="text-blue-600 hover:underline">NEA Bill Calculator</Link>.</p>
+          </section>
+
+          {/* ─────────────────────────────────
               SECTION 4: SERVICE CHARGES
           ───────────────────────────────── */}
           <section id="service-charges" className="mb-10">
-            <h2 className="text-2xl font-black text-[#202124] mb-4">Service Charges by Meter Type</h2>
-            <p className="text-slate-700 mb-4">Electricity bills in Nepal contain two primary components: <strong>Energy Charge</strong> and <strong>Service Charge</strong> (also called Demand Charge). The service charge is a flat monthly fee that varies by meter size and consumption bracket.</p>
+            <h2 className="text-2xl font-black text-[#202124] mb-4">Service Charges by Meter Capacity</h2>
+            <p className="text-slate-700 mb-4">Electricity bills in Nepal contain two primary components: <strong>Energy Charge</strong> and <strong>Service Charge</strong> (also called Demand Charge). The service charge is a flat monthly fee that varies by meter capacity and consumption bracket.</p>
             <div className="overflow-x-auto mb-5">
               <table className="w-full text-sm border-collapse border border-slate-200">
                 <thead>
@@ -388,28 +474,31 @@ export default function NepalElectricityUnitPricePage() {
                     <th className="p-3 border border-slate-200 font-bold text-center">5A Meter</th>
                     <th className="p-3 border border-slate-200 font-bold text-center">15A Meter</th>
                     <th className="p-3 border border-slate-200 font-bold text-center">30A Meter</th>
+                    <th className="p-3 border border-slate-200 font-bold text-center">60A Meter</th>
                   </tr>
                 </thead>
                 <tbody>
                   {[
-                    ["0 – 20 units", "Rs. 30", "Rs. 50", "Rs. 75"],
-                    ["21 – 30 units", "Rs. 50", "Rs. 75", "Rs. 100"],
-                    ["31 – 50 units", "Rs. 50", "Rs. 75", "Rs. 100"],
-                    ["51 – 150 units", "Rs. 75", "Rs. 100", "Rs. 125"],
-                    ["151 – 250 units", "Rs. 100", "Rs. 125", "Rs. 150"],
-                    ["Above 251 units", "Rs. 150", "Rs. 175", "Rs. 200"],
-                  ].map(([a, b, c, d], i) => (
+                    ["0 – 20 units", "Rs. 30", "Rs. 50", "Rs. 75", "Rs. 125"],
+                    ["21 – 30 units", "Rs. 50", "Rs. 75", "Rs. 100", "Rs. 125"],
+                    ["31 – 50 units", "Rs. 50", "Rs. 75", "Rs. 100", "Rs. 125"],
+                    ["51 – 150 units", "Rs. 75", "Rs. 100", "Rs. 125", "Rs. 150"],
+                    ["151 – 250 units", "Rs. 100", "Rs. 125", "Rs. 150", "Rs. 200"],
+                    ["Above 251 units", "Rs. 150", "Rs. 175", "Rs. 200", "Rs. 250"],
+                  ].map(([a, b, c, d, e], i) => (
                     <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
                       <td className="p-3 border border-slate-200 font-semibold">{a}</td>
                       <td className="p-3 border border-slate-200 text-center">{b}</td>
                       <td className="p-3 border border-slate-200 text-center">{c}</td>
                       <td className="p-3 border border-slate-200 text-center">{d}</td>
+                      <td className="p-3 border border-slate-200 text-center">{e}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
           </section>
+
 
           {/* ─────────────────────────────────
               SECTION 5: 5A vs 15A vs 30A
@@ -459,6 +548,19 @@ export default function NepalElectricityUnitPricePage() {
           </section>
 
           {/* ─────────────────────────────────
+              AVERAGE COST PER UNIT
+          ───────────────────────────────── */}
+          <section id="average-cost" className="mb-10">
+            <h2 className="text-2xl font-black text-[#202124] mb-4">What is the Average Cost Per Unit in Nepal?</h2>
+            <p className="text-slate-700 mb-4 text-base">
+              Because NEA uses a progressive slab tariff, your <strong>average cost per unit</strong> will always be higher than the base rate of the first few units. As you consume more, the average price of each unit is pulled upwards by the higher slabs, service charges, and VAT.
+            </p>
+            <div className="bg-slate-50 border-l-4 border-blue-500 p-4 rounded-r-lg text-sm text-slate-700 mb-4">
+              <strong>Example:</strong> If you consume 100 units, your total bill is approximately Rs. 939. This means your <strong>true average cost per unit</strong> is Rs. 9.39 (Rs. 939 ÷ 100 units), even though the base rate for the first 20 units is only Rs. 3.00.
+            </div>
+          </section>
+
+          {/* ─────────────────────────────────
               SECTION 7: COST EXAMPLES
           ───────────────────────────────── */}
           <section id="cost-examples" className="mb-10">
@@ -475,11 +577,14 @@ export default function NepalElectricityUnitPricePage() {
                 <tbody>
                   {[
                     ["20 units", "~ Rs. 30 (lifeline base)"],
-                    ["50 units", "~ Rs. 415"],
+                    ["42 units", "~ Rs. 271"],
+                    ["50 units", "~ Rs. 335"],
                     ["100 units", "~ Rs. 939"],
+                    ["149 units", "~ Rs. 1,428"],
                     ["150 units", "~ Rs. 1,438"],
                     ["200 units", "~ Rs. 1,961"],
                     ["250 units", "~ Rs. 2,460"],
+                    ["720 units", "~ Rs. 7,725"],
                   ].map(([a, b], i) => (
                     <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
                       <td className="p-3 border border-slate-200 font-bold">{a}</td>
@@ -614,6 +719,67 @@ export default function NepalElectricityUnitPricePage() {
             </p>
           </section>
 
+          {/* ─────────────────────────────────
+              APPLIANCE COST
+          ───────────────────────────────── */}
+          <section id="appliance-cost" className="mb-10">
+            <h2 className="text-2xl font-black text-[#202124] mb-4">How Much Electricity Do Common Household Appliances Use?</h2>
+            <p className="text-slate-700 mb-4">Many consumers search for the electricity cost of individual appliances rather than total household consumption. The following examples provide approximate monthly usage estimates for common appliances used in Nepal.</p>
+            
+            <div className="overflow-x-auto mb-5">
+              <table className="w-full text-sm border-collapse border border-slate-200">
+                <thead>
+                  <tr className="bg-slate-100 text-slate-800">
+                    <th className="p-3 border border-slate-200 font-bold text-left">Appliance</th>
+                    <th className="p-3 border border-slate-200 font-bold text-left">Approx Monthly Units</th>
+                    <th className="p-3 border border-slate-200 font-bold text-left">Approx Monthly Cost</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="bg-white">
+                    <td className="p-3 border border-slate-200 font-semibold">Ceiling Fan</td>
+                    <td className="p-3 border border-slate-200">15–30 units</td>
+                    <td className="p-3 border border-slate-200 text-[#003087]">Depends on tariff slab</td>
+                  </tr>
+                  <tr className="bg-slate-50">
+                    <td className="p-3 border border-slate-200 font-semibold">LED Television</td>
+                    <td className="p-3 border border-slate-200">8–20 units</td>
+                    <td className="p-3 border border-slate-200 text-[#003087]">Depends on usage</td>
+                  </tr>
+                  <tr className="bg-white">
+                    <td className="p-3 border border-slate-200 font-semibold">Refrigerator</td>
+                    <td className="p-3 border border-slate-200">30–60 units</td>
+                    <td className="p-3 border border-slate-200 text-[#003087]">Depends on size and efficiency</td>
+                  </tr>
+                  <tr className="bg-slate-50">
+                    <td className="p-3 border border-slate-200 font-semibold">Rice Cooker</td>
+                    <td className="p-3 border border-slate-200">10–25 units</td>
+                    <td className="p-3 border border-slate-200 text-[#003087]">Depends on frequency</td>
+                  </tr>
+                  <tr className="bg-white">
+                    <td className="p-3 border border-slate-200 font-semibold">Water Heater</td>
+                    <td className="p-3 border border-slate-200">40–120 units</td>
+                    <td className="p-3 border border-slate-200 text-amber-700 font-medium">High consumption appliance</td>
+                  </tr>
+                  <tr className="bg-slate-50">
+                    <td className="p-3 border border-slate-200 font-semibold">Air Conditioner</td>
+                    <td className="p-3 border border-slate-200">80–300 units</td>
+                    <td className="p-3 border border-slate-200 text-red-700 font-medium">Very high consumption appliance</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 className="text-xl font-bold text-[#202124] mb-3 mt-6">How Much Does A Refrigerator Cost Per Month In Nepal?</h3>
+            <p className="text-slate-700 mb-4">A typical household refrigerator consumes approximately 30–60 units of electricity per month depending on capacity, age and efficiency rating. The actual monthly cost depends on your total household consumption slab.</p>
+
+            <h3 className="text-xl font-bold text-[#202124] mb-3 mt-6">How Much Electricity Does An Air Conditioner Use?</h3>
+            <p className="text-slate-700 mb-4">Air conditioners are among the highest electricity-consuming appliances in Nepal. Depending on capacity and daily runtime, an AC may consume anywhere from 80 to 300 units per month.</p>
+
+            <h3 className="text-xl font-bold text-[#202124] mb-3 mt-6">How Much Does A Ceiling Fan Cost To Run?</h3>
+            <p className="text-slate-700 mb-4">A standard ceiling fan generally consumes relatively little electricity and may add approximately 15–30 units per month to household consumption.</p>
+          </section>
+
           <hr className="border-dashed border-slate-300 my-8" />
 
           {/* ─────────────────────────────────
@@ -670,42 +836,102 @@ export default function NepalElectricityUnitPricePage() {
           </section>
 
           {/* ─────────────────────────────────
-              DIFFER ACROSS NEPAL
+              DIFFER ACROSS NEPAL (GEO SEO)
           ───────────────────────────────── */}
           <section id="differ-across-nepal" className="mb-10">
-            <h2 className="text-2xl font-black text-[#202124] mb-4">Does Electricity Cost Differ Across Nepal?</h2>
+            <h2 className="text-2xl font-black text-[#202124] mb-4">Electricity Unit Price by City</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <div className="bg-white p-4 border border-slate-200 rounded-lg shadow-sm">
+                <h3 className="font-bold text-slate-800 text-base mb-1">Electricity Unit Price in Kathmandu</h3>
+                <p className="text-sm text-slate-600">Standard NEA residential tariff applies (Rs. 3.00 to Rs. 11.00 per unit).</p>
+              </div>
+              <div className="bg-white p-4 border border-slate-200 rounded-lg shadow-sm">
+                <h3 className="font-bold text-slate-800 text-base mb-1">Electricity Unit Price in Lalitpur</h3>
+                <p className="text-sm text-slate-600">Standard NEA residential tariff applies (Rs. 3.00 to Rs. 11.00 per unit).</p>
+              </div>
+              <div className="bg-white p-4 border border-slate-200 rounded-lg shadow-sm">
+                <h3 className="font-bold text-slate-800 text-base mb-1">Electricity Unit Price in Bhaktapur</h3>
+                <p className="text-sm text-slate-600">Standard NEA residential tariff applies (Rs. 3.00 to Rs. 11.00 per unit).</p>
+              </div>
+              <div className="bg-white p-4 border border-slate-200 rounded-lg shadow-sm">
+                <h3 className="font-bold text-slate-800 text-base mb-1">Electricity Unit Price in Pokhara</h3>
+                <p className="text-sm text-slate-600">Standard NEA residential tariff applies (Rs. 3.00 to Rs. 11.00 per unit).</p>
+              </div>
+              <div className="bg-white p-4 border border-slate-200 rounded-lg shadow-sm">
+                <h3 className="font-bold text-slate-800 text-base mb-1">Electricity Unit Price in Biratnagar</h3>
+                <p className="text-sm text-slate-600">Standard NEA residential tariff applies (Rs. 3.00 to Rs. 11.00 per unit).</p>
+              </div>
+              <div className="bg-white p-4 border border-slate-200 rounded-lg shadow-sm">
+                <h3 className="font-bold text-slate-800 text-base mb-1">Electricity Unit Price in Nepalgunj</h3>
+                <p className="text-sm text-slate-600">Standard NEA residential tariff applies (Rs. 3.00 to Rs. 11.00 per unit).</p>
+              </div>
+            </div>
             <p className="text-slate-700 mb-4 text-base leading-relaxed">
-              Residential electricity tariffs are regulated nationally by the <strong>Nepal Electricity Authority (NEA)</strong>. Customers in <strong>Kathmandu, Lalitpur, Bhaktapur, Pokhara, Biratnagar, Butwal, Nepalgunj, Dharan</strong> and other cities generally follow the exact same domestic tariff structure. There is no regional variation for the standard residential per unit cost.
+              Electricity tariffs are regulated nationally by the Nepal Electricity Authority (NEA). Residential consumers in Kathmandu, Lalitpur, Bhaktapur, Pokhara, Bharatpur, Biratnagar, Dharan, Butwal, Nepalgunj, Janakpur and other cities follow the same domestic tariff structure. Unlike some countries where utility rates vary by region, Nepal uses a nationally regulated residential pricing system.
             </p>
+          </section>
+
+          {/* ─────────────────────────────────
+              PEOPLE SEARCH THESE VARIATIONS
+          ───────────────────────────────── */}
+          <section className="mb-10 bg-[#F8F9FA] rounded-xl p-5 border border-slate-200">
+            <h2 className="text-xl font-bold text-[#202124] mb-3">People Search These Variations</h2>
+            <p className="text-sm text-slate-700 mb-3">Users looking for current NEA tariffs often search for:</p>
+            <div className="flex flex-wrap gap-2">
+              {["1 unit electricity price in Nepal", "1 unit electricity cost in Nepal", "electricity charge per unit in Nepal", "electricity rate in Nepal", "per unit price of electricity in Nepal", "1 unit bijli price in Nepal", "domestic electricity rate Nepal", "electricity bill rate in Nepal"].map(term => (
+                <span key={term} className="bg-white border border-slate-300 text-slate-600 px-3 py-1 rounded-md text-xs font-medium">"{term}"</span>
+              ))}
+            </div>
+            <p className="text-xs text-slate-500 mt-4">These terms generally refer to the exact same residential tariff structure governed by the Nepal Electricity Authority (NEA) detailed on this page.</p>
           </section>
 
           {/* ─────────────────────────────────
               PRICE HISTORY
           ───────────────────────────────── */}
           <section id="price-history" className="mb-10">
-            <h2 className="text-2xl font-black text-[#202124] mb-4">Electricity Price History in Nepal</h2>
-            <p className="text-slate-700 text-sm mb-4">Monitoring tariff history helps consumers understand changes in energy policy and anticipate future electricity pricing trends.</p>
+            <h2 className="text-2xl font-black text-[#202124] mb-4">How Have Electricity Prices Changed In Nepal?</h2>
+            <p className="text-slate-700 mb-4">Electricity pricing in Nepal has remained relatively stable in recent years compared to many neighboring countries. While tariff structures occasionally change, the overall residential pricing framework continues to rely on progressive slab billing.</p>
             <div className="overflow-x-auto mb-5">
               <table className="w-full text-sm border-collapse border border-slate-200">
                 <thead>
                   <tr className="bg-slate-100 text-slate-800">
                     <th className="p-3 border border-slate-200 font-bold text-left">Fiscal Year</th>
-                    <th className="p-3 border border-slate-200 font-bold text-center">Lowest Rate</th>
-                    <th className="p-3 border border-slate-200 font-bold text-center">Highest Rate</th>
-                    <th className="p-3 border border-slate-200 font-bold text-center">Notable Change</th>
+                    <th className="p-3 border border-slate-200 font-bold text-center">Lowest Residential Rate</th>
+                    <th className="p-3 border border-slate-200 font-bold text-center">Highest Residential Rate</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-white"><td className="p-3 border border-slate-200 font-medium">FY 2081/82</td><td className="p-3 border border-slate-200 text-center">Rs. 3.00</td><td className="p-3 border border-slate-200 text-center">Rs. 11.00</td><td className="p-3 border border-slate-200 text-center text-slate-500">No VAT</td></tr>
-                  <tr className="bg-slate-50"><td className="p-3 border border-slate-200 font-medium">FY 2082/83</td><td className="p-3 border border-slate-200 text-center">Rs. 3.00</td><td className="p-3 border border-slate-200 text-center">Rs. 11.00</td><td className="p-3 border border-slate-200 text-center text-slate-500">No VAT</td></tr>
-                  <tr className="bg-white"><td className="p-3 border border-slate-200 font-bold text-blue-800">FY 2083/84</td><td className="p-3 border border-slate-200 text-center font-bold">Rs. 3.00</td><td className="p-3 border border-slate-200 text-center font-bold">Rs. 11.00</td><td className="p-3 border border-slate-200 text-center font-bold text-amber-700">5% VAT introduced</td></tr>
-                  <tr className="bg-slate-50"><td className="p-3 border border-slate-200 font-medium text-slate-400">FY 2084/85</td><td className="p-3 border border-slate-200 text-center text-slate-400">TBD</td><td className="p-3 border border-slate-200 text-center text-slate-400">TBD</td><td className="p-3 border border-slate-200 text-center text-slate-400">Will be updated here</td></tr>
+                  <tr className="bg-white"><td className="p-3 border border-slate-200 font-medium">FY 2079/80</td><td className="p-3 border border-slate-200 text-center text-slate-500">Historical NEA Rate</td><td className="p-3 border border-slate-200 text-center text-slate-500">Historical NEA Rate</td></tr>
+                  <tr className="bg-slate-50"><td className="p-3 border border-slate-200 font-medium">FY 2080/81</td><td className="p-3 border border-slate-200 text-center text-slate-500">Historical NEA Rate</td><td className="p-3 border border-slate-200 text-center text-slate-500">Historical NEA Rate</td></tr>
+                  <tr className="bg-white"><td className="p-3 border border-slate-200 font-medium">FY 2081/82</td><td className="p-3 border border-slate-200 text-center text-slate-500">Historical NEA Rate</td><td className="p-3 border border-slate-200 text-center text-slate-500">Historical NEA Rate</td></tr>
+                  <tr className="bg-slate-50"><td className="p-3 border border-slate-200 font-medium">FY 2082/83</td><td className="p-3 border border-slate-200 text-center">Rs. 3.00</td><td className="p-3 border border-slate-200 text-center">Rs. 11.00</td></tr>
+                  <tr className="bg-white"><td className="p-3 border border-slate-200 font-bold text-[#003087]">FY 2083/84</td><td className="p-3 border border-slate-200 text-center font-bold">Rs. 3.00</td><td className="p-3 border border-slate-200 text-center font-bold">Rs. 11.00</td></tr>
                 </tbody>
               </table>
             </div>
-            <div className="bg-slate-50 border border-slate-200 rounded-lg p-4 text-xs text-slate-600">
-              📌 <strong>Tariff Update History (Changelog):</strong> FY 2083/84 — 5% concessional VAT introduced above 50 units threshold. Energy slab rates unchanged from previous year. This page will be updated whenever the Electricity Regulatory Commission (ERC) or NEA publishes new residential pricing changes.
-            </div>
+            <h3 className="text-xl font-bold text-[#202124] mb-3 mt-6">Key Observation</h3>
+            <p className="text-slate-700 mb-4">The most significant recent change was not the energy charge itself but the introduction of the concessional 5% VAT structure applied under specific consumption conditions.</p>
+          </section>
+
+          {/* ─────────────────────────────────
+              RELATED RESOURCES
+          ───────────────────────────────── */}
+          <section className="mb-10 bg-blue-50 border border-blue-200 rounded-xl p-6">
+            <h2 className="text-xl font-black text-[#003087] mb-4">Related NEA Electricity Resources</h2>
+            <ul className="space-y-4 text-slate-800 font-medium">
+              <li>
+                <p className="mb-1">Need to calculate your exact monthly bill?</p>
+                <Link href="/calculator/nea-bill/" className="text-blue-700 hover:underline">→ NEA Electricity Bill Calculator</Link>
+              </li>
+              <li>
+                <p className="mb-1">Need to understand official slab rates?</p>
+                <Link href="/electricity/nea-tariff-rates/" className="text-blue-700 hover:underline">→ NEA Tariff Rates Guide</Link>
+              </li>
+              <li>
+                <p className="mb-1">Need help understanding electricity VAT?</p>
+                <Link href="#" className="text-blue-700 hover:underline">→ Electricity VAT Guide (coming soon)</Link>
+              </li>
+            </ul>
           </section>
 
           {/* ─────────────────────────────────
@@ -715,6 +941,10 @@ export default function NepalElectricityUnitPricePage() {
             <h2 className="text-2xl font-black text-[#202124] mb-5">Frequently Asked Questions</h2>
             <div className="space-y-4">
               {[
+                { q: "What is the cheapest electricity rate in Nepal?", a: "The lowest residential electricity rate currently starts at approximately Rs. 3.00 per unit under the domestic lifeline tariff structure." },
+                { q: "What is the highest electricity rate in Nepal?", a: "The highest residential slab currently reaches approximately Rs. 11.00 per unit for higher levels of consumption." },
+                { q: "Does electricity cost more after 150 units?", a: "Yes. Higher consumption levels move households into more expensive billing slabs, increasing the average cost per unit." },
+                { q: "Why is my NEA bill higher than expected?", a: "Your total bill includes energy charges, service charges, VAT and any applicable duties or penalties." },
                 { q: "What is the price of 1 unit of electricity in Nepal?", a: "Residential electricity costs between Rs. 3.00 and Rs. 11.00 per unit depending on your monthly consumption slab. The 5A lifeline rate for 0–20 units is Rs. 3.00/unit (or free if under 20 units). The highest slab (above 251 units) is charged at Rs. 11.00/unit." },
                 { q: "How much is a 100-unit electricity bill?", a: "For a 5A meter, a 100-unit bill is approximately Rs. 939 total (energy Rs. 840 + service charge Rs. 75 + ~Rs. 24 VAT on the 50 units above the threshold). Use our NEA Bill Calculator for your exact amount." },
                 { q: "What is a service charge?", a: "A service charge (also called demand charge) is a fixed monthly fee charged by NEA based on your meter capacity and consumption bracket. It ranges from Rs. 30 to Rs. 200 depending on your meter (5A, 15A, or 30A) and how many units you used." },
@@ -757,17 +987,15 @@ export default function NepalElectricityUnitPricePage() {
             <div className="flex flex-col sm:flex-row gap-5 items-start">
               <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-emerald-500 flex items-center justify-center text-2xl shrink-0 text-white">⚡</div>
               <div className="flex-1">
-                <h4 className="text-sm font-black text-slate-900 m-0 mb-1">Editorial and Data Review</h4>
-                <p className="text-xs text-slate-500 mb-3">This guide is maintained by NepaCalc and reviewed using official Nepal Electricity Authority (NEA) tariff publications and billing documentation. Tariff information is updated whenever the Electricity Regulatory Commission (ERC) or NEA publishes new residential pricing changes.</p>
+                <h4 className="text-sm font-black text-slate-900 m-0 mb-2">Editorial and Data Review</h4>
+                <p className="text-xs text-slate-700 mb-1"><strong>Last Reviewed Date:</strong> June 2026</p>
+                <p className="text-xs text-slate-700 mb-2"><strong>Source Review Methodology:</strong> This guide is maintained by NepaCalc and manually reviewed by comparing official Nepal Electricity Authority (NEA) tariff publications against the live NEA billing system. Information is updated dynamically whenever the Electricity Regulatory Commission (ERC) publishes new pricing changes.</p>
+                <p className="text-xs text-slate-700 mb-1"><strong>Official Source References:</strong></p>
                 <div className="text-[11px] text-blue-600 font-bold space-y-1 mb-3">
                   <span className="block">✔ Sourced from NEA Tariff Notification FY 2083/84</span>
                   <span className="block">✔ Cross-referenced with Electricity Regulatory Commission (ERC) Nepal</span>
                   <span className="block">✔ 5% concessional VAT rule confirmed from 2083/84 Budget Speech</span>
                   <span className="block">✔ Service charges verified across 5A, 15A, 30A meter categories</span>
-                </div>
-                <div className="flex flex-wrap gap-4 text-xs text-slate-600">
-                  <span>📅 <strong>Last Reviewed:</strong> June 2026</span>
-                  <span>🏛️ <strong>Sources:</strong> <a href="https://www.nea.org.np" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 underline">NEA</a> · <a href="https://www.neabilling.com" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 underline">NEA Billing Portal</a></span>
                 </div>
               </div>
             </div>

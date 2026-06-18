@@ -9,6 +9,7 @@
     "cleanUrls": true,
     "trailingSlash": true,
     "redirects": [
+      { "source": "/electricity/nepal-unit-price//", "destination": "/electricity/nepal-unit-price/", "type": 301 },
       { "source": "/calculator/market-rates/live-silver-price", "destination": "/market-rates/live-silver-price/", "type": 301 },
       { "source": "/calculator/market-rates/live-gold-price", "destination": "/market-rates/live-gold-price/", "type": 301 },
       { "source": "/calculator/market-rates/exchange-rate", "destination": "/market-rates/exchange-rate/", "type": 301 },

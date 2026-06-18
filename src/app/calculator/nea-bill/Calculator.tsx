@@ -356,7 +356,7 @@ export default function NEABillCalculator() {
         },
         {
           question: "What is the cost of 1 unit of electricity in Nepal?",
-          answer: "Under the current NEA tariff for FY 2083/84, the cost of 1 unit (kWh) of electricity ranges from Rs. 3.00 per unit for the 0-20 unit lifeline slab (5A meter) up to Rs. 11.00 per unit for consumption above 251 units."
+          answer: "Under the current NEA tariff for FY 2083/84, the cost of 1 unit (kWh) of electricity ranges from Rs. 3.00 per unit for the 0-20 unit lifeline slab (5A meter) up to Rs. 11.00 per unit for consumption above 251 units. For a detailed breakdown of all slab rates, service charges and historical changes, see our complete Electricity Unit Price in Nepal guide at /electricity/nepal-unit-price/."
         },
         {
           question: "How much is a 100 unit electricity bill in Nepal?",
@@ -458,6 +458,7 @@ export default function NEABillCalculator() {
         title: "Utility Hub",
         subtitle: "Nepal Infrastructure",
         links: [
+          { label: "Electricity Unit Price Guide", href: "/electricity/nepal-unit-price/", icon: Zap },
           { label: "KUKL Water Bill", href: "/calculator/kukl-bill/", icon: Activity },
           { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax/", icon: Globe },
           { label: "Solar Requirement", href: "/calculator/solar-requirement/", icon: Lightbulb },
@@ -465,6 +466,7 @@ export default function NEABillCalculator() {
         ],
       }}
       relatedTools={[
+        { label: "⚡ Electricity Unit Price Guide", href: "/electricity/nepal-unit-price/" },
         { label: "KUKL Water Bill", href: "/calculator/kukl-bill/" },
         { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax/" },
         { label: "Solar Requirement", href: "/calculator/solar-requirement/" },

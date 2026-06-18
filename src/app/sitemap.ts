@@ -5,8 +5,8 @@ import { CATEGORY_URL_MAP } from '@/config/GlobalConfig';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://nepacalc.com';
-  // Use a fixed date for base modified to optimize crawl budget
-  const lastModDate = new Date('2026-04-28T10:00:00Z');
+  // Use a fixed date for base modified to optimize crawl budget but updated to recent publish date
+  const lastModDate = new Date('2026-06-18T10:00:00Z');
 
   // 1. Static Core Pages
   const staticPages = [
@@ -14,25 +14,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/about',
     '/pricing',
     '/blog',
-    '/contact/',
+    '/contact',
     '/privacy',
     '/terms',
-    '/directory/',
-    '/electricity/nepal-unit-price/',
-    '/engineering/',
-    '/engineering/3d/',
-    '/engineering/geometry/',
+    '/directory',
+    '/electricity/nepal-unit-price',
+    '/engineering',
+    '/engineering/3d',
+    '/engineering/geometry',
     '/finance',
     '/health',
     '/converters',
     '/nepal',
-    '/market-rates/',
+    '/market-rates',
     '/guide',
   ].map((route) => ({
-    url: `${baseUrl}${route}/`,
-    lastModified: lastModDate,
+    url: `${baseUrl}${route}/`.replace(/([^:]\/)\/+/g, "$1"),
+    lastModified: route === '/electricity/nepal-unit-price' ? new Date('2026-06-18T10:00:00Z') : lastModDate,
     changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1.0 : route === '/directory/' ? 0.95 : 0.85,
+    priority: route === '' ? 1.0 : route === '/directory' ? 0.95 : 0.85,
   }));
 
   // 2. Canonical Pillar Pages (Hubs)
@@ -40,7 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     let path = CATEGORY_URL_MAP[cat.id.toLowerCase()] || `/${cat.id}/`;
     if (!path.endsWith('/')) path += '/';
     return {
-      url: `${baseUrl}${path}`,
+      url: `${baseUrl}${path}`.replace(/([^:]\/)\/+/g, "$1"),
       lastModified: lastModDate,
       changeFrequency: 'daily' as const,
       priority: 0.9,
@@ -54,7 +54,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const isCritical = ['nepal-income-tax', 'nepal-salary', 'loan-emi', 'sip-calculator', 'nepal-land'].includes(calc.id);
     
     return {
-      url: isDirectRoute ? `${baseUrl}/${calc.slug}/` : `${baseUrl}/calculator/${calc.slug}/`,
+      url: isDirectRoute ? `${baseUrl}/${calc.slug}/`.replace(/([^:]\/)\/+/g, "$1") : `${baseUrl}/calculator/${calc.slug}/`.replace(/([^:]\/)\/+/g, "$1"),
       lastModified: isMarketRate ? new Date() : lastModDate,
       changeFrequency: isMarketRate ? ('daily' as const) : (isCritical ? 'daily' as const : 'weekly' as const),
       priority: isCritical ? 0.9 : 0.75,
@@ -71,7 +71,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { slug: 'nepal-gold-price-analysis-2083',    date: '2026-05-30' },
     { slug: 'nea-tariff-rates-2083-84',          date: '2026-06-15' },
   ].map(({ slug, date }) => ({
-    url: `${baseUrl}/blog/${slug}/`,
+    url: `${baseUrl}/blog/${slug}/`.replace(/([^:]\/)\/+/g, "$1"),
     lastModified: new Date(date),
     changeFrequency: 'monthly' as const,
     priority: 0.75,
@@ -84,14 +84,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const guides = await fetchFirestoreCollection('seo_pages');
 
     const blogPages = posts.map((post: any) => ({
-      url: `${baseUrl}/blog/${post.slug}/`,
+      url: `${baseUrl}/blog/${post.slug}/`.replace(/([^:]\/)\/+/g, "$1"),
       lastModified: post.updatedAt ? new Date(post.updatedAt) : lastModDate,
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     }));
 
     const guidePages = guides.map((guide: any) => ({
-      url: `${baseUrl}/guide/${guide.slug}/`,
+      url: `${baseUrl}/guide/${guide.slug}/`.replace(/([^:]\/)\/+/g, "$1"),
       lastModified: guide.updatedAt ? new Date(guide.updatedAt) : lastModDate,
       changeFrequency: 'weekly' as const,
       priority: 0.6,
