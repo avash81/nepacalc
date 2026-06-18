@@ -459,18 +459,18 @@ export default function NEABillCalculator() {
         subtitle: "Nepal Infrastructure",
         links: [
           { label: "Electricity Unit Price Guide", href: "/electricity/nepal-unit-price/", icon: Zap },
+          { label: "Official NEA Tariff Rates", href: "/electricity/nea-tariff-rates/", icon: Table },
           { label: "KUKL Water Bill", href: "/calculator/kukl-bill/", icon: Activity },
           { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax/", icon: Globe },
           { label: "Solar Requirement", href: "/calculator/solar-requirement/", icon: Lightbulb },
-          { label: "NEA Official", href: "https://nea.org.np", icon: Landmark },
         ],
       }}
       relatedTools={[
         { label: "⚡ Electricity Unit Price Guide", href: "/electricity/nepal-unit-price/" },
+        { label: "📊 Official NEA Tariff Rates", href: "/electricity/nea-tariff-rates/" },
         { label: "KUKL Water Bill", href: "/calculator/kukl-bill/" },
         { label: "Vehicle Tax Tool", href: "/calculator/nepal-vehicle-tax/" },
-        { label: "Solar Requirement", href: "/calculator/solar-requirement/" },
-        { label: "Salary Calculator", href: "/calculator/nepal-salary/" }
+        { label: "Solar Requirement", href: "/calculator/solar-requirement/" }
       ]}
     />
   );

@@ -54,6 +54,13 @@ export default function NepalElectricityUnitPricePage() {
     "sameAs": ["https://www.facebook.com/nepacalc"]
   };
 
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "NepaCalc",
+    "url": "https://nepacalc.com"
+  };
+
   const webPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -139,6 +146,7 @@ export default function NepalElectricityUnitPricePage() {
       {/* ── JSON-LD SCHEMA STACK ── */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
@@ -231,16 +239,8 @@ export default function NepalElectricityUnitPricePage() {
                 ✓ Electricity Unit Price (Current Page)
               </span>
               <Link href="/electricity/nea-tariff-rates/" className="bg-white/10 hover:bg-white/20 text-white font-medium text-sm px-4 py-2 rounded-lg transition-colors inline-block">
-                ✓ NEA Tariff Rates
+                ✓ Official NEA Tariff Rates
               </Link>
-            </div>
-            <div className="mt-3 flex flex-col sm:flex-row gap-3">
-              <Link href="/calculator/solar-requirement/" className="bg-white/10 hover:bg-white/20 text-white font-medium text-sm px-4 py-2 rounded-lg transition-colors inline-block">
-                ✓ Solar Requirement Calculator
-              </Link>
-              <span className="bg-white/10 text-white/70 font-medium text-sm px-4 py-2 rounded-lg inline-block border border-white/10 border-dashed cursor-not-allowed">
-                ✓ Electricity VAT Guide (Coming Soon)
-              </span>
             </div>
           </div>
 

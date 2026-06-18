@@ -47,6 +47,13 @@ export default function NEATariffRatesPage() {
     "sameAs": ["https://www.facebook.com/nepacalc"]
   };
 
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "NepaCalc",
+    "url": "https://nepacalc.com"
+  };
+
   const webPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -106,13 +113,21 @@ export default function NEATariffRatesPage() {
     ]
   };
 
+  const speakableSchema = {
+    "@context": "https://schema.org",
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".quick-answer", ".summary-box"]
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
 
       <div className="bg-[#F1F3F4] min-h-screen">
         <div className="max-w-4xl mx-auto px-4 py-10">

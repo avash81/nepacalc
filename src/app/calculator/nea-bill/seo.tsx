@@ -15,7 +15,7 @@ export const NeaBillSEO = (
     <div className="intent-bridge-layer mb-8 p-5 rounded-lg border-l-4 border-[#0056b3] bg-[#f0f6ff]">
       <p className="font-bold text-[#0056b3] mb-3 mt-0">💡 Looking for Instant Answers?</p>
       <ul className="space-y-3 m-0 p-0 list-none">
-        <li><strong>💵 What is the cost of 1 unit of electricity in Nepal?</strong> Electricity costs between Rs. 3 and Rs. 11 per unit depending on monthly consumption and slab rates. For a complete breakdown of residential unit costs, service charges, and examples for 20, 50, 100, and 150 units, see our <a href="/electricity/nepal-unit-price/" className="text-[#0056b3] underline font-medium">Electricity Unit Price in Nepal Guide</a>.</li>
+        <li><strong>💵 What is the cost of 1 unit of electricity in Nepal?</strong> Electricity costs between Rs. 3 and Rs. 11 per unit depending on monthly consumption and slab rates. For a complete breakdown of residential unit costs, service charges, and examples for 20, 50, 100, and 150 units, see our <a href="/electricity/nepal-unit-price/" className="text-[#0056b3] underline font-medium">Electricity Unit Price in Nepal</a> guide.</li>
         <li><strong>📊 How much is a 50 unit electricity bill in Nepal?</strong> For a standard domestic 5 Ampere meter line, consuming exactly 50 units incurs a fixed cumulative energy charge subtotal of <strong>Rs. 365.00</strong> plus a flat <strong>Rs. 50.00 service charge</strong>, bringing your absolute clean baseline total to <strong>Rs. 415.00</strong> (completely free of the conditional 5% VAT layer).</li>
         <li><strong>📱 Can I calculate my bill directly from my meter reading?</strong> Yes! Simply subtract your previous month's lifetime reading (found under the <strong>kWh</strong> marker on your digital screen) from your current reading. Enter that total unit variance directly into our active calculation engine above to see your progressive slab breakdown instantly.</li>
       </ul>
@@ -24,14 +24,14 @@ export const NeaBillSEO = (
     <p>The <strong>NEA Electricity Bill Calculator</strong> helps households and businesses across Nepal estimate their monthly electricity bills based on the latest <strong>Nepal Electricity Authority (NEA)</strong> tariff structure for FY 2083/84. Whether you are a tenant in Kathmandu, a landlord in Pokhara, or a small business owner in Lalitpur, this tool breaks down your <strong>energy charge</strong>, fixed <strong>demand charge</strong>, and applicable <strong>VAT</strong> — giving you a transparent, itemized view of your monthly utility cost.</p>
     
     <p className="mt-4 mb-6">Planning your overall household budget? After calculating your utility expenses, you can accurately estimate your net take-home pay and corporate deductions using our <a href="/calculator/nepal-salary/" className="text-[#0056b3] underline font-medium">Nepal Salary Tax Calculator</a>.</p>
-
+    
     <hr style={{ border: 0, borderTop: '1px dashed #ccc', margin: '30px 0' }} />
 
     {/* ── Intent Section: targets "nea bill 2083" SERP query ── */}
     <h2 className="text-xl font-bold text-[#202124] mb-3">NEA Bill 2083/84</h2>
     <p className="mb-4">The <strong>NEA Bill 2083/84</strong> is calculated according to the latest <strong>Nepal Electricity Authority</strong> tariff structure introduced for fiscal year 2083/84. Residential consumers are charged using a <strong>progressive slab rate</strong> system — meaning the more units you consume, the higher the per-unit rate applied to additional consumption. A <strong>5% concessional VAT</strong> applies only to consumption exceeding 50 units per month, introduced under the 2083/84 budget.</p>
     <p className="mb-4">Whether you search for <em>nea bill 2083</em>, <em>nea bill 2084</em>, <em>electricity bill 2083</em>, or <em>electricity bill nepal 2083</em> — all refer to the same tariff framework currently in effect. Use the calculator above to instantly compute your bill based on your actual meter reading and ampere connection.</p>
-    <p className="mb-6">For a complete breakdown of all slab rates and meter categories, see our dedicated guide: <a href="/blog/nea-tariff-rates-2083-84/" className="text-[#0056b3] underline font-medium">NEA Tariff Rates 2083/84 — Complete Guide →</a></p>
+    <p className="mb-6">For a complete breakdown of all slab rates and meter categories, see our dedicated guide: <a href="/electricity/nea-tariff-rates/" className="text-[#0056b3] underline font-medium">Official NEA Tariff Rates</a></p>
 
     <hr style={{ border: 0, borderTop: '1px dashed #ccc', margin: '30px 0' }} />
 
