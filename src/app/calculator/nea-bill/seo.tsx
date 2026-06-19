@@ -157,6 +157,8 @@ export const NeaBillSEO = (
     <h2 className="text-xl font-bold text-[#202124] mb-4">Related Nepal Utility Calculators</h2>
     <p className="mb-4">Finished checking your NEA electricity bill? Explore these related tools:</p>
     <ul className="list-none p-0 space-y-3 mb-6">
+      <li>⚡ <strong>Electricity Unit Price:</strong> Learn about the NEA slab rates and how electricity costs are calculated. <a href="/electricity/nepal-unit-price/" className="text-[#0056b3] hover:underline font-medium">Electricity unit price in Nepal →</a></li>
+      <li>📋 <strong>NEA Tariff Rates:</strong> View the comprehensive breakdown of all official NEA tariff slabs. <a href="/electricity/nea-tariff-rates/" className="text-[#0056b3] hover:underline font-medium">NEA tariff rates →</a></li>
       <li>💧 <strong>KUKL Water Bill:</strong> Estimate your monthly Kathmandu Upatyaka Khanepani Limited water charges using official slab rates. <a href="/calculator/kukl-bill/" className="text-[#0056b3] hover:underline font-medium">KUKL Water Bill Calculator →</a></li>
       <li>☀️ <strong>Solar Requirement:</strong> Calculate how many solar panels you need to offset your electricity consumption. <a href="/calculator/solar-requirement/" className="text-[#0056b3] hover:underline font-medium">Solar Requirement Calculator →</a></li>
       <li>🚘 <strong>Vehicle Tax Calculator:</strong> Stay ahead of transport office renewal deadlines. <a href="/calculator/nepal-vehicle-tax/" className="text-[#0056b3] hover:underline font-medium">Nepal Vehicle Tax Calculator →</a></li>

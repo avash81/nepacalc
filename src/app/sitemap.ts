@@ -5,8 +5,15 @@ import { CATEGORY_URL_MAP } from '@/config/GlobalConfig';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://nepacalc.com';
+  // Helper to ensure single slashes and trailing slash
+  const cleanUrl = (route: string) => {
+    const path = route.replace(/\/+/g, '/');
+    const full = `${baseUrl}${path.startsWith('/') ? path : '/' + path}`;
+    return full.endsWith('/') ? full : full + '/';
+  };
+  
   // Use a fixed date for base modified to optimize crawl budget but updated to recent publish date
-  const lastModDate = new Date('2026-06-18T10:00:00Z');
+  const lastModDate = new Date('2026-06-19T00:00:00Z');
 
   // 1. Static Core Pages
   const staticPages = [
@@ -30,10 +37,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/market-rates',
     '/guide',
   ].map((route) => ({
-    url: `${baseUrl}${route}/`.replace(/([^:]\/)\/+/g, "$1"),
-    lastModified: (route === '/electricity/nepal-unit-price' || route === '/electricity/nea-tariff-rates') ? new Date('2026-06-18T10:00:00Z') : lastModDate,
+    url: cleanUrl(route),
+    lastModified: (route === '/electricity/nepal-unit-price') ? new Date('2026-06-18T00:00:00Z') : 
+                  (route === '/electricity/nea-tariff-rates') ? new Date('2026-06-19T00:00:00Z') : lastModDate,
     changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1.0 : route === '/directory' ? 0.95 : 0.85,
+    priority: route === '' ? 1.0 : 
+              route === '/directory' ? 0.95 : 
+              (route === '/electricity/nea-tariff-rates' || route === '/electricity/nepal-unit-price') ? 0.90 : 0.85,
   }));
 
   // 2. Canonical Pillar Pages (Hubs)
@@ -41,7 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     let path = CATEGORY_URL_MAP[cat.id.toLowerCase()] || `/${cat.id}/`;
     if (!path.endsWith('/')) path += '/';
     return {
-      url: `${baseUrl}${path}`.replace(/([^:]\/)\/+/g, "$1"),
+      url: cleanUrl(path),
       lastModified: lastModDate,
       changeFrequency: 'daily' as const,
       priority: 0.9,
@@ -55,7 +65,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const isCritical = ['nepal-income-tax', 'nepal-salary', 'loan-emi', 'sip-calculator', 'nepal-land'].includes(calc.id);
     
     return {
-      url: isDirectRoute ? `${baseUrl}/${calc.slug}/`.replace(/([^:]\/)\/+/g, "$1") : `${baseUrl}/calculator/${calc.slug}/`.replace(/([^:]\/)\/+/g, "$1"),
+      url: cleanUrl(isDirectRoute ? `/${calc.slug}` : `/calculator/${calc.slug}`),
       lastModified: isMarketRate ? new Date() : lastModDate,
       changeFrequency: isMarketRate ? ('daily' as const) : (isCritical ? 'daily' as const : 'weekly' as const),
       priority: isCritical ? 0.9 : 0.75,
@@ -72,7 +82,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { slug: 'nepal-gold-price-analysis-2083',    date: '2026-05-30' },
     { slug: 'nea-tariff-rates-2083-84',          date: '2026-06-15' },
   ].map(({ slug, date }) => ({
-    url: `${baseUrl}/blog/${slug}/`.replace(/([^:]\/)\/+/g, "$1"),
+    url: cleanUrl(`/blog/${slug}`),
     lastModified: new Date(date),
     changeFrequency: 'monthly' as const,
     priority: 0.75,
@@ -85,14 +95,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const guides = await fetchFirestoreCollection('seo_pages');
 
     const blogPages = posts.map((post: any) => ({
-      url: `${baseUrl}/blog/${post.slug}/`.replace(/([^:]\/)\/+/g, "$1"),
+      url: cleanUrl(`/blog/${post.slug}`),
       lastModified: post.updatedAt ? new Date(post.updatedAt) : lastModDate,
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     }));
 
     const guidePages = guides.map((guide: any) => ({
-      url: `${baseUrl}/guide/${guide.slug}/`.replace(/([^:]\/)\/+/g, "$1"),
+      url: cleanUrl(`/guide/${guide.slug}`),
       lastModified: guide.updatedAt ? new Date(guide.updatedAt) : lastModDate,
       changeFrequency: 'weekly' as const,
       priority: 0.6,
