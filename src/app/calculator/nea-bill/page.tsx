@@ -2,16 +2,18 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: "NEA Electricity Bill Calculator Nepal (2083/84 Tariff Rates)",
-  description: "Calculate your NEA electricity bill online using the latest 2083/84 tariff rates. Check unit costs, demand charges, VAT, and bill breakdown instantly.",
+  title: "NEA Bill Calculator Nepal (2083/84) - Calculate Electricity Bill Online",
+  description: "Calculate your NEA bill instantly using the latest Nepal Electricity Authority (NEA) tariff rates for 2083/84. Get a complete electricity bill breakdown including unit charges, service charges, VAT and total payable amount.",
   slug: 'nea-bill',
   keywords: [
-    "NEA electricity bill calculator",
-    "electricity bill calculator Nepal",
-    "Nepal Electricity Authority bill",
-    "nea tariff rates 2083",
-    "electricity unit cost Nepal",
-    "nea bill check online"
+    "NEA Bill Calculator",
+    "NEA Electricity Bill Calculator",
+    "Electricity Bill Calculator Nepal",
+    "Nepal Electricity Bill Calculator",
+    "NEA Bill Calculator 2083",
+    "NEA Tariff Rates 2083/84",
+    "Electricity Unit Price in Nepal",
+    "1 Unit Electricity Cost in Nepal"
   ],
 });
 

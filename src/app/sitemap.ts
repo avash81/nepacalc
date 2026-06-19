@@ -7,11 +7,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://nepacalc.com';
   // Helper to ensure single slashes and trailing slash
   const cleanUrl = (route: string) => {
-    const path = route.replace(/\/+/g, '/');
-    const full = `${baseUrl}${path.startsWith('/') ? path : '/' + path}`;
-    return full.endsWith('/') ? full : full + '/';
+    let path = route.replace(/\/+/g, '/');
+    if (!path.startsWith('/')) path = '/' + path;
+    if (!path.endsWith('/')) path = path + '/';
+    // Ensure the baseUrl and path combine correctly without double slashes after the domain
+    return `${baseUrl}${path}`.replace(/(https?:\/\/nepacalc\.com)\/+/, '$1/');
   };
-  
   // Use a fixed date for base modified to optimize crawl budget but updated to recent publish date
   const lastModDate = new Date('2026-06-19T00:00:00Z');
 
@@ -38,12 +39,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/guide',
   ].map((route) => ({
     url: cleanUrl(route),
-    lastModified: (route === '/electricity/nepal-unit-price') ? new Date('2026-06-18T00:00:00Z') : 
-                  (route === '/electricity/nea-tariff-rates') ? new Date('2026-06-19T00:00:00Z') : lastModDate,
+    lastModified: (route === '/electricity/nepal-unit-price' || route === '/electricity/nea-tariff-rates') ? new Date('2026-06-19T00:00:00Z') : lastModDate,
     changeFrequency: 'weekly' as const,
     priority: route === '' ? 1.0 : 
               route === '/directory' ? 0.95 : 
-              (route === '/electricity/nea-tariff-rates' || route === '/electricity/nepal-unit-price') ? 0.90 : 0.85,
+              (route === '/electricity/nea-tariff-rates' || route === '/electricity/nepal-unit-price') ? 0.85 : 0.85,
   }));
 
   // 2. Canonical Pillar Pages (Hubs)
@@ -66,9 +66,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     
     return {
       url: cleanUrl(isDirectRoute ? `/${calc.slug}` : `/calculator/${calc.slug}`),
-      lastModified: isMarketRate ? new Date() : lastModDate,
+      lastModified: calc.slug === 'nea-bill' ? new Date('2026-06-19T00:00:00Z') : (isMarketRate ? new Date() : lastModDate),
       changeFrequency: isMarketRate ? ('daily' as const) : (isCritical ? 'daily' as const : 'weekly' as const),
-      priority: isCritical ? 0.9 : 0.75,
+      priority: calc.slug === 'nea-bill' ? 0.95 : (isCritical ? 0.9 : 0.75),
     };
   });
 
