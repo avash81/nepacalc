@@ -7,7 +7,7 @@ export const NeaBillSEO = (
     <div className="mb-8 p-5 rounded-xl border border-[#1A73E8] bg-[#E8F0FE]">
       <h2 className="text-lg font-bold text-[#1A73E8] mb-2 mt-0">Quick Answer: How is an NEA Electricity Bill Calculated?</h2>
       <p className="text-[#202124] mb-0">
-        The <strong>NEA Electricity Bill Calculator</strong> estimates your monthly bill based on the official <strong>Nepal Electricity Authority (NEA)</strong> tariff rates for FY 2083/84. Enter your electricity consumption in units (kWh), select your meter capacity (5A, 15A, 30A, or 60A), and the calculator applies the progressive slab system — ranging from <strong>Rs. 3.00 to Rs. 11.00 per unit</strong> — to give you an instant, itemized breakdown including the fixed demand charge and 5% concessional VAT.
+        The <strong>NEA Electricity Bill Calculator</strong> estimates your monthly bill based on the official <strong>Nepal Electricity Authority (NEA)</strong> tariff rates for FY 2083/84. Enter your electricity consumption in units (kWh), select your meter capacity (5A, 15A, 30A, or 60A), and the calculator applies the progressive slab system — ranging from <strong>Rs. 3.00 to Rs. 11.00 per unit</strong> — to give you an instant, itemized breakdown including the fixed demand charge and 5% concessional VAT. This NEA Bill Calculator uses the latest NEA tariff rates and electricity unit prices in Nepal to estimate your monthly electricity bill accurately.
       </p>
     </div>
 

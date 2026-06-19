@@ -3,7 +3,7 @@ import { calcMeta } from '@/lib/calcMeta';
 import Link from 'next/link';
 
 export const metadata = calcMeta({
-  title: "1 Unit Electricity Price in Nepal (Latest NEA Rates and Cost Per Unit Guide)",
+  title: "1 Unit Electricity Cost in Nepal (2083/84) - NEA Unit Price Guide",
   description: "Discover the latest 1 unit electricity price in Nepal. Learn NEA slab rates, service charges, VAT rules, and how electricity costs are calculated for 5A, 15A, and 30A domestic connections. Try NepaCalc now.",
   slug: "electricity/nepal-unit-price",
   canonical: "/electricity/nepal-unit-price/",
@@ -166,8 +166,7 @@ export default function NepalElectricityUnitPricePage() {
 
           {/* ── H1 ── */}
           <h1 className="text-3xl font-black text-[#202124] mb-4 leading-tight">
-            Electricity Unit Price in Nepal<br />
-            <span className="text-[#1A73E8]">(Latest NEA Rates and Cost Per Unit Guide)</span>
+            1 Unit Electricity Cost in Nepal (2083/84)
           </h1>
 
           {/* ── AUTHORITY / LAST UPDATED BAR ── */}
@@ -292,7 +291,7 @@ export default function NepalElectricityUnitPricePage() {
 
           {/* ── INTRODUCTION ── */}
           <p className="text-slate-700 mb-4 text-base leading-relaxed">
-            If you are searching for the <strong>current 1 unit electricity price in Nepal</strong>, it is important to understand that Nepal does not use a fixed flat electricity rate. Instead, the <strong>latest electricity unit price in Nepal</strong> is determined by the <strong>Nepal Electricity Authority (NEA)</strong> and approved by the <strong>Electricity Regulatory Commission</strong>. They apply a <strong>progressive slab tariff system</strong> where the <strong>1 unit electricity cost in Nepal</strong> increases as consumption rises.
+            The price of 1 unit electricity in Nepal depends on the latest NEA tariff rates and monthly consumption slab. Residential consumers currently pay between Rs. 3.00 and Rs. 11.00 per unit under the Nepal Electricity Authority tariff structure.
           </p>
           <p className="text-slate-700 mb-4 text-base leading-relaxed">
             For domestic consumers, the <strong>electricity charge per unit in Nepal</strong> currently ranges from approximately <strong>Rs. 3.00 to Rs. 11.00</strong> depending on monthly usage and meter category. This <strong>domestic electricity rate Nepal</strong> applies universally across the country. Whether you live in <strong>Kathmandu, Lalitpur, Bhaktapur, Pokhara, Chitwan, Butwal, Nepalgunj, Janakpur, Dharan, Hetauda, or Biratnagar</strong>, the standard <strong>electricity unit rate Nepal</strong> remains the exact same.
@@ -480,6 +479,12 @@ export default function NepalElectricityUnitPricePage() {
             </p>
           </section>
 
+          <div className="bg-[#E8F0FE] border border-[#1A73E8] rounded-xl p-5 mb-10 shadow-sm">
+            <p className="text-[#202124] text-base font-medium leading-relaxed mb-0">
+              Want to calculate your total electricity bill instead of per-unit rates? Use the <Link href="/calculator/nea-bill/" className="text-blue-700 font-bold underline">NEA Bill Calculator</Link> to get an instant bill breakdown based on current tariff rates.
+            </p>
+          </div>
+
           {/* ─────────────────────────────────
               SECTION 8: VAT RULES
           ───────────────────────────────── */}
@@ -560,6 +565,10 @@ export default function NepalElectricityUnitPricePage() {
             <div className="space-y-4">
               {[
                 { q: "What is the price of 1 unit of electricity in Nepal?", a: "Residential electricity costs between Rs. 3.00 and Rs. 11.00 per unit depending on your monthly consumption slab. The 5A lifeline rate for 0–20 units is Rs. 3.00/unit (or free if under 20 units). The highest slab (above 250 units) is charged at Rs. 11.00/unit." },
+                { q: "How much does NEA charge per unit?", a: "NEA charges between Rs. 3.00 and Rs. 11.00 per unit for standard residential consumers, depending on their total monthly usage." },
+                { q: "How is electricity cost calculated in Nepal?", a: "Electricity cost is calculated by multiplying your consumed units by the respective slab rates, then adding a fixed monthly service charge and applying 5% VAT on the energy charge for units above 50." },
+                { q: "Why does electricity unit price increase with usage?", a: "NEA uses a progressive slab tariff system to encourage energy conservation. Higher consumption slabs are charged at higher per-unit rates to ensure heavy users pay a fairer share of grid costs." },
+                { q: "What is the cheapest electricity slab in Nepal?", a: "The cheapest slab is the lifeline tariff for 5A meters consuming 0-20 units, where the energy charge is waived (Rs. 0 per unit) and only a Rs. 30 monthly service charge is applied." },
                 { q: "How much is a 100-unit electricity bill?", a: "For a 5A meter, a 100-unit bill is approximately Rs. 939 total (energy Rs. 840 + service charge Rs. 75 + ~Rs. 24 VAT on the 50 units above the threshold). Use our NEA Bill Calculator for your exact amount." },
                 { q: "What is a service charge?", a: "A service charge (also called demand charge) is a fixed monthly fee charged by NEA based on your meter capacity and consumption bracket. It ranges from Rs. 30 to Rs. 200 depending on your meter (5A, 15A, or 30A) and how many units you used." },
                 { q: "How can I calculate my NEA bill?", a: "Use the NepaCalc NEA Bill Calculator to get an instant itemized breakdown of energy charge, service charge, and VAT based on your monthly units and meter size." },
