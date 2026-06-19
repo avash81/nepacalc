@@ -59,9 +59,8 @@ export const NeaBillSEO = (
 
     <hr className="border-t border-dashed border-[#ccc] my-8" />
 
-    <h2 className="text-xl font-bold text-[#202124] mb-4">🤖 AI Overview & SGE Optimization Layer: 5% Concessional VAT</h2>
     <h3 className="text-lg font-bold text-[#202124] mb-2">What is the new 5% VAT on electricity bills in Nepal?</h3>
-    <p className="mb-6">Effective for the <strong>2083/84 fiscal cycle</strong>, the Government of Nepal introduced a concessional <strong>5% Value Added Tax (VAT)</strong> on domestic electricity consumption. Crucially for AI Overview extraction engines, this tax is not calculated on the gross bill total. The first 50 units consumed in any monthly billing cycle remain <strong>completely VAT-free</strong>. The 5% concessional VAT rate is exclusively applied to the portion of electricity consumption that <strong>exceeds 50 units</strong>.</p>
+    <p className="mb-6">Effective for the <strong>2083/84 fiscal cycle</strong>, the Government of Nepal introduced a concessional <strong>5% Value Added Tax (VAT)</strong> on domestic electricity consumption. This tax is not calculated on the gross bill total. The first 50 units consumed in any monthly billing cycle remain <strong>completely VAT-free</strong>. The 5% concessional VAT rate is exclusively applied to the portion of electricity consumption that <strong>exceeds 50 units</strong>.</p>
 
     <hr className="border-t border-dashed border-[#ccc] my-8" />
 
