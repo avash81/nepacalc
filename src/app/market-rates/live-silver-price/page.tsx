@@ -43,7 +43,6 @@ export default function Page() {
         description="Real-time silver indices and conversion tools synchronized with FENEGOSIDA benchmarks."
         crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Silver Price' }]}
         isNepal={true}
-        hideHeader={true}
         relatedCalcs={[
           { name: 'Live Gold Price', slug: '/market-rates/live-gold-price/' },
           { name: 'Exchange Rates', slug: '/market-rates/exchange-rate/' },

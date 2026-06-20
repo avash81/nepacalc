@@ -143,7 +143,6 @@ export default function Page() {
         description="Daily precious metal indices strictly synchronized with official FENEGOSIDA benchmarks."
         crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Gold Price' }]}
         isNepal={true}
-        hideHeader={true}
         relatedCalcs={[
           { name: 'Gold Tax Calculator', slug: '/calculator/gold-tax/' },
           { name: 'Gold Converter', slug: '/calculator/gold-converter/' },

@@ -40,39 +40,15 @@ export function MarketDashboardLayout({
       {/* 1. Header & Billboard */}
       <section className="bg-white border-b border-slate-200 pt-4 pb-4">
         <div className="max-w-7xl mx-auto px-6">
-          <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#5F6368] mb-4">
-            <button 
-              type="button"
-              onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/market-rates/')}
-              className="flex items-center gap-1 hover:text-[#1A73E8] text-[#5F6368] border-r border-[#DADCE0] pr-3 mr-1 transition-colors"
-            >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="15 18 9 12 15 6"/></svg>
-              BACK
-            </button>
-            <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
-            <ChevronRight className="w-3 h-3" />
-            <Link href="/market-rates/" className="hover:text-blue-600 transition-colors">Market Rates</Link>
-            <ChevronRight className="w-3 h-3" />
-            <span className="text-slate-900">{title}</span>
-          </nav>
-
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                 <div className="w-10 h-10 rounded-2xl bg-white border border-[#dadce0] flex items-center justify-center text-[#202124] shadow-sm shadow-slate-900/10">
-                    <TrendingUp className="w-5 h-5" />
-                 </div>
-                 <span className="text-[11px] font-black uppercase tracking-[0.3em]" style={{ color: accentColor }}>Live Authority Feed</span>
-              </div>
-              <h1 className="text-[28px] sm:text-[42px] font-black text-slate-900 tracking-tighter leading-none">
-                {title} <span className="text-slate-300">in Nepal Today</span>
-              </h1>
-              <p className="text-[14px] text-slate-500 max-w-2xl font-medium leading-relaxed">
-                {description}
-              </p>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+            <div className="flex items-center gap-3">
+               <div className="w-10 h-10 rounded-2xl bg-white border border-[#dadce0] flex items-center justify-center text-[#202124] shadow-sm shadow-slate-900/10">
+                  <TrendingUp className="w-5 h-5" />
+               </div>
+               <span className="text-[11px] font-black uppercase tracking-[0.3em]" style={{ color: accentColor }}>Live Authority Feed</span>
             </div>
 
-            <div className="flex flex-col items-start lg:items-end gap-2">
+            <div className="flex flex-col items-start sm:items-end gap-2">
               <div className="flex items-baseline gap-4">
                  <div className="text-[42px] sm:text-[54px] font-black tracking-tighter text-slate-900 leading-none">
                    <span className="text-[24px] mr-1 font-bold text-slate-400">Rs.</span>{liveRate}

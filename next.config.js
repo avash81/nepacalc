@@ -42,6 +42,21 @@ const nextConfig = {
 
   async redirects() {
     return [
+      // ── Canonical Domain Enforcement ─────────────────────────────────────
+      // 301: www.nepacalc.com/* → nepacalc.com/*
+      // Prevents duplicate content, consolidates link signals, saves crawl budget.
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.nepacalc.com',
+          },
+        ],
+        destination: 'https://nepacalc.com/:path*',
+        permanent: true,
+      },
+      // ── Trailing Slash Enforcement ────────────────────────────────────────
       {
         source: '/calculator/nepal-income-tax',
         destination: '/calculator/nepal-income-tax/',
