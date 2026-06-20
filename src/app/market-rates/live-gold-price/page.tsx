@@ -3,83 +3,117 @@ import GoldDashboardClient from './GoldDashboardClient';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 
 export const metadata = calcMeta({
-  title: 'Gold Price in Nepal Today (2083/84) — Live 24K & 22K Rates | NepaCalc',
-  description: 'Live FENEGOSIDA gold price in Nepal today. Official 24K Hallmark (छापावाल) and 22K Tejabi rates per Tola. Updated daily for Kathmandu jewelry market traders and investors.',
+  title: 'Gold Price in Nepal Today | Live Gold & Silver Rates (FENEGOSIDA)',
+  description: "Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks. View live gold rates, silver rates, price history, investment calculators, historical records, and market updates.",
   slug: 'market-rates/live-gold-price',
   keywords: [
-    'gold price in nepal today', 'aajako sunko bhaau', '1 tola gold price nepal today',
-    '24k gold rate nepal', 'tejabi sunko rate aaja', 'fenegosida gold rate',
-    'chandi ko bhaau aajako', 'hallmark gold nepal rate', 'gold price kathmandu 2083',
-    '22k gold price nepal today', 'live gold rate nepal', 'chhapawal sun ko bhaau',
-    'gold silver price nepal 2026', 'nepali suna rate', 'sunko bhaau aaja nepal'
+    'gold price in nepal today', 'gold rate today nepal', 'live gold price nepal',
+    'gold price nepal', 'today gold price nepal', 'fenegosida gold price',
+    'silver price nepal', 'gold price history nepal', 'gold investment calculator',
+    'fine gold price nepal', 'tejabi gold price', 'gold tola price', 'gold gram price nepal'
   ],
+  canonical: 'market-rates/live-gold-price',
+  ogImage: `https://nepacalc.com/images/og/gold-price-nepal.png?date=${new Date().toISOString().split('T')[0]}`
 });
 
 const customSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "FinancialProduct",
-      "@id": "https://nepacalc.com/market-rates/live-gold-price/#financial-engine",
-      "name": "FENEGOSIDA Live-Mapped Gold & Silver Conversion Engine",
-      "description": "Calculates real-time values of 24K Fine gold (Chhapawal), 22K Tejabi gold, and Silver (Chandi) across traditional Tola, Lal, Ana, and international Gram mass units.",
-      "feesAndCommissionsSpecification": "https://nepacalc.com/market-rates/live-gold-price/#making-charges-and-wastage",
-      "provider": {
+      "@type": "WebPage",
+      "@id": "https://nepacalc.com/market-rates/live-gold-price/#webpage",
+      "url": "https://nepacalc.com/market-rates/live-gold-price/",
+      "name": "Gold Price in Nepal Today | Live Gold & Silver Rates (FENEGOSIDA)",
+      "description": "Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks."
+    },
+    {
+      "@type": "Article",
+      "@id": "https://nepacalc.com/market-rates/live-gold-price/#article",
+      "mainEntityOfPage": "https://nepacalc.com/market-rates/live-gold-price/",
+      "headline": "Gold Price in Nepal Today (आजको सुनको भाउ)",
+      "publisher": { "@id": "https://nepacalc.com/#organization" },
+      "author": {
         "@type": "Organization",
-        "name": "Federation of Nepal Gold and Silver Dealers' Association",
-        "sameAs": "https://www.fenegosida.org"
-      }
+        "name": "NepaCalc Editorial Team"
+      },
+      "datePublished": "2024-01-01T08:00:00+05:45",
+      "dateModified": new Date().toISOString()
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://nepacalc.com/#organization",
+      "name": "NepaCalc",
+      "url": "https://nepacalc.com"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://nepacalc.com/#fenegosida",
+      "name": "Federation of Nepal Gold and Silver Dealers' Association",
+      "url": "https://www.fenegosida.org"
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://nepacalc.com/market-rates/live-gold-price/#primaryimage",
+      "url": "https://nepacalc.com/images/og/gold-price-nepal.png",
+      "width": 1200,
+      "height": 630,
+      "caption": "Today's Gold Price in Nepal - FENEGOSIDA"
+    },
+    {
+      "@type": "FinancialService",
+      "@id": "https://nepacalc.com/market-rates/live-gold-price/#financial-service",
+      "name": "NepaCalc Gold Price Service",
+      "areaServed": "NP",
+      "description": "Live FENEGOSIDA gold and silver rates with dynamic investment calculators."
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://nepacalc.com/market-rates/live-gold-price/#dataset-gold-history",
+      "url": "https://nepacalc.com/market-rates/live-gold-price/",
+      "name": "Gold Price History Dataset (Nepal)",
+      "description": "Historical gold price data for Nepal, officially sourced from FENEGOSIDA. Includes daily, monthly, and yearly maximum and minimum rates.",
+      "creator": { "@id": "https://nepacalc.com/#fenegosida" },
+      "publisher": { "@id": "https://nepacalc.com/#organization" },
+      "sourceOrganization": { "@id": "https://nepacalc.com/#fenegosida" }
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://nepacalc.com/market-rates/live-gold-price/#itemlist",
+      "name": "FENEGOSIDA Official Reports and Notices",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Weekly Market Reports", "url": "https://nepacalc.com/market-rates/live-gold-price/#weekly-reports" },
+        { "@type": "ListItem", "position": 2, "name": "Official Notices", "url": "https://nepacalc.com/market-rates/live-gold-price/#notices" },
+        { "@type": "ListItem", "position": 3, "name": "Election Documents", "url": "https://nepacalc.com/market-rates/live-gold-price/#election-documents" }
+      ]
+    },
+    {
+      "@type": "SearchAction",
+      "target": "https://nepacalc.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    },
+    {
+      "@type": "SpeakableSpecification",
+      "@id": "https://nepacalc.com/market-rates/live-gold-price/#speakable",
+      "cssSelector": [".quick-answer-block", ".ai-summary-box"]
     },
     {
       "@type": "FAQPage",
-      "@id": "https://nepacalc.com/market-rates/live-gold-price/#faq-matrix",
+      "@id": "https://nepacalc.com/market-rates/live-gold-price/#faq",
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How many grams are in 1 tola of gold in Nepal?",
+          "name": "What is the gold price in Nepal today?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "In Nepal, 1 tola of gold is officially fixed at exactly 11.6638 grams. For reverse conversions: 10 grams = 0.85735 Tola, and 1 gram = 0.085735 Tola."
+            "text": "The official Fine Gold (9999) rate published by FENEGOSIDA changes daily. Please check the live board above for today's exact rates per Tola and per 10 Grams."
           }
         },
         {
           "@type": "Question",
-          "name": "What is 1 lal of gold converted to grams?",
+          "name": "Who sets gold prices in Nepal?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "1 lal of gold is equal to exactly 0.1166 grams. Because 1 full Tola contains precisely 100 lals, dividing 11.6638 grams by 100 provides the precise 0.1166g benchmark metric."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the price of 1 lal gold in Nepal today?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Based on official FENEGOSIDA baseline indicators, the price of 1 Lal of gold fluctuates daily. Check the live pricing board above for today's exact 24K Chhapawal and 22K Tejabi rates per Lal."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How many lal make up 1 ana of gold?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "In traditional Nepalese gold and silver trading systems, exactly 6.25 Lal combine to form 1 Ana (Aana), which is equivalent to approximately 0.7290 grams of mass weight. 16 Ana make up 1 full Tola."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the official difference between Hallmark Gold, Chhapawal, and Tejabi Gold in Nepal?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Fine Gold (9999 Purity) is interchangeably referred to as Hallmark Gold or Chhapawal Sun (छापावाल सुन), representing 99.99% pure bullion. Tejabi Gold (तेजाबी सुन), classified by FENEGOSIDA as Standard Gold, operates at 99.50% purity and carries a set structural discount per Tola below the Hallmark rate. Check the live board above for today's exact rates."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the price of silver in Nepal today per tola?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The official baseline price of silver (Chandi / चाँदी) in Nepal changes daily as set by FENEGOSIDA. Check the live pricing board on this page for today's exact silver rate per Tola and per 10 grams."
+            "text": "The Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA) publishes the official daily benchmark rates used by all dealers across Nepal."
           }
         }
       ]
@@ -88,24 +122,9 @@ const customSchema = {
       "@type": "BreadcrumbList",
       "@id": "https://nepacalc.com/market-rates/live-gold-price/#breadcrumb",
       "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://nepacalc.com/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Market Rates",
-          "item": "https://nepacalc.com/market-rates/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Live Gold Price",
-          "item": "https://nepacalc.com/market-rates/live-gold-price/"
-        }
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nepacalc.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Market Rates", "item": "https://nepacalc.com/market-rates/" },
+        { "@type": "ListItem", "position": 3, "name": "Live Gold Price", "item": "https://nepacalc.com/market-rates/live-gold-price/" }
       ]
     }
   ]
@@ -114,194 +133,23 @@ const customSchema = {
 export default function Page() {
   return (
     <div className="bg-white min-h-screen">
-      {/* Rich JSON-LD Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(customSchema) }}
       />
-
       <CalcWrapper
-        title="Live Gold Price"
-        description="Daily precious metal indices synchronized with FENEGOSIDA benchmarks for the Nepalese jewelry market."
+        title="Gold Price in Nepal Today (आजको सुनको भाउ)"
+        description="Daily precious metal indices strictly synchronized with official FENEGOSIDA benchmarks."
         crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Gold Price' }]}
         isNepal={true}
-        hideHeader={true}
+        hideHeader={false}
         relatedCalcs={[
           { name: 'Gold Tax Calculator', slug: '/calculator/gold-tax/' },
-          { name: 'Live Silver Price', slug: '/market-rates/live-silver-price/' },
-          { name: 'Exchange Rates', slug: '/market-rates/exchange-rate/' }
+          { name: 'Gold Converter', slug: '/calculator/gold-converter/' },
+          { name: 'Live Silver Price', slug: '/market-rates/live-silver-price/' }
         ]}
       >
         <GoldDashboardClient />
-
-                {/* ── SEO Content Section ── */}
-        <div className="hp-container pb-16 border-t border-slate-100 pt-12">
-          <div className="max-w-4xl mx-auto space-y-16">
-
-            <section>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">
-                Understanding Gold Prices in Nepal 2083/84 (2026 AD)
-              </h2>
-              <div className="prose prose-slate max-w-none space-y-5">
-                <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  When tracking precious metal valuations across South Asia, accessing authentic, non-manipulated data is essential for both retail consumers and commercial investors. The baseline numbers used to write physical invoices are governed by a central regulatory group balancing international market trends with localized supply constraints. The retail value of fine bullion in local showrooms carries a significant premium over raw international spot quotes because of domestic fiscal policies. Every ounce of gold legally entering the country passes through customs checkpoints where it encounters strict entry fees.
-                </p>
-                <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  As of 2026, the government applies a 20% customs import duty on all incoming raw gold bars. This tariff protects foreign currency reserves and regulates domestic consumption during peak wedding and festival seasons. Because these import taxes are calculated alongside bank handling commissions, transport logistics, and local insurance overhead, even minor adjustments to national fiscal policy can cause instant price shifts across local showrooms.
-                </p>
-                <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  If you are trying to calculate exactly how these state boundaries and import duties change the baseline cost of raw bullion bars before craftsmanship fees are added, you can compute the exact structural customs markup automatically using our interactive <a href="/calculator/gold-tax/" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">Gold Tax Calculator</a>. Understanding these fiscal barriers explains why local retail prices diverge from global spot trends, transforming raw gold from a simple global commodity into a highly regulated domestic asset.
-                </p>
-              </div>
-            </section>
-
-            <section>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">
-                Official Gold Weight &amp; Valuation Standards in Nepal
-              </h2>
-              <div className="space-y-5">
-                <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  Beyond custom duties, physical supply limits play a major role in local market behavior. To maintain macroeconomic stability and prevent a sudden drop in foreign cash reserves, the central banking authority strictly limits how much bullion can legally enter the country. The central bank manages a strict daily import quota system for commercial banks, typically limiting total entry to 20 kilograms per day, though this shifts depending on foreign reserve health. When demand outpaces this daily bank quota, local markets face sudden supply shortages. This raw physical scarcity often forces retail associations to raise premiums, causing domestic street prices to spike even if global spot indicators drop.
-                </p>
-                <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  Evaluating the opening market rate requires analyzing the central regulatory body that manages this complex supply chain. The primary pricing mandate is issued daily by the <a href="https://www.fenegosida.org/" target="_blank" rel="noopener noreferrer" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)</a>, which fixes the baseline index at approximately 11:00 AM every morning from Sunday to Friday. Alternative tracking boards closely monitor secondary merchant behaviors, market transparency, and retail distribution networks across regional showrooms to ensure consumer protections remain intact.
-                </p>
-                <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  When individuals look to liquidate family assets during economic downturns, storefronts run a reverse calculation using this same benchmark, ignoring the original making charges or VAT paid during purchase. Instead, they run your jewelry through an acid or XRF purity test and apply a standard melting loss deduction.
-                </p>
-              </div>
-            </section>
-
-            <section>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">
-                Traditional Fractional Weights vs. Metric Protocol
-              </h2>
-              <div className="space-y-5">
-                <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  To accurately calculate your final costs, you need to understand how traditional weight systems map onto modern metric measurements. Local marketplaces rely heavily on historical South Asian terms like Tolas, Anas, and Lals, while modern refiners use grams and kilograms. One full Tola equals exactly 11.6638 grams, which means 10 grams of fine gold represents 0.85735 Tola. For smaller custom pieces, a Tola is broken down into 100 Lals, meaning a single Lal equals 0.1166 grams of metal.
-                </p>
-                <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  Because local gold prices are ultimately tied to international contracts priced in US Dollars per troy ounce, any shift in the value of the local currency will immediately alter your counter price. If you want to see how these currency shifts change your purchasing power, you can track real-time global currency pairs using our automated <a href="/market-rates/exchange-rate/" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">Live Forex Exchange Rates Engine</a>. Monitoring this currency layer helps you anticipate domestic price spikes driven by exchange rate fluctuations, even when global gold prices remain completely flat.
-                </p>
-                <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  This dynamic ensures retail buyers never make an uneducated transaction when buying raw bullion investments, providing peace of mind whether you are tracking localized remittance distributions or evaluating personal jewelry asset balances.
-                </p>
-              </div>
-            </section>
-
-            <section>
-              <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tighter mb-6">
-                Real-World Jewelry Pricing Equations (Buying vs. Selling)
-              </h2>
-              <div className="space-y-5">
-                <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  When you buy finished jewelry at a retail store, the price on your invoice will always be higher than the raw material benchmarks listed online. Showrooms have to account for craftsmanship labor costs (Jyala) and material loss margins (Jarti or wastage). Making charges vary based on the complexity of the piece, ranging from 5% for simple bands to over 12% for intricate bridal sets. On top of that, a mandatory 13% Value Added Tax (VAT) is applied to the combined cost of the metal and labor.
-                </p>
-                <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5">
-                  <code className="block text-xs bg-white border border-amber-200 rounded-xl px-4 py-3 text-amber-800 font-mono text-center">
-                    Total Cost = (Weight in Tolas &times; Daily FENEGOSIDA Rate) + Jyala + Wastage
-                  </code>
-                </div>
-                <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  While gold remains the primary asset for financial security and heritage across the country, silver follows a similar retail logic. Silver prices track independently based on industrial demand and regional silversmithing needs. To check raw benchmarks, calculate metric conversions, or view current rates for custom gemstone settings, check out our companion <a href="/market-rates/live-silver-price/" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">Live Silver Price Calculator</a>. Reviewing both metals gives you a complete overview of the market, helping you budget accurately before stepping into a showroom layout.
-                </p>
-                <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  In the modern Nepalese financial ecosystem, gold operates as more than an ornament; it functions as a highly liquid tier-one asset class. During contractionary economic cycles, commercial banks and corporate liquidity funds accept hallmark gold biscuits and structural jewelry as premier collateral for emergency cash lines. This collateral system provides instant operational funding for small business owners who use their personal metal reserves to sustain corporate cash flow requirements.
-                </p>
-                <p className="text-slate-700 text-sm leading-relaxed font-medium">
-                  However, advanced investors often balance their physical commodity holdings against paper equities and public infrastructure funds. Diversifying capital across various asset classes ensures your personal wealth portfolio remains robust against sudden regulatory changes or mining supply shocks. If you are tracking capital allocations outside of precious metals to maximize your compound interest yield, you can analyze active stock indices and portfolio values through our automated <a href="/calculator/nepal-stocks/" className="text-amber-600 font-bold underline underline-offset-2 hover:text-amber-700 transition-colors">NEPSE Trading Calculator</a>. Balancing your physical bullion against liquid equities builds a highly protective defensive barrier around your generational savings.
-                </p>
-              </div>
-            </section>
-
-            {/* ══════════════════════════════════════════ */}
-            {/* §6  FAQ MODULE (Inline UI/UX matching PillarFAQ) */}
-            {/* ══════════════════════════════════════════ */}
-            <section className="mt-16 pt-12 border-t border-[#dadce0]">
-              <h2 className="text-[13px] font-black tracking-widest text-[#202124] mb-6 uppercase">
-                Frequently Asked Questions Gold Price Nepal 2083
-              </h2>
-              <div className="space-y-6">
-                
-                <div className="pb-4 border-b border-slate-100 last:border-0 last:pb-0">
-                  <h3 className="text-[14px] font-bold text-[#1a73e8] mb-1">
-                    1. Who determines the daily gold price in Nepal?
-                  </h3>
-                  <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
-                    <p>The official daily bullion benchmarks are established by the Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA). The federation calculates this domestic index every morning from Sunday to Friday at approximately 11:00 AM NPT.</p>
-                    <p>The baseline equation combines the global spot price from the London Bullion Market Association (LBMA), the current USD to NPR exchange rates regulated by the Nepal Rastra Bank (NRB), and the domestic 20% customs import tariff. On Saturdays and national public holidays, the market is closed, and the preceding Friday closing rate carries forward automatically.</p>
-                  </div>
-                </div>
-
-                <div className="pb-4 border-b border-slate-100 last:border-0 last:pb-0">
-                  <h3 className="text-[14px] font-bold text-[#1a73e8] mb-1">
-                    2. How many grams are in 1 Tola of gold in Nepal?
-                  </h3>
-                  <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
-                    <p>In standard Nepalese jewelry metrics, 1 Tola of gold is equal to exactly 11.6638 grams. While retail storefronts often round this number to 11.66 grams for rapid over-the-counter quotes, precision refiners use the absolute fractional value. For cross-conversions, 10 grams of gold represents exactly 0.85735 Tola, and a single metric gram translates to 0.085735 Tola.</p>
-                  </div>
-                </div>
-
-                <div className="pb-4 border-b border-slate-100 last:border-0 last:pb-0">
-                  <h3 className="text-[14px] font-bold text-[#1a73e8] mb-1">
-                    3. What is the difference between Hallmark, Chhapawal, and Tejabi Gold?
-                  </h3>
-                  <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
-                    <p><strong>Hallmark / Chhapawal Gold (24K):</strong> This is pure gold at 99.99% refinement with no added metallic alloys. It trades at the peak benchmark rate and is typically purchased in the form of raw mint bars or investment-grade biscuits.</p>
-                    <p><strong>Tejabi Gold (22K):</strong> Also recognized as Standard Gold, this configuration features roughly 91.6% pure gold mixed with a minor alloy balance (such as copper or silver) to structuralize the metal for daily wear. It carries a set federation discount relative to 24K gold.</p>
-                  </div>
-                </div>
-
-                <div className="pb-4 border-b border-slate-100 last:border-0 last:pb-0">
-                  <h3 className="text-[14px] font-bold text-[#1a73e8] mb-1">
-                    4. What is 1 Lal of gold in grams and price today?
-                  </h3>
-                  <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
-                    <p>Exactly 1 Lal equals 0.1166 grams. Because there are precisely 100 Lals in a single traditional Tola, the price of 1 Lal is mathematically equivalent to exactly 1% of the daily Tola rate:</p>
-                    <p>Please refer to our live pricing board above to see the precise value of 1 Lal of gold for today's market session.</p>
-                    <p className="italic">Note: This represents the raw material value; retail storefront invoices will add customized fabrication fees on top of this baseline.</p>
-                  </div>
-                </div>
-
-                <div className="pb-4 border-b border-slate-100 last:border-0 last:pb-0">
-                  <h3 className="text-[14px] font-bold text-[#1a73e8] mb-1">
-                    5. How much is 4 Ana of gold in Nepal?
-                  </h3>
-                  <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
-                    <p>In local weight protocols, 10 Lals make up 1 Ana. Therefore, 4 Ana equals 40 Lals, representing exactly 40% of a Tola, which translates to a precise metric weight of 4.6655 grams.</p>
-                    <p>You can use our <a href="/calculator/gold-converter/" className="text-[#1a73e8] underline underline-offset-2 hover:text-blue-800 transition-colors">Nepal Gold Unit Converter</a> to automatically calculate the exact price of 4 Ana based on today's live rates.</p>
-                  </div>
-                </div>
-
-                <div className="pb-4 border-b border-slate-100 last:border-0 last:pb-0">
-                  <h3 className="text-[14px] font-bold text-[#1a73e8] mb-1">
-                    6. Does the daily FENEGOSIDA price list include retail VAT and making charges?
-                  </h3>
-                  <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
-                    <p>No. The daily published prices are for raw, unworked bullion metal assets only. When you purchase finished jewelry from a retail showroom, the store owners append two mandatory cost tiers to your final invoice:</p>
-                    <ul className="list-disc pl-5 space-y-1">
-                        <li><strong>Jyala &amp; Jarti:</strong> The crafting labor charges and structural material wastage fees, which typically add an extra 5% to 15% onto the raw metal's base cost.</li>
-                        <li><strong>Value Added Tax (VAT):</strong> A mandatory state-enforced 13% tax applied directly to the combined total of the raw gold and the labor costs.</li>
-                    </ul>
-                    <p>Conversely, when liquidating old jewelry items back to a shop for cash, making charges and taxes are stripped from the payout—you are only paid for the true weight of the raw melted gold minus a standard 2% to 5% melting loss adjustment.</p>
-                  </div>
-                </div>
-
-                <div className="pb-4 border-b border-slate-100 last:border-0 last:pb-0">
-                  <h3 className="text-[14px] font-bold text-[#1a73e8] mb-1">
-                    7. What is the price of Silver (Chandi) per Tola and Lal in Nepal today?
-                  </h3>
-                  <div className="text-[13px] text-[#5f6368] leading-relaxed font-medium space-y-2">
-                    <p>Just like gold, silver trading across Nepal utilizes traditional South Asian weight metrics. Check the live silver price on our board above for today's exact Tola and Lal rates.</p>
-                    <p>If you are mapping out your personal portfolio assets or budgeting for major life events alongside precious metal purchases, verify your standard annual household deductions using our comprehensive <a href="/calculator/nepal-income-tax/" className="text-[#1a73e8] underline underline-offset-2 hover:text-blue-800 transition-colors">Nepal Income Tax Calculator</a> to keep your financial accounting fully optimized.</p>
-                  </div>
-                </div>
-
-              </div>
-            </section>
-
-          </div>
-        </div>
       </CalcWrapper>
     </div>
   );

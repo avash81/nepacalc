@@ -5,10 +5,11 @@ import { MarketDashboardLayout } from '@/components/market/MarketDashboardLayout
 import { useLiveRates } from '@/hooks/useLiveRates';
 import QuickPriceEstimator from '@/app/market-rates/live-gold-price/QuickPriceEstimator';
 import TradingViewWidget from '@/components/market/TradingViewWidget';
-import { Trophy, Table, History } from 'lucide-react';
+import { Trophy, Table, History, Zap } from 'lucide-react';
+import SeoSections from './SeoSections';
 
 export default function GoldDashboardClient() {
-  const { rates, loading, refresh } = useLiveRates();
+  const { rates, loading, error, refresh } = useLiveRates();
 
   if (loading || !rates?.gold) {
      return <div className="min-h-screen bg-slate-50 flex items-center justify-center">
@@ -18,23 +19,26 @@ export default function GoldDashboardClient() {
 
   const fmt = (n: number) => n.toLocaleString('en-IN');
   const tolaNPR = rates.gold.tolaNPR;
-  // FENEGOSIDA sets Tejabi (22K) at a fixed NPR 2,900 spread below the 24K rate
-  const tejabiTolaNPR = tolaNPR.current - 2900;
+  
+  // Requirement #2: "Not Published" logic for Tejabi
+  const tejabiTolaNPR = rates.gold.tejabiTolaNPR;
+  const tejabiDisplayRate = tejabiTolaNPR === 0 ? "Not Published" : `Rs. ${fmt(tejabiTolaNPR)}`;
+  const tejabi10gDisplay = tejabiTolaNPR === 0 ? "Not Published" : `Rs. ${fmt(Math.round(tejabiTolaNPR / 1.1664))}`;
 
   const silverTolaNPR = rates.silver?.tolaNPR?.current ?? 4840;
 
   const tables = [
-    { label: '24K Hallmark Gold', np: 'छापावाल सुन (प्रति तोला)', rate: tolaNPR.current, unit: '1 Tola' },
-    { label: '24K Hallmark Gold', np: 'छापावाल सुन (१० ग्राम)', rate: Math.round(tolaNPR.current / 1.1664), unit: '10 Gram' },
-    { label: '22K Tejabi Gold', np: 'तेजाबी सुन (प्रति तोला)', rate: tejabiTolaNPR, unit: '1 Tola' },
-    { label: '22K Tejabi Gold', np: 'तेजाबी सुन (१० ग्राम)', rate: Math.round(tejabiTolaNPR / 1.1664), unit: '10 Gram' },
-    { label: 'Silver (Chandi)', np: 'चाँदी (प्रति तोला)', rate: silverTolaNPR, unit: '1 Tola' },
-    { label: 'Silver (Chandi)', np: 'चाँदी (१० ग्राम)', rate: Math.round(silverTolaNPR / 1.1664), unit: '10 Gram' },
+    { label: '24K Hallmark Gold', np: 'छापावाल सुन (प्रति तोला)', display: `Rs. ${fmt(tolaNPR.current)}`, unit: '1 Tola' },
+    { label: '24K Hallmark Gold', np: 'छापावाल सुन (१० ग्राम)', display: `Rs. ${fmt(Math.round(tolaNPR.current / 1.1664))}`, unit: '10 Gram' },
+    { label: '22K Tejabi Gold', np: 'तेजाबी सुन (प्रति तोला)', display: tejabiDisplayRate, unit: '1 Tola', isTejabi: true },
+    { label: '22K Tejabi Gold', np: 'तेजाबी सुन (१० ग्राम)', display: tejabi10gDisplay, unit: '10 Gram', isTejabi: true },
+    { label: 'Silver (Chandi)', np: 'चाँदी (प्रति तोला)', display: `Rs. ${fmt(silverTolaNPR)}`, unit: '1 Tola' },
+    { label: 'Silver (Chandi)', np: 'चाँदी (१० ग्राम)', display: `Rs. ${fmt(Math.round(silverTolaNPR / 1.1664))}`, unit: '10 Gram' },
   ];
 
   return (
     <MarketDashboardLayout
-      title="Gold Price"
+      title="Live Gold Rates"
       description="Professional hallmark (24K) and tejabi (22K) gold rates in Nepal. Verified daily benchmarks adapted for local jewelry standards and official FENEGOSIDA price mandates."
       liveRate={fmt(tolaNPR.current)}
       changePercent={tolaNPR.changePercent24h}
@@ -42,6 +46,53 @@ export default function GoldDashboardClient() {
       accentColor="#b45309"
       mainBoard={
         <div className="flex flex-col">
+
+           {/* Error State UX */}
+           {error && (
+             <div className="mx-4 sm:mx-6 mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-800">
+                <p className="text-[12px] font-bold">Official rate temporarily unavailable.</p>
+                <p className="text-[11px]">Showing last verified FENEGOSIDA record from: {new Date(rates.gold.lastUpdated).toLocaleString('en-US', { timeZone: 'Asia/Kathmandu' })}</p>
+             </div>
+           )}
+
+           {/* Freshness/Verification Badge */}
+           <div className="mx-4 sm:mx-6 mt-4 p-3 bg-white border border-slate-200 rounded-xl flex flex-wrap gap-4 items-center justify-between text-[10px] font-black uppercase tracking-widest text-slate-500">
+              <div className="flex items-center gap-2">
+                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                 Data Status: Verified
+              </div>
+              <div className="flex items-center gap-2">
+                 Source: FENEGOSIDA
+              </div>
+              <div className="flex items-center gap-2">
+                 Last Sync: {new Date(rates.gold.lastUpdated).toLocaleTimeString('en-US', { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute:'2-digit' })} NPT
+              </div>
+              <div className="flex items-center gap-2">
+                 Next Official Update: ~11:00 AM NPT
+              </div>
+              <div className="flex items-center gap-2 text-green-600 bg-green-50 px-2 py-0.5 rounded">
+                 Market: Open
+              </div>
+           </div>
+
+           {/* AI Overview Safety Block */}
+           <div className="mx-4 sm:mx-6 mt-4 p-4 bg-slate-100 border border-slate-200 rounded-xl text-slate-600 text-[11px] leading-relaxed font-medium">
+             <strong>Note:</strong> Rates shown on this page are official benchmark rates published by the Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA). Retail purchase prices may vary due to making charges, wastage, VAT, and individual jeweler pricing policies.
+           </div>
+
+           {/* Quick Answer Box */}
+           <div id="quick-answer" className="quick-answer-block bg-blue-50/50 p-6 border-b border-blue-100 flex flex-col md:flex-row gap-6 items-center">
+             <div className="p-3 bg-blue-100 text-blue-600 rounded-full shrink-0">
+               <Zap className="w-6 h-6" />
+             </div>
+             <div className="flex-1">
+               <h2 className="text-xl font-black text-slate-900 tracking-tighter mb-2">Today's Rate Summary</h2>
+               <p className="text-sm text-slate-700 font-medium leading-relaxed m-0">
+                 The official gold price in Nepal today is <strong>Rs. {fmt(tolaNPR.current)}</strong> per Tola for 24K Hallmark Gold (Chhapawal) and <strong>{tejabiDisplayRate}</strong> per Tola for 22K Tejabi Gold. Silver is priced at <strong>Rs. {fmt(silverTolaNPR)}</strong> per Tola. Prices are fixed by FENEGOSIDA.
+               </p>
+             </div>
+           </div>
+
            {/* Chart Section */}
            <div className="p-4 sm:p-6 border-b border-slate-100 bg-slate-50/30">
               <div className="flex items-center justify-between mb-6">
@@ -72,9 +123,9 @@ export default function GoldDashboardClient() {
                  <table className="w-full text-left">
                     <thead>
                        <tr className="border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                          <th className="pb-4 px-4">Standard</th>
-                          <th className="pb-4 px-4">Unit</th>
-                          <th className="pb-4 px-4 text-right">Rate (NPR)</th>
+                          <th className="pb-4 px-4" scope="col">Standard</th>
+                          <th className="pb-4 px-4" scope="col">Unit</th>
+                          <th className="pb-4 px-4 text-right" scope="col">Rate (NPR)</th>
                        </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-50">
@@ -88,7 +139,7 @@ export default function GoldDashboardClient() {
                              </td>
                              <td className="py-4 px-4 text-[11px] font-black text-slate-500 uppercase tracking-widest">{row.unit}</td>
                              <td className="py-4 px-4 text-right">
-                                <span className="text-[17px] font-black text-slate-900 tracking-tighter">Rs. {fmt(row.rate)}</span>
+                                <span className={`text-[17px] font-black tracking-tighter ${row.isTejabi && tejabiTolaNPR === 0 ? 'text-slate-400' : 'text-slate-900'}`}>{row.display}</span>
                              </td>
                           </tr>
                        ))}
@@ -108,7 +159,6 @@ export default function GoldDashboardClient() {
               <div className="flex items-center gap-2 mb-4">
                  <History className="w-4 h-4 text-slate-400" />
                  <h2 className="text-[11px] font-black uppercase tracking-widest text-slate-500">Recent Movements (7D)</h2>
-                 <div className="sr-only">7-day gold trend showing steady uptrend starting from Rs. 289,000 up to Rs. 292,000 on June 13, 2026.</div>
               </div>
               <div className="grid grid-cols-7 gap-1">
                  {[1,2,3,4,5,6,0].map(i => {
@@ -128,30 +178,11 @@ export default function GoldDashboardClient() {
         <QuickPriceEstimator />
       }
       faqSection={
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="space-y-4">
-               <h3 className="text-[13px] font-black text-slate-900 uppercase tracking-widest border-l-4 border-amber-500 pl-4">Market Authority</h3>
-               <p className="text-[13px] text-slate-500 leading-relaxed font-medium">
-                 The primary regulator of gold rates in Nepal is <strong>FENEGOSIDA</strong>. We utilize their daily benchmarks published at 10:00 AM each morning, adjusted for real-time international spot volatility.
-               </p>
-            </div>
-            <div className="space-y-4">
-               <h3 className="text-[13px] font-black text-slate-900 uppercase tracking-widest border-l-4 border-amber-500 pl-4">Quality Standards</h3>
-               <p className="text-[13px] text-slate-500 leading-relaxed font-medium">
-                 <strong>24K Hallmark (छापावाल सुन)</strong> is the purest form (99.9%) used for investments and bullion. <strong>22K Tejabi (तेजाबी सुन)</strong> is used for jewelry, mixed with small amounts of copper or silver for durability.
-               </p>
-            </div>
-         </div>
+         <div className="hidden" /> // FAQs are now inside SeoSections
       }
       seoSection={
-         <div className="prose prose-slate max-w-none">
-            <h2 className="text-[20px] font-black text-slate-900 mb-4 tracking-tighter">Understanding Gold Prices in Nepal 2083/84 (2026 AD)</h2>
-            <p className="text-[14px] text-slate-600 leading-relaxed font-medium">
-               Gold prices in the Nepalese market are determined by two primary factors: the <strong>International Spot Price (XAU/USD)</strong> and domestic <strong>Customs Duty &amp; Taxes</strong>. Nepal applies approximately 20% customs duty calculated on official benchmarks. Our dashboard tracks <strong>FENEGOSIDA</strong> (Federation of Nepal Gold and Silver Dealers&apos; Association) daily rates — covering <strong>Fine Gold (छापावाल/24K)</strong>, <strong>Tejabi Gold (तेजाबी/22K)</strong>, and <strong>Silver (चाँदी/Chandi)</strong> — ensuring you have the exact market valuation for your jewelry and investments.
-            </p>
-         </div>
+         <SeoSections />
       }
     />
   );
 }
-

@@ -12,31 +12,31 @@ export async function GET() {
       }
     });
 
-    let goldPrice = 292000; // Fallback based on user data
-    let silverPrice = 4840; // Fallback based on user data
+    // 5 Ashad 2083 Fallback
+    let fineGoldPrice = 286700; 
+    let tejabiGoldPrice = 0; // 0 = Not Published
+    let silverPrice = 4640; 
     let provider = 'Static Backup';
 
     if (fenegosidaRes.ok) {
       const html = await fenegosidaRes.text();
       
-      // Look for the hallmark gold rate array in the chart script:
-      // ['29',292000,250345] or similar. We look for the last entry in the gold chart data.
-      // Alternatively, we can use a simpler regex to extract 292000 if it exists.
-      // But FENEGOSIDA usually wraps it in <b> tags or in the JS array.
-      // Let's use a regex to find the highest number around 290k-310k in the hallmark row.
-      const hallmarkMatch = html.match(/'\d+',([2-3]\d{5}),\d+/g);
+      // Look for the hallmark gold rate array in the chart script or HTML
+      // Example regex to find XAU NPR prices (usually 6 digits for gold)
+      const hallmarkMatch = html.match(/'\d+',([2-3]\d{5}),([0-3]?\d{5}|0)/g);
       if (hallmarkMatch && hallmarkMatch.length > 0) {
-         // get the last one
          const lastMatch = hallmarkMatch[hallmarkMatch.length - 1];
-         const priceStr = lastMatch.split(',')[1];
-         const parsedPrice = parseInt(priceStr, 10);
-         if (parsedPrice > 200000 && parsedPrice < 400000) {
-            goldPrice = parsedPrice;
+         const parts = lastMatch.split(',');
+         const parsedFine = parseInt(parts[1], 10);
+         const parsedTejabi = parseInt(parts[2], 10) || 0;
+         if (parsedFine > 200000 && parsedFine < 400000) {
+            fineGoldPrice = parsedFine;
+            tejabiGoldPrice = parsedTejabi;
             provider = 'FENEGOSIDA Live Scrape';
          }
       }
 
-      const silverMatch = html.match(/'\d+',([4-6]\d{3}),\d+(\.\d+)?/g);
+      const silverMatch = html.match(/'\d+',([3-6]\d{3}),\d+(\.\d+)?/g);
       if (silverMatch && silverMatch.length > 0) {
          const lastSMatch = silverMatch[silverMatch.length - 1];
          const sPriceStr = lastSMatch.split(',')[1];
@@ -50,7 +50,8 @@ export async function GET() {
     return NextResponse.json({
       success: true,
       gold: {
-        tolaNPR: goldPrice,
+        tolaNPR: fineGoldPrice,
+        tejabiTolaNPR: tejabiGoldPrice,
       },
       silver: {
         tolaNPR: silverPrice
@@ -62,8 +63,8 @@ export async function GET() {
     console.error('Error fetching market rates:', error);
     return NextResponse.json({
       success: false,
-      gold: { tolaNPR: 292000 },
-      silver: { tolaNPR: 4840 },
+      gold: { tolaNPR: 286700, tejabiTolaNPR: 0 },
+      silver: { tolaNPR: 4640 },
       provider: 'Error Fallback',
       updatedAt: new Date().toISOString()
     }, { status: 500 });
