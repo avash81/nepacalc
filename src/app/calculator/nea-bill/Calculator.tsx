@@ -368,6 +368,21 @@ export default function NEABillCalculator() {
         "@context": "https://schema.org",
         "@graph": [
           {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nepacalc.com" },
+              { "@type": "ListItem", "position": 2, "name": "Nepal Specific", "item": "https://nepacalc.com/nepal/" },
+              { "@type": "ListItem", "position": 3, "name": "Electricity Bill", "item": "https://nepacalc.com/calculator/nea-bill/" }
+            ]
+          },
+          {
+            "@type": "Organization",
+            "name": "NepaCalc",
+            "url": "https://nepacalc.com",
+            "logo": "https://nepacalc.com/logo.png",
+            "sameAs": ["https://www.facebook.com/nepacalc"]
+          },
+          {
             "@type": "WebApplication",
             "@id": "https://nepacalc.com/calculator/nea-bill/#webapp",
             "url": "https://nepacalc.com/calculator/nea-bill/",

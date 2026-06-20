@@ -10,8 +10,96 @@ export const metadata = calcMeta({
 });
 
 export default function NEATariffRatesPage() {
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nepacalc.com" },
+      { "@type": "ListItem", "position": 2, "name": "Electricity Guides", "item": "https://nepacalc.com/electricity/" },
+      { "@type": "ListItem", "position": 3, "name": "NEA Tariff Rates", "item": "https://nepacalc.com/electricity/nea-tariff-rates/" }
+    ]
+  };
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "NepaCalc",
+    "url": "https://nepacalc.com",
+    "logo": "https://nepacalc.com/logo.png",
+    "sameAs": ["https://www.facebook.com/nepacalc"]
+  };
+
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://nepacalc.com/electricity/nea-tariff-rates/",
+    "url": "https://nepacalc.com/electricity/nea-tariff-rates/",
+    "name": "NEA Tariff Rates 2083/84 Nepal",
+    "description": "Latest NEA tariff rates including electricity unit charges, service charges, demand charges and residential slab rates in Nepal.",
+    "inLanguage": "en-NP"
+  };
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "NEA Tariff Rates 2083/84 Nepal - Latest Electricity Unit & Service Charges",
+    "description": "Official NEA tariff rates including residential electricity slab rates, service charges and demand charges in Nepal.",
+    "author": { "@type": "Organization", "name": "NepaCalc" },
+    "publisher": { "@type": "Organization", "name": "NepaCalc" },
+    "mainEntityOfPage": "https://nepacalc.com/electricity/nea-tariff-rates/"
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are the latest NEA tariff rates for 2083/84?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The latest NEA tariff rates for 2083/84 range from Rs. 3.00 to Rs. 11.00 per unit depending on your monthly electricity consumption slab and meter capacity (e.g., 5A, 15A, 30A). A fixed monthly service charge is also applied." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the current NEA electricity rate in Nepal?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The current NEA electricity rate in Nepal operates on a progressive slab system. For a standard 5A residential meter, it starts at Rs. 3.00 per unit for lower usage and goes up to Rs. 11.00 per unit for usage above 250 units." }
+      },
+      {
+        "@type": "Question",
+        "name": "How are NEA service charges calculated?",
+        "acceptedAnswer": { "@type": "Answer", "text": "NEA service charges are fixed monthly fees based on your connection's ampere capacity and your total monthly electricity consumption slab. You pay a single flat service charge fee at the end of the month, ranging from Rs. 30 to Rs. 250." }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the NEA Bill Calculator use tariff rates?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The NEA Bill Calculator accurately applies the official progressive slab rates, fixed service charges, and concessional VAT rules based on your exact consumed units and meter capacity to generate an itemized bill breakdown." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the lifeline tariff in Nepal?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The lifeline tariff is a special concession for low-income households using a 5A meter. If you consume 20 units or less per month, you pay no energy charge (Rs. 0 per unit) and only a minimum service charge of Rs. 30." }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the NEA tariff rates the same across all of Nepal?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, the domestic electricity tariff in Nepal is uniform across the country." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between service charge and demand charge?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For residential customers, NEA applies a service charge, which is a fixed monthly fee based on your meter capacity and consumption slab. A demand charge (based on kVA) is typically applied to commercial, industrial, or bulk consumers rather than standard domestic households." }
+      }
+    ]
+  };
+
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <div className="max-w-4xl mx-auto px-4 py-8">
       <header className="mb-8">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
           NEA Tariff Rates 2083/84 Nepal
@@ -192,5 +280,6 @@ export default function NEATariffRatesPage() {
       </section>
 
     </div>
+    </>
   );
 }
