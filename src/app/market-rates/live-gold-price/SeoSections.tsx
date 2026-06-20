@@ -211,12 +211,47 @@ export default function SeoSections() {
             <Anchor className="w-6 h-6 text-slate-400" />
             Related Market Resources
          </h2>
+         {/* VERIFIED EXISTING PAGES ONLY — No 404 links */}
          <div className="flex flex-wrap gap-3">
             <a href="/market-rates/live-silver-price/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Silver Price in Nepal Today</a>
-            <a href="/silver-price-history/2083/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Silver Price History</a>
-            <a href="/gold-price-history/2083/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Gold Price History (2083)</a>
             <a href="/calculator/gold-converter/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Gold Weight Converter</a>
             <a href="/calculator/gold-tax/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Gold Import Tax Calculator</a>
+            <a href="/market-rates/exchange-rate/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Currency Exchange Rate</a>
+            <a href="/market-rates/remittance/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Remittance Calculator</a>
+         </div>
+      </section>
+
+      {/* Why Trust This Data */}
+      <section className="pt-8 border-t border-slate-200" aria-label="Trust and Verification">
+         <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-6 flex items-center gap-2">
+            <ShieldCheck className="w-6 h-6 text-green-500" />
+            Why Trust This Data?
+         </h2>
+         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="bg-green-50 border border-green-100 p-4 rounded-xl">
+               <h3 className="text-xs font-black text-green-700 uppercase tracking-widest mb-2">Official Source</h3>
+               <p className="text-[13px] text-slate-700 font-medium">All rates originate directly from FENEGOSIDA — the official federation governing gold and silver dealers in Nepal. No third-party estimation is used.</p>
+            </div>
+            <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl">
+               <h3 className="text-xs font-black text-blue-700 uppercase tracking-widest mb-2">Exact Historical Preservation</h3>
+               <p className="text-[13px] text-slate-700 font-medium">Historical records are displayed exactly as published by FENEGOSIDA, without normalization, rounding, or correction. Even anomalies are preserved to protect source integrity.</p>
+            </div>
+            <div className="bg-amber-50 border border-amber-100 p-4 rounded-xl">
+               <h3 className="text-xs font-black text-amber-700 uppercase tracking-widest mb-2">Daily Verification</h3>
+               <p className="text-[13px] text-slate-700 font-medium">Data is verified daily against the official FENEGOSIDA release, published at approximately 10:00 AM NPT (Sunday–Friday). The last sync timestamp is always visible above the rate board.</p>
+            </div>
+            <div className="bg-purple-50 border border-purple-100 p-4 rounded-xl">
+               <h3 className="text-xs font-black text-purple-700 uppercase tracking-widest mb-2">Editorial Review</h3>
+               <p className="text-[13px] text-slate-700 font-medium">The NepaCalc Editorial Team independently reviews data accuracy, content quality, and schema consistency on a regular basis.</p>
+            </div>
+            <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+               <h3 className="text-xs font-black text-slate-500 uppercase tracking-widest mb-2">Independent Platform</h3>
+               <p className="text-[13px] text-slate-700 font-medium">NepaCalc does not buy, sell, or trade precious metals. This page is a public information service. Retail prices vary by jeweler due to making charges, wastage, and 13% VAT.</p>
+            </div>
+            <div className="bg-red-50 border border-red-100 p-4 rounded-xl">
+               <h3 className="text-xs font-black text-red-700 uppercase tracking-widest mb-2">Questions or Corrections?</h3>
+               <p className="text-[13px] text-slate-700 font-medium">If you spot a data discrepancy, <a href="/contact" className="underline text-blue-700 font-bold">contact our editorial team</a>. All corrections require source verification from FENEGOSIDA.</p>
+            </div>
          </div>
       </section>
 
@@ -228,10 +263,12 @@ export default function SeoSections() {
          </h2>
          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-slate-50 border border-slate-200 p-5 rounded-xl">
-               <h3 className="text-xs font-black text-slate-500 uppercase tracking-widest mb-3">Author &amp; Review</h3>
-               <p className="text-[13px] font-medium text-slate-700 mb-1">Reviewed By: <strong>NepaCalc Editorial Team</strong></p>
+               <h3 className="text-xs font-black text-slate-500 uppercase tracking-widest mb-3">Content Ownership</h3>
                <p className="text-[13px] font-medium text-slate-700 mb-1">Data Source: <strong>FENEGOSIDA</strong></p>
-               <p className="text-[13px] font-medium text-slate-700">Last Reviewed: <strong>{new Date().toLocaleDateString('en-US', { timeZone: 'Asia/Kathmandu', month: 'long', day: 'numeric', year: 'numeric' })}</strong></p>
+               <p className="text-[13px] font-medium text-slate-700 mb-1">Publisher: <strong>NepaCalc</strong></p>
+               <p className="text-[13px] font-medium text-slate-700 mb-1">Editorial Team: <strong>NepaCalc Editorial Team</strong></p>
+               <p className="text-[13px] font-medium text-slate-700 mb-1">Last Reviewed: <strong>{new Date().toLocaleDateString('en-US', { timeZone: 'Asia/Kathmandu', month: 'long', day: 'numeric', year: 'numeric' })}</strong></p>
+               <p className="text-[13px] font-medium text-slate-700"><a href="/contact" className="underline text-blue-700">Contact the Editorial Team</a></p>
             </div>
             <div className="bg-slate-50 border border-slate-200 p-5 rounded-xl">
                <h3 className="text-xs font-black text-slate-500 uppercase tracking-widest mb-3">Page Change History</h3>
@@ -248,7 +285,7 @@ export default function SeoSections() {
       <div className="bg-slate-100/50 p-6 rounded-2xl border border-slate-200 text-center">
         <ShieldCheck className="w-8 h-8 text-slate-400 mx-auto mb-3" />
         <p className="text-[11px] text-slate-500 font-medium leading-relaxed max-w-2xl mx-auto uppercase tracking-widest">
-          Disclaimer: This dashboard mirrors data published by FENEGOSIDA. NepaCalc is an independent analytics platform and does not buy, sell, or trade precious metals. Retail purchases are subject to local making charges and 13% VAT.
+          Official benchmark rates published by Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA), displayed and analyzed by NepaCalc. NepaCalc is an independent analytics platform and does not buy, sell, or trade precious metals. Retail purchases are subject to local making charges and 13% VAT.
         </p>
       </div>
 

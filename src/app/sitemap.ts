@@ -62,13 +62,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const calculatorPages = CALCULATORS.map((calc) => {
     const isDirectRoute = calc.slug.includes('/');
     const isMarketRate = calc.category === 'market' || calc.slug.includes('market-rates');
+    const isGoldPage = calc.slug === 'market-rates/live-gold-price';
     const isCritical = ['nepal-income-tax', 'nepal-salary', 'loan-emi', 'sip-calculator', 'nepal-land'].includes(calc.id);
     
     return {
       url: cleanUrl(isDirectRoute ? `/${calc.slug}` : `/calculator/${calc.slug}`),
       lastModified: calc.slug === 'nea-bill' ? new Date('2026-06-19T00:00:00Z') : (isMarketRate ? new Date() : lastModDate),
       changeFrequency: isMarketRate ? ('daily' as const) : (isCritical ? 'daily' as const : 'weekly' as const),
-      priority: calc.slug === 'nea-bill' ? 0.95 : (isCritical ? 0.9 : 0.75),
+      // Gold price is highest-value page — priority 1.0 (same as homepage)
+      priority: isGoldPage ? 1.0 : calc.slug === 'nea-bill' ? 0.95 : (isCritical ? 0.9 : (isMarketRate ? 0.9 : 0.75)),
     };
   });
 

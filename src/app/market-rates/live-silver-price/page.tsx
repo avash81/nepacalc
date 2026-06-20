@@ -67,6 +67,19 @@ export default function Page() {
             </div>
 
             <PillarFAQ faqs={SILVER_FAQS} title="Silver & Precious Metals FAQ" />
+            {/* Bidirectional SEO Link — back to gold authority page */}
+            <div className="mt-8 pt-6 border-t border-slate-200 text-center">
+              <p className="text-[13px] text-slate-500 font-medium">
+                Also see:{' '}
+                <a href="/market-rates/live-gold-price/" className="text-amber-700 font-bold underline hover:text-amber-900">
+                  Live Gold Price in Nepal Today (FENEGOSIDA)
+                </a>
+                {' '}·{' '}
+                <a href="/calculator/gold-converter/" className="text-amber-700 font-bold underline hover:text-amber-900">
+                  Gold Weight Converter
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </CalcWrapper>

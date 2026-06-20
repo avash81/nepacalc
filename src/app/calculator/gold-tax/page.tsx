@@ -9,5 +9,18 @@ export const metadata = calcMeta({
 });
 
 export default function Page() {
-  return <Calculator />;
+  return (
+    <div>
+      <Calculator />
+      {/* Bidirectional SEO Link — back to authority page */}
+      <div className="max-w-3xl mx-auto px-4 py-6 text-center">
+        <p className="text-[12px] text-slate-500 font-medium">
+          Check today&apos;s official rate:{' '}
+          <a href="/market-rates/live-gold-price/" className="text-amber-700 font-bold underline hover:text-amber-900">
+            Live Gold Price in Nepal Today (FENEGOSIDA)
+          </a>
+        </p>
+      </div>
+    </div>
+  );
 }
