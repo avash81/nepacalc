@@ -3,7 +3,7 @@ import Calculator from './Calculator';
 
 export const metadata = calcMeta({
   title: "NEA Bill Calculator 2083/84 Nepal - Calculate Electricity Bill Online",
-  description: "Calculate your NEA electricity bill online using the latest 2083/84 tariff rates. Get an instant breakdown of unit charges, service charges, VAT and total bill amount.",
+  description: "Calculate your NEA electricity bill online using the latest 2083/84 tariff rates. Get accurate unit charges, service charges, VAT and full bill breakdown instantly.",
   slug: 'nea-bill',
   keywords: [
     "NEA Bill Calculator",

@@ -117,7 +117,7 @@ export default function NEABillCalculator() {
     <ModernCalcLayout
       slug="nea-bill"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Electricity Bill' }]}
-      title="NEA Bill Calculator Nepal (2083/84)"
+      title="NEA Bill Calculator"
       description="The NEA Bill Calculator helps you calculate your Nepal Electricity Authority electricity bill using the latest 2083/84 tariff rates. Enter your electricity consumption to get an instant breakdown of unit charges, service charges, VAT and total bill amount."
       icon={Zap}
       inputs={

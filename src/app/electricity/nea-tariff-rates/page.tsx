@@ -20,10 +20,7 @@ export default function NEATariffRatesPage() {
           <p className="text-sm text-gray-700"><strong>Last Updated:</strong> Based on the latest official Nepal Electricity Authority (NEA) publications for 2083.</p>
         </div>
         <p className="text-lg text-gray-700">
-          The latest NEA tariff rates for 2083/84 range from Rs. 3.00 to Rs. 11.00 per unit depending on electricity consumption and meter type. Residential consumers also pay monthly service charges based on connection capacity. These tariff rates are used to calculate electricity bills throughout Nepal.
-        </p>
-        <p className="text-lg text-gray-700 mt-4">
-          These NEA tariff rates are used by the NEA Bill Calculator to estimate monthly electricity bills for households and businesses across Nepal using the latest official tariff structure.
+          The latest NEA tariff rates for 2083/84 range from Rs. 3.00 to Rs. 11.00 per unit depending on electricity consumption and meter type. Residential consumers also pay monthly service charges based on connection capacity. These NEA tariff rates are used by the NEA Bill Calculator to calculate electricity bills across Nepal.
         </p>
       </header>
 

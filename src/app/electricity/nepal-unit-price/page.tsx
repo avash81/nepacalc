@@ -291,7 +291,7 @@ export default function NepalElectricityUnitPricePage() {
 
           {/* ── INTRODUCTION ── */}
           <p className="text-slate-700 mb-4 text-base leading-relaxed">
-            The price of 1 unit electricity in Nepal depends on the latest NEA tariff rates and monthly consumption slab. Residential consumers currently pay between Rs. 3.00 and Rs. 11.00 per unit under the Nepal Electricity Authority tariff structure.
+            The price of 1 unit electricity in Nepal depends on the latest NEA tariff rates and monthly consumption slab. Residential consumers currently pay between Rs. 3.00 and Rs. 11.00 per unit under Nepal Electricity Authority tariff schedules.
           </p>
           <p className="text-slate-700 mb-4 text-base leading-relaxed">
             For domestic consumers, the <strong>electricity charge per unit in Nepal</strong> currently ranges from approximately <strong>Rs. 3.00 to Rs. 11.00</strong> depending on monthly usage and meter category. This <strong>domestic electricity rate Nepal</strong> applies universally across the country. Whether you live in <strong>Kathmandu, Lalitpur, Bhaktapur, Pokhara, Chitwan, Butwal, Nepalgunj, Janakpur, Dharan, Hetauda, or Biratnagar</strong>, the standard <strong>electricity unit rate Nepal</strong> remains the exact same.
