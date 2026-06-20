@@ -74,7 +74,8 @@ const customSchema = {
       "description": "Historical gold price data for Nepal, officially sourced from FENEGOSIDA. Includes daily, monthly, and yearly maximum and minimum rates.",
       "creator": { "@id": "https://nepacalc.com/#fenegosida" },
       "publisher": { "@id": "https://nepacalc.com/#organization" },
-      "sourceOrganization": { "@id": "https://nepacalc.com/#fenegosida" }
+      "sourceOrganization": { "@id": "https://nepacalc.com/#fenegosida" },
+      "license": "https://creativecommons.org/licenses/by/4.0/"
     },
     {
       "@type": "ItemList",
@@ -142,7 +143,7 @@ export default function Page() {
         description="Daily precious metal indices strictly synchronized with official FENEGOSIDA benchmarks."
         crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Gold Price' }]}
         isNepal={true}
-        hideHeader={false}
+        hideHeader={true}
         relatedCalcs={[
           { name: 'Gold Tax Calculator', slug: '/calculator/gold-tax/' },
           { name: 'Gold Converter', slug: '/calculator/gold-converter/' },
