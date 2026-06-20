@@ -83,7 +83,7 @@ const globalSchema = {
       "image": "https://nepacalc.com/logo.png",
       "sameAs": [
         "https://www.facebook.com/nepacalc",
-        "https://twitter.com/nepacalcnp"
+        "https://twitter.com/nepacalc"
       ]
     },
     {
