@@ -170,9 +170,12 @@ export default function NepalElectricityUnitPricePage() {
     "@type": "Dataset",
     "name": "Nepal Electricity Tariff Rates",
     "description": "Official domestic electricity tariff rates for Nepal.",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "url": "https://nepacalc.com/electricity/nepal-unit-price/",
     "creator": {
       "@type": "Organization",
-      "name": "Nepal Electricity Authority"
+      "name": "Nepal Electricity Authority",
+      "url": "https://www.nea.org.np/"
     }
   };
 
