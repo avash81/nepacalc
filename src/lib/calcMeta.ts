@@ -4,7 +4,7 @@ export const SITE_CONFIG = {
   name: 'NepaCalc',
   domain: 'nepacalc.com',
   baseUrl: 'https://nepacalc.com',
-  twitter: '@nepacalcnp',
+  twitter: '@nepacalc',
 };
 
 /**
