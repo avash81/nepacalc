@@ -8,7 +8,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Free Online Calculator NepaCalc Nepal',
   description:
-    'Use free online calculators for math finance health conversions and more. Nepals best calculator site with 100 plus tools. Try NepaCalc now',
+    'NepaCalc provides free online calculators for Nepal including NEA bill calculators, income tax calculators, salary tax calculators, SIP and EMI calculators, GPA tools, engineering calculators, land converters, market rates, and everyday calculation tools.',
   keywords: [
     'online calculator', 'scientific calculator', 'graphing calculator',
     'maths solver', 'algebra solver', 'trigonometry calculator',
@@ -20,21 +20,87 @@ export const metadata: Metadata = {
   }
 };
 
-const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'NepaCalc',
-  url: 'https://nepacalc.com',
-  logo: 'https://nepacalc.com/logo.png',
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Free Online Calculator for Nepal",
+  "url": "https://nepacalc.com/",
+  "description": "Free online calculators for Nepal covering tax, finance, engineering, health, education, electricity bills, market rates and conversions.",
+  "keywords": [
+    "calculator nepal",
+    "nepal calculator",
+    "online calculator nepal",
+    "free calculator nepal",
+    "nea bill calculator",
+    "income tax calculator nepal",
+    "salary tax calculator nepal",
+    "sip calculator nepal",
+    "emi calculator nepal",
+    "gpa calculator nepal",
+    "engineering calculator",
+    "gold price nepal"
+  ],
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "NepaCalc",
+    "url": "https://nepacalc.com"
+  }
+};
+
+const faqSchema = {
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {
+      "@type":"Question",
+      "name":"What is NepaCalc?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"NepaCalc is a Nepal-focused platform providing free online calculators, converters, tax tools, electricity bill calculators, educational tools, engineering calculators and market rate tracking."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Are NepaCalc calculators free?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. All public calculators and tools on NepaCalc are available free of charge."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"How accurate are NepaCalc calculators?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"NepaCalc calculators use published formulas and official references where applicable, including government agencies and recognized institutions."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Can I calculate my NEA electricity bill on NepaCalc?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. NepaCalc provides an NEA Electricity Bill Calculator using current tariff structures."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Does NepaCalc provide live gold prices?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Yes. NepaCalc publishes official benchmark gold and silver rates based on FENEGOSIDA reference data."
+      }
+    }
+  ]
 };
 
 export default function HomePage() {
   return (
     <>
-      <script 
+            <script 
         type="application/ld+json" 
         dangerouslySetInnerHTML={{ 
-          __html: JSON.stringify([organizationSchema]) 
+          __html: JSON.stringify([webPageSchema, faqSchema]) 
         }} 
       />
       
