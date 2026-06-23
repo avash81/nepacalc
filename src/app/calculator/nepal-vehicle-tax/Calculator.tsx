@@ -181,14 +181,17 @@ export default function NepalVehicleTaxCalculator() {
     const finalRenew   = renewFee * delayConfig.renewMult;
     
     let insuranceEst = 4500;
-    if (vCategory === 'bike' || vCategory === 'agri') insuranceEst = 2200;
-    else if (vCategory === 'car_private' || vCategory === 'car_public') {
-      if (engineCC <= 1500) insuranceEst = 4500;
-      else if (engineCC <= 2500) insuranceEst = 6000;
-      else insuranceEst = 8000;
+    if (engineType === 'electric') {
+      insuranceEst = vCategory === 'bike' ? 2000 : 3500;
+    } else {
+      if (vCategory === 'bike' || vCategory === 'agri') insuranceEst = 2200;
+      else if (vCategory === 'car_private' || vCategory === 'car_public') {
+        if (engineCC <= 1500) insuranceEst = 4500;
+        else if (engineCC <= 2500) insuranceEst = 6000;
+        else insuranceEst = 8000;
+      }
+      else insuranceEst = 6000;
     }
-    else if (vCategory === 'ev') insuranceEst = 3500;
-    else insuranceEst = 6000;
 
     const pollutionCheck = 400;
     const total        = totalBaseTax + penaltyFine + insuranceEst + finalRenew + pollutionCheck;
