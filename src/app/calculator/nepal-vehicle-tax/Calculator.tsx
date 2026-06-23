@@ -182,7 +182,7 @@ export default function NepalVehicleTaxCalculator() {
     
     let insuranceEst = 4500;
     if (vCategory === 'bike' || vCategory === 'agri') insuranceEst = 2200;
-    else if (vCategory === 'car') {
+    else if (vCategory === 'car_private' || vCategory === 'car_public') {
       if (engineCC <= 1500) insuranceEst = 4500;
       else if (engineCC <= 2500) insuranceEst = 6000;
       else insuranceEst = 8000;
