@@ -179,8 +179,19 @@ export default function NepalVehicleTaxCalculator() {
     const totalBaseTax = baseTax * yearsOwed;
     const penaltyFine  = baseTax * delayConfig.basePenalty;
     const finalRenew   = renewFee * delayConfig.renewMult;
-    const insuranceEst = ['bike', 'agri'].includes(vCategory) ? 2200 : 8500;
-    const total        = totalBaseTax + penaltyFine + insuranceEst + finalRenew;
+    
+    let insuranceEst = 4500;
+    if (vCategory === 'bike' || vCategory === 'agri') insuranceEst = 2200;
+    else if (vCategory === 'car') {
+      if (engineCC <= 1500) insuranceEst = 4500;
+      else if (engineCC <= 2500) insuranceEst = 6000;
+      else insuranceEst = 8000;
+    }
+    else if (vCategory === 'ev') insuranceEst = 3500;
+    else insuranceEst = 6000;
+
+    const pollutionCheck = 400;
+    const total        = totalBaseTax + penaltyFine + insuranceEst + finalRenew + pollutionCheck;
     const isLate       = delayStatus !== 'ontime';
 
     const pieData = [
@@ -188,9 +199,10 @@ export default function NepalVehicleTaxCalculator() {
       { name: 'Late Penalties',    value: penaltyFine  },
       { name: 'Insurance Premium', value: insuranceEst },
       { name: 'Renewal Fee',       value: finalRenew   },
+      { name: 'Pollution Check',   value: pollutionCheck }
     ];
 
-    return { baseTax: totalBaseTax, penaltyFine, insuranceEst, finalRenew, total, slabLabel, pieData, isLate, yearsOwed, renewFee };
+    return { baseTax: totalBaseTax, penaltyFine, insuranceEst, finalRenew, pollutionCheck, total, slabLabel, pieData, isLate, yearsOwed, renewFee };
   }, [engineType, vCategory, engineCC, motorKw, seats, weightTon, delayStatus]);
 
   // ── EV IMPORT / CIF MATH ──────────────────────────────────────────────────
@@ -425,6 +437,10 @@ export default function NepalVehicleTaxCalculator() {
               <div className="border border-[#DADCE0] rounded-md p-4 text-center bg-white">
                 <div className="text-[9px] font-bold text-[#5F6368] uppercase tracking-wider mb-1">Renewal Fee</div>
                 <div className="text-lg font-black text-[#5F6368]">{formatNPR(renewalResult.finalRenew)}</div>
+              </div>
+              <div className="border border-[#DADCE0] rounded-md p-4 text-center bg-white col-span-2">
+                <div className="text-[9px] font-bold text-[#5F6368] uppercase tracking-wider mb-1">Pollution Check Fee</div>
+                <div className="text-lg font-black text-[#5F6368]">{formatNPR(renewalResult.pollutionCheck)}</div>
               </div>
             </div>
           </div>
