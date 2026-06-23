@@ -211,7 +211,7 @@ export default function Page() {
             Vehicle Tax in Nepal 2083/84
           </h2>
           <p className="text-[#3c4043] mb-6">
-            Vehicle tax in Nepal is calculated based on vehicle category, engine capacity (CC), motor power (kW), seating capacity or carrying capacity. Vehicle owners must renew road tax annually to maintain valid registration and bluebook status under the Vehicle and Transport Management Act.
+            Vehicle tax in Nepal is calculated based on vehicle category, engine capacity (CC), motor power (kW), seating capacity or carrying capacity. Vehicle owners must renew road tax annually to maintain valid registration and bluebook status under the Vehicle and Transport Management Act. If you are financing a new vehicle, use our <Link href="/calculator/loan-emi/" className="text-[#1A73E8] hover:underline font-medium">Auto Loan EMI Calculator</Link> to estimate your monthly payments.
           </p>
 
           <h2 className="text-xl sm:text-2xl font-bold text-[#202124] mt-8 mb-4 border-b pb-2">
@@ -318,7 +318,7 @@ export default function Page() {
             Bluebook Renewal Calculator Nepal
           </h2>
           <p className="text-[#3c4043] mb-4">
-            The Bluebook Renewal Calculator helps vehicle owners estimate annual road tax, renewal charges and late penalties. Every registered vehicle in Nepal must renew its bluebook through the Department of Transport Management (DOTM) or authorized Transport Management Office.
+            The Bluebook Renewal Calculator helps vehicle owners estimate annual road tax, renewal charges and late penalties. Every registered vehicle in Nepal must renew its bluebook through the <a href="https://dotm.gov.np/" target="_blank" rel="noopener noreferrer" className="text-[#1A73E8] hover:underline">Department of Transport Management (DOTM)</a> or authorized Transport Management Office.
           </p>
           <p className="text-[#3c4043] font-medium mb-2">For renewal you generally need:</p>
           <ul className="list-disc pl-6 text-[#3c4043] mb-8 space-y-1">
@@ -371,7 +371,7 @@ export default function Page() {
             <ul className="list-disc pl-5 text-[#3c4043] space-y-1 text-sm">
               <li>Vehicle tax liability is generally capped at four years for pending annual tax calculations.</li>
               <li>Penalties may vary depending on provincial implementation.</li>
-              <li>Insurance remains mandatory during renewal.</li>
+              <li>Insurance remains mandatory during renewal. To budget for these expenses, check your net income with our <Link href="/calculator/nepal-salary/" className="text-[#1A73E8] hover:underline font-medium">Nepal Salary Tax Calculator</Link> or verify corporate deductions via the <Link href="/calculator/tds-calculator/" className="text-[#1A73E8] hover:underline font-medium">TDS Calculator Nepal</Link>.</li>
             </ul>
           </div>
 
@@ -379,7 +379,7 @@ export default function Page() {
             Electric Vehicle Tax and Import Duty in Nepal
           </h2>
           <p className="text-[#3c4043] mb-8">
-            Electric vehicle taxation in Nepal is based primarily on motor power (kW). Import duties and infrastructure charges may also apply during vehicle importation depending on CIF valuation and prevailing fiscal policy. The Vehicle Tax Calculator Nepal can be used to estimate EV-related tax obligations under the current 2083/84 framework.
+            Electric vehicle taxation in Nepal is based primarily on motor power (kW). Import duties and infrastructure charges may also apply during vehicle importation depending on CIF valuation and prevailing fiscal policy. The Vehicle Tax Calculator Nepal can be used to estimate EV-related tax obligations under the current 2083/84 framework. For other personal asset imports, see our <Link href="/calculator/gold-tax/" className="text-[#1A73E8] hover:underline font-medium">Gold Import Tax Calculator</Link>, and manage your home utility budget with the <Link href="/calculator/nea-bill/" className="text-[#1A73E8] hover:underline font-medium">NEA Bill Calculator</Link>.
           </p>
 
           <h2 className="text-xl sm:text-2xl font-bold text-[#202124] mt-10 mb-4 border-b pb-2">
