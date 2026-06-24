@@ -188,6 +188,10 @@ export default function Page() {
       />
       
       <Calculator />
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <p className="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg text-slate-700"><strong>Tip:</strong> Plan your annual expenses better by estimating your vehicle tax using the <Link href="/calculator/nepal-vehicle-tax/" className="text-blue-600 hover:underline">Bluebook Renewal Calculator</Link>.</p>
+      </div>
+
 
       <div className="hp-container pb-16 pt-8">
         <div className="max-w-4xl mx-auto space-y-12">
