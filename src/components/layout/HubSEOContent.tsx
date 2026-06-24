@@ -81,10 +81,10 @@ export const HubSEOContent: React.FC<HubContentProps> = ({ category }) => {
         <section>
           <h3 className="text-2xl font-black text-[#202124] mb-6">Why Trust NepaCalc for Your Tax & Finance?</h3>
           <p className="mb-6">
-            Accuracy in finance isn't just about math; it's about context. Our <strong>Loan EMI Calculator</strong> doesn't just give you a number; it provides a full <strong>Amortization Schedule</strong>, showing you exactly how much of your payment goes to principal vs. interest each month. This level of transparency allows you to make informed decisions about pre-payments or loan refinancing.
+            Accuracy in finance isn't just about math; it's about context. Our <strong>Loan EMI Calculator</strong> doesn't just give you a number; it provides a full <strong>Amortization Schedule</strong>, showing you exactly how much of your payment goes to principal vs. interest each month. For tax calculations, our <Link href="/calculator/nepal-income-tax/" className="text-[#1a0dab] underline font-bold">Income Tax Calculator Nepal</Link> applies the official FY 2083/84 IRD slabs — including the doubled 1% threshold to Rs. 10 lakh and the new 29% top rate — so you always know your exact annual and monthly tax liability.
           </p>
           <p className="mb-6">
-            For more information and official verification, we recommend visiting the <a href="https://www.nrb.org.np" target="_blank" className="text-[#1a0dab] underline font-bold">Nepal Rastra Bank</a> for market rates and the <a href="https://www.ird.gov.np" target="_blank" className="text-[#1a0dab] underline font-bold">Inland Revenue Department</a> for tax slabs. NepaCalc is proud to be the leading digital bridge between these official standards and your daily financial planning.
+            For more information and official verification, we recommend visiting the <a href="https://www.nrb.org.np" target="_blank" className="text-[#1a0dab] underline font-bold">Nepal Rastra Bank</a> for market rates and the <a href="https://www.ird.gov.np" target="_blank" rel="nofollow noopener noreferrer" className="text-[#1a0dab] underline font-bold">Inland Revenue Department (IRD)</a> for official tax slabs. NepaCalc is proud to be the leading digital bridge between these official standards and your daily financial planning.
           </p>
         </section>
       </div>
@@ -145,14 +145,14 @@ export const HubSEOContent: React.FC<HubContentProps> = ({ category }) => {
           </section>
   
           <section>
-            <h3 className="text-2xl font-black text-[#202124] mb-6">Built for the People, by the People</h3>
-            <p className="mb-6">
-              NepaCalc isn't just a website; it's a social utility. We understand that filing your <strong>Income Tax</strong> or checking your <strong>SEE GPA</strong> can be stressful. Our mission is to remove that friction by providing clear, step-by-step auditing tools that you can trust.
-            </p>
-            <p className="mb-6">
-              For official government portals, visit the <a href="https://nepal.gov.np" target="_blank" className="text-[#1a0dab] underline font-bold">Government of Nepal Official Portal</a>.
-            </p>
-          </section>
+             <h3 className="text-2xl font-black text-[#202124] mb-6">Built for the People, by the People</h3>
+             <p className="mb-6">
+               NepaCalc isn't just a website; it's a social utility. We understand that filing your <Link href="/calculator/nepal-income-tax/" className="text-[#1a0dab] underline font-bold">Income Tax</Link> or checking your <strong>SEE GPA</strong> can be stressful. Our mission is to remove that friction by providing clear, step-by-step auditing tools that you can trust. The <Link href="/calculator/nepal-income-tax/" className="text-[#1a0dab] underline font-bold">Income Tax Calculator Nepal</Link> applies the latest FY 2083/84 IRD slabs including SSF exemption, EPF deductions and the female employee rebate.
+             </p>
+             <p className="mb-6">
+               For official government portals and tax clearance certificates, visit the <a href="https://nepal.gov.np" target="_blank" className="text-[#1a0dab] underline font-bold">Government of Nepal Official Portal</a> or the <a href="https://www.ird.gov.np" target="_blank" rel="nofollow noopener noreferrer" className="text-[#1a0dab] underline font-bold">Inland Revenue Department (IRD) Nepal</a>.
+             </p>
+           </section>
         </div>
     ),
     math: (
