@@ -220,6 +220,7 @@ export default function Page() {
               <p><strong>Formula:</strong><br />Annual Vehicle Tax = Base Road Tax + Renewal Fee + Penalty (if applicable)</p>
               <p><strong>For overdue renewals:</strong><br />Total Payable = Annual Tax × Pending Years + Penalty + Renewal Charges</p>
             </div>
+            <p className="mt-4">Vehicle tax is separate from income taxes payable to the Inland Revenue Department. If you are a salaried employee or business owner, use our <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Nepal Income Tax Calculator</Link> to estimate your annual income tax liability alongside your vehicle ownership costs.</p>
           </div>
 
           <h2 id="popular-searches" className="text-2xl font-black text-slate-900 mt-12 mb-6">Bike Tax Calculator Nepal</h2>
@@ -260,6 +261,7 @@ export default function Page() {
                 <tr><td className="py-2 px-4 border-b bg-slate-50">Above 650 CC</td><td className="py-2 px-4 border-b bg-slate-50">Rs. 35,000</td></tr>
               </tbody>
             </table>
+            <p className="text-slate-600 text-sm mt-3">Tip: Annual vehicle tax is just one recurring ownership cost. Most vehicle owners also pay monthly electricity bills for EV charging — check the <Link href="/calculator/nea-bill/" className="text-blue-600 hover:underline">NEA Bill Calculator Nepal</Link> to estimate your total annual transport and utility expenditure.</p>
           </div>
 
           <h2 id="car-tax" className="text-2xl font-black text-slate-900 mt-12 mb-6">Car Tax Calculator Nepal</h2>
@@ -346,6 +348,7 @@ export default function Page() {
             <li>Khalti (where available)</li>
             <li>ConnectIPS (where available)</li>
           </ul>
+          <p className="mb-4">Note: Commercial vehicle operators should be aware that certain payments and commissions in the transport sector are subject to Tax Deducted at Source (TDS). Use our <Link href="/calculator/nepal-tds/" className="text-blue-600 hover:underline">Nepal TDS Calculator</Link> to verify withholding obligations on transport-related income.</p>
           <p className="mb-8 italic">Availability may vary by province.</p>
 
           <h2 className="text-2xl font-black text-slate-900 mt-12 mb-6">Official Sources</h2>
