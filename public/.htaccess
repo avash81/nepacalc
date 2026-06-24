@@ -1,6 +1,6 @@
 RewriteEngine On
 
-# 1. Force HTTPS and non-www
+# 1. Force HTTPS and non-www (www → non-www MUST come first)
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
