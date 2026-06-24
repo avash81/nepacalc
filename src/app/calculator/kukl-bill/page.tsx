@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
@@ -109,7 +110,12 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(customSchema) }}
       />
       
+      <>
       <Calculator />
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <p className="p-4 bg-green-50 border-l-4 border-green-500 rounded-r-lg text-slate-700"><strong>Also useful:</strong> Beyond utility bills, annual income tax is one of the most important financial obligations for Kathmandu residents. Use the <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Nepal Income Tax Calculator</Link> to estimate your FY 2083/84 tax liability.</p>
+      </div>
+    </>
     </div>
   );
 }
