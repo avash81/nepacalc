@@ -153,7 +153,7 @@ export const CALCULATORS: Calculator[] = [
   // ==========================================
   { id: 'gold-converter', slug: 'market-rates/live-gold-price', name: 'Live Gold Price', icon: '🏆', description: 'Real-time 24K and 22K gold rates in Nepal with Federation sync.', category: 'market', isNepal: true, isHot: true, keywords: ['Live Gold Price Nepal', 'Federation of Nepal Gold & Silver', '24k gold rate', 'Tola to Gram gold', 'Chandi price'] },
   { id: 'remittance-calculator', slug: 'market-rates/remittance', name: 'Remittance Board', icon: '💸', description: 'Compare real-time exchange rates for sending money to Nepal.', category: 'market', isNepal: true },
-  { id: 'currency-converter', slug: 'market-rates/exchange-rate', name: 'Exchange Rates', icon: '💱', description: 'Live foreign exchange rates for 20+ currencies including USD and INR.', category: 'market', isNepal: true },
+  { id: 'currency-converter', slug: 'market-rates/exchange-rate-nepal', name: 'Exchange Rates', icon: '💱', description: 'Live foreign exchange rates for 20+ currencies including USD and INR.', category: 'market', isNepal: true },
   { id: 'live-silver-price', slug: 'market-rates/live-silver-price', name: 'Live Silver Price', icon: '🥈', description: 'Real-time silver (Chandi) rates in Nepal. Synced with federation benchmarks.', category: 'market', isNepal: true },
 ];
 

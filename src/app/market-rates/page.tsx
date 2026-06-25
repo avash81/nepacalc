@@ -45,7 +45,7 @@ export default function MarketRatesPillarPage() {
                 <RateTile label="Gold 24K" value={rates.gold.tolaNPR.current} change={rates.gold.tolaNPR.changePercent24h} href="/market-rates/live-gold-price/" />
                 <RateTile label="Gold 22K" value={Math.round(rates.gold.tolaNPR.current * 0.916)} change={rates.gold.tolaNPR.changePercent24h} href="/market-rates/live-gold-price/" />
                 <RateTile label="Silver" value={rates.silver.tolaNPR.current} change={rates.silver.tolaNPR.changePercent24h} href="/market-rates/live-silver-price/" />
-                <RateTile label="USD/NPR" value={rates.forex.usd.current} change={rates.forex.usd.changePercent24h} href="/market-rates/exchange-rate/" isForex />
+                <RateTile label="USD/NPR" value={rates.forex.usd.current} change={rates.forex.usd.changePercent24h} href="/market-rates/exchange-rate-nepal/" isForex />
               </>
             )}
           </div>

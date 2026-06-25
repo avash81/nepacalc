@@ -216,7 +216,7 @@ export default function SeoSections() {
             <a href="/market-rates/live-silver-price/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Silver Price in Nepal Today</a>
             <a href="/calculator/gold-converter/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Gold Weight Converter</a>
             <a href="/calculator/gold-tax/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Gold Import Tax Calculator</a>
-            <a href="/market-rates/exchange-rate/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Currency Exchange Rate</a>
+            <a href="/market-rates/exchange-rate-nepal/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Currency Exchange Rate</a>
             <a href="/market-rates/remittance/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Remittance Calculator</a>
          </div>
       </section>

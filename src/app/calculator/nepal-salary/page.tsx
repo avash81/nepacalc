@@ -315,7 +315,7 @@ export default function Page() {
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 text-slate-700 mb-8">
             <li><Link href="/calculator/nepal-vehicle-tax/" className="text-blue-600 hover:underline">Bluebook Renewal Calculator</Link></li>
 
-              <li><Link href="/calculator/nepal-income-tax/" className="flex items-center gap-2 hover:text-blue-600 transition-colors"><span className="text-xl">📊</span> <span className="underline underline-offset-2">Income Tax Calculator</span></Link></li>
+              <li><Link href="/calculator/nepal-income-tax/" className="flex items-center gap-2 hover:text-blue-600 transition-colors"><span className="text-xl">📊</span> <span className="underline underline-offset-2">Income Tax Calculator Nepal</span></Link></li>
               <li><Link href="/calculator/nepal-tds/" className="flex items-center gap-2 hover:text-blue-600 transition-colors"><span className="text-xl">⚖️</span> <span className="underline underline-offset-2">TDS Calculator</span></Link></li>
               <li><Link href="/calculator/nepal-provident-fund/" className="flex items-center gap-2 hover:text-blue-600 transition-colors"><span className="text-xl">🏦</span> <span className="underline underline-offset-2">Provident Fund Calculator</span></Link></li>
               <li><Link href="/calculator/nepal-vat/" className="flex items-center gap-2 hover:text-blue-600 transition-colors"><span className="text-xl">🧾</span> <span className="underline underline-offset-2">VAT Calculator</span></Link></li>

@@ -163,7 +163,7 @@ export const healthSEO: Record<string, SEOContent> = {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
                     <p className="text-sm text-slate-300 leading-relaxed">
                         BMR represents your "at-rest" burn—what you would burn if you were resting in bed all day. To find your actual daily requirement, you must apply the <strong>Physical Activity Level (PAL)</strong> multiplier. This converts BMR into <strong>Total Daily Energy Expenditure (TDEE)</strong>.
-                     To complement these results, consider running the numbers through <a href="/calculator/market-rates/exchange-rate/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this live estimator</a>.</p>
+                     To complement these results, consider running the numbers through <a href="/calculator/market-rates/exchange-rate-nepal/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this live estimator</a>.</p>
                     <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl">
                         <h4 className="text-[10px] font-black text-emerald-400 uppercase tracking-widest mb-3">Standard Benchmark: Activity Multipliers</h4>
                         <ul className="text-[10px] text-slate-400 space-y-2 list-disc pl-4 italic">

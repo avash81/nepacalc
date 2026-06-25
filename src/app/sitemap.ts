@@ -37,6 +37,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/nepal',
     '/market-rates',
     '/guide',
+    '/income-tax',
+    '/income-tax/nepal-income-tax-slab-2083-84',
+    '/income-tax/how-to-calculate-income-tax-nepal',
   ].map((route) => ({
     url: cleanUrl(route),
     lastModified: (route === '/electricity/nepal-unit-price' || route === '/electricity/nea-tariff-rates') ? new Date('2026-06-19T00:00:00Z') : lastModDate,

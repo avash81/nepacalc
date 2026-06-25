@@ -45,7 +45,7 @@ export default function Page() {
         isNepal={true}
         relatedCalcs={[
           { name: 'Live Gold Price', slug: '/market-rates/live-gold-price/' },
-          { name: 'Exchange Rates', slug: '/market-rates/exchange-rate/' },
+          { name: 'Exchange Rates', slug: '/market-rates/exchange-rate-nepal/' },
           { name: 'Unit Converter', slug: '/calculator/gold-converter/' }
         ]}
       >

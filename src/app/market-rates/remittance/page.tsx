@@ -26,7 +26,7 @@ export default function Page() {
         crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Remittance Board' }]}
         isNepal={true}
         relatedCalcs={[
-          { name: 'Exchange Rates', slug: '/market-rates/exchange-rate/' },
+          { name: 'Exchange Rates', slug: '/market-rates/exchange-rate-nepal/' },
           { name: 'Live Gold Price', slug: '/market-rates/live-gold-price/' },
           { name: 'Income Tax', slug: '/calculator/nepal-income-tax/' }
         ]}
