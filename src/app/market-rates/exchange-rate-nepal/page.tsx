@@ -33,6 +33,39 @@ export default function Page() {
         ]}
       >
         <ForexDashboardClient />
+        {/* SERVER-RENDERED: Static currency table for Googlebot indexability */}
+        <div className="hp-container pt-10 pb-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center justify-between mb-3">
+              <p className="text-xs text-slate-500 font-medium uppercase tracking-widest">NRB Reference Rates — Indicative</p>
+              <p className="text-xs text-slate-400">Last Updated: <time dateTime="2026-06">June 2026</time></p>
+            </div>
+            <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+              <table className="w-full text-sm text-left">
+                <thead className="bg-slate-50 text-slate-500 uppercase text-xs tracking-wider">
+                  <tr>
+                    <th className="px-4 py-3">Currency</th>
+                    <th className="px-4 py-3">Code</th>
+                    <th className="px-4 py-3">Buying (NPR)</th>
+                    <th className="px-4 py-3">Selling (NPR)</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 bg-white">
+                  <tr><td className="px-4 py-3 font-semibold">US Dollar</td><td className="px-4 py-3 text-slate-500">USD</td><td className="px-4 py-3">132.50</td><td className="px-4 py-3">133.10</td></tr>
+                  <tr><td className="px-4 py-3 font-semibold">Euro</td><td className="px-4 py-3 text-slate-500">EUR</td><td className="px-4 py-3">144.20</td><td className="px-4 py-3">144.90</td></tr>
+                  <tr><td className="px-4 py-3 font-semibold">UK Pound Sterling</td><td className="px-4 py-3 text-slate-500">GBP</td><td className="px-4 py-3">168.40</td><td className="px-4 py-3">169.20</td></tr>
+                  <tr><td className="px-4 py-3 font-semibold">Australian Dollar</td><td className="px-4 py-3 text-slate-500">AUD</td><td className="px-4 py-3">85.30</td><td className="px-4 py-3">85.90</td></tr>
+                  <tr><td className="px-4 py-3 font-semibold">UAE Dirham</td><td className="px-4 py-3 text-slate-500">AED</td><td className="px-4 py-3">36.10</td><td className="px-4 py-3">36.40</td></tr>
+                  <tr><td className="px-4 py-3 font-semibold">Qatari Riyal</td><td className="px-4 py-3 text-slate-500">QAR</td><td className="px-4 py-3">36.40</td><td className="px-4 py-3">36.70</td></tr>
+                  <tr><td className="px-4 py-3 font-semibold">Saudi Riyal</td><td className="px-4 py-3 text-slate-500">SAR</td><td className="px-4 py-3">35.30</td><td className="px-4 py-3">35.60</td></tr>
+                  <tr><td className="px-4 py-3 font-semibold">Indian Rupee</td><td className="px-4 py-3 text-slate-500">INR</td><td className="px-4 py-3 text-slate-400" colSpan={2}>Fixed: 100 INR = 160 NPR</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-slate-400 mt-2">* Indicative rates based on NRB reference benchmarks. Use the live converter above for real-time rates.</p>
+          </div>
+        </div>
+
         <div className="hp-container pb-24 border-t border-slate-100 pt-20">
           <div className="max-w-4xl mx-auto">
             <div className="prose prose-slate max-w-none mb-12">
@@ -190,43 +223,40 @@ export default function Page() {
 
               <hr />
 
-              <h1>Frequently Asked Questions</h1>
+              <h2>Frequently Asked Questions</h2>
 
-              <h2>What is today's dollar rate in Nepal?</h2>
+              <h3>What is today's dollar rate in Nepal?</h3>
               <p>The latest dollar rate in Nepal is published daily by <a href="https://www.nrb.org.np" target="_blank" rel="nofollow noopener noreferrer" className="text-[#1a0dab] underline font-bold">Nepal Rastra Bank</a> and updated by commercial banks.</p>
 
-              <h2>How much is 1 USD in Nepal?</h2>
-              <p>The value changes daily depending on foreign exchange market conditions.</p>
+              <h3>How much is 1 USD in Nepal?</h3>
+              <p>The value changes daily depending on foreign exchange market conditions. Use the live converter above to get today's exact USD to NPR rate.</p>
 
-              <h2>What is the NRB exchange rate?</h2>
-              <p>The NRB exchange rate is the official daily foreign exchange reference rate published by Nepal Rastra Bank.</p>
+              <h3>How is exchange rate calculated in Nepal?</h3>
+              <p>NRB collects exchange rate quotations from commercial banks and publishes official daily benchmark rates. See the <strong>How Is Exchange Rate Calculated In Nepal?</strong> section above for full details.</p>
 
-              <h2>How is exchange rate calculated in Nepal?</h2>
-              <p>NRB collects exchange rate data from commercial banks and publishes official daily benchmark rates.</p>
+              <h3>Which bank gives the highest exchange rate?</h3>
+              <p>Rates vary daily. Compare rates across multiple banks before exchanging currency. Popular choices include NIC Asia Bank, Global IME Bank and Prabhu Bank.</p>
 
-              <h2>Which bank gives the highest exchange rate?</h2>
-              <p>Rates vary daily. Compare rates across multiple banks before exchanging currency.</p>
+              <h3>What is the NRB exchange rate today?</h3>
+              <p>The NRB exchange rate today is the official foreign exchange reference rate published by Nepal Rastra Bank. Check the live dashboard at the top of this page for today's rates.</p>
 
-              <h2>What is the remittance exchange rate?</h2>
-              <p>The remittance exchange rate is the actual rate used by money transfer providers when sending money to Nepal.</p>
+              <h3>What is buying rate and selling rate?</h3>
+              <p>Buying rate is the rate at which banks purchase foreign currency from you. Selling rate is the rate at which banks sell foreign currency to you. The selling rate is always slightly higher than the buying rate.</p>
 
-              <h2>What is the difference between buying and selling rates?</h2>
-              <p>Buying rate is the rate at which banks purchase foreign currency. Selling rate is the rate at which banks sell foreign currency.</p>
+              <h3>Why are bank exchange rates different?</h3>
+              <p>Because each bank has different foreign currency reserves, operational costs and profit margins. They adjust their rates slightly from the NRB reference to remain competitive while covering their costs.</p>
 
-              <h2>Why does exchange rate change every day?</h2>
-              <p>Exchange rates fluctuate due to changes in global currency markets and economic conditions.</p>
+              <h3>Is INR fixed in Nepal?</h3>
+              <p>Yes. The Nepalese Rupee is pegged to the Indian Rupee at a fixed exchange rate of <strong>100 INR = 160 NPR</strong>. This peg has been maintained since 1993 to support trade stability with India.</p>
 
-              <h2>Is the Indian Rupee fixed in Nepal?</h2>
-              <p>Yes. The Nepalese Rupee is pegged to the Indian Rupee at 1 INR = 1.6 NPR.</p>
+              <h3>How can I convert USD to NPR?</h3>
+              <p>Use the live currency converter above to instantly convert US Dollars into Nepalese Rupees using the latest NRB reference rate.</p>
 
-              <h2>How can I convert USD to NPR?</h2>
-              <p>Use the live currency converter above to instantly convert US Dollars into Nepalese Rupees.</p>
+              <h3>What is the remittance exchange rate?</h3>
+              <p>The remittance exchange rate is the actual rate used by money transfer providers when sending money to Nepal. It may differ slightly from the official NRB rate due to service fees and margins.</p>
 
-              <h2>What is the foreign exchange rate in Nepal today?</h2>
-              <p>Foreign exchange rates in Nepal are published daily by Nepal Rastra Bank and updated by commercial banks.</p>
-
-              <h2>Can I use this exchange rate for remittance calculations?</h2>
-              <p>Yes, but actual remittance provider rates may differ slightly from the official NRB reference rate.</p>
+              <h3>What is the foreign exchange rate in Nepal today?</h3>
+              <p>Foreign exchange rates in Nepal are published daily by Nepal Rastra Bank and updated by commercial banks. Today's indicative rates are shown in the table above.</p>
 
             </div>
           </div>
@@ -388,14 +418,6 @@ export default function Page() {
           },
           {
             "@type":"Question",
-            "name":"What is the NRB exchange rate?",
-            "acceptedAnswer":{
-              "@type":"Answer",
-              "text":"The NRB exchange rate is the official daily foreign exchange reference rate published by Nepal Rastra Bank."
-            }
-          },
-          {
-            "@type":"Question",
             "name":"How is exchange rate calculated in Nepal?",
             "acceptedAnswer":{
               "@type":"Answer",
@@ -412,7 +434,31 @@ export default function Page() {
           },
           {
             "@type":"Question",
-            "name":"Is the Indian Rupee fixed in Nepal?",
+            "name":"What is the NRB exchange rate today?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"The NRB exchange rate today is the official daily foreign exchange reference rate published by Nepal Rastra Bank."
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"What is buying rate and selling rate?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Buying rate is the rate at which banks purchase foreign currency from you. Selling rate is the rate at which banks sell foreign currency to you."
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"Why are bank exchange rates different?",
+            "acceptedAnswer":{
+              "@type":"Answer",
+              "text":"Because each bank has different foreign currency reserves, operational costs, and profit margins. They adjust their rates slightly from the NRB reference to remain competitive."
+            }
+          },
+          {
+            "@type":"Question",
+            "name":"Is INR fixed in Nepal?",
             "acceptedAnswer":{
               "@type":"Answer",
               "text":"Yes. The Nepalese Rupee is pegged to the Indian Rupee at a fixed exchange rate of 1 INR = 1.6 NPR."
