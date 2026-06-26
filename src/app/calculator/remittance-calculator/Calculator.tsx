@@ -132,6 +132,8 @@ export default function RemittanceCalculator() {
                  <ShieldCheck className="w-5 h-5 text-[#F29900] shrink-0" />
                  <p className="text-[10px] text-[#5F6368] font-bold leading-relaxed uppercase">
                     Institutional Benefit: Formal remittance entitles you to a <span className="text-[#F29900] underline decoration-2">10% IPO Quota</span> and 1% extra interest on savings in Nepal.
+                    <br/><br/>
+                    Check the <a href="/market-rates/exchange-rate-nepal/" className="text-[#F29900] underline font-bold hover:text-[#B07000]">Live Exchange Rate Nepal</a> before transferring.
                  </p>
               </div>
             </div>

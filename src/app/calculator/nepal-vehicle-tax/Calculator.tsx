@@ -473,6 +473,12 @@ export default function NepalVehicleTaxCalculator() {
       }
       details={
         <div className="space-y-6">
+           <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
+              <Globe className="w-5 h-5 text-[#1A73E8] shrink-0" />
+              <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
+                 Vehicle Imports: Since EVs and vehicles are imported in foreign currency (usually USD or INR), always verify the <a href="/market-rates/exchange-rate-nepal/" className="text-[#1A73E8] underline font-bold">USD to NPR Exchange Rate</a> to calculate exact landed CIF costs before customs.
+              </p>
+           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Pie Chart */}
             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">

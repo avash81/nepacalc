@@ -153,6 +153,12 @@ export default function MortgageCalculator() {
         </div>
       }      details={
         <div className="space-y-8">
+           <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
+              <Globe className="w-5 h-5 text-[#1A73E8] shrink-0" />
+              <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
+                 Foreign Income & Remittance: When assessing mortgage affordability against overseas income, review <a href="/market-rates/exchange-rate-nepal/" className="text-[#1A73E8] underline font-bold">NRB Exchange Rate Today</a> for exact valuations.
+              </p>
+           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="bg-white border border-[#DADCE0] rounded-lg p-10 shadow-sm relative overflow-hidden">
                <div className="absolute top-0 right-0 p-6 opacity-5"><PieChart className="w-20 h-20" /></div>

@@ -124,7 +124,7 @@ export default function SeoSections() {
             <strong>1. The International Spot Price (LBMA):</strong> Every day, FENEGOSIDA looks at the London Bullion Market Association (LBMA) rate as the global benchmark.
           </p>
           <p className="text-sm text-slate-700 leading-relaxed font-medium">
-            <strong>2. Currency Exchange Rate (USD to NPR):</strong> Because global gold is priced in US Dollars, any fluctuation in the value of the Nepalese Rupee against the Dollar directly impacts the local price. If the USD strengthens, gold in Nepal becomes more expensive, even if the global spot price hasn't moved.
+            <strong>2. Currency Exchange Rate (USD to NPR):</strong> Because global gold is priced in US Dollars, any fluctuation in the value of the Nepalese Rupee against the Dollar directly impacts the local price. Since gold is internationally priced in US Dollars, today's <a href="/market-rates/exchange-rate-nepal/" className="text-blue-600 hover:underline">NRB Exchange Rate</a> directly affects gold prices in Nepal.
           </p>
           <p className="text-sm text-slate-700 leading-relaxed font-medium">
             <strong>3. Customs Duty and Import Taxes:</strong> This is the largest local factor. The Nepal Government enforces strict import quotas (typically capped around 20kg per day for commercial banks) and levies an approximate 20% customs duty on raw bullion to protect foreign currency reserves.

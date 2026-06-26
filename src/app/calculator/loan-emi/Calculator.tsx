@@ -172,6 +172,12 @@ export default function LoanEMICalculator() {
       }
       details={
         <div className="space-y-6">
+           <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
+              <Globe className="w-5 h-5 text-[#1A73E8] shrink-0" />
+              <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
+                 Foreign Currency Income: To assess home loan EMI affordability against foreign earnings, check <a href="/market-rates/exchange-rate-nepal/" className="text-[#1A73E8] underline font-bold">NRB Exchange Rate Today</a>.
+              </p>
+           </div>
           {result.success && (
              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">

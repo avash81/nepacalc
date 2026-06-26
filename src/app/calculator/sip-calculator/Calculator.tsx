@@ -1,7 +1,7 @@
 'use client';
 import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { TrendingUp, Calculator, Activity, Landmark, ShieldCheck, Zap, History, Target, PieChart, Info, BarChart3 } from 'lucide-react';
+import { TrendingUp, Calculator, Activity, Landmark, ShieldCheck, Zap, History, Target, PieChart, Info, BarChart3, Globe } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
 import { 
   PieChart as RePieChart, Pie, Cell, ResponsiveContainer, 
@@ -206,7 +206,12 @@ export default function SIPCalculator() {
       }
       details={result.success && (
         <div className="space-y-6">
-
+           <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
+              <Globe className="w-5 h-5 text-[#188038] shrink-0" />
+              <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
+                 Overseas Investors: If remitting funds for SIPs, verify <a href="/market-rates/exchange-rate-nepal/" className="text-[#1A73E8] underline font-bold">Exchange Rate Nepal</a> to optimize your cost basis.
+              </p>
+           </div>
           {/* Row 1: Pie + Stacked Bar Chart (matches loan-emi exactly) */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 

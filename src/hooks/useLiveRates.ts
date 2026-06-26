@@ -95,7 +95,7 @@ export function useLiveRates() {
       setRates({
         forex: { 
           usd: getStats(nprUsd, 0.0012),
-          inr: getStats(nprUsd / 1.6, 0.0), // Pegged to 1.6
+          inr: getStats(nprUsd / 1.6, 0.0),
           gbp: getStats(nprUsd * 1.25, -0.0045),
           eur: getStats(nprUsd * 1.08, 0.0021),
           aud: getStats(nprUsd * 0.65, -0.0015),

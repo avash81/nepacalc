@@ -218,7 +218,8 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
           <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
              <ShieldCheck className="w-5 h-5 text-[#188038] shrink-0" />
              <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
-                Compliance Protocol: Forex valuations are mid-market benchmarks. Bank counter rates (Buying/Selling) typically deviate by 1.2% - 2.5% per transaction.
+                Compliance Protocol: Forex valuations are mid-market benchmarks. Bank counter rates (Buying/Selling) typically deviate by 1.2% - 2.5% per transaction. <br/><br/>
+                For official benchmark trends, visit <a href="/market-rates/exchange-rate-nepal/" className="text-[#1A73E8] underline font-bold">Exchange Rate Nepal</a>.
              </p>
           </div>
         </div>

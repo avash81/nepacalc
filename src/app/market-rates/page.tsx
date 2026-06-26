@@ -34,6 +34,9 @@ export default function MarketRatesPillarPage() {
         crumbs={[{ label: 'Market Rates' }]}
       >
         <div className="py-4 space-y-6">
+          <p className="text-[13px] text-slate-600 font-medium leading-relaxed">
+            Track live commodity benchmarks and the official <Link href="/market-rates/exchange-rate-nepal/" className="text-[#1a0dab] underline font-bold hover:text-[#174ea6]">Foreign Exchange Rate Nepal</Link> as published by Nepal Rastra Bank.
+          </p>
           {/* Live Rate Ticker */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
             {loading || !rates ? (

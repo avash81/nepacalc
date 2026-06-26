@@ -221,7 +221,7 @@ export default function Page() {
               <p>Countries with lower inflation generally maintain stronger currencies compared to countries experiencing higher inflation.</p>
 
               <h3>Interest Rates</h3>
-              <p>Central bank interest rate decisions significantly influence foreign exchange markets. Higher interest rates often attract international investment, increasing demand for that country&apos;s currency.</p>
+              <p>Central bank interest rate decisions significantly influence foreign exchange markets. Global monetary policies, such as those monitored by the <a href="https://www.imf.org/" target="_blank" rel="noopener noreferrer" className="text-[#1a0dab] underline">International Monetary Fund (IMF)</a>, often dictate capital flows. Higher interest rates typically attract international investment, increasing demand for that country&apos;s currency.</p>
 
               <h3>International Trade</h3>
               <p>Imports and exports directly affect foreign currency demand. Nepal imports petroleum products, machinery, electronics, and industrial materials, creating sustained demand for foreign currencies.</p>
@@ -339,7 +339,7 @@ export default function Page() {
               <hr />
 
               <h2>Exchange Rates for Remittance Services</h2>
-              <p>Nepal is one of the world&apos;s largest remittance-receiving countries, making foreign exchange rates especially important for millions of families. Remittance providers often use exchange rates that differ slightly from the official Nepal Rastra Bank reference rate because they include their own service margins and promotional offers.</p>
+              <p>Nepal is one of the world&apos;s largest remittance-receiving countries (as frequently highlighted in <a href="https://www.worldbank.org/" target="_blank" rel="noopener noreferrer" className="text-[#1a0dab] underline">World Bank</a> migration and development reports), making foreign exchange rates especially important for millions of families. Remittance providers often use exchange rates that differ slightly from the official Nepal Rastra Bank reference rate because they include their own service margins and promotional offers.</p>
               <p>Popular remittance providers include:</p>
               <ul>
                 <li>IME</li>

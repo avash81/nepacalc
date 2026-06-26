@@ -1,7 +1,7 @@
 'use client';
 import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { PiggyBank, Info, TrendingUp } from 'lucide-react';
+import { PiggyBank, Info, TrendingUp, Globe } from 'lucide-react';
 import { useSyncState } from '@/hooks/useSyncState';
 
 function fmt(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
@@ -127,6 +127,12 @@ export default function SavingsCalculator() {
       }
       details={
         <div className="space-y-8">
+          <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
+             <Globe className="w-5 h-5 text-[#188038] shrink-0" />
+             <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
+                Overseas Remittance: To convert foreign income into Nepalese Rupees before saving, track the <a href="/market-rates/exchange-rate-nepal/" className="text-[#1A73E8] underline font-bold">NRB Exchange Rate Today</a>.
+             </p>
+          </div>
           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
             <h2 className="text-xl font-black text-[#202124] mb-4">The Strategic Power of Consistent Savings in Nepal</h2>
             <div className="space-y-4 text-sm text-[#5F6368] leading-relaxed">

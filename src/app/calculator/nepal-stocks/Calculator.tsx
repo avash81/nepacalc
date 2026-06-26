@@ -149,6 +149,12 @@ export default function NEPSECalculator() {
       }
       details={
         <div className="space-y-6">
+           <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
+              <Globe className="w-5 h-5 text-[#1A73E8] shrink-0" />
+              <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
+                 Foreign Institutional Investors (FII): Repatriation of NEPSE capital gains is subject to <a href="/market-rates/exchange-rate-nepal/" className="text-[#1A73E8] underline font-bold">Today's Dollar Rate in Nepal</a>.
+              </p>
+           </div>
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
              <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
                <div className="flex items-center gap-2 mb-6">

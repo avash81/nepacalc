@@ -15,8 +15,17 @@ export function Footer() {
       accent: "#1A73E8"
     },
     { 
-      title: "Finance & Wealth", 
-      items: CALCULATORS.filter(c => ['finance'].includes(c.category)).slice(0, 8),
+      title: "Finance & Market", 
+      items: [
+        { name: "Exchange Rate Nepal", slug: "market-rates/exchange-rate-nepal" },
+        { name: "Currency Converter", slug: "currency-converter" },
+        { name: "Live Gold Price", slug: "market-rates/live-gold-price" },
+        { name: "Income Tax Calculator", slug: "nepal-income-tax" },
+        { name: "SIP Calculator", slug: "sip-calculator" },
+        { name: "Fixed Deposit (FD)", slug: "fd-calculator" },
+        { name: "Remittance Calculator", slug: "remittance-calculator" },
+        { name: "NEPSE Profit Calculator", slug: "nepal-stocks" }
+      ],
       accent: "#34a853"
     },
     { 
@@ -71,10 +80,12 @@ export function Footer() {
                 {col.title}
               </h3>
               <ul className="space-y-2.5">
-                {col.items.map((item) => (
+                {col.items.map((item) => {
+                  const href = item.slug.includes('/') ? `/${item.slug}/` : `/calculator/${item.slug}/`;
+                  return (
                   <li key={item.slug}>
                     <Link
-                      href={`/calculator/${item.slug}/`}
+                      href={href}
                       className="group flex items-center gap-2 text-[#737980] hover:text-white transition-colors duration-150 text-[12px]"
                     >
                       <div
@@ -84,7 +95,8 @@ export function Footer() {
                       <span className="font-medium group-hover:translate-x-0.5 transition-transform duration-150">{item.name}</span>
                     </Link>
                   </li>
-                ))}
+                  );
+                })}
               </ul>
             </div>
           ))}
