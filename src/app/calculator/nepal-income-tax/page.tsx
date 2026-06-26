@@ -3,7 +3,7 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: "Nepal Income Tax Calculator (2083/84) – Calculate Salary Tax Online",
+  title: "Nepal Income Tax Calculator (2083/84) - Calculate Salary Tax Online",
   description: "Calculate your Nepal income tax instantly using the latest FY 2083/84 income tax slabs. Get an accurate tax breakdown, monthly TDS estimate, SSF adjustment, and annual tax calculation online.",
   slug: 'calculator/nepal-income-tax',
   canonical: '/calculator/nepal-income-tax/',
@@ -34,7 +34,7 @@ export default function Page() {
     "@type": "WebPage",
     "@id": "https://nepacalc.com/calculator/nepal-income-tax/",
     "url": "https://nepacalc.com/calculator/nepal-income-tax/",
-    "name": "Nepal Income Tax Calculator (2083/84) – Calculate Salary Tax Online",
+    "name": "Nepal Income Tax Calculator (2083/84) - Calculate Salary Tax Online",
     "description": "Calculate your Nepal income tax instantly using the latest FY 2083/84 income tax slabs. Get an accurate tax breakdown, monthly TDS estimate, SSF adjustment, and annual tax calculation online.",
     "inLanguage": "en-NP",
     "datePublished": "2026-06-15",
@@ -124,9 +124,9 @@ export default function Page() {
                 </thead>
                 <tbody>
                   <tr><td className="py-2 px-4 border-b">Up to Rs. 10,00,000</td><td className="py-2 px-4 border-b font-semibold">1%</td></tr>
-                  <tr className="bg-slate-50"><td className="py-2 px-4 border-b">Rs. 10,00,001 – Rs. 15,00,000</td><td className="py-2 px-4 border-b font-semibold">10%</td></tr>
-                  <tr><td className="py-2 px-4 border-b">Rs. 15,00,001 – Rs. 25,00,000</td><td className="py-2 px-4 border-b font-semibold">20%</td></tr>
-                  <tr className="bg-slate-50"><td className="py-2 px-4 border-b">Rs. 25,00,001 – Rs. 40,00,000</td><td className="py-2 px-4 border-b font-semibold">27%</td></tr>
+                  <tr className="bg-slate-50"><td className="py-2 px-4 border-b">Rs. 10,00,001 - Rs. 15,00,000</td><td className="py-2 px-4 border-b font-semibold">10%</td></tr>
+                  <tr><td className="py-2 px-4 border-b">Rs. 15,00,001 - Rs. 25,00,000</td><td className="py-2 px-4 border-b font-semibold">20%</td></tr>
+                  <tr className="bg-slate-50"><td className="py-2 px-4 border-b">Rs. 25,00,001 - Rs. 40,00,000</td><td className="py-2 px-4 border-b font-semibold">27%</td></tr>
                   <tr><td className="py-2 px-4 border-b">Above Rs. 40,00,000</td><td className="py-2 px-4 border-b font-semibold">29%</td></tr>
                 </tbody>
               </table>

@@ -60,7 +60,7 @@ export default function NepalIncomeTaxCalculator() {
     <ModernCalcLayout
       slug="nepal-income-tax"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Income Tax' }]}
-      title="Nepal Income Tax Calculator 2083/84 — Salary Tax & IRD Slabs"
+      title="Nepal Income Tax Calculator (FY 2083/84)"
       description="The authoritative fiscal engine for Nepalese salary earners. Calculate tax liability with IRD-standard slabs (FY 2083/84), SSF SST-waivers, and Female Tax Credit auditing."
       icon={Wallet}
       relatedTools={[
