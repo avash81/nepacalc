@@ -11,7 +11,6 @@ import {
 
 const DEFAULT_STATE = {
   income: 1200000,
-  married: false,
   gender: 'male' as 'male' | 'female',
   isSSFContributor: true,
   lifeInsurance: 40000,
@@ -26,7 +25,7 @@ function formatNPR(n: number) {
 
 export default function NepalIncomeTaxCalculator() {
   const [state, setState] = useSyncState('nepal_tax_v5', DEFAULT_STATE);
-  const { income, married, gender, isSSFContributor, lifeInsurance, citDeduction, healthInsurance, isMonthly } = state;
+  const { income, gender, isSSFContributor, lifeInsurance, citDeduction, healthInsurance, isMonthly } = state;
 
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
@@ -42,7 +41,7 @@ export default function NepalIncomeTaxCalculator() {
 
     const calculation = calculateNepalIncomeTax(
       taxableGross,
-      married, 
+      false, 
       isSSFContributor, 
       gender,
       0 // Prevent implicit 11% SSF deduction as user manually enters it in the CIT/EPF/SSF field
@@ -55,7 +54,7 @@ export default function NepalIncomeTaxCalculator() {
       netMonthly: (annualGross - calculation.totalTax) / 12,
       annualGross
     };
-  }, [annualGross, married, isSSFContributor, gender, lifeInsurance, citDeduction, healthInsurance]);
+  }, [annualGross, isSSFContributor, gender, lifeInsurance, citDeduction, healthInsurance]);
 
   return (
     <ModernCalcLayout
@@ -88,17 +87,6 @@ export default function NepalIncomeTaxCalculator() {
                />
              </div>
              
-             <div className="space-y-2">
-               <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Marital Status</label>
-               <select 
-                  value={married ? 'married' : 'single'} 
-                  onChange={(e) => update({ married: e.target.value === 'married' })}
-                  className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all appearance-none"
-               >
-                  <option value="single">Single Status</option>
-                  <option value="married">Married (Couple) Status</option>
-               </select>
-             </div>
 
              <div className="space-y-2">
                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Gender</label>
