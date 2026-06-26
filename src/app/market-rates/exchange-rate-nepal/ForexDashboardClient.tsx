@@ -143,30 +143,6 @@ export default function ForexDashboardClient() {
            <CurrencyConverter isEmbed={true} />
         </div>
       }
-      faqSection={
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="space-y-4">
-               <h3 className="text-[13px] font-black text-slate-900 uppercase tracking-widest border-l-4 border-emerald-500 pl-4">Forex Authority</h3>
-               <p className="text-[13px] text-slate-500 leading-relaxed font-medium">
-                  The **Nepal Rastra Bank (NRB)** is the official regulatory body for foreign exchange in Nepal. Our rates map to these central benchmarks for commercial transparency.
-               </p>
-            </div>
-            <div className="space-y-4">
-               <h3 className="text-[13px] font-black text-slate-900 uppercase tracking-widest border-l-4 border-emerald-500 pl-4">Buying vs Selling</h3>
-               <p className="text-[13px] text-slate-500 leading-relaxed font-medium">
-                  The **Buying Rate** is what the bank pays you for foreign currency. The **Selling Rate** is what you pay the bank to acquire foreign currency.
-               </p>
-            </div>
-         </div>
-      }
-      seoSection={
-         <div className="prose prose-slate max-w-none">
-            <h2 className="text-[20px] font-black text-slate-900 mb-4 tracking-tighter">Nepal Foreign Exchange Guide 2026</h2>
-            <p className="text-[14px] text-slate-600 leading-relaxed font-medium">
-               Navigating the **USD to NPR** and **INR to NPR** rates is critical for trade and remittance in Nepal. While the Indian Rupee (INR) is pegged at 1.6:1 against the Nepalese Rupee, other global currencies fluctuate based on international forex markets. Our real-time board ensures you have the most accurate, NRB-compliant indices for your financial planning.
-            </p>
-         </div>
-      }
     />
   );
 }

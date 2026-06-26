@@ -104,8 +104,9 @@ export default function CurrencyCalculator({ isEmbed = false }: { isEmbed?: bool
     return (
       <div className="space-y-4">
         <div className="space-y-2">
-           <label className="text-[10px] font-black uppercase tracking-wider text-[#5F6368]">Amount ({fromCurrency})</label>
+           <label htmlFor="embed-amount" className="text-[10px] font-black uppercase tracking-wider text-[#5F6368]">Convert {fromCurrency} to NPR</label>
            <input 
+             id="embed-amount"
              type="number" 
              value={amount} 
              onChange={e => update({ amount: Number(e.target.value) })} 
