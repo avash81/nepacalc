@@ -44,7 +44,8 @@ export default function NepalIncomeTaxCalculator() {
       taxableGross,
       married, 
       isSSFContributor, 
-      gender
+      gender,
+      0 // Prevent implicit 11% SSF deduction as user manually enters it in the CIT/EPF/SSF field
     );
 
     return {
@@ -60,8 +61,8 @@ export default function NepalIncomeTaxCalculator() {
     <ModernCalcLayout
       slug="nepal-income-tax"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Income Tax' }]}
-      title="Nepal Income Tax Calculator 2083/84 — Salary Tax & IRD Slabs"
-      description="The authoritative fiscal engine for Nepalese salary earners. Calculate tax liability with IRD-standard slabs (FY 2083/84), SSF SST-waivers, and Female Tax Credit auditing."
+      title="Nepal Income Tax Calculator 2081/82 — Salary Tax & IRD Slabs"
+      description="The authoritative fiscal engine for Nepalese salary earners. Calculate tax liability with IRD-standard slabs (FY 2081/82), SSF SST-waivers, and Female Tax Credit auditing."
       icon={Wallet}
       relatedTools={[
         { label: "Salary Calculator (Net Pay)", href: "/calculator/nepal-salary/" },
@@ -117,7 +118,7 @@ export default function NepalIncomeTaxCalculator() {
              </div>
 
              <div className="space-y-2">
-                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">CIT/EPF/SSF Contribution</label>
+                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">CIT/EPF/SSF Contribution (Annual)</label>
                 <input type="number" value={citDeduction} onChange={e => update({ citDeduction: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
              </div>
 
@@ -256,12 +257,12 @@ export default function NepalIncomeTaxCalculator() {
       customSchema={{
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Nepal Income Tax Calculator 2083/84",
+        "name": "Nepal Income Tax Calculator 2081/82",
         "url": "https://nepacalc.com/calculator/nepal-income-tax/",
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Any",
         "browserRequirements": "Requires JavaScript",
-        "description": "Calculate Nepal income tax for FY 2083/84. Enter salary to get slab-wise breakdown, SSF waiver, EPF/CIT deductions, female 10% rebate and net take-home pay.",
+        "description": "Calculate Nepal income tax for FY 2081/82. Enter salary to get slab-wise breakdown, SSF waiver, EPF/CIT deductions, female 10% rebate and net take-home pay.",
         "inLanguage": "en",
         "offers": {
           "@type": "Offer",
@@ -269,7 +270,7 @@ export default function NepalIncomeTaxCalculator() {
           "priceCurrency": "NPR"
         },
         "featureList": [
-          "Nepal income tax slab 2083/84",
+          "Nepal income tax slab 2081/82",
           "SSF waiver calculation",
           "Female 10% tax rebate",
           "EPF and CIT deduction support",
