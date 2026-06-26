@@ -105,7 +105,7 @@ export default function Page() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 text-slate-800 prose prose-slate max-w-none">
             
-            <h1 className="text-3xl font-black text-slate-900 mb-6">Nepal Income Tax Calculator (FY 2083/84)</h1>
+            <h2 className="text-2xl font-black text-slate-900 mb-6">Nepal Income Tax Calculator (FY 2083/84)</h2>
 
             <p>Calculate your Nepal income tax using the latest FY 2083/84 tax slabs announced by the Government of Nepal. Our calculator estimates annual income tax, monthly Tax Deducted at Source (TDS), Social Security Tax (SST), SSF adjustments, and your estimated take-home salary using the newest progressive tax rates.</p>
 
