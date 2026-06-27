@@ -14,7 +14,8 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # Structural Category Changes
 RewriteRule ^calculator/market-rates/live-silver-price/?$ /market-rates/live-silver-price/ [L,R=301]
 RewriteRule ^calculator/market-rates/live-gold-price/?$ /market-rates/live-gold-price/ [L,R=301]
-RewriteRule ^calculator/market-rates/exchange-rate/?$ /market-rates/exchange-rate/ [L,R=301]
+RewriteRule ^calculator/market-rates/exchange-rate/?$ /market-rates/exchange-rate-nepal/ [L,R=301]
+RewriteRule ^market-rates/exchange-rate/?$ /market-rates/exchange-rate-nepal/ [L,R=301]
 RewriteRule ^calculator/market-rates/remittance/?$ /market-rates/remittance/ [L,R=301]
 
 RewriteRule ^calculator/math-tools/programmer/?$ /math-tools/programmer/ [L,R=301]
@@ -51,7 +52,7 @@ RewriteRule ^math-tools/geometry\.html$ /engineering/geometry/ [L,R=301]
 # /calculator/geometry-3d/ is a real page - no redirect needed
 
 # Wrong top-level paths
-RewriteRule ^exchange-rates/?$ /market-rates/exchange-rate/ [L,R=301]
+RewriteRule ^exchange-rates/?$ /market-rates/exchange-rate-nepal/ [L,R=301]
 RewriteRule ^education/?$ /math-tools/ [L,R=301]
 RewriteRule ^calculator/sitemap\.html$ /sitemap/ [L,R=301]
 
