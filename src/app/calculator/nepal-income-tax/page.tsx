@@ -112,7 +112,7 @@ export default function Page() {
             <hr className="my-8" />
 
             <h2 className="text-2xl font-black text-slate-900 mb-4">Latest Nepal Income Tax Slabs (FY 2083/84)</h2>
-            <p>The Government of Nepal introduced major reforms to the personal income tax system in the FY 2083/84 budget. The previous six-slab system has been simplified into five progressive slabs, the low-tax threshold has been doubled, and the highest personal income tax rate has been significantly reduced.</p>
+            <p>The Government of Nepal introduced major reforms to the personal income tax system in the FY 2083/84 budget. For a detailed breakdown of all historical bands, you can view the complete <Link href="/income-tax/nepal-income-tax-slab-2083-84/" className="text-blue-600 hover:underline">Nepal Income Tax Slabs (2083/84)</Link> reference. The previous six-slab system has been simplified into five progressive slabs, the low-tax threshold has been doubled, and the highest personal income tax rate has been significantly reduced.</p>
 
             <div className="overflow-x-auto mb-4 not-prose tax-slab-table">
               <table className="min-w-full bg-white border border-slate-200">
@@ -158,8 +158,8 @@ export default function Page() {
               <li>Each slab is taxed separately.</li>
               <li>Moving into a higher slab does not increase tax on previous income.</li>
             </ul>
-            <p>For example, someone earning Rs. 18,00,000 does not pay 20% on the full amount. Instead, each portion of income is taxed at its applicable rate.</p>
-            <p>Our calculator automatically performs these calculations and provides a complete annual and monthly tax breakdown.</p>
+            <p>For example, someone earning Rs. 18,00,000 does not pay 20% on the full amount. Instead, each portion of income is taxed at its applicable rate. If you are a business owner looking for step-by-step mathematical logic, refer to our comprehensive guide on <Link href="/income-tax/how-to-calculate-income-tax-nepal/" className="text-blue-600 hover:underline">How to Calculate Income Tax in Nepal</Link>.</p>
+            <p>Our calculator automatically performs these calculations and provides a complete annual and monthly tax breakdown. To estimate your exact monthly cash-in-hand after all benefits, try our <Link href="/calculator/nepal-salary/" className="text-blue-600 hover:underline">Salary Calculator Nepal</Link>.</p>
 
             <hr className="my-8" />
 
@@ -173,7 +173,7 @@ export default function Page() {
               <li>Life insurance deductions (where applicable)</li>
               <li>Applicable tax slabs</li>
             </ul>
-            <p>The calculator estimates your monthly TDS using the latest FY 2083/84 tax structure.</p>
+            <p>The calculator estimates your monthly TDS using the latest FY 2083/84 tax structure. For consultants or freelancers subject to different withholding rates, use our dedicated <Link href="/calculator/nepal-tds/" className="text-blue-600 hover:underline">TDS Calculator Nepal</Link> to accurately determine your advance tax liabilities.</p>
 
             <hr className="my-8" />
 
@@ -207,7 +207,7 @@ export default function Page() {
               <li>Short-term holdings (up to one year): 10%</li>
               <li>Long-term holdings (more than one year): 7.5%</li>
             </ul>
-            <p>These rates apply separately from personal income tax.</p>
+            <p>These rates apply separately from personal income tax. Whether you are building wealth through capital markets, planning for the future with a <Link href="/calculator/sip-calculator/" className="text-blue-600 hover:underline">SIP Calculator</Link>, or saving via a <Link href="/calculator/fd-calculator/" className="text-blue-600 hover:underline">Fixed Deposit Calculator</Link>, knowing your capital gains tax is essential.</p>
 
             <hr className="my-8" />
 
@@ -223,6 +223,7 @@ export default function Page() {
               <li>Payroll departments</li>
               <li>HR professionals</li>
             </ul>
+            <p>If you are planning major investments with your net pay, consider using our <Link href="/calculator/loan-emi/" className="text-blue-600 hover:underline">Home Loan EMI Calculator</Link>, converting foreign earnings with the <Link href="/calculator/currency-converter/" className="text-blue-600 hover:underline">Currency Converter Nepal</Link>, or tracking the <Link href="/market-rates/live-gold-price/" className="text-blue-600 hover:underline">Live Gold Price Nepal</Link> for safe-haven asset allocation.</p>
 
             <hr className="my-8" />
 
@@ -260,21 +261,6 @@ export default function Page() {
               </div>
             </div>
 
-            <hr className="my-8" />
-
-            <h2 className="text-2xl font-black text-slate-900 mb-4">Related Tools</h2>
-            <p>You may also find these calculators useful:</p>
-            <ul className="list-none pl-0 space-y-2 mb-6">
-              <li>👉 <Link href="/income-tax/nepal-income-tax-slab-2083-84/" className="text-blue-600 hover:underline font-bold">Nepal Income Tax Slabs (2083/84)</Link></li>
-              <li>👉 <Link href="/income-tax/how-to-calculate-income-tax-nepal/" className="text-blue-600 hover:underline font-bold">How to Calculate Income Tax in Nepal</Link></li>
-              <li>👉 <Link href="/calculator/nepal-salary/" className="text-blue-600 hover:underline font-bold">Salary Calculator Nepal</Link></li>
-              <li>👉 <Link href="/calculator/nepal-tds/" className="text-blue-600 hover:underline font-bold">TDS Calculator Nepal</Link></li>
-              <li>👉 <Link href="/calculator/sip-calculator/" className="text-blue-600 hover:underline font-bold">SIP Calculator</Link></li>
-              <li>👉 <Link href="/calculator/fd-calculator/" className="text-blue-600 hover:underline font-bold">Fixed Deposit Calculator</Link></li>
-              <li>👉 <Link href="/calculator/loan-emi/" className="text-blue-600 hover:underline font-bold">Home Loan EMI Calculator</Link></li>
-              <li>👉 <Link href="/calculator/currency-converter/" className="text-blue-600 hover:underline font-bold">Currency Converter Nepal</Link></li>
-              <li>👉 <Link href="/market-rates/live-gold-price/" className="text-blue-600 hover:underline font-bold">Live Gold Price Nepal</Link></li>
-            </ul>
 
             <h2 className="text-2xl font-black text-slate-900 mb-4">External References</h2>
             <p>For official tax information, refer to:</p>

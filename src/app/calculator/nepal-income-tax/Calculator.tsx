@@ -10,7 +10,7 @@ import {
 } from 'recharts';
 
 const DEFAULT_STATE = {
-  income: 1200000,
+  income: 0,
   gender: 'male' as 'male' | 'female',
   isSSFContributor: true,
   lifeInsurance: 40000,
@@ -122,9 +122,7 @@ export default function NepalIncomeTaxCalculator() {
                 </label>
              </div>
           </div>
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-             Generate Tax Report
-          </button>
+
         </div>
       }
       results={
