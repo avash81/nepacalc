@@ -217,6 +217,7 @@ export default function NepalIncomeTaxCalculator() {
                 <thead>
                   <tr className="text-[10px] font-black uppercase text-[#5F6368] border-b border-[#DADCE0]">
                     <th className="px-6 py-4 bg-white">Taxable Slab (NPR)</th>
+                    <th className="px-6 py-4 bg-white text-right">Amount in Slab</th>
                     <th className="px-6 py-4 bg-white text-right">Rate</th>
                     <th className="px-6 py-4 bg-white text-right text-[#D93025]">Tax Amount</th>
                   </tr>
@@ -225,12 +226,14 @@ export default function NepalIncomeTaxCalculator() {
                   {result.breakdown.map((row, idx) => (
                     <tr key={idx} className="text-sm hover:bg-[#F8F9FA] transition-colors">
                       <td className="px-6 py-4 font-bold text-[#3C4043]">{row.slabLabel}</td>
+                      <td className="px-6 py-4 text-right font-black text-[#5F6368]">{formatNPR(row.taxableInSlab)}</td>
                       <td className="px-6 py-4 text-right font-black text-[#5F6368]">{row.rate}%</td>
                       <td className="px-6 py-4 text-right font-black text-[#D93025]">{formatNPR(row.taxAmount)}</td>
                     </tr>
                   ))}
                   <tr className="bg-[#F8F9FA] font-black">
                     <td className="px-6 py-4 text-[#202124]">Total Tax Liability</td>
+                    <td className="px-6 py-4"></td>
                     <td className="px-6 py-4"></td>
                     <td className="px-6 py-4 text-right text-[#D93025]">{formatNPR(result.totalTax)}</td>
                   </tr>

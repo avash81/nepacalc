@@ -3,18 +3,18 @@
   "effectiveFrom": "2026-07-16",
   "individual": {
     "single": [
-      { "upTo": 1000000, "rate": 0.01, "label": "1% SST" },
-      { "upTo": 1500000, "rate": 0.10, "label": "10%" },
-      { "upTo": 2500000, "rate": 0.20, "label": "20%" },
-      { "upTo": 4000000, "rate": 0.27, "label": "27%" },
-      { "upTo": null,    "rate": 0.29, "label": "29%" }
+      { "upTo": 1000000, "rate": 0.01, "label": "Up to Rs. 10,00,000" },
+      { "upTo": 1500000, "rate": 0.10, "label": "Rs. 10,00,001 - Rs. 15,00,000" },
+      { "upTo": 2500000, "rate": 0.20, "label": "Rs. 15,00,001 - Rs. 25,00,000" },
+      { "upTo": 4000000, "rate": 0.27, "label": "Rs. 25,00,001 - Rs. 40,00,000" },
+      { "upTo": null,    "rate": 0.29, "label": "Above Rs. 40,00,000" }
     ],
     "married": [
-      { "upTo": 1000000, "rate": 0.01, "label": "1% SST" },
-      { "upTo": 1500000, "rate": 0.10, "label": "10%" },
-      { "upTo": 2500000, "rate": 0.20, "label": "20%" },
-      { "upTo": 4000000, "rate": 0.27, "label": "27%" },
-      { "upTo": null,    "rate": 0.29, "label": "29%" }
+      { "upTo": 1000000, "rate": 0.01, "label": "Up to Rs. 10,00,000" },
+      { "upTo": 1500000, "rate": 0.10, "label": "Rs. 10,00,001 - Rs. 15,00,000" },
+      { "upTo": 2500000, "rate": 0.20, "label": "Rs. 15,00,001 - Rs. 25,00,000" },
+      { "upTo": 4000000, "rate": 0.27, "label": "Rs. 25,00,001 - Rs. 40,00,000" },
+      { "upTo": null,    "rate": 0.29, "label": "Above Rs. 40,00,000" }
     ]
   },
   "ssfDiscount": true,
