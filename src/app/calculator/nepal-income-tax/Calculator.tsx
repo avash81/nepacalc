@@ -20,7 +20,8 @@ const DEFAULT_STATE = {
   lifeInsurance: 0,
   healthInsurance: 0,
   isMonthly: false,
-  noOfMonths: 12
+  noOfMonths: 12,
+  enforceLimits: true
 };
 
 function formatNPR(n: number) { 
@@ -28,18 +29,18 @@ function formatNPR(n: number) {
 }
 
 export default function NepalIncomeTaxCalculator() {
-  const [state, setState] = useSyncState('nepal_tax_v5', DEFAULT_STATE);
-  const { income, bonus, gender, isSSFContributor, ssfDeduction, epfDeduction, citDeduction, lifeInsurance, healthInsurance, isMonthly, noOfMonths } = state;
+  const [state, setState] = useSyncState('nepal_tax_v6', DEFAULT_STATE);
+  const { income, bonus, gender, isSSFContributor, ssfDeduction, epfDeduction, citDeduction, lifeInsurance, healthInsurance, isMonthly, noOfMonths, enforceLimits = true } = state;
 
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
   const annualGross = (income * (isMonthly ? noOfMonths : 1)) + bonus;
 
   const result = useMemo(() => {
-    const insDeduction = Math.min(lifeInsurance, 40000);
-    const healthInsDeduction = Math.min(healthInsurance, 20000);
-    const citMax = Math.min(annualGross / 3, 500000);
-    const actualCit = Math.min(citDeduction + ssfDeduction + epfDeduction, citMax);
+    const insDeduction = enforceLimits ? Math.min(lifeInsurance, 40000) : lifeInsurance;
+    const healthInsDeduction = enforceLimits ? Math.min(healthInsurance, 20000) : healthInsurance;
+    const citMax = enforceLimits ? Math.min(annualGross / 3, 500000) : Infinity;
+    const actualCit = enforceLimits ? Math.min(citDeduction + ssfDeduction + epfDeduction, citMax) : (citDeduction + ssfDeduction + epfDeduction);
     const totalDeductions = insDeduction + healthInsDeduction + actualCit;
     const taxableGross = Math.max(0, annualGross - totalDeductions);
 
@@ -105,7 +106,7 @@ export default function NepalIncomeTaxCalculator() {
 
              <div className="space-y-2">
                 <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Bonus (NPR)</label>
-                <input type="number" value={bonus} onChange={e => update({ bonus: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+                <input type="number" value={bonus || ''} placeholder="0" onChange={e => update({ bonus: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
              </div>
 
              <div className="space-y-2">
@@ -122,31 +123,31 @@ export default function NepalIncomeTaxCalculator() {
 
              <div className="space-y-2">
                 <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Social Security Fund (Annual)</label>
-                <input type="number" value={ssfDeduction} onChange={e => update({ ssfDeduction: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+                <input type="number" value={ssfDeduction || ''} placeholder="0" onChange={e => update({ ssfDeduction: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
              </div>
 
              <div className="space-y-2">
                 <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Employees Provident Fund (Annual)</label>
-                <input type="number" value={epfDeduction} onChange={e => update({ epfDeduction: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+                <input type="number" value={epfDeduction || ''} placeholder="0" onChange={e => update({ epfDeduction: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
              </div>
 
              <div className="space-y-2">
                 <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Citizen Investment Trust (Annual)</label>
-                <input type="number" value={citDeduction} onChange={e => update({ citDeduction: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+                <input type="number" value={citDeduction || ''} placeholder="0" onChange={e => update({ citDeduction: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
              </div>
 
              <div className="space-y-2">
-                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Life Insurance (Annual, max 40,000)</label>
-                <input type="number" value={lifeInsurance} onChange={e => update({ lifeInsurance: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Life Insurance (Annual{enforceLimits ? ', max 40,000' : ''})</label>
+                <input type="number" value={lifeInsurance || ''} placeholder="0" onChange={e => update({ lifeInsurance: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
              </div>
 
              <div className="space-y-2">
-                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Medical Insurance (Annual, max 20,000)</label>
-                <input type="number" value={healthInsurance} onChange={e => update({ healthInsurance: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Medical Insurance (Annual{enforceLimits ? ', max 20,000' : ''})</label>
+                <input type="number" value={healthInsurance || ''} placeholder="0" onChange={e => update({ healthInsurance: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
              </div>
 
-             <div className="space-y-2 flex items-center pt-6">
-                <label className="flex items-center gap-3 cursor-pointer">
+             <div className="space-y-2 flex flex-col justify-center pt-6">
+                <label className="flex items-center gap-3 cursor-pointer mb-3">
                   <input 
                      type="checkbox" 
                      checked={isSSFContributor} 
@@ -154,6 +155,15 @@ export default function NepalIncomeTaxCalculator() {
                      className="w-5 h-5 rounded border-[#DADCE0] text-[#1A73E8] focus:ring-[#1A73E8]" 
                   />
                   <span className="text-[11px] font-bold text-[#202124] uppercase tracking-wider">SSF Contributor (1% SST Waiver)</span>
+                </label>
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input 
+                     type="checkbox" 
+                     checked={enforceLimits} 
+                     onChange={e => update({ enforceLimits: e.target.checked })}
+                     className="w-5 h-5 rounded border-[#DADCE0] text-[#188038] focus:ring-[#188038]" 
+                  />
+                  <span className="text-[11px] font-bold text-[#202124] uppercase tracking-wider">Enforce Govt Max Deduction Limits</span>
                 </label>
              </div>
           </div>
@@ -220,15 +230,15 @@ export default function NepalIncomeTaxCalculator() {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-[#5F6368]">SSF + EPF + CIT (applied)</span>
-                    <span className="font-bold text-[#188038]">- {formatNPR(Math.min(citDeduction + ssfDeduction + epfDeduction, Math.min(result.annualGross / 3, 500000)))}</span>
+                    <span className="font-bold text-[#188038]">- {formatNPR(enforceLimits ? Math.min(citDeduction + ssfDeduction + epfDeduction, Math.min(result.annualGross / 3, 500000)) : (citDeduction + ssfDeduction + epfDeduction))}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-[#5F6368]">Life Insurance</span>
-                    <span className="font-bold text-[#188038]">- {formatNPR(Math.min(lifeInsurance, 40000))}</span>
+                    <span className="font-bold text-[#188038]">- {formatNPR(enforceLimits ? Math.min(lifeInsurance, 40000) : lifeInsurance)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-[#5F6368]">Medical Insurance</span>
-                    <span className="font-bold text-[#188038]">- {formatNPR(Math.min(healthInsurance, 20000))}</span>
+                    <span className="font-bold text-[#188038]">- {formatNPR(enforceLimits ? Math.min(healthInsurance, 20000) : healthInsurance)}</span>
                   </div>
                   <div className="flex justify-between text-sm border-t border-b border-[#DADCE0] py-3 my-2">
                     <span className="font-bold text-[#202124]">Total Deductions</span>
@@ -240,7 +250,7 @@ export default function NepalIncomeTaxCalculator() {
                   </div>
                </div>
                <p className="mt-6 text-[9px] text-[#70757A] font-bold uppercase tracking-wider text-center">
-                  Calculated using latest FY 2083/84 Tax Provisions. Max allowable limits applied automatically.
+                  {enforceLimits ? 'Calculated using latest FY 2083/84 Tax Provisions. Max allowable limits applied automatically.' : 'Custom limits applied. Government caps are currently disabled.'}
                </p>
              </div>
            </div>
