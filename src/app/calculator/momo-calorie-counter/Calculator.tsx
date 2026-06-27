@@ -574,7 +574,7 @@ export default function MomoCalculator() {
 
           <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Why Use This Momo Calorie Calculator?</h2>
           <p className="text-[#5F6368] leading-relaxed">
-            Whether you're trying to lose weight, maintain your calorie intake, build muscle or simply track your daily food consumption, knowing the calories in momos helps you make better dietary decisions.
+            Whether you're trying to lose weight, maintain your calorie intake, build muscle or simply track your daily nutrition, this Momo Calorie Calculator helps estimate your meal calories. To calculate your daily calorie requirement, use our <Link href="/calculator/calorie-calculator/" className="text-orange-600 font-bold hover:underline">Daily Calorie Calculator</Link>.
           </p>
           <p className="text-[#5F6368] leading-relaxed">
             Unlike generic calorie charts, this calculator estimates calories based on the momo type, cooking method and serving size, giving more useful results for everyday meal tracking.
@@ -662,10 +662,16 @@ export default function MomoCalculator() {
           <p className="text-[#5F6368] leading-relaxed">
             The total calories increase when momos are served with mayonnaise, fried sauces or oily chutneys.
           </p>
+          <p className="text-[#5F6368] leading-relaxed">
+            Staying hydrated is just as important as monitoring calories. Calculate your daily hydration needs using our <Link href="/calculator/water-intake/" className="text-orange-600 font-bold hover:underline">Water Intake Calculator</Link>.
+          </p>
 
           <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Best Choice for Weight Loss</h2>
           <p className="text-[#5F6368] leading-relaxed">
             If you're trying to reduce calorie intake, steamed vegetable momos are generally the lowest-calorie option. Chicken momos provide more protein and can also be a good choice for high-protein diets. Fried momos should be consumed in moderation because frying significantly increases calorie content.
+          </p>
+          <p className="text-[#5F6368] leading-relaxed">
+            If your goal is weight management, check your body weight using our <Link href="/calculator/bmi/" className="text-orange-600 font-bold hover:underline">BMI Calculator</Link>. To estimate the calories your body burns at rest, use our <Link href="/calculator/bmr/" className="text-orange-600 font-bold hover:underline">BMR Calculator</Link>.
           </p>
 
           <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Calories in Different Types of Momos</h2>
@@ -753,17 +759,6 @@ export default function MomoCalculator() {
             Chicken and buff momos generally provide more protein, while vegetable momos contain fewer calories but less protein.
           </p>
 
-          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Are Momos Good for Weight Loss?</h2>
-          <p className="text-[#5F6368] leading-relaxed">Momos can fit into a balanced diet when eaten in moderation. For healthier choices:</p>
-          <ul className="text-[#5F6368] leading-relaxed list-disc pl-5">
-            <li>Choose steamed instead of fried.</li>
-            <li>Avoid excessive mayonnaise-based sauces.</li>
-            <li>Pair with vegetables or soup.</li>
-            <li>Watch portion sizes.</li>
-            <li>Track calories using the calculator above.</li>
-          </ul>
-          <p className="text-[#5F6368] leading-relaxed">The cooking method and portion size usually have a greater impact than the filling itself.</p>
-
           <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">How Accurate Is This Momo Calorie Calculator?</h2>
           <p className="text-[#5F6368] leading-relaxed">
             This calculator estimates calories using commonly accepted nutritional values from standard momo recipes and ingredient averages. Actual calorie values may vary depending on:
@@ -802,7 +797,18 @@ export default function MomoCalculator() {
             <p className="text-[#5F6368] leading-relaxed">
               Use the Momo Calorie Calculator above to estimate calories in your favourite momos within seconds. Simply choose the momo type, cooking method and quantity to receive an instant estimate of calories and nutritional values.
             </p>
+            <p className="text-[#5F6368] leading-relaxed mt-2">
+              To understand your healthy target weight, try our <Link href="/calculator/ideal-weight/" className="text-orange-600 font-bold hover:underline">Ideal Weight Calculator</Link>.
+            </p>
           </div>
+
+          {/* ── Sources ── */}
+          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Sources</h2>
+          <ul className="text-[#5F6368] leading-relaxed list-disc pl-5">
+            <li><a href="https://fdc.nal.usda.gov/" target="_blank" rel="nofollow noopener noreferrer" className="text-orange-600 hover:underline">USDA FoodData Central</a> – Used for general food composition reference.</li>
+            <li><a href="https://www.nhs.uk/live-well/eat-well/" target="_blank" rel="nofollow noopener noreferrer" className="text-orange-600 hover:underline">NHS Healthy Eating</a> – Healthy diet recommendations.</li>
+            <li><a href="https://nutritionsource.hsph.harvard.edu/" target="_blank" rel="nofollow noopener noreferrer" className="text-orange-600 hover:underline">Harvard Nutrition Source</a> – Evidence-based nutrition guidance.</li>
+          </ul>
 
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 not-prose mt-6">
             <div className="flex items-start justify-between gap-4 flex-wrap">
@@ -818,15 +824,12 @@ export default function MomoCalculator() {
           {/* ── Internal Links ── */}
           <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Related Resources</h2>
           <p className="text-[#5F6368] leading-relaxed">
-            If you're tracking your daily nutrition or planning a healthier diet, these calculators may also be helpful. These tools can help you better understand your daily calorie needs, energy expenditure and nutritional goals.
+            If you're tracking your daily nutrition or planning a healthier diet, these calculators may also be helpful:
           </p>
           <div className="flex flex-wrap gap-2 not-prose">
-            <Link href="/calculator/daily-calorie/" className="px-3 py-1.5 bg-white border border-[#DADCE0] rounded-full text-[12px] font-bold text-orange-600 hover:border-orange-600 transition-colors">Daily Calorie Calculator</Link>
+            <Link href="/calculator/calorie-calculator/" className="px-3 py-1.5 bg-white border border-[#DADCE0] rounded-full text-[12px] font-bold text-orange-600 hover:border-orange-600 transition-colors">Daily Calorie Calculator</Link>
             <Link href="/calculator/bmi/" className="px-3 py-1.5 bg-white border border-[#DADCE0] rounded-full text-[12px] font-bold text-orange-600 hover:border-orange-600 transition-colors">BMI Calculator</Link>
             <Link href="/calculator/bmr/" className="px-3 py-1.5 bg-white border border-[#DADCE0] rounded-full text-[12px] font-bold text-orange-600 hover:border-orange-600 transition-colors">BMR Calculator</Link>
-            <Link href="/calculator/tdee/" className="px-3 py-1.5 bg-white border border-[#DADCE0] rounded-full text-[12px] font-bold text-orange-600 hover:border-orange-600 transition-colors">TDEE Calculator</Link>
-            <Link href="/calculator/protein-intake/" className="px-3 py-1.5 bg-white border border-[#DADCE0] rounded-full text-[12px] font-bold text-orange-600 hover:border-orange-600 transition-colors">Protein Intake Calculator</Link>
-            <Link href="/calculator/body-fat/" className="px-3 py-1.5 bg-white border border-[#DADCE0] rounded-full text-[12px] font-bold text-orange-600 hover:border-orange-600 transition-colors">Body Fat Calculator</Link>
             <Link href="/calculator/water-intake/" className="px-3 py-1.5 bg-white border border-[#DADCE0] rounded-full text-[12px] font-bold text-orange-600 hover:border-orange-600 transition-colors">Water Intake Calculator</Link>
             <Link href="/calculator/ideal-weight/" className="px-3 py-1.5 bg-white border border-[#DADCE0] rounded-full text-[12px] font-bold text-orange-600 hover:border-orange-600 transition-colors">Ideal Weight Calculator</Link>
           </div>
