@@ -97,6 +97,16 @@ const nextConfig = {
         destination: '/market-rates/remittance/',
         permanent: true,
       },
+      {
+        source: '/market-rates/exchange-rate',
+        destination: '/market-rates/exchange-rate-nepal/',
+        permanent: true,
+      },
+      {
+        source: '/market-rates/exchange-rate/',
+        destination: '/market-rates/exchange-rate-nepal/',
+        permanent: true,
+      },
     ];
   },
   // Webpack: tree shaking only
