@@ -4,9 +4,9 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   ...calcMeta({
-    title: 'Momo Calorie Calculator – Calculate Calories in Chicken, Veg & Steamed Momos',
+    title: 'Momo Calorie Calculator | Chicken, Veg, Fried & Steamed Momo Calories',
     description:
-      'Calculate calories, protein, fat and carbs in chicken, buff, veg, steamed, fried and tandoori momos. Instant nutrition calculator with calories per piece and plate.',
+      'Calculate calories in chicken, veg, steamed, fried, paneer, buff and jhol momos instantly. Get calories per piece, per plate, nutrition facts and serving estimates.',
     slug: 'momo-calorie-counter',
     keywords: [
       'Momo Calorie Calculator',
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
     ],
   }),
   openGraph: {
-    title: 'Momo Calorie Calculator – Chicken, Veg & Fried Momos',
-    description: 'Estimate calories in chicken, veg, steamed, fried and jhol momos instantly.',
+    title: 'Momo Calorie Calculator | Chicken, Veg, Fried & Steamed Momo Calories',
+    description: 'Calculate calories in chicken, veg, steamed, fried, paneer, buff and jhol momos instantly. Get calories per piece, per plate, nutrition facts and serving estimates.',
     url: 'https://nepacalc.com/calculator/momo-calorie-counter/',
     siteName: 'NepaCalc',
     type: 'website',
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Momo Calorie Calculator – Chicken, Veg & Fried Momos',
-    description: 'Estimate calories in chicken, veg, steamed, fried and jhol momos instantly.',
+    title: 'Momo Calorie Calculator | Chicken, Veg, Fried & Steamed Momo Calories',
+    description: 'Calculate calories in chicken, veg, steamed, fried, paneer, buff and jhol momos instantly. Get calories per piece, per plate, nutrition facts and serving estimates.',
     images: ['https://nepacalc.com/images/momo-calorie-calculator.webp'],
   },
   robots: {
