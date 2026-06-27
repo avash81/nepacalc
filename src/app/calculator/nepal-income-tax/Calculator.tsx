@@ -11,12 +11,16 @@ import {
 
 const DEFAULT_STATE = {
   income: 0,
+  bonus: 0,
   gender: 'male' as 'male' | 'female',
   isSSFContributor: true,
-  lifeInsurance: 40000,
+  ssfDeduction: 0,
+  epfDeduction: 0,
   citDeduction: 0,
+  lifeInsurance: 0,
   healthInsurance: 0,
-  isMonthly: false
+  isMonthly: false,
+  noOfMonths: 12
 };
 
 function formatNPR(n: number) { 
@@ -25,17 +29,17 @@ function formatNPR(n: number) {
 
 export default function NepalIncomeTaxCalculator() {
   const [state, setState] = useSyncState('nepal_tax_v5', DEFAULT_STATE);
-  const { income, gender, isSSFContributor, lifeInsurance, citDeduction, healthInsurance, isMonthly } = state;
+  const { income, bonus, gender, isSSFContributor, ssfDeduction, epfDeduction, citDeduction, lifeInsurance, healthInsurance, isMonthly, noOfMonths } = state;
 
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
 
-  const annualGross = isMonthly ? income * 12 : income;
+  const annualGross = (income * (isMonthly ? noOfMonths : 1)) + bonus;
 
   const result = useMemo(() => {
     const insDeduction = Math.min(lifeInsurance, 40000);
     const healthInsDeduction = Math.min(healthInsurance, 20000);
     const citMax = Math.min(annualGross / 3, 500000);
-    const actualCit = Math.min(citDeduction, citMax);
+    const actualCit = Math.min(citDeduction + ssfDeduction + epfDeduction, citMax);
     const totalDeductions = insDeduction + healthInsDeduction + actualCit;
     const taxableGross = Math.max(0, annualGross - totalDeductions);
 
@@ -44,7 +48,7 @@ export default function NepalIncomeTaxCalculator() {
       false, 
       isSSFContributor, 
       gender,
-      0 // Prevent implicit 11% SSF deduction as user manually enters it in the CIT/EPF/SSF field
+      0 // We apply SSF/EPF/CIT together manually in actualCit
     );
 
     return {
@@ -71,7 +75,7 @@ export default function NepalIncomeTaxCalculator() {
       ]}
       inputs={
         <div className="space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
              <div className="space-y-2">
                <div className="flex justify-between items-center">
                   <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">{isMonthly ? "Monthly Salary (NPR)" : "Annual Income (NPR)"}</label>
@@ -87,6 +91,22 @@ export default function NepalIncomeTaxCalculator() {
                />
              </div>
              
+             {isMonthly && (
+               <div className="space-y-2">
+                 <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">No. of Months</label>
+                 <input 
+                    type="number" 
+                    value={noOfMonths} 
+                    onChange={(e) => update({ noOfMonths: Number(e.target.value) })}
+                    className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" 
+                 />
+               </div>
+             )}
+
+             <div className="space-y-2">
+                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Bonus (NPR)</label>
+                <input type="number" value={bonus} onChange={e => update({ bonus: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+             </div>
 
              <div className="space-y-2">
                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Gender</label>
@@ -101,13 +121,28 @@ export default function NepalIncomeTaxCalculator() {
              </div>
 
              <div className="space-y-2">
-                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Life Insurance (Annual)</label>
+                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Social Security Fund (Annual)</label>
+                <input type="number" value={ssfDeduction} onChange={e => update({ ssfDeduction: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+             </div>
+
+             <div className="space-y-2">
+                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Employees Provident Fund (Annual)</label>
+                <input type="number" value={epfDeduction} onChange={e => update({ epfDeduction: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+             </div>
+
+             <div className="space-y-2">
+                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Citizen Investment Trust (Annual)</label>
+                <input type="number" value={citDeduction} onChange={e => update({ citDeduction: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+             </div>
+
+             <div className="space-y-2">
+                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Life Insurance (Annual, max 40,000)</label>
                 <input type="number" value={lifeInsurance} onChange={e => update({ lifeInsurance: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
              </div>
 
              <div className="space-y-2">
-                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">CIT/EPF/SSF Contribution (Annual)</label>
-                <input type="number" value={citDeduction} onChange={e => update({ citDeduction: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
+                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Medical Insurance (Annual, max 20,000)</label>
+                <input type="number" value={healthInsurance} onChange={e => update({ healthInsurance: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
              </div>
 
              <div className="space-y-2 flex items-center pt-6">
@@ -176,32 +211,37 @@ export default function NepalIncomeTaxCalculator() {
              <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm flex flex-col justify-center">
                <div className="flex items-center gap-2 mb-6">
                  <div className="w-1.5 h-4 bg-[#188038] rounded-full" />
-                 <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Income Shield Audit</h3>
+                 <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Estimated Tax Breakdown</h3>
                </div>
-               <div className="space-y-6">
-                  <div className="p-6 rounded-md bg-[#F8F9FA] border border-[#DADCE0]">
-                     <div className="flex justify-between items-center mb-2">
-                        <span className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Tax-Exempt Portion</span>
-                        <span className="text-xl font-black text-[#188038]">{(( (result.annualGross - result.taxableIncome) / result.annualGross ) * 100).toFixed(0)}%</span>
-                     </div>
-                     <div className="w-full h-1.5 bg-[#E8F0FE] rounded-full overflow-hidden">
-                        <div className="h-full bg-[#188038]" style={{ width: `${( (result.annualGross - result.taxableIncome) / result.annualGross ) * 100}%` }} />
-                     </div>
-                     <p className="mt-4 text-[9px] text-[#5F6368] leading-relaxed uppercase tracking-widest font-bold">
-                        Deductions and non-taxable slabs effectively shield this portion of your income.
-                     </p>
+               <div className="space-y-3">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-[#5F6368]">Total Gross Income</span>
+                    <span className="font-bold text-[#202124]">{formatNPR(result.annualGross)}</span>
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
-                     <div className="p-4 rounded-md bg-white border border-[#DADCE0]">
-                        <div className="text-[9px] text-[#5F6368] uppercase font-bold mb-1">Deduction Relief</div>
-                        <div className="text-sm font-black text-[#202124]">{formatNPR(result.totalDeductions)}</div>
-                     </div>
-                     <div className="p-4 rounded-md bg-white border border-[#DADCE0]">
-                        <div className="text-[9px] text-[#5F6368] uppercase font-bold mb-1">Monthly SST/Tax</div>
-                        <div className="text-sm font-black text-[#D93025]">{formatNPR(result.totalTax / 12)}</div>
-                     </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-[#5F6368]">SSF + EPF + CIT (applied)</span>
+                    <span className="font-bold text-[#188038]">- {formatNPR(Math.min(citDeduction + ssfDeduction + epfDeduction, Math.min(result.annualGross / 3, 500000)))}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-[#5F6368]">Life Insurance</span>
+                    <span className="font-bold text-[#188038]">- {formatNPR(Math.min(lifeInsurance, 40000))}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-[#5F6368]">Medical Insurance</span>
+                    <span className="font-bold text-[#188038]">- {formatNPR(Math.min(healthInsurance, 20000))}</span>
+                  </div>
+                  <div className="flex justify-between text-sm border-t border-b border-[#DADCE0] py-3 my-2">
+                    <span className="font-bold text-[#202124]">Total Deductions</span>
+                    <span className="font-bold text-[#188038]">- {formatNPR(result.totalDeductions)}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="font-bold text-[#202124]">Net Assessable Income</span>
+                    <span className="font-black text-[#202124]">{formatNPR(result.annualGross - result.totalDeductions)}</span>
                   </div>
                </div>
+               <p className="mt-6 text-[9px] text-[#70757A] font-bold uppercase tracking-wider text-center">
+                  Calculated using latest FY 2083/84 Tax Provisions. Max allowable limits applied automatically.
+               </p>
              </div>
            </div>
 
