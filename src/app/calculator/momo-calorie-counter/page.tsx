@@ -1,10 +1,13 @@
 import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
-export const metadata = calcMeta({
-  title: "Momo Calorie Counter | Nepal Health Tracker NepaCalc",
-  description: "Track calories and macronutrients for Nepal's favourite dish. Mix varieties and serving sizes for a complete nutritional picture.",
-  slug: 'momo-calorie-counter',
-  keywords: ["momo calories", "nepal food calorie counter", "buff momo calories", "chicken momo nutrition", "veg momo calories", "health calculator nepal"],
-});
-export default function Page() { return <Calculator />; }
 
+export const metadata = calcMeta({
+  title: "Momo Calorie Counter (Chicken, Veg & Steamed Momos Calculator)",
+  description: "Calculate calories in momos instantly. Estimate calories for chicken, veg, steamed, fried, jhol, paneer, buff and tandoori momos. Find calories per piece, per plate and total nutrition using our free Momo Calorie Counter.",
+  slug: 'momo-calorie-counter',
+  keywords: ["Momo Calorie Counter", "Momo Calories", "Calories in Momos", "Chicken Momo Calories", "Veg Momo Calories", "Steamed Momo Calories", "Fried Momo Calories", "Calories in Chicken Momos", "Calories in Veg Momos", "Calories in 1 Momo", "Calories in 1 Plate Momos", "Jhol Momo Calories", "Paneer Momo Calories", "Buff Momo Calories", "Momo Calorie Calculator", "Calories Per Momo", "Calories Per Plate Momos"],
+});
+
+export default function Page() {
+  return <Calculator />;
+}
