@@ -645,14 +645,60 @@ export default function MomoCalculator() {
             </table>
           </div>
           <p className="text-[#5F6368] leading-relaxed">
-            Tracking your body weight alongside portion sizes is more effective when you know your baseline. Our <Link href="/calculator/bmi/" className="text-orange-600 font-bold hover:underline">BMI Calculator</Link> and <Link href="/calculator/water-intake/" className="text-orange-600 font-bold hover:underline">Water Intake Calculator</Link> work well alongside calorie tracking for a complete health picture. For those working toward a calorie deficit, the <Link href="/calculator/body-fat/" className="text-orange-600 font-bold hover:underline">Body Fat Calculator</Link> provides a useful starting point.
+            Tracking your body weight alongside portion sizes is more effective when you know your baseline. Our <Link href="/calculator/bmi/" className="text-orange-600 font-bold hover:underline">BMI Calculator</Link> and <Link href="/calculator/water-intake/" className="text-orange-600 font-bold hover:underline">Water Intake Calculator</Link> work well alongside calorie tracking. If you want to find a target weight for your height, the <Link href="/calculator/ideal-weight/" className="text-orange-600 font-bold hover:underline">Ideal Weight Calculator</Link> gives a useful reference point, while the <Link href="/calculator/healthy-weight/" className="text-orange-600 font-bold hover:underline">Healthy Weight Calculator</Link> shows the full healthy BMI range for your body.
           </p>
 
-          {/* ── EEAT disclaimer ── */}
+          {/* ── H2: Nutrition Facts ── */}
+          <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Nutrition Facts</h2>
+          <p className="text-[#5F6368] leading-relaxed">
+            Below is an approximate nutritional breakdown per piece for common steamed momo varieties. Values include calories, protein, carbohydrates and fat — the four key nutrients people track for weight management, meal planning and healthy eating.
+          </p>
+          <div className="not-prose overflow-x-auto">
+            <table className="w-full text-sm border border-[#DADCE0] rounded-xl overflow-hidden" aria-label="Momo nutrition facts per piece">
+              <thead className="bg-[#F8F9FA] border-b border-[#DADCE0]">
+                <tr>
+                  <th className="px-4 py-3 text-left font-black text-[#202124] text-[11px] uppercase tracking-wider">Type (Steamed, 1 pc)</th>
+                  <th className="px-4 py-3 text-right font-black text-orange-600 text-[11px] uppercase tracking-wider">Calories</th>
+                  <th className="px-4 py-3 text-right font-black text-blue-600 text-[11px] uppercase tracking-wider">Protein</th>
+                  <th className="px-4 py-3 text-right font-black text-amber-600 text-[11px] uppercase tracking-wider">Carbs</th>
+                  <th className="px-4 py-3 text-right font-black text-rose-600 text-[11px] uppercase tracking-wider">Fat</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#F1F3F4]">
+                {[
+                  { name: 'Chicken Momo', cal: 60,  p: '5.5g', c: '5.8g', f: '2.0g' },
+                  { name: 'Veg Momo',     cal: 45,  p: '1.5g', c: '8.0g', f: '0.8g' },
+                  { name: 'Buff Momo',    cal: 65,  p: '5.0g', c: '5.8g', f: '2.8g' },
+                  { name: 'Paneer Momo',  cal: 75,  p: '3.5g', c: '6.2g', f: '3.8g' },
+                  { name: 'Pork Momo',    cal: 80,  p: '5.5g', c: '5.5g', f: '4.2g' },
+                  { name: 'Jhol Momo',    cal: 70,  p: '4.5g', c: '8.0g', f: '2.5g' },
+                  { name: 'Tandoori Momo',cal: 90,  p: '6.0g', c: '8.5g', f: '3.5g' },
+                ].map(r => (
+                  <tr key={r.name} className="hover:bg-slate-50">
+                    <td className="px-4 py-2.5 font-medium text-[#202124]">{r.name}</td>
+                    <td className="px-4 py-2.5 text-right font-black text-orange-600">{r.cal} kcal</td>
+                    <td className="px-4 py-2.5 text-right text-blue-600 font-bold">{r.p}</td>
+                    <td className="px-4 py-2.5 text-right text-amber-600 font-bold">{r.c}</td>
+                    <td className="px-4 py-2.5 text-right text-rose-600 font-bold">{r.f}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-[#5F6368] leading-relaxed">
+            Momos are a good source of protein, especially chicken and buff varieties. To understand how this fits into your overall nutrition and daily energy intake, use our <Link href="/calculator/bmr/" className="text-orange-600 font-bold hover:underline">BMR Calculator</Link> to find your resting metabolic rate, or the <Link href="/calculator/body-fat/" className="text-orange-600 font-bold hover:underline">Body Fat Calculator</Link> as part of a broader weight management plan.
+          </p>
+
+          {/* ── EEAT disclaimer with visible Last Updated ── */}
           <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 not-prose">
-            <p className="text-[12px] text-[#5F6368] leading-relaxed">
-              <strong className="text-[#202124]">Note:</strong> Calorie estimates are based on typical serving sizes and commonly available nutritional data for Nepali-style momos. Actual values may vary depending on ingredients, size and cooking method used.
-            </p>
+            <div className="flex items-start justify-between gap-4 flex-wrap">
+              <p className="text-[12px] text-[#5F6368] leading-relaxed flex-1">
+                <strong className="text-[#202124]">Note:</strong> Calorie estimates are based on typical serving sizes and commonly available nutritional data for Nepali-style momos. Actual values may vary depending on ingredients, size and cooking method used.
+              </p>
+              <p className="text-[11px] text-[#9AA0A6] whitespace-nowrap shrink-0">
+                Last updated: <strong className="text-[#5F6368]">2083/84 (2026)</strong>
+              </p>
+            </div>
           </div>
 
         </div>
