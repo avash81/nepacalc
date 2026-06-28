@@ -1,41 +1,21 @@
-import * as math from 'mathjs';
+importScripts('https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js');
 
-export interface WorkerRequest {
-  id: string;
-  type: 'explicit' | 'implicit';
-  equation: string;
-  resolution: number;
-  params: { name: string; value: number }[];
-  useRadians?: boolean;
-}
-
-export interface WorkerResponse {
-  id: string;
-  type: 'success' | 'error';
-  positions?: Float32Array;
-  indices?: Uint16Array | Uint32Array;
-  zRange?: { min: number, max: number };
-  error?: string;
-}
-
-const ctx: Worker = self as any;
-
-ctx.onmessage = (e: MessageEvent<WorkerRequest>) => {
+self.onmessage = (e) => {
   const data = e.data;
   try {
     if (data.type === 'explicit') {
       const result = generateExplicit(data);
-      ctx.postMessage({ id: data.id, type: 'success', ...result }, [result.positions.buffer, result.indices.buffer]);
+      self.postMessage({ id: data.id, type: 'success', ...result }, [result.positions.buffer, result.indices.buffer]);
     } else if (data.type === 'implicit') {
       const result = generateImplicit(data);
-      ctx.postMessage({ id: data.id, type: 'success', ...result }, [result.positions.buffer, result.indices.buffer]);
+      self.postMessage({ id: data.id, type: 'success', ...result }, [result.positions.buffer, result.indices.buffer]);
     }
-  } catch (err: any) {
-    ctx.postMessage({ id: data.id, type: 'error', error: err.message });
+  } catch (err) {
+    self.postMessage({ id: data.id, type: 'error', error: err.message });
   }
 };
 
-function generateExplicit(data: WorkerRequest) {
+function generateExplicit(data) {
   const { equation, resolution, params } = data;
   const res = Math.max(resolution, 10);
   const size = 16;
@@ -56,9 +36,12 @@ function generateExplicit(data: WorkerRequest) {
   
   const cleanExpr = equation.toLowerCase().includes('=') ? equation.split('=')[1] : equation;
   
+  // @ts-ignore
   const compiled = math.compile(cleanExpr);
-  const scope: Record<string, number> = { x: 0, y: 0 };
-  for (const p of params) scope[p.name] = p.value;
+  const scope = { x: 0, y: 0 };
+  if (params) {
+      for (const p of params) scope[p.name] = p.value;
+  }
 
   let minZ = Infinity;
   let maxZ = -Infinity;
@@ -101,7 +84,7 @@ function generateExplicit(data: WorkerRequest) {
   return { positions, indices: indexArray, zRange: { min: minZ, max: maxZ } };
 }
 
-function generateImplicit(data: WorkerRequest) {
+function generateImplicit(data) {
   const { equation, resolution, params } = data;
   const res = Math.min(resolution, 64);
   const size = 12;
@@ -111,9 +94,12 @@ function generateImplicit(data: WorkerRequest) {
   
   try {
     const parts = equation.toLowerCase().split('=');
+    // @ts-ignore
     const compiled = math.compile(`(${parts[0]}), (${parts[1] || '0'})`);
-    const scope: Record<string, number> = { x: 0, y: 0, z: 0 };
-    for (const p of params) scope[p.name.toLowerCase()] = p.value;
+    const scope = { x: 0, y: 0, z: 0 };
+    if (params) {
+        for (const p of params) scope[p.name.toLowerCase()] = p.value;
+    }
     
     for (let i = 0; i <= res; i++) {
       for (let j = 0; j <= res; j++) {
@@ -129,8 +115,8 @@ function generateImplicit(data: WorkerRequest) {
     return { positions: new Float32Array(), indices: new Uint16Array(), zRange: { min: -6, max: 6 } };
   }
 
-  const positions: number[] = [];
-  const indices: number[] = [];
+  const positions = [];
+  const indices = [];
   const vertexMap = new Int32Array((res + 1) * (res + 1) * (res + 1)).fill(-1);
   let vCount = 0;
 

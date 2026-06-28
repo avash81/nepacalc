@@ -216,7 +216,7 @@ function WorkerSurfaceMesh({ id, equation, resolution, color, params, globalWire
   const [geometry, setGeometry] = useState<THREE.BufferGeometry | null>(null);
   
   useEffect(() => {
-    const worker = new Worker(new URL('../../workers/graphWorker', import.meta.url), { type: 'module' });
+    const worker = new Worker('/workers/graphWorker.js');
     
     worker.onmessage = (e) => {
       if (e.data.type === 'success' && e.data.id === id) {
@@ -366,7 +366,7 @@ export default function ThreeDCalculatorClient() {
     <div className="flex flex-col min-h-screen bg-[#f8fafc] font-sans">
       <nav className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-white">
         <div className="flex items-center gap-3">
-          <button onClick={() => window.history.back()} className="p-2 border border-slate-200 rounded hover:bg-slate-50"><ArrowLeft className="w-4 h-4" /></button>
+          <button aria-label="Go Back" onClick={() => window.history.back()} className="p-2 border border-slate-200 rounded hover:bg-slate-50"><ArrowLeft className="w-4 h-4" /></button>
           <div className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">3D Pro Studio v4.0</div>
         </div>
       </nav>
@@ -379,7 +379,7 @@ export default function ThreeDCalculatorClient() {
           <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
             <div className="bg-[#f8fafc] border-b border-slate-200 px-4 py-2 flex items-center justify-between">
               <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Equations</h2>
-              <button onClick={() => addGraph('z = 0')} className="p-1 hover:bg-slate-200 rounded text-blue-700 transition-all"><Plus className="w-4 h-4" /></button>
+              <button aria-label="Add Graph" onClick={() => addGraph('z = 0')} className="p-1 hover:bg-slate-200 rounded text-blue-700 transition-all"><Plus className="w-4 h-4" /></button>
             </div>
             <div className="p-4 space-y-4">
               {graphs.map((g) => (
@@ -390,10 +390,10 @@ export default function ThreeDCalculatorClient() {
                       <span className="text-[9px] font-bold text-slate-400 uppercase">Layer {g.id.slice(0, 3)}</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <button onClick={() => updateGraph(g.id, { visible: !g.visible })} className={`p-1 rounded ${g.visible ? 'text-blue-600' : 'text-slate-300'}`}>
+                      <button aria-label="Toggle Visibility" onClick={() => updateGraph(g.id, { visible: !g.visible })} className={`p-1 rounded ${g.visible ? 'text-blue-600' : 'text-slate-300'}`}>
                         {g.visible ? <Box className="w-3.5 h-3.5" /> : <Box className="w-3.5 h-3.5 opacity-30" />}
                       </button>
-                      <button onClick={() => setGraphs(graphs.filter(x => x.id !== g.id))} className="p-1 text-rose-300 hover:text-rose-600">
+                      <button aria-label="Delete Graph" onClick={() => setGraphs(graphs.filter(x => x.id !== g.id))} className="p-1 text-rose-300 hover:text-rose-600">
                         <Plus className="w-3.5 h-3.5 rotate-45" />
                       </button>
                     </div>
@@ -460,7 +460,7 @@ export default function ThreeDCalculatorClient() {
           <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm">
             <div className="bg-[#f8fafc] border-b border-slate-200 px-4 py-2 flex items-center justify-between">
               <h2 className="text-[9px] font-bold text-[#1e40af] uppercase tracking-[0.15em]">Variables</h2>
-              <button onClick={() => setParams([...params, { id: Math.random().toString(), name: 'b', value: 1, min: -10, max: 10 }])} className="p-1 hover:bg-slate-200 rounded text-blue-700 transition-all"><Plus className="w-4 h-4" /></button>
+              <button aria-label="Add Parameter" onClick={() => setParams([...params, { id: Math.random().toString(), name: 'b', value: 1, min: -10, max: 10 }])} className="p-1 hover:bg-slate-200 rounded text-blue-700 transition-all"><Plus className="w-4 h-4" /></button>
             </div>
             <div className="p-4 space-y-4">
               {params.map(p => (
@@ -512,13 +512,13 @@ export default function ThreeDCalculatorClient() {
             <div className="p-4 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-[9px] font-bold text-slate-400 uppercase">Shading</span>
-                <button onClick={() => setGlobalWireframe(false)} className={`w-9 h-4.5 rounded-full transition-all relative ${!globalWireframe ? 'bg-[#15803d]' : 'bg-slate-200'}`}>
+                <button aria-label="Solid Mode" onClick={() => setGlobalWireframe(false)} className={`w-9 h-4.5 rounded-full transition-all relative ${!globalWireframe ? 'bg-[#15803d]' : 'bg-slate-200'}`}>
                   <div className={`absolute top-0.5 w-3.5 h-3.5 bg-white rounded-full transition-all ${!globalWireframe ? 'right-0.5' : 'left-0.5'}`} />
                 </button>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-[9px] font-bold text-slate-400 uppercase">Wireframe</span>
-                <button onClick={() => setGlobalWireframe(true)} className={`w-9 h-4.5 rounded-full transition-all relative ${globalWireframe ? 'bg-[#15803d]' : 'bg-slate-200'}`}>
+                <button aria-label="Wireframe Mode" onClick={() => setGlobalWireframe(true)} className={`w-9 h-4.5 rounded-full transition-all relative ${globalWireframe ? 'bg-[#15803d]' : 'bg-slate-200'}`}>
                   <div className={`absolute top-0.5 w-3.5 h-3.5 bg-white rounded-full transition-all ${globalWireframe ? 'right-0.5' : 'left-0.5'}`} />
                 </button>
               </div>
@@ -541,8 +541,7 @@ export default function ThreeDCalculatorClient() {
             <div className="p-3">
               <div className="grid grid-cols-2 gap-1.5">
                 {CURRICULUM_PRESETS.map(p => (
-                  <button 
-                    key={p.name} 
+                  <button aria-label={p.name} key={p.name} 
                     onClick={() => addGraph(p.eq, p.color)} 
                     className="h-9 flex items-center justify-center bg-[#0f172a] hover:bg-slate-800 text-[#202124] text-[8px] font-black rounded transition-all uppercase tracking-wider px-1"
                   >
@@ -720,16 +719,16 @@ export default function ThreeDCalculatorClient() {
                       <div className="pt-4 border-t border-slate-100">
                         <div className="text-[9px] font-bold text-slate-400 uppercase mb-3 tracking-widest">Technical Projections</div>
                         <div className="flex gap-2">
-                          <button onClick={() => { setIsOrthographic(false); controlsRef.current?.reset(true); }} className={`flex-1 py-2.5 rounded border flex justify-center items-center transition-all ${!isOrthographic ? 'bg-[#1a73e8] border-blue-600 text-[#202124] shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
+                          <button aria-label="Perspective View" onClick={() => { setIsOrthographic(false); controlsRef.current?.reset(true); }} className={`flex-1 py-2.5 rounded border flex justify-center items-center transition-all ${!isOrthographic ? 'bg-[#1a73e8] border-blue-600 text-[#202124] shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
                             <Box className="w-4 h-4" />
                           </button>
-                          <button onClick={() => { setIsOrthographic(true); controlsRef.current?.rotateTo(0, Math.PI/2, true); }} className={`flex-1 py-2.5 rounded border flex justify-center items-center transition-all ${isOrthographic ? 'bg-[#1a73e8] border-blue-600 text-[#202124] shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
+                          <button aria-label="Orthographic View" onClick={() => { setIsOrthographic(true); controlsRef.current?.rotateTo(0, Math.PI/2, true); }} className={`flex-1 py-2.5 rounded border flex justify-center items-center transition-all ${isOrthographic ? 'bg-[#1a73e8] border-blue-600 text-[#202124] shadow-sm' : 'bg-slate-50 border-slate-200 text-slate-400'}`}>
                             <RotateCcw className="w-4 h-4" />
                           </button>
-                          <button onClick={() => controlsRef.current?.setLookAt(0, 0, 30, 0, 0, 0, true)} className="flex-1 py-2.5 bg-slate-50 border border-slate-200 rounded flex justify-center items-center text-slate-400 hover:bg-slate-100">
+                          <button aria-label="Top View" onClick={() => controlsRef.current?.setLookAt(0, 0, 30, 0, 0, 0, true)} className="flex-1 py-2.5 bg-slate-50 border border-slate-200 rounded flex justify-center items-center text-slate-400 hover:bg-slate-100">
                             <Maximize className="w-4 h-4 rotate-45" />
                           </button>
-                          <button onClick={() => controlsRef.current?.setLookAt(0, 30, 0, 0, 0, 0, true)} className="flex-1 py-2.5 bg-slate-50 border border-slate-200 rounded flex justify-center items-center text-slate-400 hover:bg-slate-100">
+                          <button aria-label="Front View" onClick={() => controlsRef.current?.setLookAt(0, 30, 0, 0, 0, 0, true)} className="flex-1 py-2.5 bg-slate-50 border border-slate-200 rounded flex justify-center items-center text-slate-400 hover:bg-slate-100">
                             <Box className="w-4 h-4" />
                           </button>
                         </div>
@@ -781,7 +780,7 @@ export default function ThreeDCalculatorClient() {
                 <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white border border-[#dadce0] p-5 rounded-2xl shadow-3xl border border-[#dadce0] w-[600px] z-50">
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-[10px] font-black text-[#202124]/40 uppercase tracking-widest">Scientific Input Panel</span>
-                    <button onClick={() => setActiveInputId(null)} className="text-[#202124]/40 hover:text-[#202124]"><Plus className="w-4 h-4 rotate-45" /></button>
+                    <button aria-label="Close Keyboard" onClick={() => setActiveInputId(null)} className="text-[#202124]/40 hover:text-[#202124]"><Plus className="w-4 h-4 rotate-45" /></button>
                   </div>
                   <div className="grid grid-cols-9 gap-2">
                     {KBD_123.flat().map((key) => (

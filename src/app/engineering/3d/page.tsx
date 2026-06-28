@@ -8,7 +8,7 @@ const ThreeDCalculatorClient = dynamic(
   { 
     ssr: false, 
     loading: () => (
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-6 min-h-[650px] items-center justify-center bg-[#f8fafc]">
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-6 min-h-screen items-center justify-center bg-[#f8fafc]">
         <div className="animate-pulse flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
           <p className="text-slate-500 font-bold text-sm uppercase tracking-widest">Loading 3D Engine...</p>
@@ -51,7 +51,7 @@ export default function ThreeDPage() {
 
             <div className="space-y-8">
               <div className="p-6 bg-[#E8F0FE] rounded-lg border border-[#D2E3FC]">
-                <h4 className="text-sm font-black text-[#1967D2] uppercase tracking-wider mb-2">What is a 3D Graph Calculator?</h4>
+                <h3 className="text-sm font-black text-[#1967D2] uppercase tracking-wider mb-2">What is a 3D Graph Calculator?</h3>
                 <p className="text-sm text-[#5F6368] leading-relaxed mb-4">
                   A <strong>3D calculator graphing</strong> tool takes a mathematical function of two variables such as <code>z = f(x, y)</code> and renders it as a colored, rotatable surface in 3D space. The result is a live, interactive model. You can spin it, zoom in, change the color scheme, and even overlay multiple functions to compare their geometry side by side. This is exactly how professional software like MATLAB, Wolfram Mathematica, and Desmos 3D work, now available free and in your browser.
                 </p>
@@ -62,7 +62,7 @@ export default function ThreeDPage() {
               </div>
 
               <div className="bg-[#F8F9FA] p-6 rounded-lg border border-[#DADCE0]">
-                <h3 className="text-lg font-bold text-[#202124] mb-4">How to Use the 3D Plot Calculator Online (Step-by-Step)</h3>
+                <h2 className="text-lg font-bold text-[#202124] mb-4">How to Use the 3D Plot Calculator Online (Step-by-Step)</h2>
                 <p className="text-sm text-[#5F6368] mb-4">Using our <strong>online 3D graphing</strong> tool is straightforward. Here is the process:</p>
                 <ol className="space-y-4 list-decimal pl-5 text-sm text-[#5F6368]">
                   <li>
@@ -81,7 +81,7 @@ export default function ThreeDPage() {
               </div>
 
               <div className="space-y-4 mt-12">
-                <h3 className="text-sm font-black uppercase text-[#202124] tracking-widest border-l-4 border-blue-600 pl-3">Standard 3D Graphing Formulas Reference</h3>
+                <h2 className="text-sm font-black uppercase text-[#202124] tracking-widest border-l-4 border-blue-600 pl-3">Standard 3D Graphing Formulas Reference</h2>
                 <p className="text-sm text-[#5F6368] mb-4">The following are the most important equations used in our <strong>3D graph calculator</strong> and why they matter across academic disciplines:</p>
                 <div className="overflow-x-auto border border-[#DADCE0] rounded-md">
                   <table className="w-full text-xs text-left">
@@ -110,7 +110,7 @@ export default function ThreeDPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-12 pt-8">
                 <div>
-                  <h3 className="text-xl font-black text-[#202124] mb-4">3D Graphing Calculator vs 2D: Key Differences</h3>
+                  <h2 className="text-xl font-black text-[#202124] mb-4">3D Graphing Calculator vs 2D: Key Differences</h2>
                   <p className="text-sm text-[#5F6368] mb-4">
                     Most students start their graphing journey with 2D tools by plotting <code>y = f(x)</code> on a flat coordinate plane. A <strong>graphing calculator 3D</strong> extends this into a full three-dimensional coordinate system (x, y, z). Instead of a line, you get a surface. This transition is critical in courses like:
                   </p>
@@ -122,14 +122,14 @@ export default function ThreeDPage() {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-xl font-black text-[#202124] mb-4">Implicit vs Explicit 3D Surfaces</h3>
+                  <h2 className="text-xl font-black text-[#202124] mb-4">Implicit vs Explicit 3D Surfaces</h2>
                   <div className="space-y-4">
                     <div className="p-4 border border-[#DADCE0] rounded-lg">
-                      <h4 className="font-bold text-[#1967D2] mb-2 text-sm">Explicit Functions: z = f(x, y)</h4>
+                      <h3 className="font-bold text-[#1967D2] mb-2 text-sm">Explicit Functions: z = f(x, y)</h3>
                       <p className="text-xs text-[#5F6368]">These are the most common. For every (x, y) pair, there is exactly one z value. Examples: <code>z = sin(x)*cos(y)</code>. Our <strong>3D plot calculator</strong> renders these as continuous colored mesh surfaces.</p>
                     </div>
                     <div className="p-4 border border-[#DADCE0] rounded-lg">
-                      <h4 className="font-bold text-[#202124] mb-2 text-sm">Implicit Surfaces: f(x, y, z) = 0</h4>
+                      <h3 className="font-bold text-[#202124] mb-2 text-sm">Implicit Surfaces: f(x, y, z) = 0</h3>
                       <p className="text-xs text-[#5F6368]">These define surfaces where the equation holds true, like a sphere: <code>x²+y²+z²=16</code>. Not all (x, y) pairs have a z value. Our engine uses the Marching Cubes algorithm to render these accurately.</p>
                     </div>
                   </div>
@@ -137,26 +137,26 @@ export default function ThreeDPage() {
               </div>
 
               <div className="mt-12 pt-8 border-t border-[#F1F3F4]">
-                <h3 className="text-xl font-black text-[#202124] mb-6">Engineering Applications of 3D Graphing</h3>
+                <h2 className="text-xl font-black text-[#202124] mb-6">Engineering Applications of 3D Graphing</h2>
                 <p className="text-sm text-[#5F6368] mb-6">Professional engineers and researchers use <strong>plotter 3D online</strong> tools daily for practical design work. Here are the most important real-world applications:</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="p-5 bg-[#F8F9FA] rounded-xl border border-[#DADCE0]">
-                    <h4 className="font-bold text-[#202124] mb-2 text-sm">Structural Engineering</h4>
+                    <h3 className="font-bold text-[#202124] mb-2 text-sm">Structural Engineering</h3>
                     <p className="text-xs text-[#5F6368]">Saddle surfaces (hyperbolic paraboloids) are used in roof designs because they carry load efficiently in both tension and compression.</p>
                   </div>
                   <div className="p-5 bg-[#F8F9FA] rounded-xl border border-[#DADCE0]">
-                    <h4 className="font-bold text-[#202124] mb-2 text-sm">Signal Processing</h4>
+                    <h3 className="font-bold text-[#202124] mb-2 text-sm">Signal Processing</h3>
                     <p className="text-xs text-[#5F6368]">The 3D sinc function <code>sin(r)/r</code> is the foundation of digital filter design. Visualizing it in 3D helps engineers understand frequency response.</p>
                   </div>
                   <div className="p-5 bg-[#F8F9FA] rounded-xl border border-[#DADCE0]">
-                    <h4 className="font-bold text-[#202124] mb-2 text-sm">Machine Learning</h4>
+                    <h3 className="font-bold text-[#202124] mb-2 text-sm">Machine Learning</h3>
                     <p className="text-xs text-[#5F6368]">Loss functions in neural networks are complex 3D surfaces with saddle points. Gradient descent is literally moving downhill on these surfaces.</p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-12 pt-8 border-t border-[#F1F3F4]">
-                <h3 className="text-xl font-black text-[#202124] mb-6">Frequently Asked Questions</h3>
+                <h2 className="text-xl font-black text-[#202124] mb-6">Frequently Asked Questions</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {[
                     { q: 'Is this 3D graphing calculator free?', a: 'Yes. NepaCalc\'s 3D graph calculator is completely free with no signup, no watermarks, and no limits on the number of functions you can plot.' },
@@ -167,7 +167,7 @@ export default function ThreeDPage() {
                     { q: 'What browsers support the 3D calculator?', a: 'Any modern browser (Chrome, Firefox, Safari, Edge) supports WebGL, which powers the 3D rendering. Mobile browsers are also fully supported.' },
                   ].map((faq, i) => (
                     <div key={i} className="space-y-2">
-                      <h4 className="text-sm font-bold text-[#202124]">{faq.q}</h4>
+                      <h3 className="text-sm font-bold text-[#202124]">{faq.q}</h3>
                       <p className="text-sm text-[#5F6368] leading-relaxed">{faq.a}</p>
                     </div>
                   ))}
