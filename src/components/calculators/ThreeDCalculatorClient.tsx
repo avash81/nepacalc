@@ -7,7 +7,7 @@ import {
   PerspectiveCamera, OrthographicCamera, Float
 } from '@react-three/drei';
 import * as THREE from 'three';
-import * as math from 'mathjs';
+
 import { 
   Box, RotateCcw, Plus, Minus, Search, Maximize, ChevronRight, ArrowLeft
 } from 'lucide-react';
@@ -212,44 +212,46 @@ function ProfessionalAxis({ bounds, showLabels, showGrid }: { bounds: { x: numbe
   );
 }
 
-function SurfaceMesh({ equation, resolution, color, opacity, params, index, isActive, globalWireframe, sliceMode, slicePos, onRangeReport }: any) {
-  const { geometry, zRange } = useMemo(() => {
-    const size = 16;
-    const meshRes = Math.max(resolution, 100); // Forced High-Fidelity
-    const geo = new THREE.PlaneGeometry(size, size, meshRes, meshRes);
-    const pos = geo.attributes.position.array;
-    let minZ = Infinity;
-    let maxZ = -Infinity;
-
-    try {
-      const cleanExpr = equation.toLowerCase().includes('=') ? equation.split('=')[1] : equation;
-      const compiled = math.compile(cleanExpr);
-      const scope: Record<string, number> = { x: 0, y: 0 };
-      params.forEach((p: Parameter) => { scope[p.name] = p.value; });
-
-      for (let i = 0; i < pos.length; i += 3) {
-        scope.x = pos[i];
-        scope.y = pos[i + 1];
-        const z = compiled.evaluate(scope);
-        pos[i + 2] = z;
-        if (z < minZ) minZ = z;
-        if (z > maxZ) maxZ = z;
-      }
-      geo.computeVertexNormals();
-    } catch (e) {}
-    
-    return { geometry: geo, zRange: { min: minZ, max: maxZ } };
-  }, [equation, resolution, params]);
-
+function WorkerSurfaceMesh({ id, equation, resolution, color, params, globalWireframe, sliceMode, slicePos, onRangeReport, isImplicit, useRadians }: any) {
+  const [geometry, setGeometry] = useState<THREE.BufferGeometry | null>(null);
+  
   useEffect(() => {
-    if (zRange.min !== Infinity && onRangeReport) {
-      onRangeReport({ 
-        x: 8, // Plane size is 16, so half is 8
-        y: 8, 
-        z: Math.max(Math.abs(zRange.min), Math.abs(zRange.max)) 
+    const worker = new Worker(new URL('../../workers/graphWorker', import.meta.url), { type: 'module' });
+    
+    worker.onmessage = (e) => {
+      if (e.data.type === 'success' && e.data.id === id) {
+        const geo = new THREE.BufferGeometry();
+        geo.setAttribute('position', new THREE.Float32BufferAttribute(e.data.positions, 3));
+        geo.setIndex(new THREE.BufferAttribute(e.data.indices, 1));
+        geo.computeVertexNormals();
+        setGeometry(geo);
+        
+        if (onRangeReport && e.data.zRange) {
+          if (isImplicit) {
+             onRangeReport({ x: 6, y: 6, z: 6 });
+          } else if (e.data.zRange.min !== Infinity) {
+             onRangeReport({ x: 8, y: 8, z: Math.max(Math.abs(e.data.zRange.min), Math.abs(e.data.zRange.max)) });
+          }
+        }
+      }
+    };
+
+    const timer = setTimeout(() => {
+      worker.postMessage({
+        id,
+        type: isImplicit ? 'implicit' : 'explicit',
+        equation,
+        resolution,
+        params,
+        useRadians
       });
-    }
-  }, [zRange, onRangeReport]);
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+      worker.terminate();
+    };
+  }, [id, equation, resolution, params, isImplicit, useRadians]);
 
   const clippingPlane = useMemo(() => {
     if (sliceMode === 'none') return null;
@@ -260,180 +262,24 @@ function SurfaceMesh({ equation, resolution, color, opacity, params, index, isAc
     return new THREE.Plane(normal, slicePos);
   }, [sliceMode, slicePos]);
 
+  if (!geometry) return null;
+
+  const isRotated = !isImplicit;
+
   return (
-    <group rotation={[-Math.PI / 2, 0, 0]} position={[0, 0.05, 0]}>
-      {/* SLICE PLANE VISUALIZER */}
-      {sliceMode !== 'none' && (
-        <mesh position={
-          sliceMode === 'x' ? [slicePos, 0, 0] : 
-          sliceMode === 'y' ? [0, slicePos, 0] : 
-          [0, 0, slicePos]
-        } rotation={
-          sliceMode === 'x' ? [0, Math.PI/2, 0] : 
-          sliceMode === 'y' ? [Math.PI/2, 0, 0] : 
-          [0, 0, 0]
-        }>
+    <group rotation={isRotated ? [-Math.PI / 2, 0, 0] : [0, 0, 0]} position={[0, 0.05, 0]}>
+      {sliceMode !== 'none' && !isImplicit && (
+        <mesh position={sliceMode === 'x' ? [slicePos, 0, 0] : sliceMode === 'y' ? [0, slicePos, 0] : [0, 0, slicePos]} rotation={sliceMode === 'x' ? [0, Math.PI/2, 0] : sliceMode === 'y' ? [Math.PI/2, 0, 0] : [0, 0, 0]}>
           <planeGeometry args={[12, 12]} />
           <meshBasicMaterial color="#2563eb" transparent opacity={0.05} side={THREE.DoubleSide} />
           <Grid args={[12, 12]} cellColor="#2563eb" sectionColor="#2563eb" fadeDistance={20} infiniteGrid />
         </mesh>
       )}
-
-      {/* SOLID BASE LAYER, True-Color Matte Finish */}
       <mesh geometry={geometry}>
-        <meshLambertMaterial 
-          color={color}
-          side={THREE.DoubleSide}
-          clippingPlanes={clippingPlane ? [clippingPlane] : []}
-        />
-      </mesh>
-      
-      {/* MATCHED TECHNICAL GRID, Dynamic Tone structural definition */}
-      <mesh geometry={geometry}>
-        <meshBasicMaterial 
-          color={getDarkerColor(color)} 
-          wireframe 
-          transparent 
-          opacity={globalWireframe ? 0.8 : 0.25} 
-          side={THREE.DoubleSide}
-          clippingPlanes={clippingPlane ? [clippingPlane] : []}
-        />
-      </mesh>
-    </group>
-  );
-}
-
-function ImplicitSurfaceMesh({ equation, resolution, color, params, opacity, globalWireframe, sliceMode, slicePos, onRangeReport, useRadians }: any) {
-  useEffect(() => {
-    if (onRangeReport) {
-      onRangeReport({ x: 6, y: 6, z: 6 }); // Implicit is fixed in [-6, 6] box
-    }
-  }, [onRangeReport]);
-
-  const geometry = useMemo(() => {
-    const res = Math.min(resolution, 64); // Increased for smoothness
-    const size = 12;
-    const step = size / res;
-    const halfSize = size / 2;
-    
-    const grid = new Float32Array((res + 1) * (res + 1) * (res + 1));
-    try {
-      const parts = equation.toLowerCase().split('=');
-      const compiled = math.compile(`(${parts[0]}), (${parts[1] || '0'})`);
-      const scope: Record<string, number> = { x: 0, y: 0, z: 0 };
-      params.forEach((p: any) => { scope[p.name.toLowerCase()] = p.value; });
-      
-      // Handle Radians/Degrees conversion for trig functions
-      const config = { 
-        predictable: true,
-        angles: useRadians ? 'radians' : 'degrees'
-      };
-
-      for (let i = 0; i <= res; i++) {
-        for (let j = 0; j <= res; j++) {
-          for (let k = 0; k <= res; k++) {
-            scope.x = -halfSize + i * step;
-            scope.y = -halfSize + j * step;
-            scope.z = -halfSize + k * step;
-            grid[i * (res+1)*(res+1) + j * (res+1) + k] = compiled.evaluate({ x: scope.x, y: scope.z, z: scope.y });
-          }
-        }
-      }
-    } catch (e) { return new THREE.BufferGeometry(); }
-
-    const positions: number[] = [];
-    const indices: number[] = [];
-    const vertexMap = new Int32Array((res + 1) * (res + 1) * (res + 1)).fill(-1);
-    let vCount = 0;
-
-    for (let i = 0; i < res; i++) {
-      for (let j = 0; j < res; j++) {
-        for (let k = 0; k < res; k++) {
-          let hasSurface = false;
-          const v0 = grid[i * (res+1)*(res+1) + j * (res+1) + k] > 0;
-          for (let di=0; di<=1; di++) {
-            for (let dj=0; dj<=1; dj++) {
-              for (let dk=0; dk<=1; dk++) {
-                if ((grid[(i+di)*(res+1)*(res+1) + (j+dj)*(res+1) + (k+dk)] > 0) !== v0) {
-                  hasSurface = true; break;
-                }
-              }
-              if (hasSurface) break;
-            }
-            if (hasSurface) break;
-          }
-          if (hasSurface) {
-            positions.push(-halfSize + (i+0.5) * step, -halfSize + (j+0.5) * step, -halfSize + (k+0.5) * step);
-            vertexMap[i * (res+1)*(res+1) + j * (res+1) + k] = vCount++;
-          }
-        }
-      }
-    }
-
-    for (let i = 0; i < res - 1; i++) {
-      for (let j = 0; j < res - 1; j++) {
-        for (let k = 0; k < res - 1; k++) {
-          const v0 = grid[i * (res+1)*(res+1) + j*(res+1) + k] > 0;
-          if (v0 !== (grid[(i+1)*(res+1)*(res+1) + j*(res+1) + k] > 0)) {
-            const quad = [vertexMap[i*(res+1)*(res+1)+j*(res+1)+k], vertexMap[i*(res+1)*(res+1)+(j-1)*(res+1)+k], vertexMap[i*(res+1)*(res+1)+(j-1)*(res+1)+(k-1)], vertexMap[i*(res+1)*(res+1)+j*(res+1)+(k-1)]];
-            if (quad.every(v => v !== -1)) {
-              if (v0) indices.push(quad[0], quad[1], quad[2], quad[0], quad[2], quad[3]);
-              else indices.push(quad[0], quad[2], quad[1], quad[0], quad[3], quad[2]);
-            }
-          }
-          if (v0 !== (grid[i*(res+1)*(res+1) + (j+1)*(res+1) + k] > 0)) {
-            const quad = [vertexMap[i*(res+1)*(res+1)+j*(res+1)+k], vertexMap[(i-1)*(res+1)*(res+1)+j*(res+1)+k], vertexMap[(i-1)*(res+1)*(res+1)+j*(res+1)+(k-1)], vertexMap[i*(res+1)*(res+1)+j*(res+1)+(k-1)]];
-            if (quad.every(v => v !== -1)) {
-              if (!v0) indices.push(quad[0], quad[1], quad[2], quad[0], quad[2], quad[3]);
-              else indices.push(quad[0], quad[2], quad[1], quad[0], quad[3], quad[2]);
-            }
-          }
-          if (v0 !== (grid[i*(res+1)*(res+1) + j*(res+1) + (k+1)] > 0)) {
-            const quad = [vertexMap[i*(res+1)*(res+1)+j*(res+1)+k], vertexMap[(i-1)*(res+1)*(res+1)+j*(res+1)+k], vertexMap[(i-1)*(res+1)*(res+1)+(j-1)*(res+1)+k], vertexMap[i*(res+1)*(res+1)+(j-1)*(res+1)+k]];
-            if (quad.every(v => v !== -1)) {
-              if (v0) indices.push(quad[0], quad[1], quad[2], quad[0], quad[2], quad[3]);
-              else indices.push(quad[0], quad[2], quad[1], quad[0], quad[3], quad[2]);
-            }
-          }
-        }
-      }
-    }
-
-    const geo = new THREE.BufferGeometry();
-    geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-    geo.setIndex(indices);
-    geo.computeVertexNormals();
-
-    return geo;
-  }, [equation, resolution, params]);
-
-  const clippingPlane = useMemo(() => {
-    if (sliceMode === 'none') return null;
-    const normal = new THREE.Vector3();
-    if (sliceMode === 'x') normal.set(-1, 0, 0);
-    if (sliceMode === 'y') normal.set(0, -1, 0);
-    if (sliceMode === 'z') normal.set(0, 0, -1);
-    return new THREE.Plane(normal, slicePos);
-  }, [sliceMode, slicePos]);
-
-  return (
-    <group position={[0, 0.05, 0]}>
-      <mesh geometry={geometry}>
-        <meshLambertMaterial 
-          color={color}
-          side={THREE.DoubleSide} 
-          clippingPlanes={clippingPlane ? [clippingPlane] : []}
-        />
+        <meshLambertMaterial color={color} side={THREE.DoubleSide} clippingPlanes={clippingPlane ? [clippingPlane] : []} />
       </mesh>
       <mesh geometry={geometry}>
-        <meshBasicMaterial 
-          color={getDarkerColor(color)} 
-          wireframe 
-          transparent 
-          opacity={globalWireframe ? 0.8 : 0.2} 
-          side={THREE.DoubleSide} 
-          clippingPlanes={clippingPlane ? [clippingPlane] : []}
-        />
+        <meshBasicMaterial color={getDarkerColor(color)} wireframe transparent opacity={globalWireframe ? 0.8 : (isImplicit ? 0.2 : 0.25)} side={THREE.DoubleSide} clippingPlanes={clippingPlane ? [clippingPlane] : []} />
       </mesh>
     </group>
   );
@@ -484,8 +330,6 @@ export default function ThreeDCalculatorClient() {
           .map(m => m[0])
           .filter(v => {
             if (v === 'x' || v === 'y' || v === 'z') return false;
-            if (typeof (math as any)[v] === 'function') return false;
-            // Filter out common math constants and operators
             if (['e', 'i', 'p'].includes(v)) return false; 
             return true;
           });
@@ -769,32 +613,20 @@ export default function ThreeDCalculatorClient() {
                                        !lowerEq.startsWith('x =') &&
                                        lowerEq.includes('x') && lowerEq.includes('y') && lowerEq.includes('z');
                       
-                      if (isImplicit) {
-                        return (
-                          <ImplicitSurfaceMesh 
-                            key={graph.id} 
-                            {...graph} 
-                            resolution={resolution} 
-                            params={params} 
-                            globalWireframe={globalWireframe}
-                            sliceMode={sliceMode}
-                            slicePos={slicePos}
-                            onRangeReport={reportRange}
-                            useRadians={useRadians}
-                          />
-                        );
-                      }
-                      
                       return (
-                        <SurfaceMesh 
-                          key={graph.id} 
-                          {...graph} 
+                        <WorkerSurfaceMesh 
+                          key={graph.id}
+                          id={graph.id}
+                          equation={graph.equation}
+                          color={graph.color}
                           resolution={resolution} 
-                          globalWireframe={globalWireframe} 
                           params={params} 
+                          globalWireframe={globalWireframe}
                           sliceMode={sliceMode}
                           slicePos={slicePos}
                           onRangeReport={reportRange}
+                          useRadians={useRadians}
+                          isImplicit={isImplicit}
                         />
                       );
                     })}

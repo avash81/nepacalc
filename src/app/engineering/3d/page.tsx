@@ -1,7 +1,22 @@
 import { calcMeta } from '@/lib/calcMeta';
 import { JsonLd } from '@/components/seo/JsonLd';
-import ThreeDCalculatorClient from '@/components/calculators/ThreeDCalculatorClient';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
+
+const ThreeDCalculatorClient = dynamic(
+  () => import('@/components/calculators/ThreeDCalculatorClient'),
+  { 
+    ssr: false, 
+    loading: () => (
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-6 min-h-[650px] items-center justify-center bg-[#f8fafc]">
+        <div className="animate-pulse flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-slate-500 font-bold text-sm uppercase tracking-widest">Loading 3D Engine...</p>
+        </div>
+      </div>
+    )
+  }
+);
 
 export const metadata = calcMeta({
   title: '3D Graph Calculator | 3D Plot Calculator Online',
