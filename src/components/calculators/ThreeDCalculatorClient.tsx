@@ -543,7 +543,7 @@ export default function ThreeDCalculatorClient() {
                 {CURRICULUM_PRESETS.map(p => (
                   <button aria-label={p.name} key={p.name} 
                     onClick={() => addGraph(p.eq, p.color)} 
-                    className="h-9 flex items-center justify-center bg-[#0f172a] hover:bg-slate-800 text-[#202124] text-[8px] font-black rounded transition-all uppercase tracking-wider px-1"
+                    className="h-9 flex items-center justify-center bg-[#0f172a] hover:bg-slate-800 text-white text-[8px] font-black rounded transition-all uppercase tracking-wider px-1"
                   >
                     {p.name}
                   </button>
