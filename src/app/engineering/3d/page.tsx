@@ -294,6 +294,7 @@ export default function ThreeDPage() {
 
       <div className="max-w-[1280px] mx-auto px-4 mt-8 pb-4">
         <h1 className="text-3xl lg:text-4xl font-black text-[#202124] mb-4 text-center">3D Graph Calculator Free Online 3D Plotter & Surface Grapher</h1>
+        <p className="text-sm font-semibold text-center text-[#1967D2] mb-6 uppercase tracking-wider">Last Updated: June 2026</p>
         <p className="text-lg text-center leading-relaxed text-[#5F6368] max-w-4xl mx-auto">
           Plot mathematical equations, visualize 3D surfaces, and explore multivariable functions with NepaCalc's free <strong>3D Graph Calculator</strong>. Whether you're graphing explicit functions, implicit surfaces, engineering models, or calculus equations, this interactive <strong>3D graphing calculator</strong> (and online 3D function grapher) lets you rotate, zoom, compare multiple equations, and analyze complex mathematical surfaces directly in your browser. Designed for students, engineers, educators, researchers, and professionals, it provides fast, accurate, browser-based 3D visualization without requiring software installation.
         </p>
@@ -383,7 +384,7 @@ export default function ThreeDPage() {
                   </p>
                 </div>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
-                  A <strong>3D Graph Calculator</strong> is an interactive mathematical visualization tool that converts equations into three-dimensional graphs, allowing users to explore functions, surfaces, and geometric objects in real time. Unlike a traditional two-dimensional graphing calculator that displays relationships between only the X and Y axes, a 3D graphing calculator introduces a third dimension (the Z-axis) making it possible to visualize complex mathematical surfaces, engineering models, <Link href="/math-tools/scientific" className="text-[#1967D2] hover:underline">scientific</Link> data, and multivariable functions.
+                  A <strong>3D Graph Calculator</strong> is an interactive mathematical visualization tool that converts equations into three-dimensional graphs, allowing users to explore functions, surfaces, and <Link href="/engineering/geometry" className="text-[#1967D2] hover:underline font-medium">geometric objects</Link> in real time. Unlike a traditional two-dimensional graphing calculator that displays relationships between only the X and Y axes, a 3D graphing calculator introduces a third dimension (the Z-axis) making it possible to visualize complex mathematical surfaces, engineering models, <Link href="/math-tools/scientific" className="text-[#1967D2] hover:underline">scientific</Link> data, and multivariable functions.
                 </p>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
                   Instead of reading equations as abstract mathematical expressions, users can instantly transform them into interactive models that can be rotated, zoomed, sliced, and examined from every angle. This visual approach makes complex concepts significantly easier to understand while helping students, educators, engineers, architects, researchers, and scientists analyze mathematical relationships that cannot be represented on a flat graph.
@@ -566,7 +567,8 @@ export default function ThreeDPage() {
                 </p>
 
                 {/* ── Part 3B: How to Use the 3D Graph Calculator ── */}
-                <h2 id="how-to-use" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">How to Use the 3D Graph Calculator</h2>
+                <h2 id="how-to-use" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-2">How to Use the 3D Graph Calculator</h2>
+                <div className="bg-[#F8F9FA] border-l-4 border-[#1967D2] p-4 rounded-r-lg mb-6"><p className="text-sm text-[#202124] font-medium leading-relaxed"><strong>What is a 3D Graphing Calculator?</strong> A 3D graphing calculator is an interactive mathematical software tool designed to plot equations and multivariable functions in three dimensions (X, Y, and Z). It allows users to visualize complex mathematical concepts, render geometric surfaces, and interactively rotate models to analyze relationships across multiple axes simultaneously.</p></div>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-8">
                   The NepaCalc <strong>3D Graph Calculator</strong> is designed to make mathematical visualization simple, whether you are plotting your first surface or analyzing advanced engineering equations. Follow the steps below to generate accurate three-dimensional graphs directly in your browser.
                 </p>
@@ -885,7 +887,7 @@ export default function ThreeDPage() {
                         <li>Hydraulic systems</li>
                         <li>Mechanical shafts</li>
                         <li>Storage tanks</li>
-                        <li>Civil engineering</li>
+                        <li><Link href="/calculator/physics-force" className="text-[#1967D2] hover:underline font-medium">Civil engineering</Link></li>
                       </ul>
                     </div>
                   </div>
@@ -1018,7 +1020,8 @@ export default function ThreeDPage() {
                 </p>
 
                 {/* ── Part 5: Learn 3D Graphing ── */}
-                <h2 id="learn-3d-graphing" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Learn 3D Graphing and Mathematical Visualization</h2>
+                <h2 id="learn-3d-graphing" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-2">Learn 3D Graphing and Mathematical Visualization</h2>
+                <div className="bg-[#F8F9FA] border-l-4 border-[#1967D2] p-4 rounded-r-lg mb-6"><p className="text-sm text-[#202124] font-medium leading-relaxed"><strong>What is 3D Mathematical Visualization?</strong> 3D mathematical visualization is the process of converting abstract multivariable functions and coordinate equations into interactive three-dimensional geometric surfaces. This graphical representation aids in understanding spatial relationships, gradients, cross-sections, and topological structures critical for engineering, physics, and advanced calculus applications.</p></div>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   A <strong>3D Graph Calculator</strong> is more than a plotting tool, it is a visual learning environment for understanding higher-dimensional mathematics.
                 </p>
@@ -1295,7 +1298,8 @@ export default function ThreeDPage() {
                 </div>
 
                                 {/* ── Part 6: Real-World Applications ── */}
-                <h2 id="real-world-applications" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Real-World Applications of 3D Graphing</h2>
+                <h2 id="real-world-applications" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-2">Real-World Applications of 3D Graphing</h2>
+                <div className="bg-[#F8F9FA] border-l-4 border-[#1967D2] p-4 rounded-r-lg mb-6"><p className="text-sm text-[#202124] font-medium leading-relaxed"><strong>Why is 3D Graphing Important in the Real World?</strong> 3D graphing is essential in real-world applications for modeling structural stress in engineering, plotting financial risk terrains, simulating fluid dynamics, and rendering computer graphics. By translating data into 3D space, professionals can predict physical behaviors and optimize designs before real-world implementation.</p></div>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   A 3D Graph Calculator is not only a mathematical visualization tool; it is also an essential platform used across engineering, architecture, physics, computer science, finance, medicine, and scientific research.
                 </p>
@@ -1323,7 +1327,7 @@ export default function ThreeDPage() {
                     </div>
 
                     <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-6">
-                      <h3 className="font-black text-[#202124] text-xl mb-3">Civil Engineering</h3>
+                      <h3 className="font-black text-[#202124] text-xl mb-3"><Link href="/calculator/physics-force" className="text-[#1967D2] hover:underline font-medium">Civil Engineering</Link></h3>
                       <p className="text-[#5F6368] mb-3">Modern civil engineering relies heavily on mathematical surface modelling to identify weak regions and structural deformation before construction begins.</p>
                       <p className="text-sm font-bold text-[#202124] mb-2">Applications include:</p>
                       <ul className="text-sm text-[#5F6368] list-disc pl-4 space-y-1">
@@ -1668,7 +1672,7 @@ export default function ThreeDPage() {
                   </div>
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-5">
                     <p className="font-bold text-[#1967D2] text-lg mb-1">Paraboloid & Torus</p>
-                    <p className="text-[#5F6368] text-sm">A paraboloid is curved from quadratic equations (e.g. satellite dishes). A torus is a donut-shape.</p>
+                    <p className="text-[#5F6368] text-sm">A paraboloid is curved from <Link href="/calculator/quadratic-solver" className="text-[#1967D2] hover:underline font-medium">quadratic equations</Link> (e.g. satellite dishes). A torus is a donut-shape.</p>
                   </div>
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-5">
                     <p className="font-bold text-[#1967D2] text-lg mb-1">Cross Section & Wireframe</p>
@@ -1681,7 +1685,7 @@ export default function ThreeDPage() {
                   Three-dimensional graphing is closely connected to many advanced mathematical topics. Many of these concepts become significantly easier to understand when visualized interactively. To deepen your understanding, explore:
                 </p>
                 <div className="flex flex-wrap gap-2 mb-12">
-                  {['Multivariable Calculus','Vector Calculus','<Link href="/math-tools/matrix" className="text-[#1967D2] hover:underline">Linear Algebra</Link>','Analytical Geometry','Differential Equations','Numerical Methods','Computer Graphics','Engineering Mathematics','Scientific Visualization','Machine Learning Mathematics'].map(t => (
+                  {['Multivariable Calculus','Vector Calculus','<Link href="/math-tools/matrix" className="text-[#1967D2] hover:underline font-medium">Linear Algebra</Link>','Analytical Geometry','Differential Equations','Numerical Methods','Computer Graphics','Engineering Mathematics','Scientific Visualization','Machine Learning Mathematics'].map(t => (
                     <span key={t} className="bg-[#F8F9FA] border border-[#DADCE0] text-[#5F6368] px-3 py-1 rounded-full text-sm">{t}</span>
                   ))}
                 </div>
@@ -1741,7 +1745,7 @@ export default function ThreeDPage() {
                   </div>
                   <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
                     <h3 className="font-bold text-[#202124] text-lg mb-2">Can I use this calculator for university assignments?</h3>
-                    <p className="text-[#5F6368]">Yes. Many university students use interactive graphing tools to better understand multivariable calculus, linear equations, engineering mathematics, differential equations, and <Link href="/math-tools/scientific" className="text-[#1967D2] hover:underline">scientific visualization</Link>.</p>
+                    <p className="text-[#5F6368]">Yes. Many university students use interactive graphing tools to better understand <Link href="/math-tools/calculus" className="text-[#1967D2] hover:underline font-medium">multivariable calculus</Link>, linear equations, <Link href="/engineering" className="text-[#1967D2] hover:underline font-medium">engineering mathematics</Link>, differential equations, and <Link href="/math-tools/scientific" className="text-[#1967D2] hover:underline">scientific visualization</Link>.</p>
                   </div>
                   <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
                     <h3 className="font-bold text-[#202124] text-lg mb-2">Is NepaCalc suitable for beginners?</h3>
@@ -1750,7 +1754,86 @@ export default function ThreeDPage() {
                 </div>
 
                 <div className="bg-[#F0F4FF] border border-[#1967D2] rounded-2xl p-8 mb-12">
-                  <h2 className="text-2xl font-black text-[#1967D2] mb-4">Continue Exploring Mathematics</h2>
+                  
+                {/* ── Related Engineering Topics ── */}
+                <h2 className="text-2xl font-black text-[#202124] mt-16 mb-4">Related Engineering Topics</h2>
+                <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
+                  If you're learning 3D graphing, you may also find these engineering and mathematics tools useful for your calculations:
+                </p>
+                <div className="flex flex-wrap gap-3 mb-16">
+                  <Link href="/calculator/scientific-calculator" className="bg-[#F8F9FA] hover:bg-[#E8F0FE] text-[#1967D2] border border-[#DADCE0] hover:border-[#1967D2] px-4 py-2 rounded-full font-medium transition-colors text-sm">Scientific Calculator</Link>
+                  <Link href="/math-tools/matrix" className="bg-[#F8F9FA] hover:bg-[#E8F0FE] text-[#1967D2] border border-[#DADCE0] hover:border-[#1967D2] px-4 py-2 rounded-full font-medium transition-colors text-sm">Matrix Calculator</Link>
+                  <Link href="/math-tools/geometry" className="bg-[#F8F9FA] hover:bg-[#E8F0FE] text-[#1967D2] border border-[#DADCE0] hover:border-[#1967D2] px-4 py-2 rounded-full font-medium transition-colors text-sm">Geometry Tools</Link>
+                  <Link href="/calculator/physics-force" className="bg-[#F8F9FA] hover:bg-[#E8F0FE] text-[#1967D2] border border-[#DADCE0] hover:border-[#1967D2] px-4 py-2 rounded-full font-medium transition-colors text-sm">Force Calculator</Link>
+                  <Link href="/calculator/unit-converter" className="bg-[#F8F9FA] hover:bg-[#E8F0FE] text-[#1967D2] border border-[#DADCE0] hover:border-[#1967D2] px-4 py-2 rounded-full font-medium transition-colors text-sm">Unit Converter</Link>
+                </div>
+
+                {/* ── Continue Learning ── */}
+                <h2 className="text-2xl font-black text-[#202124] mt-16 mb-6">Continue Learning</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+                  <Link href="/calculator/scientific-calculator" className="flex flex-col p-5 bg-white border border-[#DADCE0] rounded-xl hover:border-[#1967D2] hover:shadow-md transition-all group">
+                    <span className="font-bold text-[#202124] group-hover:text-[#1967D2] mb-1">Scientific Calculator</span>
+                    <span className="text-sm text-[#5F6368]">Perform complex multivariable calculations.</span>
+                  </Link>
+                  <Link href="/math-tools/matrix" className="flex flex-col p-5 bg-white border border-[#DADCE0] rounded-xl hover:border-[#1967D2] hover:shadow-md transition-all group">
+                    <span className="font-bold text-[#202124] group-hover:text-[#1967D2] mb-1">Matrix Calculator</span>
+                    <span className="text-sm text-[#5F6368]">Solve linear algebra and transformations.</span>
+                  </Link>
+                  <Link href="/calculator/quadratic-solver" className="flex flex-col p-5 bg-white border border-[#DADCE0] rounded-xl hover:border-[#1967D2] hover:shadow-md transition-all group">
+                    <span className="font-bold text-[#202124] group-hover:text-[#1967D2] mb-1">Quadratic Solver</span>
+                    <span className="text-sm text-[#5F6368]">Find roots and parabolas instantly.</span>
+                  </Link>
+                  <Link href="/math-tools/geometry" className="flex flex-col p-5 bg-white border border-[#DADCE0] rounded-xl hover:border-[#1967D2] hover:shadow-md transition-all group">
+                    <span className="font-bold text-[#202124] group-hover:text-[#1967D2] mb-1">Geometry Tools</span>
+                    <span className="text-sm text-[#5F6368]">Analyze geometric properties and volumes.</span>
+                  </Link>
+                  <Link href="/calculator/physics-force" className="flex flex-col p-5 bg-white border border-[#DADCE0] rounded-xl hover:border-[#1967D2] hover:shadow-md transition-all group">
+                    <span className="font-bold text-[#202124] group-hover:text-[#1967D2] mb-1">Force Calculator</span>
+                    <span className="text-sm text-[#5F6368]">Calculate tension and structural forces.</span>
+                  </Link>
+                  <Link href="/calculator/unit-converter" className="flex flex-col p-5 bg-white border border-[#DADCE0] rounded-xl hover:border-[#1967D2] hover:shadow-md transition-all group">
+                    <span className="font-bold text-[#202124] group-hover:text-[#1967D2] mb-1">Unit Converter</span>
+                    <span className="text-sm text-[#5F6368]">Convert engineering and scientific units.</span>
+                  </Link>
+                  <Link href="/algebra/linear-equation" className="flex flex-col p-5 bg-white border border-[#DADCE0] rounded-xl hover:border-[#1967D2] hover:shadow-md transition-all group">
+                    <span className="font-bold text-[#202124] group-hover:text-[#1967D2] mb-1">Linear Equation Solver</span>
+                    <span className="text-sm text-[#5F6368]">Solve multi-variable linear systems.</span>
+                  </Link>
+                  <Link href="/engineering" className="flex flex-col p-5 bg-white border border-[#DADCE0] rounded-xl hover:border-[#1967D2] hover:shadow-md transition-all group">
+                    <span className="font-bold text-[#202124] group-hover:text-[#1967D2] mb-1">Engineering Hub</span>
+                    <span className="text-sm text-[#5F6368]">Explore all engineering calculators.</span>
+                  </Link>
+                </div>
+
+                {/* ── Trusted Mathematical References ── */}
+                <div className="bg-slate-900 rounded-2xl p-8 mb-12 shadow-xl border border-slate-700">
+                  <h2 className="text-2xl font-black text-white mb-4">Trusted Mathematical References</h2>
+                  <p className="text-slate-300 mb-6 leading-relaxed">
+                    The following educational references provide authoritative explanations of multivariable calculus, coordinate geometry, engineering mathematics, and scientific visualization concepts discussed throughout this guide.
+                  </p>
+                  <ul className="space-y-4">
+                    <li>
+                      <a href="https://mathworld.wolfram.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-blue-400 hover:text-blue-300 font-medium group transition-colors">
+                        <svg className="w-5 h-5 mr-3 text-slate-500 group-hover:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                        Wolfram MathWorld – 3D Geometry & Mathematical Surfaces
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://ocw.mit.edu" target="_blank" rel="noopener noreferrer" className="flex items-center text-blue-400 hover:text-blue-300 font-medium group transition-colors">
+                        <svg className="w-5 h-5 mr-3 text-slate-500 group-hover:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                        MIT OpenCourseWare – Multivariable Calculus
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://www.nist.gov" target="_blank" rel="noopener noreferrer" className="flex items-center text-blue-400 hover:text-blue-300 font-medium group transition-colors">
+                        <svg className="w-5 h-5 mr-3 text-slate-500 group-hover:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                        NIST – International System of Units (SI)
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <h2 className="text-2xl font-black text-[#1967D2] mb-4">Continue Exploring Mathematics</h2>
                   <p className="text-lg leading-relaxed text-[#202124] mb-4">
                     Mathematics becomes much easier when you can see it.
                   </p>
