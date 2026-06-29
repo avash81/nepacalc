@@ -3,7 +3,7 @@ name: Deploy to cPanel
 on:
   push:
     branches:
-      - main  # Set this to your default branch name
+      - main
 
 jobs:
   build-and-deploy:
@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -33,19 +36,13 @@ jobs:
           NEXT_PUBLIC_FIREBASE_APP_ID: "1:369907965034:web:71504a7c24a9b3690dfe13"
           NEXT_PUBLIC_GA_ID: "G-G78ED8CZ3D"
 
-      - name: FTP Deploy to cPanel
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: 51.79.228.153
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
-          server-dir: public_html/
-          state-name: .ftp-deploy-sync-state-v3.json
-          dangerous-clean-slate: false
-          timeout: 30000
-          exclude: |
-            **/.htaccess
-            **/cgi-bin/**
-            **/.well-known/**
-            **/*.log
+      - name: Commit built output to repo (for cPanel Git pull)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Force-add the out/ folder even though it's in .gitignore
+          git add -f out/
+          git add .cpanel.yml
+          # Only commit if there are actual changes
+          git diff --staged --quiet || git commit -m "ci: update built output [skip ci]"
+          git push origin main
