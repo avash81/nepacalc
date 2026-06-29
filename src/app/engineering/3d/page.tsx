@@ -384,7 +384,7 @@ export default function ThreeDPage() {
                   </p>
                 </div>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
-                  A <strong>3D Graph Calculator</strong> is an interactive mathematical visualization tool that converts equations into three-dimensional graphs, allowing users to explore functions, surfaces, and <Link href="/engineering/geometry" className="text-[#1967D2] hover:underline font-medium">geometric objects</Link> in real time. Unlike a traditional two-dimensional graphing calculator that displays relationships between only the X and Y axes, a 3D graphing calculator introduces a third dimension (the Z-axis) making it possible to visualize complex mathematical surfaces, engineering models, <Link href="/math-tools/scientific" className="text-[#1967D2] hover:underline">scientific</Link> data, and multivariable functions.
+                  A <strong>3D Graph Calculator</strong> is an interactive mathematical visualization tool that converts equations into three-dimensional graphs, allowing users to explore functions, surfaces, and <Link href="/engineering/geometry" className="text-[#1967D2] hover:underline font-medium">geometric objects</Link> in real time. Unlike a traditional two-dimensional graphing calculator that displays relationships between only the X and Y axes, a 3D graphing calculator introduces a third dimension (the Z-axis) making it possible to visualize complex mathematical surfaces, engineering models, scientific data, and multivariable functions.
                 </p>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
                   Instead of reading equations as abstract mathematical expressions, users can instantly transform them into interactive models that can be rotated, zoomed, sliced, and examined from every angle. This visual approach makes complex concepts significantly easier to understand while helping students, educators, engineers, architects, researchers, and scientists analyze mathematical relationships that cannot be represented on a flat graph.
@@ -887,7 +887,7 @@ export default function ThreeDPage() {
                         <li>Hydraulic systems</li>
                         <li>Mechanical shafts</li>
                         <li>Storage tanks</li>
-                        <li><Link href="/calculator/physics-force" className="text-[#1967D2] hover:underline font-medium">Civil engineering</Link></li>
+                        <li>Civil engineering</li>
                       </ul>
                     </div>
                   </div>
@@ -1327,8 +1327,8 @@ export default function ThreeDPage() {
                     </div>
 
                     <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-6">
-                      <h3 className="font-black text-[#202124] text-xl mb-3"><Link href="/calculator/physics-force" className="text-[#1967D2] hover:underline font-medium">Civil Engineering</Link></h3>
-                      <p className="text-[#5F6368] mb-3">Modern civil engineering relies heavily on mathematical surface modelling to identify weak regions and structural deformation before construction begins.</p>
+                      <h3 className="font-black text-[#202124] text-xl mb-3">Civil Engineering</h3>
+                      <p className="text-[#5F6368] mb-3">Modern <Link href="/calculator/physics-force" className="text-[#1967D2] hover:underline font-medium">civil engineering</Link> relies heavily on mathematical surface modelling to identify weak regions and structural deformation before construction begins.</p>
                       <p className="text-sm font-bold text-[#202124] mb-2">Applications include:</p>
                       <ul className="text-sm text-[#5F6368] list-disc pl-4 space-y-1">
                         <li>Bridges and dams</li>
@@ -1423,7 +1423,7 @@ export default function ThreeDPage() {
                     <h3 className="text-lg font-black text-[#202124] mb-4">Basic 3D Functions & Wave Functions</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                       {[
-                        { name: 'Plane', eq: 'z = ax + by + c', app: 'Linear algebra, Optimization' },
+                        { name: 'Plane', eq: 'z = ax + by + c', app: <><Link href="/math-tools/matrix" className="text-[#1967D2] hover:underline font-medium">Linear algebra</Link>, Optimization</> },
                         { name: 'Constant Plane', eq: 'z = c', app: 'Cross sections' },
                         { name: 'Ripple Surface', eq: 'z = sin(√(x²+y²))', app: 'Wave mechanics' },
                         { name: 'Cosine Wave', eq: 'z = cos(x) cos(y)', app: 'Fourier analysis' },
@@ -1676,7 +1676,7 @@ export default function ThreeDPage() {
                   </div>
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-5">
                     <p className="font-bold text-[#1967D2] text-lg mb-1">Cross Section & Wireframe</p>
-                    <p className="text-[#5F6368] text-sm">A slice to analyze internal <Link href="/math-tools/geometry" className="text-[#1967D2] hover:underline">geometry</Link>. Wireframe displays only edges instead of filled polygons.</p>
+                    <p className="text-[#5F6368] text-sm">A slice to analyze internal geometry. Wireframe displays only edges instead of filled polygons.</p>
                   </div>
                 </div>
 
@@ -1685,7 +1685,7 @@ export default function ThreeDPage() {
                   Three-dimensional graphing is closely connected to many advanced mathematical topics. Many of these concepts become significantly easier to understand when visualized interactively. To deepen your understanding, explore:
                 </p>
                 <div className="flex flex-wrap gap-2 mb-12">
-                  {['Multivariable Calculus','Vector Calculus','<Link href="/math-tools/matrix" className="text-[#1967D2] hover:underline font-medium">Linear Algebra</Link>','Analytical Geometry','Differential Equations','Numerical Methods','Computer Graphics','Engineering Mathematics','Scientific Visualization','Machine Learning Mathematics'].map(t => (
+                  {['Multivariable Calculus','Vector Calculus','Linear Algebra','Analytical Geometry','Differential Equations','Numerical Methods','Computer Graphics','Engineering Mathematics','Scientific Visualization','Machine Learning Mathematics'].map(t => (
                     <span key={t} className="bg-[#F8F9FA] border border-[#DADCE0] text-[#5F6368] px-3 py-1 rounded-full text-sm">{t}</span>
                   ))}
                 </div>
