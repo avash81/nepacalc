@@ -582,10 +582,16 @@ export default function ThreeDCalculatorClient() {
                 <Box className="w-4 h-4 text-[#1e40af]" />
                 <h2 className="text-[10px] font-bold text-[#1e40af] uppercase tracking-[0.2em]">3D Surface Visualization</h2>
               </div>
-              <div className="flex items-center gap-4 text-slate-300">
-                <Search className="w-4 h-4 cursor-pointer hover:text-blue-600" />
-                <Search className="w-4 h-4 cursor-pointer hover:text-blue-600" />
-                <Maximize className="w-4 h-4 cursor-pointer hover:text-blue-600" onClick={toggleFullscreen} />
+              <div className="flex items-center gap-3">
+                <button
+                  aria-label={isFullscreen ? 'Exit Fullscreen' : 'View Fullscreen'}
+                  onClick={toggleFullscreen}
+                  title={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen Graph View'}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#1e40af] hover:bg-blue-700 text-white text-[9px] font-bold uppercase tracking-wide transition-all"
+                >
+                  <Maximize className="w-3 h-3" />
+                  {isFullscreen ? 'Exit' : 'Fullscreen'}
+                </button>
               </div>
             </div>
             
@@ -601,9 +607,9 @@ export default function ThreeDCalculatorClient() {
               >
                 <color attach="background" args={['#e2e8f0']} />
                 {isOrthographic ? (
-                  <OrthographicCamera makeDefault position={[20, 20, 20]} zoom={40} near={0.1} far={1000} />
+                  <OrthographicCamera makeDefault position={[12, 12, 12]} zoom={40} near={0.1} far={1000} />
                 ) : (
-                  <PerspectiveCamera makeDefault position={[20, 20, 20]} fov={32} />
+                  <PerspectiveCamera makeDefault position={[12, 12, 12]} fov={45} />
                 )}
                 <Environment preset="studio" />
                 <ContactShadows 
