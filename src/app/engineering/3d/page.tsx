@@ -292,19 +292,6 @@ export default function ThreeDPage() {
 
       <div className="max-w-[1280px] mx-auto px-4 pt-8 pb-4">
         <h1 className="text-3xl lg:text-4xl font-black text-[#202124] mb-4 text-center">3D Graph Calculator Free Online 3D Plotter & Surface Grapher</h1>
-        <figure className="mt-8 mb-12">
-          <img 
-            src="/images/3d-graph-calculator.webp" 
-            alt="Interactive 3D Graph Calculator plotting mathematical surfaces" 
-            width={1600} 
-            height={900} 
-            className="w-full h-auto rounded-xl shadow-lg border border-[#DADCE0]"
-            // Priority image, no lazy loading
-          />
-          <figcaption className="text-center text-sm text-[#5F6368] mt-3">
-            Figure 1. Interactive visualization of mathematical functions in three-dimensional space.
-          </figcaption>
-        </figure>
         <p className="text-lg text-center leading-relaxed text-[#5F6368] max-w-4xl mx-auto">
           Plot mathematical equations, visualize 3D surfaces, and explore multivariable functions with NepaCalc's free <strong>3D Graph Calculator</strong>. Whether you're graphing explicit functions, implicit surfaces, engineering models, or calculus equations, this interactive <strong>3D graphing calculator</strong> (and online 3D function grapher) lets you rotate, zoom, compare multiple equations, and analyze complex mathematical surfaces directly in your browser. Designed for students, engineers, educators, researchers, and professionals, it provides fast, accurate, browser-based 3D visualization without requiring software installation.
         </p>
@@ -412,7 +399,7 @@ export default function ThreeDPage() {
                   </p>
                 </div>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
-                  A <strong>3D Graph Calculator</strong> is an interactive mathematical visualization tool that converts equations into three-dimensional graphs, allowing users to explore functions, surfaces, and geometric objects in real time. Unlike a traditional two-dimensional graphing calculator that displays relationships between only the X and Y axes, a 3D graphing calculator introduces a third dimension—the Z-axis—making it possible to visualize complex mathematical surfaces, engineering models, scientific data, and multivariable functions.
+                  A <strong>3D Graph Calculator</strong> is an interactive mathematical visualization tool that converts equations into three-dimensional graphs, allowing users to explore functions, surfaces, and geometric objects in real time. Unlike a traditional two-dimensional graphing calculator that displays relationships between only the X and Y axes, a 3D graphing calculator introduces a third dimension (the Z-axis) making it possible to visualize complex mathematical surfaces, engineering models, <Link href="/math-tools/scientific" className="text-[#1967D2] hover:underline">scientific</Link> data, and multivariable functions.
                 </p>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
                   Instead of reading equations as abstract mathematical expressions, users can instantly transform them into interactive models that can be rotated, zoomed, sliced, and examined from every angle. This visual approach makes complex concepts significantly easier to understand while helping students, educators, engineers, architects, researchers, and scientists analyze mathematical relationships that cannot be represented on a flat graph.
@@ -627,7 +614,7 @@ export default function ThreeDPage() {
 
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
                     <h3 className="text-xl font-bold text-[#1967D2] mb-3">Step 3 — Adjust Variables Using Interactive Sliders</h3>
-                    <p className="text-[#5F6368] mb-3 text-base">Many mathematical equations contain adjustable parameters. For example: <code className="bg-[#F8F9FA] px-1 rounded">z = a × sin(x)</code> — changing the value of <strong>a</strong> instantly modifies the graph without rewriting the equation. Variable sliders let you investigate amplitude, frequency, scaling, stretching, compression, translation, and engineering constants interactively.</p>
+                    <p className="text-[#5F6368] mb-3 text-base">Many mathematical equations contain adjustable parameters. For example: <code className="bg-[#F8F9FA] px-1 rounded">z = a × sin(x)</code>: changing the value of <strong>a</strong> instantly modifies the graph without rewriting the equation. Variable sliders let you investigate amplitude, frequency, scaling, stretching, compression, translation, and engineering constants interactively.</p>
                   </div>
 
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
@@ -1043,13 +1030,13 @@ export default function ThreeDPage() {
                   ))}
                 </div>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-8">
-                  Simply enter your equation into the calculator, adjust variables using interactive sliders, and visualize the surface instantly in three-dimensional space. Whether you are exploring classroom mathematics, solving engineering problems, conducting <Link href="/math-tools/scientific" className="text-[#1967D2] hover:underline">scientific research</Link>, or experimenting with advanced multivariable functions, the calculator provides an intuitive way to transform equations into interactive visual models.
+                  Simply enter your equation into the calculator, adjust variables using interactive sliders, and visualize the surface instantly in three-dimensional space. Whether you are exploring classroom mathematics, solving engineering problems, conducting scientific research, or experimenting with advanced multivariable functions, the calculator provides an intuitive way to transform equations into interactive visual models.
                 </p>
 
                 {/* ── Part 5: Learn 3D Graphing ── */}
                 <h2 id="learn-3d-graphing" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Learn 3D Graphing and Mathematical Visualization</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
-                  A <strong>3D Graph Calculator</strong> is more than a plotting tool — it is a visual learning environment for understanding higher-dimensional mathematics.
+                  A <strong>3D Graph Calculator</strong> is more than a plotting tool, it is a visual learning environment for understanding higher-dimensional mathematics.
                 </p>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   Instead of interpreting equations only through numbers and symbols, you can instantly transform mathematical expressions into interactive three-dimensional surfaces. This makes abstract concepts easier to understand, analyze, and communicate.
@@ -1326,7 +1313,7 @@ export default function ThreeDPage() {
                                 {/* ── Part 6: Real-World Applications ── */}
                 <h2 id="real-world-applications" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Real-World Applications of 3D Graphing</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
-                  A 3D Graph Calculator is not only a mathematical visualization tool—it is also an essential platform used across engineering, architecture, physics, computer science, finance, medicine, and scientific research.
+                  A 3D Graph Calculator is not only a mathematical visualization tool; it is also an essential platform used across engineering, architecture, physics, computer science, finance, medicine, and scientific research.
                 </p>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   Three-dimensional visualization transforms mathematical equations into practical models that help professionals understand complex systems before they are built or tested. From designing aircraft to predicting weather patterns, 3D mathematical models play a critical role in solving real-world problems.
@@ -1606,7 +1593,7 @@ export default function ThreeDPage() {
                   {/* GeoGebra */}
                   <div className="border border-[#DADCE0] rounded-xl p-6 bg-white shadow-sm">
                     <h3 className="text-xl font-black text-[#202124] mb-2">NepaCalc vs GeoGebra 3D</h3>
-                    <p className="text-[#5F6368] mb-4">GeoGebra is particularly strong for <Link href="/math-tools/geometry" className="text-[#1967D2] hover:underline">geometry</Link> construction and educational demonstrations.</p>
+                    <p className="text-[#5F6368] mb-4">GeoGebra is particularly strong for geometry construction and educational demonstrations.</p>
                     <div className="bg-[#E8F0FE] rounded-lg p-4">
                       <p className="font-bold text-[#1967D2] mb-2">NepaCalc Advantages:</p>
                       <ul className="text-[#5F6368] text-sm list-disc pl-4 space-y-1">
@@ -1697,7 +1684,7 @@ export default function ThreeDPage() {
                   </div>
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-5">
                     <p className="font-bold text-[#1967D2] text-lg mb-1">Paraboloid & Torus</p>
-                    <p className="text-[#5F6368] text-sm">A paraboloid is curved from <Link href="/algebra/quadratic-equation" className="text-[#1967D2] hover:underline">quadratic equations</Link> (e.g. satellite dishes). A torus is a donut-shape.</p>
+                    <p className="text-[#5F6368] text-sm">A paraboloid is curved from quadratic equations (e.g. satellite dishes). A torus is a donut-shape.</p>
                   </div>
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-5">
                     <p className="font-bold text-[#1967D2] text-lg mb-1">Cross Section & Wireframe</p>
@@ -1742,7 +1729,7 @@ export default function ThreeDPage() {
                 <div className="space-y-4 mb-16">
                   <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
                     <h3 className="font-bold text-[#202124] text-lg mb-2">What is a 3D graph calculator?</h3>
-                    <p className="text-[#5F6368]">A 3D graph calculator visualizes mathematical equations in three-dimensional space by plotting surfaces, curves, and <Link href="/geometry" className="text-[#1967D2] hover:underline">geometric objects</Link> using x, y, and z coordinates.</p>
+                    <p className="text-[#5F6368]">A 3D graph calculator visualizes mathematical equations in three-dimensional space by plotting surfaces, curves, and geometric objects using x, y, and z coordinates.</p>
                   </div>
                   <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
                     <h3 className="font-bold text-[#202124] text-lg mb-2">Is NepaCalc free?</h3>
@@ -1770,7 +1757,7 @@ export default function ThreeDPage() {
                   </div>
                   <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
                     <h3 className="font-bold text-[#202124] text-lg mb-2">Can I use this calculator for university assignments?</h3>
-                    <p className="text-[#5F6368]">Yes. Many university students use interactive graphing tools to better understand multivariable calculus, <Link href="/algebra/linear-equation" className="text-[#1967D2] hover:underline">linear equations</Link>, engineering mathematics, differential equations, and scientific visualization.</p>
+                    <p className="text-[#5F6368]">Yes. Many university students use interactive graphing tools to better understand multivariable calculus, linear equations, engineering mathematics, differential equations, and <Link href="/math-tools/scientific" className="text-[#1967D2] hover:underline">scientific visualization</Link>.</p>
                   </div>
                   <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
                     <h3 className="font-bold text-[#202124] text-lg mb-2">Is NepaCalc suitable for beginners?</h3>
