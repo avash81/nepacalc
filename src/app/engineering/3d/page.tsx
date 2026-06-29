@@ -1043,7 +1043,7 @@ export default function ThreeDPage() {
                   ))}
                 </div>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-8">
-                  Simply enter your equation into the calculator, adjust variables using interactive sliders, and visualize the surface instantly in three-dimensional space. Whether you are exploring classroom mathematics, solving engineering problems, conducting <Link href="/math-tools/scientific" className="text-[#1967D2] hover:underline">scientific</Link> research, or experimenting with advanced multivariable functions, the calculator provides an intuitive way to transform equations into interactive visual models.
+                  Simply enter your equation into the calculator, adjust variables using interactive sliders, and visualize the surface instantly in three-dimensional space. Whether you are exploring classroom mathematics, solving engineering problems, conducting <Link href="/math-tools/scientific" className="text-[#1967D2] hover:underline">scientific research</Link>, or experimenting with advanced multivariable functions, the calculator provides an intuitive way to transform equations into interactive visual models.
                 </p>
 
                 {/* ── Part 5: Learn 3D Graphing ── */}
@@ -1697,7 +1697,7 @@ export default function ThreeDPage() {
                   </div>
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-5">
                     <p className="font-bold text-[#1967D2] text-lg mb-1">Paraboloid & Torus</p>
-                    <p className="text-[#5F6368] text-sm">A paraboloid is curved from quadratic equations (e.g. satellite dishes). A torus is a donut-shape.</p>
+                    <p className="text-[#5F6368] text-sm">A paraboloid is curved from <Link href="/algebra/quadratic-equation" className="text-[#1967D2] hover:underline">quadratic equations</Link> (e.g. satellite dishes). A torus is a donut-shape.</p>
                   </div>
                   <div className="bg-white border border-[#DADCE0] rounded-xl p-5">
                     <p className="font-bold text-[#1967D2] text-lg mb-1">Cross Section & Wireframe</p>
@@ -1742,7 +1742,7 @@ export default function ThreeDPage() {
                 <div className="space-y-4 mb-16">
                   <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
                     <h3 className="font-bold text-[#202124] text-lg mb-2">What is a 3D graph calculator?</h3>
-                    <p className="text-[#5F6368]">A 3D graph calculator visualizes mathematical equations in three-dimensional space by plotting surfaces, curves, and geometric objects using x, y, and z coordinates.</p>
+                    <p className="text-[#5F6368]">A 3D graph calculator visualizes mathematical equations in three-dimensional space by plotting surfaces, curves, and <Link href="/geometry" className="text-[#1967D2] hover:underline">geometric objects</Link> using x, y, and z coordinates.</p>
                   </div>
                   <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
                     <h3 className="font-bold text-[#202124] text-lg mb-2">Is NepaCalc free?</h3>
@@ -1770,7 +1770,7 @@ export default function ThreeDPage() {
                   </div>
                   <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
                     <h3 className="font-bold text-[#202124] text-lg mb-2">Can I use this calculator for university assignments?</h3>
-                    <p className="text-[#5F6368]">Yes. Many university students use interactive graphing tools to better understand multivariable calculus, engineering mathematics, differential equations, and scientific visualization.</p>
+                    <p className="text-[#5F6368]">Yes. Many university students use interactive graphing tools to better understand multivariable calculus, <Link href="/algebra/linear-equation" className="text-[#1967D2] hover:underline">linear equations</Link>, engineering mathematics, differential equations, and scientific visualization.</p>
                   </div>
                   <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
                     <h3 className="font-bold text-[#202124] text-lg mb-2">Is NepaCalc suitable for beginners?</h3>
