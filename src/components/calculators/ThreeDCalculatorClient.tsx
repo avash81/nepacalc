@@ -303,6 +303,26 @@ export default function ThreeDCalculatorClient() {
   const [isOrthographic, setIsOrthographic] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [useRadians, setUseRadians] = useState(true);
+    const [isFullscreen, setIsFullscreen] = useState(false);
+    const fullscreenContainerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      const handleFullscreenChange = () => {
+        setIsFullscreen(!!document.fullscreenElement);
+      };
+      document.addEventListener('fullscreenchange', handleFullscreenChange);
+      return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    }, []);
+
+    const toggleFullscreen = () => {
+      if (!document.fullscreenElement) {
+        fullscreenContainerRef.current?.requestFullscreen().catch(err => {
+          console.error(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+      } else {
+        document.exitFullscreen();
+      }
+    };
   const [cameraZoom, setCameraZoom] = useState(1);
   const [activeInputId, setActiveInputId] = useState<string | null>(null);
   
@@ -556,7 +576,7 @@ export default function ThreeDCalculatorClient() {
 
         {/* MAIN VIEWPORT AREA */}
         <div className="flex-1 flex flex-col gap-6">
-          <div className="bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm flex flex-col h-[650px]">
+          <div ref={fullscreenContainerRef} className={`bg-white border border-slate-200 rounded-sm overflow-hidden shadow-sm flex flex-col ${isFullscreen ? 'fixed inset-0 z-[100] w-screen h-screen' : 'h-[650px]'}`}>
             <div className="bg-[#f8fafc] border-b border-slate-200 px-6 py-3 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Box className="w-4 h-4 text-[#1e40af]" />
@@ -565,7 +585,7 @@ export default function ThreeDCalculatorClient() {
               <div className="flex items-center gap-4 text-slate-300">
                 <Search className="w-4 h-4 cursor-pointer hover:text-blue-600" />
                 <Search className="w-4 h-4 cursor-pointer hover:text-blue-600" />
-                <Maximize className="w-4 h-4 cursor-pointer hover:text-blue-600" />
+                <Maximize className="w-4 h-4 cursor-pointer hover:text-blue-600" onClick={toggleFullscreen} />
               </div>
             </div>
             
@@ -640,7 +660,7 @@ export default function ThreeDCalculatorClient() {
                     cellThickness={1}
                   />
                 </Suspense>
-                <CameraControls ref={controlsRef} />
+                <CameraControls ref={controlsRef} makeDefault />
               </Canvas>
               
               {/* STUDIO CONTROLS, FLOATING PANEL */}

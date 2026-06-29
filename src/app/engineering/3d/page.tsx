@@ -28,7 +28,7 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: '3D Graph Calculator – Free Online 3D Plotter, Surface & Function Grapher',
+  title: '3D Graph Calculator Free Online 3D Plotter, Surface & Function Grapher',
   description: "Plot 3D functions, surfaces, equations and mathematical models using NepaCalc's free 3D Graph Calculator. Visualize spheres, paraboloids, saddle surfaces, Gaussian functions, parametric equations and engineering graphs instantly.",
   applicationName: 'NepaCalc 3D Graph Calculator',
   generator: '', // Removing Next.js generator by overriding it
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    title: '3D Graph Calculator – Free Online 3D Plotter',
+    title: '3D Graph Calculator Free Online 3D Plotter',
     description: "Plot 3D functions, surfaces and engineering graphs instantly using NepaCalc's interactive 3D Graph Calculator.",
     url: 'https://nepacalc.com/engineering/3d/',
     siteName: 'NepaCalc',
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '3D Graph Calculator – Free Online 3D Plotter',
+    title: '3D Graph Calculator Free Online 3D Plotter',
     description: 'Visualize mathematical surfaces, engineering models and 3D equations online.',
     images: ['https://nepacalc.com/images/3d-graph-calculator-og.webp'],
   },
@@ -291,7 +291,7 @@ export default function ThreeDPage() {
       />
 
       <div className="max-w-[1280px] mx-auto px-4 pt-8 pb-4">
-        <h1 className="text-3xl lg:text-4xl font-black text-[#202124] mb-4 text-center">3D Graph Calculator – Free Online 3D Plotter & Surface Grapher</h1>
+        <h1 className="text-3xl lg:text-4xl font-black text-[#202124] mb-4 text-center">3D Graph Calculator Free Online 3D Plotter & Surface Grapher</h1>
         <figure className="mt-8 mb-12">
           <img 
             src="/images/3d-graph-calculator.webp" 
