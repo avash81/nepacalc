@@ -311,6 +311,22 @@ export default function ThreeDPage() {
       </div>
 
       <ThreeDCalculatorClient />
+      
+      <div className="max-w-[1280px] mx-auto px-4 mt-8">
+        <figure className="mb-12">
+            <img 
+              src="/images/3d-graph-calculator.webp" 
+              alt="Example of an interactive 3D Graph Calculator plotting mathematical surfaces" 
+              width={1600} 
+              height={900} 
+              className="w-full h-auto rounded-xl shadow-lg border border-[#DADCE0]"
+              loading="lazy"
+            />
+            <figcaption className="text-center text-sm text-[#5F6368] mt-3">
+              Figure 1. Example visualization of mathematical functions plotted using the 3D Graph Calculator above.
+            </figcaption>
+        </figure>
+      </div>
 
       <section className="max-w-[1280px] mx-auto px-4 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-8">
