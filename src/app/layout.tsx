@@ -83,8 +83,15 @@ const globalSchema = {
       "image": "https://nepacalc.com/logo.png",
       "sameAs": [
         "https://www.facebook.com/nepacalc",
-        "https://twitter.com/nepacalc"
-      ]
+        "https://twitter.com/nepacalc",
+        "https://www.linkedin.com/company/nepacalc"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "url": "https://nepacalc.com/contact",
+        "email": "support@nepacalc.com"
+      }
     },
     {
       "@type": "WebSite",

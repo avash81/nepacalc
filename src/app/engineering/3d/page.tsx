@@ -136,7 +136,7 @@ export default function ThreeDPage() {
                 "@id": "https://nepacalc.com/images/3d-graph-calculator-preview.webp"
               },
               "datePublished": "2026-06-20",
-              "dateModified": "2026-06-20"
+              "dateModified": new Date().toISOString().split('T')[0]
             },
             {
               "@context": "https://schema.org",
@@ -176,7 +176,7 @@ export default function ThreeDPage() {
                 "@id": "https://nepacalc.com/#organization"
               },
               "datePublished": "2026-06-20",
-              "dateModified": "2026-06-20",
+              "dateModified": new Date().toISOString().split("T")[0],
               "about": [
                 "3D Graphing",
                 "Engineering Mathematics",
@@ -209,18 +209,77 @@ export default function ThreeDPage() {
                 {
                   "@type": "Question",
                   "name": "What is a 3D Graph Calculator?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "A 3D Graph Calculator is an interactive tool used to visualize mathematical equations, engineering surfaces and multivariable functions in three-dimensional space."
-                  }
+                  "acceptedAnswer": { "@type": "Answer", "text": "A 3D Graph Calculator is an interactive tool used to visualize mathematical equations, engineering surfaces and multivariable functions in three-dimensional space using x, y, and z coordinates." }
                 },
                 {
                   "@type": "Question",
-                  "name": "Is NepaCalc free?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. The NepaCalc 3D Graph Calculator is completely free and works directly in your web browser."
-                  }
+                  "name": "Is the NepaCalc 3D Graph Calculator free?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Yes. The NepaCalc 3D Graph Calculator is completely free and works directly in your web browser with no registration required." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Can I plot multiple equations simultaneously?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can add multiple equations and compare their shapes simultaneously using different colors on the same graph." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Does the calculator support implicit surfaces?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Yes, it supports rendering complex implicit surfaces where equations involve x, y, and z simultaneously." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Can I graph parametric surfaces?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Yes, parametric surfaces defined by parameters u and v can be visualized within the WebGL rendering engine." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Does it work on mobile devices?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Yes, the calculator is fully responsive and supports smartphones and tablets with touch-based rotation and zoom." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Which browsers are supported?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "All modern browsers including Chrome, Edge, Firefox, Safari, Brave, and Opera are supported." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Does it require WebGL?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Yes, WebGL is required for rendering hardware-accelerated 3D graphics. WebGL is enabled by default in all modern browsers." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Is this calculator suitable for university students?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Yes. Many university students use it to better understand multivariable calculus, linear algebra, and engineering mathematics courses." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Can I visualize engineering models?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Yes, preset formulas include models commonly used in structural engineering, fluid dynamics, and mechanics." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What mathematical functions are supported?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "It supports trigonometric, exponential, logarithmic, polynomial, and complex multivariable mathematical functions." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Can I zoom and rotate graphs?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Yes. Simply drag with your mouse or use touch controls to rotate, and scroll or pinch to zoom in real time." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How accurate are the plotted surfaces?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "The surfaces are plotted using highly precise numerical meshing algorithms to guarantee mathematical accuracy for all equations." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is a parametric surface?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "A parametric surface is a surface defined by two parameters, u and v, expressed as three equations for x, y, and z. Examples include the torus, sphere, and helix." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is the difference between implicit and explicit 3D equations?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "An explicit equation expresses z as a function of x and y (e.g., z = x² + y²). An implicit equation defines a relationship between x, y, and z (e.g., x² + y² + z² = r²) without solving for one variable." }
                 }
               ]
             },
@@ -376,6 +435,20 @@ export default function ThreeDPage() {
               <article className="prose prose-slate max-w-none">
 
                 {/* ── Part 3A: What is a 3D Graph Calculator? ── */}
+
+                {/* ── What You'll Learn ── */}
+                <div className="bg-[#E8F0FE] border border-[#1967D2] rounded-xl p-6 mb-12">
+                  <h2 className="text-2xl font-black text-[#1967D2] mb-4">What You'll Learn</h2>
+                  <p className="text-[#202124] font-medium mb-4">After using this calculator you will be able to:</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {['Plot three-dimensional mathematical surfaces', 'Understand multivariable functions', 'Visualize Cartesian and parametric equations', 'Explore engineering geometry', 'Analyze vector fields', 'Study optimization surfaces', 'Improve understanding of multivariable calculus'].map(item => (
+                      <div key={item} className="flex items-start gap-2 text-sm text-[#202124]">
+                        <span className="text-[#1967D2] mt-0.5">✔</span>
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
                 <h2 id="what-is-3d-calculator" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">What is a 3D Graph Calculator?</h2>
                 <div className="bg-[#F8F9FA] border-l-4 border-[#1967D2] p-4 mb-6 rounded-r-lg">
@@ -1005,6 +1078,30 @@ export default function ThreeDPage() {
                 </div>
 
                 {/* ── Create Your Own ── */}
+                {/* ── Common 3D Mathematical Surfaces ── */}
+                <h2 className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Common 3D Mathematical Surfaces</h2>
+                <div className="overflow-x-auto mb-12">
+                  <table className="w-full border-collapse border border-[#DADCE0] text-left text-sm shadow-sm">
+                    <thead className="bg-[#F8F9FA] text-[#202124]">
+                      <tr>
+                        <th className="p-3 border border-[#DADCE0]">Surface</th>
+                        <th className="p-3 border border-[#DADCE0]">Formula</th>
+                        <th className="p-3 border border-[#DADCE0]">Common Applications</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-[#5F6368]">
+                      <tr><td className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Sphere</td><td className="p-3 border border-[#DADCE0] font-mono">x²+y²+z²=r²</td><td className="p-3 border border-[#DADCE0]">Geometry, Physics</td></tr>
+                      <tr className="bg-[#F8F9FA]"><td className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Cylinder</td><td className="p-3 border border-[#DADCE0] font-mono">x²+y²=r²</td><td className="p-3 border border-[#DADCE0]">Engineering</td></tr>
+                      <tr><td className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Cone</td><td className="p-3 border border-[#DADCE0] font-mono">z=√(x²+y²)</td><td className="p-3 border border-[#DADCE0]">Architecture</td></tr>
+                      <tr className="bg-[#F8F9FA]"><td className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Torus</td><td className="p-3 border border-[#DADCE0] font-mono">Parametric</td><td className="p-3 border border-[#DADCE0]">CAD, Topology</td></tr>
+                      <tr><td className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Hyperboloid</td><td className="p-3 border border-[#DADCE0] font-mono">Quadratic Surface</td><td className="p-3 border border-[#DADCE0]">Structural Engineering</td></tr>
+                      <tr className="bg-[#F8F9FA]"><td className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Saddle Surface</td><td className="p-3 border border-[#DADCE0] font-mono">Hyperbolic Paraboloid</td><td className="p-3 border border-[#DADCE0]">Optimization</td></tr>
+                      <tr><td className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Gaussian Surface</td><td className="p-3 border border-[#DADCE0] font-mono">e^-(x²+y²)</td><td className="p-3 border border-[#DADCE0]">Statistics</td></tr>
+                      <tr className="bg-[#F8F9FA]"><td className="p-3 border border-[#DADCE0] font-bold text-[#202124]">Wave Surface</td><td className="p-3 border border-[#DADCE0] font-mono">sin(x)cos(y)</td><td className="p-3 border border-[#DADCE0]">Physics</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+
                 <h2 id="custom-equations" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Create Your Own Mathematical Surface</h2>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
                   While the built-in presets demonstrate the most common mathematical models, the NepaCalc <strong>3D Graph Calculator</strong> also allows you to create completely custom equations.
@@ -1298,6 +1395,27 @@ export default function ThreeDPage() {
                 </div>
 
                                 {/* ── Part 6: Real-World Applications ── */}
+                {/* ── Software Features ── */}
+                <h2 className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Software Features</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+                  {[
+                    { feature: 'Implicit Surfaces', status: '✅' },
+                    { feature: 'Parametric Surfaces', status: '✅' },
+                    { feature: 'Cartesian Graphing', status: '✅' },
+                    { feature: 'Interactive Rotation', status: '✅' },
+                    { feature: 'Zoom Controls', status: '✅' },
+                    { feature: 'Lighting Effects', status: '✅' },
+                    { feature: 'Wireframe Mode', status: '✅' },
+                    { feature: 'Grid Display', status: '✅' },
+                    { feature: 'Real-time Rendering', status: '✅' }
+                  ].map(item => (
+                    <div key={item.feature} className="flex justify-between items-center bg-[#F8F9FA] border border-[#DADCE0] rounded-lg px-4 py-3">
+                      <span className="font-medium text-[#202124]">{item.feature}</span>
+                      <span>{item.status}</span>
+                    </div>
+                  ))}
+                </div>
+
                 <h2 id="real-world-applications" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-2">Real-World Applications of 3D Graphing</h2>
                 <div className="bg-[#F8F9FA] border-l-4 border-[#1967D2] p-4 rounded-r-lg mb-6"><p className="text-sm text-[#202124] font-medium leading-relaxed"><strong>Why is 3D Graphing Important in the Real World?</strong> 3D graphing is essential in real-world applications for modeling structural stress in engineering, plotting financial risk terrains, simulating fluid dynamics, and rendering computer graphics. By translating data into 3D space, professionals can predict physical behaviors and optimize designs before real-world implementation.</p></div>
                 <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
@@ -1404,7 +1522,7 @@ export default function ThreeDPage() {
                   <div className="bg-[#E8F0FE] border border-[#1967D2] rounded-xl p-6">
                     <p className="text-[#1967D2] font-semibold text-lg mb-2">Other Key Industries</p>
                     <div className="flex flex-wrap gap-2">
-                      {['Electrical Engineering','Physics','Calculus','Data Science','Medical Science','Robotics','GIS','Financial Mathematics','Scientific Research','Education'].map(t => (
+                      {['Electrical Engineering','Physics','Calculus','Data Science\',\'CAD\',\'MATLAB\',\'Mathematica\',\'Blender\',\'Numerical Analysis\',\'Topology','Medical Science','Robotics','GIS','Financial Mathematics','Scientific Research','Education'].map(t => (
                         <span key={t} className="bg-white border border-[#1967D2] text-[#1967D2] text-sm px-3 py-1 rounded-full">{t}</span>
                       ))}
                     </div>
@@ -1528,6 +1646,39 @@ export default function ThreeDPage() {
                 </div>
 
                 {/* ── Part 9: Comparisons ── */}
+                {/* ── System Requirements & Browser Compatibility ── */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                  <div>
+                    <h2 className="text-2xl font-black text-[#202124] mb-6">System Requirements</h2>
+                    <p className="text-[#5F6368] mb-4">To use the 3D Graph Calculator efficiently:</p>
+                    <ul className="text-[#5F6368] list-disc pl-5 space-y-2">
+                      <li>Modern Web Browser</li>
+                      <li>WebGL Enabled</li>
+                      <li>JavaScript Enabled</li>
+                      <li>Hardware Acceleration Recommended</li>
+                      <li>Stable Internet Connection</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-black text-[#202124] mb-6">Browser Compatibility</h2>
+                    <div className="space-y-2">
+                      {[
+                        { browser: 'Google Chrome', status: '✅ Fully Supported' },
+                        { browser: 'Microsoft Edge', status: '✅ Fully Supported' },
+                        { browser: 'Mozilla Firefox', status: '✅ Fully Supported' },
+                        { browser: 'Safari', status: '✅ Fully Supported' },
+                        { browser: 'Brave', status: '✅ Supported' },
+                        { browser: 'Opera', status: '✅ Supported' }
+                      ].map(item => (
+                        <div key={item.browser} className="flex justify-between bg-white border border-[#DADCE0] rounded-lg px-4 py-2 text-sm">
+                          <span className="font-medium text-[#202124]">{item.browser}</span>
+                          <span className="text-[#5F6368]">{item.status}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
                 <h2 id="comparisons" className="text-2xl lg:text-3xl font-black text-[#202124] mt-16 mb-6">Best 3D Graph Calculators Compared</h2>
                 <div className="overflow-x-auto my-6">
                   <table className="w-full border-collapse border border-[#DADCE0] text-left text-sm shadow-sm">
@@ -1680,13 +1831,10 @@ export default function ThreeDPage() {
                   </div>
                 </div>
 
-                <h2 id="learn-more" className="text-2xl lg:text-3xl font-black text-[#202124] mb-6">Learn More About 3D Mathematics</h2>
-                <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
-                  Three-dimensional graphing is closely connected to many advanced mathematical topics. Many of these concepts become significantly easier to understand when visualized interactively. To deepen your understanding, explore:
-                </p>
+                <h2 id="related-concepts" className="text-2xl lg:text-3xl font-black text-[#202124] mb-6">Related Mathematical Concepts</h2>
                 <div className="flex flex-wrap gap-2 mb-12">
-                  {['Multivariable Calculus','Vector Calculus','Linear Algebra','Analytical Geometry','Differential Equations','Numerical Methods','Computer Graphics','Engineering Mathematics','Scientific Visualization','Machine Learning Mathematics'].map(t => (
-                    <span key={t} className="bg-[#F8F9FA] border border-[#DADCE0] text-[#5F6368] px-3 py-1 rounded-full text-sm">{t}</span>
+                  {['Coordinate Geometry','Linear Algebra','Multivariable Calculus','Differential Geometry','Numerical Analysis','Vector Calculus','Topology','Engineering Mathematics','Finite Element Analysis','Scientific Visualization'].map(t => (
+                    <span key={t} className="bg-[#F8F9FA] border border-[#DADCE0] text-[#5F6368] px-3 py-1 rounded-full text-sm font-medium">{t}</span>
                   ))}
                 </div>
 
@@ -1700,57 +1848,15 @@ export default function ThreeDPage() {
                   ))}
                 </div>
 
-                <h2 id="who-uses" className="text-2xl lg:text-3xl font-black text-[#202124] mb-6">Who Uses a 3D Graph Calculator?</h2>
-                <p className="text-lg leading-relaxed text-[#5F6368] mb-4">
-                  Interactive three-dimensional visualization is valuable across numerous professions. Professionals often rely on graphical visualization to communicate complex mathematical ideas more effectively. Common users include:
-                </p>
+                <h2 id="who-uses" className="text-2xl lg:text-3xl font-black text-[#202124] mb-6">Who Should Use This Calculator?</h2>
+                <p className="text-lg leading-relaxed text-[#5F6368] mb-4">Ideal for:</p>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-12">
-                  {['High school students','University students','Mathematics teachers','Engineering professors','Civil engineers','Mechanical engineers','Electrical engineers','Software developers','Data scientists','Machine learning engineers','Architects','Physicists','Researchers','Financial analysts','Scientific institutions'].map(u => (
-                    <div key={u} className="flex items-start gap-2 text-sm text-[#5F6368]">
-                      <span className="text-[#1967D2] mt-0.5">●</span>
+                  {['Engineering Students','Mathematics Students','Physics Students','Researchers','Teachers','University Lecturers','Architects','CAD Designers','Data Scientists','Scientific Researchers'].map(u => (
+                    <div key={u} className="flex items-start gap-2 text-sm text-[#5F6368] bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-3">
+                      <span className="text-green-600 shrink-0">✔</span>
                       {u}
                     </div>
                   ))}
-                </div>
-
-                <h2 id="faq" className="text-2xl lg:text-3xl font-black text-[#202124] mb-6">Frequently Asked Questions</h2>
-                <div className="space-y-4 mb-16">
-                  <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
-                    <h3 className="font-bold text-[#202124] text-lg mb-2">What is a 3D graph calculator?</h3>
-                    <p className="text-[#5F6368]">A 3D graph calculator visualizes mathematical equations in three-dimensional space by plotting surfaces, curves, and geometric objects using x, y, and z coordinates.</p>
-                  </div>
-                  <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
-                    <h3 className="font-bold text-[#202124] text-lg mb-2">Is NepaCalc free?</h3>
-                    <p className="text-[#5F6368]">Yes. The NepaCalc 3D Graph Calculator is completely free and works directly in your web browser.</p>
-                  </div>
-                  <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
-                    <h3 className="font-bold text-[#202124] text-lg mb-2">Can I graph multiple equations?</h3>
-                    <p className="text-[#5F6368]">Yes. You can add multiple equations and compare their shapes simultaneously using different colors.</p>
-                  </div>
-                  <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
-                    <h3 className="font-bold text-[#202124] text-lg mb-2">Does NepaCalc support engineering equations?</h3>
-                    <p className="text-[#5F6368]">Yes. Engineering presets include saddles, cones, paraboloids, cylinders, spheres, ellipsoids, hyperboloids, and many other commonly studied mathematical surfaces.</p>
-                  </div>
-                  <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
-                    <h3 className="font-bold text-[#202124] text-lg mb-2">Can I rotate and zoom the graph?</h3>
-                    <p className="text-[#5F6368]">Yes. Simply drag with your mouse or touch controls to rotate the model in real time. Zoom controls allow you to inspect both global surface behavior and small local regions.</p>
-                  </div>
-                  <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
-                    <h3 className="font-bold text-[#202124] text-lg mb-2">Does it work on mobile devices and all browsers?</h3>
-                    <p className="text-[#5F6368]">Yes. The calculator is fully responsive and supports all modern browsers including Google Chrome, Microsoft Edge, Mozilla Firefox, Safari, Brave, and Opera. It works on smartphones, tablets, laptops, and desktop computers.</p>
-                  </div>
-                  <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
-                    <h3 className="font-bold text-[#202124] text-lg mb-2">Do I need to install software?</h3>
-                    <p className="text-[#5F6368]">No. Everything runs directly inside your browser using modern WebGL rendering.</p>
-                  </div>
-                  <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
-                    <h3 className="font-bold text-[#202124] text-lg mb-2">Can I use this calculator for university assignments?</h3>
-                    <p className="text-[#5F6368]">Yes. Many university students use interactive graphing tools to better understand <Link href="/math-tools/calculus" className="text-[#1967D2] hover:underline font-medium">multivariable calculus</Link>, linear equations, <Link href="/engineering" className="text-[#1967D2] hover:underline font-medium">engineering mathematics</Link>, differential equations, and <Link href="/math-tools/scientific" className="text-[#1967D2] hover:underline">scientific visualization</Link>.</p>
-                  </div>
-                  <div className="border border-[#DADCE0] rounded-xl p-5 bg-white">
-                    <h3 className="font-bold text-[#202124] text-lg mb-2">Is NepaCalc suitable for beginners?</h3>
-                    <p className="text-[#5F6368]">Absolutely. The calculator includes educational explanations, preset equations, mathematical references, and interactive examples designed for learners at every level.</p>
-                  </div>
                 </div>
 
                 <div className="bg-[#F0F4FF] border border-[#1967D2] rounded-2xl p-8 mb-12">

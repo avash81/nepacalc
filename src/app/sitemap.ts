@@ -14,12 +14,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return `${baseUrl}${path}`.replace(/(https?:\/\/nepacalc\.com)\/+/, '$1/');
   };
   // Use a fixed date for base modified to optimize crawl budget but updated to recent publish date
-  const lastModDate = new Date('2026-06-19T00:00:00Z');
+  const lastModDate = new Date('2026-06-29T00:00:00Z');
 
   // 1. Static Core Pages
   const staticPages = [
     '',
     '/about',
+    '/about/editorial-policy',
+    '/about/math-team',
+    '/changelog',
     '/pricing',
     '/blog',
     '/contact',
@@ -44,10 +47,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: cleanUrl(route),
     lastModified: (route === '/electricity/nepal-unit-price' || route === '/electricity/nea-tariff-rates') ? new Date('2026-06-19T00:00:00Z') : lastModDate,
     changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1.0 : 
-              route === '/directory' ? 0.95 : 
+    priority: route === '' ? 1.0 :
+              route === '/engineering/3d' ? 0.95 :
+              route === '/directory' ? 0.95 :
+              (route === '/about/editorial-policy' || route === '/about/math-team' || route === '/changelog') ? 0.8 :
               (route === '/electricity/nea-tariff-rates' || route === '/electricity/nepal-unit-price') ? 0.85 : 0.85,
   }));
+
+  // Image Sitemap for 3D Graph Calculator Mathematical Surfaces
+  const imageSitemapEntries = [
+    { url: 'https://nepacalc.com/engineering/3d/', images: [
+      { loc: 'https://nepacalc.com/images/math/sphere.webp', caption: '3D Graph of a Sphere', title: '3D Sphere Mathematical Surface' },
+      { loc: 'https://nepacalc.com/images/math/torus.webp', caption: '3D Graph of a Torus', title: '3D Torus Mathematical Surface' },
+      { loc: 'https://nepacalc.com/images/math/cone.webp', caption: '3D Graph of a Cone', title: '3D Cone Mathematical Surface' },
+      { loc: 'https://nepacalc.com/images/math/hyperboloid.webp', caption: '3D Graph of a Hyperboloid', title: '3D Hyperboloid Mathematical Surface' },
+      { loc: 'https://nepacalc.com/images/math/saddle.webp', caption: '3D Saddle Surface Graph', title: '3D Saddle Surface - Hyperbolic Paraboloid' },
+      { loc: 'https://nepacalc.com/images/math/gaussian.webp', caption: '3D Gaussian Surface Graph', title: '3D Gaussian Surface' },
+      { loc: 'https://nepacalc.com/images/math/wireframe.webp', caption: '3D Wireframe Rendering Example', title: '3D Graph Wireframe Mode' },
+      { loc: 'https://nepacalc.com/images/math/coordinate-system.webp', caption: '3D Cartesian Coordinate System', title: '3D Coordinate Axes' },
+    ]},
+  ];
 
   // 2. Canonical Pillar Pages (Hubs)
   const pillarPages = CATEGORIES.map((cat) => {
