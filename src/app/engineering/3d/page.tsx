@@ -290,29 +290,13 @@ export default function ThreeDPage() {
         }}
       />
 
-      <div className="max-w-[1280px] mx-auto px-4 pt-8 pb-4">
+      <ThreeDCalculatorClient />
+
+      <div className="max-w-[1280px] mx-auto px-4 mt-8 pb-4">
         <h1 className="text-3xl lg:text-4xl font-black text-[#202124] mb-4 text-center">3D Graph Calculator Free Online 3D Plotter & Surface Grapher</h1>
         <p className="text-lg text-center leading-relaxed text-[#5F6368] max-w-4xl mx-auto">
           Plot mathematical equations, visualize 3D surfaces, and explore multivariable functions with NepaCalc's free <strong>3D Graph Calculator</strong>. Whether you're graphing explicit functions, implicit surfaces, engineering models, or calculus equations, this interactive <strong>3D graphing calculator</strong> (and online 3D function grapher) lets you rotate, zoom, compare multiple equations, and analyze complex mathematical surfaces directly in your browser. Designed for students, engineers, educators, researchers, and professionals, it provides fast, accurate, browser-based 3D visualization without requiring software installation.
         </p>
-      </div>
-
-      <ThreeDCalculatorClient />
-      
-      <div className="max-w-[1280px] mx-auto px-4 mt-8">
-        <figure className="mb-12">
-            <img 
-              src="/images/3d-graph-calculator.webp" 
-              alt="Example of an interactive 3D Graph Calculator plotting mathematical surfaces" 
-              width={1600} 
-              height={900} 
-              className="w-full h-auto rounded-xl shadow-lg border border-[#DADCE0]"
-              loading="lazy"
-            />
-            <figcaption className="text-center text-sm text-[#5F6368] mt-3">
-              Figure 1. Example visualization of mathematical functions plotted using the 3D Graph Calculator above.
-            </figcaption>
-        </figure>
       </div>
 
       <section className="max-w-[1280px] mx-auto px-4 pb-16">
