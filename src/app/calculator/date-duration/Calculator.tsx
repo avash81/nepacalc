@@ -289,7 +289,7 @@ export default function DateDuration() {
                 <p className="font-bold text-[#202124] text-lg font-mono">Total Days = End Date &minus; Start Date</p>
               </div>
               <p className="text-[#5F6368] text-base leading-relaxed">
-                The calculator then converts the total duration into years, months, weeks, and days for easier interpretation. This approach provides reliable results for age calculations, employment tenure, project planning, contract periods, subscription tracking, and other situations where precise calendar calculations are important.
+                The calculator then converts the total duration into years, months, weeks, and days for easier interpretation. This approach provides reliable results for age calculations, employment tenure, project planning with a <a href="/calculator/time-calculator/" className="text-[#1A73E8] underline hover:no-underline">Time Calculator</a>, contract periods, subscription tracking, and other situations where precise calendar calculations are important.
               </p>
             </section>
 
@@ -480,7 +480,7 @@ export default function DateDuration() {
                   </div>
                 </div>
               </div>
-              <p className="text-sm text-[#5F6368] italic">Always choose the counting method that matches your specific legal, contractual, or business requirements. For calculating only working days, you would need to exclude weekends from this total.</p>
+              <p className="text-sm text-[#5F6368] italic">Always choose the counting method that matches your specific legal, contractual, or business requirements. For calculating only working days, you can use a dedicated <a href="/calculator/business-days/" className="text-[#1A73E8] underline hover:no-underline">Working Days Calculator</a> to exclude weekends from this total.</p>
             </section>
 
             {/* Section: Why Accurate Date Calculations Matter */}
@@ -505,7 +505,7 @@ export default function DateDuration() {
               <div className="space-y-4">
                 <div>
                   <h3 className="font-bold text-[#202124] mb-1">Employment and HR</h3>
-                  <p className="text-sm text-[#5F6368] leading-relaxed">In Nepal, the Labor Act 2074 requires employers to calculate the exact duration of employment to determine gratuity entitlement, severance pay, and leave encashment. Even a single day&apos;s error can result in underpayment or legal disputes. You can verify the final amount using our <a href="/calculator/gratuity/" className="text-[#1A73E8] underline hover:no-underline">Gratuity Calculator</a>.</p>
+                  <p className="text-sm text-[#5F6368] leading-relaxed">In Nepal, the Labor Act 2074 requires employers to calculate the exact duration of employment to determine gratuity entitlement, severance pay, and leave encashment. Even a single day&apos;s error can result in underpayment or legal disputes. Always verify the final amount based on actual dates.</p>
                 </div>
                 <div>
                   <h3 className="font-bold text-[#202124] mb-1">Government Forms and Official Documents</h3>
@@ -517,7 +517,7 @@ export default function DateDuration() {
                 </div>
                 <div>
                   <h3 className="font-bold text-[#202124] mb-1">Insurance and Finance</h3>
-                  <p className="text-sm text-[#5F6368] leading-relaxed">Insurance policy durations, premium due dates, and loan tenure periods require exact date calculations. Missing a deadline by one day could invalidate coverage or increase interest payments.</p>
+                  <p className="text-sm text-[#5F6368] leading-relaxed">Insurance policy durations, premium due dates, and loan tenure periods require exact date calculations. Missing a deadline by one day could invalidate coverage or increase interest payments. For loans, consider verifying terms with a <a href="/calculator/simple-interest/" className="text-[#1A73E8] underline hover:no-underline">Simple Interest Calculator</a>.</p>
                 </div>
               </div>
               <p className="text-[#5F6368] text-base leading-relaxed mt-4">Using an accurate calculator saves time while ensuring reliable calendar-based results.</p>
