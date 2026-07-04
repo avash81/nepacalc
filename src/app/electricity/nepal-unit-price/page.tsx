@@ -141,6 +141,31 @@ export default function NepalElectricityUnitPricePage() {
         "@type": "Question",
         "name": "What is the current electricity price per unit in Nepal?",
         "acceptedAnswer": { "@type": "Answer", "text": "The current electricity price per unit in Nepal generally ranges from Rs. 4 to Rs. 11 per unit (kWh), depending on the progressive slab system." }
+      },
+      {
+        "@type": "Question",
+        "name": "How many watts are in one unit?",
+        "acceptedAnswer": { "@type": "Answer", "text": "One unit equals 1,000 watt-hours. If you have a 1,000-watt device, running it for 1 hour consumes exactly 1 unit." }
+      },
+      {
+        "@type": "Question",
+        "name": "How much electricity does a refrigerator use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A standard refrigerator uses between 1 to 2 units per day, depending on its size and energy efficiency rating." }
+      },
+      {
+        "@type": "Question",
+        "name": "How much electricity does an AC use?",
+        "acceptedAnswer": { "@type": "Answer", "text": "An air conditioner typically uses between 1 to 2.5 units per hour, depending on the ton capacity and whether it is an inverter model." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I estimate my next electricity bill?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Read your current meter, subtract the previous month's reading to find total units consumed, and use our NEA Bill Calculator to get the exact amount." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does my neighbour pay less per unit?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Because Nepal uses a progressive slab tariff, households with lower total consumption are charged at lower per-unit rates. If your neighbour uses less electricity overall, their average cost per unit will be lower." }
       }
     ]
   };
@@ -498,6 +523,65 @@ export default function NepalElectricityUnitPricePage() {
           <hr className="border-dashed border-slate-300 my-8" />
 
           {/* ─────────────────────────────────
+              WHAT IS 1 UNIT OF ELECTRICITY?
+          ───────────────────────────────── */}
+          <section className="mb-10">
+            <h2 className="text-2xl font-black text-[#202124] mb-4">What Is 1 Unit of Electricity?</h2>
+            <p className="text-slate-700 mb-4 text-base leading-relaxed">
+              In simple terms, 1 unit of electricity is equal to exactly 1 kilowatt-hour (1 kWh).
+            </p>
+            <p className="text-slate-700 mb-4 text-base leading-relaxed">
+              To help you understand, here are a few simple examples of what uses exactly 1 unit of electricity:
+            </p>
+            <ul className="list-disc pl-5 space-y-2 text-slate-700 mb-6">
+              <li>A <strong>1000W heater</strong> used for <strong>1 hour</strong></li>
+              <li>A <strong>100W LED bulb</strong> used for <strong>10 hours</strong></li>
+              <li>A <strong>500W appliance</strong> used for <strong>2 hours</strong></li>
+            </ul>
+          </section>
+
+          {/* ─────────────────────────────────
+              WHY ISN'T THERE ONE FIXED PRICE
+          ───────────────────────────────── */}
+          <section className="mb-10">
+            <h2 className="text-2xl font-black text-[#202124] mb-4">Why Isn't There One Fixed Electricity Unit Price in Nepal?</h2>
+            <p className="text-slate-700 mb-4 text-base leading-relaxed">
+              Unlike buying petrol where every litre costs the same, electricity in Nepal uses <strong>slab billing</strong>. This means the <Link href="/electricity/nea-tariff-rates/" className="text-blue-600 hover:underline">NEA Electricity Rate</Link> increases progressively as you use more power.
+            </p>
+            <ul className="list-disc pl-5 space-y-2 text-slate-700 mb-6">
+              <li><strong>Slab Billing:</strong> The first few units are very cheap (to subsidise basic needs), while higher usage is charged at premium rates.</li>
+              <li><strong>Service Charges:</strong> A fixed monthly service charge is added based on your meter capacity (5A, 15A, 30A), which affects your final bill.</li>
+              <li><strong>Meter Capacity:</strong> Different meter types have different applicable rates and charges.</li>
+              <li><strong>Therefore:</strong> Because your rate changes depending on how much you consume, there is no single fixed unit price. Two households with different consumption patterns will have a different average cost per unit.</li>
+            </ul>
+          </section>
+
+          {/* ─────────────────────────────────
+              HOW SLAB BILLING WORKS
+          ───────────────────────────────── */}
+          <section className="mb-10">
+            <h2 className="text-2xl font-black text-[#202124] mb-4">How Slab Billing Works</h2>
+            <p className="text-slate-700 mb-4 text-base leading-relaxed">
+              Every slab is calculated separately. If you consume a high amount of electricity, your bill is calculated in steps rather than multiplying your total units by the highest rate. 
+            </p>
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 mb-6 text-center max-w-md mx-auto">
+              <p className="font-bold text-slate-800 mb-4">Example of Progressive Billing Steps:</p>
+              <div className="flex flex-col items-center justify-center space-y-2 text-sm font-medium text-slate-700">
+                <div className="bg-white border border-slate-200 py-2 px-4 rounded w-48 shadow-sm">First 20 units</div>
+                <div className="text-slate-400">↓</div>
+                <div className="bg-white border border-slate-200 py-2 px-4 rounded w-48 shadow-sm">Next 30 units</div>
+                <div className="text-slate-400">↓</div>
+                <div className="bg-white border border-slate-200 py-2 px-4 rounded w-48 shadow-sm">Next 50 units</div>
+                <div className="text-slate-400">↓</div>
+                <div className="bg-white border border-slate-200 py-2 px-4 rounded w-48 shadow-sm">Remaining units</div>
+              </div>
+            </div>
+            <p className="text-slate-700 text-base leading-relaxed">
+              This explains why two households can have completely different average costs per unit.
+            </p>
+          </section>
+
+          {/* ─────────────────────────────────
               SECTION 1: WHAT IS ONE UNIT
           ───────────────────────────────── */}
           <section id="what-is-one-unit" className="mb-10">
@@ -550,7 +634,7 @@ export default function NepalElectricityUnitPricePage() {
               Lower-consuming households pay lower rates while higher consumption is charged at higher slab rates. This design protects low-income families while ensuring those who use more electricity contribute proportionally more to grid maintenance costs.
             </p>
             <p className="text-slate-700 mb-4">
-              The <strong>1 unit electricity price in Nepal</strong> is not a single fixed value — it is the rate applicable to that specific unit based on where it falls in the consumption slab. To calculate your actual bill accurately, use our <Link href="/calculator/nea-bill/" className="text-blue-600 underline font-semibold">NEA Bill Calculator</Link>.
+              The <strong>1 unit electricity price in Nepal</strong> is not a single fixed value — it is the rate applicable to that specific unit based on where it falls in the consumption slab.
             </p>
           </section>
 
@@ -590,7 +674,7 @@ export default function NepalElectricityUnitPricePage() {
               <strong>* Note:</strong> Low-consumption households using a 5A connection pay Rs. 3.00 per unit for the first slab. However, if their usage is exactly 20 units or less, the energy charge is waived entirely under the lifeline tariff (only the flat Rs. 30 service charge applies).
             </div>
             <p className="text-slate-700 text-sm leading-relaxed">
-              Looking for the complete NEA tariff table? See our <Link href="/electricity/nea-tariff-rates/" className="text-blue-600 font-bold hover:underline">NEA Tariff Rates</Link> guide.
+              The table above applies to standard domestic residential consumers. Meters above 30A follow a separate commercial tariff schedule.
             </p>
           </section>
 
@@ -625,7 +709,7 @@ export default function NepalElectricityUnitPricePage() {
               Because NEA uses progressive slab pricing alongside fixed service charges and VAT, your **average cost per unit** will always be slightly higher than the starting slab rate. As consumption increases, your average cost is pulled upwards.
             </p>
             <div className="bg-slate-50 border-l-4 border-blue-500 p-4 rounded-r-lg text-sm text-slate-700 mb-4">
-              <strong>Example:</strong> If you consume 100 units on a standard 5A meter, your total bill comes out to approximately Rs. 939. This means your **true average cost per unit** is Rs. 9.39 (Rs. 939 ÷ 100 units), even though the lowest base energy charge is Rs. 3.00.
+              <strong>Example:</strong> If you consume 100 units on a standard 5A meter, your total bill comes out to approximately Rs. 939. This means your true average cost per unit is Rs. 9.39 (Rs. 939 ÷ 100 units), even though the lowest base energy charge is Rs. 3.00.
             </div>
           </section>
 
@@ -649,9 +733,14 @@ export default function NepalElectricityUnitPricePage() {
                 <tbody>
                   {[
                     ["20 units", "Rs. 30", "Lifeline tariff rate applies. Only Rs. 30 fixed service charge is billed."],
+                    ["30 units", "~ Rs. 115", "Energy charge + service charge."],
                     ["50 units", "~ Rs. 415", "Rs. 365 energy charge + Rs. 50 service charge. No VAT is applied."],
+                    ["75 units", "~ Rs. 675", "Energy charge + service charge + VAT."],
                     ["100 units", "~ Rs. 939", "Rs. 840 energy charge + Rs. 75 service charge + ~Rs. 24 VAT (5% on units above 50)."],
+                    ["150 units", "~ Rs. 1,450", "Energy charge + service charge + VAT."],
                     ["200 units", "~ Rs. 1,961", "Rs. 1,790 energy charge + Rs. 100 service charge + ~Rs. 71 VAT (5% on units above 50)."],
+                    ["250 units", "~ Rs. 2,475", "Energy charge + service charge + VAT."],
+                    ["300 units", "~ Rs. 3,000+", "Energy charge + service charge + VAT (Highest slab)."],
                   ].map(([a, b, desc], i) => (
                     <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
                       <td className="p-3 border border-slate-200 font-bold">{a}</td>
@@ -663,13 +752,13 @@ export default function NepalElectricityUnitPricePage() {
               </table>
             </div>
             <p className="text-slate-700 text-sm">
-              For a precise calculation including payment rebate and penalty calculations, use our <Link href="/calculator/nea-bill/" className="text-blue-600 hover:underline">NEA Bill Calculator</Link>.
+              The amounts above are estimates. Actual totals depend on your meter category and any applicable rebates or penalties.
             </p>
           </section>
 
           <div className="bg-[#E8F0FE] border border-[#1A73E8] rounded-xl p-5 mb-10 shadow-sm">
             <p className="text-[#202124] text-base font-medium leading-relaxed mb-0">
-              Want to calculate your total electricity bill instead of per-unit rates? Use the <Link href="/calculator/nea-bill/" className="text-blue-700 font-bold underline">NEA Bill Calculator</Link> to get an instant bill breakdown based on current tariff rates.
+              <strong>Note:</strong> The estimates in the table above include only energy charges, service charges, and VAT. Late payment surcharges, if applicable, will increase the final amount shown on your physical NEA bill.
             </p>
           </div>
 
@@ -689,6 +778,9 @@ export default function NepalElectricityUnitPricePage() {
               <li>VAT is <strong>never applied</strong> to the monthly fixed service charge (demand charge).</li>
               <li>Households consuming 50 units or fewer per month pay <strong>zero VAT</strong> on their bill.</li>
             </ul>
+            <p className="text-slate-700 text-sm leading-relaxed">
+              This VAT rule is governed by the <a href="https://www.erc.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Electricity Regulatory Commission (ERC) Nepal</a>. If you need to work out 5% of any amount manually, our <Link href="/calculator/nepal-vat/" className="text-blue-600 hover:underline">Nepal VAT Calculator</Link> can help you verify the exact VAT figure on your energy charge.
+            </p>
           </section>
 
           {/* ─────────────────────────────────
@@ -696,51 +788,77 @@ export default function NepalElectricityUnitPricePage() {
           ───────────────────────────────── */}
           <section id="appliance-cost" className="mb-10">
             <h2 className="text-2xl font-black text-[#202124] mb-4">How Much Electricity Do Common Household Appliances Use?</h2>
-            <p className="text-slate-700 mb-4">Estimated average monthly unit consumption and costs for common household appliances in Nepal:</p>
+            <p className="text-slate-700 mb-4">Understanding how much electricity each appliance consumes helps you stay within a lower slab and reduce your monthly bill. Here is a reference table for common household appliances in Nepal:</p>
             
             <div className="overflow-x-auto mb-5">
               <table className="w-full text-sm border-collapse border border-slate-200">
                 <thead>
                   <tr className="bg-slate-100 text-slate-800">
                     <th className="p-3 border border-slate-200 font-bold text-left">Appliance</th>
-                    <th className="p-3 border border-slate-200 font-bold text-left">Approx Monthly Units</th>
-                    <th className="p-3 border border-slate-200 font-bold text-left">Billing Class</th>
+                    <th className="p-3 border border-slate-200 font-bold text-left">Typical Power (W)</th>
+                    <th className="p-3 border border-slate-200 font-bold text-left">Approx Units Used Per Hour</th>
+                    <th className="p-3 border border-slate-200 font-bold text-left">Example Daily Consumption</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-white">
-                    <td className="p-3 border border-slate-200 font-semibold">Ceiling Fan</td>
-                    <td className="p-3 border border-slate-200">15–30 units</td>
-                    <td className="p-3 border border-slate-200 text-green-700 font-medium">Low consumption</td>
-                  </tr>
-                  <tr className="bg-slate-50">
-                    <td className="p-3 border border-slate-200 font-semibold">LED Television</td>
-                    <td className="p-3 border border-slate-200">8–20 units</td>
-                    <td className="p-3 border border-slate-200 text-green-700 font-medium">Low consumption</td>
-                  </tr>
-                  <tr className="bg-white">
-                    <td className="p-3 border border-slate-200 font-semibold">Refrigerator</td>
-                    <td className="p-3 border border-slate-200">30–60 units</td>
-                    <td className="p-3 border border-slate-200 text-[#003087] font-medium">Medium consumption</td>
-                  </tr>
-                  <tr className="bg-slate-50">
-                    <td className="p-3 border border-slate-200 font-semibold">Rice Cooker</td>
-                    <td className="p-3 border border-slate-200">10–25 units</td>
-                    <td className="p-3 border border-slate-200 text-[#003087] font-medium">Medium consumption</td>
-                  </tr>
-                  <tr className="bg-white">
-                    <td className="p-3 border border-slate-200 font-semibold">Water Heater</td>
-                    <td className="p-3 border border-slate-200">40–120 units</td>
-                    <td className="p-3 border border-slate-200 text-amber-700 font-medium">High consumption</td>
-                  </tr>
-                  <tr className="bg-slate-50">
-                    <td className="p-3 border border-slate-200 font-semibold">Air Conditioner</td>
-                    <td className="p-3 border border-slate-200">80–300 units</td>
-                    <td className="p-3 border border-slate-200 text-red-700 font-medium">Very high consumption</td>
-                  </tr>
+                  {[
+                    ["LED bulb", "10W - 15W", "0.01 - 0.015 units", "6 hours = ~0.06 units"],
+                    ["Ceiling fan", "60W - 75W", "0.06 - 0.075 units", "8 hours = ~0.5 units"],
+                    ["Television", "100W - 150W", "0.1 - 0.15 units", "4 hours = ~0.5 units"],
+                    ["Refrigerator", "150W - 400W", "Cycles automatically", "24 hours = 1 to 2 units"],
+                    ["Desktop computer", "200W - 400W", "0.2 - 0.4 units", "5 hours = ~1.5 units"],
+                    ["Laptop", "40W - 90W", "0.04 - 0.09 units", "Charging = ~0.2 units"],
+                    ["Wi-Fi Router", "10W - 15W", "0.01 - 0.015 units", "24 hours = ~0.3 units"],
+                    ["Rice cooker", "700W - 1000W", "0.7 - 1.0 units", "1 hour = ~0.8 units"],
+                    ["Electric kettle", "1500W - 2000W", "1.5 - 2.0 units", "15 mins = ~0.4 units"],
+                    ["Iron", "1000W - 1500W", "1.0 - 1.5 units", "30 mins = ~0.6 units"],
+                    ["Induction cooker", "1500W - 2000W", "1.5 - 2.0 units", "1 hour = ~1.5 units"],
+                    ["Washing machine", "500W - 1000W", "0.5 - 1.0 units", "1 hour wash = ~0.8 units"],
+                    ["Water heater", "1500W - 3000W", "1.5 - 3.0 units", "1 hour = ~2.0 units"],
+                    ["Air Conditioner", "1000W - 2500W", "1.0 - 2.5 units", "8 hours = 8 to 12 units"],
+                  ].map(([app, power, hr, daily], i) => (
+                    <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
+                      <td className="p-3 border border-slate-200 font-semibold">{app}</td>
+                      <td className="p-3 border border-slate-200">{power}</td>
+                      <td className="p-3 border border-slate-200">{hr}</td>
+                      <td className="p-3 border border-slate-200 text-slate-600 font-medium">{daily}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
+
+            <h2 className="text-2xl font-black text-[#202124] mb-4">Estimated Electricity Cost of Common Appliances</h2>
+            <p className="text-slate-700 mb-4">Based on the units calculated above, here are practical examples of how much certain actions contribute to your total unit consumption. To convert between watts, kilowatts, and other power units, use our <Link href="/calculator/unit-converter/" className="text-blue-600 hover:underline">Unit Converter</Link>:</p>
+            <ul className="list-disc pl-5 space-y-2 text-slate-700 mb-10">
+              <li><strong>Running an AC for 8 hours:</strong> Consumes roughly 8 to 12 units.</li>
+              <li><strong>Running an Induction cooker for 1 hour:</strong> Consumes about 1.5 to 2 units per meal preparation.</li>
+              <li><strong>Running a Refrigerator for 1 day:</strong> Consumes roughly 1.5 units across a 24-hour cycle.</li>
+              <li><strong>Running a Fan for 10 hours:</strong> Consumes around 0.6 to 0.75 units.</li>
+              <li><strong>Running an Iron for 30 minutes:</strong> Consumes about 0.5 to 0.75 units.</li>
+            </ul>
+
+            <h2 className="text-2xl font-black text-[#202124] mb-4">How to Estimate Your Electricity Bill</h2>
+            <p className="text-slate-700 mb-4">Estimating your bill before it arrives is simple. Here is a step-by-step guide:</p>
+            <ol className="list-decimal pl-5 space-y-3 text-slate-700 mb-10">
+              <li><strong>Step 1:</strong> Read your current meter (note down the kWh number).</li>
+              <li><strong>Step 2:</strong> Subtract your previous month's reading from the current number.</li>
+              <li><strong>Step 3:</strong> Calculate total units consumed for the month (the difference).</li>
+              <li><strong>Step 4:</strong> Estimate the bill using the progressive slab rates to see which tiers you hit.</li>
+              <li><strong>Step 5:</strong> For a fully accurate result including service charges and VAT, enter those units into the calculator linked in our navigation above.</li>
+            </ol>
+
+            <h2 className="text-2xl font-black text-[#202124] mb-4">Tips to Reduce Your Monthly Electricity Bill</h2>
+            <p className="text-slate-700 mb-4">Because of the progressive slab system, reducing your consumption by just a few units can drop you into a cheaper slab. Here are practical tips for Nepal, aligned with guidance from the <a href="https://www.nea.org.np" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Nepal Electricity Authority (NEA)</a>:</p>
+            <ul className="list-disc pl-5 space-y-2 text-slate-700 mb-10">
+              <li><strong>Use LED bulbs:</strong> They use significantly less energy than traditional bulbs and last much longer.</li>
+              <li><strong>Switch off appliances instead of standby mode:</strong> TVs and set-top boxes still consume power when turned off via remote. Switch them off at the plug.</li>
+              <li><strong>Maintain refrigerators properly:</strong> Ensure the seals are tight and don't overload it so the compressor works less.</li>
+              <li><strong>Avoid unnecessary water heater use:</strong> If you are considering switching to solar, use our <Link href="/calculator/solar-requirement/" className="text-blue-600 hover:underline">Solar Panel Requirement Calculator</Link> to find out what capacity you need — and don't leave electric geysers turned on 24/7.</li>
+              <li><strong>Use natural daylight whenever possible:</strong> Keep curtains open during the day instead of turning on lights.</li>
+              <li><strong>Purchase energy-efficient appliances:</strong> When buying new ACs or fridges, look for high star ratings or inverter technology.</li>
+              <li><strong>Monitor your usage proactively:</strong> Check your meter reading mid-month and compare it against the slab thresholds so you know when you are about to cross into a higher-priced tier.</li>
+            </ul>
           </section>
 
           <hr className="border-dashed border-slate-300 my-8" />
@@ -761,7 +879,12 @@ export default function NepalElectricityUnitPricePage() {
                 { q: "What is a service charge?", a: "A service charge (also called demand charge) is a fixed monthly fee charged by NEA based on your meter capacity and consumption bracket. It ranges from Rs. 30 to Rs. 200 depending on your meter (5A, 15A, or 30A) and how many units you used." },
                 { q: "How can I calculate my NEA bill?", a: "Use the NepaCalc NEA Bill Calculator to get an instant itemized breakdown of energy charge, service charge, and VAT based on your monthly units and meter size." },
                 { q: "Do electricity bills include VAT?", a: "Yes — a 5% concessional VAT applies to the energy charge on consumption above 50 units per month under the FY 2083/84 rules. The first 50 units are VAT-exempt and VAT is never applied to the service charge." },
-                { q: "What are the latest NEA electricity rates?", a: "The latest rates for FY 2083/84: 0–20 units Rs. 3.00/unit, 21–30 units Rs. 6.50/unit, 31–50 units Rs. 8.00/unit, 51–150 units Rs. 9.50/unit, 151–250 units Rs. 9.50/unit, above 250 units Rs. 11.00/unit." }
+                { q: "What are the latest NEA electricity rates?", a: "The latest rates for FY 2083/84: 0–20 units Rs. 3.00/unit, 21–30 units Rs. 6.50/unit, 31–50 units Rs. 8.00/unit, 51–150 units Rs. 9.50/unit, 151–250 units Rs. 9.50/unit, above 250 units Rs. 11.00/unit." },
+                { q: "How many watts are in one unit?", a: "One unit equals 1,000 watt-hours. If you have a 1,000-watt device, running it for 1 hour consumes exactly 1 unit." },
+                { q: "How much electricity does a refrigerator use?", a: "A standard refrigerator uses between 1 to 2 units per day, depending on its size and energy efficiency rating." },
+                { q: "How much electricity does an AC use?", a: "An air conditioner typically uses between 1 to 2.5 units per hour, depending on the ton capacity and whether it is an inverter model." },
+                { q: "How do I estimate my next electricity bill?", a: "Read your current meter, subtract the previous month's reading to find total units consumed, and use our NEA Bill Calculator to get the exact amount." },
+                { q: "Why does my neighbour pay less per unit?", a: "Because Nepal uses a progressive slab tariff, households with lower total consumption are charged at lower per-unit rates. If your neighbour uses less electricity overall, their average cost per unit will be lower." }
               ].map(({ q, a }, i) => (
                 <details key={i} className="bg-white border border-slate-200 rounded-xl group">
                   <summary className="p-4 font-semibold text-slate-800 cursor-pointer text-sm hover:text-blue-700 list-none flex justify-between items-center">
