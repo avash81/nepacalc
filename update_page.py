@@ -1,269 +1,356 @@
 import re
 
-file_path = "src/app/electricity/nepal-unit-price/page.tsx"
-
-with open(file_path, "r", encoding="utf-8") as f:
+path = 'src/app/engineering/3d/page.tsx'
+with open(path, 'r', encoding='utf-8') as f:
     content = f.read()
 
-# 1. Update Schema
-new_schema = """  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is 1 unit of electricity?",
-        "acceptedAnswer": { "@type": "Answer", "text": "One unit of electricity is exactly equal to one kilowatt-hour (kWh)." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the price of 1 kWh in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "One kilowatt-hour (kWh), also called one unit of electricity, typically costs between Rs. 4 and Rs. 11 depending on consumption slab and meter category." }
-      },
-      {
-        "@type": "Question",
-        "name": "How much does 100 units of electricity cost in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "For a medium-sized family consuming 100 units, the energy charges primarily fall into higher residential slabs, and the effective cost generally ranges between Rs. 8 and Rs. 10 per unit." }
-      },
-      {
-        "@type": "Question",
-        "name": "How much does 50 units of electricity cost in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "For 50 units, the first units are charged at lower slabs and later units at higher slabs. Use the NEA Bill Calculator for exact amounts including service charges." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why is electricity charged in slabs in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Nepal uses a progressive slab-based electricity tariff system to ensure lower-income households pay less for basic usage, while heavier consumers pay a fairer share of infrastructure costs." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the NEA electricity tariff rate?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The NEA tariff rate ranges from Rs. 4 to Rs. 11 per unit for domestic consumers, depending on monthly consumption and meter capacity. A fixed service charge also applies." }
-      },
-      {
-        "@type": "Question",
-        "name": "Is 1 unit equal to 1 kWh?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. One unit of electricity is exactly equal to one kilowatt-hour (kWh)." }
-      },
-      {
-        "@type": "Question",
-        "name": "How can I calculate my electricity bill in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "You can calculate your electricity bill by using the NepaCalc NEA Bill Calculator, which factor in units consumed, consumption slab, meter capacity, and service charge." }
-      },
-      {
-        "@type": "Question",
-        "name": "Why do landlords charge more than NEA rates?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Many landlords charge a fixed rate (e.g., Rs. 10 to Rs. 15 per unit) that includes administrative costs or simplified billing. This rate may be higher than official NEA tariff rates." }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the current electricity price per unit in Nepal?",
-        "acceptedAnswer": { "@type": "Answer", "text": "The current electricity price per unit in Nepal generally ranges from Rs. 4 to Rs. 11 per unit (kWh), depending on the progressive slab system." }
-      }
-    ]
-  };
+# 1. ADD CONTEXTUAL INTERNAL LINKS THROUGHOUT THE PAGE
+# 11. IMPROVE ENTITY COVERAGE
 
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "How to calculate electricity bill in Nepal",
-    "step": [
-      {
-        "@type": "HowToStep",
-        "text": "Find your total units consumed from your NEA electricity meter."
-      },
-      {
-        "@type": "HowToStep",
-        "text": "Identify your meter capacity (e.g., 5A, 15A, 30A)."
-      },
-      {
-        "@type": "HowToStep",
-        "text": "Enter these details into the NepaCalc NEA Bill Calculator to get your exact bill."
-      }
-    ]
-  };
+replacements = [
+    ("engineering mathematics", "<Link href=\"/engineering/\" className=\"text-[#1967D2] hover:underline\">engineering mathematics</Link>"),
+    ("Scientific Computing", "<Link href=\"/math-tools/scientific/\" className=\"text-[#1967D2] hover:underline\">Scientific Computing</Link>"),
+    ("Numerical Analysis", "Numerical Analysis"),
+    ("Computer Graphics", "Computer Graphics"),
+    ("Differential Equations", "Differential Equations"),
+    ("multivariable functions", "<Link href=\"/math-tools/calculus/\" className=\"text-[#1967D2] hover:underline\">multivariable functions</Link>"),
+    ("Mechanical, civil, structural, and aerospace engineers", "Mechanical, civil, structural, and aerospace engineers (<Link href=\"/engineering/\" className=\"text-[#1967D2] hover:underline\">Engineering Calculator Hub</Link>)"),
+]
 
-  const datasetSchema = {
-    "@context": "https://schema.org",
-    "@type": "Dataset",
-    "name": "Nepal Electricity Tariff Rates",
-    "description": "Official domestic electricity tariff rates for Nepal.",
-    "creator": {
-      "@type": "Organization",
-      "name": "Nepal Electricity Authority"
-    }
-  };"""
+for old, new in replacements:
+    content = content.replace(old, new, 1)
 
-# Replace the old faqSchema
-content = re.sub(
-    r"const faqSchema = \{.*?\n  \};\n",
-    new_schema + "\n\n",
-    content,
-    flags=re.DOTALL
-)
+# 6. EXPAND "WHO USES THIS CALCULATOR"
+who_uses_target = """                  <div className="p-6 bg-white border border-[#DADCE0] rounded-xl shadow-sm">
+                    <h3 className="text-lg font-bold text-[#202124] mb-2">Researchers</h3>
+                    <p className="text-[#5F6368] text-base">Scientists visualize mathematical models, simulation outputs, and experimental datasets using interactive three-dimensional graphs.</p>
+                  </div>
+                  <div className="p-6 bg-white border border-[#DADCE0] rounded-xl shadow-sm">
+                    <h3 className="text-lg font-bold text-[#202124] mb-2">Architects</h3>
+                    <p className="text-[#5F6368] text-base">Architects explore curved surfaces, shell structures, and geometric forms before translating concepts into real-world designs.</p>
+                  </div>
+                  <div className="p-6 bg-white border border-[#DADCE0] rounded-xl shadow-sm">
+                    <h3 className="text-lg font-bold text-[#202124] mb-2">Data Scientists</h3>
+                    <p className="text-[#5F6368] text-base">Machine learning engineers and statisticians use surface plots to visualize optimization functions, probability distributions, and multidimensional datasets.</p>
+                  </div>
+                </div>"""
 
-# Add the new schemas to the JSON-LD script tags
-schema_tags = """      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />"""
+who_uses_replacement = """                  <div className="p-6 bg-white border border-[#DADCE0] rounded-xl shadow-sm">
+                    <h3 className="text-lg font-bold text-[#202124] mb-2">Researchers</h3>
+                    <p className="text-[#5F6368] text-base">Physics researchers and scientists visualize mathematical models, simulation outputs, and experimental datasets using interactive three-dimensional graphs.</p>
+                  </div>
+                  <div className="p-6 bg-white border border-[#DADCE0] rounded-xl shadow-sm">
+                    <h3 className="text-lg font-bold text-[#202124] mb-2">Architects & Designers</h3>
+                    <p className="text-[#5F6368] text-base">Architecture students and CAD Designers explore curved surfaces, shell structures, and geometric forms before translating concepts into real-world designs.</p>
+                  </div>
+                  <div className="p-6 bg-white border border-[#DADCE0] rounded-xl shadow-sm">
+                    <h3 className="text-lg font-bold text-[#202124] mb-2">Data Scientists & ML</h3>
+                    <p className="text-[#5F6368] text-base">Machine learning engineers and data scientists use surface plots to visualize optimization functions, probability distributions, and multidimensional datasets.</p>
+                  </div>
+                  <div className="p-6 bg-white border border-[#DADCE0] rounded-xl shadow-sm">
+                    <h3 className="text-lg font-bold text-[#202124] mb-2">Educators</h3>
+                    <p className="text-[#5F6368] text-base">Mathematics teachers and university professors use it to interactively demonstrate complex topology and surface concepts in the classroom.</p>
+                  </div>
+                  <div className="p-6 bg-white border border-[#DADCE0] rounded-xl shadow-sm">
+                    <h3 className="text-lg font-bold text-[#202124] mb-2">Specialized Engineers</h3>
+                    <p className="text-[#5F6368] text-base">Robotics engineers and aerospace engineers rely on 3D visualizations for kinematics and fluid dynamics modeling.</p>
+                  </div>
+                </div>"""
 
-content = re.sub(
-    r"<script type=\"application/ld\+json\" dangerouslySetInnerHTML={{ __html: JSON\.stringify\(articleSchema\) }} />\n\s*<script type=\"application/ld\+json\" dangerouslySetInnerHTML={{ __html: JSON\.stringify\(faqSchema\) }} />\n\s*<script type=\"application/ld\+json\" dangerouslySetInnerHTML={{ __html: JSON\.stringify\(speakableSchema\) }} />",
-    schema_tags,
-    content
-)
+if who_uses_target in content:
+    content = content.replace(who_uses_target, who_uses_replacement)
+else:
+    print("Who uses target not found")
 
-# 2. Insert AI Overview Section before TABLE OF CONTENTS
-ai_overview_section = """          {/* ── AI OVERVIEW & SEARCH INTENT OPTIMIZATION ── */}
-          <div className="summary-box bg-white border border-slate-200 rounded-xl p-5 mb-8 shadow-sm">
-            <h2 className="text-xl font-black text-slate-800 mb-4">1 Unit Electricity Price in Nepal (Updated 2083/84)</h2>
-            <p className="text-slate-700 mb-4 font-medium">The price of 1 unit of electricity in Nepal is not fixed. According to <strong className="text-[#003087]">Nepal Electricity Authority (NEA)</strong> domestic tariff rates, the cost generally ranges from approximately <strong>Rs. 4 to Rs. 11 per unit (kWh)</strong>, depending on monthly electricity consumption and meter capacity.</p>
-            
-            <p className="font-bold text-slate-800 mb-2">For most residential consumers:</p>
-            <div className="overflow-x-auto mb-6">
-              <table className="w-full text-sm border-collapse">
-                <thead>
-                  <tr className="bg-slate-100 text-left">
-                    <th className="py-2.5 px-3 font-bold border border-slate-200">Monthly Consumption</th>
-                    <th className="py-2.5 px-3 font-bold border border-slate-200">Approximate Energy Rate</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    ["0–20 Units", "Rs. 4 per unit"],
-                    ["21–30 Units", "Rs. 6.50 per unit"],
-                    ["31–50 Units", "Rs. 8.00 per unit"],
-                    ["51–100 Units", "Rs. 9.50 per unit"],
-                    ["101–250 Units", "Rs. 9.50–11.00 per unit"],
-                    ["Above 250 Units", "Up to Rs. 11.00 per unit"],
-                  ].map(([label, val], i) => (
-                    <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
-                      <td className="py-2 px-3 border border-slate-200">{label}</td>
-                      <td className="py-2 px-3 border border-slate-200 font-medium">{val}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            
-            <h3 className="text-lg font-bold text-slate-800 mb-3">What Is 1 Unit of Electricity?</h3>
-            <p className="text-slate-700 mb-4">One unit of electricity equals one kilowatt-hour (kWh). A device consuming 1,000 watts (1 kW) for one hour uses exactly 1 unit of electricity.</p>
-            <ul className="list-disc pl-5 space-y-1 mb-6 text-slate-700 text-sm">
-              <li>100W bulb used for 10 hours = 1 unit</li>
-              <li>1,000W heater used for 1 hour = 1 unit</li>
-              <li>500W appliance used for 2 hours = 1 unit</li>
-            </ul>
+# 10. ADD RELATED CALCULATORS HIGHER ON PAGE
+intro_target = """        <p className="text-lg text-center leading-relaxed text-[#5F6368] max-w-4xl mx-auto">
+          Plot mathematical equations, visualize 3D surfaces, and explore multivariable functions with NepaCalc's free <strong>3D Graph Calculator</strong>. Whether you're graphing explicit functions, implicit surfaces, engineering models, or calculus equations, this interactive <strong>3D graphing calculator</strong> (and online 3D function grapher) lets you rotate, zoom, compare multiple equations, and analyze complex mathematical surfaces directly in your browser. Designed for students, engineers, educators, researchers, and professionals, it provides fast, accurate, browser-based 3D visualization without requiring software installation.
+        </p>"""
 
-            <h3 className="text-lg font-bold text-slate-800 mb-3">Why Is There No Single Electricity Price Per Unit in Nepal?</h3>
-            <p className="text-slate-700 mb-4">Unlike some countries with flat-rate billing, Nepal uses a <strong>slab-based electricity tariff system</strong>. The cost per unit depends on monthly electricity consumption, meter capacity (5A, 15A, 30A, etc.), consumer category, and applicable service charges.</p>
-            
-            <h3 className="text-lg font-bold text-slate-800 mb-3">Sample Electricity Cost Calculations</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                <p className="font-bold text-slate-800 mb-1">20 Units Per Month</p>
-                <p className="text-xs text-slate-600">Typical household usage: Energy charge approximately Rs. 4 per unit. Service charge applicable according to meter category.</p>
-              </div>
-              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                <p className="font-bold text-slate-800 mb-1">50 Units Per Month</p>
-                <p className="text-xs text-slate-600">Typical apartment usage: First units charged at lower slabs. Later units charged at higher slabs. Effective average rate increases.</p>
-              </div>
-              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                <p className="font-bold text-slate-800 mb-1">100 Units Per Month</p>
-                <p className="text-xs text-slate-600">Medium-sized family: Energy charges primarily fall into higher residential slabs. Effective cost generally ranges between Rs. 8 and Rs. 10 per unit.</p>
-              </div>
-              <div className="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                <p className="font-bold text-slate-800 mb-1">250 Units Per Month</p>
-                <p className="text-xs text-slate-600">High-consumption household: Upper slab rates apply. Effective rate approaches Rs. 11 per unit.</p>
-              </div>
-            </div>
+intro_replacement = intro_target + """
+        <p className="text-sm text-center font-medium text-[#5F6368] max-w-4xl mx-auto mt-4">
+          Looking for other tools? Try our <Link href="/math-tools/scientific/" className="text-[#1967D2] hover:underline">Scientific Calculator</Link>, <Link href="/math-tools/matrix/" className="text-[#1967D2] hover:underline">Matrix Calculator</Link>, <Link href="/calculator/linear-solver/" className="text-[#1967D2] hover:underline">Linear Equation Solver</Link>, or <Link href="/calculator/quadratic-solver/" className="text-[#1967D2] hover:underline">Quadratic Equation Solver</Link>.
+        </p>"""
 
-            <h3 className="text-lg font-bold text-slate-800 mb-3">About Nepal Electricity Authority (NEA)</h3>
-            <p className="text-slate-700 mb-6 text-sm">Nepal Electricity Authority (NEA) is Nepal's state-owned electricity utility responsible for electricity generation, transmission, distribution, and tariff implementation across the country.</p>
-          </div>
+if intro_target in content:
+    content = content.replace(intro_target, intro_replacement)
+else:
+    print("Intro target not found")
 
-          {/* ── AI ANSWER TABLE ── */}
-          <div className="bg-white rounded-xl border border-slate-200 p-5 mb-8 shadow-sm">
-            <h2 className="text-lg font-black text-slate-800 mb-4">Quick Answers to Common Queries</h2>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
-                <thead>
-                  <tr className="bg-slate-100 text-left">
-                    <th className="py-2.5 px-3 font-bold border border-slate-200">Question</th>
-                    <th className="py-2.5 px-3 font-bold border border-slate-200">Answer</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    ["What is 1 unit electricity price in Nepal?", "Approximately Rs. 4–11 depending on tariff slab."],
-                    ["What is 1 unit of electricity?", "1 kilowatt-hour (kWh)."],
-                    ["Who sets electricity rates in Nepal?", "Nepal Electricity Authority (NEA)."],
-                    ["How much is 50 units?", "Depends on slab. First units are cheaper."],
-                    ["How much is 100 units?", "Depends on slab. Typically Rs. 8 to Rs. 10 per unit on average."],
-                    ["Why is landlord charging Rs. 15?", "Private billing or administrative overhead, not the official NEA tariff."]
-                  ].map(([q, a], i) => (
-                    <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
-                      <td className="py-2.5 px-3 border border-slate-200 font-medium">{q}</td>
-                      <td className="py-2.5 px-3 border border-slate-200 text-slate-700">{a}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+# 8. ADD TRUST SIGNALS
+trust_target = """              <h3 className="font-bold text-[#202124] mb-3 border-b pb-2">Trust & Details</h3>
+              <div className="space-y-3 text-[#5F6368] text-sm">
+                <p><strong className="text-[#202124]">Last Updated:</strong> June 2026</p>
+                <p><strong className="text-[#202124]">Reviewed by:</strong> NepaCalc Mathematics Team</p>
+                <p><strong className="text-[#202124]">Accuracy Statement:</strong> All formulas are verified against internationally accepted mathematical references.</p>
+                <p><strong className="text-[#202124]">Browser Compatibility:</strong> Supports Chrome, Firefox, Safari, Edge (WebGL Required)</p>
+                <p><strong className="text-[#202124]">Suitable for:</strong> Students, Teachers, Researchers, Engineers</p>
+              </div>"""
 
-          {/* ── PEOPLE ALSO ASK ── */}
-          <div className="bg-white rounded-xl border border-slate-200 p-5 mb-8 shadow-sm">
-            <h2 className="text-lg font-black text-slate-800 mb-4">People Also Ask</h2>
-            <div className="space-y-4 text-sm">
-              <details className="group cursor-pointer">
-                <summary className="font-bold text-slate-800 group-hover:text-blue-600 list-none flex justify-between items-center">
-                  What is 1 unit of electricity? <span className="text-blue-600 transition group-open:rotate-180">▼</span>
-                </summary>
-                <p className="mt-2 text-slate-700 pl-1 border-l-2 border-blue-600">One unit of electricity is exactly equal to one kilowatt-hour (kWh).</p>
-              </details>
-              <hr className="border-slate-100" />
-              <details className="group cursor-pointer">
-                <summary className="font-bold text-slate-800 group-hover:text-blue-600 list-none flex justify-between items-center">
-                  What's the price of 1 kWh? <span className="text-blue-600 transition group-open:rotate-180">▼</span>
-                </summary>
-                <p className="mt-2 text-slate-700 pl-1 border-l-2 border-blue-600">One kilowatt-hour (kWh) costs between Rs. 4 and Rs. 11 depending on your consumption slab and meter category.</p>
-              </details>
-              <hr className="border-slate-100" />
-              <details className="group cursor-pointer">
-                <summary className="font-bold text-slate-800 group-hover:text-blue-600 list-none flex justify-between items-center">
-                  How to calculate Nepal electricity bill? <span className="text-blue-600 transition group-open:rotate-180">▼</span>
-                </summary>
-                <p className="mt-2 text-slate-700 pl-1 border-l-2 border-blue-600">Your bill depends on units consumed, consumption slab, meter capacity, and service charge. Use the NEA Bill Calculator on NepaCalc for an accurate breakdown.</p>
-              </details>
-              <hr className="border-slate-100" />
-              <details className="group cursor-pointer">
-                <summary className="font-bold text-slate-800 group-hover:text-blue-600 list-none flex justify-between items-center">
-                  What's the cost of 1 kW of power? <span className="text-blue-600 transition group-open:rotate-180">▼</span>
-                </summary>
-                <p className="mt-2 text-slate-700 pl-1 border-l-2 border-blue-600">Running 1 kW of power for 1 hour uses 1 kWh (1 unit) of electricity, which costs between Rs. 4 and Rs. 11 depending on your total monthly usage.</p>
-              </details>
-            </div>
-          </div>
+trust_replacement = """              <h3 className="font-bold text-[#202124] mb-3 border-b pb-2">Trust & Details</h3>
+              <div className="space-y-3 text-[#5F6368] text-sm">
+                <p><strong className="text-[#202124]">Last Updated:</strong> June 2026</p>
+                <p><strong className="text-[#202124]">Formula Verification:</strong> Updated June 2026</p>
+                <p><strong className="text-[#202124]">Calculation Engine:</strong> WebGL GPU Rendering</p>
+                <p><strong className="text-[#202124]">Educational Level:</strong> High School, College, University, Professional</p>
+                <p><strong className="text-[#202124]">Reviewed by:</strong> NepaCalc Mathematics Team</p>
+                <p><strong className="text-[#202124]">Accuracy Statement:</strong> All formulas are verified against internationally accepted mathematical references.</p>
+                <div className="pt-2 border-t border-[#DADCE0]">
+                  <p><strong className="text-[#202124]">Reference Standards:</strong></p>
+                  <ul className="list-disc pl-5 mt-1 space-y-1">
+                    <li>MIT OpenCourseWare</li>
+                    <li>Wolfram MathWorld</li>
+                    <li>NIST</li>
+                    <li>OpenCourseWare Mathematics</li>
+                  </ul>
+                </div>
+              </div>"""
 
-          {/* ── SOURCE HIERARCHY ── */}
-          <div className="bg-slate-50 rounded-xl border border-slate-200 p-5 mb-8 shadow-sm">
-            <h3 className="font-black text-slate-800 text-sm mb-3 uppercase tracking-wide">Data Sources & Verification</h3>
-            <ul className="text-sm text-slate-700 space-y-2">
-              <li><strong className="text-slate-900">Primary Source:</strong> Nepal Electricity Authority (NEA)</li>
-              <li><strong className="text-slate-900">Tariff Status:</strong> Verified</li>
-              <li><strong className="text-slate-900">Verification Sources:</strong> Official tariff schedules, Government publications, Historical tariff archives</li>
-            </ul>
-          </div>\n\n"""
+if trust_target in content:
+    content = content.replace(trust_target, trust_replacement)
+else:
+    print("Trust target not found")
 
-target_toc_comment = r"\{\/\*\s*── TABLE OF CONTENTS ──\s*\*\/\}"
-content = re.sub(
-    f"({target_toc_comment})",
-    ai_overview_section + r"\1",
-    content
-)
+# 7. EXPAND COMPARISON TABLE
+comp_target = """                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="bg-[#F8F9FA] border-b border-[#DADCE0]">
+                        <th className="p-4 font-bold text-[#202124]">Feature</th>
+                        <th className="p-4 font-bold text-[#1967D2] text-center border-l border-[#DADCE0]">NepaCalc 3D Grapher</th>
+                        <th className="p-4 font-bold text-[#5F6368] text-center border-l border-[#DADCE0]">Standard 2D Graphers</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#DADCE0]">
+                      <tr>
+                        <td className="p-4 text-[#202124] font-medium">Visual Dimensions</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">3D (X, Y, Z)</td>
+                        <td className="p-4 text-center text-[#5F6368] border-l border-[#DADCE0]">2D (X, Y)</td>
+                      </tr>
+                      <tr className="bg-[#F8F9FA]">
+                        <td className="p-4 text-[#202124] font-medium">Surface Rendering</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">Yes</td>
+                        <td className="p-4 text-center text-red-500 border-l border-[#DADCE0]">No</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 text-[#202124] font-medium">Variable Sliders</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">Interactive</td>
+                        <td className="p-4 text-center text-[#5F6368] border-l border-[#DADCE0]">Sometimes</td>
+                      </tr>
+                      <tr className="bg-[#F8F9FA]">
+                        <td className="p-4 text-[#202124] font-medium">Hardware Acceleration</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">WebGL</td>
+                        <td className="p-4 text-center text-[#5F6368] border-l border-[#DADCE0]">CPU / Canvas</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 text-[#202124] font-medium">Cross Section Slicing</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">Yes</td>
+                        <td className="p-4 text-center text-red-500 border-l border-[#DADCE0]">No</td>
+                      </tr>
+                    </tbody>
+                  </table>"""
 
-with open(file_path, "w", encoding="utf-8") as f:
+comp_replacement = """                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="bg-[#F8F9FA] border-b border-[#DADCE0]">
+                        <th className="p-4 font-bold text-[#202124]">Feature</th>
+                        <th className="p-4 font-bold text-[#1967D2] text-center border-l border-[#DADCE0]">NepaCalc 3D Grapher</th>
+                        <th className="p-4 font-bold text-[#5F6368] text-center border-l border-[#DADCE0]">Standard 2D Graphers</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#DADCE0]">
+                      <tr>
+                        <td className="p-4 text-[#202124] font-medium">Visual Dimensions</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">3D (X, Y, Z)</td>
+                        <td className="p-4 text-center text-[#5F6368] border-l border-[#DADCE0]">2D (X, Y)</td>
+                      </tr>
+                      <tr className="bg-[#F8F9FA]">
+                        <td className="p-4 text-[#202124] font-medium">Surface Rendering</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">Yes</td>
+                        <td className="p-4 text-center text-red-500 border-l border-[#DADCE0]">No</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 text-[#202124] font-medium">Variable Sliders</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">Interactive</td>
+                        <td className="p-4 text-center text-[#5F6368] border-l border-[#DADCE0]">Sometimes</td>
+                      </tr>
+                      <tr className="bg-[#F8F9FA]">
+                        <td className="p-4 text-[#202124] font-medium">Hardware Acceleration</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">WebGL</td>
+                        <td className="p-4 text-center text-[#5F6368] border-l border-[#DADCE0]">CPU / Canvas</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 text-[#202124] font-medium">Browser Based</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">Yes</td>
+                        <td className="p-4 text-center text-[#5F6368] border-l border-[#DADCE0]">Yes</td>
+                      </tr>
+                      <tr className="bg-[#F8F9FA]">
+                        <td className="p-4 text-[#202124] font-medium">Installation Required</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">No</td>
+                        <td className="p-4 text-center text-[#5F6368] border-l border-[#DADCE0]">No</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 text-[#202124] font-medium">Multiple Surfaces</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">Yes</td>
+                        <td className="p-4 text-center text-red-500 border-l border-[#DADCE0]">No</td>
+                      </tr>
+                      <tr className="bg-[#F8F9FA]">
+                        <td className="p-4 text-[#202124] font-medium">Engineering Presets</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">Yes</td>
+                        <td className="p-4 text-center text-red-500 border-l border-[#DADCE0]">No</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 text-[#202124] font-medium">Interactive Rotation</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">Yes</td>
+                        <td className="p-4 text-center text-red-500 border-l border-[#DADCE0]">No</td>
+                      </tr>
+                      <tr className="bg-[#F8F9FA]">
+                        <td className="p-4 text-[#202124] font-medium">Free</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">Yes</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">Yes</td>
+                      </tr>
+                      <tr>
+                        <td className="p-4 text-[#202124] font-medium">Cross Section Slicing</td>
+                        <td className="p-4 text-center text-green-600 font-bold border-l border-[#DADCE0]">Yes</td>
+                        <td className="p-4 text-center text-red-500 border-l border-[#DADCE0]">No</td>
+                      </tr>
+                    </tbody>
+                  </table>"""
+
+if comp_target in content:
+    content = content.replace(comp_target, comp_replacement)
+else:
+    print("Comp target not found")
+
+# 5. ADD A NEW SECTION: Try These Example Equations
+# 3. ADD A NEW SECTION: Common Problems You Can Solve
+# 2. ADD A NEW SECTION: Related Mathematics Topics
+# 4. ADD A NEW SECTION: Also Known As
+
+sections_target = """                {/* ── Who Uses It ── */}"""
+
+sections_to_add = """                {/* ── Try These Example Equations ── */}
+                <h2 id="example-equations" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Try These Example Equations</h2>
+                <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
+                  You can copy and paste these equations directly into the 3D Graph Calculator to see how they render.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+                  <div className="bg-[#F8F9FA] p-4 rounded-xl border border-[#DADCE0]">
+                    <p className="text-[#1967D2] font-bold text-sm mb-1 uppercase tracking-wider">Paraboloid</p>
+                    <code className="text-[#202124] font-mono text-lg">z = x² + y²</code>
+                  </div>
+                  <div className="bg-[#F8F9FA] p-4 rounded-xl border border-[#DADCE0]">
+                    <p className="text-[#1967D2] font-bold text-sm mb-1 uppercase tracking-wider">Wave</p>
+                    <code className="text-[#202124] font-mono text-lg">z = sin(x) cos(y)</code>
+                  </div>
+                  <div className="bg-[#F8F9FA] p-4 rounded-xl border border-[#DADCE0]">
+                    <p className="text-[#1967D2] font-bold text-sm mb-1 uppercase tracking-wider">Ripple</p>
+                    <code className="text-[#202124] font-mono text-lg">z = sin(√(x²+y²))</code>
+                  </div>
+                  <div className="bg-[#F8F9FA] p-4 rounded-xl border border-[#DADCE0]">
+                    <p className="text-[#1967D2] font-bold text-sm mb-1 uppercase tracking-wider">Cone</p>
+                    <code className="text-[#202124] font-mono text-lg">z = √(x²+y²)</code>
+                  </div>
+                  <div className="bg-[#F8F9FA] p-4 rounded-xl border border-[#DADCE0]">
+                    <p className="text-[#1967D2] font-bold text-sm mb-1 uppercase tracking-wider">Sphere</p>
+                    <code className="text-[#202124] font-mono text-lg">x²+y²+z²=16</code>
+                  </div>
+                  <div className="bg-[#F8F9FA] p-4 rounded-xl border border-[#DADCE0]">
+                    <p className="text-[#1967D2] font-bold text-sm mb-1 uppercase tracking-wider">Hyperboloid</p>
+                    <code className="text-[#202124] font-mono text-lg">x²+y²−z²=4</code>
+                  </div>
+                  <div className="bg-[#F8F9FA] p-4 rounded-xl border border-[#DADCE0]">
+                    <p className="text-[#1967D2] font-bold text-sm mb-1 uppercase tracking-wider">Gaussian</p>
+                    <code className="text-[#202124] font-mono text-lg">z = exp(-(x²+y²)/8)</code>
+                  </div>
+                  <div className="bg-[#F8F9FA] p-4 rounded-xl border border-[#DADCE0]">
+                    <p className="text-[#1967D2] font-bold text-sm mb-1 uppercase tracking-wider">Monkey Saddle</p>
+                    <code className="text-[#202124] font-mono text-lg">z = x³−3xy²</code>
+                  </div>
+                </div>
+
+                {/* ── Common Problems You Can Solve ── */}
+                <h2 id="common-problems" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Common Problems You Can Solve</h2>
+                <p className="text-lg leading-relaxed text-[#5F6368] mb-6">
+                  This calculator is designed to help users with a variety of mathematical and engineering challenges:
+                </p>
+                <ul className="list-disc pl-6 space-y-2 text-[#5F6368] mb-12 text-lg">
+                  <li><strong>Plot 3D equations:</strong> See the exact shape of any valid mathematical function.</li>
+                  <li><strong>Visualize multivariable functions:</strong> Easily understand functions that depend on both x and y.</li>
+                  <li><strong>Understand calculus surfaces:</strong> Master gradients, partial derivatives, and multiple integrals visually.</li>
+                  <li><strong>Compare mathematical functions:</strong> Overlay multiple equations to see how they differ.</li>
+                  <li><strong>Study optimization surfaces:</strong> Find saddle points, local maxima, and minima for machine learning models.</li>
+                  <li><strong>Visualize Gaussian distributions:</strong> Plot bivariate normal distributions in statistics.</li>
+                  <li><strong>Plot saddle surfaces:</strong> Easily visualize hyperbolic paraboloids.</li>
+                  <li><strong>Explore engineering geometry:</strong> Model physical properties like stress and fluid flow mathematically.</li>
+                  <li><strong>Learn coordinate systems:</strong> Gain an intuitive grasp of the Cartesian, cylindrical, and spherical coordinates.</li>
+                  <li><strong>Understand implicit equations:</strong> See complete objects like spheres and toruses defined by a single relationship.</li>
+                </ul>
+
+                {/* ── Related Mathematics Topics ── */}
+                <h2 id="related-topics" className="text-2xl lg:text-3xl font-black text-[#202124] mt-12 mb-6">Related Mathematics Topics</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+                  <div>
+                    <h4 className="font-bold text-[#202124]">Cartesian Coordinates</h4>
+                    <p className="text-sm text-[#5F6368]">The fundamental 3D (x, y, z) coordinate system used for spatial graphing.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-[#202124]">Multivariable Calculus</h4>
+                    <p className="text-sm text-[#5F6368]">The extension of calculus to functions of multiple variables, relying heavily on 3D visualization.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-[#202124]">Surface Plotting</h4>
+                    <p className="text-sm text-[#5F6368]">The technique of rendering continuous 3D surfaces from mathematical equations.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-[#202124]">Implicit Equations</h4>
+                    <p className="text-sm text-[#5F6368]">Equations defining relationships between variables (like F(x,y,z)=0) without explicit solved forms.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-[#202124]">Parametric Surfaces</h4>
+                    <p className="text-sm text-[#5F6368]">Surfaces defined by parameters u and v, useful in computer graphics and CAD.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-[#202124]">Differential Geometry</h4>
+                    <p className="text-sm text-[#5F6368]">The study of smooth shapes, curvature, and spaces using calculus.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-[#202124]">Vector Calculus</h4>
+                    <p className="text-sm text-[#5F6368]">Analysis of vector fields, used extensively in physics and engineering.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-[#202124]">Optimization</h4>
+                    <p className="text-sm text-[#5F6368]">Finding the best solution (maxima/minima), crucial for machine learning and economics.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-[#202124]">Topology</h4>
+                    <p className="text-sm text-[#5F6368]">The study of spatial properties that are preserved under continuous deformations.</p>
+                  </div>
+                </div>
+
+                {/* ── Also Known As ── */}
+                <div className="bg-[#F8F9FA] rounded-xl p-6 border border-[#DADCE0] mb-12">
+                  <h3 className="text-lg font-bold text-[#202124] mb-3">Also Known As</h3>
+                  <p className="text-sm text-[#5F6368] mb-3">Users often search for our tool using different terminology depending on their region and field of study. You may hear it referred to as a:</p>
+                  <ul className="text-sm text-[#5F6368] grid grid-cols-2 gap-2 list-disc pl-4">
+                    <li>3D Graph Calculator</li>
+                    <li>3D Grapher</li>
+                    <li>Online 3D Plotter</li>
+                    <li>3D Surface Grapher</li>
+                    <li>3D Equation Grapher</li>
+                    <li>3D Function Grapher</li>
+                    <li>Online 3D Graphing Calculator</li>
+                    <li>Multivariable Grapher</li>
+                    <li>3D Plot Calculator</li>
+                    <li>3D Surface Plotter</li>
+                  </ul>
+                </div>
+
+                {/* ── Who Uses It ── */}"""
+if sections_target in content:
+    content = content.replace(sections_target, sections_to_add)
+else:
+    print("Sections target not found")
+
+with open(path, 'w', encoding='utf-8') as f:
     f.write(content)
-print("Updated successfully.")
+print("Updated successfully")
