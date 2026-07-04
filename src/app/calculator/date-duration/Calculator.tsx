@@ -57,7 +57,7 @@ export default function DateDuration() {
       slug="date-duration"
       crumbs={[{ label: 'Calculators', href: '/calculators/' }, { label: 'Date Duration Calculator' }]}
       title="Date Duration Calculator"
-      description="Calculate the exact duration between two dates with our free Date Duration Calculator. Instantly find the number of years, months, weeks, and days between dates using an accurate Date Difference Calculator. Whether you're planning projects, tracking milestones, or calculating age, get fast and reliable results online."
+      description="The Date Duration Calculator helps you calculate the exact time between two dates in years, months, weeks and days. It automatically accounts for leap years, varying month lengths and calendar rules to provide fast and accurate date difference calculations for age, employment, projects, contracts and more."
       icon={Calendar}
       inputs={
         <div className="space-y-6">
@@ -150,7 +150,11 @@ export default function DateDuration() {
                 A Date Duration Calculator makes it easy to calculate the exact time between two dates without manually counting calendar days. It instantly determines the duration in years, months, weeks, and days, while automatically accounting for leap years and different month lengths.
               </p>
               <p className="text-[#5F6368] text-base leading-relaxed">
-                Whether you're calculating age, employment duration, project timelines, anniversaries, subscriptions, or contract periods, the calculator provides fast and accurate results in seconds.
+                Whether you're calculating age with our{' '}
+                <a href="/calculator/age-calculator/" className="text-[#1A73E8] underline hover:no-underline">Age Calculator</a>,
+                {' '}employment duration, project timelines, anniversaries, or contract periods, the calculator provides fast and accurate results in seconds. You can also use our{' '}
+                <a href="/converter/calendar/" className="text-[#1A73E8] underline hover:no-underline">Calendar Calculator</a>
+                {' '}for date conversions.
               </p>
             </section>
 
@@ -235,30 +239,6 @@ export default function DateDuration() {
             {/* Section 3: How to Use the Date Duration Calculator */}
             <section>
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">How to Use the Date Duration Calculator</h2>
-              <p className="text-[#5F6368] text-base leading-relaxed mb-6">Using the calculator is simple:</p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-4">
-                  <h3 className="font-bold text-[#202124] mb-2 flex items-center gap-2">
-                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#1A73E8] text-white text-xs">1</span>
-                    Select the Start Date
-                  </h3>
-                  <p className="text-sm text-[#5F6368]">Choose the beginning of the period you want to measure.</p>
-                </div>
-                <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-4">
-                  <h3 className="font-bold text-[#202124] mb-2 flex items-center gap-2">
-                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#1A73E8] text-white text-xs">2</span>
-                    Select the End Date
-                  </h3>
-                  <p className="text-sm text-[#5F6368]">Choose the final date for the calculation.</p>
-                </div>
-                <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-4">
-                  <h3 className="font-bold text-[#202124] mb-2 flex items-center gap-2">
-                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#1A73E8] text-white text-xs">3</span>
-                    Click Calculate
-                  </h3>
-                  <p className="text-sm text-[#5F6368]">The calculator instantly compares both dates using the calendar.</p>
-                </div>
                 <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-4">
                   <h3 className="font-bold text-[#202124] mb-2 flex items-center gap-2">
                     <span className="flex items-center justify-center w-6 h-6 rounded-full bg-[#1A73E8] text-white text-xs">4</span>
@@ -423,6 +403,91 @@ export default function DateDuration() {
               </p>
             </section>
 
+            {/* Section: Inclusive vs Exclusive Date Counting */}
+            <section>
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Inclusive vs Exclusive Date Counting</h2>
+              <p className="text-[#5F6368] text-base leading-relaxed mb-4">
+                When calculating the duration between two dates, there are two standard methods: <strong className="text-[#202124]">exclusive counting</strong> and <strong className="text-[#202124]">inclusive counting</strong>. Understanding the difference is essential for legal, employment, and financial calculations.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div className="border border-[#DADCE0] rounded-lg p-5">
+                  <h3 className="font-bold text-[#202124] mb-2">Exclusive Counting (Default)</h3>
+                  <p className="text-sm text-[#5F6368] leading-relaxed">
+                    Exclusive counting measures the elapsed time between two dates without counting the starting day itself. For example, from 1 January to 31 January gives 30 days, not 31. This is the standard method used in most date difference calculators and is suitable for project timelines, age calculations, and general date differences.
+                  </p>
+                </div>
+                <div className="border border-[#DADCE0] rounded-lg p-5">
+                  <h3 className="font-bold text-[#202124] mb-2">Inclusive Counting (Legal Standard)</h3>
+                  <p className="text-sm text-[#5F6368] leading-relaxed">
+                    Inclusive counting counts both the start date and the end date, adding one additional day to the total. From 1 January to 31 January gives 31 days. This method is used in legal contracts, court deadlines, employment tenure for gratuity, insurance policy durations, and government document processing periods.
+                  </p>
+                </div>
+              </div>
+              <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-5">
+                <h3 className="font-bold text-[#202124] mb-2">When to Use Each Method</h3>
+                <ul className="space-y-2 text-sm text-[#5F6368]">
+                  <li className="flex items-start gap-2"><span className="text-[#1A73E8] font-bold">✓</span> <span><strong className="text-[#202124]">Employment calculations</strong> — use inclusive counting to determine total service days for gratuity eligibility</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#1A73E8] font-bold">✓</span> <span><strong className="text-[#202124]">Contract periods</strong> — legal contracts typically count both the start and end date</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#1A73E8] font-bold">✓</span> <span><strong className="text-[#202124]">Age calculation</strong> — use exclusive counting; your age increases the day after your birthday</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#1A73E8] font-bold">✓</span> <span><strong className="text-[#202124]">Project timelines</strong> — use exclusive counting to measure working duration between two milestones</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#1A73E8] font-bold">✓</span> <span><strong className="text-[#202124]">Visa and travel duration</strong> — most immigration authorities use inclusive counting; overstaying by even one day can carry penalties</span></li>
+                </ul>
+                <p className="text-sm text-[#5F6368] mt-3">Our calculator supports both methods. Enable the <strong className="text-[#202124]">Inclusive</strong> toggle above the calculator to add one day to your result for legal and employment use cases. For working day calculations, visit our <a href="/calculator/business-days/" className="text-[#1A73E8] underline hover:no-underline">Working Days Calculator</a>.</p>
+              </div>
+            </section>
+
+            {/* Section: Why Accurate Date Calculations Matter */}
+            <section>
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Why Accurate Date Calculations Matter</h2>
+              <p className="text-[#5F6368] text-base leading-relaxed mb-4">
+                A single incorrect date calculation can have serious consequences across employment, finance, legal, and government processes. Accurate date difference calculations are not just a convenience — in many situations, they are a legal and financial requirement.
+              </p>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="font-bold text-[#202124] mb-1">Employment and HR</h3>
+                  <p className="text-sm text-[#5F6368] leading-relaxed">In Nepal, the Labor Act 2074 requires employers to calculate the exact duration of employment to determine gratuity entitlement, severance pay, and leave encashment. Even a single day's error can result in underpayment or legal disputes. Payroll teams rely on accurate date calculations for monthly processing and year-end reconciliation. Our <a href="/calculator/time-calculator/" className="text-[#1A73E8] underline hover:no-underline">Time Calculator</a> can complement these calculations.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-[#202124] mb-1">Government Forms and Official Documents</h3>
+                  <p className="text-sm text-[#5F6368] leading-relaxed">Citizenship applications, passport renewals, and government tender submissions require precise date information. Age eligibility for programs such as pension schemes and citizenship is determined by exact date differences, not rounded estimates.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-[#202124] mb-1">Contracts and Legal Agreements</h3>
+                  <p className="text-sm text-[#5F6368] leading-relaxed">Construction contracts, lease agreements, and service contracts specify completion deadlines and penalty clauses in exact days. An inaccurate date count can result in unnecessary penalty payments or missed contractual rights. Combine this with our <a href="/calculator/loan-emi/" className="text-[#1A73E8] underline hover:no-underline">Mortgage Calculator</a> for complete financial contract analysis.</p>
+                </div>
+                <div>
+                  <h3 className="font-bold text-[#202124] mb-1">Insurance and Finance</h3>
+                  <p className="text-sm text-[#5F6368] leading-relaxed">Insurance policy durations, premium due dates, and loan tenure periods require exact date calculations. Banks and insurance companies calculate interest and premiums based on precise day counts, making accurate date difference calculations essential for financial planning. Use our <a href="/calculator/simple-interest/" className="text-[#1A73E8] underline hover:no-underline">Simple Interest Calculator</a> for related financial estimates.</p>
+                </div>
+              </div>
+            </section>
+
+            {/* Section: Related Calculators */}
+            <section>
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Related Calculators</h2>
+              <p className="text-[#5F6368] text-base leading-relaxed mb-6">You may also find these tools useful:</p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                {[
+                  { label: 'Age Calculator', href: '/calculator/age-calculator/' },
+                  { label: 'Calendar Calculator', href: '/converter/calendar/' },
+                  { label: 'Time Calculator', href: '/calculator/time-calculator/' },
+                  { label: 'Percentage Calculator', href: '/calculator/percentage/' },
+                  { label: 'GPA Calculator', href: '/calculator/gpa/' },
+                  { label: 'Simple Interest Calculator', href: '/calculator/simple-interest/' },
+                  { label: 'Compound Interest Calculator', href: '/calculator/compound-interest/' },
+                  { label: 'Mortgage Calculator', href: '/calculator/mortgage/' },
+                ].map(tool => (
+                  <a
+                    key={tool.href}
+                    href={tool.href}
+                    className="block border border-[#DADCE0] rounded-lg px-4 py-3 text-sm font-medium text-[#1A73E8] hover:bg-[#E8F0FE] hover:border-[#1A73E8] transition-all text-center"
+                  >
+                    {tool.label}
+                  </a>
+                ))}
+              </div>
+            </section>
+
             {/* Section 8: Why Choose Our Date Duration Calculator? */}
             <section>
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Why Choose Our Date Duration Calculator?</h2>
@@ -504,14 +569,13 @@ export default function DateDuration() {
       }
       relatedTools={[
         { label: "Age Calculator", href: "/calculator/age-calculator/" },
+        { label: "Calendar Calculator", href: "/converter/calendar/" },
         { label: "Time Calculator", href: "/calculator/time-calculator/" },
-        { label: "Date Calculator", href: "/calculator/date/" },
-        { label: "Nepali Date Converter", href: "/converter/nepali-date/" },
-        { label: "Calendar Converter", href: "/converter/calendar/" },
-        { label: "Week Calculator", href: "/calculator/week-calculator/" },
-        { label: "Business Days Calculator", href: "/calculator/business-days/" },
-        { label: "Working Days Calculator", href: "/calculator/working-days/" },
-        { label: "Loan EMI Calculator", href: "/calculator/loan-emi/" }
+        { label: "Percentage Calculator", href: "/calculator/percentage/" },
+        { label: "GPA Calculator", href: "/calculator/gpa/" },
+        { label: "Simple Interest Calculator", href: "/calculator/simple-interest/" },
+        { label: "Compound Interest Calculator", href: "/calculator/compound-interest/" },
+        { label: "Mortgage Calculator", href: "/calculator/mortgage/" },
       ]}
     />
   );

@@ -2,8 +2,8 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: "Date Duration Calculator – Calculate Days Between Dates Online",
-  description: "Calculate the exact duration between two dates in years, months, weeks, and days. Free online Date Duration Calculator with accurate calendar and leap year calculations.",
+  title: "Date Duration Calculator – Calculate Days Between Two Dates Online",
+  description: "Calculate the exact duration between two dates in years, months, weeks and days. Free online Date Duration Calculator with leap year support and accurate calendar calculations.",
   slug: 'date-duration',
   keywords: ["date duration calculator", "days between dates", "date difference calculator", "date calculator", "calculate date duration", "online date duration calculator"],
 });
