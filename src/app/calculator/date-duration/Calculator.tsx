@@ -150,11 +150,7 @@ export default function DateDuration() {
                 A Date Duration Calculator makes it easy to calculate the exact time between two dates without manually counting calendar days. It instantly determines the duration in years, months, weeks, and days, while automatically accounting for leap years and different month lengths.
               </p>
               <p className="text-[#5F6368] text-base leading-relaxed">
-                Whether you're calculating age with our{' '}
-                <a href="/calculator/age-calculator/" className="text-[#1A73E8] underline hover:no-underline">Age Calculator</a>,
-                {' '}employment duration, project timelines, anniversaries, or contract periods, the calculator provides fast and accurate results in seconds. You can also use our{' '}
-                <a href="/converter/calendar/" className="text-[#1A73E8] underline hover:no-underline">Calendar Calculator</a>
-                {' '}for date conversions.
+                Whether you're determining your exact age with an <a href="/calculator/age-calculator/" className="text-[#1A73E8] underline hover:no-underline">Age Calculator</a>, measuring employment duration, or checking contract periods, this tool provides fast and accurate results in seconds. You can also use it alongside other tools for complete date and time planning.
               </p>
             </section>
 
@@ -380,15 +376,15 @@ export default function DateDuration() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="p-4 border border-[#DADCE0] rounded-lg">
                   <h3 className="font-bold text-[#202124] mb-2">Calculate Age</h3>
-                  <p className="text-sm text-[#5F6368]">Calculate your exact age in years, months, and days. For dedicated age features, try our <a href="/calculator/age-calculator/" className="text-[#1A73E8] underline hover:no-underline">Age Calculator</a>.</p>
+                  <p className="text-sm text-[#5F6368]">Calculate your exact age in years, months, and days for official documents or personal milestones.</p>
                 </div>
                 <div className="p-4 border border-[#DADCE0] rounded-lg">
                   <h3 className="font-bold text-[#202124] mb-2">Employment Duration</h3>
-                  <p className="text-sm text-[#5F6368]">Calculate years of service between joining and leaving dates. Combine with our <a href="/calculator/gratuity/" className="text-[#1A73E8] underline hover:no-underline">Gratuity Calculator</a> for employee benefits.</p>
+                  <p className="text-sm text-[#5F6368]">Calculate years of service between joining and leaving dates to determine employee benefits and tenure.</p>
                 </div>
                 <div className="p-4 border border-[#DADCE0] rounded-lg">
                   <h3 className="font-bold text-[#202124] mb-2">Project Planning</h3>
-                  <p className="text-sm text-[#5F6368]">Track project timelines and completion periods. Our <a href="/calculator/time-calculator/" className="text-[#1A73E8] underline hover:no-underline">Time Calculator</a> can also help measure project schedules.</p>
+                  <p className="text-sm text-[#5F6368]">Track project timelines, sprint durations, and completion periods accurately without manual counting.</p>
                 </div>
                 <div className="p-4 border border-[#DADCE0] rounded-lg">
                   <h3 className="font-bold text-[#202124] mb-2">Contract Duration</h3>
@@ -396,11 +392,11 @@ export default function DateDuration() {
                 </div>
                 <div className="p-4 border border-[#DADCE0] rounded-lg">
                   <h3 className="font-bold text-[#202124] mb-2">Education</h3>
-                  <p className="text-sm text-[#5F6368]">Calculate semesters, academic years, and internships. Students can also use the <a href="/calculator/see-gpa/" className="text-[#1A73E8] underline hover:no-underline">SEE GPA Calculator</a> for academic planning.</p>
+                  <p className="text-sm text-[#5F6368]">Calculate semesters, academic years, and internships for student scheduling and academic planning.</p>
                 </div>
                 <div className="p-4 border border-[#DADCE0] rounded-lg md:col-span-1">
                   <h3 className="font-bold text-[#202124] mb-2">Travel Planning</h3>
-                  <p className="text-sm text-[#5F6368]">Measure vacation length or trip duration. Use our <a href="/calculator/date/" className="text-[#1A73E8] underline hover:no-underline">Date Calculator</a> to add or subtract days from any date.</p>
+                  <p className="text-sm text-[#5F6368]">Measure vacation length or trip duration to manage itineraries and visa stays.</p>
                 </div>
               </div>
             </section>
@@ -484,7 +480,7 @@ export default function DateDuration() {
                   </div>
                 </div>
               </div>
-              <p className="text-sm text-[#5F6368] italic">Always choose the counting method that matches your specific legal, contractual, or business requirements. For working day calculations, visit our <a href="/calculator/business-days/" className="text-[#1A73E8] underline hover:no-underline">Working Days Calculator</a>.</p>
+              <p className="text-sm text-[#5F6368] italic">Always choose the counting method that matches your specific legal, contractual, or business requirements. For calculating only working days, you would need to exclude weekends from this total.</p>
             </section>
 
             {/* Section: Why Accurate Date Calculations Matter */}
@@ -509,7 +505,7 @@ export default function DateDuration() {
               <div className="space-y-4">
                 <div>
                   <h3 className="font-bold text-[#202124] mb-1">Employment and HR</h3>
-                  <p className="text-sm text-[#5F6368] leading-relaxed">In Nepal, the Labor Act 2074 requires employers to calculate the exact duration of employment to determine gratuity entitlement, severance pay, and leave encashment. Even a single day&apos;s error can result in underpayment or legal disputes. Our <a href="/calculator/time-calculator/" className="text-[#1A73E8] underline hover:no-underline">Time Calculator</a> can complement these calculations.</p>
+                  <p className="text-sm text-[#5F6368] leading-relaxed">In Nepal, the Labor Act 2074 requires employers to calculate the exact duration of employment to determine gratuity entitlement, severance pay, and leave encashment. Even a single day&apos;s error can result in underpayment or legal disputes. You can verify the final amount using our <a href="/calculator/gratuity/" className="text-[#1A73E8] underline hover:no-underline">Gratuity Calculator</a>.</p>
                 </div>
                 <div>
                   <h3 className="font-bold text-[#202124] mb-1">Government Forms and Official Documents</h3>
@@ -517,11 +513,11 @@ export default function DateDuration() {
                 </div>
                 <div>
                   <h3 className="font-bold text-[#202124] mb-1">Contracts and Legal Agreements</h3>
-                  <p className="text-sm text-[#5F6368] leading-relaxed">Construction contracts, lease agreements, and service contracts specify completion deadlines and penalty clauses in exact days. An inaccurate date count can result in unnecessary penalty payments or missed contractual rights. Try our <a href="/calculator/mortgage/" className="text-[#1A73E8] underline hover:no-underline">Mortgage Calculator</a> for complete financial contract analysis.</p>
+                  <p className="text-sm text-[#5F6368] leading-relaxed">Construction contracts, lease agreements, and service contracts specify completion deadlines and penalty clauses in exact days. An inaccurate date count can result in unnecessary penalty payments or missed contractual rights.</p>
                 </div>
                 <div>
                   <h3 className="font-bold text-[#202124] mb-1">Insurance and Finance</h3>
-                  <p className="text-sm text-[#5F6368] leading-relaxed">Insurance policy durations, premium due dates, and loan tenure periods require exact date calculations. Use our <a href="/calculator/simple-interest/" className="text-[#1A73E8] underline hover:no-underline">Simple Interest Calculator</a> or <a href="/calculator/compound-interest/" className="text-[#1A73E8] underline hover:no-underline">Compound Interest Calculator</a> for related financial estimates.</p>
+                  <p className="text-sm text-[#5F6368] leading-relaxed">Insurance policy durations, premium due dates, and loan tenure periods require exact date calculations. Missing a deadline by one day could invalidate coverage or increase interest payments.</p>
                 </div>
               </div>
               <p className="text-[#5F6368] text-base leading-relaxed mt-4">Using an accurate calculator saves time while ensuring reliable calendar-based results.</p>
