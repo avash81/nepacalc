@@ -15,7 +15,7 @@ const ECO_LINKS = [
   { name: 'Matrix Calculator', path: '/math-tools/matrix/', icon: Grid },
   { name: 'Programmer Console', path: '/math-tools/programmer/', icon: Binary },
   { name: 'Geometry Tool', path: '/engineering/geometry/', icon: Hexagon },
-  { name: '3D Calculator', path: '/math-tools/3d/', icon: Hexagon }
+  { name: '3D Calculator', path: '/engineering/3d/', icon: Hexagon }
 ];
 
 export function MathTopNav() {

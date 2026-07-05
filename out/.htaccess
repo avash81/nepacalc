@@ -53,7 +53,8 @@ RewriteRule ^calculator/retirement/?$ /calculator/sip-calculator/ [L,R=301]
 # Sitemap Fix
 RewriteRule ^sitemap\.html$ /sitemap/ [L,R=301]
 
-# Geometry Consolidation
+# Geometry & 3D Consolidation
+RewriteRule ^math-tools/3d/?$ /engineering/3d/ [L,R=301]
 RewriteRule ^math-tools/geometry/?$ /engineering/geometry/ [L,R=301]
 RewriteRule ^math-tools/geometry\.html$ /engineering/geometry/ [L,R=301]
 # /calculator/geometry-3d/ is a real page - no redirect needed
