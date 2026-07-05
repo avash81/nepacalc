@@ -252,7 +252,7 @@ export default function NepalElectricityUnitPricePage() {
           <div className="quick-answer bg-[#E8F0FE] border border-[#1A73E8] rounded-xl p-5 mb-7">
             <p className="text-[#1A73E8] font-black text-sm mb-1 uppercase tracking-wide">⚡ Quick Answer</p>
             <p className="text-[#202124] text-base font-medium leading-relaxed mb-0">
-              The price of <strong>1 unit of electricity in Nepal</strong> ranges from approximately <strong>Rs. 3.00 to Rs. 11.00 per unit</strong> depending on monthly consumption and meter capacity. Domestic electricity customers are billed using a <strong>progressive slab system</strong> regulated by the <strong>Nepal Electricity Authority (NEA)</strong>.
+              The official <strong>1 unit electricity price in Nepal</strong> ranges from approximately <strong>Rs. 3.00 to Rs. 11.00 per unit</strong> depending on monthly consumption and meter capacity. Domestic electricity customers are billed using a <strong>progressive slab system</strong> regulated by the <strong>Nepal Electricity Authority (NEA)</strong>. If you are looking to find the overall <strong>1 unit electricity cost in Nepal</strong>, it varies based on your total monthly usage slab.
             </p>
           </div>
 
@@ -504,13 +504,13 @@ export default function NepalElectricityUnitPricePage() {
 
           {/* ── INTRODUCTION ── */}
           <p className="text-slate-700 mb-4 text-base leading-relaxed">
-            The price of 1 unit electricity in Nepal depends on the latest NEA tariff rates and monthly consumption slab. Residential consumers currently pay between Rs. 3.00 and Rs. 11.00 per unit under Nepal Electricity Authority tariff schedules.
+            The final <strong>1 unit electricity price in Nepal</strong> depends directly on the latest NEA tariff rates and your monthly consumption slab. Residential consumers currently pay between Rs. 3.00 and Rs. 11.00 per unit under Nepal Electricity Authority tariff schedules.
           </p>
           <p className="text-slate-700 mb-4 text-base leading-relaxed">
-            For domestic consumers, the <strong>electricity charge per unit in Nepal</strong> currently ranges from approximately <strong>Rs. 3.00 to Rs. 11.00</strong> depending on monthly usage and meter category. This <strong>domestic electricity rate Nepal</strong> applies universally across the country. Whether you live in <strong>Kathmandu, Lalitpur, Bhaktapur, Pokhara, Chitwan, Butwal, Nepalgunj, Janakpur, Dharan, Hetauda, or Biratnagar</strong>, the standard <strong>electricity unit rate Nepal</strong> remains the exact same.
+            For domestic consumers, the <strong>electricity charge per unit in Nepal</strong> (or the overall <strong>electricity unit price in Nepal</strong>) currently ranges from approximately <strong>Rs. 3.00 to Rs. 11.00</strong> depending on monthly usage and meter category. This <strong>domestic electricity rate Nepal</strong> applies universally across the country. Whether you live in <strong>Kathmandu, Lalitpur, Bhaktapur, Pokhara, Chitwan, Butwal, Nepalgunj, Janakpur, Dharan, Hetauda, or Biratnagar</strong>, the standard <strong>electricity unit rate Nepal</strong> remains the exact same.
           </p>
           <p className="text-slate-700 mb-6 text-base leading-relaxed">
-            For exact bill calculations, use our <Link href="/calculator/nea-bill/" className="text-blue-600 underline font-semibold">NEA Bill Calculator</Link>.
+            For exact bill calculations, you can easily calculate the <strong>cost of 1 unit electricity in Nepal</strong> for your specific household using our <Link href="/calculator/nea-bill/" className="text-blue-600 underline font-semibold">NEA Bill Calculator</Link>.
           </p>
 
           {/* ── CTA BUTTON ── */}
@@ -642,21 +642,19 @@ export default function NepalElectricityUnitPricePage() {
             </div>
           </section>
 
-          {/* ─────────────────────────────────
-              SECTION 2: CURRENT ELECTRICITY RATE
-          ───────────────────────────────── */}
+          {/* ── SECTION 2: CURRENT ELECTRICITY RATE ── */}
           <section id="current-electricity-rate" className="mb-10">
-            <h2 className="text-2xl font-black text-[#202124] mb-4">What is the Current Electricity Rate in Nepal?</h2>
+            <h2 className="text-2xl font-black text-[#202124] mb-4">What is the Current 1 Unit Electricity Cost in Nepal?</h2>
             <div className="bg-[#E8F0FE] border border-[#1A73E8] rounded-xl p-4 mb-5">
               <p className="text-[#202124] font-bold text-sm mb-0">
-                <strong>Short Answer:</strong> The current residential electricity price in Nepal ranges from Rs. 3.00 to Rs. 11.00 per unit depending on monthly consumption. Nepal uses a progressive slab-based tariff structure.
+                <strong>Short Answer:</strong> The current residential <strong>1 unit electricity cost in Nepal</strong> ranges from Rs. 3.00 to Rs. 11.00 per unit depending on monthly consumption. Nepal uses a progressive slab-based tariff structure.
               </p>
             </div>
             <p className="text-slate-700 mb-4">
               Lower-consuming households pay lower rates while higher consumption is charged at higher slab rates. This design protects low-income families while ensuring those who use more electricity contribute proportionally more to grid maintenance costs.
             </p>
             <p className="text-slate-700 mb-4">
-              The <strong>1 unit electricity price in Nepal</strong> is not a single fixed value — it is the rate applicable to that specific unit based on where it falls in the consumption slab.
+              Understanding the <strong>cost of 1 unit electricity in Nepal</strong> helps you keep track of your home budget, since it is not a single fixed value — it is the rate applicable to that specific unit based on where it falls in the consumption slab.
             </p>
           </section>
 
@@ -977,6 +975,25 @@ export default function NepalElectricityUnitPricePage() {
               ))}
             </div>
           </section>
+
+          {/* ── RELATED RESOURCES ── */}
+          <div className="bg-white border border-slate-200 rounded-xl p-5 mb-8">
+            <p className="font-black text-slate-800 text-sm mb-3 uppercase tracking-wide">🔗 Related Guides</p>
+            <ul className="space-y-2.5 text-sm">
+              <li>⚡ <Link href="/calculator/nea-bill/" className="text-blue-600 hover:underline font-semibold">NEA Bill Calculator</Link> – Calculate your exact monthly electricity bill.</li>
+              <li>📊 <Link href="/electricity/nea-tariff-rates/" className="text-blue-600 hover:underline font-semibold">NEA Tariff Rates</Link> – View the latest official slab rates.</li>
+              <li>☀️ <Link href="/calculator/solar-requirement/" className="text-blue-600 hover:underline font-medium">Solar Panel Requirement Calculator</Link> – Estimate the solar capacity needed for your home.</li>
+              <li>💧 <Link href="/calculator/kukl-bill/" className="text-blue-600 hover:underline font-medium">KUKL Water Bill Calculator</Link> – Calculate your monthly water bill.</li>
+            </ul>
+            <div className="mt-4 pt-4 border-t border-slate-100">
+              <p className="text-xs font-bold text-slate-600 mb-2">Official External Sources</p>
+              <ul className="space-y-1.5 text-xs text-slate-600">
+                <li>🏛️ <a href="https://nea.org.np/en/pages/consumer-tariff-rates" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Electricity Authority (NEA) — Official Tariff Schedule</a></li>
+                <li>⚖️ <a href="https://www.erc.gov.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Electricity Regulatory Commission (ERC) Nepal — Tariff Regulator</a></li>
+                <li>📋 <a href="http://www.nepalenergyforum.com/nea-electricity-tariff-rates/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Nepal Energy Forum — NEA Tariff Reference Data</a></li>
+              </ul>
+            </div>
+          </div>
 
           {/* ─────────────────────────────────
               EXPERT REVIEW + EEAT
