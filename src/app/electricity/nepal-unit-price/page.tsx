@@ -344,7 +344,7 @@ export default function NepalElectricityUnitPricePage() {
                     {/* ── AI OVERVIEW & SEARCH INTENT OPTIMIZATION ── */}
           <div className="summary-box bg-white border border-slate-200 rounded-xl p-5 mb-8 shadow-sm">
             <h2 className="text-xl font-black text-slate-800 mb-4">1 Unit Electricity Price in Nepal (Updated 2083/84)</h2>
-            <p className="text-slate-700 mb-4 font-medium">The price of 1 unit of electricity in Nepal is not fixed. According to <strong className="text-[#003087]">Nepal Electricity Authority (NEA)</strong> domestic tariff rates, the cost generally ranges from approximately <strong>Rs. 4 to Rs. 11 per unit (kWh)</strong>, depending on monthly electricity consumption and meter capacity.</p>
+            <p className="text-slate-700 mb-4 font-medium">The price of 1 unit of electricity in Nepal is not fixed. According to <strong className="text-[#003087]">Nepal Electricity Authority (NEA)</strong> domestic tariff rates, the cost generally ranges from approximately <strong>Rs. 3.00 to Rs. 11.00 per unit (kWh)</strong>, depending on monthly electricity consumption and meter capacity.</p>
             
             <p className="font-bold text-slate-800 mb-2">For most residential consumers:</p>
             <div className="overflow-x-auto mb-6">
@@ -514,9 +514,10 @@ export default function NepalElectricityUnitPricePage() {
           </p>
 
           {/* ── CTA BUTTON ── */}
-          <div className="mb-10">
+          <div className="bg-[#E8F0FE] border border-[#1A73E8] rounded-xl p-5 mb-10">
+            <p className="text-slate-700 text-sm mb-3">Know your monthly units? Use our <Link href="/calculator/nea-bill/" className="text-[#1A73E8] font-bold hover:underline">NEA Bill Calculator</Link> to calculate the exact amount payable based on the latest NEA tariff rates — including service charges and VAT.</p>
             <Link href="/calculator/nea-bill/" className="inline-block bg-[#1A73E8] hover:bg-[#1557b0] text-white font-black px-7 py-3.5 rounded-xl transition-colors text-sm shadow-md">
-              👉 Calculate Your Electricity Bill →
+              ⚡ Calculate Your Electricity Bill Now →
             </Link>
           </div>
 
@@ -577,8 +578,29 @@ export default function NepalElectricityUnitPricePage() {
               </div>
             </div>
             <p className="text-slate-700 text-base leading-relaxed">
-              This explains why two households can have completely different average costs per unit.
+              This explains why two households can have completely different average costs per unit. For the full official slab breakdown, see the <Link href="/electricity/nea-tariff-rates/" className="text-blue-600 hover:underline font-semibold">NEA Tariff Rates</Link> page.
             </p>
+
+            {/* ── HOW PRICING WORKS VISUAL FLOW ── */}
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 mt-6 mb-2">
+              <p className="font-black text-slate-800 mb-4 text-sm uppercase tracking-wide">📊 How Your Electricity Price Is Determined</p>
+              <div className="flex flex-col items-center gap-1 text-sm font-medium text-slate-700">
+                <div className="bg-white border border-[#1A73E8] text-[#1A73E8] font-bold py-2 px-6 rounded-lg w-56 text-center shadow-sm">1 Unit = 1 kWh</div>
+                <div className="text-slate-400">↓</div>
+                <div className="bg-white border border-slate-200 py-2 px-6 rounded-lg w-56 text-center shadow-sm">Monthly Units Consumed</div>
+                <div className="text-slate-400">↓</div>
+                <div className="bg-white border border-slate-200 py-2 px-6 rounded-lg w-56 text-center shadow-sm">Applicable Slab Rate</div>
+                <div className="text-slate-400">↓</div>
+                <div className="bg-white border border-slate-200 py-2 px-6 rounded-lg w-56 text-center shadow-sm">Energy Charge</div>
+                <div className="text-slate-400">↓</div>
+                <div className="bg-white border border-slate-200 py-2 px-6 rounded-lg w-56 text-center shadow-sm">+ Service Charge</div>
+                <div className="text-slate-400">↓</div>
+                <div className="bg-white border border-slate-200 py-2 px-6 rounded-lg w-56 text-center shadow-sm">+ VAT (if above 50 units)</div>
+                <div className="text-slate-400">↓</div>
+                <div className="bg-[#003087] text-white font-bold py-2 px-6 rounded-lg w-56 text-center shadow-sm">Final Bill Amount</div>
+              </div>
+              <p className="text-xs text-slate-500 text-center mt-3">Use our <Link href="/calculator/nea-bill/" className="text-blue-600 hover:underline">NEA Bill Calculator</Link> to get the exact breakdown instantly.</p>
+            </div>
           </section>
 
           {/* ─────────────────────────────────
@@ -718,8 +740,67 @@ export default function NepalElectricityUnitPricePage() {
           ───────────────────────────────── */}
           <section id="cost-examples" className="mb-10">
             <h2 className="text-2xl font-black text-[#202124] mb-4">Electricity Cost Examples in Nepal</h2>
+
+            {/* ── REAL-WORLD HOUSEHOLD PROFILES ── */}
+            <p className="text-slate-700 mb-4">People relate better to real situations. Here are typical household profiles and their approximate monthly electricity bills:</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+              <div className="bg-[#E8F0FE] border border-[#1A73E8] rounded-xl p-4">
+                <p className="font-black text-slate-800 mb-1">🎓 Student Room</p>
+                <p className="text-xs text-slate-600 mb-2">Fan, phone charger, LED bulb, laptop</p>
+                <p className="text-sm font-bold text-[#003087]">~15–25 units/month</p>
+                <p className="text-xs text-slate-500 mt-1">Often qualifies for lifeline/low-slab rate. Bill: ~Rs. 30–130</p>
+              </div>
+              <div className="bg-[#E8F0FE] border border-[#1A73E8] rounded-xl p-4">
+                <p className="font-black text-slate-800 mb-1">🏠 Small Apartment</p>
+                <p className="text-xs text-slate-600 mb-2">Fan, TV, fridge, phone, LED lighting</p>
+                <p className="text-sm font-bold text-[#003087]">~40–60 units/month</p>
+                <p className="text-xs text-slate-500 mt-1">Hits mid-slabs. Bill: ~Rs. 350–530</p>
+              </div>
+              <div className="bg-[#E8F0FE] border border-[#1A73E8] rounded-xl p-4">
+                <p className="font-black text-slate-800 mb-1">👨‍👩‍👧 Family Home</p>
+                <p className="text-xs text-slate-600 mb-2">Fridge, washing machine, multiple fans, TV, induction</p>
+                <p className="text-sm font-bold text-[#003087]">~80–150 units/month</p>
+                <p className="text-xs text-slate-500 mt-1">Higher slabs + VAT apply. Bill: ~Rs. 800–1,500</p>
+              </div>
+              <div className="bg-[#E8F0FE] border border-[#1A73E8] rounded-xl p-4">
+                <p className="font-black text-slate-800 mb-1">🏡 Large Household</p>
+                <p className="text-xs text-slate-600 mb-2">AC, geyser, multiple appliances, large fridge</p>
+                <p className="text-sm font-bold text-[#003087]">~200–300+ units/month</p>
+                <p className="text-xs text-slate-500 mt-1">Highest slabs. Bill: ~Rs. 2,000–3,000+</p>
+              </div>
+            </div>
+
+            {/* ── AVERAGE COST PER UNIT COMPARISON ── */}
+            <div className="bg-white border border-slate-200 rounded-xl p-5 mb-8 shadow-sm overflow-x-auto">
+              <p className="font-black text-slate-800 text-sm mb-3 uppercase tracking-wide">📉 Typical Average Cost Per Unit by Usage Level</p>
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  <tr className="bg-slate-100 text-left">
+                    <th className="py-2.5 px-3 font-bold border border-slate-200">Monthly Usage</th>
+                    <th className="py-2.5 px-3 font-bold border border-slate-200">Household Type</th>
+                    <th className="py-2.5 px-3 font-bold border border-slate-200">Typical Avg. Cost/Unit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ["~20 units", "Student / Very Low Use", "Rs. 3.00 (lifeline/lowest slab)"],
+                    ["~50 units", "Small Apartment", "Rs. 6–8 (mid slabs)"],
+                    ["~100 units", "Family Home", "Rs. 8–10 (upper slabs + VAT)"],
+                    ["~250+ units", "Large Household / AC users", "Rs. 10–11 (highest slab)"],
+                  ].map(([usage, type, avg], i) => (
+                    <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
+                      <td className="py-2 px-3 border border-slate-200 font-bold">{usage}</td>
+                      <td className="py-2 px-3 border border-slate-200 text-slate-600">{type}</td>
+                      <td className="py-2 px-3 border border-slate-200 font-semibold text-[#003087]">{avg}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p className="text-xs text-slate-500 mt-3">Average cost per unit rises with consumption due to progressive slabs. For exact figures, use the <Link href="/calculator/nea-bill/" className="text-blue-600 hover:underline">NEA Bill Calculator</Link>.</p>
+            </div>
+
             <p className="text-slate-700 mb-4">
-              Here is a simplified breakdown of the estimated monthly bill amounts for different household consumption levels (assuming a standard 5A residential meter):
+              Here is a detailed breakdown by unit amount (assuming a standard 5A residential meter):
             </p>
             <div className="overflow-x-auto mb-6">
               <table className="w-full text-sm border-collapse border border-slate-200">
