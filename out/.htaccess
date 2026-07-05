@@ -7,6 +7,10 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# 1b. Remove double slashes from URLs (Google Search Console Fix)
+RewriteCond %{REQUEST_URI} ^(.*)//(.*)$
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
+
 # ============================================================
 # 2. BING 404 FIX — 301 Redirects for moved tools
 # ============================================================
