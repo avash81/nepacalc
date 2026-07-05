@@ -7,7 +7,6 @@ User-agent: *
 Allow: /
 
 # Protected areas
-Allow: /api/og
 Disallow: /api/
 Disallow: /admin/
 

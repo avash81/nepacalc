@@ -107,6 +107,87 @@ const nextConfig = {
         destination: '/market-rates/exchange-rate-nepal/',
         permanent: true,
       },
+      // ── Legacy / Removed Routes ────────────────────────────────────────
+      {
+        source: '/market/',
+        destination: '/market-rates/',
+        permanent: true,
+      },
+      {
+        source: '/market',
+        destination: '/market-rates/',
+        permanent: true,
+      },
+      {
+        source: '/utility/',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/utility',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/calculators/',
+        destination: '/calculator/',
+        permanent: true,
+      },
+      {
+        source: '/calculators',
+        destination: '/calculator/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/finance/',
+        destination: '/calculator/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/finance',
+        destination: '/calculator/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/category/nepal/',
+        destination: '/calculator/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/category/nepal',
+        destination: '/calculator/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/retirement/',
+        destination: '/calculator/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/retirement',
+        destination: '/calculator/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/swp-calculator/',
+        destination: '/calculator/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/swp-calculator',
+        destination: '/calculator/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/formulas-lab/',
+        destination: '/engineering/formulas/',
+        permanent: true,
+      },
+      {
+        source: '/calculator/formulas-lab',
+        destination: '/engineering/formulas/',
+        permanent: true,
+      },
     ];
   },
   // Webpack: tree shaking only
