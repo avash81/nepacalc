@@ -36,7 +36,7 @@ const QR_FAQS = [
 export default function Page() {
   return (
     <div className="bg-white min-h-screen">
-      <CalcWrapper disableSchema={true}
+      <CalcWrapper 
         hideHeader={true}
         title="QR Encoding Engine"
         description="High-resolution generator for creating static two-dimensional barcodes for instant data sharing and mobile accessibility."
@@ -65,10 +65,11 @@ export default function Page() {
               </p>
             </div>
 
-            <PillarFAQ disableSchema={true} faqs={QR_FAQS} title="QR Codes & Data Sharing FAQ" />
+            <PillarFAQ  faqs={QR_FAQS} title="QR Codes & Data Sharing FAQ" />
           </div>
         </div>
       </CalcWrapper>    </div>
   );
 }
+
 

@@ -17,19 +17,23 @@ export default function GraphingPage() {
   return (
     <>
       <JsonLd
-        type="breadcrumb"
-        breadcrumbItems={[
-          { name: 'Home', item: 'https://NepaCalc.com' },
-          { name: 'Engineering', item: 'https://NepaCalc.com/engineering/' },
-          { name: 'Graphing Calculator', item: 'https://NepaCalc.com/engineering/graphing/' }
-        ]}
-      />
-      <JsonLd
-        type="calculator"
-        name="NepaCalc Graphing Calculator"
-        description="Interactive graphing calculator with multi-expression support, custom colors, infinite pan & zoom."
-        url="https://NepaCalc.com/engineering/graphing/"
+        type="unified"
+        name="Free Online Graphing Calculator"
+        description="Interactive graphing calculator: plot multiple functions simultaneously with custom colors, infinite pan & zoom. Supports sin, cos, tan, log, polynomials, and more."
+        url="https://nepacalc.com/engineering/graphing/"
         category="EducationalApplication"
+        breadcrumbItems={[
+          { name: 'Home', item: 'https://nepacalc.com' },
+          { name: 'Engineering', item: 'https://nepacalc.com/engineering/' },
+          { name: 'Graphing Calculator', item: 'https://nepacalc.com/engineering/graphing/' }
+        ]}
+        faqs={[
+          { question: "Can I plot multiple equations at once?", answer: "Yes, simply click the '+' button to add new expression layers. Each function can be toggled on/off or customized with distinct colors for easier comparison." },
+          { question: "Does it support trigonometric functions?", answer: "Absolutely. Our engine supports all standard trigonometric, hyperbolic, and inverse functions (sin, cos, tan, asin, acos, atan, sinh, cosh, tanh) using high-precision floating point arithmetic." },
+          { question: "How do I zoom or pan the graph?", answer: "Use your mouse wheel or pinch-to-zoom on mobile. You can also click and drag anywhere on the canvas to pan across the coordinate system infinitely." },
+          { question: "Can I use this for university-level calculus?", answer: "Yes, the engine is designed to handle limits, derivatives, and complex polynomial expansions common in TU, KU, and PU engineering curricula in Nepal." },
+          { question: "Is this a free alternative to Desmos?", answer: "Yes. NepaCalc's graphing calculator is a completely free, no-login-required alternative to Desmos and GeoGebra, optimized for students and engineers in Nepal." }
+        ]}
       />
       <GraphingCalculatorClient />
     
