@@ -4,10 +4,10 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   ...calcMeta({
-    title: 'Momo Calorie Calculator | Chicken, Veg, Fried & Steamed Momo Calories',
+    title: 'Momo Calorie Calculator – Chicken, Veg, Buff, Fried & Steamed Momos',
     description:
-      'Calculate calories in chicken, veg, steamed, fried, paneer, buff and jhol momos instantly. Get calories per piece, per plate, nutrition facts and serving estimates.',
-    slug: 'momo-calorie-counter',
+      'Calculate calories in chicken, veg, buff, paneer, fried, steamed, tandoori and jhol momos instantly. Find calories per piece, per plate, nutrition facts and protein using our free Momo Calorie Calculator.',
+    slug: 'calculator/momo-calorie-counter',
     keywords: [
       'Momo Calorie Calculator',
       'momo calories',
@@ -29,17 +29,17 @@ export const metadata: Metadata = {
     ],
   }),
   openGraph: {
-    title: 'Momo Calorie Calculator | Chicken, Veg, Fried & Steamed Momo Calories',
-    description: 'Calculate calories in chicken, veg, steamed, fried, paneer, buff and jhol momos instantly. Get calories per piece, per plate, nutrition facts and serving estimates.',
+    title: 'Momo Calorie Calculator – Chicken, Veg, Buff, Fried & Steamed Momos',
+    description: 'Calculate calories in chicken, veg, buff, paneer, fried, steamed, tandoori and jhol momos instantly. Find calories per piece, per plate, nutrition facts and protein using our free Momo Calorie Calculator.',
     url: 'https://nepacalc.com/calculator/momo-calorie-counter/',
     siteName: 'NepaCalc',
     type: 'website',
-    images: [{ url: 'https://nepacalc.com/images/momo-calorie-calculator.webp', alt: 'Momo Calorie Calculator' }],
+    images: [{ url: 'https://nepacalc.com/images/momo-calorie-calculator.webp', alt: 'Momo Calorie Calculator Chicken Veg Buff Steamed Fried' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Momo Calorie Calculator | Chicken, Veg, Fried & Steamed Momo Calories',
-    description: 'Calculate calories in chicken, veg, steamed, fried, paneer, buff and jhol momos instantly. Get calories per piece, per plate, nutrition facts and serving estimates.',
+    title: 'Momo Calorie Calculator – Chicken, Veg, Buff, Fried & Steamed Momos',
+    description: 'Calculate calories in chicken, veg, buff, paneer, fried, steamed, tandoori and jhol momos instantly. Find calories per piece, per plate, nutrition facts and protein using our free Momo Calorie Calculator.',
     images: ['https://nepacalc.com/images/momo-calorie-calculator.webp'],
   },
   robots: {
@@ -95,30 +95,60 @@ const softwareAppSchema = {
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
 };
 
-// ─── Schema: FAQPage (4 core questions) ──────────────────────────────────────
+// ─── Schema: FAQPage (Expanded questions) ──────────────────────────────────────
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'How many calories are in one chicken momo?',
-      acceptedAnswer: { '@type': 'Answer', text: 'One steamed chicken momo contains approximately 45–60 calories depending on size, filling and wrapper thickness.' },
+      name: 'How many calories are in 5 momos?',
+      acceptedAnswer: { '@type': 'Answer', text: '5 steamed veg momos contain approximately 225 calories. 5 steamed chicken momos contain approximately 300 calories. Frying them adds about 125–150 additional calories.' },
     },
     {
       '@type': 'Question',
-      name: 'How many calories are in fried momos?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Fried momos absorb cooking oil and contain significantly more calories than steamed momos. Fried chicken momos contain approximately 85 kcal per piece.' },
+      name: 'How many calories are in 6 momos?',
+      acceptedAnswer: { '@type': 'Answer', text: '6 steamed veg momos contain about 270 calories, while 6 steamed chicken momos contain around 360 calories. If deep-fried, the count increases to approximately 510–540 calories.' },
     },
     {
       '@type': 'Question',
-      name: 'How many calories are in one plate of momos?',
-      acceptedAnswer: { '@type': 'Answer', text: 'A standard plate of 8–10 steamed chicken momos contains approximately 480–600 calories depending on serving size and filling.' },
+      name: 'How many calories are in 8 momos?',
+      acceptedAnswer: { '@type': 'Answer', text: '8 steamed veg momos contain approximately 360 calories, whereas 8 steamed chicken momos contain about 480 calories. Fried variants contain around 680–720 calories.' },
     },
     {
       '@type': 'Question',
-      name: 'Which momo has the lowest calories?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Steamed vegetable momos have the lowest calorie count at approximately 45 calories per piece.' },
+      name: 'How many calories are in 10 momos?',
+      acceptedAnswer: { '@type': 'Answer', text: '10 steamed vegetable momos contain roughly 450 calories. 10 steamed chicken momos contain approximately 600 calories. Fried plates can exceed 850–900 calories.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How many calories are in 12 momos?',
+      acceptedAnswer: { '@type': 'Answer', text: '12 steamed veg momos contain about 540 calories. 12 steamed chicken momos contain around 720 calories. Frying them will push the total past 1,000 calories.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'How many calories are in one plate of chicken momos?',
+      acceptedAnswer: { '@type': 'Answer', text: 'A standard plate of 10 steamed chicken momos contains approximately 600 calories. A plate of 10 deep-fried chicken momos contains about 850 calories.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are chicken momos healthy?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes, steamed chicken momos can be healthy. They are high in protein and low in fat, provided you skip creamy or oily dipping sauces like mayonnaise.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are steamed momos good for weight loss?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. Steaming doesn\'t add oil or trans fats, making steamed vegetable (45 kcal) and chicken (60 kcal) momos excellent options for calorie-controlled weight loss diets.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Which momos have the lowest calories?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Steamed vegetable momos have the lowest calories at approximately 45 calories per piece. Steamed mushroom momos are also very low in calories.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Which momos have the highest protein?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Steamed chicken momos (5.5g protein per piece) and pork momos (5.5g protein per piece) have the highest protein content among all momo varieties.' },
     },
   ],
 };
