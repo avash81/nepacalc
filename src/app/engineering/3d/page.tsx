@@ -351,7 +351,6 @@ export default function ThreeDPage() {
               "name": "NepaCalc",
               "url": "https://nepacalc.com",
               "logo": "https://nepacalc.com/logo.png"
-              ]
             }
           ])
         }}
