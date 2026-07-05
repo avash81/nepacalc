@@ -42,6 +42,9 @@ RewriteRule ^calculator/category/(.*)$ /directory/ [L,R=301]
 RewriteRule ^market/?$ /market-rates/ [L,R=301]
 RewriteRule ^utility/?$ /directory/ [L,R=301]
 RewriteRule ^calculators/?$ /directory/ [L,R=301]
+RewriteRule ^calculator/formulas-lab/?$ /engineering/formulas/ [L,R=301]
+RewriteRule ^calculator/swp-calculator/?$ /calculator/sip-calculator/ [L,R=301]
+RewriteRule ^calculator/retirement/?$ /calculator/sip-calculator/ [L,R=301]
 
 # Sitemap Fix
 RewriteRule ^sitemap\.html$ /sitemap/ [L,R=301]
