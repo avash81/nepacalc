@@ -90,7 +90,7 @@ export default function CalculusPage() {
 
             <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-100 dark:border-slate-700">
               <h4 className="text-lg font-bold mb-2">Can it solve multi-variable calculus problems?</h4>
-              <p>Currently, the tool is optimized for single-variable calculus (derivatives and integrals with respect to one variable at a time). We are continuously working on updates to include partial derivatives and multiple integrals in the future.</p>
+              <p>Currently, the tool is optimized for single-variable calculus (derivatives and integrals with respect to one variable at a time). We are continuously working on updates to include partial derivatives and multiple integrals in the future. In the meantime, you can use our <a href="/engineering/3d/" className="text-indigo-500 hover:underline font-bold">3D Graph Calculator</a> to visually explore multivariable calculus and <a href="/engineering/3d/" className="text-indigo-500 hover:underline">graph functions in 3D</a>.</p>
             </div>
 
             <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-lg shadow-sm border border-slate-100 dark:border-slate-700">

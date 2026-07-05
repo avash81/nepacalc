@@ -28,8 +28,8 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: '3D Graph Calculator Free Online 3D Plotter, Surface & Function Grapher',
-  description: "Plot 3D functions, surfaces, equations and mathematical models using NepaCalc's free 3D Graph Calculator. Visualize spheres, paraboloids, saddle surfaces, Gaussian functions, parametric equations and engineering graphs instantly.",
+  title: '3D Graph Calculator – Free Online 3D Plotter & Surface Grapher',
+  description: 'Plot 3D graphs, surfaces and mathematical functions instantly with our free online 3D Graph Calculator. Visualize equations, rotate graphs and explore multivariable functions directly in your browser.',
   applicationName: 'NepaCalc 3D Graph Calculator',
   generator: '', // Removing Next.js generator by overriding it
   referrer: 'strict-origin-when-cross-origin',
@@ -73,8 +73,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    title: '3D Graph Calculator Free Online 3D Plotter',
-    description: "Plot 3D functions, surfaces and engineering graphs instantly using NepaCalc's interactive 3D Graph Calculator.",
+    title: '3D Graph Calculator – Free Online 3D Plotter & Surface Grapher',
+    description: 'Plot 3D graphs, surfaces and mathematical functions instantly with our free online 3D Graph Calculator. Visualize equations, rotate graphs and explore multivariable functions directly in your browser.',
     url: 'https://nepacalc.com/engineering/3d/',
     siteName: 'NepaCalc',
     locale: 'en_NP',
@@ -83,14 +83,14 @@ export const metadata: Metadata = {
         url: 'https://nepacalc.com/images/3d-graph-calculator-og.webp',
         width: 1200,
         height: 630,
-        alt: 'Interactive 3D Graph Calculator by NepaCalc',
+        alt: '3D Graph Calculator plotting a mathematical surface',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '3D Graph Calculator Free Online 3D Plotter',
-    description: 'Visualize mathematical surfaces, engineering models and 3D equations online.',
+    title: '3D Graph Calculator – Free Online 3D Plotter & Surface Grapher',
+    description: 'Plot 3D graphs, surfaces and mathematical functions instantly with our free online 3D Graph Calculator. Visualize equations, rotate graphs and explore multivariable functions directly in your browser.',
     images: ['https://nepacalc.com/images/3d-graph-calculator-og.webp'],
   },
 };
@@ -106,13 +106,7 @@ export default function ThreeDPage() {
           { name: '3D Graph Calculator', item: 'https://nepacalc.com/engineering/3d/' }
         ]}
       />
-      <JsonLd 
-        type="calculator" 
-        name="3D Graph Calculator" 
-        description="Plot interactive 3D graphs, surfaces, equations, vectors and mathematical functions online. Free 3D graph calculator with engineering, calculus and geometry tools." 
-        url="https://nepacalc.com/engineering/3d/" 
-        category="EducationalApplication" 
-      />
+
       
       <script
         type="application/ld+json"
@@ -133,35 +127,33 @@ export default function ThreeDPage() {
                 "@id": "https://nepacalc.com/#organization"
               },
               "primaryImageOfPage": {
-                "@id": "https://nepacalc.com/images/3d-graph-calculator-preview.webp"
+                "@id": "https://nepacalc.com/images/3d-graph-calculator-og.webp"
               },
               "datePublished": "2026-06-20",
               "dateModified": new Date().toISOString().split('T')[0]
             },
             {
               "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
+              "@type": "WebApplication",
               "@id": "https://nepacalc.com/engineering/3d/#software",
               "name": "3D Graph Calculator",
+              "description": "Plot 3D graphs, surfaces and mathematical functions instantly with our free online 3D Graph Calculator. Visualize equations, rotate graphs and explore multivariable functions directly in your browser.",
+              "url": "https://nepacalc.com/engineering/3d/",
               "applicationCategory": "EducationalApplication",
-              "applicationSubCategory": "Engineering Calculator",
               "operatingSystem": "Web Browser",
               "browserRequirements": "Requires JavaScript and WebGL",
-              "softwareVersion": "4.0",
               "offers": {
                 "@type": "Offer",
                 "price": "0",
                 "priceCurrency": "USD"
               },
               "featureList": [
-                "3D Surface Plotting",
-                "Implicit Surface Rendering",
-                "Multiple Equations",
-                "Cross Sections",
-                "Wireframe Mode",
-                "Function Presets",
-                "Engineering Visualization",
-                "Mathematical Surface Library"
+                "Plot 3D surfaces",
+                "Graph implicit equations",
+                "Parametric surfaces",
+                "Cartesian equations",
+                "Zoom and rotate",
+                "Export image"
               ]
             },
             {
@@ -280,6 +272,21 @@ export default function ThreeDPage() {
                   "@type": "Question",
                   "name": "What is the difference between implicit and explicit 3D equations?",
                   "acceptedAnswer": { "@type": "Answer", "text": "An explicit equation expresses z as a function of x and y (e.g., z = x² + y²). An implicit equation defines a relationship between x, y, and z (e.g., x² + y² + z² = r²) without solving for one variable." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is the difference between a 2D and 3D graph?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "A 2D graph plots relationships between two variables (x and y) resulting in curves or lines. A 3D graph adds depth by introducing a third variable (z), mapping out volumetric shapes and continuous surfaces like paraboloids and cylinders." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is a surface plot?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "A surface plot connects data points in a 3-dimensional grid to form a solid skin or surface over an area. It is widely used in data science, physics, and engineering to visualize how one variable changes in response to two independent inputs." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How do engineers use 3D graph calculators?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Engineers use them for finite element analysis, plotting stress distributions across surfaces, visualizing fluid dynamics, finding optimization parameters for machine designs, and determining optimal load paths for structural designs." }
                 }
               ]
             },
@@ -344,75 +351,6 @@ export default function ThreeDPage() {
               "name": "NepaCalc",
               "url": "https://nepacalc.com",
               "logo": "https://nepacalc.com/logo.png"
-            },
-            {
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              "mainEntity": [
-                {
-                  "@type": "Question",
-                  "name": "Can I graph implicit equations?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. The NepaCalc 3D Graph Calculator supports implicit equations like spheres using marching cubes algorithms to render complex closed shapes instantly."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "What is the difference between a 2D and 3D graph?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "A 2D graph plots relationships between two variables (x and y) resulting in curves or lines. A 3D graph adds depth by introducing a third variable (z), mapping out volumetric shapes and continuous surfaces like paraboloids and cylinders."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Can I graph parametric equations?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Currently, the calculator natively plots explicit functions z = f(x,y) and standard implicit equations. Full support for parameterized inputs (u,v) is being added in the next feature update."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "What is a surface plot?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "A surface plot connects data points in a 3-dimensional grid to form a solid skin or surface over an area. It is widely used in data science, physics, and engineering to visualize how one variable changes in response to two independent inputs."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "How do engineers use 3D graph calculators?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Engineers use them for finite element analysis, plotting stress distributions across surfaces, visualizing fluid dynamics, finding optimization parameters for machine designs, and determining optimal load paths for structural designs."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Can I plot multiple equations at once?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes! You can add multiple surfaces by entering additional equations. The grapher will overlay them in the same 3D space, which is perfect for discovering points of intersection between planes, spheres, and cylinders."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Is this calculator free?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, our 3D Graph Calculator is 100% free to use. There are no paywalls, hidden fees, or subscription required, making it ideal for students and professionals looking for accessible math tools."
-                  }
-                },
-                {
-                  "@type": "Question",
-                  "name": "Does it work on mobile devices?",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes, the calculator is fully responsive and supports smartphones and tablets with touch-based rotation and zoom, allowing you to plot surfaces on the go."
-                  }
-                }
               ]
             }
           ])
@@ -422,13 +360,13 @@ export default function ThreeDPage() {
       <ThreeDCalculatorClient />
 
       <div className="max-w-[1280px] mx-auto px-4 mt-8 pb-4">
-        <h1 className="text-3xl lg:text-4xl font-black text-[#202124] mb-4 text-center">3D Graph Calculator Free Online 3D Plotter & Surface Grapher</h1>
+        <h1 className="text-3xl lg:text-4xl font-black text-[#202124] mb-4 text-center">3D Graph Calculator</h1>
         <p className="text-sm font-semibold text-center text-[#1967D2] mb-6 uppercase tracking-wider">Last Updated: June 2026</p>
         <p className="text-lg text-center leading-relaxed text-[#5F6368] max-w-4xl mx-auto">
           Plot mathematical equations, visualize 3D surfaces, and explore multivariable functions with NepaCalc's free <strong>3D Graph Calculator</strong>. Whether you're graphing explicit functions, implicit surfaces, engineering models, or calculus equations, this interactive <strong>3D graphing calculator</strong> (and online 3D function grapher) lets you rotate, zoom, compare multiple equations, and analyze complex mathematical surfaces directly in your browser. Designed for students, engineers, educators, researchers, and professionals, it provides fast, accurate, browser-based 3D visualization without requiring software installation.
         </p>
         <p className="text-sm text-center font-medium text-[#5F6368] max-w-4xl mx-auto mt-4">
-          Looking for other tools? Try our <Link href="/math-tools/scientific/" className="text-[#1967D2] hover:underline">Scientific Calculator</Link>, <Link href="/math-tools/matrix/" className="text-[#1967D2] hover:underline">Matrix Calculator</Link>, <Link href="/calculator/linear-solver/" className="text-[#1967D2] hover:underline">Linear Equation Solver</Link>, or <Link href="/calculator/quadratic-solver/" className="text-[#1967D2] hover:underline">Quadratic Equation Solver</Link>.
+          Looking for other tools? Try our <Link href="/math-tools/scientific/" className="text-[#1967D2] hover:underline">Scientific Calculator</Link>, <Link href="/math-tools/matrix/" className="text-[#1967D2] hover:underline">Matrix Calculator</Link>, <Link href="/calculator/linear-solver/" className="text-[#1967D2] hover:underline">Linear Equation Solver</Link>, <Link href="/calculator/quadratic-solver/" className="text-[#1967D2] hover:underline">Quadratic Solver</Link>, or <Link href="/utility/converter/" className="text-[#1967D2] hover:underline">Unit Converter</Link>.
         </p>
       </div>
 

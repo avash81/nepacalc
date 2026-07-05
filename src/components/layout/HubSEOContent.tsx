@@ -220,7 +220,7 @@ export const HubSEOContent: React.FC<HubContentProps> = ({ category }) => {
               Engineering is the art of precision, and at NepaCalc, we provide the tools to build the world. Our <strong>Engineering Pillar</strong> is designed for civil engineers, site managers, and physics students who require immediate, reliable data on **Concrete Mixing**, **Brick Counting**, and **Structural Forces**.
             </p>
             <p className="mb-6">
-              From calculating the <strong>Molar Mass</strong> of a chemical compound to determining the <strong>Force and Energy</strong> in a mechanical system, our engine handles the complex physics so you can focus on the design.
+              From calculating the <strong>Molar Mass</strong> of a chemical compound to determining the <strong>Force and Energy</strong> in a mechanical system, our engine handles the complex physics so you can focus on the design. You can also utilize our <Link href="/engineering/3d/" className="text-[#1a0dab] font-bold underline">3D Graph Calculator</Link> to interactively <Link href="/engineering/3d/" className="text-[#1a0dab] underline">visualize equations</Link> and topological surfaces.
             </p>
           </section>
   

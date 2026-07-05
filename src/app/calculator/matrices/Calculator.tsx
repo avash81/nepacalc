@@ -148,6 +148,9 @@ export default function MatrixCalc() {
              <p className="text-sm text-[#5F6368] leading-relaxed">
                 Professional engine for matrix algebra calibrated for NEB and Engineering standards.
              </p>
+             <p className="text-sm text-[#5F6368] leading-relaxed mt-4">
+                If your matrices represent geometric transformations, you can <a href="/engineering/3d/" className="text-blue-600 hover:underline font-medium">graph multivariable functions</a> and resulting surfaces with our dedicated <a href="/engineering/3d/" className="text-blue-600 hover:underline font-bold">interactive 3D graph</a> tool.
+             </p>
           </div>
         </div>
       }

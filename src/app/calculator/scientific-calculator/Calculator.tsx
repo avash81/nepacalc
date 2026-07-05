@@ -496,6 +496,9 @@ export default function ScientificCalculator() {
               <p>
                 Our engine\'s ability to handle natural logarithms ($ln$) and the constant $e$ (Euler\'s number) with 10-decimal precision makes it an ideal companion for rigorous thermodynamic analysis. Whether you are designing a solar heater in <strong>Kathmandu</strong> or an industrial boiler in <strong>Biratnagar</strong>, the precision of your calculations determines the safety and efficiency of your machine.
               </p>
+              <p>
+                For multidimensional energy models, you can also <a href="/engineering/3d/" className="text-blue-600 hover:underline font-medium">graph functions in 3D</a> using our dedicated <a href="/engineering/3d/" className="text-blue-600 hover:underline font-bold">3D Graph Calculator</a> to <a href="/engineering/3d/" className="text-blue-600 hover:underline font-medium">visualize equations</a> across multiple variables.
+              </p>
             </div>
           </section>
         </div>

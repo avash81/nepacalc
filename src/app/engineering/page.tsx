@@ -47,6 +47,12 @@ export default function EngineeringPillarPage() {
         crumbs={[{ label: 'Engineering' }]}
       >
         <div className="py-4">
+          <div className="mb-8 p-6 bg-indigo-50 border border-indigo-100 rounded-xl shadow-sm">
+            <h2 className="text-xl font-black text-indigo-900 mb-2">Featured Tool: 3D Graph Calculator</h2>
+            <p className="text-indigo-800 leading-relaxed">
+              Explore mathematical models and topological surfaces in real-time. Use our <a href="/engineering/3d/" className="font-bold underline text-indigo-900">3D Graph Calculator</a> to interactively graph multivariable functions directly in your browser.
+            </p>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
             {engTools.map(calc => (
               <PillarCard

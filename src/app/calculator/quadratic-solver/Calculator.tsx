@@ -99,6 +99,9 @@ export default function QuadraticSolver() {
              <p className="text-sm text-[#5F6368] leading-relaxed">
                 Calibrated for university-level engineering and academic research.
              </p>
+             <p className="text-sm text-[#5F6368] leading-relaxed mt-4">
+                Quadratic equations often form the basis of parabolic surfaces and 3D geometric shapes. You can explore these structures by using our <a href="/engineering/3d/" className="text-blue-600 hover:underline font-bold">3D Graph Calculator</a> to <a href="/engineering/3d/" className="text-blue-600 hover:underline font-medium">graph functions in 3D</a>.
+             </p>
           </div>
         </div>
       }

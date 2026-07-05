@@ -175,6 +175,9 @@ export default function LinearSolver() {
              <p className="text-sm text-[#5F6368] leading-relaxed">
                 The institutional engine for resolving simultaneous equations. Calibrated for <strong>NEB</strong> and <strong>Engineering</strong> standards, this tool uses Cramer's Rule for absolute precision.
              </p>
+             <p className="text-sm text-[#5F6368] leading-relaxed mt-4">
+                When systems of 3 linear equations represent planes in three-dimensional space, you can use our <a href="/engineering/3d/" className="text-blue-600 hover:underline font-bold">3D plotting tool</a> to <a href="/engineering/3d/" className="text-blue-600 hover:underline font-medium">plot 3D surfaces</a> and find their exact points of intersection.
+             </p>
           </div>
         </div>
       }
