@@ -1,22 +1,64 @@
 {
-  "fiscalYear": "2083/84",
-  "effectiveFrom": "2026-07-16",
-  "individual": {
-    "single": [
-      { "upTo": 1000000, "rate": 0.01, "label": "Up to Rs. 10,00,000" },
-      { "upTo": 1500000, "rate": 0.10, "label": "Rs. 10,00,001 - Rs. 15,00,000" },
-      { "upTo": 2500000, "rate": 0.20, "label": "Rs. 15,00,001 - Rs. 25,00,000" },
-      { "upTo": 4000000, "rate": 0.27, "label": "Rs. 25,00,001 - Rs. 40,00,000" },
-      { "upTo": null,    "rate": 0.29, "label": "Above Rs. 40,00,000" }
-    ],
-    "married": [
-      { "upTo": 1000000, "rate": 0.01, "label": "Up to Rs. 10,00,000" },
-      { "upTo": 1500000, "rate": 0.10, "label": "Rs. 10,00,001 - Rs. 15,00,000" },
-      { "upTo": 2500000, "rate": 0.20, "label": "Rs. 15,00,001 - Rs. 25,00,000" },
-      { "upTo": 4000000, "rate": 0.27, "label": "Rs. 25,00,001 - Rs. 40,00,000" },
-      { "upTo": null,    "rate": 0.29, "label": "Above Rs. 40,00,000" }
-    ]
+  "2083/84": {
+    "effectiveFrom": "2026-07-16",
+    "ssfWaivesFirstSlab": true,
+    "individual": {
+      "single": [
+        { "upTo": 1000000, "rate": 0.01, "label": "Up to Rs. 10,00,000" },
+        { "upTo": 1500000, "rate": 0.10, "label": "Rs. 10,00,001 - Rs. 15,00,000" },
+        { "upTo": 2500000, "rate": 0.20, "label": "Rs. 15,00,001 - Rs. 25,00,000" },
+        { "upTo": 4000000, "rate": 0.27, "label": "Rs. 25,00,001 - Rs. 40,00,000" },
+        { "upTo": null,    "rate": 0.29, "label": "Above Rs. 40,00,000" }
+      ],
+      "married": [
+        { "upTo": 1000000, "rate": 0.01, "label": "Up to Rs. 10,00,000" },
+        { "upTo": 1500000, "rate": 0.10, "label": "Rs. 10,00,001 - Rs. 15,00,000" },
+        { "upTo": 2500000, "rate": 0.20, "label": "Rs. 15,00,001 - Rs. 25,00,000" },
+        { "upTo": 4000000, "rate": 0.27, "label": "Rs. 25,00,001 - Rs. 40,00,000" },
+        { "upTo": null,    "rate": 0.29, "label": "Above Rs. 40,00,000" }
+      ]
+    }
   },
-  "ssfDiscount": true,
-  "ssfWaivesFirstSlab": true
+  "2082/83": {
+    "effectiveFrom": "2025-07-16",
+    "ssfWaivesFirstSlab": true,
+    "individual": {
+      "single": [
+        { "upTo": 500000, "rate": 0.01, "label": "Up to Rs. 5,00,000" },
+        { "upTo": 700000, "rate": 0.10, "label": "Rs. 5,00,001 - Rs. 7,00,000" },
+        { "upTo": 1000000, "rate": 0.20, "label": "Rs. 7,00,001 - Rs. 10,00,000" },
+        { "upTo": 2000000, "rate": 0.30, "label": "Rs. 10,00,001 - Rs. 20,00,000" },
+        { "upTo": 5000000, "rate": 0.36, "label": "Rs. 20,00,001 - Rs. 50,00,000" },
+        { "upTo": null,    "rate": 0.39, "label": "Above Rs. 50,00,000" }
+      ],
+      "married": [
+        { "upTo": 600000, "rate": 0.01, "label": "Up to Rs. 6,00,000" },
+        { "upTo": 800000, "rate": 0.10, "label": "Rs. 6,00,001 - Rs. 8,00,000" },
+        { "upTo": 1100000, "rate": 0.20, "label": "Rs. 8,00,001 - Rs. 11,00,000" },
+        { "upTo": 2000000, "rate": 0.30, "label": "Rs. 11,00,001 - Rs. 20,00,000" },
+        { "upTo": 5000000, "rate": 0.36, "label": "Rs. 20,00,001 - Rs. 50,00,000" },
+        { "upTo": null,    "rate": 0.39, "label": "Above Rs. 50,00,000" }
+      ]
+    }
+  },
+  "2081/82": {
+    "effectiveFrom": "2024-07-16",
+    "ssfWaivesFirstSlab": true,
+    "individual": {
+      "single": [
+        { "upTo": 500000, "rate": 0.01, "label": "Up to Rs. 5,00,000" },
+        { "upTo": 700000, "rate": 0.10, "label": "Rs. 5,00,001 - Rs. 7,00,000" },
+        { "upTo": 1000000, "rate": 0.20, "label": "Rs. 7,00,001 - Rs. 10,00,000" },
+        { "upTo": 2000000, "rate": 0.30, "label": "Rs. 10,00,001 - Rs. 20,00,000" },
+        { "upTo": null,    "rate": 0.36, "label": "Above Rs. 20,00,000" }
+      ],
+      "married": [
+        { "upTo": 600000, "rate": 0.01, "label": "Up to Rs. 6,00,000" },
+        { "upTo": 800000, "rate": 0.10, "label": "Rs. 6,00,001 - Rs. 8,00,000" },
+        { "upTo": 1100000, "rate": 0.20, "label": "Rs. 8,00,001 - Rs. 11,00,000" },
+        { "upTo": 2000000, "rate": 0.30, "label": "Rs. 11,00,001 - Rs. 20,00,000" },
+        { "upTo": null,    "rate": 0.36, "label": "Above Rs. 20,00,000" }
+      ]
+    }
+  }
 }

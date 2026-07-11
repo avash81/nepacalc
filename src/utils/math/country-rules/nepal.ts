@@ -1,14 +1,41 @@
-import taxSlabs from '../../../data/nepal-tax-slabs.json';
+import taxSlabsData from '../../../data/nepal-tax-slabs.json';
 
-/**
- * Nepal Income Tax Calculation FY 2083/84 (V3 Engine)
- */
+export type FiscalYear = '2083/84' | '2082/83' | '2081/82';
+
+export interface SalaryDeductions {
+  lifeInsurance: number;
+  healthInsurance: number;
+  buildingInsurance: number;
+  donation: number;
+  education: number;
+  other: number;
+}
+
+export interface SalaryAllowances {
+  housing: number;
+  transport: number;
+  communication: number;
+  meal: number;
+  other: number;
+}
+
+// Caps
+const CAPS = {
+  lifeInsurance: 40000,
+  healthInsurance: 20000,
+  buildingInsurance: 10000,
+  education: 25000,
+  donation: 300000
+};
+
 export function calculateNepalIncomeTax(
   annualIncome: number,
   isMarried: boolean,
   isSSFContributor: boolean,
   gender: 'male' | 'female' = 'male',
-  ssfAmountInput?: number
+  retirementContribution: number = 0,
+  deductions: SalaryDeductions = { lifeInsurance: 0, healthInsurance: 0, buildingInsurance: 0, donation: 0, education: 0, other: 0 },
+  fiscalYear: FiscalYear = '2083/84'
 ) {
   if (annualIncome <= 0) {
     return {
@@ -22,17 +49,22 @@ export function calculateNepalIncomeTax(
     };
   }
 
-  const slabs = isMarried ? taxSlabs.individual.married : taxSlabs.individual.single;
+  const yearData = (taxSlabsData as any)[fiscalYear];
+  const slabs = isMarried ? yearData.individual.married : yearData.individual.single;
   
-  // SSF Deduction Caps (Statutory IRD mandate)
-  // Max 1/3 of income or 500,000 Total
-  const maxSsfDeduction = Math.min(annualIncome / 3, 500000);
-  const providedSsfDeduction = ssfAmountInput ?? (annualIncome * 0.11);
-  const ssfDeduction = isSSFContributor
-    ? Math.max(0, Math.min(providedSsfDeduction, maxSsfDeduction))
-    : 0;
+  const maxRetirementDeduction = Math.min(annualIncome / 3, 500000);
+  const allowedRetirementDeduction = Math.min(retirementContribution, maxRetirementDeduction);
   
-  const taxableIncome = Math.max(0, annualIncome - ssfDeduction);
+  const allowedLifeIns = Math.min(deductions.lifeInsurance || 0, CAPS.lifeInsurance);
+  const allowedHealthIns = Math.min(deductions.healthInsurance || 0, CAPS.healthInsurance);
+  const allowedBuildingIns = Math.min(deductions.buildingInsurance || 0, CAPS.buildingInsurance);
+  const allowedEducation = Math.min((deductions.education || 0) * 0.25, CAPS.education);
+  const allowedDonation = Math.min(deductions.donation || 0, CAPS.donation);
+  
+  const totalApprovedDeductions = allowedLifeIns + allowedHealthIns + allowedBuildingIns + allowedEducation + allowedDonation + (deductions.other || 0);
+
+  const taxableIncome = Math.max(0, annualIncome - allowedRetirementDeduction - totalApprovedDeductions);
+  
   let remaining = taxableIncome;
   let totalTax = 0;
   const breakdown = [];
@@ -48,8 +80,7 @@ export function calculateNepalIncomeTax(
     if (taxableInSlab > 0) {
       let rate = slab.rate;
       
-      // SST Waiver Logic (1% Social Security Tax is waived for SSF contributors)
-      if (i === 0 && isSSFContributor && taxSlabs.ssfWaivesFirstSlab) {
+      if (i === 0 && isSSFContributor && yearData.ssfWaivesFirstSlab) {
         rate = 0;
       }
       
@@ -70,12 +101,10 @@ export function calculateNepalIncomeTax(
     if (remaining <= 0) break;
   }
 
-  // 10% Female Rebate (Remuneration income only - 2083/84 IRD rule)
   if (gender === 'female' && totalTax > 0) {
     const rebateAmount = totalTax * 0.10;
     totalTax = totalTax - rebateAmount;
     
-    // Inject rebate into breakdown for transparency
     breakdown.push({
       slabLabel: 'Female Rebate (10%)',
       taxableInSlab: 0,
@@ -95,45 +124,86 @@ export function calculateNepalIncomeTax(
   };
 }
 
-/**
- * Nepal Salary Breakdown
- */
 export function calculateNepalSalary(
-  grossSalary: number,
+  salary: number,
+  isAnnualFrequency: boolean,
   isSSFContributor: boolean,
-  isCITContributor: boolean,
+  retirementType: 'none' | 'cit' | 'pf',
+  retirementMonthlyAmount: number,
   gender: 'male' | 'female' = 'male',
-  allowances: { hra: number; medical: number; transport: number; other: number } = { hra: 0, medical: 0, transport: 0, other: 0 }
+  annualBonus: number = 0,
+  allowances: SalaryAllowances = { housing: 0, transport: 0, communication: 0, meal: 0, other: 0 },
+  deductions: SalaryDeductions = { lifeInsurance: 0, healthInsurance: 0, buildingInsurance: 0, donation: 0, education: 0, other: 0 },
+  fiscalYear: FiscalYear = '2083/84'
 ) {
-  const basicSalary = grossSalary * 0.6; // Assuming 60% is basic for SSF calculation
+  const monthlyBase = isAnnualFrequency ? salary / 12 : salary;
+  const annualBase = isAnnualFrequency ? salary : salary * 12;
+
+  const totalMonthlyAllowances = allowances.housing + allowances.transport + allowances.communication + allowances.meal + allowances.other;
+  const annualAllowances = totalMonthlyAllowances * 12;
+
+  const monthlyGross = monthlyBase + totalMonthlyAllowances;
+  const annualGross = annualBase + annualAllowances + annualBonus;
+
+  // Assuming full base is subject to SSF
+  const basicSalaryForSSF = monthlyBase;
+  const monthly_ssf_employee = isSSFContributor ? basicSalaryForSSF * 0.11 : 0;
+  const monthly_ssf_employer = isSSFContributor ? basicSalaryForSSF * 0.20 : 0;
   
-  const ssf_employee = isSSFContributor ? basicSalary * 0.11 : 0;
-  const ssf_employer = isSSFContributor ? basicSalary * 0.20 : 0;
+  const annual_ssf_employee = monthly_ssf_employee * 12;
+  const annual_ssf_employer = monthly_ssf_employer * 12;
+
+  const monthly_retirement = retirementType !== 'none' ? retirementMonthlyAmount : 0;
+  const annual_retirement = monthly_retirement * 12;
   
-  const cit_employee = isCITContributor ? basicSalary * 0.10 : 0;
-  const cit_employer = isCITContributor ? basicSalary * 0.10 : 0;
+  const totalAnnualRetirementDeduction = annual_ssf_employee + annual_retirement;
+
+  const taxResult = calculateNepalIncomeTax(
+    annualGross, 
+    false, 
+    isSSFContributor, 
+    gender, 
+    totalAnnualRetirementDeduction, 
+    deductions,
+    fiscalYear
+  );
   
-  const totalAllowances = allowances.hra + allowances.medical + allowances.transport + allowances.other;
-  const totalGross = grossSalary + totalAllowances;
+  const monthlyTax = taxResult.totalTax / 12;
+
+  const monthlyNet = monthlyGross - monthly_ssf_employee - monthly_retirement - monthlyTax;
+  const annualNet = annualGross - annual_ssf_employee - annual_retirement - taxResult.totalTax;
   
-  const taxResult = calculateNepalIncomeTax(totalGross, false, isSSFContributor, gender, ssf_employee + cit_employee);
-  
+  const monthlyCTC = monthlyGross + monthly_ssf_employer;
+  const annualCTC = annualGross + annual_ssf_employer;
+
   return {
-    grossSalary,
-    gender,
-    allowances,
-    totalGross: Number(totalGross.toFixed(2)),
-    deductions: {
-      ssf_employee: Number(ssf_employee.toFixed(2)),
-      ssf_employer: Number(ssf_employer.toFixed(2)),
-      cit_employee: Number(cit_employee.toFixed(2)),
-      cit_employer: Number(cit_employer.toFixed(2)),
-      incomeTax: taxResult.totalTax
+    inputs: {
+      salary,
+      isAnnualFrequency,
+      gender,
+      fiscalYear
     },
-    taxableIncome: taxResult.taxableIncome,
-    incomeTax: taxResult.totalTax,
-    netSalary: Number((totalGross - ssf_employee - cit_employee - (taxResult.totalTax / 12)).toFixed(2)),
-    costToCompany: Number((totalGross + ssf_employer + cit_employer).toFixed(2))
+    monthly: {
+      gross: Number(monthlyGross.toFixed(2)),
+      ssf_employee: Number(monthly_ssf_employee.toFixed(2)),
+      ssf_employer: Number(monthly_ssf_employer.toFixed(2)),
+      retirement_contribution: Number(monthly_retirement.toFixed(2)),
+      tax: Number(monthlyTax.toFixed(2)),
+      net: Number(monthlyNet.toFixed(2)),
+      ctc: Number(monthlyCTC.toFixed(2))
+    },
+    annual: {
+      gross: Number(annualGross.toFixed(2)),
+      ssf_employee: Number(annual_ssf_employee.toFixed(2)),
+      ssf_employer: Number(annual_ssf_employer.toFixed(2)),
+      retirement_contribution: Number(annual_retirement.toFixed(2)),
+      taxableIncome: taxResult.taxableIncome,
+      tax: taxResult.totalTax,
+      net: Number(annualNet.toFixed(2)),
+      ctc: Number(annualCTC.toFixed(2))
+    },
+    taxBreakdown: taxResult.breakdown,
+    effectiveRate: taxResult.effectiveRate
   };
 }
 
