@@ -20,19 +20,7 @@ export const metadata = calcMeta({
     "FY 2083/84 salary tax",
     "SSF calculator Nepal",
     "CIT tax calculator Nepal"
-  ],
-  openGraph: {
-    title: "Nepal Salary Tax Calculator FY2083/84",
-    description: "Latest Nepal salary tax calculator using official FY2083/84 income tax slabs.",
-    images: [{ url: '/images/salary-tax-calculator-nepal.webp', width: 1200, height: 630, alt: 'Nepal Salary Tax Calculator FY2083 2084' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: "Nepal Salary Tax Calculator FY2083/84",
-    description: "Latest Nepal salary tax calculator using official FY2083/84 income tax slabs.",
-    images: ['/images/salary-tax-calculator-nepal.webp'],
-  },
-  robots: { index: true, follow: true, imageIndex: true, 'max-image-preview': 'large' }
+  ]
 });
 
 const customSchema = {
@@ -148,8 +136,13 @@ export default function Page() {
             <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-4">
               Nepal Salary Tax Calculator (FY 2083/84)
             </h1>
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 text-green-700 text-xs font-bold rounded-full border border-green-200"><span className="text-green-500">✓</span> Updated for FY2083/84</span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-full border border-blue-200"><span className="text-blue-500">✓</span> Finance Act 2083</span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-full border border-slate-200">Last Updated: July 2026</span>
+            </div>
             <p className="intro-text text-slate-700 leading-relaxed max-w-3xl">
-              Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates announced by the Government of Nepal. Enter your monthly salary to receive an accurate breakdown of income tax, <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Social Security Fund (SSF)</Link>, Citizen Investment Trust (CIT), employer contribution, take-home salary and total employer cost.
+              Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates announced by the <a href="https://mof.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Ministry of Finance</a>. Enter your monthly salary to receive an accurate breakdown of income tax, <Link href="/calculator/ssf/" className="text-blue-600 hover:underline">Social Security Fund (SSF)</Link>, Citizen Investment Trust (CIT), employer contribution, take-home salary and total employer cost.
             </p>
           </div>
 
@@ -427,7 +420,11 @@ export default function Page() {
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 text-sm">
               {[
                 ["/calculator/nepal-income-tax/", "📊", "Nepal Income Tax Slabs Calculator"],
-                ["/calculator/nepal-tds/", "⚖️", "TDS Calculator Nepal"],
+                ["/calculator/ssf/", "🛡️", "SSF Calculator Nepal"],
+                ["/calculator/cit/", "📈", "CIT Calculator Nepal"],
+                ["/calculator/payroll/", "💼", "Payroll Calculator Nepal"],
+                ["/calculator/overtime/", "⏱️", "Overtime Calculator"],
+                ["/calculator/salary-increment/", "🚀", "Salary Increment Calculator"],
                 ["/calculator/nepal-provident-fund/", "🏦", "Provident Fund (PF) Calculator"],
                 ["/calculator/gratuity-calculator/", "🎁", "Gratuity Calculator Nepal"],
               ].map(([href, icon, label], i) => (

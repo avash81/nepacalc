@@ -16,6 +16,7 @@ type RetirementType = 'none' | 'cit' | 'pf';
 const DEFAULT_STATE = {
   salary: 80000,
   isAnnualFrequency: false,
+  isMarried: false,
   isSSFContributor: true,
   retirementType: 'none' as RetirementType,
   retirementMonthlyAmount: 0,
@@ -66,7 +67,7 @@ export default function NepalSalaryCalculator() {
     return calculateNepalSalary(
       state.salary, state.isAnnualFrequency, state.isSSFContributor,
       state.retirementType, state.retirementMonthlyAmount,
-      state.gender, state.annualBonus, state.allowances, state.deductions, state.fiscalYear
+      state.gender, state.annualBonus, state.allowances, state.deductions, state.isMarried, state.fiscalYear
     );
   }, [state, errors]);
 
@@ -110,19 +111,19 @@ export default function NepalSalaryCalculator() {
       state.retirementType, state.retirementMonthlyAmount,
       state.gender, 0, { housing:0,transport:0,communication:0,meal:0,other:0 },
       { lifeInsurance:0,healthInsurance:0,buildingInsurance:0,donation:0,education:0,other:0 },
-      state.fiscalYear
+      state.isMarried, state.fiscalYear
     );
-  }, [compareMode, compareSalary, state.isSSFContributor, state.retirementType, state.retirementMonthlyAmount, state.gender, state.fiscalYear]);
+  }, [compareMode, compareSalary, state.isSSFContributor, state.retirementType, state.retirementMonthlyAmount, state.gender, state.isMarried, state.fiscalYear]);
 
-  // Phase 5: Growth simulation (10%, 20%, 30% increments)
+  // Phase 5: Growth simulation (5%, 10%, 20% increments)
   const growthSims = useMemo(() => {
     if (!result || !state.salary) return [];
-    return [10, 20, 30].map(pct => {
+    return [5, 10, 20].map(pct => {
       const newSalary = state.salary * (1 + pct / 100);
       const sim = calculateNepalSalary(
         newSalary, state.isAnnualFrequency, state.isSSFContributor,
         state.retirementType, state.retirementMonthlyAmount,
-        state.gender, state.annualBonus, state.allowances, state.deductions, state.fiscalYear
+        state.gender, state.annualBonus, state.allowances, state.deductions, state.isMarried, state.fiscalYear
       );
       return { pct, newSalary, tax: sim.monthly.tax, net: sim.monthly.net, rate: sim.effectiveRate,
                taxDelta: sim.monthly.tax - result.monthly.tax, netDelta: sim.monthly.net - result.monthly.net };
@@ -138,7 +139,7 @@ export default function NepalSalaryCalculator() {
     if (state.retirementType === 'none')
       tips.push({ icon: '🏦', title: 'Consider CIT or PF', tip: 'CIT and Provident Fund contributions reduce your annual taxable income (combined with SSF, capped at one-third of salary or Rs. 5,00,000).' });
     if (result.annual.taxableIncome > 1000000 && state.deductions.lifeInsurance === 0)
-      tips.push({ icon: '❤️', title: 'Life Insurance Deduction', tip: 'Life insurance premiums are deductible up to Rs. 40,000 per year. Check whether your premiums qualify under Nepal's Income Tax Act.' });
+      tips.push({ icon: '❤️', title: 'Life Insurance Deduction', tip: "Life insurance premiums are deductible up to Rs. 40,000 per year. Check whether your premiums qualify under Nepal's Income Tax Act." });
     if (state.deductions.buildingInsurance === 0)
       tips.push({ icon: '🏠', title: 'Residential Building Insurance', tip: 'Residential building insurance premiums are now deductible up to Rs. 10,000 per year under the FY 2083/84 Finance Act.' });
     if (state.deductions.education === 0)
@@ -192,16 +193,29 @@ export default function NepalSalaryCalculator() {
         </div>
       </div>
 
-      {/* Gender */}
-      <div className="space-y-1.5">
-        <label className="text-[11px] font-black text-[#5F6368] uppercase tracking-wider">Gender</label>
-        <div className="grid grid-cols-2 gap-2">
-          {(['male', 'female'] as const).map(g => (
-            <button key={g} onClick={() => update({ gender: g })}
-              className={`h-10 rounded-md text-xs font-black uppercase transition-all border ${state.gender === g ? 'bg-[#1A73E8] text-white border-[#1A73E8]' : 'bg-white text-[#5F6368] border-[#DADCE0] hover:border-[#1A73E8]'}`}>
-              {g === 'male' ? 'Male' : 'Female (10% Rebate)'}
-            </button>
-          ))}
+      {/* Gender and Marital Status */}
+      <div className="grid grid-cols-2 gap-3">
+        <div className="space-y-1.5">
+          <label className="text-[11px] font-black text-[#5F6368] uppercase tracking-wider">Gender</label>
+          <div className="grid grid-cols-2 gap-2">
+            {(['male', 'female'] as const).map(g => (
+              <button key={g} onClick={() => update({ gender: g })}
+                className={`h-10 rounded-md text-xs font-black uppercase transition-all border ${state.gender === g ? 'bg-[#1A73E8] text-white border-[#1A73E8]' : 'bg-white text-[#5F6368] border-[#DADCE0] hover:border-[#1A73E8]'}`}>
+                {g === 'male' ? 'Male' : 'Female (10% Rebate)'}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="space-y-1.5">
+          <label className="text-[11px] font-black text-[#5F6368] uppercase tracking-wider">Marital Status</label>
+          <div className="grid grid-cols-2 gap-2">
+            {[false, true].map(m => (
+              <button key={m ? 'married' : 'unmarried'} onClick={() => update({ isMarried: m })}
+                className={`h-10 rounded-md text-xs font-black uppercase transition-all border ${state.isMarried === m ? 'bg-[#1A73E8] text-white border-[#1A73E8]' : 'bg-white text-[#5F6368] border-[#DADCE0] hover:border-[#1A73E8]'}`}>
+                {m ? 'Married' : 'Unmarried'}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -349,43 +363,48 @@ export default function NepalSalaryCalculator() {
           <span className="px-3 py-1 bg-white rounded-full text-[10px] font-black text-[#5F6368] border border-[#DADCE0]">
             Effective Tax Rate: {formatPct(result.effectiveRate)}
           </span>
+          <span className="px-3 py-1 bg-white rounded-full text-[10px] font-black text-[#5F6368] border border-[#DADCE0]">
+            Marginal Tax Rate: {(() => {
+              const slabs = result.taxBreakdown.filter(s => s.taxAmount > 0);
+              return slabs.length > 0 ? slabs[slabs.length - 1].rate + '%' : '0%';
+            })()}
+          </span>
           {state.gender === 'female' && (
             <span className="px-3 py-1 bg-blue-50 rounded-full text-[10px] font-black text-blue-700 border border-blue-200">10% Female Rebate Applied</span>
           )}
         </div>
       </div>
 
-      {/* Monthly / Annual toggle */}
-      <div className="grid grid-cols-2 gap-2">
-        <button onClick={() => setViewMode('monthly')}
-          className={`h-9 rounded-md text-xs font-black uppercase transition-all border ${viewMode === 'monthly' ? 'bg-[#1A73E8] text-white border-[#1A73E8]' : 'bg-white text-[#5F6368] border-[#DADCE0]'}`}>
-          Monthly View
-        </button>
-        <button onClick={() => setViewMode('annual')}
-          className={`h-9 rounded-md text-xs font-black uppercase transition-all border ${viewMode === 'annual' ? 'bg-[#1A73E8] text-white border-[#1A73E8]' : 'bg-white text-[#5F6368] border-[#DADCE0]'}`}>
-          Annual View
-        </button>
-      </div>
-
       {/* Summary ledger */}
-      <div className="bg-white border border-[#DADCE0] rounded-xl p-5 space-y-2.5 shadow-sm">
+      <div className="bg-white border border-[#DADCE0] rounded-xl p-5 space-y-2.5 shadow-sm overflow-x-auto">
         <p className="text-[11px] font-black text-[#202124] uppercase tracking-wider border-b border-[#F1F3F4] pb-2">Salary Calculation Summary</p>
-        {[
-          { label: viewMode === 'monthly' ? 'Gross Monthly Salary' : 'Gross Annual Salary', value: viewMode === 'monthly' ? result.monthly.gross : result.annual.gross, color: '' },
-          { label: 'Employee SSF (11%)', value: viewMode === 'monthly' ? result.monthly.ssf_employee : result.annual.ssf_employee, color: 'text-orange-600' },
-          { label: 'Employer SSF (20%) — CTC only', value: viewMode === 'monthly' ? result.monthly.ssf_employer : result.annual.ssf_employer, color: 'text-emerald-600' },
-          ...(state.retirementType !== 'none' ? [{ label: `${state.retirementType.toUpperCase()} Contribution`, value: viewMode === 'monthly' ? result.monthly.retirement_contribution : result.annual.retirement_contribution, color: 'text-blue-600' }] : []),
-          { label: 'Annual Taxable Income', value: result.annual.taxableIncome, color: '' },
-          { label: 'Annual Income Tax', value: result.annual.tax, color: 'text-red-600' },
-          { label: 'Estimated Monthly Income Tax', value: result.monthly.tax, color: 'text-red-600' },
-          { label: viewMode === 'monthly' ? 'Monthly Take-Home Salary' : 'Annual Take-Home Salary', value: viewMode === 'monthly' ? result.monthly.net : result.annual.net, color: 'text-emerald-700 font-black text-base' },
-          { label: 'Employer Total Cost (CTC)', value: viewMode === 'monthly' ? result.monthly.ctc : result.annual.ctc, color: 'text-purple-700' },
-        ].map((row, i) => (
-          <div key={i} className="flex justify-between items-center text-sm">
-            <span className="text-[#5F6368] font-bold text-xs">{row.label}</span>
-            <span className={`font-black text-[#202124] ${row.color}`}>{formatNPR(row.value)}</span>
-          </div>
-        ))}
+        <table className="w-full text-sm text-left">
+          <thead>
+            <tr className="text-[10px] text-[#5F6368] uppercase tracking-wider border-b border-[#F1F3F4]">
+              <th className="font-bold py-2">Description</th>
+              <th className="font-bold py-2 text-right">Monthly</th>
+              <th className="font-bold py-2 text-right">Annual</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-[#F1F3F4]">
+            {[
+              { label: 'Gross Salary', m: result.monthly.gross, a: result.annual.gross, color: 'text-[#202124]' },
+              { label: 'Employee SSF (11%)', m: result.monthly.ssf_employee, a: result.annual.ssf_employee, color: 'text-orange-600' },
+              { label: 'Employer SSF (20%) — CTC', m: result.monthly.ssf_employer, a: result.annual.ssf_employer, color: 'text-emerald-600' },
+              ...(state.retirementType !== 'none' ? [{ label: `${state.retirementType.toUpperCase()} Contribution`, m: result.monthly.retirement_contribution, a: result.annual.retirement_contribution, color: 'text-blue-600' }] : []),
+              { label: 'Taxable Income', m: result.annual.taxableIncome / 12, a: result.annual.taxableIncome, color: 'text-[#202124]' },
+              { label: 'Income Tax', m: result.monthly.tax, a: result.annual.tax, color: 'text-red-600' },
+              { label: 'Take-Home Salary', m: result.monthly.net, a: result.annual.net, color: 'text-emerald-700 font-black text-base' },
+              { label: 'Employer Total Cost (CTC)', m: result.monthly.ctc, a: result.annual.ctc, color: 'text-purple-700' },
+            ].map((row, i) => (
+              <tr key={i}>
+                <td className="py-2.5 text-[#5F6368] font-bold text-xs">{row.label}</td>
+                <td className={`py-2.5 text-right font-black ${row.color}`}>{formatNPR(row.m)}</td>
+                <td className={`py-2.5 text-right font-black ${row.color}`}>{formatNPR(row.a)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
       {/* Slab-wise tax breakdown */}

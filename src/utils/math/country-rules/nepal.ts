@@ -134,6 +134,7 @@ export function calculateNepalSalary(
   annualBonus: number = 0,
   allowances: SalaryAllowances = { housing: 0, transport: 0, communication: 0, meal: 0, other: 0 },
   deductions: SalaryDeductions = { lifeInsurance: 0, healthInsurance: 0, buildingInsurance: 0, donation: 0, education: 0, other: 0 },
+  isMarried: boolean = false,
   fiscalYear: FiscalYear = '2083/84'
 ) {
   const monthlyBase = isAnnualFrequency ? salary / 12 : salary;
@@ -160,7 +161,7 @@ export function calculateNepalSalary(
 
   const taxResult = calculateNepalIncomeTax(
     annualGross, 
-    false, 
+    isMarried, 
     isSSFContributor, 
     gender, 
     totalAnnualRetirementDeduction, 
