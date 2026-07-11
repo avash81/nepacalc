@@ -117,7 +117,7 @@ export default function Calculator() {
         
         {/* What is a Matrix? */}
         <div>
-          <SectionHeader icon={Layers} label="What is a Matrix?" />
+          <div id="what-is-matrix"></div>\n<SectionHeader icon={Layers} label="What is a Matrix?" />
           <div className="text-sm text-[#5F6368] leading-relaxed space-y-4">
             <p>
               A <strong>matrix</strong> is a rectangular arrangement of numbers, variables, or mathematical expressions organized into <strong>rows</strong> and <strong>columns</strong>. Matrices are one of the fundamental building blocks of <strong>linear algebra</strong> and are widely used throughout mathematics, engineering, physics, economics, computer science, robotics, artificial intelligence, and data analysis.
@@ -184,10 +184,10 @@ export default function Calculator() {
           <SectionHeader icon={CalcIcon} label="What is a Matrix Calculator?" />
           <div className="text-sm text-[#5F6368] leading-relaxed space-y-4">
             <p>
-              A <strong><a href="https://mathworld.wolfram.com/Matrix.html" target="_blank" rel="noopener noreferrer" className="text-[#1A73E8] hover:underline">Matrix Calculator</a></strong> is an online mathematical tool that automatically performs matrix operations that would otherwise require lengthy manual calculations. Instead of solving matrices by hand, users simply enter the matrix values, select the desired operation, and receive an accurate solution within seconds.
+              A <strong><a href="/calculator/linear-solver/" className="text-[#1A73E8] hover:underline">Matrix Calculator</a></strong> is an online mathematical tool that automatically performs matrix operations that would otherwise require lengthy manual calculations. Instead of solving matrices by hand, users simply enter the matrix values, select the desired operation, and receive an accurate solution within seconds.
             </p>
             <p>
-              Because matrix calculations often involve dozens or even hundreds of arithmetic operations, performing them manually can be time-consuming and prone to errors. A matrix calculator removes this complexity while maintaining mathematical accuracy. For students building foundational understanding, <a href="https://www.khanacademy.org/math/linear-algebra" target="_blank" rel="noopener noreferrer" className="text-[#1A73E8] hover:underline">Khan Academy's Linear Algebra course</a> provides excellent step-by-step video explanations that complement this tool.
+              Because matrix calculations often involve dozens or even hundreds of arithmetic operations, performing them manually can be time-consuming and prone to errors. A matrix calculator removes this complexity while maintaining mathematical accuracy. For students building foundational understanding, Khan Academy's Linear Algebra course provides excellent step-by-step video explanations that complement this tool.
             </p>
           </div>
           
@@ -215,7 +215,7 @@ export default function Calculator() {
 
       {/* SECTION 2: Formula */}
       <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-        <SectionHeader icon={Layers} label="Matrix Formula Reference" />
+        <div id="matrix-formula"></div>\n<SectionHeader icon={Layers} label="Matrix Formula Reference" />
         <div className="text-sm text-[#5F6368] leading-relaxed space-y-4">
           <p>
             The Matrix Calculator uses standard linear algebra formulas for every supported operation.
@@ -286,7 +286,7 @@ export default function Calculator() {
 
       {/* SECTION 3: Worked Examples */}
       <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-        <SectionHeader icon={Layers} label="Worked Matrix Examples" />
+        <div id="worked-examples"></div>\n<SectionHeader icon={Layers} label="Worked Matrix Examples" />
         <div className="text-sm text-[#5F6368] leading-relaxed space-y-8">
           <p>
             Understanding matrix operations becomes much easier when you see each step of the calculation. The examples below demonstrate how the Matrix Calculator solves common problems while also explaining the mathematics behind the results. These worked examples are suitable for High school mathematics, NEB Mathematics, Engineering Mathematics, Diploma Engineering, Computer Science, Data Science, and University Linear Algebra courses.
@@ -474,7 +474,7 @@ export default function Calculator() {
 
       {/* SECTION 4: Common Matrix Operations */}
       <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-        <SectionHeader icon={Layers} label="Common Matrix Operations" />
+        <div id="matrix-operations"></div>\n<SectionHeader icon={Layers} label="Common Matrix Operations" />
         <div className="text-sm text-[#5F6368] leading-relaxed space-y-6">
           <p>
             The NepaCalc Matrix Calculator supports a wide range of matrix operations used in mathematics, engineering, computer science, economics, statistics, and data analysis. Whether you are solving classroom exercises or professional engineering problems, the calculator produces accurate results instantly.
@@ -612,7 +612,7 @@ export default function Calculator() {
 
       {/* SECTION 5: Applications */}
       <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-        <SectionHeader icon={Layers} label="Real-World Applications of Matrix Calculators" />
+        <div id="applications"></div>\n<SectionHeader icon={Layers} label="Real-World Applications of Matrix Calculators" />
         <div className="text-sm text-[#5F6368] leading-relaxed space-y-8">
           <p>
             Matrices are one of the most important mathematical tools used in engineering, computer science, physics, economics, artificial intelligence, and data analysis. While many students first encounter matrices in school, professionals rely on them every day to solve complex real-world problems. The Matrix Calculator allows users to perform these calculations instantly while also helping them understand the underlying mathematical concepts.
@@ -1004,7 +1004,7 @@ export default function Calculator() {
 
       {/* SECTION 7: FAQ */}
       <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-        <SectionHeader icon={HelpCircle} label="Frequently Asked Questions" />
+        <div id="faqs"></div>\n<SectionHeader icon={HelpCircle} label="Frequently Asked Questions" />
         <div className="text-sm text-[#5F6368] leading-relaxed space-y-4">
 
           <details className="group border border-[#DADCE0] rounded-lg bg-white overflow-hidden">
@@ -1252,37 +1252,91 @@ export default function Calculator() {
       title="Matrix Calculator"
       description="The Matrix Calculator helps you perform essential matrix operations instantly, including addition, subtraction, multiplication, determinant calculation, inverse matrices, transpose, trace, and identity matrix verification. Designed for engineering students, university mathematics courses, researchers, programmers, and professionals, the Matrix Calculator simplifies complex matrix algebra while helping users understand the mathematical concepts behind every operation."
       icon={CalcIcon}
-      inputs={
+            inputs={
         <div className="space-y-6">
           <div className="flex p-1.5 bg-[#F8F9FA] border border-[#DADCE0] rounded-xl shadow-inner">
             <button onClick={() => updateState({ mode: '2x2' })} className={`flex-1 py-3 text-[10px] font-black uppercase rounded-lg transition-all tracking-widest ${mode === '2x2' ? 'bg-white text-[#1A73E8] shadow-md border border-[#DADCE0]' : 'text-[#70757A] hover:bg-[#E8F0FE]'}`}>2×2 Matrix</button>
             <button onClick={() => updateState({ mode: '3x3' })} className={`flex-1 py-3 text-[10px] font-black uppercase rounded-lg transition-all tracking-widest ${mode === '3x3' ? 'bg-white text-[#1A73E8] shadow-md border border-[#DADCE0]' : 'text-[#70757A] hover:bg-[#E8F0FE]'}`}>3×3 Matrix</button>
           </div>
-          <div className="bg-[#F8F9FA] p-6 border border-[#DADCE0] rounded-xl">
-            {mode === '2x2' ? (
-              <div className="grid grid-cols-2 gap-3 max-w-[200px] mx-auto">
-                <input type="number" inputMode="decimal" value={a11} onChange={e => updateState({ a11: Number(e.target.value) })} className={inputCls} aria-label="Row 1 Column 1" />
-                <input type="number" inputMode="decimal" value={a12} onChange={e => updateState({ a12: Number(e.target.value) })} className={inputCls} aria-label="Row 1 Column 2" />
-                <input type="number" inputMode="decimal" value={a21} onChange={e => updateState({ a21: Number(e.target.value) })} className={inputCls} aria-label="Row 2 Column 1" />
-                <input type="number" inputMode="decimal" value={a22} onChange={e => updateState({ a22: Number(e.target.value) })} className={inputCls} aria-label="Row 2 Column 2" />
-              </div>
-            ) : (
-              <div className="grid grid-cols-3 gap-3 max-w-[300px] mx-auto">
-                <input type="number" inputMode="decimal" value={a11} onChange={e => updateState({ a11: Number(e.target.value) })} className={inputCls} aria-label="Row 1 Column 1" />
-                <input type="number" inputMode="decimal" value={a12} onChange={e => updateState({ a12: Number(e.target.value) })} className={inputCls} aria-label="Row 1 Column 2" />
-                <input type="number" inputMode="decimal" value={a13} onChange={e => updateState({ a13: Number(e.target.value) })} className={inputCls} aria-label="Row 1 Column 3" />
-                <input type="number" inputMode="decimal" value={a21} onChange={e => updateState({ a21: Number(e.target.value) })} className={inputCls} aria-label="Row 2 Column 1" />
-                <input type="number" inputMode="decimal" value={a22} onChange={e => updateState({ a22: Number(e.target.value) })} className={inputCls} aria-label="Row 2 Column 2" />
-                <input type="number" inputMode="decimal" value={a23} onChange={e => updateState({ a23: Number(e.target.value) })} className={inputCls} aria-label="Row 2 Column 3" />
-                <input type="number" inputMode="decimal" value={a31} onChange={e => updateState({ a31: Number(e.target.value) })} className={inputCls} aria-label="Row 3 Column 1" />
-                <input type="number" inputMode="decimal" value={a32} onChange={e => updateState({ a32: Number(e.target.value) })} className={inputCls} aria-label="Row 3 Column 2" />
-                <input type="number" inputMode="decimal" value={a33} onChange={e => updateState({ a33: Number(e.target.value) })} className={inputCls} aria-label="Row 3 Column 3" />
-              </div>
-            )}
+          <div className="bg-[#F8F9FA] p-6 border border-[#DADCE0] rounded-xl relative overflow-hidden">
+            {/* Exactly matching user's screenshot layout */}
+            <div className="flex items-center justify-center gap-6">
+               <div className="flex flex-col items-end gap-3 font-mono text-sm font-bold text-[#5F6368] select-none">
+                  <div className="flex items-center gap-2">
+                     <span className="text-[10px] uppercase tracking-widest text-[#1A73E8] bg-white px-2 py-1 rounded border border-[#DADCE0]">Rows</span>
+                     <button onClick={() => updateState({ mode: '2x2' })} className={`w-6 h-6 flex items-center justify-center rounded border border-[#DADCE0] bg-white ${mode === '2x2' ? 'text-gray-400 cursor-not-allowed' : 'text-[#202124] hover:bg-gray-50'}`}>−</button>
+                     <span className="w-4 text-center text-[#202124] font-black">{mode === '2x2' ? '2' : '3'}</span>
+                     <button onClick={() => updateState({ mode: '3x3' })} className={`w-6 h-6 flex items-center justify-center rounded border border-[#DADCE0] bg-white ${mode === '3x3' ? 'text-gray-400 cursor-not-allowed' : 'text-[#202124] hover:bg-gray-50'}`}>+</button>
+                  </div>
+                  <div className="flex items-center gap-2">
+                     <span className="text-[10px] uppercase tracking-widest text-[#1A73E8] bg-white px-2 py-1 rounded border border-[#DADCE0]">Cols</span>
+                     <button onClick={() => updateState({ mode: '2x2' })} className={`w-6 h-6 flex items-center justify-center rounded border border-[#DADCE0] bg-white ${mode === '2x2' ? 'text-gray-400 cursor-not-allowed' : 'text-[#202124] hover:bg-gray-50'}`}>−</button>
+                     <span className="w-4 text-center text-[#202124] font-black">{mode === '2x2' ? '2' : '3'}</span>
+                     <button onClick={() => updateState({ mode: '3x3' })} className={`w-6 h-6 flex items-center justify-center rounded border border-[#DADCE0] bg-white ${mode === '3x3' ? 'text-gray-400 cursor-not-allowed' : 'text-[#202124] hover:bg-gray-50'}`}>+</button>
+                  </div>
+               </div>
+
+               <div className="text-3xl font-serif text-[#4F46E5]">A =</div>
+
+               <div className="flex relative items-center">
+                 <div className="absolute left-0 top-0 bottom-0 w-4 border-l-2 border-t-2 border-b-2 border-[#4F46E5]/40 rounded-l-md"></div>
+                 <div className="absolute right-0 top-0 bottom-0 w-4 border-r-2 border-t-2 border-b-2 border-[#4F46E5]/40 rounded-r-md"></div>
+                 <div className="px-6 py-4 relative z-10">
+                   {mode === '2x2' ? (
+                     <div className="grid grid-cols-2 gap-3 max-w-[200px] mx-auto">
+                       <input type="number" inputMode="decimal" placeholder="..." value={a11===0?'':a11} onChange={e => updateState({ a11: Number(e.target.value) })} className={inputCls} />
+                       <input type="number" inputMode="decimal" placeholder="..." value={a12===0?'':a12} onChange={e => updateState({ a12: Number(e.target.value) })} className={inputCls} />
+                       <input type="number" inputMode="decimal" placeholder="..." value={a21===0?'':a21} onChange={e => updateState({ a21: Number(e.target.value) })} className={inputCls} />
+                       <input type="number" inputMode="decimal" placeholder="..." value={a22===0?'':a22} onChange={e => updateState({ a22: Number(e.target.value) })} className={inputCls} />
+                     </div>
+                   ) : (
+                     <div className="grid grid-cols-3 gap-3 max-w-[300px] mx-auto">
+                       <input type="number" inputMode="decimal" placeholder="..." value={a11===0?'':a11} onChange={e => updateState({ a11: Number(e.target.value) })} className={inputCls} />
+                       <input type="number" inputMode="decimal" placeholder="..." value={a12===0?'':a12} onChange={e => updateState({ a12: Number(e.target.value) })} className={inputCls} />
+                       <input type="number" inputMode="decimal" placeholder="..." value={a13===0?'':a13} onChange={e => updateState({ a13: Number(e.target.value) })} className={inputCls} />
+                       <input type="number" inputMode="decimal" placeholder="..." value={a21===0?'':a21} onChange={e => updateState({ a21: Number(e.target.value) })} className={inputCls} />
+                       <input type="number" inputMode="decimal" placeholder="..." value={a22===0?'':a22} onChange={e => updateState({ a22: Number(e.target.value) })} className={inputCls} />
+                       <input type="number" inputMode="decimal" placeholder="..." value={a23===0?'':a23} onChange={e => updateState({ a23: Number(e.target.value) })} className={inputCls} />
+                       <input type="number" inputMode="decimal" placeholder="..." value={a31===0?'':a31} onChange={e => updateState({ a31: Number(e.target.value) })} className={inputCls} />
+                       <input type="number" inputMode="decimal" placeholder="..." value={a32===0?'':a32} onChange={e => updateState({ a32: Number(e.target.value) })} className={inputCls} />
+                       <input type="number" inputMode="decimal" placeholder="..." value={a33===0?'':a33} onChange={e => updateState({ a33: Number(e.target.value) })} className={inputCls} />
+                     </div>
+                   )}
+                 </div>
+               </div>
+            </div>
           </div>
-          <div className="flex gap-2">
-            <button onClick={() => updateState({ a11: 0, a12: 0, a13: 0, a21: 0, a22: 0, a23: 0, a31: 0, a32: 0, a33: 0 })} className="flex-1 py-3 text-[10px] font-black uppercase tracking-widest bg-white border border-[#DADCE0] rounded-lg text-[#5F6368] hover:bg-[#F8F9FA] hover:text-[#202124] transition-all">Clear Matrix</button>
-            <button onClick={() => setState(DEFAULT_STATE)} className="flex-1 py-3 text-[10px] font-black uppercase tracking-widest bg-white border border-[#DADCE0] rounded-lg text-[#D93025] hover:bg-[#FCE8E6] transition-all">Reset Calculator</button>
+          
+          <div className="bg-[#F8F9FA] p-6 border border-[#DADCE0] rounded-xl flex items-center justify-center opacity-40 cursor-not-allowed">
+            <span className="text-sm font-bold text-[#5F6368]">+ Add Matrix B</span>
+          </div>
+
+          {/* Button Bar matching screenshot exactly */}
+          <div className="bg-[#F8F9FA] border border-[#DADCE0] p-3 rounded-xl shadow-sm">
+             <div className="flex justify-between items-center mb-3">
+               <button className="text-[11px] font-black text-[#4F46E5] flex items-center gap-1 hover:underline"><span className="text-base leading-none font-normal">+</span> New Matrix</button>
+               <div className="flex gap-2">
+                  <button className="w-8 h-8 rounded border-2 border-[#4F46E5] bg-white text-[#4F46E5] font-black text-sm">A</button>
+                  <button className="w-8 h-8 rounded border border-[#DADCE0] bg-white text-[#70757A] font-bold text-sm">B</button>
+               </div>
+             </div>
+             <div className="grid grid-cols-5 gap-2 mb-2">
+                <button className="py-2.5 bg-white border border-[#DADCE0] rounded font-bold text-[11px] text-[#202124] hover:bg-gray-50 shadow-sm">det</button>
+                <button className="py-2.5 bg-white border border-[#DADCE0] rounded font-bold text-[11px] text-[#202124] hover:bg-gray-50 shadow-sm">inv</button>
+                <button className="py-2.5 bg-white border border-[#DADCE0] rounded font-bold text-[11px] text-[#202124] hover:bg-gray-50 shadow-sm">transpose</button>
+                <button onClick={() => updateState({ a11: 0, a12: 0, a13: 0, a21: 0, a22: 0, a23: 0, a31: 0, a32: 0, a33: 0 })} className="py-2.5 bg-[#E8EAED] border border-[#DADCE0] rounded font-bold text-[11px] text-[#202124] hover:bg-gray-200 shadow-sm">DEL</button>
+                <button onClick={() => setState(DEFAULT_STATE)} className="py-2.5 bg-[#E8EAED] border border-[#DADCE0] rounded font-bold text-[11px] text-[#202124] hover:bg-gray-200 shadow-sm">AC</button>
+             </div>
+             <div className="grid grid-cols-5 gap-2">
+                <button className="py-2.5 bg-white border border-[#DADCE0] rounded font-bold text-[15px] text-[#202124] hover:bg-gray-50 shadow-sm">+</button>
+                <button className="py-2.5 bg-white border border-[#DADCE0] rounded font-bold text-[15px] text-[#202124] hover:bg-gray-50 shadow-sm">−</button>
+                <button className="py-2.5 bg-white border border-[#DADCE0] rounded font-bold text-[15px] text-[#202124] hover:bg-gray-50 shadow-sm">×</button>
+                <button className="py-2.5 bg-white border border-[#DADCE0] rounded font-bold text-[15px] text-[#202124] hover:bg-gray-50 shadow-sm">÷</button>
+                <button className="py-2.5 bg-[#4F46E5] text-white rounded font-bold text-[15px] hover:bg-[#4338CA] shadow-sm">=</button>
+             </div>
+             <div className="text-center mt-3 text-[9px] font-black tracking-[0.2em] text-[#70757A] uppercase">
+                ( Hardware Keyboard Supported )
+             </div>
           </div>
         </div>
       }
