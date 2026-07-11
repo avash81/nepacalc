@@ -187,7 +187,7 @@ export default function Calculator() {
               A <strong><a href="https://mathworld.wolfram.com/Matrix.html" target="_blank" rel="noopener noreferrer" className="text-[#1A73E8] hover:underline">Matrix Calculator</a></strong> is an online mathematical tool that automatically performs matrix operations that would otherwise require lengthy manual calculations. Instead of solving matrices by hand, users simply enter the matrix values, select the desired operation, and receive an accurate solution within seconds.
             </p>
             <p>
-              Because matrix calculations often involve dozens or even hundreds of arithmetic operations, performing them manually can be time-consuming and prone to errors. A matrix calculator removes this complexity while maintaining mathematical accuracy.
+              Because matrix calculations often involve dozens or even hundreds of arithmetic operations, performing them manually can be time-consuming and prone to errors. A matrix calculator removes this complexity while maintaining mathematical accuracy. For students building foundational understanding, <a href="https://www.khanacademy.org/math/linear-algebra" target="_blank" rel="noopener noreferrer" className="text-[#1A73E8] hover:underline">Khan Academy's Linear Algebra course</a> provides excellent step-by-step video explanations that complement this tool.
             </p>
           </div>
           
@@ -663,7 +663,7 @@ export default function Calculator() {
                 <li>Clustering algorithms</li>
                 <li>Statistical modelling</li>
               </ul>
-              <p className="mt-3 text-[10px] text-[#70757A] italic">Efficient matrix calculations allow massive datasets to be processed quickly.</p>
+              <p className="mt-3 text-xs text-[#5F6368]">Combine matrix-based regression analysis with descriptive statistics tools like our <a href="/calculator/standard-deviation/" className="text-[#1A73E8] hover:underline">Standard Deviation Calculator</a> for a complete data analysis workflow.</p>
             </div>
 
             <div className="p-5 border border-[#DADCE0] rounded-lg">
@@ -690,7 +690,7 @@ export default function Calculator() {
 
             <div className="p-5 border border-[#DADCE0] rounded-lg">
               <h3 className="text-sm font-black text-[#202124] uppercase tracking-widest mb-3">Economics & Finance</h3>
-              <p className="mb-3 text-xs">Economists frequently use matrices to model relationships between multiple variables.</p>
+              <p className="mb-3 text-xs">Economists frequently use matrices to model relationships between multiple variables. For example, payroll and salary deduction structures in Nepal rely on similar tabular computations — if you need to calculate your take-home pay, try our <a href="/calculator/nepal-salary/" className="text-[#1A73E8] hover:underline">Nepal Salary Calculator</a>.</p>
               <ul className="list-disc list-inside text-xs space-y-1 ml-2 text-[#70757A]">
                 <li>Input-output economic models & Portfolio optimization</li>
                 <li>Risk analysis & Market forecasting</li>
@@ -701,7 +701,7 @@ export default function Calculator() {
 
             <div className="p-5 border border-[#DADCE0] rounded-lg">
               <h3 className="text-sm font-black text-[#202124] uppercase tracking-widest mb-3">Education</h3>
-              <p className="mb-3 text-xs">Students studying Linear Algebra, Engineering Mathematics, Computer Science, Physics, and Statistics can use this Matrix Calculator to verify homework, check manual calculations, and better understand matrix operations through immediate feedback.</p>
+              <p className="mb-3 text-xs">Students studying Linear Algebra, Engineering Mathematics, Computer Science, Physics, and Statistics can use this Matrix Calculator to verify homework, check manual calculations, and better understand matrix operations through immediate feedback. For advanced function computations alongside matrix work, pair this with our <a href="/calculator/scientific-calculator/" className="text-[#1A73E8] hover:underline">Scientific Calculator</a>.</p>
             </div>
           </div>
           
@@ -929,6 +929,78 @@ export default function Calculator() {
           </div>
         </div>
       </div>
+
+          {/* INTERNAL LINKS — Engineering Silo Only */}
+          <div className="mt-8 p-6 bg-[#E8F0FE] rounded-lg border border-[#1A73E8]/30">
+            <h3 className="text-sm font-black text-[#1A73E8] uppercase tracking-widest mb-3">Related Engineering Mathematics Tools</h3>
+            <p className="mb-5 text-xs text-[#202124]">
+              Matrix algebra connects directly to many other engineering mathematics topics. These tools complement the Matrix Calculator and are recommended for students and professionals working with systems of equations, numerical methods and applied mathematics.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <a href="/calculator/linear-solver/" className="p-4 bg-white border border-[#DADCE0] rounded-lg hover:border-[#1A73E8] hover:bg-[#E8F0FE] transition-all group block">
+                <h4 className="text-xs font-black text-[#202124] group-hover:text-[#1A73E8] mb-1">Linear Equation Solver</h4>
+                <p className="text-[11px] text-[#70757A]">Solve systems of linear equations using matrix methods and Gaussian elimination.</p>
+              </a>
+              <a href="/calculator/scientific-calculator/" className="p-4 bg-white border border-[#DADCE0] rounded-lg hover:border-[#1A73E8] hover:bg-[#E8F0FE] transition-all group block">
+                <h4 className="text-xs font-black text-[#202124] group-hover:text-[#1A73E8] mb-1">Scientific Calculator for Engineering Calculations</h4>
+                <p className="text-[11px] text-[#70757A]">Advanced trigonometric, logarithmic and exponential functions for engineering calculations.</p>
+              </a>
+              <a href="/calculator/quadratic-solver/" className="p-4 bg-white border border-[#DADCE0] rounded-lg hover:border-[#1A73E8] hover:bg-[#E8F0FE] transition-all group block">
+                <h4 className="text-xs font-black text-[#202124] group-hover:text-[#1A73E8] mb-1">Quadratic Solver</h4>
+                <p className="text-[11px] text-[#70757A]">Find real and complex roots of quadratic equations, used alongside eigenvalue calculations.</p>
+              </a>
+              <a href="/engineering/3d/" className="p-4 bg-white border border-[#DADCE0] rounded-lg hover:border-[#1A73E8] hover:bg-[#E8F0FE] transition-all group block">
+                <h4 className="text-xs font-black text-[#202124] group-hover:text-[#1A73E8] mb-1">3D Graph Calculator</h4>
+                <p className="text-[11px] text-[#70757A]">Visualise matrix transformations and 3D vector spaces interactively.</p>
+              </a>
+            </div>
+            <div className="mt-4 pt-4 border-t border-[#DADCE0] flex flex-wrap gap-3">
+              <a href="/calculator/unit-converter/" className="text-xs text-[#1A73E8] hover:underline font-medium">Unit Converter</a>
+              <span className="text-[#DADCE0]">·</span>
+              <a href="/engineering/" className="text-xs text-[#1A73E8] hover:underline font-medium">Engineering Hub</a>
+              <span className="text-[#DADCE0]">·</span>
+              <a href="/engineering/" className="text-xs text-[#1A73E8] hover:underline font-medium">Engineering Mathematics tools</a>
+            </div>
+          </div>
+
+          {/* EEAT DISCLAIMER */}
+          <div className="mt-8 p-4 bg-white border-l-4 border-[#188038] rounded-r-lg text-xs text-[#202124] leading-relaxed italic">
+            The formulas and calculations used in this Matrix Calculator follow standard linear algebra principles taught in engineering, mathematics and computer science. Results are intended for educational, professional and verification purposes.
+          </div>
+
+          <div className="mt-6 p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg text-xs font-bold text-[#202124] leading-relaxed">
+            <h4 className="text-sm font-black text-[#202124] uppercase tracking-widest mb-2">Final Thoughts</h4>
+            <p className="mb-2">Matrices are one of the most powerful mathematical tools used across science, engineering, economics, artificial intelligence, and computer graphics.</p>
+            <p>Whether you're calculating determinants, solving simultaneous equations, finding matrix inverses, or learning linear algebra for the first time, the NepaCalc Matrix Calculator provides accurate calculations together with educational explanations that help you understand every step. Bookmark this calculator for future use and explore the <a href="/engineering/" className="text-[#1A73E8] hover:underline">Engineering Mathematics tools</a> on NepaCalc to access additional engineering calculators and learning resources.</p>
+          </div>
+
+          {/* AUTHORITATIVE EXTERNAL REFERENCES */}
+          <div className="mt-8 p-5 bg-[#F8F9FA] border border-[#DADCE0] rounded-xl">
+            <h3 className="text-xs font-black text-[#202124] uppercase tracking-widest mb-4">References</h3>
+            <p className="text-xs text-[#5F6368] mb-4">The mathematical concepts used in this Matrix Calculator are based on internationally recognized engineering and linear algebra references.</p>
+            <ul className="space-y-3 text-xs text-[#5F6368] font-medium ml-2">
+              <li className="flex items-start gap-2.5">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1A73E8] flex-shrink-0"></span>
+                <span>Gilbert Strang — Introduction to Linear Algebra (MIT)</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1A73E8] flex-shrink-0"></span>
+                <span><a href="https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/" target="_blank" rel="noopener noreferrer" className="text-[#1A73E8] hover:underline">MIT OpenCourseWare — Linear Algebra</a></span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1A73E8] flex-shrink-0"></span>
+                <span>David C. Lay — Linear Algebra and Its Applications</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1A73E8] flex-shrink-0"></span>
+                <span>Erwin Kreyszig — Advanced Engineering Mathematics</span>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1A73E8] flex-shrink-0"></span>
+                <span><a href="https://dlmf.nist.gov/" target="_blank" rel="noopener noreferrer" className="text-[#1A73E8] hover:underline">NIST Digital Library of Mathematical Functions</a></span>
+              </li>
+            </ul>
+          </div>
 
       {/* SECTION 7: FAQ */}
       <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
@@ -1170,77 +1242,6 @@ export default function Calculator() {
         </div>
       </div>
 
-          {/* INTERNAL LINKS — Engineering Silo Only */}
-          <div className="mt-8 p-6 bg-[#E8F0FE] rounded-lg border border-[#1A73E8]/30">
-            <h3 className="text-sm font-black text-[#1A73E8] uppercase tracking-widest mb-3">Related Engineering Mathematics Tools</h3>
-            <p className="mb-5 text-xs text-[#202124]">
-              Matrix algebra connects directly to many other engineering mathematics topics. These tools complement the Matrix Calculator and are recommended for students and professionals working with systems of equations, numerical methods and applied mathematics.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <a href="/calculator/linear-solver/" className="p-4 bg-white border border-[#DADCE0] rounded-lg hover:border-[#1A73E8] hover:bg-[#E8F0FE] transition-all group block">
-                <h4 className="text-xs font-black text-[#202124] group-hover:text-[#1A73E8] mb-1">Linear Equation Solver</h4>
-                <p className="text-[11px] text-[#70757A]">Solve systems of linear equations using matrix methods and Gaussian elimination.</p>
-              </a>
-              <a href="/calculator/scientific-calculator/" className="p-4 bg-white border border-[#DADCE0] rounded-lg hover:border-[#1A73E8] hover:bg-[#E8F0FE] transition-all group block">
-                <h4 className="text-xs font-black text-[#202124] group-hover:text-[#1A73E8] mb-1">Scientific Calculator for Engineering Calculations</h4>
-                <p className="text-[11px] text-[#70757A]">Advanced trigonometric, logarithmic and exponential functions for engineering calculations.</p>
-              </a>
-              <a href="/calculator/quadratic-solver/" className="p-4 bg-white border border-[#DADCE0] rounded-lg hover:border-[#1A73E8] hover:bg-[#E8F0FE] transition-all group block">
-                <h4 className="text-xs font-black text-[#202124] group-hover:text-[#1A73E8] mb-1">Quadratic Solver</h4>
-                <p className="text-[11px] text-[#70757A]">Find real and complex roots of quadratic equations, used alongside eigenvalue calculations.</p>
-              </a>
-              <a href="/engineering/3d/" className="p-4 bg-white border border-[#DADCE0] rounded-lg hover:border-[#1A73E8] hover:bg-[#E8F0FE] transition-all group block">
-                <h4 className="text-xs font-black text-[#202124] group-hover:text-[#1A73E8] mb-1">3D Graph Calculator</h4>
-                <p className="text-[11px] text-[#70757A]">Visualise matrix transformations and 3D vector spaces interactively.</p>
-              </a>
-            </div>
-            <div className="mt-4 pt-4 border-t border-[#DADCE0] flex flex-wrap gap-3">
-              <a href="/calculator/unit-converter/" className="text-xs text-[#1A73E8] hover:underline font-medium">Unit Converter</a>
-              <span className="text-[#DADCE0]">·</span>
-              <a href="/engineering/" className="text-xs text-[#1A73E8] hover:underline font-medium">Engineering Hub</a>
-              <span className="text-[#DADCE0]">·</span>
-              <a href="/engineering/" className="text-xs text-[#1A73E8] hover:underline font-medium">Engineering Mathematics tools</a>
-            </div>
-          </div>
-
-          {/* EEAT DISCLAIMER */}
-          <div className="mt-8 p-4 bg-white border-l-4 border-[#188038] rounded-r-lg text-xs text-[#202124] leading-relaxed italic">
-            The formulas and calculations used in this Matrix Calculator follow standard linear algebra principles taught in engineering, mathematics and computer science. Results are intended for educational, professional and verification purposes.
-          </div>
-
-          <div className="mt-6 p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg text-xs font-bold text-[#202124] leading-relaxed">
-            <h4 className="text-sm font-black text-[#202124] uppercase tracking-widest mb-2">Final Thoughts</h4>
-            <p className="mb-2">Matrices are one of the most powerful mathematical tools used across science, engineering, economics, artificial intelligence, and computer graphics.</p>
-            <p>Whether you're calculating determinants, solving simultaneous equations, finding matrix inverses, or learning linear algebra for the first time, the NepaCalc Matrix Calculator provides accurate calculations together with educational explanations that help you understand every step. Bookmark this calculator for future use and explore the <a href="/engineering/" className="text-[#1A73E8] hover:underline">Engineering Mathematics tools</a> on NepaCalc to access additional engineering calculators and learning resources.</p>
-          </div>
-
-          {/* AUTHORITATIVE EXTERNAL REFERENCES */}
-          <div className="mt-8 p-5 bg-[#F8F9FA] border border-[#DADCE0] rounded-xl">
-            <h3 className="text-xs font-black text-[#202124] uppercase tracking-widest mb-4">References</h3>
-            <p className="text-xs text-[#5F6368] mb-4">The mathematical concepts used in this Matrix Calculator are based on internationally recognized engineering and linear algebra references.</p>
-            <ul className="space-y-3 text-xs text-[#5F6368] font-medium ml-2">
-              <li className="flex items-start gap-2.5">
-                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1A73E8] flex-shrink-0"></span>
-                <span>Gilbert Strang — Introduction to Linear Algebra (MIT)</span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1A73E8] flex-shrink-0"></span>
-                <span>MIT OpenCourseWare — Linear Algebra</span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1A73E8] flex-shrink-0"></span>
-                <span>David C. Lay — Linear Algebra and Its Applications</span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1A73E8] flex-shrink-0"></span>
-                <span>Erwin Kreyszig — Advanced Engineering Mathematics</span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#1A73E8] flex-shrink-0"></span>
-                <span>NIST Digital Library of Mathematical Functions</span>
-              </li>
-            </ul>
-          </div>
     </div>
   );
 
