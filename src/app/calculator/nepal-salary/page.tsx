@@ -16,11 +16,23 @@ export const metadata = calcMeta({
     "Nepal payroll calculator",
     "take home salary calculator Nepal",
     "Nepal salary calculator",
-    "Nepal income tax slabs 2083 84",
-    "FY 2083 84 salary tax",
+    "Nepal income tax slabs 2083/84",
+    "FY 2083/84 salary tax",
     "SSF calculator Nepal",
     "CIT tax calculator Nepal"
-  ]
+  ],
+  openGraph: {
+    title: "Nepal Salary Tax Calculator FY2083/84",
+    description: "Latest Nepal salary tax calculator using official FY2083/84 income tax slabs.",
+    images: [{ url: '/images/salary-tax-calculator-nepal.webp', width: 1200, height: 630, alt: 'Nepal Salary Tax Calculator FY2083 2084' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Nepal Salary Tax Calculator FY2083/84",
+    description: "Latest Nepal salary tax calculator using official FY2083/84 income tax slabs.",
+    images: ['/images/salary-tax-calculator-nepal.webp'],
+  },
+  robots: { index: true, follow: true, imageIndex: true, 'max-image-preview': 'large' }
 });
 
 const customSchema = {
@@ -29,26 +41,25 @@ const customSchema = {
     {
       "@type": "SoftwareApplication",
       "@id": "https://nepacalc.com/calculator/nepal-salary/#software",
-      "name": "Nepal Salary Tax Calculator (FY 2083/84)",
+      "name": "Nepal Salary Tax Calculator",
       "url": "https://nepacalc.com/calculator/nepal-salary/",
       "applicationCategory": "FinanceApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript.",
-      "description": "Calculate Nepal salary tax instantly using FY 2083/84 income tax rates. Includes employee and employer SSF breakdown, CIT/PF deductions, slab-wise tax breakdown, effective tax rate, and employer total cost (CTC).",
-      "image": "https://nepacalc.com/images/salary-tax-calculator-nepal.jpg",
+      "operatingSystem": "Web",
+      "description": "Calculate Nepal salary tax using FY2083/84 tax slabs.",
+      "image": "https://nepacalc.com/images/salary-tax-calculator-nepal.webp",
       "author": { "@type": "Organization", "name": "NepaCalc", "url": "https://nepacalc.com" },
       "publisher": { "@type": "Organization", "name": "NepaCalc", "url": "https://nepacalc.com" },
-      "offers": { "@type": "Offer", "price": "0.00", "priceCurrency": "NPR" }
+      "offers": { "@type": "Offer", "price": "0.00", "priceCurrency": "NPR", "description": "Free" }
     },
     {
       "@type": "WebPage",
       "@id": "https://nepacalc.com/calculator/nepal-salary/#webpage",
       "url": "https://nepacalc.com/calculator/nepal-salary/",
       "name": "Nepal Salary Tax Calculator (FY 2083/84) – Calculate Income Tax Online",
-      "description": "Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates. Accurate breakdown of income tax, SSF, CIT, employer contribution, and take-home salary.",
+      "description": "Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates. Get an accurate breakdown of income tax, SSF, CIT, employer contribution, annual tax, monthly tax and take-home salary.",
       "speakable": {
         "@type": "SpeakableSpecification",
-        "cssSelector": ["#ai-overview", "#income-tax-slabs", ".faq-section"]
+        "cssSelector": ["h1", ".intro-text", "#income-tax-slabs"]
       }
     },
     {
@@ -56,34 +67,21 @@ const customSchema = {
       "@id": "https://nepacalc.com/calculator/nepal-salary/#breadcrumb",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nepacalc.com" },
-        { "@type": "ListItem", "position": 2, "name": "Nepal Specific", "item": "https://nepacalc.com/nepal/" },
-        { "@type": "ListItem", "position": 3, "name": "Nepal Salary Tax Calculator" }
+        { "@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://nepacalc.com/calculators/" },
+        { "@type": "ListItem", "position": 3, "name": "Salary Tax Calculator" }
       ]
     },
     {
       "@type": "HowTo",
       "@id": "https://nepacalc.com/calculator/nepal-salary/#howto",
-      "name": "How to Calculate Salary Tax in Nepal (FY 2083/84)",
-      "description": "Step-by-step guide to calculate your Nepal salary tax using FY 2083/84 income tax rates including SSF and CIT deductions.",
+      "name": "How to Calculate Nepal Salary Tax",
+      "description": "Step-by-step guide to calculate your Nepal salary tax using FY 2083/84 income tax rates.",
       "step": [
-        { "@type": "HowToStep", "position": 1, "name": "Enter Monthly Salary", "text": "Enter your gross monthly salary in NPR. Toggle to annual salary input if preferred." },
-        { "@type": "HowToStep", "position": 2, "name": "Select SSF", "text": "Enable Social Security Fund (SSF) if enrolled. 11% employee and 20% employer contributions are applied automatically." },
-        { "@type": "HowToStep", "position": 3, "name": "Enter CIT Contribution", "text": "Select CIT or Provident Fund from the retirement dropdown and enter your actual monthly contribution amount." },
-        { "@type": "HowToStep", "position": 4, "name": "View Salary Tax Results", "text": "Instantly see your estimated monthly income tax, annual tax, effective tax rate, slab-wise breakdown, and take-home salary." },
-        { "@type": "HowToStep", "position": 5, "name": "Download or Share Report", "text": "Use Copy, Print or PDF buttons to export your salary calculation summary for payroll or HR purposes." }
-      ]
-    },
-    {
-      "@type": "ItemList",
-      "@id": "https://nepacalc.com/calculator/nepal-salary/#sections",
-      "name": "Nepal Salary Tax Calculator – Page Contents",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Nepal Salary Tax Calculator", "url": "https://nepacalc.com/calculator/nepal-salary/" },
-        { "@type": "ListItem", "position": 2, "name": "Nepal Income Tax Slabs FY 2083/84", "url": "https://nepacalc.com/calculator/nepal-salary/#income-tax-slabs" },
-        { "@type": "ListItem", "position": 3, "name": "SSF Guide", "url": "https://nepacalc.com/calculator/nepal-salary/#ssf" },
-        { "@type": "ListItem", "position": 4, "name": "CIT Guide", "url": "https://nepacalc.com/calculator/nepal-salary/#cit" },
-        { "@type": "ListItem", "position": 5, "name": "Salary Tax Examples", "url": "https://nepacalc.com/calculator/nepal-salary/#salary-examples" },
-        { "@type": "ListItem", "position": 6, "name": "Frequently Asked Questions", "url": "https://nepacalc.com/calculator/nepal-salary/#faq" }
+        { "@type": "HowToStep", "position": 1, "name": "Enter salary", "text": "Enter your gross monthly salary in NPR. Toggle to annual salary input if preferred." },
+        { "@type": "HowToStep", "position": 2, "name": "Choose SSF", "text": "Enable Social Security Fund (SSF) if enrolled. 11% employee and 20% employer contributions are applied automatically." },
+        { "@type": "HowToStep", "position": 3, "name": "Enter CIT", "text": "Select CIT or Provident Fund from the retirement dropdown and enter your actual monthly contribution amount." },
+        { "@type": "HowToStep", "position": 4, "name": "View tax", "text": "Instantly see your estimated monthly income tax, annual tax, effective tax rate, slab-wise breakdown, and take-home salary." },
+        { "@type": "HowToStep", "position": 5, "name": "Download report", "text": "Use Copy, Print or PDF buttons to export your salary calculation summary for payroll or HR purposes." }
       ]
     },
     {
@@ -92,7 +90,12 @@ const customSchema = {
       "name": "NepaCalc",
       "url": "https://nepacalc.com",
       "logo": { "@type": "ImageObject", "url": "https://nepacalc.com/logo.png" },
-      "sameAs": ["https://nepacalc.com"]
+      "sameAs": ["https://nepacalc.com"],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "support@nepacalc.com"
+      }
     },
     {
       "@type": "WebSite",
@@ -109,16 +112,16 @@ const customSchema = {
       "@type": "FAQPage",
       "@id": "https://nepacalc.com/calculator/nepal-salary/#faq",
       "mainEntity": [
-        { "@type": "Question", "name": "How is salary tax calculated in Nepal?", "acceptedAnswer": { "@type": "Answer", "text": "Salary tax in Nepal is calculated annually. Gross annual salary is reduced by Employee SSF (11%) and CIT/PF. The remaining taxable income is applied to FY 2083/84 progressive slabs (1%, 10%, 20%, 27%, 29%). Annual tax is divided by 12 for monthly TDS." } },
-        { "@type": "Question", "name": "What is the income tax rate for FY 2083/84?", "acceptedAnswer": { "@type": "Answer", "text": "Nepal FY 2083/84 rates: 1% up to Rs. 10,00,000; 10% from Rs. 10,00,001 to Rs. 15,00,000; 20% from Rs. 15,00,001 to Rs. 25,00,000; 27% from Rs. 25,00,001 to Rs. 40,00,000; 29% above Rs. 40,00,000." } },
-        { "@type": "Question", "name": "Is SSF deductible from taxable income?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Employee SSF (11%) reduces taxable income, capped at one-third of annual income or Rs. 5,00,000. Employer SSF (20%) increases CTC but does not reduce employee taxable income." } },
-        { "@type": "Question", "name": "Does CIT reduce income tax?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. CIT contributions are deductible from taxable income under Nepal's retirement contribution rules, combined with SSF subject to the one-third or Rs. 5,00,000 cap." } },
-        { "@type": "Question", "name": "How much salary is tax-free in Nepal?", "acceptedAnswer": { "@type": "Answer", "text": "The first Rs. 10,00,000 of annual taxable income is taxed at 1%. SSF contributors receive a waiver of this 1%, making income up to Rs. 10,00,000 after SSF effectively tax-free." } },
+        { "@type": "Question", "name": "How is salary tax calculated in Nepal?", "acceptedAnswer": { "@type": "Answer", "text": "Salary tax is calculated annually. Gross annual salary is reduced by eligible deductions (SSF, CIT), and the remaining taxable income is applied to FY 2083/84 progressive slabs (1%–29%). The annual tax is divided by 12 to determine monthly TDS." } },
+        { "@type": "Question", "name": "What is the income tax rate for FY 2083/84?", "acceptedAnswer": { "@type": "Answer", "text": "FY 2083/84 uses: 1% up to Rs. 10,00,000; 10% from Rs. 10,00,001–15,00,000; 20% from Rs. 15,00,001–25,00,000; 27% from Rs. 25,00,001–40,00,000; and 29% above Rs. 40,00,000." } },
+        { "@type": "Question", "name": "Is SSF contribution deductible from taxable income?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The 11% employee SSF contribution reduces your taxable income, capped at one-third of annual salary or Rs. 5,00,000. The employer's 20% SSF does not reduce employee taxable income but increases employer CTC." } },
+        { "@type": "Question", "name": "Does CIT reduce income tax in Nepal?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. CIT contributions are deductible from annual taxable income under Nepal's retirement contribution rules, subject to the combined cap (SSF + CIT) of one-third of annual salary or Rs. 5,00,000." } },
+        { "@type": "Question", "name": "How much salary is tax-free in Nepal?", "acceptedAnswer": { "@type": "Answer", "text": "The first Rs. 10,00,000 of annual taxable income is taxed at 1%. SSF contributors receive a waiver of this 1%, effectively making income up to Rs. 10,00,000 (after SSF deduction) tax-free." } },
         { "@type": "Question", "name": "What is the highest income tax rate in Nepal?", "acceptedAnswer": { "@type": "Answer", "text": "29% (27% base + 2% surcharge) on annual taxable income above Rs. 40,00,000." } },
-        { "@type": "Question", "name": "How is employer contribution calculated?", "acceptedAnswer": { "@type": "Answer", "text": "Employer SSF is 20% of monthly salary, added to gross salary to compute Total Employer Cost (CTC). It does not reduce employee take-home salary." } },
-        { "@type": "Question", "name": "Is Dashain allowance taxable?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Dashain allowance, festival bonuses and performance bonuses are taxable income included in annual taxable income." } },
-        { "@type": "Question", "name": "Can I calculate annual salary tax?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Toggle the frequency selector to Annual. The calculator automatically applies annual-first progressive calculations and shows both monthly and annual summaries." } },
-        { "@type": "Question", "name": "Is this calculator updated for FY 2083/84?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Fully updated with FY 2083/84 slabs, increased donation deduction (Rs. 3,00,000), new education deduction (25% up to Rs. 25,000), and updated building insurance limit (Rs. 10,000)." } }
+        { "@type": "Question", "name": "How is the employer contribution calculated?", "acceptedAnswer": { "@type": "Answer", "text": "Employer SSF is 20% of the employee's monthly salary, added to gross salary to compute the Total Employer Cost (CTC)." } },
+        { "@type": "Question", "name": "Is Dashain allowance taxable in Nepal?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Dashain allowance, festival bonuses and performance bonuses are all taxable income included in your annual taxable income." } },
+        { "@type": "Question", "name": "Can I calculate annual salary tax using this calculator?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Toggle the salary frequency selector to Annual. The calculator automatically converts to annual figures and displays both monthly and annual tax summaries." } },
+        { "@type": "Question", "name": "Is this calculator updated for FY 2083/84?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Fully updated for FY 2083/84 with revised slabs, increased donation limit (Rs. 3,00,000), new education deduction (25% up to Rs. 25,000), and updated building insurance cap (Rs. 10,000)." } }
       ]
     }
   ]
@@ -145,9 +148,25 @@ export default function Page() {
             <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-4">
               Nepal Salary Tax Calculator (FY 2083/84)
             </h1>
-            <p className="text-slate-700 leading-relaxed max-w-3xl">
+            <p className="intro-text text-slate-700 leading-relaxed max-w-3xl">
               Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates announced by the Government of Nepal. Enter your monthly salary to receive an accurate breakdown of income tax, <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Social Security Fund (SSF)</Link>, Citizen Investment Trust (CIT), employer contribution, take-home salary and total employer cost.
             </p>
+          </div>
+
+          {/* Table of Contents */}
+          <div className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm mb-8">
+            <h2 className="text-lg font-bold text-slate-900 mb-4">Table of Contents</h2>
+            <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-3 text-sm text-blue-600">
+              <li><a href="#salary-tax-breakdown" className="hover:underline">Salary Tax Breakdown</a></li>
+              <li><a href="#what-is-salary-tax" className="hover:underline">What is Nepal Salary Tax?</a></li>
+              <li><a href="#income-tax-slabs" className="hover:underline">Income Tax Slabs (FY 2083/84)</a></li>
+              <li><a href="#how-calculated" className="hover:underline">How Salary Tax is Calculated</a></li>
+              <li><a href="#ssf" className="hover:underline">Social Security Fund (SSF)</a></li>
+              <li><a href="#cit" className="hover:underline">Citizen Investment Trust (CIT)</a></li>
+              <li><a href="#salary-examples" className="hover:underline">Tax Calculation Examples</a></li>
+              <li><a href="#fy-changes" className="hover:underline">Changes in FY 2083/84</a></li>
+              <li><a href="#faq" className="hover:underline">Frequently Asked Questions</a></li>
+            </ul>
           </div>
 
           {/* AI Overview Block */}
@@ -421,35 +440,44 @@ export default function Page() {
               ))}
             </ul>
 
-            {/* Trust Signals */}
+            {/* Trust Signals & EEAT */}
             <div className="grid sm:grid-cols-2 gap-3 mb-8">
               {[
-                "✅ Updated for FY 2083/84",
-                "✅ Based on Government of Nepal Finance Act",
-                "✅ Educational calculation tool",
-                "✅ Verify payroll with your employer or tax advisor if required",
+                "Government Rules Used",
+                "Finance Act FY2083/84",
+                "Income Tax Act",
+                "Budget FY2083/84",
+                "Social Security Fund Rules"
               ].map((item, i) => (
-                <div key={i} className="bg-emerald-50 border border-emerald-200 rounded-lg px-4 py-3 text-sm text-emerald-800 font-medium">{item}</div>
+                <div key={i} className="bg-emerald-50 border border-emerald-200 rounded-lg px-4 py-3 text-sm text-emerald-800 font-medium font-bold flex gap-2">
+                   <span className="text-emerald-500">✓</span> {item}
+                </div>
               ))}
             </div>
 
-            {/* Sources / E-E-A-T */}
+            {/* Disclaimer & Sources / E-E-A-T */}
             <div className="p-6 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-600 space-y-4">
               <h4 className="font-black text-slate-800">Data Sources &amp; References</h4>
               <p>All calculations in this Nepal Salary Tax Calculator are based on official Government of Nepal sources:</p>
               <ul className="list-disc pl-6 space-y-1.5">
-                <li>Government of Nepal Budget FY 2083/84</li>
-                <li>Finance Act 2083 (Nepal)</li>
+                <li><a href="https://mof.gov.np" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Government of Nepal Budget FY 2083/84</a></li>
+                <li><a href="https://mof.gov.np" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Finance Act 2083 (Nepal)</a></li>
                 <li>Income Tax Act of Nepal (as amended)</li>
                 <li><a href="https://ird.gov.np" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Inland Revenue Department (IRD)</a> — Official tax brackets and fiscal publications</li>
                 <li><a href="https://ssf.gov.np" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Social Security Fund (SSF)</a> — Employee and employer contribution guidelines</li>
               </ul>
+              
+              <div className="mt-4 pt-4 border-t border-slate-200 text-amber-800 bg-amber-50 p-4 rounded-lg">
+                <strong>Disclaimer:</strong> This calculator provides an estimate based on the latest Government of Nepal tax rules for FY2083/84. Actual payroll calculations may vary depending on individual circumstances, employer policies, additional deductions, or future legal amendments.
+              </div>
+
               <div className="mt-6 pt-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between gap-4 text-xs">
                 <div className="bg-white border border-slate-200 p-3 rounded-lg">
                   <span className="text-slate-500 uppercase tracking-wider text-[10px] font-bold block mb-1">Reviewed By</span>
                   <span className="text-slate-800 font-bold block">NepaCalc Finance Team</span>
                 </div>
                 <div className="text-right flex flex-col justify-end">
+                  <p className="text-slate-500"><strong>Updated:</strong> FY2083/84</p>
                   <p className="text-slate-500"><strong>Last Updated:</strong> July 2026</p>
                 </div>
               </div>
