@@ -37,8 +37,8 @@ export interface LiveRates {
   };
 }
 
-const FALLBACK_GOLD_TOLA = 286700;
-const FALLBACK_TEJABI_TOLA = 0;
+const FALLBACK_GOLD_TOLA = 287400;  // Updated: FENEGOSIDA 26 Ashad 2083
+const FALLBACK_TEJABI_TOLA = 246400; // Updated: FENEGOSIDA 26 Ashad 2083
 const FALLBACK_SILVER_TOLA = 4640;
 const FALLBACK_USD = 133.5;
 
@@ -74,13 +74,36 @@ export function useLiveRates() {
 
       if (nepalJson?.success) {
         tolaGoldBase = nepalJson.gold.tolaNPR;
-        tejabiGoldBase = nepalJson.gold.tejabiTolaNPR ?? 0;
+        tejabiGoldBase = nepalJson.gold.tejabiTolaNPR ?? FALLBACK_TEJABI_TOLA;
         tolaSilverBase = nepalJson.silver.tolaNPR;
         providerStr = nepalJson.provider;
         updatedAt = nepalJson.updatedAt;
+      } else {
+        // API route unavailable (static export) — attempt CORS proxy scrape
+        try {
+          const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://www.fenegosida.org/')}`;
+          const proxyRes = await fetch(proxyUrl);
+          if (proxyRes.ok) {
+            const html = await proxyRes.text();
+            // Match the Google Charts data array: ['day',finePrice,tejabiPrice]
+            const goldMatch = html.match(/\['\d+',([2-3]\d{5}),(\d+)\]/g);
+            if (goldMatch && goldMatch.length > 0) {
+              const lastMatch = goldMatch[goldMatch.length - 1];
+              const parts = lastMatch.replace(/[\['\]]/g, '').split(',');
+              const parsedFine = parseInt(parts[1], 10);
+              const parsedTejabi = parseInt(parts[2], 10) || 0;
+              if (parsedFine > 200000 && parsedFine < 450000) {
+                tolaGoldBase = parsedFine;
+                tejabiGoldBase = parsedTejabi;
+                providerStr = 'FENEGOSIDA Live (via Proxy)';
+              }
+            }
+          }
+        } catch (_) { /* Silent — use fallback values */ }
       }
 
-      // Utility to create mock stats for dashboard visual fidelity
+      // Utility: create exact stats — NO artificial variance on gold price
+      // to ensure the displayed rate matches the official FENEGOSIDA rate exactly.
       const getStats = (current: number, variance: number): RateStats => {
         const change = current * variance;
         return {
@@ -106,7 +129,8 @@ export function useLiveRates() {
           date: updatedAt 
         },
         gold: {
-          tolaNPR: getStats(tolaGoldBase, 0.0052),
+          // variance = 0 so the displayed price equals the official FENEGOSIDA rate exactly
+          tolaNPR: getStats(tolaGoldBase, 0),
           tejabiTolaNPR: tejabiGoldBase,
           tolaInternationalNPR: Math.round(2350 * 0.375 * nprUsd), // Mock for international calc
           spotUSD: 2350,
@@ -129,7 +153,7 @@ export function useLiveRates() {
            aud: mockEmptyStats(95), cad: mockEmptyStats(105), jpy: mockEmptyStats(1),
            all: {}, provider: 'Offline Fallback', date: new Date().toISOString()
         },
-        gold: { tolaNPR: mockEmptyStats(FALLBACK_GOLD_TOLA), tejabiTolaNPR: FALLBACK_TEJABI_TOLA, tolaInternationalNPR: 125000, spotUSD: 2350, provider: 'Static Backup', lastUpdated: new Date().toISOString() },
+        gold: { tolaNPR: mockEmptyStats(FALLBACK_GOLD_TOLA), tejabiTolaNPR: FALLBACK_TEJABI_TOLA, tolaInternationalNPR: 125000, spotUSD: 2350, provider: 'FENEGOSIDA Fallback', lastUpdated: new Date().toISOString() },
         silver: { tolaNPR: mockEmptyStats(FALLBACK_SILVER_TOLA), tolaInternationalNPR: 1500 }
       });
     } finally {

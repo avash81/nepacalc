@@ -12,24 +12,23 @@ export async function GET() {
       }
     });
 
-    // 5 Ashad 2083 Fallback
-    let fineGoldPrice = 286700; 
-    let tejabiGoldPrice = 0; // 0 = Not Published
+    // 26 Ashad 2083 Fallback (FENEGOSIDA official)
+    let fineGoldPrice = 287400; 
+    let tejabiGoldPrice = 246400;
     let silverPrice = 4640; 
-    let provider = 'Static Backup';
+    let provider = 'FENEGOSIDA Fallback';
 
     if (fenegosidaRes.ok) {
       const html = await fenegosidaRes.text();
       
-      // Look for the hallmark gold rate array in the chart script or HTML
-      // Example regex to find XAU NPR prices (usually 6 digits for gold)
-      const hallmarkMatch = html.match(/'\d+',([2-3]\d{5}),([0-3]?\d{5}|0)/g);
+      // Match the Google Charts data array format: ['day',finePrice,tejabiPrice]
+      const hallmarkMatch = html.match(/\['\d+',([2-3]\d{5}),(\d+)\]/g);
       if (hallmarkMatch && hallmarkMatch.length > 0) {
          const lastMatch = hallmarkMatch[hallmarkMatch.length - 1];
-         const parts = lastMatch.split(',');
+         const parts = lastMatch.replace(/[\['\]]/g, '').split(',');
          const parsedFine = parseInt(parts[1], 10);
          const parsedTejabi = parseInt(parts[2], 10) || 0;
-         if (parsedFine > 200000 && parsedFine < 400000) {
+         if (parsedFine > 200000 && parsedFine < 450000) {
             fineGoldPrice = parsedFine;
             tejabiGoldPrice = parsedTejabi;
             provider = 'FENEGOSIDA Live Scrape';
@@ -63,7 +62,7 @@ export async function GET() {
     console.error('Error fetching market rates:', error);
     return NextResponse.json({
       success: false,
-      gold: { tolaNPR: 286700, tejabiTolaNPR: 0 },
+      gold: { tolaNPR: 287400, tejabiTolaNPR: 246400 },
       silver: { tolaNPR: 4640 },
       provider: 'Error Fallback',
       updatedAt: new Date().toISOString()
