@@ -132,10 +132,14 @@ export default function Calculator() {
               This matrix contains <strong>2 rows</strong>, <strong>3 columns</strong>, and <strong>6 individual elements</strong>. The size of a matrix is known as its <strong>order</strong>. The order is written as: <span className="font-mono bg-[#F8F9FA] px-1.5 py-0.5 rounded border border-[#DADCE0] text-[#202124]">Rows × Columns</span>. For the example above, the order is <strong>2 × 3</strong>.
             </p>
             <p>
-              Understanding the order of a matrix is extremely important because many matrix operations depend on the dimensions of the matrices involved. For example, matrix addition requires both matrices to have exactly the same order. Matrix multiplication requires the number of columns in the first matrix to equal the number of rows in the second matrix. Determinants and inverses can only be calculated for square matrices.
+              Understanding the order of a matrix is extremely important because many matrix operations depend on the dimensions of the matrices involved. <strong>Matrix addition</strong> requires both matrices to have exactly the same order. <strong>Matrix multiplication</strong> requires the number of columns in the first matrix to equal the number of rows in the second matrix. <strong>Determinants</strong> and <strong>inverses</strong> can only be calculated for square matrices.
+            </p>
+            <p>
+              Matrices also form the backbone of modern statistics and data science. Operations such as correlation analysis, regression modelling, and principal component analysis all rely on matrix algebra under the hood. If you work with datasets and statistical measures, our <a href="/calculator/statistics-plus/" className="text-[#1A73E8] hover:underline font-medium">Advanced Statistics Calculator</a> applies these same matrix-based computations to give you mean, variance, standard deviation, and more from any dataset.
             </p>
           </div>
         </div>
+
 
         {/* Types of Matrices */}
         <div>
