@@ -1469,74 +1469,8 @@ export const financialSEO: Record<string, SEOContent> = {
   'nepal-salary': {
     title: "Salary Calculator Nepal | Net Take-Home Pay, SSF, CIT and Tax",
     description: "Calculate your exact monthly take-home salary in Nepal for FY 2083/84. Includes SSF (11%/20%), CIT deductions, income tax based on latest slabs, and total employer cost.",
-    howToUse: {
-      steps: [
-        "1. Enter your Monthly or Annual Gross Salary in NPR.",
-        "2. Select SSF contribution status (11% employee, 20% employer).",
-        "3. Enter any bonus income in NPR.",
-        "4. Input CIT and Provident Fund contributions if applicable.",
-        "5. Add your life and medical insurance annual premiums.",
-        "6. The calculator automatically applies FY 2083/84 progressive tax slabs.",
-        "7. Review your complete take-home pay, TDS, and employer cost breakdown."
-      ]
-    },
-    formula: {
-      title: "Nepal Take-Home Salary Formula",
-      description: "Your net take-home salary is calculated by subtracting all statutory deductions and income tax from your gross salary.",
-      raw: "Net Salary = Gross Salary - SSF (11%) - Income Tax (TDS) - CIT",
-      variables: [
-        "Gross Salary = Total monthly salary before any deductions.",
-        "SSF Employee = 11% of basic salary (if SSF registered).",
-        "Income Tax = Progressive slab tax from 1% to 29% on annual income.",
-        "CIT = Citizen Investment Trust deduction (up to 1/3 of income or Rs. 5,00,000).",
-        "Employer Cost = Gross Salary plus employer SSF (20%)."
-      ]
-    },
-    content: null,
-    faqs: [
-      {
-        question: "What are the Nepal income tax slabs for FY 2083/84?",
-        answer: "Nepal's FY 2083/84 income tax uses five progressive slabs: 1% on the first Rs. 10 lakh, 10% on Rs. 10 to 15 lakh, 20% on Rs. 15 to 25 lakh, 27% on Rs. 25 to 40 lakh, and 29% on income above Rs. 40 lakh."
-      },
-      {
-        question: "What is the employee SSF contribution rate?",
-        answer: "Employees contribute 11% of their basic salary to the Social Security Fund. Employers contribute an additional 20%, bringing the total SSF contribution to 31% of basic salary."
-      },
-      {
-        question: "Does SSF contribution reduce income tax?",
-        answer: "Yes. Employees contributing to SSF are exempt from the 1% Social Security Tax on the first Rs. 10 lakh of income. The SSF contribution itself is also deductible from taxable income up to the allowed retirement contribution limit."
-      },
-      {
-        question: "How much tax rebate do women get in Nepal?",
-        answer: "Female taxpayers in Nepal are entitled to a 10% rebate on their total calculated income tax liability from salary income under Nepal's Income Tax Act."
-      },
-      {
-        question: "How much can I invest in CIT to save tax?",
-        answer: "You can deduct CIT contributions up to one-third of your annual taxable income or Rs. 5,00,000 per year, whichever is lower. This deduction directly reduces your taxable income."
-      },
-      {
-        question: "Are allowances like fuel and communication taxable?",
-        answer: "Fixed monthly allowances paid as a set amount are generally taxable. Actual reimbursements paid against valid bills are typically non-taxable as they are not considered income."
-      },
-      {
-        question: "What is the maximum life insurance deduction for tax purposes?",
-        answer: "You can claim a deduction on life insurance premiums up to a maximum of Rs. 40,000 per year. Health insurance premiums are separately deductible up to Rs. 20,000 per year."
-      },
-      {
-        question: "How is the Dashain bonus taxed?",
-        answer: "The Dashain bonus is included in your total annual gross income and taxed according to your applicable progressive income tax slabs for the fiscal year."
-      },
-      {
-        question: "Can I choose not to join SSF?",
-        answer: "For employees in the formal private sector where the company is registered with SSF, participation is mandatory under the Social Security Act. Government employees use the Employees Provident Fund (EPF) instead."
-      },
-      {
-        question: "What happens if I have multiple sources of income?",
-        answer: "You must declare all income sources in your annual tax return with the IRD. This calculator is designed for salary income. For rental, dividend, or business income, consult the IRD's annual return guidelines."
-      }
-    ]
+    content: null
   },
-
 
   'nepal-stocks': {
     title: "NEPSE Stock Calculator | Broker Commission & Profit Tool",
