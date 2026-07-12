@@ -251,18 +251,17 @@ export default function NepalIncomeTaxCalculator() {
             <span className="inline-flex items-center gap-1.5 bg-[#F1F3F4] text-[#3C4043] px-3 py-1.5 rounded-md border border-[#DADCE0] text-sm font-medium">✓ SSF Compatible</span>
             <span className="inline-flex items-center gap-1.5 bg-[#F1F3F4] text-[#3C4043] px-3 py-1.5 rounded-md border border-[#DADCE0] text-sm font-medium">✓ Free</span>
           </div>
-          {/* Quick Summary Cards */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {/* Quick Summary — compact inline chips */}
+          <div className="flex flex-wrap gap-2">
             {[
-              { label: 'Updated', value: 'FY 2083/84', icon: '📅' },
-              { label: 'Top Rate', value: '29%', icon: '📈' },
-              { label: 'Tax Free', value: '1st Slab (SSF)', icon: '🛡️' },
-              { label: 'Compliance', value: 'Govt Compliant', icon: '⚖️' },
-            ].map(card => (
-              <div key={card.label} className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-4 flex flex-col items-center text-center">
-                <span className="text-2xl mb-2">{card.icon}</span>
-                <span className="text-[10px] font-black text-[#5F6368] uppercase tracking-widest mb-1">{card.label}</span>
-                <span className="text-sm font-black text-[#202124]">{card.value}</span>
+              { label: 'Updated', value: 'FY 2083/84' },
+              { label: 'Top Rate', value: '29%' },
+              { label: 'Tax Free', value: '1st Slab (SSF)' },
+              { label: 'Compliance', value: 'Govt Compliant' },
+            ].map(chip => (
+              <div key={chip.label} className="inline-flex items-center gap-1.5 bg-[#F1F3F4] border border-[#DADCE0] rounded-md px-3 py-1.5">
+                <span className="text-xs text-[#5F6368]">{chip.label}:</span>
+                <span className="text-xs font-bold text-[#202124]">{chip.value}</span>
               </div>
             ))}
           </div>
