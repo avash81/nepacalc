@@ -272,7 +272,7 @@ export default function NepalSalaryCalculator() {
           type="number" min={0}
           value={state.annualBonus}
           onChange={e => update({ annualBonus: Math.max(0, Number(e.target.value)) })}
-          placeholder="0 — Dashain, Festival, Performance Bonus"
+          placeholder="0 - Dashain, Festival, Performance Bonus"
           className="w-full h-11 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none placeholder-[#9AA0A6]"
         />
       </div>
@@ -330,7 +330,7 @@ export default function NepalSalaryCalculator() {
             ] as [keyof SalaryDeductions, string, string][]).map(([key, label, note]) => (
               <div key={key} className="space-y-1">
                 <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">
-                  {label} {note && <span className="text-emerald-600 normal-case font-normal">— {note}</span>}
+                  {label} {note && <span className="text-emerald-600 normal-case font-normal">- {note}</span>}
                 </label>
                 <input
                   type="number" min={0}
@@ -390,7 +390,7 @@ export default function NepalSalaryCalculator() {
             {[
               { label: 'Gross Salary', m: result.monthly.gross, a: result.annual.gross, color: 'text-[#202124]' },
               { label: 'Employee SSF (11%)', m: result.monthly.ssf_employee, a: result.annual.ssf_employee, color: 'text-orange-600' },
-              { label: 'Employer SSF (20%) — CTC', m: result.monthly.ssf_employer, a: result.annual.ssf_employer, color: 'text-emerald-600' },
+              { label: 'Employer SSF (20%) - CTC', m: result.monthly.ssf_employer, a: result.annual.ssf_employer, color: 'text-emerald-600' },
               ...(state.retirementType !== 'none' ? [{ label: `${state.retirementType.toUpperCase()} Contribution`, m: result.monthly.retirement_contribution, a: result.annual.retirement_contribution, color: 'text-blue-600' }] : []),
               { label: 'Taxable Income', m: result.annual.taxableIncome / 12, a: result.annual.taxableIncome, color: 'text-[#202124]' },
               { label: 'Income Tax', m: result.monthly.tax, a: result.annual.tax, color: 'text-red-600' },
@@ -432,7 +432,7 @@ export default function NepalSalaryCalculator() {
       {/* Last Updated badge */}
       <div className="flex items-center gap-2 px-3 py-2 bg-emerald-50 border border-emerald-200 rounded-lg">
         <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-        <span className="text-[10px] font-black text-emerald-800 uppercase tracking-wider">Last Updated: FY 2083/84 Finance Act — Government of Nepal</span>
+        <span className="text-[10px] font-black text-emerald-800 uppercase tracking-wider">Last Updated: FY 2083/84 Finance Act - Government of Nepal</span>
       </div>
 
       {/* Export row */}

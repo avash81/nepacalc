@@ -142,7 +142,7 @@ export default function Page() {
               <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-full border border-slate-200">Last Updated: July 2026</span>
             </div>
             <p className="intro-text text-slate-700 leading-relaxed max-w-3xl">
-              Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates announced by the <a href="https://mof.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Ministry of Finance</a>. Enter your monthly salary to receive an accurate breakdown of income tax, <Link href="/calculator/ssf/" className="text-blue-600 hover:underline">Social Security Fund (SSF)</Link>, Citizen Investment Trust (CIT), employer contribution, take-home salary and total employer cost.
+              Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates announced by the Ministry of Finance. Enter your monthly salary to receive an accurate breakdown of <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Nepal Income Tax</Link>, <Link href="/calculator/ssf/" className="text-blue-600 hover:underline">Social Security Fund (SSF)</Link>, Citizen Investment Trust (CIT), employer contribution, take-home salary and total employer cost.
             </p>
           </div>
 
@@ -173,7 +173,7 @@ export default function Page() {
             <h2 className="text-2xl font-bold text-slate-900 mb-5">Salary Tax Breakdown</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { title: "Gross Salary", icon: "💰", desc: "Monthly salary before any deductions — starting point for all tax calculations." },
+                { title: "Gross Salary", icon: "💰", desc: "Monthly salary before any deductions - starting point for all tax calculations." },
                 { title: "Taxable Salary", icon: "📊", desc: "Salary remaining after eligible deductions such as SSF and CIT contributions." },
                 { title: "Income Tax", icon: "🏛️", desc: "Tax calculated using the FY 2083/84 progressive slabs from 1% to 29%." },
                 { title: "Take-Home Salary", icon: "✅", desc: "Final salary received after income tax and all eligible deductions." },
@@ -188,11 +188,11 @@ export default function Page() {
           </section>
 
           {/* What is Nepal Salary Tax */}
-          <section id="what-is-salary-tax">
+            <section id="what-is-salary-tax">
             <h2 className="text-2xl font-bold text-slate-900 mb-4">What is Nepal Salary Tax?</h2>
             <div className="space-y-4 text-slate-700 leading-relaxed">
-              <p>Salary tax in Nepal is the income tax levied on remuneration received by salaried individuals. It is governed under the <strong>Income Tax Act of Nepal</strong> and administered by the Inland Revenue Department (IRD). Employers must deduct the applicable income tax from monthly salary and deposit it with the IRD — a process called Tax Deducted at Source (TDS).</p>
-              <p>Nepal uses a <strong>progressive income tax system</strong>, meaning different portions of annual income are taxed at different rates. Only the portion falling within a slab is taxed at that slab rate — not the entire salary. For FY 2083/84, the Government of Nepal revised the structure with updated slabs, a higher threshold, and new approved deductions.</p>
+              <p>Salary tax in Nepal is the income tax levied on remuneration received by salaried individuals. It is governed under the <strong>Income Tax Act of Nepal</strong> and administered by the <a href="https://ird.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Inland Revenue Department (IRD)</a> - a process called Tax Deducted at Source (TDS).</p>
+              <p>Nepal uses a <strong>progressive income tax system</strong>, meaning different portions of annual income are taxed at different rates. Only the portion falling within a slab is taxed at that slab rate - not the entire salary. For FY 2083/84, the <a href="https://mof.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Government of Nepal</a> revised the structure with updated slabs, a higher threshold, and new approved deductions.</p>
             </div>
           </section>
 
@@ -240,7 +240,7 @@ export default function Page() {
               </table>
             </div>
             <div className="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg text-sm text-slate-700">
-              <strong>Progressive Taxation:</strong> Each slab is taxed separately. If your taxable income is Rs. 20,00,000 — only the first Rs. 10,00,000 is taxed at 1%, the next Rs. 5,00,000 at 10%, and the next Rs. 5,00,000 at 20%. You can use the <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Nepal Income Tax Slabs Calculator</Link> to explore slabs in detail.
+              <strong>Progressive Taxation:</strong> Each slab is taxed separately. If your taxable income is Rs. 20,00,000 - only the first Rs. 10,00,000 is taxed at 1%, the next Rs. 5,00,000 at 10%, and the next Rs. 5,00,000 at 20%. You can use the <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Nepal Income Tax Slabs Calculator</Link> to explore slabs in detail.
             </div>
           </section>
 
@@ -350,7 +350,7 @@ export default function Page() {
               {[
                 ["📈", "Tax Exemption Threshold to Rs. 10 Lakh", "The first income tax slab now starts at 1% up to Rs. 10,00,000, increasing the effective threshold for meaningful tax liability."],
                 ["📉", "Maximum Personal Income Tax Reduced to 29%", "The highest marginal rate has dropped to 29% (27% + 2% surcharge) for income above Rs. 40,00,000, replacing the old 36%–39% top rates."],
-                ["🗂️", "Updated Progressive Tax Slabs", "Five slabs: 1%, 10%, 20%, 27%, and 29% — revised to provide more equitable taxation across income levels."],
+                ["🗂️", "Updated Progressive Tax Slabs", "Five slabs: 1%, 10%, 20%, 27%, and 29% - revised to provide more equitable taxation across income levels."],
                 ["🎁", "Donation Deduction Increased to Rs. 3,00,000", "Maximum approved deduction for charitable donations raised from Rs. 1,00,000 to Rs. 3,00,000 (subject to percentage limit)."],
                 ["🏠", "Residential Building Insurance Deduction Increased", "Maximum deduction for residential building insurance raised to Rs. 10,000 per year."],
                 ["🎓", "New Education Deduction Introduced", "Taxpayers may deduct the lower of 25% of annual tuition paid or Rs. 25,000 as an approved deduction."],
@@ -372,10 +372,10 @@ export default function Page() {
             <h2 className="text-2xl font-bold text-slate-900 mb-4">Benefits of Using This Salary Tax Calculator</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {[
-                ["⚡","Instant Live Calculation","Results update instantly as you type — no Calculate button required."],
+                ["⚡","Instant Live Calculation","Results update instantly as you type - no Calculate button required."],
                 ["📋","FY 2083/84 Accurate","All tax slabs, deduction limits, and surcharges reflect the latest Government of Nepal rules."],
                 ["🏛️","Correct SSF & CIT Handling","Separates employee SSF (11%) from employer SSF (20%) and supports CIT and PF inputs."],
-                ["💼","Employer CTC Breakdown","Shows Total Cost to Company — useful for job offer negotiation and HR payroll planning."],
+                ["💼","Employer CTC Breakdown","Shows Total Cost to Company - useful for job offer negotiation and HR payroll planning."],
                 ["📊","Slab-wise Transparency","Displays exactly how much tax is applied at each slab (1%, 10%, 20%, 27%, 29%)."],
                 ["📅","Annual & Monthly Views","Switch between monthly and annual summaries for short-term budgets and annual tax returns."],
               ].map(([icon, title, desc], i) => (
@@ -460,8 +460,8 @@ export default function Page() {
                 <li><a href="https://mof.gov.np" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Government of Nepal Budget FY 2083/84</a></li>
                 <li><a href="https://mof.gov.np" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Finance Act 2083 (Nepal)</a></li>
                 <li>Income Tax Act of Nepal (as amended)</li>
-                <li><a href="https://ird.gov.np" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Inland Revenue Department (IRD)</a> — Official tax brackets and fiscal publications</li>
-                <li><a href="https://ssf.gov.np" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Social Security Fund (SSF)</a> — Employee and employer contribution guidelines</li>
+                <li><a href="https://ird.gov.np" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Inland Revenue Department (IRD)</a> - Official tax brackets and fiscal publications</li>
+                <li><a href="https://ssf.gov.np" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Social Security Fund (SSF)</a> - Employee and employer contribution guidelines</li>
               </ul>
               
               <div className="mt-4 pt-4 border-t border-slate-200 text-amber-800 bg-amber-50 p-4 rounded-lg">
