@@ -30,16 +30,6 @@ export function IncomeTaxSeoContent() {
         </ol>
       </nav>
 
-      {/* FEATURED IMAGE */}
-      <div className="my-8 rounded-xl overflow-hidden border border-[#DADCE0] shadow-sm max-w-full relative">
-        <img 
-          src="/images/nepal-income-tax-calculator-2083-2084.png" 
-          alt="Nepal Income Tax Calculator FY 2083 2084" 
-          className="w-full h-auto object-cover max-h-[480px]"
-          loading="lazy"
-        />
-      </div>
-
       {/* SECTION 1: INTRO */}
       <h2 id="intro" className="text-2xl font-black text-[#202124] mt-12 mb-4">Nepal Income Tax Calculator (FY 2083/84)</h2>
       <p className="text-lg leading-relaxed text-[#202124] font-medium mb-4">
@@ -113,6 +103,21 @@ export function IncomeTaxSeoContent() {
         <Link href="/calculator/nepal-bonus/" className="text-[#1A73E8] font-bold hover:underline">Bonus Tax Calculator</Link>{' '}
         to estimate the additional income tax impact of festival or performance bonuses on your annual liability.
       </p>
+
+      {/* FEATURED IMAGE — placed in mid-content for engagement */}
+      <div className="my-10 rounded-xl overflow-hidden border border-[#DADCE0] shadow-md max-w-full">
+        <img 
+          src="/images/nepal-income-tax-calculator-2083-2084.png" 
+          alt="Nepal Income Tax Calculator FY 2083 2084 — Finance Act 2083" 
+          className="w-full h-auto object-cover max-h-[480px]"
+          loading="lazy"
+          width={1200}
+          height={630}
+        />
+        <div className="bg-[#F8F9FA] px-4 py-2 text-xs text-[#5F6368]">
+          Nepal Income Tax Calculator (FY 2083/84) — Based on Finance Act 2083 and Government of Nepal Budget 2083/84
+        </div>
+      </div>
 
       {/* SECTION 4: HOW TAX IS CALCULATED */}
       <h2 id="how" className="text-2xl font-black text-[#202124] mt-12 mb-4">How Income Tax Is Calculated in Nepal</h2>

@@ -115,13 +115,45 @@ export default function NepalIncomeTaxCalculator() {
 
   return (
     <div className="bg-[#F8F9FA] min-h-screen pb-24">
-      {/* 1. HERO SECTION */}
-      <IncomeTaxHero />
 
-      {/* 2. QUICK SUMMARY CARDS */}
-      <QuickSummary />
+      {/* BREADCRUMB + BACK BUTTON STRIP */}
+      <div className="bg-white border-b border-[#E8EAED] px-4 sm:px-6 lg:px-8 py-3">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* Back Button */}
+          <Link
+            href="/calculator/"
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-[#5F6368] hover:text-[#1A73E8] transition-colors group"
+          >
+            <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back
+          </Link>
 
-      {/* MAIN CONTENT AREA */}
+          {/* Breadcrumb */}
+          <nav aria-label="Breadcrumb" className="hidden sm:flex items-center gap-1.5 text-xs text-[#5F6368]">
+            <Link href="/" className="hover:text-[#1A73E8] transition-colors font-medium">Home</Link>
+            <span className="text-[#DADCE0]">/</span>
+            <Link href="/calculator/" className="hover:text-[#1A73E8] transition-colors font-medium">Calculators</Link>
+            <span className="text-[#DADCE0]">/</span>
+            <Link href="/calculator/nepal-income-tax/" className="text-[#1A73E8] font-bold" aria-current="page">Nepal Income Tax Calculator</Link>
+          </nav>
+
+          {/* Mobile breadcrumb - just current page */}
+          <span className="sm:hidden text-xs font-bold text-[#1A73E8] truncate max-w-[200px]">Nepal Income Tax Calculator</span>
+        </div>
+      </div>
+
+      {/* PAGE TITLE — H1 only, compact */}
+      <div className="bg-white border-b border-[#E8EAED] px-4 sm:px-6 lg:px-8 py-4">
+        <div className="max-w-7xl mx-auto">
+          <h1 className="text-2xl md:text-3xl font-black text-[#202124] tracking-tight">
+            Nepal Income Tax Calculator <span className="text-[#1A73E8]">(FY 2083/84)</span>
+          </h1>
+        </div>
+      </div>
+
+      {/* MAIN CONTENT AREA — calculator first */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           
@@ -202,6 +234,37 @@ export default function NepalIncomeTaxCalculator() {
               </Link>
             </div>
 
+          </div>
+        </div>
+      </div>
+
+      {/* BELOW CALCULATOR — description, badges, quick summary cards */}
+      <div className="bg-white border-t border-[#E8EAED] px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Description + Badges */}
+          <p className="text-base text-[#5F6368] mb-5 max-w-3xl">
+            Calculate your Nepal income tax accurately using the latest FY 2083/84 tax slabs. Fully compliant with the Government of Nepal Finance Act updates.
+          </p>
+          <div className="flex flex-wrap gap-2 mb-8">
+            <span className="inline-flex items-center gap-1.5 bg-[#F1F3F4] text-[#3C4043] px-3 py-1.5 rounded-md border border-[#DADCE0] text-sm font-medium">✓ Finance Act 2083/84</span>
+            <span className="inline-flex items-center gap-1.5 bg-[#F1F3F4] text-[#3C4043] px-3 py-1.5 rounded-md border border-[#DADCE0] text-sm font-medium">✓ Latest IRD Tax Slabs</span>
+            <span className="inline-flex items-center gap-1.5 bg-[#F1F3F4] text-[#3C4043] px-3 py-1.5 rounded-md border border-[#DADCE0] text-sm font-medium">✓ SSF Compatible</span>
+            <span className="inline-flex items-center gap-1.5 bg-[#F1F3F4] text-[#3C4043] px-3 py-1.5 rounded-md border border-[#DADCE0] text-sm font-medium">✓ Free</span>
+          </div>
+          {/* Quick Summary Cards */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {[
+              { label: 'Updated', value: 'FY 2083/84', icon: '📅' },
+              { label: 'Top Rate', value: '29%', icon: '📈' },
+              { label: 'Tax Free', value: '1st Slab (SSF)', icon: '🛡️' },
+              { label: 'Compliance', value: 'Govt Compliant', icon: '⚖️' },
+            ].map(card => (
+              <div key={card.label} className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-4 flex flex-col items-center text-center">
+                <span className="text-2xl mb-2">{card.icon}</span>
+                <span className="text-[10px] font-black text-[#5F6368] uppercase tracking-widest mb-1">{card.label}</span>
+                <span className="text-sm font-black text-[#202124]">{card.value}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
