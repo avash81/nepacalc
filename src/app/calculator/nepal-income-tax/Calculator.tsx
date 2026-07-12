@@ -1,328 +1,224 @@
 'use client';
-import { useMemo } from 'react';
-import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Wallet, Receipt, TrendingDown, Info, ShieldCheck, ArrowRightLeft, PieChart, Landmark, Scale, Zap, Activity, Globe, History, ChevronRight, HelpCircle, Table } from 'lucide-react';
+import { useMemo, useState } from 'react';
 import { useSyncState } from '@/hooks/useSyncState';
-import { calculateNepalIncomeTax } from '@/utils/math/country-rules/nepal';
-import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  PieChart as RePieChart, Pie, Cell
-} from 'recharts';
+import { calculateIncomeTax } from '@/utils/math/country-rules/nepal-income-tax/calculator';
+import { IncomeTaxInputs } from '@/utils/math/country-rules/nepal-income-tax/types';
+import { IncomeTaxHero } from './components/IncomeTaxHero';
+import { QuickSummary } from './components/QuickSummary';
+import { IncomeTaxForm } from './components/IncomeTaxInputs';
+import { IncomeTaxDashboard } from './components/IncomeTaxDashboard';
+import { TaxTimeline } from './components/TaxTimeline';
+import Link from 'next/link';
+import { ArrowRight, Printer, Share2, Calculator as CalcIcon, Copy, Download } from 'lucide-react';
 
-const DEFAULT_STATE = {
-  income: 0,
-  bonus: 0,
-  gender: 'male' as 'male' | 'female',
+const DEFAULT_STATE: IncomeTaxInputs = {
+  annualSalary: 0,
+  annualBonus: 0,
+  gender: 'male',
+  isMarried: false,
   isSSFContributor: true,
-  ssfDeduction: 0,
-  epfDeduction: 0,
-  citDeduction: 0,
+  enforceLimits: true,
+  ssfContribution: 0,
+  epfContribution: 0,
+  citContribution: 0,
   lifeInsurance: 0,
-  healthInsurance: 0,
-  isMonthly: false,
-  noOfMonths: 12,
-  enforceLimits: true
+  medicalInsurance: 0,
+  buildingInsurance: 0,
+  educationFee: 0,
+  donation: 0,
+  csr: 0,
 };
 
-function formatNPR(n: number) { 
-  return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); 
-}
-
 export default function NepalIncomeTaxCalculator() {
-  const [state, setState] = useSyncState('nepal_tax_v6', DEFAULT_STATE);
-  const { income, bonus, gender, isSSFContributor, ssfDeduction, epfDeduction, citDeduction, lifeInsurance, healthInsurance, isMonthly, noOfMonths, enforceLimits = true } = state;
+  const [state, setState] = useSyncState('nepal_income_tax_v1', DEFAULT_STATE);
+  const [isMonthly, setIsMonthly] = useState(true);
 
-  const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
+  // If user inputs monthly salary, we convert it to annual for the state, 
+  // but to keep it simple, let's derive it in the render or manage it purely in state.
+  // Actually, to avoid complex state syncing for Monthly vs Annual toggle,
+  // we can treat `state.annualSalary` as the *display* value of the input,
+  // and multiply it by 12 if `isMonthly` is true during calculation.
+  
+  const update = (updates: Partial<IncomeTaxInputs>) => setState({ ...state, ...updates });
 
-  const annualGross = (income * (isMonthly ? noOfMonths : 1)) + bonus;
-
-  const result = useMemo(() => {
-    const insDeduction = enforceLimits ? Math.min(lifeInsurance, 40000) : lifeInsurance;
-    const healthInsDeduction = enforceLimits ? Math.min(healthInsurance, 20000) : healthInsurance;
-    const citMax = enforceLimits ? Math.min(annualGross / 3, 500000) : Infinity;
-    const actualCit = enforceLimits ? Math.min(citDeduction + ssfDeduction + epfDeduction, citMax) : (citDeduction + ssfDeduction + epfDeduction);
-    const totalDeductions = insDeduction + healthInsDeduction + actualCit;
-    const taxableGross = Math.max(0, annualGross - totalDeductions);
-
-    const calculation = calculateNepalIncomeTax(
-      taxableGross,
-      false, 
-      isSSFContributor, 
-      gender,
-      0 // We apply SSF/EPF/CIT together manually in actualCit
-    );
-
-    return {
-      ...calculation,
-      totalDeductions,
-      netAnnual: annualGross - calculation.totalTax,
-      netMonthly: (annualGross - calculation.totalTax) / 12,
-      annualGross
+  const summary = useMemo(() => {
+    const calculationInputs: IncomeTaxInputs = {
+      ...state,
+      annualSalary: isMonthly ? state.annualSalary * 12 : state.annualSalary
     };
-  }, [annualGross, isSSFContributor, gender, lifeInsurance, citDeduction, healthInsurance]);
+    return calculateIncomeTax(calculationInputs);
+  }, [state, isMonthly]);
+
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: 'Nepal Income Tax Calculator',
+        text: `My calculated tax is Rs. ${summary.finalTax.toLocaleString('en-IN')}. Calculate yours!`,
+        url: window.location.href,
+      });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert("Link copied to clipboard!");
+    }
+  };
+
+  const handleCopy = () => {
+    const text = [
+      `Nepal Income Tax (FY 2083/84)`,
+      `Gross Income: Rs. ${Math.round(summary.grossIncome).toLocaleString('en-IN')}`,
+      `Taxable Income: Rs. ${Math.round(summary.taxableIncome).toLocaleString('en-IN')}`,
+      `Annual Tax: Rs. ${Math.round(summary.finalTax).toLocaleString('en-IN')}`,
+      `Monthly TDS: Rs. ${Math.round(summary.averageMonthlyTax).toLocaleString('en-IN')}`,
+      `Net Salary (Annual): Rs. ${Math.round(summary.netAnnualIncome).toLocaleString('en-IN')}`,
+      `Effective Tax Rate: ${(summary.effectiveTaxRate * 100).toFixed(2)}%`,
+      `Marginal Rate: ${summary.highestTaxSlab}`,
+      `Tax Saved: Rs. ${Math.round(summary.taxSaved).toLocaleString('en-IN')}`,
+    ].join('\n');
+    navigator.clipboard.writeText(text);
+    alert('Results copied to clipboard!');
+  };
+
+  const handleDownloadPDF = () => {
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) return;
+    const fmt = (n: number) => 'Rs. ' + Math.round(n).toLocaleString('en-IN');
+    printWindow.document.write(`
+      <html><head><title>Nepal Income Tax Report</title>
+      <style>body{font-family:sans-serif;padding:32px;color:#202124}h1{color:#1A73E8}table{width:100%;border-collapse:collapse;margin-top:16px}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #dadce0}th{background:#f8f9fa;font-size:12px;text-transform:uppercase;color:#5f6368}tr:last-child td{font-weight:bold}.footer{margin-top:32px;font-size:11px;color:#5f6368}</style>
+      </head><body>
+      <h1>Nepal Income Tax Report</h1>
+      <p style="color:#5f6368;font-size:14px">FY 2083/84 &mdash; Finance Act 2083 &mdash; NepaCalc.com</p>
+      <table>
+        <tr><th>Description</th><th>Amount</th></tr>
+        <tr><td>Gross Income (Annual)</td><td>${fmt(summary.grossIncome)}</td></tr>
+        <tr><td>Total Deductions</td><td>${fmt(summary.totalDeductions)}</td></tr>
+        <tr><td>Taxable Income</td><td>${fmt(summary.taxableIncome)}</td></tr>
+        <tr><td>Annual Income Tax</td><td>${fmt(summary.finalTax)}</td></tr>
+        <tr><td>Monthly TDS</td><td>${fmt(summary.averageMonthlyTax)}</td></tr>
+        <tr><td>Net Salary (Annual)</td><td>${fmt(summary.netAnnualIncome)}</td></tr>
+        <tr><td>Net Salary (Monthly)</td><td>${fmt(summary.netMonthlyIncome)}</td></tr>
+        <tr><td>Effective Tax Rate</td><td>${(summary.effectiveTaxRate * 100).toFixed(2)}%</td></tr>
+        <tr><td>Marginal Tax Rate</td><td>${summary.highestTaxSlab}</td></tr>
+        <tr><td>Tax Saved by Deductions</td><td>${fmt(summary.taxSaved)}</td></tr>
+      </table>
+      <p class="footer">Generated by NepaCalc.com &mdash; For estimation purposes only. Verify with your employer or a tax professional.</p>
+      </body></html>
+    `);
+    printWindow.document.close();
+    printWindow.focus();
+    setTimeout(() => { printWindow.print(); printWindow.close(); }, 500);
+  };
 
   return (
-    <ModernCalcLayout
-      slug="nepal-income-tax"
-      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Income Tax' }]}
-      title="Nepal Income Tax Calculator (FY 2083/84)"
-      description="The authoritative fiscal engine for Nepalese salary earners. Calculate tax liability with IRD-standard slabs (FY 2083/84), SSF SST-waivers, and Female Tax Credit auditing."
-      icon={Wallet}
-      relatedTools={[
-        { label: "Salary Calculator (Net Pay)", href: "/calculator/nepal-salary/" },
-        { label: "TDS Calculator", href: "/calculator/nepal-tds/" },
-        { label: "VAT Calculator", href: "/calculator/nepal-vat/" },
-        { label: "Provident Fund", href: "/calculator/nepal-provident-fund/" }
-      ]}
-      inputs={
-        <div className="space-y-6">
-           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-             <div className="space-y-2">
-               <div className="flex justify-between items-center">
-                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">{isMonthly ? "Monthly Salary (NPR)" : "Annual Income (NPR)"}</label>
-                  <button onClick={() => update({ isMonthly: !isMonthly })} className="text-[9px] font-bold uppercase text-[#1A73E8] hover:underline transition-colors">
-                     Switch to {isMonthly ? "Annual" : "Monthly"}
-                  </button>
-               </div>
-               <input 
-                  type="number" 
-                  value={income} 
-                  onChange={(e) => update({ income: Number(e.target.value) })}
-                  className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" 
-               />
-             </div>
-             
-             {isMonthly && (
-               <div className="space-y-2">
-                 <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">No. of Months</label>
-                 <input 
-                    type="number" 
-                    value={noOfMonths} 
-                    onChange={(e) => update({ noOfMonths: Number(e.target.value) })}
-                    className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" 
-                 />
-               </div>
-             )}
+    <div className="bg-[#F8F9FA] min-h-screen pb-24">
+      {/* 1. HERO SECTION */}
+      <IncomeTaxHero />
 
-             <div className="space-y-2">
-                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Bonus (NPR)</label>
-                <input type="number" value={bonus || ''} placeholder="0" onChange={e => update({ bonus: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
-             </div>
+      {/* 2. QUICK SUMMARY CARDS */}
+      <QuickSummary />
 
-             <div className="space-y-2">
-               <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Gender</label>
-               <select 
-                  value={gender} 
-                  onChange={(e) => update({ gender: e.target.value as 'male' | 'female' })}
-                  className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all appearance-none"
-               >
-                  <option value="male">Male</option>
-                  <option value="female">Female (10% Rebate Eligibility)</option>
-               </select>
-             </div>
-
-             <div className="space-y-2">
-                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Social Security Fund (Annual)</label>
-                <input type="number" value={ssfDeduction || ''} placeholder="0" onChange={e => update({ ssfDeduction: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
-             </div>
-
-             <div className="space-y-2">
-                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Employees Provident Fund (Annual)</label>
-                <input type="number" value={epfDeduction || ''} placeholder="0" onChange={e => update({ epfDeduction: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
-             </div>
-
-             <div className="space-y-2">
-                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Citizen Investment Trust (Annual)</label>
-                <input type="number" value={citDeduction || ''} placeholder="0" onChange={e => update({ citDeduction: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
-             </div>
-
-             <div className="space-y-2">
-                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Life Insurance (Annual{enforceLimits ? ', max 40,000' : ''})</label>
-                <input type="number" value={lifeInsurance || ''} placeholder="0" onChange={e => update({ lifeInsurance: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
-             </div>
-
-             <div className="space-y-2">
-                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Medical Insurance (Annual{enforceLimits ? ', max 20,000' : ''})</label>
-                <input type="number" value={healthInsurance || ''} placeholder="0" onChange={e => update({ healthInsurance: Number(e.target.value) })} className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all" />
-             </div>
-
-             <div className="space-y-2 flex flex-col justify-center pt-6">
-                <label className="flex items-center gap-3 cursor-pointer mb-3">
-                  <input 
-                     type="checkbox" 
-                     checked={isSSFContributor} 
-                     onChange={e => update({ isSSFContributor: e.target.checked })}
-                     className="w-5 h-5 rounded border-[#DADCE0] text-[#1A73E8] focus:ring-[#1A73E8]" 
-                  />
-                  <span className="text-[11px] font-bold text-[#202124] uppercase tracking-wider">SSF Contributor (1% SST Waiver)</span>
-                </label>
-                <label className="flex items-center gap-3 cursor-pointer">
-                  <input 
-                     type="checkbox" 
-                     checked={enforceLimits} 
-                     onChange={e => update({ enforceLimits: e.target.checked })}
-                     className="w-5 h-5 rounded border-[#DADCE0] text-[#188038] focus:ring-[#188038]" 
-                  />
-                  <span className="text-[11px] font-bold text-[#202124] uppercase tracking-wider">Enforce Govt Max Deduction Limits</span>
-                </label>
-             </div>
+      {/* MAIN CONTENT AREA */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex flex-col lg:flex-row gap-8">
+          
+          {/* LEFT COLUMN: INPUTS */}
+          <div className="w-full lg:w-5/12 space-y-6">
+            <IncomeTaxForm 
+              state={state} 
+              update={update} 
+              isMonthly={isMonthly} 
+              setIsMonthly={setIsMonthly} 
+            />
           </div>
 
-        </div>
-      }
-      results={
-        <div className="space-y-6 h-full flex flex-col justify-center">
-          <div className="bg-[#E8F0FE] rounded-lg p-8 text-center space-y-2">
-             <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Net Take-Home Pay ({isMonthly ? 'Monthly' : 'Annual'})</div>
-             <div className="text-4xl font-black text-[#1A73E8]">{formatNPR(isMonthly ? result.netMonthly : result.netAnnual)}</div>
-             <div className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Tax Efficiency: {(100 - result.effectiveRate).toFixed(1)}% Retained</div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-             <div className="border border-[#DADCE0] rounded-md p-4 text-center bg-white">
-                <div className="text-[10px] font-bold text-[#D93025] uppercase tracking-wider mb-1">Total Tax</div>
-                <div className="text-lg font-black text-[#D93025]">{formatNPR(isMonthly ? result.totalTax/12 : result.totalTax)}</div>
-             </div>
-             <div className="border border-[#DADCE0] rounded-md p-4 text-center bg-white">
-                <div className="text-[10px] font-bold text-[#202124] uppercase tracking-wider mb-1">Effective Rate</div>
-                <div className="text-lg font-black text-[#202124]">{result.effectiveRate}%</div>
-             </div>
-          </div>
-        </div>
-      }
-      details={
-        <div className="space-y-6">
-           <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md flex gap-3 items-center">
-              <Globe className="w-5 h-5 text-[#188038] shrink-0" />
-              <p className="text-[9px] text-[#5F6368] font-bold leading-relaxed uppercase">
-                 Expatriate & Remittance Tax: If your salary is paid in foreign currency, refer to the <a href="/market-rates/exchange-rate-nepal/" className="text-[#1A73E8] underline font-bold">USD to NPR Exchange Rate</a> for accurate NPR tax calculation on payday.
-              </p>
-           </div>
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-               <div className="flex items-center gap-2 mb-6">
-                 <div className="w-1.5 h-4 bg-[#1A73E8] rounded-full" />
-                 <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Tax Slab Distribution</h3>
-               </div>
-               <div className="h-[240px] w-full mb-6">
-                 <ResponsiveContainer width="100%" height="100%">
-                   <BarChart data={result.breakdown} margin={{ top: 10, right: 10, left: 0, bottom: 0 }} barSize={30}>
-                     <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#DADCE0" />
-                     <XAxis dataKey="slabLabel" hide />
-                     <YAxis hide />
-                     <Tooltip cursor={{ fill: '#F8F9FA' }} formatter={(value: number) => formatNPR(value)} contentStyle={{ borderRadius: '8px', border: '1px solid #DADCE0', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)', fontSize: '11px', fontWeight: 'bold' }} />
-                     <Bar dataKey="taxAmount" fill="#D93025" radius={[4, 4, 0, 0]} />
-                   </BarChart>
-                 </ResponsiveContainer>
-               </div>
-               <p className="text-[9px] text-[#70757A] font-bold uppercase text-center tracking-wider">Visualizing the progressive tax impact across IRD slabs.</p>
-             </div>
-
-             <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm flex flex-col justify-center">
-               <div className="flex items-center gap-2 mb-6">
-                 <div className="w-1.5 h-4 bg-[#188038] rounded-full" />
-                 <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Estimated Tax Breakdown</h3>
-               </div>
-               <div className="space-y-3">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-[#5F6368]">Total Gross Income</span>
-                    <span className="font-bold text-[#202124]">{formatNPR(result.annualGross)}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-[#5F6368]">SSF + EPF + CIT (applied)</span>
-                    <span className="font-bold text-[#188038]">- {formatNPR(enforceLimits ? Math.min(citDeduction + ssfDeduction + epfDeduction, Math.min(result.annualGross / 3, 500000)) : (citDeduction + ssfDeduction + epfDeduction))}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-[#5F6368]">Life Insurance</span>
-                    <span className="font-bold text-[#188038]">- {formatNPR(enforceLimits ? Math.min(lifeInsurance, 40000) : lifeInsurance)}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-[#5F6368]">Medical Insurance</span>
-                    <span className="font-bold text-[#188038]">- {formatNPR(enforceLimits ? Math.min(healthInsurance, 20000) : healthInsurance)}</span>
-                  </div>
-                  <div className="flex justify-between text-sm border-t border-b border-[#DADCE0] py-3 my-2">
-                    <span className="font-bold text-[#202124]">Total Deductions</span>
-                    <span className="font-bold text-[#188038]">- {formatNPR(result.totalDeductions)}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="font-bold text-[#202124]">Net Assessable Income</span>
-                    <span className="font-black text-[#202124]">{formatNPR(result.annualGross - result.totalDeductions)}</span>
-                  </div>
-               </div>
-               <p className="mt-6 text-[9px] text-[#70757A] font-bold uppercase tracking-wider text-center">
-                  {enforceLimits ? 'Calculated using latest FY 2083/84 Tax Provisions. Max allowable limits applied automatically.' : 'Custom limits applied. Government caps are currently disabled.'}
-               </p>
-             </div>
-           </div>
-
-           <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
-            <div className="px-6 py-4 border-b border-[#DADCE0] flex items-center justify-between bg-[#F8F9FA]">
-              <div className="flex items-center gap-2">
-                <Table className="w-4 h-4 text-[#1A73E8]" />
-                <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Progressive Slab Breakdown</h3>
+          {/* RIGHT COLUMN: RESULTS */}
+          <div className="w-full lg:w-7/12 space-y-8">
+            {summary.grossIncome === 0 ? (
+              <div className="bg-white border border-[#DADCE0] rounded-xl shadow-sm p-12 text-center flex flex-col items-center justify-center min-h-[400px]">
+                <div className="bg-blue-50 text-blue-500 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                  <CalcIcon className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-bold text-[#202124] mb-2">Enter your salary to see the magic</h3>
+                <p className="text-[#5F6368]">We will instantly calculate your exact tax, take-home pay, effective rate, and marginal rate based on the latest FY 2083/84 slabs.</p>
               </div>
+            ) : (
+              <>
+                <div className="flex items-center justify-between no-print">
+                  <h2 className="text-xl font-black text-[#202124]">Financial Dashboard</h2>
+                  <div className="flex gap-2 flex-wrap">
+                    <button onClick={handleCopy} className="flex items-center gap-1.5 text-xs font-bold text-[#5F6368] hover:text-[#1A73E8] bg-white px-3 py-1.5 border border-[#DADCE0] rounded-md shadow-sm transition-colors">
+                      <Copy className="w-3.5 h-3.5" /> <span>Copy</span>
+                    </button>
+                    <button onClick={handleDownloadPDF} className="flex items-center gap-1.5 text-xs font-bold text-[#5F6368] hover:text-[#1A73E8] bg-white px-3 py-1.5 border border-[#DADCE0] rounded-md shadow-sm transition-colors">
+                      <Download className="w-3.5 h-3.5" /> <span>PDF</span>
+                    </button>
+                    <button onClick={handlePrint} className="flex items-center gap-1.5 text-xs font-bold text-[#5F6368] hover:text-[#1A73E8] bg-white px-3 py-1.5 border border-[#DADCE0] rounded-md shadow-sm transition-colors">
+                      <Printer className="w-3.5 h-3.5" /> <span>Print</span>
+                    </button>
+                    <button onClick={handleShare} className="flex items-center gap-1.5 text-xs font-bold text-[#5F6368] hover:text-[#1A73E8] bg-white px-3 py-1.5 border border-[#DADCE0] rounded-md shadow-sm transition-colors">
+                      <Share2 className="w-3.5 h-3.5" /> <span>Share</span>
+                    </button>
+                  </div>
+                </div>
+
+                <IncomeTaxDashboard summary={summary} />
+                
+                <TaxTimeline summary={summary} />
+                
+                <div className="bg-blue-50 border border-blue-100 rounded-xl p-5 text-sm text-blue-900">
+                  <span className="font-bold block mb-1">Why is my tax this amount?</span>
+                  Your taxable income entered the <span className="font-bold">{summary.highestTaxSlab}</span> tax slab. 
+                  You also saved <span className="font-bold">Rs. {summary.taxSaved.toLocaleString('en-IN')}</span> through approved deductions and tax rules.
+                </div>
+              </>
+            )}
+
+            {/* CALL TO ACTIONS */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8">
+              <Link href="/calculator/nepal-salary/" className="bg-white border border-[#DADCE0] rounded-lg p-4 flex items-center justify-between hover:border-[#1A73E8] hover:shadow-sm transition-all group">
+                <div>
+                  <span className="block text-[10px] font-bold text-[#5F6368] uppercase mb-1">Need Net Pay?</span>
+                  <span className="block text-sm font-bold text-[#202124] group-hover:text-[#1A73E8]">Salary Calculator</span>
+                </div>
+                <ArrowRight className="w-4 h-4 text-[#DADCE0] group-hover:text-[#1A73E8]" />
+              </Link>
+              <Link href="/calculator/nepal-tds/" className="bg-white border border-[#DADCE0] rounded-lg p-4 flex items-center justify-between hover:border-[#1A73E8] hover:shadow-sm transition-all group">
+                <div>
+                  <span className="block text-[10px] font-bold text-[#5F6368] uppercase mb-1">Need Withholding?</span>
+                  <span className="block text-sm font-bold text-[#202124] group-hover:text-[#1A73E8]">TDS Calculator</span>
+                </div>
+                <ArrowRight className="w-4 h-4 text-[#DADCE0] group-hover:text-[#1A73E8]" />
+              </Link>
+              <Link href="/income-tax/nepal-income-tax-slab-2083-84/" className="bg-white border border-[#DADCE0] rounded-lg p-4 flex items-center justify-between hover:border-[#1A73E8] hover:shadow-sm transition-all group">
+                <div>
+                  <span className="block text-[10px] font-bold text-[#5F6368] uppercase mb-1">Tax Guide</span>
+                  <span className="block text-sm font-bold text-[#202124] group-hover:text-[#1A73E8]">View 2083/84 Slabs</span>
+                </div>
+                <ArrowRight className="w-4 h-4 text-[#DADCE0] group-hover:text-[#1A73E8]" />
+              </Link>
             </div>
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="text-[10px] font-black uppercase text-[#5F6368] border-b border-[#DADCE0]">
-                    <th className="px-6 py-4 bg-white">Taxable Slab (NPR)</th>
-                    <th className="px-6 py-4 bg-white text-right">Amount in Slab</th>
-                    <th className="px-6 py-4 bg-white text-right">Rate</th>
-                    <th className="px-6 py-4 bg-white text-right text-[#D93025]">Tax Amount</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#F1F3F4]">
-                  {result.breakdown.map((row, idx) => (
-                    <tr key={idx} className="text-sm hover:bg-[#F8F9FA] transition-colors">
-                      <td className="px-6 py-4 font-bold text-[#3C4043]">{row.slabLabel}</td>
-                      <td className="px-6 py-4 text-right font-black text-[#5F6368]">{formatNPR(row.taxableInSlab)}</td>
-                      <td className="px-6 py-4 text-right font-black text-[#5F6368]">{row.rate}%</td>
-                      <td className="px-6 py-4 text-right font-black text-[#D93025]">{formatNPR(row.taxAmount)}</td>
-                    </tr>
-                  ))}
-                  <tr className="bg-[#F8F9FA] font-black">
-                    <td className="px-6 py-4 text-[#202124]">Total Tax Liability</td>
-                    <td className="px-6 py-4"></td>
-                    <td className="px-6 py-4"></td>
-                    <td className="px-6 py-4 text-right text-[#D93025]">{formatNPR(result.totalTax)}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+
           </div>
         </div>
-      }
-      customSchema={{
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Nepal Income Tax Calculator 2083/84",
-        "url": "https://nepacalc.com/calculator/nepal-income-tax/",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "Any",
-        "browserRequirements": "Requires JavaScript",
-        "description": "Calculate Nepal income tax for FY 2083/84. Enter salary to get slab-wise breakdown, SSF waiver, EPF/CIT deductions, female 10% rebate and net take-home pay.",
-        "inLanguage": "en",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "NPR"
-        },
-        "featureList": [
-          "Nepal income tax slab 2083/84",
-          "SSF waiver calculation",
-          "Female 10% tax rebate",
-          "EPF and CIT deduction support",
-          "Monthly vs Annual breakdowns"
-        ],
-        "isAccessibleForFree": true,
-        "publisher": {
-          "@type": "Organization",
-          "name": "NepaCalc",
-          "url": "https://nepacalc.com"
-        }
-      }}
-    />
+      </div>
+      
+      {/* MOBILE STICKY FOOTER */}
+      {summary.grossIncome > 0 && (
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-[#DADCE0] shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] p-4 lg:hidden z-50 flex items-center justify-between">
+          <div>
+            <span className="block text-[10px] font-bold text-[#5F6368] uppercase">Take Home (Monthly)</span>
+            <span className="block text-lg font-black text-[#1A73E8]">Rs. {Math.round(summary.netMonthlyIncome).toLocaleString('en-IN')}</span>
+          </div>
+          <div className="text-right">
+            <span className="block text-[10px] font-bold text-[#5F6368] uppercase">Tax (Monthly)</span>
+            <span className="block text-lg font-black text-[#D93025]">Rs. {Math.round(summary.averageMonthlyTax).toLocaleString('en-IN')}</span>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
-

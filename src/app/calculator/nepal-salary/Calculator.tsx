@@ -637,29 +637,8 @@ export default function NepalSalaryCalculator() {
           </div>
         </div>
       )}
-
-      {/* ── Phase 5: Topic Cluster Internal Links ──────────────── */}
-      <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-5">
-        <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest mb-3">Related Nepal Tax Guides</h3>
-        <div className="grid grid-cols-2 gap-2">
-          {[
-            ['/calculator/nepal-income-tax/', '📊 Nepal Income Tax Slabs'],
-            ['/calculator/nepal-tds/', '⚖️ TDS Calculator Nepal'],
-            ['/calculator/nepal-provident-fund/', '🏦 Provident Fund Guide'],
-            ['/calculator/gratuity-calculator/', '🎁 Gratuity Calculator'],
-            ['/calculator/nepal-vat/', '🧾 VAT Calculator Nepal'],
-            ['/calculator/nepal-stocks/', '📈 Nepal Stocks Calculator'],
-          ].map(([href, label]) => (
-            <a key={href} href={href as string}
-              className="flex items-center gap-1.5 px-3 py-2 bg-white border border-[#DADCE0] rounded-lg text-[11px] font-bold text-[#1A73E8] hover:bg-[#E8F0FE] transition-colors">
-              {label}
-            </a>
-          ))}
-        </div>
-      </div>
-
       {/* Legal disclaimer */}
-      <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-800">
+      <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-800 mt-6">
         <strong>Disclaimer:</strong> This calculator provides an estimate based on the latest Government of Nepal FY {state.fiscalYear} Income Tax Act and Finance Act provisions. Individual tax liabilities may vary depending on personal circumstances, applicable deductions, employment status, and future IRD amendments. Verify with your employer or tax advisor.
       </div>
     </div>

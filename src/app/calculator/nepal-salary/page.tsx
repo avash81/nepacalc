@@ -142,7 +142,7 @@ export default function Page() {
               <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-full border border-slate-200">Last Updated: July 2026</span>
             </div>
             <p className="intro-text text-slate-700 leading-relaxed max-w-3xl">
-              Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates announced by the Ministry of Finance. Enter your monthly salary to receive an accurate breakdown of <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Nepal Income Tax</Link>, <Link href="/calculator/ssf/" className="text-blue-600 hover:underline">Social Security Fund (SSF)</Link>, Citizen Investment Trust (CIT), employer contribution, take-home salary and total employer cost.
+              Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates announced by the Ministry of Finance. Enter your monthly salary to receive an accurate breakdown of <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Nepal Income Tax</Link>, Social Security Fund (SSF), Citizen Investment Trust (CIT), employer contribution, take-home salary and total employer cost.
             </p>
           </div>
 
@@ -464,9 +464,6 @@ export default function Page() {
                 <li><a href="https://ssf.gov.np" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Social Security Fund (SSF)</a>, Employee and employer contribution guidelines</li>
               </ul>
               
-              <div className="mt-4 pt-4 border-t border-slate-200 text-amber-800 bg-amber-50 p-4 rounded-lg">
-                <strong>Disclaimer:</strong> This calculator provides an estimate based on the latest Government of Nepal tax rules for FY2083/84. Actual payroll calculations may vary depending on individual circumstances, employer policies, additional deductions, or future legal amendments.
-              </div>
 
               <div className="mt-6 pt-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between gap-4 text-xs">
                 <div className="bg-white border border-slate-200 p-3 rounded-lg">
