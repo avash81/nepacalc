@@ -93,7 +93,88 @@ export default function Page() {
           "text": "Yes. It is completely free to use online."
         }
       }
-    ]
+    
+      ,{
+        "@type": "Question",
+        "name": "How do I calculate days between two dates?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Select the start and end dates and click calculate. The tool automatically counts the exact days between them."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I include the end date?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Check the 'Inclusive Audit' box to add 1 day to the total count, ensuring the end date is included in the duration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator include leap years?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, leap years are automatically detected and included in the calendar calculations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate working days?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Select 'Working Days' from the mode dropdown to automatically exclude weekends from the total days count."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate business days?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Business days are calculated identically to working days, by automatically excluding Saturdays and Sundays from the duration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I calculate age?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, select 'Age Calculator' mode, enter your date of birth as the start date, and today's date as the end date."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate employment duration?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Select 'Employment Duration' mode, enter your joining date and the end date, and the calculator will provide your exact tenure."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I calculate months instead of days?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, the comprehensive summary always displays the total equivalent months as well as the standard year/month/day breakdown."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this calculator handle leap years automatically?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, the engine accurately accounts for Gregorian calendar rules, including February 29th during leap years."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I print or download the result?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, use the 'Print / PDF' button beneath the results to save or print a formatted summary."
+        }
+      }
+]
   };
 
   const softwareSchema = {
@@ -120,10 +201,48 @@ export default function Page() {
     ]
   };
 
+  
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "HR & Payroll calculations" },
+      { "@type": "ListItem", "position": 2, "name": "Construction & Project Management timelines" },
+      { "@type": "ListItem", "position": 3, "name": "Legal Contracts and visa validity" },
+      { "@type": "ListItem", "position": 4, "name": "Education term durations" },
+      { "@type": "ListItem", "position": 5, "name": "Events & Travel planning" }
+    ]
+  };
+
+  const actionSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://nepacalc.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://nepacalc.com/calculator/date-duration/?start={start_date}&end={end_date}",
+      "query-input": "required name=start_date"
+    }
+  };
+
+  const speakableSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Date Duration Calculator",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".bg-\\[\\#E8F0FE\\] p"]
+    },
+    "url": "https://nepacalc.com/calculator/date-duration/"
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(actionSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
       <Calculator />
     </>
   );

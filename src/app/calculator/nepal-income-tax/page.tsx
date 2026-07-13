@@ -3,8 +3,8 @@ import Calculator from './Calculator';
 import { IncomeTaxSeoContent } from './components/IncomeTaxSeoContent';
 
 export const metadata = calcMeta({
-  title: "Nepal Income Tax Calculator (2083/84) | IRD Salary Tax Calculator Nepal",
-  description: "Calculate Nepal income tax instantly using the latest FY 2083/84 income tax slabs under the Finance Act 2083. Estimate annual income tax, monthly TDS, SSF adjustments, effective tax rate, marginal tax rate and take-home salary using NepaCalc's free IRD-compatible calculator.",
+  title: "Nepal Income Tax Calculator (FY 2083/84) — IRD Tax Calculator Nepal",
+  description: "Calculate Nepal income tax instantly using the FY 2083/84 Finance Act and IRD tax slabs. Estimate annual tax, monthly TDS, deductions, effective tax rate and net income after tax for salary, business, freelance and rental income. Free.",
   slug: 'calculator/nepal-income-tax',
   canonical: '/calculator/nepal-income-tax/',
   keywords: [
@@ -14,8 +14,14 @@ export const metadata = calcMeta({
     "Salary Tax Calculator Nepal",
     "Tax Calculator Nepal",
     "Nepal Income Tax Slab 2083/84",
-    "Monthly TDS Calculator",
-    "Finance Act 2083"
+    "Monthly TDS Calculator Nepal",
+    "Finance Act 2083",
+    "Personal Income Tax Nepal",
+    "Freelance Tax Calculator Nepal",
+    "Business Income Tax Nepal",
+    "Rental Income Tax Nepal",
+    "Female Tax Rebate Nepal",
+    "NRN Tax Calculator Nepal",
   ],
   ogImage: 'https://nepacalc.com/images/nepal-income-tax-calculator-2083-2084.webp'
 });
@@ -38,15 +44,15 @@ export default function Page() {
     "@type": "WebPage",
     "@id": "https://nepacalc.com/calculator/nepal-income-tax/",
     "url": "https://nepacalc.com/calculator/nepal-income-tax/",
-    "name": "Nepal Income Tax Calculator (2083/84) | IRD Salary Tax Calculator Nepal",
-    "description": "Calculate Nepal income tax instantly using the latest FY 2083/84 income tax slabs under the Finance Act 2083.",
+    "name": "Nepal Income Tax Calculator (FY 2083/84) — IRD Tax Calculator Nepal",
+    "description": "Calculate Nepal income tax instantly using the FY 2083/84 Finance Act and IRD tax slabs. Estimate annual tax, monthly TDS, eligible deductions, effective tax rate and net income after tax.",
     "inLanguage": "en-NP",
     "datePublished": "2026-06-15",
-    "dateModified": "2026-07-12",
+    "dateModified": "2026-07-13",
     "isPartOf": {"@type": "WebSite", "name": "NepaCalc", "url": "https://nepacalc.com"},
     "speakable": {
       "@type": "SpeakableSpecification",
-      "cssSelector": ["h1", "h2", "#intro", "#slabs", "#faq"]
+      "cssSelector": ["#page-title", "#intro", "#slabs", "#faq"]
     }
   };
 
@@ -84,7 +90,10 @@ export default function Page() {
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
-      "ratingCount": "1240"
+      "ratingCount": "1240",
+      "reviewCount": "312",
+      "bestRating": "5",
+      "worstRating": "1"
     }
   };
 
@@ -166,6 +175,31 @@ export default function Page() {
     { q: "Is this calculator updated for Budget 2083/84?",       a: "Yes. The calculator follows the latest FY 2083/84 Finance Act and Nepal Government Budget provisions, including revised tax slabs, updated deduction limits and current personal income tax rules." }
   ];
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": "https://nepacalc.com/calculator/nepal-income-tax/#article",
+    "headline": "Nepal Income Tax Calculator (FY 2083/84)",
+    "description": "Complete guide to calculating Nepal personal income tax — salary, business, freelance, rental and professional income — under the Finance Act 2083/84.",
+    "author": { "@type": "Organization", "name": "NepaCalc", "url": "https://nepacalc.com" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NepaCalc",
+      "logo": { "@type": "ImageObject", "url": "https://nepacalc.com/logo.png" }
+    },
+    "datePublished": "2026-06-15",
+    "dateModified": "2026-07-13",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://nepacalc.com/calculator/nepal-income-tax/" },
+    "image": "https://nepacalc.com/images/nepal-income-tax-calculator-2083-2084.webp",
+    "inLanguage": "en-NP",
+    "about": [
+      { "@type": "Thing", "name": "Nepal Income Tax" },
+      { "@type": "Thing", "name": "Finance Act 2083" },
+      { "@type": "Thing", "name": "Tax Deducted at Source" },
+      { "@type": "Thing", "name": "Inland Revenue Department Nepal" }
+    ]
+  };
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -182,9 +216,8 @@ export default function Page() {
     webAppSchema,
     softwareAppSchema,
     imageObjectSchema,
-    orgSchema,
-    webSiteSchema,
     howToSchema,
+    articleSchema,
     faqSchema,
   ];
 

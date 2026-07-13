@@ -100,6 +100,9 @@ const customSchema = {
       "@type": "FAQPage",
       "@id": "https://nepacalc.com/calculator/nepal-salary/#faq",
       "mainEntity": [
+        { "@type": "Question", "name": "What is the difference between Salary Tax and Income Tax?", "acceptedAnswer": { "@type": "Answer", "text": "Salary tax applies to employment income earned from a salary. Income tax covers all taxable income including salary, business income, rental income, professional earnings and capital gains." } },
+        { "@type": "Question", "name": "Can employers use this Salary Calculator?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Employers, HR teams and payroll professionals can use this calculator to estimate employee deductions, employer contributions and Cost to Company (CTC)." } },
+        { "@type": "Question", "name": "When should I use the Nepal Income Tax Calculator instead?", "acceptedAnswer": { "@type": "Answer", "text": "Use the Nepal Income Tax Calculator if you earn income from business, freelance work, professional services, rental properties, investments or multiple income sources." } },
         { "@type": "Question", "name": "How is salary tax calculated in Nepal?", "acceptedAnswer": { "@type": "Answer", "text": "Salary tax is calculated annually. Gross annual salary is reduced by eligible deductions (SSF, CIT), and the remaining taxable income is applied to FY 2083/84 progressive slabs (1%–29%). The annual tax is divided by 12 to determine monthly TDS." } },
         { "@type": "Question", "name": "What is the income tax rate for FY 2083/84?", "acceptedAnswer": { "@type": "Answer", "text": "FY 2083/84 uses: 1% up to Rs. 10,00,000; 10% from Rs. 10,00,001–15,00,000; 20% from Rs. 15,00,001–25,00,000; 27% from Rs. 25,00,001–40,00,000; and 29% above Rs. 40,00,000." } },
         { "@type": "Question", "name": "Is SSF contribution deductible from taxable income?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The 11% employee SSF contribution reduces your taxable income, capped at one-third of annual salary or Rs. 5,00,000. The employer's 20% SSF does not reduce employee taxable income but increases employer CTC." } },
@@ -126,7 +129,56 @@ export default function Page() {
     <div className="bg-[#F1F3F4] min-h-screen">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(customSchema) }} />
 
+
       <Calculator />
+
+      <div className="hp-container pt-8 pb-4">
+        <div className="max-w-4xl mx-auto space-y-8">
+          {/* What This Salary Calculator Covers */}
+          <section className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+            <h2 className="text-xl font-bold text-slate-900 mb-3">What This Salary Calculator Covers</h2>
+            <p className="text-slate-700 leading-relaxed">
+              This Salary Calculator is designed exclusively for employment income in Nepal.
+              It calculates salary tax, payroll deductions, Social Security Fund (SSF), Citizen Investment Trust (CIT), Employee Provident Fund (EPF), employer contribution and take-home salary using the latest FY 2083/84 rules.
+              It should not be used for business income, professional income, rental income, capital gains or other taxable income sources.
+            </p>
+          </section>
+
+          {/* Salary Calculator vs Income Tax Calculator */}
+          <section className="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+            <h2 className="text-xl font-bold text-slate-900 mb-5">Salary Calculator vs Income Tax Calculator</h2>
+            <div className="grid sm:grid-cols-2 gap-4 mb-5">
+              <div className="border border-blue-200 bg-blue-50 p-4 rounded-lg">
+                <h3 className="font-black text-blue-900 mb-3 text-sm uppercase tracking-wider">Salary Calculator</h3>
+                <ul className="space-y-2 text-sm text-blue-800 font-medium">
+                  <li>• Salary only</li>
+                  <li>• Payroll</li>
+                  <li>• Employee deductions</li>
+                  <li>• Employer cost</li>
+                  <li>• Take-home salary</li>
+                  <li>• Monthly payroll</li>
+                </ul>
+              </div>
+              <div className="border border-emerald-200 bg-emerald-50 p-4 rounded-lg">
+                <h3 className="font-black text-emerald-900 mb-3 text-sm uppercase tracking-wider">Income Tax Calculator</h3>
+                <ul className="space-y-2 text-sm text-emerald-800 font-medium">
+                  <li>• Business income</li>
+                  <li>• Rental income</li>
+                  <li>• Capital gains</li>
+                  <li>• Professional income</li>
+                  <li>• Multiple income sources</li>
+                  <li>• Complete annual taxation</li>
+                </ul>
+              </div>
+            </div>
+            <p className="text-slate-700 text-sm leading-relaxed bg-slate-50 p-4 rounded-lg border border-slate-200">
+              If your only income comes from employment, use this Salary Calculator.
+              If you have additional taxable income sources, use the <Link href="/calculator/nepal-income-tax/" className="text-blue-600 font-bold hover:underline">Nepal Income Tax Calculator</Link>.
+            </p>
+          </section>
+        </div>
+      </div>
+
 
       <div className="hp-container pb-20 pt-6">
         <div className="max-w-4xl mx-auto space-y-14">
@@ -142,7 +194,7 @@ export default function Page() {
               <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-full border border-slate-200">Last Updated: July 2026</span>
             </div>
             <p className="intro-text text-slate-700 leading-relaxed max-w-3xl">
-              Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates announced by the Ministry of Finance. Enter your monthly salary to receive an accurate breakdown of <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Nepal Income Tax</Link>, Social Security Fund (SSF), Citizen Investment Trust (CIT), employer contribution, take-home salary and total employer cost.
+              Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates announced by the Ministry of Finance. Enter your monthly salary to receive an accurate breakdown of Nepal Income Tax, Social Security Fund (SSF), Citizen Investment Trust (CIT), employer contribution, take-home salary and total employer cost.
             </p>
           </div>
 
@@ -173,6 +225,7 @@ export default function Page() {
             <h2 className="text-2xl font-bold text-slate-900 mb-5">Salary Tax Breakdown</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
+
                 { title: "Gross Salary", icon: "💰", desc: "Monthly salary before any deductions, starting point for all tax calculations." },
                 { title: "Taxable Salary", icon: "📊", desc: "Salary remaining after eligible deductions such as SSF and CIT contributions." },
                 { title: "Income Tax", icon: "🏛️", desc: "Tax calculated using the FY 2083/84 progressive slabs from 1% to 29%." },
@@ -201,7 +254,10 @@ export default function Page() {
             <h2 className="text-2xl font-bold text-slate-900 mb-4">Who Should Use This Salary Tax Calculator?</h2>
             <p className="text-slate-700 leading-relaxed mb-4">This Nepal Salary Tax Calculator is useful for any salaried individual or HR professional in Nepal:</p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {["Private sector employees","Government employees","NGO and INGO employees","Corporate and bank employees","Teachers and educators","Healthcare professionals","IT professionals and engineers","Consultants on fixed salary","HR managers running payroll"].map((item, i) => (
+              {[
+                ["What is the difference between Salary Tax and Income Tax?", "Salary tax applies to employment income earned from a salary. Income tax covers all taxable income including salary, business income, rental income, professional earnings and capital gains."],
+                ["Can employers use this Salary Calculator?", "Yes. Employers, HR teams and payroll professionals can use this calculator to estimate employee deductions, employer contributions and Cost to Company (CTC)."],
+                ["When should I use the Nepal Income Tax Calculator instead?", "Use the Nepal Income Tax Calculator if you earn income from business, freelance work, professional services, rental properties, investments or multiple income sources."],"Private sector employees","Government employees","NGO and INGO employees","Corporate and bank employees","Teachers and educators","Healthcare professionals","IT professionals and engineers","Consultants on fixed salary","HR managers running payroll"].map((item, i) => (
                 <div key={i} className="flex items-center gap-2 bg-white border border-slate-200 rounded-lg px-4 py-3 text-sm text-slate-700 shadow-sm">
                   <span className="text-emerald-500 font-black">✓</span>{item}
                 </div>
@@ -224,6 +280,9 @@ export default function Page() {
                 </thead>
                 <tbody className="text-slate-700 text-sm divide-y divide-slate-100">
                   {[
+                ["What is the difference between Salary Tax and Income Tax?", "Salary tax applies to employment income earned from a salary. Income tax covers all taxable income including salary, business income, rental income, professional earnings and capital gains."],
+                ["Can employers use this Salary Calculator?", "Yes. Employers, HR teams and payroll professionals can use this calculator to estimate employee deductions, employer contributions and Cost to Company (CTC)."],
+                ["When should I use the Nepal Income Tax Calculator instead?", "Use the Nepal Income Tax Calculator if you earn income from business, freelance work, professional services, rental properties, investments or multiple income sources."],
                     ["Up to Rs. 10,00,000","1%","Rs. 10,000"],
                     ["Rs. 10,00,001 – Rs. 15,00,000","10%","Rs. 50,000"],
                     ["Rs. 15,00,001 – Rs. 25,00,000","20%","Rs. 2,00,000"],
@@ -240,7 +299,7 @@ export default function Page() {
               </table>
             </div>
             <div className="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg text-sm text-slate-700">
-              <strong>Progressive Taxation:</strong> Each slab is taxed separately. If your taxable income is Rs. 20,00,000, only the first Rs. 10,00,000 is taxed at 1%, the next Rs. 5,00,000 at 10%, and the next Rs. 5,00,000 at 20%. You can use the <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Nepal Income Tax Slabs Calculator</Link> to explore slabs in detail.
+              <strong>Progressive Taxation:</strong> Each slab is taxed separately. If your taxable income is Rs. 20,00,000, only the first Rs. 10,00,000 is taxed at 1%, the next Rs. 5,00,000 at 10%, and the next Rs. 5,00,000 at 20%. You can use our specific calculator to explore slabs in detail.
             </div>
           </section>
 
@@ -250,12 +309,15 @@ export default function Page() {
             <p className="text-slate-700 leading-relaxed mb-5">Salary tax must always be calculated on an <strong>annual basis first</strong>, then divided by 12 for monthly TDS. Applying monthly slabs directly produces incorrect results. The complete calculation flow:</p>
             <div className="bg-slate-800 text-white rounded-xl p-6 space-y-2 font-mono text-sm mb-4">
               {[
+                ["What is the difference between Salary Tax and Income Tax?", "Salary tax applies to employment income earned from a salary. Income tax covers all taxable income including salary, business income, rental income, professional earnings and capital gains."],
+                ["Can employers use this Salary Calculator?", "Yes. Employers, HR teams and payroll professionals can use this calculator to estimate employee deductions, employer contributions and Cost to Company (CTC)."],
+                ["When should I use the Nepal Income Tax Calculator instead?", "Use the Nepal Income Tax Calculator if you earn income from business, freelance work, professional services, rental properties, investments or multiple income sources."],
                 "Monthly Gross Salary × 12 = Annual Gross Salary",
                 "Annual Gross + Bonuses + Allowances = Total Annual Income",
                 "Total Annual Income − Employee SSF (11%) = After SSF",
                 "After SSF − CIT / PF Contribution = Taxable Income",
                 "Taxable Income → Applied to FY 2083/84 Slabs",
-                "= Annual Income Tax",
+                "= Annual Salary Tax",
                 "Annual Tax ÷ 12 = Monthly Income Tax",
                 "Monthly Gross − SSF − CIT − Monthly Tax = Take-Home",
               ].map((step, i) => (
@@ -274,6 +336,7 @@ export default function Page() {
             <p className="text-slate-700 leading-relaxed mb-5">The SSF is a mandatory retirement scheme for formal sector employees. Contributions are split between employee and employer:</p>
             <div className="grid sm:grid-cols-3 gap-4 mb-5">
               {[
+
                 { label: "Employee Contribution", pct: "11%", color: "bg-orange-50 border-orange-200 text-orange-800", note: "Deducted from gross salary · Reduces taxable income" },
                 { label: "Employer Contribution", pct: "20%", color: "bg-emerald-50 border-emerald-200 text-emerald-800", note: "Paid by employer · Increases CTC · Does NOT reduce employee taxable income" },
                 { label: "Total SSF", pct: "31%", color: "bg-blue-50 border-blue-200 text-blue-800", note: "Combined contribution deposited to the Social Security Fund" },
@@ -294,6 +357,9 @@ export default function Page() {
             <p className="text-slate-700 leading-relaxed mb-4">CIT is a government-backed voluntary retirement savings scheme. Contributions reduce your taxable income, lowering overall income tax:</p>
             <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-3 text-sm text-slate-700">
               {[
+                ["What is the difference between Salary Tax and Income Tax?", "Salary tax applies to employment income earned from a salary. Income tax covers all taxable income including salary, business income, rental income, professional earnings and capital gains."],
+                ["Can employers use this Salary Calculator?", "Yes. Employers, HR teams and payroll professionals can use this calculator to estimate employee deductions, employer contributions and Cost to Company (CTC)."],
+                ["When should I use the Nepal Income Tax Calculator instead?", "Use the Nepal Income Tax Calculator if you earn income from business, freelance work, professional services, rental properties, investments or multiple income sources."],
                 ["Purpose", "Long-term retirement savings with government-guaranteed returns."],
                 ["Tax Treatment", "CIT contributions are deductible from annual taxable income under the retirement contribution provision."],
                 ["Deduction Cap", "Capped at one-third of annual salary or Rs. 5,00,000, whichever is lower (combined with SSF)."],
@@ -321,11 +387,14 @@ export default function Page() {
                     <table className="w-full text-sm">
                       <tbody className="divide-y divide-slate-100">
                         {[
+                ["What is the difference between Salary Tax and Income Tax?", "Salary tax applies to employment income earned from a salary. Income tax covers all taxable income including salary, business income, rental income, professional earnings and capital gains."],
+                ["Can employers use this Salary Calculator?", "Yes. Employers, HR teams and payroll professionals can use this calculator to estimate employee deductions, employer contributions and Cost to Company (CTC)."],
+                ["When should I use the Nepal Income Tax Calculator instead?", "Use the Nepal Income Tax Calculator if you earn income from business, freelance work, professional services, rental properties, investments or multiple income sources."],
                           ["Gross Monthly Salary", `Rs. ${ex.monthlyGross.toLocaleString('en-IN')}`],
                           ["Employee SSF (11%)", `− Rs. ${ex.ssf.toLocaleString('en-IN')}`],
                           ["Annual Taxable Income (approx.)", `Rs. ${ex.annualTaxable.toLocaleString('en-IN')}`],
-                          ["Annual Income Tax", `Rs. ${ex.annualTax.toLocaleString('en-IN')}`],
-                          ["Estimated Monthly Tax", `Rs. ${ex.monthlyTax.toLocaleString('en-IN')}`],
+                          ["Annual Salary Tax", `Rs. ${ex.annualTax.toLocaleString('en-IN')}`],
+                          ["Estimated Monthly Salary Tax", `Rs. ${ex.monthlyTax.toLocaleString('en-IN')}`],
                           ["Monthly Take-Home Salary", `Rs. ${ex.takeHome.toLocaleString('en-IN')}`],
                         ].map(([label, val], j) => (
                           <tr key={j} className={j === 5 ? "bg-emerald-50 font-black text-emerald-800" : ""}>
@@ -348,6 +417,9 @@ export default function Page() {
             <p className="text-slate-700 leading-relaxed mb-5">The Government of Nepal introduced these key salary-related changes in the FY 2083/84 Budget and Finance Act 2083:</p>
             <div className="space-y-3">
               {[
+                ["What is the difference between Salary Tax and Income Tax?", "Salary tax applies to employment income earned from a salary. Income tax covers all taxable income including salary, business income, rental income, professional earnings and capital gains."],
+                ["Can employers use this Salary Calculator?", "Yes. Employers, HR teams and payroll professionals can use this calculator to estimate employee deductions, employer contributions and Cost to Company (CTC)."],
+                ["When should I use the Nepal Income Tax Calculator instead?", "Use the Nepal Income Tax Calculator if you earn income from business, freelance work, professional services, rental properties, investments or multiple income sources."],
                 ["📈", "Tax Exemption Threshold to Rs. 10 Lakh", "The first income tax slab now starts at 1% up to Rs. 10,00,000, increasing the effective threshold for meaningful tax liability."],
                 ["📉", "Maximum Personal Income Tax Reduced to 29%", "The highest marginal rate has dropped to 29% (27% + 2% surcharge) for income above Rs. 40,00,000, replacing the old 36%–39% top rates."],
                 ["🗂️", "Updated Progressive Tax Slabs", "Five slabs: 1%, 10%, 20%, 27%, and 29%, revised to provide more equitable taxation across income levels."],
@@ -372,7 +444,10 @@ export default function Page() {
             <h2 className="text-2xl font-bold text-slate-900 mb-4">Benefits of Using This Salary Tax Calculator</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {[
-                ["⚡","Instant Live Calculation","Results update instantly as you type, no Calculate button required."],
+                ["What is the difference between Salary Tax and Income Tax?", "Salary tax applies to employment income earned from a salary. Income tax covers all taxable income including salary, business income, rental income, professional earnings and capital gains."],
+                ["Can employers use this Salary Calculator?", "Yes. Employers, HR teams and payroll professionals can use this calculator to estimate employee deductions, employer contributions and Cost to Company (CTC)."],
+                ["When should I use the Nepal Income Tax Calculator instead?", "Use the Nepal Income Tax Calculator if you earn income from business, freelance work, professional services, rental properties, investments or multiple income sources."],
+                ["⚡","Instant Live Salary Tax Calculation","Results update instantly as you type, no Calculate button required."],
                 ["📋","FY 2083/84 Accurate","All tax slabs, deduction limits, and surcharges reflect the latest Government of Nepal rules."],
                 ["🏛️","Correct SSF & CIT Handling","Separates employee SSF (11%) from employer SSF (20%) and supports CIT and PF inputs."],
                 ["💼","Employer CTC Breakdown","Shows Total Cost to Company, useful for job offer negotiation and HR payroll planning."],
@@ -395,6 +470,9 @@ export default function Page() {
             <h2 className="text-2xl font-bold text-slate-900 mb-6">Frequently Asked Questions</h2>
             <div className="space-y-4">
               {[
+                ["What is the difference between Salary Tax and Income Tax?", "Salary tax applies to employment income earned from a salary. Income tax covers all taxable income including salary, business income, rental income, professional earnings and capital gains."],
+                ["Can employers use this Salary Calculator?", "Yes. Employers, HR teams and payroll professionals can use this calculator to estimate employee deductions, employer contributions and Cost to Company (CTC)."],
+                ["When should I use the Nepal Income Tax Calculator instead?", "Use the Nepal Income Tax Calculator if you earn income from business, freelance work, professional services, rental properties, investments or multiple income sources."],
                 ["How is salary tax calculated in Nepal?", "Salary tax is calculated annually. Gross annual salary is reduced by eligible deductions (SSF, CIT), and the remaining taxable income is applied to FY 2083/84 progressive slabs (1%–29%). The annual tax is divided by 12 to determine monthly TDS."],
                 ["What is the income tax rate for FY 2083/84?", "FY 2083/84 uses: 1% up to Rs. 10,00,000; 10% from Rs. 10,00,001–15,00,000; 20% from Rs. 15,00,001–25,00,000; 27% from Rs. 25,00,001–40,00,000; and 29% above Rs. 40,00,000."],
                 ["Is SSF contribution deductible from taxable income?", "Yes. The 11% employee SSF contribution reduces your taxable income, capped at one-third of annual salary or Rs. 5,00,000. The employer's 20% SSF does not reduce employee taxable income but increases employer CTC."],
@@ -419,7 +497,8 @@ export default function Page() {
             <h3 className="text-xl font-bold text-slate-900 mb-4">Related Salary &amp; Tax Calculators</h3>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 text-sm">
               {[
-                ["/calculator/nepal-income-tax/", "📊", "Nepal Income Tax Slabs Calculator"],
+
+                ["/calculator/cit/", "📊", "Citizen Investment Trust Calculator"],
                 ["/calculator/ssf/", "🛡️", "SSF Calculator Nepal"],
                 ["/calculator/cit/", "📈", "CIT Calculator Nepal"],
                 ["/calculator/payroll/", "💼", "Payroll Calculator Nepal"],
@@ -440,6 +519,9 @@ export default function Page() {
             {/* Trust Signals & EEAT */}
             <div className="grid sm:grid-cols-2 gap-3 mb-8">
               {[
+                ["What is the difference between Salary Tax and Income Tax?", "Salary tax applies to employment income earned from a salary. Income tax covers all taxable income including salary, business income, rental income, professional earnings and capital gains."],
+                ["Can employers use this Salary Calculator?", "Yes. Employers, HR teams and payroll professionals can use this calculator to estimate employee deductions, employer contributions and Cost to Company (CTC)."],
+                ["When should I use the Nepal Income Tax Calculator instead?", "Use the Nepal Income Tax Calculator if you earn income from business, freelance work, professional services, rental properties, investments or multiple income sources."],
                 "Government Rules Used",
                 "Finance Act FY2083/84",
                 "Income Tax Act",

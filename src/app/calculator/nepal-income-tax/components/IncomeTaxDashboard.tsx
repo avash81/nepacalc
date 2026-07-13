@@ -29,10 +29,10 @@ export function IncomeTaxDashboard({ summary }: { summary: CalculationSummary })
         {/* Take Home */}
         <div className="bg-[#1A73E8] text-white p-6 rounded-xl shadow-md relative overflow-hidden">
           <div className="absolute -right-4 -bottom-4 opacity-10"><Wallet className="w-32 h-32" /></div>
-          <span className="text-xs font-bold text-blue-100 uppercase tracking-wider block mb-1">Monthly Take Home</span>
+          <span className="text-xs font-bold text-blue-100 uppercase tracking-wider block mb-1">Monthly Net Income After Tax</span>
           <span className="text-3xl sm:text-4xl font-black">{fmt(summary.netMonthlyIncome)}</span>
           <div className="mt-4 pt-4 border-t border-blue-400/30 flex justify-between text-sm">
-            <span className="text-blue-100">Annual Take Home</span>
+            <span className="text-blue-100">Annual Net Income After Tax</span>
             <span className="font-bold">{fmt(summary.netAnnualIncome)}</span>
           </div>
         </div>
@@ -75,11 +75,11 @@ export function IncomeTaxDashboard({ summary }: { summary: CalculationSummary })
             <span className="font-bold text-[#D93025]">{fmt(summary.averageMonthlyTax)}</span>
           </div>
           <div className="flex justify-between px-5 py-3 text-sm">
-            <span className="text-[#5F6368]">Monthly Take Home</span>
+            <span className="text-[#5F6368]">Monthly Net Income After Tax</span>
             <span className="font-bold text-[#1A73E8]">{fmt(summary.netMonthlyIncome)}</span>
           </div>
           <div className="flex justify-between px-5 py-3 text-sm bg-[#F8F9FA]">
-            <span className="font-bold text-[#202124]">Annual Take Home</span>
+            <span className="font-bold text-[#202124]">Annual Net Income After Tax</span>
             <span className="font-black text-[#1A73E8]">{fmt(summary.netAnnualIncome)}</span>
           </div>
         </div>

@@ -147,7 +147,7 @@ export default function NepalIncomeTaxCalculator() {
       {/* PAGE TITLE — H1 only, compact */}
       <div className="bg-white border-b border-[#E8EAED] px-4 sm:px-6 lg:px-8 py-4">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-2xl md:text-3xl font-black text-[#202124] tracking-tight">
+          <h1 id="page-title" className="text-2xl md:text-3xl font-black text-[#202124] tracking-tight">
             Nepal Income Tax Calculator <span className="text-[#1A73E8]">(FY 2083/84)</span>
           </h1>
         </div>
@@ -215,13 +215,14 @@ export default function NepalIncomeTaxCalculator() {
           {summary.grossIncome > 0 && (
             <div className="bg-blue-50 border border-blue-100 rounded-xl p-5 text-sm text-blue-900">
               <span className="font-bold block mb-1 text-base">Why is my tax this amount?</span>
-              Your taxable income entered the <span className="font-bold">{summary.highestTaxSlab}</span> tax slab.
-              You also saved <span className="font-bold">Rs. {summary.taxSaved.toLocaleString('en-IN')}</span> through approved deductions and tax rules.
+              Your annual taxable income falls within the <span className="font-bold">{summary.highestTaxSlab}</span> under the FY 2083/84 Finance Act.
+              The calculator first deducts all eligible retirement contributions and approved deductions before applying Nepal's progressive income tax slabs.
+              The displayed effective tax rate represents the percentage of your gross income paid as income tax, while the marginal tax rate represents the highest tax rate applied to your final taxable rupee.
             </div>
           )}
           <div className="bg-white border border-[#DADCE0] rounded-xl p-5 space-y-3">
             <p className="text-sm text-[#5F6368] leading-relaxed">
-              Calculate your Nepal income tax accurately using the latest FY 2083/84 tax slabs. Fully compliant with the Government of Nepal Finance Act updates.
+              Calculate Nepal income tax for salary, business, freelance, rental and professional income using the latest FY 2083/84 Finance Act and IRD tax slabs.
             </p>
             <div className="flex flex-wrap gap-2">
               <span className="inline-flex items-center bg-[#F1F3F4] text-[#3C4043] px-2.5 py-1 rounded-md border border-[#DADCE0] text-xs font-medium">✓ Finance Act 2083/84</span>

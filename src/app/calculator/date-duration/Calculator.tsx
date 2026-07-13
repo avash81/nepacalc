@@ -1,25 +1,87 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { Calendar, Clock, ShieldCheck } from 'lucide-react';
-import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import { Calendar, Clock, ShieldCheck, Printer, Copy, Share2, RefreshCcw, Download } from 'lucide-react';
+
+const CALC_MODES = [
+  "Days Between Dates",
+  "Years Months Days",
+  "Business Days",
+  "Working Days",
+  "Age Calculator",
+  "Employment Duration",
+  "Project Duration",
+  "Subscription Duration",
+  "Pregnancy Due Date",
+  "Countdown"
+];
+
+const USE_CASES = [
+  { label: 'Employment', startOffset: -365, endOffset: 0 },
+  { label: 'Vacation Planning', startOffset: 14, endOffset: 28 },
+  { label: 'Visa Duration', startOffset: 0, endOffset: 90 },
+  { label: 'Passport Validity', startOffset: 0, endOffset: 3650 },
+  { label: 'Probation Period', startOffset: -90, endOffset: 0 },
+  { label: 'Construction Timeline', startOffset: 0, endOffset: 180 },
+  { label: 'Project Timeline', startOffset: 0, endOffset: 120 },
+  { label: 'School Duration', startOffset: -200, endOffset: 0 },
+  { label: 'University Duration', startOffset: -1460, endOffset: 0 },
+  { label: 'Marriage Anniversary', startOffset: -3650, endOffset: 0 },
+  { label: 'Retirement Planning', startOffset: 0, endOffset: 3650 },
+];
 
 export default function DateDuration() {
   const [start, setStart] = useState('2025-01-01');
   const [end, setEnd]     = useState('2025-12-31');
   const [includeEnd, setIncludeEnd] = useState(false);
+  const [mode, setMode] = useState(CALC_MODES[0]);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    // Check URL params for shared links
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const s = urlParams.get('start');
+      const e = urlParams.get('end');
+      const m = urlParams.get('mode');
+      if (s) setStart(s);
+      if (e) setEnd(e);
+      if (m && CALC_MODES.includes(m)) setMode(m);
+    }
+  }, []);
+
+  const getIsoWeekNumber = (d: Date) => {
+    const date = new Date(d.getTime());
+    date.setHours(0, 0, 0, 0);
+    date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+    const week1 = new Date(date.getFullYear(), 0, 4);
+    return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+  };
+
+  const getDayOfYear = (d: Date) => {
+    const start = new Date(d.getFullYear(), 0, 0);
+    const diff = (d.getTime() - start.getTime()) + ((start.getTimezoneOffset() - d.getTimezoneOffset()) * 60 * 1000);
+    return Math.floor(diff / 86400000);
+  };
+
+  const isLeapYear = (year: number) => {
+    return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+  };
 
   const diff = useMemo(() => {
+    if (!mounted) return null;
     const d1 = new Date(start), d2 = new Date(end);
     if (isNaN(d1.getTime()) || isNaN(d2.getTime())) return null;
-    let ms = Math.abs(d2.getTime() - d1.getTime());
-    if (includeEnd) ms += 86400000;
-    const totalDays = Math.floor(ms / 86400000);
     
-    const startObj = new Date(start < end ? start : end);
-    const endObj = new Date(start < end ? end : start);
+    let isReversed = d1 > d2;
+    const startObj = new Date(isReversed ? end : start);
+    const endObj = new Date(isReversed ? start : end);
     if (includeEnd) endObj.setDate(endObj.getDate() + 1);
 
+    let ms = endObj.getTime() - startObj.getTime();
+    const totalDays = Math.floor(ms / 86400000);
+    
     let years = endObj.getFullYear() - startObj.getFullYear();
     let months = endObj.getMonth() - startObj.getMonth();
     let days = endObj.getDate() - startObj.getDate();
@@ -34,40 +96,154 @@ export default function DateDuration() {
       months += 12;
     }
 
-    return { 
-      totalDays, 
-      weeks: (totalDays / 7), 
-      monthsTotal: (totalDays / 30.437), 
-      yearsTotal: (totalDays / 365.25),
-      breakdown: `${years}Y ${months}M ${days}D`,
-      raw: { years, months, days },
-      hours: totalDays * 24
-    };
-  }, [start, end, includeEnd]);
+    let workingDays = 0;
+    let weekendDays = 0;
+    let leapDays = 0;
 
-  const chartData = [
-    { name: 'Years', val: parseFloat(diff?.yearsTotal.toFixed(2) || '0'), fill: '#6366f1' },
-    { name: 'Months', val: parseFloat(diff?.monthsTotal.toFixed(1) || '0'), fill: '#3b82f6' },
-    { name: 'Weeks', val: parseFloat(diff?.weeks.toFixed(1) || '0'), fill: '#10b981' },
-    { name: 'Days', val: diff?.totalDays || 0, fill: '#f59e0b' },
-  ];
+    for (let d = startObj.getTime(); d < endObj.getTime(); d += 86400000) {
+      const date = new Date(d);
+      const day = date.getDay();
+      if (day === 0 || day === 6) weekendDays++;
+      else workingDays++;
+
+      if (date.getMonth() === 1 && date.getDate() === 29) {
+        leapDays++;
+      }
+    }
+
+    return { 
+      totalDays,
+      years, months, days,
+      weeks: Math.floor(totalDays / 7),
+      remainingDays: totalDays % 7,
+      hours: totalDays * 24,
+      minutes: totalDays * 1440,
+      seconds: totalDays * 86400,
+      workingDays,
+      weekendDays,
+      leapDays,
+      calendarWeeks: (totalDays / 7).toFixed(2),
+      fiscalWeeks: (workingDays / 5).toFixed(2),
+      workingWeeks: Math.floor(workingDays / 5),
+      pctOfYear: ((totalDays / (isLeapYear(startObj.getFullYear()) ? 366 : 365)) * 100).toFixed(2),
+      quarter: Math.floor(startObj.getMonth() / 3) + 1,
+      fiscalQuarter: Math.floor(((startObj.getMonth() + 6) % 12) / 3) + 1,
+      isoWeek: getIsoWeekNumber(startObj),
+      dayOfYear: getDayOfYear(startObj),
+      businessWeeks: (workingDays / 5).toFixed(2),
+      breakdown: `${years}Y ${months}M ${days}D`,
+      isReversed
+    };
+  }, [start, end, includeEnd, mounted]);
+
+  const applyPreset = (preset: string) => {
+    const today = new Date();
+    let s = new Date();
+    let e = new Date();
+
+    switch(preset) {
+      case 'Today':
+        break;
+      case 'Yesterday':
+        s.setDate(today.getDate() - 1);
+        e.setDate(today.getDate() - 1);
+        break;
+      case 'Last 7 Days':
+        s.setDate(today.getDate() - 7);
+        break;
+      case 'Last 30 Days':
+        s.setDate(today.getDate() - 30);
+        break;
+      case 'Current Month':
+        s = new Date(today.getFullYear(), today.getMonth(), 1);
+        e = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+        break;
+      case 'Previous Month':
+        s = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+        e = new Date(today.getFullYear(), today.getMonth(), 0);
+        break;
+      case 'Current Year':
+        s = new Date(today.getFullYear(), 0, 1);
+        e = new Date(today.getFullYear(), 11, 31);
+        break;
+      case 'Previous Year':
+        s = new Date(today.getFullYear() - 1, 0, 1);
+        e = new Date(today.getFullYear() - 1, 11, 31);
+        break;
+      case 'Current Fiscal Year': // Assuming Mid-July start
+        s = new Date(today.getFullYear() - (today.getMonth() < 6 ? 1 : 0), 6, 16);
+        e = new Date(today.getFullYear() + (today.getMonth() < 6 ? 0 : 1), 6, 15);
+        break;
+      case 'Previous Fiscal Year':
+        s = new Date(today.getFullYear() - (today.getMonth() < 6 ? 2 : 1), 6, 16);
+        e = new Date(today.getFullYear() - (today.getMonth() < 6 ? 1 : 0), 6, 15);
+        break;
+    }
+
+    setStart(s.toISOString().split('T')[0]);
+    setEnd(e.toISOString().split('T')[0]);
+  };
+
+  const applyUseCase = (offsetStart: number, offsetEnd: number) => {
+    const today = new Date();
+    const s = new Date(today);
+    s.setDate(today.getDate() + offsetStart);
+    const e = new Date(today);
+    e.setDate(today.getDate() + offsetEnd);
+    setStart(s.toISOString().split('T')[0]);
+    setEnd(e.toISOString().split('T')[0]);
+  };
+
+  const copyResult = () => {
+    if(!diff) return;
+    const text = `Duration: ${diff.totalDays} Days (${diff.breakdown})\nStart: ${start}\nEnd: ${end}`;
+    navigator.clipboard.writeText(text);
+    alert('Copied to clipboard');
+  };
+
+  const copyUrl = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('start', start);
+    url.searchParams.set('end', end);
+    url.searchParams.set('mode', mode);
+    navigator.clipboard.writeText(url.toString());
+    alert('URL copied to clipboard');
+  };
+
+  const printResult = () => {
+    window.print();
+  };
 
   return (
     <ModernCalcLayout
       slug="date-duration"
       crumbs={[{ label: 'Calculators', href: '/calculators/' }, { label: 'Date Duration Calculator' }]}
       title="Date Duration Calculator"
-      description="The Date Duration Calculator helps you calculate the exact time between two dates in years, months, weeks and days. It automatically accounts for leap years, varying month lengths and calendar rules to provide fast and accurate date difference calculations for age, employment, projects, contracts and more."
+      description="Calculate the exact duration between two dates. Comprehensive Date & Time toolkit for days between dates, working days, age, and employment duration."
       icon={Calendar}
       inputs={
         <div className="space-y-6">
+          <div className="flex flex-wrap gap-2 mb-4 border-b border-[#DADCE0] pb-4">
+            <select value={mode} onChange={(e) => setMode(e.target.value)} className="bg-white border border-[#DADCE0] rounded-md px-3 py-2 text-sm font-bold outline-none focus:border-[#1A73E8]">
+              {CALC_MODES.map(m => <option key={m} value={m}>{m}</option>)}
+            </select>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {['Today', 'Yesterday', 'Last 7 Days', 'Last 30 Days', 'Current Month', 'Previous Month', 'Current Year', 'Previous Year', 'Current Fiscal Year', 'Previous Fiscal Year'].map(preset => (
+              <button key={preset} onClick={() => applyPreset(preset)} className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider bg-[#F8F9FA] hover:bg-[#E8F0FE] text-[#5F6368] hover:text-[#1A73E8] border border-[#DADCE0] rounded-full transition-colors">
+                {preset}
+              </button>
+            ))}
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
              <div className="space-y-2">
-                <label className="text-[11px] font-bold uppercase text-[#70757A]">Anchor Date (Start)</label>
+                <label className="text-[11px] font-bold uppercase text-[#70757A]">{mode === 'Age Calculator' ? 'Date of Birth' : 'Anchor Date (Start)'}</label>
                 <input type="date" value={start} onChange={e => setStart(e.target.value)} className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-lg font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all cursor-pointer" />
              </div>
              <div className="space-y-2">
-                <label className="text-[11px] font-bold uppercase text-[#70757A]">Target Date (End)</label>
+                <label className="text-[11px] font-bold uppercase text-[#70757A]">{mode === 'Countdown' ? 'Target Date' : 'Target Date (End)'}</label>
                 <input type="date" value={end} onChange={e => setEnd(e.target.value)} className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-lg font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all cursor-pointer" />
              </div>
           </div>
@@ -81,46 +257,108 @@ export default function DateDuration() {
                 <p className="text-[9px] text-[#70757A] font-bold">Add 1 day to count the end date (Standard Legal Protocol)</p>
              </div>
           </div>
-
-          <div className="p-4 border border-[#DADCE0] rounded-lg bg-[#E8F0FE] space-y-2">
-             <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#1A73E8]" />
-                <h3 className="text-[10px] font-bold uppercase tracking-wider text-[#1A73E8]">Legal Tenure Guard</h3>
-             </div>
-             <p className="text-[10px] text-[#202124] leading-relaxed font-bold">
-                Nepali Labor Law 2074 requires precise tenure calculation for Gratuity and Severance.
-             </p>
-          </div>
         </div>
       }
       results={
-        <div className="space-y-6">
+        <div className="space-y-6 printable-result">
           {diff ? (
             <>
-              <div className="p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2">
-                 <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Aggregate Temporal Span</div>
-                 <div className="text-5xl font-black tracking-tighter text-[#1A73E8] uppercase">{diff.breakdown}</div>
-                 <div className="text-[10px] font-bold text-[#70757A] uppercase tracking-tighter">
-                    {diff.totalDays.toLocaleString()} Net Calendar Days
+              {/* Rich Result Panel */}
+              <div className="bg-[#1A73E8] text-white rounded-t-xl p-4 text-center">
+                 <h3 className="text-xs font-black uppercase tracking-widest opacity-80">Duration Summary</h3>
+              </div>
+              <div className="border border-t-0 border-[#DADCE0] rounded-b-xl overflow-hidden bg-white shadow-sm">
+                <div className="p-6 grid grid-cols-2 md:grid-cols-4 gap-4 bg-[#F8F9FA] border-b border-[#DADCE0]">
+                   <div className="text-center">
+                     <div className="text-2xl font-black text-[#202124]">{diff.totalDays.toLocaleString()}</div>
+                     <div className="text-[10px] font-bold uppercase text-[#70757A]">Total Days</div>
+                   </div>
+                   <div className="text-center">
+                     <div className="text-2xl font-black text-[#202124]">{diff.weeks}</div>
+                     <div className="text-[10px] font-bold uppercase text-[#70757A]">Weeks</div>
+                   </div>
+                   <div className="text-center">
+                     <div className="text-2xl font-black text-[#202124]">{diff.months}</div>
+                     <div className="text-[10px] font-bold uppercase text-[#70757A]">Months</div>
+                   </div>
+                   <div className="text-center">
+                     <div className="text-2xl font-black text-[#202124]">{diff.years}</div>
+                     <div className="text-[10px] font-bold uppercase text-[#70757A]">Years</div>
+                   </div>
+                </div>
+                
+                <div className="p-6 text-center border-b border-[#DADCE0]">
+                  <div className="text-3xl md:text-4xl font-black text-[#1A73E8] uppercase tracking-tighter">
+                    {diff.breakdown}
+                  </div>
+                </div>
+
+                <div className="p-6 grid grid-cols-2 sm:grid-cols-3 gap-6 text-sm">
+                  <div>
+                    <span className="block text-[10px] font-bold uppercase text-[#70757A] mb-1">Hours</span>
+                    <span className="font-bold text-[#202124]">{diff.hours.toLocaleString()}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] font-bold uppercase text-[#70757A] mb-1">Minutes</span>
+                    <span className="font-bold text-[#202124]">{diff.minutes.toLocaleString()}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] font-bold uppercase text-[#70757A] mb-1">Seconds</span>
+                    <span className="font-bold text-[#202124]">{diff.seconds.toLocaleString()}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] font-bold uppercase text-[#70757A] mb-1">Business Days</span>
+                    <span className="font-bold text-[#10b981]">{diff.workingDays.toLocaleString()}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] font-bold uppercase text-[#70757A] mb-1">Weekend Days</span>
+                    <span className="font-bold text-[#f59e0b]">{diff.weekendDays.toLocaleString()}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] font-bold uppercase text-[#70757A] mb-1">Leap Days</span>
+                    <span className="font-bold text-[#6366f1]">{diff.leapDays}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] font-bold uppercase text-[#70757A] mb-1">Calendar Weeks</span>
+                    <span className="font-bold text-[#202124]">{diff.calendarWeeks}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] font-bold uppercase text-[#70757A] mb-1">Fiscal Weeks</span>
+                    <span className="font-bold text-[#202124]">{diff.fiscalWeeks}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] font-bold uppercase text-[#70757A] mb-1">Working Weeks</span>
+                    <span className="font-bold text-[#202124]">{diff.workingWeeks}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Visual Timeline */}
+              <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+                 <h4 className="text-[11px] font-black uppercase text-[#202124] mb-4">Duration Progress</h4>
+                 <div className="relative pt-6 pb-2">
+                    <div className="flex justify-between text-xs font-bold text-[#70757A] mb-2">
+                      <span>Start: {start}</span>
+                      <span className="text-[#1A73E8]">{diff.totalDays} Days</span>
+                      <span>End: {end}</span>
+                    </div>
+                    <div className="w-full h-3 bg-[#E8F0FE] rounded-full overflow-hidden">
+                      <div className="h-full bg-[#1A73E8] rounded-full" style={{ width: '100%' }}></div>
+                    </div>
                  </div>
               </div>
 
-              <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
-                 <div className="flex items-center justify-between mb-6 border-l-4 border-[#1A73E8] pl-4">
-                    <h4 className="text-[11px] font-black uppercase text-[#202124]">Temporal Distribution</h4>
-                    <Clock className="w-4 h-4 text-[#70757A]" />
-                 </div>
-                 <div className="h-[180px] w-full">
-                    <ResponsiveContainer width="100%" height="100%">
-                       <BarChart data={chartData} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
-                          <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fill: '#70757A', fontSize: 9, fontWeight: 'bold' }} />
-                          <Tooltip cursor={{ fill: '#F8F9FA' }} contentStyle={{ borderRadius: '8px', border: '1px solid #DADCE0', fontSize: '10px' }} />
-                          <Bar dataKey="val" radius={[4, 4, 0, 0]} barSize={32}>
-                             {chartData.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.fill} />)}
-                          </Bar>
-                       </BarChart>
-                    </ResponsiveContainer>
-                 </div>
+              {/* Actions */}
+              <div className="flex flex-wrap gap-3">
+                 <button onClick={copyResult} className="flex-1 min-w-[140px] flex items-center justify-center gap-2 bg-white border border-[#DADCE0] hover:bg-[#F8F9FA] text-[#202124] py-3 rounded-lg font-bold text-sm transition-colors">
+                    <Copy className="w-4 h-4" /> Copy Result
+                 </button>
+                 <button onClick={printResult} className="flex-1 min-w-[140px] flex items-center justify-center gap-2 bg-white border border-[#DADCE0] hover:bg-[#F8F9FA] text-[#202124] py-3 rounded-lg font-bold text-sm transition-colors">
+                    <Printer className="w-4 h-4" /> Print / PDF
+                 </button>
+                 <button onClick={copyUrl} className="flex-1 min-w-[140px] flex items-center justify-center gap-2 bg-white border border-[#DADCE0] hover:bg-[#F8F9FA] text-[#202124] py-3 rounded-lg font-bold text-sm transition-colors">
+                    <Share2 className="w-4 h-4" /> Share Link
+                 </button>
               </div>
             </>
           ) : (
@@ -134,6 +372,36 @@ export default function DateDuration() {
       details={
         <div className="space-y-12">
           <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm space-y-10">
+
+            {/* Real Use Cases */}
+            <section id="use-cases">
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-6">Real Use Cases & Examples</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                {USE_CASES.map(uc => (
+                  <button key={uc.label} onClick={() => applyUseCase(uc.startOffset, uc.endOffset)} className="text-left p-3 bg-[#F8F9FA] hover:bg-[#E8F0FE] border border-[#DADCE0] rounded-lg transition-colors group">
+                    <h3 className="text-xs font-bold text-[#202124] group-hover:text-[#1A73E8]">{uc.label}</h3>
+                  </button>
+                ))}
+              </div>
+            </section>
+
+
+            {/* Common Uses of Date Duration Calculator */}
+            <section id="common-uses">
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Common Uses of Date Duration Calculator</h2>
+              <div className="grid md:grid-cols-2 gap-4 text-[#5F6368] text-sm">
+                <div className="space-y-2">
+                  <p><strong className="text-[#202124]">HR & Payroll:</strong> Calculate exact employment duration, probation periods, and precise salary cutoffs for partial months.</p>
+                  <p><strong className="text-[#202124]">Construction & Project Management:</strong> Measure project timelines, lead times, and elapsed contract days excluding weekends.</p>
+                  <p><strong className="text-[#202124]">Legal Contracts:</strong> Ensure compliance with statutory periods for notices, visa validity, and passport renewals.</p>
+                </div>
+                <div className="space-y-2">
+                  <p><strong className="text-[#202124]">Education:</strong> Calculate school term durations, university semesters, and exact ages for admission eligibility.</p>
+                  <p><strong className="text-[#202124]">Events & Travel:</strong> Countdown to major life events, marriage anniversaries, travel itineraries, and insurance coverage periods.</p>
+                </div>
+              </div>
+            </section>
+
             
             {/* AI Quick Answer */}
             <div className="bg-[#E8F0FE] border border-[#1A73E8] rounded-lg p-5">
@@ -143,9 +411,9 @@ export default function DateDuration() {
               </p>
             </div>
 
-            {/* Section 1: Why Use a Date Duration Calculator? */}
+            {/* Section 1: Why Use a Date Difference & Elapsed Time Calculator? */}
             <section>
-              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Why Use a Date Duration Calculator?</h2>
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Why Use a Date Difference & Elapsed Time Calculator?</h2>
               <p className="text-[#5F6368] text-base leading-relaxed mb-4">
                 A Date Duration Calculator makes it easy to calculate the exact time between two dates without manually counting calendar days. It instantly determines the duration in years, months, weeks, and days, while automatically accounting for leap years and different month lengths.
               </p>
@@ -189,9 +457,9 @@ export default function DateDuration() {
               </ul>
             </section>
 
-            {/* Section 2.5: NepaCalc vs Manual Calculation */}
+            {/* Section 2.5: Date Duration Calculator vs Manual Counting */}
             <section>
-              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">NepaCalc vs Manual Calculation</h2>
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Date Duration Calculator vs Manual Counting</h2>
               <div className="overflow-x-auto border border-[#DADCE0] rounded-lg">
                 <table className="w-full text-left text-sm text-[#202124]">
                   <thead className="bg-[#F8F9FA] text-[#5F6368] uppercase">
@@ -232,9 +500,9 @@ export default function DateDuration() {
               </div>
             </section>
 
-            {/* Section 3: How to Use the Date Duration Calculator */}
+            {/* Section 3: How to Calculate Days Between Dates */}
             <section>
-              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">How to Use the Date Duration Calculator</h2>
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">How to Calculate Days Between Dates</h2>
               <p className="text-[#5F6368] text-base leading-relaxed mb-6">Using the calculator is simple:</p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-4">
@@ -289,7 +557,7 @@ export default function DateDuration() {
                 <p className="font-bold text-[#202124] text-lg font-mono">Total Days = End Date &minus; Start Date</p>
               </div>
               <p className="text-[#5F6368] text-base leading-relaxed">
-                The calculator then converts the total duration into years, months, weeks, and days for easier interpretation. This approach provides reliable results for age calculations, employment tenure, project planning with a <a href="/calculator/time-calculator/" className="text-[#1A73E8] underline hover:no-underline">Time Calculator</a>, contract periods, subscription tracking, and other situations where precise calendar calculations are important.
+                The calculator then converts the total duration into years, months, weeks, and days for easier interpretation. This approach provides reliable results for age calculations, employment tenure, project planning with a Time Calculator, contract periods, subscription tracking, and other situations where precise calendar calculations are important.
               </p>
             </section>
 
@@ -480,7 +748,7 @@ export default function DateDuration() {
                   </div>
                 </div>
               </div>
-              <p className="text-sm text-[#5F6368] italic">Always choose the counting method that matches your specific legal, contractual, or business requirements. For calculating only working days, you can use a dedicated <a href="/calculator/business-days/" className="text-[#1A73E8] underline hover:no-underline">Working Days Calculator</a> to exclude weekends from this total.</p>
+              <p className="text-sm text-[#5F6368] italic">Always choose the counting method that matches your specific legal, contractual, or business requirements. For calculating only working days, you can use a dedicated Working Days Calculator to exclude weekends from this total.</p>
             </section>
 
             {/* Section: Why Accurate Date Calculations Matter */}
@@ -612,7 +880,48 @@ export default function DateDuration() {
                   <h3 className="text-lg font-bold text-[#202124] mb-2">Is the Date Duration Calculator free?</h3>
                   <p className="text-[#5F6368] text-base leading-relaxed">Yes. The calculator is completely free to use and works online without requiring registration or software installation. You can calculate unlimited date durations instantly from any device.</p>
                 </div>
-              </div>
+              
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">How do I calculate days between two dates?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Select the start and end dates and click calculate. The tool automatically counts the exact days between them.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">How do I include the end date?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Check the 'Inclusive Audit' box to add 1 day to the total count, ensuring the end date is included in the duration.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">Does this calculator include leap years?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Yes, leap years are automatically detected and included in the calendar calculations.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">How do I calculate working days?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Select 'Working Days' from the mode dropdown to automatically exclude weekends from the total days count.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">How do I calculate business days?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Business days are calculated identically to working days, by automatically excluding Saturdays and Sundays from the duration.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">Can I calculate age?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Yes, select 'Age Calculator' mode, enter your date of birth as the start date, and today's date as the end date.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">How do I calculate employment duration?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Select 'Employment Duration' mode, enter your joining date and the end date, and the calculator will provide your exact tenure.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">Can I calculate months instead of days?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Yes, the comprehensive summary always displays the total equivalent months as well as the standard year/month/day breakdown.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">Does this calculator handle leap years automatically?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Yes, the engine accurately accounts for Gregorian calendar rules, including February 29th during leap years.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">Can I print or download the result?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Yes, use the 'Print / PDF' button beneath the results to save or print a formatted summary.</p>
+                </div>
+</div>
             </section>
 
             {/* Did You Know? */}
@@ -630,19 +939,18 @@ export default function DateDuration() {
           </div>
         </div>
       }
-      relatedTools={[
-        { label: "Age Calculator", href: "/calculator/age-calculator/" },
-        { label: "Calendar Calculator", href: "/converter/calendar/" },
-        { label: "Date Calculator", href: "/calculator/date/" },
-        { label: "Time Calculator", href: "/calculator/time-calculator/" },
-        { label: "Percentage Calculator", href: "/calculator/percentage/" },
-        { label: "GPA Calculator", href: "/calculator/gpa/" },
-        { label: "SEE GPA Calculator", href: "/calculator/see-gpa/" },
-        { label: "Simple Interest Calculator", href: "/calculator/simple-interest/" },
-        { label: "Compound Interest Calculator", href: "/calculator/compound-interest/" },
-        { label: "Mortgage Calculator", href: "/calculator/mortgage/" },
-      ]}
+      
+      sidebar={{
+        title: 'Date & Time Tools',
+        subtitle: 'Time Utilities',
+        links: [
+          { label: 'Age Calculator', href: '/calculator/age-calculator/', icon: Calendar },
+          { label: 'Nepali Date Converter', href: '/calculator/nepali-date/', icon: Calendar },
+          { label: 'Pregnancy Due Date', href: '/calculator/pregnancy-due-date/', icon: Calendar },
+          { label: 'Lok Sewa Age', href: '/calculator/lok-sewa-age/', icon: Clock },
+          { label: 'Citizenship Age', href: '/calculator/nepal-citizenship-age/', icon: Clock }
+        ],
+      }}
     />
   );
 }
-

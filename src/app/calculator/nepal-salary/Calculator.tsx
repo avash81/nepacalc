@@ -23,7 +23,7 @@ const DEFAULT_STATE = {
   gender: 'male' as 'male' | 'female',
   annualBonus: 0,
   fiscalYear: '2083/84' as FiscalYear,
-  allowances: { housing: 0, transport: 0, communication: 0, meal: 0, other: 0 } as SalaryAllowances,
+  allowances: { basic: 0, allowance: 0, bonus: 0, overtime: 0, commission: 0, other: 0 } as SalaryAllowances,
   deductions: { lifeInsurance: 0, healthInsurance: 0, buildingInsurance: 0, donation: 0, education: 0, other: 0 } as SalaryDeductions,
 };
 
@@ -109,7 +109,7 @@ export default function NepalSalaryCalculator() {
     return calculateNepalSalary(
       compareSalary, false, state.isSSFContributor,
       state.retirementType, state.retirementMonthlyAmount,
-      state.gender, 0, { housing:0,transport:0,communication:0,meal:0,other:0 },
+      state.gender, 0, { basic:0, allowance:0, bonus:0, overtime:0, commission:0, other:0 },
       { lifeInsurance:0,healthInsurance:0,buildingInsurance:0,donation:0,education:0,other:0 },
       state.isMarried, state.fiscalYear
     );
@@ -277,22 +277,24 @@ export default function NepalSalaryCalculator() {
         />
       </div>
 
-      {/* Taxable Allowances accordion */}
+      {/* Salary Components accordion */}
       <div className="border border-[#DADCE0] rounded-md overflow-hidden">
         <button
           onClick={() => setShowAllowances(v => !v)}
           className="w-full flex items-center justify-between px-4 py-3 bg-[#F8F9FA] hover:bg-[#F1F3F4] transition-colors"
         >
-          <span className="text-[11px] font-black uppercase tracking-wider text-[#202124]">Taxable Allowances (Monthly)</span>
+          <span className="text-[11px] font-black uppercase tracking-wider text-[#202124]">Advanced Salary Components</span>
           {showAllowances ? <ChevronUp className="w-4 h-4 text-[#5F6368]" /> : <ChevronDown className="w-4 h-4 text-[#5F6368]" />}
         </button>
         {showAllowances && (
           <div className="p-4 grid grid-cols-1 gap-3 bg-white">
+            <p className="text-[10px] text-[#5F6368] mb-1">These fields are optional and will be added to your Gross Salary.</p>
             {([
-              ['housing', 'Housing Allowance'],
-              ['transport', 'Transport Allowance'],
-              ['communication', 'Communication Allowance'],
-              ['meal', 'Meal Allowance'],
+              ['basic', 'Basic Salary'],
+              ['allowance', 'Allowance'],
+              ['bonus', 'Bonus'],
+              ['overtime', 'Overtime'],
+              ['commission', 'Commission'],
               ['other', 'Other Taxable Benefits'],
             ] as [keyof SalaryAllowances, string][]).map(([key, label]) => (
               <div key={key} className="space-y-1">
@@ -389,13 +391,14 @@ export default function NepalSalaryCalculator() {
           <tbody className="divide-y divide-[#F1F3F4]">
             {[
               { label: 'Gross Salary', m: result.monthly.gross, a: result.annual.gross, color: 'text-[#202124]' },
+              { label: 'Salary Tax', m: result.monthly.tax, a: result.annual.tax, color: 'text-red-600' },
               { label: 'Employee SSF (11%)', m: result.monthly.ssf_employee, a: result.annual.ssf_employee, color: 'text-orange-600' },
-              { label: 'Employer SSF (20%) CTC', m: result.monthly.ssf_employer, a: result.annual.ssf_employer, color: 'text-emerald-600' },
-              ...(state.retirementType !== 'none' ? [{ label: `${state.retirementType.toUpperCase()} Contribution`, m: result.monthly.retirement_contribution, a: result.annual.retirement_contribution, color: 'text-blue-600' }] : []),
-              { label: 'Taxable Income', m: result.annual.taxableIncome / 12, a: result.annual.taxableIncome, color: 'text-[#202124]' },
-              { label: 'Income Tax', m: result.monthly.tax, a: result.annual.tax, color: 'text-red-600' },
+              ...(state.retirementType !== 'none' ? [{ label: `Employee ${state.retirementType.toUpperCase()} Contribution`, m: result.monthly.retirement_contribution, a: result.annual.retirement_contribution, color: 'text-blue-600' }] : []),
+              { label: 'Total Employee Deductions', m: result.monthly.tax + result.monthly.ssf_employee + result.monthly.retirement_contribution, a: result.annual.tax + result.annual.ssf_employee + result.annual.retirement_contribution, color: 'text-orange-700' },
               { label: 'Take-Home Salary', m: result.monthly.net, a: result.annual.net, color: 'text-emerald-700 font-black text-base' },
-              { label: 'Employer Total Cost (CTC)', m: result.monthly.ctc, a: result.annual.ctc, color: 'text-purple-700' },
+              { label: 'Employer SSF (20%)', m: result.monthly.ssf_employer, a: result.annual.ssf_employer, color: 'text-emerald-600' },
+              { label: 'Total Employer Contribution', m: result.monthly.ssf_employer, a: result.annual.ssf_employer, color: 'text-emerald-700' },
+              { label: 'Cost to Company (CTC)', m: result.monthly.ctc, a: result.annual.ctc, color: 'text-purple-700 font-black' },
             ].map((row, i) => (
               <tr key={i}>
                 <td className="py-2.5 text-[#5F6368] font-bold text-xs">{row.label}</td>
@@ -478,6 +481,25 @@ export default function NepalSalaryCalculator() {
       <div className="flex items-start gap-2 p-3 bg-slate-50 border border-slate-200 rounded-md text-[10px] text-slate-500">
         <Info className="w-3.5 h-3.5 shrink-0 mt-0.5" />
         <p><strong>Assumptions:</strong> Resident Individual · FY {state.fiscalYear} Income Tax Rates · Progressive Annual Tax Calculation · Monthly Salary Converted to Annual · Standard Approved Deductions Only.</p>
+      </div>
+
+      {/* Scope Notice */}
+      <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <h4 className="text-xs font-black text-blue-900 uppercase tracking-wider mb-2">Salary Calculator Scope</h4>
+        <div className="text-[11px] text-blue-800 space-y-2">
+          <p>This calculator is designed specifically for salaried employees in Nepal. It calculates:</p>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Gross Salary</li>
+            <li>Salary Tax</li>
+            <li>SSF</li>
+            <li>CIT</li>
+            <li>EPF</li>
+            <li>Employer Cost (CTC)</li>
+            <li>Payroll Deductions</li>
+            <li>Monthly Take Home Salary</li>
+          </ul>
+          <p>For business income, rental income, capital gains, professional income or multiple income sources, use the <a href="/calculator/nepal-income-tax/" className="font-bold underline hover:text-blue-600">Nepal Income Tax Calculator</a>.</p>
+        </div>
       </div>
     </div>
   ) : (
@@ -653,7 +675,7 @@ export default function NepalSalaryCalculator() {
       description="Calculate your Nepal salary tax instantly using the latest FY 2083/84 income tax rates announced by the Government of Nepal. Enter your monthly salary to receive an accurate breakdown of income tax, Social Security Fund (SSF), Citizen Investment Trust (CIT), employer contribution, take-home salary and total employer cost."
       icon={Wallet}
       relatedTools={[
-        { label: 'Nepal Income Tax Slabs', href: '/calculator/nepal-income-tax/' },
+        { label: 'SSF Calculator', href: '/calculator/ssf/' },
         { label: 'TDS Calculator', href: '/calculator/nepal-tds/' },
         { label: 'Provident Fund Calculator', href: '/calculator/nepal-provident-fund/' },
         { label: 'VAT Calculator', href: '/calculator/nepal-vat/' },
@@ -665,7 +687,7 @@ export default function NepalSalaryCalculator() {
         title: 'Salary Hub Nepal',
         subtitle: 'Compliance Tools',
         links: [
-          { label: 'Nepal Income Tax Slabs', href: '/calculator/nepal-income-tax/', icon: Wallet },
+          { label: 'SSF Calculator', href: '/calculator/ssf/', icon: Wallet },
           { label: 'TDS Calculator', href: '/calculator/nepal-tds/', icon: Scale },
           { label: 'Provident Fund Calculator', href: '/calculator/nepal-provident-fund/', icon: Receipt },
           { label: 'Labor Act 2074', href: 'https://moless.gov.np', icon: Landmark },

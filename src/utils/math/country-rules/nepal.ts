@@ -12,10 +12,11 @@ export interface SalaryDeductions {
 }
 
 export interface SalaryAllowances {
-  housing: number;
-  transport: number;
-  communication: number;
-  meal: number;
+  basic: number;
+  allowance: number;
+  bonus: number;
+  overtime: number;
+  commission: number;
   other: number;
 }
 
@@ -132,7 +133,7 @@ export function calculateNepalSalary(
   retirementMonthlyAmount: number,
   gender: 'male' | 'female' = 'male',
   annualBonus: number = 0,
-  allowances: SalaryAllowances = { housing: 0, transport: 0, communication: 0, meal: 0, other: 0 },
+  allowances: SalaryAllowances = { basic: 0, allowance: 0, bonus: 0, overtime: 0, commission: 0, other: 0 },
   deductions: SalaryDeductions = { lifeInsurance: 0, healthInsurance: 0, buildingInsurance: 0, donation: 0, education: 0, other: 0 },
   isMarried: boolean = false,
   fiscalYear: FiscalYear = '2083/84'
@@ -140,7 +141,7 @@ export function calculateNepalSalary(
   const monthlyBase = isAnnualFrequency ? salary / 12 : salary;
   const annualBase = isAnnualFrequency ? salary : salary * 12;
 
-  const totalMonthlyAllowances = allowances.housing + allowances.transport + allowances.communication + allowances.meal + allowances.other;
+  const totalMonthlyAllowances = allowances.basic + allowances.allowance + allowances.bonus + allowances.overtime + allowances.commission + allowances.other;
   const annualAllowances = totalMonthlyAllowances * 12;
 
   const monthlyGross = monthlyBase + totalMonthlyAllowances;
