@@ -154,10 +154,7 @@ export default function GoldTaxCalculator() {
                 </div>
                 <div className="space-y-4">
                    <p className="text-sm text-[#5F6368] leading-relaxed mb-4">
-                      Always ask for a formal VAT bill when purchasing gold in Nepal. It ensures the purity of the gold and provides legal protection for resale.
-                   </p>
-                   <p className="text-sm text-[#5F6368] leading-relaxed mb-4">
-                      To make fully informed decisions in Nepal's bullion market, we recommend tracking daily market fluctuations with our <a href="/market-rates/live-gold-price/" className="text-[#1A73E8] hover:underline font-bold">Live Gold Price</a>, converting traditional jewelry weights accurately using our <a href="/calculator/gold-converter/" className="text-[#1A73E8] hover:underline font-bold">Gold Unit Converter</a>, and reading our comprehensive <a href="/blog/nepal-gold-price-analysis-2083/" className="text-[#1A73E8] hover:underline font-bold">Nepal Gold Price Analysis 2083</a> to understand the macroeconomic factors driving these rates.
+                      Always ask for a formal VAT bill when purchasing gold in Nepal. It ensures the purity of the gold and provides legal protection for resale. Before buying, you can also use our <a href="/calculator/gold-converter/" className="text-[#1A73E8] hover:underline font-bold">Gold Unit Converter</a> to verify the jeweler's weight calculations, and check our <a href="/blog/nepal-gold-price-analysis-2083/" className="text-[#1A73E8] hover:underline font-bold">Nepal Gold Price Analysis 2083</a> to understand current market trends.
                    </p>
                    <div className="grid grid-cols-1 gap-3">
                       <div className="p-4 rounded-md bg-[#E6F4EA] border border-[#188038] flex justify-between items-center">

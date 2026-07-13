@@ -29,14 +29,7 @@ export default function SeoSections() {
         </h2>
         <div className="bg-amber-50/50 border border-amber-100 rounded-2xl p-6 mb-8">
           <p className="text-[15px] leading-relaxed text-slate-700 font-medium">
-            Based on the latest LBMA spot indices and FENEGOSIDA's localized adjustments, Nepal's gold market continues to reflect strict customs valuations alongside global currency pressures. Retail investors should expect prices to carry roughly a 20% premium over the international spot metric due to the mandated import tariffs enforced by the central bank.
-          </p>
-        </div>
-
-        <div className="bg-blue-50 border border-blue-100 rounded-2xl p-6 mb-8">
-          <h3 className="text-sm font-black text-slate-800 tracking-widest uppercase mb-3">Complete Gold Market Toolkit</h3>
-          <p className="text-[14px] leading-relaxed text-slate-700 font-medium">
-            To make fully informed decisions in Nepal's bullion market, we recommend using our complete suite of tools. You can convert traditional jewelry weights accurately using our <a href="/calculator/gold-converter/" className="text-blue-700 hover:underline font-bold">Gold Unit Converter</a>, calculate exact customs duties and VAT with our <a href="/calculator/gold-tax/" className="text-blue-700 hover:underline font-bold">Gold Tax Calculator</a>, and read our comprehensive <a href="/blog/nepal-gold-price-analysis-2083/" className="text-blue-700 hover:underline font-bold">Nepal Gold Price Analysis 2083</a> for a deeper understanding of the macroeconomic factors driving these rates.
+            Based on the latest LBMA spot indices and FENEGOSIDA's localized adjustments, Nepal's gold market continues to reflect strict customs valuations alongside global currency pressures. Retail investors should expect prices to carry roughly a 20% premium over the international spot metric due to the mandated import tariffs enforced by the central bank. For a comprehensive look at what's driving these changes this year, read our <a href="/blog/nepal-gold-price-analysis-2083/" className="text-blue-700 hover:underline font-bold">Nepal Gold Price Analysis 2083</a>.
           </p>
         </div>
 
@@ -137,7 +130,7 @@ export default function SeoSections() {
             <strong>3. Customs Duty and Import Taxes:</strong> This is the largest local factor. The Nepal Government enforces strict import quotas (typically capped around 20kg per day for commercial banks) and levies an approximate 20% customs duty on raw bullion to protect foreign currency reserves.
           </p>
           <p className="text-sm text-slate-700 leading-relaxed font-medium">
-            <strong>Retail Additions:</strong> When you purchase finished jewelry, showrooms add <em>Jyala</em> (making charges, typically 5-15%), <em>Jarti</em> (wastage), and a mandatory 13% Value Added Tax (VAT).
+            <strong>Retail Additions:</strong> When you purchase finished jewelry, showrooms add <em>Jyala</em> (making charges, typically 5-15%), <em>Jarti</em> (wastage), and a mandatory 13% Value Added Tax (VAT). To calculate exactly how much you'll be billed at the showroom, use our <a href="/calculator/gold-tax/" className="text-blue-600 hover:underline font-bold">Gold Tax Calculator</a>.
           </p>
         </div>
       </section>
@@ -162,7 +155,7 @@ export default function SeoSections() {
             <div>
               <h3 className="text-sm font-bold text-blue-700 mb-2">How many grams are in 1 Tola?</h3>
               <p className="text-[13px] text-slate-600 leading-relaxed font-medium">
-                In Nepal, 1 Tola is precisely equal to 11.6638 grams. For quick math, 10 grams equals roughly 0.857 Tola.
+                In Nepal, 1 Tola is precisely equal to 11.6638 grams. For quick math, 10 grams equals roughly 0.857 Tola. You can easily convert between any of these traditional and modern units using our <a href="/calculator/gold-converter/" className="text-blue-700 hover:underline font-bold">Gold Unit Converter</a>.
               </p>
             </div>
           </div>

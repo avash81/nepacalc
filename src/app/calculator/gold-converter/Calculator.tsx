@@ -380,10 +380,13 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
               and aligned with consumer protection standards enforced by the{' '}
               <a href="http://www.nbsm.gov.np/" target="_blank" rel="nofollow noopener" className="text-amber-400 underline hover:text-amber-300">
                 Nepal Bureau of Standards & Metrology (NBSM)
+              </a>. For a deep dive into the macroeconomic trends driving these rates, explore our{' '}
+              <a href="/blog/nepal-gold-price-analysis-2083/" className="text-amber-400 underline hover:text-amber-300">
+                Nepal Gold Price Analysis 2083
+              </a>. If you are importing gold, estimate customs duties with our{' '}
+              <a href="/calculator/gold-tax/" className="text-amber-400 underline hover:text-amber-300">
+                Gold Tax Calculator
               </a>.
-            </p>
-            <p className="text-[12px] text-slate-300 leading-relaxed mb-4">
-              To make fully informed decisions in Nepal's bullion market, we recommend tracking daily market fluctuations with our <a href="/market-rates/live-gold-price/" className="text-amber-400 hover:underline">Live Gold Price</a>, calculating exact customs duties and VAT with our <a href="/calculator/gold-tax/" className="text-amber-400 hover:underline">Gold Tax Calculator</a>, and reading our comprehensive <a href="/blog/nepal-gold-price-analysis-2083/" className="text-amber-400 hover:underline">Nepal Gold Price Analysis 2083</a> for a deeper understanding of the macroeconomic factors driving these rates.
             </p>
             <div className="grid grid-cols-2 gap-3">
               <a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="flex items-center gap-2 p-3 bg-slate-800 rounded-lg hover:bg-slate-700 transition-colors">
