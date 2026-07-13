@@ -1992,8 +1992,13 @@ formula: {
 
             <section className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
                 <h3 className="text-2xl font-black text-slate-900 mb-6">Related Resources</h3>
-                <ul className="list-disc pl-6 space-y-2">
-                    <li><a href="/calculator/market-rates/live-gold-price/" className="text-indigo-600 hover:underline">Live Gold Price</a></li><li><a href="/calculator/market-rates/remittance/" className="text-indigo-600 hover:underline">Remittance</a></li><li><a href="/calculator/nepal-vat/" className="text-indigo-600 hover:underline">VAT Calculator</a></li><li><a href="/calculator/market-rates/exchange-rate-nepal/" className="text-indigo-600 hover:underline">Exchange Rate</a></li><li><a href="/calculator/nepal-income-tax/" className="text-indigo-600 hover:underline">Income Tax</a></li>
+                <ul className="list-disc pl-6 space-y-3">
+                    <li><a href="/market-rates/live-gold-price/" className="text-indigo-600 hover:underline font-semibold">Live Gold Price in Nepal Today (FENEGOSIDA)</a> — Track the real-time rate before buying or bringing gold from abroad.</li>
+                    <li><a href="/calculator/gold-converter/" className="text-indigo-600 hover:underline font-semibold">Gold Weight Converter (Tola, Gram, Aana, Lal)</a> — Verify the exact weight of your jewelry in traditional Nepali units.</li>
+                    <li><a href="/blog/nepal-gold-price-analysis-2083/" className="text-indigo-600 hover:underline font-semibold">Nepal Gold Price Analysis 2083</a> — Understand the macroeconomic forces driving customs duty rates and gold prices.</li>
+                    <li><a href="/market-rates/exchange-rate-nepal/" className="text-indigo-600 hover:underline">NRB Exchange Rate</a> — The USD/NPR rate directly impacts how customs duties are calculated at the border.</li>
+                    <li><a href="/calculator/nepal-vat/" className="text-indigo-600 hover:underline">Nepal VAT Calculator</a> — Calculate the 13% VAT applied to domestic jewelry purchases.</li>
+                    <li><a href="/calculator/nepal-income-tax/" className="text-indigo-600 hover:underline">Nepal Income Tax Calculator</a></li>
                 </ul>
             </section>
         </div>
