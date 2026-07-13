@@ -153,60 +153,22 @@ export default function NepalIncomeTaxCalculator() {
         </div>
       </div>
 
-      {/* MAIN CONTENT AREA — calculator first */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
-          
-          {/* LEFT COLUMN: INPUTS + RESULTS BELOW FORM */}
-          <div className="w-full lg:w-5/12 space-y-4">
-            <IncomeTaxForm 
-              state={state} 
-              update={update} 
-              isMonthly={isMonthly} 
-              setIsMonthly={setIsMonthly} 
+      {/* MAIN CONTENT AREA — 2 columns: form left, all results right */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="flex flex-col lg:flex-row gap-6 items-start">
+
+          {/* LEFT COLUMN: FORM ONLY */}
+          <div className="w-full lg:w-5/12">
+            <IncomeTaxForm
+              state={state}
+              update={update}
+              isMonthly={isMonthly}
+              setIsMonthly={setIsMonthly}
             />
-
-            {/* AUDITABLE FLOW + WHY BOX — shown below form when calculated */}
-            {summary.grossIncome > 0 && (
-              <>
-                <IncomeTaxDashboard summary={summary} />
-                <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 text-sm text-blue-900">
-                  <span className="font-bold block mb-1">Why is my tax this amount?</span>
-                  Your taxable income entered the <span className="font-bold">{summary.highestTaxSlab}</span> tax slab.
-                  You also saved <span className="font-bold">Rs. {summary.taxSaved.toLocaleString('en-IN')}</span> through approved deductions and tax rules.
-                </div>
-              </>
-            )}
-
-            {/* DESCRIPTION + BADGES + CHIPS — compact, no wasted space */}
-            <div className="bg-white border border-[#DADCE0] rounded-xl p-4 space-y-3">
-              <p className="text-sm text-[#5F6368] leading-relaxed">
-                Calculate your Nepal income tax accurately using the latest FY 2083/84 tax slabs. Fully compliant with the Government of Nepal Finance Act updates.
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                <span className="inline-flex items-center bg-[#F1F3F4] text-[#3C4043] px-2.5 py-1 rounded-md border border-[#DADCE0] text-xs font-medium">✓ Finance Act 2083/84</span>
-                <span className="inline-flex items-center bg-[#F1F3F4] text-[#3C4043] px-2.5 py-1 rounded-md border border-[#DADCE0] text-xs font-medium">✓ IRD Tax Slabs</span>
-                <span className="inline-flex items-center bg-[#F1F3F4] text-[#3C4043] px-2.5 py-1 rounded-md border border-[#DADCE0] text-xs font-medium">✓ SSF Compatible</span>
-                <span className="inline-flex items-center bg-[#F1F3F4] text-[#3C4043] px-2.5 py-1 rounded-md border border-[#DADCE0] text-xs font-medium">✓ Free</span>
-              </div>
-              <div className="flex flex-wrap gap-1.5">
-                {[
-                  { label: 'Updated', value: 'FY 2083/84' },
-                  { label: 'Top Rate', value: '29%' },
-                  { label: 'Tax Free', value: '1st Slab (SSF)' },
-                  { label: 'Compliance', value: 'Govt Compliant' },
-                ].map(chip => (
-                  <div key={chip.label} className="inline-flex items-center gap-1 bg-[#F8F9FA] border border-[#E8EAED] rounded px-2 py-1">
-                    <span className="text-[11px] text-[#5F6368]">{chip.label}:</span>
-                    <span className="text-[11px] font-bold text-[#202124]">{chip.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* RIGHT COLUMN: RESULTS DASHBOARD */}
-          <div className="w-full lg:w-7/12 space-y-5">
+          {/* RIGHT COLUMN: ALL RESULTS */}
+          <div className="w-full lg:w-7/12 space-y-4">
             {summary.grossIncome === 0 ? (
               <div className="bg-white border border-[#DADCE0] rounded-xl shadow-sm p-12 text-center flex flex-col items-center justify-center min-h-[400px]">
                 <div className="bg-blue-50 text-blue-500 w-16 h-16 rounded-full flex items-center justify-center mb-4">
@@ -217,6 +179,7 @@ export default function NepalIncomeTaxCalculator() {
               </div>
             ) : (
               <>
+                {/* Action buttons */}
                 <div className="flex items-center justify-between no-print">
                   <h2 className="text-xl font-black text-[#202124]">Financial Dashboard</h2>
                   <div className="flex gap-2 flex-wrap">
@@ -234,9 +197,51 @@ export default function NepalIncomeTaxCalculator() {
                     </button>
                   </div>
                 </div>
+
+                {/* Primary result cards + income breakdown + rate metrics */}
+                <IncomeTaxDashboard summary={summary} />
+
+                {/* Auditable tax flow */}
                 <TaxTimeline summary={summary} />
               </>
             )}
+          </div>
+        </div>
+      </div>
+
+      {/* FULL-WIDTH SECTION: Why box + Description badges — between calculator and SEO */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="max-w-3xl mx-auto space-y-4">
+          {summary.grossIncome > 0 && (
+            <div className="bg-blue-50 border border-blue-100 rounded-xl p-5 text-sm text-blue-900">
+              <span className="font-bold block mb-1 text-base">Why is my tax this amount?</span>
+              Your taxable income entered the <span className="font-bold">{summary.highestTaxSlab}</span> tax slab.
+              You also saved <span className="font-bold">Rs. {summary.taxSaved.toLocaleString('en-IN')}</span> through approved deductions and tax rules.
+            </div>
+          )}
+          <div className="bg-white border border-[#DADCE0] rounded-xl p-5 space-y-3">
+            <p className="text-sm text-[#5F6368] leading-relaxed">
+              Calculate your Nepal income tax accurately using the latest FY 2083/84 tax slabs. Fully compliant with the Government of Nepal Finance Act updates.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center bg-[#F1F3F4] text-[#3C4043] px-2.5 py-1 rounded-md border border-[#DADCE0] text-xs font-medium">✓ Finance Act 2083/84</span>
+              <span className="inline-flex items-center bg-[#F1F3F4] text-[#3C4043] px-2.5 py-1 rounded-md border border-[#DADCE0] text-xs font-medium">✓ IRD Tax Slabs</span>
+              <span className="inline-flex items-center bg-[#F1F3F4] text-[#3C4043] px-2.5 py-1 rounded-md border border-[#DADCE0] text-xs font-medium">✓ SSF Compatible</span>
+              <span className="inline-flex items-center bg-[#F1F3F4] text-[#3C4043] px-2.5 py-1 rounded-md border border-[#DADCE0] text-xs font-medium">✓ Free</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { label: 'Updated', value: 'FY 2083/84' },
+                { label: 'Top Rate', value: '29%' },
+                { label: 'Tax Free', value: '1st Slab (SSF)' },
+                { label: 'Compliance', value: 'Govt Compliant' },
+              ].map(chip => (
+                <div key={chip.label} className="inline-flex items-center gap-1 bg-[#F8F9FA] border border-[#E8EAED] rounded px-2 py-1">
+                  <span className="text-[11px] text-[#5F6368]">{chip.label}:</span>
+                  <span className="text-[11px] font-bold text-[#202124]">{chip.value}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
