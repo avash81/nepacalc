@@ -213,7 +213,9 @@ export function ModernCalcLayout({
               </div>
               {fullWidth ? <div className="p-0">{inputs}</div> : (
                 <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-[#DADCE0]">
-                  <div className="flex-1 p-4 lg:p-6 bg-white">{inputs}</div>
+                  <div className="flex-1 p-4 lg:p-6 bg-white relative">
+                    <div className="lg:sticky lg:top-24 self-start">{inputs}</div>
+                  </div>
                   <div className="w-full md:w-[320px] lg:w-[450px] p-4 bg-white">
                     <div className="bg-white border border-[#DADCE0] rounded-md overflow-hidden h-full flex flex-col shadow-sm">
                       <div className="px-4 py-2.5 border-b border-[#DADCE0] bg-[#F8F9FA]">

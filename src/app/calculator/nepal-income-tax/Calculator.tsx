@@ -158,7 +158,7 @@ export default function NepalIncomeTaxCalculator() {
         <div className="flex flex-col lg:flex-row gap-6 items-start">
 
           {/* LEFT COLUMN: FORM ONLY */}
-          <div className="w-full lg:w-5/12">
+          <div className="w-full lg:w-5/12 lg:sticky lg:top-24 self-start">
             <IncomeTaxForm
               state={state}
               update={update}

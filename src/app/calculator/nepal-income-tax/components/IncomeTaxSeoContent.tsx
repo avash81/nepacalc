@@ -168,7 +168,7 @@ export function IncomeTaxSeoContent() {
       {/* SECTION 4: HOW TAX IS CALCULATED */}
       <h2 id="how" className="text-2xl font-black text-[#202124] mt-12 mb-4">How Income Tax Is Calculated in Nepal</h2>
       <p className="text-base text-[#3C4043] mb-6">
-        Nepal follows a progressive income tax system. The process works as follows:
+        Nepal follows a progressive income tax system. It is also important to file your taxes within the specified timeframe to avoid penalties. You can use our <Link href="/calculator/nepal-income-tax-deadlines/" className="text-[#1A73E8] font-bold hover:underline">tax date duration calculator</Link> to check exact income tax deadlines. The general calculation process works as follows:
       </p>
       <div className="bg-[#F8F9FA] border border-[#DADCE0] p-6 rounded-xl text-center space-y-2 mb-6">
         {[

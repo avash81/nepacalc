@@ -10,6 +10,7 @@ import { calculateNepalSalary, FiscalYear, SalaryAllowances, SalaryDeductions } 
 import {
   PieChart as RePieChart, Pie, Cell, ResponsiveContainer, Tooltip
 } from 'recharts';
+import { SalarySeoContent } from './components/SalarySeoContent';
 
 type RetirementType = 'none' | 'cit' | 'pf';
 
@@ -694,7 +695,7 @@ export default function NepalSalaryCalculator() {
         ],
       }}
       faqs={[]}
-      seoContent={null}
+      seoContent={<SalarySeoContent />}
     />
   );
 }

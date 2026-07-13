@@ -4,4 +4,5 @@ deployment:
     - /usr/local/cpanel/3rdparty/bin/git fetch --all
     - /usr/local/cpanel/3rdparty/bin/git reset --hard origin/main
     - export DEPLOYPATH=/home/nepacalc/public_html/
+    - /bin/rm -rf $DEPLOYPATH/_next/
     - /bin/cp -af out/. $DEPLOYPATH
