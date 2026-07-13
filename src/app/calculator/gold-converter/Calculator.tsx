@@ -380,6 +380,12 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
               and aligned with consumer protection standards enforced by the{' '}
               <a href="http://www.nbsm.gov.np/" target="_blank" rel="nofollow noopener" className="text-amber-400 underline hover:text-amber-300">
                 Nepal Bureau of Standards & Metrology (NBSM)
+              </a>. For a deep dive into the macroeconomic trends driving these rates, explore our{' '}
+              <a href="/blog/nepal-gold-price-analysis-2083/" className="text-amber-400 underline hover:text-amber-300">
+                Nepal Gold Price Analysis 2083
+              </a>. If you are importing gold, estimate customs duties with our{' '}
+              <a href="/calculator/gold-tax/" className="text-amber-400 underline hover:text-amber-300">
+                Gold Tax Calculator
               </a>.
             </p>
             <div className="grid grid-cols-2 gap-3">

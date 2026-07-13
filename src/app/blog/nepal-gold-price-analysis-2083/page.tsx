@@ -167,6 +167,9 @@ export default function Page() {
                 <li>
                   <strong>Physical Weight Verification:</strong> If you are auditing legacy family heirlooms or checking a commercial jeweler’s invoice metrics across traditional fractions, run the raw figures through our comprehensive <a href="/calculator/gold-converter/" className="text-amber-600 font-bold hover:underline">Nepal Gold Weight Converter</a> to translate Tolas, Aanas, and Lals directly into metric grams.
                 </li>
+                <li>
+                  <strong>Import Duty & Retail Tax Estimation:</strong> If you are planning to purchase finished jewelry or bring physical gold into Nepal from abroad, calculate the exact customs duties, making charges, and VAT obligations using our <a href="/calculator/gold-tax/" className="text-amber-600 font-bold hover:underline">Gold Tax Calculator</a>.
+                </li>
               </ul>
             </div>
           </section>

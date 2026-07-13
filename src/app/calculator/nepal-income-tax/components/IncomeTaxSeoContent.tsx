@@ -76,9 +76,9 @@ export function IncomeTaxSeoContent() {
         <p className="text-xs text-[#5F6368] mt-2">*The first slab represents Social Security Tax. Eligible SSF contributors may qualify for relief according to the Income Tax Act.</p>
       </div>
       <p className="text-base text-[#3C4043] mb-4">
-        These slabs apply to resident individuals. To calculate the exact tax impact on your monthly salary, our{' '}
-        <Link href="/calculator/nepal-tds/" className="text-[#1A73E8] font-bold hover:underline">TDS Calculator Nepal</Link>{' '}
-        provides month-by-month TDS estimates for payroll officers and HR departments.
+        These slabs apply to resident individuals. To understand how each slab is taxed step by step, see our{' '}
+        <Link href="/income-tax/nepal-income-tax-slab-2083-84/" className="text-[#1A73E8] font-bold hover:underline">Nepal Income Tax Slab 2083/84</Link>{' '}
+        guide which explains every bracket with worked examples.
       </p>
 
       {/* SECTION 3: FINANCE ACT CHANGES */}
@@ -99,23 +99,23 @@ export function IncomeTaxSeoContent() {
         <li>Income earned by universities established in Nepal for educational purposes is now tax-exempt.</li>
       </ul>
       <p className="text-base text-[#3C4043] mb-4">
-        Employees receiving a bonus should note that bonus income is added to annual gross income. Use our{' '}
-        <Link href="/calculator/nepal-bonus/" className="text-[#1A73E8] font-bold hover:underline">Bonus Tax Calculator</Link>{' '}
-        to estimate the additional income tax impact of festival or performance bonuses on your annual liability.
+        Employees receiving a bonus should note that bonus income is added to annual gross income and increases the applicable tax slab. For a complete payroll picture including bonuses, our{' '}
+        <Link href="/calculator/nepal-salary/" className="text-[#1A73E8] font-bold hover:underline">Salary Calculator Nepal</Link>{' '}
+        includes bonus income in the full annual tax computation.
       </p>
 
       {/* FEATURED IMAGE — placed in mid-content for engagement */}
       <div className="my-10 rounded-xl overflow-hidden border border-[#DADCE0] shadow-md max-w-full">
-        <img 
-          src="/images/nepal-income-tax-calculator-2083-2084.png" 
-          alt="Nepal Income Tax Calculator FY 2083 2084 — Finance Act 2083" 
+        <img
+          src="/images/nepal-income-tax-calculator-2083-2084.png"
+          alt="Nepal Income Tax Calculator FY 2083 2084 based on Finance Act 2083"
           className="w-full h-auto object-cover max-h-[480px]"
           loading="lazy"
           width={1200}
           height={630}
         />
         <div className="bg-[#F8F9FA] px-4 py-2 text-xs text-[#5F6368]">
-          Nepal Income Tax Calculator (FY 2083/84) — Based on Finance Act 2083 and Government of Nepal Budget 2083/84
+          Nepal Income Tax Calculator (FY 2083/84) based on Finance Act 2083 and Government of Nepal Budget 2083/84
         </div>
       </div>
 
@@ -148,12 +148,8 @@ export function IncomeTaxSeoContent() {
         ))}
       </div>
       <p className="text-base text-[#3C4043] mb-4">
-        Retirement contributions to the{' '}
-        <Link href="/calculator/nepal-ssf/" className="text-[#1A73E8] font-bold hover:underline">Social Security Fund (SSF)</Link>,{' '}
-        <Link href="/calculator/nepal-provident-fund/" className="text-[#1A73E8] font-bold hover:underline">Employees Provident Fund (EPF)</Link>{' '}
-        and{' '}
-        <Link href="/calculator/nepal-cit/" className="text-[#1A73E8] font-bold hover:underline">Citizen Investment Trust (CIT)</Link>{' '}
-        are combined and capped at the lower of one-third of gross income or Rs. 5,00,000. These reduce your taxable income significantly.
+        Retirement contributions to the Social Security Fund (SSF), Employees Provident Fund (EPF) and Citizen Investment Trust (CIT) are combined and capped at the lower of one-third of gross income or Rs. 5,00,000. These reduce your taxable income significantly. For a full breakdown of how these contributions interact, use our{' '}
+        <Link href="/calculator/nepal-provident-fund/" className="text-[#1A73E8] font-bold hover:underline">Provident Fund Calculator</Link>.
       </p>
 
       {/* SECTION 5: TDS */}
@@ -162,9 +158,7 @@ export function IncomeTaxSeoContent() {
         Employers deduct income tax every month before salary is credited to the employee's account. This deduction is called Tax Deducted at Source (TDS). Employers are legally required to deposit the deducted TDS with the Inland Revenue Department each month.
       </p>
       <p className="text-base text-[#3C4043] mb-4">
-        Monthly TDS is calculated by projecting the employee's annual taxable income, applying the FY 2083/84 progressive tax slabs, accounting for all eligible deductions, and dividing the resulting annual tax equally across 12 payroll periods. Our{' '}
-        <Link href="/calculator/nepal-tds/" className="text-[#1A73E8] font-bold hover:underline">TDS Calculator Nepal</Link>{' '}
-        mirrors this exact method used by payroll teams across Nepal.
+        Monthly TDS is calculated by projecting the employee's annual taxable income, applying the FY 2083/84 progressive tax slabs, accounting for all eligible deductions, and dividing the resulting annual tax equally across 12 payroll periods.
       </p>
 
       {/* SECTION 6: SSF */}
@@ -179,9 +173,7 @@ export function IncomeTaxSeoContent() {
       <p className="text-base text-[#3C4043] mb-4">
         Employees not enrolled in SSF may instead contribute to the{' '}
         <Link href="/calculator/nepal-provident-fund/" className="text-[#1A73E8] font-bold hover:underline">Employees Provident Fund</Link>{' '}
-        or voluntarily invest through the{' '}
-        <Link href="/calculator/nepal-cit/" className="text-[#1A73E8] font-bold hover:underline">Citizen Investment Trust</Link>{' '}
-        to claim the same retirement deduction benefit under the same combined cap.
+        or voluntarily invest through the Citizen Investment Trust (CIT) to claim the same retirement deduction benefit under the same combined cap.
       </p>
 
       {/* SECTION 7: DEDUCTIONS */}
@@ -209,11 +201,9 @@ export function IncomeTaxSeoContent() {
         </table>
       </div>
       <p className="text-base text-[#3C4043] mb-4">
-        If you are planning for long-term wealth, a{' '}
-        <Link href="/calculator/nepal-fixed-deposit/" className="text-[#1A73E8] font-bold hover:underline">Fixed Deposit Calculator</Link>{' '}
-        or{' '}
-        <Link href="/calculator/nepal-sip/" className="text-[#1A73E8] font-bold hover:underline">SIP Calculator</Link>{' '}
-        can help you estimate the returns on savings made after tax.
+        If you are planning for long-term wealth after tax, a{' '}
+        <Link href="/calculator/sip-calculator/" className="text-[#1A73E8] font-bold hover:underline">SIP Calculator</Link>{' '}
+        can help you estimate the returns on monthly savings and investments made from your take-home pay.
       </p>
 
       {/* SECTION 8: EXAMPLES */}
@@ -255,9 +245,7 @@ export function IncomeTaxSeoContent() {
       <p className="text-base text-[#3C4043] mb-4">
         Employers estimating total Cost to Company (CTC) can also use this tool alongside our{' '}
         <Link href="/calculator/nepal-salary/" className="text-[#1A73E8] font-bold hover:underline">Salary Calculator Nepal</Link>{' '}
-        and{' '}
-        <Link href="/calculator/nepal-provident-fund/" className="text-[#1A73E8] font-bold hover:underline">Provident Fund Calculator</Link>{' '}
-        for a complete employer cost picture.
+        for a complete employer cost picture including PF, SSF and employer contributions.
       </p>
 
       {/* DISCLAIMER */}
@@ -274,48 +262,54 @@ export function IncomeTaxSeoContent() {
         {[
           {
             q: 'How is income tax calculated in Nepal?',
-            a: 'Income tax in Nepal is calculated by first determining your annual taxable income after all eligible deductions. The FY 2083/84 progressive tax slabs (1%, 10%, 20%, 27%, 29%) are then applied to each portion of taxable income separately to determine the total annual tax liability.'
+            a: 'Income tax in Nepal is calculated by first determining your annual taxable income after all eligible deductions. The FY 2083/84 progressive tax slabs (1%, 10%, 20%, 27%, 29%) are then applied to each portion of taxable income separately to determine the total annual tax liability.',
           },
           {
             q: 'What is Social Security Tax in Nepal?',
-            a: 'Social Security Tax is the 1% tax applied to the first income slab (up to Rs. 10 lakh). Eligible Social Security Fund contributors may qualify for relief on this slab according to prevailing Income Tax Act provisions.'
+            a: 'Social Security Tax is the 1% tax applied to the first income slab (up to Rs. 10 lakh). Eligible Social Security Fund contributors may qualify for relief on this slab according to prevailing Income Tax Act provisions.',
           },
           {
             q: 'What is Monthly TDS in Nepal?',
-            a: 'Tax Deducted at Source (TDS) is the estimated monthly income tax deducted by employers before salary is paid. It is calculated by projecting annual taxable income, applying FY 2083/84 tax slabs and dividing equally across 12 months.'
+            a: 'Tax Deducted at Source (TDS) is the estimated monthly income tax deducted by employers before salary is paid. It is calculated by projecting annual taxable income, applying FY 2083/84 tax slabs and dividing equally across 12 months. Use our TDS Calculator Nepal for a month-by-month breakdown.',
+            link: { href: '/calculator/nepal-tds/', text: 'TDS Calculator Nepal' },
           },
           {
             q: 'What deductions reduce taxable income?',
-            a: 'Eligible deductions include SSF, EPF, CIT (combined retirement cap: Rs. 5 lakh), Life Insurance (Rs. 40,000), Medical Insurance (Rs. 20,000), Building Insurance (Rs. 10,000), Education (Rs. 25,000), Donation (Rs. 3 lakh) and CSR (1% of taxable income) — all subject to the Finance Act 2083 limits.'
+            a: 'Eligible deductions include SSF, EPF, CIT (combined retirement cap: Rs. 5 lakh), Life Insurance (Rs. 40,000), Medical Insurance (Rs. 20,000), Building Insurance (Rs. 10,000), Education (Rs. 25,000), Donation (Rs. 3 lakh) and CSR (1% of taxable income) — all subject to the Finance Act 2083 limits.',
           },
           {
             q: 'Is the first Rs. 10 lakh tax free in Nepal?',
-            a: 'No. The first Rs. 10 lakh is subject to a 1% Social Security Tax. SSF contributors may qualify for a waiver on this slab under specific conditions in the Income Tax Act.'
+            a: 'No. The first Rs. 10 lakh is subject to a 1% Social Security Tax. SSF contributors may qualify for a waiver on this slab under specific conditions in the Income Tax Act.',
           },
           {
             q: 'Is there a different tax slab for married couples?',
-            a: 'No. The FY 2083/84 Finance Act removed separate slabs for married and unmarried taxpayers. All resident individuals now follow a single unified progressive tax slab structure.'
+            a: 'No. The FY 2083/84 Finance Act removed separate slabs for married and unmarried taxpayers. All resident individuals now follow a single unified progressive tax slab structure.',
           },
           {
             q: 'Is this calculator suitable for payroll?',
-            a: 'Yes. The calculator is designed for salaried employees, employers, HR departments, payroll teams, accountants and tax professionals. It produces the same monthly TDS estimate used in standard payroll processing.'
+            a: 'Yes. The calculator is designed for salaried employees, employers, HR departments, payroll teams, accountants and tax professionals. It produces the same monthly TDS estimate used in standard payroll processing.',
           },
           {
             q: 'Is this calculator updated for the latest Finance Act?',
-            a: 'Yes. The calculator follows Finance Act 2083 and Budget 2083/84, including revised tax slabs, updated deduction limits and all personal income tax rule changes published at the time of this update (July 2026).'
+            a: 'Yes. The calculator follows Finance Act 2083 and Budget 2083/84, including revised tax slabs, updated deduction limits and all personal income tax rule changes published at the time of this update (July 2026).',
           },
           {
             q: 'Does this calculator include the female tax rebate?',
-            a: 'Yes. Female taxpayers receive a 10% rebate on their final income tax liability. This is automatically applied when you select the female option in the Tax Settings section of the calculator.'
+            a: 'Yes. Female taxpayers receive a 10% rebate on their final income tax liability. This is automatically applied when you select the female option in the Tax Settings section of the calculator.',
           },
           {
             q: 'Can I download or print my tax calculation?',
-            a: 'Yes. Use the PDF button to generate a formatted income tax report, or use the Print button to print directly. The Copy button copies all key results to your clipboard for easy sharing.'
+            a: 'Yes. Use the PDF button to generate a formatted income tax report, or use the Print button to print directly. The Copy button copies all key results to your clipboard for easy sharing.',
           },
-        ].map(({ q, a }) => (
+        ].map(({ q, a, link }) => (
           <div key={q}>
             <h3 className="text-lg font-bold text-[#1A73E8] mb-2">{q}</h3>
-            <p className="text-base text-[#3C4043]">{a}</p>
+            <p className="text-base text-[#3C4043]">
+              {a}{' '}
+              {link && (
+                <Link href={link.href} className="text-[#1A73E8] font-bold hover:underline">{link.text}</Link>
+              )}
+            </p>
           </div>
         ))}
       </div>
@@ -327,17 +321,15 @@ export function IncomeTaxSeoContent() {
           ['/calculator/nepal-salary/',            'Salary Calculator Nepal'],
           ['/calculator/nepal-ssf/',               'SSF Calculator Nepal'],
           ['/calculator/nepal-provident-fund/',    'Provident Fund Calculator'],
-          ['/calculator/nepal-cit/',               'Citizen Investment Trust Calculator'],
           ['/calculator/nepal-tds/',               'TDS Calculator Nepal'],
-          ['/calculator/nepal-bonus/',             'Bonus Tax Calculator'],
           ['/calculator/capital-gains-tax-nepal/', 'Capital Gains Tax Calculator'],
           ['/calculator/nepal-vehicle-tax/',       'Vehicle Tax Calculator'],
           ['/calculator/nepal-vat/',               'VAT Calculator Nepal'],
-          ['/tools/currency-converter/',           'Currency Converter'],
-          ['/calculator/nepal-fixed-deposit/',     'Fixed Deposit Calculator'],
-          ['/calculator/nepal-loan-emi/',          'Loan EMI Calculator'],
-          ['/calculator/nepal-sip/',               'SIP Calculator'],
-          ['/tools/gold-price-nepal/',             'Gold Price in Nepal'],
+          ['/calculator/sip-calculator/',          'SIP Calculator'],
+          ['/calculator/simple-interest/',         'Simple Interest Calculator'],
+          ['/calculator/loan-emi/',                'Loan EMI Calculator'],
+          ['/calculator/nepal-home-loan/',         'Home Loan Calculator'],
+          ['/calculator/nepal-land/',              'Land Registration Calculator'],
         ].map(([href, label]) => (
           <Link key={href} href={href}
             className="flex items-center gap-3 px-4 py-3 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg text-sm font-bold text-[#1A73E8] hover:bg-[#E8F0FE] hover:border-[#1A73E8] transition-colors">
@@ -353,12 +345,9 @@ export function IncomeTaxSeoContent() {
         <div className="flex flex-wrap gap-3">
           {[
             ['/income-tax/nepal-income-tax-slab-2083-84/', 'Income Tax Slab 2083/84'],
-            ['/guides/finance-act-2083/',                  'Finance Act 2083/84'],
-            ['/guides/how-to-calculate-income-tax/',       'How to Calculate Income Tax'],
-            ['/guides/monthly-tds-guide/',                 'Monthly TDS Guide'],
+            ['/income-tax/how-to-calculate-income-tax-nepal/', 'How to Calculate Income Tax'],
           ].map(([href, label]) => (
-            <Link key={href} href={href}
-              className="text-sm font-bold text-[#1A73E8] hover:underline">
+            <Link key={href} href={href} className="text-sm font-bold text-[#1A73E8] hover:underline">
               {label}
             </Link>
           ))}
@@ -387,7 +376,7 @@ export function IncomeTaxSeoContent() {
         </div>
       </div>
 
-      {/* SECTION 12: OFFICIAL RESOURCES — external links only here */}
+      {/* SECTION 12: OFFICIAL RESOURCES */}
       <h2 id="references" className="text-2xl font-black text-[#202124] mt-16 mb-4">Official Resources</h2>
       <p className="text-base text-[#3C4043] mb-4">
         All tax rules referenced in this calculator are sourced from the following official Nepal Government publications:

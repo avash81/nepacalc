@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"success":true,"gold":{"tolaNPR":288000,"tejabiTolaNPR":246915},"silver":{"tolaNPR":4475},"provider":"FENEGOSIDA Live Scrape","updatedAt":"2026-07-12T18:46:58.453Z"}
+=======
+{"success":true,"gold":{"tolaNPR":288000,"tejabiTolaNPR":246915},"silver":{"tolaNPR":4475},"provider":"FENEGOSIDA Live Scrape","updatedAt":"2026-07-13T02:20:45.498Z"}
+>>>>>>> 7efe959b (feat(SEO): optimize internal linking for gold pages and nepal income tax)
