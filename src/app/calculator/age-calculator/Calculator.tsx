@@ -525,9 +525,160 @@ export default function AgeCalculator() {
           {/* Date Inputs */}
           <div className="space-y-4">
             {mode === 'standard' ? (
-                                <>
+              <>
+                <div className="space-y-2">
+                  <label className="text-xs font-black uppercase tracking-wider text-[#5F6368]">Birth Date</label>
+                  <input type="date" value={dob} onChange={e => { update({ dob: e.target.value }); setHasCalculated(false); }} className="w-full h-14 px-4 border-2 border-[#DADCE0] rounded-xl font-bold text-lg text-[#202124] focus:border-[#1A73E8] focus:ring-0 transition-colors shadow-sm" />
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <label className="text-xs font-black uppercase tracking-wider text-[#5F6368]">Reference Date</label>
+                    <div className="flex gap-2">
+                      <button onClick={setToday} className="text-[10px] font-bold text-[#1A73E8] hover:underline">Today</button>
+                      <button onClick={swapDates} className="text-[10px] font-bold text-[#5F6368] hover:text-[#202124] flex items-center gap-1">
+                        <ArrowRightLeft size={10} /> Swap
+                      </button>
+                    </div>
+                  </div>
+                  <input type="date" value={targetDate} onChange={e => { update({ targetDate: e.target.value }); setHasCalculated(false); }} className="w-full h-14 px-4 border-2 border-[#DADCE0] rounded-xl font-bold text-lg text-[#202124] focus:border-[#1A73E8] focus:ring-0 transition-colors shadow-sm" />
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="space-y-2">
+                  <label className="text-xs font-black uppercase tracking-wider text-[#5F6368]">Person 1 Birth Date</label>
+                  <input type="date" value={person1Dob} onChange={e => { update({ person1Dob: e.target.value }); setHasCalculated(false); }} className="w-full h-14 px-4 border-2 border-[#DADCE0] rounded-xl font-bold text-lg text-[#202124] focus:border-[#1A73E8] focus:ring-0 transition-colors shadow-sm" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-black uppercase tracking-wider text-[#5F6368]">Person 2 Birth Date</label>
+                  <input type="date" value={person2Dob} onChange={e => { update({ person2Dob: e.target.value }); setHasCalculated(false); }} className="w-full h-14 px-4 border-2 border-[#DADCE0] rounded-xl font-bold text-lg text-[#202124] focus:border-[#1A73E8] focus:ring-0 transition-colors shadow-sm" />
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Options */}
+          {mode === 'standard' && (
+            <div className="space-y-3">
+              <label className="flex items-center gap-3 p-3 bg-white border border-[#DADCE0] rounded-xl cursor-pointer hover:bg-[#F8F9FA] transition-colors">
+                <input type="checkbox" checked={includeEndDate} onChange={e => update({ includeEndDate: e.target.checked })} className="w-5 h-5 text-[#1A73E8] border-[#DADCE0] rounded focus:ring-[#1A73E8]" />
+                <span className="text-sm font-bold text-[#3C4043]">Include End Date <span className="font-normal text-[#70757A]">(+1 day)</span></span>
+              </label>
+            </div>
+          )}
+
+          {/* Actions */}
+          <div className="flex gap-3 pt-4">
+            <button onClick={() => setHasCalculated(true)} className="flex-1 h-14 bg-[#1A73E8] text-white font-black rounded-xl hover:bg-[#1557B0] transition-colors shadow-md hover:shadow-lg text-lg">
+              Calculate Age
+            </button>
+            <button onClick={reset} className="w-14 h-14 bg-[#F8F9FA] border border-[#DADCE0] text-[#5F6368] rounded-xl flex items-center justify-center hover:bg-[#E8EAED] transition-colors shadow-sm" title="Reset">
+              <RotateCcw size={20} />
+            </button>
+          </div>
+        </div>
+      }
+      results={
+        <div className="space-y-6">
+          {!hasCalculated ? (
+            <div className="h-full min-h-[350px] flex flex-col items-center justify-center text-center p-8 bg-[#F8F9FA] border-2 border-dashed border-[#DADCE0] rounded-2xl">
+              <div className="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4">
+                {mode === 'standard' ? <Calendar className="text-[#1A73E8]" size={32} /> : <Users className="text-[#1A73E8]" size={32} />}
+              </div>
+              <h3 className="text-xl font-black text-[#202124] mb-2">{mode === 'standard' ? 'Enter your birth date' : 'Compare two birth dates'}</h3>
+              <p className="text-[#5F6368] text-sm max-w-[240px]">Fill in the dates above and press Calculate Age to see comprehensive results.</p>
+            </div>
+          ) : !calc ? null
+          : 'error' in calc ? (
+            <div className="p-6 bg-[#FCE8E6] border border-[#FAD2CF] rounded-xl text-center">
+              <div className="text-[#C5221F] font-bold">{calc.error}</div>
+            </div>
+          ) : calc.type === 'compare' ? (
+            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="p-8 bg-white border border-[#DADCE0] rounded-2xl shadow-sm relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#E8F0FE] rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-110 duration-500" />
+                <h2 className="text-xs font-black uppercase tracking-widest text-[#5F6368] mb-6 relative z-10">Age Difference</h2>
+                <div className="flex flex-col gap-2 relative z-10">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-6xl sm:text-7xl font-black text-[#1A73E8] tracking-tighter leading-none">{calc.exact.years}</span>
+                    <span className="text-xl font-bold text-[#5F6368]">Years</span>
+                  </div>
+                  <div className="text-2xl sm:text-3xl font-black text-[#202124] tracking-tight">
+                    {calc.exact.months} Months, {calc.exact.days} Days
+                  </div>
+                  <div className="text-base font-bold text-[#5F6368] mt-2">Total: {calc.totalDays.toLocaleString()} Days</div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              {/* Primary Age Card */}
+              <div className="p-8 bg-white border border-[#DADCE0] rounded-2xl shadow-sm relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#E8F0FE] rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-110 duration-500" />
+                <h2 className="text-xs font-black uppercase tracking-widest text-[#5F6368] mb-6 relative z-10">
+                  {new Date(targetDate) > new Date() ? 'Age at Future Date' : 'Exact Age'}
+                </h2>
+                <div className="flex flex-col gap-2 relative z-10">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-6xl sm:text-7xl font-black text-[#1A73E8] tracking-tighter leading-none">{calc.exact.years}</span>
+                    <span className="text-xl font-bold text-[#5F6368]">Years</span>
+                  </div>
+                  <div className="text-2xl sm:text-3xl font-black text-[#202124] tracking-tight">
+                    {calc.exact.months} Months, {calc.exact.weeks} Weeks, {calc.exact.days} Days
+                  </div>
+                </div>
+              </div>
+
+              {/* Age Breakdown */}
+              <div className="bg-white border border-[#DADCE0] rounded-2xl p-6 shadow-sm">
+                <h3 className="text-xs font-black uppercase tracking-widest text-[#5F6368] mb-4">Age Breakdown</h3>
+                <div className="grid grid-cols-2 gap-y-5 gap-x-4">
+                  <div>
+                    <div className="text-[#70757A] text-xs font-bold uppercase mb-1">Age in Months</div>
+                    <div className="text-2xl font-black text-[#202124]">{calc.total.months.toLocaleString()}</div>
+                  </div>
+                  <div>
+                    <div className="text-[#70757A] text-xs font-bold uppercase mb-1">Age in Weeks</div>
+                    <div className="text-2xl font-black text-[#202124]">{calc.total.weeks.toLocaleString()}</div>
+                  </div>
+                  <div>
+                    <div className="text-[#70757A] text-xs font-bold uppercase mb-1">Age in Days</div>
+                    <div className="text-2xl font-black text-[#202124]">{calc.total.days.toLocaleString()}</div>
+                  </div>
+                  <div>
+                    <div className="text-[#70757A] text-xs font-bold uppercase mb-1">Age in Hours</div>
+                    <div className="text-2xl font-black text-[#202124]">{calc.total.hours.toLocaleString()}</div>
+                  </div>
+                  <div>
+                    <div className="text-[#70757A] text-xs font-bold uppercase mb-1">Age in Minutes</div>
+                    <div className="text-2xl font-black text-[#202124]">{calc.total.minutes.toLocaleString()}</div>
+                  </div>
+                  <div>
+                    <div className="text-[#E37400] text-xs font-bold uppercase mb-1 flex items-center gap-1">
+                      <Clock size={12} className="animate-pulse" /> Age in Seconds (Live)
+                    </div>
+                    <div className="text-2xl font-black text-[#E37400] font-mono">{exactSeconds.toLocaleString()}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      }
+      details={
+        hasCalculated && calc && !('error' in calc) && calc.type === 'standard' ? (
+          <div className="space-y-8 mt-4 animate-in fade-in duration-700">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {/* Next Birthday */}
+              <div className="p-6 bg-gradient-to-br from-[#E8F0FE] to-[#D2E3FC] border border-[#C5D9F7] rounded-2xl shadow-sm relative overflow-hidden group">
+                <Stars className="absolute top-4 right-4 text-[#1A73E8] opacity-20 group-hover:rotate-12 transition-transform duration-500" size={64} />
+                <h3 className="text-xs font-black uppercase tracking-widest text-[#1A73E8] mb-4">Next Birthday</h3>
+                {calc.bday.daysRemaining === 0 ? (
+                  <div className="text-3xl font-black text-[#1A73E8]">Happy Birthday! 🎂</div>
+                ) : (
+                  <>
                     <div className="text-5xl font-black text-[#1A73E8] mb-1 tracking-tighter">{calc.bday.daysRemaining}</div>
-                    <div className="text-sm font-bold text-[#1A73E8] opacity-80 mb-4 uppercase tracking-widest">Days Until Next Birthday</div>
+                    <div className="text-sm font-bold text-[#1A73E8] opacity-80 mb-2 uppercase tracking-widest">Days Until Next Birthday</div>
                     <div className="text-sm font-bold text-[#5F6368] mb-2">You have completed {calc.exact.years} birthdays</div>
                   </>
                 )}
