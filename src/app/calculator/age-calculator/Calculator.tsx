@@ -47,7 +47,6 @@ const AGE_CALC_FAQS = [
   { question: 'How many days have I been alive?', answer: 'The calculator automatically displays your total days lived in the results section.' },
   { question: 'What is my exact age?', answer: 'The calculator shows your precise age in years, months, and days.' },
   { question: 'Can I calculate my age in hours?', answer: 'Yes. Hours are calculated automatically.' },
-  { question: 'Can I compare two people\'s ages?', answer: 'Yes. Calculate each person\'s age separately and compare the results.' },
   { question: 'Does NepaCalc store my birth date?', answer: 'No. All calculations are performed instantly without storing your personal information.' },
   { question: 'Is my data private?', answer: 'Yes. All age calculations happen securely in your browser and no personal data is stored on our servers.' }
 ];
@@ -175,14 +174,14 @@ const AGE_CALC_SEO_CONTENT = (
         This Date of Birth Calculator is useful for passports, visas, education, employment, retirement planning, insurance, healthcare, and legal documentation worldwide. 
       </p>
       <p className="text-sm leading-relaxed text-[#5F6368] mb-4">
-        If you also need to calculate the exact time between two calendar dates, try our <a href="/calculator/date-duration/" className="text-[#1A73E8] hover:underline font-medium">Date Duration Calculator</a>.
+        Need to know the duration between two arbitrary dates? <a href="/calculator/date-duration/" className="text-[#1A73E8] hover:underline font-medium">Date Duration Calculator</a>.
       </p>
     </section>
 
     <section id="how-calculated" aria-labelledby="how-calculated-title">
       <h2 id="how-calculated-title" className="text-2xl font-black text-[#202124] mb-4 mt-8">How Age Is Calculated</h2>
       <p className="text-sm leading-relaxed text-[#5F6368] mb-4">
-        Age is calculated by measuring the precise Date Difference between a person's birth date and a chosen comparison date. 
+        Age is calculated by measuring the precise time elapsed between a person's birth date and a chosen comparison date. 
       </p>
       <div className="p-5 bg-[#F8F9FA] border border-[#DADCE0] rounded-xl font-mono text-center text-[#1A73E8] font-black text-base mb-5" role="img" aria-label="Formula: Age equals Comparison Date minus Date of Birth">
         Age = Comparison Date − Date of Birth
@@ -195,7 +194,7 @@ const AGE_CALC_SEO_CONTENT = (
     <section id="why-important" aria-labelledby="why-important-title">
       <h2 id="why-important-title" className="text-2xl font-black text-[#202124] mb-4 mt-8">Why Age Calculation is Important</h2>
       <p className="text-sm leading-relaxed text-[#5F6368] mb-4">
-        Knowing your exact calendar date difference is critical for official documentation. By relying on exact date arithmetic rather than estimates, an Exact Age Calculator prevents costly errors on legal documents.
+        Knowing your exact chronological age is critical for official documentation. By relying on exact arithmetic rather than estimates, an Exact Age Calculator prevents costly errors on legal documents.
       </p>
     </section>
 
@@ -251,9 +250,6 @@ const AGE_CALC_SEO_CONTENT = (
           <p className="text-sm text-[#5F6368] mt-1.5"><strong className="text-[#202124]">Step 5:</strong> View your complete age breakdown instantly.</p>
         </div>
       </div>
-      <p className="text-sm text-[#5F6368] mt-4">
-        Need to simply add days? Use our <a href="/calculator/date-duration/" className="text-[#1A73E8] hover:underline font-medium">Date Calculator</a>.
-      </p>
     </section>
 
     <section id="worldwide" aria-labelledby="worldwide-title">
@@ -303,7 +299,7 @@ const AGE_CALC_SEO_CONTENT = (
         </div>
         <div>
           <h3 className="text-base font-bold text-[#202124] mb-1">How many days have I been alive?</h3>
-          <p className="text-sm text-[#5F6368]">The calculator automatically displays your total days lived as days between dates.</p>
+          <p className="text-sm text-[#5F6368]">The calculator automatically displays your total days lived.</p>
         </div>
         <div>
           <h3 className="text-base font-bold text-[#202124] mb-1">How many weeks old am I?</h3>
@@ -325,9 +321,6 @@ const AGE_CALC_SEO_CONTENT = (
 
     <section aria-labelledby="faq-title">
       <h2 id="faq-title" className="text-2xl font-black text-[#202124] mb-4 mt-8">Frequently Asked Questions</h2>
-      <p className="text-sm leading-relaxed text-[#5F6368] mb-4">
-        Need to calculate standard time intervals instead? Try our <a href="/calculator/date-duration/" className="text-[#1A73E8] hover:underline font-medium">Time Calculator</a>.
-      </p>
       {/* Note: The main FAQ Accordion is rendered below this content block by the layout */}
     </section>
     
@@ -336,13 +329,13 @@ const AGE_CALC_SEO_CONTENT = (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <a href="/calculator/date-duration/" className="flex flex-col p-4 bg-white border border-[#DADCE0] rounded-xl hover:bg-[#F8F9FA] hover:border-[#1A73E8] transition-colors">
           <span className="text-base font-bold text-[#1A73E8] mb-1">Date Duration Calculator</span>
-          <span className="text-sm text-[#5F6368]">Need to calculate the exact number of days between two dates?</span>
+          <span className="text-sm text-[#5F6368]">Need to calculate the exact duration between two dates?</span>
         </a>
         <a href="/calculator/business-days/" className="flex flex-col p-4 bg-white border border-[#DADCE0] rounded-xl hover:bg-[#F8F9FA] hover:border-[#1A73E8] transition-colors">
           <span className="text-base font-bold text-[#1A73E8] mb-1">Business Days Calculator</span>
           <span className="text-sm text-[#5F6368]">Want to skip weekends and holidays? Count only working days.</span>
         </a>
-        <a href="/calculator/date-duration/" className="flex flex-col p-4 bg-white border border-[#DADCE0] rounded-xl hover:bg-[#F8F9FA] hover:border-[#1A73E8] transition-colors">
+        <a href="/calculator/week-calculator/" className="flex flex-col p-4 bg-white border border-[#DADCE0] rounded-xl hover:bg-[#F8F9FA] hover:border-[#1A73E8] transition-colors">
           <span className="text-base font-bold text-[#1A73E8] mb-1">Week Calculator</span>
           <span className="text-sm text-[#5F6368]">Calculate the exact number of weeks between two specific dates.</span>
         </a>
@@ -395,7 +388,7 @@ const AGE_CALC_SEO_CONTENT = (
         </div>
       </div>
       <p className="text-sm text-[#5F6368] mt-4 border-t border-[#DADCE0] pt-4">
-        Need to track your exact upcoming birthday? Try our <a href="/calculator/age-calculator/" className="text-[#1A73E8] hover:underline font-medium">Birthday Countdown Calculator</a>.
+        Need to track your exact upcoming birthday? Try our <a href="/calculator/birthday-countdown/" className="text-[#1A73E8] hover:underline font-medium">Birthday Countdown Calculator</a>.
       </p>
     </footer>
   </article>
