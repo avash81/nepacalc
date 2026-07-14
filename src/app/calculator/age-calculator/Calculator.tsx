@@ -321,6 +321,9 @@ const AGE_CALC_SEO_CONTENT = (
 
     <section aria-labelledby="faq-title">
       <h2 id="faq-title" className="text-2xl font-black text-[#202124] mb-4 mt-8">Frequently Asked Questions</h2>
+      <p className="text-sm leading-relaxed text-[#5F6368] mb-4">
+        Need to calculate standard time intervals instead? Try our <a href="/calculator/time-calculator/" className="text-[#1A73E8] hover:underline font-medium">Time Calculator</a>.
+      </p>
       {/* Note: The main FAQ Accordion is rendered below this content block by the layout */}
     </section>
     
