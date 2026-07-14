@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"success":true,"gold":{"tolaNPR":284000,"tejabiTolaNPR":243485},"silver":{"tolaNPR":4360},"provider":"FENEGOSIDA Live Scrape","updatedAt":"2026-07-14T17:51:03.806Z"}
-=======
-{"success":true,"gold":{"tolaNPR":285200,"tejabiTolaNPR":244515},"silver":{"tolaNPR":4375},"provider":"FENEGOSIDA Live Scrape","updatedAt":"2026-07-13T19:19:54.494Z"}
->>>>>>> 81934e0c6352f29ecc5331bf96a9bd60ef1620dd
+{"success":true,"gold":{"tolaNPR":284000,"tejabiTolaNPR":243485},"silver":{"tolaNPR":4360},"provider":"FENEGOSIDA Live Scrape","updatedAt":"2026-07-14T18:00:09.891Z"}
