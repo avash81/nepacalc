@@ -2,17 +2,23 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: "Age Calculator | Precise Years, Months & Days | NepaCalc",
-  description: "Calculate your exact age in years, months, and days. Find your upcoming birthday countdown and life statistics instantly. Free, fast, and accurate.",
+  title: "Age Calculator – Calculate Exact Age in Years, Months & Days | NepaCalc",
+  description: "Calculate your exact age instantly using the NepaCalc Age Calculator. Find your age in years, months, weeks, days, hours, minutes and seconds with automatic leap year support. Free online age calculator for worldwide use.",
   slug: 'age-calculator',
-  keywords: ["age calculator", "calculate age online", "how old am i", "birthday countdown", "exact age tool"],
+  keywords: [
+    "Age Calculator", "Calculate Age", "Age Calculator Online", "Date of Birth Calculator",
+    "Birthday Calculator", "Exact Age Calculator", "Age in Years Months Days", "How Old Am I",
+    "Chronological Age Calculator", "Age Difference Calculator", "International Age Calculator",
+    "Free Age Calculator", "Online Age Calculator"
+  ],
+  ogImage: "https://nepacalc.com/images/age-calculator.webp",
+  canonical: "https://nepacalc.com/calculator/age-calculator/"
 });
 
 export default function Page() {
   return (
-    <div className="bg-[#F1F3F4]">
+    <main className="bg-[#F1F3F4]">
       <Calculator />
-    </div>
+    </main>
   );
 }
-
