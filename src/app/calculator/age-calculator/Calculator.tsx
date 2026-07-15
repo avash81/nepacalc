@@ -42,7 +42,11 @@ const AGE_CALC_FAQS = [
   { question: 'Can I calculate age from date of birth?', answer: 'Yes. Enter your exact date of birth (day, month, year) and the calculator instantly determines your current chronological age in all time units.' },
   { question: 'Can I calculate my age in hours?', answer: 'Yes. The Age Breakdown section automatically shows your total age in hours. For example, a 23-year-old person has lived approximately 201,480 hours.' },
   { question: 'Does NepaCalc store my birth date?', answer: 'No. All calculations run entirely in your browser using JavaScript. Your birth date is never sent to our servers, never stored, and never shared. Your data is 100% private.' },
-  { question: 'Is my data private?', answer: 'Yes. All age calculations happen securely on your device. We do not collect, store, or transmit any personal information including your date of birth.' }
+  { question: 'Is my data private?', answer: 'Yes. All age calculations happen securely on your device. We do not collect, store, or transmit any personal information including your date of birth.' },
+  { question: 'What is my age in minutes?', answer: 'The Age Breakdown section automatically displays your age in minutes. This is calculated by multiplying your total days lived by 1440 (the number of minutes in a day).' },
+  { question: 'How many birthdays have I completed?', answer: 'Your completed birthdays exactly match your current chronological age in years. For example, if you are 23 years and 4 months old, you have completed 23 birthdays.' },
+  { question: 'What day of the week was I born?', answer: 'The Birthday Summary section reveals the exact day of the week you were born on (e.g., Monday, Tuesday), calculated using the Gregorian Calendar algorithm.' },
+  { question: 'How many leap years have I experienced?', answer: 'The calculator automatically counts how many leap years (years with February 29) have occurred between your birth year and the current year.' },
 ];
 
 const AGE_CALC_SEO_CONTENT = (
@@ -419,6 +423,13 @@ export default function AgeCalculator() {
 
   const update = (u: Partial<typeof DEFAULT_STATE>) => setState({ ...state, ...u });
 
+  const handleCalculate = () => {
+    setHasCalculated(true);
+    setTimeout(() => {
+      document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  };
+
   const setToday = () => update({ targetDate: new Date().toISOString().split('T')[0] });
   const swapDates = () => {
     if (mode === 'standard') update({ dob: targetDate, targetDate: dob });
@@ -577,7 +588,7 @@ export default function AgeCalculator() {
 
           {/* Actions */}
           <div className="flex gap-3 pt-4">
-            <button onClick={() => setHasCalculated(true)} className="flex-1 h-14 bg-[#1A73E8] text-white font-black rounded-xl hover:bg-[#1557B0] transition-colors shadow-md hover:shadow-lg text-lg">
+            <button onClick={handleCalculate} className="flex-1 h-14 bg-[#1A73E8] text-white font-black rounded-xl hover:bg-[#1557B0] transition-colors shadow-md hover:shadow-lg text-lg">
               Calculate Age
             </button>
             <button onClick={reset} className="w-14 h-14 bg-[#F8F9FA] border border-[#DADCE0] text-[#5F6368] rounded-xl flex items-center justify-center hover:bg-[#E8EAED] transition-colors shadow-sm" title="Reset">
@@ -587,7 +598,7 @@ export default function AgeCalculator() {
         </div>
       }
       results={
-        <div className="space-y-6">
+        <div id="results-section" className="space-y-6">
           {!hasCalculated ? (
             <div className="h-full min-h-[350px] flex flex-col items-center justify-center text-center p-8 bg-[#F8F9FA] border-2 border-dashed border-[#DADCE0] rounded-2xl">
               <div className="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4">
@@ -634,6 +645,12 @@ export default function AgeCalculator() {
                   <div className="text-2xl sm:text-3xl font-black text-[#202124] tracking-tight">
                     {calc.exact.months} Months, {calc.exact.weeks} Weeks, {calc.exact.days} Days
                   </div>
+                  <div className="text-xs text-[#70757A] mt-2 font-medium">
+                    Calculated using Gregorian Calendar.
+                  </div>
+                  <div className="text-sm font-bold text-[#5F6368] mt-2 pt-2 border-t border-[#F1F3F4]">
+                    Decimal Age: {(calc.total.days / 365.25).toFixed(2)} Years
+                  </div>
                 </div>
               </div>
 
@@ -676,28 +693,32 @@ export default function AgeCalculator() {
       details={
         hasCalculated && calc && !('error' in calc) && calc.type === 'standard' ? (
           <div className="space-y-8 mt-4 animate-in fade-in duration-700">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {/* Next Birthday */}
-              <div className="p-6 bg-gradient-to-br from-[#E8F0FE] to-[#D2E3FC] border border-[#C5D9F7] rounded-2xl shadow-sm relative overflow-hidden group">
+              {/* Birthday Summary Card */}
+              <div className="col-span-full p-6 bg-gradient-to-br from-[#E8F0FE] to-[#D2E3FC] border border-[#C5D9F7] rounded-2xl shadow-sm relative overflow-hidden group mb-4">
                 <Stars className="absolute top-4 right-4 text-[#1A73E8] opacity-20 group-hover:rotate-12 transition-transform duration-500" size={64} />
-                <h3 className="text-xs font-black uppercase tracking-widest text-[#1A73E8] mb-4">Next Birthday</h3>
-                {calc.bday.daysRemaining === 0 ? (
-                  <div className="text-3xl font-black text-[#1A73E8]">Happy Birthday! 🎂</div>
-                ) : (
-                  <>
-                    <div className="text-5xl font-black text-[#1A73E8] mb-1 tracking-tighter">{calc.bday.daysRemaining}</div>
-                    <div className="text-sm font-bold text-[#1A73E8] opacity-80 mb-2 uppercase tracking-widest">Days Until Next Birthday</div>
-                    <div className="text-sm font-bold text-[#5F6368] mb-2">You have completed {calc.exact.years} birthdays</div>
-                  </>
-                )}
-                <div className="text-[#1A73E8] font-bold bg-white/60 inline-block px-3 py-1.5 rounded-lg text-sm shadow-sm backdrop-blur-sm">
-                  {calc.bday.nextBirthday.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
-                </div>
-                <div className="mt-4 pt-4 border-t border-[#1A73E8]/20 flex justify-between text-xs font-bold text-[#1A73E8]">
-                  <span>{calc.bday.monthsRemaining} Months</span>
-                  <span>{calc.bday.weeksRemaining} Weeks</span>
+                <h3 className="text-xs font-black uppercase tracking-widest text-[#1A73E8] mb-4">Birthday Summary</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10">
+                  <div>
+                    <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider mb-1 opacity-80">Completed Birthdays</div>
+                    <div className="text-3xl font-black text-[#1A73E8]">{calc.exact.years}</div>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider mb-1 opacity-80">Next Birthday</div>
+                    <div className="text-xl font-black text-[#1A73E8] leading-tight">{calc.bday.daysRemaining === 0 ? 'Today! 🎂' : `${calc.bday.daysRemaining} Days`}</div>
+                    <div className="text-xs font-bold text-[#1A73E8] opacity-70 mt-1">{calc.bday.nextBirthday.toLocaleDateString()}</div>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider mb-1 opacity-80">Born On</div>
+                    <div className="text-xl font-black text-[#1A73E8]">{calc.bday.bornOnWeekday}</div>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider mb-1 opacity-80">Leap Years Experienced</div>
+                    <div className="text-3xl font-black text-[#1A73E8]">{calc.leapYears}</div>
+                  </div>
                 </div>
               </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              
 
               {/* Birthday Weekdays */}
               <div className="p-6 bg-white border border-[#DADCE0] rounded-2xl shadow-sm">
@@ -766,35 +787,39 @@ export default function AgeCalculator() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {/* Timeline */}
-              <div className="p-6 bg-white border border-[#DADCE0] rounded-2xl shadow-sm">
-                <h3 className="text-sm font-black uppercase tracking-widest text-[#202124] mb-6">Life Milestones & Timeline</h3>
-                <div className="grid grid-cols-4 gap-3 mb-6">
+                          {/* Life Timeline */}
+              <div className="col-span-full p-6 bg-white border border-[#DADCE0] rounded-2xl shadow-sm mt-4 overflow-x-auto">
+                <h3 className="text-sm font-black uppercase tracking-widest text-[#202124] mb-8">Life Timeline</h3>
+                <div className="flex items-center justify-between min-w-[600px] relative">
+                  {/* Background line */}
+                  <div className="absolute top-4 left-4 right-4 h-1 bg-[#F1F3F4] rounded-full z-0"></div>
+                  
                   {[
-                    { val: calc.timeline.olympics, label: 'Olympics' },
-                    { val: calc.timeline.fifa, label: 'World Cups' },
-                    { val: calc.timeline.decades, label: 'Decades' },
-                    { val: calc.leapYears, label: 'Leap Years' },
-                  ].map((s, i) => (
-                    <div key={i} className="bg-[#F8F9FA] p-3 rounded-lg text-center">
-                      <div className="text-2xl font-black text-[#1A73E8]">{s.val}</div>
-                      <div className="text-[10px] font-bold text-[#5F6368] uppercase">{s.label}</div>
-                    </div>
-                  ))}
-                </div>
-                <ul className="space-y-2">
-                  {calc.timeline.milestones.map((m, i) => (
-                    <li key={i} className="flex justify-between items-center py-2 border-b border-[#F1F3F4] last:border-0">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-2.5 h-2.5 rounded-full ${m.passed ? 'bg-[#34A853]' : 'bg-[#DADCE0]'}`} />
-                        <span className="font-bold text-sm text-[#3C4043]">{m.label}</span>
+                    { label: 'Birth', age: 0, date: new Date(calc.bday.nextBirthday.getFullYear() - calc.exact.years - (calc.bday.daysRemaining > 0 ? 0 : -1), calc.bday.nextBirthday.getMonth(), calc.bday.nextBirthday.getDate()) },
+                    { label: '18 Years', age: 18, date: new Date(calc.bday.nextBirthday.getFullYear() - calc.exact.years + 18 - (calc.bday.daysRemaining > 0 ? 0 : -1), calc.bday.nextBirthday.getMonth(), calc.bday.nextBirthday.getDate()) },
+                    { label: '21 Years', age: 21, date: new Date(calc.bday.nextBirthday.getFullYear() - calc.exact.years + 21 - (calc.bday.daysRemaining > 0 ? 0 : -1), calc.bday.nextBirthday.getMonth(), calc.bday.nextBirthday.getDate()) },
+                    { label: 'Current Age', age: calc.exact.years, date: new Date() },
+                    { label: 'Retirement (65)', age: 65, date: new Date(calc.bday.nextBirthday.getFullYear() - calc.exact.years + 65 - (calc.bday.daysRemaining > 0 ? 0 : -1), calc.bday.nextBirthday.getMonth(), calc.bday.nextBirthday.getDate()) },
+                  ].map((m, i) => {
+                    const isPassed = calc.exact.years >= m.age;
+                    return (
+                      <div key={i} className="flex flex-col items-center relative z-10 w-24">
+                        <div className={`w-8 h-8 rounded-full border-4 border-white flex items-center justify-center mb-3 shadow-sm ${isPassed ? 'bg-[#34A853]' : 'bg-[#DADCE0]'}`}>
+                          {isPassed && <CheckCircle2 size={16} className="text-white" />}
+                        </div>
+                        <div className="text-xs font-black text-[#202124]">{m.label}</div>
+                        <div className="text-[10px] font-bold text-[#70757A]">{m.date.toLocaleDateString()}</div>
+                        <div className={`text-[10px] font-bold mt-1 px-2 py-0.5 rounded-full ${isPassed ? 'bg-[#E6F4EA] text-[#137333]' : 'bg-[#F1F3F4] text-[#5F6368]'}`}>
+                          {isPassed ? 'Completed' : 'Pending'}
+                        </div>
                       </div>
-                      <div className="text-xs text-[#70757A]">{m.date.toLocaleDateString()}</div>
-                    </li>
-                  ))}
-                </ul>
+                    );
+                  })}
+                </div>
               </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              
 
               <div className="space-y-4">
                 {/* Planet Ages */}
@@ -852,6 +877,20 @@ export default function AgeCalculator() {
                 className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#DADCE0] text-[#3C4043] rounded-lg text-sm font-bold hover:bg-[#F8F9FA] transition-colors shadow-sm hover:shadow active:scale-95"
               >
                 <Copy size={16} /> Copy Summary
+              </button>
+                            <button onClick={() => {
+                if (navigator.share) {
+                  navigator.share({
+                    title: 'My Age Calculation',
+                    text: `Age: ${calc.exact.years} Years, ${calc.exact.months} Months, ${calc.exact.days} Days`,
+                    url: window.location.href,
+                  }).catch(console.error);
+                } else {
+                  navigator.clipboard.writeText(window.location.href);
+                  alert('Link copied to clipboard!');
+                }
+              }} className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#DADCE0] text-[#3C4043] rounded-lg text-sm font-bold hover:bg-[#F8F9FA] transition-colors shadow-sm hover:shadow active:scale-95">
+                <Share2 size={16} /> Share Result
               </button>
               <button onClick={() => window.print()} className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#DADCE0] text-[#3C4043] rounded-lg text-sm font-bold hover:bg-[#F8F9FA] transition-colors shadow-sm hover:shadow active:scale-95">
                 <Printer size={16} /> Print Report
