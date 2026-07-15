@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"success":true,"gold":{"tolaNPR":284800,"tejabiTolaNPR":244170},"silver":{"tolaNPR":4415},"provider":"FENEGOSIDA Live Scrape","updatedAt":"2026-07-15T15:53:12.566Z"}
+=======
+{"success":true,"gold":{"tolaNPR":284800,"tejabiTolaNPR":244170},"silver":{"tolaNPR":4415},"provider":"FENEGOSIDA Live Scrape","updatedAt":"2026-07-15T16:24:38.973Z"}
+>>>>>>> 48397b37 (feat: complete age calculator UI and build artifacts)
