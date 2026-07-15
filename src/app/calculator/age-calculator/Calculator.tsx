@@ -34,21 +34,15 @@ const COUNTRIES = ['United States', 'Nepal', 'India', 'United Kingdom', 'Canada'
 // ─── Production Content — Phase 5-8 Global SEO, AEO & Entity Rebuild ──────────────────────────
 
 const AGE_CALC_FAQS = [
-  { question: 'What is an age calculator?', answer: 'An age calculator determines the exact amount of time between your birth date and another selected date.' },
-  { question: 'How is age calculated?', answer: 'Age is calculated by subtracting the birth date from the comparison date while considering leap years and varying month lengths.' },
-  { question: 'How do I calculate my age?', answer: 'Enter your date of birth and select a comparison date. The calculator automatically computes your exact age.' },
-  { question: 'Is this calculator accurate?', answer: 'Yes. It automatically considers leap years, calendar rules, and different month lengths.' },
-  { question: 'Can I calculate future age?', answer: 'Yes. Choose any future comparison date to determine your future age.' },
-  { question: 'Can I calculate past age?', answer: 'Yes. Select any previous date to calculate your age at that point in time.' },
-  { question: 'Can I calculate age from date of birth?', answer: 'Yes. The calculator uses your exact date of birth to find your current chronological age.' },
-  { question: 'Can I calculate my age in months?', answer: 'Yes. The calculator provides total months lived.' },
-  { question: 'Can I calculate my age in weeks?', answer: 'Yes. The calculator provides total weeks lived.' },
-  { question: 'Can I calculate my age in days?', answer: 'Yes. The calculator provides total days lived.' },
-  { question: 'How many days have I been alive?', answer: 'The calculator automatically displays your total days lived in the results section.' },
-  { question: 'What is my exact age?', answer: 'The calculator shows your precise age in years, months, and days.' },
-  { question: 'Can I calculate my age in hours?', answer: 'Yes. Hours are calculated automatically.' },
-  { question: 'Does NepaCalc store my birth date?', answer: 'No. All calculations are performed instantly without storing your personal information.' },
-  { question: 'Is my data private?', answer: 'Yes. All age calculations happen securely in your browser and no personal data is stored on our servers.' }
+  { question: 'What is an age calculator?', answer: 'An age calculator is a tool that determines the exact amount of time elapsed between a birth date and a selected comparison date. It returns your age in years, months, weeks, days, hours, minutes, and seconds while automatically accounting for leap years and varying month lengths.' },
+  { question: 'How is age calculated?', answer: 'Age is calculated by finding the precise calendar difference between your birth date and the reference date. The formula is: Age = Reference Date − Birth Date. The calculator handles leap years (February 29) and months of different lengths automatically so the result is always exact.' },
+  { question: 'Is this calculator accurate?', answer: 'Yes. The calculator strictly follows the Gregorian Calendar (ISO 8601) and accounts for leap years, varying month lengths, and time zone offsets. It produces the same result used in legal and government documents worldwide.' },
+  { question: 'Can I calculate future age?', answer: 'Yes. Set the Reference Date to any future date to see how old you will be at that point — useful for retirement planning, insurance projections, or visa applications.' },
+  { question: 'Can I calculate past age?', answer: 'Yes. Select any historical date as the Reference Date to determine exactly how old you were on that day — for historical records, legal filings, or personal milestones.' },
+  { question: 'Can I calculate age from date of birth?', answer: 'Yes. Enter your exact date of birth (day, month, year) and the calculator instantly determines your current chronological age in all time units.' },
+  { question: 'Can I calculate my age in hours?', answer: 'Yes. The Age Breakdown section automatically shows your total age in hours. For example, a 23-year-old person has lived approximately 201,480 hours.' },
+  { question: 'Does NepaCalc store my birth date?', answer: 'No. All calculations run entirely in your browser using JavaScript. Your birth date is never sent to our servers, never stored, and never shared. Your data is 100% private.' },
+  { question: 'Is my data private?', answer: 'Yes. All age calculations happen securely on your device. We do not collect, store, or transmit any personal information including your date of birth.' }
 ];
 
 const AGE_CALC_SEO_CONTENT = (
@@ -278,39 +272,53 @@ const AGE_CALC_SEO_CONTENT = (
 
     <section id="people-also-ask" aria-labelledby="paa-title">
       <h2 id="paa-title" className="text-2xl font-black text-[#202124] mb-4 mt-8">People Also Ask</h2>
-      <div className="space-y-4">
-        <div>
-          <h3 className="text-base font-bold text-[#202124] mb-1">How old am I today?</h3>
-          <p className="text-sm text-[#5F6368]">Enter your birth date to instantly calculate your current age.</p>
-        </div>
-        <div>
-          <h3 className="text-base font-bold text-[#202124] mb-1">How many days have I been alive?</h3>
-          <p className="text-sm text-[#5F6368]">The calculator automatically displays your total days lived.</p>
-        </div>
-        <div>
-          <h3 className="text-base font-bold text-[#202124] mb-1">How many weeks old am I?</h3>
-          <p className="text-sm text-[#5F6368]">The calculator converts your age into total weeks.</p>
-        </div>
-        <div>
-          <h3 className="text-base font-bold text-[#202124] mb-1">How many months old am I?</h3>
-          <p className="text-sm text-[#5F6368]">The calculator provides your total completed months.</p>
-        </div>
-        <div>
-          <h3 className="text-base font-bold text-[#202124] mb-1">What is my exact age?</h3>
-          <p className="text-sm text-[#5F6368]">The calculator shows your precise age in years, months, and days.</p>
-        </div>
+      <div className="divide-y divide-[#DADCE0] border border-[#DADCE0] rounded-xl overflow-hidden bg-white shadow-sm">
+        {([
+          {
+            q: 'How old am I today?',
+            a: 'Enter your date of birth in the Birth Date field and leave the Reference Date as Today. Press Calculate Age — your exact age in years, months, weeks, and days appears instantly. The calculator uses your device\'s current date so results are always accurate.'
+          },
+          {
+            q: 'How many days have I been alive?',
+            a: 'The Age Breakdown section shows your total days lived. For example, someone born on March 15, 2003 has lived approximately 8,523 days as of July 2026. The number increases by 1 every midnight in your local time zone.'
+          },
+          {
+            q: 'How many weeks old am I?',
+            a: 'The Age Breakdown section converts your full age into total completed weeks. A 23-year-old is roughly 1,217 weeks old. Each week equals exactly 7 days in the calculation.'
+          },
+          {
+            q: 'How many months old am I?',
+            a: 'The Age Breakdown section shows your total completed calendar months. A 23-year-old born in March 2003 has completed approximately 268 months as of July 2026.'
+          },
+          {
+            q: 'What is my exact age?',
+            a: 'Your exact age is shown in the primary result card: Years, Months, Weeks, and Days. For example: 23 Years, 4 Months, 0 Weeks, 0 Days. This matches the format used on passports, visas, and official government documents.'
+          },
+          {
+            q: 'How do I calculate my age in minutes?',
+            a: 'The Age Breakdown section automatically calculates your age in total minutes. A 23-year-old has lived approximately 12,218,400 minutes. Minutes are calculated as total days × 24 hours × 60 minutes.'
+          },
+          {
+            q: 'What day of the week was I born on?',
+            a: 'After calculating your age, the details section shows your birth weekday (e.g., Saturday). The Gregorian Calendar formula is used to determine the day of the week for any date from year 1 onwards.'
+          },
+          {
+            q: 'How do I calculate the age difference between two people?',
+            a: 'Switch to Compare Ages mode using the toggle at the top of the calculator. Enter both birth dates and press Calculate Age. The result shows the exact age difference in years, months, and days — useful for legal, medical, and family records.'
+          }
+        ] as {q:string;a:string}[]).map(({ q, a }, i) => (
+          <details key={i} className="group">
+            <summary className="flex items-center justify-between px-5 py-4 cursor-pointer list-none hover:bg-[#F8F9FA] transition-colors">
+              <h3 className="text-sm font-bold text-[#202124] pr-6 group-open:text-[#1A73E8] transition-colors">{q}</h3>
+              <span className="shrink-0 w-5 h-5 rounded-full bg-[#E8F0FE] flex items-center justify-center text-[#1A73E8] font-black text-xs transition-transform group-open:rotate-45">+</span>
+            </summary>
+            <div className="px-5 pb-5 pt-1 text-sm text-[#5F6368] leading-relaxed border-t border-[#F1F3F4]">{a}</div>
+          </details>
+        ))}
       </div>
       <p className="text-sm text-[#5F6368] mt-4">
-        Need to calculate working days instead of calendar days? Use the <a href="/calculator/business-days/" className="text-[#1A73E8] hover:underline font-medium">Business Days Calculator</a>.
+        Need to calculate working days instead of calendar days? Use the <a href="/calculator/business-days/" className="text-[#1A73E8] hover:underline font-medium">Business Days Calculator</a>. Need to calculate standard time intervals? Try our <a href="/calculator/time-calculator/" className="text-[#1A73E8] hover:underline font-medium">Time Calculator</a>.
       </p>
-    </section>
-
-    <section aria-labelledby="faq-title">
-      <h2 id="faq-title" className="text-2xl font-black text-[#202124] mb-4 mt-8">Frequently Asked Questions</h2>
-      <p className="text-sm leading-relaxed text-[#5F6368] mb-4">
-        Need to calculate standard time intervals instead? Try our <a href="/calculator/time-calculator/" className="text-[#1A73E8] hover:underline font-medium">Time Calculator</a>.
-      </p>
-      {/* Note: The main FAQ Accordion is rendered below this content block by the layout */}
     </section>
     
     <section aria-labelledby="related-calcs">
