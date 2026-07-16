@@ -385,6 +385,7 @@ export default function AgeCalculator() {
       description="Calculate your exact age instantly in years, months, weeks, days, hours, minutes, and seconds. Perfect for passports, visas, education, employment, retirement planning, insurance, healthcare, legal documents, and personal use worldwide."
       icon={Calendar}
       sidebar={undefined}
+      layout="stacked"
       compactHeader={true}
       howToUse={{ steps: [
         'Enter your date of birth in the Birth Date field.',

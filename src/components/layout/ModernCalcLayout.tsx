@@ -33,6 +33,7 @@ interface ModernCalcLayoutProps {
   crumbs?: { label: string; href?: string }[];
   slug?: string;
   fullWidth?: boolean;
+  layout?: 'split' | 'stacked';
   ads?: { top?: ReactNode; sidebar?: ReactNode; bottom?: ReactNode; inContent?: ReactNode };
   hideH1?: boolean;
   intro?: ReactNode;
@@ -41,7 +42,7 @@ interface ModernCalcLayoutProps {
 }
 
 export function ModernCalcLayout({
-  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, ads, hideH1 = false, intro, customSchema, compactHeader = false
+  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, layout = 'split', ads, hideH1 = false, intro, customSchema, compactHeader = false
 }: ModernCalcLayoutProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [liveRates, setLiveRates] = useState<MarketRate[]>([]);
@@ -213,7 +214,21 @@ export function ModernCalcLayout({
                   <span className="text-[11px] font-bold uppercase tracking-widest text-[#5F6368]">Calculator Engine</span>
                 </div>
               </div>
-              {fullWidth ? <div className="p-0">{inputs}</div> : (
+              {fullWidth ? <div className="p-0">{inputs}</div> : layout === 'stacked' ? (
+                <div className="flex flex-col divide-y divide-[#DADCE0]">
+                  <div className="p-4 lg:p-6 lg:px-8 bg-white relative">
+                    <div className="w-full max-w-5xl mx-auto">{inputs}</div>
+                  </div>
+                  <div className="p-4 lg:p-8 bg-[#F8F9FA]">
+                    <div className="w-full max-w-5xl mx-auto">
+                      <div className="mb-4">
+                        <h3 className="text-sm font-black uppercase tracking-wider text-[#202124]">Result Summary</h3>
+                      </div>
+                      <div className="w-full">{results}</div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
                 <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-[#DADCE0]">
                   <div className="flex-1 p-4 lg:p-6 bg-white relative">
                     <div className="lg:sticky lg:top-24 self-start">{inputs}</div>

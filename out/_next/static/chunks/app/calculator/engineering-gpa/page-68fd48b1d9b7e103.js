@@ -1,0 +1,86 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[1118],{19631:function(e,t,r){Promise.resolve().then(r.bind(r,77147))},78030:function(e,t,r){"use strict";r.d(t,{Z:function(){return c}});var s=r(2265);/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let a=e=>e.replace(/([a-z0-9])([A-Z])/g,"$1-$2").toLowerCase(),n=function(){for(var e=arguments.length,t=Array(e),r=0;r<e;r++)t[r]=arguments[r];return t.filter((e,t,r)=>!!e&&r.indexOf(e)===t).join(" ")};/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */var i={xmlns:"http://www.w3.org/2000/svg",width:24,height:24,viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:2,strokeLinecap:"round",strokeLinejoin:"round"};/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let l=(0,s.forwardRef)((e,t)=>{let{color:r="currentColor",size:a=24,strokeWidth:l=2,absoluteStrokeWidth:c,className:d="",children:o,iconNode:u,...h}=e;return(0,s.createElement)("svg",{ref:t,...i,width:a,height:a,stroke:r,strokeWidth:c?24*Number(l)/Number(a):l,className:n("lucide",d),...h},[...u.map(e=>{let[t,r]=e;return(0,s.createElement)(t,r)}),...Array.isArray(o)?o:[o]])}),c=(e,t)=>{let r=(0,s.forwardRef)((r,i)=>{let{className:c,...d}=r;return(0,s.createElement)(l,{ref:i,iconNode:t,className:n(`lucide-${a(e)}`,c),...d})});return r.displayName=`${e}`,r}},94207:function(e,t,r){"use strict";r.d(t,{Z:function(){return s}});/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let s=(0,r(78030).Z)("Activity",[["path",{d:"M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2",key:"169zse"}]])},95137:function(e,t,r){"use strict";r.d(t,{Z:function(){return s}});/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let s=(0,r(78030).Z)("ArrowLeft",[["path",{d:"m12 19-7-7 7-7",key:"1l729n"}],["path",{d:"M19 12H5",key:"x3x0zl"}]])},34567:function(e,t,r){"use strict";r.d(t,{Z:function(){return s}});/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let s=(0,r(78030).Z)("Calculator",[["rect",{width:"16",height:"20",x:"4",y:"2",rx:"2",key:"1nb95v"}],["line",{x1:"8",x2:"16",y1:"6",y2:"6",key:"x4nwl0"}],["line",{x1:"16",x2:"16",y1:"14",y2:"18",key:"wjye3r"}],["path",{d:"M16 10h.01",key:"1m94wz"}],["path",{d:"M12 10h.01",key:"1nrarc"}],["path",{d:"M8 10h.01",key:"19clt8"}],["path",{d:"M12 14h.01",key:"1etili"}],["path",{d:"M8 14h.01",key:"6423bh"}],["path",{d:"M12 18h.01",key:"mhygvu"}],["path",{d:"M8 18h.01",key:"lrp35t"}]])},87592:function(e,t,r){"use strict";r.d(t,{Z:function(){return s}});/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let s=(0,r(78030).Z)("ChevronRight",[["path",{d:"m9 18 6-6-6-6",key:"mthhwq"}]])},13231:function(e,t,r){"use strict";r.d(t,{Z:function(){return s}});/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let s=(0,r(78030).Z)("CircleCheck",[["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}],["path",{d:"m9 12 2 2 4-4",key:"dzmm74"}]])},99687:function(e,t,r){"use strict";r.d(t,{Z:function(){return s}});/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let s=(0,r(78030).Z)("CircleHelp",[["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}],["path",{d:"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3",key:"1u773s"}],["path",{d:"M12 17h.01",key:"p32p05"}]])},51077:function(e,t,r){"use strict";r.d(t,{Z:function(){return s}});/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let s=(0,r(78030).Z)("DollarSign",[["line",{x1:"12",x2:"12",y1:"2",y2:"22",key:"7eqyqh"}],["path",{d:"M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6",key:"1b0p4s"}]])},11005:function(e,t,r){"use strict";r.d(t,{Z:function(){return s}});/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let s=(0,r(78030).Z)("Home",[["path",{d:"m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z",key:"y5dka4"}],["polyline",{points:"9 22 9 12 15 12 15 22",key:"e2us08"}]])},30690:function(e,t,r){"use strict";r.d(t,{Z:function(){return s}});/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let s=(0,r(78030).Z)("Info",[["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}],["path",{d:"M12 16v-4",key:"1dtifu"}],["path",{d:"M12 8h.01",key:"e9boi3"}]])},92513:function(e,t,r){"use strict";r.d(t,{Z:function(){return s}});/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let s=(0,r(78030).Z)("Plus",[["path",{d:"M5 12h14",key:"1ays0h"}],["path",{d:"M12 5v14",key:"s699le"}]])},26209:function(e,t,r){"use strict";r.d(t,{Z:function(){return s}});/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let s=(0,r(78030).Z)("Sigma",[["path",{d:"M18 7V4H6l6 8-6 8h12v-3",key:"zis8ev"}]])},21902:function(e,t,r){"use strict";r.d(t,{Z:function(){return s}});/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let s=(0,r(78030).Z)("Target",[["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}],["circle",{cx:"12",cy:"12",r:"6",key:"1vlfrh"}],["circle",{cx:"12",cy:"12",r:"2",key:"1c9p78"}]])},10883:function(e,t,r){"use strict";r.d(t,{Z:function(){return s}});/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let s=(0,r(78030).Z)("Trash2",[["path",{d:"M3 6h18",key:"d0wm0j"}],["path",{d:"M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6",key:"4alrt4"}],["path",{d:"M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2",key:"v07s0e"}],["line",{x1:"10",x2:"10",y1:"11",y2:"17",key:"1uufr5"}],["line",{x1:"14",x2:"14",y1:"11",y2:"17",key:"xtxkd"}]])},53225:function(e,t,r){"use strict";r.d(t,{Z:function(){return s}});/**
+ * @license lucide-react v0.378.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */let s=(0,r(78030).Z)("TrendingUp",[["polyline",{points:"22 7 13.5 15.5 8.5 10.5 2 17",key:"126l90"}],["polyline",{points:"16 7 22 7 22 13",key:"kwv8wd"}]])},87138:function(e,t,r){"use strict";r.d(t,{default:function(){return a.a}});var s=r(231),a=r.n(s)},16463:function(e,t,r){"use strict";var s=r(71169);r.o(s,"usePathname")&&r.d(t,{usePathname:function(){return s.usePathname}}),r.o(s,"useRouter")&&r.d(t,{useRouter:function(){return s.useRouter}}),r.o(s,"useSearchParams")&&r.d(t,{useSearchParams:function(){return s.useSearchParams}})},77147:function(e,t,r){"use strict";r.d(t,{default:function(){return m}});var s=r(57437),a=r(2265),n=r(21902),i=r(92513),l=r(10883),c=r(30690),d=r(10843),o=r(3848);let u={tu_ioe:{name:"TU / IOE (Tribhuvan Uni)"},ku:{name:"Kathmandu Uni (KU)"},pu:{name:"Pokhara Uni (PU)"}},h={uni:"tu_ioe",currentCGPA:3.2,completedCredits:60,targetCGPA:3.5,remainingCredits:60,semesters:[{id:1,name:"Semester 1",gpa:3.4,credits:18},{id:2,name:"Semester 2",gpa:3,credits:20}]};function m(){let[e,t]=(0,o._)("NepaCalc_engineering_gpa_v3",h),{uni:r,currentCGPA:m,completedCredits:x,targetCGPA:p,remainingCredits:g,semesters:f}=e,b=r=>t({...e,...r}),y=e=>b({semesters:f.filter(t=>t.id!==e)}),v=(e,t,r)=>b({semesters:f.map(s=>s.id===e?{...s,[t]:r}:s)}),j=(0,a.useMemo)(()=>{let e=0,t=0;f.forEach(r=>{e+=r.gpa*r.credits,t+=r.credits});let r=p*(x+g),s=m*x,a=g>0?(r-s)/g:0;return{actualCGPA:(t>0?e/t:0).toFixed(2),requiredGPA:a.toFixed(2),isPossible:a<=4&&a>=0,totalCredits:t}},[f,m,x,p,g]),N="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-medium focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all",A="text-[11px] font-bold uppercase text-[#70757A] tracking-wider block mb-1.5";return(0,s.jsx)(d.p,{slug:"engineering-gpa",crumbs:[{label:"Math Tools",href:"/math-tools/"},{label:"Engineering GPA"}],title:"Engineering Target CGPA Calculator",description:"Professional grade predictor for engineering students (TU IOE, PU, KU). Calculate the exact GPA needed in upcoming semesters to hit your graduation targets.",icon:n.Z,inputs:(0,s.jsxs)("div",{className:"space-y-6",children:[(0,s.jsxs)("div",{children:[(0,s.jsx)("label",{className:A,children:"University / Institution"}),(0,s.jsx)("select",{value:r,onChange:e=>b({uni:e.target.value}),className:N,children:Object.entries(u).map(e=>{let[t,r]=e;return(0,s.jsx)("option",{value:t,children:r.name},t)})})]}),(0,s.jsxs)("div",{className:"grid grid-cols-1 sm:grid-cols-2 gap-4 p-5 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg",children:[(0,s.jsxs)("div",{className:"sm:col-span-2 flex items-center gap-2 mb-1",children:[(0,s.jsx)(n.Z,{className:"w-4 h-4 text-[#1A73E8]"}),(0,s.jsx)("span",{className:"text-[11px] font-bold uppercase text-[#202124] tracking-wider",children:"Goal Prediction Setup"})]}),(0,s.jsxs)("div",{children:[(0,s.jsx)("label",{className:A,children:"Current CGPA"}),(0,s.jsx)("input",{type:"number",value:m,min:0,max:4,step:.01,onChange:e=>b({currentCGPA:Number(e.target.value)}),className:N})]}),(0,s.jsxs)("div",{children:[(0,s.jsx)("label",{className:A,children:"Completed Credits"}),(0,s.jsx)("input",{type:"number",value:x,min:0,max:220,onChange:e=>b({completedCredits:Number(e.target.value)}),className:N})]}),(0,s.jsxs)("div",{children:[(0,s.jsx)("label",{className:A,children:"Target Goal CGPA"}),(0,s.jsx)("input",{type:"number",value:p,min:0,max:4,step:.01,onChange:e=>b({targetCGPA:Number(e.target.value)}),className:N})]}),(0,s.jsxs)("div",{children:[(0,s.jsx)("label",{className:A,children:"Remaining Credits"}),(0,s.jsx)("input",{type:"number",value:g,min:0,max:220,onChange:e=>b({remainingCredits:Number(e.target.value)}),className:N})]})]}),(0,s.jsxs)("div",{className:"space-y-4",children:[(0,s.jsxs)("div",{className:"flex justify-between items-center",children:[(0,s.jsx)("label",{className:A,children:"Past Semester Ledger"}),(0,s.jsxs)("button",{onClick:()=>{let e=f.length>0?Math.max(...f.map(e=>e.id))+1:1;b({semesters:[...f,{id:e,name:`Semester ${e}`,gpa:3,credits:18}]})},className:"text-[10px] font-bold uppercase text-[#1A73E8] hover:bg-[#E8F0FE] px-3 py-1.5 rounded flex items-center gap-1 transition-colors",children:[(0,s.jsx)(i.Z,{className:"w-3.5 h-3.5"})," Add Semester"]})]}),(0,s.jsx)("div",{className:"space-y-2",children:f.map(e=>(0,s.jsxs)("div",{className:"flex gap-2 p-3 bg-white border border-[#DADCE0] rounded-lg items-center",children:[(0,s.jsx)("div",{className:"flex-1",children:(0,s.jsx)("input",{type:"text",value:e.name,onChange:t=>v(e.id,"name",t.target.value),className:"w-full h-10 px-3 bg-[#F8F9FA] border border-[#DADCE0] rounded text-xs font-bold focus:border-[#1A73E8] outline-none"})}),(0,s.jsx)("div",{className:"w-20",children:(0,s.jsx)("input",{type:"number",value:e.gpa,min:0,max:4,step:.01,onChange:t=>v(e.id,"gpa",Number(t.target.value)),className:"w-full h-10 px-2 bg-[#F8F9FA] border border-[#DADCE0] rounded text-xs font-bold text-center focus:border-[#1A73E8] outline-none",placeholder:"GPA"})}),(0,s.jsx)("div",{className:"w-20",children:(0,s.jsx)("input",{type:"number",value:e.credits,min:0,onChange:t=>v(e.id,"credits",Number(t.target.value)),className:"w-full h-10 px-2 bg-[#F8F9FA] border border-[#DADCE0] rounded text-xs font-bold text-center focus:border-[#1A73E8] outline-none",placeholder:"Cr"})}),(0,s.jsx)("button",{onClick:()=>y(e.id),className:"p-2 text-[#70757A] hover:text-[#D93025] hover:bg-[#FCE8E6] rounded transition-colors",children:(0,s.jsx)(l.Z,{className:"w-4 h-4"})})]},e.id))})]})]}),results:(0,s.jsxs)("div",{className:"space-y-6",children:[(0,s.jsxs)("div",{className:"p-8 bg-[#E8F0FE] border border-[#DADCE0] rounded-lg text-center space-y-2",children:[(0,s.jsx)("div",{className:"text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider",children:"Target Performance Required"}),(0,s.jsx)("div",{className:`text-6xl font-black tracking-tighter ${j.isPossible?"text-[#1A73E8]":"text-[#D93025]"}`,children:j.requiredGPA}),(0,s.jsxs)("div",{className:"text-[10px] font-bold text-[#70757A] uppercase",children:["Required GPA in ",g," Credits"]})]}),(0,s.jsxs)("div",{className:"bg-white border border-[#DADCE0] rounded-lg overflow-hidden shadow-sm",children:[(0,s.jsxs)("div",{className:"px-4 py-3 bg-[#F8F9FA] border-b border-[#DADCE0] flex justify-between items-center",children:[(0,s.jsx)("span",{className:"text-[10px] font-bold text-[#70757A] uppercase tracking-widest",children:"Graduation Audit Matrix"}),(0,s.jsx)(c.Z,{className:"w-3.5 h-3.5 text-[#1A73E8]"})]}),(0,s.jsxs)("div",{className:"divide-y divide-[#DADCE0]",children:[(0,s.jsxs)("div",{className:"p-4 flex justify-between text-xs",children:[(0,s.jsx)("span",{className:"text-[#5F6368] font-bold uppercase",children:"Calculated Current CGPA"}),(0,s.jsx)("span",{className:"font-black text-[#1A73E8]",children:j.actualCGPA})]}),(0,s.jsxs)("div",{className:"p-4 flex justify-between text-xs",children:[(0,s.jsx)("span",{className:"text-[#5F6368] font-bold uppercase",children:"Verified Total Credits"}),(0,s.jsx)("span",{className:"font-black",children:j.totalCredits})]}),(0,s.jsxs)("div",{className:"p-4 flex justify-between text-xs",children:[(0,s.jsx)("span",{className:"text-[#5F6368] font-bold uppercase",children:"Target CGPA Goal"}),(0,s.jsx)("span",{className:"font-black text-[#188038]",children:p.toFixed(2)})]})]})]}),(0,s.jsxs)("div",{className:`p-4 border rounded-lg flex gap-3 items-start ${j.isPossible?"bg-[#E6F4EA] border-[#CEEAD6]":"bg-[#FCE8E6] border-[#FAD2CF]"}`,children:[(0,s.jsx)(c.Z,{className:`w-5 h-5 shrink-0 mt-0.5 ${j.isPossible?"text-[#188038]":"text-[#D93025]"}`}),(0,s.jsx)("p",{className:`text-[10px] leading-relaxed font-bold ${j.isPossible?"text-[#188038]":"text-[#D93025]"}`,children:j.isPossible?`MANDATORY: You must maintain an average GPA of ${j.requiredGPA} across your remaining ${g} credits to secure a ${p.toFixed(2)} graduation status.`:`PROTOCOL ALERT: A GPA exceeding 4.00 is required. Your target of ${p.toFixed(2)} is mathematically unreachable with ${g} credits remaining.`})]})]}),details:(0,s.jsx)("div",{className:"space-y-8",children:(0,s.jsxs)("div",{className:"bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm",children:[(0,s.jsx)("div",{className:"flex items-center gap-3 mb-8 border-l-4 border-[#1A73E8] pl-4",children:(0,s.jsx)("h3",{className:"text-base font-black text-[#202124] uppercase tracking-tight",children:"Institutional Engineering Grade Audit"})}),(0,s.jsxs)("p",{className:"text-sm text-[#5F6368] leading-relaxed",children:["The institutional engine for engineering academic trajectory management in Nepal. Calibrated for ",(0,s.jsx)("strong",{children:"TU IOE"}),", ",(0,s.jsx)("strong",{children:"KU"}),", and ",(0,s.jsx)("strong",{children:"PU"})," grading protocols, this tool provides a high-precision verification of GPA requirements. Designed for graduation certainty, it isolates required performance metrics to bridge existing CGPA deficits and ensure statutory compliance with university distinction thresholds."]})]})}),relatedTools:[{label:"SEE GPA Calculator",href:"/calculator/see-gpa/"},{label:"Standard Deviation",href:"/calculator/standard-deviation/"},{label:"Lok Sewa Age",href:"/calculator/lok-sewa-age/"},{label:"BMI Calculator",href:"/calculator/bmi/"},{label:"Age Calculator",href:"/calculator/age-calculator/"}]})}},3848:function(e,t,r){"use strict";r.d(t,{_:function(){return a}});var s=r(2265);function a(e,t){let[r,a]=(0,s.useState)(t),[n,i]=(0,s.useState)(!1);return(0,s.useEffect)(()=>{i(!0);try{let t=window.localStorage.getItem(e);t&&a(JSON.parse(t))}catch(e){}},[e]),[r,t=>{try{let s=t instanceof Function?t(r):t;a(s),window.localStorage.setItem(e,JSON.stringify(s))}catch(e){}}]}}},function(e){e.O(0,[231,7048,843,2971,7023,1744],function(){return e(e.s=19631)}),_N_E=e.O()}]);
