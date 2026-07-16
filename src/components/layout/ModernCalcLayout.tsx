@@ -37,10 +37,11 @@ interface ModernCalcLayoutProps {
   hideH1?: boolean;
   intro?: ReactNode;
   customSchema?: object;
+  compactHeader?: boolean;
 }
 
 export function ModernCalcLayout({
-  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, ads, hideH1 = false, intro, customSchema
+  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, ads, hideH1 = false, intro, customSchema, compactHeader = false
 }: ModernCalcLayoutProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [liveRates, setLiveRates] = useState<MarketRate[]>([]);
@@ -175,7 +176,7 @@ export function ModernCalcLayout({
         ]} />
       )}
       <div className="max-w-[1280px] mx-auto px-4 pt-4 pb-16">
-        <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#dadce0] pb-4">
+        <div className={`${compactHeader ? 'mb-4 pb-2' : 'mb-6 pb-4'} flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#dadce0]`}>
           <div>
             {crumbs && crumbs.length > 0 && (
               <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 text-[11px] font-medium text-[#5f6368] mb-2 uppercase tracking-wider">
@@ -188,8 +189,9 @@ export function ModernCalcLayout({
                 ))}
               </nav>
             )}
-            {!hideH1 && !seoEntry && <h1 className="text-3xl sm:text-4xl font-bold text-[#202124] tracking-tight mb-1">{title}</h1>}
-            {!hideH1 && seoEntry && <h1 className="text-3xl sm:text-4xl font-bold text-[#202124] tracking-tight mb-1">{title}</h1>}
+            {!hideH1 && (
+              <h1 className={`${compactHeader ? 'text-2xl sm:text-3xl' : 'text-3xl sm:text-4xl'} font-bold text-[#202124] tracking-tight mb-1`}>{title}</h1>
+            )}
           </div>
           <div className="flex items-center gap-3">
              <button onClick={() => window.print()} className="hidden sm:flex items-center gap-1.5 text-[11px] font-bold text-[#5F6368] hover:text-[#1A73E8] transition-all bg-white px-3 py-1.5 border border-[#dadce0] rounded-md shadow-sm">

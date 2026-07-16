@@ -54,13 +54,45 @@ export function getLifeStage(years: number): string {
     return 'Senior Citizen';
 }
 
-export function getRetirementAge(years: number, country: string): { currentAge: number, retirementAge: number, yearsRemaining: number } {
-    const ages: Record<string, number> = {
-        'United States': 67, 'Nepal': 58, 'India': 60, 'United Kingdom': 66,
-        'Canada': 65, 'Australia': 67, 'Japan': 65
-    };
-    const rAge = ages[country] || 65;
-    return { currentAge: years, retirementAge: rAge, yearsRemaining: Math.max(0, rAge - years) };
+export function getRetirementAge(dob: Date, retirementAge: number): { retirementAge: number; yearsRemaining: number; monthsRemaining: number; expectedDate: Date; hasRetired: boolean } {
+    const expectedDate = new Date(dob.getFullYear() + retirementAge, dob.getMonth(), dob.getDate());
+    const now = new Date();
+    const hasRetired = now >= expectedDate;
+    let yearsRemaining = 0;
+    let monthsRemaining = 0;
+    if (!hasRetired) {
+        yearsRemaining = expectedDate.getFullYear() - now.getFullYear();
+        monthsRemaining = expectedDate.getMonth() - now.getMonth();
+        if (monthsRemaining < 0) { yearsRemaining--; monthsRemaining += 12; }
+    }
+    return { retirementAge, yearsRemaining, monthsRemaining, expectedDate, hasRetired };
+}
+
+export function getFunFacts(dob: Date, refDate: Date): { leapYears: number; olympics: number; worldCups: number; usElections: number } {
+    const birthYear = dob.getFullYear();
+    const refYear = refDate.getFullYear();
+    let leapCount = 0;
+    for (let y = birthYear; y <= refYear; y++) {
+        if ((y % 4 === 0 && y % 100 !== 0) || y % 400 === 0) leapCount++;
+    }
+    // Summer Olympics: every 4 years from 1896 (skip 1916, 1940, 1944)
+    const skipOlympics = new Set([1916, 1940, 1944]);
+    let olympicsCount = 0;
+    for (let y = 1896; y <= refYear; y += 4) {
+        if (!skipOlympics.has(y) && y >= birthYear) olympicsCount++;
+    }
+    // FIFA World Cup: every 4 years from 1930 (skip 1942, 1946)
+    const skipWC = new Set([1942, 1946]);
+    let wcCount = 0;
+    for (let y = 1930; y <= refYear; y += 4) {
+        if (!skipWC.has(y) && y >= birthYear) wcCount++;
+    }
+    // US Presidential Elections: every 4 years from 1788
+    let electionsCount = 0;
+    for (let y = 1788; y <= refYear; y += 4) {
+        if (y >= birthYear) electionsCount++;
+    }
+    return { leapYears: leapCount, olympics: olympicsCount, worldCups: wcCount, usElections: electionsCount };
 }
 
 export function calculateBiologicalStats(totalDays: number): Heartbeats {
@@ -74,10 +106,11 @@ export function calculateBiologicalStats(totalDays: number): Heartbeats {
 
 export function getSchoolAge(years: number): SchoolAge {
     const eligible = [];
-    if (years >= 4) eligible.push('Kindergarten');
-    if (years >= 6) eligible.push('Primary');
-    if (years >= 12) eligible.push('Secondary');
-    if (years >= 18) eligible.push('College');
+    if (years >= 4) eligible.push('Pre-School');
+    if (years >= 5) eligible.push('Primary School');
+    if (years >= 11) eligible.push('Middle School');
+    if (years >= 14) eligible.push('High School');
+    if (years >= 18) eligible.push('University');
     return { eligibleFor: eligible };
 }
 
