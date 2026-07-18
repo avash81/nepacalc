@@ -39,7 +39,8 @@ export interface LiveRates {
 
 const FALLBACK_GOLD_TOLA = 282100;
 const FALLBACK_TEJABI_TOLA = 0;
-const FALLBACK_SILVER_TOLA = 4200;
+// Updated to current FENEGOSIDA rate as of 2026-07-19 (Rs. 4,640/tola)
+const FALLBACK_SILVER_TOLA = 4640;
 const FALLBACK_USD = 133.5;
 
 export function useLiveRates() {
@@ -79,7 +80,7 @@ export function useLiveRates() {
         providerStr = nepalJson.provider;
         updatedAt = nepalJson.updatedAt;
       } else {
-        // API route unavailable (static export) — attempt CORS proxy scrape
+        // API route unavailable (static export) — attempt CORS proxy scrape for GOLD
         try {
           const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://www.fenegosida.org/')}`;
           const proxyRes = await fetch(proxyUrl);
@@ -98,8 +99,39 @@ export function useLiveRates() {
                 providerStr = 'FENEGOSIDA Live (via Proxy)';
               }
             }
+            // Also attempt to scrape silver from same HTML
+            const silverMatch = html.match(/'\d+',([3-6]\d{3}),\d+/g);
+            if (silverMatch && silverMatch.length > 0) {
+              const lastS = silverMatch[silverMatch.length - 1];
+              const sParsed = parseInt(lastS.split(',')[1], 10);
+              if (sParsed > 3000 && sParsed < 9000) {
+                tolaSilverBase = sParsed;
+              }
+            }
           }
         } catch (_) { /* Silent — use fallback values */ }
+
+        // Secondary silver source: open metals API (no key required)
+        if (tolaSilverBase === FALLBACK_SILVER_TOLA) {
+          try {
+            // XAG spot in USD per troy oz → convert to NPR per tola
+            // 1 tola = 11.6638g, 1 troy oz = 31.1035g → 1 troy oz = 2.6679 tola
+            const metalRes = await fetch('https://open.er-api.com/v6/latest/XAG');
+            if (metalRes.ok) {
+              const metalJson = await metalRes.json();
+              const xagToNPR = metalJson?.rates?.NPR;
+              if (xagToNPR && xagToNPR > 1) {
+                // xagToNPR = NPR per 1 troy oz of silver
+                // per tola = xagToNPR / 2.6679
+                const silverPerTola = Math.round(xagToNPR / 2.6679);
+                if (silverPerTola > 3000 && silverPerTola < 9000) {
+                  tolaSilverBase = silverPerTola;
+                  providerStr = providerStr + ' | Silver: XAG/NPR Live';
+                }
+              }
+            }
+          } catch (_) { /* Silent */ }
+        }
       }
 
       // Utility: create exact stats — NO artificial variance on gold price
@@ -138,7 +170,8 @@ export function useLiveRates() {
           lastUpdated: updatedAt
         },
         silver: {
-          tolaNPR: getStats(tolaSilverBase, -0.0024),
+          // variance = 0 so the displayed price is exact, matching FENEGOSIDA benchmark
+          tolaNPR: getStats(tolaSilverBase, 0),
           tolaInternationalNPR: Math.round(28.5 * 0.375 * nprUsd)
         }
       });

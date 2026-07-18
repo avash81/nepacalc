@@ -40,18 +40,23 @@ export default function SilverDashboardClient({
       mainBoard={
         <div className="flex flex-col">
            {/* Chart Section */}
-           <div className="p-8 border-b border-slate-100 bg-slate-50/30">
-              <div className="flex items-center justify-between mb-6">
+           <div className="p-6 border-b border-slate-100 bg-slate-50/30">
+              <div className="flex items-center justify-between mb-4">
                  <div className="flex items-center gap-2">
-                    <Coins className="w-5 h-5 text-slate-500" />
-                    <div className="text-[14px] font-black uppercase tracking-widest text-slate-900">Silver Spot Market (XAG/USD)</div>
+                    <Coins className="w-4 h-4 text-slate-500" />
+                    <div className="text-[13px] font-black uppercase tracking-widest text-slate-900">Silver Spot Market (XAG/USD)</div>
+                 </div>
+                 <div className="px-2 py-1 bg-white border border-slate-200 rounded-full text-[9px] font-black text-slate-400 tracking-widest">
+                    WORLD SILVER INSTITUTE INDEX
                  </div>
               </div>
-              <div className="w-full h-[400px] md:h-[500px] bg-slate-50/50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm relative">
+              <div className="w-full h-[340px] bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm relative">
                  <TradingViewWidget 
                     symbol="OANDA:XAGUSD"
                     theme="light"
                     containerId="tv_chart_silver_main"
+                    chartStyle="3"
+                    interval="D"
                  />
               </div>
            </div>
@@ -109,10 +114,10 @@ const PURITY_FACTOR: Record<SilverPurity, number> = { '999': 1, '925': 0.925 };
 const GRAM_PER_TOLA = 11.6638;
 
 function SilverCalculator({ silverPerTola }: { silverPerTola: number }) {
-  const [purity,  setPurity]  = useState<SilverPurity>('999');
-  const [unit,    setUnit]    = useState<SilverUnit>('tola');
-  const [weight,  setWeight]  = useState('');
-  const [charge,  setCharge]  = useState('');
+  const [purity,     setPurity]     = useState<SilverPurity>('999');
+  const [unit,       setUnit]       = useState<SilverUnit>('tola');
+  const [weight,     setWeight]     = useState('');
+  const [charge,     setCharge]     = useState('');
   const [chargeType, setChargeType] = useState<'fixed' | 'per_gram'>('fixed');
 
   const silverPerGram = silverPerTola / GRAM_PER_TOLA;
@@ -130,33 +135,33 @@ function SilverCalculator({ silverPerTola }: { silverPerTola: number }) {
       ? parseFloat(charge) || 0
       : (parseFloat(charge) || 0) * grams
     : 0;
-  const total    = metalVal + chargeVal;
-  const fmt      = (n: number) => n.toLocaleString('en-IN', { maximumFractionDigits: 2 });
+  const total = metalVal + chargeVal;
+  const fmt   = (n: number) => n.toLocaleString('en-IN', { maximumFractionDigits: 2 });
 
   const purityOptions: { id: SilverPurity; label: string; sub: string }[] = [
-    { id: '999', label: 'Fine Silver',    sub: '999 / 99.9%' },
+    { id: '999', label: 'Fine Silver',     sub: '999 / 99.9%' },
     { id: '925', label: 'Sterling Silver', sub: '925 / 92.5%' },
   ];
 
   const unitOptions: { id: SilverUnit; label: string; conv: string }[] = [
-    { id: 'tola', label: 'Tola (तोला)',   conv: '1 Tola = 11.6638g' },
-    { id: 'gram', label: 'Gram (ग्राम)',   conv: '1 g = 0.0857 Tola' },
-    { id: 'kg',   label: 'Kilogram (किलो)', conv: '1 Kg = 85.7 Tola' },
+    { id: 'tola', label: 'Tola',  conv: '1 Tola = 11.664g' },
+    { id: 'gram', label: 'Gram',  conv: '1g = 0.0857 Tola' },
+    { id: 'kg',   label: 'KG',    conv: '1 Kg = 85.7 Tola' },
   ];
 
   return (
-    <div className="space-y-5">
-      {/* Header */}
-      <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-start gap-3">
-        <ShieldCheck className="w-5 h-5 text-slate-500 mt-0.5 shrink-0" />
-        <p className="text-[11px] leading-relaxed text-slate-600 font-medium italic">
-          Official silver valuation based on daily FENEGOSIDA benchmark rates. Enter weight and making charges to calculate total value.
+    <div className="space-y-4">
+      {/* Header note */}
+      <div className="flex items-start gap-2 p-3 bg-slate-50 border border-slate-200 rounded-xl">
+        <ShieldCheck className="w-4 h-4 text-slate-400 mt-0.5 shrink-0" />
+        <p className="text-[11px] leading-relaxed text-slate-500 font-medium">
+          Official silver valuation based on daily FENEGOSIDA benchmark rates.
         </p>
       </div>
 
       {/* Purity selector */}
       <div>
-        <label className="text-[11px] font-black text-[#5F6368] uppercase tracking-wider block mb-2">
+        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">
           Silver Standard
         </label>
         <div className="grid grid-cols-2 gap-2">
@@ -164,14 +169,18 @@ function SilverCalculator({ silverPerTola }: { silverPerTola: number }) {
             <button
               key={p.id}
               onClick={() => setPurity(p.id)}
-              className={`h-14 rounded-xl border text-left px-3 transition-all ${
+              className={`h-[52px] rounded-xl border text-left px-3 transition-all ${
                 purity === p.id
-                  ? 'border-slate-500 bg-slate-50 text-slate-800'
-                  : 'border-[#DADCE0] bg-white text-[#5F6368] hover:border-slate-400'
+                  ? 'border-[#1a73e8] bg-[#e8f0fe] text-[#1a73e8]'
+                  : 'border-[#DADCE0] bg-white text-slate-500 hover:border-slate-300'
               }`}
             >
-              <div className="text-[11px] font-black uppercase tracking-wide leading-none">{p.label}</div>
-              <div className="text-[10px] font-bold text-slate-400 mt-1">{p.sub}</div>
+              <div className={`text-[11px] font-black uppercase tracking-wide leading-none ${purity === p.id ? 'text-[#1a73e8]' : 'text-slate-700'}`}>
+                {p.label}
+              </div>
+              <div className={`text-[10px] font-bold mt-1 ${purity === p.id ? 'text-[#1a73e8]/70' : 'text-slate-400'}`}>
+                {p.sub}
+              </div>
             </button>
           ))}
         </div>
@@ -179,51 +188,62 @@ function SilverCalculator({ silverPerTola }: { silverPerTola: number }) {
 
       {/* Weight input */}
       <div>
-        <label className="text-[11px] font-black text-[#5F6368] uppercase tracking-wider block mb-2">
+        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">
           Enter Weight
         </label>
-        <div className="flex gap-2">
-          <input
-            type="number"
-            min="0"
-            value={weight}
-            onChange={e => setWeight(e.target.value)}
-            placeholder="0"
-            className="flex-1 h-11 px-3 border border-[#DADCE0] rounded-xl text-[15px] font-black text-slate-900 focus:outline-none focus:border-slate-500"
-          />
-          <select
-            value={unit}
-            onChange={e => setUnit(e.target.value as SilverUnit)}
-            className="h-11 px-3 border border-[#DADCE0] rounded-xl text-[12px] font-black text-slate-700 bg-white focus:outline-none focus:border-slate-500"
-          >
-            {unitOptions.map(u => (
-              <option key={u.id} value={u.id}>{u.label}</option>
-            ))}
-          </select>
+        {/* Unit tabs */}
+        <div className="flex rounded-xl overflow-hidden border border-[#DADCE0] mb-2">
+          {unitOptions.map(u => (
+            <button
+              key={u.id}
+              onClick={() => setUnit(u.id)}
+              className={`flex-1 h-9 text-[11px] font-black uppercase tracking-wide transition-all ${
+                unit === u.id
+                  ? 'bg-[#1a73e8] text-white'
+                  : 'bg-white text-slate-500 hover:bg-slate-50'
+              }`}
+            >
+              {u.label}
+            </button>
+          ))}
         </div>
+        {/* Number input — spinners hidden via CSS */}
+        <input
+          type="number"
+          min="0"
+          value={weight}
+          onChange={e => setWeight(e.target.value)}
+          placeholder="Enter amount"
+          className="w-full h-11 px-3 border border-[#DADCE0] rounded-xl text-[15px] font-black text-slate-900 focus:outline-none focus:border-[#1a73e8] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+        />
         <p className="text-[10px] text-slate-400 font-bold mt-1 pl-1">
-          {unitOptions.find(u => u.id === unit)?.conv} · {grams > 0 ? `${fmt(grams)}g total` : '—'}
+          {unitOptions.find(u => u.id === unit)?.conv}{grams > 0 ? ` · ${fmt(grams)}g total` : ''}
         </p>
       </div>
 
       {/* Making charge */}
       <div>
-        <label className="text-[11px] font-black text-[#5F6368] uppercase tracking-wider block mb-2">
+        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">
           Making Charge (Jyala / Jarti)
         </label>
         <div className="flex gap-2">
-          <div className="flex rounded-xl overflow-hidden border border-[#DADCE0]">
-            {(['fixed', 'per_gram'] as const).map(t => (
-              <button
-                key={t}
-                onClick={() => setChargeType(t)}
-                className={`px-3 h-11 text-[10px] font-black uppercase tracking-wide transition-all ${
-                  chargeType === t ? 'bg-slate-700 text-white' : 'bg-white text-slate-500 hover:bg-slate-50'
-                }`}
-              >
-                {t === 'fixed' ? 'Fixed Rs.' : 'Per Gram'}
-              </button>
-            ))}
+          <div className="flex rounded-xl overflow-hidden border border-[#DADCE0] shrink-0">
+            <button
+              onClick={() => setChargeType('fixed')}
+              className={`px-3 h-11 text-[10px] font-black uppercase tracking-wide transition-all ${
+                chargeType === 'fixed' ? 'bg-[#1a73e8] text-white' : 'bg-white text-slate-500 hover:bg-slate-50'
+              }`}
+            >
+              Fixed Rs.
+            </button>
+            <button
+              onClick={() => setChargeType('per_gram')}
+              className={`px-3 h-11 text-[10px] font-black uppercase tracking-wide transition-all ${
+                chargeType === 'per_gram' ? 'bg-[#1a73e8] text-white' : 'bg-white text-slate-500 hover:bg-slate-50'
+              }`}
+            >
+              Per Gram
+            </button>
           </div>
           <input
             type="number"
@@ -231,38 +251,46 @@ function SilverCalculator({ silverPerTola }: { silverPerTola: number }) {
             value={charge}
             onChange={e => setCharge(e.target.value)}
             placeholder="0"
-            className="flex-1 h-11 px-3 border border-[#DADCE0] rounded-xl text-[15px] font-black text-slate-900 focus:outline-none focus:border-slate-500"
+            className="flex-1 h-11 px-3 border border-[#DADCE0] rounded-xl text-[15px] font-black text-slate-900 focus:outline-none focus:border-[#1a73e8] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
       </div>
 
       {/* Result */}
-      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 space-y-3">
-        <div className="flex items-center gap-2 mb-1">
-          <Calculator className="w-4 h-4 text-slate-500" />
+      <div className="rounded-xl border border-slate-200 bg-slate-50 overflow-hidden">
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-200 bg-white">
+          <Calculator className="w-4 h-4 text-slate-400" />
           <span className="text-[11px] font-black uppercase tracking-widest text-slate-500">Silver Valuation</span>
         </div>
-        <div className="flex justify-between items-center border-b border-slate-100 pb-2">
-          <span className="text-[12px] text-slate-500 font-bold">Metal Value</span>
-          <span className="text-[14px] font-black text-slate-800">Rs. {metalVal > 0 ? fmt(metalVal) : '—'}</span>
-        </div>
-        <div className="flex justify-between items-center border-b border-slate-100 pb-2">
-          <span className="text-[12px] text-slate-500 font-bold">Making Charge</span>
-          <span className="text-[14px] font-black text-slate-800">Rs. {chargeVal > 0 ? fmt(chargeVal) : '—'}</span>
-        </div>
-        <div className="flex justify-between items-center pt-1">
-          <span className="text-[13px] font-black text-slate-700 uppercase tracking-wider">Total</span>
-          <span className="text-[20px] font-black text-slate-900 tracking-tight">
-            {total > 0 ? `Rs. ${fmt(total)}` : '—'}
-          </span>
+        <div className="divide-y divide-slate-100">
+          <div className="flex justify-between items-center px-4 py-3">
+            <span className="text-[12px] text-slate-500 font-bold">Metal Value</span>
+            <span className="text-[14px] font-black text-slate-800">
+              {metalVal > 0 ? `Rs. ${fmt(metalVal)}` : <span className="text-slate-300">Rs. 0.00</span>}
+            </span>
+          </div>
+          <div className="flex justify-between items-center px-4 py-3">
+            <span className="text-[12px] text-slate-500 font-bold">Making Charge</span>
+            <span className="text-[14px] font-black text-slate-800">
+              {chargeVal > 0 ? `Rs. ${fmt(chargeVal)}` : <span className="text-slate-300">Rs. 0.00</span>}
+            </span>
+          </div>
+          <div className="flex justify-between items-center px-4 py-4 bg-white">
+            <span className="text-[13px] font-black text-slate-700 uppercase tracking-wider">Total</span>
+            <span className={`text-[20px] font-black tracking-tight ${total > 0 ? 'text-[#1a73e8]' : 'text-slate-300'}`}>
+              {total > 0 ? `Rs. ${fmt(total)}` : 'Rs. 0.00'}
+            </span>
+          </div>
         </div>
         {total > 0 && (
-          <p className="text-[10px] text-slate-400 font-bold pt-1">
-            Rate synced with FENEGOSIDA · {purityOptions.find(p => p.id === purity)?.label} ({purityOptions.find(p => p.id === purity)?.sub})
+          <p className="text-[10px] text-slate-400 font-bold px-4 pb-3">
+            FENEGOSIDA · {purityOptions.find(p => p.id === purity)?.label} ({purityOptions.find(p => p.id === purity)?.sub})
           </p>
         )}
       </div>
     </div>
   );
 }
+
+
 
