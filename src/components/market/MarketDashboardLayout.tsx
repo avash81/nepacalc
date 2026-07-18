@@ -118,23 +118,21 @@ export function MarketDashboardLayout({
           </div>
 
           {/* Right Board / Sidebar */}
-          <div className="lg:col-span-4 relative">
-            <div className="sticky top-6 space-y-8">
-              {/* Interactive Tool / Calculator */}
-              <div className="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm">
-                <div className="p-6 border-b border-slate-100 bg-slate-50/50">
-                   <h3 className="text-[11px] font-black uppercase tracking-[.2em] text-slate-800">Calculation Engine</h3>
-                </div>
-                <div className="p-6">
-                   {calculatorSection || <div className="text-slate-400 italic text-[11px]">Calculator tool placeholder...</div>}
-                </div>
+          <div className="lg:col-span-4 space-y-8">
+            {/* Interactive Tool / Calculator */}
+            <div className="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm">
+              <div className="p-6 border-b border-slate-100 bg-slate-50/50">
+                 <h3 className="text-[11px] font-black uppercase tracking-[.2em] text-slate-800">Calculation Engine</h3>
               </div>
+              <div className="p-6">
+                 {calculatorSection || <div className="text-slate-400 italic text-[11px]">Calculator tool placeholder...</div>}
+              </div>
+            </div>
 
-              {/* Secondary Tickers / Related Links */}
-              <div className="space-y-4">
-                <h4 className="text-[11px] font-black uppercase tracking-widest text-slate-400 px-2">Related Indices</h4>
-                {rightBoard}
-              </div>
+            {/* Secondary Tickers / Related Links */}
+            <div className="space-y-4">
+              <h4 className="text-[11px] font-black uppercase tracking-widest text-slate-400 px-2">Related Indices</h4>
+              {rightBoard}
             </div>
           </div>
 
