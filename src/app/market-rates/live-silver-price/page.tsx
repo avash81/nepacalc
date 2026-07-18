@@ -50,37 +50,6 @@ export default function Page() {
         ]}
       >
         <SilverDashboardClient />
-        <div className="hp-container pb-24 border-t border-slate-100 pt-20">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tighter mb-8 bg-slate-50 px-6 py-3 rounded-2xl inline-block border border-slate-100">
-              Market Guide: Silver Trading in Nepal
-            </h2>
-            
-            <div className="prose prose-slate max-w-none mb-12">
-              <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-                Silver, known as <strong>Chandi</strong> in Nepal, remains a popular choice for traditional jewelry, ceremonial utensils, and investment coins. The silver market is influenced by global industrial demand and fluctuates daily alongside gold.
-              </p>
-              <p className="text-slate-700 text-base leading-relaxed mb-6">
-                Our dashboard provides high-accuracy <strong>Silver Rates in Nepal</strong> mapping directly to the official federation list, ensuring consumers and dealers have a reliable digital reference for their transactions.
-              </p>
-            </div>
-
-            <PillarFAQ faqs={SILVER_FAQS} title="Silver & Precious Metals FAQ" />
-            {/* Bidirectional SEO Link — back to gold authority page */}
-            <div className="mt-8 pt-6 border-t border-slate-200 text-center">
-              <p className="text-[13px] text-slate-500 font-medium">
-                Also see:{' '}
-                <a href="/market-rates/live-gold-price/" className="text-amber-700 font-bold underline hover:text-amber-900">
-                  Live Gold Price in Nepal Today (FENEGOSIDA)
-                </a>
-                {' '}·{' '}
-                <a href="/calculator/gold-converter/" className="text-amber-700 font-bold underline hover:text-amber-900">
-                  Gold Weight Converter
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
       </CalcWrapper>
     
     </div>

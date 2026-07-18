@@ -98,14 +98,6 @@ export default function SilverDashboardClient() {
            <GoldConverter initialAssetId="silver_tola" isEmbed={true} />
         </div>
       }
-      seoSection={
-         <div className="prose prose-slate max-w-none">
-            <h2 className="text-[20px] font-black text-slate-900 mb-4 tracking-tighter">Nepal Silver Price Guide Today</h2>
-            <p className="text-[14px] text-slate-600 leading-relaxed font-medium">
-               Silver prices in Nepal (locally known as **Chandi**) are heavily influenced by global industrial demand and the performance of the **USD/NPR** exchange pair. Unlike gold, silver is often traded in larger volumes for jewelry and traditional artifacts. Our live board provides the latest FENEGOSIDA benchmarks per tola and per 10 grams for the 2083/84 fiscal year.
-            </p>
-         </div>
-      }
     />
   );
 }
