@@ -100,11 +100,12 @@ export function useLiveRates() {
               }
             }
             // Also attempt to scrape silver from same HTML
-            const silverMatch = html.match(/'\d+',([3-6]\d{3}),\d+/g);
+            // Silver in Nepal: Rs. 3,500–7,000 per tola (range tighter than gold)
+            const silverMatch = html.match(/'\d+',([3-7]\d{3}),\d+/g);
             if (silverMatch && silverMatch.length > 0) {
               const lastS = silverMatch[silverMatch.length - 1];
               const sParsed = parseInt(lastS.split(',')[1], 10);
-              if (sParsed > 3000 && sParsed < 9000) {
+              if (sParsed > 3500 && sParsed < 7000) {
                 tolaSilverBase = sParsed;
               }
             }
@@ -112,25 +113,29 @@ export function useLiveRates() {
         } catch (_) { /* Silent — use fallback values */ }
 
         // Secondary silver source: open metals API (no key required)
-        if (tolaSilverBase === FALLBACK_SILVER_TOLA) {
+        // Trigger if proxy didn't produce a valid Nepal retail silver price
+        if (tolaSilverBase < 3500 || tolaSilverBase > 7000) {
+          tolaSilverBase = FALLBACK_SILVER_TOLA; // reset to known-good fallback first
           try {
             // XAG spot in USD per troy oz → convert to NPR per tola
             // 1 tola = 11.6638g, 1 troy oz = 31.1035g → 1 troy oz = 2.6679 tola
+            // Nepal FENEGOSIDA silver rate = international spot × ~1.45
+            // (20% import duty + customs + federation commission + handling = ~45% markup)
+            const NEPAL_SILVER_DUTY_FACTOR = 1.45;
             const metalRes = await fetch('https://open.er-api.com/v6/latest/XAG');
             if (metalRes.ok) {
               const metalJson = await metalRes.json();
-              const xagToNPR = metalJson?.rates?.NPR;
+              const xagToNPR = metalJson?.rates?.NPR; // NPR per 1 troy oz of silver
               if (xagToNPR && xagToNPR > 1) {
-                // xagToNPR = NPR per 1 troy oz of silver
-                // per tola = xagToNPR / 2.6679
-                const silverPerTola = Math.round(xagToNPR / 2.6679);
-                if (silverPerTola > 3000 && silverPerTola < 9000) {
+                const spotPerTola = xagToNPR / 2.6679;
+                const silverPerTola = Math.round(spotPerTola * NEPAL_SILVER_DUTY_FACTOR);
+                if (silverPerTola > 3500 && silverPerTola < 10000) {
                   tolaSilverBase = silverPerTola;
-                  providerStr = providerStr + ' | Silver: XAG/NPR Live';
+                  providerStr = providerStr + ' | Silver: XAG/NPR+Duty';
                 }
               }
             }
-          } catch (_) { /* Silent */ }
+          } catch (_) { /* Silent — final fallback stays at FALLBACK_SILVER_TOLA */ }
         }
       }
 
