@@ -69,11 +69,11 @@ export function SilverSeoContent() {
     <div className="prose prose-slate max-w-none">
       
       {/* Page Title & Description */}
-      <header className="mb-12 pb-8 border-b border-slate-200">
-        <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-4 capitalize">
+      <header className="mb-6 pb-4 border-b border-slate-200">
+        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mb-2 capitalize">
           Live Silver Price Today Nepal (2083/84)
         </h1>
-        <p className="text-slate-600 text-lg font-medium leading-relaxed max-w-3xl">
+        <p className="text-slate-600 text-base font-medium leading-relaxed max-w-3xl">
           <strong>Live Silver Price in Nepal Today (2083/84)</strong> provides the latest official Chandi rates published by the Federation of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA). Check today&apos;s silver price per tola, gram and kilogram, convert traditional Nepalese weight units instantly, and monitor daily market movements using real-time pricing and historical trend analysis.
         </p>
       </header>

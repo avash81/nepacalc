@@ -37,9 +37,9 @@ export interface LiveRates {
   };
 }
 
-const FALLBACK_GOLD_TOLA = 287400;  // Updated: FENEGOSIDA 26 Ashad 2083
-const FALLBACK_TEJABI_TOLA = 246400; // Updated: FENEGOSIDA 26 Ashad 2083
-const FALLBACK_SILVER_TOLA = 4640;
+const FALLBACK_GOLD_TOLA = 282100;
+const FALLBACK_TEJABI_TOLA = 0;
+const FALLBACK_SILVER_TOLA = 4200;
 const FALLBACK_USD = 133.5;
 
 export function useLiveRates() {

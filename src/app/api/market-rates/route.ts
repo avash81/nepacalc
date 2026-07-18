@@ -12,10 +12,10 @@ export async function GET() {
       }
     });
 
-    // 26 Ashad 2083 Fallback (FENEGOSIDA official)
-    let fineGoldPrice = 287400; 
-    let tejabiGoldPrice = 246400;
-    let silverPrice = 4640; 
+    // Fallback (FENEGOSIDA official screenshot)
+    let fineGoldPrice = 282100; 
+    let tejabiGoldPrice = 0;
+    let silverPrice = 4200; 
     let provider = 'FENEGOSIDA Fallback';
 
     if (fenegosidaRes.ok) {
