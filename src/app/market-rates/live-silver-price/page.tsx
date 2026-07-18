@@ -4,11 +4,20 @@ import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { PillarFAQ } from '@/components/seo/PillarFAQ';
 
 export const metadata: Metadata = {
-  title: 'Live Silver Price Today Nepal 2083/84 | Chandi Rate NepaCalc',
-  description: 'Track live silver (Chandi) rates in Nepal for FY 2083/84. Daily FENEGOSIDA updates per tola and gram. Historical charts and conversion tools.',
+  title: 'Silver Price in Nepal Today (2083/84) | Live Chandi Rate Per Tola & Gram',
+  description: "Track today's live silver price in Nepal using official FENEGOSIDA rates. View Chandi price per tola, gram and kilogram, convert silver units, calculate silver value and monitor historical price trends.",
   keywords: ['silver price nepal 2083', 'chandi rate today nepal', 'silver price per tola nepal', 'silver rate 2084', 'kathmandu silver price'],
   alternates: {
     canonical: 'https://NepaCalc.com/market-rates/live-silver-price/',
+  },
+  openGraph: {
+    title: 'Silver Price in Nepal Today (2083/84) | Live Chandi Rate Per Tola & Gram',
+    description: "Track today's live silver price in Nepal using official FENEGOSIDA rates. View Chandi price per tola, gram and kilogram, convert silver units, calculate silver value and monitor historical price trends.",
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Silver Price in Nepal Today (2083/84) | Live Chandi Rate Per Tola & Gram',
+    description: "Track today's live silver price in Nepal using official FENEGOSIDA rates. View Chandi price per tola, gram and kilogram, convert silver units, calculate silver value and monitor historical price trends.",
   },
 };
 
@@ -39,7 +48,7 @@ export default function Page() {
   return (
     <div className="bg-white min-h-screen">
       <CalcWrapper
-        title="Live Silver Price 2083/84"
+        title="Silver Price in Nepal Today (2083/84)"
         description="Real-time silver indices and conversion tools synchronized with FENEGOSIDA benchmarks."
         crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Silver Price' }]}
         isNepal={true}
