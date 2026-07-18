@@ -1,20 +1,33 @@
-import { calcMeta } from '@/lib/calcMeta';
+import { Metadata } from 'next';
 import GoldDashboardClient from './GoldDashboardClient';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 
-export const metadata = calcMeta({
-  title: 'Gold Price in Nepal Today | Live Gold & Silver Rates (FENEGOSIDA)',
-  description: "Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks. View live gold rates, silver rates, price history, investment calculators, historical records, and market updates.",
-  slug: 'market-rates/live-gold-price',
+export const metadata: Metadata = {
+  title: 'Gold Price in Nepal Today (2083/84) | Live 24K & 22K Rate',
+  description: 'Live gold price in Nepal today — official 24K and 22K rates per tola and gram, synced with FENEGOSIDA. Includes calculator and price history.',
   keywords: [
-    'gold price in nepal today', 'gold rate today nepal', 'live gold price nepal',
-    'gold price nepal', 'today gold price nepal', 'fenegosida gold price',
-    'silver price nepal', 'gold price history nepal', 'gold investment calculator',
-    'fine gold price nepal', 'tejabi gold price', 'gold tola price', 'gold gram price nepal'
+    'gold price nepal today', 'gold rate nepal', 'live gold price nepal',
+    '24k gold price nepal', '22k gold rate nepal', 'tola gold price today',
+    'fenegosida gold rate', 'gold price per gram nepal'
   ],
-  canonical: 'market-rates/live-gold-price',
-  ogImage: `https://nepacalc.com/images/og/gold-price-nepal.png?date=${new Date().toISOString().split('T')[0]}`
-});
+  openGraph: {
+    title: 'Gold Price in Nepal Today | Live 24K & 22K Rate',
+    description: 'Official FENEGOSIDA gold rates in Nepal, updated daily per tola and gram, with a built-in gold calculator and price history.',
+    url: 'https://nepacalc.com/market-rates/live-gold-price/',
+    siteName: 'NepaCalc',
+    images: [{ url: `https://nepacalc.com/images/og/gold-price-nepal.png?date=${new Date().toISOString().split('T')[0]}` }],
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Gold Price in Nepal Today',
+    description: 'Live 24K & 22K gold rates per tola and gram, FENEGOSIDA-synced.',
+    images: [`https://nepacalc.com/images/og/gold-price-nepal.png?date=${new Date().toISOString().split('T')[0]}`]
+  },
+  alternates: {
+    canonical: 'https://nepacalc.com/market-rates/live-gold-price/'
+  }
+};
 
 const customSchema = {
   "@context": "https://schema.org",
