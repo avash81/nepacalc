@@ -113,8 +113,8 @@ export function useLiveRates() {
         } catch (_) { /* Silent — use fallback values */ }
 
         // Secondary silver source: open metals API (no key required)
-        // Trigger if proxy didn't produce a valid Nepal retail silver price
-        if (tolaSilverBase < 3500 || tolaSilverBase > 7000) {
+        // Trigger if proxy didn't produce a valid Nepal retail silver price or returned the hardcoded fallback
+        if (tolaSilverBase < 3500 || tolaSilverBase > 7000 || tolaSilverBase === FALLBACK_SILVER_TOLA) {
           tolaSilverBase = FALLBACK_SILVER_TOLA; // reset to known-good fallback first
           try {
             // XAG spot in USD per troy oz → convert to NPR per tola
