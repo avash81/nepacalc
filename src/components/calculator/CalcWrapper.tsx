@@ -9,7 +9,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 
 interface Props {
   title: string;
-  description: string;
+  description?: string | React.ReactNode;
   crumbs: { label: string; href?: string }[];
   isNepal?: boolean;
   relatedCalcs?: { name: string; slug: string }[];

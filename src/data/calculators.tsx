@@ -149,12 +149,13 @@ export const CALCULATORS: Calculator[] = [
   { id: 'momo-calorie-counter', slug: 'momo-calorie-counter', name: 'Momo Calorie Counter', icon: '🥟', description: 'Calculate nutritional composition of standard momo varieties.', category: 'health' },
 
   // ==========================================
-  // MARKET RATES PILLAR (4)
+  // MARKET RATES PILLAR (5)
   // ==========================================
   { id: 'gold-converter', slug: 'market-rates/live-gold-price', name: 'Live Gold Price', icon: '🏆', description: 'Real-time 24K and 22K gold rates in Nepal with Federation sync.', category: 'market', isNepal: true, isHot: true, keywords: ['Live Gold Price Nepal', 'Federation of Nepal Gold & Silver', '24k gold rate', 'Tola to Gram gold', 'Chandi price'] },
+  { id: 'live-silver-price', slug: 'market-rates/live-silver-price', name: 'Live Silver Price', icon: '🥈', description: 'Track today\'s official Live Silver Price in Nepal including Chandi rates per tola, gram and kilogram.', category: 'market', isNepal: true },
+  { id: 'exchange-rate-nepal', slug: 'market-rates/exchange-rate-nepal', name: 'Exchange Rate Nepal', icon: '💱', description: 'Live foreign exchange rates for 20+ currencies including USD and INR.', category: 'market', isNepal: true },
+  { id: 'currency-converter', slug: 'currency-converter', name: 'Currency Converter', icon: '💵', description: 'Convert international currencies into Nepalese Rupees using live exchange rates.', category: 'market', isNepal: true },
   { id: 'remittance-calculator', slug: 'market-rates/remittance', name: 'Remittance Board', icon: '💸', description: 'Compare real-time exchange rates for sending money to Nepal.', category: 'market', isNepal: true },
-  { id: 'currency-converter', slug: 'market-rates/exchange-rate-nepal', name: 'Exchange Rates', icon: '💱', description: 'Live foreign exchange rates for 20+ currencies including USD and INR.', category: 'market', isNepal: true },
-  { id: 'live-silver-price', slug: 'market-rates/live-silver-price', name: 'Live Silver Price', icon: '🥈', description: 'Real-time silver (Chandi) rates in Nepal. Synced with federation benchmarks.', category: 'market', isNepal: true },
 ];
 
 export const CATEGORIES: Category[] = [

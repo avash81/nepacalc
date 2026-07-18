@@ -135,6 +135,21 @@ export default function SeoSections() {
         </div>
       </section>
 
+      {/* Compare Gold and Silver Prices */}
+      <section className="scroll-mt-24 mb-8">
+        <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-4">
+          Compare Gold and Silver Prices
+        </h2>
+        <div className="bg-slate-50 border border-slate-200 p-5 rounded-xl">
+          <p className="text-[14px] leading-relaxed text-slate-700 font-medium mb-3">
+            Gold and silver prices often move together but respond differently to global market conditions, industrial demand, inflation, and exchange rates.
+          </p>
+          <p className="text-[14px] leading-relaxed text-slate-700 font-medium">
+            If you also monitor silver prices, compare today's official Chandi benchmark using our <a href="/market-rates/live-silver-price/" className="text-blue-700 hover:underline font-bold">Live Silver Price</a> page.
+          </p>
+        </div>
+      </section>
+
       {/* Historical Data Section (Component) */}
       <HistoricalData />
 

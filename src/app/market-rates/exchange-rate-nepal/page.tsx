@@ -401,6 +401,7 @@ export default function Page() {
               <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">AED, QAR and SAR Exchange Rates</h2>
               <p className="text-[#5F6368] leading-relaxed">Workers in the Middle East contribute a large percentage of Nepal&apos;s annual remittance inflow. Because of this, exchange rates for the UAE Dirham (AED), Qatar Riyal (QAR), and Saudi Riyal (SAR) are among the most frequently checked foreign currencies in Nepal.</p>
               <p className="text-[#5F6368] leading-relaxed">Families receiving overseas remittances often monitor these rates daily before collecting transferred funds. Monitor the latest <Link href="/market-rates/live-gold-price/" className="text-[#1a0dab] underline font-bold">Live Gold Price in Nepal</Link> alongside remittance rates for comprehensive financial planning.</p>
+              <p className="text-[#5F6368] leading-relaxed mt-3">Exchange rate fluctuations directly influence precious metal pricing. Monitor today&apos;s <Link href="/market-rates/live-silver-price/" className="text-[#1a0dab] underline font-bold">Live Silver Price Nepal</Link> for updated domestic benchmark rates that reflect the latest USD/NPR movements.</p>
 
               
 

@@ -52,13 +52,12 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <Calculator />
-      {/* Bidirectional SEO Link — back to authority page */}
-      <div className="max-w-3xl mx-auto px-4 py-6 text-center">
-        <p className="text-[12px] text-slate-500 font-medium">
-          Looking for today&apos;s rate?{' '}
-          <a href="/market-rates/live-gold-price/" className="text-amber-700 font-bold underline hover:text-amber-900">
-            View Live Gold Price in Nepal (FENEGOSIDA)
-          </a>
+      {/* Bidirectional SEO Links — precious metals cluster */}
+      <div className="max-w-3xl mx-auto px-4 py-6 text-center space-y-2">
+        <p className="text-[13px] text-slate-600 font-medium leading-relaxed">
+          Need current valuation?<br />
+          Use today&apos;s <a href="/market-rates/live-gold-price/" className="text-blue-700 font-bold underline hover:text-blue-900">Live Gold Price</a> and <a href="/market-rates/live-silver-price/" className="text-blue-700 font-bold underline hover:text-blue-900">Live Silver Price</a> benchmarks before converting precious metal weights.<br /><br />
+          Need silver conversion? Use the <a href="/market-rates/live-silver-price/" className="text-blue-700 font-bold underline hover:text-blue-900">Live Silver Price Calculator</a>.
         </p>
       </div>
     </div>

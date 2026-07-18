@@ -35,7 +35,7 @@ export default function MarketRatesPillarPage() {
       >
         <div className="py-4 space-y-6">
           <p className="text-[13px] text-slate-600 font-medium leading-relaxed">
-            Track live commodity benchmarks and the official <Link href="/market-rates/exchange-rate-nepal/" className="text-[#1a0dab] underline font-bold hover:text-[#174ea6]">Foreign Exchange Rate Nepal</Link> as published by Nepal Rastra Bank.
+            Live Market Rates includes official Nepal prices for gold, silver, foreign exchange rates and remittance exchange rates updated daily. Choose a category below.
           </p>
           {/* Live Rate Ticker */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">

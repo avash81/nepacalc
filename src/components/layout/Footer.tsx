@@ -20,11 +20,11 @@ export function Footer() {
         { name: "Exchange Rate Nepal", slug: "market-rates/exchange-rate-nepal" },
         { name: "Currency Converter", slug: "currency-converter" },
         { name: "Live Gold Price", slug: "market-rates/live-gold-price" },
+        { name: "Live Silver Price", slug: "market-rates/live-silver-price" },
         { name: "Income Tax Calculator", slug: "nepal-income-tax" },
         { name: "SIP Calculator", slug: "sip-calculator" },
-        { name: "Fixed Deposit (FD)", slug: "fd-calculator" },
-        { name: "Remittance Calculator", slug: "remittance-calculator" },
-        { name: "NEPSE Profit Calculator", slug: "nepal-stocks" }
+        { name: "Fixed Deposit Calculator", slug: "fd-calculator" },
+        { name: "Remittance Calculator", slug: "remittance-calculator" }
       ],
       accent: "#34a853"
     },

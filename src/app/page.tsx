@@ -142,6 +142,10 @@ export default function HomePage() {
                 <p className="text-[12px] font-black text-[#202124] group-hover:text-[#1a73e8]">SIP Calculator</p>
                 <p className="text-[9px] text-slate-500 uppercase mt-1">Mutual Funds</p>
               </Link>
+              <Link href="/market-rates/live-silver-price/" className="p-3 bg-[#f8f9fa] border border-[#dadce0] rounded-lg hover:border-[#1a73e8] hover:shadow-md transition-all group">
+                <p className="text-[12px] font-black text-[#202124] group-hover:text-[#1a73e8]">Live Silver Price</p>
+                <p className="text-[9px] text-slate-500 uppercase mt-1">Chandi Rate</p>
+              </Link>
               <Link href="/calculator/nepal-income-tax/" className="p-3 bg-[#f8f9fa] border border-[#dadce0] rounded-lg hover:border-[#1a73e8] hover:shadow-md transition-all group">
                 <p className="text-[12px] font-black text-[#202124] group-hover:text-[#1a73e8]">Income Tax Nepal</p>
                 <p className="text-[9px] text-slate-500 uppercase mt-1">Salary Tax</p>
