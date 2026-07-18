@@ -72,8 +72,8 @@ export function SilverSeoContent() {
         Today&apos;s Silver Price
       </h2>
           <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-            The silver price in Nepal is updated every working day based on the official rates published by the Federation
-            of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA). These daily benchmark prices are widely used
+            The silver price in Nepal is updated every working day based on the official rates published by the <a href="https://fenegosida.org.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Federation
+            of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA)</a>. These daily benchmark prices are widely used
             by jewellery retailers, bullion traders, investors, and consumers throughout Nepal.
           </p>
           <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
@@ -431,7 +431,7 @@ export function SilverSeoContent() {
             <li>Inflation</li>
             <li>Interest rates</li>
             <li>Economic growth</li>
-            <li>Currency movements</li>
+            <li><a href="https://www.nrb.org.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Nepal Rastra Bank</a> official foreign exchange rates</li>
             <li>Industrial production</li>
             <li>Precious metal demand</li>
           </ul>
