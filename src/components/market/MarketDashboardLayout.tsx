@@ -99,24 +99,24 @@ export function MarketDashboardLayout({
             </div>
 
             {/* Info Cards Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-8 bg-[#1a73e8] rounded-[2rem] text-[#202124] shadow-sm shadow-blue-600/10">
-                 <div className="flex items-center gap-3 mb-4">
-                    <Activity className="w-5 h-5 opacity-60" />
-                    <span className="text-[11px] font-black uppercase tracking-widest opacity-60">Market Signal</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="p-4 bg-[#1a73e8] rounded-xl text-white shadow-sm shadow-blue-600/20">
+                 <div className="flex items-center gap-2 mb-2">
+                    <Activity className="w-3.5 h-3.5 opacity-70" />
+                    <span className="text-[10px] font-black uppercase tracking-widest opacity-70">Market Signal</span>
                  </div>
-                 <h3 className="text-xl font-bold mb-2">Steady Uptrend</h3>
-                 <p className="text-[13px] text-[#202124]/70 leading-relaxed font-normal">
+                 <h3 className="text-[15px] font-bold mb-1">Steady Uptrend</h3>
+                 <p className="text-[12px] text-white/75 leading-relaxed font-normal">
                    Domestic rates are currently reflecting steady international spot price recovery adjusted for recent NPR-USD shifts.
                  </p>
               </div>
-              <div className="p-8 bg-white border border-[#dadce0] rounded-[2rem] text-[#202124] shadow-sm shadow-slate-900/10">
-                 <div className="flex items-center gap-3 mb-4">
-                    <Info className="w-5 h-5 opacity-60" />
-                    <span className="text-[11px] font-black uppercase tracking-widest opacity-60">FENEGOSIDA Benchmark</span>
+              <div className="p-4 bg-[#1a73e8] rounded-xl text-white shadow-sm shadow-blue-600/20">
+                 <div className="flex items-center gap-2 mb-2">
+                    <Info className="w-3.5 h-3.5 opacity-70" />
+                    <span className="text-[10px] font-black uppercase tracking-widest opacity-70">FENEGOSIDA Benchmark</span>
                  </div>
-                 <h3 className="text-xl font-bold mb-2">Nepal Standard</h3>
-                 <p className="text-[13px] text-[#202124]/70 leading-relaxed font-normal">
+                 <h3 className="text-[15px] font-bold mb-1">Nepal Standard</h3>
+                 <p className="text-[12px] text-white/75 leading-relaxed font-normal">
                    Every price quoted is inclusive of 20% import duty and the baseline federation operating commission.
                  </p>
               </div>
