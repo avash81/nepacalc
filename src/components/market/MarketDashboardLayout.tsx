@@ -41,11 +41,23 @@ export function MarketDashboardLayout({
       <section className="bg-white border-b border-slate-200 pt-4 pb-4">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-               <div className="w-10 h-10 rounded-2xl bg-white border border-[#dadce0] flex items-center justify-center text-[#202124] shadow-sm shadow-slate-900/10">
-                  <TrendingUp className="w-5 h-5" />
+            <div className="flex flex-col items-start gap-4">
+               {/* Breadcrumb */}
+               <div className="flex items-center gap-2 text-[10px] font-bold tracking-widest text-slate-400 uppercase">
+                 <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
+                 <ChevronRight className="w-3 h-3 opacity-50" />
+                 <Link href="/market-rates" className="hover:text-blue-600 transition-colors">Market Rates</Link>
+                 <ChevronRight className="w-3 h-3 opacity-50" />
+                 <span className="text-slate-800">{title}</span>
                </div>
-               <span className="text-[11px] font-black uppercase tracking-[0.3em]" style={{ color: accentColor }}>Live Authority Feed</span>
+               
+               {/* Feed Badge */}
+               <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-white border border-[#dadce0] flex items-center justify-center text-[#202124] shadow-sm shadow-slate-900/10">
+                     <TrendingUp className="w-5 h-5" />
+                  </div>
+                  <span className="text-[11px] font-black uppercase tracking-[0.3em]" style={{ color: accentColor }}>Live Authority Feed</span>
+               </div>
             </div>
 
             <div className="flex flex-col items-start sm:items-end gap-2">

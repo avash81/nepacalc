@@ -63,7 +63,7 @@ export function useLiveRates() {
       } catch(e) {}
 
       // Fetch from our new internal Next.js API route that scrapes FENEGOSIDA directly
-      const nepalRes = await fetch('/api/market-rates');
+      const nepalRes = await fetch('/api/market-rates', { cache: 'no-store' });
       const nepalJson = nepalRes.ok ? await nepalRes.json() : null;
 
       let tolaGoldBase = FALLBACK_GOLD_TOLA;
