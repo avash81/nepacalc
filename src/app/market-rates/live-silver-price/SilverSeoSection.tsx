@@ -83,8 +83,8 @@ export function SilverSeoContent() {
         Today&apos;s Silver Price
       </h2>
           <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
-            The silver price in Nepal is updated every working day based on the official rates published by the <a href="https://fenegosida.org.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Federation
-            of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA)</a>. These daily benchmark prices are widely used
+            The silver price in Nepal is updated every working day based on the official rates published by the Federation
+            of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA). These daily benchmark prices are widely used
             by jewellery retailers, bullion traders, investors, and consumers throughout Nepal.
           </p>
           <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
@@ -398,9 +398,8 @@ export function SilverSeoContent() {
           <h2 id="how-often-updated" className="text-2xl font-black text-slate-900 tracking-tighter mb-4 scroll-mt-20">
             How Often Are Silver Prices Updated?
           </h2>
-          <p className="text-slate-700 text-base leading-relaxed mb-4 font-medium">
-            The official silver rate in Nepal is generally updated once every business day after FENEGOSIDA publishes
-            the latest benchmark prices.
+          <p className="text-slate-700 text-base leading-relaxed font-medium">
+            The official silver rate in Nepal is generally updated once every business day after <a href="https://fenegosida.org.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">FENEGOSIDA</a> publishes the latest benchmark prices.
           </p>
           <p className="text-slate-700 text-base leading-relaxed mb-4 font-medium">
             International silver spot prices continue changing throughout global trading hours.
