@@ -16,12 +16,13 @@ interface Props {
   children: ReactNode;
   formula?: string;
   hideHeader?: boolean;
+  hideBreadcrumb?: boolean;
   disableSchema?: boolean;
 }
 
 export function CalcWrapper({
   title, description, crumbs, isNepal,
-  children, formula, relatedCalcs, hideHeader = false, disableSchema = false
+  children, formula, relatedCalcs, hideHeader = false, hideBreadcrumb = false, disableSchema = false
 }: Props) {
   return (
     <div lang={isNepal ? 'ne' : 'en'} className="min-h-screen bg-white">
@@ -61,33 +62,33 @@ export function CalcWrapper({
         
         { !hideHeader && (
           <>
-            {/* Breadcrumb Path & Back Button */}
-            <div className="mb-2 flex flex-wrap items-center gap-4">
-              <button 
-                onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
-                className="flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-[#5F6368] hover:text-blue-600 transition-all border-r border-[#dadce0] pr-4 py-1"
-              >
-                <ArrowLeft className="w-4 h-4" /> <span>Back</span>
-              </button>
+            {/* Breadcrumb Path & Back Button — hidden when hideBreadcrumb=true */}
+            {!hideBreadcrumb && (
+              <div className="mb-2 flex flex-wrap items-center gap-4">
+                <button 
+                  onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
+                  className="flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-[#5F6368] hover:text-blue-600 transition-all border-r border-[#dadce0] pr-4 py-1"
+                >
+                  <ArrowLeft className="w-4 h-4" /> <span>Back</span>
+                </button>
 
-              <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-2 text-[13px] font-medium text-[#5f6368]">
-                {/* Only show explicit Home if not already the first crumb */}
-                {crumbs[0]?.label.toLowerCase() !== 'home' && (
-                  <Link href="/" className="hover:text-blue-600 hover:underline">Home</Link>
-                )}
-                {crumbs.map((c, i) => (
-                  <Fragment key={i}>
-                    { (i > 0 || crumbs[0]?.label.toLowerCase() !== 'home') && <span className="text-slate-300">/</span> }
-                    {c.href ? (
-                      <Link href={c.href} className="hover:text-blue-600 hover:underline">{c.label}</Link>
-                    ) : (
-                      <span className="text-[#202124] font-bold">{c.label}</span>
-                    )
-                    }
-                  </Fragment>
-                ))}
-              </nav>
-            </div>
+                <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-2 text-[13px] font-medium text-[#5f6368]">
+                  {crumbs[0]?.label.toLowerCase() !== 'home' && (
+                    <Link href="/" className="hover:text-blue-600 hover:underline">Home</Link>
+                  )}
+                  {crumbs.map((c, i) => (
+                    <Fragment key={i}>
+                      { (i > 0 || crumbs[0]?.label.toLowerCase() !== 'home') && <span className="text-slate-300">/</span> }
+                      {c.href ? (
+                        <Link href={c.href} className="hover:text-blue-600 hover:underline">{c.label}</Link>
+                      ) : (
+                        <span className="text-[#202124] font-bold">{c.label}</span>
+                      )}
+                    </Fragment>
+                  ))}
+                </nav>
+              </div>
+            )}
 
             <header className="mb-2 pb-2 border-b border-[#dadce0]">
               <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-4 lowercase first-letter:uppercase">

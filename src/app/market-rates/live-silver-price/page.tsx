@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import SilverDashboardClient from './SilverDashboardClient';
-import { SilverSeoSection } from './SilverSeoSection';
+import { SilverSeoContent, SilverSeoToc } from './SilverSeoSection';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 
 // ─── METADATA ────────────────────────────────────────────────────────────────
@@ -296,8 +296,10 @@ export default function Page() {
           { name: 'Market Rates', slug: '/market-rates/' },
         ]}
       >
-        <SilverDashboardClient />
-        <SilverSeoSection />
+        <SilverDashboardClient 
+          seoContent={<SilverSeoContent />}
+          seoToc={<SilverSeoToc />}
+        />
       </CalcWrapper>
     </div>
   );

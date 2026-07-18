@@ -1,7 +1,57 @@
 import React from 'react';
 import Link from 'next/link';
 
-export function SilverSeoSection() {
+const tocItems = [
+  { id: 'todays-silver-price', label: "Today's Silver Price" },
+  { id: 'silver-price-history', label: 'Silver Price History' },
+  { id: 'silver-market-guide', label: 'Silver Market Guide' },
+  { id: 'what-determines-silver-prices', label: 'What Determines Silver Prices?' },
+  { id: 'silver-units-nepal', label: 'Silver Units Used in Nepal' },
+  { id: 'silver-purity-standards', label: 'Silver Purity Standards' },
+  { id: 'common-uses-silver-nepal', label: 'Common Uses of Silver in Nepal' },
+  { id: 'silver-as-investment', label: 'Silver as an Investment' },
+  { id: 'gold-vs-silver-prices', label: 'Difference Between Gold and Silver Prices' },
+  { id: 'how-often-updated', label: 'How Often Are Silver Prices Updated?' },
+  { id: 'who-uses-silver-price-data', label: 'Who Uses Silver Price Data?' },
+  { id: 'historical-silver-price-trends', label: 'Historical Silver Price Trends' },
+  { id: 'buying-silver-nepal', label: 'Buying Silver in Nepal' },
+  { id: 'selling-silver-nepal', label: 'Selling Silver in Nepal' },
+  { id: 'silver-jewellery-pricing', label: 'Silver Jewellery Pricing' },
+  { id: 'silver-coins-bullion', label: 'Silver Coins and Bullion' },
+  { id: 'international-silver-market', label: 'International Silver Market' },
+  { id: 'silver-vs-exchange-rate', label: 'Silver Price vs Exchange Rate' },
+  { id: 'daily-price-volatility', label: 'Daily Price Volatility' },
+  { id: 'why-silver-prices-matter', label: 'Why Silver Prices Matter' },
+  { id: 'silver-metrics', label: 'Frequently Monitored Silver Metrics' },
+];
+
+export function SilverSeoToc() {
+  return (
+    <nav
+      aria-label="Table of Contents"
+      className="bg-white border border-slate-200 shadow-sm rounded-2xl p-5 sticky top-24"
+    >
+      <h2 className="text-[11px] font-black uppercase tracking-widest text-slate-500 mb-3">
+        On This Page
+      </h2>
+      <ol className="space-y-2 list-none m-0 p-0">
+        {tocItems.map((item, i) => (
+          <li key={item.id}>
+            <a
+              href={`#${item.id}`}
+              className="flex items-start gap-2 text-[13px] font-medium text-slate-600 hover:text-blue-600 transition-colors no-underline"
+            >
+              <span className="text-slate-400 font-bold text-[11px] mt-[3px] w-4 shrink-0">{i + 1}.</span>
+              <span className="leading-snug">{item.label}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+}
+
+export function SilverSeoContent() {
   const displayDate = "17 July 2026";
   const displayTime = "11:00 AM NST";
 
@@ -15,64 +65,12 @@ export function SilverSeoSection() {
     { date: '11 Jul', price: 4225 },
   ];
 
-  const tocItems = [
-    { id: 'todays-silver-price', label: "Today's Silver Price" },
-    { id: 'silver-price-history', label: 'Silver Price History' },
-    { id: 'silver-market-guide', label: 'Silver Market Guide' },
-    { id: 'what-determines-silver-prices', label: 'What Determines Silver Prices?' },
-    { id: 'silver-units-nepal', label: 'Silver Units Used in Nepal' },
-    { id: 'silver-purity-standards', label: 'Silver Purity Standards' },
-    { id: 'common-uses-silver-nepal', label: 'Common Uses of Silver in Nepal' },
-    { id: 'silver-as-investment', label: 'Silver as an Investment' },
-    { id: 'gold-vs-silver-prices', label: 'Difference Between Gold and Silver Prices' },
-    { id: 'how-often-updated', label: 'How Often Are Silver Prices Updated?' },
-    { id: 'who-uses-silver-price-data', label: 'Who Uses Silver Price Data?' },
-    { id: 'historical-silver-price-trends', label: 'Historical Silver Price Trends' },
-    { id: 'buying-silver-nepal', label: 'Buying Silver in Nepal' },
-    { id: 'selling-silver-nepal', label: 'Selling Silver in Nepal' },
-    { id: 'silver-jewellery-pricing', label: 'Silver Jewellery Pricing' },
-    { id: 'silver-coins-bullion', label: 'Silver Coins and Bullion' },
-    { id: 'international-silver-market', label: 'International Silver Market' },
-    { id: 'silver-vs-exchange-rate', label: 'Silver Price vs Exchange Rate' },
-    { id: 'daily-price-volatility', label: 'Daily Price Volatility' },
-    { id: 'why-silver-prices-matter', label: 'Why Silver Prices Matter' },
-    { id: 'silver-metrics', label: 'Frequently Monitored Silver Metrics' },
-  ];
-
   return (
-    <section className="bg-white py-12 px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto">
-
-        {/* ─── TABLE OF CONTENTS ─── */}
-        <nav
-          aria-label="Table of Contents"
-          className="bg-slate-50 border border-slate-200 rounded-2xl p-6 mb-12"
-        >
-          <h2 className="text-xs font-black uppercase tracking-widest text-slate-500 mb-4">
-            On This Page
-          </h2>
-          <ol className="space-y-1 list-none m-0 p-0 columns-1 sm:columns-2">
-            {tocItems.map((item, i) => (
-              <li key={item.id} className="break-inside-avoid">
-                <a
-                  href={`#${item.id}`}
-                  className="flex items-start gap-2 text-sm font-medium text-blue-700 hover:text-blue-900 hover:underline py-0.5 transition-colors no-underline"
-                >
-                  <span className="text-slate-400 font-bold text-xs mt-0.5 w-4 shrink-0">{i + 1}.</span>
-                  <span>{item.label}</span>
-                </a>
-              </li>
-            ))}
-          </ol>
-        </nav>
-
-        {/* ─── MAIN CONTENT ─── */}
-        <div className="prose prose-slate max-w-none">
-
-          {/* 1. Today's Silver Price */}
-          <h2 id="todays-silver-price" className="text-2xl font-black text-slate-900 tracking-tighter mb-6 scroll-mt-20">
-            Today&apos;s Silver Price
-          </h2>
+    <div className="prose prose-slate max-w-none">
+      {/* 1. Today's Silver Price */}
+      <h2 id="todays-silver-price" className="text-2xl font-black text-slate-900 tracking-tighter mb-6 scroll-mt-20">
+        Today&apos;s Silver Price
+      </h2>
           <p className="text-slate-700 text-base leading-relaxed mb-6 font-medium">
             The silver price in Nepal is updated every working day based on the official rates published by the Federation
             of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA). These daily benchmark prices are widely used
@@ -645,8 +643,6 @@ export function SilverSeoSection() {
             </div>
           </div>
 
-        </div>
-      </div>
-    </section>
+    </div>
   );
 }
