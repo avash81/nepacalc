@@ -255,7 +255,7 @@ export function SilverSeoContent() {
           </p>
           <p className="text-slate-700 text-base leading-relaxed mb-10 font-medium">
             This page provides the official Nepal silver rate together with live conversions, historical information,
-            and valuation tools for both buyers and sellers.
+            and valuation tools for both buyers and sellers. You can also explore <Link href="/market-rates/" className="text-blue-600 hover:underline">all other market rates</Link> for additional financial data.
           </p>
 
           {/* 3. What Determines Silver Prices */}
@@ -298,7 +298,7 @@ export function SilverSeoContent() {
             <li><strong>1 Kilogram</strong> = 85.735 Tola</li>
           </ul>
           <p className="text-slate-700 text-base leading-relaxed mb-10 font-medium">
-            The calculator on this page automatically converts between all major Nepalese and international silver weight units.
+            The calculator on this page automatically converts between all major Nepalese and international silver weight units. If you are also dealing with gold, you can use our <Link href="/calculator/gold-converter/" className="text-blue-600 hover:underline">Gold Weight Converter</Link>.
           </p>
 
           {/* 5. Purity Standards */}
@@ -373,7 +373,7 @@ export function SilverSeoContent() {
             Although gold and silver often move in the same general direction, they respond differently to market conditions.
           </p>
           <p className="text-slate-700 text-base leading-relaxed mb-4 font-medium">
-            Gold is primarily influenced by investment demand and central bank reserves. Silver is influenced by both
+            <Link href="/market-rates/live-gold-price/" className="text-blue-600 hover:underline">Gold prices in Nepal</Link> are primarily influenced by investment demand and central bank reserves, whereas silver is influenced by both
             investment demand and industrial consumption.
           </p>
           <p className="text-slate-700 text-base leading-relaxed mb-4 font-medium">
@@ -499,7 +499,7 @@ export function SilverSeoContent() {
             <li>Jewellery making charges</li>
             <li>Design complexity</li>
             <li>Stone or accessory costs</li>
-            <li>Applicable taxes</li>
+            <li><Link href="/calculator/gold-tax/" className="text-blue-600 hover:underline">Applicable taxes and customs</Link></li>
           </ul>
           <p className="text-slate-700 text-base leading-relaxed mb-10 font-medium">
             For handcrafted jewellery, making charges may represent a significant portion of the final retail price.
@@ -546,7 +546,7 @@ export function SilverSeoContent() {
           </h2>
           <p className="text-slate-700 text-base leading-relaxed mb-4 font-medium">
             Exchange rates play an important role in determining silver prices in Nepal. Since silver is traded globally
-            in US Dollars, changes in the Nepalese Rupee exchange rate directly affect local pricing.
+            in US Dollars, changes in the <Link href="/market-rates/exchange-rate-nepal/" className="text-blue-600 hover:underline">Nepalese Rupee exchange rate</Link> directly affect local pricing.
           </p>
           <p className="text-slate-700 text-base leading-relaxed mb-10 font-medium">
             When the NPR weakens against the USD, silver prices in Nepal may rise even if international silver prices
@@ -615,17 +615,6 @@ export function SilverSeoContent() {
             Together these indicators provide a more complete picture of the silver market.
           </p>
 
-          {/* Related Links */}
-          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 mb-6 not-prose">
-            <h3 className="text-sm font-black uppercase tracking-widest text-slate-800 mb-4">Related Market Tools</h3>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/market-rates/live-gold-price/" className="text-xs font-bold text-blue-600 hover:underline">Live Gold Price Nepal →</Link>
-              <Link href="/market-rates/exchange-rate-nepal/" className="text-xs font-bold text-blue-600 hover:underline">Exchange Rate Nepal →</Link>
-              <Link href="/calculator/gold-converter/" className="text-xs font-bold text-blue-600 hover:underline">Gold Weight Converter →</Link>
-              <Link href="/calculator/gold-tax/" className="text-xs font-bold text-blue-600 hover:underline">Gold Tax Calculator →</Link>
-              <Link href="/market-rates/" className="text-xs font-bold text-blue-600 hover:underline">All Market Rates →</Link>
-            </div>
-          </div>
 
           {/* People Also Search */}
           <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 mb-6 not-prose">
