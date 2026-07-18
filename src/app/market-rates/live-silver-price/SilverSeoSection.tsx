@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import { getHistoricalSilverData } from '@/lib/marketData'; // Hypothetical
 
 export function SilverSeoSection() {
   const lastUpdated = "2026-07-17T11:00:00+05:45";
