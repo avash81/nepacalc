@@ -36,7 +36,7 @@ const customSchema = {
       "@type": "WebPage",
       "@id": "https://nepacalc.com/market-rates/live-gold-price/#webpage",
       "url": "https://nepacalc.com/market-rates/live-gold-price/",
-      "name": "Gold Price in Nepal Today | Live Gold & Silver Rates (FENEGOSIDA)",
+      "name": "Gold Price in Nepal Today (2083/84) | Live 24K & 22K Rate",
       "description": "Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks."
     },
     {
@@ -154,7 +154,7 @@ export default function Page() {
       <CalcWrapper
         title="Gold Price in Nepal Today (आजको सुनको भाउ)"
         description="Daily precious metal indices strictly synchronized with official FENEGOSIDA benchmarks."
-        crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Gold Price' }]}
+        crumbs={[{ label: 'Market Rates', href: '/market-rates/' }, { label: 'Gold Price' }]}
         isNepal={true}
         relatedCalcs={[
           { name: 'Gold Tax Calculator', slug: '/calculator/gold-tax/' },

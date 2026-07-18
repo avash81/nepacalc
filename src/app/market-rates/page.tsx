@@ -21,6 +21,28 @@ export default function MarketRatesPillarPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "Live Market Rates Nepal | Gold, Silver, Forex & Remittance",
+            "description": "Real-time gold, silver, forex, and remittance rates for Nepal. Synchronized with NRB and FENEGOSIDA data feeds.",
+            "url": "https://nepacalc.com/market-rates/",
+            "mainEntity": {
+              "@type": "ItemList",
+              "itemListElement": marketTools.map((calc, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "url": `https://nepacalc.com${calc.slug}`,
+                "name": calc.name,
+                "description": calc.description
+              }))
+            }
+          })
+        }}
+      />
       <JsonLd
         type="breadcrumb"
         breadcrumbItems={[
