@@ -46,6 +46,27 @@ export async function GET() {
       }
     }
 
+    // Secondary fallback: LivePriceOfGold (Real-time Global/Local aggregator)
+    if (provider === 'FENEGOSIDA Fallback') {
+       try {
+         const lpgRes = await fetch('https://livepriceofgold.com/silver-price/nepal.html', {
+           next: { revalidate: 3600 },
+           headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
+         });
+         if (lpgRes.ok) {
+           const lpgHtml = await lpgRes.text();
+           const silverTolaMatch = lpgHtml.match(/Silver\/Tola.*?<td[^>]*>.*?<td[^>]*>([0-9,]+\.[0-9]+)<\/td>/s);
+           if (silverTolaMatch && silverTolaMatch[1]) {
+             const parsedLpgSilver = parseFloat(silverTolaMatch[1].replace(/,/g, ''));
+             if (parsedLpgSilver > 3000 && parsedLpgSilver < 8000) {
+                silverPrice = Math.round(parsedLpgSilver);
+                provider = 'LivePriceOfGold (Real-Time Backup)';
+             }
+           }
+         }
+       } catch(e) {}
+    }
+
     return NextResponse.json({
       success: true,
       gold: {
