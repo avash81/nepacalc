@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 
-export const dynamic = 'force-dynamic';
+// NOTE: This API route runs only in development (Next.js dev server).
+// In production, output: 'export' means this file is ignored — all data
+// fetching happens client-side in useLiveRates.ts via direct external API calls.
+export const dynamic = 'force-static';
 
 export async function GET() {
   try {
