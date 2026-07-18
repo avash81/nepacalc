@@ -67,27 +67,6 @@ export default function SilverDashboardClient({
               </div>
            </div>
 
-           {/* AI Overview Safety Block */}
-           <div className="mx-4 sm:mx-6 mt-4 p-4 bg-slate-100 border border-slate-200 rounded-xl text-slate-600 text-[11px] leading-relaxed font-medium">
-             <strong>Note:</strong> Rates shown on this page track the official benchmark rates published by FENEGOSIDA as closely as possible, including standard import duties. Retail purchase prices may vary slightly due to making charges (jyala), wastage (jarti), VAT, and individual jeweler pricing policies.
-           </div>
-
-           {/* Quick Answer Box */}
-           <div id="quick-answer" className="quick-answer-block bg-slate-50/50 mt-4 p-6 border-y border-slate-100 flex flex-col md:flex-row gap-6 items-center">
-             <div className="p-3 bg-slate-200 text-slate-600 rounded-full shrink-0">
-               <Zap className="w-6 h-6" />
-             </div>
-             <div className="flex-1">
-               <h2 className="text-xl font-black text-slate-900 tracking-tighter mb-2">Today's Rate Summary</h2>
-               <p className="text-sm text-slate-700 font-medium leading-relaxed m-0">
-                 The official silver (Chandi) price in Nepal today is <strong>Rs. {fmt(silver.current)}</strong> per Tola and <strong>Rs. {fmt(Math.round(silver.current / 1.1664))}</strong> per 10 Grams. Prices closely reflect FENEGOSIDA benchmarks and include all standard Nepal customs and import duties.
-               </p>
-               <p className="text-sm text-slate-700 font-medium leading-relaxed m-0 mt-3">
-                 <strong>Note:</strong> Since import costs dictate the final price, you should also check <a href="/market-rates/exchange-rate-nepal/" className="text-slate-900 underline font-bold hover:text-blue-600">Today's NRB Exchange Rate</a> and <a href="/market-rates/live-gold-price/" className="text-slate-900 underline font-bold hover:text-blue-600">Live Gold Prices</a>.
-               </p>
-             </div>
-           </div>
-
            {/* Chart Section */}
            <div className="p-6 border-b border-slate-100 bg-slate-50/30">
               <div className="flex items-center justify-between mb-4">
@@ -109,6 +88,29 @@ export default function SilverDashboardClient({
                  />
               </div>
            </div>
+
+           {/* AI Overview Safety Block */}
+           <div className="mx-4 sm:mx-6 mt-4 p-4 bg-slate-100 border border-slate-200 rounded-xl text-slate-600 text-[11px] leading-relaxed font-medium">
+             <strong>Note:</strong> Rates shown on this page track the official benchmark rates published by FENEGOSIDA as closely as possible, including standard import duties. Retail purchase prices may vary slightly due to making charges (jyala), wastage (jarti), VAT, and individual jeweler pricing policies.
+           </div>
+
+           {/* Quick Answer Box */}
+           <div id="quick-answer" className="quick-answer-block bg-slate-50/50 mt-4 p-6 border-y border-slate-100 flex flex-col md:flex-row gap-6 items-center">
+             <div className="p-3 bg-slate-200 text-slate-600 rounded-full shrink-0">
+               <Zap className="w-6 h-6" />
+             </div>
+             <div className="flex-1">
+               <h2 className="text-xl font-black text-slate-900 tracking-tighter mb-2">Today's Rate Summary</h2>
+               <p className="text-sm text-slate-700 font-medium leading-relaxed m-0">
+                 The official silver (Chandi) price in Nepal today is <strong>Rs. {fmt(silver.current)}</strong> per Tola and <strong>Rs. {fmt(Math.round(silver.current / 1.1664))}</strong> per 10 Grams. Prices closely reflect FENEGOSIDA benchmarks and include all standard Nepal customs and import duties.
+               </p>
+               <p className="text-sm text-slate-700 font-medium leading-relaxed m-0 mt-3">
+                 <strong>Note:</strong> Since import costs dictate the final price, you should also check <a href="/market-rates/exchange-rate-nepal/" className="text-slate-900 underline font-bold hover:text-blue-600">Today's NRB Exchange Rate</a> and <a href="/market-rates/live-gold-price/" className="text-slate-900 underline font-bold hover:text-blue-600">Live Gold Prices</a>.
+               </p>
+             </div>
+           </div>
+
+
 
            {/* Table Section */}
            <div className="p-8">
