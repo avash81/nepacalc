@@ -288,6 +288,7 @@ export default function Page() {
         }
         crumbs={[{ label: 'Directory', href: '/directory/' }, { label: 'Silver Price' }]}
         isNepal={true}
+        hideHeader={true}
         relatedCalcs={[
           { name: 'Live Gold Price', slug: '/market-rates/live-gold-price/' },
           { name: 'Exchange Rate Nepal', slug: '/market-rates/exchange-rate-nepal/' },
