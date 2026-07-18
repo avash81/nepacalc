@@ -196,7 +196,9 @@ export function useLiveRates() {
 
   useEffect(() => {
     fetchRates();
-    const interval = setInterval(fetchRates, 600000); 
+    // Refresh every 30 min — FENEGOSIDA publishes once daily (~11AM NPT)
+    // so 30-min polling is enough to catch the daily update promptly
+    const interval = setInterval(fetchRates, 1800000);
     return () => clearInterval(interval);
   }, []);
 
