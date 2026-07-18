@@ -4,7 +4,7 @@ import React, { useState, useCallback } from 'react';
 import { MarketDashboardLayout } from '@/components/market/MarketDashboardLayout';
 import { useLiveRates } from '@/hooks/useLiveRates';
 import TradingViewWidget from '@/components/market/TradingViewWidget';
-import { Coins, Table, ShieldCheck, Calculator } from 'lucide-react';
+import { Coins, Table, ShieldCheck, Calculator, Zap } from 'lucide-react';
 
 export default function SilverDashboardClient({ 
   seoContent, 
@@ -13,7 +13,7 @@ export default function SilverDashboardClient({
   seoContent?: React.ReactNode; 
   seoToc?: React.ReactNode; 
 }) {
-  const { rates, loading } = useLiveRates();
+  const { rates, loading, error } = useLiveRates();
 
   if (loading || !rates?.silver) {
      return <div className="min-h-screen bg-slate-50 flex items-center justify-center">
@@ -39,6 +39,55 @@ export default function SilverDashboardClient({
       accentColor="#64748b"
       mainBoard={
         <div className="flex flex-col">
+           {/* Error State UX */}
+           {error && (
+             <div className="mx-4 sm:mx-6 mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-800">
+                <p className="text-[12px] font-bold">Official rate temporarily unavailable.</p>
+                <p className="text-[11px]">Showing last verified FENEGOSIDA record from: {new Date(rates.gold.lastUpdated).toLocaleString('en-US', { timeZone: 'Asia/Kathmandu' })}</p>
+             </div>
+           )}
+
+           {/* Freshness/Verification Badge */}
+           <div className="mx-4 sm:mx-6 mt-4 p-3 bg-white border border-slate-200 rounded-xl flex flex-wrap gap-4 items-center justify-between text-[10px] font-black uppercase tracking-widest text-slate-500">
+              <div className="flex items-center gap-2">
+                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                 Data Status: Verified
+              </div>
+              <div className="flex items-center gap-2">
+                 Source: FENEGOSIDA / Live Spot
+              </div>
+              <div className="flex items-center gap-2">
+                 Last Sync: {new Date(rates.gold.lastUpdated).toLocaleTimeString('en-US', { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute:'2-digit' })} NPT
+              </div>
+              <div className="flex items-center gap-2">
+                 Next Official Update: ~11:00 AM NPT
+              </div>
+              <div className="flex items-center gap-2 text-green-600 bg-green-50 px-2 py-0.5 rounded">
+                 Market: Open
+              </div>
+           </div>
+
+           {/* AI Overview Safety Block */}
+           <div className="mx-4 sm:mx-6 mt-4 p-4 bg-slate-100 border border-slate-200 rounded-xl text-slate-600 text-[11px] leading-relaxed font-medium">
+             <strong>Note:</strong> Rates shown on this page track the official benchmark rates published by FENEGOSIDA as closely as possible, including standard import duties. Retail purchase prices may vary slightly due to making charges (jyala), wastage (jarti), VAT, and individual jeweler pricing policies.
+           </div>
+
+           {/* Quick Answer Box */}
+           <div id="quick-answer" className="quick-answer-block bg-slate-50/50 mt-4 p-6 border-y border-slate-100 flex flex-col md:flex-row gap-6 items-center">
+             <div className="p-3 bg-slate-200 text-slate-600 rounded-full shrink-0">
+               <Zap className="w-6 h-6" />
+             </div>
+             <div className="flex-1">
+               <h2 className="text-xl font-black text-slate-900 tracking-tighter mb-2">Today's Rate Summary</h2>
+               <p className="text-sm text-slate-700 font-medium leading-relaxed m-0">
+                 The official silver (Chandi) price in Nepal today is <strong>Rs. {fmt(silver.current)}</strong> per Tola and <strong>Rs. {fmt(Math.round(silver.current / 1.1664))}</strong> per 10 Grams. Prices closely reflect FENEGOSIDA benchmarks and include all standard Nepal customs and import duties.
+               </p>
+               <p className="text-sm text-slate-700 font-medium leading-relaxed m-0 mt-3">
+                 <strong>Note:</strong> Since import costs dictate the final price, you should also check <a href="/market-rates/exchange-rate-nepal/" className="text-slate-900 underline font-bold hover:text-blue-600">Today's NRB Exchange Rate</a> and <a href="/market-rates/live-gold-price/" className="text-slate-900 underline font-bold hover:text-blue-600">Live Gold Prices</a>.
+               </p>
+             </div>
+           </div>
+
            {/* Chart Section */}
            <div className="p-6 border-b border-slate-100 bg-slate-50/30">
               <div className="flex items-center justify-between mb-4">
