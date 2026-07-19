@@ -18,11 +18,13 @@ interface Props {
   hideHeader?: boolean;
   hideBreadcrumb?: boolean;
   disableSchema?: boolean;
+  titleClassName?: string;
+  compactHeader?: boolean;
 }
 
 export function CalcWrapper({
   title, description, crumbs, isNepal,
-  children, formula, relatedCalcs, hideHeader = false, hideBreadcrumb = false, disableSchema = false
+  children, formula, relatedCalcs, hideHeader = false, hideBreadcrumb = false, disableSchema = false, titleClassName, compactHeader
 }: Props) {
   return (
     <div lang={isNepal ? 'ne' : 'en'} className="min-h-screen bg-white">

@@ -326,21 +326,18 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
       compactHeader={true}
       inputs={inputsComponent}
       results={resultsComponent}
-      ads={{
-        sidebar: (
-          <div className="hidden md:block w-full bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-5 shadow-sm text-left">
-            <h2 className="text-[11px] font-black text-[#202124] uppercase tracking-widest mb-3">Table of Contents</h2>
-            <nav className="flex flex-col gap-2 text-[12px] text-blue-600 font-medium">
-              <a href="#understanding-measurements" className="hover:underline flex items-center gap-1.5">Understanding Measurements</a>
-              <a href="#conversion-table" className="hover:underline flex items-center gap-1.5">Conversion Table</a>
-              <a href="#official-standard" className="hover:underline flex items-center gap-1.5">Official Standard</a>
-              <a href="#who-uses" className="hover:underline flex items-center gap-1.5">Who Uses This Converter?</a>
-              <a href="#popular-conversions" className="hover:underline flex items-center gap-1.5">Popular Conversions</a>
-              <a href="#common-conversions" className="hover:underline flex items-center gap-1.5">Common Conversions</a>
-            </nav>
-          </div>
-        )
-      }}
+              ads={{
+          inContent: (
+            <div className="w-full bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-5 shadow-sm text-left mb-6">
+              <h2 className="text-[11px] font-black text-[#202124] uppercase tracking-widest mb-3">Table of Contents</h2>
+              <nav className="flex flex-col gap-2 text-[12px] text-blue-600 font-medium">
+                <a href="#professional-guidance" className="hover:underline flex items-center gap-1.5">Professional Guidance</a>
+                <a href="#understanding-measurements" className="hover:underline flex items-center gap-1.5">Understanding Measurements</a>
+                <a href="#formulas" className="hover:underline flex items-center gap-1.5">Conversion Constants & Formulas</a>
+              </nav>
+            </div>
+          )
+        }}
       details={
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6">
@@ -433,7 +430,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
             <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
               <div className="space-y-6 text-[#3C4043] text-[13px] leading-relaxed">
                 <div>
-                  <h2 className="text-base font-bold text-[#202124] mb-3">Professional Computational Guidance: Nepal Gold Weight Converter (Tola, Gram, Aana, Lal)</h2>
+                  <h2 id="professional-guidance" className="text-base font-bold text-[#202124] mb-3 scroll-mt-24">Professional Computational Guidance: Nepal Gold Weight Converter (Tola, Gram, Aana, Lal)</h2>
                   <p className="mb-4">
                     Navigating traditional jewelry measurements in Nepal can be confusing, especially when balancing historical local scales with modern metric weights. Whether you are auditing family heirlooms, calculating custom jewelry fabrication costs, or verifying weights against official benchmarks, accuracy is paramount.
                   </p>
@@ -443,7 +440,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
                 </div>
 
                 <div>
-                  <h2 className="text-base font-bold text-[#202124] mb-3">📐 Understanding the Nepal Gold Measurement System (1 Tola = 100 Lal)</h2>
+                  <h2 id="understanding-measurements" className="text-base font-bold text-[#202124] mb-3 scroll-mt-24">📐 Understanding the Nepal Gold Measurement System (1 Tola = 100 Lal)</h2>
                   <p className="mb-4">
                     In the Nepali gold market, the Tola (तोला) is the foundational baseline unit of mass. However, for smaller pieces of jewelry like rings, nose pins (Phuli), and earrings, jewelers break weights down into Aana and Lal (लाल).
                   </p>
@@ -459,7 +456,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
                 </div>
 
                 <div>
-                  <h2 className="text-base font-bold text-[#202124] mb-3">🧮 Mathematical Conversion Constants & Formulas</h2>
+                  <h2 id="formulas" className="text-base font-bold text-[#202124] mb-3 scroll-mt-24">🧮 Mathematical Conversion Constants & Formulas</h2>
                   <h3 className="font-bold text-[#202124] mb-2">How to Convert Lal to Gram</h3>
                   <p className="mb-2">Because 1 Tola equals 100 Lal and weighs exactly 11.6638 grams, a single Lal is exceptionally light.</p>
                   <div className="bg-[#F8F9FA] p-3 rounded mb-4 font-mono text-sm border border-[#DADCE0]">Weight in Grams = Total Lal × 0.116638</div>

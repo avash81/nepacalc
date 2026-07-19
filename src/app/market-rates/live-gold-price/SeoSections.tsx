@@ -5,11 +5,7 @@ import HistoricalData from './HistoricalData';
 export default function SeoSections() {
   return (
     <div className="space-y-16 mt-8">
-      {/* Hidden H1 for SEO (since the dashboard UI doesn't naturally fit a giant text block) or visible if preferred */}
-      <div className="px-6 pb-2">
-        <h1 className="text-3xl font-black text-slate-900 tracking-tighter">Live Gold Price in Nepal Today</h1>
-        <p className="text-slate-600 mt-2 text-sm font-medium">Track today's official 24K Hallmark and 22K Tejabi gold prices per tola and gram, strictly synchronized with daily FENEGOSIDA benchmarks.</p>
-      </div>
+      
       
       {/* Table of Contents */}
       <nav aria-label="Table of Contents" className="bg-slate-50 p-6 rounded-2xl border border-slate-200">
