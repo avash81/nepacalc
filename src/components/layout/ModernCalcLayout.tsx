@@ -39,10 +39,11 @@ interface ModernCalcLayoutProps {
   intro?: ReactNode;
   customSchema?: object;
   compactHeader?: boolean;
+  titleClassName?: string;
 }
 
 export function ModernCalcLayout({
-  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, layout = 'split', ads, hideH1 = false, intro, customSchema, compactHeader = false
+  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, layout = 'split', ads, hideH1 = false, intro, customSchema, compactHeader = false, titleClassName
 }: ModernCalcLayoutProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [liveRates, setLiveRates] = useState<MarketRate[]>([]);
@@ -191,7 +192,7 @@ export function ModernCalcLayout({
               </nav>
             )}
             {!hideH1 && (
-              <h1 className={`${compactHeader ? 'text-2xl sm:text-3xl' : 'text-3xl sm:text-4xl'} font-bold text-[#202124] tracking-tight mb-1`}>{title}</h1>
+              <h1 className={titleClassName || `${compactHeader ? 'text-2xl sm:text-3xl' : 'text-3xl sm:text-4xl'} font-bold text-[#202124] tracking-tight mb-1`}>{title}</h1>
             )}
           </div>
           <div className="flex items-center gap-3">
