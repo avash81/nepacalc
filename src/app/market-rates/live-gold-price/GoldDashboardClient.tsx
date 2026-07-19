@@ -4,7 +4,8 @@ import React from 'react';
 import { useLiveRates } from '@/hooks/useLiveRates';
 import QuickPriceEstimator from '@/app/market-rates/live-gold-price/QuickPriceEstimator';
 import TradingViewWidget from '@/components/market/TradingViewWidget';
-import { Trophy, Table, History, Zap } from 'lucide-react';
+import { Trophy, Table, History, Zap, ArrowLeft, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 import SeoSections from './SeoSections';
 
 export default function GoldDashboardClient() {
@@ -36,38 +37,55 @@ export default function GoldDashboardClient() {
   return (
     <div className="max-w-[1000px] mx-auto pb-12">
       
-      {/* 1. Live Price Table */}
-      <div id="live-price" className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6 scroll-mt-24">
-        <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center gap-2">
-          <Table className="w-5 h-5 text-amber-500" />
-          <h2 className="text-sm font-black uppercase tracking-widest text-slate-900">Nepal Benchmark Rates</h2>
+      {/* Custom Header: Breadcrumbs + H1 (Left) & Big Live Price (Right) */}
+      <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-8 border-b border-slate-200 pb-6">
+        <div className="flex-1">
+          {/* Breadcrumb */}
+          <div className="mb-4 flex flex-wrap items-center gap-4">
+            <button 
+              onClick={() => window.history.length > 2 ? window.history.back() : (window.location.href = '/')}
+              className="flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest text-[#5F6368] hover:text-blue-600 transition-all border-r border-[#dadce0] pr-4 py-1"
+            >
+              <ArrowLeft className="w-4 h-4" /> <span>Back</span>
+            </button>
+            <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-2 text-[13px] font-medium text-[#5f6368]">
+              <Link href="/" className="hover:text-blue-600 hover:underline">Home</Link>
+              <span className="text-slate-300">/</span>
+              <Link href="/market-rates/" className="hover:text-blue-600 hover:underline">Market Rates</Link>
+              <span className="text-slate-300">/</span>
+              <span className="text-[#202124] font-bold">Gold Price</span>
+            </nav>
+          </div>
+          {/* H1 & Description */}
+          <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-2 lowercase first-letter:uppercase">
+            Gold Price in Nepal Today
+          </h1>
+          <p className="text-[#5f6368] text-base font-medium leading-relaxed max-w-xl">
+            Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks.
+          </p>
         </div>
-        <div className="p-0 overflow-x-auto">
-          <table className="w-full text-left">
-            <thead>
-              <tr className="border-b border-slate-100 text-[11px] font-black text-slate-400 uppercase tracking-widest bg-slate-50/50">
-                <th className="py-3 px-6" scope="col">Standard</th>
-                <th className="py-3 px-6" scope="col">Unit</th>
-                <th className="py-3 px-6 text-right" scope="col">Rate (NPR)</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-50">
-              {tables.map((row, i) => (
-                <tr key={i} className="hover:bg-slate-50/50 transition-colors">
-                  <td className="py-4 px-6">
-                    <div className="flex flex-col">
-                      <span className="text-[14px] font-black text-slate-800">{row.label}</span>
-                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mt-0.5">{row.np}</span>
-                    </div>
-                  </td>
-                  <td className="py-4 px-6 text-[12px] font-black text-slate-500 uppercase tracking-widest">{row.unit}</td>
-                  <td className="py-4 px-6 text-right">
-                    <span className={`text-[17px] font-black tracking-tighter ${row.isTejabi && tejabiTolaNPR === 0 ? 'text-slate-400' : 'text-slate-900'}`}>{row.display}</span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+
+        {/* Big Live Price Box */}
+        <div className="flex flex-col bg-white border border-slate-200 rounded-2xl p-5 shadow-sm min-w-[280px]">
+          <div className="flex flex-col gap-1">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-[11px] font-black uppercase tracking-widest text-emerald-600">Live Market Feed</span>
+            </div>
+            <span className="text-xs font-medium text-slate-500">Official 24K Hallmark Rate</span>
+          </div>
+          <div className="flex items-baseline gap-2 mt-3">
+            <span className="text-xl font-bold text-slate-400">Rs.</span>
+            <span className="text-4xl font-black tracking-tighter text-slate-900">{fmt(tolaNPR.current)}</span>
+          </div>
+          {tolaNPR.changePercent24h !== undefined && (
+            <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-3">
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">24H Change</span>
+              <div className={`px-2 py-0.5 rounded text-xs font-black flex items-center gap-1 ${tolaNPR.changePercent24h >= 0 ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
+                {tolaNPR.changePercent24h >= 0 ? '+' : ''}{tolaNPR.changePercent24h}%
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -149,6 +167,7 @@ export default function GoldDashboardClient() {
       <div className="bg-slate-50 rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 mb-6">
         <h2 className="text-xl font-bold mb-4">Table of Contents</h2>
         <ul className="list-none pl-0 space-y-2 text-blue-600 font-medium">
+          <li><a href="#live-price" className="hover:underline">Nepal Benchmark Rates</a></li>
           <li><a href="#calculator" className="hover:underline">Quick Valuation Calculator</a></li>
           <li><a href="#ai-summary" className="hover:underline">Market Intelligence &amp; AI Summary</a></li>
           <li><a href="#how-its-calculated" className="hover:underline">How Gold Prices Are Calculated in Nepal</a></li>
@@ -156,6 +175,41 @@ export default function GoldDashboardClient() {
           <li><a href="#faq" className="hover:underline">Frequently Asked Questions</a></li>
           <li><a href="#archives" className="hover:underline">FENEGOSIDA Archives &amp; Notices</a></li>
         </ul>
+      </div>
+
+      {/* 1. Live Price Table (Moved here) */}
+      <div id="live-price" className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden mb-6 scroll-mt-24">
+        <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex items-center gap-2">
+          <Table className="w-5 h-5 text-amber-500" />
+          <h2 className="text-sm font-black uppercase tracking-widest text-slate-900">Nepal Benchmark Rates</h2>
+        </div>
+        <div className="p-0 overflow-x-auto">
+          <table className="w-full text-left">
+            <thead>
+              <tr className="border-b border-slate-100 text-[11px] font-black text-slate-400 uppercase tracking-widest bg-slate-50/50">
+                <th className="py-3 px-6" scope="col">Standard</th>
+                <th className="py-3 px-6" scope="col">Unit</th>
+                <th className="py-3 px-6 text-right" scope="col">Rate (NPR)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-50">
+              {tables.map((row, i) => (
+                <tr key={i} className="hover:bg-slate-50/50 transition-colors">
+                  <td className="py-4 px-6">
+                    <div className="flex flex-col">
+                      <span className="text-[14px] font-black text-slate-800">{row.label}</span>
+                      <span className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mt-0.5">{row.np}</span>
+                    </div>
+                  </td>
+                  <td className="py-4 px-6 text-[12px] font-black text-slate-500 uppercase tracking-widest">{row.unit}</td>
+                  <td className="py-4 px-6 text-right">
+                    <span className={`text-[17px] font-black tracking-tighter ${row.isTejabi && tejabiTolaNPR === 0 ? 'text-slate-400' : 'text-slate-900'}`}>{row.display}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {/* Calculator Integration */}

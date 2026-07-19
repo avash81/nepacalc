@@ -68,6 +68,7 @@ export default function Page() {
         crumbs={[{ label: 'Market Rates', href: '/market-rates/' }, { label: 'Gold Price' }]}
         isNepal={true}
         compactHeader={true}
+        hideHeader={true}
         relatedCalcs={[
           { name: 'Gold Tax Calculator', slug: '/calculator/gold-tax/' },
           { name: 'Gold Converter', slug: '/calculator/gold-converter/' },
