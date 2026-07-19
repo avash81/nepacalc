@@ -326,58 +326,6 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
       compactHeader={true}
       inputs={inputsComponent}
       results={resultsComponent}
-      howToUse={{
-        steps: [
-          "Enter any weight in Tola, Lal, Aana, or Gram — all other fields auto-convert instantly.",
-          "Select your gold standard: 24K Hallmark (99.9% purity) or 22K Tejabi (91.6% purity).",
-          "The live rate syncs automatically from FENEGOSIDA daily benchmarks.",
-          "Add your jeweler's crafting charge (Jyala) as a fixed Rs. amount or a percentage.",
-          "Review the Metal Retention Efficiency score to evaluate the value of your ornament."
-        ]
-      }}
-      formula={{
-        title: "Precious Metal Valuation Calculus",
-        description: "Official industrial algorithm used by jewelry associations in Nepal.",
-        raw: "Total = (Grams ÷ 11.6638) × Rate/Tola + Crafting Charge",
-        variables: [
-          "1 Tola = 11.6638 grams = 100 Lal = 16 Aana",
-          "1 Lal = 0.116638 g | 1 Gram = 8.5735 Lal",
-          "Hallmark: 24K (99.9%) | Tejabi: 22K (91.6%)"
-        ]
-      }}
-      faqs={[
-        { question: "How many grams are in 1 Tola of gold in Nepal?", answer: "One Tola of gold equals 11.6638 grams according to the official Nepal gold measurement system. One Tola is also equal to 100 Lal or 16 Aana." },
-        { question: "How many Lal (Laal) are in 1 Tola?", answer: "One Tola contains exactly 100 Lal (Laal). This is the standard conversion used by jewellery shops and the Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)." },
-        { question: "How many Aana are in 1 Tola?", answer: "One Tola equals 16 Aana. Each Aana is equal to 6.25 Lal or approximately 0.729 grams." },
-        { question: "How do I convert Gram to Lal?", answer: "Divide the weight in grams by 0.116638. Example: 1 gram = 8.5735 Lal, 5 grams = 42.87 Lal, 10 grams = 85.74 Lal. The Nepal Gold Unit Converter performs this calculation automatically." },
-        { question: "How do I convert Lal to Gram?", answer: "Multiply the total Lal by 0.116638. Example: 15 Lal = 1.7496 grams, 20 Lal = 2.3328 grams, 25 Lal = 2.9159 grams, 40 Lal = 4.6655 grams, 50 Lal = 5.8319 grams." },
-        { question: "How many grams is 15 Lal?", answer: "15 Lal = 1.7496 grams, which is 0.15 Tola." },
-        { question: "How many grams is 20 Lal?", answer: "20 Lal = 2.3328 grams, or 0.20 Tola." },
-        { question: "How many grams is 25 Lal?", answer: "25 Lal = 2.9159 grams, or 0.25 Tola." },
-        { question: "How many grams is 40 Lal?", answer: "40 Lal = 4.6655 grams, which equals 0.40 Tola." },
-        { question: "How many grams is 50 Lal?", answer: "50 Lal = 5.8319 grams, which is exactly half a Tola (0.5 Tola)." },
-        { question: "What is Lal in Nepal?", answer: "Lal (लाल) is a traditional gold weight unit used in Nepal. 100 Lal = 1 Tola, 1 Lal = 0.116638 grams. Jewellers commonly use Lal when measuring smaller ornaments." },
-        { question: "What is Aana in Nepal gold measurement?", answer: "Aana (आना) is another traditional Nepali gold weight unit. 16 Aana = 1 Tola, 1 Aana = 6.25 Lal, 1 Aana = 0.729 grams." },
-        { question: "What is the difference between Hallmark and Tejabi gold?", answer: "Hallmark gold is certified for purity and generally refers to 24K (99.9%) or other certified purity levels. Tejabi gold is traditionally 22K (91.6%) and is commonly used for jewellery because it is more durable than pure 24K gold." },
-        { question: "How many Lal are in 1 Gram?", answer: "One Gram equals approximately 8.5735 Lal. You can convert Gram to Lal instantly using the Nepal Gold Unit Converter, which uses the official conversion factor based on 1 Tola = 11.6638 grams = 100 Lal." },
-        { question: "Who sets gold rates in Nepal?", answer: "Daily gold prices in Nepal are published by the Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA). The Nepal Gold Unit Converter uses the official Nepal gold measurement system for accurate weight conversions, while current market prices should always be verified using the latest FENEGOSIDA rate." }
-      ]}
-      sidebar={{
-        title: "Market Suite",
-        subtitle: "Related Tools",
-        links: [
-          { label: "Live Gold Price", href: "/market-rates/live-gold-price/", icon: History },
-          { label: "Gold Tax Calculator", href: "/calculator/gold-tax/", icon: Wallet },
-          { label: "Currency Converter", href: "/calculator/currency-converter/", icon: Globe },
-          { label: "FENEGOSIDA (Official)", href: "https://www.fenegosida.org/", icon: ExternalLink },
-        ],
-      }}
-      relatedTools={[
-        { label: "Live Gold Price Today", href: "/market-rates/live-gold-price/" },
-        { label: "Gold Tax Calculator", href: "/calculator/gold-tax/" },
-        { label: "Nepal Income Tax", href: "/calculator/nepal-income-tax/" },
-        { label: "Currency Converter", href: "/calculator/currency-converter/" }
-      ]}
     />
   );
 }

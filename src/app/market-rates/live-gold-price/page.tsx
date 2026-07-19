@@ -3,16 +3,16 @@ import GoldDashboardClient from './GoldDashboardClient';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 
 export const metadata: Metadata = {
-  title: 'Gold Price in Nepal Today (2083/84) | Live 24K & 22K Rate',
-  description: 'Live gold price in Nepal today — official 24K and 22K rates per tola and gram, synced with FENEGOSIDA. Includes calculator and price history.',
+  title: 'Gold Price in Nepal Today (2083/84) – Live FENEGOSIDA Gold Rate',
+  description: 'Check today\'s live gold price in Nepal updated from FENEGOSIDA. View 24K Hallmark, 22K Tejabi and silver rates, historical price charts, market analysis and gold price calculator.',
   keywords: [
     'gold price nepal today', 'gold rate nepal', 'live gold price nepal',
     '24k gold price nepal', '22k gold rate nepal', 'tola gold price today',
     'fenegosida gold rate', 'gold price per gram nepal'
   ],
   openGraph: {
-    title: 'Gold Price in Nepal Today | Live 24K & 22K Rate',
-    description: 'Official FENEGOSIDA gold rates in Nepal, updated daily per tola and gram, with a built-in gold calculator and price history.',
+    title: 'Gold Price in Nepal Today (2083/84) – Live FENEGOSIDA Gold Rate',
+    description: 'Check today\'s live gold price in Nepal updated from FENEGOSIDA. View 24K Hallmark, 22K Tejabi and silver rates, historical price charts, market analysis and gold price calculator.',
     url: 'https://nepacalc.com/market-rates/live-gold-price/',
     siteName: 'NepaCalc',
     images: [{ url: 'https://nepacalc.com/images/og/gold-price-nepal.png?date=2024-01-01' }],
@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Gold Price in Nepal Today',
-    description: 'Live 24K & 22K gold rates per tola and gram, FENEGOSIDA-synced.',
+    title: 'Gold Price in Nepal Today (2083/84) – Live FENEGOSIDA Gold Rate',
+    description: 'Check today\'s live gold price in Nepal updated from FENEGOSIDA.',
     images: ['https://nepacalc.com/images/og/gold-price-nepal.png?date=2024-01-01']
   },
   alternates: {

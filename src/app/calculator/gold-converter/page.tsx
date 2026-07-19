@@ -45,6 +45,85 @@ const breadcrumbSchema = {
   ]
 };
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many grams are in 1 Tola of gold in Nepal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One Tola of gold equals 11.6638 grams according to the official Nepal gold measurement system. One Tola is also equal to 100 Lal or 16 Aana."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many Lal are in 1 Gram?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1 Gram equals approximately 8.5735 Lal using the official Nepal gold measurement standard. You can convert Gram to Lal instantly using the Nepal Gold Unit Converter, which uses the official conversion factor based on 1 Tola = 11.6638 grams = 100 Lal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many Lal (Laal) are in 1 Tola?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One Tola contains exactly 100 Lal (Laal). This is the standard conversion used by jewellery shops and the Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many Aana are in 1 Tola?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One Tola equals 16 Aana. Each Aana is equal to 6.25 Lal or approximately 0.729 grams."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert Gram to Lal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide the weight in grams by 0.116638. Example: 1 gram = 8.5735 Lal, 5 grams = 42.87 Lal, 10 grams = 85.74 Lal. The Nepal Gold Unit Converter performs this calculation automatically."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert Lal to Gram?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multiply the total Lal by 0.116638. Example: 15 Lal = 1.7496 grams, 20 Lal = 2.3328 grams, 25 Lal = 2.9159 grams, 40 Lal = 4.6655 grams, 50 Lal = 5.8319 grams."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many grams is 15 Lal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "15 Lal = 1.7496 grams, which is 0.15 Tola."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between Hallmark and Tejabi gold?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hallmark gold is certified for purity and generally refers to 24K (99.9%) or other certified purity levels. Tejabi gold is traditionally 22K (91.6%) and is commonly used for jewellery because it is more durable than pure 24K gold."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who sets gold rates in Nepal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Daily gold prices in Nepal are published by the Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA). The Nepal Gold Unit Converter uses the official Nepal gold measurement system for accurate weight conversions, while current market prices should always be verified using the latest FENEGOSIDA rate."
+      }
+    }
+  ]
+};
+
 export default function Page() {
   return (
     <>
@@ -52,13 +131,17 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <Calculator />
       
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 text-slate-800 prose prose-slate max-w-none">
           
           <p className="text-lg leading-relaxed mb-10">
-            Navigating traditional jewelry measurements in Nepal can be confusing, especially when balancing historical local scales with modern metric weights. Whether you are auditing family heirlooms, calculating custom jewelry fabrication costs, or verifying weights against official benchmarks, accuracy is paramount. Our automated gold calculator simplifies the process, instantly converting between international Grams (g) and traditional domestic units: Tola, Aana, Ratti, and Lal. If you need current valuation, view today's <Link href="/market-rates/live-gold-price/" className="text-blue-600 hover:underline">live gold price in Nepal</Link>.
+            Our Nepal Gold Unit Converter instantly converts between Tola, Lal, Aana, Gram, and Ratti using the official Nepal gold measurement standard. Whether you're buying jewellery, checking ornament weight, or converting traditional Nepali gold units into grams, the calculator provides instant and accurate results. If you need current valuation, view today's <Link href="/market-rates/live-gold-price/" className="text-blue-600 hover:underline">live gold price in Nepal</Link>.
           </p>
 
           {/* ── Table of Contents ── */}
@@ -67,8 +150,10 @@ export default function Page() {
             <ul className="list-none pl-0 space-y-2 text-blue-600 font-medium">
               <li><a href="#understanding-measurements" className="hover:underline">Understanding the Nepal Gold Measurement System</a></li>
               <li><a href="#conversion-table" className="hover:underline">Nepal Gold Conversion Table</a></li>
-              <li><a href="#official-standard" className="hover:underline">Official Nepal Gold Measurement Standard</a></li>
-              <li><a href="#formulas" className="hover:underline">Mathematical Conversion Constants & Formulas</a></li>
+              <li><a href="#official-standard" className="hover:underline">Official Nepal Gold Measurement Standard (FENEGOSIDA & NBSM)</a></li>
+              <li><a href="#formulas" className="hover:underline">Gold Conversion Formulas</a></li>
+              <li><a href="#faqs" className="hover:underline">Frequently Asked Questions</a></li>
+              <li><a href="#related-tools" className="hover:underline">Related Tools</a></li>
             </ul>
           </div>
 
@@ -115,14 +200,14 @@ export default function Page() {
             </table>
           </div>
 
-          <h2 id="official-standard" className="text-2xl font-black text-slate-900 mt-12 mb-6">Official Nepal Gold Measurement Standard</h2>
+          <h2 id="official-standard" className="text-2xl font-black text-slate-900 mt-12 mb-6">Official Nepal Gold Measurement Standard (FENEGOSIDA & NBSM)</h2>
           <div className="mb-6 space-y-4">
             <p>
               Gold prices in Nepal change daily based on international bullion markets, USD exchange rates, and domestic demand. The <a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="text-blue-600 hover:underline">Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)</a> publishes the official benchmark rates used by jewellery businesses across Nepal. This converter uses the official Nepal gold measurement system and is designed to work alongside the latest published market prices. You can also view the <Link href="/market-rates/live-silver-price/" className="text-blue-600 hover:underline">live silver price in Nepal</Link> for current silver rates.
             </p>
           </div>
 
-          <h2 id="formulas" className="text-2xl font-black text-slate-900 mt-12 mb-6">Mathematical Conversion Constants & Formulas</h2>
+          <h2 id="formulas" className="text-2xl font-black text-slate-900 mt-12 mb-6">Gold Conversion Formulas</h2>
           <div className="mb-6">
             <h3 className="font-bold text-slate-900 mb-2">How to Convert Lal to Gram</h3>
             <p className="mb-2">Because 1 Tola equals 100 Lal and weighs exactly 11.6638 grams, a single Lal is exceptionally light.</p>
@@ -132,6 +217,32 @@ export default function Page() {
             <h3 className="font-bold text-slate-900 mb-2">How to Convert Gram to Lal</h3>
             <p className="mb-2">If you have a digital kitchen scale or a laboratory balance measuring an item in grams, translate it back to traditional units using this division formula. Additionally, if you are bringing commercial gold into the country, you can use our <Link href="/calculator/gold-tax/" className="text-blue-600 font-bold hover:underline">gold tax calculator</Link> to estimate customs duties.</p>
             <div className="bg-slate-50 p-4 rounded-lg font-mono text-sm border border-slate-200 mb-4 text-slate-800">Weight in Lal = Weight in Grams ÷ 0.116638</div>
+          </div>
+
+          <h2 id="faqs" className="text-2xl font-black text-slate-900 mt-12 mb-6">Frequently Asked Questions</h2>
+          <div className="space-y-6">
+            {faqSchema.mainEntity.map((faq, index) => (
+              <div key={index} className="border-b border-slate-100 pb-4 last:border-0 last:pb-0">
+                <h3 className="font-bold text-slate-900 mb-2">{faq.name}</h3>
+                <p className="text-slate-700 leading-relaxed text-[15px]">{faq.acceptedAnswer.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <h2 id="related-tools" className="text-2xl font-black text-slate-900 mt-12 mb-6">Related Tools</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Link href="/market-rates/live-gold-price/" className="flex items-center p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors">
+              <span className="font-bold text-slate-800">Live Gold Price in Nepal</span>
+            </Link>
+            <Link href="/calculator/gold-tax/" className="flex items-center p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors">
+              <span className="font-bold text-slate-800">Nepal Gold Tax Calculator</span>
+            </Link>
+            <Link href="/market-rates/live-silver-price/" className="flex items-center p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors">
+              <span className="font-bold text-slate-800">Live Silver Price in Nepal</span>
+            </Link>
+            <Link href="/calculator/currency-converter/" className="flex items-center p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors">
+              <span className="font-bold text-slate-800">Currency Converter</span>
+            </Link>
           </div>
 
         </div>

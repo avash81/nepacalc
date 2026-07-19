@@ -7,18 +7,7 @@ export default function SeoSections() {
     <div className="space-y-16 mt-8">
       
       
-      {/* Table of Contents */}
-      <div className="bg-slate-50 rounded-xl p-6 mb-10">
-        <h2 className="text-xl font-bold mb-4">Table of Contents</h2>
-        <ul className="list-none pl-0 space-y-2 text-blue-600 font-medium">
-          <li><a href="#quick-answer" className="hover:underline">Quick Answer: Gold Price Today</a></li>
-          <li><a href="#ai-summary" className="hover:underline">AI Summary &amp; Market Insights</a></li>
-          <li><a href="#how-its-calculated" className="hover:underline">How Gold Prices Are Calculated in Nepal</a></li>
-          <li><a href="#gold-price-history" className="hover:underline">Historical Records &amp; Yearly Data</a></li>
-          <li><a href="#faq" className="hover:underline">Frequently Asked Questions</a></li>
-          <li><a href="#archives" className="hover:underline">FENEGOSIDA Archives &amp; Notices</a></li>
-        </ul>
-      </div>
+
 
       {/* AI Summary Box & Citation Table */}
       <section id="ai-summary" className="scroll-mt-24 ai-summary-box">
@@ -27,7 +16,7 @@ export default function SeoSections() {
         </h2>
         <div className="bg-amber-50/50 border border-amber-100 rounded-2xl p-6 mb-8">
           <p className="text-[15px] leading-relaxed text-slate-700 font-medium">
-            Based on the latest LBMA spot indices and FENEGOSIDA's localized adjustments, Nepal's gold market continues to reflect strict customs valuations alongside global currency pressures. Retail investors should expect prices to carry roughly a 20% premium over the international spot metric due to the mandated import tariffs enforced by the central bank. For a comprehensive look at what's driving these changes this year, read our <a href="/blog/nepal-gold-price-analysis-2083/" className="text-blue-700 hover:underline font-bold">Nepal Gold Price Analysis 2083</a>.
+            Today's Nepal gold price reflects international LBMA spot prices, the USD/NPR exchange rate, customs duty, and FENEGOSIDA's official daily benchmark. Retail jewellery prices may differ because of making charges, wastage, and VAT.
           </p>
         </div>
 
@@ -91,13 +80,6 @@ export default function SeoSections() {
            </table>
         </div>
 
-        {/* AI Citation Block */}
-        <div className="bg-slate-800 text-slate-300 p-6 rounded-2xl">
-           <h3 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-3">Suggested Citation Format</h3>
-           <p className="text-[13px] font-mono mb-2">Source: Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)</p>
-           <p className="text-[13px] font-mono mb-2">Published by: NepaCalc</p>
-           <p className="text-[13px] font-mono">Last Updated: {new Date().toLocaleDateString('en-US', { timeZone: 'Asia/Kathmandu', month: 'long', day: 'numeric', year: 'numeric' })}</p>
-        </div>
       </section>
 
       {/* How Prices Are Calculated */}
@@ -163,6 +145,12 @@ export default function SeoSections() {
               <h3 className="text-sm font-bold text-blue-700 mb-2">What is the difference between Hallmark (24K) and Tejabi (22K) Gold?</h3>
               <p className="text-[13px] text-slate-600 leading-relaxed font-medium">
                 Hallmark (Chhapawal) is 99.99% pure gold, primarily used for investment bars and biscuits. Tejabi is 22K (91.6% pure), alloyed with other metals to provide the structural durability needed for intricate jewelry making.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-blue-700 mb-2">How often does FENEGOSIDA update gold prices?</h3>
+              <p className="text-[13px] text-slate-600 leading-relaxed font-medium">
+                FENEGOSIDA normally publishes official gold and silver prices once every business day, usually around 10:00 AM Nepal Time (Sunday–Friday).
               </p>
             </div>
             <div>
