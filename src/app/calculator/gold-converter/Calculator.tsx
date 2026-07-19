@@ -343,159 +343,133 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
       }}
       details={
         <div className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Purity audit card */}
+          <div className="grid grid-cols-1 gap-6">
+
+            {/* Understanding Nepal Gold Measurements */}
             <div id="understanding-measurements" className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm scroll-mt-24">
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-1.5 h-4 bg-amber-500 rounded-full" />
                 <h2 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Understanding Nepal Gold Measurements</h2>
               </div>
-              <div className="space-y-3">
-                <div className="p-3 rounded-lg bg-[#F8F9FA] border border-[#DADCE0] flex justify-between items-center">
-                  <span className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Active Standard</span>
-                  <span className="text-sm font-black text-amber-600">{state.purity === 'tejabi' ? '22K Tejabi (91.6%)' : '24K Hallmark (99.9%)'}</span>
-                </div>
-                {hasInput && (
-                  <>
-                    <div className="p-3 rounded-lg bg-[#F8F9FA] border border-[#DADCE0] flex justify-between items-center">
-                      <span className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Metal Bullion Value</span>
-                      <span className="text-sm font-black text-[#202124]">{fmt(result.basePrice)}</span>
-                    </div>
-                    <div className="p-3 rounded-lg bg-[#E8F0FE] border border-[#1A73E8] flex justify-between items-center">
-                      <span className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Grand Total</span>
-                      <span className="text-sm font-black text-[#1A73E8]">{fmt(result.total)}</span>
-                    </div>
-                  </>
-                )}
-                <div className="mt-4 pt-4 border-t border-[#DADCE0] text-[11px] text-slate-500 leading-relaxed">
-                  Understanding the structural purity and weight measurements of precious metals is crucial for both buyers and sellers in the domestic market. Before evaluating jewelry pieces, it is important to factor in extra costs that may arise during transactions. This involves recognizing the difference between Hallmark and Tejabi standards, checking the daily benchmark rate, and estimating potential duties if you are bringing items from abroad. For accurate estimation of import duties, VAT, and making charges associated with foreign or domestic purchases, you can utilize our <a href="/calculator/gold-tax/" className="text-amber-600 font-bold hover:underline">Gold Tax Calculator</a> to determine your exact financial obligations.
-                </div>
+              <div className="text-[12px] text-slate-500 leading-relaxed">
+                Understanding the structural purity and weight measurements of precious metals is crucial for both buyers and sellers in the domestic market. Before evaluating jewelry pieces, it is important to factor in extra costs that may arise during transactions.
               </div>
             </div>
 
-            {/* Quick reference card */}
+            {/* Nepal Gold Conversion Table */}
             <div id="conversion-table" className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm scroll-mt-24">
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-1.5 h-4 bg-amber-500 rounded-full" />
                 <h2 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Nepal Gold Conversion Table</h2>
               </div>
-              <div className="space-y-2 text-[11px] text-slate-600 font-medium">
-                <div className="flex justify-between border-b border-slate-100 pb-1"><span>1 Tola</span><span className="font-black text-slate-800">= 11.6638 g = 100 Lal = 16 Aana</span></div>
-                <div className="flex justify-between border-b border-slate-100 pb-1"><span>1 Aana</span><span className="font-black text-slate-800">= 6.25 Lal = 0.7290 g</span></div>
-                <div className="flex justify-between border-b border-slate-100 pb-1"><span>1 Lal</span><span className="font-black text-slate-800">= 0.116638 g = 0.01 Tola</span></div>
-                <div className="flex justify-between border-b border-slate-100 pb-1"><span>1 Gram</span><span className="font-black text-slate-800">= 8.5735 Lal = 0.0857 Tola</span></div>
-                <div className="flex justify-between"><span>1 Ratti</span><span className="font-black text-slate-800">≈ 0.0972 g</span></div>
+              <div className="overflow-x-auto mt-4">
+                <table className="w-full text-left text-[12px] border-collapse border border-[#DADCE0]">
+                  <thead className="bg-[#F8F9FA]">
+                    <tr>
+                      <th className="border border-[#DADCE0] p-2 text-slate-700 font-bold">Traditional Unit</th>
+                      <th className="border border-[#DADCE0] p-2 text-slate-700 font-bold">Lal</th>
+                      <th className="border border-[#DADCE0] p-2 text-slate-700 font-bold">Grams (g)</th>
+                      <th className="border border-[#DADCE0] p-2 text-slate-700 font-bold">Tola Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td className="border border-[#DADCE0] p-2">1 Lal</td><td className="border border-[#DADCE0] p-2">1 Lal</td><td className="border border-[#DADCE0] p-2">0.1166 g</td><td className="border border-[#DADCE0] p-2">0.01 Tola</td></tr>
+                    <tr><td className="border border-[#DADCE0] p-2">2 Lal</td><td className="border border-[#DADCE0] p-2">2 Lal</td><td className="border border-[#DADCE0] p-2">0.2333 g</td><td className="border border-[#DADCE0] p-2">0.02 Tola</td></tr>
+                    <tr><td className="border border-[#DADCE0] p-2">3 Lal</td><td className="border border-[#DADCE0] p-2">3 Lal</td><td className="border border-[#DADCE0] p-2">0.3499 g</td><td className="border border-[#DADCE0] p-2">0.03 Tola</td></tr>
+                    <tr><td className="border border-[#DADCE0] p-2">6.25 Lal (1 Aana)</td><td className="border border-[#DADCE0] p-2">6.25 Lal</td><td className="border border-[#DADCE0] p-2">0.7290 g</td><td className="border border-[#DADCE0] p-2">0.0625 Tola</td></tr>
+                    <tr><td className="border border-[#DADCE0] p-2">12.5 Lal (2 Aana)</td><td className="border border-[#DADCE0] p-2">12.5 Lal</td><td className="border border-[#DADCE0] p-2">1.4580 g</td><td className="border border-[#DADCE0] p-2">0.125 Tola</td></tr>
+                    <tr><td className="border border-[#DADCE0] p-2">15 Lal</td><td className="border border-[#DADCE0] p-2">15 Lal</td><td className="border border-[#DADCE0] p-2">1.7496 g</td><td className="border border-[#DADCE0] p-2">0.15 Tola</td></tr>
+                    <tr><td className="border border-[#DADCE0] p-2">40 Lal</td><td className="border border-[#DADCE0] p-2">40 Lal</td><td className="border border-[#DADCE0] p-2">4.6655 g</td><td className="border border-[#DADCE0] p-2">0.40 Tola</td></tr>
+                    <tr><td className="border border-[#DADCE0] p-2">50 Lal (8 Aana)</td><td className="border border-[#DADCE0] p-2">50 Lal</td><td className="border border-[#DADCE0] p-2">5.8319 g</td><td className="border border-[#DADCE0] p-2">0.50 Tola</td></tr>
+                    <tr><td className="border border-[#DADCE0] p-2">75 Lal (12 Aana)</td><td className="border border-[#DADCE0] p-2">75 Lal</td><td className="border border-[#DADCE0] p-2">8.7479 g</td><td className="border border-[#DADCE0] p-2">0.75 Tola</td></tr>
+                    <tr><td className="border border-[#DADCE0] p-2">90 Lal</td><td className="border border-[#DADCE0] p-2">90 Lal</td><td className="border border-[#DADCE0] p-2">10.4974 g</td><td className="border border-[#DADCE0] p-2">0.90 Tola</td></tr>
+                    <tr><td className="border border-[#DADCE0] p-2 font-bold">100 Lal (1 Tola)</td><td className="border border-[#DADCE0] p-2">100 Lal</td><td className="border border-[#DADCE0] p-2">11.6638 g</td><td className="border border-[#DADCE0] p-2">1.00 Tola</td></tr>
+                  </tbody>
+                </table>
               </div>
             </div>
-          </div>
 
-          {/* Authority + links */}
-          <div id="official-standard" className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm scroll-mt-24">
-            <h2 className="text-[11px] font-black text-[#202124] uppercase tracking-widest mb-3">🏛️ Official Nepal Gold Measurement Standard</h2>
-            <div className="text-[12px] text-slate-600 leading-relaxed mb-6 space-y-4">
-              <p>
-                In the highly dynamic and ever-changing landscape of precious metal trading within Nepal, staying informed about the daily benchmark prices is absolutely essential for making sound financial decisions. The domestic market pricing structure for precious metals depends heavily on various global macroeconomic indicators, international supply chains, currency exchange rate fluctuations, and local seasonal demand spikes. Whether you are an individual retail consumer planning a purchase for an upcoming cultural event, or a commercial entity managing significant bullion reserves, obtaining the most accurate, real-time market updates is critical. To ensure you have access to the exact current figures driving the local trade, always check the Live Gold Price Today before initiating any transaction.
-              </p>
-              <p>
-                Our conversion engine is permanently calibrated to the statutory benchmarks maintained by the FENEGOSIDA Official Portal, which serves as the primary governing body for daily rate announcements in the country. This guarantees that every calculation you perform aligns perfectly with the standard retail rates applied by authorized jewelers nationwide. Furthermore, to provide comprehensive consumer protection and structural accuracy, these measurements are strictly aligned with the overarching metrology and standardization guidelines enforced by the Nepal Bureau of Standards & Metrology (NBSM).
-              </p>
-            </div>
-            
-            <p className="text-[12px] text-slate-600 leading-relaxed border-t border-[#DADCE0] pt-6 mb-4">
-              While gold remains the most frequently converted and analyzed precious metal due to its high value and cultural significance, silver (Chandi) also plays a monumental role in the Nepalese market. Silver is widely used for crafting traditional utensils, religious idols, anklets (payal), and various other ornamental artifacts. Because the unit system for silver is identical to gold (utilizing Tolas and Grams), this converter is fully capable of handling silver weight conversions as well. If you are actively trading or planning to purchase silver items, we strongly recommend checking the <a href="/market-rates/live-silver-price/" className="text-blue-600 font-bold hover:underline">Live Silver Price Today</a> to ensure you receive the most accurate valuation based on the current market benchmarks.
-            </p>
-            
-            <p className="text-[12px] text-slate-600 leading-relaxed">
-              For complete transparency and consumer protection, our computational models are strictly calibrated to follow the pricing structures dictated by the official <a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="text-blue-600 hover:underline">FENEGOSIDA</a> rates. Additionally, all metric-to-traditional unit conversions strictly observe the statutory metrology regulations enforced by the <a href="http://www.nbsm.gov.np/" target="_blank" rel="nofollow noopener" className="text-blue-600 hover:underline">NBSM</a> to guarantee absolute precision.
-            </p>
-
-            <div className="grid grid-cols-2 gap-3 mt-6">
-              <a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="flex items-center gap-2 p-3 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg hover:bg-slate-50 transition-colors">
-                <ExternalLink className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-                <div>
-                  <div className="text-[9px] font-black text-[#202124] uppercase tracking-wider">FENEGOSIDA</div>
-                  <div className="text-[9px] text-slate-500">Daily Gold Rate Authority</div>
-                </div>
-              </a>
-              <a href="http://www.nbsm.gov.np/" target="_blank" rel="nofollow noopener" className="flex items-center gap-2 p-3 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg hover:bg-slate-50 transition-colors">
-                <ExternalLink className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-                <div>
-                  <div className="text-[9px] font-black text-[#202124] uppercase tracking-wider">NBSM Nepal</div>
-                  <div className="text-[9px] text-slate-500">Statutory Metrology Laws</div>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          {/* SEO Content Section */}
-          <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
-            <div className="space-y-6 text-[#3C4043] text-[13px] leading-relaxed">
-              <div>
-                <h2 className="text-base font-bold text-[#202124] mb-3">Professional Computational Guidance: Nepal Gold Weight Converter (Tola, Gram, Aana, Lal)</h2>
-                <p className="mb-4">
-                  Navigating traditional jewelry measurements in Nepal can be confusing, especially when balancing historical local scales with modern metric weights. Whether you are auditing family heirlooms, calculating custom jewelry fabrication costs, or verifying weights against the Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA) benchmarks, accuracy is paramount.
-                </p>
+            {/* Official Nepal Gold Measurement Standard */}
+            <div id="official-standard" className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm scroll-mt-24">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-1.5 h-4 bg-amber-500 rounded-full" />
+                <h2 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Official Nepal Gold Measurement Standard</h2>
+              </div>
+              <div className="text-[12px] text-slate-600 leading-relaxed space-y-4">
                 <p>
-                  Our automated gold calculator Nepal simplifies the process. This dynamic system converts instantly between international Grams (g) and traditional domestic units: Tola, Aana, Ratti, and Lal.
+                  Gold prices in Nepal change daily based on international bullion markets, USD exchange rates, and domestic demand. The Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA) publishes the official benchmark rates used by jewellery businesses across Nepal. This converter uses the official Nepal gold measurement system and is designed to work alongside the latest published market prices.
                 </p>
               </div>
-
-              <div>
-                <h2 className="text-base font-bold text-[#202124] mb-3">📐 Understanding the Nepal Gold Measurement System (1 Tola = 100 Lal)</h2>
-                <p className="mb-4">
-                  In the Nepali gold market, the Tola (तोला) is the foundational baseline unit of mass. However, for smaller pieces of jewelry like rings, nose pins (Phuli), and earrings, jewelers break weights down into Aana and Lal (लाल). To provide consumer protection, these standard retail rates and unit scaling metrics align with the overarching metrology guidelines enforced by the Nepal Bureau of Standards & Metrology (NBSM).
-                </p>
-                <p className="mb-4">The structural mathematical relationship governing the official Nepal gold unit scale follows these exact ratios:</p>
-                <ul className="list-disc pl-5 mb-4 space-y-1">
-                  <li>1 Tola = 100 Lal</li>
-                  <li>1 Tola = 16 Aana</li>
-                  <li>1 Tola = 11.6638 Grams</li>
-                  <li>1 Aana = 6.25 Lal</li>
-                  <li>1 Lal = 0.116638 Grams (commonly rounded to 0.1166g)</li>
-                </ul>
-                <p>If a jeweler tells you an asset weighs 12 Aanas, that equates exactly to 75 Lal, which represents precisely 0.75 Tola of pure gold.</p>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
+                <a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="flex items-center gap-2 p-3 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg hover:bg-slate-50 transition-colors">
+                  <ExternalLink className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                  <div>
+                    <div className="text-[9px] font-black text-[#202124] uppercase tracking-wider">FENEGOSIDA</div>
+                  </div>
+                </a>
+                <a href="http://www.nbsm.gov.np/" target="_blank" rel="nofollow noopener" className="flex items-center gap-2 p-3 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg hover:bg-slate-50 transition-colors">
+                  <ExternalLink className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                  <div>
+                    <div className="text-[9px] font-black text-[#202124] uppercase tracking-wider">NBSM</div>
+                  </div>
+                </a>
+                <a href="/market-rates/live-gold-price/" className="flex items-center gap-2 p-3 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg hover:bg-slate-50 transition-colors">
+                  <History className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                  <div>
+                    <div className="text-[9px] font-black text-[#202124] uppercase tracking-wider">Gold Price</div>
+                  </div>
+                </a>
+                <a href="/market-rates/live-silver-price/" className="flex items-center gap-2 p-3 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg hover:bg-slate-50 transition-colors">
+                  <History className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                  <div>
+                    <div className="text-[9px] font-black text-[#202124] uppercase tracking-wider">Silver Price</div>
+                  </div>
+                </a>
               </div>
+            </div>
 
-              <div>
-                <h2 className="text-base font-bold text-[#202124] mb-3">🧮 Mathematical Conversion Constants & Formulas</h2>
-                <h3 className="font-bold text-[#202124] mb-2">How to Convert Lal to Gram</h3>
-                <p className="mb-2">Because 1 Tola equals 100 Lal and weighs exactly 11.6638 grams, a single Lal is exceptionally light.</p>
-                <div className="bg-[#F8F9FA] p-3 rounded mb-4 font-mono text-sm border border-[#DADCE0]">Weight in Grams = Total Lal × 0.116638</div>
-                <p className="mb-4"><strong>Example:</strong> If you want to find out how many grams are in 15 Lal: 15 × 0.116638 = 1.7495 grams.</p>
-
-                <h3 className="font-bold text-[#202124] mb-2">How to Convert Gram to Lal</h3>
-                <p className="mb-2">If you have a digital kitchen scale or a laboratory balance measuring an item in grams, translate it back to traditional units using this division formula:</p>
-                <div className="bg-[#F8F9FA] p-3 rounded mb-4 font-mono text-sm border border-[#DADCE0]">Weight in Lal = Weight in Grams ÷ 0.116638</div>
-              </div>
-
-              <div>
-                <h2 className="text-base font-bold text-[#202124] mb-3">📊 Official Tola, Lal, and Gram Conversion Matrix</h2>
-                <p className="mb-4">This reference table outlines the most common transactional weights searched across local Nepali markets. It maps out exactly how traditional weight fractions correspond to modern metric scales:</p>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse border border-[#DADCE0]">
-                    <thead className="bg-[#F8F9FA]">
-                      <tr>
-                        <th className="border border-[#DADCE0] p-2">Traditional Unit</th>
-                        <th className="border border-[#DADCE0] p-2">Lal</th>
-                        <th className="border border-[#DADCE0] p-2">Grams (g)</th>
-                        <th className="border border-[#DADCE0] p-2">Tola Value</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr><td className="border border-[#DADCE0] p-2">1 Lal</td><td className="border border-[#DADCE0] p-2">1 Lal</td><td className="border border-[#DADCE0] p-2">0.1166 g</td><td className="border border-[#DADCE0] p-2">0.01 Tola</td></tr>
-                      <tr><td className="border border-[#DADCE0] p-2">2 Lal</td><td className="border border-[#DADCE0] p-2">2 Lal</td><td className="border border-[#DADCE0] p-2">0.2333 g</td><td className="border border-[#DADCE0] p-2">0.02 Tola</td></tr>
-                      <tr><td className="border border-[#DADCE0] p-2">3 Lal</td><td className="border border-[#DADCE0] p-2">3 Lal</td><td className="border border-[#DADCE0] p-2">0.3499 g</td><td className="border border-[#DADCE0] p-2">0.03 Tola</td></tr>
-                      <tr><td className="border border-[#DADCE0] p-2">6.25 Lal (1 Aana)</td><td className="border border-[#DADCE0] p-2">6.25 Lal</td><td className="border border-[#DADCE0] p-2">0.7290 g</td><td className="border border-[#DADCE0] p-2">0.0625 Tola</td></tr>
-                      <tr><td className="border border-[#DADCE0] p-2">12.5 Lal (2 Aana)</td><td className="border border-[#DADCE0] p-2">12.5 Lal</td><td className="border border-[#DADCE0] p-2">1.4580 g</td><td className="border border-[#DADCE0] p-2">0.125 Tola</td></tr>
-                      <tr><td className="border border-[#DADCE0] p-2">15 Lal</td><td className="border border-[#DADCE0] p-2">15 Lal</td><td className="border border-[#DADCE0] p-2">1.7496 g</td><td className="border border-[#DADCE0] p-2">0.15 Tola</td></tr>
-                      <tr><td className="border border-[#DADCE0] p-2">40 Lal</td><td className="border border-[#DADCE0] p-2">40 Lal</td><td className="border border-[#DADCE0] p-2">4.6655 g</td><td className="border border-[#DADCE0] p-2">0.40 Tola</td></tr>
-                      <tr><td className="border border-[#DADCE0] p-2">50 Lal (8 Aana)</td><td className="border border-[#DADCE0] p-2">50 Lal</td><td className="border border-[#DADCE0] p-2">5.8319 g</td><td className="border border-[#DADCE0] p-2">0.50 Tola</td></tr>
-                      <tr><td className="border border-[#DADCE0] p-2">75 Lal (12 Aana)</td><td className="border border-[#DADCE0] p-2">75 Lal</td><td className="border border-[#DADCE0] p-2">8.7479 g</td><td className="border border-[#DADCE0] p-2">0.75 Tola</td></tr>
-                      <tr><td className="border border-[#DADCE0] p-2">90 Lal</td><td className="border border-[#DADCE0] p-2">90 Lal</td><td className="border border-[#DADCE0] p-2">10.4974 g</td><td className="border border-[#DADCE0] p-2">0.90 Tola</td></tr>
-                      <tr><td className="border border-[#DADCE0] p-2">100 Lal (1 Tola)</td><td className="border border-[#DADCE0] p-2">100 Lal</td><td className="border border-[#DADCE0] p-2">11.6638 g</td><td className="border border-[#DADCE0] p-2">1.00 Tola</td></tr>
-                    </tbody>
-                  </table>
+            {/* SEO Content Section */}
+            <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
+              <div className="space-y-6 text-[#3C4043] text-[13px] leading-relaxed">
+                <div>
+                  <h2 className="text-base font-bold text-[#202124] mb-3">Professional Computational Guidance: Nepal Gold Weight Converter (Tola, Gram, Aana, Lal)</h2>
+                  <p className="mb-4">
+                    Navigating traditional jewelry measurements in Nepal can be confusing, especially when balancing historical local scales with modern metric weights. Whether you are auditing family heirlooms, calculating custom jewelry fabrication costs, or verifying weights against official benchmarks, accuracy is paramount.
+                  </p>
+                  <p>
+                    Our automated gold calculator Nepal simplifies the process. This dynamic system converts instantly between international Grams (g) and traditional domestic units: Tola, Aana, Ratti, and Lal.
+                  </p>
                 </div>
+
+                <div>
+                  <h2 className="text-base font-bold text-[#202124] mb-3">📐 Understanding the Nepal Gold Measurement System (1 Tola = 100 Lal)</h2>
+                  <p className="mb-4">
+                    In the Nepali gold market, the Tola (तोला) is the foundational baseline unit of mass. However, for smaller pieces of jewelry like rings, nose pins (Phuli), and earrings, jewelers break weights down into Aana and Lal (लाल).
+                  </p>
+                  <p className="mb-4">The structural mathematical relationship governing the official Nepal gold unit scale follows these exact ratios:</p>
+                  <ul className="list-disc pl-5 mb-4 space-y-1">
+                    <li>1 Tola = 100 Lal</li>
+                    <li>1 Tola = 16 Aana</li>
+                    <li>1 Tola = 11.6638 Grams</li>
+                    <li>1 Aana = 6.25 Lal</li>
+                    <li>1 Lal = 0.116638 Grams (commonly rounded to 0.1166g)</li>
+                  </ul>
+                  <p>If a jeweler tells you an asset weighs 12 Aanas, that equates exactly to 75 Lal, which represents precisely 0.75 Tola of pure gold.</p>
+                </div>
+
+                <div>
+                  <h2 className="text-base font-bold text-[#202124] mb-3">🧮 Mathematical Conversion Constants & Formulas</h2>
+                  <h3 className="font-bold text-[#202124] mb-2">How to Convert Lal to Gram</h3>
+                  <p className="mb-2">Because 1 Tola equals 100 Lal and weighs exactly 11.6638 grams, a single Lal is exceptionally light.</p>
+                  <div className="bg-[#F8F9FA] p-3 rounded mb-4 font-mono text-sm border border-[#DADCE0]">Weight in Grams = Total Lal × 0.116638</div>
+                  <p className="mb-4"><strong>Example:</strong> If you want to find out how many grams are in 15 Lal: 15 × 0.116638 = 1.7495 grams.</p>
+
+                  <h3 className="font-bold text-[#202124] mb-2">How to Convert Gram to Lal</h3>
+                  <p className="mb-2">If you have a digital kitchen scale or a laboratory balance measuring an item in grams, translate it back to traditional units using this division formula:</p>
+                  <div className="bg-[#F8F9FA] p-3 rounded mb-4 font-mono text-sm border border-[#DADCE0]">Weight in Lal = Weight in Grams ÷ 0.116638</div>
+                </div>
+
               </div>
             </div>
           </div>
