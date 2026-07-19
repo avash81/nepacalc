@@ -152,6 +152,7 @@ export default function Page() {
               <li><a href="#conversion-table" className="hover:underline">Nepal Gold Conversion Table</a></li>
               <li><a href="#official-standard" className="hover:underline">Official Nepal Gold Measurement Standard (FENEGOSIDA & NBSM)</a></li>
               <li><a href="#formulas" className="hover:underline">Gold Conversion Formulas</a></li>
+              <li><a href="#faqs" className="hover:underline">Frequently Asked Questions</a></li>
               <li><a href="#related-tools" className="hover:underline">Related Tools</a></li>
             </ul>
           </div>
@@ -216,6 +217,16 @@ export default function Page() {
             <h3 className="font-bold text-slate-900 mb-2">How to Convert Gram to Lal</h3>
             <p className="mb-2">If you have a digital kitchen scale or a laboratory balance measuring an item in grams, translate it back to traditional units using this division formula. Additionally, if you are bringing commercial gold into the country, you can use our <Link href="/calculator/gold-tax/" className="text-blue-600 font-bold hover:underline">gold tax calculator</Link> to estimate customs duties.</p>
             <div className="bg-slate-50 p-4 rounded-lg font-mono text-sm border border-slate-200 mb-4 text-slate-800">Weight in Lal = Weight in Grams ÷ 0.116638</div>
+          </div>
+
+          <h2 id="faqs" className="text-2xl font-black text-slate-900 mt-12 mb-6">Frequently Asked Questions</h2>
+          <div className="space-y-6">
+            {faqSchema.mainEntity.map((faq, index) => (
+              <div key={index} className="border-b border-slate-100 pb-4 last:border-0 last:pb-0">
+                <h3 className="font-bold text-slate-900 mb-2">{faq.name}</h3>
+                <p className="text-slate-700 leading-relaxed text-[15px]">{faq.acceptedAnswer.text}</p>
+              </div>
+            ))}
           </div>
 
           <h2 id="related-tools" className="text-2xl font-black text-slate-900 mt-12 mb-6">Related Tools</h2>
