@@ -222,11 +222,17 @@ export default function Page() {
           <h2 id="faqs" className="text-2xl font-black text-slate-900 mt-12 mb-6">Frequently Asked Questions</h2>
           <div className="space-y-6">
             {faqSchema.mainEntity.map((faq, index) => (
-              <div key={index} className="border-b border-slate-100 pb-4 last:border-0 last:pb-0">
+              <div key={index} className="border-b border-slate-100 pb-4">
                 <h3 className="font-bold text-slate-900 mb-2">{faq.name}</h3>
                 <p className="text-slate-700 leading-relaxed text-[15px]">{faq.acceptedAnswer.text}</p>
               </div>
             ))}
+            <div className="border-b border-slate-100 pb-4 last:border-0 last:pb-0">
+              <h3 className="font-bold text-slate-900 mb-2">Want to learn more about gold prices in Nepal?</h3>
+              <p className="text-slate-700 leading-relaxed text-[15px]">
+                Check out our detailed guide on <Link href="/blog/nepal-gold-price-analysis-2083" className="text-blue-600 hover:underline">Nepal Gold Price Analysis</Link> to understand the factors affecting gold rates, historical trends, and future predictions in the Nepali market.
+              </p>
+            </div>
           </div>
 
           <h2 id="related-tools" className="text-2xl font-black text-slate-900 mt-12 mb-6">Related Tools</h2>
