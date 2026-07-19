@@ -98,15 +98,18 @@ export default function GoldDashboardClient() {
 
            {/* Chart Section */}
            <div className="p-4 sm:p-6 border-b border-slate-100 bg-slate-50/30">
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-2">
                  <div className="flex items-center gap-2">
                     <Trophy className="w-5 h-5 text-amber-500" />
-                    <h2 className="text-[14px] font-black uppercase tracking-widest text-slate-900">Live Spot Market (XAU/USD)</h2>
+                    <h2 className="text-[14px] font-black uppercase tracking-widest text-slate-900">International Spot Market (XAU/USD)</h2>
                  </div>
                  <div className="px-3 py-1 bg-white border border-slate-200 rounded-full text-[10px] font-black text-slate-500 tracking-widest">
                     WORLD GOLD COUNCIL INDEX
                  </div>
               </div>
+              <p className="text-[11px] text-slate-500 mb-4">
+                 <em>* Nepal's official gold price is fixed once daily by FENEGOSIDA. This live chart tracks the international spot market which drives the daily local price changes.</em>
+              </p>
               <div className="w-full h-[400px] md:h-[500px] bg-slate-50/50 rounded-2xl border border-slate-200 overflow-hidden shadow-sm relative">
                  <TradingViewWidget 
                     symbol="OANDA:XAUUSD"

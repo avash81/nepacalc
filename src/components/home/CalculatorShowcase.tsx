@@ -63,7 +63,7 @@ export default function CalculatorShowcase() {
           </div>
           <Link href="/directory/">
             <Button variant="outline" className="flex items-center gap-2 h-12 px-6 rounded-lg text-sm font-medium">
-              View All 80+ Tools <ChevronRight className="w-4 h-4" />
+              View All 100+ Tools <ChevronRight className="w-4 h-4" />
             </Button>
           </Link>
         </div>

@@ -36,8 +36,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Free Online Calculators for Nepal NepaCalc",
-    description: "Use professional online calculators for Nepal income tax EMI GPA and engineering. Engineered for academic and financial precision. Try NepaCalc now",
+    title: "Free Online Calculators, Converters & Tools | NepaCalc",
+    description: "Free online calculators, converters and digital tools for finance, engineering, education, health and Nepal-specific calculations. Fast, accurate and mobile-friendly.",
     url: 'https://nepacalc.com',
     siteName: 'NepaCalc',
     images: [
@@ -60,8 +60,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Free Online Calculators for Nepal NepaCalc",
-    description: "Nepals leading utility laboratory for high precision mathematical tools and financial planning. Try NepaCalc now",
+    title: "Free Online Calculators, Converters & Tools | NepaCalc",
+    description: "Free online calculators, converters and digital tools for finance, engineering, education, health and Nepal-specific calculations. Fast, accurate and mobile-friendly.",
     images: ['/logo.png?v=final'],
   },
 };
@@ -81,6 +81,14 @@ const globalSchema = {
       "url": "https://nepacalc.com",
       "logo": "https://nepacalc.com/logo.png",
       "image": "https://nepacalc.com/logo.png",
+      "description": "NepaCalc is a trusted platform providing free online calculators, converters, financial tools, engineering utilities, educational resources, health calculators and Nepal-specific digital tools.",
+      "foundingDate": "2024",
+      "email": "support@nepacalc.com",
+      "areaServed": ["NP", "Worldwide"],
+      "founder": {
+        "@type": "Person",
+        "name": "Avash Chaudhary"
+      },
       "sameAs": [
         "https://www.facebook.com/nepacalc",
         "https://twitter.com/nepacalc",
@@ -123,7 +131,7 @@ const globalSchema = {
         "Wireframe Mesh and Solid Rendering Modes",
         "Maths Solver with Algebra, Trigonometry, Calculus tabs",
         "Real-time interactive Canvas graphing engine",
-        "80+ specialized professional calculators for Nepal",
+        "100+ specialized professional calculators for Nepal",
         "Institutional IRD-verified tax calculations"
       ],
       "isPartOf": { "@id": "https://nepacalc.com/#website" }

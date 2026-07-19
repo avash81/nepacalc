@@ -114,16 +114,18 @@ export const FOOTER_CATEGORIES: Record<string, FooterLinkGroup> = {
     ],
   },
   default: {
-    heading: 'Popular Calculators',
+    heading: 'Popular Tools',
     links: [
-      { name: 'Nepal Income Tax Calculator', href: '/calculator/nepal-income-tax/' },
+      { name: 'Income Tax Calculator', href: '/calculator/nepal-income-tax/' },
+      { name: 'Scientific Calculator', href: '/calculator/scientific-calculator/' },
+      { name: 'NEA Bill Calculator', href: '/calculator/nea-bill/' },
       { name: 'SIP Calculator', href: '/calculator/sip-calculator/' },
-      { name: 'BMI Calculator', href: '/calculator/bmi/' },
-      { name: 'GPA Calculator', href: '/calculator/gpa/' },
       { name: 'EMI Calculator', href: '/calculator/loan-emi/' },
       { name: 'Live Gold Price', href: '/market-rates/live-gold-price/' },
+      { name: 'Live Silver Price', href: '/market-rates/live-silver-price/' },
       { name: 'Exchange Rate Nepal', href: '/market-rates/exchange-rate-nepal/' },
       { name: 'Land Area Converter', href: '/calculator/nepal-land/' },
+      { name: 'GPA Calculator', href: '/calculator/gpa/' },
     ],
   },
 };

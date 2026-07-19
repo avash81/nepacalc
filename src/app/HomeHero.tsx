@@ -27,7 +27,7 @@ export function HomeHero() {
   return (
     <div className="flex flex-col w-full max-w-6xl mx-auto gap-3">
       <div
-        className="w-full h-[420px] lg:h-[560px] bg-white border border-slate-200 rounded-2xl shadow-sm flex flex-col items-center justify-center gap-6 cursor-pointer group hover:border-blue-300 hover:shadow-md transition-all duration-300"
+        className="w-full h-[300px] lg:h-[340px] bg-white border border-slate-200 rounded-2xl shadow-sm flex flex-col items-center justify-center gap-6 cursor-pointer group hover:border-blue-300 hover:shadow-md transition-all duration-300"
         onClick={handleActivate}
         role="button"
         aria-label="Launch Calculator"
@@ -47,7 +47,7 @@ export function HomeHero() {
           {isActivating ? 'Loading Engine...' : 'Launch Calculator'}
         </button>
         <div className="flex items-center gap-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-          <span>80+ Tools</span>
+          <span>100+ Tools</span>
           <span>•</span>
           <span>Free Forever</span>
           <span>•</span>
