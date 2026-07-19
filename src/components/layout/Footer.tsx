@@ -7,7 +7,7 @@ import { FooterScrollTop } from './FooterScrollTop';
 const companyLinks = [
   { name: 'About', href: '/about/' },
   { name: 'Editorial Policy', href: '/about/editorial-policy/' },
-  { name: 'Data Sources', href: '/data-policy/' },
+  { name: 'Data Sources & Methodology', href: '/data-policy/' },
   { name: 'Privacy Policy', href: '/privacy/' },
   { name: 'Terms & Conditions', href: '/terms/' },
   { name: 'Disclaimer', href: '/disclaimer/' },
