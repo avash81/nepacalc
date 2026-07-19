@@ -207,9 +207,9 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
 
       <button
         onClick={() => setState(EMPTY)}
-        className="w-full h-11 bg-[#38761D] hover:bg-[#274e13] text-white text-[11px] font-black uppercase tracking-widest rounded-md transition-colors shadow-sm"
+        className="w-full h-9 bg-slate-100 hover:bg-slate-200 text-slate-500 text-[10px] font-bold uppercase tracking-widest rounded-md transition-colors"
       >
-        Generate Metal Audit Report
+        Reset
       </button>
     </div>
   );
