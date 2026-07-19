@@ -394,13 +394,22 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
             <h2 className="text-[11px] font-black text-[#202124] uppercase tracking-widest mb-3">🏛️ Official Nepal Gold Measurement Standard</h2>
             <div className="text-[12px] text-slate-600 leading-relaxed mb-6 space-y-4">
               <p>
-                In the highly dynamic and ever-changing landscape of precious metal trading within Nepal, staying informed about the daily benchmark prices is absolutely essential for making sound financial decisions. The domestic market pricing structure for precious metals depends heavily on various global macroeconomic indicators, international supply chains, currency exchange rate fluctuations, and local seasonal demand spikes. Whether you are an individual retail consumer planning a purchase for an upcoming cultural event, or a commercial entity managing significant bullion reserves, obtaining the most accurate, real-time market updates is critical. To ensure you have access to the exact current figures driving the local trade, always check the <a href="/market-rates/live-gold-price/" className="text-blue-600 underline hover:text-blue-800 font-bold">Live Gold Price Today</a> before initiating any transaction.
+                In the highly dynamic and ever-changing landscape of precious metal trading within Nepal, staying informed about the daily benchmark prices is absolutely essential for making sound financial decisions. The domestic market pricing structure for precious metals depends heavily on various global macroeconomic indicators, international supply chains, currency exchange rate fluctuations, and local seasonal demand spikes. Whether you are an individual retail consumer planning a purchase for an upcoming cultural event, or a commercial entity managing significant bullion reserves, obtaining the most accurate, real-time market updates is critical. To ensure you have access to the exact current figures driving the local trade, always check the Live Gold Price Today before initiating any transaction.
               </p>
               <p>
                 Our conversion engine is permanently calibrated to the statutory benchmarks maintained by the FENEGOSIDA Official Portal, which serves as the primary governing body for daily rate announcements in the country. This guarantees that every calculation you perform aligns perfectly with the standard retail rates applied by authorized jewelers nationwide. Furthermore, to provide comprehensive consumer protection and structural accuracy, these measurements are strictly aligned with the overarching metrology and standardization guidelines enforced by the Nepal Bureau of Standards & Metrology (NBSM).
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            
+            <p className="text-[12px] text-slate-600 leading-relaxed border-t border-[#DADCE0] pt-6 mb-4">
+              While gold remains the most frequently converted and analyzed precious metal due to its high value and cultural significance, silver (Chandi) also plays a monumental role in the Nepalese market. Silver is widely used for crafting traditional utensils, religious idols, anklets (payal), and various other ornamental artifacts. Because the unit system for silver is identical to gold (utilizing Tolas and Grams), this converter is fully capable of handling silver weight conversions as well. If you are actively trading or planning to purchase silver items, we strongly recommend checking the <a href="/market-rates/live-silver-price/" className="text-blue-600 font-bold hover:underline">Live Silver Price Today</a> to ensure you receive the most accurate valuation based on the current market benchmarks.
+            </p>
+            
+            <p className="text-[12px] text-slate-600 leading-relaxed">
+              For complete transparency and consumer protection, our computational models are strictly calibrated to follow the pricing structures dictated by the official <a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="text-blue-600 hover:underline">FENEGOSIDA</a> rates. Additionally, all metric-to-traditional unit conversions strictly observe the statutory metrology regulations enforced by the <a href="http://www.nbsm.gov.np/" target="_blank" rel="nofollow noopener" className="text-blue-600 hover:underline">NBSM</a> to guarantee absolute precision.
+            </p>
+
+            <div className="grid grid-cols-2 gap-3 mt-6">
               <a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="flex items-center gap-2 p-3 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg hover:bg-slate-50 transition-colors">
                 <ExternalLink className="w-3.5 h-3.5 text-blue-600 shrink-0" />
                 <div>
@@ -424,7 +433,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
               <div>
                 <h2 className="text-base font-bold text-[#202124] mb-3">Professional Computational Guidance: Nepal Gold Weight Converter (Tola, Gram, Aana, Lal)</h2>
                 <p className="mb-4">
-                  Navigating traditional jewelry measurements in Nepal can be confusing, especially when balancing historical local scales with modern metric weights. Whether you are auditing family heirlooms, calculating custom jewelry fabrication costs, or verifying weights against the Federation of Nepal Gold and Silver Dealers' Association (<a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="text-[#1A73E8] hover:underline">FENEGOSIDA</a>) benchmarks, accuracy is paramount.
+                  Navigating traditional jewelry measurements in Nepal can be confusing, especially when balancing historical local scales with modern metric weights. Whether you are auditing family heirlooms, calculating custom jewelry fabrication costs, or verifying weights against the Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA) benchmarks, accuracy is paramount.
                 </p>
                 <p>
                   Our automated gold calculator Nepal simplifies the process. This dynamic system converts instantly between international Grams (g) and traditional domestic units: Tola, Aana, Ratti, and Lal.
@@ -434,7 +443,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
               <div>
                 <h2 className="text-base font-bold text-[#202124] mb-3">📐 Understanding the Nepal Gold Measurement System (1 Tola = 100 Lal)</h2>
                 <p className="mb-4">
-                  In the Nepali gold market, the Tola (तोला) is the foundational baseline unit of mass. However, for smaller pieces of jewelry like rings, nose pins (Phuli), and earrings, jewelers break weights down into Aana and Lal (लाल). To provide consumer protection, these standard retail rates and unit scaling metrics align with the overarching metrology guidelines enforced by the Nepal Bureau of Standards & Metrology (<a href="http://www.nbsm.gov.np/" target="_blank" rel="nofollow noopener" className="text-[#1A73E8] hover:underline">NBSM</a>).
+                  In the Nepali gold market, the Tola (तोला) is the foundational baseline unit of mass. However, for smaller pieces of jewelry like rings, nose pins (Phuli), and earrings, jewelers break weights down into Aana and Lal (लाल). To provide consumer protection, these standard retail rates and unit scaling metrics align with the overarching metrology guidelines enforced by the Nepal Bureau of Standards & Metrology (NBSM).
                 </p>
                 <p className="mb-4">The structural mathematical relationship governing the official Nepal gold unit scale follows these exact ratios:</p>
                 <ul className="list-disc pl-5 mb-4 space-y-1">
