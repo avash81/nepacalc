@@ -15,9 +15,11 @@ export default function EditorialPolicyPage() {
       <div className="bg-white border-b border-gray-200 py-8 md:py-12">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">Editorial Policy</h1>
-          <p className="text-sm md:text-base text-gray-500 font-medium">
-            <strong>Effective Date:</strong> July 19, 2026 | <strong>Last Updated:</strong> July 19, 2026
-          </p>
+          <div className="text-sm md:text-base text-gray-500 font-medium flex flex-col items-center gap-1">
+            <p><strong>Published:</strong> May 1, 2026</p>
+            <p><strong>Last Reviewed:</strong> July 19, 2026</p>
+            <p><strong>Next Scheduled Review:</strong> July 2027 or whenever official regulations change.</p>
+          </div>
         </div>
       </div>
 
@@ -77,40 +79,18 @@ export default function EditorialPolicyPage() {
 
           <hr className="my-10" />
 
-          <h2>Content Creation Process</h2>
-          <p>Every page published on NepaCalc follows a structured editorial workflow.</p>
-          
-          <h3>Step 1 — Research</h3>
-          <p>We review:</p>
+          <h2>Our Review Process</h2>
+          <p>Every calculator and tool published on NepaCalc goes through a rigorous review process:</p>
           <ul>
-            <li>Official government publications</li>
-            <li>Regulatory notices</li>
-            <li>Public datasets</li>
-            <li>Technical documentation</li>
-            <li>Recognized industry standards</li>
-            <li>Current legislation</li>
-            <li>Market information from official organizations</li>
+            <li><strong>Research:</strong> We identify and collect the most recent official regulations, mathematical standards, and public datasets.</li>
+            <li><strong>Formula verification:</strong> We cross-check formulas against official guidelines (e.g., IRD tax brackets, NEA tariffs).</li>
+            <li><strong>Development:</strong> Calculators are engineered using modern software practices for high precision.</li>
+            <li><strong>Testing:</strong> We run edge cases and compare outputs with authoritative examples to ensure accuracy.</li>
+            <li><strong>Editorial review:</strong> A human editor reviews the content, structure, and factual accuracy of the page.</li>
+            <li><strong>Publication:</strong> The tool is made publicly available for our users.</li>
+            <li><strong>Annual review:</strong> We systematically review all tools every year to ensure they remain accurate.</li>
+            <li><strong>Continuous monitoring:</strong> We monitor official channels for ad-hoc changes (like sudden tariff adjustments) and update immediately.</li>
           </ul>
-
-          <h3>Step 2 — Development</h3>
-          <p>Calculators are implemented using tested mathematical formulas and software engineering best practices. Each calculator is designed to produce consistent and reproducible results.</p>
-
-          <h3>Step 3 — Verification</h3>
-          <p>Before publication, calculations are tested using multiple scenarios to verify:</p>
-          <ul>
-            <li>Formula accuracy</li>
-            <li>Edge cases</li>
-            <li>Input validation</li>
-            <li>Unit conversions</li>
-            <li>Expected outputs</li>
-          </ul>
-          <p>Where possible, results are compared with official examples or authoritative references.</p>
-
-          <h3>Step 4 — Publication</h3>
-          <p>Content is published only after technical and editorial review. We strive to ensure that information is complete, understandable, and technically accurate before it becomes publicly available.</p>
-
-          <h3>Step 5 — Ongoing Maintenance</h3>
-          <p>Regulations, tariffs, tax rules, and market information change over time. When official information changes, we review affected calculators and update them as soon as reasonably possible.</p>
 
           <hr className="my-10" />
 
@@ -130,21 +110,9 @@ export default function EditorialPolicyPage() {
           <hr className="my-10" />
 
           <h2>Use of Artificial Intelligence</h2>
-          <p>Artificial intelligence (AI) tools may assist our editorial workflow by supporting:</p>
-          <ul>
-            <li>Research organization</li>
-            <li>Content drafting</li>
-            <li>Language improvements</li>
-            <li>Content structure</li>
-            <li>Technical documentation</li>
-          </ul>
-          <p>However:</p>
-          <ul>
-            <li><strong>AI-generated material is reviewed by a human editor before publication.</strong></li>
-            <li>Calculations, formulas, and official information are manually verified.</li>
-            <li>AI is never relied upon as the sole source of factual or regulatory information.</li>
-          </ul>
-          <p>Human review remains an essential part of our editorial process.</p>
+          <p>Artificial intelligence may be used to assist with research, drafting, or editing.</p>
+          <p>However, <strong>all calculator formulas, technical content, and factual information are reviewed by a human editor before publication.</strong></p>
+          <p>Human review remains an essential part of our editorial process to ensure trust and reliability.</p>
 
           <hr className="my-10" />
 
@@ -161,16 +129,15 @@ export default function EditorialPolicyPage() {
 
           <hr className="my-10" />
 
-          <h2>User Feedback</h2>
-          <p>User feedback helps improve NepaCalc. We welcome suggestions regarding:</p>
+          <h2>Editorial Contact</h2>
+          <p>User feedback helps improve NepaCalc. If you have questions, suggestions, or would like to report an issue, please reach out to the appropriate department. All inquiries can be directed to the same address below:</p>
           <ul>
-            <li>New calculators</li>
-            <li>Formula improvements</li>
-            <li>Data corrections</li>
-            <li>Technical issues</li>
-            <li>User experience improvements</li>
+            <li>Editorial enquiries</li>
+            <li>Corrections</li>
+            <li>Business enquiries</li>
+            <li>General support</li>
           </ul>
-          <p>Feedback can be submitted at: <a href="mailto:support@nepacalc.com">support@nepacalc.com</a></p>
+          <p><strong>Email:</strong> <a href="mailto:support@nepacalc.com">support@nepacalc.com</a></p>
 
           <hr className="my-10" />
 

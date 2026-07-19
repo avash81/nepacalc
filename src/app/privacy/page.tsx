@@ -16,9 +16,11 @@ export default function PrivacyPage() {
       <div className="bg-white border-b border-gray-200 py-8 md:py-12">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">Privacy Policy</h1>
-          <p className="text-sm md:text-base text-gray-500 font-medium">
-            <strong>Effective Date:</strong> July 19, 2026 | <strong>Last Updated:</strong> July 19, 2026
-          </p>
+          <div className="text-sm md:text-base text-gray-500 font-medium flex flex-col items-center gap-1">
+            <p><strong>Published:</strong> May 1, 2026</p>
+            <p><strong>Last Reviewed:</strong> July 19, 2026</p>
+            <p><strong>Next Scheduled Review:</strong> July 2027 or whenever official regulations change.</p>
+          </div>
         </div>
       </div>
 
