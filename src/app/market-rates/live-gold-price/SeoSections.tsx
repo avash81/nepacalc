@@ -8,20 +8,17 @@ export default function SeoSections() {
       
       
       {/* Table of Contents */}
-      <nav aria-label="Table of Contents" className="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-        <h2 className="text-sm font-black text-slate-900 uppercase tracking-widest mb-4 flex items-center gap-2">
-          <BookOpen className="w-4 h-4 text-amber-600" />
-          On This Page
-        </h2>
-        <ul className="space-y-3">
-          <li><a href="#quick-answer" className="text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors">Quick Answer: Gold Price Today</a></li>
-          <li><a href="#ai-summary" className="text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors">AI Summary &amp; Market Insights</a></li>
-          <li><a href="#how-its-calculated" className="text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors">How Gold Prices Are Calculated in Nepal</a></li>
-          <li><a href="#gold-price-history" className="text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors">Historical Records &amp; Yearly Data</a></li>
-          <li><a href="#faq" className="text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors">Frequently Asked Questions (English &amp; Nepali)</a></li>
-          <li><a href="#archives" className="text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors">FENEGOSIDA Archives &amp; Notices</a></li>
+      <div className="bg-slate-50 rounded-xl p-6 mb-10">
+        <h2 className="text-xl font-bold mb-4">Table of Contents</h2>
+        <ul className="list-none pl-0 space-y-2 text-blue-600 font-medium">
+          <li><a href="#quick-answer" className="hover:underline">Quick Answer: Gold Price Today</a></li>
+          <li><a href="#ai-summary" className="hover:underline">AI Summary &amp; Market Insights</a></li>
+          <li><a href="#how-its-calculated" className="hover:underline">How Gold Prices Are Calculated in Nepal</a></li>
+          <li><a href="#gold-price-history" className="hover:underline">Historical Records &amp; Yearly Data</a></li>
+          <li><a href="#faq" className="hover:underline">Frequently Asked Questions</a></li>
+          <li><a href="#archives" className="hover:underline">FENEGOSIDA Archives &amp; Notices</a></li>
         </ul>
-      </nav>
+      </div>
 
       {/* AI Summary Box & Citation Table */}
       <section id="ai-summary" className="scroll-mt-24 ai-summary-box">
