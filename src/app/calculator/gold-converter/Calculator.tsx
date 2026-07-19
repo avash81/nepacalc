@@ -322,13 +322,39 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
       title="Nepal Gold Unit Converter"
       description="Bidirectional converter for Tola, Lal, Aana, Ratti & Gram. Calculate jewelry valuation with live FENEGOSIDA rates."
       icon={Landmark}
+      compactHeader={true}
+      intro={
+        <div className="text-[#3C4043] text-[13px] leading-relaxed max-w-4xl">
+          <p className="mb-2">
+            Navigating traditional jewelry measurements in Nepal can be confusing, especially when balancing historical local scales with modern metric weights. Whether you are auditing family heirlooms, calculating custom jewelry fabrication costs, or verifying weights against the Federation of Nepal Gold and Silver Dealers' Association (<a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="text-blue-600 hover:underline">FENEGOSIDA</a>) benchmarks, accuracy is paramount.
+          </p>
+          <p>
+            Our automated gold calculator Nepal simplifies the process. This dynamic system converts instantly between international Grams (g) and traditional domestic units: Tola, Aana, Ratti, and Lal.
+          </p>
+        </div>
+      }
       inputs={inputsComponent}
       results={resultsComponent}
+      ads={{
+        sidebar: (
+          <div className="w-full bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-5 shadow-sm text-left">
+            <h2 className="text-[11px] font-black text-[#202124] uppercase tracking-widest mb-3">Table of Contents</h2>
+            <nav className="flex flex-col gap-2 text-[12px] text-blue-600 font-medium">
+              <a href="#understanding-measurements" className="hover:underline flex items-center gap-1.5">Understanding Measurements</a>
+              <a href="#conversion-table" className="hover:underline flex items-center gap-1.5">Conversion Table</a>
+              <a href="#official-standard" className="hover:underline flex items-center gap-1.5">Official Standard</a>
+              <a href="#who-uses" className="hover:underline flex items-center gap-1.5">Who Uses This Converter?</a>
+              <a href="#popular-conversions" className="hover:underline flex items-center gap-1.5">Popular Conversions</a>
+              <a href="#common-conversions" className="hover:underline flex items-center gap-1.5">Common Conversions</a>
+            </nav>
+          </div>
+        )
+      }}
       details={
         <div className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Purity audit card */}
-            <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
+            <div id="understanding-measurements" className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm scroll-mt-24">
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-1.5 h-4 bg-amber-500 rounded-full" />
                 <h2 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Understanding Nepal Gold Measurements</h2>
@@ -357,7 +383,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
             </div>
 
             {/* Quick reference card */}
-            <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
+            <div id="conversion-table" className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm scroll-mt-24">
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-1.5 h-4 bg-amber-500 rounded-full" />
                 <h2 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Nepal Gold Conversion Table</h2>
@@ -373,35 +399,29 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
           </div>
 
           {/* Authority + links */}
-          <div className="bg-slate-900 rounded-xl p-6 text-white mb-6">
-            <h2 className="text-[11px] font-black text-slate-300 uppercase tracking-widest mb-3">🏛️ Official Nepal Gold Measurement Standard</h2>
-            <div className="text-[12px] text-slate-300 leading-relaxed mb-6 space-y-4">
+          <div id="official-standard" className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm scroll-mt-24">
+            <h2 className="text-[11px] font-black text-[#202124] uppercase tracking-widest mb-3">🏛️ Official Nepal Gold Measurement Standard</h2>
+            <div className="text-[12px] text-slate-600 leading-relaxed mb-6 space-y-4">
               <p>
-                In the highly dynamic and ever-changing landscape of precious metal trading within Nepal, staying informed about the daily benchmark prices is absolutely essential for making sound financial decisions. The domestic market pricing structure for precious metals depends heavily on various global macroeconomic indicators, international supply chains, currency exchange rate fluctuations, and local seasonal demand spikes. Whether you are an individual retail consumer planning a purchase for an upcoming cultural event, or a commercial entity managing significant bullion reserves, obtaining the most accurate, real-time market updates is critical. To ensure you have access to the exact current figures driving the local trade, always check the <a href="/market-rates/live-gold-price/" className="text-amber-400 underline hover:text-amber-300 font-bold">Live Gold Price Today</a> before initiating any transaction.
+                In the highly dynamic and ever-changing landscape of precious metal trading within Nepal, staying informed about the daily benchmark prices is absolutely essential for making sound financial decisions. The domestic market pricing structure for precious metals depends heavily on various global macroeconomic indicators, international supply chains, currency exchange rate fluctuations, and local seasonal demand spikes. Whether you are an individual retail consumer planning a purchase for an upcoming cultural event, or a commercial entity managing significant bullion reserves, obtaining the most accurate, real-time market updates is critical. To ensure you have access to the exact current figures driving the local trade, always check the <a href="/market-rates/live-gold-price/" className="text-blue-600 underline hover:text-blue-800 font-bold">Live Gold Price Today</a> before initiating any transaction.
               </p>
               <p>
-                Our conversion engine is permanently calibrated to the statutory benchmarks maintained by the{' '}
-                <a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="text-amber-400 underline hover:text-amber-300">
-                  FENEGOSIDA Official Portal
-                </a>, which serves as the primary governing body for daily rate announcements in the country. This guarantees that every calculation you perform aligns perfectly with the standard retail rates applied by authorized jewelers nationwide. Furthermore, to provide comprehensive consumer protection and structural accuracy, these measurements are strictly aligned with the overarching metrology and standardization guidelines enforced by the{' '}
-                <a href="http://www.nbsm.gov.np/" target="_blank" rel="nofollow noopener" className="text-amber-400 underline hover:text-amber-300">
-                  Nepal Bureau of Standards & Metrology (NBSM)
-                </a>.
+                Our conversion engine is permanently calibrated to the statutory benchmarks maintained by the FENEGOSIDA Official Portal, which serves as the primary governing body for daily rate announcements in the country. This guarantees that every calculation you perform aligns perfectly with the standard retail rates applied by authorized jewelers nationwide. Furthermore, to provide comprehensive consumer protection and structural accuracy, these measurements are strictly aligned with the overarching metrology and standardization guidelines enforced by the Nepal Bureau of Standards & Metrology (NBSM).
               </p>
             </div>
             <div className="grid grid-cols-2 gap-3">
-              <a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="flex items-center gap-2 p-3 bg-slate-800 rounded-lg hover:bg-slate-700 transition-colors">
-                <ExternalLink className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="flex items-center gap-2 p-3 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg hover:bg-slate-50 transition-colors">
+                <ExternalLink className="w-3.5 h-3.5 text-blue-600 shrink-0" />
                 <div>
-                  <div className="text-[9px] font-black text-amber-400 uppercase tracking-wider">FENEGOSIDA</div>
-                  <div className="text-[9px] text-slate-400">Daily Gold Rate Authority</div>
+                  <div className="text-[9px] font-black text-[#202124] uppercase tracking-wider">FENEGOSIDA</div>
+                  <div className="text-[9px] text-slate-500">Daily Gold Rate Authority</div>
                 </div>
               </a>
-              <a href="http://www.nbsm.gov.np/" target="_blank" rel="nofollow noopener" className="flex items-center gap-2 p-3 bg-slate-800 rounded-lg hover:bg-slate-700 transition-colors">
-                <ExternalLink className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <a href="http://www.nbsm.gov.np/" target="_blank" rel="nofollow noopener" className="flex items-center gap-2 p-3 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg hover:bg-slate-50 transition-colors">
+                <ExternalLink className="w-3.5 h-3.5 text-blue-600 shrink-0" />
                 <div>
-                  <div className="text-[9px] font-black text-amber-400 uppercase tracking-wider">NBSM Nepal</div>
-                  <div className="text-[9px] text-slate-400">Statutory Metrology Laws</div>
+                  <div className="text-[9px] font-black text-[#202124] uppercase tracking-wider">NBSM Nepal</div>
+                  <div className="text-[9px] text-slate-500">Statutory Metrology Laws</div>
                 </div>
               </a>
             </div>
@@ -409,12 +429,12 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
 
           {/* SEO Content Section */}
           <div className="bg-white border border-[#DADCE0] rounded-xl p-6 shadow-sm">
-            <h2 className="text-[13px] font-black text-[#202124] uppercase tracking-widest mb-4">Who Uses This Converter?</h2>
+            <h2 id="who-uses" className="text-[13px] font-black text-[#202124] uppercase tracking-widest mb-4 scroll-mt-24">Who Uses This Converter?</h2>
             <p className="text-[12px] text-slate-600 mb-6 leading-relaxed">
               This Nepal Gold Unit Converter is useful for jewellery buyers, gold investors, jewellers, pawn shops, students, and anyone needing to convert between traditional Nepal gold units and metric measurements. Whether you are auditing family heirlooms or checking retail invoices, this tool provides exact mathematical clarity. For those interested in understanding the broader economic factors, including inflation rates, global supply constraints, and Rastra Bank policies that influence these domestic valuations throughout the year, explore our comprehensive <a href="/blog/nepal-gold-price-analysis-2083/" className="text-blue-600 font-bold hover:underline">Nepal Gold Price Analysis 2083</a>.
             </p>
 
-            <h2 className="text-[13px] font-black text-[#202124] uppercase tracking-widest mb-4">Popular Nepal Gold Conversions</h2>
+            <h2 id="popular-conversions" className="text-[13px] font-black text-[#202124] uppercase tracking-widest mb-4 scroll-mt-24">Popular Nepal Gold Conversions</h2>
             <ul className="text-[12px] text-slate-600 space-y-2 mb-6 bg-[#F8F9FA] p-4 rounded-lg border border-[#DADCE0]">
               <li>1 Tola = 100 Lal = 16 Aana = 11.6638 g</li>
               <li>50 Lal = 0.5 Tola = 5.8319 g</li>
@@ -425,7 +445,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
               <li>1 Lal = 0.116638 g</li>
             </ul>
 
-            <h2 className="text-[13px] font-black text-[#202124] uppercase tracking-widest mb-4">Common Nepal Gold Weight Conversions</h2>
+            <h2 id="common-conversions" className="text-[13px] font-black text-[#202124] uppercase tracking-widest mb-4 scroll-mt-24">Common Nepal Gold Weight Conversions</h2>
             <ul className="text-[12px] text-slate-600 grid grid-cols-2 gap-2 mb-6">
               <li>• Tola to Lal</li>
               <li>• Lal to Tola</li>
