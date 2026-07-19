@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Terms of Service | NepaCal",
-  description: "NepaCal terms of service ,  conditions for using Nepal's free calculator platform.",
+  title: "Terms & Conditions | NepaCalc",
+  description: "Terms and conditions for using NepaCalc's calculators, market data, and educational resources.",
   alternates: {
     canonical: 'https://nepacalc.com/terms/',
   },
@@ -12,82 +12,215 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <div className="bg-[#FDFDFD] min-h-screen pb-12">
-      <div className="bg-white border-b border-gray-200 py-6">
+      <div className="bg-white border-b border-gray-200 py-8 md:py-12">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-3xl font-black text-gray-900 mb-2 tracking-tight">Terms of Service</h1>
-          <p className="text-sm text-gray-500 font-medium">
-            <strong>Last updated:</strong> May 1, 2026
+          <h1 className="text-3xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">Terms & Conditions</h1>
+          <p className="text-sm md:text-base text-gray-500 font-medium">
+            <strong>Effective Date:</strong> July 19, 2026 | <strong>Last Updated:</strong> July 19, 2026
           </p>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="bg-white p-5 md:p-6 md:p-8 rounded-xl border border-gray-100 shadow-sm prose prose-sm md:prose-base prose-blue max-w-none text-gray-600">
+      <div className="max-w-3xl mx-auto px-4 py-8">
+        <div className="bg-white rounded-xl p-6 md:p-10 shadow-sm border border-gray-100 prose prose-sm md:prose-base max-w-none text-gray-600 prose-headings:text-gray-900 prose-a:text-blue-600 hover:prose-a:text-blue-800">
           
-          <div className="bg-red-50 border-l-4 border-red-500 p-5 rounded-r-lg mb-8 not-prose">
-            <h2 className="text-red-800 font-bold text-lg mt-0 mb-2 flex items-center gap-2">
-               <span className="text-xl">⚠️</span> Important Disclaimer
-            </h2>
-            <p className="text-red-900 m-0 text-sm md:text-base leading-relaxed">
-              NepaCal is a tool for estimation and general information. We are not responsible for tax penalties, financial losses, or any legal consequences arising from use of our calculators. Always consult official IRD/NRB documents or a certified professional before making final decisions.
-            </p>
+          <p className="lead text-gray-700 font-medium text-lg mt-0">
+            Welcome to <strong>NepaCalc</strong> ("we," "our," or "us").
+          </p>
+          <p>
+            These Terms & Conditions govern your use of <strong>https://nepacalc.com</strong> and all calculators, tools, market information, educational resources, articles, and services provided through the website.
+          </p>
+          <p>
+            By accessing or using NepaCalc, you agree to these Terms & Conditions. If you do not agree with these terms, please discontinue using the website.
+          </p>
+
+          <hr className="my-10" />
+
+          <h2>1. Acceptance of Terms</h2>
+          <p>By using NepaCalc, you confirm that you have read, understood, and accepted these Terms & Conditions.</p>
+          <p>These terms apply to all visitors, users, and anyone accessing our website.</p>
+
+          <hr className="my-10" />
+
+          <h2>2. About NepaCalc</h2>
+          <p>NepaCalc provides:</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+            <ul>
+              <li>Financial calculators</li>
+              <li>Tax calculators</li>
+              <li>Engineering calculators</li>
+              <li>Academic tools</li>
+              <li>Health calculators</li>
+            </ul>
+            <ul>
+              <li>Unit converters</li>
+              <li>Precious metal market information</li>
+              <li>Exchange rate information</li>
+              <li>Utility bill calculators</li>
+              <li>Educational resources</li>
+            </ul>
           </div>
+          <p>Our services are provided for informational and educational purposes.</p>
 
-          <h2 className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2">Use of Calculators</h2>
-          <p>NepaCal's calculators are provided for <strong>informational and educational purposes only</strong>. While we update our tools with each fiscal year's government announcements, results should not be treated as professional financial, tax, legal, or medical advice.</p>
-          <p>For important decisions involving:</p>
+          <hr className="my-10" />
+
+          <h2>3. Permitted Use</h2>
+          <p>You may use NepaCalc only for lawful purposes.</p>
+          <p>You agree not to:</p>
           <ul>
-             <li><strong>Tax filing:</strong> Consult a registered tax practitioner or the Inland Revenue Department (ird.gov.np)</li>
-             <li><strong>Loans & investments:</strong> Consult a SEBON-registered financial advisor or your bank</li>
-             <li><strong>Vehicle matters:</strong> Consult the Department of Transport Management (dotm.gov.np)</li>
-             <li><strong>Medical decisions:</strong> Consult a qualified healthcare professional</li>
-             <li><strong>Legal/property matters:</strong> Consult a licensed lawyer or relevant government authority</li>
+            <li>Attempt to interfere with website operations.</li>
+            <li>Introduce malicious software.</li>
+            <li>Copy large portions of content without permission.</li>
+            <li>Attempt unauthorized access to our systems.</li>
+            <li>Use automated tools to scrape website content excessively.</li>
+            <li>Violate applicable laws while using the website.</li>
           </ul>
 
-          <h2 className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2">Accuracy and Liability</h2>
-          <p>We update Nepal-specific calculators with each fiscal year's government announcements. However:</p>
-          <ul>
-             <li>Tax rates, government fees, and financial regulations in Nepal change periodically</li>
-             <li>We cannot guarantee that all information on NepaCal is current at any given moment</li>
-             <li>Always verify critical figures against the relevant official source before any financial or legal decision</li>
-          </ul>
+          <hr className="my-10" />
 
-          <h2 className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2">Limitation of Liability</h2>
-          <p>In no event shall NepaCal or its founder be liable for any damages ,  including, without limitation, damages for loss of data, loss of profit, or business interruption ,  arising out of the use or inability to use NepaCal's tools or content, even if we have been notified of the possibility of such damage.</p>
-          <p>NepaCal provides tools "as is" without warranty of any kind, express or implied, including but not limited to fitness for a particular purpose or non-infringement.</p>
-
-          <h2 className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2">Intellectual Property & Prohibited Uses</h2>
-          <p>All content on NepaCalc ,  including calculator logic, JavaScript formulas, written explanations, blog posts, and design ,  is the intellectual property of NepaCalc.</p>
+          <h2>4. Intellectual Property</h2>
+          <p>Unless otherwise stated, all content available on NepaCalc, including:</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+            <ul>
+              <li>Text</li>
+              <li>Calculators</li>
+              <li>Source code</li>
+              <li>Graphics</li>
+              <li>Icons</li>
+            </ul>
+            <ul>
+              <li>Logos</li>
+              <li>Layout</li>
+              <li>Design</li>
+              <li>Databases</li>
+              <li>Educational resources</li>
+            </ul>
+          </div>
+          <p>is the intellectual property of NepaCalc and is protected by applicable copyright and intellectual property laws.</p>
           <p><strong>You may:</strong></p>
           <ul>
-             <li>Use the calculators freely for personal or professional purposes</li>
-             <li>Share links to NepaCal pages</li>
-             <li>Quote brief passages with proper attribution and a link to the source page</li>
+            <li>Use the calculators for personal or business purposes.</li>
+            <li>Share links to NepaCalc pages.</li>
           </ul>
-          <p><strong>You may NOT:</strong></p>
+          <p><strong>You may not:</strong></p>
           <ul>
-             <li><strong>Web scraping:</strong> Use automated bots, spiders, crawlers, or scripts to extract calculator logic, data tables, or written content from NepaCal in bulk. This is explicitly prohibited.</li>
-             <li><strong>Frame injection:</strong> Embed or display NepaCal calculators inside an iframe on another website without explicit written permission from us.</li>
-             <li><strong>Code reproduction:</strong> Copy, reverse-engineer, or reproduce NepaCal's calculation logic, formulas, or JavaScript code to represent it as your own work.</li>
-             <li><strong>Content mirroring:</strong> Mirror or republish NepaCal's rate tables or written guides on another website without attribution and written permission.</li>
+            <li>Republish our content without permission.</li>
+            <li>Reproduce calculators for commercial distribution.</li>
+            <li>Remove copyright notices.</li>
+            <li>Copy significant portions of our content onto another website.</li>
           </ul>
-          <p>Violations may result in legal action.</p>
 
-          <h2 className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2">Third-Party Advertising</h2>
-          <p>NepaCal displays advertisements served by Google AdSense and potentially other advertising partners. We are not responsible for the content, accuracy, or practices of advertisers whose ads appear on our site. Clicking on advertisements takes you away from NepaCal.</p>
+          <hr className="my-10" />
 
-          <h2 className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2">External Links</h2>
-          <p>NepaCal links to official government websites (ird.gov.np, nrb.org.np, dotm.gov.np, nea.org.np, etc.) and other resources. We do not control and are not responsible for the content, availability, accuracy, or privacy practices of external websites.</p>
+          <h2>5. Accuracy of Information</h2>
+          <p>We make every reasonable effort to ensure that the information published on NepaCalc is accurate and up to date.</p>
+          <p>However:</p>
+          <ul>
+            <li>Regulations change.</li>
+            <li>Government policies change.</li>
+            <li>Market prices fluctuate.</li>
+            <li>Financial rates change.</li>
+            <li>Utility tariffs change.</li>
+          </ul>
+          <p>Although we regularly review and update our content, we cannot guarantee that every page always reflects the latest official information at every moment.</p>
+          <p>Users should independently verify important financial, legal, engineering, tax, or medical information before making decisions.</p>
 
-          <h2 className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2">Changes to These Terms</h2>
-          <p>We may update these terms periodically. Continued use of NepaCal after any update constitutes acceptance of the revised terms. We do not notify users of updates by email.</p>
+          <hr className="my-10" />
 
-          <h2 className="text-xl font-bold text-gray-900 mt-8 mb-4 border-b pb-2">Contact</h2>
-          <p>For questions about these terms or licensing inquiries: <strong>admin@nepacalc.com</strong></p>
+          <h2>6. Calculator Results</h2>
+          <p>Calculator results are generated automatically based on the information entered by users.</p>
+          <p>The accuracy of any calculation depends on:</p>
+          <ul>
+            <li>The correctness of user inputs.</li>
+            <li>Applicable assumptions.</li>
+            <li>Current regulations.</li>
+            <li>Available official data.</li>
+          </ul>
+          <p>Users remain responsible for verifying results before making financial, legal, engineering, medical, or investment decisions.</p>
+
+          <hr className="my-10" />
+
+          <h2>7. Third-Party Links</h2>
+          <p>Some pages may contain links to third-party websites for additional information or reference.</p>
+          <p>These links are provided solely for user convenience.</p>
+          <p>NepaCalc does not control or endorse the content, policies, or practices of third-party websites.</p>
+          <p>We are not responsible for any information, products, or services provided by external websites.</p>
+
+          <hr className="my-10" />
+
+          <h2>8. Advertising</h2>
+          <p>NepaCalc may display advertisements through Google AdSense and other advertising partners.</p>
+          <p>Advertisements help support the continued development and maintenance of the website.</p>
+          <p>Advertising does not influence:</p>
+          <ul>
+            <li>Editorial decisions</li>
+            <li>Calculator methodologies</li>
+            <li>Rankings</li>
+            <li>Educational content</li>
+            <li>Published information</li>
+          </ul>
+          <p>Sponsored content, if introduced, will always be clearly identified.</p>
+
+          <hr className="my-10" />
+
+          <h2>9. Limitation of Liability</h2>
+          <p>To the fullest extent permitted by applicable law, NepaCalc shall not be liable for any direct, indirect, incidental, consequential, special, or punitive damages arising from:</p>
+          <ul>
+            <li>Use of the website</li>
+            <li>Reliance on calculator results</li>
+            <li>Errors or omissions</li>
+            <li>Website interruptions</li>
+            <li>Data inaccuracies</li>
+            <li>Third-party services</li>
+            <li>Technical issues</li>
+          </ul>
+          <p>Users accept full responsibility for decisions made using information obtained from NepaCalc.</p>
+
+          <hr className="my-10" />
+
+          <h2>10. Availability of Service</h2>
+          <p>We strive to keep NepaCalc available at all times.</p>
+          <p>However, we do not guarantee uninterrupted access.</p>
+          <p>The website may occasionally become unavailable due to:</p>
+          <ul>
+            <li>Maintenance</li>
+            <li>Software updates</li>
+            <li>Technical failures</li>
+            <li>Security improvements</li>
+            <li>Hosting issues</li>
+            <li>Events beyond our reasonable control</li>
+          </ul>
+          <p>We reserve the right to modify, suspend, or discontinue any part of the website without prior notice.</p>
+
+          <hr className="my-10" />
+
+          <h2>11. Privacy</h2>
+          <p>Your use of NepaCalc is also governed by our Privacy Policy.</p>
+          <p>Please review our Privacy Policy to understand how we collect, process, and protect information.</p>
+
+          <hr className="my-10" />
+
+          <h2>12. Changes to These Terms</h2>
+          <p>We may update these Terms & Conditions from time to time.</p>
+          <p>Any changes become effective immediately after publication on this page.</p>
+          <p>Continued use of NepaCalc after updates constitutes acceptance of the revised Terms & Conditions.</p>
+          <p>The latest revision date will always appear at the top of this page.</p>
+
+          <hr className="my-10" />
+
+          <h2>13. Governing Law</h2>
+          <p>These Terms & Conditions shall be governed by and interpreted in accordance with the laws of Nepal.</p>
+          <p>Any disputes arising from the use of NepaCalc shall be subject to the jurisdiction of the competent courts of Nepal.</p>
+
+          <hr className="my-10" />
+
+          <h2>14. Contact Us</h2>
+          <p>If you have any questions regarding these Terms & Conditions, please contact us:</p>
+          <p><strong>Email</strong></p>
+          <p><a href="mailto:support@nepacalc.com">support@nepacalc.com</a></p>
 
         </div>
       </div>
     </div>
   );
 }
-
