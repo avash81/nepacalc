@@ -88,7 +88,7 @@ export default function GoldDashboardClient() {
              <div className="flex-1">
                <h2 className="text-xl font-black text-slate-900 tracking-tighter mb-2">Today's Rate Summary</h2>
                <p className="text-sm text-slate-700 font-medium leading-relaxed m-0">
-                 The official gold price in Nepal today is <strong>Rs. {fmt(tolaNPR.current)}</strong> per Tola for 24K Hallmark Gold (Chhapawal) and <strong>{tejabiDisplayRate}</strong> per Tola for 22K Tejabi Gold. Silver is priced at <strong>Rs. {fmt(silverTolaNPR)}</strong> per Tola. Prices are fixed by FENEGOSIDA.
+                 The official gold price in Nepal today is <strong>Rs. {fmt(tolaNPR.current)}</strong> per Tola for 24K Hallmark Gold (Chhapawal) and <strong>{tejabiDisplayRate}</strong> per Tola for 22K Tejabi Gold. Silver is priced at <strong>Rs. {fmt(silverTolaNPR)}</strong> per Tola. Prices are fixed by FENEGOSIDA. If you need to convert these rates between Tola, Lal, or Grams, you can use our <a href="/calculator/gold-converter/" className="text-blue-600 font-bold hover:underline">Nepal Gold Converter</a>.
                </p>
                <p className="text-sm text-slate-700 font-medium leading-relaxed m-0 mt-3">
                  <strong>Note:</strong> Since import costs dictate the final price, you should also check <a href="/market-rates/exchange-rate-nepal/" className="text-blue-600 underline font-bold">Today's NRB Exchange Rate</a> before making large commercial purchases.

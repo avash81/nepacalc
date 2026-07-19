@@ -328,7 +328,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
       results={resultsComponent}
       ads={{
         sidebar: (
-          <div className="w-full bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-5 shadow-sm text-left">
+          <div className="hidden md:block w-full bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-5 shadow-sm text-left">
             <h2 className="text-[11px] font-black text-[#202124] uppercase tracking-widest mb-3">Table of Contents</h2>
             <nav className="flex flex-col gap-2 text-[12px] text-blue-600 font-medium">
               <a href="#understanding-measurements" className="hover:underline flex items-center gap-1.5">Understanding Measurements</a>
@@ -352,7 +352,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
                 <h2 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Understanding Nepal Gold Measurements</h2>
               </div>
               <div className="text-[12px] text-slate-500 leading-relaxed">
-                Understanding the structural purity and weight measurements of precious metals is crucial for both buyers and sellers in the domestic market. Before evaluating jewelry pieces, it is important to factor in extra costs that may arise during transactions.
+                Understanding the structural purity and weight measurements of precious metals is crucial for both buyers and sellers in the domestic market. Before evaluating jewelry pieces based on the <a href="/market-rates/live-gold-price/" className="text-blue-600 font-bold hover:underline">live gold price today</a>, it is important to factor in extra costs that may arise during transactions.
               </div>
             </div>
 
@@ -466,7 +466,7 @@ export default function GoldConverter({ initialAssetId, isEmbed = false }: { ini
                   <p className="mb-4"><strong>Example:</strong> If you want to find out how many grams are in 15 Lal: 15 × 0.116638 = 1.7495 grams.</p>
 
                   <h3 className="font-bold text-[#202124] mb-2">How to Convert Gram to Lal</h3>
-                  <p className="mb-2">If you have a digital kitchen scale or a laboratory balance measuring an item in grams, translate it back to traditional units using this division formula:</p>
+                  <p className="mb-2">If you have a digital kitchen scale or a laboratory balance measuring an item in grams, translate it back to traditional units using this division formula. Additionally, if you are bringing commercial gold into the country, you can use our <a href="/calculator/gold-tax/" className="text-blue-600 font-bold hover:underline">gold tax calculator</a> to estimate customs duties.</p>
                   <div className="bg-[#F8F9FA] p-3 rounded mb-4 font-mono text-sm border border-[#DADCE0]">Weight in Lal = Weight in Grams ÷ 0.116638</div>
                 </div>
 

@@ -42,14 +42,7 @@ export function MarketDashboardLayout({
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="flex flex-col items-start gap-4">
-               {/* Breadcrumb */}
-               <div className="flex items-center gap-2 text-[10px] font-bold tracking-widest text-slate-400 uppercase">
-                 <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
-                 <ChevronRight className="w-3 h-3 opacity-50" />
-                 <Link href="/market-rates" className="hover:text-blue-600 transition-colors">Market Rates</Link>
-                 <ChevronRight className="w-3 h-3 opacity-50" />
-                 <span className="text-slate-800">{title}</span>
-               </div>
+               
                
                {/* Feed Badge */}
                <div className="flex items-center gap-3">
