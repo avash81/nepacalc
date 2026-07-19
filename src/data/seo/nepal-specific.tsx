@@ -188,12 +188,7 @@ export const nepalSpecificSEO: Record<string, SEOContent> = {
       variables: ["Weight = The mass of gold.", "Rate = The current market price."]
     },
     content: null,
-    faqs: [
-      { question: "How many grams are inside 1 Tola of gold in Nepal?", answer: "Under standard regulations enforced across South Asia and monitored by FENEGOSIDA, 1 Tola of gold is strictly equal to 11.6638 grams." },
-      { question: "What does \"Lal\" mean in gold weight?", answer: "Lal is a traditional sub-unit of weight used primarily in Nepal for measuring precious metals and gemstones. It represents exactly 1/100th of a single Tola." },
-      { question: "Why do some calculators show 1 Tola as 11.66g while others show 11.6638g?", answer: "11.66g is a rounded figure used by local merchants for quick verbal calculations. For formal asset valuations, digital invoicing, and bank collateral auditing, the absolute mathematical standard of 11.6638 grams must be utilized to eliminate structural calculation gaps." },
-      { question: "Who sets the gold rates in Nepal?", answer: "The Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA) sets the benchmark rates daily based on international market trends." }
-    ]
+    faqs: []
   },
   'nepal-home-loan': {
     title: "Nepal Home Loan Calculator | EMI & Mortgage Guide",
