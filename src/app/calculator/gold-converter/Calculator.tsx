@@ -31,7 +31,7 @@ interface CalcState {
 
 const EMPTY: CalcState = {
   tola: '', lal: '', aana: '', gram: '',
-  purity: 'hallmark', chargeType: 'fixed', chargeValue: '5000'
+  purity: 'hallmark', chargeType: 'fixed', chargeValue: '0'
 };
 
 function fmt(n: number) {
