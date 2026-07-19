@@ -53,7 +53,7 @@ export function Footer() {
             <Link href="/" className="inline-block transition-transform hover:scale-105 duration-300">
               <Logo size="sm" theme="indigo" />
             </Link>
-            <p className="text-[12px] leading-relaxed text-[#6e757c] max-w-[240px]">
+            <p className="text-[12px] leading-relaxed text-[#9aa0a6] max-w-[240px]">
               The gold standard for high-precision computational tools in Nepal. Engineered for institutional accuracy and legislative compliance.
             </p>
             <div className="flex items-center gap-2.5">
@@ -63,7 +63,7 @@ export function Footer() {
                 { Icon: Instagram, href: "#" },
                 { Icon: Linkedin, href: "#" }
               ].map((social, i) => (
-                <a key={i} href={social.href} className="w-8 h-8 rounded-full bg-[#161618] border border-[#252529] flex items-center justify-center text-[#6e757c] hover:bg-[#1A73E8] hover:text-white hover:border-[#1A73E8] transition-all duration-200">
+                <a key={i} href={social.href} className="w-8 h-8 rounded-full bg-[#161618] border border-[#252529] flex items-center justify-center text-[#9aa0a6] hover:bg-[#1A73E8] hover:text-white hover:border-[#1A73E8] transition-all duration-200">
                   <social.Icon className="w-3.5 h-3.5" />
                 </a>
               ))}
@@ -86,7 +86,7 @@ export function Footer() {
                   <li key={item.slug}>
                     <Link
                       href={href}
-                      className="group flex items-center gap-2 text-[#737980] hover:text-white transition-colors duration-150 text-[12px]"
+                      className="group flex items-center gap-2 text-[#9aa0a6] hover:text-white transition-colors duration-150 text-[12px]"
                     >
                       <div
                         className="w-1 h-1 rounded-full flex-shrink-0 transition-all duration-200 group-hover:scale-150"
@@ -117,7 +117,7 @@ export function Footer() {
           </div>
 
           {/* Center: legal links */}
-          <div className="flex flex-wrap justify-center gap-x-5 gap-y-1.5 font-black uppercase text-[9px] tracking-[0.18em] text-[#4a5058]">
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-1.5 font-black uppercase text-[9px] tracking-[0.18em] text-[#8ab4f8]">
             <Link href="/blog/" className="hover:text-white transition-colors">Blog</Link>
             <Link href="/about/" className="hover:text-white transition-colors">About</Link>
             <Link href="/sitemap/" className="hover:text-white transition-colors">Sitemap</Link>
@@ -130,7 +130,7 @@ export function Footer() {
 
           {/* Right: back to top + copyright */}
           <div className="flex items-center gap-4">
-            <span className="text-[#4a5058] text-[10px] font-bold tracking-tight hidden sm:block">
+            <span className="text-[#9aa0a6] text-[10px] font-bold tracking-tight hidden sm:block">
               &copy; {year} NepaCalc
             </span>
             <button
