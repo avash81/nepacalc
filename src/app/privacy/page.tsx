@@ -32,6 +32,12 @@ export default function PrivacyPage() {
               <li><a href="#how-we-use-information" className="hover:text-blue-600 transition-colors">2. How We Use Information</a></li>
               <li><a href="#cookies" className="hover:text-blue-600 transition-colors">3. Cookies</a></li>
               <li><a href="#adsense" className="hover:text-blue-600 transition-colors">4. Google AdSense & Advertising</a></li>
+              <li><a href="#analytics" className="hover:text-blue-600 transition-colors">5. Google Analytics</a></li>
+              <li><a href="#third-party" className="hover:text-blue-600 transition-colors">6. Third-Party Services</a></li>
+              <li><a href="#security" className="hover:text-blue-600 transition-colors">7. Data Security</a></li>
+              <li><a href="#retention" className="hover:text-blue-600 transition-colors">8. Data Retention</a></li>
+              <li><a href="#children" className="hover:text-blue-600 transition-colors">9. Children's Privacy</a></li>
+              <li><a href="#rights" className="hover:text-blue-600 transition-colors">10. Your Privacy Rights</a></li>
             </ul>
           </div>
         </aside>
@@ -183,6 +189,95 @@ export default function PrivacyPage() {
           <p>Google may use the <strong>DoubleClick Cookie</strong> to serve personalized advertisements.</p>
           <p>You can learn more about Google's advertising technologies and manage your advertising preferences through <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Google's Ads Settings</a>.</p>
           <p>NepaCalc does not control the advertisements shown by Google or other advertising partners. We do not receive personal information about individual users from Google AdSense. Advertising providers operate according to their own privacy policies and terms of service.</p>
+
+          <hr className="my-10" />
+
+          <h2 id="analytics" className="text-2xl font-bold scroll-mt-24 border-b pb-3">5. Google Analytics</h2>
+          <p>NepaCalc uses Google Analytics to understand how visitors interact with our website and improve the quality of our services.</p>
+          <p>Google Analytics may collect information such as:</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+            <ul>
+              <li>Pages visited</li>
+              <li>Time spent on pages</li>
+              <li>Device type</li>
+              <li>Browser type</li>
+            </ul>
+            <ul>
+              <li>Operating system</li>
+              <li>Country or region</li>
+              <li>Traffic source</li>
+              <li>User interactions</li>
+            </ul>
+          </div>
+          <p>This information is collected in an aggregated and anonymized manner and is used solely to improve website performance, usability, and content quality.</p>
+          <p>We do not use Google Analytics to identify individual users.</p>
+          <p>For more information about how Google processes analytics data, please visit: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>.</p>
+          <p>You may also opt out of Google Analytics by installing the official browser add-on provided by Google.</p>
+
+          <hr className="my-10" />
+
+          <h2 id="third-party" className="text-2xl font-bold scroll-mt-24 border-b pb-3">6. Third-Party Services</h2>
+          <p>To operate and improve NepaCalc, we may use trusted third-party service providers. These services may include:</p>
+          <ul>
+            <li>Google Analytics</li>
+            <li>Google AdSense</li>
+            <li>Google Tag Manager</li>
+            <li>Cloudflare</li>
+            <li>Website hosting providers</li>
+            <li>Performance monitoring services</li>
+            <li>Security services</li>
+          </ul>
+          <p>These providers may process limited technical information necessary to deliver their respective services.</p>
+          <p>Each third-party provider operates under its own privacy policy. NepaCalc does not control how these providers process data beyond the services they provide.</p>
+
+          <hr className="my-10" />
+
+          <h2 id="security" className="text-2xl font-bold scroll-mt-24 border-b pb-3">7. Data Security</h2>
+          <p>We take reasonable administrative, technical, and organizational measures to protect our website and the limited information we process. These measures include:</p>
+          <ul>
+            <li>HTTPS encryption</li>
+            <li>Secure hosting infrastructure</li>
+            <li>Firewall and security protection</li>
+            <li>Regular software updates</li>
+            <li>Access controls</li>
+            <li>Website monitoring</li>
+          </ul>
+          <p>Although we work to protect your information, no method of electronic transmission or internet storage can be guaranteed to be completely secure. For this reason, we cannot guarantee absolute security.</p>
+
+          <hr className="my-10" />
+
+          <h2 id="retention" className="text-2xl font-bold scroll-mt-24 border-b pb-3">8. Data Retention</h2>
+          <p>NepaCalc stores as little personal information as possible.</p>
+          <p>Contact requests submitted through our contact form or email may be retained only for as long as necessary to:</p>
+          <ul>
+            <li>Respond to your enquiry</li>
+            <li>Resolve technical issues</li>
+            <li>Maintain communication records</li>
+            <li>Comply with applicable legal obligations</li>
+          </ul>
+          <p>Calculator inputs are generally not stored and remain within your browser unless explicitly stated otherwise for a specific tool.</p>
+          <p>Anonymous analytics data may be retained by Google Analytics according to Google's own data retention policies.</p>
+
+          <hr className="my-10" />
+
+          <h2 id="children" className="text-2xl font-bold scroll-mt-24 border-b pb-3">9. Children's Privacy</h2>
+          <p>NepaCalc is intended for a general audience and does not knowingly collect personal information from children under the age of 13.</p>
+          <p>If you believe that a child has provided personal information to us, please contact us immediately. Upon verification, we will promptly remove the information from our records where applicable.</p>
+
+          <hr className="my-10" />
+
+          <h2 id="rights" className="text-2xl font-bold scroll-mt-24 border-b pb-3">10. Your Privacy Rights</h2>
+          <p>Depending on your location, you may have certain privacy rights under applicable laws. These rights may include:</p>
+          <ul>
+            <li>The right to access personal information we hold about you.</li>
+            <li>The right to request correction of inaccurate information.</li>
+            <li>The right to request deletion of your personal information.</li>
+            <li>The right to object to certain processing activities.</li>
+            <li>The right to withdraw consent where consent is the legal basis for processing.</li>
+          </ul>
+          <p>Because NepaCalc collects very limited personal information, many of these rights will apply only to information voluntarily provided through our contact channels.</p>
+          <p>To exercise your privacy rights, please contact us at:</p>
+          <p><a href="mailto:support@nepacalc.com">support@nepacalc.com</a></p>
 
         </div>
       </div>
