@@ -157,9 +157,6 @@ export default function GoldDashboardClient() {
                   <span className="block text-amber-800 font-black uppercase text-[12px] tracking-widest mb-1">🧮 Have specific jewelry to weigh?</span>
                   <span className="block text-amber-700 font-bold text-[11px]">Use our Gold Weight & Tola Converter to calculate the exact value of your gold in Grams, Lal, or Ratti instantly.</span>
                 </a>
-                <a href="/market-rates/live-silver-price/" className="block w-full py-4 px-6 bg-slate-50 border border-slate-200 rounded-xl text-center hover:bg-slate-100 transition-colors">
-                  <span className="block text-slate-800 font-black uppercase text-[12px] tracking-widest mb-1">🥈 Also track today's Live Silver Price in Nepal for official FENEGOSIDA Chandi rates.</span>
-                </a>
               </div>
            </div>
 
@@ -179,6 +176,11 @@ export default function GoldDashboardClient() {
                        </div>
                     );
                  })}
+              </div>
+              <div className="mt-6 border-t border-slate-200 pt-6">
+                 <p className="text-[11px] text-slate-500 leading-relaxed mb-4">
+                    Monitoring the 7-day trailing average provides vital context for understanding local market volatility. Often, price dips are brief windows caused by minor corrections in the US Dollar index or temporary easing of geopolitical tensions. If you notice a consistent upward trend, it usually indicates strong inflation hedging by central banks. Similarly, tracking historical movements is just as crucial for other industrial precious metals traded in Nepal. Because silver also acts as both an industrial commodity and a safe-haven asset, its domestic pricing experiences similar, albeit sometimes more aggressive, percentage swings compared to gold. To ensure you have a complete picture of the bullion market before making any large-scale investments, be sure to also review the <a href="/market-rates/live-silver-price/" className="text-blue-600 font-bold hover:underline">Live Silver Price in Nepal</a> which covers official Chandi rates issued by FENEGOSIDA.
+                 </p>
               </div>
            </div>
         </div>

@@ -151,7 +151,8 @@ export const CALCULATORS: Calculator[] = [
   // ==========================================
   // MARKET RATES PILLAR (5)
   // ==========================================
-  { id: 'gold-converter', slug: 'market-rates/live-gold-price', name: 'Live Gold Price', icon: '🏆', description: 'Real-time 24K and 22K gold rates in Nepal with Federation sync.', category: 'market', isNepal: true, isHot: true, keywords: ['Live Gold Price Nepal', 'Federation of Nepal Gold & Silver', '24k gold rate', 'Tola to Gram gold', 'Chandi price'] },
+  { id: 'live-gold-price', slug: 'market-rates/live-gold-price', name: 'Live Gold Price', icon: '🏆', description: 'Real-time 24K and 22K gold rates in Nepal with Federation sync.', category: 'market', isNepal: true, isHot: true, keywords: ['Live Gold Price Nepal', 'Federation of Nepal Gold & Silver', '24k gold rate', 'Tola to Gram gold', 'Chandi price'] },
+  { id: 'gold-converter', slug: 'gold-converter', name: 'Gold Unit Converter', icon: '⚖️', description: 'Convert Nepal gold weight instantly between Tola, Lal, Aana and Gram.', category: 'market', isNepal: true, keywords: ['gold converter nepal', 'tola to gram', 'lal to gram'] },
   { id: 'live-silver-price', slug: 'market-rates/live-silver-price', name: 'Live Silver Price', icon: '🥈', description: 'Track today\'s official Live Silver Price in Nepal including Chandi rates per tola, gram and kilogram.', category: 'market', isNepal: true },
   { id: 'exchange-rate-nepal', slug: 'market-rates/exchange-rate-nepal', name: 'Exchange Rate Nepal', icon: '💱', description: 'Live foreign exchange rates for 20+ currencies including USD and INR.', category: 'market', isNepal: true },
   { id: 'currency-converter', slug: 'currency-converter', name: 'Currency Converter', icon: '💵', description: 'Convert international currencies into Nepalese Rupees using live exchange rates.', category: 'market', isNepal: true },

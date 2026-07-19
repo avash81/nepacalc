@@ -2,8 +2,8 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: 'Nepal Gold Unit Converter: Tola, Lal, Aana & Gram Calculator | NepaCalc',
-  description: 'Convert gold weight instantly between Tola, Lal (Laal), Aana, Ratti and Grams. Bidirectional Nepal gold converter with live FENEGOSIDA rates. 1 Tola = 100 Lal = 11.6638g.',
+  title: 'Nepal Gold Unit Converter – Tola, Lal, Aana & Gram Calculator',
+  description: 'Convert Nepal gold weight instantly between Tola, Lal (Laal), Aana and Gram using the official Nepal gold measurement system. Free two-way Nepal Gold Unit Converter with accurate conversions and optional gold value calculation.',
   slug: 'gold-converter',
   canonical: 'https://nepacalc.com/calculator/gold-converter/',
   keywords: [
@@ -38,7 +38,7 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Gold Converter",
+      "name": "Nepal Gold Unit Converter",
       "item": "https://nepacalc.com/calculator/gold-converter/"
     }
   ]
@@ -52,12 +52,10 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <Calculator />
-      {/* Bidirectional SEO Links — precious metals cluster */}
+      {/* Bidirectional SEO Links */}
       <div className="max-w-3xl mx-auto px-4 py-6 text-center space-y-2">
         <p className="text-[13px] text-slate-600 font-medium leading-relaxed">
-          Need current valuation?<br />
-          Use today&apos;s <a href="/market-rates/live-gold-price/" className="text-blue-700 font-bold underline hover:text-blue-900">Live Gold Price</a> and <a href="/market-rates/live-silver-price/" className="text-blue-700 font-bold underline hover:text-blue-900">Live Silver Price</a> benchmarks before converting precious metal weights.<br /><br />
-          Need silver conversion? Use the <a href="/market-rates/live-silver-price/" className="text-blue-700 font-bold underline hover:text-blue-900">Live Silver Price Calculator</a>.
+          Need current valuation? <a href="/market-rates/live-gold-price/" className="text-blue-700 font-bold underline hover:text-blue-900">View today's live Nepal gold rate.</a>
         </p>
       </div>
     </div>

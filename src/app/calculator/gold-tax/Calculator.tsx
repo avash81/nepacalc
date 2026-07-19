@@ -142,7 +142,7 @@ export default function GoldTaxCalculator() {
                    </div>
                    <div className="p-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md">
                       <h4 className="text-[10px] font-black text-[#202124] uppercase mb-1">Making Charges</h4>
-                      <p className="text-[11px] text-[#5F6368]">Typically ranges from 8% to 15% in Nepal depending on the jewelry design complexity.</p>
+                      <p className="text-[11px] text-[#5F6368]">Typically ranges from 8% to 15% in Nepal depending on the jewelry design complexity. If you want to double-check the exact structural weight of your purchase in various traditional metric units before these making charges are applied, we highly recommend utilizing our <a href="/calculator/gold-converter/" className="text-amber-600 font-bold hover:underline">Gold Unit Converter</a> to verify the jeweler's calculations perfectly.</p>
                    </div>
                 </div>
              </div>
@@ -154,7 +154,7 @@ export default function GoldTaxCalculator() {
                 </div>
                 <div className="space-y-4">
                    <p className="text-sm text-[#5F6368] leading-relaxed mb-4">
-                      Always ask for a formal VAT bill when purchasing gold in Nepal. It ensures the purity of the gold and provides legal protection for resale. Before buying, you can also use our <a href="/calculator/gold-converter/" className="text-[#1A73E8] hover:underline font-bold">Gold Unit Converter</a> to verify the jeweler's weight calculations, and check our <a href="/blog/nepal-gold-price-analysis-2083/" className="text-[#1A73E8] hover:underline font-bold">Nepal Gold Price Analysis 2083</a> to understand current market trends.
+                      Always ask for a formal VAT bill when purchasing gold in Nepal. It ensures the purity of the gold and provides legal protection for resale. Beyond just securing your purchase, understanding the broader macroeconomic trends can help you decide the right time to buy. For those who want to take a deeper dive into the historical pricing data, import quotas, structural inflationary pressures, and the overarching policies of the Nepal Rastra Bank that fundamentally dictate how precious metal valuation fluctuates throughout the fiscal year, we strongly suggest that you check out our comprehensive <a href="/blog/nepal-gold-price-analysis-2083/" className="text-[#1A73E8] hover:underline font-bold">Nepal Gold Price Analysis 2083</a>.
                    </p>
                    <div className="grid grid-cols-1 gap-3">
                       <div className="p-4 rounded-md bg-[#E6F4EA] border border-[#188038] flex justify-between items-center">
@@ -193,7 +193,8 @@ export default function GoldTaxCalculator() {
       faqs={[
         { question: "Is making charge taxable in Nepal?", answer: "Yes, 13% VAT is applied on the total sum of the gold price and the making charges." },
         { question: "What is the standard making charge in Nepal?", answer: "It usually starts from 8% for simple items like rings and can go up to 18-20% for complex bridal jewelry." },
-        { question: "How much gold can I bring from abroad to Nepal?", answer: "NRIs can bring up to 50 grams of gold jewelry duty-free. For amounts above this, heavy import duties apply at the airport." }
+        { question: "How much gold can I bring from abroad to Nepal?", answer: "NRIs can bring up to 50 grams of gold jewelry duty-free. For amounts above this, heavy import duties apply at the airport." },
+        { question: "Does this tax calculator apply to silver?", answer: "Yes, the VAT rules for silver jewelry are structurally identical to gold, meaning that the same 13% standard tax rate is applied to the combined total of the raw material cost and the jeweler's making charges. However, because the base value of silver is significantly lower than gold, the absolute tax amount paid will be much smaller. If you are calculating the tax obligations for silver ornaments, you must first ascertain the precise daily benchmark price before you run the numbers. To get the most accurate baseline for your calculations, you should check the <a href=\"/market-rates/live-silver-price/\" class=\"text-blue-600 font-bold hover:underline\">Live Silver Price Today</a>." }
       ]}
       sidebar={{
         title: "Market Hub",

@@ -22,7 +22,7 @@ export default function Page() {
           <br />
           • <a href="/market-rates/live-gold-price/" className="text-blue-700 font-bold underline hover:text-blue-900">Live Gold Price</a><br />
           <br />
-          Need silver prices instead? Check today&apos;s <a href="/market-rates/live-silver-price/" className="text-blue-700 font-bold underline hover:text-blue-900">Live Silver Price in Nepal</a> before calculating jewellery value.
+          It is crucial to understand that the official benchmark values for precious metals in Nepal are updated daily by the Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA) based on international market trends, foreign exchange fluctuations, and local supply constraints. Because gold is imported into the country under strict quotas managed by the Nepal Rastra Bank, the local retail pricing structure can occasionally deviate from pure international spot rates. Therefore, whether you are planning a significant investment, purchasing bridal jewelry for an upcoming wedding, or estimating your customs duty obligations for imported bullion, relying on the most current and accurate data is essential for financial clarity. If you are also interested in diversifying your investments with other precious metals, or if you need to calculate the precise market valuation for traditional Chandi ornaments, we strongly recommend checking today&apos;s <a href="/market-rates/live-silver-price/" className="text-blue-700 font-bold underline hover:text-blue-900">Live Silver Price in Nepal</a> before calculating jewellery value.
         </p>
       </div>
     </div>
