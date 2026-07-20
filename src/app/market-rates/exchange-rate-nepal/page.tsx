@@ -140,7 +140,7 @@ export default function Page() {
                 <li>Singapore Dollar (SGD)</li>
                 <li>Malaysian Ringgit (MYR)</li>
               </ul>
-              <p className="text-[#5F6368] leading-relaxed">These exchange rates are updated every official banking day after Nepal Rastra Bank releases its daily foreign exchange bulletin. Track live gold prices in Nepal at our <Link href="/market-rates/live-gold-price/" className="text-[#1a0dab] underline font-bold">Live Gold Price Nepal</Link> page.</p>
+              <p className="text-[#5F6368] leading-relaxed">These exchange rates are updated every official banking day after Nepal Rastra Bank releases its daily foreign exchange bulletin. Track the <Link href="/market-rates/live-gold-price/" className="text-[#1a0dab] underline font-bold">current gold rate</Link> to see how these currency fluctuations affect precious metals.</p>
 
               
 
@@ -156,7 +156,7 @@ export default function Page() {
                 <li>SAR to NPR</li>
                 <li>INR to NPR</li>
               </ul>
-              <p className="text-[#5F6368] leading-relaxed">Use the live <Link href="/calculator/currency-converter/" className="text-[#1a0dab] underline font-bold">Currency Converter Nepal</Link> above to instantly calculate the Nepalese Rupee equivalent using the latest official Nepal Rastra Bank exchange rates. For remittance-specific conversions, visit our <Link href="/calculator/remittance-calculator/" className="text-[#1a0dab] underline font-bold">Remittance Calculator</Link>.</p>
+              <p className="text-[#5F6368] leading-relaxed">For remittance-specific conversions, visit our <Link href="/calculator/remittance-calculator/" className="text[#1a0dab] underline font-bold">Remittance Calculator</Link>.</p>
 
               
 
@@ -400,8 +400,7 @@ export default function Page() {
 
               <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">AED, QAR and SAR Exchange Rates</h2>
               <p className="text-[#5F6368] leading-relaxed">Workers in the Middle East contribute a large percentage of Nepal&apos;s annual remittance inflow. Because of this, exchange rates for the UAE Dirham (AED), Qatar Riyal (QAR), and Saudi Riyal (SAR) are among the most frequently checked foreign currencies in Nepal.</p>
-              <p className="text-[#5F6368] leading-relaxed">Families receiving overseas remittances often monitor these rates daily before collecting transferred funds. Monitor the latest <Link href="/market-rates/live-gold-price/" className="text-[#1a0dab] underline font-bold">Live Gold Price in Nepal</Link> alongside remittance rates for comprehensive financial planning.</p>
-              <p className="text-[#5F6368] leading-relaxed mt-3">Exchange rate fluctuations directly influence precious metal pricing. Monitor today&apos;s <Link href="/market-rates/live-silver-price/" className="text-[#1a0dab] underline font-bold">Live Silver Price Nepal</Link> for updated domestic benchmark rates that reflect the latest USD/NPR movements.</p>
+              <p className="text-[#5F6368] leading-relaxed">Families receiving overseas remittances often monitor these rates daily before collecting transferred funds.</p>
 
               
 
@@ -430,7 +429,7 @@ export default function Page() {
                 <li>500 USD = NPR 66,550</li>
                 <li>1,000 USD = NPR 1,33,100</li>
               </ul>
-              <p className="text-[#5F6368] leading-relaxed">Similarly, you can calculate conversions for EUR, GBP, AUD, AED, SAR, and QAR using the live <Link href="/calculator/currency-converter/" className="text-[#1a0dab] underline font-bold">Currency Converter Nepal</Link> available above. For long-term savings planning in foreign currency, our <Link href="/calculator/fd-calculator/" className="text-[#1a0dab] underline font-bold">Fixed Deposit Calculator</Link> can also be helpful.</p>
+              <p className="text-[#5F6368] leading-relaxed">Similarly, you can calculate conversions for EUR, GBP, AUD, AED, SAR, and QAR using the live currency converter available above. For long-term savings planning in foreign currency, our <Link href="/calculator/fd-calculator/" className="text-[#1a0dab] underline font-bold">Fixed Deposit Calculator</Link> can also be helpful.</p>
 
               
 
@@ -492,7 +491,7 @@ export default function Page() {
               <p className="text-[#5F6368] leading-relaxed">Yes. The official Nepal Rastra Bank rates provide an excellent benchmark for estimating remittance values. However, remittance companies such as IME, Wise, Western Union, MoneyGram, Remitly, and WorldRemit may apply their own exchange margins and service fees, so the final received amount may vary. Use our <Link href="/calculator/remittance-calculator/" className="text-[#1a0dab] underline font-bold">Remittance Calculator</Link> for a detailed estimate.</p>
 
               <h3 className="text-xl font-bold text-[#202124] mt-6 mb-2">How can I convert foreign currency into Nepalese Rupees?</h3>
-              <p className="text-[#5F6368] leading-relaxed">Simply enter the amount into the <Link href="/calculator/currency-converter/" className="text-[#1a0dab] underline font-bold">Currency Converter Nepal</Link> provided on this page. The calculator uses the latest available Nepal Rastra Bank exchange rates to estimate the equivalent value in Nepalese Rupees (NPR).</p>
+              <p className="text-[#5F6368] leading-relaxed">Simply enter the amount into the currency converter provided on this page. The calculator uses the latest available Nepal Rastra Bank exchange rates to estimate the equivalent value in Nepalese Rupees (NPR).</p>
 
               <h3 className="text-xl font-bold text-[#202124] mt-6 mb-2">Is the Indian Rupee exchange rate fixed in Nepal?</h3>
               <p className="text-[#5F6368] leading-relaxed">Yes. Unlike other currencies, the Nepalese Rupee is officially pegged to the Indian Rupee. The fixed exchange rate is <strong>100 Indian Rupees = 160 Nepalese Rupees</strong>. This peg helps maintain financial stability because of the close economic relationship between Nepal and India. This arrangement has been in place since 1993.</p>
@@ -500,19 +499,6 @@ export default function Page() {
               <h3 className="text-xl font-bold text-[#202124] mt-6 mb-2">Why should I use NepaCalc instead of checking multiple bank websites?</h3>
               <p className="text-[#5F6368] leading-relaxed">NepaCalc brings together official Nepal Rastra Bank exchange rates, a live currency converter, educational resources, and related financial calculators in one place. Instead of checking multiple commercial bank websites individually, you can quickly compare rates, convert currencies, and access additional financial tools from a single page.</p>
 
-              
-
-              <h2 className="text-2xl font-black text-[#202124] mt-8 mb-3 border-b border-[#DADCE0] pb-2">Related Tools &amp; Resources</h2>
-              <ul className="text-[#5F6368] leading-relaxed list-disc pl-5">
-                <li><Link href="/market-rates/live-gold-price/" className="text-[#1a0dab] underline font-bold">Live Gold Price in Nepal</Link></li>
-                <li><Link href="/calculator/currency-converter/" className="text-[#1a0dab] underline font-bold">Currency Converter Nepal</Link></li>
-                <li><Link href="/calculator/remittance-calculator/" className="text-[#1a0dab] underline font-bold">Remittance Calculator</Link></li>
-                <li><Link href="/calculator/nepal-income-tax/" className="text-[#1a0dab] underline font-bold">Nepal Income Tax Calculator</Link></li>
-                <li><Link href="/calculator/savings/" className="text-[#1a0dab] underline font-bold">Savings Calculator</Link></li>
-                <li><Link href="/calculator/fd-calculator/" className="text-[#1a0dab] underline font-bold">Fixed Deposit Calculator</Link></li>
-                <li><Link href="/electricity/nepal-unit-price/" className="text-[#1a0dab] underline font-bold">Nepal Electricity Unit Price</Link></li>
-                <li><Link href="/electricity/nea-tariff-rates/" className="text-[#1a0dab] underline font-bold">NEA Tariff Rates</Link></li>
-              </ul>
 
             </div>
           </div>

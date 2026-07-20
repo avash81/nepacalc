@@ -309,7 +309,7 @@ export function SilverSeoContent() {
             <li><strong>1 Kilogram</strong> = 85.735 Tola</li>
           </ul>
           <p className="text-slate-700 text-base leading-relaxed mb-10 font-medium">
-            The calculator on this page automatically converts between all major Nepalese and international silver weight units. If you are also dealing with gold, you can use our <Link href="/calculator/gold-converter/" className="text-blue-600 hover:underline">Gold Weight Converter</Link>.
+            The calculator on this page automatically converts between all major Nepalese and international silver weight units.
           </p>
 
           {/* 5. Purity Standards */}
@@ -384,7 +384,7 @@ export function SilverSeoContent() {
             Although gold and silver often move in the same general direction, they respond differently to market conditions.
           </p>
           <p className="text-slate-700 text-base leading-relaxed mb-4 font-medium">
-            <Link href="/market-rates/live-gold-price/" className="text-blue-600 hover:underline">Gold prices in Nepal</Link> are primarily influenced by investment demand and central bank reserves, whereas silver is influenced by both
+            The <Link href="/market-rates/live-gold-price/" className="text-blue-600 hover:underline">live gold price in Nepal</Link> is primarily influenced by investment demand and central bank reserves, whereas silver is influenced by both
             investment demand and industrial consumption.
           </p>
           <p className="text-slate-700 text-base leading-relaxed mb-4 font-medium">
@@ -509,7 +509,7 @@ export function SilverSeoContent() {
             <li>Jewellery making charges</li>
             <li>Design complexity</li>
             <li>Stone or accessory costs</li>
-            <li><Link href="/calculator/gold-tax/" className="text-blue-600 hover:underline">Applicable taxes and customs</Link></li>
+            <li>Applicable taxes and customs</li>
           </ul>
           <p className="text-slate-700 text-base leading-relaxed mb-10 font-medium">
             For handcrafted jewellery, making charges may represent a significant portion of the final retail price.
@@ -626,21 +626,6 @@ export function SilverSeoContent() {
           </p>
 
 
-          {/* People Also Search */}
-          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 mb-6 not-prose">
-            <h3 className="text-sm font-black uppercase tracking-widest text-slate-800 mb-4">People also search for</h3>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/market-rates/live-gold-price/" className="text-xs font-bold text-blue-600 hover:underline">Gold Price in Nepal Today</Link>
-              <Link href="/market-rates/live-gold-price/" className="text-xs font-bold text-blue-600 hover:underline">Gold Price Per Tola</Link>
-              <Link href="/market-rates/live-silver-price/" className="text-xs font-bold text-blue-600 hover:underline">Silver Price Per Gram</Link>
-              <Link href="/market-rates/live-silver-price/" className="text-xs font-bold text-blue-600 hover:underline">Silver Price Per Kilogram</Link>
-              <Link href="/market-rates/live-silver-price/" className="text-xs font-bold text-blue-600 hover:underline">Silver Price Calculator</Link>
-              <Link href="/calculator/gold-tax/" className="text-xs font-bold text-blue-600 hover:underline">Gold Tax Calculator Nepal</Link>
-              <Link href="/market-rates/exchange-rate-nepal/" className="text-xs font-bold text-blue-600 hover:underline">Exchange Rate Nepal Today</Link>
-              <Link href="/calculator/gold-converter/" className="text-xs font-bold text-blue-600 hover:underline">Gold Weight Converter</Link>
-              <Link href="/market-rates/" className="text-xs font-bold text-blue-600 hover:underline">Precious Metal Prices Nepal</Link>
-            </div>
-          </div>
 
     </div>
   );

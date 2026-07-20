@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"success":true,"gold":{"tolaNPR":282100,"tejabiTolaNPR":0},"silver":{"tolaNPR":3149},"provider":"LivePriceOfGold (Real-Time Backup)","updatedAt":"2026-07-19T18:31:09.619Z"}
+=======
+{"success":true,"gold":{"tolaNPR":282100,"tejabiTolaNPR":0},"silver":{"tolaNPR":3152},"provider":"LivePriceOfGold (Real-Time Backup)","updatedAt":"2026-07-20T17:13:07.235Z"}
+>>>>>>> 9cdfc8a3a (feat: optimize market hub internal linking and anchors)

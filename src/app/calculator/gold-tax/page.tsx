@@ -12,17 +12,16 @@ export default function Page() {
   return (
     <div>
       <Calculator />
-      {/* Bidirectional SEO Links — precious metals cluster */}
+      {/* SEO Links — precious metals cluster */}
       <div className="max-w-3xl mx-auto px-4 py-6">
-        <h2 className="text-xl font-bold text-slate-900 mb-4 text-center">Today's Precious Metal Rates</h2>
-        <p className="text-[13px] text-slate-600 font-medium text-center max-w-2xl mx-auto leading-relaxed">
-          Before calculating taxes or jewellery costs, always verify the latest official benchmark prices.
-          <br /><br />
-          View today&apos;s:<br />
-          <br />
-          • <a href="/market-rates/live-gold-price/" className="text-blue-700 font-bold underline hover:text-blue-900">Live Gold Price</a><br />
-          <br />
-          It is crucial to understand that the official benchmark values for precious metals in Nepal are updated daily by the Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA) based on international market trends, foreign exchange fluctuations, and local supply constraints. Because gold is imported into the country under strict quotas managed by the Nepal Rastra Bank, the local retail pricing structure can occasionally deviate from pure international spot rates. Therefore, whether you are planning a significant investment, purchasing bridal jewelry for an upcoming wedding, or estimating your customs duty obligations for imported bullion, relying on the most current and accurate data is essential for financial clarity. If you are also interested in diversifying your investments with other precious metals, or if you need to calculate the precise market valuation for traditional Chandi ornaments, we strongly recommend checking today&apos;s <a href="/market-rates/live-silver-price/" className="text-blue-700 font-bold underline hover:text-blue-900">Live Silver Price in Nepal</a> before calculating jewellery value.
+        <p className="text-[13px] text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed mb-4">
+          Import duties are calculated separately from the daily bullion value, so always verify the <a href="/market-rates/live-gold-price/" className="text-blue-700 font-bold underline hover:text-blue-900">official gold rate</a> before estimating taxes.
+        </p>
+        <p className="text-[13px] text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed mb-4">
+          Understanding the precise customs duty on precious metals is essential for anyone returning to Nepal from abroad with jewelry or raw bullion, as allowances are strictly enforced at the airport.
+        </p>
+        <p className="text-[13px] text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
+          If your jewellery weight is in Lal, Aana or Grams, convert it first using our <a href="/calculator/gold-converter/" className="text-blue-700 font-bold underline hover:text-blue-900">Gold Weight Converter</a>.
         </p>
       </div>
     </div>

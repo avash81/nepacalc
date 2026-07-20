@@ -141,7 +141,7 @@ export default function Page() {
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 text-slate-800 prose prose-slate max-w-none">
           
           <p className="text-lg leading-relaxed mb-10">
-            Our Nepal Gold Unit Converter instantly converts between Tola, Lal, Aana, Gram, and Ratti using the official Nepal gold measurement standard. Whether you're buying jewellery, checking ornament weight, or converting traditional Nepali gold units into grams, the calculator provides instant and accurate results. If you need current valuation, view today's <Link href="/market-rates/live-gold-price/" className="text-blue-600 hover:underline">live gold price in Nepal</Link>.
+            Our Nepal Gold Unit Converter instantly converts between Tola, Lal, Aana, Gram, and Ratti using the official Nepal gold measurement standard. Whether you're buying jewellery, checking ornament weight, or converting traditional Nepali gold units into grams, the calculator provides instant and accurate results. Once you've converted your jewellery weight, check <Link href="/market-rates/live-gold-price/" className="text-blue-600 hover:underline">today's gold price</Link> to estimate its current market value.
           </p>
 
           {/* ── Table of Contents ── */}
@@ -203,7 +203,7 @@ export default function Page() {
           <h2 id="official-standard" className="text-2xl font-black text-slate-900 mt-12 mb-6">Official Nepal Gold Measurement Standard (FENEGOSIDA & NBSM)</h2>
           <div className="mb-6 space-y-4">
             <p>
-              Gold prices in Nepal change daily based on international bullion markets, USD exchange rates, and domestic demand. The <a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="text-blue-600 hover:underline">Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)</a> publishes the official benchmark rates used by jewellery businesses across Nepal. This converter uses the official Nepal gold measurement system and is designed to work alongside the latest published market prices. You can also view the <Link href="/market-rates/live-silver-price/" className="text-blue-600 hover:underline">live silver price in Nepal</Link> for current silver rates.
+              Gold prices in Nepal change daily based on international bullion markets, USD exchange rates, and domestic demand. The <a href="https://www.fenegosida.org/" target="_blank" rel="nofollow noopener" className="text-blue-600 hover:underline">Federation of Nepal Gold and Silver Dealers' Association (FENEGOSIDA)</a> publishes the official benchmark rates used by jewellery businesses across Nepal. This converter uses the official Nepal gold measurement system and is designed to work alongside the latest published market prices. Investors often compare precious metals before buying, so you can also view today's <Link href="/market-rates/live-silver-price/" className="text-blue-600 hover:underline">Live Silver Price in Nepal</Link>.
             </p>
           </div>
 
@@ -235,21 +235,7 @@ export default function Page() {
             </div>
           </div>
 
-          <h2 id="related-tools" className="text-2xl font-black text-slate-900 mt-12 mb-6">Related Tools</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Link href="/market-rates/live-gold-price/" className="flex items-center p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors">
-              <span className="font-bold text-slate-800">Live Gold Price in Nepal</span>
-            </Link>
-            <Link href="/calculator/gold-tax/" className="flex items-center p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors">
-              <span className="font-bold text-slate-800">Nepal Gold Tax Calculator</span>
-            </Link>
-            <Link href="/market-rates/live-silver-price/" className="flex items-center p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors">
-              <span className="font-bold text-slate-800">Live Silver Price in Nepal</span>
-            </Link>
-            <Link href="/calculator/currency-converter/" className="flex items-center p-4 bg-slate-50 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors">
-              <span className="font-bold text-slate-800">Currency Converter</span>
-            </Link>
-          </div>
+
 
         </div>
       </div>

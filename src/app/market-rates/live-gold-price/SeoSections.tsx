@@ -104,13 +104,13 @@ export default function SeoSections() {
             <strong>1. The International Spot Price (LBMA):</strong> Every day, FENEGOSIDA looks at the London Bullion Market Association (LBMA) rate as the global benchmark.
           </p>
           <p className="text-sm text-slate-700 leading-relaxed font-medium">
-            <strong>2. Currency Exchange Rate (USD to NPR):</strong> Because global gold is priced in US Dollars, any fluctuation in the value of the Nepalese Rupee against the Dollar directly impacts the local price. Since gold is internationally priced in US Dollars, today's <a href="/market-rates/exchange-rate-nepal/" className="text-blue-600 hover:underline">NRB Exchange Rate</a> directly affects gold prices in Nepal.
+            <strong>2. Currency Exchange Rate (USD to NPR):</strong> Because global gold is priced in US Dollars, any fluctuation in the value of the Nepalese Rupee against the Dollar directly impacts the local price.
           </p>
           <p className="text-sm text-slate-700 leading-relaxed font-medium">
             <strong>3. Customs Duty and Import Taxes:</strong> This is the largest local factor. The Nepal Government enforces strict import quotas (typically capped around 20kg per day for commercial banks) and levies an approximate 20% customs duty on raw bullion to protect foreign currency reserves.
           </p>
           <p className="text-sm text-slate-700 leading-relaxed font-medium">
-            <strong>Retail Additions:</strong> When you purchase finished jewelry, showrooms add <em>Jyala</em> (making charges, typically 5-15%), <em>Jarti</em> (wastage), and a mandatory 13% Value Added Tax (VAT). To calculate exactly how much you'll be billed at the showroom, use our <a href="/calculator/gold-tax/" className="text-blue-600 hover:underline font-bold">Gold Tax Calculator</a>.
+            <strong>Retail Additions:</strong> When you purchase finished jewelry, showrooms add <em>Jyala</em> (making charges, typically 5-15%), <em>Jarti</em> (wastage), and a mandatory 13% Value Added Tax (VAT). If you are importing jewellery or bullion into Nepal, estimate customs duty, VAT and other charges using our <a href="/calculator/gold-tax/" className="text-blue-600 hover:underline font-bold">Gold Import Tax Calculator</a>.
           </p>
         </div>
       </section>
@@ -125,7 +125,7 @@ export default function SeoSections() {
             Gold and silver prices often move together but respond differently to global market conditions, industrial demand, inflation, and exchange rates.
           </p>
           <p className="text-[14px] leading-relaxed text-slate-700 font-medium">
-            If you also monitor silver prices, compare today's official Chandi benchmark using our <a href="/market-rates/live-silver-price/" className="text-blue-700 hover:underline font-bold">Live Silver Price</a> page.
+            For historical trends and market insights, read our detailed <a href="/blog/nepal-gold-price-analysis-2083/" className="text-blue-700 hover:underline font-bold">Nepal Gold Price Analysis</a>.
           </p>
         </div>
       </section>
@@ -156,7 +156,7 @@ export default function SeoSections() {
             <div>
               <h3 className="text-sm font-bold text-blue-700 mb-2">How many grams are in 1 Tola?</h3>
               <p className="text-[13px] text-slate-600 leading-relaxed font-medium">
-                In Nepal, 1 Tola is precisely equal to 11.6638 grams. For quick math, 10 grams equals roughly 0.857 Tola. You can easily convert between any of these traditional and modern units using our <a href="/calculator/gold-converter/" className="text-blue-700 hover:underline font-bold">Gold Unit Converter</a>.
+                In Nepal, 1 Tola is precisely equal to 11.6638 grams. For quick math, 10 grams equals roughly 0.857 Tola. Need to convert today's gold rate into Grams, Lal, Aana or Tola? Use our <a href="/calculator/gold-converter/" className="text-blue-700 hover:underline font-bold">Gold Unit Converter</a> to calculate the exact value of any jewellery weight instantly.
               </p>
             </div>
           </div>
@@ -206,21 +206,7 @@ export default function SeoSections() {
         </div>
       </section>
 
-      {/* Related Market Links (Crawl Depth & SEO) */}
-      <section className="pt-8 border-t border-slate-200">
-         <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-4 flex items-center gap-2">
-            <Anchor className="w-6 h-6 text-slate-400" />
-            Related Market Resources
-         </h2>
-         {/* VERIFIED EXISTING PAGES ONLY — No 404 links */}
-         <div className="flex flex-wrap gap-3">
-            <a href="/market-rates/live-silver-price/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Silver Price in Nepal Today</a>
-            <a href="/calculator/gold-converter/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Gold Weight Converter</a>
-            <a href="/calculator/gold-tax/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Gold Import Tax Calculator</a>
-            <a href="/market-rates/exchange-rate-nepal/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Currency Exchange Rate</a>
-            <a href="/market-rates/remittance/" className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-bold text-blue-700 hover:bg-blue-50 transition-colors">Remittance Calculator</a>
-         </div>
-      </section>
+
 
       {/* Why Trust This Data */}
       <section className="pt-8 border-t border-slate-200" aria-label="Trust and Verification">
