@@ -215,7 +215,7 @@ export default function Page() {
             <p className="mb-6"><strong>Example:</strong> If you want to find out how many grams are in 15 Lal: 15 × 0.116638 = 1.7495 grams.</p>
 
             <h3 className="font-bold text-slate-900 mb-2">How to Convert Gram to Lal</h3>
-            <p className="mb-2">If you have a digital kitchen scale or a laboratory balance measuring an item in grams, translate it back to traditional units using this division formula. Additionally, if you are bringing commercial gold into the country, you can use our <Link href="/calculator/gold-tax/" className="text-blue-600 font-bold hover:underline">gold tax calculator</Link> to estimate customs duties.</p>
+            <p className="mb-2">If you have a digital kitchen scale or a laboratory balance measuring an item in grams, translate it back to traditional units using this division formula.</p>
             <div className="bg-slate-50 p-4 rounded-lg font-mono text-sm border border-slate-200 mb-4 text-slate-800">Weight in Lal = Weight in Grams ÷ 0.116638</div>
           </div>
 
@@ -227,12 +227,7 @@ export default function Page() {
                 <p className="text-slate-700 leading-relaxed text-[15px]">{faq.acceptedAnswer.text}</p>
               </div>
             ))}
-            <div className="border-b border-slate-100 pb-4 last:border-0 last:pb-0">
-              <h3 className="font-bold text-slate-900 mb-2">Want to learn more about gold prices in Nepal?</h3>
-              <p className="text-slate-700 leading-relaxed text-[15px]">
-                Check out our detailed guide on <Link href="/blog/nepal-gold-price-analysis-2083" className="text-blue-600 hover:underline">Nepal Gold Price Analysis</Link> to understand the factors affecting gold rates, historical trends, and future predictions in the Nepali market.
-              </p>
-            </div>
+
           </div>
 
 

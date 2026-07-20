@@ -140,7 +140,7 @@ export default function Page() {
                 <li>Singapore Dollar (SGD)</li>
                 <li>Malaysian Ringgit (MYR)</li>
               </ul>
-              <p className="text-[#5F6368] leading-relaxed">These exchange rates are updated every official banking day after Nepal Rastra Bank releases its daily foreign exchange bulletin. Track the <Link href="/market-rates/live-gold-price/" className="text-[#1a0dab] underline font-bold">current gold rate</Link> to see how these currency fluctuations affect precious metals.</p>
+              <p className="text-[#5F6368] leading-relaxed">These exchange rates are updated every official banking day after Nepal Rastra Bank releases its daily foreign exchange bulletin. Track the <Link href="/market-rates/live-gold-price/" className="text-[#1a0dab] underline font-bold">Nepal gold price today</Link> to see how these currency fluctuations affect precious metals.</p>
 
               
 
@@ -156,7 +156,7 @@ export default function Page() {
                 <li>SAR to NPR</li>
                 <li>INR to NPR</li>
               </ul>
-              <p className="text-[#5F6368] leading-relaxed">For remittance-specific conversions, visit our <Link href="/calculator/remittance-calculator/" className="text[#1a0dab] underline font-bold">Remittance Calculator</Link>.</p>
+              
 
               
 
@@ -175,7 +175,8 @@ export default function Page() {
                 <li>Online international purchases</li>
                 <li>Monitoring the US Dollar against the Nepalese Rupee</li>
               </ul>
-              <p className="text-[#5F6368] leading-relaxed">Using official Nepal Rastra Bank rates helps users make informed financial decisions while avoiding outdated or inaccurate exchange information. If you&apos;re planning your finances around foreign income, our <Link href="/calculator/nepal-income-tax/" className="text-[#1a0dab] underline font-bold">Nepal Income Tax Calculator</Link> and <Link href="/calculator/savings/" className="text-[#1a0dab] underline font-bold">Savings Calculator</Link> can help you plan effectively.</p>
+              <p className="text-[#5F6368] leading-relaxed">Using official Nepal Rastra Bank rates helps users make informed financial decisions while avoiding outdated or inaccurate exchange information. If you&apos;re planning your finances around foreign income, our <Link href="/calculator/nepal-income-tax/" className="text-[#1a0dab] underline font-bold">Nepal Income Tax Calculator</Link> can help you calculate your tax liability.</p>
+              <p className="text-[#5F6368] leading-relaxed">For long-term planning, consider estimating your returns with our <Link href="/calculator/savings/" className="text-[#1a0dab] underline font-bold">Savings Calculator</Link>.</p>
 
               {/* ── PART 2 CONTENT ── */}
 
@@ -302,7 +303,7 @@ export default function Page() {
                 <li>Government agencies</li>
                 <li>Investors and financial analysts</li>
               </ul>
-              <p className="text-[#5F6368] leading-relaxed">Whether you&apos;re sending money abroad, receiving remittance, purchasing foreign currency, or planning international travel, using the latest Nepal Rastra Bank exchange rates ensures accurate financial calculations. Use our <Link href="/calculator/remittance-calculator/" className="text-[#1a0dab] underline font-bold">Remittance Calculator</Link> to compare your actual payout value.</p>
+              <p className="text-[#5F6368] leading-relaxed">Whether you&apos;re sending money abroad, receiving remittance, purchasing foreign currency, or planning international travel, using the latest Nepal Rastra Bank exchange rates ensures accurate financial calculations.</p>
 
               {/* ── PART 3 CONTENT ── */}
 
@@ -340,7 +341,7 @@ export default function Page() {
                 <li>Cash availability</li>
               </ul>
               <p className="text-[#5F6368] leading-relaxed">Some banks may offer slightly better buying rates, while others may provide more competitive selling rates depending on the currency and market conditions. For the most accurate comparison, check the latest exchange rates published by multiple licensed commercial banks before completing a transaction.</p>
-              <p className="text-[#5F6368] leading-relaxed">For most users, the official Nepal Rastra Bank exchange rate serves as the best benchmark for comparing commercial bank rates. Our <Link href="/calculator/currency-converter/" className="text-[#1a0dab] underline font-bold">Currency Converter Nepal</Link> uses the latest NRB reference rates for all conversions.</p>
+              <p className="text-[#5F6368] leading-relaxed">For most users, the official Nepal Rastra Bank exchange rate serves as the best benchmark for comparing commercial bank rates. The calculator uses the latest NRB reference rates for all conversions.</p>
 
               
 
@@ -358,7 +359,7 @@ export default function Page() {
                 <li>Prabhu Money Transfer</li>
                 <li>City Express</li>
               </ul>
-              <p className="text-[#5F6368] leading-relaxed">Although these providers generally follow the market trend established by Nepal Rastra Bank, the final amount received in Nepalese Rupees may vary depending on transfer fees, service charges, promotional exchange rates, transfer method, destination country, and payment partner. Always compare both the exchange rate and transfer fees before sending international money. Use our <Link href="/calculator/remittance-calculator/" className="text-[#1a0dab] underline font-bold">Remittance Calculator</Link> to estimate your exact payout.</p>
+              <p className="text-[#5F6368] leading-relaxed">Although these providers generally follow the market trend established by Nepal Rastra Bank, the final amount received in Nepalese Rupees may vary depending on transfer fees, service charges, promotional exchange rates, transfer method, destination country, and payment partner. Always compare both the exchange rate and transfer fees before sending international money.</p>
 
               
 
@@ -372,7 +373,7 @@ export default function Page() {
                 <li>International investments</li>
                 <li>Travel expenses</li>
               </ul>
-              <p className="text-[#5F6368] leading-relaxed">The USD to NPR rate changes according to movements in global foreign exchange markets and is officially published every banking day by Nepal Rastra Bank. Pair this with our <Link href="/calculator/savings/" className="text-[#1a0dab] underline font-bold">Savings Calculator</Link> to plan your foreign income effectively.</p>
+              <p className="text-[#5F6368] leading-relaxed">The USD to NPR rate changes according to movements in global foreign exchange markets and is officially published every banking day by Nepal Rastra Bank.</p>
 
               
 
@@ -414,7 +415,7 @@ export default function Page() {
                 <li>Annual performance</li>
                 <li>Long-term currency direction</li>
               </ul>
-              <p className="text-[#5F6368] leading-relaxed">Historical data can assist businesses, travelers, investors, and remittance recipients in identifying favorable exchange opportunities. If you hold foreign income, our <Link href="/calculator/nepal-income-tax/" className="text-[#1a0dab] underline font-bold">Nepal Income Tax Calculator</Link> can help you plan your tax liability accordingly.</p>
+              <p className="text-[#5F6368] leading-relaxed">Historical data can assist businesses, travelers, investors, and remittance recipients in identifying favorable exchange opportunities.</p>
 
               
 

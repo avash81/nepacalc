@@ -34,7 +34,7 @@ export default function Page() {
         <RemittanceDashboardClient />
         <div className="max-w-3xl mx-auto px-4 py-6">
           <p className="text-[13px] text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed mb-4">
-            Remittance inflows significantly influence Nepal&apos;s foreign currency reserves, which in turn affect precious metal import quotas. Track the daily benchmark via the <a href="/market-rates/live-gold-price/" className="text-blue-700 font-bold underline hover:text-blue-900">live gold price in Nepal</a>.
+            Remittance inflows significantly influence Nepal&apos;s foreign currency reserves, which in turn affect precious metal import quotas. Track the daily benchmark via the <a href="/market-rates/live-gold-price/" className="text-blue-700 font-bold underline hover:text-blue-900">current gold rate</a>.
           </p>
           <p className="text-[13px] text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
             For silver investors and traders, the official Chandi rate is updated daily on our <a href="/market-rates/live-silver-price/" className="text-blue-700 font-bold underline hover:text-blue-900">Live Silver Price</a> page.

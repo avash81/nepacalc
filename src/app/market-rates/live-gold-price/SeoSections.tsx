@@ -255,7 +255,7 @@ export default function SeoSections() {
                <p className="text-[13px] font-medium text-slate-700 mb-1">Publisher: <strong>NepaCalc</strong></p>
                <p className="text-[13px] font-medium text-slate-700 mb-1">Editorial Team: <strong>NepaCalc Editorial Team</strong></p>
                <p className="text-[13px] font-medium text-slate-700 mb-1">Last Reviewed: <strong>{new Date().toLocaleDateString('en-US', { timeZone: 'Asia/Kathmandu', month: 'long', day: 'numeric', year: 'numeric' })}</strong></p>
-               <p className="text-[13px] font-medium text-slate-700"><a href="/contact" className="underline text-blue-700">Contact the Editorial Team</a></p>
+               <p className="text-[13px] font-medium text-slate-700">Please provide verified sources for data corrections.</p>
             </div>
             <div className="bg-slate-50 border border-slate-200 p-5 rounded-xl">
                <h3 className="text-xs font-black text-slate-500 uppercase tracking-widest mb-3">Page Change History</h3>
