@@ -373,6 +373,28 @@ export default function DateDuration() {
         <div className="space-y-12">
           <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm space-y-10">
 
+            {/* Feature Summary */}
+            <section id="feature-summary">
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">What This Date Duration Calculator Can Calculate</h2>
+              <p className="text-[#5F6368] text-base leading-relaxed mb-4">Calculate the exact duration between any two calendar dates with a complete breakdown of:</p>
+              <ul className="list-disc pl-5 space-y-1 text-[#5F6368] text-base mb-4">
+                <li>Total days</li>
+                <li>Total weeks</li>
+                <li>Total months</li>
+                <li>Total years</li>
+                <li>Hours</li>
+                <li>Minutes</li>
+                <li>Seconds</li>
+                <li>Business days (weekdays)</li>
+                <li>Inclusive and exclusive date counting</li>
+                <li>Leap year adjustments</li>
+                <li>Calendar date differences</li>
+              </ul>
+              <p className="text-[#5F6368] text-base leading-relaxed">
+                The calculator automatically accounts for varying month lengths, leap years, and calendar rules to provide accurate date duration calculations.
+              </p>
+            </section>
+
             {/* Real Use Cases */}
             <section id="use-cases">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-6">Real Use Cases & Examples</h2>
@@ -415,11 +437,69 @@ export default function DateDuration() {
             <section>
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Why Use a Date Difference & Elapsed Time Calculator?</h2>
               <p className="text-[#5F6368] text-base leading-relaxed mb-4">
-                A Date Duration Calculator makes it easy to calculate the exact time between two dates without manually counting calendar days. It instantly determines the duration in years, months, weeks, and days, while automatically accounting for leap years and different month lengths.
+                The Date Duration Calculator helps you calculate the exact time between two dates in years, months, weeks, days, hours, minutes, and seconds. It automatically considers leap years, different month lengths, business days, and optional inclusive date counting, making it suitable for legal, financial, project planning, HR, education, and everyday date calculations.
               </p>
               <p className="text-[#5F6368] text-base leading-relaxed">
                 Whether you're determining your exact age with an <a href="/calculator/age-calculator/" className="text-[#1A73E8] underline hover:no-underline">Age Calculator</a>, measuring employment duration, or checking contract periods, this tool provides fast and accurate results in seconds. You can also use it alongside other tools for complete date and time planning.
               </p>
+            </section>
+
+            {/* Popular Uses */}
+            <section>
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Popular Uses of the Date Duration Calculator</h2>
+              <p className="text-[#5F6368] text-base leading-relaxed mb-4">People use this calculator to:</p>
+              <ul className="list-disc pl-5 space-y-1 text-[#5F6368] text-base">
+                <li>Calculate days between two dates</li>
+                <li>Find the duration between birthdays</li>
+                <li>Calculate age differences</li>
+                <li>Track employment periods</li>
+                <li>Calculate project timelines</li>
+                <li>Measure contract duration</li>
+                <li>Count business days</li>
+                <li>Calculate leave periods</li>
+                <li>Determine financial investment duration</li>
+                <li>Plan academic schedules</li>
+                <li>Calculate loan durations</li>
+                <li>Track visa validity periods</li>
+              </ul>
+            </section>
+
+            {/* Supported Calculations */}
+            <section>
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Supported Date Calculations</h2>
+              <div className="overflow-x-auto border border-[#DADCE0] rounded-lg">
+                <table className="w-full text-left text-sm text-[#202124]">
+                  <thead className="bg-[#F8F9FA] text-[#5F6368] uppercase">
+                    <tr>
+                      <th className="px-6 py-3 font-semibold border-b border-[#DADCE0]">Calculation</th>
+                      <th className="px-6 py-3 font-semibold border-b border-[#DADCE0] text-center border-l">Supported</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      { name: 'Days Between Dates', supported: true },
+                      { name: 'Weeks Between Dates', supported: true },
+                      { name: 'Months Between Dates', supported: true },
+                      { name: 'Years Between Dates', supported: true },
+                      { name: 'Hours', supported: true },
+                      { name: 'Minutes', supported: true },
+                      { name: 'Seconds', supported: true },
+                      { name: 'Inclusive Counting', supported: true },
+                      { name: 'Exclusive Counting', supported: true },
+                      { name: 'Business Days', supported: true },
+                      { name: 'Leap Years', supported: true },
+                      { name: 'Gregorian Calendar', supported: true },
+                    ].map((item, i) => (
+                      <tr key={i} className={i % 2 === 0 ? '' : 'bg-[#F8F9FA]'}>
+                        <td className="px-6 py-4 font-medium border-t border-[#DADCE0]">{item.name}</td>
+                        <td className="px-6 py-4 border-t border-[#DADCE0] border-l text-center text-[#1A73E8] font-bold">
+                          {item.supported ? '✓' : ''}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </section>
 
             {/* Section 2: Key Features */}
@@ -536,74 +616,47 @@ export default function DateDuration() {
               </div>
             </section>
 
+            {/* Popular Date Calculations */}
+            <section>
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Popular Date Calculations</h2>
+              <p className="text-[#5F6368] text-base leading-relaxed mb-4">Common calculations include:</p>
+              <ul className="list-disc pl-5 space-y-1 text-[#5F6368] text-base mb-6">
+                <li>Today to Tomorrow</li>
+                <li>Last 7 Days</li>
+                <li>Last 30 Days</li>
+                <li>Last 90 Days</li>
+                <li>Current Month</li>
+                <li>Previous Month</li>
+                <li>Current Year</li>
+                <li>Previous Year</li>
+                <li>Current Fiscal Year</li>
+                <li>Previous Fiscal Year</li>
+              </ul>
+            </section>
+
             {/* Section: How Date Duration Is Calculated */}
             <section>
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">How Date Duration Is Calculated</h2>
               <p className="text-[#5F6368] text-base leading-relaxed mb-4">
-                The Date Duration Calculator determines the exact difference between two calendar dates using the Gregorian calendar, the internationally accepted civil calendar used in most countries. Rather than estimating months or using fixed averages, it calculates the actual number of calendar days, completed years, completed months, and remaining days between the selected dates.
+                The calculator measures the elapsed time between two calendar dates using the Gregorian calendar system. It evaluates complete calendar years, remaining months, remaining days, and optionally converts the result into total weeks, hours, minutes, and seconds.
               </p>
-              <p className="text-[#5F6368] text-base leading-relaxed mb-4">Every calculation automatically accounts for:</p>
-              <ul className="list-disc pl-5 space-y-1 text-[#5F6368] text-base mb-6">
-                <li>Leap years</li>
-                <li>Different calendar month lengths</li>
-                <li>Calendar year transitions</li>
-                <li>Actual calendar days in each time interval</li>
-                <li>Date range accuracy</li>
-              </ul>
               <p className="text-[#5F6368] text-base leading-relaxed mb-4">
-                Unlike manual counting, the calculator follows real Gregorian calendar rules to produce an accurate date difference and elapsed time for any selected time interval. The basic calculation can be expressed as:
-              </p>
-              <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-5 text-center mb-4">
-                <p className="font-bold text-[#202124] text-lg font-mono">Total Days = End Date &minus; Start Date</p>
-              </div>
-              <p className="text-[#5F6368] text-base leading-relaxed">
-                The calculator then converts the total duration into years, months, weeks, and days for easier interpretation. This approach provides reliable results for age calculations, employment tenure, project planning with a Time Calculator, contract periods, subscription tracking, and other situations where precise calendar calculations are important.
+                When business day calculation is selected, weekends are excluded from the total. Leap years are handled automatically to ensure accurate calculations for long time periods.
               </p>
             </section>
 
             {/* Section 4: Understanding Your Results */}
             <section>
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Understanding Your Results</h2>
-              <p className="text-[#5F6368] text-base leading-relaxed mb-6">
-                The Date Duration Calculator provides more than just a total day count. Depending on the selected dates, your results may include:
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div className="border border-[#DADCE0] rounded-lg p-4">
-                  <h3 className="font-bold text-[#202124] mb-1">Years</h3>
-                  <p className="text-sm text-[#5F6368]">The total number of completed calendar years.</p>
-                </div>
-                <div className="border border-[#DADCE0] rounded-lg p-4">
-                  <h3 className="font-bold text-[#202124] mb-1">Months</h3>
-                  <p className="text-sm text-[#5F6368]">Remaining full calendar months after complete years.</p>
-                </div>
-                <div className="border border-[#DADCE0] rounded-lg p-4">
-                  <h3 className="font-bold text-[#202124] mb-1">Weeks</h3>
-                  <p className="text-sm text-[#5F6368]">Additional weeks where applicable.</p>
-                </div>
-                <div className="border border-[#DADCE0] rounded-lg p-4">
-                  <h3 className="font-bold text-[#202124] mb-1">Days</h3>
-                  <p className="text-sm text-[#5F6368]">Remaining individual days after years and months have been calculated.</p>
-                </div>
-                <div className="border border-[#DADCE0] rounded-lg p-4 md:col-span-2 bg-[#F8F9FA]">
-                  <h3 className="font-bold text-[#202124] mb-1">Total Days</h3>
-                  <p className="text-sm text-[#5F6368]">The complete number of calendar days between the selected dates.</p>
-                </div>
-              </div>
-
-              <div className="bg-[#E8F0FE] rounded-lg p-4 text-[#202124] text-sm font-medium">
-                <p className="mb-2">Because the calculator uses actual calendar dates, every result automatically accounts for:</p>
-                <ul className="list-disc pl-5 space-y-1 text-[#5F6368] font-normal mb-4">
-                  <li>Leap years</li>
-                  <li>Different month lengths</li>
-                  <li>Calendar transitions</li>
-                  <li>Accurate day counting</li>
-                </ul>
-                <div className="border-t border-[#DADCE0] pt-4 mt-2">
-                  <p className="font-bold mb-1">Example Result Explanation:</p>
-                  <p className="text-[#5F6368] font-normal">If the calculator shows <strong>4 years, 3 months, 12 days</strong>, this means four complete calendar years have passed, followed by three complete months, and twelve additional days.</p>
-                </div>
-              </div>
+              <p className="text-[#5F6368] text-base leading-relaxed mb-4">The calculator provides multiple representations of the same date interval to help users understand the duration from different perspectives.</p>
+              <ul className="list-disc pl-5 space-y-1 text-[#5F6368] text-base mb-6">
+                <li><strong className="text-[#202124]">Years, months, and days</strong> show the calendar-based duration.</li>
+                <li><strong className="text-[#202124]">Total days</strong> represent the complete number of days between the selected dates.</li>
+                <li><strong className="text-[#202124]">Weeks</strong> provide an easier understanding of medium-term durations.</li>
+                <li><strong className="text-[#202124]">Hours, minutes, and seconds</strong> are useful for technical, scientific, payroll, and project management calculations.</li>
+                <li><strong className="text-[#202124]">Business days</strong> exclude weekends and are commonly used for contracts, employment, banking, and project scheduling.</li>
+                <li><strong className="text-[#202124]">Inclusive counting</strong> adds the ending date to the calculation, while <strong className="text-[#202124]">exclusive counting</strong> measures the duration up to—but not including—the final date.</li>
+              </ul>
             </section>
 
             {/* Section 4: How to Read Your Results */}
@@ -748,7 +801,7 @@ export default function DateDuration() {
                   </div>
                 </div>
               </div>
-              <p className="text-sm text-[#5F6368] italic">Always choose the counting method that matches your specific legal, contractual, or business requirements. For calculating only working days, you can use a dedicated Working Days Calculator to exclude weekends from this total.</p>
+              <p className="text-sm text-[#5F6368] italic">Always choose the counting method that matches your specific legal, contractual, or business requirements. For calculating only working days, you can use a dedicated <a href="/calculator/business-day-calculator/" className="text-[#1A73E8] underline hover:no-underline">Business Day Calculator</a> to exclude weekends from this total.</p>
             </section>
 
             {/* Section: Why Accurate Date Calculations Matter */}
@@ -797,7 +850,7 @@ export default function DateDuration() {
               <p className="text-[#5F6368] text-base leading-relaxed mb-6">You may also find these calculators useful:</p>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
                 {[
-                  { label: 'Age Calculator', href: '/calculator/age-calculator/' },
+                  
                   { label: 'Calendar Calculator', href: '/converter/calendar/' },
                   { label: 'Date Calculator', href: '/calculator/date/' },
                   { label: 'Time Calculator', href: '/calculator/time-calculator/' },
@@ -921,6 +974,31 @@ export default function DateDuration() {
                   <h3 className="text-lg font-bold text-[#202124] mb-2">Can I print or download the result?</h3>
                   <p className="text-[#5F6368] text-base leading-relaxed">Yes, use the 'Print / PDF' button beneath the results to save or print a formatted summary.</p>
                 </div>
+
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">What is the difference between date duration and date difference?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Date duration expresses the elapsed time between two dates in years, months, weeks, and days, while date difference often refers to the total number of days between two dates.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">Does this calculator consider leap years?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Yes. Leap years are automatically included in every calculation to ensure accurate results.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">What is inclusive date counting?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Inclusive counting includes both the starting date and the ending date in the total duration. This method is commonly used for legal, contractual, and statutory calculations.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">What is exclusive date counting?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Exclusive counting measures the duration between two dates without including the ending date. This is the standard method used for most calendar calculations.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">Can I calculate business days?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Yes. The calculator can calculate business days by excluding weekends from the total duration.</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">Why does the month count sometimes change?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">Calendar months have different lengths. The calculator follows actual calendar boundaries instead of assuming every month contains the same number of days.</p>
+                </div>
 </div>
             </section>
 
@@ -944,8 +1022,8 @@ export default function DateDuration() {
         title: 'Date & Time Tools',
         subtitle: 'Time Utilities',
         links: [
-          { label: 'Age Calculator', href: '/calculator/age-calculator/', icon: Calendar },
-          { label: 'Nepali Date Converter', href: '/calculator/nepali-date/', icon: Calendar },
+          
+          { label: 'Nepali Date Converter', href: '/calculator/date-converter/', icon: Calendar },
           { label: 'Pregnancy Due Date', href: '/calculator/pregnancy-due-date/', icon: Calendar },
           { label: 'Lok Sewa Age', href: '/calculator/lok-sewa-age/', icon: Clock },
           { label: 'Citizenship Age', href: '/calculator/nepal-citizenship-age/', icon: Clock }
