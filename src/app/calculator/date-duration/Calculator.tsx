@@ -395,6 +395,27 @@ export default function DateDuration() {
               </p>
             </section>
 
+            {/* Table of Contents */}
+            <nav className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-6 mb-8">
+              <h2 className="text-xl font-bold text-[#202124] mb-4">Table of Contents</h2>
+              <ul className="space-y-2 text-[#1A73E8] text-sm">
+                <li><a href="#feature-summary" className="hover:underline">What This Calculator Can Calculate</a></li>
+                <li><a href="#use-cases" className="hover:underline">Real Use Cases & Examples</a></li>
+                <li><a href="#common-uses" className="hover:underline">Common Uses of Date Duration Calculator</a></li>
+                <li><a href="#why-use" className="hover:underline">Why Use a Date Difference Calculator?</a></li>
+                <li><a href="#popular-uses" className="hover:underline">Popular Uses</a></li>
+                <li><a href="#supported-calculations" className="hover:underline">Supported Date Calculations</a></li>
+                <li><a href="#key-features" className="hover:underline">Key Features</a></li>
+                <li><a href="#vs-manual" className="hover:underline">Calculator vs Manual Counting</a></li>
+                <li><a href="#how-to-calculate" className="hover:underline">How to Calculate Days Between Dates</a></li>
+                <li><a href="#understanding-results" className="hover:underline">Understanding Your Results</a></li>
+                <li><a href="#popular-calculations" className="hover:underline">Popular Date Calculations</a></li>
+                <li><a href="#how-calculated" className="hover:underline">How Date Duration Is Calculated</a></li>
+                <li><a href="#inclusive-exclusive" className="hover:underline">Inclusive vs Exclusive Counting</a></li>
+                <li><a href="#faq" className="hover:underline">Frequently Asked Questions</a></li>
+              </ul>
+            </nav>
+
             {/* Real Use Cases */}
             <section id="use-cases">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-6">Real Use Cases & Examples</h2>
@@ -434,7 +455,7 @@ export default function DateDuration() {
             </div>
 
             {/* Section 1: Why Use a Date Difference & Elapsed Time Calculator? */}
-            <section>
+            <section id="why-use">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Why Use a Date Difference & Elapsed Time Calculator?</h2>
               <p className="text-[#5F6368] text-base leading-relaxed mb-4">
                 The Date Duration Calculator helps you calculate the exact time between two dates in years, months, weeks, days, hours, minutes, and seconds. It automatically considers leap years, different month lengths, business days, and optional inclusive date counting, making it suitable for legal, financial, project planning, HR, education, and everyday date calculations.
@@ -445,7 +466,7 @@ export default function DateDuration() {
             </section>
 
             {/* Popular Uses */}
-            <section>
+            <section id="popular-uses">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Popular Uses of the Date Duration Calculator</h2>
               <p className="text-[#5F6368] text-base leading-relaxed mb-4">People use this calculator to:</p>
               <ul className="list-disc pl-5 space-y-1 text-[#5F6368] text-base">
@@ -465,7 +486,7 @@ export default function DateDuration() {
             </section>
 
             {/* Supported Calculations */}
-            <section>
+            <section id="supported-calculations">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Supported Date Calculations</h2>
               <div className="overflow-x-auto border border-[#DADCE0] rounded-lg">
                 <table className="w-full text-left text-sm text-[#202124]">
@@ -503,7 +524,7 @@ export default function DateDuration() {
             </section>
 
             {/* Section 2: Key Features */}
-            <section>
+            <section id="key-features">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Key Features</h2>
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-[#5F6368] text-base">
                 <li className="flex items-start gap-2">
@@ -538,7 +559,7 @@ export default function DateDuration() {
             </section>
 
             {/* Section 2.5: Date Duration Calculator vs Manual Counting */}
-            <section>
+            <section id="vs-manual">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Date Duration Calculator vs Manual Counting</h2>
               <div className="overflow-x-auto border border-[#DADCE0] rounded-lg">
                 <table className="w-full text-left text-sm text-[#202124]">
@@ -581,7 +602,7 @@ export default function DateDuration() {
             </section>
 
             {/* Section 3: How to Calculate Days Between Dates */}
-            <section>
+            <section id="how-to-calculate">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">How to Calculate Days Between Dates</h2>
               <p className="text-[#5F6368] text-base leading-relaxed mb-6">Using the calculator is simple:</p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -617,7 +638,7 @@ export default function DateDuration() {
             </section>
 
             {/* Popular Date Calculations */}
-            <section>
+            <section id="popular-calculations">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Popular Date Calculations</h2>
               <p className="text-[#5F6368] text-base leading-relaxed mb-4">Common calculations include:</p>
               <ul className="list-disc pl-5 space-y-1 text-[#5F6368] text-base mb-6">
@@ -635,7 +656,7 @@ export default function DateDuration() {
             </section>
 
             {/* Section: How Date Duration Is Calculated */}
-            <section>
+            <section id="how-calculated">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">How Date Duration Is Calculated</h2>
               <p className="text-[#5F6368] text-base leading-relaxed mb-4">
                 The calculator measures the elapsed time between two calendar dates using the Gregorian calendar system. It evaluates complete calendar years, remaining months, remaining days, and optionally converts the result into total weeks, hours, minutes, and seconds.
@@ -646,7 +667,7 @@ export default function DateDuration() {
             </section>
 
             {/* Section 4: Understanding Your Results */}
-            <section>
+            <section id="understanding-results">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Understanding Your Results</h2>
               <p className="text-[#5F6368] text-base leading-relaxed mb-4">The calculator provides multiple representations of the same date interval to help users understand the duration from different perspectives.</p>
               <ul className="list-disc pl-5 space-y-1 text-[#5F6368] text-base mb-6">
@@ -774,7 +795,7 @@ export default function DateDuration() {
             </section>
 
             {/* Section: Inclusive vs Exclusive Date Counting */}
-            <section>
+            <section id="inclusive-exclusive">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Inclusive vs Exclusive Date Counting</h2>
               <p className="text-[#5F6368] text-base leading-relaxed mb-6">
                 When calculating the duration between two dates, there are two common counting methods.
@@ -890,7 +911,7 @@ export default function DateDuration() {
             </section>
 
             {/* Section 9: Frequently Asked Questions */}
-            <section>
+            <section id="faq">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-6">Frequently Asked Questions</h2>
               <div className="space-y-6">
                 <div>
