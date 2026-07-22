@@ -16,8 +16,47 @@ const PILLAR_LINKS: Record<string, string> = {
 export function CategorySidebar() {
   const pathname = usePathname();
 
+  const isPreciousMetalsPage = [
+    '/market-rates/live-gold-price/',
+    '/calculator/gold-converter/',
+    '/market-rates/live-silver-price/',
+    '/calculator/silver-converter/',
+  ].includes(pathname);
+
   return (
     <nav className="w-full space-y-10 no-print">
+      {isPreciousMetalsPage && (
+        <div className="space-y-4">
+          <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-[#202124] border-b border-[#dadce0] pb-2">
+            Explore Market Tools
+          </h3>
+          <ul className="space-y-2">
+            {[
+              { name: 'Live Gold Price', slug: '/market-rates/live-gold-price/' },
+              { name: 'Live Silver Price', slug: '/market-rates/live-silver-price/' },
+              { name: 'Gold Converter', slug: '/calculator/gold-converter/' },
+              { name: 'Silver Converter', slug: '/calculator/silver-converter/' },
+              { name: 'Currency Converter', slug: '/calculator/currency-converter/' }
+            ].map(tool => {
+              const isActive = pathname === tool.slug;
+              return (
+                <li key={tool.slug}>
+                  <Link 
+                    href={tool.slug}
+                    className={`text-[13px] font-semibold block transition-colors ${
+                      isActive 
+                        ? 'text-blue-600' 
+                        : 'text-[#5f6368] hover:text-blue-600 hover:underline'
+                    }`}
+                  >
+                    {tool.name}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
       {CATEGORIES.map((cat) => (
         <div key={cat.id} className="space-y-4">
           <h3 className="text-[11px] font-black uppercase tracking-[0.2em] text-[#202124] border-b border-[#dadce0] pb-2">

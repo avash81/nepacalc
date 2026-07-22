@@ -10,9 +10,12 @@ import { TrendingUp, TrendingDown } from 'lucide-react';
 
 const TAGS: Record<string, string> = {
   'market-rates/live-gold-price': 'PRECIOUS METALS',
-  'market-rates/remittance': 'REMITTANCE',
-  'market-rates/exchange-rate': 'FOREX',
+  'gold-converter': 'PRECIOUS METALS',
   'market-rates/live-silver-price': 'PRECIOUS METALS',
+  'silver-converter': 'PRECIOUS METALS',
+  'market-rates/exchange-rate-nepal': 'FOREX',
+  'currency-converter': 'FOREX',
+  'market-rates/remittance': 'REMITTANCE',
 };
 
 export default function MarketRatesPillarPage() {

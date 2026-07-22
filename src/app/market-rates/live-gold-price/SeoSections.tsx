@@ -1,6 +1,7 @@
 import React from 'react';
 import { BookOpen, Scale, Globe, ShieldCheck, CheckCircle2, FileText, Anchor } from 'lucide-react';
 import HistoricalData from './HistoricalData';
+import Link from 'next/link';
 
 export default function SeoSections() {
   return (
@@ -112,6 +113,26 @@ export default function SeoSections() {
           <p className="text-sm text-slate-700 leading-relaxed font-medium">
             <strong>Retail Additions:</strong> When you purchase finished jewelry, showrooms add <em>Jyala</em> (making charges, typically 5-15%), <em>Jarti</em> (wastage), and a mandatory 13% Value Added Tax (VAT). If you are importing jewellery or bullion into Nepal, estimate customs duty, VAT and other charges using our <a href="/calculator/gold-tax/" className="text-blue-600 hover:underline font-bold">Gold Import Tax Calculator</a>.
           </p>
+        </div>
+      </section>
+
+      {/* Looking for Silver Prices? */}
+      <section className="scroll-mt-24 mb-8">
+        <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tighter mb-4">
+          Looking for Silver Prices?
+        </h2>
+        <div className="bg-slate-50 border border-slate-200 p-6 rounded-xl">
+          <p className="text-base leading-relaxed text-slate-700 font-medium mb-5">
+            If you're tracking both precious metals, you can also check today's <Link href="/market-rates/live-silver-price/" className="text-blue-600 hover:underline font-bold">Live Silver Price</Link> or use the <Link href="/calculator/silver-converter/" className="text-blue-600 hover:underline font-bold">Silver Converter</Link> to convert silver weight, purity, and market value instantly.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <Link href="/market-rates/live-silver-price/" className="px-5 py-2.5 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-700 transition-colors">
+              Live Silver Price
+            </Link>
+            <Link href="/calculator/silver-converter/" className="px-5 py-2.5 bg-white border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">
+              Silver Converter
+            </Link>
+          </div>
         </div>
       </section>
 

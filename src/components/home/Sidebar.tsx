@@ -3,9 +3,11 @@ import Link from 'next/link';
 import { TrendingUp, Globe, Calculator, Zap, MoveUpRight, Clock, Clipboard, Briefcase, CalendarDays, ReceiptText, Landmark, ChevronRight } from 'lucide-react';
 import { CALCULATORS } from '@/data/calculators';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export function Sidebar() {
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
   
   useEffect(() => {
     setMounted(true);
@@ -13,11 +15,50 @@ export function Sidebar() {
 
   const popular = CALCULATORS.filter(c => ['loan-emi', 'bmi', 'sip', 'gpa', 'compound'].includes(c.id));
 
+  const isPreciousMetalsPage = [
+    '/market-rates/live-gold-price/',
+    '/calculator/gold-converter/',
+    '/market-rates/live-silver-price/',
+    '/calculator/silver-converter/',
+  ].includes(pathname || '');
+
   if (!mounted) return null;
 
   return (
     <div className="w-full lg:w-[380px] space-y-4 shrink-0">
       
+      {/* CARD 0: EXPLORE MARKET TOOLS */}
+      {isPreciousMetalsPage && (
+        <div className="bg-white border border-gray-100 rounded-[32px] p-5 shadow-sm relative overflow-hidden group">
+          <div className="mb-4">
+             <h3 className="text-xs font-black text-gray-500 uppercase tracking-[0.2em] mt-1">Explore Market Tools</h3>
+          </div>
+          <div className="space-y-3">
+            {[
+              { name: 'Live Gold Price', slug: '/market-rates/live-gold-price/' },
+              { name: 'Live Silver Price', slug: '/market-rates/live-silver-price/' },
+              { name: 'Gold Converter', slug: '/calculator/gold-converter/' },
+              { name: 'Silver Converter', slug: '/calculator/silver-converter/' },
+              { name: 'Currency Converter', slug: '/calculator/currency-converter/' }
+            ].map(tool => {
+              const isActive = pathname === tool.slug;
+              return (
+                <Link 
+                  key={tool.slug} 
+                  href={tool.slug}
+                  className="group/item flex items-center justify-between transition-all"
+                >
+                  <div className="flex items-center gap-4">
+                     <span className={`text-sm font-bold ${isActive ? 'text-[#1A73E8]' : 'text-gray-700 group-hover/item:text-gray-900'}`}>{tool.name}</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-200 group-hover/item:translate-x-1 transition-all" />
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* CARD 1: NEPAL TOOLS */}
       <div className="bg-white border border-gray-100 rounded-[32px] p-5 shadow-sm relative overflow-hidden group">
         <div className="absolute top-0 left-0 w-1 h-full bg-red-500" />

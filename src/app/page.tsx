@@ -120,31 +120,31 @@ export default function HomePage() {
           <RecentCalculators />
           
           <div className="bg-white border border-[#dadce0] rounded-xl p-6 mb-8 shadow-sm">
-            <h2 className="text-[11px] font-black uppercase tracking-widest text-[#1a73e8] mb-4 border-b border-[#f1f3f4] pb-2">Top Financial Tools</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-              <Link href="/market-rates/exchange-rate-nepal/" className="p-3 bg-[#f8f9fa] border border-[#dadce0] rounded-lg hover:border-[#1a73e8] hover:shadow-md transition-all group">
-                <p className="text-[12px] font-black text-[#202124] group-hover:text-[#1a73e8]">Exchange Rate Nepal</p>
-                <p className="text-[9px] text-slate-500 uppercase mt-1">NRB Live Rates</p>
-              </Link>
+            <h2 className="text-[11px] font-black uppercase tracking-widest text-[#1a73e8] mb-4 border-b border-[#f1f3f4] pb-2">Market Rates &amp; Converters</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
               <Link href="/market-rates/live-gold-price/" className="p-3 bg-[#f8f9fa] border border-[#dadce0] rounded-lg hover:border-[#1a73e8] hover:shadow-md transition-all group">
                 <p className="text-[12px] font-black text-[#202124] group-hover:text-[#1a73e8]">Live Gold Price</p>
                 <p className="text-[9px] text-slate-500 uppercase mt-1">Nepal Market</p>
-              </Link>
-              <Link href="/calculator/currency-converter/" className="p-3 bg-[#f8f9fa] border border-[#dadce0] rounded-lg hover:border-[#1a73e8] hover:shadow-md transition-all group">
-                <p className="text-[12px] font-black text-[#202124] group-hover:text-[#1a73e8]">Currency Converter</p>
-                <p className="text-[9px] text-slate-500 uppercase mt-1">USD to NPR</p>
-              </Link>
-              <Link href="/calculator/sip-calculator/" className="p-3 bg-[#f8f9fa] border border-[#dadce0] rounded-lg hover:border-[#1a73e8] hover:shadow-md transition-all group">
-                <p className="text-[12px] font-black text-[#202124] group-hover:text-[#1a73e8]">SIP Calculator</p>
-                <p className="text-[9px] text-slate-500 uppercase mt-1">Mutual Funds</p>
               </Link>
               <Link href="/market-rates/live-silver-price/" className="p-3 bg-[#f8f9fa] border border-[#dadce0] rounded-lg hover:border-[#1a73e8] hover:shadow-md transition-all group">
                 <p className="text-[12px] font-black text-[#202124] group-hover:text-[#1a73e8]">Live Silver Price</p>
                 <p className="text-[9px] text-slate-500 uppercase mt-1">Chandi Rate</p>
               </Link>
-              <Link href="/calculator/nepal-income-tax/" className="p-3 bg-[#f8f9fa] border border-[#dadce0] rounded-lg hover:border-[#1a73e8] hover:shadow-md transition-all group">
-                <p className="text-[12px] font-black text-[#202124] group-hover:text-[#1a73e8]">Income Tax Nepal</p>
-                <p className="text-[9px] text-slate-500 uppercase mt-1">Salary Tax</p>
+              <Link href="/calculator/gold-converter/" className="p-3 bg-[#f8f9fa] border border-[#dadce0] rounded-lg hover:border-[#1a73e8] hover:shadow-md transition-all group">
+                <p className="text-[12px] font-black text-[#202124] group-hover:text-[#1a73e8]">Gold Converter</p>
+                <p className="text-[9px] text-slate-500 uppercase mt-1">Tola &amp; Gram</p>
+              </Link>
+              <Link href="/calculator/silver-converter/" className="p-3 bg-[#f8f9fa] border border-[#dadce0] rounded-lg hover:border-[#1a73e8] hover:shadow-md transition-all group">
+                <p className="text-[12px] font-black text-[#202124] group-hover:text-[#1a73e8]">Silver Converter</p>
+                <p className="text-[9px] text-slate-500 uppercase mt-1">Weight &amp; Value</p>
+              </Link>
+              <Link href="/calculator/currency-converter/" className="p-3 bg-[#f8f9fa] border border-[#dadce0] rounded-lg hover:border-[#1a73e8] hover:shadow-md transition-all group">
+                <p className="text-[12px] font-black text-[#202124] group-hover:text-[#1a73e8]">Currency Converter</p>
+                <p className="text-[9px] text-slate-500 uppercase mt-1">USD to NPR</p>
+              </Link>
+              <Link href="/market-rates/exchange-rate-nepal/" className="p-3 bg-[#f8f9fa] border border-[#dadce0] rounded-lg hover:border-[#1a73e8] hover:shadow-md transition-all group">
+                <p className="text-[12px] font-black text-[#202124] group-hover:text-[#1a73e8]">Exchange Rate</p>
+                <p className="text-[9px] text-slate-500 uppercase mt-1">NRB Live Rates</p>
               </Link>
             </div>
           </div>

@@ -249,6 +249,22 @@ export function SilverSeoContent() {
             </ul>
           </div>
 
+          {/* Calculate Value Section */}
+          <div className="bg-blue-50 border border-blue-200 rounded-2xl p-8 mb-14 not-prose">
+            <h3 className="text-xl font-black tracking-tight mb-4 text-blue-900">Calculate the Value of Your Silver</h3>
+            <p className="text-blue-800 text-base leading-relaxed mb-6 font-medium">
+              Knowing today&apos;s silver price is only the first step. Use the <Link href="/calculator/silver-converter/" className="text-blue-700 underline font-bold hover:text-blue-900">Silver Converter</Link> to convert between Nepalese and international weight units, estimate silver value by purity, and calculate jewellery or investment value.
+            </p>
+            <div className="flex flex-wrap gap-4 mt-4">
+              <Link href="/calculator/silver-converter/" className="inline-flex items-center justify-center px-5 py-2.5 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors">
+                Silver Converter
+              </Link>
+              <Link href="/calculator/gold-converter/" className="inline-flex items-center justify-center px-5 py-2.5 bg-white text-blue-700 border border-blue-300 font-bold rounded-lg hover:bg-blue-50 transition-colors">
+                Gold Converter
+              </Link>
+            </div>
+          </div>
+
           {/* ─── SILVER MARKET GUIDE ─── */}
           <h2 id="silver-market-guide" className="text-2xl font-black text-slate-900 tracking-tighter mb-6 mt-4 pt-12 border-t border-slate-200 scroll-mt-20">
             Silver Market Guide

@@ -18,12 +18,12 @@ export const metadata: Metadata = {
     'NepaCalc'
   ],
   alternates: {
-    canonical: 'https://nepacalc.com/calculator/silver-calculator/',
+    canonical: 'https://nepacalc.com/calculator/silver-converter/',
   },
   openGraph: {
     title: 'Silver Converter Nepal – Convert Tola, Lal, Gram & Silver Price | NepaCalc',
     description: 'Convert silver weights between Tola, Gram, Lal, Aana, Ratti, Kg, and Troy Ounce. Calculate live silver prices in NPR with 999 & 925 purity.',
-    url: 'https://nepacalc.com/calculator/silver-calculator/',
+    url: 'https://nepacalc.com/calculator/silver-converter/',
     siteName: 'NepaCalc',
     locale: 'en_NP',
     type: 'website',

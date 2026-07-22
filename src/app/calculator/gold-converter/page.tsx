@@ -219,6 +219,22 @@ export default function Page() {
             <div className="bg-slate-50 p-4 rounded-lg font-mono text-sm border border-slate-200 mb-4 text-slate-800">Weight in Lal = Weight in Grams ÷ 0.116638</div>
           </div>
 
+          <h2 id="related-tools" className="text-2xl font-black text-slate-900 mt-12 mb-6">Compare Gold and Silver</h2>
+          <div className="mb-6 bg-slate-50 p-6 rounded-2xl border border-slate-200">
+            <h3 className="text-lg font-bold text-slate-900 mb-3">Related Precious Metal Calculator</h3>
+            <p className="text-slate-700 leading-relaxed mb-6">
+              Need to convert silver instead of gold? Use our <Link href="/calculator/silver-converter/" className="text-blue-600 hover:underline font-medium">Silver Converter</Link> to convert between Tola, Gram, Lal, Aana, Kilogram, Troy Ounce, and other international weight units. It also estimates silver value using the latest market price and selected purity.
+            </p>
+            <div className="flex gap-4 flex-wrap">
+              <Link href="/calculator/silver-converter/" className="px-5 py-2.5 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-700 transition-colors">
+                Silver Converter
+              </Link>
+              <Link href="/market-rates/live-silver-price/" className="px-5 py-2.5 bg-white border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">
+                Live Silver Price Today
+              </Link>
+            </div>
+          </div>
+
           <h2 id="faqs" className="text-2xl font-black text-slate-900 mt-12 mb-6">Frequently Asked Questions</h2>
           <div className="space-y-6">
             {faqSchema.mainEntity.map((faq, index) => (
