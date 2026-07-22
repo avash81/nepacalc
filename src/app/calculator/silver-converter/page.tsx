@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import SilverCalculatorComponent from './Calculator';
 
 export const metadata: Metadata = {
-  title: 'Silver Converter Nepal – Convert Tola, Lal, Gram & Silver Price | NepaCalc',
-  description: 'Free online Silver Converter Nepal. Convert silver weights between Tola, Gram, Lal, Aana, Ratti, Kg, and Troy Ounce. Calculate live silver prices in NPR with 999 Fine & 925 Sterling purity.',
+  title: 'Silver Converter Nepal: Convert Tola, Lal, Gram & Silver Price | NepaCalc',
+  description: 'Free online Silver Converter Nepal. Convert silver weights between Tola, Gram, Lal, Aana, Ratti, Kg, and Troy Ounce. Calculate live silver prices in NPR with 999 Fine and 925 Sterling purity.',
   keywords: [
     'silver converter nepal',
     'silver unit converter',
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     canonical: 'https://nepacalc.com/calculator/silver-converter/',
   },
   openGraph: {
-    title: 'Silver Converter Nepal – Convert Tola, Lal, Gram & Silver Price | NepaCalc',
-    description: 'Convert silver weights between Tola, Gram, Lal, Aana, Ratti, Kg, and Troy Ounce. Calculate live silver prices in NPR with 999 & 925 purity.',
+    title: 'Silver Converter Nepal: Convert Tola, Lal, Gram & Silver Price | NepaCalc',
+    description: 'Convert silver weights between Tola, Gram, Lal, Aana, Ratti, Kg, and Troy Ounce. Calculate live silver prices in NPR with 999 and 925 purity.',
     url: 'https://nepacalc.com/calculator/silver-converter/',
     siteName: 'NepaCalc',
     locale: 'en_NP',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Silver Converter Nepal – Convert Tola, Lal, Gram & Silver Price | NepaCalc',
+    title: 'Silver Converter Nepal: Convert Tola, Lal, Gram & Silver Price | NepaCalc',
     description: 'Convert silver weights between Tola, Gram, Lal, Aana, Ratti, Kg, and Troy Ounce.',
     images: ['https://nepacalc.com/og-image.png'],
   },

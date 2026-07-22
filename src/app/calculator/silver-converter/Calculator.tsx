@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 
 import React, { useState, useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
@@ -116,7 +117,15 @@ export default function SilverCalculatorComponent() {
 
   // Calculations Engine (Gram Pivot)
   const math = useMemo(() => {
-    const inputGrams = (weight || 0) * (GRAM_FACTORS[fromUnit] || 1);
+    const w = Number(weight) || 0;
+    const rate = Number(silverRatePerTola) || 0;
+    const makingVal = Number(makingChargeValue) || 0;
+    const vat = Number(vatPercent) || 0;
+    const buyback = Number(buybackDiscount) || 0;
+    const budget = Number(budgetNpr) || 0;
+    const tPurity = Number(targetPurity) || 925;
+
+    const inputGrams = w * (GRAM_FACTORS[fromUnit] || 1);
     const targetFactor = GRAM_FACTORS[toUnit] || 1;
     const convertedVal = inputGrams / targetFactor;
 
@@ -126,21 +135,21 @@ export default function SilverCalculatorComponent() {
 
     // Value calculations based on rate per Tola in NPR
     const totalTolas = inputGrams / GRAM_FACTORS['Tola'];
-    const metalValueNpr = totalTolas * silverRatePerTola * purityObj.factor;
+    const metalValueNpr = totalTolas * rate * purityObj.factor;
 
     // Jewellery making charge & VAT
     let makingChargeNpr = 0;
     if (makingChargeType === 'percent') {
-      makingChargeNpr = (metalValueNpr * makingChargeValue) / 100;
+      makingChargeNpr = (metalValueNpr * makingVal) / 100;
     } else {
-      makingChargeNpr = makingChargeValue;
+      makingChargeNpr = makingVal;
     }
     const subtotalWithMaking = metalValueNpr + makingChargeNpr;
-    const vatNpr = (subtotalWithMaking * vatPercent) / 100;
+    const vatNpr = (subtotalWithMaking * vat) / 100;
     const finalJewelleryCostNpr = subtotalWithMaking + vatNpr;
 
     // Buyback / Scrap Calculation
-    const buybackValueNpr = metalValueNpr * (1 - buybackDiscount / 100);
+    const buybackValueNpr = metalValueNpr * (1 - buyback / 100);
 
     // Multi-unit equivalent breakdown
     const breakdown = {
@@ -155,7 +164,7 @@ export default function SilverCalculatorComponent() {
     };
 
     // Reverse Budget Calculations (Rs -> Weight)
-    const budgetTolas = budgetNpr > 0 ? budgetNpr / silverRatePerTola : 0;
+    const budgetTolas = budget > 0 ? budget / rate : 0;
     const budgetGrams = budgetTolas * GRAM_FACTORS['Tola'];
     const budgetKgs = budgetGrams / 1000;
     const budgetTroyOz = budgetGrams / GRAM_FACTORS['Troy Ounce'];
@@ -168,8 +177,8 @@ export default function SilverCalculatorComponent() {
 
     // Manufacturing / Goldsmith Calculation (Pure silver + copper alloy)
     // Target purity e.g. 925 means Pure / (Pure + Copper) = 0.925
-    // Required Copper = PureGrams * (1 - targetPurity/1000) / (targetPurity/1000)
-    const targetFactorDec = (targetPurity || 925) / 1000;
+    // Required Copper = PureGrams * (1 - tPurity/1000) / (tPurity/1000)
+    const targetFactorDec = (tPurity || 925) / 1000;
     const requiredCopperGrams = targetFactorDec > 0 ? (pureGrams / targetFactorDec) - pureGrams : 0;
     const finalFinishedWeightGrams = pureGrams + requiredCopperGrams;
 
@@ -180,7 +189,7 @@ export default function SilverCalculatorComponent() {
       const g = item.weight * (GRAM_FACTORS[item.unit] || 1);
       const t = g / GRAM_FACTORS['Tola'];
       const p = PURITY_FACTORS[item.purity]?.factor || 1.0;
-      return acc + (t * silverRatePerTola * p);
+      return acc + (t * rate * p);
     }, 0);
 
     return {
@@ -254,7 +263,7 @@ export default function SilverCalculatorComponent() {
       ]}
       compactHeader={true}
       titleClassName="text-xl sm:text-2xl font-bold text-[#202124] tracking-tight"
-      title="Silver Converter Nepal (Chandi Weight & Price Engine)"
+      title="Silver Converter Nepal: Convert Gram, Tola, Lal & Calculate Silver Value"
       description="Convert silver weights between Tola, Lal, Aana, Gram, Kg, and Troy Ounce. Includes live silver rates in NPR, 925 sterling purity adjustments, jewellery pricing, and investment valuation."
       icon={Coins}
       inputs={
@@ -614,7 +623,7 @@ export default function SilverCalculatorComponent() {
                     { title: '5 Kg Bulk', g: 5000 },
                   ].map(b => {
                     const tolas = b.g / GRAM_FACTORS['Tola'];
-                    const val = tolas * silverRatePerTola;
+                    const val = tolas * (Number(silverRatePerTola) || 0);
                     return (
                       <div key={b.title} className="p-3 bg-white border border-[#DADCE0] rounded-lg space-y-1">
                         <span className="text-xs font-bold text-[#202124] block">{b.title}</span>
@@ -809,6 +818,20 @@ export default function SilverCalculatorComponent() {
                 <span>{math.pureGrams.toFixed(2)} g</span>
               </div>
             </div>
+          </div>
+
+          {/* Live Silver Rate Compact Info Card */}
+          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-5 mt-4 space-y-3 shadow-sm text-left">
+            <h3 className="text-sm font-bold text-[#202124]">Live Silver Rate</h3>
+            <p className="text-xs text-[#5F6368] leading-relaxed">
+              Need today's silver price before converting? Check the latest live silver rate in Nepal, updated regularly using current market data. Then use this converter to instantly convert grams, tola, lal, kilograms, ounces, and troy ounces.
+            </p>
+            <Link 
+              href="/market-rates/live-silver-price/"
+              className="inline-flex items-center justify-center w-full py-2.5 px-4 bg-white border border-[#DADCE0] hover:bg-[#E8F0FE] hover:border-[#1A73E8] hover:text-[#1A73E8] rounded-md text-xs font-bold text-[#202124] transition-all shadow-sm"
+            >
+              View Today's Live Silver Price →
+            </Link>
           </div>
         </div>
       }
