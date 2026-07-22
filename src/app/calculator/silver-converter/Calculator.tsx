@@ -405,15 +405,7 @@ export default function SilverCalculatorComponent() {
                 </div>
 
                 <div className="space-y-1">
-                  <div className="flex justify-between items-center">
-                    <label className="text-[11px] font-bold uppercase text-[#70757A]">Silver Rate (NPR / Tola)</label>
-                    <button 
-                      onClick={handleReset} 
-                      className="text-[10px] font-bold text-red-500 hover:text-red-700 uppercase tracking-wider px-2 py-0.5 bg-red-50 border border-red-200 hover:bg-red-100 rounded-md transition-colors flex items-center gap-1"
-                    >
-                      <RotateCcw className="w-3 h-3" /> Clear All
-                    </button>
-                  </div>
+                  <label className="text-[11px] font-bold uppercase text-[#70757A]">Silver Rate (NPR / Tola)</label>
                   <div className="relative">
                     <span className="absolute left-3 top-3 text-sm font-bold text-[#5F6368]">Rs.</span>
                     <input
@@ -426,6 +418,15 @@ export default function SilverCalculatorComponent() {
                   </div>
                 </div>
               </div>
+
+              {/* Reset All Button */}
+              <button
+                onClick={handleReset}
+                className="w-full py-3 bg-red-50 border border-red-200 hover:bg-red-100 rounded-lg text-sm font-bold text-red-600 flex items-center justify-center gap-2 shadow-sm transition-all"
+              >
+                <RotateCcw className="w-4 h-4 text-red-500" />
+                <span>Reset All Fields</span>
+              </button>
             </div>
           )}
 
@@ -478,6 +479,15 @@ export default function SilverCalculatorComponent() {
                   </div>
                 </div>
               </div>
+
+              {/* Reset All Button */}
+              <button
+                onClick={handleReset}
+                className="w-full py-3 bg-red-50 border border-red-200 hover:bg-red-100 rounded-lg text-sm font-bold text-red-600 flex items-center justify-center gap-2 shadow-sm transition-all"
+              >
+                <RotateCcw className="w-4 h-4 text-red-500" />
+                <span>Reset All Fields</span>
+              </button>
             </div>
           )}
 
@@ -701,6 +711,15 @@ export default function SilverCalculatorComponent() {
                   </div>
                 </div>
               </div>
+
+              {/* Reset All Button */}
+              <button
+                onClick={handleReset}
+                className="w-full py-3 bg-red-50 border border-red-200 hover:bg-red-100 rounded-lg text-sm font-bold text-red-600 flex items-center justify-center gap-2 shadow-sm transition-all"
+              >
+                <RotateCcw className="w-4 h-4 text-red-500" />
+                <span>Reset All Fields</span>
+              </button>
             </div>
           )}
 
@@ -750,6 +769,15 @@ export default function SilverCalculatorComponent() {
                   </div>
                 </div>
               </div>
+
+              {/* Reset All Button */}
+              <button
+                onClick={handleReset}
+                className="w-full py-3 bg-red-50 border border-red-200 hover:bg-red-100 rounded-lg text-sm font-bold text-red-600 flex items-center justify-center gap-2 shadow-sm transition-all"
+              >
+                <RotateCcw className="w-4 h-4 text-red-500" />
+                <span>Reset All Fields</span>
+              </button>
             </div>
           )}
         </div>
@@ -795,13 +823,6 @@ export default function SilverCalculatorComponent() {
             >
               <Printer className="w-3.5 h-3.5 text-[#5F6368]" />
               <span>Print</span>
-            </button>
-            <button
-              onClick={handleReset}
-              className="py-2 px-3 bg-red-50 border border-red-200 hover:bg-red-100 rounded-md text-xs font-bold text-red-600 flex items-center gap-1.5 shadow-sm transition-all"
-            >
-              <RotateCcw className="w-3.5 h-3.5 text-red-500" />
-              <span>Reset</span>
             </button>
           </div>
 
