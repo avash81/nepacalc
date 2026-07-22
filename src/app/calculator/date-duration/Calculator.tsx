@@ -217,7 +217,9 @@ export default function DateDuration() {
   return (
     <ModernCalcLayout
       slug="date-duration"
-      crumbs={[{ label: 'Calculators', href: '/calculators/' }, { label: 'Date Duration Calculator' }]}
+      compactHeader={true}
+      titleClassName="text-xl sm:text-2xl font-bold text-[#202124] tracking-tight"
+      crumbs={[{ label: 'Home', href: '/' }, { label: 'Calculators', href: '/calculator/' }, { label: 'Date Duration Calculator' }]}
       title="Date Duration Calculator"
       description="Calculate the exact duration between two dates. Comprehensive Date & Time toolkit for days between dates, working days, age, and employment duration."
       icon={Calendar}
@@ -647,13 +649,13 @@ export default function DateDuration() {
             <section id="people-also-search-for">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">People Also Search For</h2>
               <ul className="flex flex-wrap gap-3 text-sm">
-                <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]"><a href="/calculator/date/" className="hover:text-[#1A73E8]">Date Calculator</a></li>
+                <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]"><a href="/calculator/nepali-date/" className="hover:text-[#1A73E8]">Date Calculator</a></li>
                 <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]">Date Difference Calculator</li>
                 <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]">Days Between Dates Calculator</li>
                 <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]">Working Days Calculator</li>
-                <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]"><a href="/converter/calendar/" className="hover:text-[#1A73E8]">Calendar Calculator</a></li>
+                <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]"><a href="/calculator/nepali-date/" className="hover:text-[#1A73E8]">Calendar Calculator</a></li>
                 <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]">Countdown Calculator</li>
-                <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]"><a href="/calculator/time-calculator/" className="hover:text-[#1A73E8]">Time Duration Calculator</a></li>
+                <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]"><a href="/calculator/lead-time/" className="hover:text-[#1A73E8]">Time Duration Calculator</a></li>
                 <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]">Date Add Calculator</li>
               </ul>
             </section>
@@ -713,7 +715,7 @@ export default function DateDuration() {
         subtitle: 'Time Utilities',
         links: [
           
-          { label: 'Nepali Date Converter', href: '/calculator/date-converter/', icon: Calendar },
+          { label: 'Nepali Date Converter', href: '/calculator/nepali-date/', icon: Calendar },
           { label: 'Pregnancy Due Date', href: '/calculator/pregnancy-due-date/', icon: Calendar },
           { label: 'Lok Sewa Age', href: '/calculator/lok-sewa-age/', icon: Clock },
           { label: 'Citizenship Age', href: '/calculator/nepal-citizenship-age/', icon: Clock }
