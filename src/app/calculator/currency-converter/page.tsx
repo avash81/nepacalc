@@ -21,27 +21,7 @@ export default function Page() {
           For the official NRB buying and selling rates, view the full <a href="/market-rates/exchange-rate-nepal/" className="text-blue-700 font-bold underline hover:text-blue-900">Exchange Rate Nepal</a> dashboard.
         </p>
         
-        {/* Precious Metals Authority Links */}
-        <div className="bg-slate-50 border border-slate-200 p-6 rounded-xl max-w-2xl mx-auto mb-8">
-          <h3 className="text-lg font-bold text-slate-900 mb-3">Explore Precious Metals</h3>
-          <p className="text-[14px] text-slate-700 font-medium leading-relaxed mb-5">
-            Beyond currency exchange rates, we also track precious metals. Check today's <Link href="/market-rates/live-gold-price/" className="text-blue-600 font-bold hover:underline">Live Gold Price</Link> and <Link href="/market-rates/live-silver-price/" className="text-blue-600 font-bold hover:underline">Live Silver Price</Link>. You can also convert weight and value instantly using our <Link href="/calculator/gold-converter/" className="text-blue-600 font-bold hover:underline">Gold Converter</Link> and <Link href="/calculator/silver-converter/" className="text-blue-600 font-bold hover:underline">Silver Converter</Link>.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/market-rates/live-gold-price/" className="px-4 py-2 text-[13px] bg-white border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">
-              Gold Price
-            </Link>
-            <Link href="/market-rates/live-silver-price/" className="px-4 py-2 text-[13px] bg-white border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">
-              Silver Price
-            </Link>
-            <Link href="/calculator/gold-converter/" className="px-4 py-2 text-[13px] bg-white border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">
-              Gold Converter
-            </Link>
-            <Link href="/calculator/silver-converter/" className="px-4 py-2 text-[13px] bg-white border border-slate-300 text-slate-700 font-semibold rounded-lg hover:bg-slate-50 transition-colors">
-              Silver Converter
-            </Link>
-          </div>
-        </div>
+        
       </div>
     </div>
   );
