@@ -840,11 +840,7 @@ export default function SilverCalculatorComponent() {
           </div>
 
           {/* Live Silver Rate Compact Info Card */}
-          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-5 mt-4 space-y-3 shadow-sm text-left">
-            <h3 className="text-sm font-bold text-[#202124]">Live Silver Rate</h3>
-            <p className="text-xs text-[#5F6368] leading-relaxed">
-              Need today's silver price before converting? Check the latest live silver rate in Nepal, updated regularly using current market data. Then use this converter to instantly convert grams, tola, lal, kilograms, ounces, and troy ounces.
-            </p>
+          <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-4 mt-4 shadow-sm text-left">
             <Link 
               href="/market-rates/live-silver-price/"
               className="inline-flex items-center justify-center w-full py-2.5 px-4 bg-white border border-[#DADCE0] hover:bg-[#E8F0FE] hover:border-[#1A73E8] hover:text-[#1A73E8] rounded-md text-xs font-bold text-[#202124] transition-all shadow-sm"
