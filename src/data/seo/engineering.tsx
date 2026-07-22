@@ -728,7 +728,7 @@ export const engineeringSEO: Record<string, SEOContent> = {
                     </p>
                     <p>
                         The architecture of this calculator has been engineered to handle edge cases and extreme variable ranges without compromising speed or accuracy. Our underlying algorithms undergo continuous testing against established academic models and industry benchmarks. This commitment to computational integrity means that results remain consistent regardless of the complexity of the inputs. Furthermore, the responsive design of the platform ensures that this high-fidelity modeling capability is accessible across all devices, empowering you to perform critical analysis whether you are in the office, the classroom, or on the field.
-                     To complement these results, consider running the numbers through <a href="/calculator/market-rates/live-gold-price/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Live Gold Price in Nepal</a>.</p>
+                     To complement these results, consider running the numbers through <a href="/market-rates/live-gold-price/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Live Gold Price in Nepal</a>.</p>
                 </div>
             
                     <p>

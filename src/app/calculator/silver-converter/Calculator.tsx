@@ -5,6 +5,7 @@ import React, { useState, useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { 
   Scale, 
+  RotateCcw,
   Coins, 
   Sparkles, 
   Calculator, 
@@ -231,6 +232,17 @@ export default function SilverCalculatorComponent() {
     makingChargeType, makingChargeValue, vatPercent, buybackDiscount,
     budgetNpr, historicalYear, targetPurity, basket
   ]);
+
+  const handleReset = () => {
+    setWeight('');
+    setSilverRatePerTola('');
+    setMakingChargeValue('');
+    setVatPercent('');
+    setBuybackDiscount('');
+    setBudgetNpr('');
+    setTargetPurity(925);
+    setBasket([]);
+  };
 
   const handleCopy = () => {
     const text = `${weight} ${fromUnit} of ${PURITY_FACTORS[purityKey].name} = ${math.convertedVal.toFixed(4)} ${toUnit} (${math.breakdown.grams.toFixed(2)}g). Market Value: Rs. ${Math.round(math.metalValueNpr).toLocaleString()} NPR.`;
@@ -776,6 +788,13 @@ export default function SilverCalculatorComponent() {
               <Printer className="w-3.5 h-3.5 text-[#5F6368]" />
               <span>Print</span>
             </button>
+            <button
+              onClick={handleReset}
+              className="py-2 px-3 bg-red-50 border border-red-200 hover:bg-red-100 rounded-md text-xs font-bold text-red-600 flex items-center gap-1.5 shadow-sm transition-all"
+            >
+              <RotateCcw className="w-3.5 h-3.5 text-red-500" />
+              <span>Reset</span>
+            </button>
           </div>
 
           {/* Multi-Unit Equivalent Breakdown Table */}
@@ -848,11 +867,6 @@ export default function SilverCalculatorComponent() {
               <p className="text-[#5F6368] text-sm mt-3">
                 Last updated: July 2026 &bull; Measurements verified against official FENEGOSIDA and LBMA international standards.
               </p>
-              <div className="mt-4 pt-3 border-t border-[#1A73E8]/20">
-                <a href="/market-rates/live-silver-price/" className="inline-flex items-center gap-1.5 text-sm font-bold text-[#1A73E8] hover:text-[#1967D2] hover:underline">
-                  Check today's Live Silver Price in Nepal <span>&rarr;</span>
-                </a>
-              </div>
             </div>
 
             {/* Table of Contents */}
@@ -895,7 +909,7 @@ export default function SilverCalculatorComponent() {
             <section id="nepal-system">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Nepal Traditional Silver Measurement System (Chandi Weight)</h2>
               <p className="text-[#5F6368] text-base leading-relaxed mb-4">
-                In Nepal, silver (popularly known as <em>Chandi</em>) is measured using the traditional South Asian bullion system recognized by FENEGOSIDA. Understanding these units ensures accurate jewellery pricing and investment trading:
+                In Nepal, silver (popularly known as <em>Chandi</em>) is measured using the traditional South Asian bullion system recognized by FENEGOSIDA. Understanding these units ensures accurate jewellery pricing and investment trading. You can check all current market-rate tools at our <a href="/market-rates/" className="text-[#1A73E8] font-semibold hover:underline">Live Market Rates Hub</a>.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-4">
@@ -1109,7 +1123,7 @@ export default function SilverCalculatorComponent() {
             <section id="accuracy-matters">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Why Accurate Silver Calculations Matter</h2>
               <p className="text-[#5F6368] text-base leading-relaxed">
-                Accurate silver weight calculations are critical for buyers, jewellers, and investors across Nepal. Unlike general household goods, precious metal trades are calculated down to the decimal point in Lal and Grams. A small rounding discrepancy when converting 1 Kilogram of silver can result in a loss of multiple Tolas. Relying on an automated converter verified against official FENEGOSIDA and NBSM standards eliminates manual conversion errors, protects transaction fairness, and guarantees transparency when purchasing bullion or custom silver jewellery.
+                Accurate silver weight calculations are critical for buyers, jewellers, and investors across Nepal. Unlike general household goods, precious metal trades are calculated down to the decimal point in Lal and Grams. A small rounding discrepancy when converting 1 Kilogram of silver can result in a loss of multiple Tolas. Relying on an automated converter verified against official FENEGOSIDA and NBSM standards eliminates manual conversion errors, protects transaction fairness, and guarantees transparency when purchasing bullion or custom silver jewellery. For a complete view of precious metal markets, visit our <a href="/market-rates/" className="text-[#1A73E8] font-semibold hover:underline">Market Rates page</a>.
               </p>
             </section>
 

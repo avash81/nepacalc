@@ -76,7 +76,7 @@ export const healthSEO: Record<string, SEOContent> = {
                         <h4 className="text-[10px] font-black text-sky-400 uppercase tracking-widest mb-3">Nepal-Specific Health Target</h4>
                         <p className="text-xs text-slate-400 leading-relaxed italic">
                             "In Nepal, many health practitioners recommend a tighter target for a healthy BMI, often between 18.5 and 23. Maintaining a weight in this range can significantly lower the risk of cardiovascular issues."
-                         For a broader understanding, you may also want to explore <a href="/calculator/market-rates/live-silver-price/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Live Silver Price in Nepal</a>.</p>
+                         For a broader understanding, you may also want to explore <a href="/market-rates/live-silver-price/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Live Silver Price in Nepal</a>.</p>
                     </div>
                 </div>
             </section>
@@ -163,7 +163,7 @@ export const healthSEO: Record<string, SEOContent> = {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
                     <p className="text-sm text-slate-300 leading-relaxed">
                         BMR represents your "at-rest" burn—what you would burn if you were resting in bed all day. To find your actual daily requirement, you must apply the <strong>Physical Activity Level (PAL)</strong> multiplier. This converts BMR into <strong>Total Daily Energy Expenditure (TDEE)</strong>.
-                     To complement these results, consider running the numbers through <a href="/calculator/market-rates/exchange-rate-nepal/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this live estimator</a>.</p>
+                     To complement these results, consider running the numbers through <a href="/market-rates/exchange-rate-nepal/" className="text-blue-600 hover:text-blue-800 underline transition-colors">this live estimator</a>.</p>
                     <div className="bg-slate-800/50 border border-slate-700 p-6 rounded-xl">
                         <h4 className="text-[10px] font-black text-emerald-400 uppercase tracking-widest mb-3">Standard Benchmark: Activity Multipliers</h4>
                         <ul className="text-[10px] text-slate-400 space-y-2 list-disc pl-4 italic">

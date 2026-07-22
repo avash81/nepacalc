@@ -70,7 +70,7 @@ export const convertersSEO: Record<string, SEOContent> = {
                 <div className="text-slate-700 leading-relaxed space-y-6">
                     <p>
                         In the modern era of automated computing, the principles of applied mathematics form the structural bedrock of all technical advancement. Every software algorithm, physical simulation, and data visualization is fundamentally an exercise in algebraic relations and numerical modeling. By translating abstract human requirements into linear, quadratic, or matrix models, computer scientists can process complex real-world variables at lightning speed. Fostering mathematical proficiency is key to preparing the next generation of engineers, data scientists, and researchers for the global digital economy.
-                     To complement these results, consider running the numbers through <a href="/calculator/market-rates/live-gold-price/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Live Gold Price in Nepal</a>.</p>
+                     To complement these results, consider running the numbers through <a href="/market-rates/live-gold-price/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Live Gold Price in Nepal</a>.</p>
                     <p>
                         Applied mathematics teaches us to think systematically, to identify underlying patterns under tight constraints, and to break down multi-variable challenges into manageable logical steps. This cognitive framework is an invaluable asset across all professional fields, from structural engineering to public policy formulation. By isolating variables, identifying direct and inverse proportions, and predicting outcomes with high statistical confidence, practitioners can design optimal solutions that are highly relevant to their communities' sustainable development.
                     </p>
@@ -809,7 +809,7 @@ export const convertersSEO: Record<string, SEOContent> = {
                 <h3 className="text-3xl font-black text-slate-900 mb-4">Explore Related Computational Tools</h3>
                 <p className="text-slate-600 mb-8 leading-relaxed text-lg">
                     To further enhance your computational accuracy, we highly recommend integrating your current workflow with these related specialized calculators. Auditing your values across multiple models ensures complete structural consistency and absolute precision.
-                 Additionally, <a href="/calculator/market-rates/live-silver-price/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the live silver price</a> is highly recommended for related estimations.</p>
+                 Additionally, <a href="/market-rates/live-silver-price/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the live silver price</a> is highly recommended for related estimations.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm">
                         <a href="/calculator/geometry-3d/" className="text-indigo-600 hover:text-indigo-800 underline font-semibold transition-colors">

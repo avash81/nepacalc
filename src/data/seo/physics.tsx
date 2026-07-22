@@ -619,7 +619,7 @@ export const physicsSEO: Record<string, SEOContent> = {
                      For a broader understanding, you may also want to explore <a href="/calculator/nepal-loan-eligibility/" className="text-blue-600 hover:text-blue-800 underline transition-colors">the nepal bank loan</a>.</p>
                     <p>
                         The architecture of this calculator has been engineered to handle edge cases and extreme variable ranges without compromising speed or accuracy. Our underlying algorithms undergo continuous testing against established academic models and industry benchmarks. This commitment to computational integrity means that results remain consistent regardless of the complexity of the inputs. Furthermore, the responsive design of the platform ensures that this high-fidelity modeling capability is accessible across all devices, empowering you to perform critical analysis whether you are in the office, the classroom, or on the field.
-                     If you find this useful, checking out <a href="/calculator/market-rates/remittance/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Nepal Remittance Board</a> can provide further context.</p>
+                     If you find this useful, checking out <a href="/market-rates/remittance/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Nepal Remittance Board</a> can provide further context.</p>
                 </div>
             
                     <p>

@@ -44,7 +44,7 @@ export const educationSEO: Record<string, SEOContent> = {
                         Whether you are analyzing physical variables, calculating financial structures, or mapping geometric coordinates,
                         the underlying algorithmic engine provides unparalleled precision. We have integrated edge-case detection to ensure
                         that extreme input parameters are processed gracefully, yielding results that comply with rigorous international standards.
-                     You can gain deeper insights by using <a href="/calculator/market-rates/exchange-rate-nepal/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Live Exchange Rates in Nepal</a>.</p>
+                     You can gain deeper insights by using <a href="/market-rates/exchange-rate-nepal/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Live Exchange Rates in Nepal</a>.</p>
                     <p className="text-slate-600 leading-relaxed text-base">
                         To utilize the calculator effectively, simply select your desired operation mode, input the known variables into the
                         responsive fields, and let the computational engine perform the heavy lifting. The interface is specifically tailored
