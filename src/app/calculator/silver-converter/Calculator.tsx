@@ -268,7 +268,6 @@ export default function SilverCalculatorComponent() {
   return (
     <ModernCalcLayout
       slug="silver-converter"
-      layout="stacked"
       crumbs={[
         { label: 'Home', href: '/' },
         { label: 'Calculators', href: '/calculator/' },
