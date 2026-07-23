@@ -816,13 +816,79 @@ export default function SilverCalculatorComponent() {
             </div>
 
             <div className="text-center py-2">
-              <div className="text-xs font-medium opacity-80 uppercase tracking-widest mb-1">
-                {weight} {fromUnit} Equals
-              </div>
-              <div className="text-4xl font-extrabold tracking-tight">
-                {math.convertedVal.toLocaleString(undefined, { maximumFractionDigits: 4 })}
-                <span className="text-xl font-bold ml-2 opacity-90">{toUnit}</span>
-              </div>
+              {activeTab === 'value' ? (
+                <>
+                  <div className="text-xs font-medium opacity-80 uppercase tracking-widest mb-1">
+                    Rs. {Number(budgetNpr).toLocaleString()} Equals
+                  </div>
+                  <div className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    {math.reverse.budgetGrams.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                    <span className="text-xl font-bold ml-2 opacity-90">Gram</span>
+                  </div>
+                  <div className="text-sm font-bold opacity-90 mt-1">
+                    ({math.reverse.budgetTolas.toFixed(2)} Tola)
+                  </div>
+                </>
+              ) : activeTab === 'jewellery' ? (
+                <>
+                  <div className="text-xs font-medium opacity-80 uppercase tracking-widest mb-1">
+                    Final Jewellery Cost
+                  </div>
+                  <div className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    Rs. {Math.round(math.finalJewelleryCostNpr).toLocaleString()}
+                  </div>
+                  <div className="text-sm font-bold opacity-90 mt-1">
+                    ({weight} {fromUnit} of {PURITY_FACTORS[purityKey].name.split(' ')[0]})
+                  </div>
+                </>
+              ) : activeTab === 'historical' ? (
+                <>
+                  <div className="text-xs font-medium opacity-80 uppercase tracking-widest mb-1">
+                    Historical Return
+                  </div>
+                  <div className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    {math.historical.percentageReturn > 0 ? '+' : ''}{math.historical.percentageReturn.toFixed(1)}%
+                  </div>
+                  <div className="text-sm font-bold opacity-90 mt-1">
+                    {math.historical.priceDifferenceNpr >= 0 ? 'Gain:' : 'Loss:'} Rs. {Math.round(math.historical.priceDifferenceNpr).toLocaleString()}
+                  </div>
+                </>
+              ) : activeTab === 'investment' ? (
+                <>
+                  <div className="text-xs font-medium opacity-80 uppercase tracking-widest mb-1">
+                    Total Basket Value
+                  </div>
+                  <div className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    Rs. {Math.round(math.basket.basketTotalValueNpr).toLocaleString()}
+                  </div>
+                  <div className="text-sm font-bold opacity-90 mt-1">
+                    ({math.basket.basketTotalGrams.toFixed(2)} g / {math.basket.basketTotalTolas.toFixed(2)} Tola)
+                  </div>
+                </>
+              ) : activeTab === 'pro' ? (
+                <>
+                  <div className="text-xs font-medium opacity-80 uppercase tracking-widest mb-1">
+                    Required Alloy
+                  </div>
+                  <div className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    {math.manufacturing.requiredCopperGrams.toFixed(2)}
+                    <span className="text-xl font-bold ml-2 opacity-90">Gram</span>
+                  </div>
+                  <div className="text-sm font-bold opacity-90 mt-1">
+                    Finished Weight: {math.manufacturing.finalFinishedWeightGrams.toFixed(2)}g
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="text-xs font-medium opacity-80 uppercase tracking-widest mb-1">
+                    {weight} {fromUnit} Equals
+                  </div>
+                  <div className="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                    {math.convertedVal.toLocaleString(undefined, { maximumFractionDigits: 4 })}
+                    <span className="text-xl font-bold ml-2 opacity-90">{toUnit}</span>
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Estimated Value Banner */}
