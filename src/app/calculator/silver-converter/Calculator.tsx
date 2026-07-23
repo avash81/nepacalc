@@ -993,7 +993,7 @@ export default function SilverCalculatorComponent() {
             </div>
           </div>
 
-          {/* Action Bar (Copy / Print / Share) */}
+          {/* Action Bar (Copy) */}
           <div className="flex items-center gap-2">
             <button
               onClick={handleCopy}
@@ -1001,13 +1001,6 @@ export default function SilverCalculatorComponent() {
             >
               {copied ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5 text-[#1A73E8]" />}
               <span>{copied ? 'Copied!' : 'Copy Summary'}</span>
-            </button>
-            <button
-              onClick={() => window.print()}
-              className="py-2 px-3 bg-white border border-[#DADCE0] hover:bg-[#F8F9FA] rounded-md text-xs font-bold text-[#202124] flex items-center gap-1.5 shadow-sm transition-all"
-            >
-              <Printer className="w-3.5 h-3.5 text-[#5F6368]" />
-              <span>Print</span>
             </button>
           </div>
 
