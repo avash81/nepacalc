@@ -81,29 +81,29 @@ export default function SilverCalculatorComponent() {
   };
   
   // Universal Input State
-  const [weight, setWeight] = useState<number | ''>('');
+  const [weight, setWeight] = useState<number | ''>(0);
   const [fromUnit, setFromUnit] = useState<string>('Tola');
   const [toUnit, setToUnit] = useState<string>('Gram');
   const [purityKey, setPurityKey] = useState<string>('999');
-  const [silverRatePerTola, setSilverRatePerTola] = useState<number | ''>('');
+  const [silverRatePerTola, setSilverRatePerTola] = useState<number | ''>(0);
   
   // Jewellery Tab Inputs (Module 5)
   const [makingChargeType, setMakingChargeType] = useState<'fixed' | 'percent'>('percent');
-  const [makingChargeValue, setMakingChargeValue] = useState<number | ''>('');
-  const [vatPercent, setVatPercent] = useState<number | ''>('');
+  const [makingChargeValue, setMakingChargeValue] = useState<number | ''>(0);
+  const [vatPercent, setVatPercent] = useState<number | ''>(0);
   
   // Buyback / Scrap Inputs (Module 6 & 12)
-  const [buybackDiscount, setBuybackDiscount] = useState<number | ''>('');
+  const [buybackDiscount, setBuybackDiscount] = useState<number | ''>(0);
   
   // Investment / Reverse Budget Inputs (Module 3 & 7)
-  const [budgetNpr, setBudgetNpr] = useState<number | ''>('');
+  const [budgetNpr, setBudgetNpr] = useState<number | ''>(0);
   
   // SIP Investment Inputs
-  const [sipInitial, setSipInitial] = useState<number | ''>('');
-  const [sipRecurring, setSipRecurring] = useState<number | ''>('');
+  const [sipInitial, setSipInitial] = useState<number | ''>(0);
+  const [sipRecurring, setSipRecurring] = useState<number | ''>(0);
   const [sipFrequency, setSipFrequency] = useState<'monthly' | 'yearly'>('monthly');
-  const [sipDuration, setSipDuration] = useState<number | ''>('');
-  const [sipGrowth, setSipGrowth] = useState<number | ''>('');
+  const [sipDuration, setSipDuration] = useState<number | ''>(0);
+  const [sipGrowth, setSipGrowth] = useState<number | ''>(0);
   // Historical Rate Inputs (Module 8)
   const [historicalYear, setHistoricalYear] = useState<string>('2080 (2 Years Ago)');
 
