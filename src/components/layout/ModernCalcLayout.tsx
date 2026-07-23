@@ -157,11 +157,11 @@ export function ModernCalcLayout({
               </div>
               {fullWidth ? <div className="p-0">{inputs}</div> : layout === 'stacked' ? (
                 <div className="flex flex-col divide-y divide-[#DADCE0]">
-                  <div className="p-4 lg:p-6 lg:px-8 bg-white relative">
-                    <div className="w-full max-w-5xl mx-auto">{inputs}</div>
+                  <div className="p-4 lg:p-6 lg:px-10 bg-white relative">
+                    <div className="w-full">{inputs}</div>
                   </div>
-                  <div className="p-4 lg:p-8 bg-[#F8F9FA]">
-                    <div className="w-full max-w-5xl mx-auto">
+                  <div className="p-4 lg:p-8 lg:px-10 bg-[#F8F9FA]">
+                    <div className="w-full">
                       <div className="mb-4">
                         <h3 className="text-sm font-black uppercase tracking-wider text-[#202124]">Result Summary</h3>
                       </div>
@@ -259,11 +259,11 @@ export function ModernCalcLayout({
               </div>
               {fullWidth ? <div className="p-0">{inputs}</div> : layout === 'stacked' ? (
                 <div className="flex flex-col divide-y divide-[#DADCE0]">
-                  <div className="p-4 lg:p-6 lg:px-8 bg-white relative">
-                    <div className="w-full max-w-5xl mx-auto">{inputs}</div>
+                  <div className="p-4 lg:p-6 lg:px-10 bg-white relative">
+                    <div className="w-full">{inputs}</div>
                   </div>
-                  <div className="p-4 lg:p-8 bg-[#F8F9FA]">
-                    <div className="w-full max-w-5xl mx-auto">
+                  <div className="p-4 lg:p-8 lg:px-10 bg-[#F8F9FA]">
+                    <div className="w-full">
                       <div className="mb-4">
                         <h3 className="text-sm font-black uppercase tracking-wider text-[#202124]">Result Summary</h3>
                       </div>
