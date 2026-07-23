@@ -40,10 +40,11 @@ interface ModernCalcLayoutProps {
   customSchema?: object;
   compactHeader?: boolean;
   titleClassName?: string;
+  sidebarPosition?: 'side' | 'bottom';
 }
 
 export function ModernCalcLayout({
-  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, layout = 'split', ads, hideH1 = false, intro, customSchema, compactHeader = false, titleClassName
+  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, layout = 'split', ads, hideH1 = false, intro, customSchema, compactHeader = false, titleClassName, sidebarPosition = 'side'
 }: ModernCalcLayoutProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [liveRates, setLiveRates] = useState<MarketRate[]>([]);
@@ -206,7 +207,7 @@ export function ModernCalcLayout({
         </div>
         {intro && <div className="mb-8">{intro}</div>}
         {ads?.top && <div className="mb-6 flex justify-center no-print">{ads.top}</div>}
-        <div className="flex flex-col lg:flex-row gap-8">
+        <div className={lex flex-col gap-8 }>
           <div className="flex-1 space-y-6">
             <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
               <div className="px-6 py-4 border-b border-[#DADCE0] flex items-center gap-3 bg-[#F8F9FA]">
@@ -331,8 +332,8 @@ export function ModernCalcLayout({
             )}
 
           </div>
-          <div className="w-full lg:w-[320px] space-y-6 no-print">
-            <div className="space-y-6">
+          <div className={w-full space-y-6 no-print }>
+            <div className={space-y-6 }>
 
             {sidebar && (
               <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
