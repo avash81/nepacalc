@@ -28,30 +28,14 @@ import {
   ShoppingBag
 } from 'lucide-react';
 
-// Unit conversion constants to base unit: Grams (g)
-const GRAM_FACTORS: Record<string, number> = {
-  'Gram': 1,
-  'Tola': 11.6638038,
-  'Lal': 0.116638038,   // 100 Lal = 1 Tola
-  'Aana': 0.7289877,    // 16 Aana = 1 Tola
-  'Ratti': 0.1822469,   // 64 Ratti = 1 Tola
-  'Kilogram': 1000,
-  'Milligram': 0.001,
-  'Troy Ounce': 31.1034768,
-  'Ounce': 28.3495231,
-  'Pound': 453.59237,
-};
-
-const PURITY_FACTORS: Record<string, { factor: number; name: string; description: string }> = {
-  '999': { factor: 1.0, name: '999 Fine Silver (99.9%)', description: 'Pure silver bullion bars & coins' },
-  '995': { factor: 0.995, name: '995 High Purity (99.5%)', description: 'Standard commercial bullion' },
-  '990': { factor: 0.990, name: '990 Commercial Fine (99.0%)', description: 'Traditional silver bars' },
-  '950': { factor: 0.950, name: '950 High Grade (95.0%)', description: 'High-end artisan jewellery' },
-  '925': { factor: 0.925, name: '925 Sterling Silver (92.5%)', description: 'High-grade jewellery & ornaments' },
-  '900': { factor: 0.900, name: '900 Coin Silver (90.0%)', description: 'Traditional silver coins' },
-  '835': { factor: 0.835, name: '835 European Standard (83.5%)', description: 'Utensils & vintage silver' },
-  '800': { factor: 0.800, name: '800 Jewellery Silver (80.0%)', description: 'Heavy utensils & payals' },
-};
+import { 
+  SILVER_UNITS as GRAM_FACTORS, 
+  SILVER_PURITY as PURITY_FACTORS, 
+  HISTORICAL_RATES,
+  formatters,
+  ERRORS,
+  validateInput
+} from '@/utils/silverConstants';
 
 const PRESETS = [
   { label: '1 Tola', weight: 1, unit: 'Tola' },
@@ -65,14 +49,6 @@ const PRESETS = [
   { label: '50 Lal', weight: 50, unit: 'Lal' },
 ];
 
-const HISTORICAL_RATES: Record<string, number> = {
-  '2082 (Current)': 1900,
-  '2081 (Last Year)': 1650,
-  '2080 (2 Years Ago)': 1400,
-  '2079 (3 Years Ago)': 1250,
-  '2075 (7 Years Ago)': 750,
-};
-
 interface BasketItem {
   id: string;
   name: string;
@@ -83,6 +59,26 @@ interface BasketItem {
 
 export default function SilverCalculatorComponent() {
   const [activeTab, setActiveTab] = useState<string>('weight'); // 'weight' | 'value' | 'jewellery' | 'investment' | 'historical' | 'pro'
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '');
+      const searchParams = new URLSearchParams(window.location.search);
+      const mode = hash || searchParams.get('mode');
+      if (mode && ['weight', 'value', 'jewellery', 'investment', 'historical', 'pro'].includes(mode)) {
+        setActiveTab(mode);
+      }
+      if (searchParams.get('weight')) setWeight(Number(searchParams.get('weight')));
+      if (searchParams.get('purity')) setPurityKey(searchParams.get('purity') as string);
+    }
+  }, []);
+
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+    if (typeof window !== 'undefined') {
+      window.history.pushState(null, '', `#${tab}`);
+    }
+  };
   
   // Universal Input State
   const [weight, setWeight] = useState<number | ''>(1);
@@ -298,7 +294,7 @@ export default function SilverCalculatorComponent() {
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => handleTabChange(tab.id)}
                   className={`flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-t-md transition-all ${
                     isActive 
                       ? 'bg-[#1A73E8] text-white shadow-sm' 
@@ -419,6 +415,28 @@ export default function SilverCalculatorComponent() {
                       className="w-full h-11 pl-12 pr-4 border border-[#DADCE0] rounded-md bg-white text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none"
                     />
                   </div>
+                </div>
+              </div>
+
+              {/* Derived Market Rates */}
+              <div className="bg-white border border-[#1A73E8]/20 rounded-lg p-4 shadow-sm">
+                <div className="flex items-center gap-2 mb-3">
+                  <TrendingUp className="w-4 h-4 text-[#1A73E8]" />
+                  <h4 className="text-xs font-bold text-[#1A73E8] uppercase tracking-wider">Derived Market Rates</h4>
+                </div>
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+                  {[
+                    { label: 'Per Gram', val: (Number(silverRatePerTola) || 0) / GRAM_FACTORS['Tola'] },
+                    { label: 'Per Lal', val: (Number(silverRatePerTola) || 0) / 100 },
+                    { label: 'Per Aana', val: (Number(silverRatePerTola) || 0) / 16 },
+                    { label: 'Per Kg', val: ((Number(silverRatePerTola) || 0) / GRAM_FACTORS['Tola']) * 1000 },
+                    { label: 'Per Troy Oz', val: ((Number(silverRatePerTola) || 0) / GRAM_FACTORS['Tola']) * GRAM_FACTORS['Troy Ounce'] },
+                  ].map(rate => (
+                    <div key={rate.label} className="bg-[#F8F9FA] p-2 rounded border border-[#DADCE0] text-center">
+                      <span className="block text-[9px] font-bold text-[#70757A] uppercase">{rate.label}</span>
+                      <span className="block text-xs font-black text-[#202124]">Rs. {rate.val > 1000 ? Math.round(rate.val).toLocaleString() : rate.val.toFixed(2)}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
