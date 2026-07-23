@@ -266,8 +266,7 @@ export default function SilverCalculatorComponent() {
       slug="silver-converter"
       calculatorPosition="top"
       layout="split"
-      sidebarPosition="bottom"
-      fullWidth={false}
+      fullWidth={true}
       crumbs={[
         { label: 'Home', href: '/' },
         { label: 'Calculators', href: '/calculator/' },

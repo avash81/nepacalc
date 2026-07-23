@@ -248,45 +248,14 @@ export function ModernCalcLayout({
         </div>
         {intro && <div className="mb-8">{intro}</div>}
         {ads?.top && <div className="mb-6 flex justify-center no-print">{ads.top}</div>}
+        {fullWidth && (
+          <div className="mb-8">
+            {calculatorEngineNode}
+          </div>
+        )}
         <div className={`flex flex-col gap-8 ${sidebarPosition === 'bottom' ? '' : 'lg:flex-row'}`}>
           <div className="flex-1 space-y-6">
-            <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
-              <div className="px-6 py-4 border-b border-[#DADCE0] flex items-center gap-3 bg-[#F8F9FA]">
-                <div className="flex items-center gap-2">
-                  <Icon className="w-4 h-4 text-[#5F6368]" />
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#5F6368]">Calculator Engine</span>
-                </div>
-              </div>
-              {fullWidth ? <div className="p-0">{inputs}</div> : layout === 'stacked' ? (
-                <div className="flex flex-col divide-y divide-[#DADCE0]">
-                  <div className="p-4 lg:p-6 lg:px-10 bg-white relative">
-                    <div className="w-full">{inputs}</div>
-                  </div>
-                  <div className="p-4 lg:p-8 lg:px-10 bg-[#F8F9FA]">
-                    <div className="w-full">
-                      <div className="mb-4">
-                        <h3 className="text-sm font-black uppercase tracking-wider text-[#202124]">Result Summary</h3>
-                      </div>
-                      <div className="w-full">{results}</div>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-[#DADCE0]">
-                  <div className="flex-1 p-4 lg:p-8 bg-white relative">
-                    <div className="lg:sticky lg:top-24 self-start">{inputs}</div>
-                  </div>
-                  <div className="w-full md:w-[360px] lg:w-[500px] p-4 bg-white">
-                    <div className="bg-white border border-[#DADCE0] rounded-md overflow-hidden h-full flex flex-col shadow-sm">
-                      <div className="px-4 py-2.5 border-b border-[#DADCE0] bg-[#F8F9FA]">
-                        <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Result Summary</h3>
-                      </div>
-                      <div className="flex-1 p-6 flex flex-col justify-center bg-white">{results}</div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
+            {!fullWidth && calculatorEngineNode}
             {ads?.inContent && <div className="flex justify-center no-print">{ads.inContent}</div>}
             {details && <div className="details-container space-y-6">{details}</div>}
             {(enrichedHowTo || enrichedFormula) && (
