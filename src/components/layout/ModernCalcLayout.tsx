@@ -207,7 +207,7 @@ export function ModernCalcLayout({
         </div>
         {intro && <div className="mb-8">{intro}</div>}
         {ads?.top && <div className="mb-6 flex justify-center no-print">{ads.top}</div>}
-        <div className={lex flex-col gap-8 }>
+        <div className={`flex flex-col gap-8 ${sidebarPosition === 'bottom' ? '' : 'lg:flex-row'}`}>
           <div className="flex-1 space-y-6">
             <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
               <div className="px-6 py-4 border-b border-[#DADCE0] flex items-center gap-3 bg-[#F8F9FA]">
@@ -332,10 +332,8 @@ export function ModernCalcLayout({
             )}
 
           </div>
-          <div className={w-full space-y-6 no-print }>
-            <div className={space-y-6 }>
-
-            {sidebar && (
+          <div className={`w-full space-y-6 no-print ${sidebarPosition === 'bottom' ? '' : 'lg:w-[320px]'}`}>
+            <div className={`space-y-6 ${sidebarPosition === 'bottom' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 space-y-0' : ''}`}>            {sidebar && (
               <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
                 <div className="px-5 py-4 bg-white border-b border-[#DADCE0]">
                   <h2 className="text-[13px] font-black text-[#202124] uppercase tracking-wider">{sidebar.title}</h2>
