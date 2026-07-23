@@ -81,7 +81,7 @@ export default function SilverCalculatorComponent() {
   };
   
   // Universal Input State
-  const [weight, setWeight] = useState<number | ''>(1);
+  const [weight, setWeight] = useState<number | ''>('');
   const [fromUnit, setFromUnit] = useState<string>('Tola');
   const [toUnit, setToUnit] = useState<string>('Gram');
   const [purityKey, setPurityKey] = useState<string>('999');
@@ -103,7 +103,7 @@ export default function SilverCalculatorComponent() {
   const [sipRecurring, setSipRecurring] = useState<number | ''>('');
   const [sipFrequency, setSipFrequency] = useState<'monthly' | 'yearly'>('monthly');
   const [sipDuration, setSipDuration] = useState<number | ''>('');
-  const [sipGrowth, setSipGrowth] = useState<number | ''>(10);
+  const [sipGrowth, setSipGrowth] = useState<number | ''>('');
   // Historical Rate Inputs (Module 8)
   const [historicalYear, setHistoricalYear] = useState<string>('2080 (2 Years Ago)');
 
@@ -355,7 +355,6 @@ export default function SilverCalculatorComponent() {
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="block text-[11px] font-bold uppercase text-[#70757A]">Quick Presets</label>
-                  <button onClick={() => { setWeight(''); setSilverRatePerTola(''); setMakingChargeValue(''); setVatPercent(''); setBuybackDiscount(''); setBudgetNpr(''); setTargetPurity(925); setBasket([]); }} className="text-[10px] font-bold text-red-500 hover:text-red-700 uppercase tracking-wider px-2 py-1 bg-red-50 hover:bg-red-100 rounded-md transition-colors flex items-center gap-1">Reset All</button>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {PRESETS.map((p) => (
