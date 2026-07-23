@@ -41,10 +41,11 @@ interface ModernCalcLayoutProps {
   compactHeader?: boolean;
   titleClassName?: string;
   sidebarPosition?: 'side' | 'bottom';
+  calculatorPosition?: 'main' | 'top';
 }
 
 export function ModernCalcLayout({
-  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, layout = 'split', ads, hideH1 = false, intro, customSchema, compactHeader = false, titleClassName, sidebarPosition = 'side'
+  title, description, icon: Icon = Calculator, inputs, results, howToUse, formula, faqs, sidebar, relatedTools, seoContent, auditPanel, details, crumbs, slug, fullWidth = false, layout = 'split', ads, hideH1 = false, intro, customSchema, compactHeader = false, titleClassName, sidebarPosition = 'side', calculatorPosition = 'main'
 }: ModernCalcLayoutProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [liveRates, setLiveRates] = useState<MarketRate[]>([]);
@@ -145,6 +146,46 @@ export function ModernCalcLayout({
   } : null;
 
   const category = CALCULATORS.find(c => c.slug === effectiveSlug)?.category || 'General';
+
+  const calculatorEngineNode = (
+            <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
+              <div className="px-6 py-4 border-b border-[#DADCE0] flex items-center gap-3 bg-[#F8F9FA]">
+                <div className="flex items-center gap-2">
+                  <Icon className="w-4 h-4 text-[#5F6368]" />
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#5F6368]">Calculator Engine</span>
+                </div>
+              </div>
+              {fullWidth ? <div className="p-0">{inputs}</div> : layout === 'stacked' ? (
+                <div className="flex flex-col divide-y divide-[#DADCE0]">
+                  <div className="p-4 lg:p-6 lg:px-8 bg-white relative">
+                    <div className="w-full max-w-5xl mx-auto">{inputs}</div>
+                  </div>
+                  <div className="p-4 lg:p-8 bg-[#F8F9FA]">
+                    <div className="w-full max-w-5xl mx-auto">
+                      <div className="mb-4">
+                        <h3 className="text-sm font-black uppercase tracking-wider text-[#202124]">Result Summary</h3>
+                      </div>
+                      <div className="w-full">{results}</div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-[#DADCE0]">
+                  <div className="flex-1 p-4 lg:p-6 bg-white relative">
+                    <div className="lg:sticky lg:top-24 self-start">{inputs}</div>
+                  </div>
+                  <div className="w-full md:w-[320px] lg:w-[450px] p-4 bg-white">
+                    <div className="bg-white border border-[#DADCE0] rounded-md overflow-hidden h-full flex flex-col shadow-sm">
+                      <div className="px-4 py-2.5 border-b border-[#DADCE0] bg-[#F8F9FA]">
+                        <h3 className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Result Summary</h3>
+                      </div>
+                      <div className="flex-1 p-6 flex flex-col justify-center bg-white">{results}</div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+  );
 
   return (
     <div className="min-h-screen bg-[#F1F3F4] font-sans text-[#3C4043] pb-20 lg:pb-0 selection:bg-blue-100">
