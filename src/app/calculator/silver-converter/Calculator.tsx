@@ -85,11 +85,11 @@ export default function SilverCalculatorComponent() {
   const [activeTab, setActiveTab] = useState<string>('weight'); // 'weight' | 'value' | 'jewellery' | 'investment' | 'historical' | 'pro'
   
   // Universal Input State
-  const [weight, setWeight] = useState<number | ''>('');
+  const [weight, setWeight] = useState<number | ''>(1);
   const [fromUnit, setFromUnit] = useState<string>('Tola');
   const [toUnit, setToUnit] = useState<string>('Gram');
   const [purityKey, setPurityKey] = useState<string>('999');
-  const [silverRatePerTola, setSilverRatePerTola] = useState<number | ''>('');
+  const [silverRatePerTola, setSilverRatePerTola] = useState<number | ''>(1900);
   
   // Jewellery Tab Inputs (Module 5)
   const [makingChargeType, setMakingChargeType] = useState<'fixed' | 'percent'>('percent');
@@ -165,7 +165,7 @@ export default function SilverCalculatorComponent() {
     };
 
     // Reverse Budget Calculations (Rs -> Weight)
-    const budgetTolas = budget > 0 ? budget / rate : 0;
+    const budgetTolas = (rate > 0 && budget > 0) ? budget / rate : 0;
     const budgetGrams = budgetTolas * GRAM_FACTORS['Tola'];
     const budgetKgs = budgetGrams / 1000;
     const budgetTroyOz = budgetGrams / GRAM_FACTORS['Troy Ounce'];
@@ -268,6 +268,7 @@ export default function SilverCalculatorComponent() {
   return (
     <ModernCalcLayout
       slug="silver-converter"
+      layout="stacked"
       crumbs={[
         { label: 'Home', href: '/' },
         { label: 'Calculators', href: '/calculator/' },
@@ -422,7 +423,7 @@ export default function SilverCalculatorComponent() {
               {/* Reset All Button */}
               <button
                 onClick={handleReset}
-                className="w-full py-3 bg-red-50 border border-red-200 hover:bg-red-100 rounded-lg text-sm font-bold text-red-600 flex items-center justify-center gap-2 shadow-sm transition-all"
+                className="w-full py-3 mt-6 bg-red-50 border border-red-200 hover:bg-red-100 rounded-lg text-sm font-bold text-red-600 flex items-center justify-center gap-2 shadow-sm transition-all"
               >
                 <RotateCcw className="w-4 h-4 text-red-500" />
                 <span>Reset All Fields</span>
@@ -434,8 +435,11 @@ export default function SilverCalculatorComponent() {
           {activeTab === 'value' && (
             <div className="space-y-6">
               <div className="bg-[#E8F0FE]/50 border border-[#1A73E8]/30 rounded-lg p-5 space-y-4">
-                <h3 className="text-sm font-bold text-[#1A73E8] flex items-center gap-1.5">
-                  <DollarSign className="w-4 h-4" /> Reverse Calculation (Budget to Silver Weight)
+                <h3 className="text-sm font-bold text-[#1A73E8] flex flex-col gap-1.5">
+                  <div className="flex items-center gap-1.5">
+                    <DollarSign className="w-4 h-4" /> Reverse Calculation (Budget to Silver Weight)
+                  </div>
+                  <span className="text-[11px] text-[#5F6368] font-normal">How it works: Enter your total budget (e.g., Rs. 50,000) and we'll divide it by today's Silver Rate to tell you exactly how much pure silver you can buy.</span>
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1">
@@ -483,7 +487,7 @@ export default function SilverCalculatorComponent() {
               {/* Reset All Button */}
               <button
                 onClick={handleReset}
-                className="w-full py-3 bg-red-50 border border-red-200 hover:bg-red-100 rounded-lg text-sm font-bold text-red-600 flex items-center justify-center gap-2 shadow-sm transition-all"
+                className="w-full py-3 mt-6 bg-red-50 border border-red-200 hover:bg-red-100 rounded-lg text-sm font-bold text-red-600 flex items-center justify-center gap-2 shadow-sm transition-all"
               >
                 <RotateCcw className="w-4 h-4 text-red-500" />
                 <span>Reset All Fields</span>
@@ -715,7 +719,7 @@ export default function SilverCalculatorComponent() {
               {/* Reset All Button */}
               <button
                 onClick={handleReset}
-                className="w-full py-3 bg-red-50 border border-red-200 hover:bg-red-100 rounded-lg text-sm font-bold text-red-600 flex items-center justify-center gap-2 shadow-sm transition-all"
+                className="w-full py-3 mt-6 bg-red-50 border border-red-200 hover:bg-red-100 rounded-lg text-sm font-bold text-red-600 flex items-center justify-center gap-2 shadow-sm transition-all"
               >
                 <RotateCcw className="w-4 h-4 text-red-500" />
                 <span>Reset All Fields</span>
@@ -773,7 +777,7 @@ export default function SilverCalculatorComponent() {
               {/* Reset All Button */}
               <button
                 onClick={handleReset}
-                className="w-full py-3 bg-red-50 border border-red-200 hover:bg-red-100 rounded-lg text-sm font-bold text-red-600 flex items-center justify-center gap-2 shadow-sm transition-all"
+                className="w-full py-3 mt-6 bg-red-50 border border-red-200 hover:bg-red-100 rounded-lg text-sm font-bold text-red-600 flex items-center justify-center gap-2 shadow-sm transition-all"
               >
                 <RotateCcw className="w-4 h-4 text-red-500" />
                 <span>Reset All Fields</span>
