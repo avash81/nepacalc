@@ -85,7 +85,7 @@ export default function SilverCalculatorComponent() {
   const [fromUnit, setFromUnit] = useState<string>('Tola');
   const [toUnit, setToUnit] = useState<string>('Gram');
   const [purityKey, setPurityKey] = useState<string>('999');
-  const [silverRatePerTola, setSilverRatePerTola] = useState<number | ''>(1900);
+  const [silverRatePerTola, setSilverRatePerTola] = useState<number | ''>('');
   
   // Jewellery Tab Inputs (Module 5)
   const [makingChargeType, setMakingChargeType] = useState<'fixed' | 'percent'>('percent');
@@ -98,6 +98,12 @@ export default function SilverCalculatorComponent() {
   // Investment / Reverse Budget Inputs (Module 3 & 7)
   const [budgetNpr, setBudgetNpr] = useState<number | ''>('');
   
+  // SIP Investment Inputs
+  const [sipInitial, setSipInitial] = useState<number | ''>('');
+  const [sipRecurring, setSipRecurring] = useState<number | ''>('');
+  const [sipFrequency, setSipFrequency] = useState<'monthly' | 'yearly'>('monthly');
+  const [sipDuration, setSipDuration] = useState<number | ''>('');
+  const [sipGrowth, setSipGrowth] = useState<number | ''>(10);
   // Historical Rate Inputs (Module 8)
   const [historicalYear, setHistoricalYear] = useState<string>('2080 (2 Years Ago)');
 
@@ -179,6 +185,33 @@ export default function SilverCalculatorComponent() {
     const requiredCopperGrams = targetFactorDec > 0 ? (pureGrams / targetFactorDec) - pureGrams : 0;
     const finalFinishedWeightGrams = pureGrams + requiredCopperGrams;
 
+    // Silver SIP Investment Calculation
+    const initInv = Number(sipInitial) || 0;
+    const pmt = Number(sipRecurring) || 0;
+    const dur = Number(sipDuration) || 0;
+    const growth = Number(sipGrowth) || 0;
+    
+    // Convert to periods based on frequency
+    const nPeriods = sipFrequency === 'monthly' ? dur * 12 : dur;
+    const rRate = sipFrequency === 'monthly' ? (growth / 100) / 12 : (growth / 100);
+    
+    const sipTotalInvested = initInv + (pmt * nPeriods);
+    let sipFutureValue = initInv;
+    
+    if (rRate === 0) {
+      sipFutureValue = sipTotalInvested;
+    } else {
+      // Future Value of Initial + Future Value of Series (PMT)
+      sipFutureValue = initInv * Math.pow(1 + rRate, nPeriods) + pmt * ((Math.pow(1 + rRate, nPeriods) - 1) / rRate) * (1 + rRate);
+    }
+    
+    const sipProfit = sipFutureValue - sipTotalInvested;
+    
+    // Future estimated weight if they bought all that silver at the end (assuming rate grew by same %)
+    const futureSilverRate = rate > 0 ? rate * Math.pow(1 + (growth / 100), dur) : 0;
+    const sipFutureTolas = futureSilverRate > 0 ? sipFutureValue / futureSilverRate : 0;
+    const sipFutureKgs = (sipFutureTolas * GRAM_FACTORS['Tola']) / 1000;
+
     // Multi-item basket total
     const basketTotalGrams = basket.reduce((acc, item) => acc + (item.weight * (GRAM_FACTORS[item.unit] || 1)), 0);
     const basketTotalTolas = basketTotalGrams / GRAM_FACTORS['Tola'];
@@ -214,8 +247,16 @@ export default function SilverCalculatorComponent() {
         percentageReturn,
       },
       manufacturing: {
+        pureGrams,
         requiredCopperGrams,
-        finalFinishedWeightGrams,
+        finalFinishedWeightGrams
+      },
+      sip: {
+        totalInvested: sipTotalInvested,
+        futureValue: sipFutureValue,
+        profit: sipProfit,
+        futureTolas: sipFutureTolas,
+        futureKgs: sipFutureKgs
       },
       basket: {
         basketTotalGrams,
@@ -226,7 +267,8 @@ export default function SilverCalculatorComponent() {
   }, [
     weight, fromUnit, toUnit, purityKey, silverRatePerTola, 
     makingChargeType, makingChargeValue, vatPercent, buybackDiscount,
-    budgetNpr, historicalYear, targetPurity, basket
+    budgetNpr, historicalYear, targetPurity, basket,
+    sipInitial, sipRecurring, sipFrequency, sipDuration, sipGrowth
   ]);
 
   const handleReset = () => {
@@ -515,21 +557,21 @@ export default function SilverCalculatorComponent() {
                   <ShoppingBag className="w-4 h-4 text-[#1A73E8]" /> Jewellery Retail Cost & Making Charge Calculator
                 </h3>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="space-y-1">
-                    <label className="text-[11px] font-bold uppercase text-[#70757A]">Jewellery Weight</label>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[12px] font-bold uppercase tracking-wider text-[#70757A]">Jewellery Weight</label>
                     <div className="flex gap-2">
                       <input
                         type="number"
                         min="0"
                         value={weight}
                         onChange={(e) => setWeight(e.target.value === '' ? '' : parseFloat(e.target.value) || 0)}
-                        className="w-full h-11 px-3 border border-[#DADCE0] rounded-md bg-white text-base font-bold text-[#202124]"
+                        className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-lg font-bold text-[#202124] focus:border-[#1A73E8] outline-none"
                       />
                       <select
                         value={fromUnit}
                         onChange={(e) => setFromUnit(e.target.value)}
-                        className="h-11 px-2 border border-[#DADCE0] rounded-md bg-white text-xs font-bold"
+                        className="h-12 px-3 border border-[#DADCE0] rounded-md bg-white text-sm font-bold w-24 cursor-pointer focus:border-[#1A73E8] outline-none"
                       >
                         <option value="Gram">g</option>
                         <option value="Tola">Tola</option>
@@ -537,20 +579,20 @@ export default function SilverCalculatorComponent() {
                     </div>
                   </div>
 
-                  <div className="space-y-1">
-                    <label className="text-[11px] font-bold uppercase text-[#70757A]">Making Charge</label>
+                  <div className="space-y-2">
+                    <label className="text-[12px] font-bold uppercase tracking-wider text-[#70757A]">Making Charge</label>
                     <div className="flex gap-2">
                       <input
                         type="number"
                         min="0"
                         value={makingChargeValue}
                         onChange={(e) => setMakingChargeValue(e.target.value === '' ? '' : parseFloat(e.target.value) || 0)}
-                        className="w-full h-11 px-3 border border-[#DADCE0] rounded-md bg-white text-base font-bold text-[#202124]"
+                        className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-lg font-bold text-[#202124] focus:border-[#1A73E8] outline-none"
                       />
                       <select
                         value={makingChargeType}
                         onChange={(e) => setMakingChargeType(e.target.value as 'fixed' | 'percent')}
-                        className="h-11 px-2 border border-[#DADCE0] rounded-md bg-white text-xs font-bold"
+                        className="h-12 px-3 border border-[#DADCE0] rounded-md bg-white text-sm font-bold w-24 cursor-pointer focus:border-[#1A73E8] outline-none"
                       >
                         <option value="percent">%</option>
                         <option value="fixed">Rs</option>
@@ -558,14 +600,14 @@ export default function SilverCalculatorComponent() {
                     </div>
                   </div>
 
-                  <div className="space-y-1">
-                    <label className="text-[11px] font-bold uppercase text-[#70757A]">VAT (%)</label>
+                  <div className="space-y-2 md:col-span-2 lg:col-span-1 lg:mt-0">
+                    <label className="text-[12px] font-bold uppercase tracking-wider text-[#70757A]">VAT (%)</label>
                     <input
                       type="number"
                       min="0"
                       value={vatPercent}
                       onChange={(e) => setVatPercent(e.target.value === '' ? '' : parseFloat(e.target.value) || 0)}
-                      className="w-full h-11 px-3 border border-[#DADCE0] rounded-md bg-white text-base font-bold text-[#202124]"
+                      className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-lg font-bold text-[#202124] focus:border-[#1A73E8] outline-none"
                     />
                   </div>
                 </div>
@@ -653,32 +695,93 @@ export default function SilverCalculatorComponent() {
             </div>
           )}
 
-          {/* TAB 4: Investment & Bulk Bullion Mode */}
+          {/* TAB 4: Investment & Bulk Bullion Mode (SIP) */}
           {activeTab === 'investment' && (
             <div className="space-y-6">
-              <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-5 space-y-4">
-                <h3 className="text-sm font-bold text-[#202124] flex items-center gap-1.5">
-                  <BarChart3 className="w-4 h-4 text-[#1A73E8]" /> Bulk Bullion Investment Calculator
+              <div className="bg-[#E8F0FE]/50 border border-[#1A73E8]/30 rounded-lg p-5 space-y-5">
+                <h3 className="text-sm font-bold text-[#1A73E8] flex flex-col gap-1.5">
+                  <div className="flex items-center gap-1.5">
+                    <BarChart3 className="w-4 h-4" /> Silver SIP & Investment Projection
+                  </div>
+                  <span className="text-[11px] text-[#5F6368] font-normal">Plan your long-term wealth by investing in physical silver regularly. We calculate the power of compounding based on historical silver returns.</span>
                 </h3>
 
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-                  {[
-                    { title: '100g Bar', g: 100 },
-                    { title: '500g Bar', g: 500 },
-                    { title: '1 Kg Bar', g: 1000 },
-                    { title: '5 Kg Bulk', g: 5000 },
-                  ].map(b => {
-                    const tolas = b.g / GRAM_FACTORS['Tola'];
-                    const val = tolas * (Number(silverRatePerTola) || 0);
-                    return (
-                      <div key={b.title} className="p-3 bg-white border border-[#DADCE0] rounded-lg space-y-1">
-                        <span className="text-xs font-bold text-[#202124] block">{b.title}</span>
-                        <span className="text-xs text-[#5F6368] block">{tolas.toFixed(1)} Tola</span>
-                        <span className="text-sm font-black text-[#1A73E8] block">Rs. {Math.round(val).toLocaleString()}</span>
-                      </div>
-                    );
-                  })}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Initial Investment (NPR)</label>
+                    <input
+                      type="number"
+                      min="0"
+                      value={sipInitial}
+                      onChange={(e) => setSipInitial(e.target.value === '' ? '' : parseFloat(e.target.value) || 0)}
+                      className="w-full h-11 px-3 border border-[#DADCE0] rounded-md bg-white text-base font-bold text-[#202124] focus:border-[#1A73E8] outline-none"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Recurring Investment</label>
+                    <div className="flex gap-2">
+                      <input
+                        type="number"
+                        min="0"
+                        value={sipRecurring}
+                        onChange={(e) => setSipRecurring(e.target.value === '' ? '' : parseFloat(e.target.value) || 0)}
+                        className="w-full h-11 px-3 border border-[#DADCE0] rounded-md bg-white text-base font-bold text-[#202124] focus:border-[#1A73E8] outline-none"
+                      />
+                      <select
+                        value={sipFrequency}
+                        onChange={(e) => setSipFrequency(e.target.value as 'monthly' | 'yearly')}
+                        className="h-11 px-2 border border-[#DADCE0] rounded-md bg-white text-xs font-bold focus:border-[#1A73E8] outline-none"
+                      >
+                        <option value="monthly">/ Month</option>
+                        <option value="yearly">/ Year</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Expected Silver Growth (%/yr)</label>
+                    <input
+                      type="number"
+                      min="0"
+                      value={sipGrowth}
+                      onChange={(e) => setSipGrowth(e.target.value === '' ? '' : parseFloat(e.target.value) || 0)}
+                      className="w-full h-11 px-3 border border-[#DADCE0] rounded-md bg-white text-base font-bold text-[#202124] focus:border-[#1A73E8] outline-none"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#70757A]">Investment Duration (Years)</label>
+                    <input
+                      type="number"
+                      min="0"
+                      value={sipDuration}
+                      onChange={(e) => setSipDuration(e.target.value === '' ? '' : parseFloat(e.target.value) || 0)}
+                      className="w-full h-11 px-3 border border-[#DADCE0] rounded-md bg-white text-base font-bold text-[#202124] focus:border-[#1A73E8] outline-none"
+                    />
+                  </div>
                 </div>
+
+                <div className="p-5 bg-white border border-[#DADCE0] rounded-lg mt-4 shadow-sm">
+                  <h4 className="text-[11px] font-bold uppercase tracking-wider text-[#70757A] mb-4">Investment Projection</h4>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <div className="text-xs text-[#5F6368] mb-1">Total Amount Invested</div>
+                      <div className="text-lg font-bold text-[#202124]">Rs. {Math.round(math.sip.totalInvested).toLocaleString()}</div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-[#5F6368] mb-1">Total Profit Earned</div>
+                      <div className="text-lg font-bold text-green-600">+ Rs. {Math.round(math.sip.profit).toLocaleString()}</div>
+                    </div>
+                    <div className="sm:col-span-2 pt-4 border-t border-[#DADCE0]">
+                      <div className="text-xs text-[#5F6368] mb-1">Estimated Future Value (NPR)</div>
+                      <div className="text-3xl font-black text-[#1A73E8]">Rs. {Math.round(math.sip.futureValue).toLocaleString()}</div>
+                    </div>
+                    <div className="sm:col-span-2 bg-[#F8F9FA] p-3 rounded text-sm text-[#5F6368] flex justify-between items-center">
+                      <span>Estimated Silver Accumulated:</span>
+                      <span className="font-bold text-[#202124]">{math.sip.futureTolas.toFixed(1)} Tola ({math.sip.futureKgs.toFixed(2)} kg)</span>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           )}
