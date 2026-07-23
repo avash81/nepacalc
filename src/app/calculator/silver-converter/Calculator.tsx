@@ -65,7 +65,7 @@ export default function SilverCalculatorComponent() {
       const hash = window.location.hash.replace('#', '');
       const searchParams = new URLSearchParams(window.location.search);
       const mode = hash || searchParams.get('mode');
-      if (mode && ['weight', 'value', 'jewellery', 'investment', 'historical', 'pro'].includes(mode)) {
+      if (mode && ['weight', 'value', 'jewellery', 'investment'].includes(mode)) {
         setActiveTab(mode);
       }
       if (searchParams.get('weight')) setWeight(Number(searchParams.get('weight')));
@@ -265,7 +265,8 @@ export default function SilverCalculatorComponent() {
     <ModernCalcLayout
       slug="silver-converter"
       calculatorPosition="top"
-      layout="stacked"
+      layout="split"
+      sidebarPosition="bottom"
       fullWidth={false}
       crumbs={[
         { label: 'Home', href: '/' },
@@ -286,8 +287,6 @@ export default function SilverCalculatorComponent() {
               { id: 'value', label: 'Silver Value & Reverse', icon: DollarSign },
               { id: 'jewellery', label: 'Jewellery & Making', icon: ShoppingBag },
               { id: 'investment', label: 'Investment & Bulk', icon: BarChart3 },
-              { id: 'historical', label: 'Historical Value', icon: History },
-              { id: 'pro', label: 'Pro & Workshop', icon: Wrench },
             ].map(tab => {
               const IconComp = tab.icon;
               const isActive = activeTab === tab.id;
@@ -461,7 +460,7 @@ export default function SilverCalculatorComponent() {
                   </div>
                   <span className="text-[11px] text-[#5F6368] font-normal">How it works: Enter your total budget (e.g., Rs. 50,000) and we'll divide it by today's Silver Rate to tell you exactly how much pure silver you can buy.</span>
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4">
                   <div className="space-y-1">
                     <label className="text-[11px] font-bold uppercase text-[#70757A]">Enter Investment Budget (NPR)</label>
                     <div className="relative">
@@ -474,12 +473,6 @@ export default function SilverCalculatorComponent() {
                         onChange={(e) => setBudgetNpr(e.target.value === '' ? '' : parseFloat(e.target.value) || 0)}
                         className="w-full h-11 pl-12 pr-4 border border-[#DADCE0] rounded-md bg-white text-base font-bold text-[#202124] focus:border-[#1A73E8] outline-none"
                       />
-                    </div>
-                  </div>
-                  <div className="space-y-1">
-                    <label className="text-[11px] font-bold uppercase text-[#70757A]">Market Rate Used</label>
-                    <div className="h-11 px-3 bg-white border border-[#DADCE0] rounded-md flex items-center text-sm font-bold text-[#202124]">
-                      Rs. {silverRatePerTola} / Tola
                     </div>
                   </div>
                 </div>
