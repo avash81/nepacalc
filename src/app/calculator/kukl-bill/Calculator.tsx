@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
 import { useSyncState } from '@/hooks/useSyncState';
 import { calculateKUKLBill } from '@/utils/math/country-rules/nepal';
+import KuklSeoContent from './KuklSeoContent';
 import { 
   Droplets, Waves, Info, MapPin, Zap, Activity, Globe, 
   History, Scale, PieChart, Receipt, ArrowRight, Landmark, ShieldCheck, Target, Clock
@@ -42,9 +43,10 @@ export default function KUKLCalculator() {
     <ModernCalcLayout
       slug="kukl-bill"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'KUKL Bill' }]}
-      title="KUKL Water Bill 2083/84"
-      description="Calculate your KUKL water bill instantly. Enter your meter reading and pipe size to get your Water Charge + Sewerage Charge breakdown for FY 2083/84."
+      title="KUKL Water Bill Calculator Nepal"
+      description="Calculate your KUKL water bill instantly. Enter your meter reading and pipe size to get your Water Charge + Sewerage Charge breakdown."
       icon={Droplets}
+      seoContent={<KuklSeoContent />}
       inputs={
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6">
@@ -177,7 +179,12 @@ export default function KUKLCalculator() {
       formula={{ title: "", description: "", raw: "", variables: [] }}
       faqs={[]}
       sidebar={{ title: "", subtitle: "", links: [] }}
-      relatedTools={[]}
+      relatedTools={[
+        { label: 'NEA Electricity Bill Calculator', href: '/calculator/nea-bill/' },
+        { label: 'Property Tax Calculator', href: '/calculator/property-tax/' },
+        { label: 'Nepal Salary Tax Calculator', href: '/calculator/nepal-salary/' },
+        { label: 'Income Tax Calculator', href: '/calculator/nepal-income-tax/' }
+      ]}
     />
   );
 }

@@ -22,6 +22,70 @@ const customSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": "https://nepacalc.com/#organization",
+      "name": "NepaCalc",
+      "url": "https://nepacalc.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nepacalc.com/logo.png"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://nepacalc.com/#website",
+      "url": "https://nepacalc.com/",
+      "name": "NepaCalc",
+      "publisher": { "@id": "https://nepacalc.com/#organization" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://nepacalc.com/calculator/kukl-bill/#webpage",
+      "url": "https://nepacalc.com/calculator/kukl-bill/",
+      "name": "KUKL Water Bill Calculator Nepal (FY 2083/84) | Kathmandu Water Bill Calculator",
+      "description": "Calculate your KUKL water bill online using the latest Kathmandu water tariff rates. Includes sewerage charges, minimum billing, and connection-size calculations.",
+      "isPartOf": { "@id": "https://nepacalc.com/#website" },
+      "about": { "@id": "https://nepacalc.com/#organization" }
+    },
+    {
+      "@type": "Article",
+      "@id": "https://nepacalc.com/calculator/kukl-bill/#article",
+      "headline": "KUKL Water Bill Calculator Nepal",
+      "description": "A comprehensive guide and calculator for KUKL water bills in Nepal, including official tariff rates and calculation methodology.",
+      "author": {
+        "@type": "Organization",
+        "name": "NepaCalc Team",
+        "url": "https://nepacalc.com/"
+      },
+      "publisher": { "@id": "https://nepacalc.com/#organization" },
+      "datePublished": "2024-01-01T08:00:00+05:45",
+      "dateModified": "2026-07-25T08:00:00+05:45",
+      "mainEntityOfPage": { "@id": "https://nepacalc.com/calculator/kukl-bill/#webpage" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://nepacalc.com/calculator/kukl-bill/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://nepacalc.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Calculators",
+          "item": "https://nepacalc.com/calculator/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "KUKL Water Bill Calculator"
+        }
+      ]
+    },
+    {
       "@type": "WebApplication",
       "@id": "https://nepacalc.com/calculator/kukl-bill/#webapp",
       "name": "KUKL Water Bill Calculator",
