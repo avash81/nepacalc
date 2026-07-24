@@ -1579,9 +1579,14 @@ export default function TdsSeoContent() {
             </h3>
             <p className="text-[13px] text-[#5F6368] leading-relaxed">Calculate tax on bonus shares and dividend distributions.</p>
           </a>
+          <a href="/calculator/nepal-income-tax/" className="block p-5 bg-[#F8F9FA] border border-[#DADCE0] hover:border-[#1A73E8] rounded-xl transition-all hover:shadow-md group">
+            <h3 className="text-[15px] font-bold text-[#1A73E8] group-hover:text-[#1557B0] mb-2 flex items-center gap-2">
+              Nepal Income Tax Calculator
+            </h3>
+            <p className="text-[13px] text-[#5F6368] leading-relaxed">Calculate individual and couple income tax obligations.</p>
+          </a>
         </div>
       </section>
-
     </div>
   );
 }
