@@ -71,9 +71,9 @@ export default function KUKLCalculator() {
                      type="number" 
                      value={units} 
                      onChange={(e) => update({ units: Number(e.target.value) })}
-                     className="w-full h-12 px-4 border border-[#DADCE0] rounded-md bg-white text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all" 
+                     className="w-full h-12 pl-4 pr-24 border border-[#DADCE0] rounded-md bg-white text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all" 
                   />
-                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-black text-[#1A73E8]">Units</span>
+                  <span className="absolute right-10 top-1/2 -translate-y-1/2 text-sm font-black text-[#1A73E8] pointer-events-none">Units</span>
                 </div>
                 <p className="text-[9px] text-[#5F6368] font-bold uppercase tracking-wider mt-1">1 Unit = 1,000 Liters</p>
              </div>
