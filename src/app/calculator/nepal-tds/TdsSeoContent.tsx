@@ -1,5 +1,5 @@
 import React from 'react';
-import { Info, CheckCircle2, AlertCircle, HelpCircle, FileText, Briefcase, Landmark } from 'lucide-react';
+import { Info, CheckCircle2, AlertCircle, HelpCircle, FileText, Briefcase, Landmark, XCircle } from 'lucide-react';
 
 export default function TdsSeoContent() {
   return (
