@@ -9,10 +9,13 @@ export const metadata = calcMeta({
   keywords: ["nepal tds calculator", "tax deducted at source nepal", "rent tax nepal", "consultancy tds nepal", "ird tds rates 2083", "tds on dividend nepal"],
 });
 
+import TdsSeoContent from './TdsSeoContent';
+
 export default function Page() {
   return (
     <div className="bg-[#F1F3F4]">
       <Calculator />
+      <TdsSeoContent />
     </div>
   );
 }

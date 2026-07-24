@@ -79,9 +79,26 @@ export default function NepalTdsCalculator() {
     <ModernCalcLayout
       slug="nepal-tds"
       crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'TDS Calculator' }]}
-      title="Nepal TDS Calculator (FY 2083/84)"
-      description="Calculate Tax Deducted at Source (TDS) using the latest official Nepal Income Tax Act and Finance Act provisions. Select the payment type, enter the payment amount, and instantly view the applicable TDS rate, withholding amount, legal section, tax type, and compliance guidance."
+      title="Nepal TDS Calculator (Tax Deducted at Source) FY 2083/84"
+      description="Calculate Tax Deducted at Source (TDS) instantly using the latest official Nepal Income Tax Act and Finance Act provisions for Fiscal Year 2083/84. This calculator helps businesses, employers, professionals, contractors, and taxpayers estimate the correct withholding amount, understand the applicable TDS rate, identify whether the deduction is treated as Advance Tax or Final Withholding Tax, and review the relevant legal provisions. Alongside the calculator, this guide explains how TDS works in Nepal, payment categories, filing requirements, VAT rules, compliance obligations, penalties, and practical examples to help you make informed decisions."
       icon={Landmark}
+      intro={
+        <div className="flex flex-wrap gap-2 mt-4">
+          {[
+            'Updated for FY 2083/84',
+            'Official Nepal Income Tax Act',
+            'Finance Act Updates Included',
+            'Resident & Non-Resident Guidance',
+            'VAT Rules Explained',
+            'Instant TDS Calculation'
+          ].map((tag, idx) => (
+            <div key={idx} className="flex items-center gap-1.5 px-3 py-1.5 bg-[#E8F0FE] text-[#1A73E8] rounded-full text-[11px] font-bold uppercase tracking-wider">
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              {tag}
+            </div>
+          ))}
+        </div>
+      }
       fullWidth={true}
       inputs={
         <div className="space-y-8">
