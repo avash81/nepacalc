@@ -57,6 +57,7 @@ export default function NepalTdsCalculator() {
       title="Nepal TDS"
       description="The definitive Tax Deducted at Source (TDS) engine for Nepal. Calibrated to the Income Tax Act 2058 with real-time VAT-conditional logic."
       icon={Landmark}
+      fullWidth={true}
       inputs={
         <div className="space-y-6">
           <div className="grid grid-cols-1 gap-6">
