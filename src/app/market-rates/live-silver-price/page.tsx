@@ -108,7 +108,7 @@ const schemaGraph = {
       },
       inLanguage: 'en',
       datePublished: '2026-07-17T11:00:00+05:45',
-      dateModified: '2026-07-17T11:00:00+05:45',
+      dateModified: '2026-07-24T11:00:00+05:45',
       speakable: {
         '@type': 'SpeakableSpecification',
         cssSelector: ['.market-summary', '.quick-facts'],

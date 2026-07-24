@@ -60,10 +60,10 @@ export default function TdsSeoContent() {
           <div>
             <h3 className="text-xl font-bold text-[#202124] mb-3 tracking-tight">What is Tax Deducted at Source (TDS)?</h3>
             <p>
-              Tax Deducted at Source (TDS) is a system of withholding income tax at the time a payment is made. Instead of paying the full amount to the recipient and collecting tax later, the payer deducts the applicable tax, deposits it with the Inland Revenue Department (IRD), and pays the remaining amount to the recipient.
+              Tax Deducted at Source (TDS) is a system of withholding income tax at the time a payment is made. Instead of paying the full amount to the recipient and collecting tax later, the payer deducts the applicable tax, deposits it with the Inland Revenue Department (IRD), and pays the remaining amount to the recipient. This process ensures withholding before payment is finalized, which is distinct from employee payroll deductions calculated using the <a href="/calculator/nepal-salary/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Nepal Salary Calculator</a> under separate employment income rules.
             </p>
             <p className="mt-3">
-              This mechanism allows the Government of Nepal to collect tax throughout the financial year rather than waiting until annual tax returns are filed. It also helps improve tax compliance, creates a record of taxable transactions, and reduces the risk of under-reporting income.
+              This mechanism allows the Government of Nepal to collect tax throughout the financial year rather than waiting until annual tax returns are filed. It also helps improve overall Nepal tax compliance. In order to check your annual tax slab and evaluate your total yearly liability, you can use our <a href="/calculator/nepal-income-tax/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Nepal Income Tax Calculator</a> which is fully updated with the latest fiscal year slabs.
             </p>
             <p className="mt-3">
               Under Nepal's Income Tax Act, TDS applies to many common business and financial transactions, including rent, consultancy fees, contract payments, commissions, brokerage, dividends, interest, royalties, meeting allowances, insurance commissions, and several other categories specified by law. The applicable rate depends on the nature of the payment, the recipient's status, and the relevant statutory provisions.
@@ -83,6 +83,7 @@ export default function TdsSeoContent() {
             </p>
           </div>
 
+          <div id="budget-updates" className="scroll-mt-24"></div>
           {/* Quick Fact Box */}
           <div className="bg-[#E6F4EA] border-l-4 border-[#188038] rounded-r-lg p-5 sm:p-6 shadow-sm my-6">
              <div className="flex items-center gap-2 mb-2">
@@ -155,7 +156,8 @@ export default function TdsSeoContent() {
           </div>
 
           <div>
-            <h3 className="text-xl font-bold text-[#202124] mb-3 tracking-tight">Advance Tax vs Final Withholding Tax</h3>
+            <div id="resident-vs-non-resident" className="scroll-mt-24"></div>
+            <h3 id="advance-vs-final" className="text-xl font-bold text-[#202124] mb-3 tracking-tight scroll-mt-24">Advance Tax vs Final Withholding Tax</h3>
             <p>Not every TDS deduction has the same tax treatment.</p>
             <p className="mt-3">
               In some cases, the deducted amount may generally be credited against the recipient's annual income tax liability (commonly referred to as Advance Tax). In other cases, the withholding may represent the final tax on that specific income where the law provides for Final Withholding Tax treatment.
@@ -189,6 +191,7 @@ export default function TdsSeoContent() {
             </div>
           </div>
 
+          <div id="how-to-calculate" className="scroll-mt-24"></div>
           {/* Worked Example */}
           <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-6 sm:p-8 my-8 shadow-sm">
             <h3 className="text-lg font-black text-[#202124] tracking-tight mb-4 flex items-center gap-2">
@@ -554,7 +557,7 @@ export default function TdsSeoContent() {
       </section>
 
       {/* SECTION 6: VAT and TDS Rules in Nepal */}
-      <section id="vat-and-tds" className="scroll-mt-24 space-y-8 pt-8 border-t border-[#DADCE0]">
+      <section id="vat-rules" className="scroll-mt-24 space-y-8 pt-8 border-t border-[#DADCE0]">
         <h2 className="text-2xl md:text-3xl font-black text-[#202124] tracking-tight">
           VAT and TDS Rules in Nepal (FY 2083/84)
         </h2>
@@ -666,7 +669,7 @@ export default function TdsSeoContent() {
           <div>
             <h3 className="text-xl font-bold text-[#202124] mb-3 tracking-tight">Why Does the Calculator Ask About VAT?</h3>
             <p>
-              Some payment categories implemented in this calculator require additional information because VAT-related conditions can affect the withholding treatment applied by the calculator.
+              Some payment categories implemented in this calculator require additional information because VAT-related conditions can affect the withholding treatment applied by the calculator. When preparing invoice estimates with VAT, using a dedicated <a href="/calculator/nepal-vat/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Nepal VAT Calculator</a> allows you to determine the clean taxable value prior to applying any TDS withholding.
             </p>
             <p className="mt-3">
               Rather than asking users to interpret the legislation themselves, the calculator requests the necessary information and applies the implemented FY 2083/84 rules for the selected scenario.
@@ -750,6 +753,7 @@ export default function TdsSeoContent() {
           </div>
 
           <div>
+            <div id="common-mistakes" className="scroll-mt-24"></div>
             <h3 className="text-xl font-bold text-[#202124] mb-4 tracking-tight">Common VAT and TDS Mistakes</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse border border-[#DADCE0] rounded-lg">
@@ -995,7 +999,7 @@ export default function TdsSeoContent() {
       </section>
 
       {/* SECTION 8: Knowledge Base (FAQ) */}
-      <section id="knowledge-base" className="scroll-mt-24 space-y-8 pt-8 border-t border-[#DADCE0]">
+      <section id="faqs" className="scroll-mt-24 space-y-8 pt-8 border-t border-[#DADCE0]">
         <h2 className="text-2xl md:text-3xl font-black text-[#202124] tracking-tight">
           Nepal TDS Knowledge Base (Frequently Asked Questions)
         </h2>
@@ -1061,6 +1065,7 @@ export default function TdsSeoContent() {
                 <p className="leading-relaxed">Where withholding is required, TDS should generally be deducted before or at the time the payment is made or credited, in accordance with the applicable provisions of Nepal's Income Tax Act.</p>
               </div>
               <div>
+                <div id="deposit-deadlines" className="scroll-mt-24"></div>
                 <strong className="block text-[#1A73E8] mb-1">When should TDS be deposited?</strong>
                 <p className="leading-relaxed">Withheld TDS should be deposited with the Inland Revenue Department (IRD) within the applicable statutory deadline prescribed by law.</p>
               </div>
@@ -1152,10 +1157,12 @@ export default function TdsSeoContent() {
                 <p className="text-sm leading-relaxed">A TDS certificate is a document showing the amount of tax withheld from a payment. It helps the recipient maintain accurate records and may support tax reporting where applicable.</p>
               </div>
               <div>
+                <div id="legal-references" className="scroll-mt-24"></div>
                 <strong className="block text-[#1A73E8] mb-1">Which law governs TDS in Nepal?</strong>
-                <p className="text-sm leading-relaxed">TDS is governed primarily by the Income Tax Act, 2058 (2002), together with the annual Finance Act, Income Tax Rules, and official guidance issued by the Inland Revenue Department (IRD).</p>
+                <p className="text-sm leading-relaxed">TDS is governed primarily by the Income Tax Act, 2058 (2002), together with the annual Finance Act, Income Tax Rules, and official guidance issued by the <a href="https://ird.gov.np" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline transition-colors">Inland Revenue Department (IRD)</a>, the <a href="https://mof.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline transition-colors">Ministry of Finance</a>, and the <a href="https://nepal.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline transition-colors">Government of Nepal</a>.</p>
               </div>
               <div>
+                <div id="filing-process" className="scroll-mt-24"></div>
                 <strong className="block text-[#1A73E8] mb-1">How long should businesses keep TDS records?</strong>
                 <p className="text-sm leading-relaxed">Businesses should retain supporting records in accordance with the applicable legal and accounting requirements and any relevant document retention policies.</p>
               </div>
@@ -1168,6 +1175,7 @@ export default function TdsSeoContent() {
                 <p className="text-sm leading-relaxed">Yes. Businesses should maintain complete documentation to support withholding calculations, deposits, and reporting.</p>
               </div>
               <div>
+                <div id="tds-penalties" className="scroll-mt-24"></div>
                 <strong className="block text-[#1A73E8] mb-1">What happens if TDS is not deducted?</strong>
                 <p className="text-sm leading-relaxed">Failure to deduct TDS where required may result in additional tax exposure, interest, penalties, or other consequences under the applicable tax laws.</p>
               </div>
@@ -1181,7 +1189,7 @@ export default function TdsSeoContent() {
           {/* Related Calculators & Disclaimer */}
           <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-xl p-6 sm:p-8 mt-8 shadow-sm">
             <h3 className="text-lg font-bold text-[#202124] mb-3">Related Calculators</h3>
-            <p className="text-sm text-[#3C4043] mb-4">If you are calculating other Nepal taxes, you may also find these calculators useful:</p>
+            <p className="text-sm text-[#3C4043] mb-4">If you are calculating other Nepal taxes, you may also find these calculators useful. For instance, estimating registration fees for vehicles can be done using our <a href="/calculator/nepal-vehicle-tax/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Nepal Vehicle Tax Calculator</a> to determine annual public and private vehicle taxes.</p>
             <div className="flex flex-wrap gap-2 mb-6">
               {['Nepal Income Tax Calculator', 'Nepal Salary Tax Calculator', 'Nepal VAT Calculator', 'Nepal Vehicle Tax Calculator', 'Nepal Capital Gains Tax Calculator', 'Nepal SSF Calculator', 'Nepal EPF Calculator', 'Nepal CIT Calculator', 'Nepal Bonus Tax Calculator'].map((calc, i) => (
                 <span key={i} className="px-3 py-1.5 bg-white border border-[#DADCE0] text-[#1A73E8] text-[13px] font-semibold rounded-full hover:bg-[#E8F0FE] transition-colors cursor-pointer">{calc}</span>
@@ -1203,7 +1211,7 @@ export default function TdsSeoContent() {
       </section>
 
       {/* SECTION 9: Official Rate Directory */}
-      <section id="rate-directory" className="scroll-mt-24 space-y-8 pt-8 border-t border-[#DADCE0]">
+      <section id="latest-tds-rates" className="scroll-mt-24 space-y-8 pt-8 border-t border-[#DADCE0]">
         <h2 className="text-2xl md:text-3xl font-black text-[#202124] tracking-tight">
           Official Nepal TDS Rate Directory (FY 2083/84)
         </h2>
@@ -1368,6 +1376,209 @@ export default function TdsSeoContent() {
             </p>
           </div>
 
+        </div>
+      </section>
+
+      {/* PHASE 13: INDUSTRY GUIDE */}
+      <section id="industry-guide" className="scroll-mt-24 space-y-10">
+        <h2 className="text-2xl md:text-3xl font-black text-[#202124] tracking-tight">Nepal TDS Guide by Industry</h2>
+        <p className="text-[15px] text-[#3C4043] leading-relaxed max-w-4xl">
+          Although the legal framework for Tax Deducted at Source (TDS) is established by Nepal's Income Tax Act and related legislation, the types of payments subject to withholding vary across industries. The following guide explains the most common TDS situations faced by different sectors and how this calculator can assist in estimating withholding tax for supported payment categories.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {[
+            {
+              icon: '🏢',
+              title: 'Employers, HR & Payroll Teams',
+              transactions: ['Salary-related withholding', 'Professional consultancy', 'Staff training services', 'Meeting allowances', 'Recruitment agencies', 'Contract staff'],
+              tip: 'Before processing payroll or professional payments: verify the payment category, review agreements, confirm recipient details, calculate withholding, and maintain payroll records. You may also want to use the <a href="/calculator/nepal-ssf/" class="text-blue-600 hover:text-blue-800 underline transition-colors">Nepal SSF Calculator</a> to compute Social Security Fund contributions for your staff.',
+              color: 'border-blue-200 bg-blue-50',
+              badge: 'bg-blue-100 text-blue-700',
+            },
+            {
+              icon: '📊',
+              title: 'Accountants & Auditors',
+              transactions: ['Consultancy payments', 'Audit fees', 'Legal fees', 'Commission', 'Rent', 'Interest', 'Dividend'],
+              tip: 'Review contracts, supporting invoices, accounting entries, bank records, TDS certificates, and deposit confirmations. Complete documentation improves reconciliation and audit readiness.',
+              color: 'border-green-200 bg-green-50',
+              badge: 'bg-green-100 text-green-700',
+            },
+            {
+              icon: '🏗️',
+              title: 'Construction & Contractors',
+              transactions: ['Contract payments', 'Subcontractor payments', 'Equipment hire', 'Vehicle hire', 'Engineering consultancy', 'Site supervision', 'Technical services'],
+              tip: 'Construction projects often involve multiple payment categories. Classify each payment based on its actual purpose rather than applying one withholding treatment to the entire project.',
+              color: 'border-orange-200 bg-orange-50',
+              badge: 'bg-orange-100 text-orange-700',
+            },
+            {
+              icon: '⚖️',
+              title: 'Consultants & Professional Firms',
+              transactions: ['Business consultancy', 'Legal advisory', 'Accounting services', 'Engineering consultancy', 'Architecture', 'IT consulting', 'Project management'],
+              tip: 'Clearly describe the services provided in contracts and invoices. Accurate documentation helps determine the correct withholding treatment.',
+              color: 'border-purple-200 bg-purple-50',
+              badge: 'bg-purple-100 text-purple-700',
+            },
+            {
+              icon: '🏦',
+              title: 'Banks & Financial Institutions',
+              transactions: ['Interest payments', 'Dividend distributions', 'Consultancy', 'Professional services', 'Property rent', 'Software licences'],
+              tip: 'Review withholding procedures regularly. Update systems following annual Finance Act changes. Reconcile withholding records with accounting systems.',
+              color: 'border-cyan-200 bg-cyan-50',
+              badge: 'bg-cyan-100 text-cyan-700',
+            },
+            {
+              icon: '🛡️',
+              title: 'Insurance Companies',
+              transactions: ['Insurance commission', 'Professional consultancy', 'Office rent', 'Legal services', 'Audit services'],
+              tip: 'Ensure payment systems reflect the updated withholding treatment for qualifying insurance commission under the applicable FY 2083/84 provisions.',
+              color: 'border-red-200 bg-red-50',
+              badge: 'bg-red-100 text-red-700',
+            },
+            {
+              icon: '🏭',
+              title: 'Manufacturing Companies',
+              transactions: ['Machinery maintenance', 'Technical consultancy', 'Factory rent', 'Commission', 'Logistics', 'Transport contracts', 'Royalty for technology licences'],
+              tip: 'Review supplier agreements before making payments to ensure that each transaction is classified correctly for withholding purposes.',
+              color: 'border-yellow-200 bg-yellow-50',
+              badge: 'bg-yellow-100 text-yellow-700',
+            },
+            {
+              icon: '🛒',
+              title: 'Retail & Trading Businesses',
+              transactions: ['Shop rent', 'Sales commission', 'Marketing consultancy', 'Transport services', 'Brokerage', 'Advertising services'],
+              tip: 'Maintain separate records for rent, commission, consultancy, and advertising expenses because these categories may have different withholding treatment.',
+              color: 'border-pink-200 bg-pink-50',
+              badge: 'bg-pink-100 text-pink-700',
+            },
+            {
+              icon: '💻',
+              title: 'Information Technology Companies',
+              transactions: ['Software development', 'Technical consultancy', 'Cloud services', 'Software licences', 'Royalty', 'Freelance developers', 'Technical support'],
+              tip: 'Distinguish between software development services, technical consultancy, and royalty payments, as the withholding treatment may differ depending on the underlying transaction.',
+              color: 'border-indigo-200 bg-indigo-50',
+              badge: 'bg-indigo-100 text-indigo-700',
+            },
+            {
+              icon: '🌐',
+              title: 'NGOs & INGOs',
+              transactions: ['Consultancy', 'Research services', 'Project implementation', 'Training', 'Rent', 'Audit', 'Legal services'],
+              tip: 'Project documentation should clearly identify the service provider, contract scope, payment category, supporting invoices, and payment approvals.',
+              color: 'border-teal-200 bg-teal-50',
+              badge: 'bg-teal-100 text-teal-700',
+            },
+            {
+              icon: '🏛️',
+              title: 'Government & Public Institutions',
+              transactions: ['Consultancy contracts', 'Infrastructure projects', 'Meeting allowances', 'Training programmes', 'Professional services', 'Building rent'],
+              tip: 'Ensure that procurement documents, contracts, and payment approvals are consistent with the selected withholding treatment.',
+              color: 'border-slate-200 bg-slate-50',
+              badge: 'bg-slate-100 text-slate-700',
+            },
+            {
+              icon: '📱',
+              title: 'Digital Platforms & Technology',
+              transactions: ['Driver / delivery payouts', 'Platform commissions', 'Professional services', 'Marketing services'],
+              tip: 'Businesses operating qualifying digital platforms should review withholding requirements introduced by the Finance Act for eligible platform payouts and ensure payment systems are configured accordingly.',
+              color: 'border-violet-200 bg-violet-50',
+              badge: 'bg-violet-100 text-violet-700',
+            },
+          ].map((industry, idx) => (
+            <div key={idx} className={`border rounded-xl p-6 ${industry.color} flex flex-col gap-4`}>
+              <div className="flex items-start gap-3">
+                <span className="text-2xl">{industry.icon}</span>
+                <h3 className="text-[14px] font-black text-[#202124] leading-tight">{industry.title}</h3>
+              </div>
+              <div>
+                <div className={`inline-block text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded mb-3 ${industry.badge}`}>Common TDS Transactions</div>
+                <ul className="space-y-1">
+                  {industry.transactions.map((t, i) => (
+                    <li key={i} className="flex items-center gap-2 text-[12px] text-[#3C4043]">
+                      <span className="w-1 h-1 rounded-full bg-[#5F6368] shrink-0" />
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-auto border-t border-current/10 pt-3">
+                <p className="text-[11px] text-[#5F6368] leading-relaxed italic">{industry.tip}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Industry Summary Table */}
+        <div className="overflow-hidden border border-[#DADCE0] rounded-xl shadow-sm bg-white">
+          <div className="bg-[#F8F9FA] border-b border-[#DADCE0] px-6 py-4">
+            <h3 className="text-[13px] font-black text-[#202124] uppercase tracking-wider">Industry Summary — Common TDS Categories</h3>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-[#E8F0FE] border-b border-[#D2E3FC]">
+                  <th className="px-5 py-3 text-[11px] font-bold text-[#1A73E8] uppercase tracking-wider">Industry</th>
+                  <th className="px-5 py-3 text-[11px] font-bold text-[#1A73E8] uppercase tracking-wider">Common TDS Categories</th>
+                </tr>
+              </thead>
+              <tbody className="text-sm text-[#3C4043] divide-y divide-[#F1F3F4]">
+                {[
+                  ['Employers', 'Salary, Consultancy, Meeting Allowance'],
+                  ['Accounting Firms', 'Consultancy, Audit, Legal, Dividend'],
+                  ['Construction', 'Contracts, Equipment Hire, Consultancy'],
+                  ['Banking', 'Interest, Dividend, Consultancy'],
+                  ['Insurance', 'Insurance Commission, Consultancy'],
+                  ['Manufacturing', 'Royalty, Technical Services, Transport'],
+                  ['Retail', 'Rent, Commission, Marketing'],
+                  ['Information Technology', 'Consultancy, Software Licence, Royalty'],
+                  ['NGOs & INGOs', 'Consultancy, Training, Audit'],
+                  ['Government', 'Contracts, Consultancy, Meeting Allowance'],
+                  ['Digital Platforms', 'Platform Payouts, Commission'],
+                  ['SMEs', 'Rent, Consultancy, Legal, Accounting'],
+                ].map(([industry, categories], idx) => (
+                  <tr key={idx} className="hover:bg-[#F8F9FA] transition-colors">
+                    <td className="px-5 py-3 font-bold text-[#202124]">{industry}</td>
+                    <td className="px-5 py-3 text-[#5F6368]">{categories}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Key Takeaway */}
+        <div className="border-l-4 border-[#1A73E8] pl-5 py-2 bg-[#E8F0FE] rounded-r-lg pr-5">
+          <h4 className="text-sm font-black text-[#202124] uppercase tracking-wider mb-2">Key Takeaway</h4>
+          <p className="text-sm text-[#3C4043] leading-relaxed">
+            Regardless of industry, always identify the true nature of the payment, review the supporting agreement or contract, confirm the applicable payment category, calculate the withholding using the appropriate category, and retain supporting documentation. Following the same structured process across all industries helps improve consistency and reduces the likelihood of classification errors.
+          </p>
+        </div>
+      </section>
+
+      {/* SECTION 8: Related Calculators */}
+      <section id="related-calculators" className="scroll-mt-24 space-y-8 pt-8 border-t border-[#DADCE0]">
+        <h2 className="text-2xl md:text-3xl font-black text-[#202124] tracking-tight">
+          Related Nepal Tax Calculators
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <a href="/calculator/nepal-capital-gains-tax/" className="block p-5 bg-[#F8F9FA] border border-[#DADCE0] hover:border-[#1A73E8] rounded-xl transition-all hover:shadow-md group">
+            <h3 className="text-[15px] font-bold text-[#1A73E8] group-hover:text-[#1557B0] mb-2 flex items-center gap-2">
+              Nepal Capital Gains Tax Calculator
+            </h3>
+            <p className="text-[13px] text-[#5F6368] leading-relaxed">Calculate CGT on real estate and stock market transactions.</p>
+          </a>
+          <a href="/calculator/property-tax/" className="block p-5 bg-[#F8F9FA] border border-[#DADCE0] hover:border-[#1A73E8] rounded-xl transition-all hover:shadow-md group">
+            <h3 className="text-[15px] font-bold text-[#1A73E8] group-hover:text-[#1557B0] mb-2 flex items-center gap-2">
+              Nepal Property Tax Calculator
+            </h3>
+            <p className="text-[13px] text-[#5F6368] leading-relaxed">Estimate annual property tax obligations for land and buildings.</p>
+          </a>
+          <a href="/calculator/nepse-bonus-tax/" className="block p-5 bg-[#F8F9FA] border border-[#DADCE0] hover:border-[#1A73E8] rounded-xl transition-all hover:shadow-md group">
+            <h3 className="text-[15px] font-bold text-[#1A73E8] group-hover:text-[#1557B0] mb-2 flex items-center gap-2">
+              Nepal Bonus Tax Calculator
+            </h3>
+            <p className="text-[13px] text-[#5F6368] leading-relaxed">Calculate tax on bonus shares and dividend distributions.</p>
+          </a>
         </div>
       </section>
 

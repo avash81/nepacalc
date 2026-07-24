@@ -5,13 +5,16 @@ import { CATEGORY_URL_MAP } from '@/config/GlobalConfig';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://nepacalc.com';
-  // Helper to ensure single slashes and trailing slash
   const cleanUrl = (route: string) => {
-    let path = route.replace(/\/+/g, '/');
-    if (!path.startsWith('/')) path = '/' + path;
-    if (!path.endsWith('/')) path = path + '/';
-    // Ensure the baseUrl and path combine correctly without double slashes after the domain
-    return `${baseUrl}${path}`.replace(/(https?:\/\/nepacalc\.com)\/+/, '$1/');
+    try {
+      const url = new URL(route, baseUrl);
+      let pathname = url.pathname.replace(/\/+/g, '/');
+      if (!pathname.endsWith('/')) pathname += '/';
+      url.pathname = pathname;
+      return url.href;
+    } catch (e) {
+      return baseUrl;
+    }
   };
   // Use a fixed date for base modified to optimize crawl budget but updated to recent publish date
   const lastModDate = new Date('2026-06-29T00:00:00Z');

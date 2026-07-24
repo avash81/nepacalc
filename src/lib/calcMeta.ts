@@ -58,14 +58,14 @@ export function calcMeta({ title, description, slug, keywords = [], canonical, o
   let canonicalPath = canonical ? canonical : (isRootLevel ? `/${cleanSlug}/` : `/calculator/${cleanSlug}/`);
 
   let canonicalUrl: string;
-  if (canonicalPath.startsWith('http://') || canonicalPath.startsWith('https://')) {
-    // Already an absolute URL — use directly, just ensure trailing slash
-    canonicalUrl = canonicalPath.endsWith('/') ? canonicalPath : canonicalPath + '/';
-  } else {
-    // Relative path — ensure leading slash, trailing slash, then prepend baseUrl
-    if (!canonicalPath.startsWith('/')) canonicalPath = '/' + canonicalPath;
-    if (!canonicalPath.endsWith('/')) canonicalPath += '/';
-    canonicalUrl = `${SITE_CONFIG.baseUrl}${canonicalPath.replace(/\/+/g, '/')}`;
+  try {
+    const url = new URL(canonicalPath, SITE_CONFIG.baseUrl);
+    let pathname = url.pathname.replace(/\/+/g, '/');
+    if (!pathname.endsWith('/')) pathname += '/';
+    url.pathname = pathname;
+    canonicalUrl = url.href;
+  } catch (e) {
+    canonicalUrl = SITE_CONFIG.baseUrl;
   }
 
   return {

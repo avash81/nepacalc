@@ -76,7 +76,7 @@ export const healthSEO: Record<string, SEOContent> = {
                         <h4 className="text-[10px] font-black text-sky-400 uppercase tracking-widest mb-3">Nepal-Specific Health Target</h4>
                         <p className="text-xs text-slate-400 leading-relaxed italic">
                             "In Nepal, many health practitioners recommend a tighter target for a healthy BMI, often between 18.5 and 23. Maintaining a weight in this range can significantly lower the risk of cardiovascular issues."
-                         For a broader understanding, you may also want to explore <a href="/market-rates/live-silver-price/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Live Silver Price in Nepal</a>.</p>
+                         For a broader understanding, you may also want to explore our <a href="/calculator/nepal-salary/" className="text-blue-600 hover:text-blue-800 underline transition-colors">Nepal Salary Calculator</a>.</p>
                     </div>
                 </div>
             </section>

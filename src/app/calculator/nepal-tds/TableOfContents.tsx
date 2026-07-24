@@ -38,7 +38,7 @@ export default function TableOfContents() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveId(entry.target.id);
-            window.history.replaceState(null, '', `#${entry.target.id}`);
+            // Removed replaceState to prevent unwanted auto-redirection on load
           }
         });
       },
