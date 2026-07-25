@@ -20,7 +20,7 @@ function KUKLCalculatorInner() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const [state, setState] = useSyncState('kukl_v11', { 
+  const [state, setState] = useSyncState('kukl_v12', { 
     mode: 'official' as CalcMode,
     
     // Official State
@@ -29,10 +29,10 @@ function KUKLCalculatorInner() {
     
     // Custom State
     cUnits: 0,
-    cMinUnits: 10,
-    cMinCharge: 100,
-    cExtraRate: 32,
-    cSewPct: 50,
+    cMinUnits: 0,
+    cMinCharge: 0,
+    cExtraRate: 0,
+    cSewPct: 0,
     cService: 0,
     cVat: 0,
     cOther: 0,
@@ -344,7 +344,7 @@ function KUKLCalculatorInner() {
               <button 
                 onClick={() => {
                   if (state.mode === 'official') update({ units: 0, pipeSize: '0.5' });
-                  else update({ cUnits: 0, cMinUnits: 10, cMinCharge: 100, cExtraRate: 32, cSewPct: 50, cService: 0, cVat: 0, cOther: 0 });
+                  else update({ cUnits: 0, cMinUnits: 0, cMinCharge: 0, cExtraRate: 0, cSewPct: 0, cService: 0, cVat: 0, cOther: 0 });
                 }} 
                 className="h-10 flex flex-col items-center justify-center bg-[#FCE8E6] hover:bg-[#FAD2CF] text-[#C5221F] border border-[#F8B0A9] rounded-md transition-colors"
               >

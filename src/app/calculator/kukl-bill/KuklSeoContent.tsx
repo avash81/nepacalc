@@ -252,7 +252,7 @@ export default function KuklSeoContent() {
 
           <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">Why Understanding the Calculation Matters</h3>
           <p>
-            Knowing how KUKL calculates your bill makes it easier to verify monthly charges, estimate future costs, compare water usage across billing periods, and identify unexpected increases in consumption. It also helps homeowners, tenants, and businesses budget more effectively and understand how changes in water usage affect the total amount payable.
+            Knowing how KUKL calculates your bill makes it easier to verify monthly charges, estimate future costs, compare water usage across billing periods, and identify unexpected increases in consumption. It also helps homeowners, tenants, and businesses budget more effectively alongside other property-related expenses—such as estimating annual <a href="/calculator/property-tax/" className="text-[#1A73E8] hover:underline">Property Tax</a> obligations—and understand how changes in water usage affect the total amount payable.
           </p>
 
         </div>
@@ -828,7 +828,7 @@ export default function KuklSeoContent() {
             <li>Adds the official 50% sewerage charge.</li>
             <li>Displays a complete breakdown of your payable amount.</li>
           </ul>
-          <p>This allows you to compare your estimated bill with the amount shown on your KUKL invoice.</p>
+          <p>This allows you to compare your estimated bill with the amount shown on your KUKL invoice. If you are calculating household or business expenses, you might also find our <a href="/calculator/nepal-income-tax/" className="text-[#1A73E8] hover:underline">Income Tax Calculator</a> useful for estimating your overall tax liabilities.</p>
 
           <div className="bg-[#E8F0FE] p-6 rounded-xl border border-[#1A73E8] my-8">
             <h3 className="text-lg font-black text-[#1A73E8] mb-3">Quick Summary</h3>
@@ -1294,6 +1294,7 @@ export default function KuklSeoContent() {
               <li className="flex gap-2"><span className="text-[#1A73E8]">✔</span> Check the billing amount carefully.</li>
               <li className="flex gap-2"><span className="text-[#1A73E8]">✔</span> Keep the payment receipt until the transaction is confirmed.</li>
               <li className="flex gap-2"><span className="text-[#1A73E8]">✔</span> Compare your official bill with the estimated result from this calculator if you want to understand how the total was calculated.</li>
+              <li className="flex gap-2"><span className="text-[#1A73E8]">✔</span> If you own a car or bike, don't forget to budget for your annual renewals using our <a href="/calculator/nepal-vehicle-tax/" className="text-[#1A73E8] hover:underline">Vehicle Tax Calculator</a>.</li>
               <li className="flex gap-2"><span className="text-[#1A73E8]">✔</span> Contact your local KUKL office if you notice unexpected differences in meter readings or charges.</li>
             </ul>
           </div>
