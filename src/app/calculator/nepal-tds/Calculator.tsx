@@ -422,6 +422,30 @@ const DEFAULT_STATE = {
   panStatus: 'Valid PAN'
 };
 
+// ── Fiscal-year-aware rate overrides ─────────────────────────────
+// 2083/84 is the current/default; older years may differ for some categories.
+// Only categories with known changes are listed here; rest fall through to the base.
+const FY_OVERRIDES: Record<string, Partial<Record<string, number>>> = {
+  '2083/84': {},          // Current year — base rates apply
+  '2082/83': {
+    insuranceCommission: 0.15,   // was 15% before FY 2083/84
+    rideSharing: 0.015,
+  },
+  '2081/82': {
+    insuranceCommission: 0.15,
+    interest: 0.05,              // was 5% before FY 2082/83
+    rideSharing: 0.015,
+  },
+  '2080/81': {
+    insuranceCommission: 0.15,
+    interest: 0.05,
+    contract: 0.015,
+    rideSharing: 0.015,
+  },
+};
+
+const FISCAL_YEARS = ['2083/84', '2082/83', '2081/82', '2080/81'];
+
 const TDS_RATES: Record<string, { rate: number; label: string; isService?: boolean; desc: string }> = {
   rent: { rate: 0.10, label: 'House / Land Rent', desc: 'Rental payments for buildings, land or physical infrastructure.' },
   vehicleHire: { rate: 0.10, label: 'Vehicle Hire', desc: 'Payments for hiring vehicles and transport equipment.' },
@@ -464,9 +488,14 @@ export default function NepalTdsCalculator() {
   };
 
   const isVatRegistered = vatStatus === 'Valid VAT Invoice Provided';
-  const selectedRate = mode === 'custom' 
-    ? (customRate || 0) / 100 
-    : (isVatRegistered && TDS_RATES[source]?.isService ? 0.015 : TDS_RATES[source]?.rate || 0.15);
+
+  // Resolve rate: fiscal-year override takes precedence over base rate
+  const fyOverride = FY_OVERRIDES[state.fiscalYear] ?? {};
+  const baseRate = TDS_RATES[source]?.rate ?? 0.15;
+  const fyRate = fyOverride[source] !== undefined ? fyOverride[source]! : baseRate;
+  const selectedRate = mode === 'custom'
+    ? (customRate || 0) / 100
+    : (isVatRegistered && TDS_RATES[source]?.isService ? 0.015 : fyRate);
 
   const result = useMemo(() => {
     const tdsAmount = amount * selectedRate;
@@ -639,9 +668,27 @@ export default function NepalTdsCalculator() {
           {/* 6. FISCAL YEAR */}
           <div className="space-y-2">
              <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Fiscal Year</label>
-             <div className="w-full h-12 px-4 bg-[#F8F9FA] border border-[#DADCE0] rounded-md text-sm font-bold text-[#5F6368] flex items-center cursor-not-allowed">
-               2083/84
+             <div className="relative">
+               <select
+                 value={state.fiscalYear}
+                 onChange={(e) => updateState({ fiscalYear: e.target.value })}
+                 className="w-full h-12 px-4 appearance-none bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all cursor-pointer"
+               >
+                 {FISCAL_YEARS.map(fy => (
+                   <option key={fy} value={fy}>
+                     {fy}{fy === '2083/84' ? ' (Current)' : ''}
+                   </option>
+                 ))}
+               </select>
+               <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#5F6368]">
+                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+               </div>
              </div>
+             {state.fiscalYear !== '2083/84' && (
+               <p className="text-[9px] text-[#F57C00] font-bold uppercase tracking-wider flex items-center gap-1">
+                 ⚠ Historical rates for {state.fiscalYear} — some rates may differ from current year
+               </p>
+             )}
           </div>
 
           {/* PRIMARY BUTTONS */}
@@ -690,7 +737,7 @@ export default function NepalTdsCalculator() {
              </div>
              <div className="border border-[#DADCE0] rounded-md p-4 bg-[#F8F9FA] flex flex-col items-center text-center justify-center">
                 <div className="text-[9px] font-bold text-[#5F6368] uppercase tracking-wider mb-1">Fiscal Year</div>
-                <div className="text-xl font-black text-[#202124] font-mono">2083/84</div>
+                <div className="text-xl font-black text-[#202124] font-mono">{state.fiscalYear}</div>
              </div>
           </div>
 

@@ -353,20 +353,25 @@ export type KUKLPipeSize = '0.5' | '0.75' | '1' | '1.5' | '2' | '3' | '4';
 
 export function calculateKUKLBill(units: number, pipeSize: KUKLPipeSize = '0.5') {
   const tariffMap: Record<KUKLPipeSize, { minUnits: number, minCharge: number, excessRate: number }> = {
-    '0.5': { minUnits: 10, minCharge: 100, excessRate: 32 },
-    '0.75': { minUnits: 27, minCharge: 1910, excessRate: 71 },
-    '1': { minUnits: 56, minCharge: 3960, excessRate: 71 },
-    '1.5': { minUnits: 155, minCharge: 10950, excessRate: 71 },
-    '2': { minUnits: 320, minCharge: 22600, excessRate: 71 },
-    '3': { minUnits: 881, minCharge: 62240, excessRate: 71 },
-    '4': { minUnits: 1810, minCharge: 127865, excessRate: 71 },
+    '0.5':  { minUnits: 10,   minCharge: 100,    excessRate: 32 },
+    '0.75': { minUnits: 27,   minCharge: 1910,   excessRate: 71 },
+    '1':    { minUnits: 56,   minCharge: 3960,   excessRate: 71 },
+    '1.5':  { minUnits: 155,  minCharge: 10950,  excessRate: 71 },
+    '2':    { minUnits: 320,  minCharge: 22600,  excessRate: 71 },
+    '3':    { minUnits: 881,  minCharge: 62240,  excessRate: 71 },
+    '4':    { minUnits: 1810, minCharge: 127865, excessRate: 71 },
   };
 
   const tariff = tariffMap[pipeSize];
-  
-  // Safe default to 0 units if user clears input
+
+  // Safe default — treat 0 or invalid as "not yet entered"
   const safeUnits = isNaN(units) || units < 0 ? 0 : units;
-  
+
+  // If no units entered, return zero so the dashboard stays at Rs. 0
+  if (safeUnits === 0) {
+    return { waterCharge: 0, sewerageTax: 0, totalBill: 0, minCharge: tariff.minCharge };
+  }
+
   let waterCharge = tariff.minCharge;
 
   if (safeUnits > tariff.minUnits) {
