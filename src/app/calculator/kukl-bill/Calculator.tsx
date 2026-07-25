@@ -8,28 +8,12 @@ import KuklSeoContent from './KuklSeoContent';
 import {
   Droplets, RefreshCw, Share, Copy, Printer, Calculator, Settings,
   ChevronDown, ChevronRight, CheckCircle2, AlertCircle, LayoutList, ShieldCheck,
-  HelpCircle, Download, Users, Bath, Flower2, WashingMachine, Info, Check,
-  Car, Utensils, Building2, Waves, ChefHat, Beef, Shirt
+  Download
 } from 'lucide-react';
 
 function formatNPR(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
 
 type CalcMode = 'official' | 'custom';
-
-/* ── ESTIMATOR DEFAULTS ────────────────────────────────────────── */
-const EST_DEFAULTS = {
-  people: 0,
-  bathrooms: 0,
-  garden: 'no' as 'no' | 'yes',
-  washing: 'Never' as 'Never' | 'Weekly' | 'Daily',
-  carWash: 'Never' as 'Never' | 'Weekly' | 'Daily',
-  dishwasher: 'No' as 'No' | 'Yes',
-  cookingHeavy: 'No' as 'No' | 'Yes',
-  swimmingPool: 'No' as 'No' | 'Yes',
-  roofTank: 'No' as 'No' | 'Yes',
-  floors: 1,
-};
-type EstState = typeof EST_DEFAULTS;
 
 function KUKLCalculatorInner() {
   const searchParams = useSearchParams();
@@ -45,14 +29,6 @@ function KUKLCalculatorInner() {
   });
 
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const [showEstimator, setShowEstimator] = useState(false);
-  const [estimatorApplied, setEstimatorApplied] = useState(false);
-  const [est, setEst] = useState<EstState>(EST_DEFAULTS);
-
-  const updateEst = (u: Partial<EstState>) => {
-    setEst(prev => ({ ...prev, ...u }));
-    setEstimatorApplied(false);
-  };
 
   const update = (u: Partial<typeof state>) => {
     setState({ ...state, ...u });
@@ -106,41 +82,6 @@ function KUKLCalculatorInner() {
   };
   const currentOfficialTariff = tariffMap[state.pipeSize];
 
-  /* ── ESTIMATOR LOGIC ────────────────────────────────────────── */
-  type EstimatorLine = { icon: React.ReactNode; label: string; units: number };
-
-  const estimatorBreakdown = useMemo<EstimatorLine[]>(() => {
-    const lines: EstimatorLine[] = [];
-    if (est.people > 0)
-      lines.push({ icon: <Users className="w-3 h-3" />, label: `${est.people} person(s) × 3 units`, units: est.people * 3 });
-    if (est.bathrooms > 1)
-      lines.push({ icon: <Bath className="w-3 h-3" />, label: `${est.bathrooms - 1} extra bathroom(s) × 1 unit`, units: est.bathrooms - 1 });
-    if (est.garden === 'yes')
-      lines.push({ icon: <Flower2 className="w-3 h-3" />, label: 'Garden / Lawn watering', units: 3 });
-    if (est.washing === 'Weekly')
-      lines.push({ icon: <WashingMachine className="w-3 h-3" />, label: 'Washing machine (weekly)', units: 1 });
-    if (est.washing === 'Daily')
-      lines.push({ icon: <WashingMachine className="w-3 h-3" />, label: 'Washing machine (daily)', units: 3 });
-    if (est.carWash === 'Weekly')
-      lines.push({ icon: <Car className="w-3 h-3" />, label: 'Car/bike wash (weekly)', units: 1 });
-    if (est.carWash === 'Daily')
-      lines.push({ icon: <Car className="w-3 h-3" />, label: 'Car/bike wash (daily)', units: 2 });
-    if (est.dishwasher === 'Yes')
-      lines.push({ icon: <Utensils className="w-3 h-3" />, label: 'Dishwasher', units: 1 });
-    if (est.cookingHeavy === 'Yes')
-      lines.push({ icon: <ChefHat className="w-3 h-3" />, label: 'Heavy cooking / large meals', units: 2 });
-    if (est.swimmingPool === 'Yes')
-      lines.push({ icon: <Waves className="w-3 h-3" />, label: 'Swimming pool (top-up)', units: 5 });
-    if (est.roofTank === 'Yes')
-      lines.push({ icon: <Building2 className="w-3 h-3" />, label: 'Roof tank filling (extra loss)', units: 1 });
-    if (est.floors > 1)
-      lines.push({ icon: <Building2 className="w-3 h-3" />, label: `${est.floors - 1} extra floor(s) pressure loss`, units: (est.floors - 1) * 1 });
-    return lines;
-  }, [est]);
-
-  const estimatedUnits = useMemo(() => estimatorBreakdown.reduce((s, l) => s + l.units, 0), [estimatorBreakdown]);
-  const isEstimatorReady = est.people > 0 || estimatorBreakdown.length > 0;
-
   /* ── EMPTY STATE ────────────────────────────────────────────── */
   const hasUnits = state.units > 0;
 
@@ -173,250 +114,6 @@ function KUKLCalculatorInner() {
                 <span className="text-[11px] font-black text-[#188038] uppercase tracking-widest">Official KUKL Tariff Calculation</span>
               </div>
 
-              {/* ── ESTIMATOR ──────────────────────────────────────── */}
-              <div className="border border-[#DADCE0] rounded-lg overflow-hidden">
-                <button
-                  onClick={() => setShowEstimator(!showEstimator)}
-                  className="w-full flex items-center justify-between px-4 py-3 bg-[#F8F9FA] hover:bg-[#F1F3F4] transition-colors"
-                >
-                  <div className="flex items-start gap-2 text-left">
-                    <HelpCircle className="w-4 h-4 text-[#1A73E8] shrink-0 mt-0.5" />
-                    <div>
-                      <div className="text-[11px] font-bold text-[#1A73E8] uppercase tracking-wider">Don't Know Your Water Usage?</div>
-                      <div className="text-[9px] text-[#70757A] mt-0.5 normal-case tracking-normal">
-                        ✦ Optional — estimate from people, rooms &amp; appliances
-                      </div>
-                    </div>
-                  </div>
-                  {showEstimator ? <ChevronDown className="w-4 h-4 text-[#5F6368] shrink-0" /> : <ChevronRight className="w-4 h-4 text-[#5F6368] shrink-0" />}
-                </button>
-
-                {showEstimator && (
-                  <div className="p-4 bg-white border-t border-[#DADCE0] space-y-5">
-                    {/* Info */}
-                    <div className="flex items-start gap-2 p-3 bg-[#E8F0FE] border border-[#D2E3FC] rounded-md">
-                      <Info className="w-4 h-4 text-[#1A73E8] shrink-0 mt-0.5" />
-                      <p className="text-[10px] text-[#3C4043] leading-relaxed">
-                        Fill in what applies to your home. Leave items at 0 or "No/Never" if they don't apply.
-                        Click <strong>"Use this estimate"</strong> to auto-fill your monthly consumption.
-                        This is completely <strong>optional</strong>.
-                      </p>
-                    </div>
-
-                    {/* ── Section 1: People & Rooms ─── */}
-                    <div className="space-y-3">
-                      <div className="text-[10px] font-black text-[#202124] uppercase tracking-widest border-b border-[#F1F3F4] pb-1">
-                        🏠 Household Size
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-
-                        {/* People */}
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1">
-                            <Users className="w-3 h-3" /> People
-                          </label>
-                          <input
-                            type="number" min="0" placeholder="0"
-                            value={est.people || ''}
-                            onChange={(e) => updateEst({ people: Number(e.target.value) })}
-                            className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold focus:border-[#1A73E8] outline-none"
-                          />
-                          <p className="text-[9px] text-[#70757A]">≈ 3 units/person/month</p>
-                        </div>
-
-                        {/* Bathrooms */}
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1">
-                            <Bath className="w-3 h-3" /> Bathrooms
-                          </label>
-                          <input
-                            type="number" min="0" placeholder="0"
-                            value={est.bathrooms || ''}
-                            onChange={(e) => updateEst({ bathrooms: Number(e.target.value) })}
-                            className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold focus:border-[#1A73E8] outline-none"
-                          />
-                          <p className="text-[9px] text-[#70757A]">+1 unit per extra bathroom</p>
-                        </div>
-
-                        {/* Floors */}
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1">
-                            <Building2 className="w-3 h-3" /> Floors in House
-                          </label>
-                          <input
-                            type="number" min="1" placeholder="1"
-                            value={est.floors || ''}
-                            onChange={(e) => updateEst({ floors: Math.max(1, Number(e.target.value)) })}
-                            className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold focus:border-[#1A73E8] outline-none"
-                          />
-                          <p className="text-[9px] text-[#70757A]">+1 unit per extra floor</p>
-                        </div>
-
-                        {/* Roof Tank */}
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1">
-                            <Droplets className="w-3 h-3" /> Roof Water Tank
-                          </label>
-                          <select value={est.roofTank} onChange={(e) => updateEst({ roofTank: e.target.value as any })}
-                            className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold bg-white outline-none focus:border-[#1A73E8]">
-                            <option value="No">No</option>
-                            <option value="Yes">Yes (+1 unit)</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* ── Section 2: Appliances ─── */}
-                    <div className="space-y-3">
-                      <div className="text-[10px] font-black text-[#202124] uppercase tracking-widest border-b border-[#F1F3F4] pb-1">
-                        🔌 Appliances
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-
-                        {/* Washing Machine */}
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1">
-                            <WashingMachine className="w-3 h-3" /> Washing Machine
-                          </label>
-                          <select value={est.washing} onChange={(e) => updateEst({ washing: e.target.value as any })}
-                            className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold bg-white outline-none focus:border-[#1A73E8]">
-                            <option value="Never">Never used</option>
-                            <option value="Weekly">Weekly (+1 unit)</option>
-                            <option value="Daily">Daily (+3 units)</option>
-                          </select>
-                        </div>
-
-                        {/* Dishwasher */}
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1">
-                            <Utensils className="w-3 h-3" /> Dishwasher
-                          </label>
-                          <select value={est.dishwasher} onChange={(e) => updateEst({ dishwasher: e.target.value as any })}
-                            className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold bg-white outline-none focus:border-[#1A73E8]">
-                            <option value="No">No</option>
-                            <option value="Yes">Yes (+1 unit)</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* ── Section 3: Outdoor ─── */}
-                    <div className="space-y-3">
-                      <div className="text-[10px] font-black text-[#202124] uppercase tracking-widest border-b border-[#F1F3F4] pb-1">
-                        🌳 Outdoor Use
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-
-                        {/* Garden */}
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1">
-                            <Flower2 className="w-3 h-3" /> Garden / Lawn
-                          </label>
-                          <select value={est.garden} onChange={(e) => updateEst({ garden: e.target.value as any })}
-                            className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold bg-white outline-none focus:border-[#1A73E8]">
-                            <option value="no">No</option>
-                            <option value="yes">Yes (+3 units)</option>
-                          </select>
-                        </div>
-
-                        {/* Car Wash */}
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1">
-                            <Car className="w-3 h-3" /> Car / Bike Washing
-                          </label>
-                          <select value={est.carWash} onChange={(e) => updateEst({ carWash: e.target.value as any })}
-                            className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold bg-white outline-none focus:border-[#1A73E8]">
-                            <option value="Never">Never</option>
-                            <option value="Weekly">Weekly (+1 unit)</option>
-                            <option value="Daily">Daily (+2 units)</option>
-                          </select>
-                        </div>
-
-                        {/* Swimming Pool */}
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1">
-                            <Waves className="w-3 h-3" /> Swimming Pool
-                          </label>
-                          <select value={est.swimmingPool} onChange={(e) => updateEst({ swimmingPool: e.target.value as any })}
-                            className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold bg-white outline-none focus:border-[#1A73E8]">
-                            <option value="No">No</option>
-                            <option value="Yes">Yes (+5 units)</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* ── Section 4: Kitchen ─── */}
-                    <div className="space-y-3">
-                      <div className="text-[10px] font-black text-[#202124] uppercase tracking-widest border-b border-[#F1F3F4] pb-1">
-                        🍳 Kitchen &amp; Cooking
-                      </div>
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1">
-                            <ChefHat className="w-3 h-3" /> Cooking Style
-                          </label>
-                          <select value={est.cookingHeavy} onChange={(e) => updateEst({ cookingHeavy: e.target.value as any })}
-                            className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold bg-white outline-none focus:border-[#1A73E8]">
-                            <option value="No">Normal cooking</option>
-                            <option value="Yes">Heavy / catering (+2 units)</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Estimated result + CTA */}
-                    <div className={`rounded-lg border-2 p-4 transition-all ${isEstimatorReady ? 'border-[#1A73E8] bg-[#E8F0FE]' : 'border-[#DADCE0] bg-[#F8F9FA] opacity-60'}`}>
-                      <div className="flex items-center justify-between flex-wrap gap-3">
-                        <div>
-                          <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider mb-0.5">Estimated Monthly Consumption</div>
-                          <div className="text-xl font-black text-[#1A73E8]">
-                            {estimatedUnits} Units
-                            <span className="text-xs font-bold text-[#1A73E8]/70 ml-1.5">
-                              (≈ {(estimatedUnits * 1000).toLocaleString('en-IN')} Litres)
-                            </span>
-                          </div>
-                          {!isEstimatorReady && <div className="text-[9px] text-[#5F6368] mt-0.5">Fill in at least one field above</div>}
-                        </div>
-                        <button
-                          disabled={!isEstimatorReady || estimatedUnits === 0}
-                          onClick={() => {
-                            update({ units: estimatedUnits });
-                            setEstimatorApplied(true);
-                            setShowEstimator(false);
-                          }}
-                          className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider transition-all ${
-                            isEstimatorReady && estimatedUnits > 0
-                              ? 'bg-[#1A73E8] hover:bg-[#1557B0] text-white shadow-sm'
-                              : 'bg-[#DADCE0] text-[#9AA0A6] cursor-not-allowed'
-                          }`}
-                        >
-                          <Check className="w-3.5 h-3.5" />
-                          Use this estimate
-                        </button>
-                      </div>
-
-                      {/* Inline mini-breakdown */}
-                      {estimatorBreakdown.length > 0 && (
-                        <div className="mt-3 pt-3 border-t border-[#D2E3FC] space-y-1.5">
-                          {estimatorBreakdown.map((line, i) => (
-                            <div key={i} className="flex items-center justify-between text-[10px]">
-                              <span className="flex items-center gap-1 text-[#3C4043]">{line.icon} {line.label}</span>
-                              <span className="font-bold text-[#1A73E8]">+{line.units} units</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-
-                    <p className="text-[9px] text-[#70757A] text-center italic">
-                      ✦ Skip this section if you already know your meter reading. Type it directly below.
-                    </p>
-                  </div>
-                )}
-              </div>
-              {/* ── END ESTIMATOR ────────────────────────────────── */}
-
               {/* Pipe Size */}
               <div className="space-y-2">
                 <label htmlFor="pipe-size" className="text-[11px] font-bold uppercase text-[#5F6368] tracking-wider">Pipe Size</label>
@@ -446,19 +143,13 @@ function KUKLCalculatorInner() {
                   <input
                     id="water-units" type="number"
                     value={state.units || ''}
-                    onChange={(e) => { update({ units: e.target.value ? Number(e.target.value) : 0 }); setEstimatorApplied(false); }}
+                    onChange={(e) => update({ units: e.target.value ? Number(e.target.value) : 0 })}
                     placeholder="Enter units from your KUKL meter bill"
                     className="w-full h-12 pl-4 pr-24 border border-[#DADCE0] rounded-md bg-white text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all"
                   />
                   <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-black text-[#1A73E8] pointer-events-none">UNITS</span>
                 </div>
                 <p className="text-[9px] text-[#5F6368] font-bold uppercase tracking-wider">1 Unit = 1,000 Litres (1 kL)</p>
-                {estimatorApplied && (
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3 h-3 text-[#188038]" />
-                    <span className="text-[9px] font-bold text-[#188038] uppercase tracking-wider">Filled from estimator — you can still edit this</span>
-                  </div>
-                )}
               </div>
             </div>
 
@@ -514,8 +205,6 @@ function KUKLCalculatorInner() {
               </button>
               <button onClick={() => {
                 update({ units: 0, pipeSize: '0.5' });
-                setEst(EST_DEFAULTS);
-                setEstimatorApplied(false);
               }} className="h-10 flex flex-col items-center justify-center bg-[#FCE8E6] hover:bg-[#FAD2CF] text-[#C5221F] border border-[#F8B0A9] rounded-md transition-colors">
                 <RefreshCw className="w-3.5 h-3.5 mb-0.5" /><span className="text-[8px] font-bold uppercase">Reset</span>
               </button>
@@ -581,23 +270,6 @@ function KUKLCalculatorInner() {
                     <span className="text-[11px] font-black text-[#202124] uppercase tracking-widest">How Your Bill is Calculated</span>
                   </div>
                   <div className="p-4 space-y-3 text-sm">
-
-                    {/* Estimator origin — only shown if estimator was applied */}
-                    {estimatorApplied && estimatorBreakdown.length > 0 && (
-                      <div className="bg-[#E8F0FE] border border-[#D2E3FC] rounded-md p-3 space-y-1.5 mb-1">
-                        <div className="text-[10px] font-black text-[#1A73E8] uppercase tracking-wider mb-1">📊 Usage Estimated From Your Inputs</div>
-                        {estimatorBreakdown.map((line, i) => (
-                          <div key={i} className="flex items-center justify-between text-[10px]">
-                            <span className="flex items-center gap-1 text-[#5F6368]">{line.icon} {line.label}</span>
-                            <span className="font-bold text-[#1A73E8]">+{line.units} units</span>
-                          </div>
-                        ))}
-                        <div className="flex items-center justify-between pt-1.5 border-t border-[#D2E3FC] text-[11px]">
-                          <span className="font-black text-[#1A73E8]">Total Estimated</span>
-                          <span className="font-black text-[#1A73E8]">{estimatedUnits} units</span>
-                        </div>
-                      </div>
-                    )}
 
                     {/* Minimum Block */}
                     <div className="flex items-start justify-between gap-2 pb-2 border-b border-dashed border-[#DADCE0]">
@@ -667,7 +339,7 @@ function KUKLCalculatorInner() {
                 <div className="border border-dashed border-[#DADCE0] rounded-lg p-6 text-center space-y-2 bg-[#F8F9FA]">
                   <Droplets className="w-8 h-8 text-[#DADCE0] mx-auto" />
                   <p className="text-sm font-bold text-[#9AA0A6]">Your bill breakdown will appear here</p>
-                  <p className="text-[10px] text-[#BDBDBD]">Enter your monthly units above, or use the estimator to get started</p>
+                  <p className="text-[10px] text-[#BDBDBD]">Enter your monthly units above to calculate</p>
                 </div>
               )}
 
