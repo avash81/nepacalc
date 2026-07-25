@@ -233,11 +233,11 @@ export function ModernCalcLayout({
           ...crumbs.map(c => ({ name: c.label, item: c.href ? `https://nepacalc.com${normalizeLink(c.href)}` : undefined })).filter((x): x is { name: string, item: string } => !!x.item)
         ]} />
       )}
-      <div className="max-w-[1280px] mx-auto px-4 pt-3 pb-16">
-        <div className={`${compactHeader ? 'mb-3 pb-2' : 'mb-4 pb-3'} flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#dadce0]`}>
+      <div className="max-w-[1280px] mx-auto px-4 pt-2 pb-16">
+        <div className={`mb-2 pb-2 flex flex-col md:flex-row md:items-end justify-between gap-2 border-b border-[#dadce0]`}>
           <div>
             {crumbs && crumbs.length > 0 && (
-              <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 text-[11px] font-medium text-[#5f6368] mb-2 uppercase tracking-wider">
+              <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 text-[11px] font-medium text-[#5f6368] mb-1 uppercase tracking-wider">
 
                 {crumbs.map((c, i) => (
                   <Fragment key={i}>
@@ -248,20 +248,19 @@ export function ModernCalcLayout({
               </nav>
             )}
             {!hideH1 && (
-              <h1 className={titleClassName || `${compactHeader ? 'text-xl sm:text-2xl' : 'text-xl sm:text-2xl'} font-bold text-[#202124] tracking-tight mb-0.5`}>{title}</h1>
+              <h1 className={titleClassName || `text-lg sm:text-xl font-bold text-[#202124] tracking-tight mb-0`}>{title}</h1>
             )}
           </div>
         </div>
-        {intro && <div className="mb-8">{intro}</div>}
-        {ads?.top && <div className="mb-6 flex justify-center no-print">{ads.top}</div>}
-        // Updated layout without excessive margin and smaller title
+        {intro && <div className="mb-3">{intro}</div>}
+        {ads?.top && <div className="mb-3 flex justify-center no-print">{ads.top}</div>}
         {fullWidth && (
-          <div className="mb-4">
+          <div className="mb-2">
             {calculatorEngineNode}
           </div>
         )}
-        <div className={`flex flex-col gap-8 ${sidebarPosition === 'bottom' ? '' : 'lg:flex-row'}`}>
-          <div className="flex-1 space-y-6">
+        <div className={`flex flex-col gap-4 ${sidebarPosition === 'bottom' ? '' : 'lg:flex-row'}`}>
+          <div className="flex-1 space-y-4">
             {!fullWidth && calculatorEngineNode}
             {ads?.inContent && <div className="flex justify-center no-print">{ads.inContent}</div>}
             {details && <div className="details-container space-y-6">{details}</div>}
