@@ -349,15 +349,28 @@ export function calculateNEPSEReturn(
 /**
  * KUKL Water Bill (Kathmandu Domestic)
  */
-export function calculateKUKLBill(units: number, pipeSize: '0.5' | '0.75' = '0.5') {
-  // Basic residential structure (0.5 inch pipe)
-  // First 10,000 liters (10 units) = Rs. 100
-  const minCharge = 100;
-  const minUnits = 10;
-  let waterCharge = minCharge;
+export type KUKLPipeSize = '0.5' | '0.75' | '1' | '1.5' | '2' | '3' | '4';
 
-  if (units > minUnits) {
-    waterCharge += (units - minUnits) * 32; // Approx Rs. 32 per excess unit
+export function calculateKUKLBill(units: number, pipeSize: KUKLPipeSize = '0.5') {
+  const tariffMap: Record<KUKLPipeSize, { minUnits: number, minCharge: number, excessRate: number }> = {
+    '0.5': { minUnits: 10, minCharge: 100, excessRate: 32 },
+    '0.75': { minUnits: 27, minCharge: 1910, excessRate: 71 },
+    '1': { minUnits: 56, minCharge: 3960, excessRate: 71 },
+    '1.5': { minUnits: 155, minCharge: 10950, excessRate: 71 },
+    '2': { minUnits: 320, minCharge: 22600, excessRate: 71 },
+    '3': { minUnits: 881, minCharge: 62240, excessRate: 71 },
+    '4': { minUnits: 1810, minCharge: 127865, excessRate: 71 },
+  };
+
+  const tariff = tariffMap[pipeSize];
+  
+  // Safe default to 0 units if user clears input
+  const safeUnits = isNaN(units) || units < 0 ? 0 : units;
+  
+  let waterCharge = tariff.minCharge;
+
+  if (safeUnits > tariff.minUnits) {
+    waterCharge += (safeUnits - tariff.minUnits) * tariff.excessRate;
   }
 
   const sewerageTax = waterCharge * 0.50;
@@ -366,7 +379,8 @@ export function calculateKUKLBill(units: number, pipeSize: '0.5' | '0.75' = '0.5
   return {
     waterCharge: Number(waterCharge.toFixed(2)),
     sewerageTax: Number(sewerageTax.toFixed(2)),
-    totalBill: Number(totalBill.toFixed(2))
+    totalBill: Number(totalBill.toFixed(2)),
+    minCharge: tariff.minCharge
   };
 }
 

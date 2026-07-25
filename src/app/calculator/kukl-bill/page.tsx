@@ -1,12 +1,14 @@
+import { Viewport } from 'next';
 import Link from 'next/link';
 import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 
 export const metadata = calcMeta({
-  title: "KUKL Water Bill Calculator Nepal (FY 2083/84) | Kathmandu Water Bill Calculator",
-  description: "Calculate your KUKL water bill online using the latest Kathmandu water tariff rates. Includes sewerage charges, minimum billing, and connection-size calculations.",
+  title: "KUKL Water Bill Calculator Nepal | Calculate Water Charges Online",
+  description: "Calculate your KUKL water bill using official Kathmandu Upatyaka Khanepani Limited tariff rates. Estimate water charges, sewerage charges, minimum bills, and monthly water costs based on your meter reading and pipe size.",
   slug: 'kukl-bill',
   canonical: 'https://nepacalc.com/calculator/kukl-bill/',
+  ogImage: 'https://nepacalc.com/images/calculators/kukl-og-image.jpg',
   keywords: [
     "kukl bill calculator", "kukl water bill calculator", "water bill calculator nepal", 
     "calculate water bill nepal", "how to calculate water bill in nepal", 
@@ -17,6 +19,12 @@ export const metadata = calcMeta({
     "how to check water bill online", "water bill check nepal"
   ]
 });
+
+export const viewport: Viewport = {
+  themeColor: '#0F766E',
+  width: 'device-width',
+  initialScale: 1,
+};
 
 const customSchema = {
   "@context": "https://schema.org",
@@ -29,38 +37,329 @@ const customSchema = {
       "logo": {
         "@type": "ImageObject",
         "url": "https://nepacalc.com/logo.png"
-      }
+      },
+      "sameAs": [
+        "https://www.facebook.com/nepacalc"
+      ]
     },
     {
       "@type": "WebSite",
       "@id": "https://nepacalc.com/#website",
       "url": "https://nepacalc.com/",
       "name": "NepaCalc",
-      "publisher": { "@id": "https://nepacalc.com/#organization" }
+      "publisher": {
+        "@id": "https://nepacalc.com/#organization"
+      },
+      "inLanguage": "en-NP"
     },
     {
       "@type": "WebPage",
       "@id": "https://nepacalc.com/calculator/kukl-bill/#webpage",
       "url": "https://nepacalc.com/calculator/kukl-bill/",
-      "name": "KUKL Water Bill Calculator Nepal (FY 2083/84) | Kathmandu Water Bill Calculator",
-      "description": "Calculate your KUKL water bill online using the latest Kathmandu water tariff rates. Includes sewerage charges, minimum billing, and connection-size calculations.",
-      "isPartOf": { "@id": "https://nepacalc.com/#website" },
-      "about": { "@id": "https://nepacalc.com/#organization" }
+      "name": "KUKL Water Bill Calculator",
+      "description": "Calculate your KUKL water bill using official Kathmandu Upatyaka Khanepani Limited tariff rates. Estimate water charges, sewerage charges, minimum bills, and monthly water costs based on your meter reading and pipe size.",
+      "isPartOf": {
+        "@id": "https://nepacalc.com/#website"
+      },
+      "about": {
+        "@id": "https://nepacalc.com/#organization"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://nepacalc.com/images/kukl-water-bill-calculator.webp"
+      },
+      "breadcrumb": {
+        "@id": "https://nepacalc.com/calculator/kukl-bill/#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://nepacalc.com/calculator/kukl-bill/#calculator"
+      },
+      "inLanguage": "en-NP"
     },
     {
       "@type": "Article",
       "@id": "https://nepacalc.com/calculator/kukl-bill/#article",
-      "headline": "KUKL Water Bill Calculator Nepal",
-      "description": "A comprehensive guide and calculator for KUKL water bills in Nepal, including official tariff rates and calculation methodology.",
+      "headline": "KUKL Water Bill Calculator: Official Tariff Guide, Water Charges and Bill Calculation",
+      "description": "Learn how KUKL water bills are calculated using official Kathmandu Upatyaka Khanepani Limited tariff rates. Understand water charges, sewerage charges, meter readings, pipe sizes, minimum billing, and estimate your monthly bill with the NepaCalc KUKL Water Bill Calculator.",
+      "articleSection": [
+        "Water Bill Calculation",
+        "Official KUKL Tariff Rates",
+        "Meter Reading Guide",
+        "Water Units",
+        "Pipe Size Charges",
+        "Online Bill Payment",
+        "Water Quality Standards",
+        "Frequently Asked Questions"
+      ],
+      "keywords": [
+        "KUKL Water Bill Calculator",
+        "Water Bill Calculator Nepal",
+        "KUKL Tariff",
+        "Water Charges Nepal",
+        "Kathmandu Water Bill",
+        "1 Unit Water in Litres",
+        "Water Meter Reading",
+        "KUKL Bill",
+        "Sewerage Charge",
+        "Pipe Size Tariff"
+      ],
       "author": {
         "@type": "Organization",
-        "name": "NepaCalc Team",
-        "url": "https://nepacalc.com/"
+        "@id": "https://nepacalc.com/#organization"
       },
-      "publisher": { "@id": "https://nepacalc.com/#organization" },
-      "datePublished": "2024-01-01T08:00:00+05:45",
-      "dateModified": "2026-07-25T08:00:00+05:45",
-      "mainEntityOfPage": { "@id": "https://nepacalc.com/calculator/kukl-bill/#webpage" }
+      "publisher": {
+        "@id": "https://nepacalc.com/#organization"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://nepacalc.com/calculator/kukl-bill/#webpage"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://nepacalc.com/images/kukl-water-bill-calculator.webp",
+        "width": 1200,
+        "height": 630
+      },
+      "datePublished": "2026-07-01",
+      "dateModified": "2026-07-25",
+      "inLanguage": "en-NP",
+      "isAccessibleForFree": true,
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Kathmandu Upatyaka Khanepani Limited"
+        },
+        {
+          "@type": "Thing",
+          "name": "Water Tariff"
+        },
+        {
+          "@type": "Thing",
+          "name": "Water Meter"
+        },
+        {
+          "@type": "Thing",
+          "name": "Sewerage Charge"
+        },
+        {
+          "@type": "Thing",
+          "name": "Kathmandu Valley"
+        }
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://nepacalc.com/calculator/kukl-bill/#calculator",
+      "name": "KUKL Water Bill Calculator",
+      "alternateName": [
+        "Kathmandu Water Bill Calculator",
+        "Water Bill Calculator Nepal",
+        "KUKL Bill Calculator"
+      ],
+      "url": "https://nepacalc.com/calculator/kukl-bill/",
+      "applicationCategory": "FinanceApplication",
+      "applicationSubCategory": "Utility Bill Calculator",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript. Works in all modern web browsers.",
+      "softwareVersion": "1.0",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "NPR",
+        "availability": "https://schema.org/InStock"
+      },
+      "creator": {
+        "@id": "https://nepacalc.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://nepacalc.com/#organization"
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Kathmandu Upatyaka Khanepani Limited (KUKL)"
+        },
+        {
+          "@type": "Thing",
+          "name": "Water Tariff"
+        },
+        {
+          "@type": "Thing",
+          "name": "Water Meter"
+        },
+        {
+          "@type": "Thing",
+          "name": "Sewerage Charge"
+        },
+        {
+          "@type": "Thing",
+          "name": "Utility Bill"
+        }
+      ],
+      "featureList": [
+        "Official KUKL tariff calculation",
+        "Metered water bill calculation",
+        "Official pipe size support",
+        "Automatic sewerage charge calculation",
+        "Water charge breakdown",
+        "Monthly bill estimation",
+        "Official tariff table reference",
+        "Water unit conversion",
+        "Bill calculation examples",
+        "Mobile friendly calculator"
+      ],
+      "keywords": [
+        "KUKL Water Bill Calculator",
+        "Water Bill Calculator Nepal",
+        "KUKL Tariff",
+        "Kathmandu Water Bill",
+        "Water Charges Nepal",
+        "Water Meter Calculator",
+        "Sewerage Charge",
+        "Water Unit Calculator"
+      ],
+      "mainEntityOfPage": {
+        "@id": "https://nepacalc.com/calculator/kukl-bill/#webpage"
+      },
+      "inLanguage": "en-NP"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://nepacalc.com/calculator/kukl-bill/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How is my KUKL water bill calculated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "KUKL calculates water bills using the official tariff based on your pipe size, monthly water consumption, minimum applicable charge, additional unit charges above the minimum threshold, and a 50% sewerage charge. This calculator automatically applies these rules to estimate your monthly bill."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is one unit of water in Nepal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "One unit of water is equal to 1,000 litres or 1 cubic metre (1 m³). KUKL and other water utilities in Nepal use this measurement when calculating monthly water consumption."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does KUKL charge a sewerage fee?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "KUKL applies a sewerage charge equal to 50% of the water charge to support wastewater collection, operation and maintenance of sewerage infrastructure throughout the Kathmandu Valley."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the minimum monthly KUKL water bill?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The minimum monthly bill depends on the pipe connection size. Each connection type has an official minimum consumption allowance and minimum water charge before additional consumption charges apply."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I read my KUKL water meter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Subtract the previous meter reading from the current meter reading to determine total water consumption. Every increase of one unit represents 1,000 litres of water used during the billing period."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I pay my KUKL water bill online?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "KUKL customers can pay their bills using the official KUKL Customer Portal, KUKL Mobile App, Mobile Banking, Internet Banking, Fonepay-enabled services, ConnectIPS and other supported digital payment channels."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does pipe size affect my water bill?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. KUKL tariffs vary according to the size of the water connection. Larger pipe sizes have higher minimum consumption limits, higher minimum charges and different additional unit rates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can this calculator estimate my monthly KUKL water bill accurately?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. This calculator estimates your monthly KUKL water bill using the official published tariff structure, including pipe size, minimum charges, additional unit rates and the mandatory 50% sewerage charge. Actual bills may differ if KUKL revises tariffs or applies additional service charges."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://nepacalc.com/calculator/kukl-bill/#howto",
+      "name": "How to Calculate Your KUKL Water Bill",
+      "description": "Learn how to calculate your monthly KUKL water bill using the official tariff structure, pipe size, water consumption, and sewerage charges.",
+      "inLanguage": "en-NP",
+      "totalTime": "PT2M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "NPR",
+        "value": "0"
+      },
+      "tool": [
+        {
+          "@type": "HowToTool",
+          "name": "NepaCalc KUKL Water Bill Calculator"
+        }
+      ],
+      "supply": [
+        {
+          "@type": "HowToSupply",
+          "name": "Current water meter reading"
+        },
+        {
+          "@type": "HowToSupply",
+          "name": "Monthly water consumption (units)"
+        },
+        {
+          "@type": "HowToSupply",
+          "name": "Pipe connection size"
+        }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Select your pipe size",
+          "text": "Choose the correct KUKL pipe connection size (½\", ¾\", 1\", 1½\", 2\", 3\" or 4\") to apply the official tariff for your connection."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Enter your monthly water consumption",
+          "text": "Enter the total number of water units consumed during the billing period. One unit is equal to 1,000 litres (1 cubic metre)."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Calculate the bill",
+          "text": "Click the Calculate button. The calculator automatically applies the official minimum charge, additional unit charges, and the mandatory 50% sewerage charge."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Review the bill breakdown",
+          "text": "View the detailed calculation including water charge, sewerage charge, total payable amount, and the calculation steps used to estimate your bill."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "Use the result",
+          "text": "Copy, print, or share your estimated KUKL water bill for personal reference or monthly expense planning."
+        }
+      ],
+      "mainEntityOfPage": {
+        "@id": "https://nepacalc.com/calculator/kukl-bill/#webpage"
+      }
     },
     {
       "@type": "BreadcrumbList",
@@ -81,85 +380,14 @@ const customSchema = {
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "KUKL Water Bill Calculator"
-        }
-      ]
-    },
-    {
-      "@type": "WebApplication",
-      "@id": "https://nepacalc.com/calculator/kukl-bill/#webapp",
-      "name": "KUKL Water Bill Calculator",
-      "url": "https://nepacalc.com/calculator/kukl-bill/",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "All",
-      "description": "Calculate KUKL and NWSC water bills based on official tariff matrices, pipe sizes, and mandatory sewerage taxes."
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://nepacalc.com/calculator/kukl-bill/#howto",
-      "name": "How to calculate a KUKL water bill",
-      "description": "Step-by-step guide to calculating water utility charges in the Kathmandu Valley.",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "name": "Identify Connection Size",
-          "text": "Determine your water pipe connection size, typically 0.5 inches for standard residential taps."
+          "name": "Nepal Specific Calculators",
+          "item": "https://nepacalc.com/category/nepal-specific/"
         },
         {
-          "@type": "HowToStep",
-          "name": "Calculate Base Water Charge",
-          "text": "Apply the fixed minimum charge for the first 10,000 liters (10 units), then multiply any additional units consumed by the variable excess rate."
-        },
-        {
-          "@type": "HowToStep",
-          "name": "Add Sewerage Charge",
-          "text": "Calculate 50% of the total water charge and add it to the subtotal. This is the mandatory sewerage tax applied to all properties."
-        }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://nepacalc.com/calculator/kukl-bill/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How is a water bill calculated in Nepal?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A water bill in Nepal is calculated by adding the net water consumption charge to a mandatory sewerage fee. The consumption charge consists of a fixed pipeline fee for baseline allocation plus an additional per-unit rate for any excess water used. A 50% wastewater surcharge is then applied to that combined subtotal."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is 1 unit of water in litres?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Exactly 1 unit of water equals 1,000 litres. This metric aligns with 1 cubic meter of volumetric water flow passing through your property's physical utility meter."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the KUKL sewerage charge?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The sewerage charge is a public utility assessment equal to exactly 50% of your total monthly water consumption charge. It is automatically collected by KUKL to fund the construction and processing operations of wastewater management systems across the Kathmandu Valley."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What are the latest KUKL water rates?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Tariff rates are updated each fiscal year by KUKL. For the current rates, enter your pipe size and units into the calculator above — it applies the latest official tariff automatically so you always get an accurate result."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the minimum KUKL bill?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "There is a mandatory minimum monthly charge even if you use zero water. The exact amount depends on your pipe connection size (0.5-inch or 0.75-inch). Use the calculator above and enter 0 units to see the minimum payable for your connection."
-          }
+          "@type": "ListItem",
+          "position": 4,
+          "name": "KUKL Water Bill Calculator",
+          "item": "https://nepacalc.com/calculator/kukl-bill/"
         }
       ]
     }

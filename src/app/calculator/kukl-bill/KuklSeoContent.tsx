@@ -355,6 +355,18 @@ export default function KuklSeoContent() {
           </ul>
           <p>Selecting the correct pipe size in the calculator ensures the estimated bill closely matches the official KUKL billing method.</p>
 
+          <figure className="my-6 text-center">
+            <img
+              src="/images/calculators/kukl-pipe-size-comparison.jpg"
+              alt="Illustration comparing KUKL water pipe sizes — 1/2 inch, 3/4 inch, and 1 inch — showing how pipe diameter affects minimum monthly water charge in Nepal"
+              className="rounded-xl border border-[#DADCE0] shadow-sm mx-auto max-w-md w-full"
+              width={480}
+              height={320}
+              loading="lazy"
+            />
+            <figcaption className="text-xs text-[#5F6368] mt-2">Larger pipe connections receive higher minimum water allocations but also carry higher base charges.</figcaption>
+          </figure>
+
           <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">Important Billing Notes</h3>
           <ul className="list-disc pl-5 space-y-2 bg-[#F8F9FA] p-5 rounded-lg border border-[#DADCE0]">
             <li>All consumption is measured in units (kilolitres or cubic metres).</li>
@@ -369,7 +381,7 @@ export default function KuklSeoContent() {
 
       {/* Phase 5 — Understanding Water Units */}
       <section id="water-unit" className="scroll-mt-24">
-        <h2 className="text-2xl md:text-3xl font-black text-[#202124] mb-4 tracking-tight">What is 1 Unit of Water in Nepal?</h2>
+        <h2 className="text-2xl md:text-3xl font-black text-[#202124] mb-4 tracking-tight">What Is One Unit of Water?</h2>
         <div className="prose prose-slate max-w-none text-[#5F6368] space-y-4">
           <p className="text-lg leading-relaxed text-[#3C4043]">
             Many households are unsure what one unit of water actually means when reading a KUKL water bill. Understanding this measurement makes it much easier to calculate your monthly water consumption and verify your bill.
@@ -535,6 +547,18 @@ export default function KuklSeoContent() {
             The meter displays cumulative water usage in units (m³), where 1 unit equals 1,000 litres. Your monthly consumption is calculated by comparing the previous meter reading with the current reading.
           </p>
 
+          <figure className="my-6 text-center">
+            <img
+              src="/images/calculators/kukl-meter-reading.jpg"
+              alt="Illustration of a KUKL water meter showing the digital reading display used for calculating monthly water consumption in Kathmandu, Nepal"
+              className="rounded-xl border border-[#DADCE0] shadow-sm mx-auto max-w-md w-full"
+              width={480}
+              height={320}
+              loading="lazy"
+            />
+            <figcaption className="text-xs text-[#5F6368] mt-2">A KUKL water meter records cumulative consumption in units (1 unit = 1,000 litres).</figcaption>
+          </figure>
+
           <div className="space-y-6 my-8">
             <div className="flex gap-4 items-start">
               <div className="bg-[#1A73E8] text-white w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0 mt-1">1</div>
@@ -660,9 +684,9 @@ export default function KuklSeoContent() {
         </div>
       </section>
 
-      {/* Phase 7 — Understanding KUKL Water Bill Charges */}
-      <section id="charges" className="scroll-mt-24">
-        <h2 className="text-2xl md:text-3xl font-black text-[#202124] mb-4 tracking-tight">Understanding Your KUKL Water Bill Charges</h2>
+      {/* Phase 7 — Understanding Water Charges */}
+      <section id="water-charges" className="scroll-mt-24">
+        <h2 className="text-2xl md:text-3xl font-black text-[#202124] mb-4 tracking-tight">Water Charges Explained</h2>
         <div className="prose prose-slate max-w-none text-[#5F6368] space-y-4">
           <p className="text-lg leading-relaxed text-[#3C4043]">
             A KUKL water bill is made up of several charges rather than a single price per unit. The final amount depends on your connection type, pipe size, monthly water consumption, and the official tariff structure.
@@ -843,7 +867,7 @@ export default function KuklSeoContent() {
 
       {/* Phase 8 — KUKL Water Bill Calculation Examples */}
       <section id="examples" className="scroll-mt-24">
-        <h2 id="examples" className="text-2xl md:text-3xl font-black text-[#202124] mb-4 tracking-tight scroll-mt-24">KUKL Water Bill Examples</h2>
+        <h2 id="examples" className="text-2xl md:text-3xl font-black text-[#202124] mb-4 tracking-tight scroll-mt-24">Water Bill Examples</h2>
         <div className="prose prose-slate max-w-none text-[#5F6368] space-y-4">
           <p className="text-lg leading-relaxed text-[#3C4043]">
             The examples below use the official KUKL tariff structure for a standard ½-inch residential metered connection.
@@ -1123,146 +1147,154 @@ export default function KuklSeoContent() {
 
       {/* Phase 9 — KUKL Online Bill Payment & Customer Services */}
       <section id="online-payment" className="scroll-mt-24">
-        <h2 id="online-payment" className="text-2xl md:text-3xl font-black text-[#202124] mb-4 tracking-tight scroll-mt-24">Check and Pay Your KUKL Water Bill Online</h2>
+        <h2 id="online-payment-title" className="text-2xl md:text-3xl font-black text-[#202124] mb-4 tracking-tight scroll-mt-24">Pay Your KUKL Bill Online</h2>
         <div className="prose prose-slate max-w-none text-[#5F6368] space-y-4">
           <p className="text-lg leading-relaxed text-[#3C4043]">
-            KUKL provides several official digital services that allow customers to check their water bills, make online payments, and access account-related services without visiting a branch office.
+            Kathmandu Upatyaka Khanepani Limited (KUKL) provides several official digital services that allow customers to check their water bills, pay outstanding balances, access customer information, and submit service requests without visiting a branch office.
           </p>
           <p>
-            Whether you need to pay your monthly bill, verify outstanding dues, or manage your customer account, multiple secure payment options are available.
+            After calculating your estimated bill using the NepaCalc KUKL Water Bill Calculator, you can compare the result with your official KUKL bill and complete payment through the available online channels. KUKL officially supports online payments through its Customer Portal, Mobile App, Internet Banking, Mobile Banking, Fonepay-enabled banks, ConnectIPS, and other integrated payment providers.
           </p>
 
-          <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">Ways to Pay Your KUKL Water Bill</h3>
-          <p>Customers can pay their KUKL water bills using the following official payment channels:</p>
+          <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">Official Ways to Check Your KUKL Water Bill</h3>
+          <p>You can access your latest bill and customer information using the official KUKL digital services.</p>
+          
+          <h4 className="font-bold text-[#202124] mt-4 mb-2">Available Options</h4>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>Official KUKL Customer Web Portal</li>
+            <li>KUKL Mobile App</li>
+            <li>Integrated Mobile Banking</li>
+            <li>Internet Banking</li>
+            <li>Branch Customer Service</li>
+          </ul>
+
+          <p className="mt-4">The customer portal allows users to:</p>
+          <ul className="list-disc pl-5 space-y-1">
+            <li>View current bill</li>
+            <li>Check previous bills</li>
+            <li>Verify customer information</li>
+            <li>Monitor payment history</li>
+            <li>Access account details</li>
+          </ul>
+          <p className="mt-4 text-sm italic">These services are provided directly by Kathmandu Upatyaka Khanepani Limited for registered customers.</p>
+
+          <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">How to Pay Your KUKL Water Bill Online</h3>
+          <p>Online payment usually takes only a few minutes.</p>
+          
+          <div className="space-y-4 my-6">
+            <div className="flex gap-4 items-start bg-[#F8F9FA] p-4 rounded-lg border border-[#DADCE0]">
+              <div className="bg-[#1A73E8] text-white w-7 h-7 rounded-full flex items-center justify-center font-bold shrink-0">1</div>
+              <div>
+                <p className="m-0 text-[#202124]">Open your preferred payment application or online banking service.</p>
+              </div>
+            </div>
+            <div className="flex gap-4 items-start bg-[#F8F9FA] p-4 rounded-lg border border-[#DADCE0]">
+              <div className="bg-[#1A73E8] text-white w-7 h-7 rounded-full flex items-center justify-center font-bold shrink-0">2</div>
+              <div>
+                <p className="m-0 text-[#202124]">Choose Water Bill or KUKL Water Bill Payment.</p>
+              </div>
+            </div>
+            <div className="flex gap-4 items-start bg-[#F8F9FA] p-4 rounded-lg border border-[#DADCE0]">
+              <div className="bg-[#1A73E8] text-white w-7 h-7 rounded-full flex items-center justify-center font-bold shrink-0">3</div>
+              <div>
+                <p className="m-0 text-[#202124]">Enter your Customer Number or Connection Number.</p>
+              </div>
+            </div>
+            <div className="flex gap-4 items-start bg-[#F8F9FA] p-4 rounded-lg border border-[#DADCE0]">
+              <div className="bg-[#1A73E8] text-white w-7 h-7 rounded-full flex items-center justify-center font-bold shrink-0">4</div>
+              <div>
+                <p className="m-0 text-[#202124]">Verify your customer details and outstanding bill.</p>
+              </div>
+            </div>
+            <div className="flex gap-4 items-start bg-[#F8F9FA] p-4 rounded-lg border border-[#DADCE0]">
+              <div className="bg-[#1A73E8] text-white w-7 h-7 rounded-full flex items-center justify-center font-bold shrink-0">5</div>
+              <div>
+                <p className="m-0 text-[#202124]">Confirm the payment.</p>
+              </div>
+            </div>
+            <div className="flex gap-4 items-start bg-[#F8F9FA] p-4 rounded-lg border border-[#DADCE0]">
+              <div className="bg-[#1A73E8] text-white w-7 h-7 rounded-full flex items-center justify-center font-bold shrink-0">6</div>
+              <div>
+                <p className="m-0 text-[#202124]">Save the payment receipt for future reference.</p>
+              </div>
+            </div>
+          </div>
+          <p>KUKL also provides its own customer portal and mobile application for digital payments and account management.</p>
+
+          <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">Supported Online Payment Methods</h3>
+          <p>KUKL supports multiple digital payment channels through its official online payment system.</p>
           <div className="overflow-x-auto my-4">
             <table className="w-full text-sm text-left border-collapse border border-[#DADCE0]">
               <thead className="bg-[#E8F0FE] text-[#1A73E8]">
                 <tr>
                   <th className="p-3 font-bold uppercase tracking-wider">Payment Method</th>
-                  <th className="p-3 font-bold uppercase tracking-wider text-center">Available</th>
+                  <th className="p-3 font-bold uppercase tracking-wider text-center">Supported</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#DADCE0]">
                 <tr><td className="p-3">KUKL Customer Portal</td><td className="p-3 text-center text-[#188038] font-bold">✓</td></tr>
                 <tr><td className="p-3">KUKL Mobile App</td><td className="p-3 text-center text-[#188038] font-bold">✓</td></tr>
                 <tr><td className="p-3">Mobile Banking</td><td className="p-3 text-center text-[#188038] font-bold">✓</td></tr>
-                <tr><td className="p-3">Fonepay Bills</td><td className="p-3 text-center text-[#188038] font-bold">✓</td></tr>
-                <tr><td className="p-3">eSewa</td><td className="p-3 text-center text-[#188038] font-bold">✓</td></tr>
-                <tr><td className="p-3">Khalti</td><td className="p-3 text-center text-[#188038] font-bold">✓</td></tr>
+                <tr><td className="p-3">Internet Banking</td><td className="p-3 text-center text-[#188038] font-bold">✓</td></tr>
+                <tr><td className="p-3">Fonepay Integrated Banks</td><td className="p-3 text-center text-[#188038] font-bold">✓</td></tr>
                 <tr><td className="p-3">ConnectIPS</td><td className="p-3 text-center text-[#188038] font-bold">✓</td></tr>
-                <tr><td className="p-3">Partner Banks</td><td className="p-3 text-center text-[#188038] font-bold">✓</td></tr>
+                <tr><td className="p-3">QR Payment (supported providers)</td><td className="p-3 text-center text-[#188038] font-bold">✓</td></tr>
               </tbody>
             </table>
           </div>
-          <p className="text-sm italic">Most payments are processed instantly, although settlement times may vary depending on the payment provider.</p>
-          <p className="mt-4">Along with paying your utility bills online, many households also plan other recurring monthly expenses. Our <a href="/calculator/emi/" className="text-[#1A73E8] hover:underline">EMI Calculator</a> can help you estimate loan repayments and manage your monthly budget more effectively.</p>
+          <p className="mt-4 text-sm italic">Depending on your bank or payment provider, additional payment options may also be available through integrated utility payment services.</p>
 
-          <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">How to Pay Your KUKL Bill Online</h3>
-          <p>Paying your KUKL bill online usually takes only a few minutes.</p>
-          
-          <div className="space-y-4 my-6">
-            <div className="flex gap-4 items-start bg-[#F8F9FA] p-4 rounded-lg border border-[#DADCE0]">
-              <div className="bg-[#1A73E8] text-white w-7 h-7 rounded-full flex items-center justify-center font-bold shrink-0">1</div>
-              <div>
-                <h4 className="font-bold text-[#202124] m-0 mb-1">Open your preferred payment platform</h4>
-                <p className="text-sm text-[#5F6368]">Such as KUKL Customer Portal, Mobile Banking App, Fonepay Bills, eSewa, Khalti, or ConnectIPS.</p>
-              </div>
-            </div>
-            <div className="flex gap-4 items-start bg-[#F8F9FA] p-4 rounded-lg border border-[#DADCE0]">
-              <div className="bg-[#1A73E8] text-white w-7 h-7 rounded-full flex items-center justify-center font-bold shrink-0">2</div>
-              <div>
-                <h4 className="font-bold text-[#202124] m-0 mb-1">Choose KUKL Water Bill</h4>
-                <p className="text-sm text-[#5F6368]">Select this option from the available utility bill payment services.</p>
-              </div>
-            </div>
-            <div className="flex gap-4 items-start bg-[#F8F9FA] p-4 rounded-lg border border-[#DADCE0]">
-              <div className="bg-[#1A73E8] text-white w-7 h-7 rounded-full flex items-center justify-center font-bold shrink-0">3</div>
-              <div>
-                <h4 className="font-bold text-[#202124] m-0 mb-1">Enter your details</h4>
-                <p className="text-sm text-[#5F6368]">Enter your Customer Number, Connection Number, and Branch (if required). The system will retrieve your latest outstanding bill automatically.</p>
-              </div>
-            </div>
-            <div className="flex gap-4 items-start bg-[#F8F9FA] p-4 rounded-lg border border-[#DADCE0]">
-              <div className="bg-[#1A73E8] text-white w-7 h-7 rounded-full flex items-center justify-center font-bold shrink-0">4</div>
-              <div>
-                <h4 className="font-bold text-[#202124] m-0 mb-1">Verify the bill details</h4>
-                <p className="text-sm text-[#5F6368]">Check the amount and information before confirming payment.</p>
-              </div>
-            </div>
-            <div className="flex gap-4 items-start bg-[#F8F9FA] p-4 rounded-lg border border-[#DADCE0]">
-              <div className="bg-[#1A73E8] text-white w-7 h-7 rounded-full flex items-center justify-center font-bold shrink-0">5</div>
-              <div>
-                <h4 className="font-bold text-[#202124] m-0 mb-1">Complete the payment</h4>
-                <p className="text-sm text-[#5F6368]">Use your preferred payment method and save the confirmation receipt for future reference.</p>
-              </div>
-            </div>
+          <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">Online Payment Service Charges</h3>
+          <p>According to KUKL's published online payment information:</p>
+          <div className="overflow-x-auto my-4">
+            <table className="w-full text-sm text-left border-collapse border border-[#DADCE0]">
+              <thead className="bg-[#E8F0FE] text-[#1A73E8]">
+                <tr>
+                  <th className="p-3 font-bold uppercase tracking-wider">Monthly Bill Amount</th>
+                  <th className="p-3 font-bold uppercase tracking-wider">Service Charge</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#DADCE0]">
+                <tr><td className="p-3">Up to Rs. 500</td><td className="p-3">Free</td></tr>
+                <tr><td className="p-3">Above Rs. 501</td><td className="p-3">Maximum Rs. 5</td></tr>
+                <tr><td className="p-3">ConnectIPS</td><td className="p-3">As published by ConnectIPS</td></tr>
+              </tbody>
+            </table>
           </div>
-
-          <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">What You Need Before Making Payment</h3>
-          <p>To avoid payment errors, keep the following information ready:</p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Customer Number</li>
-            <li>Connection Number</li>
-            <li>Registered Branch</li>
-            <li>Latest Bill (if available)</li>
-          </ul>
-          <p className="font-medium">Entering the correct customer information ensures your payment is credited to the correct account.</p>
-
-          <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">Can I Check My KUKL Bill Before Paying?</h3>
-          <p className="font-bold text-[#188038] text-lg">Yes.</p>
-          <p>
-            You can check your outstanding balance through the official KUKL customer portal or supported digital payment platforms before making a payment.
+          <p className="mt-4 text-sm text-[#B37400] bg-[#FEF7E0] p-4 rounded-lg border border-[#F2C94C]">
+            Actual charges may vary if your payment provider applies its own service fee. Always verify the final amount before confirming payment.
           </p>
-          <p>The available information generally includes:</p>
-          <ul className="list-disc pl-5 space-y-1">
-            <li>Outstanding amount</li>
-            <li>Customer details</li>
-            <li>Billing period</li>
-            <li>Payment status</li>
-          </ul>
-          <p>Checking your bill before payment helps confirm the payable amount and reduces the risk of duplicate payments.</p>
 
-          <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">KUKL Mobile Services</h3>
-          <p>KUKL also provides digital customer services that make account management more convenient.</p>
-          <p>Depending on the platform, customers can:</p>
+          <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">KUKL Mobile App Features</h3>
+          <p>The official KUKL Mobile App provides convenient access to several customer services, including:</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li>Check outstanding bills</li>
-            <li>View payment history</li>
-            <li>Pay water bills online</li>
-            <li>Access customer account information</li>
-            <li>Receive billing updates</li>
-            <li>Manage utility payments without visiting a service center</li>
+            <li>View water bills</li>
+            <li>Online bill payment</li>
+            <li>Customer account information</li>
+            <li>Digital services</li>
+            <li>Customer support access</li>
           </ul>
-          <p className="text-sm italic">Available services may vary depending on your branch and payment provider.</p>
+          <p className="mt-4 text-sm italic">The application is maintained by Kathmandu Upatyaka Khanepani Limited and is intended to simplify account management for customers.</p>
 
-          <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">Need to Estimate Your Bill First?</h3>
-          <p>Before making a payment, you can use the calculator above to estimate your monthly bill based on:</p>
+          <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">Customer Portal Features</h3>
+          <p>The official KUKL Customer Portal allows customers to:</p>
           <ul className="list-disc pl-5 space-y-1">
-            <li>Water consumption</li>
-            <li>Pipe connection size</li>
-            <li>Official tariff structure</li>
-            <li>Sewerage charge</li>
+            <li>Access account information</li>
+            <li>View outstanding bills</li>
+            <li>Review payment history</li>
+            <li>Manage customer records</li>
+            <li>Access online services</li>
           </ul>
-          <p>This allows you to compare your estimated amount with the official bill issued by KUKL.</p>
-
-          <div className="bg-[#FEF7E0] border border-[#F2C94C] p-4 rounded-lg mt-6">
-            <h4 className="font-bold text-[#B37400] mb-2">Important Note</h4>
-            <p className="text-sm text-[#B37400]">
-              This calculator is designed to estimate your monthly water bill using the official KUKL tariff structure. The actual payable amount shown on your official bill remains the final amount issued by Kathmandu Upatyaka Khanepani Limited.
-            </p>
-            <p className="text-sm text-[#B37400] mt-2">
-              For billing disputes, account corrections, new connections, or service-related requests, customers should contact KUKL directly through its official customer support channels.
-            </p>
-          </div>
+          <p className="mt-4 text-sm italic">The portal is available through KUKL's official website.</p>
 
           <div className="bg-[#E8F0FE] p-6 rounded-xl border border-[#1A73E8] my-8">
-            <h3 className="text-lg font-black text-[#1A73E8] mb-3">Quick Summary</h3>
+            <h3 className="text-lg font-black text-[#1A73E8] mb-3">Quick Tips Before Paying</h3>
             <ul className="space-y-2 font-medium">
-              <li className="flex gap-2"><span className="text-[#1A73E8]">✔</span> Check your bill online before payment.</li>
-              <li className="flex gap-2"><span className="text-[#1A73E8]">✔</span> Multiple digital payment options are available.</li>
-              <li className="flex gap-2"><span className="text-[#1A73E8]">✔</span> Keep your Customer Number and Connection Number ready.</li>
-              <li className="flex gap-2"><span className="text-[#1A73E8]">✔</span> Use the calculator to estimate your bill before paying.</li>
-              <li className="flex gap-2"><span className="text-[#1A73E8]">✔</span> Always verify payment details before confirming the transaction.</li>
+              <li className="flex gap-2"><span className="text-[#1A73E8]">✔</span> Verify your Customer Number before payment.</li>
+              <li className="flex gap-2"><span className="text-[#1A73E8]">✔</span> Check the billing amount carefully.</li>
+              <li className="flex gap-2"><span className="text-[#1A73E8]">✔</span> Keep the payment receipt until the transaction is confirmed.</li>
+              <li className="flex gap-2"><span className="text-[#1A73E8]">✔</span> Compare your official bill with the estimated result from this calculator if you want to understand how the total was calculated.</li>
+              <li className="flex gap-2"><span className="text-[#1A73E8]">✔</span> Contact your local KUKL office if you notice unexpected differences in meter readings or charges.</li>
             </ul>
           </div>
 
