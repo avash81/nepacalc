@@ -32,14 +32,6 @@ function KUKLCalculatorInner() {
 
   const update = (u: Partial<typeof state>) => {
     setState({ ...state, ...u });
-    if (u.units !== undefined || u.pipeSize !== undefined || state.mode === 'official') {
-      const current = new URLSearchParams(Array.from(searchParams.entries()));
-      const newUnits  = u.units    !== undefined ? u.units    : state.units;
-      const newPipe   = u.pipeSize !== undefined ? u.pipeSize : state.pipeSize;
-      current.set('units', newUnits.toString());
-      current.set('pipe', newPipe);
-      router.replace(`${pathname}?${current.toString()}`, { scroll: false });
-    }
   };
 
   useEffect(() => {
@@ -194,13 +186,21 @@ function KUKLCalculatorInner() {
           {/* Action Buttons */}
           <div className="flex flex-col gap-2 pt-4 border-t border-[#F1F3F4]">
             <div className="grid grid-cols-4 gap-2">
-              <button onClick={() => { navigator.clipboard.writeText(window.location.href); alert('URL copied!'); }} className="h-10 flex flex-col items-center justify-center bg-[#F8F9FA] hover:bg-[#E8EAED] text-[#5F6368] border border-[#DADCE0] rounded-md transition-colors">
+              <button onClick={() => { 
+                const url = `${window.location.origin}${pathname}?units=${state.units}&pipe=${state.pipeSize}`;
+                navigator.clipboard.writeText(url); 
+                alert('URL copied!'); 
+              }} className="h-10 flex flex-col items-center justify-center bg-[#F8F9FA] hover:bg-[#E8EAED] text-[#5F6368] border border-[#DADCE0] rounded-md transition-colors">
                 <Copy className="w-3.5 h-3.5 mb-0.5" /><span className="text-[8px] font-bold uppercase">Copy Link</span>
               </button>
               <button onClick={() => window.print()} className="h-10 flex flex-col items-center justify-center bg-[#F8F9FA] hover:bg-[#E8EAED] text-[#5F6368] border border-[#DADCE0] rounded-md transition-colors">
                 <Printer className="w-3.5 h-3.5 mb-0.5" /><span className="text-[8px] font-bold uppercase">Print</span>
               </button>
-              <button onClick={() => {}} className="h-10 flex flex-col items-center justify-center bg-[#F8F9FA] hover:bg-[#E8EAED] text-[#5F6368] border border-[#DADCE0] rounded-md transition-colors">
+              <button onClick={() => {
+                const url = `${window.location.origin}${pathname}?units=${state.units}&pipe=${state.pipeSize}`;
+                navigator.clipboard.writeText(url); 
+                alert('URL copied to clipboard for sharing!'); 
+              }} className="h-10 flex flex-col items-center justify-center bg-[#F8F9FA] hover:bg-[#E8EAED] text-[#5F6368] border border-[#DADCE0] rounded-md transition-colors">
                 <Share className="w-3.5 h-3.5 mb-0.5" /><span className="text-[8px] font-bold uppercase">Share</span>
               </button>
               <button onClick={() => {
