@@ -463,9 +463,11 @@ function KUKLCalculatorInner() {
         <div className="space-y-6">
           {state.mode === 'official' && (
             <>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                
-                {/* Step-by-Step Breakdown */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+                 {/* Left Column */}
+                 <div className="space-y-6">
+                 
+                 {/* Step-by-Step Breakdown */}
                 <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
                    <div className="flex items-center gap-2 mb-6 border-b border-[#F1F3F4] pb-3">
                       <LayoutList className="w-5 h-5 text-[#1A73E8]" />
@@ -513,22 +515,6 @@ function KUKLCalculatorInner() {
                       </div>
                    </div>
                 </div>
-                
-                {/* Export & Share Buttons */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-6 pb-2 border-y border-[#DADCE0] mt-8 mb-8">
-                  <span className="text-sm font-bold text-[#202124] mr-2">Export & Share:</span>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <button onClick={() => { try { window.print(); } catch(e){} }} className="h-10 px-4 border border-[#DADCE0] bg-white rounded flex items-center justify-center gap-2 hover:bg-[#F8F9FA] transition-colors text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">
-                      <Printer className="w-3.5 h-3.5" /> Print
-                    </button>
-                    <button onClick={() => { const text = `KUKL Water Bill Calculation\nPipe Size: ${state.pipeSize}"\nConsumption: ${state.units} Units\nWater Charge: ${formatNPR(officialResult.waterCharge)}\nSewerage Tax (50%): ${formatNPR(officialResult.sewerageTax)}\nTotal Bill: ${formatNPR(officialResult.totalBill)}`; navigator.clipboard?.writeText(text).catch(()=>{}); }} className="h-10 px-4 border border-[#DADCE0] bg-white rounded flex items-center justify-center gap-2 hover:bg-[#F8F9FA] transition-colors text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">
-                      <Copy className="w-3.5 h-3.5" /> Copy
-                    </button>
-                    <button onClick={() => { const data = { pipeSize: state.pipeSize, consumptionUnits: state.units, waterCharge: officialResult.waterCharge, sewerageTax: officialResult.sewerageTax, totalBill: officialResult.totalBill, calculatedAt: new Date().toISOString() }; const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `kukl-bill-${state.units}units.json`; a.click(); }} className="h-10 px-4 border border-[#1A73E8] bg-[#E8F0FE] rounded flex items-center justify-center gap-2 hover:bg-[#D2E3FC] transition-colors text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">
-                      <Download className="w-3.5 h-3.5" /> Download
-                    </button>
-                  </div>
-                </div>
   
                 {/* Official Tariff Reference */}
                 <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
@@ -564,11 +550,26 @@ function KUKLCalculatorInner() {
                      </div>
                    </div>
                 </div>
-              </div>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Monthly Cost Comparison Table */}
-                <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
+                 </div> {/* End Left Column */}
+                 
+                 {/* Right Column */}
+                 <div className="space-y-6">
+                   {/* Export & Share Buttons */}
+                   <div className="flex flex-wrap items-center gap-2 pb-2">
+                     <span className="text-xs font-bold text-[#5F6368] uppercase tracking-wider mr-1">Export & Share:</span>
+                     <button onClick={() => { try { window.print(); } catch(e){} }} className="h-8 px-3 border border-[#DADCE0] bg-white rounded flex items-center justify-center gap-1.5 hover:bg-[#F8F9FA] transition-colors text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">
+                       <Printer className="w-3 h-3" /> Print
+                     </button>
+                     <button onClick={() => { const text = `KUKL Water Bill Calculation\nPipe Size: ${state.pipeSize}"\nConsumption: ${state.units} Units\nWater Charge: ${formatNPR(officialResult.waterCharge)}\nSewerage Tax (50%): ${formatNPR(officialResult.sewerageTax)}\nTotal Bill: ${formatNPR(officialResult.totalBill)}`; navigator.clipboard?.writeText(text).catch(()=>{}); }} className="h-8 px-3 border border-[#DADCE0] bg-white rounded flex items-center justify-center gap-1.5 hover:bg-[#F8F9FA] transition-colors text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">
+                       <Copy className="w-3 h-3" /> Copy
+                     </button>
+                     <button onClick={() => { const data = { pipeSize: state.pipeSize, consumptionUnits: state.units, waterCharge: officialResult.waterCharge, sewerageTax: officialResult.sewerageTax, totalBill: officialResult.totalBill, calculatedAt: new Date().toISOString() }; const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'}); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `kukl-bill-${state.units}units.json`; a.click(); }} className="h-8 px-3 border border-[#1A73E8] bg-[#E8F0FE] rounded flex items-center justify-center gap-1.5 hover:bg-[#D2E3FC] transition-colors text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">
+                       <Download className="w-3 h-3" /> Download
+                     </button>
+                   </div>
+                   
+                   {/* Monthly Cost Comparison Table */}
+                   <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm">
                    <div className="flex items-center gap-2 mb-6 border-b border-[#F1F3F4] pb-3">
                       <h3 className="text-[11px] font-black text-[#202124] uppercase tracking-widest">Monthly Cost Comparison ({state.pipeSize}")</h3>
                    </div>
@@ -617,13 +618,12 @@ function KUKLCalculatorInner() {
                      </div>
                    </div>
                 </div>
+                 </div> {/* End Right Column */}
               </div>
             </>
           )}
         </div>
       }
-      howToUse={{ steps: [] }}
-      formula={{ title: "", description: "", raw: "", variables: [] }}
       faqs={[]}
       sidebar={{ title: "", subtitle: "", links: [] }}
       relatedTools={[
