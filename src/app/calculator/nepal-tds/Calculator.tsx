@@ -414,8 +414,9 @@ const schemaGraph = {
 const DEFAULT_STATE = {
   mode: 'official',
   source: 'consultancy',
-  customRate: 15,
+  customRate: 0,
   amount: 0,
+  fiscalYear: '2083/84',
   recipientType: 'Resident Individual',
   vatStatus: 'No Valid VAT Invoice',
   panStatus: 'Valid PAN'

@@ -248,14 +248,15 @@ export function ModernCalcLayout({
               </nav>
             )}
             {!hideH1 && (
-              <h1 className={titleClassName || `${compactHeader ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'} font-bold text-[#202124] tracking-tight mb-0.5`}>{title}</h1>
+              <h1 className={titleClassName || `${compactHeader ? 'text-xl sm:text-2xl' : 'text-xl sm:text-2xl'} font-bold text-[#202124] tracking-tight mb-0.5`}>{title}</h1>
             )}
           </div>
         </div>
         {intro && <div className="mb-8">{intro}</div>}
         {ads?.top && <div className="mb-6 flex justify-center no-print">{ads.top}</div>}
+        // Updated layout without excessive margin and smaller title
         {fullWidth && (
-          <div className="mb-8">
+          <div className="mb-4">
             {calculatorEngineNode}
           </div>
         )}

@@ -8,7 +8,7 @@ import KuklSeoContent from './KuklSeoContent';
 import { 
   Droplets, RefreshCw, Share, Copy, Printer, Calculator, Settings,
   ChevronDown, ChevronRight, CheckCircle2, AlertCircle, LayoutList, ShieldCheck,
-  HelpCircle, Download
+  HelpCircle, Download, Users, Bath, Flower2, WashingMachine, Info, Check
 } from 'lucide-react';
 
 function formatNPR(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
@@ -20,7 +20,7 @@ function KUKLCalculatorInner() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const [state, setState] = useSyncState('kukl_v12', { 
+  const [state, setState] = useSyncState('kukl_v13', { 
     mode: 'official' as CalcMode,
     
     // Official State
@@ -41,12 +41,14 @@ function KUKLCalculatorInner() {
 
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [showEstimator, setShowEstimator] = useState(false);
+  // Whether user has opted-in to use estimator result
+  const [estimatorApplied, setEstimatorApplied] = useState(false);
 
-  // Estimator State
-  const [estPeople, setEstPeople] = useState(4);
-  const [estBathrooms, setEstBathrooms] = useState(2);
-  const [estGarden, setEstGarden] = useState(false);
-  const [estWashing, setEstWashing] = useState<'Never' | 'Weekly' | 'Daily'>('Weekly');
+  // Estimator State — all default to 0 so user must consciously fill in
+  const [estPeople, setEstPeople]     = useState(0);
+  const [estBathrooms, setEstBathrooms] = useState(0);
+  const [estGarden, setEstGarden]     = useState<'no' | 'yes'>('no');
+  const [estWashing, setEstWashing]   = useState<'Never' | 'Weekly' | 'Daily'>('Never');
 
   const update = (u: Partial<typeof state>) => {
     setState({ ...state, ...u });
@@ -107,13 +109,13 @@ function KUKLCalculatorInner() {
   }, [state.cUnits, state.pipeSize]);
 
   const tariffMap: Record<KUKLPipeSize, { minUnits: number, minCharge: number, excessRate: number }> = {
-    '0.5': { minUnits: 10, minCharge: 100, excessRate: 32 },
-    '0.75': { minUnits: 27, minCharge: 1910, excessRate: 71 },
-    '1': { minUnits: 56, minCharge: 3960, excessRate: 71 },
-    '1.5': { minUnits: 155, minCharge: 10950, excessRate: 71 },
-    '2': { minUnits: 320, minCharge: 22600, excessRate: 71 },
-    '3': { minUnits: 881, minCharge: 62240, excessRate: 71 },
-    '4': { minUnits: 1810, minCharge: 127865, excessRate: 71 },
+    '0.5':  { minUnits: 10,   minCharge: 100,    excessRate: 32 },
+    '0.75': { minUnits: 27,   minCharge: 1910,   excessRate: 71 },
+    '1':    { minUnits: 56,   minCharge: 3960,   excessRate: 71 },
+    '1.5':  { minUnits: 155,  minCharge: 10950,  excessRate: 71 },
+    '2':    { minUnits: 320,  minCharge: 22600,  excessRate: 71 },
+    '3':    { minUnits: 881,  minCharge: 62240,  excessRate: 71 },
+    '4':    { minUnits: 1810, minCharge: 127865, excessRate: 71 },
   };
 
   const currentOfficialTariff = tariffMap[state.pipeSize];
@@ -122,11 +124,25 @@ function KUKLCalculatorInner() {
   const estimatedUnits = useMemo(() => {
     let base = estPeople * 3;
     if (estBathrooms > 1) base += (estBathrooms - 1) * 1;
-    if (estGarden) base += 3;
+    if (estGarden === 'yes') base += 3;
     if (estWashing === 'Weekly') base += 1;
     if (estWashing === 'Daily') base += 3;
     return base;
   }, [estPeople, estBathrooms, estGarden, estWashing]);
+
+  // Estimator breakdown lines for the result panel
+  const estimatorBreakdown = useMemo(() => {
+    if (!estimatorApplied || estPeople === 0) return null;
+    const lines: { label: string; value: string; units: number }[] = [];
+    lines.push({ label: `${estPeople} person(s) × 3 Units each`, value: 'Daily use', units: estPeople * 3 });
+    if (estBathrooms > 1) lines.push({ label: `+${estBathrooms - 1} extra bathroom(s)`, value: '+1 Unit each', units: estBathrooms - 1 });
+    if (estGarden === 'yes') lines.push({ label: 'Garden / Lawn watering', value: 'Fixed', units: 3 });
+    if (estWashing === 'Weekly') lines.push({ label: 'Washing machine (weekly)', value: 'Fixed', units: 1 });
+    if (estWashing === 'Daily') lines.push({ label: 'Washing machine (daily)', value: 'Fixed', units: 3 });
+    return lines;
+  }, [estimatorApplied, estPeople, estBathrooms, estGarden, estWashing]);
+
+  const isEstimatorReady = estPeople > 0;
 
   return (
     <ModernCalcLayout
@@ -163,61 +179,147 @@ function KUKLCalculatorInner() {
               </div>
               
               <div className="space-y-4">
-                
-                {/* Water Estimator Toggle */}
-                <div className="border border-[#DADCE0] rounded-md overflow-hidden bg-[#F8F9FA]">
-                  <button 
-                    onClick={() => setShowEstimator(!showEstimator)} 
-                    className="w-full flex items-center justify-between p-3 hover:bg-[#F1F3F4] text-[#1A73E8] transition-colors"
+
+                {/* ── ESTIMATOR SECTION ──────────────────────────────────── */}
+                <div className="border border-[#DADCE0] rounded-lg overflow-hidden">
+                  {/* Header row — always visible */}
+                  <button
+                    onClick={() => setShowEstimator(!showEstimator)}
+                    className="w-full flex items-center justify-between px-4 py-3 bg-[#F8F9FA] hover:bg-[#F1F3F4] text-[#1A73E8] transition-colors"
                   >
-                    <span className="text-[11px] font-bold uppercase tracking-wider flex items-center gap-2"><HelpCircle className="w-4 h-4"/> Don't Know Your Water Usage?</span>
-                    {showEstimator ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+                    <div className="flex items-start gap-2 text-left">
+                      <HelpCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-[11px] font-bold uppercase tracking-wider">Don't Know Your Water Usage?</div>
+                        {/* Subtitle always shown so user knows what's inside */}
+                        <div className="text-[9px] font-medium text-[#5F6368] mt-0.5 normal-case tracking-normal">
+                          ✦ Optional — estimate from household size, bathrooms &amp; appliances
+                        </div>
+                      </div>
+                    </div>
+                    {showEstimator ? <ChevronDown className="w-4 h-4 shrink-0" /> : <ChevronRight className="w-4 h-4 shrink-0" />}
                   </button>
+
                   {showEstimator && (
-                    <div className="p-4 bg-white border-t border-[#DADCE0] space-y-4">
+                    <div className="p-4 bg-white border-t border-[#DADCE0] space-y-5">
+                      {/* Info banner */}
+                      <div className="flex items-start gap-2 p-3 bg-[#E8F0FE] border border-[#D2E3FC] rounded-md">
+                        <Info className="w-4 h-4 text-[#1A73E8] shrink-0 mt-0.5" />
+                        <p className="text-[10px] text-[#3C4043] leading-relaxed">
+                          Fill in your household details below and click <strong>"Use this estimate"</strong> to auto-fill your monthly consumption.
+                          This is completely <strong>optional</strong> — you can also type your consumption directly in the field below.
+                        </p>
+                      </div>
+
+                      {/* Input grid — all default to 0 */}
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">People in Household</label>
-                          <input type="number" value={estPeople} onChange={(e) => setEstPeople(Number(e.target.value))} className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold" min="1" />
+
+                        {/* People */}
+                        <div className="space-y-1.5">
+                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1.5">
+                            <Users className="w-3 h-3" /> People in Household
+                          </label>
+                          <input
+                            type="number"
+                            value={estPeople || ''}
+                            onChange={(e) => { setEstPeople(Number(e.target.value)); setEstimatorApplied(false); }}
+                            placeholder="0"
+                            className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold focus:border-[#1A73E8] outline-none transition-all"
+                            min="0"
+                          />
+                          <p className="text-[9px] text-[#70757A]">≈ 3 units / person / month</p>
                         </div>
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Bathrooms</label>
-                          <input type="number" value={estBathrooms} onChange={(e) => setEstBathrooms(Number(e.target.value))} className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold" min="1" />
+
+                        {/* Bathrooms */}
+                        <div className="space-y-1.5">
+                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1.5">
+                            <Bath className="w-3 h-3" /> Bathrooms
+                          </label>
+                          <input
+                            type="number"
+                            value={estBathrooms || ''}
+                            onChange={(e) => { setEstBathrooms(Number(e.target.value)); setEstimatorApplied(false); }}
+                            placeholder="0"
+                            className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold focus:border-[#1A73E8] outline-none transition-all"
+                            min="0"
+                          />
+                          <p className="text-[9px] text-[#70757A]">+1 unit per extra bathroom</p>
                         </div>
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Garden / Lawn</label>
-                          <select value={estGarden ? 'yes' : 'no'} onChange={(e) => setEstGarden(e.target.value === 'yes')} className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold bg-white outline-none">
+
+                        {/* Garden */}
+                        <div className="space-y-1.5">
+                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1.5">
+                            <Flower2 className="w-3 h-3" /> Garden / Lawn
+                          </label>
+                          <select
+                            value={estGarden}
+                            onChange={(e) => { setEstGarden(e.target.value as 'no' | 'yes'); setEstimatorApplied(false); }}
+                            className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold bg-white outline-none focus:border-[#1A73E8] transition-all"
+                          >
                             <option value="no">No</option>
-                            <option value="yes">Yes</option>
+                            <option value="yes">Yes (+3 units)</option>
                           </select>
                         </div>
-                        <div className="space-y-1">
-                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Washing Machine</label>
-                          <select value={estWashing} onChange={(e) => setEstWashing(e.target.value as any)} className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold bg-white outline-none">
-                            <option value="Never">Never</option>
-                            <option value="Weekly">Weekly</option>
-                            <option value="Daily">Daily</option>
+
+                        {/* Washing Machine */}
+                        <div className="space-y-1.5">
+                          <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider flex items-center gap-1.5">
+                            <WashingMachine className="w-3 h-3" /> Washing Machine
+                          </label>
+                          <select
+                            value={estWashing}
+                            onChange={(e) => { setEstWashing(e.target.value as any); setEstimatorApplied(false); }}
+                            className="w-full h-10 px-3 border border-[#DADCE0] rounded-md text-sm font-bold bg-white outline-none focus:border-[#1A73E8] transition-all"
+                          >
+                            <option value="Never">Never used</option>
+                            <option value="Weekly">Weekly (+1 unit)</option>
+                            <option value="Daily">Daily (+3 units)</option>
                           </select>
                         </div>
                       </div>
-                      <div className="p-4 bg-[#E8F0FE] rounded-md border border-[#1A73E8] flex items-center justify-between">
-                        <div>
-                          <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider mb-0.5">Estimated Monthly Consumption</div>
-                          <div className="text-xl font-black text-[#1A73E8]">{estimatedUnits} Units <span className="text-xs font-bold text-[#1A73E8]/80 ml-1">(≈ {(estimatedUnits * 1000).toLocaleString('en-IN')} Litres)</span></div>
+
+                      {/* Result + CTA */}
+                      <div className={`rounded-lg border-2 p-4 transition-all ${isEstimatorReady ? 'border-[#1A73E8] bg-[#E8F0FE]' : 'border-[#DADCE0] bg-[#F8F9FA] opacity-70'}`}>
+                        <div className="flex items-center justify-between flex-wrap gap-3">
+                          <div>
+                            <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider mb-0.5">Estimated Monthly Consumption</div>
+                            <div className="text-xl font-black text-[#1A73E8]">
+                              {estimatedUnits} Units
+                              <span className="text-xs font-bold text-[#1A73E8]/70 ml-1.5">
+                                (≈ {(estimatedUnits * 1000).toLocaleString('en-IN')} Litres)
+                              </span>
+                            </div>
+                            {!isEstimatorReady && (
+                              <div className="text-[9px] text-[#5F6368] mt-0.5">Enter at least 1 person to get an estimate</div>
+                            )}
+                          </div>
+                          <button
+                            disabled={!isEstimatorReady}
+                            onClick={() => {
+                              update({ units: estimatedUnits });
+                              setEstimatorApplied(true);
+                              setShowEstimator(false);
+                            }}
+                            className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-xs font-bold uppercase tracking-wider transition-all ${
+                              isEstimatorReady
+                                ? 'bg-[#1A73E8] hover:bg-[#1557B0] text-white shadow-sm'
+                                : 'bg-[#DADCE0] text-[#9AA0A6] cursor-not-allowed'
+                            }`}
+                          >
+                            <Check className="w-3.5 h-3.5" />
+                            Use this estimate
+                          </button>
                         </div>
-                        <button 
-                          onClick={() => {
-                            update({ units: estimatedUnits });
-                            setShowEstimator(false);
-                          }}
-                          className="px-4 py-2 bg-[#1A73E8] hover:bg-[#1557B0] text-white text-xs font-bold uppercase tracking-wider rounded transition-colors"
-                        >
-                          Use this estimate
-                        </button>
                       </div>
+
+                      {/* Hint: estimator is optional */}
+                      <p className="text-[9px] text-[#70757A] text-center italic">
+                        ✦ Using the estimator is optional. You can skip it and type your exact unit reading directly below.
+                      </p>
                     </div>
                   )}
                 </div>
+                {/* ── END ESTIMATOR ──────────────────────────────────────── */}
 
                 <div className="space-y-2">
                   <label htmlFor="pipe-size" className="text-[11px] font-bold uppercase text-[#5F6368] tracking-wider">Pipe Size</label>
@@ -243,19 +345,27 @@ function KUKLCalculatorInner() {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="water-units" className="text-[11px] font-bold uppercase text-[#5F6368] tracking-wider">Monthly Consumption (Units)</label>
+                  <label htmlFor="water-units" className="text-[11px] font-bold uppercase text-[#5F6368] tracking-wider">
+                    Monthly Consumption (Units)
+                  </label>
                   <div className="relative">
-                    <input 
+                    <input
                       id="water-units"
-                      type="number" 
-                      value={state.units || ''} 
-                      onChange={(e) => update({ units: e.target.value ? Number(e.target.value) : 0 })}
+                      type="number"
+                      value={state.units || ''}
+                      onChange={(e) => { update({ units: e.target.value ? Number(e.target.value) : 0 }); setEstimatorApplied(false); }}
                       placeholder="0"
-                      className="w-full h-12 pl-4 pr-24 border border-[#DADCE0] rounded-md bg-white text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all" 
+                      className="w-full h-12 pl-4 pr-24 border border-[#DADCE0] rounded-md bg-white text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all"
                     />
                     <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-black text-[#1A73E8] pointer-events-none">UNITS</span>
                   </div>
-                  <p className="text-[9px] text-[#5F6368] font-bold uppercase tracking-wider mt-1">1 Unit = 1,000 Litres</p>
+                  <p className="text-[9px] text-[#5F6368] font-bold uppercase tracking-wider mt-1">1 Unit = 1,000 Litres (1 kL)</p>
+                  {estimatorApplied && (
+                    <div className="flex items-center gap-1.5 mt-1">
+                      <CheckCircle2 className="w-3 h-3 text-[#188038]" />
+                      <span className="text-[9px] font-bold text-[#188038] uppercase tracking-wider">Filled from estimator</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -295,8 +405,8 @@ function KUKLCalculatorInner() {
                   </div>
 
                   <div className="border border-[#DADCE0] rounded-md overflow-hidden">
-                    <button 
-                      onClick={() => setShowAdvanced(!showAdvanced)} 
+                    <button
+                      onClick={() => setShowAdvanced(!showAdvanced)}
                       className="w-full flex items-center justify-between p-3 bg-[#F8F9FA] hover:bg-[#F1F3F4] text-[#5F6368] transition-colors"
                     >
                       <span className="text-[11px] font-bold uppercase tracking-wider flex items-center gap-2"><Settings className="w-4 h-4"/> Advanced Settings</span>
@@ -326,11 +436,11 @@ function KUKLCalculatorInner() {
           {/* Action Buttons */}
           <div className="flex flex-col gap-2 pt-4 border-t border-[#F1F3F4]">
             <div className="grid grid-cols-4 gap-2">
-              <button 
+              <button
                 onClick={() => {
                   navigator.clipboard.writeText(window.location.href);
                   alert('URL copied to clipboard! You can share this exact calculation.');
-                }} 
+                }}
                 className="h-10 flex flex-col items-center justify-center bg-[#F8F9FA] hover:bg-[#E8EAED] text-[#5F6368] border border-[#DADCE0] rounded-md transition-colors"
               >
                 <Copy className="w-3.5 h-3.5 mb-0.5" /><span className="text-[8px] font-bold uppercase">Copy Link</span>
@@ -341,11 +451,16 @@ function KUKLCalculatorInner() {
               <button onClick={() => {}} className="h-10 flex flex-col items-center justify-center bg-[#F8F9FA] hover:bg-[#E8EAED] text-[#5F6368] border border-[#DADCE0] rounded-md transition-colors">
                 <Share className="w-3.5 h-3.5 mb-0.5" /><span className="text-[8px] font-bold uppercase">Share</span>
               </button>
-              <button 
+              <button
                 onClick={() => {
-                  if (state.mode === 'official') update({ units: 0, pipeSize: '0.5' });
-                  else update({ cUnits: 0, cMinUnits: 0, cMinCharge: 0, cExtraRate: 0, cSewPct: 0, cService: 0, cVat: 0, cOther: 0 });
-                }} 
+                  if (state.mode === 'official') {
+                    update({ units: 0, pipeSize: '0.5' });
+                    setEstPeople(0); setEstBathrooms(0); setEstGarden('no'); setEstWashing('Never');
+                    setEstimatorApplied(false);
+                  } else {
+                    update({ cUnits: 0, cMinUnits: 0, cMinCharge: 0, cExtraRate: 0, cSewPct: 0, cService: 0, cVat: 0, cOther: 0 });
+                  }
+                }}
                 className="h-10 flex flex-col items-center justify-center bg-[#FCE8E6] hover:bg-[#FAD2CF] text-[#C5221F] border border-[#F8B0A9] rounded-md transition-colors"
               >
                 <RefreshCw className="w-3.5 h-3.5 mb-0.5" /><span className="text-[8px] font-bold uppercase">Reset</span>
@@ -356,20 +471,22 @@ function KUKLCalculatorInner() {
         </div>
       }
       results={
-        <div className="space-y-6 h-full flex flex-col justify-center">
+        <div className="space-y-5 h-full flex flex-col justify-start">
           {state.mode === 'official' ? (
             <>
-              <div className="bg-[#E8F0FE] border border-[#DADCE0] rounded-lg p-10 text-center space-y-2 sticky top-4">
+              {/* Total Bill Hero */}
+              <div className="bg-[#E8F0FE] border border-[#D2E3FC] rounded-lg p-8 text-center space-y-2">
                  <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider">Total Payable Bill</div>
-                 <div className="text-5xl font-black tracking-tight text-[#1A73E8]">{formatNPR(officialResult.totalBill)}</div>
-                 <div className="flex justify-center mt-2">
-                   <span className="px-4 py-1.5 bg-white rounded-full text-[10px] font-black text-[#5F6368] uppercase border border-[#DADCE0] shadow-sm">
+                 <div className="text-4xl font-black tracking-tight text-[#1A73E8]">{formatNPR(officialResult.totalBill)}</div>
+                 <div className="flex justify-center mt-1">
+                   <span className="px-3 py-1 bg-white rounded-full text-[10px] font-black text-[#5F6368] uppercase border border-[#DADCE0] shadow-sm">
                      Inclusive of 50% Sewerage Tax
                    </span>
                  </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              {/* Water + Sewerage quick cards */}
+              <div className="grid grid-cols-2 gap-3">
                  <div className="border border-[#DADCE0] rounded-md p-4 text-center bg-white shadow-sm">
                     <div className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider mb-1">Water Charge</div>
                     <div className="text-xl font-black text-[#202124]">{formatNPR(officialResult.waterCharge)}</div>
@@ -378,6 +495,120 @@ function KUKLCalculatorInner() {
                     <div className="text-[10px] font-bold text-[#1A73E8] uppercase tracking-wider mb-1">Sewerage (50%)</div>
                     <div className="text-xl font-black text-[#1A73E8]">{formatNPR(officialResult.sewerageTax)}</div>
                  </div>
+              </div>
+
+              {/* ── DETAILED BILL BREAKDOWN ──────────────────────── */}
+              <div className="border border-[#DADCE0] rounded-lg bg-white shadow-sm overflow-hidden">
+                <div className="px-4 py-3 bg-[#F8F9FA] border-b border-[#DADCE0] flex items-center gap-2">
+                  <LayoutList className="w-4 h-4 text-[#1A73E8]" />
+                  <span className="text-[11px] font-black text-[#202124] uppercase tracking-widest">How Your Bill is Calculated</span>
+                </div>
+                <div className="p-4 space-y-3 text-sm">
+
+                  {/* Step 1 — Estimator origin (only shown if estimator was used) */}
+                  {estimatorApplied && estimatorBreakdown && estimatorBreakdown.length > 0 && (
+                    <div className="bg-[#E8F0FE] border border-[#D2E3FC] rounded-md p-3 space-y-2 mb-1">
+                      <div className="text-[10px] font-black text-[#1A73E8] uppercase tracking-wider">Usage Estimated From Household Info</div>
+                      {estimatorBreakdown.map((line, i) => (
+                        <div key={i} className="flex items-center justify-between text-[11px]">
+                          <span className="text-[#5F6368]">{line.label}</span>
+                          <span className="font-bold text-[#202124]">+{line.units} units</span>
+                        </div>
+                      ))}
+                      <div className="flex items-center justify-between pt-1 border-t border-[#D2E3FC] text-[11px]">
+                        <span className="font-black text-[#1A73E8]">Total Estimated</span>
+                        <span className="font-black text-[#1A73E8]">{estimatedUnits} units</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Step 1 or 2 — Consumption */}
+                  <div className="flex items-start justify-between gap-2 pb-2 border-b border-dashed border-[#DADCE0]">
+                    <div>
+                      <div className="font-bold text-[#5F6368] text-[11px] uppercase tracking-wider">
+                        {state.units <= currentOfficialTariff.minUnits ? 'Within Minimum Block' : 'Step 1 — Minimum Block'}
+                      </div>
+                      <div className="text-[10px] text-[#70757A] mt-0.5">
+                        First {currentOfficialTariff.minUnits} units covered by minimum charge
+                      </div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <div className="font-black text-[#202124]">{formatNPR(currentOfficialTariff.minCharge)}</div>
+                      <div className="text-[9px] text-[#70757A]">Base charge</div>
+                    </div>
+                  </div>
+
+                  {/* Step 2 — Extra units (only if applicable) */}
+                  {state.units > currentOfficialTariff.minUnits && (
+                    <div className="flex items-start justify-between gap-2 pb-2 border-b border-dashed border-[#DADCE0]">
+                      <div>
+                        <div className="font-bold text-[#5F6368] text-[11px] uppercase tracking-wider">Step 2 — Extra Units</div>
+                        <div className="text-[10px] text-[#70757A] mt-0.5">
+                          {state.units - currentOfficialTariff.minUnits} extra units × {formatNPR(currentOfficialTariff.excessRate)}/unit
+                        </div>
+                      </div>
+                      <div className="text-right shrink-0">
+                        <div className="font-black text-[#202124]">
+                          {formatNPR((state.units - currentOfficialTariff.minUnits) * currentOfficialTariff.excessRate)}
+                        </div>
+                        <div className="text-[9px] text-[#70757A]">Extra charge</div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Sub-total: Water Charge */}
+                  <div className="flex items-center justify-between py-1.5 px-3 bg-[#F8F9FA] rounded border border-[#DADCE0]">
+                    <span className="text-[11px] font-black text-[#202124] uppercase tracking-wider">Water Charge Sub-total</span>
+                    <span className="font-black text-[#202124]">{formatNPR(officialResult.waterCharge)}</span>
+                  </div>
+
+                  {/* Sewerage */}
+                  <div className="flex items-start justify-between gap-2 pb-2 border-b border-dashed border-[#DADCE0]">
+                    <div>
+                      <div className="font-bold text-[#5F6368] text-[11px] uppercase tracking-wider">Sewerage Tax (50%)</div>
+                      <div className="text-[10px] text-[#70757A] mt-0.5">
+                        50% of water charge = {formatNPR(officialResult.waterCharge)} × 0.50
+                      </div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <div className="font-black text-[#1A73E8]">{formatNPR(officialResult.sewerageTax)}</div>
+                    </div>
+                  </div>
+
+                  {/* Grand total */}
+                  <div className="flex items-center justify-between py-3 px-3 bg-[#E8F0FE] rounded-md border border-[#1A73E8]">
+                    <div>
+                      <div className="text-sm font-black text-[#1A73E8] uppercase tracking-wider">Total Payable Bill</div>
+                      <div className="text-[9px] text-[#1A73E8]/70 mt-0.5">Water + Sewerage</div>
+                    </div>
+                    <div className="text-xl font-black text-[#1A73E8]">{formatNPR(officialResult.totalBill)}</div>
+                  </div>
+
+                  {/* Formula note */}
+                  <div className="text-[9px] text-[#70757A] text-center pt-1 italic">
+                    Formula: Water Charge + (Water Charge × 50%) = Total Bill
+                  </div>
+                </div>
+              </div>
+              {/* ── END BILL BREAKDOWN ───────────────────────────── */}
+
+              {/* Consumption summary */}
+              <div className="grid grid-cols-3 gap-2">
+                <div className="border border-[#DADCE0] rounded-md p-3 text-center bg-[#F8F9FA]">
+                  <div className="text-[9px] font-bold text-[#5F6368] uppercase tracking-wider mb-1">Consumption</div>
+                  <div className="text-base font-black text-[#202124]">{state.units}</div>
+                  <div className="text-[8px] text-[#70757A] font-medium">units</div>
+                </div>
+                <div className="border border-[#DADCE0] rounded-md p-3 text-center bg-[#F8F9FA]">
+                  <div className="text-[9px] font-bold text-[#5F6368] uppercase tracking-wider mb-1">Pipe Size</div>
+                  <div className="text-base font-black text-[#202124]">{state.pipeSize}"</div>
+                  <div className="text-[8px] text-[#70757A] font-medium">inch</div>
+                </div>
+                <div className="border border-[#DADCE0] rounded-md p-3 text-center bg-[#F8F9FA]">
+                  <div className="text-[9px] font-bold text-[#5F6368] uppercase tracking-wider mb-1">In Litres</div>
+                  <div className="text-base font-black text-[#202124]">{(state.units * 1000).toLocaleString('en-IN')}</div>
+                  <div className="text-[8px] text-[#70757A] font-medium">L</div>
+                </div>
               </div>
             </>
           ) : (
