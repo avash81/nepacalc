@@ -412,7 +412,9 @@ const schemaGraph = {
 
 
 const DEFAULT_STATE = {
+  mode: 'official',
   source: 'consultancy',
+  customRate: 15,
   amount: 0,
   recipientType: 'Resident Individual',
   vatStatus: 'No Valid VAT Invoice',
@@ -452,8 +454,8 @@ const RECIPIENT_TYPES = [
 function formatNPR(n: number) { return 'Rs. ' + Math.round(n).toLocaleString('en-IN'); }
 
 export default function NepalTdsCalculator() {
-  const [state, setState] = useSyncState('nepal_tds_v6', DEFAULT_STATE);
-  const { source, amount, recipientType, vatStatus, panStatus } = state;
+  const [state, setState] = useSyncState('nepal_tds_v7', DEFAULT_STATE);
+  const { mode, source, customRate, amount, recipientType, vatStatus, panStatus } = state;
   const [breakdownOpen, setBreakdownOpen] = useState(false);
 
   const updateState = (updates: Partial<typeof DEFAULT_STATE>) => {
@@ -461,7 +463,9 @@ export default function NepalTdsCalculator() {
   };
 
   const isVatRegistered = vatStatus === 'Valid VAT Invoice Provided';
-  const selectedRate = isVatRegistered && TDS_RATES[source]?.isService ? 0.015 : TDS_RATES[source]?.rate || 0.15;
+  const selectedRate = mode === 'custom' 
+    ? (customRate || 0) / 100 
+    : (isVatRegistered && TDS_RATES[source]?.isService ? 0.015 : TDS_RATES[source]?.rate || 0.15);
 
   const result = useMemo(() => {
     const tdsAmount = amount * selectedRate;
@@ -495,25 +499,56 @@ export default function NepalTdsCalculator() {
         <div className="space-y-8">
           
           {/* 1. PAYMENT TYPE */}
-          <div className="space-y-3">
+          <div className="space-y-4">
              <div className="flex flex-col">
-               <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Payment Type</label>
+               <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider mb-2">Calculation Method</label>
+               <div className="flex gap-2 p-1 bg-[#F1F3F4] rounded-md">
+                 <button onClick={() => updateState({ mode: 'official' })} className={`flex-1 py-2 text-[11px] font-bold uppercase tracking-wider rounded transition-colors ${state.mode === 'official' ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368] hover:bg-[#E8EAED]'}`}>Official Categories</button>
+                 <button onClick={() => updateState({ mode: 'custom' })} className={`flex-1 py-2 text-[11px] font-bold uppercase tracking-wider rounded transition-colors ${state.mode === 'custom' ? 'bg-white text-[#1A73E8] shadow-sm' : 'text-[#5F6368] hover:bg-[#E8EAED]'}`}>Manual Rate</button>
+               </div>
              </div>
-             <div className="grid grid-cols-2 lg:grid-cols-2 gap-2 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
-              {Object.entries(TDS_RATES).map(([id, info]) => (
-                <button
-                  key={id}
-                  onClick={() => updateState({ source: id })}
-                  className={`h-auto min-h-[44px] py-3 px-3 rounded-md border flex flex-col items-start justify-center transition-all text-left ${source === id ? 'border-[#1A73E8] bg-[#E8F0FE] ring-1 ring-[#1A73E8]' : 'border-[#DADCE0] bg-white hover:border-[#1A73E8]'}`}
-                >
-                  <div className="flex justify-between w-full items-start mb-1">
-                    <span className={`text-[11px] font-black uppercase leading-tight ${source === id ? 'text-[#1A73E8]' : 'text-[#3C4043]'}`}>{info.label}</span>
-                    <span className={`text-[11px] font-black ${source === id ? 'text-[#1A73E8]' : 'text-[#188038]'}`}>{(info.rate * 100).toString().replace(/\.0$/, '')}%</span>
-                  </div>
-                  <div className={`text-[10px] leading-snug ${source === id ? 'text-[#1A73E8]' : 'text-[#5F6368]'} opacity-90`}>{info.desc}</div>
-                </button>
-              ))}
-             </div>
+
+             {state.mode === 'official' ? (
+               <div className="space-y-2">
+                 <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Payment Category</label>
+                 <div className="relative">
+                   <select 
+                     value={source} 
+                     onChange={(e) => updateState({ source: e.target.value })}
+                     className="w-full h-12 px-4 appearance-none bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all cursor-pointer"
+                   >
+                     {Object.entries(TDS_RATES).map(([id, info]) => (
+                       <option key={id} value={id}>
+                         {info.label} ({(info.rate * 100).toString().replace(/\.0$/, '')}%)
+                       </option>
+                     ))}
+                   </select>
+                   <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#5F6368]">
+                     <ChevronDown className="w-4 h-4" />
+                   </div>
+                 </div>
+                 <p className="text-[10px] text-[#70757A] leading-relaxed">
+                   {TDS_RATES[source]?.desc}
+                 </p>
+               </div>
+             ) : (
+               <div className="space-y-2">
+                 <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Custom TDS Rate (%)</label>
+                 <div className="relative">
+                   <input 
+                     type="number" 
+                     value={state.customRate || ''} 
+                     onChange={(e) => updateState({ customRate: Number(e.target.value) })}
+                     placeholder="Example: 15"
+                     className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] outline-none transition-all pr-8" 
+                   />
+                   <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-sm font-bold text-[#5F6368]">%</div>
+                 </div>
+                 <p className="text-[10px] text-[#70757A] leading-relaxed">
+                   Enter your custom percentage manually.
+                 </p>
+               </div>
+             )}
           </div>
 
           {/* 2. RECIPIENT TYPE */}
@@ -611,7 +646,7 @@ export default function NepalTdsCalculator() {
           {/* PRIMARY BUTTONS */}
           <div className="flex flex-col sm:flex-row gap-3 mt-4">
              <button 
-                onClick={() => updateState({ source: 'consultancy', amount: 0, recipientType: 'Resident Individual', vatStatus: 'No Valid VAT Invoice', panStatus: 'Valid PAN' })}
+                onClick={() => updateState({ mode: 'official', source: 'consultancy', customRate: 15, amount: 0, recipientType: 'Resident Individual', vatStatus: 'No Valid VAT Invoice', panStatus: 'Valid PAN' })}
                 className="flex-1 h-12 bg-white border border-[#DADCE0] text-[#5F6368] hover:bg-[#F8F9FA] hover:text-[#202124] text-[11px] font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm flex items-center justify-center gap-2"
              >
                 Clear
@@ -709,6 +744,25 @@ export default function NepalTdsCalculator() {
                  </div>
                </div>
              )}
+          </div>
+
+          {/* EXPORT SUMMARY */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-4">
+             <span className="text-[11px] font-black text-[#5F6368] uppercase tracking-widest mr-1">Export Summary:</span>
+             <div className="flex flex-wrap items-center gap-2">
+               <button onClick={() => { try { window.print(); } catch(e){} }} className="h-8 px-3 border border-[#DADCE0] bg-white rounded flex items-center justify-center gap-1.5 hover:bg-[#F8F9FA] transition-colors text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">
+                 <Download className="w-3 h-3" /> PDF
+               </button>
+               <button onClick={() => { try { window.print(); } catch(e){} }} className="h-8 px-3 border border-[#DADCE0] bg-white rounded flex items-center justify-center gap-1.5 hover:bg-[#F8F9FA] transition-colors text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">
+                 <Printer className="w-3 h-3" /> Print
+               </button>
+               <button onClick={() => { const text = `Nepal TDS Calculation\nGross Payment: ${formatNPR(amount)}\nApplicable Rate: ${result.rate.toString().replace(/\.0$/, '')}%\nTDS Calculation: -${formatNPR(result.tdsAmount)}\nNet Payment: ${formatNPR(result.netAmount)}`; navigator.clipboard?.writeText(text).catch(()=>{}); }} className="h-8 px-3 border border-[#DADCE0] bg-white rounded flex items-center justify-center gap-1.5 hover:bg-[#F8F9FA] transition-colors text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">
+                 <Copy className="w-3 h-3" /> Copy
+               </button>
+               <button onClick={() => { if(navigator.share) { navigator.share({ title: 'Nepal TDS Calculator', url: window.location.href }).catch(()=>{}); } else { navigator.clipboard?.writeText(window.location.href).catch(()=>{}); } }} className="h-8 px-3 border border-[#DADCE0] bg-white rounded flex items-center justify-center gap-1.5 hover:bg-[#F8F9FA] transition-colors text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">
+                 <Share2 className="w-3 h-3" /> Share
+               </button>
+             </div>
           </div>
         </div>
       }
@@ -957,24 +1011,6 @@ export default function NepalTdsCalculator() {
              </div>
           </div>
 
-          {/* DOWNLOAD OPTIONS */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-6 pb-2 border-y border-[#DADCE0] mt-8">
-             <span className="text-sm font-bold text-[#202124] mr-2">Export Summary:</span>
-             <div className="flex flex-wrap items-center gap-2">
-               <button className="h-10 px-4 border border-[#DADCE0] bg-white rounded flex items-center justify-center gap-2 hover:bg-[#F8F9FA] transition-colors text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">
-                 <Download className="w-3.5 h-3.5" /> PDF
-               </button>
-               <button className="h-10 px-4 border border-[#DADCE0] bg-white rounded flex items-center justify-center gap-2 hover:bg-[#F8F9FA] transition-colors text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">
-                 <Printer className="w-3.5 h-3.5" /> Print
-               </button>
-               <button className="h-10 px-4 border border-[#DADCE0] bg-white rounded flex items-center justify-center gap-2 hover:bg-[#F8F9FA] transition-colors text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">
-                 <Copy className="w-3.5 h-3.5" /> Copy
-               </button>
-               <button className="h-10 px-4 border border-[#DADCE0] bg-white rounded flex items-center justify-center gap-2 hover:bg-[#F8F9FA] transition-colors text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">
-                 <Share2 className="w-3.5 h-3.5" /> Share
-               </button>
-             </div>
-          </div>
 
           {/* IMPORTANT NOTICE */}
           <div className="bg-[#FFF8E1] border border-[#FFE082] rounded-lg p-5 sm:p-6 flex gap-4 mt-8">
