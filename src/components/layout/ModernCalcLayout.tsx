@@ -96,8 +96,8 @@ export function ModernCalcLayout({
 
   const enrichedSEO = seoContent || seoEntry?.content;
   const enrichedFAQs = (faqs && faqs.length > 0) ? faqs : seoEntry?.faqs || [];
-  const enrichedHowTo = howToUse || seoEntry?.howToUse;
-  const enrichedFormula = formula || seoEntry?.formula;
+  const enrichedHowTo = (howToUse && howToUse.steps.length > 0) ? howToUse : (seoEntry?.howToUse && seoEntry.howToUse.steps.length > 0) ? seoEntry.howToUse : undefined;
+  const enrichedFormula = (formula && formula.title) ? formula : (seoEntry?.formula && seoEntry.formula.title) ? seoEntry.formula : undefined;
 
   // Track History
   useEffect(() => {
