@@ -310,8 +310,8 @@ export function useLiveRates() {
   useEffect(() => {
     fetchRates();
 
-    // Poll every 2 min — combined with 2-min PHP cache = within ~2-4 min of FENEGOSIDA update
-    const interval = setInterval(fetchRates, 120000);
+    // Poll every 30s — combined with 30s PHP cache = within ~1 min of FENEGOSIDA update
+    const interval = setInterval(fetchRates, 30000);
 
     // Refresh immediately when user returns to this tab
     const handleVisibility = () => { if (document.visibilityState === 'visible') fetchRates(); };

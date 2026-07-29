@@ -15,7 +15,7 @@ header('Cache-Control: no-store, no-cache');
 
 // ── Cache ────────────────────────────────────────────────────────────────────
 $cacheFile  = sys_get_temp_dir() . '/nepacalc_fenegosida.json';
-$cacheMaxAge = 120; // 2 minutes — checks FENEGOSIDA frequently for near-real-time updates
+$cacheMaxAge = 30; // 30 seconds — near real-time, checks FENEGOSIDA every 30s
 
 if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheMaxAge) {
     $cached       = json_decode(file_get_contents($cacheFile), true);
