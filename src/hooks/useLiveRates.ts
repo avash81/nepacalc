@@ -30,6 +30,10 @@ export interface LiveRates {
     spotUSD: number;
     provider: string;
     lastUpdated: string;
+    /** ISO date string of the actual FENEGOSIDA bulletin (e.g. "2026-07-29") */
+    dataDate: string;
+    /** true = fetched live from FENEGOSIDA today, false = using last known value */
+    isFresh: boolean;
   };
   silver: {
     tolaNPR: RateStats;
@@ -37,191 +41,266 @@ export interface LiveRates {
   };
 }
 
-const FALLBACK_GOLD_TOLA = 282100;
-const FALLBACK_TEJABI_TOLA = 0;
-// Updated to current FENEGOSIDA rate as of 2026-07-19 (Rs. 4,640/tola)
-const FALLBACK_SILVER_TOLA = 4640;
-const FALLBACK_USD = 133.5;
+// ─── Default / Fallback values ───────────────────────────────────────────────
+// These are updated by scripts/fetch-rates.js before every build.
+// They are also updated here manually whenever FENEGOSIDA publishes a new rate.
+const FALLBACK_GOLD_TOLA   = 283200;  // FENEGOSIDA 2026-07-29
+const FALLBACK_TEJABI_TOLA = 282500;  // FENEGOSIDA 2026-07-29
+const FALLBACK_SILVER_TOLA = 4320;    // FENEGOSIDA 2026-07-29
+const FALLBACK_DATE        = '2026-07-29';
+const FALLBACK_USD         = 133.5;
 
+const LS_KEY = 'nepacalc_verified_rates_v2';
+
+// ─── LocalStorage helpers ────────────────────────────────────────────────────
+interface StoredRates {
+  gold: number;
+  tejabi: number;
+  silver: number;
+  date: string;
+  updatedAt: string;
+}
+
+function readStored(): StoredRates | null {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as StoredRates;
+    // Only trust stored value if it's from today or yesterday (not older)
+    const stored = new Date(parsed.updatedAt);
+    const ageHours = (Date.now() - stored.getTime()) / 3600000;
+    if (ageHours > 36) return null; // discard stale localStorage data
+    return parsed;
+  } catch { return null; }
+}
+
+function writeStored(gold: number, tejabi: number, silver: number, date: string) {
+  try {
+    const payload: StoredRates = { gold, tejabi, silver, date, updatedAt: new Date().toISOString() };
+    localStorage.setItem(LS_KEY, JSON.stringify(payload));
+  } catch { /* ignore */ }
+}
+
+// ─── Parsing ─────────────────────────────────────────────────────────────────
+function parseGoldSilver(html: string): { fine: number; tejabi: number; silver: number | null } | null {
+  const goldMatches = html.match(/\['\d{8}',([2-3]\d{5}),(\d+)\]/g);
+  if (!goldMatches || goldMatches.length === 0) return null;
+
+  const lastGold = goldMatches[goldMatches.length - 1];
+  const parts = lastGold.replace(/['\[\]]/g, '').split(',');
+  const fine = parseInt(parts[1], 10);
+  const tejabi = parseInt(parts[2], 10) || 0;
+  if (fine < 200000 || fine > 500000) return null;
+
+  let silver: number | null = null;
+  const silverMatches = html.match(/'\d{8}',([3-7]\d{3}),\d+/g);
+  if (silverMatches && silverMatches.length > 0) {
+    const lastS = silverMatches[silverMatches.length - 1];
+    const sParsed = parseInt(lastS.split(',')[1], 10);
+    if (sParsed > 3000 && sParsed < 8000) silver = sParsed;
+  }
+  return { fine, tejabi, silver };
+}
+
+// ─── Hook ─────────────────────────────────────────────────────────────────────
 export function useLiveRates() {
   const [rates, setRates] = useState<LiveRates | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const buildRates = (
+    goldBase: number,
+    tejabiBase: number,
+    silverBase: number,
+    nprUsd: number,
+    forexRates: Record<string, number>,
+    provider: string,
+    updatedAt: string,
+    dataDate: string,
+    isFresh: boolean
+  ): LiveRates => {
+    const flat = (v: number): RateStats => ({
+      current: v, high24h: v, low24h: v, change24h: 0, changePercent24h: 0
+    });
+    return {
+      forex: {
+        usd: flat(nprUsd),
+        inr: flat(nprUsd / 1.6),
+        gbp: flat(nprUsd * 1.25),
+        eur: flat(nprUsd * 1.08),
+        aud: flat(nprUsd * 0.65),
+        cad: flat(nprUsd * 0.73),
+        jpy: flat(nprUsd / 150),
+        all: forexRates,
+        provider: 'ExchangeRate-API',
+        date: updatedAt,
+      },
+      gold: {
+        tolaNPR: flat(goldBase),
+        tejabiTolaNPR: tejabiBase,
+        tolaInternationalNPR: Math.round(2350 * 0.375 * nprUsd),
+        spotUSD: 2350,
+        provider,
+        lastUpdated: updatedAt,
+        dataDate,
+        isFresh,
+      },
+      silver: {
+        tolaNPR: flat(silverBase),
+        tolaInternationalNPR: Math.round(28.5 * 0.375 * nprUsd),
+      },
+    };
+  };
+
   const fetchRates = async () => {
     try {
       setLoading(true);
-      
-      let nprUsd = FALLBACK_USD;
-      let forexRates = {};
+
+      // ── Step 1: Read build-time JSON (always available, contains latest build data) ──
+      let buildGold = FALLBACK_GOLD_TOLA;
+      let buildTejabi = FALLBACK_TEJABI_TOLA;
+      let buildSilver = FALLBACK_SILVER_TOLA;
+      let buildDate = FALLBACK_DATE;
+      let buildVerified = false;
+
       try {
-         const forexRes = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
-         if (forexRes.ok) {
-            const forexJson = await forexRes.json();
-            nprUsd = forexJson.rates['NPR'] || FALLBACK_USD;
-            forexRates = forexJson.rates;
-         }
-      } catch(e) {}
-
-      // Fetch from our new internal Next.js API route that scrapes FENEGOSIDA directly
-      const nepalRes = await fetch('/api/market-rates', { cache: 'no-store' });
-      const nepalJson = nepalRes.ok ? await nepalRes.json() : null;
-
-      let tolaGoldBase = FALLBACK_GOLD_TOLA;
-      let tejabiGoldBase = FALLBACK_TEJABI_TOLA;
-      let tolaSilverBase = FALLBACK_SILVER_TOLA;
-      let providerStr = 'Official FENEGOSIDA Mirror';
-      let updatedAt = new Date().toISOString();
-
-      if (nepalJson?.success) {
-        tolaGoldBase = nepalJson.gold.tolaNPR;
-        tejabiGoldBase = nepalJson.gold.tejabiTolaNPR ?? FALLBACK_TEJABI_TOLA;
-        tolaSilverBase = nepalJson.silver.tolaNPR;
-        providerStr = nepalJson.provider;
-        updatedAt = nepalJson.updatedAt;
-      } else {
-        // API route unavailable (static export) — attempt CORS proxy scrape for GOLD
-        try {
-          const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent('https://www.fenegosida.org/')}`;
-          const proxyRes = await fetch(proxyUrl);
-          if (proxyRes.ok) {
-            const html = await proxyRes.text();
-            // Match the Google Charts data array: ['day',finePrice,tejabiPrice]
-            const goldMatch = html.match(/\['\d+',([2-3]\d{5}),(\d+)\]/g);
-            if (goldMatch && goldMatch.length > 0) {
-              const lastMatch = goldMatch[goldMatch.length - 1];
-              const parts = lastMatch.replace(/[\['\]]/g, '').split(',');
-              const parsedFine = parseInt(parts[1], 10);
-              const parsedTejabi = parseInt(parts[2], 10) || 0;
-              if (parsedFine > 200000 && parsedFine < 450000) {
-                tolaGoldBase = parsedFine;
-                tejabiGoldBase = parsedTejabi;
-                providerStr = 'FENEGOSIDA Live (via Proxy)';
-              }
-            }
-            // Also attempt to scrape silver from same HTML
-            // Silver in Nepal: Rs. 3,500–7,000 per tola (range tighter than gold)
-            const silverMatch = html.match(/'\d+',([3-7]\d{3}),\d+/g);
-            if (silverMatch && silverMatch.length > 0) {
-              const lastS = silverMatch[silverMatch.length - 1];
-              const sParsed = parseInt(lastS.split(',')[1], 10);
-              if (sParsed > 3500 && sParsed < 7000) {
-                tolaSilverBase = sParsed;
-              }
-            }
+        const jsonRes = await fetch('/data/market-rates.json', { cache: 'no-store' });
+        if (jsonRes.ok) {
+          const json = await jsonRes.json();
+          if (json.gold?.tolaNPR > 200000) {
+            buildGold = json.gold.tolaNPR;
+            buildTejabi = json.gold.tejabiTolaNPR ?? 0;
+            buildSilver = json.silver?.tolaNPR ?? FALLBACK_SILVER_TOLA;
+            buildDate = json.date ?? FALLBACK_DATE;
+            buildVerified = json.verified ?? false;
           }
-        } catch (_) { /* Silent — use fallback values */ }
-      }
-
-      // Secondary silver source: open metals API (no key required)
-      // Trigger if NEITHER the API route nor the proxy produced a valid Nepal retail silver price (or if it hit the hardcoded fallback)
-      if (tolaSilverBase < 3500 || tolaSilverBase > 7000 || tolaSilverBase === FALLBACK_SILVER_TOLA) {
-        tolaSilverBase = FALLBACK_SILVER_TOLA; // reset to known-good fallback first
-        try {
-          // XAG spot in USD per troy oz → convert to NPR per tola
-          // 1 tola = 11.6638g, 1 troy oz = 31.1035g → 1 troy oz = 2.6679 tola
-          // Nepal FENEGOSIDA silver rate = international spot × ~1.45
-          // (20% import duty + customs + federation commission + handling = ~45% markup)
-          const NEPAL_SILVER_DUTY_FACTOR = 1.45;
-          const metalRes = await fetch('https://open.er-api.com/v6/latest/XAG');
-          if (metalRes.ok) {
-            const metalJson = await metalRes.json();
-            const xagToNPR = metalJson?.rates?.NPR; // NPR per 1 troy oz of silver
-            if (xagToNPR && xagToNPR > 1) {
-              const spotPerTola = xagToNPR / 2.6679;
-              const silverPerTola = Math.round(spotPerTola * NEPAL_SILVER_DUTY_FACTOR);
-              if (silverPerTola > 3500 && silverPerTola < 10000) {
-                tolaSilverBase = silverPerTola;
-                providerStr = providerStr + ' | Silver: XAG/NPR+Duty';
-              }
-            }
-          }
-        } catch (_) { /* Silent — final fallback stays at FALLBACK_SILVER_TOLA */ }
-      }
-
-      // Utility: create exact stats — NO artificial variance on gold price
-      // to ensure the displayed rate matches the official FENEGOSIDA rate exactly.
-      const getStats = (current: number, variance: number): RateStats => {
-        const change = current * variance;
-        return {
-          current,
-          high24h: Math.round(current + Math.abs(change * 0.4)),
-          low24h: Math.round(current - Math.abs(change * 0.6)),
-          change24h: Math.round(change),
-          changePercent24h: Number((variance * 100).toFixed(2))
-        };
-      };
-
-      setRates({
-        forex: { 
-          usd: getStats(nprUsd, 0.0012),
-          inr: getStats(nprUsd / 1.6, 0.0),
-          gbp: getStats(nprUsd * 1.25, -0.0045),
-          eur: getStats(nprUsd * 1.08, 0.0021),
-          aud: getStats(nprUsd * 0.65, -0.0015),
-          cad: getStats(nprUsd * 0.73, 0.0008),
-          jpy: getStats(nprUsd / 150, 0.0055),
-          all: forexRates,
-          provider: 'ExchangeRate-API', 
-          date: updatedAt 
-        },
-        gold: {
-          // variance = 0 so the displayed price equals the official FENEGOSIDA rate exactly
-          tolaNPR: getStats(tolaGoldBase, 0),
-          tejabiTolaNPR: tejabiGoldBase,
-          tolaInternationalNPR: Math.round(2350 * 0.375 * nprUsd), // Mock for international calc
-          spotUSD: 2350,
-          provider: providerStr,
-          lastUpdated: updatedAt
-        },
-        silver: {
-          // variance = 0 so the displayed price is exact, matching FENEGOSIDA benchmark
-          tolaNPR: getStats(tolaSilverBase, 0),
-          tolaInternationalNPR: Math.round(28.5 * 0.375 * nprUsd)
         }
-      });
+      } catch { /* use hardcoded fallback */ }
+
+      // ── Step 2: Check localStorage for a more recent verified value ──
+      const stored = readStored();
+      if (stored && stored.date >= buildDate && stored.gold > 200000) {
+        buildGold = stored.gold;
+        buildTejabi = stored.tejabi;
+        buildSilver = stored.silver;
+        buildDate = stored.date;
+        buildVerified = true;
+      }
+
+      // ── Step 3: Set initial state immediately (no blank loading state for users) ──
+      let nprUsd = FALLBACK_USD;
+      let forexRates: Record<string, number> = {};
+
+      // Forex (non-critical, run concurrently with FENEGOSIDA scrape)
+      const forexPromise = fetch('https://api.exchangerate-api.com/v4/latest/USD')
+        .then(r => r.json())
+        .then(j => { nprUsd = j.rates?.NPR || FALLBACK_USD; forexRates = j.rates || {}; })
+        .catch(() => {});
+
+      setRates(buildRates(buildGold, buildTejabi, buildSilver, nprUsd, forexRates, 'FENEGOSIDA', buildDate, buildDate, buildVerified));
+      setLoading(false);
+
+      // ── Step 4: Try live FENEGOSIDA scrape via proxy chain ──
+      const fenegosidaUrl = 'https://www.fenegosida.org/';
+      const proxies = [
+        `https://corsproxy.io/?url=${encodeURIComponent(fenegosidaUrl)}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(fenegosidaUrl)}`,
+        `https://thingproxy.freeboard.io/fetch/${fenegosidaUrl}`,
+      ];
+
+      let liveData: { fine: number; tejabi: number; silver: number | null } | null = null;
+      let liveProvider = '';
+
+      for (const proxy of proxies) {
+        try {
+          const res = await fetch(proxy, { signal: AbortSignal.timeout(10000) });
+          if (res.ok) {
+            const html = await res.text();
+            const parsed = parseGoldSilver(html);
+            if (parsed) {
+              liveData = parsed;
+              liveProvider = proxy.includes('corsproxy') ? 'FENEGOSIDA via corsproxy.io'
+                : proxy.includes('allorigins') ? 'FENEGOSIDA via allorigins'
+                : 'FENEGOSIDA via thingproxy';
+              break;
+            }
+          }
+        } catch { /* try next proxy */ }
+      }
+
+      // ── Step 5: Wait for forex, then apply live data if valid ──
+      await forexPromise;
+
+      if (liveData) {
+        // Sanity check: reject if too far from known value
+        const goldDiff = Math.abs(liveData.fine - buildGold);
+        if (goldDiff < 15000) {
+          const todayNPT = new Date(Date.now() + (5 * 60 + 45) * 60000).toISOString().split('T')[0];
+          const finalSilver = (liveData.silver && Math.abs(liveData.silver - buildSilver) < 2000)
+            ? liveData.silver
+            : buildSilver;
+
+          // Persist to localStorage for next visit
+          writeStored(liveData.fine, liveData.tejabi, finalSilver, todayNPT);
+
+          setRates(buildRates(
+            liveData.fine, liveData.tejabi, finalSilver,
+            nprUsd, forexRates, liveProvider,
+            new Date().toISOString(), todayNPT, true
+          ));
+        }
+        // If goldDiff >= 15000 — suspicious value, keep build-time data
+      }
+
       setError(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
-      // Set fallbacks...
-      const mockEmptyStats = (v: number) => ({ current: v, high24h: v, low24h: v, change24h: 0, changePercent24h: 0 });
-      setRates({
-        forex: { 
-           usd: mockEmptyStats(FALLBACK_USD), inr: mockEmptyStats(FALLBACK_USD/1.6), gbp: mockEmptyStats(180), eur: mockEmptyStats(150),
-           aud: mockEmptyStats(95), cad: mockEmptyStats(105), jpy: mockEmptyStats(1),
-           all: {}, provider: 'Offline Fallback', date: new Date().toISOString()
-        },
-        gold: { tolaNPR: mockEmptyStats(FALLBACK_GOLD_TOLA), tejabiTolaNPR: FALLBACK_TEJABI_TOLA, tolaInternationalNPR: 125000, spotUSD: 2350, provider: 'FENEGOSIDA Fallback', lastUpdated: new Date().toISOString() },
-        silver: { tolaNPR: mockEmptyStats(FALLBACK_SILVER_TOLA), tolaInternationalNPR: 1500 }
-      });
-    } finally {
-      setLoading(false);
+      // Ensure rates are set even on error
+      if (!rates) {
+        const mockFlat = (v: number): RateStats => ({ current: v, high24h: v, low24h: v, change24h: 0, changePercent24h: 0 });
+        setRates({
+          forex: {
+            usd: mockFlat(FALLBACK_USD), inr: mockFlat(FALLBACK_USD / 1.6),
+            gbp: mockFlat(180), eur: mockFlat(150),
+            aud: mockFlat(95), cad: mockFlat(105), jpy: mockFlat(1),
+            all: {}, provider: 'Offline Fallback', date: new Date().toISOString()
+          },
+          gold: {
+            tolaNPR: mockFlat(FALLBACK_GOLD_TOLA), tejabiTolaNPR: FALLBACK_TEJABI_TOLA,
+            tolaInternationalNPR: 125000, spotUSD: 2350,
+            provider: 'FENEGOSIDA Fallback',
+            lastUpdated: FALLBACK_DATE,
+            dataDate: FALLBACK_DATE,
+            isFresh: false,
+          },
+          silver: { tolaNPR: mockFlat(FALLBACK_SILVER_TOLA), tolaInternationalNPR: 1500 }
+        });
+        setLoading(false);
+      }
     }
   };
 
   useEffect(() => {
     fetchRates();
 
-    // Poll every 15 min — catches FENEGOSIDA's ~11 AM NPT daily publish promptly
+    // Poll every 15 min — catches FENEGOSIDA's ~11 AM NPT daily publish
     const interval = setInterval(fetchRates, 900000);
 
     // Refresh immediately when user returns to this tab
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') fetchRates();
-    };
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    const handleVisibility = () => { if (document.visibilityState === 'visible') fetchRates(); };
+    document.addEventListener('visibilitychange', handleVisibility);
 
-    // Refresh immediately when browser comes back online
+    // Refresh when browser reconnects
     const handleOnline = () => fetchRates();
     window.addEventListener('online', handleOnline);
 
     return () => {
       clearInterval(interval);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.removeEventListener('visibilitychange', handleVisibility);
       window.removeEventListener('online', handleOnline);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { rates, loading, error, refresh: fetchRates };
 }
-

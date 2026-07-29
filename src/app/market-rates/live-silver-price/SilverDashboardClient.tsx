@@ -35,35 +35,45 @@ export default function SilverDashboardClient({
       description="Daily verified silver (Chandi) rates in Nepal. High-precision benchmarks based on international industrial spot markets and official FENEGOSIDA price mandates."
       liveRate={fmt(silver.current)}
       changePercent={silver.changePercent24h}
-      lastUpdated={new Date().toLocaleDateString()}
+      lastUpdated={rates.gold.dataDate}
       accentColor="#64748b"
       mainBoard={
         <div className="flex flex-col">
+           {/* Stale data warning */}
+           {!rates.gold.isFresh && (
+             <div className="mx-4 sm:mx-6 mt-4 p-3 bg-amber-50 border border-amber-200 rounded-xl flex items-center gap-3">
+               <span className="text-amber-600 text-lg">⚠️</span>
+               <div>
+                 <p className="text-[12px] font-bold text-amber-800">Showing last verified FENEGOSIDA rate</p>
+                 <p className="text-[11px] text-amber-700">Official rate as of {rates.gold.dataDate}. Today&apos;s rate will appear once FENEGOSIDA publishes (~11 AM NPT).</p>
+               </div>
+             </div>
+           )}
            {/* Error State UX */}
            {error && (
-             <div className="mx-4 sm:mx-6 mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-800">
-                <p className="text-[12px] font-bold">Official rate temporarily unavailable.</p>
-                <p className="text-[11px]">Showing last verified FENEGOSIDA record from: {new Date(rates.gold.lastUpdated).toLocaleString('en-US', { timeZone: 'Asia/Kathmandu' })}</p>
+             <div className="mx-4 sm:mx-6 mt-4 p-3 bg-red-50 border border-red-200 rounded-xl text-red-800">
+               <p className="text-[12px] font-bold">Live connection unavailable.</p>
+               <p className="text-[11px]">Displaying last verified FENEGOSIDA record from {rates.gold.dataDate}.</p>
              </div>
            )}
 
            {/* Freshness/Verification Badge */}
            <div className="mx-4 sm:mx-6 mt-4 p-3 bg-white border border-slate-200 rounded-xl flex flex-wrap gap-4 items-center justify-between text-[10px] font-black uppercase tracking-widest text-slate-500">
               <div className="flex items-center gap-2">
-                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                 Data Status: Verified
+                 <div className={`w-2 h-2 rounded-full animate-pulse ${rates.gold.isFresh ? 'bg-green-500' : 'bg-amber-400'}`}></div>
+                 {rates.gold.isFresh ? 'Live · Today' : 'Last Verified'}
               </div>
               <div className="flex items-center gap-2">
-                 Source: FENEGOSIDA / Live Spot
+                 Source: FENEGOSIDA
               </div>
               <div className="flex items-center gap-2">
-                 Last Sync: {new Date(rates.gold.lastUpdated).toLocaleTimeString('en-US', { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute:'2-digit' })} NPT
+                 Rate Date: {rates.gold.dataDate}
               </div>
               <div className="flex items-center gap-2">
-                 Next Official Update: ~11:00 AM NPT
+                 Next Update: ~11:00 AM NPT
               </div>
-              <div className="flex items-center gap-2 text-green-600 bg-green-50 px-2 py-0.5 rounded">
-                 Market: Open
+              <div className={`flex items-center gap-2 px-2 py-0.5 rounded text-[10px] ${rates.gold.isFresh ? 'text-green-600 bg-green-50' : 'text-amber-600 bg-amber-50'}`}>
+                 {rates.gold.isFresh ? 'Fresh ✓' : 'Cached'}
               </div>
            </div>
 
