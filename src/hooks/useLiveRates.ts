@@ -201,10 +201,25 @@ export function useLiveRates() {
 
   useEffect(() => {
     fetchRates();
-    // Refresh every 30 min — FENEGOSIDA publishes once daily (~11AM NPT)
-    // so 30-min polling is enough to catch the daily update promptly
-    const interval = setInterval(fetchRates, 1800000);
-    return () => clearInterval(interval);
+
+    // Poll every 15 min — catches FENEGOSIDA's ~11 AM NPT daily publish promptly
+    const interval = setInterval(fetchRates, 900000);
+
+    // Refresh immediately when user returns to this tab
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') fetchRates();
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Refresh immediately when browser comes back online
+    const handleOnline = () => fetchRates();
+    window.addEventListener('online', handleOnline);
+
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('online', handleOnline);
+    };
   }, []);
 
   return { rates, loading, error, refresh: fetchRates };

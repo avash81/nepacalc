@@ -18,7 +18,7 @@ export async function GET() {
     // Fallback (FENEGOSIDA official screenshot)
     let fineGoldPrice = 282100; 
     let tejabiGoldPrice = 0;
-    let silverPrice = 4200; 
+    let silverPrice = 4640; 
     let provider = 'FENEGOSIDA Fallback';
 
     if (fenegosidaRes.ok) {
