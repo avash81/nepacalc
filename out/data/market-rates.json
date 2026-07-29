@@ -1,0 +1,15 @@
+{
+  "gold": {
+    "tolaNPR": 283200,
+    "tejabiTolaNPR": 282500
+  },
+  "silver": {
+    "tolaNPR": 4320
+  },
+  "date": "2026-07-29",
+  "source": "FENEGOSIDA",
+  "updatedAt": "2026-07-29T18:00:06.346Z",
+  "verified": true,
+  "note": "All proxies failed at build time. Showing last verified FENEGOSIDA data from 2026-07-29.",
+  "fetchFailed": true
+}
