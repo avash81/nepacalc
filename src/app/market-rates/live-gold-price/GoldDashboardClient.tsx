@@ -168,7 +168,12 @@ export default function GoldDashboardClient() {
                 <div className="text-[10px] text-slate-500 font-medium">per Tola</div>
               </div>
             </div>
-            <div className="text-[10px] text-amber-600 font-bold mt-3">Updated daily from FENEGOSIDA. Official source: <a href="https://www.fenegosida.org/" target="_blank" rel="noopener noreferrer" className="underline">fenegosida.org</a> &nbsp;·&nbsp; <a href="/calculator/gold-converter/" className="underline">Gold Value Calculator →</a></div>
+            <div className="text-[10px] text-amber-600 font-bold mt-3 flex flex-wrap gap-x-3 gap-y-1 items-center">
+                <span>Updated daily from FENEGOSIDA</span>
+                <a href="/calculator/gold-converter/" className="underline hover:text-amber-800">Gold Value Calculator →</a>
+                <a href="/market-rates/live-silver-price/" className="underline hover:text-amber-800">Live Silver Price →</a>
+                <a href="https://www.fenegosida.org/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-slate-600 font-medium">Source: fenegosida.org ↗</a>
+              </div>
           </div>
 
           {/* Live Conversion Table */}
