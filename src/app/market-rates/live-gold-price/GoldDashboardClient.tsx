@@ -137,13 +137,13 @@ export default function GoldDashboardClient() {
         </div>
       </div>
 
-      {/* 4. Today's Rate Summary & Explanation */}
+      {/* 4. Live Gold Price Summary */}
       <div id="quick-answer" className="bg-blue-50/50 rounded-2xl shadow-sm border border-blue-100 p-6 md:p-8 mb-6 flex flex-col md:flex-row gap-6 items-start">
         <div className="p-3 bg-blue-100 text-blue-600 rounded-full shrink-0">
           <Zap className="w-6 h-6" />
         </div>
         <div className="flex-1">
-          <h2 className="text-2xl font-black text-slate-900 tracking-tighter mb-4">Today's Rate Summary</h2>
+          <h2 className="text-2xl font-black text-slate-900 tracking-tighter mb-4">Live Gold Price Summary</h2>
           <p className="text-[15px] text-slate-700 font-medium leading-relaxed mb-6">
             The official gold price in Nepal today is <strong>Rs. {fmt(tolaNPR.current)}</strong> per Tola for 24K Hallmark Gold (Chhapawal) and <strong>{tejabiDisplayRate}</strong> per Tola for 22K Tejabi Gold. Silver is priced at <strong>Rs. {fmt(silverTolaNPR)}</strong> per Tola. Prices are fixed by FENEGOSIDA.
           </p>
@@ -168,7 +168,7 @@ export default function GoldDashboardClient() {
                 <div className="text-[10px] text-slate-500 font-medium">per Tola</div>
               </div>
             </div>
-            <div className="text-[10px] text-amber-600 font-bold mt-3">Updated daily from FENEGOSIDA. Source: <a href="/market-rates/live-gold-price/" className="underline">nepacalc.com/market-rates/live-gold-price/</a></div>
+            <div className="text-[10px] text-amber-600 font-bold mt-3">Updated daily from FENEGOSIDA. Official source: <a href="https://www.fenegosida.org/" target="_blank" rel="noopener noreferrer" className="underline">fenegosida.org</a> &nbsp;·&nbsp; <a href="/calculator/gold-converter/" className="underline">Gold Value Calculator →</a></div>
           </div>
 
           {/* Live Conversion Table */}
@@ -205,7 +205,7 @@ export default function GoldDashboardClient() {
           </div>
 
           <p className="text-[14px] text-slate-700 font-medium leading-relaxed m-0">
-            <strong>Note:</strong> Since import costs dictate the final price, you should also check <a href="/market-rates/exchange-rate-nepal/" className="text-blue-600 underline font-bold">Today&apos;s NRB Exchange Rate</a> before making large commercial purchases.
+            <strong>Note:</strong> Since import costs dictate the final price, you should also use our <a href="/calculator/gold-converter/" className="text-blue-600 underline font-bold">Gold Value Calculator</a> to estimate the exact value of any weight of gold at today&apos;s official rate.
           </p>
         </div>
       </div>
