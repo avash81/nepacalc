@@ -57,8 +57,8 @@ export default function GoldDashboardClient() {
             </nav>
           </div>
           {/* H1 & Description */}
-          <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-2 lowercase first-letter:uppercase">
-            Gold Price in Nepal Today
+          <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-2">
+            Gold Price in Nepal Today – Live 24K, 22K &amp; Silver Rates (2083/84)
           </h1>
           <p className="text-[#5f6368] text-base font-medium leading-relaxed max-w-xl">
             Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks.
@@ -147,18 +147,65 @@ export default function GoldDashboardClient() {
           <p className="text-[15px] text-slate-700 font-medium leading-relaxed mb-6">
             The official gold price in Nepal today is <strong>Rs. {fmt(tolaNPR.current)}</strong> per Tola for 24K Hallmark Gold (Chhapawal) and <strong>{tejabiDisplayRate}</strong> per Tola for 22K Tejabi Gold. Silver is priced at <strong>Rs. {fmt(silverTolaNPR)}</strong> per Tola. Prices are fixed by FENEGOSIDA.
           </p>
-          <div className="bg-white p-5 rounded-xl border border-blue-100 mb-6">
-            <h3 className="text-[13px] font-bold text-slate-800 mb-3">Common Gold Price Conversions</h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[14px] text-blue-700 font-medium">
-              <li><a href="/calculator/gold-converter/" className="hover:underline flex items-center gap-2">• 1 Tola Gold Price</a></li>
-              <li><a href="/calculator/gold-converter/" className="hover:underline flex items-center gap-2">• 10 Gram Gold Price</a></li>
-              <li><a href="/calculator/gold-converter/" className="hover:underline flex items-center gap-2">• 1 Gram Gold Price</a></li>
-              <li><a href="/calculator/gold-converter/" className="hover:underline flex items-center gap-2">• 1 Lal Gold Price</a></li>
-              <li><a href="/calculator/gold-converter/" className="hover:underline flex items-center gap-2">• 1 Aana Gold Price</a></li>
-            </ul>
+
+          {/* Quick Price Snapshot */}
+          <div className="bg-amber-50 border border-amber-200 rounded-xl p-5 mb-6">
+            <div className="text-[11px] font-black text-amber-700 uppercase tracking-widest mb-3">Today&apos;s Official Gold Price Snapshot</div>
+            <div className="grid grid-cols-3 gap-3">
+              <div className="bg-white rounded-lg p-3 border border-amber-100 text-center">
+                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">24K Hallmark</div>
+                <div className="text-lg font-black text-slate-900">Rs. {fmt(tolaNPR.current)}</div>
+                <div className="text-[10px] text-slate-500 font-medium">per Tola</div>
+              </div>
+              <div className="bg-white rounded-lg p-3 border border-amber-100 text-center">
+                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">22K Tejabi</div>
+                <div className="text-lg font-black text-slate-900">{tejabiTolaNPR === 0 ? 'N/A' : `Rs. ${fmt(tejabiTolaNPR)}`}</div>
+                <div className="text-[10px] text-slate-500 font-medium">per Tola</div>
+              </div>
+              <div className="bg-white rounded-lg p-3 border border-amber-100 text-center">
+                <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Silver</div>
+                <div className="text-lg font-black text-slate-900">Rs. {fmt(silverTolaNPR)}</div>
+                <div className="text-[10px] text-slate-500 font-medium">per Tola</div>
+              </div>
+            </div>
+            <div className="text-[10px] text-amber-600 font-bold mt-3">Updated daily from FENEGOSIDA. Source: <a href="/market-rates/live-gold-price/" className="underline">nepacalc.com/market-rates/live-gold-price/</a></div>
           </div>
+
+          {/* Live Conversion Table */}
+          <div className="bg-white p-5 rounded-xl border border-blue-100 mb-6">
+            <h3 className="text-[13px] font-bold text-slate-800 mb-3">Today&apos;s Gold Price by Unit (24K Hallmark)</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm">
+                <thead>
+                  <tr className="border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                    <th className="py-2 pr-4">Unit</th>
+                    <th className="py-2 text-right">Today&apos;s Value</th>
+                    <th className="py-2"></th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-50">
+                  {[
+                    { unit: '1 Tola', divisor: 1 },
+                    { unit: '10 Gram', divisor: 1.1664 },
+                    { unit: '1 Gram', divisor: 11.664 },
+                    { unit: '1 Lal (1/8 Tola)', divisor: 8 },
+                    { unit: '1 Aana (1/16 Tola)', divisor: 16 },
+                    { unit: '100 Gram', divisor: 0.11664 },
+                    { unit: '1 Kg', divisor: 0.011664 },
+                  ].map(({ unit, divisor }) => (
+                    <tr key={unit} className="hover:bg-slate-50">
+                      <td className="py-2 pr-4 font-bold text-slate-700">{unit}</td>
+                      <td className="py-2 text-right font-black text-slate-900">Rs. {fmt(Math.round(tolaNPR.current / divisor))}</td>
+                      <td className="py-2 pl-3"><a href="/calculator/gold-converter/" className="text-[10px] text-blue-600 font-bold hover:underline">Convert →</a></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
           <p className="text-[14px] text-slate-700 font-medium leading-relaxed m-0">
-            <strong>Note:</strong> Since import costs dictate the final price, you should also check <a href="/market-rates/exchange-rate-nepal/" className="text-blue-600 underline font-bold">Today's NRB Exchange Rate</a> before making large commercial purchases.
+            <strong>Note:</strong> Since import costs dictate the final price, you should also check <a href="/market-rates/exchange-rate-nepal/" className="text-blue-600 underline font-bold">Today&apos;s NRB Exchange Rate</a> before making large commercial purchases.
           </p>
         </div>
       </div>
@@ -166,15 +213,26 @@ export default function GoldDashboardClient() {
       {/* 4.5 Table of Contents */}
       <div className="bg-slate-50 rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 mb-6">
         <h2 className="text-xl font-bold mb-4">Table of Contents</h2>
-        <ul className="list-none pl-0 space-y-2 text-blue-600 font-medium">
-          <li><a href="#live-price" className="hover:underline">Nepal Benchmark Rates</a></li>
-          <li><a href="#calculator" className="hover:underline">Quick Valuation Calculator</a></li>
-          <li><a href="#ai-summary" className="hover:underline">Market Intelligence &amp; AI Summary</a></li>
-          <li><a href="#how-its-calculated" className="hover:underline">How Gold Prices Are Calculated in Nepal</a></li>
-          <li><a href="#gold-price-history" className="hover:underline">Historical Records &amp; Yearly Data</a></li>
-          <li><a href="#faq" className="hover:underline">Frequently Asked Questions</a></li>
-          <li><a href="#archives" className="hover:underline">FENEGOSIDA Archives &amp; Notices</a></li>
-        </ul>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1.5">
+          <ul className="list-none pl-0 space-y-1.5 text-blue-600 font-medium text-[14px]">
+            <li><a href="#quick-answer-block" className="hover:underline">Quick Answer</a></li>
+            <li><a href="#gold-at-a-glance" className="hover:underline">Today&apos;s Gold Price at a Glance</a></li>
+            <li><a href="#gold-conversion-table" className="hover:underline">Gold Price Conversion Table</a></li>
+            <li><a href="#gold-price-calculator-info" className="hover:underline">Gold Price Calculator</a></li>
+            <li><a href="#live-price" className="hover:underline">Nepal Benchmark Rates</a></li>
+            <li><a href="#calculator" className="hover:underline">Quick Valuation Calculator</a></li>
+            <li><a href="#market-highlights" className="hover:underline">Market Highlights &amp; Price Change</a></li>
+          </ul>
+          <ul className="list-none pl-0 space-y-1.5 text-blue-600 font-medium text-[14px]">
+            <li><a href="#ai-summary" className="hover:underline">Market Intelligence</a></li>
+            <li><a href="#how-its-calculated" className="hover:underline">How Gold Prices Are Calculated</a></li>
+            <li><a href="#jewellery-pricing" className="hover:underline">What Affects Jewellery Prices?</a></li>
+            <li><a href="#gold-vs-silver" className="hover:underline">Gold vs Silver Investment</a></li>
+            <li><a href="#gold-milestones" className="hover:underline">Historic Price Milestones</a></li>
+            <li><a href="#useful-gold-tools" className="hover:underline">Useful Gold Tools</a></li>
+            <li><a href="#faq" className="hover:underline">Frequently Asked Questions</a></li>
+          </ul>
+        </div>
       </div>
 
       {/* 1. Live Price Table (Moved here) */}
@@ -222,9 +280,79 @@ export default function GoldDashboardClient() {
         </div>
       </div>
 
-      {/* 5. Table of Content & SEO Sections */}
+      {/* Market Highlights & Price Change Summary */}
+      <div id="market-highlights" className="scroll-mt-24 grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        {/* Today's Market Highlights */}
+        <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <div className="text-[11px] font-black text-slate-500 uppercase tracking-widest mb-4">Today&apos;s Market Highlights</div>
+          <ul className="space-y-2.5">
+            <li className="flex items-center justify-between text-[13px]">
+              <span className="text-slate-600 font-medium">24K Gold (24H)</span>
+              <span className={`font-black px-2 py-0.5 rounded text-xs ${(tolaNPR.changePercent24h ?? 0) >= 0 ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}`}>
+                {(tolaNPR.changePercent24h ?? 0) >= 0 ? '▲' : '▼'} {Math.abs(tolaNPR.changePercent24h ?? 0)}%
+              </span>
+            </li>
+            <li className="flex items-center justify-between text-[13px]">
+              <span className="text-slate-600 font-medium">Silver (24H)</span>
+              <span className="font-black px-2 py-0.5 rounded text-xs bg-slate-50 text-slate-600">See live board</span>
+            </li>
+            <li className="flex items-center justify-between text-[13px]">
+              <span className="text-slate-600 font-medium">International Spot</span>
+              <span className="font-black text-slate-800">XAU/USD Live</span>
+            </li>
+            <li className="flex items-center justify-between text-[13px]">
+              <span className="text-slate-600 font-medium">Exchange Rate</span>
+              <span className="font-black text-blue-600"><a href="/market-rates/exchange-rate-nepal/" className="hover:underline">NRB Rate →</a></span>
+            </li>
+            <li className="flex items-center justify-between text-[13px]">
+              <span className="text-slate-600 font-medium">Data Source</span>
+              <span className="font-black text-slate-800">FENEGOSIDA</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Price Change Summary */}
+        <div id="price-change" className="scroll-mt-24 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <div className="text-[11px] font-black text-slate-500 uppercase tracking-widest mb-4">Price Change Summary (24K Hallmark)</div>
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                <th className="pb-2 text-left">Period</th>
+                <th className="pb-2 text-right">Change</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-50">
+              {[
+                { period: 'Today', note: 'vs. yesterday' },
+                { period: '7 Days', note: 'weekly trend' },
+                { period: '30 Days', note: 'monthly trend' },
+                { period: '90 Days', note: 'quarterly trend' },
+                { period: '1 Year', note: 'annual trend' },
+              ].map(({ period, note }) => (
+                <tr key={period}>
+                  <td className="py-2">
+                    <div className="font-bold text-slate-700">{period}</div>
+                    <div className="text-[10px] text-slate-400">{note}</div>
+                  </td>
+                  <td className="py-2 text-right">
+                    {period === 'Today' && tolaNPR.changePercent24h !== undefined ? (
+                      <span className={`font-black text-sm ${tolaNPR.changePercent24h >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
+                        {tolaNPR.changePercent24h >= 0 ? '+' : ''}{tolaNPR.changePercent24h}%
+                      </span>
+                    ) : (
+                      <a href="#gold-price-history" className="text-[11px] text-blue-600 font-bold hover:underline">See history →</a>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* 5. SEO Sections */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 prose prose-slate max-w-none">
-        <SeoSections />
+        <SeoSections rates={rates} fmt={fmt} />
       </div>
 
     </div>
