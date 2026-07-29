@@ -58,7 +58,7 @@ export default function GoldDashboardClient() {
           </div>
           {/* H1 & Description */}
           <h1 className="text-3xl sm:text-4xl font-black text-[#202124] tracking-tight mb-2">
-            Gold Price in Nepal Today – Live 24K, 22K &amp; Silver Rates (2083/84)
+            Gold Price in Nepal Today – Live 24K, 22K &amp; Silver Rates
           </h1>
           <p className="text-[#5f6368] text-base font-medium leading-relaxed max-w-xl">
             Check today's official gold and silver prices in Nepal based on FENEGOSIDA benchmarks.
