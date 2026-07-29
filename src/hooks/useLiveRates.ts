@@ -200,32 +200,59 @@ export function useLiveRates() {
       setRates(buildRates(buildGold, buildTejabi, buildSilver, nprUsd, forexRates, 'FENEGOSIDA', buildDate, buildDate, buildVerified));
       setLoading(false);
 
-      // ── Step 4: Try live FENEGOSIDA scrape via proxy chain ──
-      const fenegosidaUrl = 'https://www.fenegosida.org/';
-      const proxies = [
-        `https://corsproxy.io/?url=${encodeURIComponent(fenegosidaUrl)}`,
-        `https://api.allorigins.win/raw?url=${encodeURIComponent(fenegosidaUrl)}`,
-        `https://thingproxy.freeboard.io/fetch/${fenegosidaUrl}`,
-      ];
+      // ── Step 4: Try live FENEGOSIDA scrape ──────────────────────────────────
+      // PRIMARY: PHP proxy on cPanel (server-side, no CORS, always fresh)
+      // FALLBACK: CORS proxies (browser-side, may be blocked)
 
       let liveData: { fine: number; tejabi: number; silver: number | null } | null = null;
       let liveProvider = '';
 
-      for (const proxy of proxies) {
-        try {
-          const res = await fetch(proxy, { signal: AbortSignal.timeout(10000) });
-          if (res.ok) {
-            const html = await res.text();
-            const parsed = parseGoldSilver(html);
-            if (parsed) {
-              liveData = parsed;
-              liveProvider = proxy.includes('corsproxy') ? 'FENEGOSIDA via corsproxy.io'
-                : proxy.includes('allorigins') ? 'FENEGOSIDA via allorigins'
-                : 'FENEGOSIDA via thingproxy';
-              break;
-            }
+      // ── Primary: PHP proxy (same-domain, server-side fetch) ──
+      try {
+        const phpRes = await fetch('/api/rates.php', {
+          cache: 'no-store',
+          signal: AbortSignal.timeout(12000),
+        });
+        if (phpRes.ok) {
+          const json = await phpRes.json();
+          if (json.gold?.tolaNPR > 200000) {
+            liveData = {
+              fine:   json.gold.tolaNPR,
+              tejabi: json.gold.tejabiTolaNPR ?? 0,
+              silver: json.silver?.tolaNPR ?? null,
+            };
+            liveProvider = json.stale
+              ? `FENEGOSIDA (cached ${json.date})`
+              : `FENEGOSIDA via PHP · ${json.time ?? ''}`;
           }
-        } catch { /* try next proxy */ }
+        }
+      } catch { /* PHP proxy failed — try CORS proxies below */ }
+
+      // ── Fallback: CORS proxy chain (browser-side) ──
+      if (!liveData) {
+        const fenegosidaUrl = 'https://www.fenegosida.org/';
+        const proxies = [
+          `https://corsproxy.io/?url=${encodeURIComponent(fenegosidaUrl)}`,
+          `https://api.allorigins.win/raw?url=${encodeURIComponent(fenegosidaUrl)}`,
+          `https://thingproxy.freeboard.io/fetch/${fenegosidaUrl}`,
+        ];
+
+        for (const proxy of proxies) {
+          try {
+            const res = await fetch(proxy, { signal: AbortSignal.timeout(10000) });
+            if (res.ok) {
+              const html = await res.text();
+              const parsed = parseGoldSilver(html);
+              if (parsed) {
+                liveData = parsed;
+                liveProvider = proxy.includes('corsproxy') ? 'FENEGOSIDA via corsproxy.io'
+                  : proxy.includes('allorigins') ? 'FENEGOSIDA via allorigins'
+                  : 'FENEGOSIDA via thingproxy';
+                break;
+              }
+            }
+          } catch { /* try next proxy */ }
+        }
       }
 
       // ── Step 5: Wait for forex, then apply live data if valid ──
@@ -283,8 +310,8 @@ export function useLiveRates() {
   useEffect(() => {
     fetchRates();
 
-    // Poll every 15 min — catches FENEGOSIDA's ~11 AM NPT daily publish
-    const interval = setInterval(fetchRates, 900000);
+    // Poll every 2 min — combined with 2-min PHP cache = within ~2-4 min of FENEGOSIDA update
+    const interval = setInterval(fetchRates, 120000);
 
     // Refresh immediately when user returns to this tab
     const handleVisibility = () => { if (document.visibilityState === 'visible') fetchRates(); };

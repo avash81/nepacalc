@@ -1,0 +1,60 @@
+name: Daily Auto-Deploy to cPanel
+
+on:
+  # ── Runs every day at 6:00 AM UTC = 11:45 AM NPT ──────────────────────────
+  # FENEGOSIDA publishes the official rate at ~11:00 AM NPT daily (Sun–Fri)
+  schedule:
+    - cron: '0 6 * * 1-5'   # Mon–Fri (FENEGOSIDA working days)
+
+  # ── Also allow manual trigger from GitHub Actions tab ────────────────────────
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      # 1. Checkout source code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # 4. Build (prebuild script fetches FENEGOSIDA rates first)
+      #    scripts/fetch-rates.js runs automatically before next build
+      - name: Fetch live rates & build static site
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      # 5. Show what rates were fetched (for build log visibility)
+      - name: Show fetched rates
+        run: |
+          echo "=== market-rates.json ==="
+          cat public/data/market-rates.json
+
+      # 6. Deploy out/ folder to cPanel via FTP
+      - name: Deploy to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          local-dir: ./out/
+          # Only upload changed files (faster deploys)
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
