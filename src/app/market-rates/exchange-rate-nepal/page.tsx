@@ -3,29 +3,50 @@ import ForexDashboardClient from './ForexDashboardClient';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import Link from 'next/link';
 
-export const metadata = calcMeta({
-  title: "NRB Exchange Rate Today | Live Dollar Rate Nepal | USD to NPR",
-  description: "Check today's official Nepal Rastra Bank (NRB) exchange rates including USD to NPR, EUR, GBP, AUD, AED, QAR, SAR and INR. Compare buying and selling rates with live currency conversion.",
-  slug: 'market-rates/exchange-rate-nepal',
-  canonical: '/market-rates/exchange-rate-nepal/',
-  keywords: [
-    "NRB Exchange Rate Today",
-    "Foreign Exchange Rate Nepal",
-    "USD to NPR",
-    "Dollar Rate Nepal Today",
-    "Currency Converter Nepal",
-    "Remittance Exchange Rate Nepal",
-    "EUR to NPR",
-    "GBP to NPR",
-    "AUD to NPR",
-    "AED to NPR",
-    "QAR to NPR",
-    "SAR to NPR"
-  ],
-  ogImage: "https://nepacalc.com/images/nrb-exchange-rate-today-nepal.webp"
-});
+import fs from 'fs';
+import path from 'path';
 
-export default function Page() {
+export const revalidate = 3600; // 1 hour
+
+function getLiveDate() {
+  try {
+    const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'live-rates.json'), 'utf8');
+    const json = JSON.parse(data);
+    return json.date || new Date().toISOString().split('T')[0];
+  } catch (e) {
+    return new Date().toISOString().split('T')[0];
+  }
+}
+
+export async function generateMetadata() {
+  const rawDate = getLiveDate();
+  const year = rawDate.split('-')[0];
+  
+  return calcMeta({
+    title: `NRB Exchange Rate Today (${year}) | Live Dollar Rate Nepal | USD to NPR`,
+    description: "Check today's official Nepal Rastra Bank (NRB) exchange rates including USD to NPR, EUR, GBP, AUD, AED, QAR, SAR and INR. Compare buying and selling rates with live currency conversion.",
+    slug: 'market-rates/exchange-rate-nepal',
+    canonical: '/market-rates/exchange-rate-nepal/',
+    keywords: [
+      "NRB Exchange Rate Today",
+      "Foreign Exchange Rate Nepal",
+      "USD to NPR",
+      "Dollar Rate Nepal Today",
+      "Currency Converter Nepal",
+      "Remittance Exchange Rate Nepal",
+      "EUR to NPR",
+      "GBP to NPR",
+      "AUD to NPR",
+      "AED to NPR",
+      "QAR to NPR",
+      "SAR to NPR"
+    ],
+    ogImage: "https://nepacalc.com/images/nrb-exchange-rate-today-nepal.webp"
+  });
+}
+
+export default async function Page() {
+  const rawDate = getLiveDate();
   return (
     <div className="bg-white min-h-screen">
       <CalcWrapper
@@ -47,7 +68,7 @@ export default function Page() {
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center justify-between mb-3">
               <p className="text-xs text-slate-500 font-medium uppercase tracking-widest">NRB Reference Rates — Indicative</p>
-              <p className="text-xs text-slate-400">Last Updated: <time dateTime="2026-06">June 2026</time></p>
+              <p className="text-xs text-slate-400">Last Updated: <time dateTime={rawDate}>{new Date(rawDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</time></p>
             </div>
             <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
               <table className="w-full text-sm text-left">
@@ -536,8 +557,8 @@ export default function Page() {
         "name":"NRB Exchange Rate Today | Live Dollar Rate Nepal | USD to NPR",
         "headline":"NRB Exchange Rate Today",
         "description":"Check today's official Nepal Rastra Bank (NRB) exchange rates including USD to NPR, EUR, GBP, AUD, AED, QAR, SAR and INR. Compare buying and selling rates with live currency conversion.",
-        "inLanguage":"en",
-        "dateModified":"2026-06-26",
+        "datePublished":"2023-11-01",
+        "dateModified": new Date(rawDate).toISOString(),
         "isPartOf":{ "@type":"WebSite", "url":"https://nepacalc.com" },
         "primaryImageOfPage":{ "@type":"ImageObject", "url":"https://nepacalc.com/images/nrb-exchange-rate-today-nepal.webp", "caption":"NRB Exchange Rate Today USD to NPR EUR GBP AUD AED QAR SAR Nepal" },
         "speakable":{ "@type":"SpeakableSpecification", "cssSelector":["h1","h2",".prose p"] },
