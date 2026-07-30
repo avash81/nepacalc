@@ -8,7 +8,8 @@
   },
   "date": "2026-07-30",
   "source": "FENEGOSIDA",
-  "updatedAt": "2026-07-30T16:30:00.000Z",
+  "updatedAt": "2026-07-30T18:06:09.996Z",
   "verified": true,
-  "note": "Static fallback. Live data is served by /data/live-rates.json (written by market-engine.php cron)."
+  "note": "All proxies failed at build time. Showing last verified FENEGOSIDA data from 2026-07-30.",
+  "fetchFailed": true
 }

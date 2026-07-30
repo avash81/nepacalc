@@ -86,6 +86,8 @@ export function SilverSeoContent() {
         <p className="text-slate-600 text-base font-medium leading-relaxed max-w-3xl">
           <strong>Live Silver Price in Nepal Today (2083/84)</strong> provides the latest official Chandi rates published by the Federation of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA). Check today&apos;s silver price per tola, gram and kilogram, convert traditional Nepalese weight units instantly, and monitor daily market movements using real-time pricing and historical trend analysis.
         </p>
+      </header>
+
       {/* Intro Text below Calculator */}
       <div className="mb-8 text-slate-700 text-base leading-relaxed font-medium">
         The Live Silver Price Nepal page tracks the official daily silver rate published by FENEGOSIDA. View today's silver price per tola, gram, kilogram and troy ounce, compare international spot silver (XAG/USD), and calculate the current value of your silver instantly.
