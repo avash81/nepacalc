@@ -116,7 +116,7 @@ function RateTile({ label, value, change, href, isForex }: any) {
           {isForex ? value.toFixed(2) : value.toLocaleString()}
         </span>
       </div>
-      <span className="text-[10px] text-[#5f6368] mt-1">Per Tola · Live</span>
+      <span className="text-[10px] text-[#5f6368] mt-1">{isForex ? 'Live Base Rate' : 'Per Tola · Live'}</span>
     </Link>
   );
 }
