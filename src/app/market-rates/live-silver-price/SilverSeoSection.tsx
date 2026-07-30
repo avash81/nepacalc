@@ -60,10 +60,10 @@ export function SilverSeoContent() {
   const displayDate = rates?.silver ? new Date(rates.gold.dataDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : "Today";
   const displayTime = rates?.gold?.isFresh ? "11:00 AM NST" : "Last Verified";
   const currentSilverPrice = rates?.silver ? rates.silver.tolaNPR.current.toLocaleString('en-IN') : "4,320";
-  const yesterdaySilverPrice = rates?.silver ? rates.silver.tolaNPR.previous.toLocaleString('en-IN') : "4,310";
-  const silverChange = rates?.silver ? Math.abs(rates.silver.tolaNPR.changeAmount24h).toLocaleString('en-IN') : "10";
+  const yesterdaySilverPrice = rates?.silver ? (rates.silver.tolaNPR.current - rates.silver.tolaNPR.change24h).toLocaleString('en-IN') : "4,310";
+  const silverChange = rates?.silver ? Math.abs(rates.silver.tolaNPR.change24h).toLocaleString('en-IN') : "10";
   const silverChangePercent = rates?.silver ? rates.silver.tolaNPR.changePercent24h.toFixed(2) : "0.23";
-  const isUp = rates?.silver ? rates.silver.tolaNPR.changeAmount24h >= 0 : true;
+  const isUp = rates?.silver ? rates.silver.tolaNPR.change24h >= 0 : true;
 
   const historicalData = [
     { date: '17 Jul', price: 4325 },
