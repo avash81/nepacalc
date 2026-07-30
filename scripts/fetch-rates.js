@@ -13,7 +13,8 @@ const path = require('path');
 const https = require('https');
 const http = require('http');
 
-const OUTPUT_PATH = path.join(__dirname, '../public/data/market-rates.json');
+const OUTPUT_PATH      = path.join(__dirname, '../public/data/market-rates.json');
+const LIVE_RATES_PATH  = path.join(__dirname, '../public/data/live-rates.json');
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -80,6 +81,9 @@ function readExisting() {
 
 function writeOutput(gold, tejabi, silver, source, verified) {
   const today = todayNPT();
+  const nowNPT = new Date(Date.now() + (5 * 60 + 45) * 60000);
+  const timeNPT = nowNPT.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }) + ' NPT';
+
   const output = {
     gold: { tolaNPR: gold, tejabiTolaNPR: tejabi },
     silver: { tolaNPR: silver },
@@ -89,8 +93,24 @@ function writeOutput(gold, tejabi, silver, source, verified) {
     verified,
     note: 'Auto-updated by scripts/fetch-rates.js before every build.'
   };
+
+  // Write market-rates.json (static fallback for Googlebot)
   fs.mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
   fs.writeFileSync(OUTPUT_PATH, JSON.stringify(output, null, 2));
+
+  // Also write live-rates.json (primary source for the browser + rates.php)
+  const liveOutput = {
+    ...output,
+    fetchedAt: new Date().toISOString(),
+    timeNPT,
+    fetchSource: 'prebuild script',
+    fetchFailed: false,
+    _status: 'fresh',
+  };
+  delete liveOutput.note;
+  fs.mkdirSync(path.dirname(LIVE_RATES_PATH), { recursive: true });
+  fs.writeFileSync(LIVE_RATES_PATH, JSON.stringify(liveOutput, null, 2));
+
   return output;
 }
 

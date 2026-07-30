@@ -2,27 +2,30 @@ import { Metadata } from 'next';
 import SilverCalculatorComponent from './Calculator';
 
 export const metadata: Metadata = {
-  title: 'Silver Converter Nepal: Convert Tola, Lal, Gram & Silver Price | NepaCalc',
-  description: 'Free online Silver Converter Nepal. Convert silver weights between Tola, Gram, Lal, Aana, Ratti, Kg, and Troy Ounce. Calculate live silver prices in NPR with 999 Fine and 925 Sterling purity.',
+  title: 'Silver Converter Nepal (Gram, Tola, Lal) | Silver Value Calculator',
+  description: 'Convert silver between Gram, Tola, Lal, Aana, Ratti and Troy Ounce using Nepal\'s official silver measurements. Instantly calculate silver value, purity, bullion weight and jewellery price using today\'s silver rate.',
   keywords: [
-    'silver converter nepal',
-    'silver unit converter',
-    'chandi converter',
-    'tola to gram silver',
-    'gram to tola silver',
-    'lal to gram',
-    'silver price calculator nepal',
-    'silver weight calculator',
-    '925 sterling silver converter',
-    'troy ounce to tola',
-    'NepaCalc'
+    'Silver Converter Nepal',
+    'Silver Weight Converter',
+    'Silver Value Calculator Nepal',
+    'Silver Price Calculator',
+    'Silver Tola Calculator',
+    'Silver Gram Converter',
+    'Silver Purity Calculator',
+    'Silver Bullion Calculator Nepal',
+    '999 Silver Calculator',
+    '925 Silver Calculator',
+    'Sterling Silver Calculator',
+    'Fine Silver Converter',
+    'Silver Investment Calculator',
+    'Silver Jewellery Weight Calculator'
   ],
   alternates: {
     canonical: 'https://nepacalc.com/calculator/silver-converter/',
   },
   openGraph: {
-    title: 'Silver Converter Nepal: Convert Tola, Lal, Gram & Silver Price | NepaCalc',
-    description: 'Convert silver weights between Tola, Gram, Lal, Aana, Ratti, Kg, and Troy Ounce. Calculate live silver prices in NPR with 999 and 925 purity.',
+    title: 'Silver Converter Nepal (Gram, Tola, Lal) | Silver Value Calculator',
+    description: 'Convert silver between Gram, Tola, Lal, Aana, Ratti and Troy Ounce using Nepal\'s official silver measurements. Instantly calculate silver value, purity, bullion weight and jewellery price using today\'s silver rate.',
     url: 'https://nepacalc.com/calculator/silver-converter/',
     siteName: 'NepaCalc',
     locale: 'en_NP',
@@ -32,14 +35,14 @@ export const metadata: Metadata = {
         url: 'https://nepacalc.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Silver Converter Nepal NepaCalc',
+        alt: 'Silver Converter Nepal – Silver Value Calculator',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Silver Converter Nepal: Convert Tola, Lal, Gram & Silver Price | NepaCalc',
-    description: 'Convert silver weights between Tola, Gram, Lal, Aana, Ratti, Kg, and Troy Ounce.',
+    title: 'Silver Converter Nepal (Gram, Tola, Lal) | Silver Value Calculator',
+    description: 'Convert silver between Gram, Tola, Lal, Aana, Ratti and Troy Ounce. Instantly calculate silver value, purity, bullion weight and jewellery price.',
     images: ['https://nepacalc.com/og-image.png'],
   },
 };

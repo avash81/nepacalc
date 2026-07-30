@@ -41,12 +41,19 @@ const PRESETS = [
   { label: '1 Tola', weight: 1, unit: 'Tola' },
   { label: '5 Tola', weight: 5, unit: 'Tola' },
   { label: '10 Tola', weight: 10, unit: 'Tola' },
+  { label: '1 Lal', weight: 1, unit: 'Lal' },
+  { label: '10 Lal', weight: 10, unit: 'Lal' },
+  { label: '20 Lal', weight: 20, unit: 'Lal' },
+  { label: '40 Lal', weight: 40, unit: 'Lal' },
+  { label: '50 Lal', weight: 50, unit: 'Lal' },
+  { label: '80 Lal', weight: 80, unit: 'Lal' },
+  { label: '100 Lal', weight: 100, unit: 'Lal' },
+  { label: '150 Lal', weight: 150, unit: 'Lal' },
   { label: '10 Grams', weight: 10, unit: 'Gram' },
   { label: '50 Grams', weight: 50, unit: 'Gram' },
   { label: '100 Grams', weight: 100, unit: 'Gram' },
   { label: '1 Kg', weight: 1, unit: 'Kilogram' },
   { label: '1 Troy Oz', weight: 1, unit: 'Troy Ounce' },
-  { label: '50 Lal', weight: 50, unit: 'Lal' },
 ];
 
 interface BasketItem {
@@ -316,8 +323,8 @@ export default function SilverCalculatorComponent() {
       ]}
       compactHeader={true}
       titleClassName="text-xl sm:text-2xl font-bold text-[#202124] tracking-tight"
-      title="Silver Converter Nepal: Convert Gram, Tola, Lal & Calculate Silver Value"
-      description="Convert silver weights between Tola, Lal, Aana, Gram, Kg, and Troy Ounce. Includes live silver rates in NPR, 925 sterling purity adjustments, jewellery pricing, and investment valuation."
+      title="Silver Converter Nepal"
+      description="The Silver Converter Nepal helps you convert silver between Tola, Gram, Lal, Aana, Ratti, Kilogram and Troy Ounce while instantly calculating silver value using today's Nepal silver price. It supports 999 Fine Silver, 925 Sterling Silver and traditional jewellery weight conversions used across Nepal."
       icon={Coins}
       inputs={
         <div className="space-y-6">
@@ -1045,13 +1052,18 @@ export default function SilverCalculatorComponent() {
             </div>
           </div>
 
-          {/* Live Silver Rate Compact Info Card */}
-          <div className="mt-4">
-            <Link 
+          {/* Entity Clarification Note */}
+          <div className="mt-4 p-3 bg-[#FFF8E1] border border-[#F9AB00]/30 rounded-md text-xs text-[#5F6368] leading-relaxed">
+            <strong className="text-[#202124]">Note:</strong> The traditional Nepali units <strong>Tola, Lal, Aana and Ratti are used for both silver (Chandi) and gold (Sun)</strong> in Nepal. This converter focuses on <strong>silver weight conversion and silver value estimation</strong>, but the measurement relationships are identical for other precious metals.
+          </div>
+
+          {/* Live Silver Rate Link */}
+          <div className="mt-3">
+            <Link
               href="/market-rates/live-silver-price/"
               className="inline-flex items-center justify-center w-full py-2.5 px-4 bg-white border border-[#DADCE0] hover:bg-[#E8F0FE] hover:border-[#1A73E8] hover:text-[#1A73E8] rounded-md text-xs font-bold text-[#202124] transition-all shadow-sm"
             >
-              View Today's Live Silver Price →
+              View Today&apos;s Live Silver Price →
             </Link>
           </div>
         </div>
@@ -1064,12 +1076,35 @@ export default function SilverCalculatorComponent() {
             <div className="bg-[#E8F0FE] border border-[#1A73E8] rounded-lg p-5">
               <h2 className="font-bold text-[#1A73E8] mb-2 text-lg">Quick Answer: Silver Measurement Standards</h2>
               <p className="text-[#202124] text-base leading-relaxed">
-                In Nepal, 1 Tola of silver equals exactly <strong>11.6638 grams</strong> (100 Lal, 16 Aana, or 64 Ratti) as standardized by FENEGOSIDA and the Nepal Bureau of Standards & Metrology (NBSM). Internationally, silver is traded in <strong>Troy Ounces</strong>, where 1 Troy Ounce equals <strong>31.1035 grams</strong> or approximately 2.6667 Tolas.
+                In Nepal, <strong>1 Tola of silver equals exactly 11.6638 grams</strong> (100 Lal, 16 Aana, or 64 Ratti) as standardized by FENEGOSIDA and the Nepal Bureau of Standards &amp; Metrology (NBSM). Internationally, silver is traded in <strong>Troy Ounces</strong>, where 1 Troy Ounce equals <strong>31.1035 grams</strong> or approximately 2.6667 Tolas.
               </p>
               <p className="text-[#5F6368] text-sm mt-3">
                 Last updated: July 2026 &bull; Measurements verified against official FENEGOSIDA and LBMA international standards.
               </p>
             </div>
+
+            {/* Most Common Nepali Silver Conversions */}
+            <section id="common-conversions">
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Most Common Nepali Silver Conversions</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  { from: '1 Tola', to: 'One Tola of silver weighs exactly 11.6638 grams.' },
+                  { from: '1 Tola to Lal', to: 'One Tola of silver contains 100 Lal.' },
+                  { from: '1 Tola to Aana', to: 'One Tola of silver contains 16 Aana.' },
+                  { from: '1 Lal', to: 'One Lal of silver weighs 0.116638 grams.' },
+                  { from: '1 Aana', to: 'One Aana of silver contains 6.25 Lal.' },
+                  { from: '50 Lal', to: '50 Lal of silver weighs 5.8319 grams.' },
+                  { from: '100 Lal', to: '100 Lal of silver equals 1 Tola or 11.6638 grams.' },
+                  { from: '1 Kilogram', to: 'One kilogram of silver equals 85.735 Tolas.' },
+                  { from: '1 Troy Ounce', to: 'One Troy Ounce of silver equals 2.6667 Tolas.' },
+                ].map(({ from, to }) => (
+                  <div key={from + to} className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-3">
+                    <div className="text-xs font-bold text-[#70757A] uppercase mb-1">{from}</div>
+                    <div className="text-sm font-black text-[#1A73E8]">{to}</div>
+                  </div>
+                ))}
+              </div>
+            </section>
 
             {/* Table of Contents */}
             <nav className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-6">
@@ -1206,7 +1241,59 @@ export default function SilverCalculatorComponent() {
               </div>
             </section>
 
-            {/* Silver Conversion Formulas */}
+            {/* How Nepali Jewellers Convert Silver in Lal, Aana & Tola */}
+            <section id="jeweller-conversions">
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-3">How Nepali Jewellers Convert Silver in Lal, Aana &amp; Tola</h2>
+              <div className="bg-[#F8F9FA] border border-[#DADCE0] rounded-lg p-5 text-sm text-[#5F6368] leading-relaxed space-y-2">
+                <p>Nepal&apos;s jewellery trade uses a fixed hierarchical system for both <strong>silver (Chandi)</strong> and <strong>gold (Sun)</strong>:</p>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li><strong>100 Lal = 1 Tola</strong> — the base relationship every jeweller uses</li>
+                  <li><strong>16 Aana = 1 Tola</strong></li>
+                  <li><strong>1 Aana = 6.25 Lal</strong></li>
+                  <li><strong>1 Tola = 11.6638 Grams</strong> — the metric equivalent</li>
+                </ul>
+                <p>These standards are set by <strong>FENEGOSIDA</strong> (Federation of Nepal Gold and Silver Dealers Association) and verified by the <strong>Nepal Bureau of Standards and Metrology (NBSM)</strong>. The same system applies to all precious metals traded in Nepal&apos;s bullion and jewellery market.</p>
+              </div>
+            </section>
+
+            {/* Popular Lal to Gram & Tola Silver Conversions */}
+
+            <section id="lal-conversions">
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Popular Lal to Gram &amp; Tola Silver Conversions</h2>
+              <p className="text-[#5F6368] text-sm mb-3">Quick reference for the most-searched Lal conversion values in Nepal.</p>
+              <div className="overflow-x-auto border border-[#DADCE0] rounded-lg">
+                <table className="w-full text-left text-sm text-[#202124]">
+                  <thead className="bg-[#F8F9FA] text-[#5F6368] uppercase text-xs">
+                    <tr>
+                      <th className="px-4 py-3 font-semibold border-b border-[#DADCE0]">Lal</th>
+                      <th className="px-4 py-3 font-semibold border-b border-[#DADCE0] border-l">Grams</th>
+                      <th className="px-4 py-3 font-semibold border-b border-[#DADCE0] border-l">Tola</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      { lal: '10 Lal', g: '1.166 g', t: '0.10 Tola' },
+                      { lal: '20 Lal', g: '2.333 g', t: '0.20 Tola' },
+                      { lal: '25 Lal', g: '2.916 g', t: '0.25 Tola' },
+                      { lal: '40 Lal', g: '4.665 g', t: '0.40 Tola' },
+                      { lal: '50 Lal', g: '5.832 g', t: '0.50 Tola' },
+                      { lal: '60 Lal', g: '6.998 g', t: '0.60 Tola' },
+                      { lal: '75 Lal', g: '8.748 g', t: '0.75 Tola' },
+                      { lal: '80 Lal', g: '9.331 g', t: '0.80 Tola' },
+                      { lal: '90 Lal', g: '10.497 g', t: '0.90 Tola' },
+                      { lal: '100 Lal', g: '11.6638 g', t: '1 Tola' },
+                      { lal: '150 Lal', g: '17.496 g', t: '1.5 Tola' },
+                    ].map((row, i) => (
+                      <tr key={row.lal} className={i % 2 === 1 ? 'bg-[#F8F9FA]' : ''}>
+                        <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">{row.lal}</td>
+                        <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">{row.g}</td>
+                        <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">{row.t}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
             <section id="formulas">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Silver Conversion Formulas</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -1329,27 +1416,166 @@ export default function SilverCalculatorComponent() {
               </p>
             </section>
 
+            {/* Silver Investment Conversion Examples */}
+            <section id="investment-examples">
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Silver Investment Conversion Examples</h2>
+              <p className="text-[#5F6368] text-base leading-relaxed mb-4">
+                When buying silver bars or bulk investment coins, weights are commonly quoted in larger increments. Here is how standard investment silver weights convert in the Nepali market:
+              </p>
+              <div className="overflow-x-auto border border-[#DADCE0] rounded-lg">
+                <table className="w-full text-left text-sm text-[#202124]">
+                  <thead className="bg-[#F8F9FA] text-[#5F6368] uppercase text-xs">
+                    <tr>
+                      <th className="px-4 py-3 font-semibold border-b border-[#DADCE0]">Silver Weight</th>
+                      <th className="px-4 py-3 font-semibold border-b border-[#DADCE0] border-l">Tola Equivalent</th>
+                      <th className="px-4 py-3 font-semibold border-b border-[#DADCE0] border-l">Typical Use</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">100 grams silver</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">8.573 Tola</td>
+                      <td className="px-4 py-2.5 border-t border-[#DADCE0] border-l">Small silver coins and bars</td>
+                    </tr>
+                    <tr className="bg-[#F8F9FA]">
+                      <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">250 grams silver</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">21.434 Tola</td>
+                      <td className="px-4 py-2.5 border-t border-[#DADCE0] border-l">Medium investment bars</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">500 grams silver</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">42.868 Tola</td>
+                      <td className="px-4 py-2.5 border-t border-[#DADCE0] border-l">Large bullion blocks</td>
+                    </tr>
+                    <tr className="bg-[#F8F9FA]">
+                      <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">1 kilogram silver</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">85.735 Tola</td>
+                      <td className="px-4 py-2.5 border-t border-[#DADCE0] border-l">Standard commercial silver trading</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">10 Tola silver</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">116.638 g</td>
+                      <td className="px-4 py-2.5 border-t border-[#DADCE0] border-l">Heavy silver chains and traditional pieces</td>
+                    </tr>
+                    <tr className="bg-[#F8F9FA]">
+                      <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">50 Tola silver</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">583.19 g</td>
+                      <td className="px-4 py-2.5 border-t border-[#DADCE0] border-l">Wholesale silver procurement</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">100 Tola silver</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">1,166.38 g</td>
+                      <td className="px-4 py-2.5 border-t border-[#DADCE0] border-l">Institutional bullion investment</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            {/* Common Silver Jewellery Weights */}
+            <section id="jewellery-weights">
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Common Silver Jewellery Weights</h2>
+              <div className="overflow-x-auto border border-[#DADCE0] rounded-lg">
+                <table className="w-full text-left text-sm text-[#202124]">
+                  <thead className="bg-[#F8F9FA] text-[#5F6368] uppercase text-xs">
+                    <tr>
+                      <th className="px-4 py-3 font-semibold border-b border-[#DADCE0]">Item</th>
+                      <th className="px-4 py-3 font-semibold border-b border-[#DADCE0] border-l">Typical Grams</th>
+                      <th className="px-4 py-3 font-semibold border-b border-[#DADCE0] border-l">Typical Tola</th>
+                      <th className="px-4 py-3 font-semibold border-b border-[#DADCE0] border-l">Typical Lal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">Silver Ring</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">3 - 8 g</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">0.25 - 0.70 Tola</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">25 - 70 Lal</td>
+                    </tr>
+                    <tr className="bg-[#F8F9FA]">
+                      <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">Silver Chain</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">10 - 35 g</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">0.85 - 3.00 Tola</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">85 - 300 Lal</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">Bracelet</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">15 - 50 g</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">1.25 - 4.25 Tola</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">125 - 425 Lal</td>
+                    </tr>
+                    <tr className="bg-[#F8F9FA]">
+                      <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">Anklet (Payal)</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">20 - 80 g</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">1.70 - 6.85 Tola</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">170 - 685 Lal</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">Silver Coin</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">10 - 20 g</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">0.85 - 1.70 Tola</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">85 - 170 Lal</td>
+                    </tr>
+                    <tr className="bg-[#F8F9FA]">
+                      <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">Bullion Bar</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">100 - 1000 g</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">8.5 - 85.7 Tola</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">850 - 8570 Lal</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">Temple Jewellery</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">50 - 200 g</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">4.25 - 17.15 Tola</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">425 - 1715 Lal</td>
+                    </tr>
+                    <tr className="bg-[#F8F9FA]">
+                      <td className="px-4 py-2.5 font-bold border-t border-[#DADCE0]">Puja Items</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">20 - 100 g</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">1.70 - 8.57 Tola</td>
+                      <td className="px-4 py-2.5 font-mono border-t border-[#DADCE0] border-l">170 - 857 Lal</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            {/* Silver Bullion Buying Guide */}
+            <section id="bullion-buying-guide">
+              <h2 className="text-2xl font-bold text-[#1967D2] mb-4">Silver Bullion Buying Guide</h2>
+              <p className="text-[#5F6368] text-base leading-relaxed mb-4">
+                Silver purity matters heavily when buying investment bars or jewellery. Nepal follows international silver purity standards:
+              </p>
+              <ul className="list-disc pl-5 space-y-2 text-[#5F6368] text-base mb-4">
+                <li><strong>999 Fine Silver:</strong> Contains 99.9% pure silver. This is best for bullion investment, silver bars, and collectible coins. It is very soft and generally not used for daily-wear jewellery.</li>
+                <li><strong>925 Sterling Silver:</strong> Contains 92.5% pure silver and 7.5% alloy (usually copper). It is the most common purity for high-quality silver jewellery because the added metal provides durability and prevents scratching.</li>
+                <li><strong>800 Silver:</strong> Contains 80% silver. This is commonly used in Nepal for heavy traditional anklets, puja items, and decorative temple pieces.</li>
+              </ul>
+              <p className="text-[#5F6368] text-base leading-relaxed">
+                When purchasing, always multiply the raw silver weight (in Tola or Grams) by the daily published silver price. Use the Silver Converter above to ensure you know the exact silver content of any item before calculating the making charges (Jarti) added by the jeweller.
+              </p>
+            </section>
+
             {/* People Also Search For */}
             <section id="people-also-search-for">
               <h2 className="text-2xl font-bold text-[#1967D2] mb-4">People Also Search For</h2>
               <ul className="flex flex-wrap gap-3 text-sm">
                 <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]">
-                  <a href="/market-rates/live-silver-price/" className="hover:text-[#1A73E8]">Live Silver Price Nepal</a>
+                  <Link href="/market-rates/live-silver-price/" className="hover:text-[#1A73E8]">Today&apos;s Silver Price in Nepal</Link>
                 </li>
                 <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]">
-                  <a href="/calculator/gold-converter/" className="hover:text-[#1A73E8]">Gold Converter Nepal</a>
+                  <Link href="/market-rates/live-silver-price/" className="hover:text-[#1A73E8]">Live Silver Rate Nepal</Link>
                 </li>
                 <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]">
-                  <a href="/calculator/gold-tax/" className="hover:text-[#1A73E8]">Customs & Gold Tax Calculator</a>
+                  <Link href="/calculator/silver-converter/" className="hover:text-[#1A73E8]">Silver Price Calculator</Link>
                 </li>
                 <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]">
-                  <a href="/calculator/nepali-date/" className="hover:text-[#1A73E8]">Nepali Date Converter</a>
+                  <Link href="/calculator/gold-converter/" className="hover:text-[#1A73E8]">Gold Converter Nepal</Link>
                 </li>
                 <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]">
-                  <a href="/calculator/remittance-calculator/" className="hover:text-[#1A73E8]">Remittance Calculator</a>
+                  <Link href="/market-rates/live-gold-price/" className="hover:text-[#1A73E8]">Gold Price Nepal</Link>
                 </li>
                 <li className="bg-[#F8F9FA] border border-[#DADCE0] rounded px-3 py-1 text-[#5F6368]">
-                  <a href="/calculator/nepal-income-tax/" className="hover:text-[#1A73E8]">Nepal Income Tax Calculator</a>
+                  <Link href="/market-rates/" className="hover:text-[#1A73E8]">Market Rates Nepal</Link>
                 </li>
               </ul>
             </section>
@@ -1359,57 +1585,45 @@ export default function SilverCalculatorComponent() {
               <h2 className="text-2xl font-bold text-[#1967D2] mb-6">Frequently Asked Questions (FAQ)</h2>
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-lg font-bold text-[#202124] mb-2">How many grams are in 1 Tola of silver in Nepal?</h3>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">How much does 1 Tola of silver weigh?</h3>
                   <p className="text-[#5F6368] text-base leading-relaxed">
-                    One Tola of silver equals exactly <strong>11.6638 grams</strong> according to the official Nepal measurement standards established by NBSM and FENEGOSIDA.
+                    One Tola of silver weighs exactly 11.6638 grams according to Nepal&apos;s official bullion measurement standard.
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-[#202124] mb-2">How many Lal are in 1 Tola of silver?</h3>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">How much is 50 Lal of silver?</h3>
                   <p className="text-[#5F6368] text-base leading-relaxed">
-                    There are exactly <strong>100 Lal</strong> in 1 Tola of silver. Therefore, 1 Lal equals approximately 0.1166 grams.
+                    50 Lal of silver equals 0.5 Tola or 5.8319 grams.
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-[#202124] mb-2">How many Aana are in 1 Tola of silver?</h3>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">How do I calculate silver value in Nepal?</h3>
                   <p className="text-[#5F6368] text-base leading-relaxed">
-                    There are <strong>16 Aana</strong> in 1 Tola. Each Aana equals approximately 0.7290 grams of silver.
+                    Multiply the silver weight (in Tola or Gram) by today&apos;s official silver rate and adjust for purity if required.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">How much silver is in 1 kilogram?</h3>
+                  <p className="text-[#5F6368] text-base leading-relaxed">
+                    One kilogram of silver equals approximately 85.735 Tolas.
                   </p>
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-[#202124] mb-2">What is 925 Sterling Silver?</h3>
                   <p className="text-[#5F6368] text-base leading-relaxed">
-                    925 Sterling Silver contains 92.5% pure silver and 7.5% copper or other alloy metals to give the jewellery rigidity and strength.
+                    925 Sterling Silver contains 92.5% pure silver and 7.5% alloy metals. It is commonly used for jewellery because it is stronger than 999 Fine Silver.
                   </p>
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-[#202124] mb-2">What is 999 Fine Silver?</h3>
                   <p className="text-[#5F6368] text-base leading-relaxed">
-                    999 Fine Silver is 99.9% pure silver, which is the highest purity grade used for bullion investment bars and official coins.
+                    999 Fine Silver contains 99.9% pure silver and is generally used for bullion bars, coins and investment purposes.
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-[#202124] mb-2">How do I convert Troy Ounces to Tola?</h3>
+                  <h3 className="text-lg font-bold text-[#202124] mb-2">Which silver purity should I choose?</h3>
                   <p className="text-[#5F6368] text-base leading-relaxed">
-                    One Troy Ounce equals 31.1035 grams. To convert to Tola, divide 31.1035 by 11.6638, which yields approximately <strong>2.6667 Tolas</strong> per Troy Ounce.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[#202124] mb-2">How many Tolas are in 1 Kilogram of silver?</h3>
-                  <p className="text-[#5F6368] text-base leading-relaxed">
-                    One Kilogram (1,000 grams) of silver equals approximately <strong>85.7353 Tolas</strong>.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[#202124] mb-2">How is silver price calculated in Nepal?</h3>
-                  <p className="text-[#5F6368] text-base leading-relaxed">
-                    Silver price in Nepal is calculated per Tola based on daily published FENEGOSIDA rates, adjusted for purity grade and jeweller making charges.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-[#202124] mb-2">Is the Silver Converter free to use?</h3>
-                  <p className="text-[#5F6368] text-base leading-relaxed">
-                    Yes, NepaCalc's Silver Converter is 100% free to use online with unlimited calculations, multi-unit breakdowns, and live price estimations.
+                    999 Fine Silver is best for investment. 925 Sterling Silver is best for jewellery.
                   </p>
                 </div>
               </div>

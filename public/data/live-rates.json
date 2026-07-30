@@ -7,8 +7,12 @@
     "tolaNPR": 4310
   },
   "date": "2026-07-30",
+  "fetchedAt": "2026-07-30T16:30:00+05:45",
+  "timeNPT": "10:15 AM NPT",
   "source": "FENEGOSIDA",
-  "updatedAt": "2026-07-30T16:30:00.000Z",
+  "fetchSource": "seed",
   "verified": true,
-  "note": "Static fallback. Live data is served by /data/live-rates.json (written by market-engine.php cron)."
+  "fetchFailed": false,
+  "_version": "8f2a1d3b9c4e",
+  "_status": "seed"
 }

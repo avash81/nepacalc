@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 export interface RateStats {
   current: number;
@@ -30,9 +30,9 @@ export interface LiveRates {
     spotUSD: number;
     provider: string;
     lastUpdated: string;
-    /** ISO date string of the actual FENEGOSIDA bulletin (e.g. "2026-07-29") */
+    /** ISO date string of the actual FENEGOSIDA bulletin (e.g. "2026-07-30") */
     dataDate: string;
-    /** true = fetched live from FENEGOSIDA today, false = using last known value */
+    /** true = data is from today's FENEGOSIDA bulletin */
     isFresh: boolean;
   };
   silver: {
@@ -41,23 +41,31 @@ export interface LiveRates {
   };
 }
 
-// ─── Default / Fallback values ───────────────────────────────────────────────
-// These are updated by scripts/fetch-rates.js before every build.
-// They are also updated here manually whenever FENEGOSIDA publishes a new rate.
-const FALLBACK_GOLD_TOLA   = 283200;  // FENEGOSIDA 2026-07-29
-const FALLBACK_TEJABI_TOLA = 282500;  // FENEGOSIDA 2026-07-29
-const FALLBACK_SILVER_TOLA = 4320;    // FENEGOSIDA 2026-07-29
-const FALLBACK_DATE        = '2026-07-29';
+// ─── Fallback values (LAST KNOWN VERIFIED FENEGOSIDA) ────────────────────────
+// Primary live data: /data/live-rates.json  written by market-engine.php cron
+// API endpoint:      /api/rates.php         reads live-rates.json
+// These are ONLY used when the server is totally unreachable.
+const FALLBACK_GOLD_TOLA   = 284000;  // FENEGOSIDA 2026-07-30
+const FALLBACK_TEJABI_TOLA = 283300;  // FENEGOSIDA 2026-07-30
+const FALLBACK_SILVER_TOLA = 4310;    // FENEGOSIDA 2026-07-30
+const FALLBACK_DATE        = '2026-07-30';
 const FALLBACK_USD         = 133.5;
 
-const LS_KEY = 'nepacalc_verified_rates_v2';
+// ─── Polling intervals ───────────────────────────────────────────────────────
+const VERSION_POLL_MS  = 10_000;   // Check rates-version.txt every 10 seconds
+const FULL_FETCH_MS    = 300_000;  // Full re-fetch every 5 min (safety net)
+const FOREX_REFRESH_MS = 3_600_000; // Forex: once per hour
 
-// ─── LocalStorage helpers ────────────────────────────────────────────────────
+const LS_KEY         = 'nepacalc_verified_rates_v3';
+const LS_VERSION_KEY = 'nepacalc_rate_version';
+
+// ─── localStorage helpers ────────────────────────────────────────────────────
 interface StoredRates {
   gold: number;
   tejabi: number;
   silver: number;
   date: string;
+  version: string;
   updatedAt: string;
 }
 
@@ -66,268 +74,267 @@ function readStored(): StoredRates | null {
     const raw = localStorage.getItem(LS_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as StoredRates;
-    // Only trust stored value if it's from today or yesterday (not older)
-    const stored = new Date(parsed.updatedAt);
-    const ageHours = (Date.now() - stored.getTime()) / 3600000;
-    if (ageHours > 36) return null; // discard stale localStorage data
+    const ageHours = (Date.now() - new Date(parsed.updatedAt).getTime()) / 3_600_000;
+    if (ageHours > 36) return null;
     return parsed;
   } catch { return null; }
 }
 
-function writeStored(gold: number, tejabi: number, silver: number, date: string) {
+function writeStored(gold: number, tejabi: number, silver: number, date: string, version: string) {
   try {
-    const payload: StoredRates = { gold, tejabi, silver, date, updatedAt: new Date().toISOString() };
+    const payload: StoredRates = { gold, tejabi, silver, date, version, updatedAt: new Date().toISOString() };
     localStorage.setItem(LS_KEY, JSON.stringify(payload));
+    localStorage.setItem(LS_VERSION_KEY, version);
   } catch { /* ignore */ }
 }
 
-// ─── Parsing ─────────────────────────────────────────────────────────────────
-function parseGoldSilver(html: string): { fine: number; tejabi: number; silver: number | null } | null {
-  const goldMatches = html.match(/\['\d{8}',([2-3]\d{5}),(\d+)\]/g);
-  if (!goldMatches || goldMatches.length === 0) return null;
-
-  const lastGold = goldMatches[goldMatches.length - 1];
-  const parts = lastGold.replace(/['\[\]]/g, '').split(',');
-  const fine = parseInt(parts[1], 10);
-  const tejabi = parseInt(parts[2], 10) || 0;
-  if (fine < 200000 || fine > 500000) return null;
-
-  let silver: number | null = null;
-  const silverMatches = html.match(/'\d{8}',([3-7]\d{3}),\d+/g);
-  if (silverMatches && silverMatches.length > 0) {
-    const lastS = silverMatches[silverMatches.length - 1];
-    const sParsed = parseInt(lastS.split(',')[1], 10);
-    if (sParsed > 3000 && sParsed < 8000) silver = sParsed;
-  }
-  return { fine, tejabi, silver };
+function readStoredVersion(): string {
+  try { return localStorage.getItem(LS_VERSION_KEY) ?? ''; }
+  catch { return ''; }
 }
+
+// ─── Rate builder ─────────────────────────────────────────────────────────────
+function buildRates(
+  gold: number,
+  tejabi: number,
+  silver: number,
+  nprUsd: number,
+  forexAll: Record<string, number>,
+  provider: string,
+  updatedAt: string,
+  dataDate: string,
+  isFresh: boolean
+): LiveRates {
+  const flat = (v: number): RateStats => ({
+    current: v, high24h: v, low24h: v, change24h: 0, changePercent24h: 0
+  });
+  return {
+    forex: {
+      usd: flat(nprUsd),
+      inr: flat(forexAll['NPR'] && forexAll['INR'] ? (forexAll['NPR'] / forexAll['INR']) : nprUsd / 1.6),
+      gbp: flat(forexAll['NPR'] && forexAll['GBP'] ? (forexAll['NPR'] / forexAll['GBP']) : nprUsd * 1.25),
+      eur: flat(nprUsd * 1.08),
+      aud: flat(nprUsd * 0.65),
+      cad: flat(nprUsd * 0.73),
+      jpy: flat(nprUsd / 150),
+      all: forexAll,
+      provider: 'ExchangeRate-API',
+      date: updatedAt,
+    },
+    gold: {
+      tolaNPR: flat(gold),
+      tejabiTolaNPR: tejabi,
+      tolaInternationalNPR: Math.round(2350 * 0.375 * nprUsd),
+      spotUSD: 2350,
+      provider,
+      lastUpdated: updatedAt,
+      dataDate,
+      isFresh,
+    },
+    silver: {
+      tolaNPR: flat(silver),
+      tolaInternationalNPR: Math.round(28.5 * 0.375 * nprUsd),
+    },
+  };
+}
+
+// ─── BroadcastChannel (syncs all open tabs instantly) ────────────────────────
+const BROADCAST_CHANNEL = 'nepacalc_rates';
 
 // ─── Hook ─────────────────────────────────────────────────────────────────────
 export function useLiveRates() {
-  const [rates, setRates] = useState<LiveRates | null>(null);
+  const [rates, setRates]   = useState<LiveRates | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError]   = useState<string | null>(null);
 
-  const buildRates = (
-    goldBase: number,
-    tejabiBase: number,
-    silverBase: number,
-    nprUsd: number,
-    forexRates: Record<string, number>,
-    provider: string,
-    updatedAt: string,
-    dataDate: string,
-    isFresh: boolean
-  ): LiveRates => {
-    const flat = (v: number): RateStats => ({
-      current: v, high24h: v, low24h: v, change24h: 0, changePercent24h: 0
-    });
-    return {
-      forex: {
-        usd: flat(nprUsd),
-        inr: flat(nprUsd / 1.6),
-        gbp: flat(nprUsd * 1.25),
-        eur: flat(nprUsd * 1.08),
-        aud: flat(nprUsd * 0.65),
-        cad: flat(nprUsd * 0.73),
-        jpy: flat(nprUsd / 150),
-        all: forexRates,
-        provider: 'ExchangeRate-API',
-        date: updatedAt,
-      },
-      gold: {
-        tolaNPR: flat(goldBase),
-        tejabiTolaNPR: tejabiBase,
-        tolaInternationalNPR: Math.round(2350 * 0.375 * nprUsd),
-        spotUSD: 2350,
-        provider,
-        lastUpdated: updatedAt,
-        dataDate,
-        isFresh,
-      },
-      silver: {
-        tolaNPR: flat(silverBase),
-        tolaInternationalNPR: Math.round(28.5 * 0.375 * nprUsd),
-      },
+  // Track last known version hash to avoid unnecessary re-renders
+  const lastVersionRef  = useRef<string>(readStoredVersion());
+  const nprUsdRef       = useRef<number>(FALLBACK_USD);
+  const forexAllRef     = useRef<Record<string, number>>({});
+  const lastForexFetch  = useRef<number>(0);
+
+  // ── Broadcast channel: share updates instantly across all tabs ──────────────
+  const broadcastRef = useRef<BroadcastChannel | null>(null);
+  useEffect(() => {
+    if (typeof BroadcastChannel === 'undefined') return;
+    broadcastRef.current = new BroadcastChannel(BROADCAST_CHANNEL);
+    broadcastRef.current.onmessage = (e) => {
+      const msg = e.data;
+      if (msg?.type === 'RATES_UPDATED' && msg.gold > 200000) {
+        // Another tab got new rates first — apply them immediately
+        const updated = buildRates(
+          msg.gold, msg.tejabi, msg.silver,
+          nprUsdRef.current, forexAllRef.current,
+          msg.provider ?? 'FENEGOSIDA',
+          msg.updatedAt ?? new Date().toISOString(),
+          msg.date ?? new Date().toISOString().split('T')[0],
+          true
+        );
+        setRates(updated);
+        lastVersionRef.current = msg.version ?? lastVersionRef.current;
+      }
     };
-  };
+    return () => { broadcastRef.current?.close(); };
+  }, []);
 
-  const fetchRates = async () => {
+  // ── Broadcast helper ────────────────────────────────────────────────────────
+  const broadcastUpdate = useCallback((gold: number, tejabi: number, silver: number, date: string, version: string, provider: string) => {
+    broadcastRef.current?.postMessage({
+      type: 'RATES_UPDATED',
+      gold, tejabi, silver, date, version, provider,
+      updatedAt: new Date().toISOString(),
+    });
+  }, []);
+
+  // ── Refresh forex (once per hour) ──────────────────────────────────────────
+  const refreshForex = useCallback(async () => {
+    const now = Date.now();
+    if (now - lastForexFetch.current < FOREX_REFRESH_MS) return;
     try {
-      setLoading(true);
-
-      // ── Step 1: Read build-time JSON (always available, contains latest build data) ──
-      let buildGold = FALLBACK_GOLD_TOLA;
-      let buildTejabi = FALLBACK_TEJABI_TOLA;
-      let buildSilver = FALLBACK_SILVER_TOLA;
-      let buildDate = FALLBACK_DATE;
-      let buildVerified = false;
-
-      try {
-        const jsonRes = await fetch('/data/market-rates.json', { cache: 'no-store' });
-        if (jsonRes.ok) {
-          const json = await jsonRes.json();
-          if (json.gold?.tolaNPR > 200000) {
-            buildGold = json.gold.tolaNPR;
-            buildTejabi = json.gold.tejabiTolaNPR ?? 0;
-            buildSilver = json.silver?.tolaNPR ?? FALLBACK_SILVER_TOLA;
-            buildDate = json.date ?? FALLBACK_DATE;
-            buildVerified = json.verified ?? false;
-          }
-        }
-      } catch { /* use hardcoded fallback */ }
-
-      // ── Step 2: Check localStorage for a more recent verified value ──
-      const stored = readStored();
-      if (stored && stored.date >= buildDate && stored.gold > 200000) {
-        buildGold = stored.gold;
-        buildTejabi = stored.tejabi;
-        buildSilver = stored.silver;
-        buildDate = stored.date;
-        buildVerified = true;
+      const r = await fetch('https://api.exchangerate-api.com/v4/latest/USD', {
+        signal: AbortSignal.timeout(8000),
+      });
+      if (r.ok) {
+        const j = await r.json();
+        nprUsdRef.current  = j.rates?.NPR || FALLBACK_USD;
+        forexAllRef.current = j.rates || {};
+        lastForexFetch.current = now;
       }
+    } catch { /* non-critical */ }
+  }, []);
 
-      // ── Step 3: Set initial state immediately (no blank loading state for users) ──
-      let nprUsd = FALLBACK_USD;
-      let forexRates: Record<string, number> = {};
+  // ── Full rates fetch from live-rates.json ──────────────────────────────────
+  const fetchFullRates = useCallback(async (trigger: 'init' | 'version_change' | 'scheduled') => {
+    try {
+      const res = await fetch('/data/live-rates.json', {
+        cache: 'no-store',
+        signal: AbortSignal.timeout(6000),
+      });
+      if (!res.ok) return;
+      const json = await res.json();
 
-      // Forex (non-critical, run concurrently with FENEGOSIDA scrape)
-      const forexPromise = fetch('https://api.exchangerate-api.com/v4/latest/USD')
-        .then(r => r.json())
-        .then(j => { nprUsd = j.rates?.NPR || FALLBACK_USD; forexRates = j.rates || {}; })
-        .catch(() => {});
+      const gold   = json.gold?.tolaNPR;
+      const tejabi = json.gold?.tejabiTolaNPR ?? (gold - 700);
+      const silver = json.silver?.tolaNPR ?? FALLBACK_SILVER_TOLA;
+      const date   = json.date ?? FALLBACK_DATE;
+      const ver    = json._version ?? String(gold);
 
-      setRates(buildRates(buildGold, buildTejabi, buildSilver, nprUsd, forexRates, 'FENEGOSIDA', buildDate, buildDate, buildVerified));
+      if (!gold || gold < 200000) return;
+
+      // Skip if same version (no change)
+      if (trigger !== 'init' && ver === lastVersionRef.current) return;
+
+      lastVersionRef.current = ver;
+      await refreshForex();
+
+      const provider = json.stale
+        ? `FENEGOSIDA (${date})`
+        : `FENEGOSIDA · ${json.timeNPT ?? date}`;
+
+      const updated = buildRates(
+        gold, tejabi, silver,
+        nprUsdRef.current, forexAllRef.current,
+        provider, json.fetchedAt ?? new Date().toISOString(),
+        date, !json.stale && !json.fetchFailed
+      );
+
+      setRates(updated);
       setLoading(false);
-
-      // ── Step 4: Try live FENEGOSIDA scrape ──────────────────────────────────
-      // PRIMARY: PHP proxy on cPanel (server-side, no CORS, always fresh)
-      // FALLBACK: CORS proxies (browser-side, may be blocked)
-
-      let liveData: { fine: number; tejabi: number; silver: number | null } | null = null;
-      let liveProvider = '';
-
-      // ── Primary: PHP proxy (same-domain, server-side fetch) ──
-      try {
-        const phpRes = await fetch('/api/rates.php', {
-          cache: 'no-store',
-          signal: AbortSignal.timeout(12000),
-        });
-        if (phpRes.ok) {
-          const json = await phpRes.json();
-          if (json.gold?.tolaNPR > 200000) {
-            liveData = {
-              fine:   json.gold.tolaNPR,
-              tejabi: json.gold.tejabiTolaNPR ?? 0,
-              silver: json.silver?.tolaNPR ?? null,
-            };
-            liveProvider = json.stale
-              ? `FENEGOSIDA (cached ${json.date})`
-              : `FENEGOSIDA via PHP · ${json.time ?? ''}`;
-          }
-        }
-      } catch { /* PHP proxy failed — try CORS proxies below */ }
-
-      // ── Fallback: CORS proxy chain (browser-side) ──
-      if (!liveData) {
-        const fenegosidaUrl = 'https://www.fenegosida.org/';
-        const proxies = [
-          `https://corsproxy.io/?url=${encodeURIComponent(fenegosidaUrl)}`,
-          `https://api.allorigins.win/raw?url=${encodeURIComponent(fenegosidaUrl)}`,
-          `https://thingproxy.freeboard.io/fetch/${fenegosidaUrl}`,
-        ];
-
-        for (const proxy of proxies) {
-          try {
-            const res = await fetch(proxy, { signal: AbortSignal.timeout(10000) });
-            if (res.ok) {
-              const html = await res.text();
-              const parsed = parseGoldSilver(html);
-              if (parsed) {
-                liveData = parsed;
-                liveProvider = proxy.includes('corsproxy') ? 'FENEGOSIDA via corsproxy.io'
-                  : proxy.includes('allorigins') ? 'FENEGOSIDA via allorigins'
-                  : 'FENEGOSIDA via thingproxy';
-                break;
-              }
-            }
-          } catch { /* try next proxy */ }
-        }
-      }
-
-      // ── Step 5: Wait for forex, then apply live data if valid ──
-      await forexPromise;
-
-      if (liveData) {
-        // Sanity check: reject if too far from known value
-        const goldDiff = Math.abs(liveData.fine - buildGold);
-        if (goldDiff < 15000) {
-          const todayNPT = new Date(Date.now() + (5 * 60 + 45) * 60000).toISOString().split('T')[0];
-          const finalSilver = (liveData.silver && Math.abs(liveData.silver - buildSilver) < 2000)
-            ? liveData.silver
-            : buildSilver;
-
-          // Persist to localStorage for next visit
-          writeStored(liveData.fine, liveData.tejabi, finalSilver, todayNPT);
-
-          setRates(buildRates(
-            liveData.fine, liveData.tejabi, finalSilver,
-            nprUsd, forexRates, liveProvider,
-            new Date().toISOString(), todayNPT, true
-          ));
-        }
-        // If goldDiff >= 15000 — suspicious value, keep build-time data
-      }
-
       setError(null);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Unknown error');
-      // Ensure rates are set even on error
-      if (!rates) {
-        const mockFlat = (v: number): RateStats => ({ current: v, high24h: v, low24h: v, change24h: 0, changePercent24h: 0 });
-        setRates({
-          forex: {
-            usd: mockFlat(FALLBACK_USD), inr: mockFlat(FALLBACK_USD / 1.6),
-            gbp: mockFlat(180), eur: mockFlat(150),
-            aud: mockFlat(95), cad: mockFlat(105), jpy: mockFlat(1),
-            all: {}, provider: 'Offline Fallback', date: new Date().toISOString()
-          },
-          gold: {
-            tolaNPR: mockFlat(FALLBACK_GOLD_TOLA), tejabiTolaNPR: FALLBACK_TEJABI_TOLA,
-            tolaInternationalNPR: 125000, spotUSD: 2350,
-            provider: 'FENEGOSIDA Fallback',
-            lastUpdated: FALLBACK_DATE,
-            dataDate: FALLBACK_DATE,
-            isFresh: false,
-          },
-          silver: { tolaNPR: mockFlat(FALLBACK_SILVER_TOLA), tolaInternationalNPR: 1500 }
-        });
-        setLoading(false);
+
+      // Persist to localStorage
+      writeStored(gold, tejabi, silver, date, ver);
+
+      // Broadcast to other tabs
+      broadcastUpdate(gold, tejabi, silver, date, ver, provider);
+
+    } catch (e) {
+      if (trigger === 'init') {
+        setError(e instanceof Error ? e.message : 'Fetch failed');
       }
     }
-  };
+  }, [refreshForex, broadcastUpdate]);
 
+  // ── Version check: fetch the tiny 50-byte rates-version.txt ─────────────────
+  // When hash changes → fetch full live-rates.json
+  const checkVersion = useCallback(async () => {
+    try {
+      const res = await fetch('/data/rates-version.txt', {
+        cache: 'no-store',
+        signal: AbortSignal.timeout(4000),
+      });
+      if (!res.ok) return;
+      const text = (await res.text()).trim();
+      const hash = text.split(' ')[0]; // format: "HASH GOLD SILVER"
+
+      if (hash && hash !== lastVersionRef.current) {
+        // Price changed — fetch full data immediately
+        lastVersionRef.current = hash;
+        await fetchFullRates('version_change');
+      }
+    } catch { /* rates-version.txt unreachable — silent fail */ }
+  }, [fetchFullRates]);
+
+  // ── Initialization ──────────────────────────────────────────────────────────
   useEffect(() => {
-    fetchRates();
+    let mounted = true;
 
-    // Poll every 30s — combined with 30s PHP cache = within ~1 min of FENEGOSIDA update
-    const interval = setInterval(fetchRates, 30000);
+    const init = async () => {
+      // 1. Show instantly from localStorage (zero latency for returning users)
+      const stored = readStored();
+      if (stored && stored.gold > 200000) {
+        setRates(buildRates(
+          stored.gold, stored.tejabi, stored.silver,
+          FALLBACK_USD, {}, 'FENEGOSIDA (cached)',
+          stored.updatedAt, stored.date, false
+        ));
+        setLoading(false);
+      }
 
-    // Refresh immediately when user returns to this tab
-    const handleVisibility = () => { if (document.visibilityState === 'visible') fetchRates(); };
+      // 2. Fetch live-rates.json immediately (gets today's price from cron output)
+      await fetchFullRates('init');
+      if (mounted) setLoading(false);
+    };
+
+    init();
+
+    // 3. Poll rates-version.txt every 10s (50-byte file — near zero server load)
+    //    When version hash changes → automatically fetches full live-rates.json
+    const versionPoll = setInterval(() => {
+      if (mounted) checkVersion();
+    }, VERSION_POLL_MS);
+
+    // 4. Full re-fetch every 5 minutes as a safety net (catches any missed version bumps)
+    const fullPoll = setInterval(() => {
+      if (mounted) fetchFullRates('scheduled');
+    }, FULL_FETCH_MS);
+
+    // 5. Instant refresh when user returns to tab (after being away)
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible' && mounted) {
+        checkVersion();
+      }
+    };
     document.addEventListener('visibilitychange', handleVisibility);
 
-    // Refresh when browser reconnects
-    const handleOnline = () => fetchRates();
+    // 6. Instant refresh when network reconnects
+    const handleOnline = () => { if (mounted) fetchFullRates('scheduled'); };
     window.addEventListener('online', handleOnline);
 
     return () => {
-      clearInterval(interval);
+      mounted = false;
+      clearInterval(versionPoll);
+      clearInterval(fullPoll);
       document.removeEventListener('visibilitychange', handleVisibility);
       window.removeEventListener('online', handleOnline);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { rates, loading, error, refresh: fetchRates };
+  return {
+    rates,
+    loading,
+    error,
+    refresh: () => fetchFullRates('scheduled'),
+  };
 }
