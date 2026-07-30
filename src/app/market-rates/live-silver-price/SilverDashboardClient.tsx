@@ -37,6 +37,12 @@ export default function SilverDashboardClient({
       changePercent={silver.changePercent24h}
       lastUpdated={rates.gold.dataDate}
       accentColor="#64748b"
+      liveRateSubtitle={
+        <div className="text-[11px] font-black uppercase tracking-widest text-slate-500 text-left">
+          <div className="text-slate-900">Today&apos;s Official Silver Rate</div>
+          <div>Per Tola (999 Fine)</div>
+        </div>
+      }
       mainBoard={
         <div className="flex flex-col">
            {/* Stale data warning */}
@@ -67,7 +73,7 @@ export default function SilverDashboardClient({
                  Source: FENEGOSIDA
               </div>
               <div className="flex items-center gap-2">
-                 Rate Date: {rates.gold.dataDate}
+                 Updated Today ({new Date(rates.gold.dataDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })})
               </div>
               <div className="flex items-center gap-2">
                  Next Update: ~11:00 AM NPT
@@ -75,6 +81,9 @@ export default function SilverDashboardClient({
               <div className={`flex items-center gap-2 px-2 py-0.5 rounded text-[10px] ${rates.gold.isFresh ? 'text-green-600 bg-green-50' : 'text-amber-600 bg-amber-50'}`}>
                  {rates.gold.isFresh ? 'Fresh ✓' : 'Cached'}
               </div>
+           </div>
+           <div className="mx-4 sm:mx-6 mt-3 mb-2 text-[11px] text-slate-500 font-medium leading-relaxed">
+             Official Nepal silver rate updated daily from FENEGOSIDA. International spot silver (XAG/USD) is shown for global market reference only.
            </div>
 
            {/* Chart Section */}

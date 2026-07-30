@@ -3,54 +3,74 @@ import SilverDashboardClient from './SilverDashboardClient';
 import { SilverSeoContent, SilverSeoToc } from './SilverSeoSection';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 
+import fs from 'fs';
+import path from 'path';
+
+export const revalidate = 3600; // 1 hour
+
+function getLiveDate() {
+  try {
+    const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'live-rates.json'), 'utf8');
+    const json = JSON.parse(data);
+    return json.date || new Date().toISOString().split('T')[0];
+  } catch (e) {
+    return new Date().toISOString().split('T')[0];
+  }
+}
+
 // ─── METADATA ────────────────────────────────────────────────────────────────
-export const metadata: Metadata = {
-  title: 'Live Silver Price in Nepal Today (2083/84) | Chandi Rate Per Tola & Gram',
-  description:
-    "Track today's live silver price in Nepal with official FENEGOSIDA rates. View Chandi price per tola, gram and kilogram, historical trends, live silver calculator and unit converter.",
-  keywords: [
-    'live silver price nepal',
-    'silver price nepal',
-    'silver rate today',
-    'chandi rate today',
-    'silver price per tola',
-    'silver price per gram',
-    'silver calculator',
-    'silver converter',
-    'FENEGOSIDA silver price',
-  ],
-  alternates: {
-    canonical: 'https://nepacalc.com/market-rates/live-silver-price/',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    'max-image-preview': 'large',
-    'max-snippet': -1,
-    'max-video-preview': -1,
-  },
-  openGraph: {
-    title: 'Live Silver Price in Nepal Today | Chandi Rate',
+export async function generateMetadata(): Promise<Metadata> {
+  const rawDate = getLiveDate();
+  const year = rawDate.split('-')[0];
+  
+  return {
+    title: `Live Silver Price in Nepal Today (${year}) | Chandi Rate Per Tola & Gram`,
     description:
-      "Track today's official silver price in Nepal using FENEGOSIDA rates. Live Chandi prices, unit converter and historical silver trends.",
-    type: 'website',
-    url: 'https://nepacalc.com/market-rates/live-silver-price/',
-    images: [
-      {
-        url: 'https://nepacalc.com/images/live-silver-price-nepal.webp',
-        width: 1200,
-        height: 630,
-        alt: 'Live Silver Price Today Nepal',
-      },
+      "Track today's live silver price in Nepal with official FENEGOSIDA rates. View Chandi price per tola, gram and kilogram, historical trends, live silver calculator and unit converter.",
+    keywords: [
+      'live silver price nepal',
+      'silver price nepal',
+      'silver rate today',
+      'chandi rate today',
+      'silver price per tola',
+      'silver price per gram',
+      'silver calculator',
+      'silver converter',
+      'FENEGOSIDA silver price',
     ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Live Silver Price in Nepal Today',
-    description:
-      "Official FENEGOSIDA silver prices updated daily with calculator and converter.",
-  },
-};
+    alternates: {
+      canonical: 'https://nepacalc.com/market-rates/live-silver-price/',
+    },
+    robots: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
+    openGraph: {
+      title: `Live Silver Price in Nepal Today (${year}) | Chandi Rate`,
+      description:
+        "Track today's official silver price in Nepal using FENEGOSIDA rates. Live Chandi prices, unit converter and historical silver trends.",
+      type: 'website',
+      url: 'https://nepacalc.com/market-rates/live-silver-price/',
+      images: [
+        {
+          url: 'https://nepacalc.com/images/live-silver-price-nepal.webp',
+          width: 1200,
+          height: 630,
+          alt: 'Live Silver Price Today Nepal',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `Live Silver Price in Nepal Today (${year})`,
+      description:
+        "Official FENEGOSIDA silver prices updated daily with calculator and converter.",
+    },
+  };
+}
 
 // ─── PACKAGE 1: COMPLETE SCHEMA GRAPH ────────────────────────────────────────
 const schemaGraph = {
@@ -266,7 +286,15 @@ const schemaGraph = {
 };
 
 // ─── PAGE COMPONENT ───────────────────────────────────────────────────────────
-export default function Page() {
+export default async function Page() {
+  const rawDate = getLiveDate();
+  
+  // Clone schemaGraph to mutate
+  const dynamicSchema = JSON.parse(JSON.stringify(schemaGraph));
+  if (dynamicSchema['@graph'] && dynamicSchema['@graph'][3]) {
+    dynamicSchema['@graph'][3].dateModified = new Date(rawDate).toISOString();
+  }
+
   return (
     <div className="bg-white min-h-screen">
       <link rel="preconnect" href="https://www.google-analytics.com" />
@@ -276,7 +304,7 @@ export default function Page() {
       <link rel="dns-prefetch" href="https://s3.tradingview.com" />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaGraph) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(dynamicSchema) }}
       />
       
       <CalcWrapper

@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
+import { useLiveRates } from '@/hooks/useLiveRates';
 
 const tocItems = [
   { id: 'todays-silver-price', label: "Today's Silver Price" },
@@ -52,8 +55,15 @@ export function SilverSeoToc() {
 }
 
 export function SilverSeoContent() {
-  const displayDate = "17 July 2026";
-  const displayTime = "11:00 AM NST";
+  const { rates } = useLiveRates();
+
+  const displayDate = rates?.silver ? new Date(rates.gold.dataDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : "Today";
+  const displayTime = rates?.gold?.isFresh ? "11:00 AM NST" : "Last Verified";
+  const currentSilverPrice = rates?.silver ? rates.silver.tolaNPR.current.toLocaleString('en-IN') : "4,320";
+  const yesterdaySilverPrice = rates?.silver ? rates.silver.tolaNPR.previous.toLocaleString('en-IN') : "4,310";
+  const silverChange = rates?.silver ? Math.abs(rates.silver.tolaNPR.changeAmount24h).toLocaleString('en-IN') : "10";
+  const silverChangePercent = rates?.silver ? rates.silver.tolaNPR.changePercent24h.toFixed(2) : "0.23";
+  const isUp = rates?.silver ? rates.silver.tolaNPR.changeAmount24h >= 0 : true;
 
   const historicalData = [
     { date: '17 Jul', price: 4325 },
@@ -76,7 +86,10 @@ export function SilverSeoContent() {
         <p className="text-slate-600 text-base font-medium leading-relaxed max-w-3xl">
           <strong>Live Silver Price in Nepal Today (2083/84)</strong> provides the latest official Chandi rates published by the Federation of Nepal Gold and Silver Dealers&apos; Association (FENEGOSIDA). Check today&apos;s silver price per tola, gram and kilogram, convert traditional Nepalese weight units instantly, and monitor daily market movements using real-time pricing and historical trend analysis.
         </p>
-      </header>
+      {/* Intro Text below Calculator */}
+      <div className="mb-8 text-slate-700 text-base leading-relaxed font-medium">
+        The Live Silver Price Nepal page tracks the official daily silver rate published by FENEGOSIDA. View today's silver price per tola, gram, kilogram and troy ounce, compare international spot silver (XAG/USD), and calculate the current value of your silver instantly.
+      </div>
 
       {/* 1. Today's Silver Price */}
       <h2 id="todays-silver-price" className="text-2xl font-black text-slate-900 tracking-tighter mb-6 scroll-mt-20">
@@ -145,19 +158,23 @@ export function SilverSeoContent() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
               <div className="flex flex-col">
                 <span className="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">Yesterday</span>
-                <span className="text-lg font-black text-slate-700">Rs. 4,310</span>
+                <span className="text-lg font-black text-slate-700">Rs. {yesterdaySilverPrice}</span>
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col border-l border-slate-200">
                 <span className="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">Today</span>
-                <span className="text-lg font-black text-slate-900">Rs. 4,325</span>
+                <span className="text-lg font-black text-slate-900">Rs. {currentSilverPrice}</span>
               </div>
-              <div className="flex flex-col">
-                <span className="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">Difference</span>
-                <span className="text-lg font-black text-emerald-600">+ Rs. 15</span>
-              </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col border-l border-slate-200">
                 <span className="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">Change</span>
-                <span className="text-lg font-black text-emerald-600">+0.35%</span>
+                <span className={`text-lg font-black ${isUp ? 'text-emerald-600' : 'text-red-500'}`}>
+                  {isUp ? '+' : '-'}Rs. {silverChange}
+                </span>
+              </div>
+              <div className="flex flex-col border-l border-slate-200">
+                <span className="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">% Change</span>
+                <span className={`text-lg font-black ${isUp ? 'text-emerald-600' : 'text-red-500'}`}>
+                  {isUp ? '+' : ''}{silverChangePercent}%
+                </span>
               </div>
             </div>
           </div>

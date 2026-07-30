@@ -17,6 +17,7 @@ interface MarketDashboardLayoutProps {
   faqSection?: React.ReactNode;
   seoSection?: React.ReactNode;
   accentColor?: string;
+  liveRateSubtitle?: React.ReactNode;
 }
 
 export function MarketDashboardLayout({
@@ -31,7 +32,8 @@ export function MarketDashboardLayout({
   calculatorSection,
   faqSection,
   seoSection,
-  accentColor = '#2563eb'
+  accentColor = '#2563eb',
+  liveRateSubtitle
 }: MarketDashboardLayoutProps) {
   const isPositive = Number(changePercent || 0) >= 0;
 
@@ -53,15 +55,22 @@ export function MarketDashboardLayout({
                </div>
             </div>
 
-            <div className="flex flex-col items-start sm:items-end gap-2">
-              <div className="flex items-baseline gap-4">
-                 <div className="text-[42px] sm:text-[54px] font-black tracking-tighter text-slate-900 leading-none">
-                   <span className="text-[24px] mr-1 font-bold text-slate-400">Rs.</span>{liveRate}
+             <div className="flex flex-col items-start sm:items-end gap-2">
+              <div className="flex flex-row items-center gap-4">
+                 <div className="flex items-baseline gap-4">
+                    <div className="text-[42px] sm:text-[54px] font-black tracking-tighter text-slate-900 leading-none">
+                      <span className="text-[24px] mr-1 font-bold text-slate-400">Rs.</span>{liveRate}
+                    </div>
+                    {changePercent !== undefined && (
+                       <div className={`px-3 py-1.5 rounded-full text-[13px] font-black flex items-center gap-1.5 ${isPositive ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-rose-50 text-rose-600 border border-rose-100'}`}>
+                          <span className="w-2 h-2 rounded-full bg-current animate-pulse" />
+                          {isPositive ? '+' : ''}{changePercent}%
+                       </div>
+                    )}
                  </div>
-                 {changePercent !== undefined && (
-                    <div className={`px-3 py-1.5 rounded-full text-[13px] font-black flex items-center gap-1.5 ${isPositive ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-rose-50 text-rose-600 border border-rose-100'}`}>
-                       <span className="w-2 h-2 rounded-full bg-current animate-pulse" />
-                       {isPositive ? '+' : ''}{changePercent}%
+                 {liveRateSubtitle && (
+                    <div className="flex flex-col border-l border-slate-200 pl-4 py-1">
+                      {liveRateSubtitle}
                     </div>
                  )}
               </div>
