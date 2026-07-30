@@ -3,23 +3,44 @@ import { Metadata } from 'next';
 import RemittanceDashboardClient from './RemittanceDashboardClient';
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 
-export const metadata: Metadata = {
-  title: 'Live Remittance Board Nepal 2083/84 | Compare IME, Prabhu Rates',
-  description: 'Compare live remittance rates to Nepal from USA, Australia, and Gulf for FY 2083/84. Track IME, Prabhu Money, and Western Union NPR conversions.',
-  keywords: ['remittance rates nepal 2083', 'send money to nepal live', 'ime rate today npr', 'remittance board nepal 2084'],
-  alternates: {
-    canonical: 'https://NepaCalc.com/market-rates/remittance/',
-  },
-  openGraph: {
-    title: 'Remittance Board Nepal 2083/84 | NepaCalc',
-    description: 'Track and compare remittance rates for Nepal in FY 2083/84. Real-time transparency for NRVs.',
-    type: 'article',
-  },
-};
+import fs from 'fs';
+import path from 'path';
 
-export default function Page() {
+export const revalidate = 3600; // 1 hour
+
+function getLiveDate() {
+  try {
+    const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'live-rates.json'), 'utf8');
+    const json = JSON.parse(data);
+    return json.date || new Date().toISOString().split('T')[0];
+  } catch (e) {
+    return new Date().toISOString().split('T')[0];
+  }
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const rawDate = getLiveDate();
+  return {
+    title: 'Live Remittance Board Nepal 2083/84 | Compare IME, Prabhu Rates',
+    description: 'Compare live remittance rates to Nepal from USA, Australia, and Gulf for FY 2083/84. Track IME, Prabhu Money, and Western Union NPR conversions.',
+    keywords: ['remittance rates nepal 2083', 'send money to nepal live', 'ime rate today npr', 'remittance board nepal 2084'],
+    alternates: {
+      canonical: 'https://NepaCalc.com/market-rates/remittance/',
+    },
+    openGraph: {
+      title: 'Remittance Board Nepal 2083/84 | NepaCalc',
+      description: 'Track and compare remittance rates for Nepal in FY 2083/84. Real-time transparency for NRVs.',
+      type: 'article',
+      modifiedTime: new Date(rawDate).toISOString(),
+    },
+  };
+}
+
+export default async function Page() {
+  const rawDate = getLiveDate();
   return (
     <div className="bg-white min-h-screen">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebPage", "dateModified": new Date(rawDate).toISOString() }) }} />
       <CalcWrapper
         title="Live Remittance Board 2083/84"
         description="Daily remittance indices synchronized with official provider exchange rates for the Nepalese market."

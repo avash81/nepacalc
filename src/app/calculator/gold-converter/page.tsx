@@ -2,22 +2,40 @@ import { calcMeta } from '@/lib/calcMeta';
 import Calculator from './Calculator';
 import Link from 'next/link';
 
-export const metadata = calcMeta({
-  title: 'Nepal Gold Unit Converter – Tola, Lal, Aana & Gram Calculator',
-  description: 'Convert Nepal gold weight instantly between Tola, Lal (Laal), Aana and Gram using the official Nepal gold measurement system. Free two-way Nepal Gold Unit Converter with accurate conversions and optional gold value calculation.',
-  slug: 'gold-converter',
-  canonical: 'https://nepacalc.com/calculator/gold-converter/',
-  keywords: [
-    'tola to gram converter', 'lal to gram nepal', 'gram to lal nepal',
-    '1 lal in gram', '1 tola in lal', 'aana to gram converter',
-    'gold weight converter nepal', 'nepal gold unit calculator',
-    'gold jewelry auditor nepal', 'tola lal aana ratti converter',
-    '15 lal in gram', '17 lal gold nepal', '40 lal in gram',
-    'how many lal in 1 tola', 'gold converter fenegosida',
-    'tejabi gold calculator', 'hallmark gold converter nepal',
-    'laal gold unit nepal', 'metal retention efficiency'
-  ],
-});
+import fs from 'fs';
+import path from 'path';
+
+export const revalidate = 3600; // 1 hour
+
+function getLiveDate() {
+  try {
+    const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'live-rates.json'), 'utf8');
+    const json = JSON.parse(data);
+    return json.date || new Date().toISOString().split('T')[0];
+  } catch (e) {
+    return new Date().toISOString().split('T')[0];
+  }
+}
+
+export async function generateMetadata() {
+  const rawDate = getLiveDate();
+  return calcMeta({
+    title: 'Nepal Gold Unit Converter – Tola, Lal, Aana & Gram Calculator',
+    description: 'Convert Nepal gold weight instantly between Tola, Lal (Laal), Aana and Gram using the official Nepal gold measurement system. Free two-way Nepal Gold Unit Converter with accurate conversions and optional gold value calculation.',
+    slug: 'gold-converter',
+    canonical: 'https://nepacalc.com/calculator/gold-converter/',
+    keywords: [
+      'tola to gram converter', 'lal to gram nepal', 'gram to lal nepal',
+      '1 lal in gram', '1 tola in lal', 'aana to gram converter',
+      'gold weight converter nepal', 'nepal gold unit calculator',
+      'gold jewelry auditor nepal', 'tola lal aana ratti converter',
+      '15 lal in gram', '17 lal gold nepal', '40 lal in gram',
+      'how many lal in 1 tola', 'gold converter fenegosida',
+      'tejabi gold calculator', 'hallmark gold converter nepal',
+      'laal gold unit nepal', 'metal retention efficiency'
+    ],
+  });
+}
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -124,9 +142,11 @@ const faqSchema = {
   ]
 };
 
-export default function Page() {
+export default async function Page() {
+  const rawDate = getLiveDate();
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebPage", "dateModified": new Date(rawDate).toISOString() }) }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
