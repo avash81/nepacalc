@@ -23,10 +23,9 @@ function getLiveData() {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { date: rawDate, gold24k, gold22k, silver } = getLiveData();
+  const { date: rawDate, gold24k, gold22k } = getLiveData();
   const year = rawDate.split('-')[0];
 
-  // Build dynamic description with live price if available
   const priceSnippet = gold24k
     ? `Today's 24K gold rate is Rs.${gold24k.toLocaleString('en-IN')} per Tola and 22K Tejabi is Rs.${gold22k?.toLocaleString('en-IN') ?? ''} per Tola.`
     : '';
