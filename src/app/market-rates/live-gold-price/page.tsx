@@ -7,23 +7,35 @@ import path from 'path';
 
 export const revalidate = 3600; // 1 hour
 
-function getLiveDate() {
+function getLiveData() {
   try {
     const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'live-rates.json'), 'utf8');
     const json = JSON.parse(data);
-    return json.date || new Date().toISOString().split('T')[0];
+    return {
+      date: json.date || new Date().toISOString().split('T')[0],
+      gold24k: json.gold?.tolaNPR || null,
+      gold22k: json.gold?.tejabiTolaNPR || null,
+      silver: json.silver?.tolaNPR || null,
+    };
   } catch (e) {
-    return new Date().toISOString().split('T')[0];
+    return { date: new Date().toISOString().split('T')[0], gold24k: null, gold22k: null, silver: null };
   }
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const rawDate = getLiveDate();
+  const { date: rawDate, gold24k, gold22k, silver } = getLiveData();
   const year = rawDate.split('-')[0];
+
+  // Build dynamic description with live price if available
+  const priceSnippet = gold24k
+    ? `Today's 24K gold rate is Rs.${gold24k.toLocaleString('en-IN')} per Tola and 22K Tejabi is Rs.${gold22k?.toLocaleString('en-IN') ?? ''} per Tola.`
+    : '';
+
+  const description = `Check today's live gold price in Nepal updated from FENEGOSIDA. ${priceSnippet} View 24K Hallmark, 22K Tejabi and silver rates, historical price charts, market analysis and gold price calculator.`;
 
   return {
     title: `Gold Price in Nepal Today (${year}) – Live FENEGOSIDA Gold Rate`,
-    description: 'Check today\'s live gold price in Nepal updated from FENEGOSIDA. View 24K Hallmark, 22K Tejabi and silver rates, historical price charts, market analysis and gold price calculator.',
+    description,
     keywords: [
       'gold price nepal today', 'gold rate nepal', 'live gold price nepal',
       '24k gold price nepal', '22k gold rate nepal', 'tola gold price today',
@@ -31,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
     ],
     openGraph: {
       title: `Gold Price in Nepal Today (${year}) – Live FENEGOSIDA Gold Rate`,
-      description: 'Check today\'s live gold price in Nepal updated from FENEGOSIDA. View 24K Hallmark, 22K Tejabi and silver rates, historical price charts, market analysis and gold price calculator.',
+      description,
       url: 'https://nepacalc.com/market-rates/live-gold-price/',
       siteName: 'NepaCalc',
       images: [{ url: 'https://nepacalc.com/images/og/gold-price-nepal.png?date=2024-01-01' }],
@@ -40,7 +52,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: 'summary_large_image',
       title: `Gold Price in Nepal Today (${year}) – Live FENEGOSIDA Gold Rate`,
-      description: 'Check today\'s live gold price in Nepal updated from FENEGOSIDA.',
+      description,
       images: ['https://nepacalc.com/images/og/gold-price-nepal.png?date=2024-01-01']
     },
     alternates: {
@@ -76,7 +88,7 @@ const customSchema = {
 };
 
 export default async function Page() {
-  const rawDate = getLiveDate();
+  const { date: rawDate } = getLiveData();
   const dynamicSchema = JSON.parse(JSON.stringify(customSchema));
   if (dynamicSchema['@graph'] && dynamicSchema['@graph'][1]) {
     dynamicSchema['@graph'][1].dateModified = new Date(rawDate).toISOString();

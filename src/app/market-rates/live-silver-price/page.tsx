@@ -8,25 +8,34 @@ import path from 'path';
 
 export const revalidate = 3600; // 1 hour
 
-function getLiveDate() {
+function getLiveData() {
   try {
     const data = fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'live-rates.json'), 'utf8');
     const json = JSON.parse(data);
-    return json.date || new Date().toISOString().split('T')[0];
+    return {
+      date: json.date || new Date().toISOString().split('T')[0],
+      silver: json.silver?.tolaNPR || null,
+      gold24k: json.gold?.tolaNPR || null,
+    };
   } catch (e) {
-    return new Date().toISOString().split('T')[0];
+    return { date: new Date().toISOString().split('T')[0], silver: null, gold24k: null };
   }
 }
 
 // ─── METADATA ────────────────────────────────────────────────────────────────
 export async function generateMetadata(): Promise<Metadata> {
-  const rawDate = getLiveDate();
+  const { date: rawDate, silver } = getLiveData();
   const year = rawDate.split('-')[0];
+
+  const priceSnippet = silver
+    ? `Today's official Chandi rate is Rs.${silver.toLocaleString('en-IN')} per Tola.`
+    : '';
+
+  const description = `Track today's live silver price in Nepal with official FENEGOSIDA rates. ${priceSnippet} View Chandi price per tola, gram and kilogram, historical trends, live silver calculator and unit converter.`;
   
   return {
     title: `Live Silver Price in Nepal Today (${year}) | Chandi Rate Per Tola & Gram`,
-    description:
-      "Track today's live silver price in Nepal with official FENEGOSIDA rates. View Chandi price per tola, gram and kilogram, historical trends, live silver calculator and unit converter.",
+    description,
     keywords: [
       'live silver price nepal',
       'silver price nepal',
@@ -287,7 +296,7 @@ const schemaGraph = {
 
 // ─── PAGE COMPONENT ───────────────────────────────────────────────────────────
 export default async function Page() {
-  const rawDate = getLiveDate();
+  const rawDate = getLiveData().date;
   
   // Clone schemaGraph to mutate
   const dynamicSchema = JSON.parse(JSON.stringify(schemaGraph));
