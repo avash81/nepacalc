@@ -51,13 +51,7 @@ export const metadata: Metadata = {
     locale: 'en_NP',
     type: 'website',
   },
-  alternates: {
-    canonical: 'https://nepacalc.com/',
-    languages: {
-      'en-NP': 'https://nepacalc.com/',
-      'x-default': 'https://nepacalc.com/'
-    }
-  },
+
   twitter: {
     card: 'summary_large_image',
     title: "Free Online Calculators, Converters & Tools | NepaCalc",
