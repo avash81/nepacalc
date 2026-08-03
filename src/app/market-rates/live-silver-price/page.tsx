@@ -28,10 +28,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const year = rawDate.split('-')[0];
 
   const priceSnippet = silver
-    ? `Today's official Chandi rate is Rs.${silver.toLocaleString('en-IN')} per Tola.`
-    : '';
+    ? `Current Chandi price: Rs.${silver.toLocaleString('en-IN')} per tola, updated daily with per gram and kg prices.`
+    : 'Updated daily with per gram and kg prices.';
 
-  const description = `Track today's live silver price in Nepal with official FENEGOSIDA rates. ${priceSnippet} View Chandi price per tola, gram and kilogram, historical trends, live silver calculator and unit converter.`;
+  const description = `Live silver price in Nepal today with official FENEGOSIDA rates. ${priceSnippet}`;
   
   return {
     title: `Live Silver Price in Nepal Today (${year}) | Chandi Rate Per Tola & Gram`,
@@ -59,8 +59,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       title: `Live Silver Price in Nepal Today (${year}) | Chandi Rate`,
-      description:
-        "Track today's official silver price in Nepal using FENEGOSIDA rates. Live Chandi prices, unit converter and historical silver trends.",
+      description,
       type: 'website',
       url: 'https://nepacalc.com/market-rates/live-silver-price/',
       images: [
@@ -75,8 +74,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       card: 'summary_large_image',
       title: `Live Silver Price in Nepal Today (${year})`,
-      description:
-        "Official FENEGOSIDA silver prices updated daily with calculator and converter.",
+      description,
     },
   };
 }
@@ -122,7 +120,7 @@ const schemaGraph = {
       url: 'https://nepacalc.com/market-rates/live-silver-price/',
       name: 'Live Silver Price Today Nepal',
       description:
-        'Live silver price in Nepal updated daily using official FENEGOSIDA benchmark rates. View silver prices per tola, gram, kilogram and use the silver calculator and unit converter.',
+        'Live silver price in Nepal today | Official FENEGOSIDA Chandi rates per tola, gram and kilogram with daily market updates.',
       isPartOf: {
         '@id': 'https://nepacalc.com/#website',
       },
