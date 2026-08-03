@@ -4,15 +4,15 @@
     "tejabiTolaNPR": 283300
   },
   "silver": {
-    "tolaNPR": 4310
+    "tolaNPR": 4350
   },
-  "date": "2026-07-30",
-  "fetchedAt": "2026-07-30T16:30:00+05:45",
-  "timeNPT": "10:15 AM NPT",
-  "source": "FENEGOSIDA",
-  "fetchSource": "seed",
+  "date": "2026-08-03",
+  "source": "ShareSansar",
+  "updatedAt": "2026-08-03T15:43:00.687Z",
   "verified": true,
+  "fetchedAt": "2026-08-03T15:43:00.688Z",
+  "timeNPT": "09:28 PM NPT",
+  "fetchSource": "prebuild script",
   "fetchFailed": false,
-  "_version": "8f2a1d3b9c4e",
-  "_status": "seed"
+  "_status": "fresh"
 }

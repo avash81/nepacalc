@@ -4,12 +4,11 @@
     "tejabiTolaNPR": 283300
   },
   "silver": {
-    "tolaNPR": 4310
+    "tolaNPR": 4350
   },
-  "date": "2026-07-30",
-  "source": "FENEGOSIDA",
-  "updatedAt": "2026-08-03T09:26:21.280Z",
+  "date": "2026-08-03",
+  "source": "ShareSansar",
+  "updatedAt": "2026-08-03T15:43:00.687Z",
   "verified": true,
-  "note": "All proxies failed at build time. Showing last verified FENEGOSIDA data from 2026-07-30.",
-  "fetchFailed": true
+  "note": "Auto-updated by scripts/fetch-rates.js before every build."
 }
