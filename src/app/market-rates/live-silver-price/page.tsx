@@ -294,12 +294,18 @@ const schemaGraph = {
 
 // ─── PAGE COMPONENT ───────────────────────────────────────────────────────────
 export default async function Page() {
-  const rawDate = getLiveData().date;
-  
+  const { date: rawDate, silver } = getLiveData();
+
+  const priceSnippet = silver
+    ? `Current Chandi price: Rs.${silver.toLocaleString('en-IN')} per tola, updated daily with per gram and kg prices.`
+    : 'Updated daily with per gram and kg prices.';
+  const dynamicDescription = `Live silver price in Nepal today with official FENEGOSIDA rates. ${priceSnippet}`;
+
   // Clone schemaGraph to mutate
   const dynamicSchema = JSON.parse(JSON.stringify(schemaGraph));
   if (dynamicSchema['@graph'] && dynamicSchema['@graph'][3]) {
     dynamicSchema['@graph'][3].dateModified = new Date(rawDate).toISOString();
+    dynamicSchema['@graph'][3].description = dynamicDescription;
   }
 
   return (
