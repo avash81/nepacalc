@@ -23,7 +23,7 @@ function fetchUrl(url, timeoutMs = 12000) {
     const lib = url.startsWith('https') ? https : http;
     const req = lib.get(url, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; NepaCalcBot/2.0; +https://nepacalc.com)',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,*/*',
       }
     }, (res) => {
@@ -40,25 +40,18 @@ function fetchUrl(url, timeoutMs = 12000) {
 }
 
 function parseGoldSilver(html) {
-  // FENEGOSIDA Google Charts data format: ['YYYYMMDD', finePrice, tejabiPrice]
-  const goldMatches = html.match(/\['\d{8}',([2-3]\d{5}),(\d+)\]/g);
-  if (!goldMatches || goldMatches.length === 0) return null;
+  // Extract all Rs.XXXXX/tola values from the HTML
+  // ShareSansar format: <p>Rs.284,000/tola</p>
+  const matches = [...html.matchAll(/Rs\.([0-9,]+)\/tola/gi)];
+  if (matches.length < 3) return null;
 
-  const lastGold = goldMatches[goldMatches.length - 1];
-  const parts = lastGold.replace(/['\[\]]/g, '').split(',');
-  const fine = parseInt(parts[1], 10);
-  const tejabi = parseInt(parts[2], 10) || 0;
+  // matches[0] is Fine Gold, matches[1] is Tejabi Gold, matches[2] is Silver
+  const fine = parseInt(matches[0][1].replace(/,/g, ''), 10);
+  const tejabi = parseInt(matches[1][1].replace(/,/g, ''), 10) || 0;
+  const silver = parseInt(matches[2][1].replace(/,/g, ''), 10);
 
   if (fine < 200000 || fine > 500000) return null;
-
-  // Silver: FENEGOSIDA range 3000–8000/tola
-  let silver = null;
-  const silverMatches = html.match(/'\d{8}',([3-7]\d{3}),\d+/g);
-  if (silverMatches && silverMatches.length > 0) {
-    const lastS = silverMatches[silverMatches.length - 1];
-    const sParsed = parseInt(lastS.split(',')[1], 10);
-    if (sParsed > 3000 && sParsed < 8000) silver = sParsed;
-  }
+  if (silver < 3000 || silver > 8000) return null;
 
   return { fine, tejabi, silver };
 }
@@ -127,48 +120,31 @@ function validateChange(newVal, oldVal, name, maxAllowedDiff = 15000) {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
-  console.log('\n📊 Fetching official FENEGOSIDA gold & silver rates...\n');
+  console.log('\n📊 Fetching official FENEGOSIDA gold & silver rates from ShareSansar...\n');
 
   const existing = readExisting();
   if (existing) {
     console.log(`  Current stored: Gold=${existing.gold?.tolaNPR}, Silver=${existing.silver?.tolaNPR}, Date=${existing.date}`);
   }
 
-  const fenegosidaUrl = 'https://www.fenegosida.org/';
-  const proxies = [
-    // Proxy A — corsproxy.io (reliable, CDN-backed)
-    `https://corsproxy.io/?url=${encodeURIComponent(fenegosidaUrl)}`,
-    // Proxy B — allorigins (fallback)
-    `https://api.allorigins.win/raw?url=${encodeURIComponent(fenegosidaUrl)}`,
-    // Proxy C — thingproxy (last resort)
-    `https://thingproxy.freeboard.io/fetch/${fenegosidaUrl}`,
-  ];
-
+  const sourceUrl = 'https://www.sharesansar.com/bullion';
   let parsed = null;
-  let successProxy = null;
 
-  for (const proxy of proxies) {
-    const shortName = proxy.includes('corsproxy') ? 'corsproxy.io'
-      : proxy.includes('allorigins') ? 'allorigins.win'
-      : 'thingproxy';
-    process.stdout.write(`  Trying ${shortName}... `);
-    try {
-      const res = await fetchUrl(proxy);
-      if (res.ok) {
-        parsed = parseGoldSilver(res.text);
-        if (parsed) {
-          console.log(`✅ Got data`);
-          successProxy = shortName;
-          break;
-        } else {
-          console.log(`⚠️  Connected but could not parse rates`);
-        }
+  process.stdout.write(`  Trying sharesansar.com... `);
+  try {
+    const res = await fetchUrl(sourceUrl);
+    if (res.ok) {
+      parsed = parseGoldSilver(res.text);
+      if (parsed) {
+        console.log(`✅ Got data`);
       } else {
-        console.log(`❌ HTTP ${res.status}`);
+        console.log(`⚠️  Connected but could not parse rates`);
       }
-    } catch (e) {
-      console.log(`❌ ${e.message}`);
+    } else {
+      console.log(`❌ HTTP ${res.status}`);
     }
+  } catch (e) {
+    console.log(`❌ ${e.message}`);
   }
 
   // ── Validation ──────────────────────────────────────────────────────────────
@@ -180,7 +156,7 @@ async function main() {
     const finalTejabi = goldOk ? parsed.tejabi : (existing?.gold?.tejabiTolaNPR ?? 282500);
     const finalSilver = (parsed.silver && silverOk) ? parsed.silver : (existing?.silver?.tolaNPR ?? 4320);
 
-    const out = writeOutput(finalGold, finalTejabi, finalSilver, `FENEGOSIDA via ${successProxy}`, true);
+    const out = writeOutput(finalGold, finalTejabi, finalSilver, `ShareSansar`, true);
     console.log(`\n✅ Written to market-rates.json:`);
     console.log(`   Gold 24K  : Rs. ${out.gold.tolaNPR.toLocaleString('en-IN')}`);
     console.log(`   Tejabi 22K: Rs. ${out.gold.tejabiTolaNPR.toLocaleString('en-IN') || 'Not Published'}`);
@@ -188,18 +164,18 @@ async function main() {
     console.log(`   Date (NPT): ${out.date}`);
     console.log(`   Source    : ${out.source}\n`);
   } else {
-    // All proxies failed — keep existing verified data
+    // Failed — keep existing verified data
     if (existing && existing.verified) {
-      console.log(`\n⚠️  All proxies failed. Keeping last verified data from ${existing.date}.`);
+      console.log(`\n⚠️  Failed to fetch. Keeping last verified data from ${existing.date}.`);
       // Update the updatedAt so the build knows it tried
       existing.updatedAt = new Date().toISOString();
-      existing.note = `All proxies failed at build time. Showing last verified FENEGOSIDA data from ${existing.date}.`;
+      existing.note = `Fetch failed at build time. Showing last verified data from ${existing.date}.`;
       existing.fetchFailed = true;
       fs.writeFileSync(OUTPUT_PATH, JSON.stringify(existing, null, 2));
     } else {
       // No existing verified data — write safe defaults with warning
-      console.log(`\n❌ All proxies failed and no verified baseline. Writing known defaults.`);
-      writeOutput(283200, 282500, 4320, 'FENEGOSIDA Default (unverified)', false);
+      console.log(`\n❌ Failed and no verified baseline. Writing known defaults.`);
+      writeOutput(283200, 282500, 4320, 'Default (unverified)', false);
     }
   }
 }
