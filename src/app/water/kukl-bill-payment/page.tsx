@@ -483,7 +483,7 @@ export default function KUKLBillPaymentPage() {
           <div className="mb-10">
             <h3 className="text-xl font-bold text-gray-900 mb-3">Method 1: Check Bill Using the Official KUKL Customer Portal</h3>
             <p className="text-gray-700 mb-4">
-              The official <a href="https://customer.kukl.org.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">KUKL Customer Portal</a> is the most comprehensive way to check your water bill online.
+              The official <a href="https://customer.kukl.org.np/" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">KUKL Customer Portal</a> is the most comprehensive way to check your water bill online.
             </p>
             <p className="text-gray-800 font-semibold mb-2 text-sm uppercase tracking-wide">Steps</p>
             <ol className="list-decimal list-inside text-gray-700 space-y-2 text-sm mb-5">
@@ -536,7 +536,7 @@ export default function KUKLBillPaymentPage() {
             </p>
             <p className="text-gray-800 font-semibold mb-2 text-sm uppercase tracking-wide">Steps</p>
             <ol className="list-decimal list-inside text-gray-700 space-y-2 text-sm mb-5">
-              <li>Open <a href="https://esewa.com.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">eSewa</a>.</li>
+              <li>Open <strong>eSewa</strong>.</li>
               <li>Select <strong>Khanepani</strong>.</li>
               <li>Choose your KUKL branch.</li>
               <li>Enter your Customer Number.</li>
@@ -558,7 +558,7 @@ export default function KUKLBillPaymentPage() {
           <div className="mb-10">
             <h3 className="text-xl font-bold text-gray-900 mb-3">Method 4: Check KUKL Bill Using Khalti</h3>
             <p className="text-gray-700 mb-4">
-              <a href="https://khalti.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Khalti</a> offers a similar bill inquiry service before payment.
+              <strong>Khalti</strong> offers a similar bill inquiry service before payment.
             </p>
             <p className="text-gray-800 font-semibold mb-2 text-sm uppercase tracking-wide">Steps</p>
             <ol className="list-decimal list-inside text-gray-700 space-y-2 text-sm mb-4">
@@ -665,7 +665,7 @@ export default function KUKLBillPaymentPage() {
           </ul>
 
           <p className="text-gray-700 mb-8">
-            Most online payments are processed instantly, allowing you to view your updated payment status immediately after the transaction is completed. You can also explore the <a href="https://kukl.org.np/e-services/online-payment-service" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Official KUKL Online Payment Service</a> page for official notices.
+            Most online payments are processed instantly, allowing you to view your updated payment status immediately after the transaction is completed. You can also explore the <a href="https://kukl.org.np/e-services/online-payment-service" target="_blank" rel="nofollow noopener noreferrer" className="text-blue-600 hover:underline">Official KUKL Online Payment Service</a> page for official notices.
           </p>
 
           <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm mb-10">
@@ -688,7 +688,7 @@ export default function KUKLBillPaymentPage() {
             </p>
             <p className="text-gray-800 font-semibold mb-2 text-sm uppercase tracking-wide">Steps</p>
             <ol className="list-decimal list-inside text-gray-700 space-y-2 text-sm mb-4">
-              <li>Open the official <a href="https://customer.kukl.org.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">KUKL Customer Portal</a>.</li>
+              <li>Open the official <strong>KUKL Customer Portal</strong>.</li>
               <li>Log in using your registered account.</li>
               <li>Navigate to <strong>Billing</strong> or <strong>Payment</strong>.</li>
               <li>Select your water connection.</li>
@@ -725,7 +725,7 @@ export default function KUKLBillPaymentPage() {
           <div className="mb-10">
             <h3 className="text-xl font-bold text-gray-900 mb-3">3. Pay KUKL Bill via eSewa</h3>
             <p className="text-gray-700 mb-4">
-              <a href="https://esewa.com.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">eSewa</a> is one of the most popular digital wallets in Nepal for utility payments.
+              <strong>eSewa</strong> is one of the most popular digital wallets in Nepal for utility payments.
             </p>
             <p className="text-gray-800 font-semibold mb-2 text-sm uppercase tracking-wide">Steps</p>
             <ol className="list-decimal list-inside text-gray-700 space-y-2 text-sm mb-4">
@@ -746,7 +746,7 @@ export default function KUKLBillPaymentPage() {
           <div className="mb-10">
             <h3 className="text-xl font-bold text-gray-900 mb-3">4. Pay KUKL Bill via Khalti</h3>
             <p className="text-gray-700 mb-4">
-              <a href="https://khalti.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Khalti</a> also supports online KUKL bill payments.
+              <strong>Khalti</strong> also supports online KUKL bill payments.
             </p>
             <p className="text-gray-800 font-semibold mb-2 text-sm uppercase tracking-wide">Steps</p>
             <ol className="list-decimal list-inside text-gray-700 space-y-2 text-sm">
@@ -786,7 +786,7 @@ export default function KUKLBillPaymentPage() {
           <div className="mb-10">
             <h3 className="text-xl font-bold text-gray-900 mb-3">6. Pay KUKL Bill Through ConnectIPS</h3>
             <p className="text-gray-700 mb-4">
-              Customers with a <a href="https://connectips.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">ConnectIPS</a> account can also pay KUKL bills online.
+              Customers with a <strong>ConnectIPS</strong> account can also pay KUKL bills online.
             </p>
             <p className="text-gray-800 font-semibold mb-2 text-sm">General steps include:</p>
             <ol className="list-decimal list-inside text-gray-700 space-y-2 text-sm mb-4">
@@ -806,7 +806,7 @@ export default function KUKLBillPaymentPage() {
           <div className="mb-10">
             <h3 className="text-xl font-bold text-gray-900 mb-3">7. Pay KUKL Bill Using Fonepay Bills</h3>
             <p className="text-gray-700 mb-4">
-              <a href="https://fonepay.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Fonepay Bills</a> integrates with numerous Nepali banks and mobile banking applications.
+              <strong>Fonepay Bills</strong> integrates with numerous Nepali banks and mobile banking applications.
             </p>
             <p className="text-gray-800 font-semibold mb-2 text-sm">Payment process:</p>
             <ol className="list-decimal list-inside text-gray-700 space-y-2 text-sm mb-4">
@@ -1504,6 +1504,8 @@ export default function KUKLBillPaymentPage() {
             <ul className="space-y-2 text-sm text-blue-700 font-medium">
               <li><Link href="/market-rates/exchange-rate-nepal/" className="hover:underline">→ Nepal Exchange Rates</Link></li>
               <li><Link href="/market-rates/remittance/" className="hover:underline">→ Today's Remittance Rates</Link></li>
+              <li><Link href="/calculator/nepali-date/" className="hover:underline">→ Nepali Date Converter</Link></li>
+              <li><Link href="/calculator/nepal-vehicle-tax/" className="hover:underline">→ Nepal Vehicle Tax Calculator</Link></li>
             </ul>
           </div>
         </div>
