@@ -23,6 +23,7 @@ const TAGS: Record<string, string> = {
   'gratuity-calculator': 'EMPLOYMENT',
   'foreign-employment': 'EMPLOYMENT',
   'kukl-bill': 'UTILITIES',
+  'kukl-payment': 'UTILITIES',
   'nepal-attendance': 'EDUCATION',
   'see-gpa': 'EDUCATION',
   'nepali-date': 'TOOLS',
