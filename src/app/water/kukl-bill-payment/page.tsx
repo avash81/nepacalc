@@ -1482,28 +1482,18 @@ export default function KUKLBillPaymentPage() {
             <h2 className="text-base font-black text-gray-900 uppercase tracking-wide mb-4">Related Calculators</h2>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/calculator/kukl-bill/" className="text-blue-700 hover:underline font-medium">
-                  → KUKL Water Bill Calculator
+                <Link href="/calculator/nepal-salary/" className="text-blue-700 hover:underline font-medium">
+                  → Nepal Salary Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/calculator/nea-bill/" className="text-blue-700 hover:underline font-medium">
-                  → NEA Bill Calculator
+                <Link href="/income-tax/how-to-calculate-income-tax-nepal/" className="text-blue-700 hover:underline font-medium">
+                  → Nepal Income Tax Calculator
                 </Link>
               </li>
               <li>
                 <Link href="/electricity/nea-tariff-rates/" className="text-blue-700 hover:underline font-medium">
                   → NEA Tariff Rates
-                </Link>
-              </li>
-              <li>
-                <Link href="/electricity/nepal-unit-price/" className="text-blue-700 hover:underline font-medium">
-                  → Electricity Unit Price
-                </Link>
-              </li>
-              <li>
-                <Link href="/market-rates/live-gold-price/" className="text-blue-700 hover:underline font-medium">
-                  → Live Gold Price
                 </Link>
               </li>
             </ul>
@@ -1512,7 +1502,8 @@ export default function KUKLBillPaymentPage() {
           <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
             <h2 className="text-base font-black text-gray-900 uppercase tracking-wide mb-4">You May Also Like</h2>
             <ul className="space-y-2 text-sm text-blue-700 font-medium">
-              <li><Link href="/electricity/nepal-unit-price/" className="hover:underline">→ Electricity Unit Price</Link></li>
+              <li><Link href="/market-rates/exchange-rate-nepal/" className="hover:underline">→ Nepal Exchange Rates</Link></li>
+              <li><Link href="/market-rates/remittance/" className="hover:underline">→ Today's Remittance Rates</Link></li>
             </ul>
           </div>
         </div>
