@@ -49,6 +49,7 @@ export const metadata: Metadata = {
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
+  '@id': 'https://nepacalc.com/water/kukl-bill-payment/#breadcrumb',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nepacalc.com/' },
     { '@type': 'ListItem', position: 2, name: 'Water', item: 'https://nepacalc.com/water/' },
@@ -223,7 +224,7 @@ export default function KUKLBillPaymentPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
 
-      <article className="max-w-4xl mx-auto px-4 py-10">
+      <article className="max-w-6xl mx-auto px-4 py-10">
 
         {/* Breadcrumb */}
         <nav className="text-sm text-gray-500 mb-6" aria-label="Breadcrumb">
@@ -241,80 +242,104 @@ export default function KUKLBillPaymentPage() {
           How to Pay KUKL Bill Online in Nepal
         </h1>
 
-        <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-sm text-gray-600 mb-6">
-          <div><span className="font-semibold text-gray-800">Last reviewed:</span> August 4, 2026</div>
-          <div className="hidden sm:block text-gray-300">|</div>
-          <div><span className="font-semibold text-gray-800">Reviewed by:</span> NepaCalc Editorial Team</div>
-          <div className="hidden sm:block text-gray-300">|</div>
-          <div><span className="font-semibold text-gray-800">Reading time:</span> 6–8 minutes</div>
-        </div>
-
         {/* Hero Image */}
-        <div className="mb-8">
-          <img 
-            src="/images/kukl-bill-payment-hero.jpg" 
-            alt="KUKL Bill Payment Nepal" 
-            width={800} 
-            height={400} 
-            loading="lazy" 
+        <div className="mb-6 mt-4">
+          <img
+            src="/images/kukl-bill-payment-hero.jpg"
+            alt="KUKL Bill Payment Nepal – How to pay water bill online"
+            width={1200}
+            height={600}
+            loading="eager"
             className="rounded-xl shadow-sm w-full h-auto object-cover"
           />
         </div>
 
-        <div className="bg-blue-50 border border-blue-100 rounded-xl p-5 mb-8 text-sm">
-          <h2 className="font-bold text-blue-900 mb-2">Page Updates</h2>
-          <ul className="space-y-1 text-blue-800">
-            <li>✓ Updated online payment methods</li>
-            <li>✓ Verified official KUKL payment channels</li>
-            <li>✓ Updated customer portal links</li>
-            <li>✓ Reviewed payment providers</li>
-          </ul>
-        </div>
+        {/* Two-column layout: Main content + Sidebar */}
+        <div className="flex flex-col lg:flex-row gap-8 mt-6">
 
-        <div className="prose prose-base max-w-none text-gray-700 mb-8">
-          <p className="article-introduction">
-            You can pay your <strong>KUKL bill</strong> (Kathmandu Upatyaka Khanepani Limited) online using the official <strong>KUKL Customer Portal</strong>, <strong>eSewa</strong>, <strong>Khalti</strong>, <strong>ConnectIPS</strong>, mobile banking apps, and other supported payment services. You will need your <strong>Customer Number</strong> and registered KUKL branch to get started. This guide covers how to check your bill, make payments, download statements, verify payment status, and troubleshoot common issues.
-          </p>
-          <p>
-            Before making a payment, you can estimate your monthly charges using our <Link href="/calculator/kukl-bill/" className="text-blue-600 hover:underline font-medium">KUKL Water Bill Calculator</Link> to understand your expected bill based on your water consumption and current tariff rates.
-          </p>
-        </div>
+          {/* ── LEFT: Main content ── */}
+          <div className="flex-1 min-w-0">
 
-        {/* Quick Answer for AI Overview */}
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-8">
-          <h2 className="text-lg font-black text-blue-900 mb-3">Quick Answer: How to Pay KUKL Bill Online</h2>
-          <p className="text-blue-800 text-sm mb-3">You can check and pay your KUKL water bill online using:</p>
-          <ul className="list-disc list-inside text-blue-800 text-sm space-y-1 mb-4 font-medium">
-            <li>Official KUKL Customer Portal</li>
-            <li>KUKL Customer App</li>
-            <li>eSewa</li>
-            <li>Khalti</li>
-            <li>ConnectIPS</li>
-            <li>Mobile Banking</li>
-            <li>Fonepay Bills</li>
-          </ul>
-          <p className="text-blue-800 text-sm mb-2">You&apos;ll need:</p>
-          <ul className="list-disc list-inside text-blue-800 text-sm space-y-1 font-medium">
-            <li>Customer Number</li>
-            <li>Correct Branch</li>
-          </ul>
-        </div>
+            {/* Intro */}
+            <div className="prose prose-base max-w-none text-gray-700 mb-6">
+              <p className="article-introduction">
+                You can pay your <strong>KUKL bill</strong> (Kathmandu Upatyaka Khanepani Limited) online using the official <strong>KUKL Customer Portal</strong>, <strong>eSewa</strong>, <strong>Khalti</strong>, <strong>ConnectIPS</strong>, mobile banking apps, and other supported payment services. You will need your <strong>Customer Number</strong> and registered KUKL branch to get started. This guide covers how to check your bill, make payments, download statements, verify payment status, and troubleshoot common issues.
+              </p>
+              <p>
+                Before making a payment, you can estimate your monthly charges using our <Link href="/calculator/kukl-bill/" className="text-blue-600 hover:underline font-medium">KUKL Water Bill Calculator</Link> to understand your expected bill based on your water consumption and current tariff rates.
+              </p>
+            </div>
 
-        {/* Quick Navigation Box */}
-        <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-10">
-          <h2 className="text-base font-black text-gray-900 uppercase tracking-wide mb-4">In this guide you&apos;ll learn:</h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm text-blue-700 font-medium">
-            <li><a href="#check-kukl-bill" className="hover:underline">• How to check KUKL bill online</a></li>
-            <li><a href="#pay-kukl-bill" className="hover:underline">• How to pay KUKL bill online</a></li>
-            <li><a href="#payment-methods" className="hover:underline">• Payment methods</a></li>
-            <li><a href="#payment-status" className="hover:underline">• Payment status</a></li>
-            <li><a href="#statement" className="hover:underline">• Download statement</a></li>
-            <li><a href="#statement" className="hover:underline">• Download receipt</a></li>
-            <li><a href="#customer-number" className="hover:underline">• Customer number</a></li>
-            <li><a href="#common-problems" className="hover:underline">• Common problems</a></li>
-            <li><a href="#faq" className="hover:underline">• FAQs</a></li>
-          </ul>
-        </div>
+            {/* Quick Answer for AI Overview */}
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
+              <h2 className="text-lg font-black text-blue-900 mb-3">Quick Answer: How to Pay KUKL Bill Online</h2>
+              <p className="text-blue-800 text-sm mb-3">You can check and pay your KUKL water bill online using:</p>
+              <ul className="list-disc list-inside text-blue-800 text-sm space-y-1 mb-4 font-medium">
+                <li>Official KUKL Customer Portal</li>
+                <li>KUKL Customer App</li>
+                <li>eSewa</li>
+                <li>Khalti</li>
+                <li>ConnectIPS</li>
+                <li>Mobile Banking</li>
+                <li>Fonepay Bills</li>
+              </ul>
+              <p className="text-blue-800 text-sm mb-2">You&apos;ll need:</p>
+              <ul className="list-disc list-inside text-blue-800 text-sm space-y-1 font-medium">
+                <li>Customer Number</li>
+                <li>Correct Branch</li>
+              </ul>
+            </div>
+
+          </div>{/* end left */}
+
+          {/* ── RIGHT: Sidebar ── */}
+          <aside className="lg:w-72 shrink-0 space-y-4">
+
+            {/* Meta info card */}
+            <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm text-sm text-gray-700 space-y-3">
+              <div className="flex items-start gap-2">
+                <span className="mt-0.5">🕒</span>
+                <div><span className="font-semibold text-gray-800">Last reviewed:</span><br />August 4, 2026</div>
+              </div>
+              <div className="border-t border-gray-100 pt-3 flex items-start gap-2">
+                <span className="mt-0.5">✍️</span>
+                <div><span className="font-semibold text-gray-800">Reviewed by:</span><br />NepaCalc Editorial Team</div>
+              </div>
+              <div className="border-t border-gray-100 pt-3 flex items-start gap-2">
+                <span className="mt-0.5">📖</span>
+                <div><span className="font-semibold text-gray-800">Reading time:</span><br />6–8 minutes</div>
+              </div>
+            </div>
+
+            {/* Page Updates card */}
+            <div className="bg-blue-50 border border-blue-100 rounded-xl p-5 text-sm">
+              <h2 className="font-bold text-blue-900 mb-3">Page Updates</h2>
+              <ul className="space-y-2 text-blue-800">
+                <li className="flex items-start gap-2"><span className="text-blue-500 font-bold">✓</span> Updated online payment methods</li>
+                <li className="flex items-start gap-2"><span className="text-blue-500 font-bold">✓</span> Verified official KUKL payment channels</li>
+                <li className="flex items-start gap-2"><span className="text-blue-500 font-bold">✓</span> Updated customer portal links</li>
+                <li className="flex items-start gap-2"><span className="text-blue-500 font-bold">✓</span> Reviewed payment providers</li>
+              </ul>
+            </div>
+
+            {/* Quick Nav card */}
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 text-sm">
+              <h2 className="font-bold text-gray-900 uppercase tracking-wide mb-3 text-xs">In this guide</h2>
+              <ul className="space-y-2 text-blue-700 font-medium">
+                <li><a href="#check-kukl-bill" className="hover:underline">• How to check KUKL bill</a></li>
+                <li><a href="#pay-kukl-bill" className="hover:underline">• How to pay KUKL bill</a></li>
+                <li><a href="#payment-methods" className="hover:underline">• Payment methods</a></li>
+                <li><a href="#payment-status" className="hover:underline">• Payment status</a></li>
+                <li><a href="#statement" className="hover:underline">• Download statement & receipt</a></li>
+                <li><a href="#customer-number" className="hover:underline">• Customer number</a></li>
+                <li><a href="#common-problems" className="hover:underline">• Common problems</a></li>
+                <li><a href="#faq" className="hover:underline">• FAQs</a></li>
+              </ul>
+            </div>
+
+          </aside>
+        </div>{/* end two-column */}
+
 
         {/* ── SECTION 1: Customer Number ── */}
         <section id="customer-number" className="mb-12">
@@ -1487,8 +1512,6 @@ export default function KUKLBillPaymentPage() {
           <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
             <h2 className="text-base font-black text-gray-900 uppercase tracking-wide mb-4">You May Also Like</h2>
             <ul className="space-y-2 text-sm text-blue-700 font-medium">
-              <li><Link href="/water/water-bill-nepal/" className="hover:underline">→ Water Bill Nepal</Link></li>
-              <li><Link href="/electricity/nea-bill-payment/" className="hover:underline">→ NEA Bill Payment</Link></li>
               <li><Link href="/electricity/nepal-unit-price/" className="hover:underline">→ Electricity Unit Price</Link></li>
             </ul>
           </div>
