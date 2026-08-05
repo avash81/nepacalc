@@ -43,9 +43,13 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # Force-add the out/ folder even though it's in .gitignore
           git add -f out/
           git add .cpanel.yml
-          # Only commit if there are actual changes
-          git diff --staged --quiet || git commit -m "ci: update built output [skip ci]"
+          git diff --staged --quiet || git commit -m "ci: sync final verified build output to remote [skip ci]"
           git push origin main
+
+      - name: Trigger cPanel to pull latest build
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" \
+            "https://nepacalc.com/api-deploy-webhook.php?secret=nepacalc_deploy_2026" \
+            || echo "Webhook call failed"
