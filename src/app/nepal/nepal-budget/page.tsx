@@ -45,10 +45,11 @@ const webPageSchema = {
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
+  "@id": "https://nepacalc.com/nepal/nepal-budget/#breadcrumb",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nepacalc.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Finance", "item": "https://nepacalc.com/category/finance/" },
-    { "@type": "ListItem", "position": 3, "name": "Nepal Budget 2083/84 Summary", "item": "https://nepacalc.com/blog/nepal-budget-2083-84-summary/" }
+    { "@type": "ListItem", "position": 2, "name": "Nepal Tools", "item": "https://nepacalc.com/nepal/" },
+    { "@type": "ListItem", "position": 3, "name": "Nepal Budget 2083/84", "item": "https://nepacalc.com/nepal/nepal-budget/" }
   ]
 };
 
