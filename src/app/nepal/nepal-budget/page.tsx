@@ -70,7 +70,7 @@ const faqSchema = {
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
 
-.nb{--paper:#ffffff;--paper-raised:#F8F8F8;--paper-dark:#F0EEE8;--ink:#18252F;--slate:#526370;--brass:#A07828;--brass-deep:#7A5A1E;--crimson:#6D1A32;--green:#1E6B46;--line:#E0DDD6;--mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;--serif:'Fraunces',serif;background:#fff;color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;}
+.nb{--paper:#ffffff;--paper-raised:#F8F8F8;--paper-dark:#F0EEE8;--ink:#18252F;--slate:#526370;--brass:#A07828;--brass-deep:#7A5A1E;--crimson:#6D1A32;--green:#1E6B46;--line:#E0DDD6;--mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;--serif:'Fraunces',serif;background:#fff;color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 .nb *,.nb *::before,.nb *::after{box-sizing:border-box;}
 .nb a{color:var(--brass-deep);text-decoration:underline;text-underline-offset:2px;}
 .nb a:hover{color:var(--crimson);}
@@ -83,18 +83,19 @@ const css = `
 .nb-bc span{margin:0 5px;color:var(--line);}
 
 /* HERO */
-.nb-hero{max-width:1200px;margin:0 auto;padding:18px 24px 14px;}
-.nb-eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--crimson);display:flex;align-items:center;gap:8px;margin-bottom:8px;}
-.nb-eyebrow::before{content:'';width:22px;height:2px;background:var(--brass);}
-.nb h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.4rem,2.8vw,2.1rem);line-height:1.1;margin:0 0 10px;letter-spacing:-.01em;}
-.nb-dek{font-size:.97rem;color:var(--slate);max-width:80ch;margin:0 0 12px;line-height:1.65;}
-.nb-meta{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:.72rem;color:var(--slate);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 0;margin-bottom:14px;}
+.nb-hero{max-width:1200px;margin:0 auto;padding:18px 16px 14px;}
+.nb-eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--crimson);display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;}
+.nb-eyebrow::before{content:'';width:22px;height:2px;background:var(--brass);flex-shrink:0;}
+.nb h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.3rem,2.8vw,2.1rem);line-height:1.15;margin:0 0 10px;letter-spacing:-.01em;word-break:break-word;overflow-wrap:break-word;}
+.nb-dek{font-size:.95rem;color:var(--slate);max-width:80ch;margin:0 0 12px;line-height:1.65;word-break:break-word;overflow-wrap:break-word;}
+.nb-meta{display:flex;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:.7rem;color:var(--slate);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 0;margin-bottom:14px;}
 .nb-meta .dot{width:5px;height:5px;border-radius:50%;background:#3E8E5A;display:inline-block;margin-right:4px;}
 .nb-meta strong{color:var(--ink);}
+@media(max-width:600px){.nb-hero{padding:12px 14px 10px;}.nb h1{font-size:1.25rem;}.nb-dek{font-size:.9rem;}.nb-meta{font-size:.67rem;gap:8px;}}
 
 /* QUICK ANSWER */
-.nb-qa{background:var(--paper-raised);border:1px solid var(--line);border-left:4px solid var(--brass);padding:16px 20px;max-width:1200px;margin:0 auto 14px;}
-.nb-qa p{margin:0 0 8px;font-size:.97rem;color:var(--slate);}
+.nb-qa{background:var(--paper-raised);border:1px solid var(--line);border-left:4px solid var(--brass);padding:14px 16px;max-width:1200px;margin:0 auto 12px;word-break:break-word;overflow-wrap:break-word;}
+.nb-qa p{margin:0 0 8px;font-size:.93rem;color:var(--slate);}
 .nb-qa p:last-child{margin:0;}
 
 /* MOBILE TOC DROPDOWN */
@@ -124,11 +125,11 @@ const css = `
 .nb-toc{position:sticky;top:72px;grid-column:2;grid-row:1;max-height:calc(100vh - 90px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--line) transparent;}
 .nb-toc::-webkit-scrollbar{width:4px;}
 .nb-toc::-webkit-scrollbar-thumb{background:var(--line);border-radius:2px;}
-.nb-main{grid-column:1;grid-row:1;}
+.nb-main{grid-column:1;grid-row:1;min-width:0;overflow:hidden;}
 @media(max-width:960px){
-  .nb-layout{grid-template-columns:1fr;padding:0 16px 40px;gap:0;}
+  .nb-layout{grid-template-columns:1fr;padding:0 14px 40px;gap:0;}
   .nb-toc{display:none;}
-  .nb-main{order:1;}
+  .nb-main{order:1;min-width:0;overflow:hidden;width:100%;}
 }
 
 /* TOC */
@@ -142,21 +143,21 @@ const css = `
 /* CHAPTERS */
 .nb-chapter{padding:32px 0;border-top:1px solid var(--line);scroll-margin-top:76px;}
 .nb-chapter:first-child{border-top:none;padding-top:0;}
-.nb-ch-tag{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.13em;color:var(--brass-deep);margin:0 0 4px;display:block;}
-.nb h2{font-family:var(--serif);font-weight:600;font-size:1.45rem;margin:0 0 4px;letter-spacing:-.01em;}
-.nb-subdek{color:var(--slate);max-width:72ch;margin:0 0 18px;font-size:.95rem;}
-.nb h3{font-family:var(--serif);font-weight:500;font-size:1.08rem;margin:22px 0 8px;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:4px;}
-.nb h4{font-family:var(--sans);font-weight:700;font-size:.88rem;margin:14px 0 4px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate);}
-.nb p{margin:0 0 12px;max-width:72ch;}
-.nb ul,.nb ol{padding-left:1.3em;max-width:72ch;}
-.nb li{margin-bottom:5px;}
+.nb-ch-tag{display:none;}
+.nb h2{font-family:var(--serif);font-weight:600;font-size:1.45rem;margin:0 0 4px;letter-spacing:-.01em;word-break:break-word;overflow-wrap:break-word;}
+.nb-subdek{color:var(--slate);max-width:100%;margin:0 0 18px;font-size:.95rem;word-break:break-word;overflow-wrap:break-word;}
+.nb h3{font-family:var(--serif);font-weight:500;font-size:1.08rem;margin:22px 0 8px;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:4px;word-break:break-word;overflow-wrap:break-word;}
+.nb h4{font-family:var(--sans);font-weight:700;font-size:.88rem;margin:14px 0 4px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate);word-break:break-word;overflow-wrap:break-word;}
+.nb p{margin:0 0 12px;max-width:min(72ch,100%);word-break:break-word;overflow-wrap:break-word;}
+.nb ul,.nb ol{padding-left:1.3em;max-width:min(72ch,100%);}
+.nb li{margin-bottom:5px;word-break:break-word;overflow-wrap:break-word;}
 
 /* TABLES */
-.nb-tw{overflow-x:auto;margin:12px 0 20px;-webkit-overflow-scrolling:touch;}
+.nb-tw{overflow-x:auto;margin:12px 0 20px;-webkit-overflow-scrolling:touch;max-width:100%;}
 .nb table{width:100%;border-collapse:collapse;font-size:.875rem;}
-.nb table caption{font-family:var(--mono);font-size:.68rem;text-align:left;color:var(--slate);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em;}
-.nb th{text-align:left;font-weight:600;color:var(--ink);border-bottom:2px solid var(--ink);padding:8px 12px;background:rgba(0,0,0,0.02);white-space:nowrap;}
-.nb td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--slate);vertical-align:top;}
+.nb table caption{font-family:var(--mono);font-size:.68rem;text-align:left;color:var(--slate);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em;word-break:break-word;}
+.nb th{text-align:left;font-weight:600;color:var(--ink);border-bottom:2px solid var(--ink);padding:8px 12px;background:rgba(0,0,0,0.02);white-space:normal;word-break:break-word;}
+.nb td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--slate);vertical-align:top;word-break:break-word;overflow-wrap:break-word;}
 .nb td strong{color:var(--ink);}
 .nb th.nr,.nb td.nr{text-align:right;font-family:var(--mono);}
 @media(max-width:600px){.nb th,.nb td{padding:7px 8px;font-size:.82rem;}}
@@ -168,6 +169,9 @@ const css = `
 .nb-badge{font-family:var(--mono);font-size:.65rem;padding:2px 7px;border-radius:2px;}
 .nb-badge.curr{background:var(--crimson);color:#fff;}
 .nb-badge.arch{background:var(--line);color:var(--slate);}
+
+/* HIDE SECTION TAGS */
+.nb-ch-tag{display:none;}
 
 /* NOTE */
 .nb-note{font-size:.8rem;color:var(--slate);border-top:1px dashed var(--line);padding-top:8px;margin-top:12px;}
@@ -202,7 +206,7 @@ export default function NepalBudgetPage() {
 
       {/* ── HERO ── */}
       <div className="nb-hero">
-        <div className="nb-eyebrow">Finance Act 2083 · FY 2026/27 · Evergreen Reference</div>
+        <div className="nb-eyebrow">Finance Act 2083 · FY 2026/27</div>
         <h1>Nepal Budget 2083/84: Complete Summary, Tax Changes, VAT, TDS, Customs &amp; Compliance Guide</h1>
         <p className="nb-dek">
           Nepal Budget 2083/84 (FY 2026/27) is a Rs. 2,124.34 billion (NPR 2,124.34 billion) fiscal plan targeting 7% economic growth and inflation below 6%. The budget introduces sweeping tax reforms, including a revised tax structure where the first Rs. 10 lakh falls within the 1% slab, a 29% peak tax rate, reduced customs tiers, and a one-time tax dispute settlement scheme.
@@ -563,7 +567,7 @@ export default function NepalBudgetPage() {
             <p>The Capital Gains Tax (CGT) rate structure for natural persons trading in securities has been updated.</p>
 
             <h3>10.2 Securities Capital Gains Tax</h3>
-            <p>For individuals trading listed securities: Short-term CGT (holding less than 1 year) is set at 7.5%, and Long-term CGT (holding more than 1 year) is set at 5.0%.</p>
+            <p>For individuals trading listed securities: Short-term CGT (holding less than 1 year) is set at 7.5%, and Long-term CGT (holding more than 1 year) is set at 5.0%. You can work out your net profit after SEBON commission, DP fees, and CGT using the <a href="/calculator/nepal-stocks/">NEPSE share trading calculator</a>.</p>
 
             <h3>10.3 Real Estate Capital Gains</h3>
             <p>CGT on real estate transactions varies based on holding periods. Check your registration fees with the <a href="/calculator/property-registration/">Property Registration Calculator</a> and <a href="/calculator/property-tax/">Property Tax Calculator</a>.</p>
@@ -1035,7 +1039,7 @@ export default function NepalBudgetPage() {
               </table>
             </div>
             <p className="nb-note">
-              <strong>Effective-Date Notice:</strong> A budget speech announcement, Finance Bill, Finance Act, and subsequent government Gazette notification are <em>not</em> interchangeable legal instruments. Tax rates become legally enforceable only upon presidential authentication of the Finance Act and, in some cases, a separate Gazette notification. The above rates reflect the Finance Act 2083 as summarised. Always verify with the <a href="https://ird.gov.np" target="_blank" rel="noopener noreferrer">Inland Revenue Department</a> or <a href="https://customs.gov.np" target="_blank" rel="noopener noreferrer">Department of Customs</a> before relying on any specific rate for compliance purposes.
+              <strong>Effective-Date Notice:</strong> A budget speech announcement, Finance Bill, Finance Act, and subsequent government Gazette notification are <em>not</em> interchangeable legal instruments. Tax rates become legally enforceable only upon presidential authentication of the Finance Act and, in some cases, a separate Gazette notification. The above rates reflect the Finance Act 2083 as summarised. Always verify with the IRD or Department of Customs before relying on any specific rate for compliance purposes.
             </p>
           </section>
 
@@ -1122,7 +1126,7 @@ export default function NepalBudgetPage() {
                 </tbody>
               </table>
             </div>
-            <p className="nb-note">Source: Finance Act 2083 / Customs Tariff Order. Full schedule available at the <a href="https://customs.gov.np" target="_blank" rel="noopener noreferrer">Department of Customs</a>.</p>
+            <p className="nb-note">Source: Finance Act 2083 / Customs Tariff Order. Full schedule available at the Department of Customs (customs.gov.np).</p>
 
             <h3>20.4 Selected Excise Rate Changes Master Table</h3>
             <div className="nb-tw">
@@ -1275,7 +1279,7 @@ export default function NepalBudgetPage() {
                 </tbody>
               </table>
             </div>
-            <p className="nb-note">Source: Finance Act 2083 (Nepal). Deadlines are based on the official Finance Bill. Verify with the <a href="https://ird.gov.np" target="_blank" rel="noopener noreferrer">Inland Revenue Department (IRD)</a> before acting.</p>
+            <p className="nb-note">Source: Finance Act 2083 (Nepal). Deadlines are based on the official Finance Bill. Verify with the IRD (ird.gov.np) before acting.</p>
           </section>
 
           {/* § 24 Compliance Calendar */}
@@ -1336,7 +1340,7 @@ export default function NepalBudgetPage() {
                 </tbody>
               </table>
             </div>
-            <p className="nb-note"><strong>Effective-Date Note:</strong> A budget announcement, Finance Bill, and Finance Act are distinct legal instruments. Tax rates take effect upon presidential authentication of the Finance Act, not from the date of the budget speech. Always verify against the official <a href="https://ird.gov.np" target="_blank" rel="noopener noreferrer">Inland Revenue Department notice</a> before filing or making payments.</p>
+            <p className="nb-note"><strong>Effective-Date Note:</strong> A budget announcement, Finance Bill, and Finance Act are distinct legal instruments. Tax rates take effect upon presidential authentication of the Finance Act, not from the date of the budget speech. Always verify against the official IRD notice (ird.gov.np) before filing or making payments.</p>
           </section>
 
           {/* § 25 Impact on Individuals */}
@@ -1345,7 +1349,7 @@ export default function NepalBudgetPage() {
             <h2>25. How Budget 2083/84 Affects Individuals</h2>
 
             <h3>25.1 Salaried Employees</h3>
-            <p>The Rs. 10 lakh first tax slab (1%) directly reduces taxable income for most salaried workers.</p>
+            <p>The Rs. 10 lakh first tax slab (1%) directly reduces taxable income for most salaried workers. To see your exact take-home pay under the new slabs, the <a href="/calculator/nepal-salary/">Nepal Salary Calculator</a> breaks down gross-to-net with SSF and IRD deductions.</p>
 
             <h3>25.2 Business Owners</h3>
             <p>Proprietors benefit from the same Rs. 10 lakh first slab, with simplified slab structure reducing high-bracket burdens.</p>
@@ -1354,7 +1358,7 @@ export default function NepalBudgetPage() {
             <p>Freelancers receiving foreign currency through domestic banking channels will have a 5% final WHT applied — simplifying compliance vs. the previous self-assessed regime.</p>
 
             <h3>25.4 Investors</h3>
-            <p>Capital gains rates and the tax settlement window offer planning opportunities for share and real estate investors.</p>
+            <p>Capital gains rates and the tax settlement window offer planning opportunities for share and real estate investors. If you hold listed shares, check your <a href="/calculator/nepse-bonus-tax/">bonus share and dividend tax liability</a> separately from trading gains.</p>
 
             <h3>25.5 Property Sellers</h3>
             <p>Real estate CGT rules have been updated.</p>
@@ -1438,7 +1442,7 @@ export default function NepalBudgetPage() {
             <p>An individual with annual income of <strong>Rs. 20,00,000</strong> pays: Rs. 10,000 on the first Rs. 10 lakh (1%), then 10% on Rs. 5,00,000 = Rs. 50,000. Total: Rs. 60,000 (excluding SSF deductions).</p>
 
             <h3>28.2 Salary Example</h3>
-            <p>A government employee earning Rs. 12,00,000 a year benefits from the Rs. 10 lakh first slab. Only Rs. 2,00,000 falls in the 10% slab = Rs. 20,000 tax.</p>
+            <p>A government employee earning Rs. 12,00,000 a year benefits from the Rs. 10 lakh first slab. Only Rs. 2,00,000 falls in the 10% slab, giving a tax of Rs. 20,000. EPF contributors can further reduce this — see how with the <a href="/calculator/nepal-provident-fund/">Provident Fund calculator</a>.</p>
 
             <h3>28.3 TDS Example</h3>
             <p>A company pays Rs. 1,00,000 for professional services. At 15% TDS, Rs. 15,000 is withheld and remitted to IRD.</p>
@@ -1483,52 +1487,61 @@ export default function NepalBudgetPage() {
             <p>Most provisions under Finance Act 2083 are effective from <strong>Shrawan 1, 2083</strong> (July 17, 2026). However, some specific provisions (such as DST and equity fees) have their own deadlines. Always verify with official IRD notices.</p>
           </section>
 
-          {/* § 30 Related Resources */}
           <section className="nb-chapter" id="related-resources">
-            <span className="nb-ch-tag">§ 30</span>
             <h2>30. Related Nepal Calculators &amp; Official Resources</h2>
 
-            <h3>30.1 Related NepaCalc Calculators</h3>
+            <h3>30.1 Additional NepaCalc Tools</h3>
+            <p>These calculators are relevant to topics covered in this guide but are linked here for easy reference rather than repeated throughout the text.</p>
             <div className="nb-tw">
               <table>
                 <thead>
                   <tr><th>Tool</th><th>Use For</th></tr>
                 </thead>
                 <tbody>
-                  <tr><td><a href="/calculator/nepal-income-tax/">Nepal Income Tax Calculator</a></td><td>Calculate annual income tax liability</td></tr>
-                  <tr><td><a href="/calculator/nepal-salary/">Nepal Salary Tax Calculator</a></td><td>Net take-home salary after all deductions</td></tr>
-                  <tr><td><a href="/calculator/nepal-tds/">Nepal TDS Calculator</a></td><td>TDS on payments and contracts</td></tr>
-                  <tr><td><a href="/calculator/nepal-vat/">Nepal VAT Calculator</a></td><td>VAT amounts and inclusive/exclusive prices</td></tr>
-                  <tr><td><a href="/calculator/nepal-vehicle-tax/">Nepal Vehicle Tax Calculator</a></td><td>Annual vehicle tax for private and commercial vehicles</td></tr>
-                  <tr><td><a href="/calculator/property-tax/">Property Tax Calculator</a></td><td>House and land property tax</td></tr>
-                  <tr><td><a href="/calculator/property-registration/">Property Registration Calculator</a></td><td>Registration fee and transfer charges</td></tr>
-                  <tr><td><a href="/calculator/gold-tax/">Gold Tax Calculator</a></td><td>Tax on gold and jewellery</td></tr>
-                  <tr><td><a href="/calculator/nea-bill/">NEA Electricity Bill Calculator</a></td><td>Monthly electricity bill estimate</td></tr>
-                  <tr><td><a href="/calculator/kukl-bill/">KUKL Water Bill Calculator</a></td><td>Monthly water bill estimate</td></tr>
-                  <tr><td><a href="/calculator/foreign-employment/">Foreign Employment Calculator</a></td><td>Estimate earnings from overseas employment</td></tr>
+                  <tr><td><a href="/calculator/nepal-home-loan/">Nepal Home Loan Calculator</a></td><td>Home loan EMI with latest bank base rates</td></tr>
+                  <tr><td><a href="/calculator/auto-loan/">Nepal Auto Loan Calculator</a></td><td>Car and bike EMI for fuel and electric vehicles</td></tr>
+                  <tr><td><a href="/calculator/gold-tax/">Gold Tax Calculator</a></td><td>Final gold price including 13% VAT and making charges</td></tr>
+                  <tr><td><a href="/calculator/gold-converter/">Gold Unit Converter</a></td><td>Convert between Tola, Lal, Aana and Gram</td></tr>
+                  <tr><td><a href="/market-rates/live-gold-price/">Live Gold Price Nepal</a></td><td>Real-time 24K and 22K gold rates synced with FENEGOSIDA</td></tr>
+                  <tr><td><a href="/market-rates/live-silver-price/">Live Silver Price Nepal</a></td><td>Today&apos;s official silver rate per tola and gram</td></tr>
+                  <tr><td><a href="/market-rates/exchange-rate-nepal/">Exchange Rate Nepal</a></td><td>Live foreign exchange rates for 20+ currencies</td></tr>
+                  <tr><td><a href="/market-rates/remittance/">Remittance Board</a></td><td>Compare real-time rates for sending money to Nepal</td></tr>
+                  <tr><td><a href="/calculator/currency-converter/">Currency Converter</a></td><td>Convert international currencies to Nepalese Rupees</td></tr>
+                  <tr><td><a href="/calculator/nepse-wacc/">NEPSE WACC Calculator</a></td><td>Weighted Average Cost of Capital for share holdings</td></tr>
+                  <tr><td><a href="/calculator/gratuity-calculator/">Gratuity Calculator</a></td><td>Retirement gratuity under Labor Act 2074</td></tr>
+                  <tr><td><a href="/calculator/kukl-bill/">KUKL Water Bill Calculator</a></td><td>Kathmandu water bill and sewerage tax</td></tr>
+                  <tr><td><a href="/calculator/nepal-loan-eligibility/">Nepal Loan Eligibility</a></td><td>Bank loan eligibility based on income and NRB FOIR rules</td></tr>
+                  <tr><td><a href="/calculator/nepal-land/">Nepal Land Area Converter</a></td><td>Convert between Ropani, Aana, Bigha and Square Feet</td></tr>
+                  <tr><td><a href="/calculator/nepali-date/">Nepali Date Converter</a></td><td>BS to AD and AD to BS date conversion</td></tr>
                 </tbody>
               </table>
             </div>
 
-            <h3>30.2 Official Government Resources</h3>
+            <h3>30.2 Read These Guides</h3>
+            <p>In-depth articles related to Nepal income tax, TDS, and financial topics:</p>
             <ul>
-              <li><a href="https://mof.gov.np" target="_blank" rel="noopener noreferrer">Ministry of Finance Nepal</a> — Budget speech, Finance Act, economic survey</li>
-              <li><a href="https://ird.gov.np" target="_blank" rel="noopener noreferrer">Inland Revenue Department (IRD)</a> — Income tax, VAT, TDS notices</li>
-              <li><a href="https://customs.gov.np" target="_blank" rel="noopener noreferrer">Department of Customs</a> — Customs tariff schedule</li>
-              <li><a href="https://nrb.org.np" target="_blank" rel="noopener noreferrer">Nepal Rastra Bank (NRB)</a> — Monetary policy, banking regulations</li>
+              <li><a href="/blog/nepal-income-tax-guide-2082-83/">Nepal Income Tax Guide 2082/83</a> — How the previous year&apos;s slabs worked and what changed for 2083/84</li>
+              <li><a href="/blog/income-tax-filing-guide/">How to File Your Income Tax Return in Nepal</a> — Step-by-step ITR filing guide for individuals and businesses</li>
+              <li><a href="/blog/nepal-tds-guide-2083/">Nepal TDS Guide 2083</a> — Complete breakdown of withholding tax rates, deadlines, and compliance</li>
+              <li><a href="/blog/nea-tariff-rates-2083-84/">NEA Electricity Tariff Rates 2083/84</a> — Updated NEA unit slab rates and how the budget affects electricity billing</li>
             </ul>
 
-            <h3>30.3 Budget Documents and Legal References</h3>
+            <h3>30.3 Official Government Resources</h3>
+            <ul>
+              <li><a href="https://nrb.org.np" target="_blank" rel="noopener noreferrer">Nepal Rastra Bank (NRB)</a> — Monetary policy, banking regulations, and foreign exchange</li>
+            </ul>
+
+            <h3>30.4 Budget Documents and Legal References</h3>
             <ul>
               <li>Finance Act 2083 (Nepal) — Primary legal source for all tax changes</li>
-              <li>Income Tax Act 2058 (as amended)</li>
+              <li>Income Tax Act 2058 (as amended by Finance Act 2083)</li>
               <li>VAT Act 2052 (as amended)</li>
               <li>Customs Act 2064 (as amended)</li>
               <li>Excise Duty Act 2058 (as amended)</li>
             </ul>
 
             <div className="nb-note">
-              <strong>Disclaimer:</strong> Based on the Budget 2083/84 summary and applicable government tax laws/notices; taxpayers should verify detailed implementation requirements with the relevant authority. NepaCalc is not a tax advisory service.
+              <strong>Disclaimer:</strong> Based on the Nepal Budget 2083/84 summary and applicable government tax laws. Taxpayers should verify all figures against the official Finance Act 2083 and IRD notices before filing. NepaCalc is not a tax advisory service. Last reviewed: 7 August 2026.
             </div>
           </section>
 
@@ -1576,19 +1589,7 @@ export default function NepalBudgetPage() {
 
       </div>{/* end nb-layout */}
 
-      {/* FOOTER CTA */}
-      <div className="nb-footer-cta">
-        <div className="inner">
-          <p><strong>Calculate Your Tax Under the New Budget</strong></p>
-          <p>Use NepaCalc&apos;s free calculators to find your income tax, TDS, VAT, and vehicle tax under the new FY 2083/84 rules — updated for the new slabs.</p>
-          <a href="/calculator/nepal-income-tax/" className="nb-cta-primary">Income Tax Calculator</a>
-          <a href="/calculator/nepal-salary/" className="nb-cta-primary">Salary Calculator</a>
-          <a href="/calculator/nepal-tds/" className="nb-cta-primary">TDS Calculator</a>
-          <p className="nb-legal">
-            This page is an informational summary based on Nepal Budget 2083/84. All figures should be verified against the official Finance Act 2083 and government notifications. NepaCalc is not a tax advisory service. Last reviewed: 7 August 2026.
-          </p>
-        </div>
-      </div>
+
 
     </div>
   );
