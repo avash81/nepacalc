@@ -191,7 +191,7 @@ export default function Page() {
           {/* ── Table of Contents ── */}
           <div className="bg-slate-50 rounded-xl p-6 mb-10">
             <h2 className="text-xl font-bold mb-4">Table of Contents</h2>
-            <ul className="list-none pl-0 space-y-2 text-blue-600 font-medium">
+            <ul className="list-none pl-0 text-blue-600 font-medium grid grid-cols-2 gap-x-6 gap-y-2">
               <li><a href="#whats-new" className="hover:underline">What's New in Vehicle Tax 2083/84?</a></li>
               <li><a href="#quick-answer" className="hover:underline">Vehicle Tax In Nepal 2083/84 — Quick Reference</a></li>
               <li><a href="#annual-road-tax" className="hover:underline">Annual Vehicle Tax (Bluebook Renewal)</a></li>
