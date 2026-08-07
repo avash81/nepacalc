@@ -171,10 +171,9 @@ export default function Page() {
 
       <h1 className="sr-only">Vehicle Tax Calculator Nepal (2083/84)</h1>
 
-      <Calculator />
+      <Calculator details={
 
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 text-slate-800 prose prose-slate max-w-none">
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 text-slate-800 prose prose-slate max-w-none">
           
           {/* ── Badges ── */}
           <div className="mb-6 flex flex-wrap items-center gap-2">
@@ -587,8 +586,8 @@ export default function Page() {
             Vehicle Tax Calculator Nepal. Motorcycle Road Tax Nepal. Bluebook Renewal Calculator Nepal. Department of Transport Management. DOTM Nepal. Bagmati Province Vehicle Tax. Vehicle Tax 2083/84. EV Import Tax Nepal. Clean Infrastructure Investment Fee Nepal. CIIF Nepal. Private Car Road Tax Nepal. Commercial Vehicle Tax Nepal. Electric Vehicle Tax Nepal. Bluebook Renewal Charges Nepal.
           </div>
 
-        </div>
-      </div>
+                </div>
+      } />
     </>
   );
 }
