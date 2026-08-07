@@ -185,7 +185,7 @@ export default function Page() {
           </div>
 
           <p className="text-lg leading-relaxed mb-10">
-            Calculate vehicle tax, bluebook renewal charges, road tax penalties and electric vehicle tax using the latest Nepal vehicle tax rates for FY 2083/84. This Vehicle Tax Calculator Nepal supports motorcycles, scooters, cars, jeeps, buses, trucks and EVs using guidelines set by the <a href="https://www.dotm.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Department of Transport Management (DOTM)</a> and the Bagmati Province Finance Act. If you are a salaried employee or business owner, use our <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Nepal Income Tax Calculator</Link> to estimate your annual income tax liability alongside your vehicle ownership costs.
+            Calculate vehicle tax, bluebook renewal charges, road tax penalties and electric vehicle tax using the latest Nepal vehicle tax rates for FY 2083/84. This Vehicle Tax Calculator Nepal supports motorcycles, scooters, cars, jeeps, buses, trucks and EVs using guidelines set by the Department of Transport Management (DOTM) and the Bagmati Province Finance Act. If you are a salaried employee or business owner, use our <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Nepal Income Tax Calculator</Link> to estimate your annual income tax liability alongside your vehicle ownership costs.
           </p>
 
           {/* ── Table of Contents ── */}
@@ -193,7 +193,7 @@ export default function Page() {
             <h2 className="text-xl font-bold mb-4">Table of Contents</h2>
             <ul className="list-none pl-0 text-blue-600 font-medium grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
               <li><a href="#whats-new" className="hover:underline">What's New in Vehicle Tax 2083/84?</a></li>
-              <li><a href="#quick-answer" className="hover:underline">Vehicle Tax In Nepal 2083/84 — Quick Reference</a></li>
+              <li><a href="#quick-answer" className="hover:underline">Vehicle Tax In Nepal 2083/84 : Quick Reference</a></li>
               <li><a href="#annual-road-tax" className="hover:underline">Annual Vehicle Tax (Bluebook Renewal)</a></li>
               <li><a href="#how-calculated" className="hover:underline">How Vehicle Tax Works in Nepal</a></li>
               <li><a href="#popular-searches" className="hover:underline">Popular Vehicle Tax Searches</a></li>
@@ -215,16 +215,16 @@ export default function Page() {
           <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6">
             <p className="mb-3">The Government of Nepal introduced several vehicle taxation updates for FY 2083/84. While annual provincial road tax slabs remain largely unchanged for motorcycles and private vehicles, major changes were made to electric vehicle imports.</p>
             <ul className="list-disc pl-4 space-y-2">
-              <li><strong>Excise Duty on EVs: 0%</strong> — Excise duty has been completely removed for electric vehicles.</li>
-              <li><strong>Clean Infrastructure Investment Fee (CIIF)</strong> — A new value-based fee now applies to EV imports based on the vehicle's CIF value, replacing the previous excise-based structure.</li>
-              <li><strong>Customs Duty: 20%</strong> — Flat customs duty on the CIF value remains applicable for EV imports.</li>
-              <li><strong>Annual Road Tax Slabs</strong> — Motorcycle and private car annual road tax slabs remain unchanged for FY 2083/84.</li>
+              <li><strong>Excise Duty on EVs: 0%</strong> : Excise duty has been completely removed for electric vehicles.</li>
+              <li><strong>Clean Infrastructure Investment Fee (CIIF)</strong> : A new value-based fee now applies to EV imports based on the vehicle's CIF value, replacing the previous excise-based structure.</li>
+              <li><strong>Customs Duty: 20%</strong> : Flat customs duty on the CIF value remains applicable for EV imports.</li>
+              <li><strong>Annual Road Tax Slabs</strong> : Motorcycle and private car annual road tax slabs remain unchanged for FY 2083/84.</li>
             </ul>
             <p className="mt-3">This calculator reflects the latest Bagmati Province vehicle tax rates together with current EV import regulations under Budget 2083/84.</p>
           </div>
 
           {/* ── Quick Answer ── */}
-          <h2 id="quick-answer" className="text-2xl font-black text-slate-900 mt-12 mb-6">Vehicle Tax In Nepal 2083/84 — Quick Reference</h2>
+          <h2 id="quick-answer" className="text-2xl font-black text-slate-900 mt-12 mb-6">Vehicle Tax In Nepal 2083/84 : Quick Reference</h2>
           <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6 quick-answer">
             <ul className="list-disc pl-4 space-y-2">
               <li>Motorcycle road tax starts from <strong>Rs. 3,000</strong> per year (up to 125cc).</li>
@@ -240,7 +240,7 @@ export default function Page() {
           <h2 id="annual-road-tax" className="text-2xl font-black text-slate-900 mt-12 mb-4">Annual Vehicle Tax (Bluebook Renewal)</h2>
           <div className="vehicle-tax-summary mb-6">
             <p className="mb-3">Annual Vehicle Tax is the recurring yearly tax that every vehicle owner in Nepal must pay to renew their bluebook (Vehicle Registration Certificate). It is collected by provincial governments and is based on vehicle type, engine capacity (CC) or motor power (kW).</p>
-            <p className="mb-3">This is <strong>not</strong> the same as EV import duty. Annual road tax applies to all registered vehicles — petrol, diesel and electric — every fiscal year.</p>
+            <p className="mb-3">This is <strong>not</strong> the same as EV import duty. Annual road tax applies to all registered vehicles : petrol, diesel and electric : every fiscal year.</p>
           </div>
 
           {/* ── How Vehicle Tax Works ── */}
@@ -363,8 +363,8 @@ export default function Page() {
           </div>
 
           {/* ── EV Annual Road Tax ── */}
-          <h2 id="ev-annual-tax" className="text-2xl font-black text-slate-900 mt-12 mb-4">Electric Vehicle Tax Nepal — Annual Road Tax</h2>
-          <p className="mb-4 text-slate-600">Annual road tax for electric vehicles is calculated based on motor power (kW). This is the recurring Bluebook renewal tax paid every year — it is <strong>separate from</strong> EV import duties. If you charge your EV at home, check the <Link href="/electricity/nepal-unit-price/" className="text-blue-600 hover:underline">Electricity Unit Price in Nepal</Link> to estimate your running costs.</p>
+          <h2 id="ev-annual-tax" className="text-2xl font-black text-slate-900 mt-12 mb-4">Electric Vehicle Tax Nepal : Annual Road Tax</h2>
+          <p className="mb-4 text-slate-600">Annual road tax for electric vehicles is calculated based on motor power (kW). This is the recurring Bluebook renewal tax paid every year : it is <strong>separate from</strong> EV import duties. If you charge your EV at home, check the <Link href="/electricity/nepal-unit-price/" className="text-blue-600 hover:underline">Electricity Unit Price in Nepal</Link> to estimate your running costs.</p>
           <div className="overflow-x-auto mb-6">
             <table className="min-w-full bg-white border border-slate-200 mb-2">
               <thead className="bg-slate-50">
@@ -496,7 +496,7 @@ export default function Page() {
           </ul>
 
           {/* ── Penalty Breakdown ── */}
-          <h2 id="penalty" className="text-2xl font-black text-slate-900 mt-12 mb-4">Late Penalty for Bluebook Renewal — Explained</h2>
+          <h2 id="penalty" className="text-2xl font-black text-slate-900 mt-12 mb-4">Late Penalty for Bluebook Renewal : Explained</h2>
           <p className="mb-4">After the 90-day grace period from the fiscal year start, late renewal penalties apply progressively:</p>
           <div className="overflow-x-auto mb-4">
             <table className="min-w-full bg-white border border-slate-200 mb-2">
@@ -560,7 +560,7 @@ export default function Page() {
             <div><h3 className="font-bold text-lg text-slate-900">Can I pay vehicle tax using Khalti?</h3><p className="text-slate-600 mt-1">Yes. Khalti is also accepted in many provinces. After online payment, visit the TMO with payment confirmation to receive the physical renewal stamp on your bluebook.</p></div>
             <div><h3 className="font-bold text-lg text-slate-900">Can I renew bluebook after 4 years?</h3><p className="text-slate-600 mt-1">Yes, but penalties compound at 32% per year and DoTM caps back-tax at 4 fiscal years. The renewal fee also doubles. All pending taxes and penalties must be cleared before the renewal is processed.</p></div>
             <div><h3 className="font-bold text-lg text-slate-900">Does vehicle tax differ by province?</h3><p className="text-slate-600 mt-1">Yes. Each of Nepal's seven provinces sets its own rates. This calculator uses Bagmati Province FY 2083/84 rates. Owners outside Bagmati should verify their rates at their local Yatayat Karyalaya.</p></div>
-            <div><h3 className="font-bold text-lg text-slate-900">What is the penalty for late bluebook renewal?</h3><p className="text-slate-600 mt-1">After the 90-day grace period: 5% for 1–30 days late, 10% for 31–45 days late, 20% for 46 days to fiscal year end, and 32% per year compounding for multi-year delays — capped at 4 fiscal years.</p></div>
+            <div><h3 className="font-bold text-lg text-slate-900">What is the penalty for late bluebook renewal?</h3><p className="text-slate-600 mt-1">After the 90-day grace period: 5% for 1–30 days late, 10% for 31–45 days late, 20% for 46 days to fiscal year end, and 32% per year compounding for multi-year delays : capped at 4 fiscal years.</p></div>
             <div><h3 className="font-bold text-lg text-slate-900">Can I transfer vehicle ownership with unpaid tax?</h3><p className="text-slate-600 mt-1">No. The DOTM requires a fully clean tax record before approving a Naam Sari (ownership transfer). All pending road tax, penalties and renewal charges must be cleared first.</p></div>
             <div><h3 className="font-bold text-lg text-slate-900">Is third-party insurance mandatory for bluebook renewal?</h3><p className="text-slate-600 mt-1">Yes. Third-party insurance regulated by Beema Samiti is legally mandatory for all vehicles. The TMO will not process your renewal without a valid insurance certificate. Annual premiums are approximately Rs. 2,200 for motorcycles and Rs. 4,500–8,000 for private cars. Use our <Link href="/calculator/nepal-income-tax/" className="text-blue-600 hover:underline">Nepal Income Tax Calculator</Link> to understand your disposable income for budgeting these annual costs.</p></div>
             <div><h3 className="font-bold text-lg text-slate-900">How is EV road tax different from EV import duty?</h3><p className="text-slate-600 mt-1">EV road tax is the annual Bluebook renewal tax paid every year based on motor power (kW). EV import duty is a one-time customs charge paid when the vehicle enters Nepal, including Customs Duty (20% of CIF) and the Clean Infrastructure Investment Fee (CIIF).</p></div>
@@ -570,9 +570,9 @@ export default function Page() {
           <h2 className="text-2xl font-black text-slate-900 mt-12 mb-4">Official Government References</h2>
           <p className="mb-4">This calculator uses vehicle tax schedules published by:</p>
           <ul className="list-disc pl-6 space-y-2 mb-8">
-            <li><a href="https://www.dotm.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Department of Transport Management (DoTM)</a></li>
+            <li><a Department of Transport Management (DOTM)</li>
             <li>Bagmati Province Finance Act FY 2083/84</li>
-            <li><a href="https://www.mof.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Ministry of Finance Nepal</a> — Finance Act 2083/84</li>
+            <li><a href="https://www.mof.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Ministry of Finance Nepal</a> : Finance Act 2083/84</li>
             <li>Customs Tariff 2083/84 (Nepal Customs)</li>
             <li>Transport Management Information System (TMIS) Nepal</li>
           </ul>
