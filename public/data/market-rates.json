@@ -1,14 +1,14 @@
 {
   "gold": {
-    "tolaNPR": 283800,
-    "tejabiTolaNPR": 283100
+    "tolaNPR": 296900,
+    "tejabiTolaNPR": 296200
   },
   "silver": {
-    "tolaNPR": 4380
+    "tolaNPR": 4580
   },
-  "date": "2026-08-04",
+  "date": "2026-08-07",
   "source": "ShareSansar",
-  "updatedAt": "2026-08-04T18:01:24.539Z",
+  "updatedAt": "2026-08-07T17:40:42.032Z",
   "verified": true,
   "note": "Auto-updated by scripts/fetch-rates.js before every build."
 }
