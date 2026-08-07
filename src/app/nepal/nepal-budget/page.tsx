@@ -70,104 +70,121 @@ const faqSchema = {
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
 
-.nb{--paper:#F5F3EE;--paper-raised:#FDFCFA;--paper-dark:#EBE8E0;--ink:#18252F;--slate:#526370;--brass:#A07828;--brass-deep:#7A5A1E;--crimson:#6D1A32;--green:#1E6B46;--line:#DDD8CB;--mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;--serif:'Fraunces',serif;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;}
+.nb{--paper:#ffffff;--paper-raised:#F8F8F8;--paper-dark:#F0EEE8;--ink:#18252F;--slate:#526370;--brass:#A07828;--brass-deep:#7A5A1E;--crimson:#6D1A32;--green:#1E6B46;--line:#E0DDD6;--mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;--serif:'Fraunces',serif;background:#fff;color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;}
 .nb *,.nb *::before,.nb *::after{box-sizing:border-box;}
 .nb a{color:var(--brass-deep);text-decoration:underline;text-underline-offset:2px;}
 .nb a:hover{color:var(--crimson);}
 .nb a:focus-visible{outline:3px solid var(--crimson);outline-offset:2px;}
 
 /* BREADCRUMB */
-.nb-bc{font-family:var(--mono);font-size:.74rem;color:var(--slate);max-width:1000px;margin:0 auto;padding:22px 28px 0;}
+.nb-bc{font-family:var(--mono);font-size:.72rem;color:var(--slate);max-width:1200px;margin:0 auto;padding:12px 24px 0;}
 .nb-bc a{color:var(--slate);text-decoration:none;}
 .nb-bc a:hover{color:var(--crimson);}
 .nb-bc span{margin:0 5px;color:var(--line);}
 
 /* HERO */
-.nb-hero{max-width:1000px;margin:0 auto;padding:48px 28px 28px;}
-.nb-eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--crimson);display:flex;align-items:center;gap:10px;margin-bottom:16px;}
-.nb-eyebrow::before{content:'';width:28px;height:2px;background:var(--brass);}
-.nb h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,4.2vw,3.3rem);line-height:1.07;margin:0 0 18px;letter-spacing:-.015em;}
-.nb-dek{font-size:1.1rem;color:var(--slate);max-width:66ch;margin:0 0 22px;line-height:1.7;}
-.nb-meta{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:.75rem;color:var(--slate);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin-bottom:28px;}
-.nb-meta .dot{width:6px;height:6px;border-radius:50%;background:#3E8E5A;display:inline-block;margin-right:5px;}
+.nb-hero{max-width:1200px;margin:0 auto;padding:18px 24px 14px;}
+.nb-eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--crimson);display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.nb-eyebrow::before{content:'';width:22px;height:2px;background:var(--brass);}
+.nb h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.4rem,2.8vw,2.1rem);line-height:1.1;margin:0 0 10px;letter-spacing:-.01em;}
+.nb-dek{font-size:.97rem;color:var(--slate);max-width:80ch;margin:0 0 12px;line-height:1.65;}
+.nb-meta{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:.72rem;color:var(--slate);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 0;margin-bottom:14px;}
+.nb-meta .dot{width:5px;height:5px;border-radius:50%;background:#3E8E5A;display:inline-block;margin-right:4px;}
 .nb-meta strong{color:var(--ink);}
 
 /* QUICK ANSWER */
-.nb-qa{background:var(--paper-raised);border:1px solid var(--line);border-left:4px solid var(--brass);padding:24px 28px;max-width:1000px;margin:0 auto 42px;box-shadow:0 12px 30px -10px rgba(0,0,0,0.04);}
-.nb-qa h2{font-family:var(--serif);font-size:1.25rem;margin:0 0 10px;color:var(--ink);}
-.nb-qa p{margin:0;font-size:1.05rem;color:var(--slate);}
+.nb-qa{background:var(--paper-raised);border:1px solid var(--line);border-left:4px solid var(--brass);padding:16px 20px;max-width:1200px;margin:0 auto 14px;}
+.nb-qa p{margin:0 0 8px;font-size:.97rem;color:var(--slate);}
+.nb-qa p:last-child{margin:0;}
+
+/* MOBILE TOC DROPDOWN */
+.nb-toc-mobile{max-width:1200px;margin:0 auto 14px;padding:0 24px;display:none;}
+.nb-toc-mobile details{border:1px solid var(--line);background:var(--paper-raised);}
+.nb-toc-mobile summary{font-family:var(--mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink);padding:10px 16px;cursor:pointer;user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center;}
+.nb-toc-mobile summary::after{content:'▼';font-size:.6rem;transition:transform .2s;}
+.nb-toc-mobile details[open] summary::after{transform:rotate(180deg);}
+.nb-toc-mobile ol{list-style:none;margin:0;padding:0 16px 12px;columns:2;column-gap:20px;}
+.nb-toc-mobile li{break-inside:avoid;}
+.nb-toc-mobile a{display:block;padding:5px 0;font-size:.82rem;color:var(--ink);text-decoration:none;line-height:1.3;}
+.nb-toc-mobile a:hover{color:var(--crimson);}
+.nb-toc-mobile .nb-toc-num{font-family:var(--mono);font-size:.67rem;color:var(--brass-deep);margin-right:4px;}
+.nb-toc-mobile .nb-toc-divider{display:none;}
+@media(max-width:960px){.nb-toc-mobile{display:block;}}
+@media(max-width:480px){.nb-toc-mobile ol{columns:1;}}
 
 /* STATS */
-.nb-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);max-width:1000px;margin:0 auto 60px;}
-.nb-stat{background:var(--paper);padding:22px 28px;}
-.nb-stat .fig{font-family:var(--sans);font-weight:700;font-size:1.35rem;color:var(--ink);display:block;line-height:1.2;}
-.nb-stat .cap{font-size:.8rem;color:var(--slate);margin-top:5px;display:block;}
+.nb-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);max-width:1200px;margin:0 auto 20px;}
+.nb-stat{background:#fff;padding:14px 18px;}
+.nb-stat .fig{font-family:var(--sans);font-weight:700;font-size:1.15rem;color:var(--ink);display:block;line-height:1.2;}
+.nb-stat .cap{font-size:.75rem;color:var(--slate);margin-top:3px;display:block;}
 @media(max-width:700px){.nb-stats{grid-template-columns:repeat(2,1fr);}}
 
 /* LAYOUT */
-.nb-layout{max-width:1200px;margin:0 auto;padding:0 28px 80px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:52px;align-items:start;}
-.nb-toc{position:sticky;top:80px;grid-column:2;grid-row:1;}
+.nb-layout{max-width:1200px;margin:0 auto;padding:0 24px 60px;display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:36px;align-items:start;}
+.nb-toc{position:sticky;top:72px;grid-column:2;grid-row:1;max-height:calc(100vh - 90px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--line) transparent;}
+.nb-toc::-webkit-scrollbar{width:4px;}
+.nb-toc::-webkit-scrollbar-thumb{background:var(--line);border-radius:2px;}
 .nb-main{grid-column:1;grid-row:1;}
 @media(max-width:960px){
-  .nb-layout{grid-template-columns:1fr;display:flex;flex-direction:column;}
-  .nb-toc{position:static!important;order:1;margin-bottom:40px;}
-  .nb-main{order:2;}
+  .nb-layout{grid-template-columns:1fr;padding:0 16px 40px;gap:0;}
+  .nb-toc{display:none;}
+  .nb-main{order:1;}
 }
 
 /* TOC */
-.nb-toc-head{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;color:var(--slate);margin:0 0 12px;display:block;}
+.nb-toc-head{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--slate);margin:0 0 8px;display:block;}
 .nb-toc ol{list-style:none;margin:0;padding:0;border-left:2px solid var(--line);}
-.nb-toc a{display:block;padding:8px 0 8px 16px;font-size:.88rem;color:var(--ink);text-decoration:none;border-left:2px solid transparent;margin-left:-2px;line-height:1.35;}
+.nb-toc a{display:block;padding:6px 0 6px 14px;font-size:.82rem;color:var(--slate);text-decoration:none;border-left:2px solid transparent;margin-left:-2px;line-height:1.3;}
 .nb-toc a:hover{border-left-color:var(--crimson);color:var(--crimson);}
-.nb-toc-num{font-family:var(--mono);font-size:.7rem;color:var(--brass-deep);margin-right:6px;}
-.nb-toc-divider{height:1px;background:var(--line);margin:10px 0;}
+.nb-toc-num{font-family:var(--mono);font-size:.67rem;color:var(--brass-deep);margin-right:5px;}
+.nb-toc-divider{height:1px;background:var(--line);margin:8px 0;}
 
 /* CHAPTERS */
-.nb-chapter{padding:52px 0;border-top:1px solid var(--line);scroll-margin-top:86px;}
+.nb-chapter{padding:32px 0;border-top:1px solid var(--line);scroll-margin-top:76px;}
 .nb-chapter:first-child{border-top:none;padding-top:0;}
-.nb-ch-tag{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--brass-deep);margin:0 0 6px;display:block;}
-.nb h2{font-family:var(--serif);font-weight:600;font-size:1.75rem;margin:0 0 6px;letter-spacing:-.01em;}
-.nb-subdek{color:var(--slate);max-width:70ch;margin:0 0 26px;font-size:1rem;}
-.nb h3{font-family:var(--serif);font-weight:500;font-size:1.18rem;margin:32px 0 10px;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:6px;}
-.nb h4{font-family:var(--sans);font-weight:700;font-size:.95rem;margin:20px 0 6px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate);}
-.nb p{margin:0 0 14px;max-width:72ch;}
+.nb-ch-tag{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.13em;color:var(--brass-deep);margin:0 0 4px;display:block;}
+.nb h2{font-family:var(--serif);font-weight:600;font-size:1.45rem;margin:0 0 4px;letter-spacing:-.01em;}
+.nb-subdek{color:var(--slate);max-width:72ch;margin:0 0 18px;font-size:.95rem;}
+.nb h3{font-family:var(--serif);font-weight:500;font-size:1.08rem;margin:22px 0 8px;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:4px;}
+.nb h4{font-family:var(--sans);font-weight:700;font-size:.88rem;margin:14px 0 4px;text-transform:uppercase;letter-spacing:.05em;color:var(--slate);}
+.nb p{margin:0 0 12px;max-width:72ch;}
 .nb ul,.nb ol{padding-left:1.3em;max-width:72ch;}
-.nb li{margin-bottom:7px;}
+.nb li{margin-bottom:5px;}
 
 /* TABLES */
-.nb-tw{overflow-x:auto;margin:16px 0 28px;}
-.nb table{width:100%;border-collapse:collapse;font-size:.9rem;}
-.nb table caption{font-family:var(--mono);font-size:.7rem;text-align:left;color:var(--slate);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;}
-.nb th{text-align:left;font-weight:600;color:var(--ink);border-bottom:2px solid var(--ink);padding:10px 14px;background:rgba(0,0,0,0.02);}
-.nb td{padding:12px 14px;border-bottom:1px solid var(--line);color:var(--slate);vertical-align:top;}
+.nb-tw{overflow-x:auto;margin:12px 0 20px;-webkit-overflow-scrolling:touch;}
+.nb table{width:100%;border-collapse:collapse;font-size:.875rem;}
+.nb table caption{font-family:var(--mono);font-size:.68rem;text-align:left;color:var(--slate);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em;}
+.nb th{text-align:left;font-weight:600;color:var(--ink);border-bottom:2px solid var(--ink);padding:8px 12px;background:rgba(0,0,0,0.02);white-space:nowrap;}
+.nb td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--slate);vertical-align:top;}
 .nb td strong{color:var(--ink);}
 .nb th.nr,.nb td.nr{text-align:right;font-family:var(--mono);}
+@media(max-width:600px){.nb th,.nb td{padding:7px 8px;font-size:.82rem;}}
 
 /* UTILS */
-.nb-tag-up{display:inline-block;background:#e6f4ea;color:#1e8e3e;padding:2px 6px;border-radius:4px;font-size:.75rem;font-weight:600;}
-.nb-tag-down{display:inline-block;background:#fce8e6;color:#d93025;padding:2px 6px;border-radius:4px;font-size:.75rem;font-weight:600;}
-.nb-tag-new{display:inline-block;background:#e8f0fe;color:#1a73e8;padding:2px 6px;border-radius:4px;font-size:.75rem;font-weight:600;}
-.nb-badge{font-family:var(--mono);font-size:.68rem;padding:2px 8px;border-radius:2px;}
+.nb-tag-up{display:inline-block;background:#e6f4ea;color:#1e8e3e;padding:2px 6px;border-radius:4px;font-size:.73rem;font-weight:600;}
+.nb-tag-down{display:inline-block;background:#fce8e6;color:#d93025;padding:2px 6px;border-radius:4px;font-size:.73rem;font-weight:600;}
+.nb-tag-new{display:inline-block;background:#e8f0fe;color:#1a73e8;padding:2px 6px;border-radius:4px;font-size:.73rem;font-weight:600;}
+.nb-badge{font-family:var(--mono);font-size:.65rem;padding:2px 7px;border-radius:2px;}
 .nb-badge.curr{background:var(--crimson);color:#fff;}
 .nb-badge.arch{background:var(--line);color:var(--slate);}
 
 /* NOTE */
-.nb-note{font-size:.82rem;color:var(--slate);border-top:1px dashed var(--line);padding-top:10px;margin-top:16px;}
+.nb-note{font-size:.8rem;color:var(--slate);border-top:1px dashed var(--line);padding-top:8px;margin-top:12px;}
 
 /* SOURCE BOX */
-.nb-sources{background:var(--paper-dark);border:1px solid var(--line);padding:20px 22px;margin:28px 0;}
-.nb-sources h3{font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.1em;color:var(--slate);margin:0 0 12px;}
-.nb-sources ol{margin:0;padding-left:1.2em;font-size:.86rem;}
-.nb-sources li{margin-bottom:6px;}
+.nb-sources{background:var(--paper-dark);border:1px solid var(--line);padding:16px 18px;margin:20px 0;}
+.nb-sources h3{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--slate);margin:0 0 10px;}
+.nb-sources ol{margin:0;padding-left:1.2em;font-size:.84rem;}
+.nb-sources li{margin-bottom:5px;}
 
 /* PAGE FOOTER CTA */
-.nb-footer-cta{background:var(--ink);color:var(--paper-raised);padding:52px 28px;}
-.nb-footer-cta .inner{max-width:1000px;margin:0 auto;}
-.nb-footer-cta h2{font-family:var(--serif);font-size:1.8rem;margin:0 0 12px;color:var(--paper-raised);}
-.nb-footer-cta p{color:#bcc5cc;max-width:62ch;margin:0 0 20px;}
-.nb-cta-primary{display:inline-block;background:var(--brass);color:var(--ink);font-family:var(--mono);font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;padding:13px 22px;text-decoration:none;margin-right:10px;margin-bottom:8px;}
+.nb-footer-cta{background:var(--ink);color:var(--paper-raised);padding:36px 24px;}
+.nb-footer-cta .inner{max-width:1200px;margin:0 auto;}
+.nb-footer-cta p{color:#bcc5cc;max-width:62ch;margin:0 0 16px;}
+.nb-cta-primary{display:inline-block;background:var(--brass);color:var(--ink);font-family:var(--mono);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;padding:10px 18px;text-decoration:none;margin-right:8px;margin-bottom:6px;}
 .nb-cta-primary:hover{background:var(--paper-raised);}
-.nb-footer-cta .nb-legal{font-size:.76rem;color:#7a8a94;margin-top:26px;}
+.nb-footer-cta .nb-legal{font-size:.74rem;color:#7a8a94;margin-top:20px;}
 `;
 
 export default function NepalBudgetPage() {
@@ -196,16 +213,55 @@ export default function NepalBudgetPage() {
       <div className="nb-qa" role="note" aria-label="Quick Answer">
         <p><strong>Quick Answer: What is the Nepal Budget 2083/84?</strong></p>
         <p>
-          Nepal&apos;s Budget 2083/84 is a <strong>Rs. 2,124.34 billion</strong> fiscal plan for FY 2026/27 (Shrawan 2083 to Ashadh 2084). Its biggest changes are: the <strong>first Rs. 10,00,000 of taxable income falls within the 1% slab</strong> for all individuals (up from Rs. 5,00,000–6,00,000), a <strong>29% maximum income tax rate</strong> (down from 39%), a <strong>10% digital VAT rebate</strong> for cashless payments, customs compression from 11 to 7 tiers, and a one-time <strong>tax dispute settlement scheme</strong> with a 1% settlement fee.
+          Nepal&apos;s Budget 2083/84 is a <strong>Rs. 2,124.34 billion</strong> fiscal plan for FY 2026/27. Key changes: first Rs. 10,00,000 in the 1% slab, <strong>29% max tax rate</strong> (down from 39%), <strong>10% digital VAT rebate</strong>, customs from 11 to 7 tiers, and a one-time tax dispute settlement with a 1% fee.
         </p>
       </div>
+
+      {/* MOBILE TOC DROPDOWN — shown only on mobile/tablet */}
+      <nav className="nb-toc-mobile" aria-label="Table of Contents">
+        <details>
+          <summary>📋 Table of Contents — 30 Sections</summary>
+          <ol>
+            <li><a href="#overview"><span className="nb-toc-num">01</span>Budget Overview</a></li>
+            <li><a href="#budget-size"><span className="nb-toc-num">02</span>Budget Size &amp; Financing</a></li>
+            <li><a href="#major-highlights"><span className="nb-toc-num">03</span>Major Highlights</a></li>
+            <li><a href="#sector-allocation"><span className="nb-toc-num">04</span>Sector Allocations</a></li>
+            <li><a href="#information-technology"><span className="nb-toc-num">05</span>IT &amp; Digital Economy</a></li>
+            <li><a href="#health-education"><span className="nb-toc-num">06</span>Health &amp; Education</a></li>
+            <li><a href="#agriculture-food"><span className="nb-toc-num">07</span>Agriculture &amp; Food</a></li>
+            <li><a href="#liquor-tobacco"><span className="nb-toc-num">08</span>Liquor &amp; Tobacco</a></li>
+            <li><a href="#transportation"><span className="nb-toc-num">09</span>Transportation</a></li>
+            <li><a href="#capital-market-real-estate"><span className="nb-toc-num">10</span>Capital Market</a></li>
+            <li><a href="#energy-manpower"><span className="nb-toc-num">11</span>Energy &amp; Employment</a></li>
+            <li><a href="#income-tax-act"><span className="nb-toc-num">12</span>Income Tax Amendments</a></li>
+            <li><a href="#income-tax-slabs"><span className="nb-toc-num">13</span>Income Tax Slabs</a></li>
+            <li><a href="#tds-advance-tax"><span className="nb-toc-num">14</span>TDS &amp; Advance Tax</a></li>
+            <li><a href="#digital-services-tax"><span className="nb-toc-num">15</span>Digital Services Tax</a></li>
+            <li><a href="#vat-changes"><span className="nb-toc-num">16</span>VAT Changes</a></li>
+            <li><a href="#excise-duty"><span className="nb-toc-num">17</span>Excise Duty</a></li>
+            <li><a href="#customs-duty"><span className="nb-toc-num">18</span>Customs Duty</a></li>
+            <li><a href="#tax-rate-summary"><span className="nb-toc-num">19</span>Tax Rate Table</a></li>
+            <li><a href="#tax-tables"><span className="nb-toc-num">20</span>VAT, TDS &amp; Customs</a></li>
+            <li><a href="#tax-exemptions"><span className="nb-toc-num">21</span>Exemptions</a></li>
+            <li><a href="#tax-amnesty"><span className="nb-toc-num">22</span>Tax Amnesty</a></li>
+            <li><a href="#exemption-summary"><span className="nb-toc-num">23</span>Relief Schemes</a></li>
+            <li><a href="#compliance-calendar"><span className="nb-toc-num">24</span>Deadlines</a></li>
+            <li><a href="#impact-individuals"><span className="nb-toc-num">25</span>Impact: Individuals</a></li>
+            <li><a href="#impact-businesses"><span className="nb-toc-num">26</span>Impact: Businesses</a></li>
+            <li><a href="#year-comparison"><span className="nb-toc-num">27</span>Year Comparison</a></li>
+            <li><a href="#key-takeaways"><span className="nb-toc-num">28</span>Examples</a></li>
+            <li><a href="#faqs"><span className="nb-toc-num">29</span>FAQs</a></li>
+            <li><a href="#related-resources"><span className="nb-toc-num">30</span>Calculators &amp; Links</a></li>
+          </ol>
+        </details>
+      </nav>
 
       {/* META */}
       <div className="nb-meta">
         <span><span className="dot"></span>Last updated: 7 August 2026</span>
-        <span><strong>Source:</strong> Government of Nepal · Ministry of Finance · Finance Act 2083</span>
-        <span><strong>Effective from:</strong> Shrawan 1, 2083 (July 17, 2026)</span>
-        <span><strong>Reading time:</strong> ~25–35 min</span>
+        <span><strong>Source:</strong> Finance Act 2083 · Ministry of Finance</span>
+        <span><strong>Effective:</strong> Shrawan 1, 2083 (July 17, 2026)</span>
+        <span><strong>Reading:</strong> ~25 min</span>
       </div>
 
       {/* STAT STRIP */}
