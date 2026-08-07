@@ -108,6 +108,17 @@ const nextConfig = {
         permanent: true,
       },
       // ── Legacy / Removed Routes ────────────────────────────────────────
+      // 301: Deleted blog post → canonical electricity page
+      {
+        source: '/blog/nea-tariff-rates-2083-84',
+        destination: '/electricity/nepal-unit-price/',
+        permanent: true,
+      },
+      {
+        source: '/blog/nea-tariff-rates-2083-84/',
+        destination: '/electricity/nepal-unit-price/',
+        permanent: true,
+      },
       {
         source: '/market/',
         destination: '/market-rates/',

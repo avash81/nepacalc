@@ -242,7 +242,7 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
       fullWidth={true}
       icon={Car}
       inputs={
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-8 gap-y-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-8 gap-y-3">
 
           {/* ── MASTER MODE TOGGLE ─────────────────────────────────── */}
           <div className="space-y-2">
@@ -369,16 +369,16 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
 
               {/* ── CONTEXTUAL ALERT ─────────────────────────────────── */}
               {renewalResult.isLate ? (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-md flex gap-3">
-                  <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+                <div className="p-2.5 bg-red-50 border border-red-200 rounded-md flex gap-2 items-center">
+                  <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
                   <p className="text-[10px] text-red-800 font-bold leading-relaxed uppercase">
                     Late fine applied. Renewal fee doubled to {formatNPR(renewalResult.finalRenew)}.
                     {delayStatus === '5_years_plus' && ' Base tax capped at 4 years under DoTM regulations.'}
                   </p>
                 </div>
               ) : (
-                <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-md flex gap-3">
-                  <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                <div className="p-2.5 bg-emerald-50 border border-emerald-200 rounded-md flex gap-2 items-center">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
                   <p className="text-[10px] text-emerald-800 font-bold leading-relaxed uppercase">
                     Within the 90-day grace period. No penalties applied.
                   </p>
@@ -409,41 +409,41 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
 
               {/* ── OPTIONAL FEES ──────────────────────────────────────── */}
               {calcMode === 'renewal' && (
-                <div className="space-y-3 mt-4 border-t border-[#DADCE0] pt-4">
-                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Optional Add-ons (Enter amount in Rs.)</label>
-                  <div className="space-y-3">
+                <div className="xl:col-span-2 border-t border-[#DADCE0] pt-3 mt-1">
+                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider block mb-2">Optional Add-ons (Enter amount in Rs.)</label>
+                  <div className="grid grid-cols-3 gap-3">
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Third-Party Insurance (Rs.)</label>
+                      <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Third-Party Insurance</label>
                       <input
                         type="number" min={0} placeholder="e.g. 2200" value={customInsurance}
                         onWheel={(e) => (e.target as HTMLInputElement).blur()}
                         onChange={e => update({ customInsurance: e.target.value === '' ? '' : Number(e.target.value) })}
-                        className="w-full h-10 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
+                        className="w-full h-9 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
                       />
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Bluebook Renewal Fee (Rs.)</label>
+                      <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Bluebook Renewal Fee</label>
                       <input
                         type="number" min={0} placeholder="e.g. 500" value={customRenewal}
                         onWheel={(e) => (e.target as HTMLInputElement).blur()}
                         onChange={e => update({ customRenewal: e.target.value === '' ? '' : Number(e.target.value) })}
-                        className="w-full h-10 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
+                        className="w-full h-9 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
                       />
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Pollution Check Fee (Rs.)</label>
+                      <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Pollution Check Fee</label>
                       <input
                         type="number" min={0} placeholder="e.g. 400" value={customPollution}
                         onWheel={(e) => (e.target as HTMLInputElement).blur()}
                         onChange={e => update({ customPollution: e.target.value === '' ? '' : Number(e.target.value) })}
-                        className="w-full h-10 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
+                        className="w-full h-9 px-3 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
                       />
                     </div>
                   </div>
                 </div>
               )}
 
-              <button onClick={() => update({ engineCC: '', motorKw: '', seats: '', weightTon: '', cifLakh: '', delayStatus: 'ontime', customInsurance: '', customRenewal: '', customPollution: '' })} className="w-full h-12 mt-4 bg-[#F1F3F4] hover:bg-[#E8EAED] text-[#5F6368] hover:text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+              <button onClick={() => update({ engineCC: '', motorKw: '', seats: '', weightTon: '', cifLakh: '', delayStatus: 'ontime', customInsurance: '', customRenewal: '', customPollution: '' })} className="w-full h-10 mt-2 bg-[#F1F3F4] hover:bg-[#E8EAED] text-[#5F6368] hover:text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
                 Clear Calculator
               </button>
 
@@ -451,8 +451,8 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
       }
       results={
         calcMode === 'renewal' ? (
-          <div className="space-y-5 h-full flex flex-col justify-center">
-            <div className={`rounded-lg p-8 text-center space-y-2 relative overflow-hidden ${renewalResult.isLate ? 'bg-red-50 border border-red-200' : 'bg-[#E8F0FE]'}`}>
+          <div className="space-y-3 h-full flex flex-col justify-center">
+            <div className={`rounded-lg p-5 text-center space-y-1 relative overflow-hidden ${renewalResult.isLate ? 'bg-red-50 border border-red-200' : 'bg-[#E8F0FE]'}`}>
               {renewalResult.isLate && <div className="absolute top-0 left-0 w-full h-1 bg-red-500" />}
               <div className={`text-[10px] font-bold uppercase tracking-wider ${renewalResult.isLate ? 'text-red-700' : 'text-[#1A73E8]'}`}>Total Renewal Liability</div>
               <div className={`text-4xl font-black ${renewalResult.isLate ? 'text-red-700' : 'text-[#1A73E8]'}`}>{formatNPR(renewalResult.total)}</div>
