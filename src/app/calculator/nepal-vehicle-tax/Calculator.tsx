@@ -101,7 +101,7 @@ type EngineType = 'combustion' | 'electric';
 type VehicleCategory = 'bike' | 'car_private' | 'car_public' | 'bus' | 'truck' | 'agri';
 
 export default function NepalVehicleTaxCalculator() {
-  const [state, setState] = useSyncState('nepal_vehicle_tax_v8', {
+  const [state, setState] = useSyncState('nepal_vehicle_tax_v9', {
     calcMode:    'renewal'    as CalcMode,
     engineType:  'combustion' as EngineType,
     vCategory:   'bike'       as VehicleCategory,
@@ -111,15 +111,15 @@ export default function NepalVehicleTaxCalculator() {
     weightTon:   '' as number | '',
     cifLakh:     '' as number | '',
     delayStatus: 'ontime',
-    includeInsurance: false,
-    includeRenewal: false,
-    includePollution: false,
+    customInsurance: '' as number | '',
+    customRenewal:   '' as number | '',
+    customPollution: '' as number | '',
   });
 
   const {
     calcMode, engineType, vCategory,
     engineCC, motorKw, seats, weightTon, cifLakh, delayStatus,
-    includeInsurance, includeRenewal, includePollution
+    customInsurance, customRenewal, customPollution
   } = state;
 
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
@@ -182,26 +182,12 @@ export default function NepalVehicleTaxCalculator() {
     const yearsOwed    = Math.min(1 + delayConfig.yearsBack, 4);
     const totalBaseTax = baseTax * yearsOwed;
     const penaltyFine  = baseTax * delayConfig.basePenalty;
-    const finalRenew   = includeRenewal ? (renewFee * delayConfig.renewMult) : 0;
-    
-    let insuranceEst = 4500;
-    const cc = Number(engineCC) || 0;
-    if (engineType === 'electric') {
-      insuranceEst = vCategory === 'bike' ? 2000 : 3500;
-    } else {
-      if (vCategory === 'bike' || vCategory === 'agri') insuranceEst = 2200;
-      else if (vCategory === 'car_private' || vCategory === 'car_public') {
-        if (cc <= 1500) insuranceEst = 4500;
-        else if (cc <= 2500) insuranceEst = 6000;
-        else insuranceEst = 8000;
-      }
-      else insuranceEst = 6000;
-    }
-    const finalInsurance = includeInsurance ? insuranceEst : 0;
+    const finalInsurance = Number(customInsurance) || 0;
+    const finalRenew     = Number(customRenewal)   || 0;
+    const finalPollution = Number(customPollution) || 0;
 
-    const finalPollution = includePollution ? 400 : 0;
-    const total        = totalBaseTax + penaltyFine + finalInsurance + finalRenew + finalPollution;
-    const isLate       = delayStatus !== 'ontime';
+    const total    = totalBaseTax + penaltyFine + finalInsurance + finalRenew + finalPollution;
+    const isLate   = delayStatus !== 'ontime';
 
     const pieData = [
       { name: 'Govt Base Tax',     value: totalBaseTax },
@@ -212,7 +198,7 @@ export default function NepalVehicleTaxCalculator() {
     ];
 
     return { baseTax: totalBaseTax, penaltyFine, insuranceEst: finalInsurance, finalRenew, pollutionCheck: finalPollution, total, slabLabel, pieData, isLate, yearsOwed, renewFee };
-  }, [engineType, vCategory, engineCC, motorKw, seats, weightTon, delayStatus, includeInsurance, includeRenewal, includePollution]);
+  }, [engineType, vCategory, engineCC, motorKw, seats, weightTon, delayStatus, customInsurance, customRenewal, customPollution]);
 
   // ── EV IMPORT / CIF MATH ──────────────────────────────────────────────────
   const cifResult = useMemo(() => {
@@ -419,29 +405,44 @@ export default function NepalVehicleTaxCalculator() {
             </>
           )}
 
-          
+
               {/* ── OPTIONAL FEES ──────────────────────────────────────── */}
               {calcMode === 'renewal' && (
-                <div className="space-y-2 mt-4 border-t border-[#DADCE0] pt-4">
-                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Optional Add-ons</label>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    <label className="flex items-center gap-2 p-3 border border-[#DADCE0] rounded-md cursor-pointer hover:bg-gray-50 transition-colors">
-                      <input type="checkbox" checked={includeInsurance} onChange={(e) => update({ includeInsurance: e.target.checked })} className="w-4 h-4 text-[#1A73E8]" />
-                      <span className="text-[11px] font-bold text-[#202124]">Third-Party Insurance</span>
-                    </label>
-                    <label className="flex items-center gap-2 p-3 border border-[#DADCE0] rounded-md cursor-pointer hover:bg-gray-50 transition-colors">
-                      <input type="checkbox" checked={includeRenewal} onChange={(e) => update({ includeRenewal: e.target.checked })} className="w-4 h-4 text-[#1A73E8]" />
-                      <span className="text-[11px] font-bold text-[#202124]">Bluebook Renewal Fee</span>
-                    </label>
-                    <label className="flex items-center gap-2 p-3 border border-[#DADCE0] rounded-md cursor-pointer hover:bg-gray-50 transition-colors">
-                      <input type="checkbox" checked={includePollution} onChange={(e) => update({ includePollution: e.target.checked })} className="w-4 h-4 text-[#1A73E8]" />
-                      <span className="text-[11px] font-bold text-[#202124]">Pollution Check Fee</span>
-                    </label>
+                <div className="space-y-3 mt-4 border-t border-[#DADCE0] pt-4">
+                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Optional Add-ons (Enter amount in Rs.)</label>
+                  <div className="space-y-3">
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Third-Party Insurance (Rs.)</label>
+                      <input
+                        type="number" min={0} placeholder="e.g. 2200" value={customInsurance}
+                        onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                        onChange={e => update({ customInsurance: e.target.value === '' ? '' : Number(e.target.value) })}
+                        className="w-full h-10 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Bluebook Renewal Fee (Rs.)</label>
+                      <input
+                        type="number" min={0} placeholder="e.g. 500" value={customRenewal}
+                        onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                        onChange={e => update({ customRenewal: e.target.value === '' ? '' : Number(e.target.value) })}
+                        className="w-full h-10 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
+                      />
+                    </div>
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold text-[#5F6368] uppercase tracking-wider">Pollution Check Fee (Rs.)</label>
+                      <input
+                        type="number" min={0} placeholder="e.g. 400" value={customPollution}
+                        onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                        onChange={e => update({ customPollution: e.target.value === '' ? '' : Number(e.target.value) })}
+                        className="w-full h-10 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
+                      />
+                    </div>
                   </div>
                 </div>
               )}
 
-              <button onClick={() => update({ engineCC: '', motorKw: '', seats: '', weightTon: '', cifLakh: '', delayStatus: 'ontime', includeInsurance: false, includeRenewal: false, includePollution: false })} className="w-full h-12 mt-4 bg-[#F1F3F4] hover:bg-[#E8EAED] text-[#5F6368] hover:text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+              <button onClick={() => update({ engineCC: '', motorKw: '', seats: '', weightTon: '', cifLakh: '', delayStatus: 'ontime', customInsurance: '', customRenewal: '', customPollution: '' })} className="w-full h-12 mt-4 bg-[#F1F3F4] hover:bg-[#E8EAED] text-[#5F6368] hover:text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
                 Clear Calculator
               </button>
 
