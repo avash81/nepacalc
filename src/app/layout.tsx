@@ -61,7 +61,7 @@ export const metadata: Metadata = {
 };
 
 const MobileNav = dynamic(() => import("@/components/layout/MobileNav").then(mod => mod.MobileNav), { ssr: false });
-const CookieBanner = dynamic(() => import("@/components/layout/CookieBanner").then(mod => mod.CookieBanner), { ssr: false });
+
 const GoogleAnalytics = dynamic(() => import("@/components/seo/GoogleAnalytics").then(mod => mod.GoogleAnalytics), { ssr: false });
 
 const globalSchema = {
@@ -171,7 +171,7 @@ export default function RootLayout({
           </div>
         </main>
         <MobileNav />
-        <CookieBanner />
+
         <GoogleAnalytics />
       </body>
     </html>
