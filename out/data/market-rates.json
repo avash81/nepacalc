@@ -8,7 +8,11 @@
   },
   "date": "2026-08-08",
   "source": "ShareSansar",
+<<<<<<< Updated upstream
   "updatedAt": "2026-08-07T18:46:40.110Z",
+=======
+  "updatedAt": "2026-08-07T18:40:53.650Z",
+>>>>>>> Stashed changes
   "verified": true,
   "note": "Auto-updated by scripts/fetch-rates.js before every build."
 }

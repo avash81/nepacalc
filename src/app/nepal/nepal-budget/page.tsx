@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://nepacalc.com/nepal/nepal-budget/' },
   openGraph: {
     title: 'Nepal Budget 2083/84 (FY 2026/27): Complete Guide, Tax Changes & Analysis',
-    description: 'Income tax slabs, VAT changes, EV duties, sector allocations, and tax amnesty rules — the most complete Nepal Budget guide.',
+    description: 'Income tax slabs, VAT changes, EV duties, sector allocations, and tax amnesty rules: the most complete Nepal Budget guide.',
     type: 'article',
     url: 'https://nepacalc.com/nepal/nepal-budget/',
     siteName: 'NepaCalc',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Nepal Budget 2083/84: Complete Tax Changes & Guide',
-    description: 'Unified income tax slabs, VAT rebate, EV duties, sector allocations, amnesty scheme — everything in one place.',
+    description: 'Unified income tax slabs, VAT rebate, EV duties, sector allocations, amnesty scheme: everything in one place.',
     images: ['https://nepacalc.com/images/seo/nepal-budget-social.jpg']
   },
   robots: 'index, follow, max-snippet:-1, max-image-preview:large',
@@ -57,12 +57,12 @@ const faqSchema = {
   "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "What is the total budget of Nepal for FY 2083/84?", "acceptedAnswer": { "@type": "Answer", "text": "The total Nepal Budget for FY 2083/84 (2026/27) is approximately NPR 2,124.34 billion, covering recurrent expenditure, capital expenditure, and financial management allocations." } },
-    { "@type": "Question", "name": "What is the new income tax slab structure for FY 2083/84?", "acceptedAnswer": { "@type": "Answer", "text": "The first Rs. 10,00,000 of taxable income falls within the 1% slab. This 1% tax does not apply to specified pension, SSF-contributing employees, and certain sole-proprietorship income. The top rate is 29% on income above Rs. 40,00,000 — down from 39% in FY 2082/83." } },
-    { "@type": "Question", "name": "What is the maximum income tax rate?", "acceptedAnswer": { "@type": "Answer", "text": "The maximum marginal income tax rate is 29% on annual taxable income above NPR 40,00,000 — down from 39% in the previous fiscal year." } },
+    { "@type": "Question", "name": "What is the new income tax slab structure for FY 2083/84?", "acceptedAnswer": { "@type": "Answer", "text": "The first Rs. 10,00,000 of taxable income falls within the 1% slab. This 1% tax does not apply to specified pension, SSF-contributing employees, and certain sole-proprietorship income. The top rate is 29% on income above Rs. 40,00,000: down from 39% in FY 2082/83." } },
+    { "@type": "Question", "name": "What is the maximum income tax rate?", "acceptedAnswer": { "@type": "Answer", "text": "The maximum marginal income tax rate is 29% on annual taxable income above NPR 40,00,000: down from 39% in the previous fiscal year." } },
     { "@type": "Question", "name": "What are the major VAT changes?", "acceptedAnswer": { "@type": "Answer", "text": "When consumers pay retail bills via QR code, digital wallet, or card, 10% of the VAT charged is automatically credited back to their payment account by the system." } },
     { "@type": "Question", "name": "What are the new TDS rates?", "acceptedAnswer": { "@type": "Answer", "text": "IT companies and software exporters receiving foreign currency payments through domestic banks incur a 5% final withholding tax (WHT). Other major changes include updates to insurance agent TDS." } },
     { "@type": "Question", "name": "What are the major tax waiver and settlement schemes?", "acceptedAnswer": { "@type": "Answer", "text": "Taxpayers with pending income tax, VAT, or excise disputes can settle by paying the assessed principal tax plus a 1% settlement fee by Poush 30, 2083 (mid-January 2027), with all fines, interest, and penalties fully waived." } },
-    { "@type": "Question", "name": "When do the new tax provisions take effect?", "acceptedAnswer": { "@type": "Answer", "text": "The new income tax slabs and most tax provisions under Finance Act 2083 are effective from Shrawan 1, 2083 (July 17, 2026) — the start of Fiscal Year 2083/84." } }
+    { "@type": "Question", "name": "When do the new tax provisions take effect?", "acceptedAnswer": { "@type": "Answer", "text": "The new income tax slabs and most tax provisions under Finance Act 2083 are effective from Shrawan 1, 2083 (July 17, 2026): the start of Fiscal Year 2083/84." } }
   ]
 };
 
@@ -206,7 +206,7 @@ export default function NepalBudgetPage() {
         </p>
       </div>
 
-      {/* QUICK ANSWER BOX — AEO */}
+      {/* QUICK ANSWER BOX: AEO */}
       <div className="nb-qa" role="note" aria-label="Quick Answer">
         <p><strong>Quick Answer: What is the Nepal Budget 2083/84?</strong></p>
         <p>
@@ -214,10 +214,10 @@ export default function NepalBudgetPage() {
         </p>
       </div>
 
-      {/* MOBILE TOC DROPDOWN — shown only on mobile/tablet */}
+      {/* MOBILE TOC DROPDOWN: shown only on mobile/tablet */}
       <nav className="nb-toc-mobile" aria-label="Table of Contents">
         <details>
-          <summary>📋 Table of Contents — 30 Sections</summary>
+          <summary>📋 Table of Contents: 30 Sections</summary>
           <ol>
             <li><a href="#overview"><span className="nb-toc-num">01</span>Budget Overview</a></li>
             <li><a href="#budget-size"><span className="nb-toc-num">02</span>Budget Size &amp; Financing</a></li>
@@ -371,7 +371,7 @@ export default function NepalBudgetPage() {
           <section className="nb-chapter" id="sector-allocation">
             <span className="nb-ch-tag">§ 4</span>
             <h2>4. Sector-Wise Budget Allocations</h2>
-            <p>The <a href="https://mof.gov.np" target="_blank" rel="noopener noreferrer">Ministry of Finance</a> has distributed the budget across key sectors to align with the national development plan.</p>
+            <p>The Ministry of Finance has distributed the budget across key sectors to align with the national development plan.</p>
 
             <div className="nb-note" style={{marginBottom:'20px',padding:'14px 18px',background:'#fef9ec',borderLeft:'4px solid #A07828',fontSize:'.85rem'}}>
               <strong>Note on Health Budget Discrepancy:</strong> The sector allocation summary lists Rs. 102 billion for Health, while the detailed Health &amp; Education section reports Rs. 96.43 billion. Readers should refer to the official budget allocation schedule for the precise classification.
@@ -436,7 +436,7 @@ export default function NepalBudgetPage() {
             <p>Total allocation: Rs. 218.30 billion.</p>
 
             <h3>6.2 Health Budget</h3>
-            <p>Total allocation: Rs. 95.00 billion.</p>
+            <p>Total allocation: Rs. 95.00 billion. The budget emphasizes preventive healthcare, nutrition programs, and accessible maternal care. For your own personal health tracking, NepaCalc provides tools like the <a href="/calculator/bmi/">BMI Calculator</a> and <a href="/calculator/calorie-calculator/">Calorie Calculator</a> to monitor daily wellness metrics.</p>
 
             <h3>6.3 Scholarships</h3>
             <p>Rs. 8.60 billion allocated for scholarships targeted at marginalized and meritorious students.</p>
@@ -656,11 +656,11 @@ export default function NepalBudgetPage() {
             <h2>13. New Income Tax Slabs for FY 2083/84</h2>
             <p>The budget introduces a unified tax exemption limit. You can calculate your exact tax liability with the <a href="/calculator/nepal-income-tax/">Nepal Income Tax Calculator</a>.</p>
 
-            <h3>13.1 Individual Income Tax Slabs — FY 2083/84</h3>
-            <p>The first Rs. 10,00,000 of taxable income falls within the <strong>1% slab</strong>. This is not a tax-free exemption — a 1% rate applies. However, the 1% tax is <strong>not levied</strong> on specified pension income, Social Security Fund (SSF) contributions, and certain sole-proprietorship income under the stated provisions.</p>
+            <h3>13.1 Individual Income Tax Slabs: FY 2083/84</h3>
+            <p>The first Rs. 10,00,000 of taxable income falls within the <strong>1% slab</strong>. This is not a tax-free exemption: a 1% rate applies. However, the 1% tax is <strong>not levied</strong> on specified pension income, Social Security Fund (SSF) contributions, and certain sole-proprietorship income under the stated provisions.</p>
             <div className="nb-tw">
               <table>
-                <caption>Table: FY 2083/84 Income Tax Slabs — Individual Taxpayers</caption>
+                <caption>Table: FY 2083/84 Income Tax Slabs: Individual Taxpayers</caption>
                 <thead>
                   <tr>
                     <th>Annual Taxable Income (Rs.)</th>
@@ -680,11 +680,11 @@ export default function NepalBudgetPage() {
             </div>
             <p className="nb-note">✅ Verified against supplied Budget Summary PDF (K.B.P.S. &amp; Associates, 40-page summary). Source Act: Finance Act 2083, Schedule 1. Previous FY rates: Finance Act 2082. All rates apply to natural persons.</p>
 
-            <h3>13.2 1% Slab — Important Clarification</h3>
+            <h3>13.2 1% Slab: Important Clarification</h3>
             <p>The 1% rate applies to the first Rs. 10,00,000 of taxable income. It is waived for: (a) SSF-contributing employees, (b) specified pension/pension-fund income, and (c) certain sole-proprietorship income under the Finance Act provisions.</p>
 
             <h3>13.3 Maximum 29% Tax Rate</h3>
-            <p>The maximum marginal tax rate has been reduced from <strong>39% to 29%</strong> on income above Rs. 40,00,000 — a reduction of 10 percentage points.</p>
+            <p>The maximum marginal tax rate has been reduced from <strong>39% to 29%</strong> on income above Rs. 40,00,000: a reduction of 10 percentage points.</p>
 
             <h3>13.4 Key Deductions Verified</h3>
             <p>The following deductions are confirmed by the Budget Summary PDF: Donation ceiling increased from Rs. 1,00,000 to <strong>Rs. 3,00,000</strong> (5% of income ceiling retained). CSR deduction: up to <strong>1% of net profit</strong>. Tuition deduction: lower of 25% of fees or <strong>Rs. 25,000</strong>. Building insurance threshold: increased from Rs. 5,000 to <strong>Rs. 10,000</strong>. Cash expense threshold: <strong>Rs. 25,000</strong> applies to all taxpayers.</p>
@@ -699,21 +699,21 @@ export default function NepalBudgetPage() {
             <h2>14. TDS and Advance Tax Changes</h2>
 
             <h3>14.1 TDS &amp; Advance Tax Changes Identified in the Supplied Budget Summary</h3>
-            <p>The following TDS changes are confirmed by the 40-page K.B.P.S. &amp; Associates Budget Summary PDF. This is <strong>not a complete TDS rate schedule</strong> — it covers only the changes specifically identified in the supplied source. Use the <a href="/calculator/nepal-tds/">Nepal TDS Calculator</a> for computation.</p>
+            <p>The following TDS changes are confirmed by the 40-page K.B.P.S. &amp; Associates Budget Summary PDF. This is <strong>not a complete TDS rate schedule</strong>: it covers only the changes specifically identified in the supplied source. Use the <a href="/calculator/nepal-tds/">Nepal TDS Calculator</a> for computation.</p>
 
-            <h3>14.2 Insurance Agent Commission TDS — Increased to 20%</h3>
+            <h3>14.2 Insurance Agent Commission TDS: Increased to 20%</h3>
             <p>TDS on commission and service fees paid to insurance agents has been increased from <strong>15% to 20%</strong>. Source: Budget Summary PDF, confirmed. Relevant section: Income Tax Act 2058, Sec. 87.</p>
 
-            <h3>14.3 Ride-Sharing Platform Advance Tax — 1%</h3>
+            <h3>14.3 Ride-Sharing Platform Advance Tax: 1%</h3>
             <p>Ride-sharing platform operators must calculate, collect, and deposit <strong>1% advance tax</strong> on each driver payment transaction. Source: Budget Summary PDF.</p>
 
-            <h3>14.4 IT Export / Foreign Currency — 5% Final WHT</h3>
+            <h3>14.4 IT Export / Foreign Currency: 5% Final WHT</h3>
             <p>IT companies and freelancers receiving foreign currency income through domestic banking channels are subject to a <strong>5% final withholding tax</strong>. This replaces self-assessed income tax on this income stream. Source: Budget Summary PDF, Sec. 92.</p>
 
             <h3>14.5 Section 89(3Ka) Repealed</h3>
             <p>The 1.5% withholding on payments exceeding Rs. 50,00,000 for consumer committee work under Section 89(3Ka) has been repealed. Source: Budget Summary PDF.</p>
 
-            <h3>14.6 Safe Harbor — Transfer Pricing</h3>
+            <h3>14.6 Safe Harbor: Transfer Pricing</h3>
             <p>A Safe Harbor provision covers controlled transactions up to <strong>Rs. 1 billion</strong> (Rs. 100 crore). An Advance Pricing Agreement (APA) mechanism has been introduced with unilateral, bilateral and multilateral options and a 4-year rollback provision. Source: Budget Summary PDF.</p>
           </section>
 
@@ -833,7 +833,7 @@ export default function NepalBudgetPage() {
           {/* § 19 Consolidated Tax Rates */}
           <section className="nb-chapter" id="tax-rate-summary">
             <span className="nb-ch-tag">§ 19</span>
-            <h2>19. Consolidated Tax Rate Changes — Master Reference Table</h2>
+            <h2>19. Consolidated Tax Rate Changes: Master Reference Table</h2>
             <p className="nb-subdek">Complete reference of all tax rate changes in FY 2083/84. Each row states the old rate, new rate, who it applies to, when it takes effect, and which Act/Section governs it.</p>
 
             <div className="nb-note" style={{marginBottom:'20px',padding:'14px 18px',background:'#fef9ec',borderLeft:'4px solid #A07828',fontSize:'.85rem'}}>
@@ -842,7 +842,7 @@ export default function NepalBudgetPage() {
 
             <div className="nb-tw">
               <table>
-                <caption>Table: FY 2083/84 Master Tax Rate Changes — All Taxes</caption>
+                <caption>Table: FY 2083/84 Master Tax Rate Changes: All Taxes</caption>
                 <thead>
                   <tr>
                     <th>Tax Type</th>
@@ -858,44 +858,44 @@ export default function NepalBudgetPage() {
                 <tbody>
                   {/* Income Tax */}
                   <tr>
-                    <td><strong>Personal Income Tax — First Tax Slab (1%)</strong></td>
+                    <td><strong>Personal Income Tax: First Tax Slab (1%)</strong></td>
                     <td className="nr">1% on first Rs. 5,00,000 (single) / Rs. 6,00,000 (married)</td>
                     <td className="nr">1% on first Rs. 10,00,000 (all individuals)</td>
                     <td><span className="nb-tag-up">Exemption doubled</span></td>
                     <td>All individual taxpayers</td>
                     <td>Shrawan 1, 2083</td>
-                    <td>Income Tax Act 2058, Schedule 1 — Finance Act 2083</td>
+                    <td>Income Tax Act 2058, Schedule 1: Finance Act 2083</td>
                     <td>SSF contributors: 0% on this slab. Source: K.B.P.S. Summary / Finance Act 2083.</td>
                   </tr>
                   <tr>
-                    <td><strong>Personal Income Tax — Max Rate</strong></td>
+                    <td><strong>Personal Income Tax: Max Rate</strong></td>
                     <td className="nr">39%</td>
                     <td className="nr"><strong>29%</strong></td>
                     <td><span className="nb-tag-down">↓ −10pp</span></td>
                     <td>Individual taxpayers with income above Rs. 40,00,000</td>
                     <td>Shrawan 1, 2083</td>
-                    <td>Income Tax Act 2058, Schedule 1 — Finance Act 2083</td>
+                    <td>Income Tax Act 2058, Schedule 1: Finance Act 2083</td>
                     <td>Source: K.B.P.S. Summary. Verify exact slab breakpoints with IRD.</td>
                   </tr>
-                  {/* CGT — CORRECTED per PDF: rates increased by 2.5pp each */}
+                  {/* CGT: CORRECTED per PDF: rates increased by 2.5pp each */}
                   <tr>
-                    <td><strong>Capital Gains Tax (CGT) — Securities, Short-Term (&lt;1 year)</strong></td>
+                    <td><strong>Capital Gains Tax (CGT): Securities, Short-Term (&lt;1 year)</strong></td>
                     <td className="nr">5%</td>
                     <td className="nr"><strong>7.5%</strong></td>
                     <td><span className="nb-tag-down">↑ +2.5pp</span></td>
                     <td>Natural persons selling listed securities held &lt;1 year</td>
                     <td>Shrawan 1, 2083</td>
-                    <td>Income Tax Act 2058, Sec. 95Ka — Finance Act 2083</td>
+                    <td>Income Tax Act 2058, Sec. 95Ka: Finance Act 2083</td>
                     <td>Final withholding at source. ✅ Verified against Budget Summary PDF. Source: K.B.P.S. Summary.</td>
                   </tr>
                   <tr>
-                    <td><strong>CGT — Securities, Long-Term (&gt;1 year)</strong></td>
+                    <td><strong>CGT: Securities, Long-Term (&gt;1 year)</strong></td>
                     <td className="nr">7.5%</td>
                     <td className="nr"><strong>10%</strong></td>
                     <td><span className="nb-tag-down">↑ +2.5pp</span></td>
                     <td>Natural persons selling listed securities held &gt;1 year</td>
                     <td>Shrawan 1, 2083</td>
-                    <td>Income Tax Act 2058, Sec. 95Ka — Finance Act 2083</td>
+                    <td>Income Tax Act 2058, Sec. 95Ka: Finance Act 2083</td>
                     <td>Final withholding at source. ✅ Verified against Budget Summary PDF. 2.5% concessional rate for involuntary government acquisition.</td>
                   </tr>
                   {/* DST */}
@@ -906,7 +906,7 @@ export default function NepalBudgetPage() {
                     <td>No Change (scope clarified)</td>
                     <td>Non-resident digital service providers with Nepal transactions &gt; Rs. 30,00,000/year</td>
                     <td>Shrawan 1, 2083</td>
-                    <td>Income Tax Act 2058, Sec. 67Ka — Finance Act 2083</td>
+                    <td>Income Tax Act 2058, Sec. 67Ka: Finance Act 2083</td>
                     <td>Threshold: Rs. 30,00,000 annual. Filing within 3 months of FY end. Source: K.B.P.S. Summary.</td>
                   </tr>
                   {/* IT Export WHT */}
@@ -917,8 +917,8 @@ export default function NepalBudgetPage() {
                     <td><span className="nb-tag-new">New final WHT</span></td>
                     <td>IT companies &amp; freelancers receiving foreign currency via domestic banks</td>
                     <td>Shrawan 1, 2083</td>
-                    <td>Income Tax Act 2058, Sec. 92 — Finance Act 2083</td>
-                    <td>Final withholding; no further tax liability on this income. Source: K.B.P.S. Summary — verify with IRD.</td>
+                    <td>Income Tax Act 2058, Sec. 92: Finance Act 2083</td>
+                    <td>Final withholding; no further tax liability on this income. Source: K.B.P.S. Summary: verify with IRD.</td>
                   </tr>
                   {/* Ride-sharing advance tax */}
                   <tr>
@@ -926,9 +926,9 @@ export default function NepalBudgetPage() {
                     <td className="nr">Nil</td>
                     <td className="nr"><strong>1%</strong></td>
                     <td><span className="nb-tag-new">New</span></td>
-                    <td>Ride-sharing platforms — deducted from each driver payment</td>
+                    <td>Ride-sharing platforms: deducted from each driver payment</td>
                     <td>Shrawan 1, 2083</td>
-                    <td>Income Tax Act 2058, Sec. 95 — Finance Act 2083</td>
+                    <td>Income Tax Act 2058, Sec. 95: Finance Act 2083</td>
                     <td>Platform calculates, collects and deposits. ✅ Verified against Budget Summary PDF.</td>
                   </tr>
                   {/* Ride-sharing VAT advance */}
@@ -939,18 +939,18 @@ export default function NepalBudgetPage() {
                     <td><span className="nb-tag-new">New</span></td>
                     <td>Ride-sharing platforms collecting VAT on each transaction</td>
                     <td>Shrawan 1, 2083</td>
-                    <td>VAT Act 2052 — Finance Act 2083</td>
+                    <td>VAT Act 2052: Finance Act 2083</td>
                     <td>Platform collects and deposits 5% VAT advance per transaction. Standard 13% VAT applies; 5% is the advance collection mechanism. ✅ Verified against Budget Summary PDF.</td>
                   </tr>
                   {/* Electricity VAT */}
                   <tr>
-                    <td><strong>VAT — Electricity Consumption (&gt;50 units)</strong></td>
+                    <td><strong>VAT: Electricity Consumption (&gt;50 units)</strong></td>
                     <td className="nr">Unclear / exempt</td>
                     <td className="nr"><strong>5%</strong></td>
                     <td><span className="nb-tag-new">New / Clarified</span></td>
                     <td>Electricity consumers using &gt;50 units per billing cycle</td>
                     <td>Shrawan 1, 2083</td>
-                    <td>VAT Act 2052 — Finance Act 2083</td>
+                    <td>VAT Act 2052: Finance Act 2083</td>
                     <td>✅ Verified against Budget Summary PDF. Consumption ≤50 units remains exempt.</td>
                   </tr>
                   {/* Insurance agent TDS */}
@@ -961,12 +961,12 @@ export default function NepalBudgetPage() {
                     <td><span className="nb-tag-down">↑ +5pp</span></td>
                     <td>Insurance companies paying commission/service fee to agents</td>
                     <td>Shrawan 1, 2083</td>
-                    <td>Income Tax Act 2058, Sec. 87 — Finance Act 2083</td>
+                    <td>Income Tax Act 2058, Sec. 87: Finance Act 2083</td>
                     <td>✅ Verified against Budget Summary PDF.</td>
                   </tr>
                   {/* VAT */}
                   <tr>
-                    <td><strong>VAT — Standard Rate</strong></td>
+                    <td><strong>VAT: Standard Rate</strong></td>
                     <td className="nr">13%</td>
                     <td className="nr">13%</td>
                     <td>No Change</td>
@@ -982,8 +982,8 @@ export default function NepalBudgetPage() {
                     <td><span className="nb-tag-new">New</span></td>
                     <td>Consumers paying via QR/card/wallet with electronic invoice</td>
                     <td>Shrawan 1, 2083</td>
-                    <td>VAT Act 2052 (amended) — Finance Act 2083</td>
-                    <td>Rebate credited to payment account, not a refund. Source: K.B.P.S. Summary — verify mechanism with IRD.</td>
+                    <td>VAT Act 2052 (amended): Finance Act 2083</td>
+                    <td>Rebate credited to payment account, not a refund. Source: K.B.P.S. Summary: verify mechanism with IRD.</td>
                   </tr>
                   {/* Education / Health Equity Fee */}
                   <tr>
@@ -994,7 +994,7 @@ export default function NepalBudgetPage() {
                     <td>Institutions collecting fees for foreign education courses</td>
                     <td>Shrawan 1, 2083</td>
                     <td>Finance Act 2083</td>
-                    <td>Filing within 25 days of trimester end. Source: K.B.P.S. Summary — verify with IRD.</td>
+                    <td>Filing within 25 days of trimester end. Source: K.B.P.S. Summary: verify with IRD.</td>
                   </tr>
                   <tr>
                     <td><strong>Health Equity Fee</strong></td>
@@ -1004,18 +1004,18 @@ export default function NepalBudgetPage() {
                     <td>Health service institutions</td>
                     <td>Shrawan 1, 2083</td>
                     <td>Finance Act 2083</td>
-                    <td>Filing within 25 days of trimester end. Source: K.B.P.S. Summary — verify with IRD.</td>
+                    <td>Filing within 25 days of trimester end. Source: K.B.P.S. Summary: verify with IRD.</td>
                   </tr>
                   {/* Excise */}
                   <tr>
-                    <td><strong>Excise Duty — 360 Exempt Goods</strong></td>
+                    <td><strong>Excise Duty: 360 Exempt Goods</strong></td>
                     <td className="nr">Applicable</td>
                     <td className="nr"><strong>Nil (Abolished)</strong></td>
                     <td><span className="nb-tag-up">Abolished</span></td>
                     <td>Agricultural inputs, essential foods (360 specified items)</td>
                     <td>Shrawan 1, 2083</td>
-                    <td>Excise Duty Act 2058 — Finance Act 2083 Schedule</td>
-                    <td>Exact HS codes in official Excise Schedule. Source: K.B.P.S. Summary — verify schedule with IRD/Customs.</td>
+                    <td>Excise Duty Act 2058: Finance Act 2083 Schedule</td>
+                    <td>Exact HS codes in official Excise Schedule. Source: K.B.P.S. Summary: verify schedule with IRD/Customs.</td>
                   </tr>
                   {/* Customs */}
                   <tr>
@@ -1025,7 +1025,7 @@ export default function NepalBudgetPage() {
                     <td><span className="nb-tag-up">Simplified</span></td>
                     <td>All importers</td>
                     <td>Shrawan 1, 2083</td>
-                    <td>Customs Act 2064 — Finance Act 2083 Tariff Schedule</td>
+                    <td>Customs Act 2064: Finance Act 2083 Tariff Schedule</td>
                     <td>Specific rates per HS code available at Department of Customs. Source: K.B.P.S. Summary.</td>
                   </tr>
                 </tbody>
@@ -1044,7 +1044,7 @@ export default function NepalBudgetPage() {
             <h3>20.1 VAT Changes Master Table</h3>
             <div className="nb-tw">
               <table>
-                <caption>Table: VAT Changes Summary — FY 2083/84</caption>
+                <caption>Table: VAT Changes Summary: FY 2083/84</caption>
                 <thead>
                   <tr>
                     <th>VAT Area</th>
@@ -1055,10 +1055,10 @@ export default function NepalBudgetPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td>Standard VAT Rate</td><td>13%</td><td>13% — No Change</td><td>All VAT-registered businesses</td><td>Shrawan 1, 2083</td></tr>
+                  <tr><td>Standard VAT Rate</td><td>13%</td><td>13%: No Change</td><td>All VAT-registered businesses</td><td>Shrawan 1, 2083</td></tr>
                   <tr><td>Digital Payment Rebate</td><td>None</td><td>10% credit back on VAT for digital/card/QR payments</td><td>All consumers using digital payment</td><td>Shrawan 1, 2083</td></tr>
                   <tr><td>Ride-Sharing VAT (advance collection)</td><td>Nil / unclear</td><td><strong>5% advance VAT</strong> collected per transaction by platform (standard 13% VAT applies)</td><td>Ride-sharing platforms &amp; drivers</td><td>Shrawan 1, 2083</td></tr>
-                  <tr><td>VAT — Electricity (&gt;50 units)</td><td>Exempt / unclear</td><td><strong>5%</strong> on consumption exceeding 50 units</td><td>Electricity consumers</td><td>Shrawan 1, 2083</td></tr>
+                  <tr><td>VAT: Electricity (&gt;50 units)</td><td>Exempt / unclear</td><td><strong>5%</strong> on consumption exceeding 50 units</td><td>Electricity consumers</td><td>Shrawan 1, 2083</td></tr>
                   <tr><td>Electronic Invoice (CBMS)</td><td>Optional for small businesses</td><td>Mandatory for specified turnover thresholds (&gt;Rs. 10 crore)</td><td>Retail, service businesses above threshold</td><td>As per IRD notification</td></tr>
                   <tr><td>VAT Return Amendment</td><td>No amendment allowed post-submission</td><td>Amendment allowed within 7 days without penalty</td><td>All VAT-registered filers</td><td>Shrawan 1, 2083</td></tr>
                   <tr><td>VAT District Mechanism</td><td>Must file at designated IRO</td><td>Within 15 days if district lacks an IRO</td><td>Businesses in remote districts</td><td>Shrawan 1, 2083</td></tr>
@@ -1066,7 +1066,7 @@ export default function NepalBudgetPage() {
                   <tr><td>Digital Invoice Penalty</td><td>Rs. 1 lakh maximum</td><td>Rs. 5 lakh (software tampering) / Rs. 1 lakh (not issuing)</td><td>CBMS-mandated businesses</td><td>Shrawan 1, 2083</td></tr>
                   <tr><td>General Violation Penalty</td><td>Varies</td><td>Rs. 10,000 general penalty introduced</td><td>All VAT-registered businesses</td><td>Shrawan 1, 2083</td></tr>
                   <tr><td>Internal Transfer Violation</td><td>Varies</td><td>Rs. 50,000 penalty for transfer without invoice</td><td>All VAT-registered businesses</td><td>Shrawan 1, 2083</td></tr>
-                  <tr><td>VAT Return Deadline</td><td>25th of following month</td><td>25th of following month — No Change</td><td>All VAT-registered businesses</td><td>Rolling monthly</td></tr>
+                  <tr><td>VAT Return Deadline</td><td>25th of following month</td><td>25th of following month: No Change</td><td>All VAT-registered businesses</td><td>Rolling monthly</td></tr>
                   <tr><td>Paneer VAT Waiver</td><td>VAT applied on paneer sales</td><td>One-time waiver for paneer producers</td><td>Paneer producers with assessment disputes</td><td>Poush 30, 2083</td></tr>
                 </tbody>
               </table>
@@ -1075,7 +1075,7 @@ export default function NepalBudgetPage() {
             <h3>20.2 TDS Changes Master Table</h3>
             <div className="nb-tw">
               <table>
-                <caption>Table: TDS / Withholding Tax Changes Summary — FY 2083/84</caption>
+                <caption>Table: TDS / Withholding Tax Changes Summary: FY 2083/84</caption>
                 <thead>
                   <tr>
                     <th>Payment / Income Type</th>
@@ -1088,20 +1088,20 @@ export default function NepalBudgetPage() {
                 <tbody>
                   <tr><td>IT / Software Export (Foreign Currency via domestic bank)</td><td>Self-assessed (normal slab)</td><td>5% final WHT</td><td>IT companies, freelancers</td><td>Section 92</td></tr>
                   <tr><td>Insurance Agent Commission TDS</td><td>15%</td><td><strong>20%</strong></td><td>Insurance companies paying agents</td><td>Section 87</td></tr>
-                  <tr><td>Section 89(3Ka) Consumer Committee WHT</td><td>1.5% on payments &gt;Rs. 50,00,000</td><td>Repealed</td><td>N/A</td><td>Section 89(3Ka) — repealed by Finance Act 2083</td></tr>
+                  <tr><td>Section 89(3Ka) Consumer Committee WHT</td><td>1.5% on payments &gt;Rs. 50,00,000</td><td>Repealed</td><td>N/A</td><td>Section 89(3Ka): repealed by Finance Act 2083</td></tr>
                   <tr><td>Ride-Sharing Driver Payments</td><td>None</td><td>1% advance tax deducted at source</td><td>Ride-sharing platforms</td><td>Section 95</td></tr>
-                  <tr><td>General Service Payments</td><td>15%</td><td>15% — No Change</td><td>Payers of professional services</td><td>Section 87</td></tr>
+                  <tr><td>General Service Payments</td><td>15%</td><td>15%: No Change</td><td>Payers of professional services</td><td>Section 87</td></tr>
                   <tr><td>Interest on Cooperative Deposits</td><td>Taxable</td><td>Exempt up to Rs. 25,000</td><td>Cooperatives, microfinance institutions</td><td>Section 10</td></tr>
                 </tbody>
               </table>
             </div>
 
-            <p className="nb-note">✅ Source: verified against supplied Budget Summary PDF. This table covers only TDS changes identified in the supplied source — it is not a complete TDS rate schedule.</p>
+            <p className="nb-note">✅ Source: verified against supplied Budget Summary PDF. This table covers only TDS changes identified in the supplied source: it is not a complete TDS rate schedule.</p>
 
             <h3>20.3 Selected Customs Duty Changes Master Table</h3>
             <div className="nb-tw">
               <table>
-                <caption>Table: Selected Customs Duty Changes — FY 2083/84 (Verified against supplied Budget Summary PDF; not a complete HS-code tariff schedule)</caption>
+                <caption>Table: Selected Customs Duty Changes: FY 2083/84 (Verified against supplied Budget Summary PDF; not a complete HS-code tariff schedule)</caption>
                 <thead>
                   <tr>
                     <th>Category</th>
@@ -1124,7 +1124,7 @@ export default function NepalBudgetPage() {
             <h3>20.4 Selected Excise Rate Changes Master Table</h3>
             <div className="nb-tw">
               <table>
-                <caption>Table: Excise Duty Changes Summary — FY 2083/84</caption>
+                <caption>Table: Excise Duty Changes Summary: FY 2083/84</caption>
                 <thead>
                   <tr>
                     <th>Category</th>
@@ -1245,7 +1245,7 @@ export default function NepalBudgetPage() {
           {/* § 23 Master Exemption Table */}
           <section className="nb-chapter" id="exemption-summary">
             <span className="nb-ch-tag">§ 23</span>
-            <h2>23. Master Exemption &amp; Relief Schemes — Summary Table</h2>
+            <h2>23. Master Exemption &amp; Relief Schemes: Summary Table</h2>
             <div className="nb-tw">
               <table>
                 <caption>Table: One-Time Concession Schemes under Finance Act 2083</caption>
@@ -1299,17 +1299,17 @@ export default function NepalBudgetPage() {
             <p><strong>Poush 30, 2083</strong> for all VAT-related settlement schemes.</p>
 
             <h3>24.7 Tax Dispute Settlement Deadline</h3>
-            <p><strong>Poush 30, 2083</strong> — all pending income tax disputes under the settlement window.</p>
+            <p><strong>Poush 30, 2083</strong>: all pending income tax disputes under the settlement window.</p>
 
             <h3>24.8 Company Regularisation Deadline</h3>
-            <p><strong>Poush 30, 2083</strong> — for non-compliant companies to regularize without full penalty.</p>
+            <p><strong>Poush 30, 2083</strong>: for non-compliant companies to regularize without full penalty.</p>
 
             <h3>24.9 Customs/Excise Settlement Deadline</h3>
-            <p><strong>Poush 30, 2083</strong> — for customs and excise relief schemes.</p>
+            <p><strong>Poush 30, 2083</strong>: for customs and excise relief schemes.</p>
 
             <div className="nb-tw">
               <table>
-                <caption>Table: Key Compliance Deadlines — FY 2083/84</caption>
+                <caption>Table: Key Compliance Deadlines: FY 2083/84</caption>
                 <thead>
                   <tr>
                     <th>Compliance</th>
@@ -1327,7 +1327,7 @@ export default function NepalBudgetPage() {
                   <tr><td>PAN Regularisation</td><td>Poush 30, 2083</td><td>~January 14, 2027</td><td>Finance Act 2083 effective date</td><td>Inactive PAN holders</td></tr>
                   <tr><td>VAT/Income Tax Settlement</td><td>Poush 30, 2083</td><td>~January 14, 2027</td><td>Finance Act 2083 effective date</td><td>Taxpayers with assessed dues</td></tr>
                   <tr><td>Company Regularisation (§48)</td><td><strong>Ashwin end, 2083</strong></td><td>~October 2026</td><td>Finance Act 2083, §48</td><td>Non-compliant registered companies</td></tr>
-                  <tr><td>Tax/Fee Settlement — §49 (1% scheme)</td><td><strong>Mangsir end, 2083</strong></td><td>~November/December 2026</td><td>Finance Act 2083, §49</td><td>Taxpayers settling assessed dues</td></tr>
+                  <tr><td>Tax/Fee Settlement: §49 (1% scheme)</td><td><strong>Mangsir end, 2083</strong></td><td>~November/December 2026</td><td>Finance Act 2083, §49</td><td>Taxpayers settling assessed dues</td></tr>
                   <tr><td>Container Release (§36)</td><td><strong>Mangsir end, 2083</strong></td><td>~November/December 2026</td><td>Finance Act 2083, §36</td><td>Containers detained &gt;6 months at customs</td></tr>
                   <tr><td>Monthly VAT Return</td><td>25th of following month</td><td>Rolling monthly</td><td>End of each calendar month</td><td>VAT-registered businesses</td></tr>
                 </tbody>
@@ -1348,7 +1348,7 @@ export default function NepalBudgetPage() {
             <p>Proprietors benefit from the same Rs. 10 lakh first slab, with simplified slab structure reducing high-bracket burdens.</p>
 
             <h3>25.3 Freelancers</h3>
-            <p>Freelancers receiving foreign currency through domestic banking channels will have a 5% final WHT applied — simplifying compliance vs. the previous self-assessed regime.</p>
+            <p>Freelancers receiving foreign currency through domestic banking channels will have a 5% final WHT applied: simplifying compliance vs. the previous self-assessed regime.</p>
 
             <h3>25.4 Investors</h3>
             <p>Capital gains rates and the tax settlement window offer planning opportunities for share and real estate investors. If you hold listed shares, check your <a href="/calculator/nepse-bonus-tax/">bonus share and dividend tax liability</a> separately from trading gains.</p>
@@ -1399,7 +1399,7 @@ export default function NepalBudgetPage() {
           {/* § 27 Year Comparison */}
           <section className="nb-chapter" id="year-comparison">
             <span className="nb-ch-tag">§ 27</span>
-            <h2>27. FY 2082/83 vs FY 2083/84 — What Changed?</h2>
+            <h2>27. FY 2082/83 vs FY 2083/84: What Changed?</h2>
             <div className="nb-tw">
               <table>
                 <caption>Table: Key Tax Changes Comparison</caption>
@@ -1412,12 +1412,12 @@ export default function NepalBudgetPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td>First Tax Slab</td><td>Rs. 5,00,000 (single) / Rs. 6,00,000 (married)</td><td>Rs. 10,00,000 (all)</td><td><span className="nb-tag-up">Benefit</span> — unified, doubled</td></tr>
-                  <tr><td>Max Income Tax Rate</td><td>39%</td><td>29%</td><td><span className="nb-tag-up">Benefit</span> — reduced by 10%</td></tr>
-                  <tr><td>Digital Payment VAT Rebate</td><td>None</td><td>10% credit back</td><td><span className="nb-tag-new">New</span> — cashless incentive</td></tr>
+                  <tr><td>First Tax Slab</td><td>Rs. 5,00,000 (single) / Rs. 6,00,000 (married)</td><td>Rs. 10,00,000 (all)</td><td><span className="nb-tag-up">Benefit</span>: unified, doubled</td></tr>
+                  <tr><td>Max Income Tax Rate</td><td>39%</td><td>29%</td><td><span className="nb-tag-up">Benefit</span>: reduced by 10%</td></tr>
+                  <tr><td>Digital Payment VAT Rebate</td><td>None</td><td>10% credit back</td><td><span className="nb-tag-new">New</span>: cashless incentive</td></tr>
                   <tr><td>Customs Tiers</td><td>11 tiers</td><td>7 tiers</td><td><span className="nb-tag-up">Simplified</span></td></tr>
-                  <tr><td>Excise Goods Exempt</td><td>~0</td><td>360 goods</td><td><span className="nb-tag-up">Benefit</span> — broad exemption</td></tr>
-                  <tr><td>Tax Dispute Settlement</td><td>Not available</td><td>1% fee, all penalties waived</td><td><span className="nb-tag-new">New</span> — one-time scheme</td></tr>
+                  <tr><td>Excise Goods Exempt</td><td>~0</td><td>360 goods</td><td><span className="nb-tag-up">Benefit</span>: broad exemption</td></tr>
+                  <tr><td>Tax Dispute Settlement</td><td>Not available</td><td>1% fee, all penalties waived</td><td><span className="nb-tag-new">New</span>: one-time scheme</td></tr>
                   <tr><td>DST Rate</td><td>2%</td><td>2%</td><td>No Change</td></tr>
                   <tr><td>VAT Standard Rate</td><td>13%</td><td>13%</td><td>No Change</td></tr>
                   <tr><td>Ride-Sharing VAT</td><td>Unclear</td><td>Explicit 13% VAT + 1% AT</td><td><span className="nb-tag-new">Clarified</span></td></tr>
@@ -1435,7 +1435,7 @@ export default function NepalBudgetPage() {
             <p>An individual with annual income of <strong>Rs. 20,00,000</strong> pays: Rs. 10,000 on the first Rs. 10 lakh (1%), then 10% on Rs. 5,00,000 = Rs. 50,000. Total: Rs. 60,000 (excluding SSF deductions).</p>
 
             <h3>28.2 Salary Example</h3>
-            <p>A government employee earning Rs. 12,00,000 a year benefits from the Rs. 10 lakh first slab. Only Rs. 2,00,000 falls in the 10% slab, giving a tax of Rs. 20,000. EPF contributors can further reduce this — see how with the <a href="/calculator/nepal-provident-fund/">Provident Fund calculator</a>.</p>
+            <p>A government employee earning Rs. 12,00,000 a year benefits from the Rs. 10 lakh first slab. Only Rs. 2,00,000 falls in the 10% slab, giving a tax of Rs. 20,000. EPF contributors can further reduce this: see how with the <a href="/calculator/nepal-provident-fund/">Provident Fund calculator</a>.</p>
 
             <h3>28.3 TDS Example</h3>
             <p>A company pays Rs. 1,00,000 for professional services. At 15% TDS, Rs. 15,000 is withheld and remitted to IRD.</p>
@@ -1462,10 +1462,10 @@ export default function NepalBudgetPage() {
             <p>The total Nepal Budget for FY 2083/84 (2026/27) is <strong>Rs. 2,124.34 billion</strong>, covering recurrent expenditure, capital expenditure, and financial management allocations.</p>
 
             <h3>29.2 What is the new income tax slab structure?</h3>
-            <p>The first Rs. 10,00,000 of taxable income falls within the <strong>1% slab</strong> — this is not a tax-free exemption. The 1% is waived only for SSF contributors, specified pension income, and certain sole-proprietorship income. The top rate is <strong>29%</strong> on income above Rs. 40,00,000, reduced from 39% in FY 2082/83.</p>
+            <p>The first Rs. 10,00,000 of taxable income falls within the <strong>1% slab</strong>: this is not a tax-free exemption. The 1% is waived only for SSF contributors, specified pension income, and certain sole-proprietorship income. The top rate is <strong>29%</strong> on income above Rs. 40,00,000, reduced from 39% in FY 2082/83.</p>
 
             <h3>29.3 What is the maximum income tax rate?</h3>
-            <p>The maximum marginal income tax rate is <strong>29%</strong> on annual taxable income above Rs. 40,00,000 — reduced from 39% in FY 2082/83.</p>
+            <p>The maximum marginal income tax rate is <strong>29%</strong> on annual taxable income above Rs. 40,00,000: reduced from 39% in FY 2082/83.</p>
 
             <h3>29.4 What are the major VAT changes?</h3>
             <p>The biggest change is a <strong>10% digital payment VAT rebate</strong>: when consumers pay retail bills via QR code, digital wallet, or card, 10% of the VAT charged is automatically credited to their payment account.</p>
@@ -1508,20 +1508,21 @@ export default function NepalBudgetPage() {
             <h3>30.2 Read These Guides</h3>
             <p>In-depth articles related to Nepal income tax, TDS, and financial topics:</p>
             <ul>
-              <li><a href="/blog/nepal-income-tax-guide-2082-83/">Nepal Income Tax Guide 2082/83</a> — How the previous year&apos;s slabs worked and what changed for 2083/84</li>
-              <li><a href="/blog/income-tax-filing-guide/">How to File Your Income Tax Return in Nepal</a> — Step-by-step ITR filing guide for individuals and businesses</li>
-              <li><a href="/blog/nepal-tds-guide-2083/">Nepal TDS Guide 2083</a> — Complete breakdown of withholding tax rates, deadlines, and compliance</li>
-              <li><a href="/blog/nea-tariff-rates-2083-84/">NEA Electricity Tariff Rates 2083/84</a> — Updated NEA unit slab rates and how the budget affects electricity billing</li>
+              <li><a href="/blog/nepal-income-tax-guide-2082-83/">Nepal Income Tax Guide 2082/83</a>: How the previous year&apos;s slabs worked and what changed for 2083/84</li>
+              <li><a href="/blog/income-tax-filing-guide/">How to File Your Income Tax Return in Nepal</a>: Step-by-step ITR filing guide for individuals and businesses</li>
+              <li><a href="/blog/nepal-tds-guide-2083/">Nepal TDS Guide 2083</a>: Complete breakdown of withholding tax rates, deadlines, and compliance</li>
+              <li><a href="/blog/nea-tariff-rates-2083-84/">NEA Electricity Tariff Rates 2083/84</a>: Updated NEA unit slab rates and how the budget affects electricity billing</li>
             </ul>
 
             <h3>30.3 Official Government Resources</h3>
             <ul>
-              <li><a href="https://nrb.org.np" target="_blank" rel="noopener noreferrer">Nepal Rastra Bank (NRB)</a> — Monetary policy, banking regulations, and foreign exchange</li>
+              <li><a href="https://mof.gov.np" target="_blank" rel="noopener noreferrer">Ministry of Finance Nepal</a>: Budget speech, Finance Act, and economic survey documents</li>
+              <li><a href="https://nrb.org.np" target="_blank" rel="noopener noreferrer">Nepal Rastra Bank (NRB)</a>: Monetary policy, banking regulations, and foreign exchange</li>
             </ul>
 
             <h3>30.4 Budget Documents and Legal References</h3>
             <ul>
-              <li>Finance Act 2083 (Nepal) — Primary legal source for all tax changes</li>
+              <li>Finance Act 2083 (Nepal): Primary legal source for all tax changes</li>
               <li>Income Tax Act 2058 (as amended by Finance Act 2083)</li>
               <li>VAT Act 2052 (as amended)</li>
               <li>Customs Act 2064 (as amended)</li>
