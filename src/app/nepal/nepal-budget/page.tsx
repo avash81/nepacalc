@@ -71,7 +71,7 @@ const faqSchema = {
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
 
-.nb{--paper:#ffffff;--paper-raised:#F8F8F8;--paper-dark:#F0EEE8;--ink:#18252F;--slate:#526370;--brass:#A07828;--brass-deep:#7A5A1E;--crimson:#6D1A32;--green:#1E6B46;--line:#E0DDD6;--mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;--serif:'Fraunces',serif;background:#fff;color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+.nb{--paper:#ffffff;--paper-raised:#F8F8F8;--paper-dark:#F0EEE8;--ink:#18252F;--slate:#526370;--brass:#A07828;--brass-deep:#7A5A1E;--crimson:#6D1A32;--green:#1E6B46;--line:#E0DDD6;--mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;--serif:'Fraunces',serif;background:#fff;color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip;}
 .nb *,.nb *::before,.nb *::after{box-sizing:border-box;}
 .nb a{color:var(--brass-deep);text-decoration:underline;text-underline-offset:2px;}
 .nb a:hover{color:var(--crimson);}
