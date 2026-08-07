@@ -1504,15 +1504,21 @@ export default function NepalBudgetPage() {
                   <tr><td><a href="/calculator/gold-converter/">Gold Unit Converter</a></td><td>Convert between Tola, Lal, Aana and Gram</td></tr>
                   <tr><td><a href="/market-rates/live-gold-price/">Live Gold Price Nepal</a></td><td>Real-time 24K and 22K gold rates synced with FENEGOSIDA</td></tr>
                   <tr><td><a href="/market-rates/live-silver-price/">Live Silver Price Nepal</a></td><td>Today&apos;s official silver rate per tola and gram</td></tr>
+                  <tr><td><a href="/calculator/silver-converter/">Silver Unit Converter</a></td><td>Convert silver between Nepalese and international units</td></tr>
                   <tr><td><a href="/market-rates/exchange-rate-nepal/">Exchange Rate Nepal</a></td><td>Live foreign exchange rates for 20+ currencies</td></tr>
                   <tr><td><a href="/market-rates/remittance/">Remittance Board</a></td><td>Compare real-time rates for sending money to Nepal</td></tr>
                   <tr><td><a href="/calculator/currency-converter/">Currency Converter</a></td><td>Convert international currencies to Nepalese Rupees</td></tr>
                   <tr><td><a href="/calculator/nepse-wacc/">NEPSE WACC Calculator</a></td><td>Weighted Average Cost of Capital for share holdings</td></tr>
                   <tr><td><a href="/calculator/gratuity-calculator/">Gratuity Calculator</a></td><td>Retirement gratuity under Labor Act 2074</td></tr>
                   <tr><td><a href="/calculator/kukl-bill/">KUKL Water Bill Calculator</a></td><td>Kathmandu water bill and sewerage tax</td></tr>
+                  <tr><td><a href="/water/kukl-bill-payment/">KUKL Bill Payment Guide</a></td><td>How to check, pay and download your KUKL bill online</td></tr>
                   <tr><td><a href="/calculator/nepal-loan-eligibility/">Nepal Loan Eligibility</a></td><td>Bank loan eligibility based on income and NRB FOIR rules</td></tr>
                   <tr><td><a href="/calculator/nepal-land/">Nepal Land Area Converter</a></td><td>Convert between Ropani, Aana, Bigha and Square Feet</td></tr>
                   <tr><td><a href="/calculator/nepali-date/">Nepali Date Converter</a></td><td>BS to AD and AD to BS date conversion</td></tr>
+                  <tr><td><a href="/calculator/nepal-attendance/">University Attendance Calculator</a></td><td>Track 75% exam eligibility for TU, KU and PU</td></tr>
+                  <tr><td><a href="/calculator/see-gpa/">SEE GPA Calculator</a></td><td>Calculate SEE grade with all subject marks for 2083/84</td></tr>
+                  <tr><td><a href="/calculator/nepal-citizenship-age/">Citizenship Age Calculator</a></td><td>Check Nepal citizenship eligibility (16 years) by DOB</td></tr>
+                  <tr><td><a href="/calculator/lok-sewa-age/">Lok Sewa Age Calculator</a></td><td>Check Public Service Commission (PSC) age eligibility</td></tr>
                 </tbody>
               </table>
             </div>
