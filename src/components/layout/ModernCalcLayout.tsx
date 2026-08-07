@@ -348,7 +348,7 @@ export function ModernCalcLayout({
             )}
 
           </div>
-          <div className={`w-full space-y-6 no-print ${sidebarPosition === 'bottom' ? '' : 'lg:w-[320px]'}`}>
+          <div className={`w-full space-y-6 no-print hidden lg:block ${sidebarPosition === 'bottom' ? '' : 'lg:w-[320px]'}`}>
             <div className={`space-y-6 ${sidebarPosition === 'bottom' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 space-y-0' : ''}`}>            {sidebar && (
               <div className="bg-white border border-[#DADCE0] rounded-lg shadow-sm overflow-hidden">
                 <div className="px-5 py-4 bg-white border-b border-[#DADCE0]">

@@ -101,21 +101,25 @@ type EngineType = 'combustion' | 'electric';
 type VehicleCategory = 'bike' | 'car_private' | 'car_public' | 'bus' | 'truck' | 'agri';
 
 export default function NepalVehicleTaxCalculator() {
-  const [state, setState] = useSyncState('nepal_vehicle_tax_v7', {
+  const [state, setState] = useSyncState('nepal_vehicle_tax_v8', {
     calcMode:    'renewal'    as CalcMode,
     engineType:  'combustion' as EngineType,
     vCategory:   'bike'       as VehicleCategory,
-    engineCC:    150,
-    motorKw:     100,
-    seats:       20,
-    weightTon:   5,
-    cifLakh:     35,
+    engineCC:    '' as number | '',
+    motorKw:     '' as number | '',
+    seats:       '' as number | '',
+    weightTon:   '' as number | '',
+    cifLakh:     '' as number | '',
     delayStatus: 'ontime',
+    includeInsurance: false,
+    includeRenewal: false,
+    includePollution: false,
   });
 
   const {
     calcMode, engineType, vCategory,
     engineCC, motorKw, seats, weightTon, cifLakh, delayStatus,
+    includeInsurance, includeRenewal, includePollution
   } = state;
 
   const update = (u: Partial<typeof state>) => setState({ ...state, ...u });
@@ -132,7 +136,7 @@ export default function NepalVehicleTaxCalculator() {
         slabLabel = 'Standard EV Two-Wheeler';
         renewFee  = 300;
       } else {
-        const found = EV_CAR_RATES.find(s => motorKw <= s.max);
+        const found = EV_CAR_RATES.find(s => Number(motorKw) <= s.max);
         baseTax   = found?.rate ?? 0;
         slabLabel = found?.label ?? '';
         renewFee  = 500;
@@ -142,27 +146,27 @@ export default function NepalVehicleTaxCalculator() {
     } else {
       switch (vCategory) {
         case 'bike': {
-          const f = BIKE_RATES.find(s => engineCC <= s.max);
+          const f = BIKE_RATES.find(s => Number(engineCC) <= s.max);
           baseTax = f?.rate ?? 0; slabLabel = f?.label ?? ''; renewFee = 300;
           break;
         }
         case 'car_private': {
-          const f = CAR_PRIVATE_RATES.find(s => engineCC <= s.max);
+          const f = CAR_PRIVATE_RATES.find(s => Number(engineCC) <= s.max);
           baseTax = f?.rate ?? 0; slabLabel = f?.label ?? ''; renewFee = 500;
           break;
         }
         case 'car_public': {
-          const f = CAR_PUBLIC_RATES.find(s => engineCC <= s.max);
+          const f = CAR_PUBLIC_RATES.find(s => Number(engineCC) <= s.max);
           baseTax = f?.rate ?? 0; slabLabel = f?.label ?? ''; renewFee = 500;
           break;
         }
         case 'bus': {
-          const f = BUS_RATES.find(s => seats <= s.max);
+          const f = BUS_RATES.find(s => Number(seats) <= s.max);
           baseTax = f?.rate ?? 0; slabLabel = f?.label ?? ''; renewFee = 500;
           break;
         }
         case 'truck': {
-          const f = TRUCK_RATES.find(s => weightTon <= s.max);
+          const f = TRUCK_RATES.find(s => Number(weightTon) <= s.max);
           baseTax = f?.rate ?? 0; slabLabel = f?.label ?? ''; renewFee = 500;
           break;
         }
@@ -178,40 +182,42 @@ export default function NepalVehicleTaxCalculator() {
     const yearsOwed    = Math.min(1 + delayConfig.yearsBack, 4);
     const totalBaseTax = baseTax * yearsOwed;
     const penaltyFine  = baseTax * delayConfig.basePenalty;
-    const finalRenew   = renewFee * delayConfig.renewMult;
+    const finalRenew   = includeRenewal ? (renewFee * delayConfig.renewMult) : 0;
     
     let insuranceEst = 4500;
+    const cc = Number(engineCC) || 0;
     if (engineType === 'electric') {
       insuranceEst = vCategory === 'bike' ? 2000 : 3500;
     } else {
       if (vCategory === 'bike' || vCategory === 'agri') insuranceEst = 2200;
       else if (vCategory === 'car_private' || vCategory === 'car_public') {
-        if (engineCC <= 1500) insuranceEst = 4500;
-        else if (engineCC <= 2500) insuranceEst = 6000;
+        if (cc <= 1500) insuranceEst = 4500;
+        else if (cc <= 2500) insuranceEst = 6000;
         else insuranceEst = 8000;
       }
       else insuranceEst = 6000;
     }
+    const finalInsurance = includeInsurance ? insuranceEst : 0;
 
-    const pollutionCheck = 400;
-    const total        = totalBaseTax + penaltyFine + insuranceEst + finalRenew + pollutionCheck;
+    const finalPollution = includePollution ? 400 : 0;
+    const total        = totalBaseTax + penaltyFine + finalInsurance + finalRenew + finalPollution;
     const isLate       = delayStatus !== 'ontime';
 
     const pieData = [
       { name: 'Govt Base Tax',     value: totalBaseTax },
       { name: 'Late Penalties',    value: penaltyFine  },
-      { name: 'Insurance Premium', value: insuranceEst },
+      { name: 'Insurance Premium', value: finalInsurance },
       { name: 'Renewal Fee',       value: finalRenew   },
-      { name: 'Pollution Check',   value: pollutionCheck }
+      { name: 'Pollution Check',   value: finalPollution }
     ];
 
-    return { baseTax: totalBaseTax, penaltyFine, insuranceEst, finalRenew, pollutionCheck, total, slabLabel, pieData, isLate, yearsOwed, renewFee };
-  }, [engineType, vCategory, engineCC, motorKw, seats, weightTon, delayStatus]);
+    return { baseTax: totalBaseTax, penaltyFine, insuranceEst: finalInsurance, finalRenew, pollutionCheck: finalPollution, total, slabLabel, pieData, isLate, yearsOwed, renewFee };
+  }, [engineType, vCategory, engineCC, motorKw, seats, weightTon, delayStatus, includeInsurance, includeRenewal, includePollution]);
 
   // ── EV IMPORT / CIF MATH ──────────────────────────────────────────────────
   const cifResult = useMemo(() => {
-    const cifNPR    = cifLakh * 100000;
-    const tier      = CIF_TIERS.find(t => cifLakh <= t.maxLakh) || CIF_TIERS[CIF_TIERS.length - 1];
+    const cifNPR    = Number(cifLakh) * 100000;
+    const tier      = CIF_TIERS.find(t => Number(cifLakh) <= t.maxLakh) || CIF_TIERS[CIF_TIERS.length - 1];
     const customs   = cifNPR * tier.customsRate;         // flat 20%
     const cleanFee  = cifNPR * tier.feeRate;             // progressive clean infrastructure levy
     const landedEst = cifNPR + customs + cleanFee;
@@ -317,7 +323,8 @@ export default function NepalVehicleTaxCalculator() {
                   <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Number of Passenger Seats</label>
                   <input
                     type="number" min={1} value={seats}
-                    onChange={e => update({ seats: Number(e.target.value) })}
+                    onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                    onChange={e => update({ seats: e.target.value === '' ? '' : Number(e.target.value) })}
                     className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
                   />
                 </div>
@@ -326,7 +333,8 @@ export default function NepalVehicleTaxCalculator() {
                   <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Weight Capacity (Metric Tonnes)</label>
                   <input
                     type="number" min={0.5} step={0.5} value={weightTon}
-                    onChange={e => update({ weightTon: Number(e.target.value) })}
+                    onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                    onChange={e => update({ weightTon: e.target.value === '' ? '' : Number(e.target.value) })}
                     className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
                   />
                 </div>
@@ -339,7 +347,8 @@ export default function NepalVehicleTaxCalculator() {
                   <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Motor Output (kW)</label>
                   <input
                     type="number" min={1} value={motorKw}
-                    onChange={e => update({ motorKw: Number(e.target.value) })}
+                    onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                    onChange={e => update({ motorKw: e.target.value === '' ? '' : Number(e.target.value) })}
                     className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
                   />
                 </div>
@@ -348,7 +357,8 @@ export default function NepalVehicleTaxCalculator() {
                   <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Engine Displacement (CC)</label>
                   <input
                     type="number" min={1} value={engineCC}
-                    onChange={e => update({ engineCC: Number(e.target.value) })}
+                    onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                    onChange={e => update({ engineCC: e.target.value === '' ? '' : Number(e.target.value) })}
                     className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
                   />
                 </div>
@@ -400,7 +410,8 @@ export default function NepalVehicleTaxCalculator() {
                 <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Vehicle CIF Value (in Lakhs NPR)</label>
                 <input
                   type="number" min={1} step={0.5} value={cifLakh}
-                  onChange={e => update({ cifLakh: Number(e.target.value) })}
+                  onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                  onChange={e => update({ cifLakh: e.target.value === '' ? '' : Number(e.target.value) })}
                   className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
                 />
                 <p className="text-[10px] text-[#5F6368] font-bold">Enter the CIF value shown on the import invoice in Lakhs. (e.g., 35 = Rs. 35,00,000)</p>
@@ -408,9 +419,32 @@ export default function NepalVehicleTaxCalculator() {
             </>
           )}
 
-          <button className="w-full h-12 bg-[#38761D] hover:bg-[#274e13] text-white text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-            Generate 2083/84 Report
-          </button>
+          
+              {/* ── OPTIONAL FEES ──────────────────────────────────────── */}
+              {calcMode === 'renewal' && (
+                <div className="space-y-2 mt-4 border-t border-[#DADCE0] pt-4">
+                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Optional Add-ons</label>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    <label className="flex items-center gap-2 p-3 border border-[#DADCE0] rounded-md cursor-pointer hover:bg-gray-50 transition-colors">
+                      <input type="checkbox" checked={includeInsurance} onChange={(e) => update({ includeInsurance: e.target.checked })} className="w-4 h-4 text-[#1A73E8]" />
+                      <span className="text-[11px] font-bold text-[#202124]">Third-Party Insurance</span>
+                    </label>
+                    <label className="flex items-center gap-2 p-3 border border-[#DADCE0] rounded-md cursor-pointer hover:bg-gray-50 transition-colors">
+                      <input type="checkbox" checked={includeRenewal} onChange={(e) => update({ includeRenewal: e.target.checked })} className="w-4 h-4 text-[#1A73E8]" />
+                      <span className="text-[11px] font-bold text-[#202124]">Bluebook Renewal Fee</span>
+                    </label>
+                    <label className="flex items-center gap-2 p-3 border border-[#DADCE0] rounded-md cursor-pointer hover:bg-gray-50 transition-colors">
+                      <input type="checkbox" checked={includePollution} onChange={(e) => update({ includePollution: e.target.checked })} className="w-4 h-4 text-[#1A73E8]" />
+                      <span className="text-[11px] font-bold text-[#202124]">Pollution Check Fee</span>
+                    </label>
+                  </div>
+                </div>
+              )}
+
+              <button onClick={() => update({ engineCC: '', motorKw: '', seats: '', weightTon: '', cifLakh: '', delayStatus: 'ontime', includeInsurance: false, includeRenewal: false, includePollution: false })} className="w-full h-12 mt-4 bg-[#F1F3F4] hover:bg-[#E8EAED] text-[#5F6368] hover:text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+                Clear Calculator
+              </button>
+
         </div>
       }
       results={
