@@ -286,104 +286,114 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
                 </div>
               </div>
 
-              {/* ── VEHICLE CATEGORY GRID ────────────────────────────── */}
-              <div className="space-y-2">
-                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Vehicle Category</label>
-                <div className="grid grid-cols-3 gap-2">
-                  {visibleCategories.map(opt => (
-                    <button
-                      key={opt.id}
-                      onClick={() => update({ vCategory: opt.id as VehicleCategory })}
-                      className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-md border transition-all ${vCategory === opt.id ? 'border-[#1A73E8] bg-[#E8F0FE] text-[#1A73E8]' : 'border-[#DADCE0] bg-white text-[#5F6368] hover:border-[#1A73E8]'}`}
-                    >
-                      <opt.icon className="w-5 h-5" />
-                      <span className="text-[9px] font-black uppercase text-center leading-tight">{opt.label}</span>
-                      <span className="text-[8px] font-bold text-center leading-tight opacity-60">{opt.sub}</span>
-                    </button>
-                  ))}
+              {/* ── LEFT COLUMN GROUP: Vehicle Category + Delay Status ── */}
+              <div className="space-y-3">
+                <div className="space-y-2">
+                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Vehicle Category</label>
+                  <div className="grid grid-cols-3 gap-2">
+                    {visibleCategories.map(opt => (
+                      <button
+                        key={opt.id}
+                        onClick={() => update({ vCategory: opt.id as VehicleCategory })}
+                        className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-md border transition-all ${vCategory === opt.id ? 'border-[#1A73E8] bg-[#E8F0FE] text-[#1A73E8]' : 'border-[#DADCE0] bg-white text-[#5F6368] hover:border-[#1A73E8]'}`}
+                      >
+                        <opt.icon className="w-5 h-5" />
+                        <span className="text-[9px] font-black uppercase text-center leading-tight">{opt.label}</span>
+                        <span className="text-[8px] font-bold text-center leading-tight opacity-60">{opt.sub}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Delay Status */}
+                <div className="space-y-2">
+                  <label className="text-[11px] font-bold text-[#D93025] uppercase tracking-wider flex items-center gap-1.5">
+                    <AlertCircle className="w-3.5 h-3.5" /> Bluebook Renewal Delay Status
+                  </label>
+                  <select
+                    value={delayStatus}
+                    onChange={e => update({ delayStatus: e.target.value })}
+                    className="w-full h-12 px-4 bg-red-50/50 border border-red-200 rounded-md text-sm font-bold text-red-900 focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none transition-all appearance-none"
+                  >
+                    {DELAY_STATUSES.map(s => (
+                      <option key={s.id} value={s.id}>{s.label}</option>
+                    ))}
+                  </select>
                 </div>
               </div>
 
-              {/* ── DYNAMIC CAPACITY INPUT ───────────────────────────── */}
-              {vCategory === 'bus' ? (
-                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Number of Passenger Seats</label>
-                  <input
-                    type="number" min={1} value={seats}
-                    onWheel={(e) => (e.target as HTMLInputElement).blur()}
-                    onChange={e => update({ seats: e.target.value === '' ? '' : Number(e.target.value) })}
-                    className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
-                  />
-                </div>
-              ) : vCategory === 'truck' ? (
-                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Weight Capacity (Metric Tonnes)</label>
-                  <input
-                    type="number" min={0.5} step={0.5} value={weightTon}
-                    onWheel={(e) => (e.target as HTMLInputElement).blur()}
-                    onChange={e => update({ weightTon: e.target.value === '' ? '' : Number(e.target.value) })}
-                    className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
-                  />
-                </div>
-              ) : vCategory === 'agri' ? (
-                <div className="p-4 bg-amber-50 border border-amber-200 rounded-md">
-                  <p className="text-[10px] text-amber-800 font-bold uppercase">Tractors, power tillers, and three-wheelers (e.g., Tempo) pay a flat annual road tax of Rs. 3,000.</p>
-                </div>
-              ) : engineType === 'electric' ? (
-                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Motor Output (kW)</label>
-                  <input
-                    type="number" min={1} value={motorKw}
-                    onWheel={(e) => (e.target as HTMLInputElement).blur()}
-                    onChange={e => update({ motorKw: e.target.value === '' ? '' : Number(e.target.value) })}
-                    className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
-                  />
-                </div>
-              ) : (
-                <div className="space-y-2">
-                  <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Engine Displacement (CC)</label>
-                  <input
-                    type="number" min={1} value={engineCC}
-                    onWheel={(e) => (e.target as HTMLInputElement).blur()}
-                    onChange={e => update({ engineCC: e.target.value === '' ? '' : Number(e.target.value) })}
-                    className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
-                  />
-                </div>
-              )}
+              {/* ── RIGHT COLUMN GROUP: Capacity + Clear + Alert ──────── */}
+              <div className="space-y-3">
+                {/* Dynamic Capacity Input */}
+                {vCategory === 'bus' ? (
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Number of Passenger Seats</label>
+                    <input
+                      type="number" min={1} value={seats}
+                      onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                      onChange={e => update({ seats: e.target.value === '' ? '' : Number(e.target.value) })}
+                      className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
+                    />
+                  </div>
+                ) : vCategory === 'truck' ? (
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Weight Capacity (Metric Tonnes)</label>
+                    <input
+                      type="number" min={0.5} step={0.5} value={weightTon}
+                      onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                      onChange={e => update({ weightTon: e.target.value === '' ? '' : Number(e.target.value) })}
+                      className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
+                    />
+                  </div>
+                ) : vCategory === 'agri' ? (
+                  <div className="p-3 bg-amber-50 border border-amber-200 rounded-md">
+                    <p className="text-[10px] text-amber-800 font-bold uppercase">Tractors, power tillers, and three-wheelers (e.g., Tempo) pay a flat annual road tax of Rs. 3,000.</p>
+                  </div>
+                ) : engineType === 'electric' ? (
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Motor Output (kW)</label>
+                    <input
+                      type="number" min={1} value={motorKw}
+                      onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                      onChange={e => update({ motorKw: e.target.value === '' ? '' : Number(e.target.value) })}
+                      className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
+                    />
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Engine Displacement (CC)</label>
+                    <input
+                      type="number" min={1} value={engineCC}
+                      onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                      onChange={e => update({ engineCC: e.target.value === '' ? '' : Number(e.target.value) })}
+                      className="w-full h-12 px-4 bg-white border border-[#DADCE0] rounded-md text-sm font-bold text-[#202124] focus:border-[#1A73E8] focus:ring-1 focus:ring-[#1A73E8] outline-none transition-all"
+                    />
+                  </div>
+                )}
 
-              {/* ── PENALTY / DELAY STATUS ───────────────────────────── */}
-              <div className="space-y-2">
-                <label className="text-[11px] font-bold text-[#D93025] uppercase tracking-wider flex items-center gap-1.5">
-                  <AlertCircle className="w-3.5 h-3.5" /> Bluebook Renewal Delay Status
-                </label>
-                <select
-                  value={delayStatus}
-                  onChange={e => update({ delayStatus: e.target.value })}
-                  className="w-full h-12 px-4 bg-red-50/50 border border-red-200 rounded-md text-sm font-bold text-red-900 focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none transition-all appearance-none"
-                >
-                  {DELAY_STATUSES.map(s => (
-                    <option key={s.id} value={s.id}>{s.label}</option>
-                  ))}
-                </select>
+                {/* Clear Calculator */}
+                <button onClick={() => update({ engineCC: '', motorKw: '', seats: '', weightTon: '', cifLakh: '', delayStatus: 'ontime', customInsurance: '', customRenewal: '', customPollution: '' })} className="w-full h-10 bg-[#F1F3F4] hover:bg-[#E8EAED] text-[#5F6368] hover:text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
+                  Clear Calculator
+                </button>
+
+                {/* Contextual Alert */}
+                {renewalResult.isLate ? (
+                  <div className="p-2.5 bg-red-50 border border-red-200 rounded-md flex gap-2 items-center">
+                    <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+                    <p className="text-[10px] text-red-800 font-bold leading-relaxed uppercase">
+                      Late fine applied. Renewal fee doubled to {formatNPR(renewalResult.finalRenew)}.
+                      {delayStatus === '5_years_plus' && ' Base tax capped at 4 years under DoTM regulations.'}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="p-2.5 bg-emerald-50 border border-emerald-200 rounded-md flex gap-2 items-center">
+                    <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <p className="text-[10px] text-emerald-800 font-bold leading-relaxed uppercase">
+                      Within the 90-day grace period. No penalties applied.
+                    </p>
+                  </div>
+                )}
               </div>
-
-              {/* ── CONTEXTUAL ALERT ─────────────────────────────────── */}
-              {renewalResult.isLate ? (
-                <div className="p-2.5 bg-red-50 border border-red-200 rounded-md flex gap-2 items-center">
-                  <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
-                  <p className="text-[10px] text-red-800 font-bold leading-relaxed uppercase">
-                    Late fine applied. Renewal fee doubled to {formatNPR(renewalResult.finalRenew)}.
-                    {delayStatus === '5_years_plus' && ' Base tax capped at 4 years under DoTM regulations.'}
-                  </p>
-                </div>
-              ) : (
-                <div className="p-2.5 bg-emerald-50 border border-emerald-200 rounded-md flex gap-2 items-center">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <p className="text-[10px] text-emerald-800 font-bold leading-relaxed uppercase">
-                    Within the 90-day grace period. No penalties applied.
-                  </p>
-                </div>
-              )}
             </>
           ) : (
             /* ── EV IMPORT CIF MODE ────────────────────────────────── */
@@ -443,9 +453,7 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
                 </div>
               )}
 
-              <button onClick={() => update({ engineCC: '', motorKw: '', seats: '', weightTon: '', cifLakh: '', delayStatus: 'ontime', customInsurance: '', customRenewal: '', customPollution: '' })} className="w-full h-10 mt-2 bg-[#F1F3F4] hover:bg-[#E8EAED] text-[#5F6368] hover:text-[#202124] text-sm font-bold uppercase tracking-widest rounded-md transition-colors shadow-sm">
-                Clear Calculator
-              </button>
+
 
         </div>
       }

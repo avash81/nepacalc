@@ -15,6 +15,9 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
 # 2. BING 404 FIX — 301 Redirects for moved tools
 # ============================================================
 
+# Deleted blog post → permanent redirect to canonical electricity page
+RewriteRule ^blog/nea-tariff-rates-2083-84/?$ /electricity/nepal-unit-price/ [L,R=301]
+
 # Structural Category Changes
 RewriteRule ^calculator/market-rates/live-silver-price/?$ /market-rates/live-silver-price/ [L,R=301]
 RewriteRule ^calculator/market-rates/live-gold-price/?$ /market-rates/live-gold-price/ [L,R=301]
