@@ -240,7 +240,6 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
       title="Nepal Vehicle Tax 2083/84"
       description="The definitive blue-book renewal engine for Nepal. Calculate annual road tax for all vehicle types — bikes, cars, buses, trucks, and EVs — plus EV import duties using the 2083/84 CIF model."
       fullWidth={true}
-      details={details}
       icon={Car}
       inputs={
         <div className="space-y-6">
@@ -665,6 +664,7 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
               </table>
             </div>
           </div>
+          {details}
         </div>
       }
       sidebar={{
