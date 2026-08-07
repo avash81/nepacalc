@@ -2,8 +2,8 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Nepal Budget 2083/84 (FY 2026/27): Complete Budget, Tax Changes, Allocations & Analysis | NepaCalc',
-  description: 'Nepal Budget 2083/84 (FY 2026/27): Official budget figures, income tax slabs, VAT changes, sector allocations, major projects, and full tax & policy analysis. Nepal\'s most complete budget reference.',
+  title: 'Nepal Budget 2083/84: Summary, Highlights & Tax Changes',
+  description: 'Nepal Budget 2083/84 (FY 2026/27): Rs. 2,124.34 billion budget, tax changes, VAT, customs, key allocations, reforms and major announcements.',
 
   keywords: [
     'Nepal Budget 2083/84', 'Nepal Budget', 'Nepal Budget Highlights', 'Budget 2083/84',
