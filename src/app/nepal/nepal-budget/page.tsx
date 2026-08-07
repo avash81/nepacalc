@@ -182,13 +182,6 @@ const css = `
 .nb-sources ol{margin:0;padding-left:1.2em;font-size:.84rem;}
 .nb-sources li{margin-bottom:5px;}
 
-/* PAGE FOOTER CTA */
-.nb-footer-cta{background:var(--ink);color:var(--paper-raised);padding:36px 24px;}
-.nb-footer-cta .inner{max-width:1200px;margin:0 auto;}
-.nb-footer-cta p{color:#bcc5cc;max-width:62ch;margin:0 0 16px;}
-.nb-cta-primary{display:inline-block;background:var(--brass);color:var(--ink);font-family:var(--mono);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;padding:10px 18px;text-decoration:none;margin-right:8px;margin-bottom:6px;}
-.nb-cta-primary:hover{background:var(--paper-raised);}
-.nb-footer-cta .nb-legal{font-size:.74rem;color:#7a8a94;margin-top:20px;}
 `;
 
 export default function NepalBudgetPage() {

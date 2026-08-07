@@ -51,11 +51,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/income-tax/how-to-calculate-income-tax-nepal',
   ].map((route) => ({
     url: cleanUrl(route),
-    lastModified: (route === '/electricity/nepal-unit-price' || route === '/electricity/nea-tariff-rates') ? new Date('2026-06-19T00:00:00Z') : (route === '/engineering/3d' || route === '/market-rates') ? new Date() : lastModDate,
+    lastModified: (route === '/electricity/nepal-unit-price' || route === '/electricity/nea-tariff-rates') ? new Date('2026-06-19T00:00:00Z') : (route === '/engineering/3d' || route === '/market-rates' || route === '/nepal/nepal-budget') ? new Date() : lastModDate,
     changeFrequency: 'weekly' as const,
     priority: route === '' ? 1.0 :
               route === '/engineering/3d' ? 0.95 :
               route === '/directory' ? 0.95 :
+              route === '/nepal/nepal-budget' ? 0.95 :
               (route === '/about/editorial-policy' || route === '/about/math-team' || route === '/changelog') ? 0.8 :
               (route === '/electricity/nea-tariff-rates' || route === '/electricity/nepal-unit-price') ? 0.85 : 0.85,
   }));
