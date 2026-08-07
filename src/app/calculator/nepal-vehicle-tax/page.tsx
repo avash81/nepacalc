@@ -570,11 +570,11 @@ export default function Page() {
           <h2 className="text-2xl font-black text-slate-900 mt-12 mb-4">Official Government References</h2>
           <p className="mb-4">This calculator uses vehicle tax schedules published by:</p>
           <ul className="list-disc pl-6 space-y-2 mb-8">
-            <li><a Department of Transport Management (DOTM)</li>
+            <li><a href="https://www.dotm.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Department of Transport Management (DoTM)</a></li>
             <li>Bagmati Province Finance Act FY 2083/84</li>
             <li><a href="https://www.mof.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Ministry of Finance Nepal</a> : Finance Act 2083/84</li>
-            <li>Customs Tariff 2083/84 (Nepal Customs)</li>
-            <li>Transport Management Information System (TMIS) Nepal</li>
+            <li><a href="https://www.customs.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Customs Tariff 2083/84 (Nepal Customs)</a></li>
+            <li><a href="https://tmis.bagamati.gov.np/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Transport Management Information System (TMIS) Nepal</a></li>
           </ul>
 
           {/* ── Disclaimer ── */}

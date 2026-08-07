@@ -665,29 +665,6 @@ export default function NepalVehicleTaxCalculator() {
           </div>
         </div>
       }
-      howToUse={{
-        steps: [
-          "Select Calculator Mode: Choose 'Annual Bluebook Renewal' for road tax, or 'EV Import Duty (CIF)' for import duty estimation.",
-          "Engine Protocol: For renewals, select Combustion or Electric. Commercial vehicles (Bus, Truck) are always combustion.",
-          "Vehicle Category: Pick from Two-Wheeler, Car (Private), Taxi, Bus/Microbus, Truck, or Agricultural.",
-          "Enter Capacity: Input CC, kW, Seats, or Tonnes depending on the vehicle type selected.",
-          "Delay Status: Select how late your renewal is. The 4-year legal cap is enforced automatically for 5+ year delays.",
-          "EV Import: Enter the CIF invoice value in Lakhs to calculate flat 20% customs duty and the Clean Infrastructure Fee."
-        ]
-      }}
-      formula={{
-        title: "Vehicle Tax & EV Import Calculus (2083/84)",
-        description: "Official Bagmati Province progressive slabs plus DoTM penalty rules and 2083/84 EV import valuation matrix.",
-        raw: "Annual: Liability = Base_Tax(CC|kW|Seats|Tons) × Years_Owed(max 4) + Penalty(32%/yr) + Insurance + Renewal_Fee\nEV Import: Landed Cost = CIF + (CIF × 20%) + Clean_Infrastructure_Fee(tiered)",
-        variables: [
-          "Base Tax: Fixed annual fee per bracket (CC / kW / Seats / Tons)",
-          "Penalty: Progressive 5%→10%→20%→32%/yr compound fine after grace period",
-          "4-Year Cap: DoTM regulation caps pending base tax at 4 fiscal years maximum",
-          "CIF Customs: Flat 20% across all EVs (excise abolished in 2083/84)",
-          "Clean Infrastructure Fee: Tiered 2.5% to 112.5% based on vehicle CIF value"
-        ]
-      }}
-
       sidebar={{
         title: "Auto Hub Nepal",
         subtitle: "Compliance Tools",
