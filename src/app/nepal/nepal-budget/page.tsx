@@ -283,7 +283,7 @@ export default function NepalBudgetPage() {
             <p className="nb-subdek">A summary of the fiscal plan for FY 2026/27, outlining the total budget, expected growth, and main objectives.</p>
 
             <h3>1.1 Budget Year and Implementation Period</h3>
-            <p>The Nepal Budget 2083/84 covers the Nepali Fiscal Year 2083/84, corresponding to the Gregorian calendar year 2026/27. The budget provisions take effect from Shrawan 1, 2083 (July 17, 2026) and govern fiscal policy until Ashadh 31, 2084.</p>
+            <p>The Nepal Budget 2083/84 covers the Nepali Fiscal Year 2083/84, corresponding to the Gregorian calendar year 2026/27. The budget provisions take effect from Shrawan 1, 2083 (July 17, 2026) and govern fiscal policy until Ashadh 31, 2084. To quickly align these fiscal dates with the English calendar, use our <a href="/calculator/nepali-date/">Nepali Date Converter</a>.</p>
 
             <h3>1.2 Total Budget Size</h3>
             <p>The total allocated budget is <strong>Rs. 2,124.34 billion (NPR 2,124.34 Arba)</strong>, representing an increase from the previous fiscal year.</p>
@@ -353,7 +353,7 @@ export default function NepalBudgetPage() {
             <h2>3. Major Highlights of Nepal Budget 2083/84</h2>
 
             <h3>3.1 Major Tax Changes</h3>
-            <p>Introduction of a revised tax structure where the first Rs. 10 lakh of individual taxable income falls within the 1% slab, and maximum individual income tax rate slashed from 39% to 29%.</p>
+            <p>Introduction of a revised tax structure where the first Rs. 10 lakh of individual taxable income falls within the 1% slab, and maximum individual income tax rate slashed from 39% to 29%. You can calculate your exact liability under this new structure using our <a href="/calculator/nepal-income-tax/">Nepal Income Tax Calculator</a>.</p>
 
             <h3>3.2 Government Restructuring</h3>
             <p>Various redundant government boards and committees are set to be dissolved or merged to optimize recurrent expenditure.</p>
@@ -655,7 +655,7 @@ export default function NepalBudgetPage() {
           <section className="nb-chapter" id="income-tax-slabs">
             <span className="nb-ch-tag">§ 13</span>
             <h2>13. New Income Tax Slabs for FY 2083/84</h2>
-            <p>The budget introduces a unified tax exemption limit. You can calculate your exact tax liability with the <a href="/calculator/nepal-income-tax/">Nepal Income Tax Calculator</a>.</p>
+            <p>The budget introduces a unified tax exemption limit for individuals and couples, fundamentally shifting the tax burden.</p>
 
             <h3>13.1 Individual Income Tax Slabs: FY 2083/84</h3>
             <p>The first Rs. 10,00,000 of taxable income falls within the <strong>1% slab</strong>. This is not a tax-free exemption: a 1% rate applies. However, the 1% tax is <strong>not levied</strong> on specified pension income, Social Security Fund (SSF) contributions, and certain sole-proprietorship income under the stated provisions.</p>
