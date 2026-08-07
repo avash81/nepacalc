@@ -100,7 +100,7 @@ type CalcMode   = 'renewal' | 'ev_import';
 type EngineType = 'combustion' | 'electric';
 type VehicleCategory = 'bike' | 'car_private' | 'car_public' | 'bus' | 'truck' | 'agri';
 
-export default function NepalVehicleTaxCalculator() {
+export default function NepalVehicleTaxCalculator({ details }: { details?: React.ReactNode }) {
   const [state, setState] = useSyncState('nepal_vehicle_tax_v9', {
     calcMode:    'renewal'    as CalcMode,
     engineType:  'combustion' as EngineType,
