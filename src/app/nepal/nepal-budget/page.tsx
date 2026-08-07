@@ -1490,35 +1490,24 @@ export default function NepalBudgetPage() {
           <section className="nb-chapter" id="related-resources">
             <h2>30. Related Nepal Calculators &amp; Official Resources</h2>
 
-            <h3>30.1 Additional NepaCalc Tools</h3>
-            <p>These calculators are relevant to topics covered in this guide but are linked here for easy reference rather than repeated throughout the text.</p>
+            <h3>30.1 Related NepaCalc Tools</h3>
             <div className="nb-tw">
               <table>
                 <thead>
-                  <tr><th>Tool</th><th>Use For</th></tr>
+                  <tr><th>Tool</th><th>Relevance to This Budget</th></tr>
                 </thead>
                 <tbody>
-                  <tr><td><a href="/calculator/nepal-home-loan/">Nepal Home Loan Calculator</a></td><td>Home loan EMI with latest bank base rates</td></tr>
-                  <tr><td><a href="/calculator/auto-loan/">Nepal Auto Loan Calculator</a></td><td>Car and bike EMI for fuel and electric vehicles</td></tr>
-                  <tr><td><a href="/calculator/gold-tax/">Gold Tax Calculator</a></td><td>Final gold price including 13% VAT and making charges</td></tr>
-                  <tr><td><a href="/calculator/gold-converter/">Gold Unit Converter</a></td><td>Convert between Tola, Lal, Aana and Gram</td></tr>
-                  <tr><td><a href="/market-rates/live-gold-price/">Live Gold Price Nepal</a></td><td>Real-time 24K and 22K gold rates synced with FENEGOSIDA</td></tr>
-                  <tr><td><a href="/market-rates/live-silver-price/">Live Silver Price Nepal</a></td><td>Today&apos;s official silver rate per tola and gram</td></tr>
-                  <tr><td><a href="/calculator/silver-converter/">Silver Unit Converter</a></td><td>Convert silver between Nepalese and international units</td></tr>
-                  <tr><td><a href="/market-rates/exchange-rate-nepal/">Exchange Rate Nepal</a></td><td>Live foreign exchange rates for 20+ currencies</td></tr>
-                  <tr><td><a href="/market-rates/remittance/">Remittance Board</a></td><td>Compare real-time rates for sending money to Nepal</td></tr>
-                  <tr><td><a href="/calculator/currency-converter/">Currency Converter</a></td><td>Convert international currencies to Nepalese Rupees</td></tr>
-                  <tr><td><a href="/calculator/nepse-wacc/">NEPSE WACC Calculator</a></td><td>Weighted Average Cost of Capital for share holdings</td></tr>
-                  <tr><td><a href="/calculator/gratuity-calculator/">Gratuity Calculator</a></td><td>Retirement gratuity under Labor Act 2074</td></tr>
-                  <tr><td><a href="/calculator/kukl-bill/">KUKL Water Bill Calculator</a></td><td>Kathmandu water bill and sewerage tax</td></tr>
-                  <tr><td><a href="/water/kukl-bill-payment/">KUKL Bill Payment Guide</a></td><td>How to check, pay and download your KUKL bill online</td></tr>
-                  <tr><td><a href="/calculator/nepal-loan-eligibility/">Nepal Loan Eligibility</a></td><td>Bank loan eligibility based on income and NRB FOIR rules</td></tr>
-                  <tr><td><a href="/calculator/nepal-land/">Nepal Land Area Converter</a></td><td>Convert between Ropani, Aana, Bigha and Square Feet</td></tr>
-                  <tr><td><a href="/calculator/nepali-date/">Nepali Date Converter</a></td><td>BS to AD and AD to BS date conversion</td></tr>
-                  <tr><td><a href="/calculator/nepal-attendance/">University Attendance Calculator</a></td><td>Track 75% exam eligibility for TU, KU and PU</td></tr>
-                  <tr><td><a href="/calculator/see-gpa/">SEE GPA Calculator</a></td><td>Calculate SEE grade with all subject marks for 2083/84</td></tr>
-                  <tr><td><a href="/calculator/nepal-citizenship-age/">Citizenship Age Calculator</a></td><td>Check Nepal citizenship eligibility (16 years) by DOB</td></tr>
-                  <tr><td><a href="/calculator/lok-sewa-age/">Lok Sewa Age Calculator</a></td><td>Check Public Service Commission (PSC) age eligibility</td></tr>
+                  <tr><td><a href="/calculator/nepal-home-loan/">Nepal Home Loan Calculator</a></td><td>NRB monetary policy and base rate changes affect home loan EMIs</td></tr>
+                  <tr><td><a href="/calculator/auto-loan/">Nepal Auto Loan Calculator</a></td><td>Vehicle excise and customs changes impact financed car/bike costs</td></tr>
+                  <tr><td><a href="/calculator/nepal-loan-eligibility/">Nepal Loan Eligibility</a></td><td>NRB FOIR rules and income-based eligibility under the new slabs</td></tr>
+                  <tr><td><a href="/calculator/gold-tax/">Gold Tax Calculator</a></td><td>VAT (13%) applies on gold jewellery purchases under this budget</td></tr>
+                  <tr><td><a href="/market-rates/live-gold-price/">Live Gold Price Nepal</a></td><td>Track real-time gold rates as excise and import duty change</td></tr>
+                  <tr><td><a href="/market-rates/live-silver-price/">Live Silver Price Nepal</a></td><td>Live silver rate per tola and gram including current levy impact</td></tr>
+                  <tr><td><a href="/market-rates/exchange-rate-nepal/">Exchange Rate Nepal</a></td><td>Live foreign exchange rates relevant to foreign employment income</td></tr>
+                  <tr><td><a href="/market-rates/remittance/">Remittance Board</a></td><td>Compare rates for remittances covered under the foreign employment provisions</td></tr>
+                  <tr><td><a href="/calculator/currency-converter/">Currency Converter</a></td><td>Convert foreign earnings to NPR for tax computation</td></tr>
+                  <tr><td><a href="/calculator/nepse-wacc/">NEPSE WACC Calculator</a></td><td>Weighted average cost of capital for shares under revised CGT rules</td></tr>
+                  <tr><td><a href="/calculator/gratuity-calculator/">Gratuity Calculator</a></td><td>Labor Act 2074 gratuity benefits, relevant to employment tax provisions</td></tr>
                 </tbody>
               </table>
             </div>
