@@ -242,7 +242,7 @@ export default function NepalVehicleTaxCalculator({ details }: { details?: React
       fullWidth={true}
       icon={Car}
       inputs={
-        <div className="space-y-6">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-8 gap-y-6">
 
           {/* ── MASTER MODE TOGGLE ─────────────────────────────────── */}
           <div className="space-y-2">
