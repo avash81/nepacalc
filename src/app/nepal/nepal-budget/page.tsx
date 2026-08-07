@@ -301,6 +301,7 @@ export default function NepalBudgetPage() {
             <h2>2. Budget Size, Revenue &amp; Expenditure</h2>
 
             <h3>2.1 Revenue and Financing Sources</h3>
+            <p>To understand the real-time USD equivalent of these international financing figures, check our <a href="/market-rates/exchange-rate-nepal/">Live Exchange Rates</a>.</p>
             <div className="nb-tw">
               <table>
                 <caption>Table: Estimated Revenue &amp; Financing Sources</caption>
@@ -413,7 +414,7 @@ export default function NepalBudgetPage() {
             <p>Universities receive dedicated funding for indigenous technology and scientific research.</p>
 
             <h3>5.4 Nagarik App Expansion</h3>
-            <p>More than 40 new civic services are being integrated into the Nagarik App.</p>
+            <p>More than 40 new civic services are being integrated into the <a href="https://nagarikapp.gov.np/" target="_blank" rel="noopener noreferrer">official Nagarik App</a>.</p>
 
             <h3>5.5 Nepal Telecom Share Divestment</h3>
             <p>Provisions introduced to divest a portion of Nepal Telecom shares to the general public and strategic partners.</p>
@@ -1497,7 +1498,6 @@ export default function NepalBudgetPage() {
                   <tr><td><a href="/calculator/gold-tax/">Gold Tax Calculator</a></td><td>VAT (13%) applies on gold jewellery purchases under this budget</td></tr>
                   <tr><td><a href="/market-rates/live-gold-price/">Live Gold Price Nepal</a></td><td>Track real-time gold rates as excise and import duty change</td></tr>
                   <tr><td><a href="/market-rates/live-silver-price/">Live Silver Price Nepal</a></td><td>Live silver rate per tola and gram including current levy impact</td></tr>
-                  <tr><td><a href="/market-rates/exchange-rate-nepal/">Exchange Rate Nepal</a></td><td>Live foreign exchange rates relevant to foreign employment income</td></tr>
                   <tr><td><a href="/market-rates/remittance/">Remittance Board</a></td><td>Compare rates for remittances covered under the foreign employment provisions</td></tr>
                   <tr><td><a href="/calculator/currency-converter/">Currency Converter</a></td><td>Convert foreign earnings to NPR for tax computation</td></tr>
                   <tr><td><a href="/calculator/nepse-wacc/">NEPSE WACC Calculator</a></td><td>Weighted average cost of capital for shares under revised CGT rules</td></tr>
