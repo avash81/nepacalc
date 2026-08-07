@@ -61,6 +61,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -f out/
-          git add .cpanel.yml
+          git add .cpanel.yml public/data/market-rates.json
           git diff --staged --quiet || git commit -m "ci: daily auto-deploy with fresh FENEGOSIDA rates [skip ci]"
           git push origin main
