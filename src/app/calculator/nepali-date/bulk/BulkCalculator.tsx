@@ -11,7 +11,7 @@ export default function BulkCalculator() {
   const iframeRef = useRef(null);
 
   useEffect(() => {
-    const handleResize = (e) => {
+    const handleResize = (e: any) => {
       if (e.data && e.data.type === 'resize' && iframeRef.current) {
         iframeRef.current.style.height = (e.data.height + 40) + 'px';
       }
