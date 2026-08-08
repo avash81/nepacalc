@@ -72,7 +72,7 @@ export default function GraphingCalculatorClient() {
     const ctx = c.getContext('2d'); if (!ctx) return;
     const rect = c.parentElement?.getBoundingClientRect();
     const W = rect?.width || c.clientWidth || 800;
-    const H = rect?.height || c.clientHeight || 600;
+    const H = rect?.height || c.clientHeight || 500;
     const dpr = window.devicePixelRatio || 1;
     const bw = Math.round(W * dpr), bh = Math.round(H * dpr);
     if (c.width !== bw || c.height !== bh) { c.width = bw; c.height = bh; }
@@ -150,7 +150,7 @@ export default function GraphingCalculatorClient() {
     // Empty hint
     if (exprs.every(e => !e.text.trim())) {
       ctx.fillStyle = '#cbd5e1'; ctx.font = 'bold 16px Inter,system-ui,sans-serif';
-      ctx.textAlign = 'center'; ctx.fillText('Type a function in the sidebar to plot', W/2, H/2 - 10);
+      ctx.textAlign = 'center'; ctx.fillText('Type a function to plot', W/2, H/2 - 10);
       ctx.font = '13px Inter,system-ui,sans-serif'; ctx.fillStyle = '#94a3b8';
       ctx.fillText('e.g.  sin(x)  ·  x^2 - 4  ·  1/x  ·  cos(2*x)', W/2, H/2 + 20);
     }
@@ -208,7 +208,7 @@ export default function GraphingCalculatorClient() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafbfc] pt-16">
+    <div className="min-h-screen bg-[#fafbfc] pt-12 pb-16">
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 py-3">
         <nav className="text-[11px] font-medium text-slate-400">
@@ -220,63 +220,78 @@ export default function GraphingCalculatorClient() {
         </nav>
       </div>
 
-      {/* Main layout */}
-      <div className="max-w-[1600px] mx-auto px-4 flex flex-col lg:flex-row gap-4" style={{ height: 'calc(100vh - 120px)' }}>`n        {/* Advanced Calculator */}`n        <div className="w-full lg:w-[450px] flex-shrink-0 flex flex-col">`n          <AdvancedCalculator onExpressionChange={(text) => { if(exprs.length > 0) updateExpr(exprs[0].id, text); }} />`n        </div>
-        {/* Sidebar */}
-        <div className="w-full lg:w-[320px] flex-shrink-0 bg-white border border-slate-200 rounded-2xl lg:rounded-l-2xl lg:rounded-tr-none overflow-hidden flex flex-col">
-          <div className="p-4 border-b border-slate-100 flex items-center justify-between">
-            <h1 className="text-[15px] font-bold text-[#202124]">📈 Graphing Calculator</h1>
-            <button onClick={addExpr} className="px-3 py-1.5 bg-[#4361ee] text-white text-[11px] font-bold rounded-lg hover:bg-[#3a56d4] transition-colors">
-              + Add
+      <div className="max-w-7xl mx-auto px-4 space-y-6">
+        {/* Top Section: Calculator (Left) & Canvas Graph (Right) */}
+        <div className="flex flex-col lg:flex-row gap-6 items-start">
+          {/* Advanced Calculator */}
+          <div className="w-full lg:w-[480px] flex-shrink-0">
+            <AdvancedCalculator onExpressionChange={(text) => {
+              if (exprs.length > 0) {
+                updateExpr(exprs[0].id, text);
+              }
+            }} />
+          </div>
+
+          {/* Canvas Graph Visualizer */}
+          <div ref={wrapRef} className="flex-1 w-full h-[520px] relative bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+            <canvas
+              ref={canvasRef}
+              style={{ display:'block', width:'100%', height:'100%', cursor: drag.current.active ? 'grabbing' : 'crosshair', touchAction:'none' }}
+              onMouseDown={onMD} onMouseMove={onMM} onMouseUp={onMU} onMouseLeave={onMU}
+              onTouchStart={onTS} onTouchMove={onTM} onTouchEnd={() => { tRef.current = null; }}
+            />
+            <div className="absolute right-4 bottom-16 flex flex-col gap-2 z-10">
+              <button onClick={resetView} className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[14px] hover:bg-slate-50">⊡</button>
+              <button onClick={() => zoomBy(0.75)} className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[16px] font-bold hover:bg-slate-50">+</button>
+              <button onClick={() => zoomBy(1.33)} className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[16px] font-bold hover:bg-slate-50">−</button>
+            </div>
+            <div className="absolute bottom-4 right-14 text-[10px] text-slate-300 pointer-events-none">drag · scroll to zoom</div>
+          </div>
+        </div>
+
+        {/* Bottom Section: Compact Expression Input Box Below Calculator */}
+        <div className="w-full bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+            <div className="flex items-center gap-2">
+              <span className="text-xl">📈</span>
+              <h2 className="text-sm font-bold text-[#202124]">Graphing Expressions</h2>
+            </div>
+            <button onClick={addExpr} className="px-3.5 py-1.5 bg-[#4361ee] text-white text-[12px] font-bold rounded-lg hover:bg-[#3a56d4] transition-colors shadow-sm">
+              + Add Function
             </button>
           </div>
-          <div className="flex-1 overflow-y-auto p-3 space-y-2">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {exprs.map((expr, i) => (
-              <div key={expr.id} className="flex items-center gap-2 group">
-                <button onClick={() => toggleExpr(expr.id)} className="w-5 h-5 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all" style={{ borderColor: expr.color, background: expr.visible ? expr.color : 'transparent' }}>
-                  {expr.visible && <span className="text-white text-[10px]">✓</span>}
+              <div key={expr.id} className="flex items-center gap-2.5 p-2 bg-[#fafbfc] border border-slate-200 rounded-xl group">
+                <button onClick={() => toggleExpr(expr.id)} className="w-6 h-6 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all" style={{ borderColor: expr.color, background: expr.visible ? expr.color : 'transparent' }}>
+                  {expr.visible && <span className="text-white text-[11px] font-bold">✓</span>}
                 </button>
                 <div className="flex-1 relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[11px] font-mono text-slate-400">f{i+1}=</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[12px] font-mono text-slate-400 font-bold">f{i+1}=</span>
                   <input
                     type="text"
                     value={expr.text}
                     onChange={e => updateExpr(expr.id, e.target.value)}
                     placeholder="e.g. sin(x)"
-                    className="w-full pl-10 pr-3 py-2.5 text-[13px] font-mono rounded-xl border border-slate-200 focus:border-[#4361ee] focus:ring-2 focus:ring-[#4361ee20] outline-none transition-all bg-[#fafbfc]"
+                    className="w-full pl-11 pr-3 py-2 text-[13px] font-mono rounded-lg border border-slate-200 focus:border-[#4361ee] focus:ring-1 focus:ring-[#4361ee] outline-none transition-all bg-white"
                     style={{ borderLeftColor: expr.color, borderLeftWidth: 3 }}
                   />
                 </div>
                 {exprs.length > 1 && (
-                  <button onClick={() => removeExpr(expr.id)} className="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-red-500 text-[14px] transition-all flex-shrink-0">✕</button>
+                  <button onClick={() => removeExpr(expr.id)} className="text-slate-400 hover:text-red-500 text-[14px] font-bold px-1 transition-all flex-shrink-0">✕</button>
                 )}
               </div>
             ))}
           </div>
-          <div className="p-3 border-t border-slate-100 text-[10px] text-slate-400 leading-relaxed">
-            <strong>Functions:</strong> sin, cos, tan, asin, acos, atan, log, ln, sqrt, abs<br/>
-            <strong>Constants:</strong> π, e  &nbsp;·&nbsp; <strong>Powers:</strong> x^2, x^3
+          
+          <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500 flex flex-wrap gap-4">
+            <span><strong>Functions:</strong> sin, cos, tan, asin, acos, atan, log, ln, sqrt, abs</span>
+            <span><strong>Constants:</strong> π, e</span>
+            <span><strong>Powers:</strong> x^2, x^3</span>
           </div>
-        </div>
-
-        {/* Graph */}
-        <div ref={wrapRef} className="flex-1 relative bg-white border border-l-0 border-slate-200 rounded-b-2xl lg:rounded-r-2xl lg:rounded-bl-none overflow-hidden">
-          <canvas
-            ref={canvasRef}
-            style={{ display:'block', width:'100%', height:'100%', cursor: drag.current.active ? 'grabbing' : 'crosshair', touchAction:'none' }}
-            onMouseDown={onMD} onMouseMove={onMM} onMouseUp={onMU} onMouseLeave={onMU}
-            onTouchStart={onTS} onTouchMove={onTM} onTouchEnd={() => { tRef.current = null; }}
-          />
-          <div className="absolute right-4 bottom-16 flex flex-col gap-2 z-10">
-            <button onClick={resetView} className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[14px] hover:bg-slate-50">⊡</button>
-            <button onClick={() => zoomBy(0.75)} className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[16px] font-bold hover:bg-slate-50">+</button>
-            <button onClick={() => zoomBy(1.33)} className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[16px] font-bold hover:bg-slate-50">−</button>
-          </div>
-          <div className="absolute bottom-4 right-14 text-[10px] text-slate-300 pointer-events-none">drag · scroll to zoom</div>
         </div>
       </div>
     </div>
   );
 }
-
-
