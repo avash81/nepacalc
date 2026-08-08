@@ -2,13 +2,13 @@ import { Metadata } from 'next';
 import DirectoryClient from './DirectoryClient';
 
 export const metadata: Metadata = {
-  title: 'Full Tool Directory ,  80+ Precision Calculators | NepaCalc',
+  title: 'Full Tool Directory ,  100+ Precision Calculators | NepaCalc',
   description: 'Explore our complete index of scientific, financial, health, and engineering calculators. Official directory of high-precision mathematical units for Nepal.',
   alternates: {
     canonical: 'https://NepaCalc.com/directory/',
   },
   openGraph: {
-    title: 'Full Tool Directory ,  80+ Precision Calculators | NepaCalc',
+    title: 'Full Tool Directory ,  100+ Precision Calculators | NepaCalc',
     description: 'Explore our complete index of scientific, financial, health, and engineering calculators.',
     url: 'https://NepaCalc.com/directory/',
   }
@@ -22,7 +22,7 @@ export default function DirectoryPage() {
         <section className="prose prose-lg dark:prose-invert max-w-none">
           <h2 className="text-4xl font-extrabold text-blue-600 dark:text-blue-400 mb-6">Complete Directory of Calculators & Mathematical Tools in Nepal</h2>
           <p className="text-xl leading-relaxed mb-6">
-            Welcome to the ultimate directory of computational tools at <strong>NepaCalc</strong>, the premier destination for high-precision mathematical units and specialized calculators in Nepal. Whether you're a student preparing for SEE or NEB exams, a professional engineer designing infrastructure, a financial analyst evaluating investments, or a medical professional assessing health metrics, our comprehensive suite of 80+ calculators is engineered to provide instant, reliable, and accurate results tailored for your needs.
+            Welcome to the ultimate directory of computational tools at <strong>NepaCalc</strong>, the premier destination for high-precision mathematical units and specialized calculators in Nepal. Whether you're a student preparing for SEE or NEB exams, a professional engineer designing infrastructure, a financial analyst evaluating investments, or a medical professional assessing health metrics, our comprehensive suite of 100+ calculators is engineered to provide instant, reliable, and accurate results tailored for your needs.
           </p>
           
           <h3 className="text-2xl font-bold mt-10 mb-4 text-slate-900 dark:text-white">Empowering Education and Professional Excellence in Nepal</h3>

@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 export const metadata: Metadata = {
   metadataBase: new URL('https://nepacalc.com'),
   title: "Free Online Calculators for Nepal | NepaCalc",
-  description: "Nepal's trusted free calculator platform for income tax, EMI planning, GPA tracking, unit conversions, and 80+ professional tools. Try NepaCalc now.",
+  description: "Nepal's trusted free calculator platform for income tax, EMI planning, GPA tracking, unit conversions, and 100+ professional tools. Try NepaCalc now.",
   manifest: '/manifest.json',
   icons: {
     icon: [

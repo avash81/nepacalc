@@ -76,7 +76,7 @@ export function JsonLd({ type, name, description, url, faqs, category = 'Utiliti
     website: {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      description: 'Free online scientific calculator with real-time graphing engine, 3D surface plotter (Orbit Camera), and 80+ professional calculators for Nepal.',
+      description: 'Free online scientific calculator with real-time graphing engine, 3D surface plotter (Orbit Camera), and 100+ professional calculators for Nepal.',
       potentialAction: {
         '@type': 'SearchAction',
         target: `${base}/search?q={search_term_string}`,

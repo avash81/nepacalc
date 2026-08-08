@@ -33,7 +33,7 @@ function SearchResults() {
           Search <span className="text-blue-600">Calculators</span>
         </h1>
         <p className="text-[14px] text-gray-600">
-          Find exactly what you need from our library of 80+ tools.
+          Find exactly what you need from our library of 100+ tools.
         </p>
       </div>
 

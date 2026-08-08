@@ -102,7 +102,7 @@ export function HeroSearch() {
             </div>
           </div>
           <div className="px-4 py-3 bg-[#f8f9fa] border-t border-[#dadce0] text-[10px] font-black text-[#70757a] uppercase tracking-widest text-center">
-            Refining precision across 80+ scientific models
+            Refining precision across 100+ scientific models
           </div>
         </div>
       )}

@@ -8,7 +8,7 @@ export function DirectoryIndex() {
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
         <div className="space-y-1">
           <h2 className="text-2xl font-black text-[#202124] tracking-tight uppercase">Platform Laboratory Index</h2>
-          <p className="text-sm text-slate-500 font-medium italic">Complete institutional directory of 90+ high-precision computational nodes.</p>
+          <p className="text-sm text-slate-500 font-medium italic">Complete institutional directory of 100+ high-precision computational nodes.</p>
         </div>
         <Link href="/directory/" className="px-5 py-2 bg-[#F8F9FA] border border-[#DADCE0] rounded-full text-[11px] font-black uppercase tracking-widest text-[#202124] hover:bg-[#1A73E8] hover:text-white hover:border-[#1A73E8] transition-all">
           Visual Directory &rarr;
