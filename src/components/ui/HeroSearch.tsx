@@ -62,15 +62,12 @@ export function HeroSearch() {
         <input
           type="text"
           placeholder="What do you want to calculate today? (e.g. Income Tax, BMI...)"
-          className="w-full h-14 pl-12 pr-8 bg-white border-2 border-[#dadce0] rounded-xl text-[15px] font-medium text-[#202124] placeholder:text-[#5f6368] focus:border-blue-600 focus:outline-none shadow-sm transition-all"
+          className="w-full h-12 pl-12 pr-4 bg-white border-2 border-[#dadce0] rounded-xl text-[15px] font-medium text-[#202124] placeholder:text-[#5f6368] focus:border-blue-600 focus:outline-none shadow-sm transition-all"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => query.trim() && setIsOpen(true)}
           onKeyDown={handleKeyDown}
         />
-        <div className="absolute right-4 hidden sm:flex items-center gap-2 px-3 py-1.5 bg-[#f8f9fa] border border-[#dadce0] rounded-lg text-[10px] font-black text-[#5f6368] uppercase tracking-widest">
-           Press <span className="text-blue-600">Enter</span> to find
-        </div>
       </div>
 
       {isOpen && results.length > 0 && (

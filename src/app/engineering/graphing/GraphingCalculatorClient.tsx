@@ -47,7 +47,6 @@ export default function GraphingCalculatorClient() {
   const [focusedId, setFocusedId] = useState<number>(1);
   const [keypadOpen, setKeypadOpen] = useState(false);
   const [keypadTab, setKeypadTab] = useState<'123'|'fx'|'abc'>('123');
-  const [mobileTab, setMobileTab] = useState<'functions'|'graph'>('functions');
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -243,26 +242,6 @@ export default function GraphingCalculatorClient() {
   return (
     <div className="flex flex-col bg-[#F8FAFC]" style={{ height: 'calc(100dvh - 64px)', overflow: 'hidden' }}>
 
-      {/* ── Mobile Tab Bar (hidden on desktop) ── */}
-      <div className="lg:hidden flex items-center bg-white border-b border-slate-200 shrink-0">
-        <button
-          onClick={() => setMobileTab('functions')}
-          className={`flex-1 py-3 text-[12px] font-black uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 ${
-            mobileTab === 'functions' ? 'text-[#4361ee] border-b-2 border-[#4361ee]' : 'text-slate-400 hover:text-slate-600'
-          }`}
-        >
-          <span>⚙️</span> Functions
-        </button>
-        <button
-          onClick={() => setMobileTab('graph')}
-          className={`flex-1 py-3 text-[12px] font-black uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 ${
-            mobileTab === 'graph' ? 'text-[#4361ee] border-b-2 border-[#4361ee]' : 'text-slate-400 hover:text-slate-600'
-          }`}
-        >
-          <span>📈</span> Graph
-        </button>
-      </div>
-
       {/* ── Desktop breadcrumb (hidden on mobile) ── */}
       <div className="hidden lg:flex px-4 py-2 border-b border-slate-200 bg-white items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider shrink-0">
         <Link href="/" className="hover:text-blue-600">Home</Link>
@@ -275,12 +254,8 @@ export default function GraphingCalculatorClient() {
       {/* Main Layout: tab-based on mobile, side-by-side on desktop */}
       <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
 
-        {/* ─── LEFT SIDEBAR: visible on desktop always; on mobile only when tab=functions ─── */}
-        <div
-          className={`${
-            mobileTab === 'functions' ? 'flex' : 'hidden'
-          } lg:flex w-full lg:w-[320px] flex-shrink-0 flex-col bg-white border-b lg:border-b-0 lg:border-r border-slate-200 overflow-y-auto lg:h-full`}
-        >
+        {/* ─── LEFT SIDEBAR: Functions & Keypad (Bottom on mobile, Left on desktop) ─── */}
+        <div className="flex flex-1 lg:flex-none lg:w-[320px] flex-col bg-white border-t lg:border-t-0 lg:border-r border-slate-200 overflow-y-auto lg:h-full order-2 lg:order-1">
           <div className="px-3 pt-3 pb-2 border-b border-slate-100">
             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Presets</p>
             <div className="flex flex-wrap gap-1.5">
@@ -450,23 +425,12 @@ export default function GraphingCalculatorClient() {
             </p>
           </div>
 
-          {/* Mobile-only: View Graph button */}
-          <div className="lg:hidden px-3 pb-3 pt-1">
-            <button
-              onClick={() => setMobileTab('graph')}
-              className="w-full py-3 bg-[#4361ee] text-white text-[13px] font-black rounded-xl flex items-center justify-center gap-2 hover:bg-[#3a56d4] active:scale-95 transition-all shadow-md"
-            >
-              📈 View Graph
-            </button>
-          </div>
         </div>
 
-        {/* ─── RIGHT: Graph Canvas ─── visible on desktop always; on mobile only when tab=graph ─── */}
+        {/* ─── RIGHT: Graph Canvas (Top on mobile, Right on desktop) ─── */}
         <div
           ref={wrapRef}
-          className={`${
-            mobileTab === 'graph' ? 'flex' : 'hidden'
-          } lg:flex flex-1 relative bg-white overflow-hidden`}
+          className="flex flex-1 relative bg-white overflow-hidden order-1 lg:order-2"
           style={{ minHeight: '0' }}
         >
           <canvas
