@@ -103,11 +103,11 @@ export default function HomePage() {
       <div className="min-h-screen bg-[#F1F3F4]">
         <section className="pt-2 pb-4 border-b border-[#dadce0] bg-[#F1F3F4]">
           <div className="hp-container">
-            <div className="max-w-4xl mx-auto text-center px-4 pt-2">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#202124] tracking-tight mb-2 leading-[1.1]">
+            <div className="max-w-5xl mx-auto text-center px-4 pt-2">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black text-[#202124] tracking-tight mb-2 leading-tight whitespace-nowrap overflow-hidden text-ellipsis">
                 Free Online <span className="text-blue-600">Calculators</span>, Converters &amp; Digital Tools
               </h1>
-              <p className="text-[14px] sm:text-[15px] text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto mb-4">
+              <p className="text-[14px] sm:text-[15px] text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto mb-4">
                 NepaCalc provides free online calculators, converters and digital tools covering finance, engineering, education, health, science and Nepal-specific calculations. Designed for students, professionals, businesses and everyday users.
               </p>
               <div className="flex justify-center">
