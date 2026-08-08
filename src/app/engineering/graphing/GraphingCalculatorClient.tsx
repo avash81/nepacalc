@@ -278,43 +278,43 @@ export default function GraphingCalculatorClient() {
               >+</button>
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-3">
               {exprs.map((expr, i) => (
                 <div
                   key={expr.id}
                   onClick={() => setFocusedId(expr.id)}
-                  className={`flex items-center gap-2 p-2 rounded-xl border transition-all cursor-pointer ${focusedId === expr.id ? 'border-[#4361ee] bg-blue-50/40 shadow-sm' : 'border-slate-200 bg-slate-50 hover:border-slate-300'}`}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border transition-all cursor-pointer ${focusedId === expr.id ? 'border-[#4361ee] bg-blue-50/40 shadow-sm' : 'border-slate-200 bg-slate-50 hover:border-slate-300'}`}
                 >
-                  {/* Color dot / visibility toggle */}
+                  {/* Color dot / visibility toggle — bigger, no overlap */}
                   <button
                     onMouseDown={e => e.stopPropagation()}
                     onClick={e => { e.stopPropagation(); toggleExpr(expr.id); }}
-                    className="w-5 h-5 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all"
+                    className="w-7 h-7 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all shadow-sm"
                     style={{ borderColor: expr.color, background: expr.visible ? expr.color : 'transparent' }}
                   >
-                    {expr.visible && <span className="text-white text-[9px] font-bold">✓</span>}
+                    {expr.visible && <span className="text-white text-[11px] font-bold">✓</span>}
                   </button>
 
-                  {/* Expression input */}
-                  <div className="flex-1 relative">
-                    <span className="absolute left-2 top-1/2 -translate-y-1/2 text-[11px] font-mono text-slate-400">f{i+1}=</span>
+                  {/* Expression input — enough left padding so f1= label doesn't overlap text */}
+                  <div className="flex-1 relative min-w-0">
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[11px] font-mono text-slate-400 select-none">f{i+1}=</span>
                     <input
                       type="text"
                       value={expr.text}
                       onFocus={() => setFocusedId(expr.id)}
                       onChange={e => updateExpr(expr.id, e.target.value)}
                       placeholder="e.g. sin(x)"
-                      className="w-full pl-9 pr-2 py-1.5 text-[13px] font-mono rounded-lg border border-transparent focus:border-[#4361ee] focus:ring-1 focus:ring-[#4361ee] outline-none transition-all bg-white font-medium text-slate-900"
-                      style={{ borderLeftColor: expr.color, borderLeftWidth: 2 }}
+                      className="w-full pl-12 pr-3 py-2 text-[13px] font-mono rounded-lg border border-slate-200 focus:border-[#4361ee] focus:ring-1 focus:ring-[#4361ee] outline-none transition-all bg-white font-medium text-slate-900"
+                      style={{ borderLeftColor: expr.color, borderLeftWidth: 3 }}
                     />
                   </div>
 
-                  {/* Remove */}
+                  {/* Remove button — visible, not tiny */}
                   {exprs.length > 1 && (
                     <button
                       onMouseDown={e => e.stopPropagation()}
                       onClick={e => { e.stopPropagation(); removeExpr(expr.id); }}
-                      className="text-slate-300 hover:text-red-500 text-[14px] font-bold px-0.5 transition-all flex-shrink-0"
+                      className="w-7 h-7 flex-shrink-0 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-red-500 border border-slate-200 hover:border-red-500 text-[13px] font-bold transition-all"
                     >✕</button>
                   )}
                 </div>
@@ -391,9 +391,18 @@ export default function GraphingCalculatorClient() {
                   </div>
                 )}
 
-                {/* Operator bar */}
-                <div className="flex gap-1 mt-1">
-                  {['+','-','*','/','='].map(op => <Btn key={op} label={op} val={op} />)}
+                {/* Operator bar — spacious, normal sized buttons */}
+                <div className="grid grid-cols-5 gap-2 mt-2">
+                  {['+', '−', '×', '÷', '^'].map((op, idx) => {
+                    const vals = ['+', '-', '*', '/', '^'];
+                    return (
+                      <button
+                        key={op}
+                        onMouseDown={e => { e.preventDefault(); kpush(vals[idx]); }}
+                        className="flex items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 text-[15px] font-bold min-h-[44px] hover:bg-blue-50 hover:text-blue-600 hover:border-blue-300 active:scale-90 transition-all shadow-sm"
+                      >{op}</button>
+                    );
+                  })}
                 </div>
               </div>
             </div>
