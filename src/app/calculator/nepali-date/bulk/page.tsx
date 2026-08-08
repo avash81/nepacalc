@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import BulkCalculator from "./BulkCalculator";
-import { AppLayout } from "@/components/layout/AppLayout";
-import { ModernCalcLayout } from "@/components/calculator/ModernCalcLayout";
 
 export const metadata: Metadata = {
   title: "Bulk Nepali Date Converter | Batch AD to BS & BS to AD | NepaCalc",
@@ -29,8 +27,8 @@ export const metadata: Metadata = {
 
 export default function BulkNepaliDatePage() {
   return (
-    <AppLayout>
+    <div className="bg-[#F1F3F4]">
       <BulkCalculator />
-    </AppLayout>
+    </div>
   );
 }
