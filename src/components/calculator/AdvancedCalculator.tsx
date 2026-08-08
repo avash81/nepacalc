@@ -10,6 +10,12 @@ function compute(rawExpr: string, deg: boolean): string {
       .replace(/π/g, String(Math.PI)).replace(/EXP/g, 'e')
       .replace(/(\d)(x)/g, '$1*$2');
 
+    // If expression contains variables like x or y, substitute 1 for sample evaluation validation
+    const hasVars = /\b[x-z]\b/i.test(e);
+    if (hasVars) {
+      e = e.replace(/\b[x-z]\b/gi, '(1)');
+    }
+
     const toR = (v: number) => deg ? v * Math.PI / 180 : v;
     const toD = (v: number) => deg ? v * 180 / Math.PI : v;
 
@@ -31,14 +37,19 @@ function compute(rawExpr: string, deg: boolean): string {
 
     const open  = (e.match(/\(/g) || []).length;
     const close = (e.match(/\)/g) || []).length;
-    e += ')'.repeat(Math.max(0, open, close));
+    e += ')'.repeat(Math.max(0, open - close));
 
     // eslint-disable-next-line no-new-func
     const fn = new Function('toR', 'toD', `"use strict"; return (${e})`);
     const result = fn(toR, toD);
     if (typeof result !== 'number' || !isFinite(result) || isNaN(result)) return 'Error';
+    
+    // If it has variables, return the original expression so it stays as f(x)
+    if (hasVars) return rawExpr;
     return parseFloat(result.toPrecision(10)).toString();
-  } catch { return ''; }
+  } catch {
+    return rawExpr || '';
+  }
 }
 
 /* ─── THEME ─────────────────────────────────────────────────────── */
@@ -55,7 +66,7 @@ function Key({ label, on, variant = 'normal', small = false, ariaLabel }: {
   const themes: Record<string, string> = {
     normal: 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm font-medium',
     num:    'bg-white border-slate-200 text-slate-900 hover:bg-slate-50 shadow-sm font-bold',
-    dark:   'bg-slate-600 border-slate-500 text-[#202124] hover:bg-slate-700 shadow-sm font-bold',
+    dark:   'bg-slate-600 border-slate-500 text-white hover:bg-slate-700 shadow-sm font-bold',
     purple: '',
   };
   return (
@@ -71,7 +82,7 @@ function Key({ label, on, variant = 'normal', small = false, ariaLabel }: {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   ADVANCED CALCULATOR ,  GeoGebra-style 4-tab keyboard
+   ADVANCED CALCULATOR FOR GRAPHING
 ════════════════════════════════════════════════════════════════════ */
 export default function AdvancedCalculator({
   onExpressionChange,
@@ -97,16 +108,32 @@ export default function AdvancedCalculator({
 
   const push = useCallback((v: string) => {
     setAnswered(false);
-    setExpr(p => answered ? v : p + v);
-  }, [answered]);
+    setExpr(p => {
+      const next = answered ? v : p + v;
+      onExpressionChange?.(next);
+      return next;
+    });
+  }, [answered, onExpressionChange]);
 
-  const eq  = useCallback(() => {
+  const eq = useCallback(() => {
     const r = compute(expr, isDeg);
-    if (r && r !== 'Error') { setExpr(r); setDisp(r); setAnswered(true); }
-  }, [expr, isDeg]);
+    if (r) { 
+      setExpr(r); 
+      setDisp(r); 
+      setAnswered(true); 
+      onExpressionChange?.(r);
+    }
+  }, [expr, isDeg, onExpressionChange]);
 
-  const ac  = () => { setExpr(''); setDisp('0'); setAnswered(false); };
-  const del = () => { setAnswered(false); setExpr(p => p.slice(0, -1)); };
+  const ac  = () => { setExpr(''); setDisp('0'); setAnswered(false); onExpressionChange?.(''); };
+  const del = () => { 
+    setAnswered(false); 
+    setExpr(p => {
+      const next = p.slice(0, -1);
+      onExpressionChange?.(next);
+      return next;
+    }); 
+  };
 
   /* TAB BAR */
   const TABS: { id: TabId; label: string }[] = [
@@ -116,7 +143,7 @@ export default function AdvancedCalculator({
     { id: 'sym', label: '#&¬' },
   ];
 
-  /* Bottom row ,  reusable */
+  /* Bottom row */
   const BotRow = ({ leftLabel, leftFn }: { leftLabel: string; leftFn: () => void }) => (
     <div className="flex gap-1.5">
       <button onClick={leftFn} aria-label="Toggle keyboard type" className="flex-1 min-h-[44px] rounded-xl border border-slate-200 bg-slate-100 text-slate-700 text-[12px] font-bold hover:bg-slate-200 transition-all active:scale-90">{leftLabel}</button>
@@ -254,14 +281,14 @@ export default function AdvancedCalculator({
     <div className="w-full bg-white overflow-hidden font-[Inter,system-ui,sans-serif]"
       style={{ borderRadius:'1.5rem', border:'1px solid #DADCE0', boxShadow:'0 1px 6px rgba(32,33,36,0.28)' }}>
 
-      {/* Display */}
+      {/* Display Screen */}
       <div className="px-5 pt-5 pb-3">
         <div className="relative border border-[#DADCE0] rounded-xl px-5 py-6 flex items-center min-h-[72px] bg-[#fafafa]">
-          <div className="flex-1 text-right text-[40px] sm:text-[48px] font-light text-[#202124] tracking-tight leading-none truncate">
+          <div className="flex-1 text-right text-[36px] sm:text-[44px] font-light text-[#202124] tracking-tight leading-none truncate font-mono">
             {answered ? disp : (expr || '0')}
           </div>
           {expr && !answered && (
-            <div className="absolute right-4 bottom-2 text-[12px] text-slate-400 font-medium">= {disp}</div>
+            <div className="absolute right-4 bottom-2 text-[12px] text-slate-400 font-mono font-medium">= {disp}</div>
           )}
         </div>
       </div>
@@ -287,4 +314,3 @@ export default function AdvancedCalculator({
     </div>
   );
 }
-

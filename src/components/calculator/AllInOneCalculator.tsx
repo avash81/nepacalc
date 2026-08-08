@@ -103,6 +103,12 @@ export default function AllInOneCalculator({
     setExpr(p => answered ? v : p + v);
   }, [answered]);
 
+  const loadPreset = (pExpr: string) => {
+    setAnswered(false);
+    setLogicResult(null);
+    setExpr(pExpr);
+  };
+
   const solveWithLogicEngine = async (query: string) => {
     if (!query.trim()) return;
     setIsSolving(true);
@@ -111,7 +117,7 @@ export default function AllInOneCalculator({
 
     const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
     if (!apiKey) {
-      setError("Logic engine response: Enter any expression to calculate or simplify.");
+      setError("Enter any mathematical expression to calculate or simplify.");
       setIsSolving(false);
       return;
     }
@@ -142,7 +148,7 @@ export default function AllInOneCalculator({
         throw new Error("Invalid response");
       }
     } catch (err) {
-      setError("Logic steps calculated directly.");
+      setError("Calculated expression directly.");
     } finally {
       setIsSolving(false);
     }
@@ -172,11 +178,32 @@ export default function AllInOneCalculator({
 
   return (
     <div className="w-full bg-[#FFFFFF] border border-[#DADCE0] rounded-2xl shadow-lg overflow-hidden font-sans">
+      
+      {/* Quick Test Presets Header */}
+      <div className="bg-[#F8FAFC] border-b border-[#DADCE0] px-5 py-3 flex items-center gap-2 overflow-x-auto">
+        <span className="text-[10px] font-bold text-slate-400 uppercase shrink-0">Quick Examples:</span>
+        {[
+          { label: 'sin(45°)', val: 'sin(45)' },
+          { label: '2^10', val: '2^10' },
+          { label: 'log(100)', val: 'log(100)' },
+          { label: '√(144)', val: 'sqrt(144)' },
+          { label: 'tan(30)', val: 'tan(30)' }
+        ].map(p => (
+          <button
+            key={p.val}
+            onClick={() => loadPreset(p.val)}
+            className="px-2.5 py-1 bg-white hover:bg-blue-50 hover:text-blue-600 hover:border-blue-300 text-slate-700 rounded-full text-xs font-bold border border-slate-200 transition-all shrink-0 shadow-sm"
+          >
+            {p.label}
+          </button>
+        ))}
+      </div>
+
       {/* ── DISPLAY SCREEN ───────────────────────────────────────────── */}
       <div className="p-4 sm:p-6 bg-white border-b border-[#DADCE0]">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-3">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#5F6368]">Scientific CAS Engine</span>
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#5F6368]">Institutional CAS Engine</span>
             <div className="flex items-center gap-2 text-[11px] bg-[#F1F3F4] px-2.5 py-1 rounded-full border border-[#DADCE0]">
               <button onClick={() => setIsDeg(true)} className={`font-bold ${isDeg ? 'text-[#1A73E8]' : 'text-[#70757A]'}`}>DEG</button>
               <span className="text-slate-300">|</span>
@@ -184,8 +211,8 @@ export default function AllInOneCalculator({
             </div>
           </div>
           <div className="flex gap-2">
-            <button onClick={ac} className="px-3 py-1 bg-rose-50 text-rose-600 border border-rose-200 rounded-lg text-[11px] font-bold hover:bg-rose-100">AC</button>
-            <button onClick={del} className="px-3 py-1 bg-slate-100 text-slate-700 border border-slate-200 rounded-lg text-[11px] font-bold hover:bg-slate-200">DEL</button>
+            <button onClick={ac} className="px-3 py-1 bg-rose-50 text-rose-600 border border-rose-200 rounded-lg text-[11px] font-bold hover:bg-rose-100 transition-colors">AC</button>
+            <button onClick={del} className="px-3 py-1 bg-slate-100 text-slate-700 border border-slate-200 rounded-lg text-[11px] font-bold hover:bg-slate-200 transition-colors">DEL</button>
           </div>
         </div>
 

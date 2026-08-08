@@ -50,8 +50,11 @@ function fmt(v: number) { return Math.abs(v) < 1e-10 ? '0' : String(parseFloat(v
 interface Expr { id: number; text: string; color: string; visible: boolean; }
 
 export default function GraphingCalculatorClient() {
-  const [exprs, setExprs] = useState<Expr[]>([{ id: 1, text: 'sin(x)', color: COLORS[0], visible: true }]);
-  const nextId = useRef(2);
+  const [exprs, setExprs] = useState<Expr[]>([
+    { id: 1, text: 'sin(x)', color: COLORS[0], visible: true },
+    { id: 2, text: 'x^2 - 4', color: COLORS[1], visible: true }
+  ]);
+  const nextId = useRef(3);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const view = useRef({ xMin: -10, xMax: 10, yMin: -7, yMax: 7 });
@@ -66,7 +69,11 @@ export default function GraphingCalculatorClient() {
   const updateExpr = (id: number, text: string) => setExprs(p => p.map(e => e.id === id ? { ...e, text } : e));
   const toggleExpr = (id: number) => setExprs(p => p.map(e => e.id === id ? { ...e, visible: !e.visible } : e));
 
-  /* ── Draw everything ──────────────────────────────────────── */
+  const loadPreset = (presetText: string) => {
+    setExprs([{ id: 1, text: presetText, color: COLORS[0], visible: true }]);
+  };
+
+  /* ── Draw Canvas ──────────────────────────────────────── */
   const draw = useCallback(() => {
     const c = canvasRef.current; if (!c) return;
     const ctx = c.getContext('2d'); if (!ctx) return;
@@ -85,21 +92,23 @@ export default function GraphingCalculatorClient() {
     const toY = (y: number) => H - ((y - yMin) / yS) * H;
 
     // BG
-    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, W, H);
 
-    // Grid
+    // Minor Grid
     const xs = niceStep(xS, 10), ys = niceStep(yS, 8);
-    ctx.strokeStyle = '#f1f5f9'; ctx.lineWidth = 0.5; ctx.beginPath();
+    ctx.strokeStyle = '#f8fafc'; ctx.lineWidth = 0.5; ctx.beginPath();
     for (let x = Math.floor(xMin / (xs/5)) * (xs/5); x <= xMax; x += xs/5) { const p = toX(x); ctx.moveTo(p, 0); ctx.lineTo(p, H); }
     for (let y = Math.floor(yMin / (ys/5)) * (ys/5); y <= yMax; y += ys/5) { const p = toY(y); ctx.moveTo(0, p); ctx.lineTo(W, p); }
     ctx.stroke();
+
+    // Major Grid
     ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 1; ctx.beginPath();
     for (let x = Math.floor(xMin / xs) * xs; x <= xMax; x += xs) { const p = toX(x); ctx.moveTo(p, 0); ctx.lineTo(p, H); }
     for (let y = Math.floor(yMin / ys) * ys; y <= yMax; y += ys) { const p = toY(y); ctx.moveTo(0, p); ctx.lineTo(W, p); }
     ctx.stroke();
 
-    // Labels
-    ctx.font = '10px Inter,system-ui,sans-serif'; ctx.fillStyle = '#94a3b8';
+    // Axis Labels
+    ctx.font = '11px Inter,system-ui,sans-serif'; ctx.fillStyle = '#64748b';
     const ox = Math.min(Math.max(toX(0), 5), W - 5), oy = Math.min(Math.max(toY(0), 5), H - 5);
     
     ctx.textAlign = 'center';
@@ -119,13 +128,13 @@ export default function GraphingCalculatorClient() {
     }
 
     // Axes
-    ctx.strokeStyle = '#334155'; ctx.lineWidth = 1.5; ctx.beginPath();
+    ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 1.5; ctx.beginPath();
     ctx.moveTo(0, oy); ctx.lineTo(W, oy); ctx.moveTo(ox, 0); ctx.lineTo(ox, H); ctx.stroke();
-    ctx.fillStyle = '#334155';
+    ctx.fillStyle = '#1e293b';
     ctx.beginPath(); ctx.moveTo(W-1, oy); ctx.lineTo(W-8, oy-4); ctx.lineTo(W-8, oy+4); ctx.fill();
     ctx.beginPath(); ctx.moveTo(ox, 1); ctx.lineTo(ox-4, 9); ctx.lineTo(ox+4, 9); ctx.fill();
 
-    // Curves
+    // Plot Curves
     const SAMPLES = Math.min(Math.round(W * 3), 2000);
     const step = xS / SAMPLES;
     exprs.forEach(expr => {
@@ -147,16 +156,16 @@ export default function GraphingCalculatorClient() {
       ctx.stroke(); ctx.restore();
     });
 
-    // Empty hint
+    // Hint when empty
     if (exprs.every(e => !e.text.trim())) {
-      ctx.fillStyle = '#cbd5e1'; ctx.font = 'bold 16px Inter,system-ui,sans-serif';
-      ctx.textAlign = 'center'; ctx.fillText('Type a function to plot', W/2, H/2 - 10);
-      ctx.font = '13px Inter,system-ui,sans-serif'; ctx.fillStyle = '#94a3b8';
+      ctx.fillStyle = '#94a3b8'; ctx.font = 'bold 15px Inter,system-ui,sans-serif';
+      ctx.textAlign = 'center'; ctx.fillText('Type a function or click a preset below to plot', W/2, H/2 - 10);
+      ctx.font = '13px Inter,system-ui,sans-serif'; ctx.fillStyle = '#cbd5e1';
       ctx.fillText('e.g.  sin(x)  ·  x^2 - 4  ·  1/x  ·  cos(2*x)', W/2, H/2 + 20);
     }
   }, [exprs]);
 
-  // Resize
+  // Resize & Redraw
   useEffect(() => {
     const w = wrapRef.current; if (!w) return;
     const obs = new ResizeObserver(() => { cancelAnimationFrame(raf.current); raf.current = requestAnimationFrame(draw); });
@@ -164,7 +173,7 @@ export default function GraphingCalculatorClient() {
   }, [draw]);
   useEffect(() => { cancelAnimationFrame(raf.current); raf.current = requestAnimationFrame(draw); }, [draw]);
 
-  // Pan
+  // Pan controls
   const onMD = (e: React.MouseEvent) => { drag.current = { active: true, lx: e.clientX, ly: e.clientY }; };
   const onMM = (e: React.MouseEvent) => {
     if (!drag.current.active) return;
@@ -178,7 +187,7 @@ export default function GraphingCalculatorClient() {
   };
   const onMU = () => { drag.current.active = false; };
 
-  // Zoom
+  // Zoom controls
   const onWheel = useCallback((e: WheelEvent) => {
     e.preventDefault();
     const c = canvasRef.current; if (!c) return;
@@ -194,7 +203,7 @@ export default function GraphingCalculatorClient() {
   const zoomBy = (f: number) => { const v = view.current, cx = (v.xMin+v.xMax)/2, cy = (v.yMin+v.yMax)/2, hw = (v.xMax-v.xMin)/2*f, hh = (v.yMax-v.yMin)/2*f; view.current = { xMin:cx-hw,xMax:cx+hw,yMin:cy-hh,yMax:cy+hh }; cancelAnimationFrame(raf.current); raf.current = requestAnimationFrame(draw); };
   const resetView = () => { view.current = { xMin:-10,xMax:10,yMin:-7,yMax:7 }; cancelAnimationFrame(raf.current); raf.current = requestAnimationFrame(draw); };
 
-  // Touch
+  // Touch handlers
   const tRef = useRef<{x:number;y:number}|null>(null);
   const onTS = (e: React.TouchEvent) => { if (e.touches.length===1) tRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }; };
   const onTM = (e: React.TouchEvent) => {
@@ -208,22 +217,49 @@ export default function GraphingCalculatorClient() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafbfc] pt-12 pb-16">
-      {/* Breadcrumb */}
-      <div className="max-w-7xl mx-auto px-4 py-3">
-        <nav className="text-[11px] font-medium text-slate-400">
+    <div className="min-h-screen bg-[#F8FAFC] pt-6 pb-20">
+      {/* Top Header & Navigation */}
+      <div className="max-w-7xl mx-auto px-4 mb-4">
+        <nav className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">
           <Link href="/" className="hover:text-blue-600">Home</Link>
-          <span className="mx-1.5">›</span>
+          <span className="mx-1.5">/</span>
           <Link href="/engineering/" className="hover:text-blue-600">Engineering</Link>
-          <span className="mx-1.5">›</span>
-          <span className="text-slate-600">Graphing Calculator</span>
+          <span className="mx-1.5">/</span>
+          <span className="text-slate-700">Graphing Visualizer</span>
         </nav>
+        
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div>
+            <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Interactive Graphing Calculator</h1>
+            <p className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">Plot trigonometric, polynomial, and algebraic functions with live 2D Cartesian visualizer.</p>
+          </div>
+          
+          {/* Presets Bar */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0">
+            <span className="text-[11px] font-bold text-slate-400 uppercase shrink-0">Presets:</span>
+            {[
+              { label: 'sin(x)', val: 'sin(x)' },
+              { label: 'x² - 4', val: 'x^2 - 4' },
+              { label: '1 / x', val: '1/x' },
+              { label: 'cos(2x)', val: 'cos(2*x)' },
+              { label: '|x|', val: 'abs(x)' }
+            ].map(p => (
+              <button
+                key={p.val}
+                onClick={() => loadPreset(p.val)}
+                className="px-3 py-1.5 bg-slate-100 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-300 text-slate-700 rounded-full text-xs font-bold border border-slate-200 transition-all shrink-0 shadow-sm"
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 space-y-6">
-        {/* Top Section: Calculator (Left) & Canvas Graph (Right) */}
+        {/* Main 2-Column Desktop Grid: Calculator (Left) & Canvas Plotter (Right) */}
         <div className="flex flex-col lg:flex-row gap-6 items-start">
-          {/* Advanced Calculator */}
+          {/* Advanced Calculator Engine */}
           <div className="w-full lg:w-[480px] flex-shrink-0">
             <AdvancedCalculator onExpressionChange={(text) => {
               if (exprs.length > 0) {
@@ -232,7 +268,7 @@ export default function GraphingCalculatorClient() {
             }} />
           </div>
 
-          {/* Canvas Graph Visualizer */}
+          {/* High-Resolution Interactive Canvas Graph */}
           <div ref={wrapRef} className="flex-1 w-full h-[520px] relative bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
             <canvas
               ref={canvasRef}
@@ -240,31 +276,34 @@ export default function GraphingCalculatorClient() {
               onMouseDown={onMD} onMouseMove={onMM} onMouseUp={onMU} onMouseLeave={onMU}
               onTouchStart={onTS} onTouchMove={onTM} onTouchEnd={() => { tRef.current = null; }}
             />
+            
+            {/* Zoom / Pan Controls Overlay */}
             <div className="absolute right-4 bottom-16 flex flex-col gap-2 z-10">
-              <button onClick={resetView} className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[14px] hover:bg-slate-50">⊡</button>
-              <button onClick={() => zoomBy(0.75)} className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[16px] font-bold hover:bg-slate-50">+</button>
-              <button onClick={() => zoomBy(1.33)} className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[16px] font-bold hover:bg-slate-50">−</button>
+              <button onClick={resetView} title="Reset View" className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[14px] hover:bg-slate-50 transition-transform active:scale-95 font-bold text-slate-700">⊡</button>
+              <button onClick={() => zoomBy(0.75)} title="Zoom In" className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[18px] font-bold hover:bg-slate-50 transition-transform active:scale-95 text-slate-700">+</button>
+              <button onClick={() => zoomBy(1.33)} title="Zoom Out" className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[18px] font-bold hover:bg-slate-50 transition-transform active:scale-95 text-slate-700">−</button>
             </div>
-            <div className="absolute bottom-4 right-14 text-[10px] text-slate-300 pointer-events-none">drag · scroll to zoom</div>
+            
+            <div className="absolute bottom-4 right-14 text-[10px] font-bold text-slate-400 uppercase tracking-widest pointer-events-none">Drag to pan · Scroll to zoom</div>
           </div>
         </div>
 
-        {/* Bottom Section: Compact Expression Input Box Below Calculator */}
+        {/* Compact Expressions Manager Box (Below Calculator) */}
         <div className="w-full bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
             <div className="flex items-center gap-2">
               <span className="text-xl">📈</span>
-              <h2 className="text-sm font-bold text-[#202124]">Graphing Expressions</h2>
+              <h2 className="text-sm font-bold text-slate-900">Active Function Expressions</h2>
             </div>
-            <button onClick={addExpr} className="px-3.5 py-1.5 bg-[#4361ee] text-white text-[12px] font-bold rounded-lg hover:bg-[#3a56d4] transition-colors shadow-sm">
+            <button onClick={addExpr} className="px-4 py-1.5 bg-[#4361ee] text-white text-xs font-bold rounded-xl hover:bg-[#3a56d4] transition-all shadow-sm active:scale-95">
               + Add Function
             </button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {exprs.map((expr, i) => (
-              <div key={expr.id} className="flex items-center gap-2.5 p-2 bg-[#fafbfc] border border-slate-200 rounded-xl group">
-                <button onClick={() => toggleExpr(expr.id)} className="w-6 h-6 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all" style={{ borderColor: expr.color, background: expr.visible ? expr.color : 'transparent' }}>
+              <div key={expr.id} className="flex items-center gap-2.5 p-2 bg-slate-50 border border-slate-200 rounded-xl group">
+                <button onClick={() => toggleExpr(expr.id)} title="Toggle Visibility" className="w-6 h-6 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all" style={{ borderColor: expr.color, background: expr.visible ? expr.color : 'transparent' }}>
                   {expr.visible && <span className="text-white text-[11px] font-bold">✓</span>}
                 </button>
                 <div className="flex-1 relative">
@@ -274,19 +313,19 @@ export default function GraphingCalculatorClient() {
                     value={expr.text}
                     onChange={e => updateExpr(expr.id, e.target.value)}
                     placeholder="e.g. sin(x)"
-                    className="w-full pl-11 pr-3 py-2 text-[13px] font-mono rounded-lg border border-slate-200 focus:border-[#4361ee] focus:ring-1 focus:ring-[#4361ee] outline-none transition-all bg-white"
+                    className="w-full pl-11 pr-3 py-2 text-[13px] font-mono rounded-lg border border-slate-200 focus:border-[#4361ee] focus:ring-1 focus:ring-[#4361ee] outline-none transition-all bg-white font-medium text-slate-900"
                     style={{ borderLeftColor: expr.color, borderLeftWidth: 3 }}
                   />
                 </div>
                 {exprs.length > 1 && (
-                  <button onClick={() => removeExpr(expr.id)} className="text-slate-400 hover:text-red-500 text-[14px] font-bold px-1 transition-all flex-shrink-0">✕</button>
+                  <button onClick={() => removeExpr(expr.id)} title="Remove Function" className="text-slate-400 hover:text-red-500 text-[14px] font-bold px-1 transition-all flex-shrink-0">✕</button>
                 )}
               </div>
             ))}
           </div>
-          
-          <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500 flex flex-wrap gap-4">
-            <span><strong>Functions:</strong> sin, cos, tan, asin, acos, atan, log, ln, sqrt, abs</span>
+
+          <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500 flex flex-wrap gap-4 font-medium">
+            <span><strong>Supported Functions:</strong> sin, cos, tan, asin, acos, atan, log, ln, sqrt, abs</span>
             <span><strong>Constants:</strong> π, e</span>
             <span><strong>Powers:</strong> x^2, x^3</span>
           </div>
