@@ -113,8 +113,8 @@ export function Footer() {
             {/* Trust badges */}
             <div className="mt-6 space-y-2">
               {['Free to Use', 'Privacy First', 'Mobile Friendly', 'Built for Everyone'].map((badge) => (
-                <div key={badge} className="flex items-center gap-2 text-[11px] text-[#6e757c]">
-                  <span className="text-emerald-500 font-black">✓</span>
+                <div key={badge} className="flex items-center gap-2 text-[11px] text-white/90">
+                  <span className="text-white font-black">✓</span>
                   {badge}
                 </div>
               ))}
@@ -124,10 +124,10 @@ export function Footer() {
         </div>
 
         {/* ── BOTTOM BAR ── */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 text-[11px] font-medium tracking-wide text-white/70">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 text-[11px] font-medium tracking-wide text-white">
           <span>&copy; {year} NepaCalc. All Rights Reserved.</span>
-          <span className="hidden sm:block text-white/30">•</span>
-          <span className="text-white/70">Built for Everyone. Specialized for Nepal.</span>
+          <span className="hidden sm:block text-white/50">•</span>
+          <span className="text-white">Built for Everyone. Specialized for Nepal.</span>
           <div className="ml-auto sm:ml-0">
             <FooterScrollTop />
           </div>
