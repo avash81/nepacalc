@@ -3,6 +3,8 @@ import { useState, useEffect, useMemo } from 'react';
 import NepaliDate from 'nepali-date-converter';
 import { useSyncState } from '@/hooks/useSyncState';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import { NepaliDateToolsNavigation } from '@/components/calculator/NepaliDateToolsNavigation';
+import Link from 'next/link';
 import { 
   Calendar, RefreshCw, Clock, MapPin, Info, ArrowRight, Table,
   Activity, Landmark, ShieldCheck, Globe, Target, Wallet, History,
@@ -113,6 +115,7 @@ export default function NepaliDateConverter() {
       icon={Calendar}
       inputs={
         <div className="space-y-6">
+          <NepaliDateToolsNavigation currentPage="single" />
           <div className="grid grid-cols-1 gap-6">
             <div className="space-y-2">
                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Conversion Protocol</label>
@@ -202,6 +205,15 @@ export default function NepaliDateConverter() {
       }
       details={
         <div className="space-y-6">
+           <div className="bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-4">
+              <div>
+                <h3 className="text-lg font-bold text-[#202124] mb-1">Need to convert multiple dates at once?</h3>
+                <p className="text-sm text-[#5F6368]">Use the Bulk Nepali Date Converter to paste columns or upload files.</p>
+              </div>
+              <Link href="/calculator/nepali-date/bulk/" className="shrink-0 inline-flex items-center justify-center h-11 px-6 rounded-md bg-[#0d6e6a] text-white text-sm font-bold tracking-wide hover:bg-[#0a5c58] transition-colors">
+                Try Bulk Converter <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+           </div>
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
              <div className="bg-white border border-[#DADCE0] rounded-lg p-8 shadow-sm relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-8 opacity-5"><History className="w-24 h-24 text-[#1A73E8]" /></div>
