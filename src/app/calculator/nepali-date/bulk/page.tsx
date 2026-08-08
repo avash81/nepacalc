@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import BulkCalculator from "./BulkCalculator";
 import { BulkNepaliDateSeoContent } from "@/components/calculator/BulkNepaliDateSeoContent";
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: "Bulk Nepali Date Converter BS to AD Convert Multiple Dates",
@@ -84,7 +86,39 @@ export default function BulkNepaliDatePage() {
       <BulkCalculator />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <BulkNepaliDateSeoContent />
+        
+        {/* Related Calculators */}
+        <div className="mt-8 mb-6">
+          <h2 className="text-xl font-bold text-[#202124] mb-4 font-serif">Related Calculators</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <Link href="/calculator/nepali-date/" className="bg-white border border-[#e4e7ef] rounded-xl p-4 hover:border-blue-600 hover:shadow-sm transition-all group">
+              <div className="font-semibold text-[#0f1729] mb-1 group-hover:text-blue-600">Single Date Converter</div>
+              <div className="text-[13px] text-slate-500 line-clamp-2">Convert a single date instantly without dealing with spreadsheets.</div>
+            </Link>
+            <Link href="/calculator/date-duration/" className="bg-white border border-[#e4e7ef] rounded-xl p-4 hover:border-blue-600 hover:shadow-sm transition-all group">
+              <div className="font-semibold text-[#0f1729] mb-1 group-hover:text-blue-600">Date Duration</div>
+              <div className="text-[13px] text-slate-500 line-clamp-2">Calculate the exact number of days between two dates.</div>
+            </Link>
+            <Link href="/calculator/workdays/" className="bg-white border border-[#e4e7ef] rounded-xl p-4 hover:border-blue-600 hover:shadow-sm transition-all group">
+              <div className="font-semibold text-[#0f1729] mb-1 group-hover:text-blue-600">Workdays Calculator</div>
+              <div className="text-[13px] text-slate-500 line-clamp-2">Find out how many business days are in a date range.</div>
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-6 bg-white border border-[#DADCE0] rounded-lg p-5 shadow-sm flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-4">
+           <p className="text-sm text-[#5F6368]">
+             Just need one date?{' '}
+           </p>
+           <Link
+             href="/calculator/nepali-date/"
+             className="shrink-0 inline-flex items-center justify-center h-10 px-5 rounded-md bg-[#2454d6] text-white text-sm font-semibold hover:opacity-90 transition-opacity"
+           >
+             Use the single converter <ArrowRight className="w-4 h-4 ml-2" />
+           </Link>
+        </div>
       </div>
     </div>
   );
 }
+

@@ -244,9 +244,9 @@ const rawHtml = `<!DOCTYPE html>
           <div>
             <b>Recognized formats:</b> YYYY-MM-DD, YYYY/MM/DD, DD-MM-YYYY, DD/MM/YYYY, "23 Shrawan 2083",
             "August 8, 2026", real Excel date cells, and Nepali digits/month names (२३ साउन २०८३).
-            In <b>Auto-detect</b> mode each line or cell is read on its own — English dates and Nepali dates
+            In <b>Auto-detect</b> mode each line or cell is read on its own, English dates and Nepali dates
             can be mixed freely in the same paste or the same file, and <b>you can paste several columns at
-            once</b> straight from Excel (copy a multi-column range and paste it in — each date column gets
+            once</b> straight from Excel (copy a multi-column range and paste it in, each date column gets
             converted, same as a file upload). Click the 📋 icon in any column header to copy just that column,
             or use "Copy all for Excel" below the table for everything at once. Any date that couldn't be
             converted is highlighted in red with the reason, so it's easy to spot and fix.
