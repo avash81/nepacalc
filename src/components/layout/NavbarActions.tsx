@@ -65,8 +65,8 @@ export function NavbarActions() {
 
         {/* Navbar Search — hidden on homepage */}
         {!isHomepage && (
-          <div ref={searchRef} className="relative hidden sm:block mr-2">
-            <div className="flex items-center bg-white/10 hover:bg-white/20 focus-within:bg-white rounded-full border border-white/20 focus-within:border-white/60 transition-all duration-200 group w-[180px] lg:w-[240px]">
+          <div ref={searchRef} className="relative block mr-2">
+            <div className="flex items-center bg-white/10 hover:bg-white/20 focus-within:bg-white rounded-full border border-white/20 focus-within:border-white/60 transition-all duration-200 group w-[140px] sm:w-[180px] lg:w-[240px]">
               <Search className="w-4 h-4 ml-3 text-white/70 group-focus-within:text-[#0d6e6a] shrink-0" />
               <input
                 type="text"
@@ -133,32 +133,7 @@ export function NavbarActions() {
             </button>
           </div>
 
-          {/* Mobile search — shown inside drawer on non-homepage */}
-          {!isHomepage && (
-            <div className="px-4 pt-4">
-              <div className="flex items-center bg-[#F1F3F4] rounded-lg border border-[#dadce0] px-3">
-                <Search className="w-4 h-4 text-[#5F6368] shrink-0" />
-                <input
-                  type="text"
-                  placeholder="Search calculators..."
-                  className="w-full h-10 pl-2 bg-transparent text-[12px] font-semibold text-[#202124] placeholder:text-[#9aa0a6] focus:outline-none normal-case tracking-normal"
-                  onChange={e => {
-                    const q = e.target.value.toLowerCase();
-                    if (!q) return;
-                    const hit = CALCULATORS.find(c => c.name.toLowerCase().includes(q) || c.keywords?.some(k => k.toLowerCase().includes(q)));
-                    if (hit) router.push(hit.slug.includes('/') ? `/${hit.slug}/` : `/calculator/${hit.slug}/`);
-                  }}
-                  onKeyDown={e => {
-                    if (e.key === 'Enter') {
-                      const q = (e.target as HTMLInputElement).value.toLowerCase();
-                      const hit = CALCULATORS.find(c => c.name.toLowerCase().includes(q));
-                      if (hit) router.push(hit.slug.includes('/') ? `/${hit.slug}/` : `/calculator/${hit.slug}/`);
-                    }
-                  }}
-                />
-              </div>
-            </div>
-          )}
+          {/* Mobile search removed from here per user request, it is now in the header */}
 
           <div className="flex-1 overflow-y-auto p-6 space-y-3">
             {[
