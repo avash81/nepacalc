@@ -1,5 +1,5 @@
-2:I[86364,["231","static/chunks/231-4d5411c705f5b8da.js","8559","static/chunks/8559-d2bef1f6c37d7db7.js","6773","static/chunks/app/nepal/page-2c78b4990bfb185f.js"],"CalcWrapper"]
-3:I[231,["231","static/chunks/231-4d5411c705f5b8da.js","8559","static/chunks/8559-d2bef1f6c37d7db7.js","6773","static/chunks/app/nepal/page-2c78b4990bfb185f.js"],""]
+2:I[86364,["231","static/chunks/231-4d5411c705f5b8da.js","1694","static/chunks/1694-15e21bd0ce812756.js","6773","static/chunks/app/nepal/page-5005b17cd61375af.js"],"CalcWrapper"]
+3:I[231,["231","static/chunks/231-4d5411c705f5b8da.js","1694","static/chunks/1694-15e21bd0ce812756.js","6773","static/chunks/app/nepal/page-5005b17cd61375af.js"],""]
 4:I[39275,[],""]
 5:I[61343,[],""]
 7:I[1280,["231","static/chunks/231-4d5411c705f5b8da.js","3185","static/chunks/app/layout-1429a6d31cbbb1bb.js"],"Logo"]
