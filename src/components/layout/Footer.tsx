@@ -34,7 +34,7 @@ export function Footer() {
             <Link href="/" className="inline-block transition-transform hover:scale-105 duration-300">
               <Logo size="sm" theme="indigo" />
             </Link>
-            <p className="text-[12.5px] leading-relaxed text-[#9aa0a6] max-w-[240px]">
+            <p className="text-[12.5px] leading-relaxed text-slate-300 max-w-[240px]">
               NepaCalc is a trusted platform providing free online calculators, converters, financial tools, engineering utilities, educational resources, health calculators and Nepal-specific digital tools. Built for speed, accuracy and everyday problem solving.
             </p>
 
@@ -58,7 +58,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group flex items-center gap-2 text-[#9aa0a6] hover:text-white transition-colors duration-150 text-[12.5px]"
+                    className="group flex items-center gap-2 text-slate-300 hover:text-white transition-colors duration-150 text-[12.5px]"
                   >
                     <div className="w-1 h-1 rounded-full flex-shrink-0 bg-[#34a853] opacity-50 transition-all duration-200 group-hover:opacity-100 group-hover:scale-150" />
                     <span className="font-medium group-hover:translate-x-0.5 transition-transform duration-150">
@@ -82,7 +82,7 @@ export function Footer() {
               <li>
                 <a
                   href="mailto:support@nepacalc.com"
-                  className="flex items-center gap-2.5 text-[#9aa0a6] hover:text-white transition-colors duration-150 text-[12.5px] group"
+                  className="flex items-center gap-2.5 text-slate-300 hover:text-white transition-colors duration-150 text-[12.5px] group"
                 >
                   <div className="w-7 h-7 rounded-lg bg-[#161618] border border-[#252529] flex items-center justify-center flex-shrink-0 group-hover:bg-[#1A73E8] group-hover:border-[#1A73E8] transition-all duration-200">
                     <Mail className="w-3.5 h-3.5 text-[#1A73E8] group-hover:text-white transition-colors duration-200" />
@@ -90,7 +90,7 @@ export function Footer() {
                   <span className="font-medium">support@nepacalc.com</span>
                 </a>
               </li>
-              <li className="flex items-center gap-2.5 text-[#9aa0a6] text-[12.5px]">
+              <li className="flex items-center gap-2.5 text-slate-300 text-[12.5px]">
                 <div className="w-7 h-7 rounded-lg bg-[#161618] border border-[#252529] flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-3.5 h-3.5 text-emerald-500" />
                 </div>
@@ -99,7 +99,7 @@ export function Footer() {
               <li>
                 <a
                   href="https://nepacalc.com"
-                  className="flex items-center gap-2.5 text-[#9aa0a6] hover:text-white transition-colors duration-150 text-[12.5px] group"
+                  className="flex items-center gap-2.5 text-slate-300 hover:text-white transition-colors duration-150 text-[12.5px] group"
                 >
                   <div className="w-7 h-7 rounded-lg bg-[#161618] border border-[#252529] flex items-center justify-center flex-shrink-0 group-hover:bg-[#1A73E8] group-hover:border-[#1A73E8] transition-all duration-200">
                     <Globe className="w-3.5 h-3.5 text-[#1A73E8] group-hover:text-white transition-colors duration-200" />
