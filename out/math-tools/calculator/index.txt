@@ -1,4 +1,4 @@
-2:I[94281,["6133","static/chunks/app/math-tools/calculator/page-d8ed9d4a2491ae89.js"],"GraphApp"]
+2:I[94281,["6133","static/chunks/app/math-tools/calculator/page-e0004e13717238c6.js"],"GraphApp"]
 3:I[39275,[],""]
 4:I[61343,[],""]
 6:I[231,["231","static/chunks/231-4d5411c705f5b8da.js","8559","static/chunks/8559-d2bef1f6c37d7db7.js","9315","static/chunks/app/math-tools/page-a099aa7e79657584.js"],""]

@@ -8,9 +8,9 @@ b:I[34845,["231","static/chunks/231-4d5411c705f5b8da.js","7601","static/chunks/a
 c:I[62323,["231","static/chunks/231-4d5411c705f5b8da.js","3185","static/chunks/app/layout-1429a6d31cbbb1bb.js"],"FooterDynamicLinks"]
 d:I[49896,["231","static/chunks/231-4d5411c705f5b8da.js","3185","static/chunks/app/layout-1429a6d31cbbb1bb.js"],"FooterScrollTop"]
 e:"$Sreact.suspense"
-f:I[10912,["231","static/chunks/231-4d5411c705f5b8da.js","3185","static/chunks/app/layout-1429a6d31cbbb1bb.js"],"BailoutToCSR"]
-10:I[21195,["231","static/chunks/231-4d5411c705f5b8da.js","3185","static/chunks/app/layout-1429a6d31cbbb1bb.js"],"MobileNav",1]
-11:I[74043,["231","static/chunks/231-4d5411c705f5b8da.js","3185","static/chunks/app/layout-1429a6d31cbbb1bb.js"],"GoogleAnalytics",1]
+f:I[10912,["231","static/chunks/231-4d5411c705f5b8da.js","3185","static/chunks/app/layout-b6a11d53e498f68d.js"],"BailoutToCSR"]
+10:I[21195,["231","static/chunks/231-4d5411c705f5b8da.js","3185","static/chunks/app/layout-b6a11d53e498f68d.js"],"MobileNav",1]
+11:I[74043,["231","static/chunks/231-4d5411c705f5b8da.js","3185","static/chunks/app/layout-b6a11d53e498f68d.js"],"GoogleAnalytics",1]
 2:T2237,
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
 

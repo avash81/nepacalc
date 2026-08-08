@@ -1,4 +1,4 @@
-2:I[78721,["9639","static/chunks/bdfe9574-34c89eac21416655.js","3035","static/chunks/6195cd38-a014f0e6327e9e3e.js","834","static/chunks/d3d952f0-5f4e317e52d2cbc8.js","1264","static/chunks/1264-53c9c75e1e2cf481.js","3050","static/chunks/3050-29a078c739596558.js","8421","static/chunks/8421-800187a97231b4a6.js","2294","static/chunks/app/math-tools/calculus/page-1f76e4eb9d623f0a.js"],"CalculusApp"]
+2:I[78721,["9639","static/chunks/bdfe9574-34c89eac21416655.js","3035","static/chunks/6195cd38-a014f0e6327e9e3e.js","834","static/chunks/d3d952f0-5f4e317e52d2cbc8.js","1264","static/chunks/1264-53c9c75e1e2cf481.js","3050","static/chunks/3050-29a078c739596558.js","8421","static/chunks/8421-800187a97231b4a6.js","2294","static/chunks/app/math-tools/calculus/page-40d848127827d3bc.js"],"CalculusApp"]
 f:I[39275,[],""]
 10:I[61343,[],""]
 12:I[231,["231","static/chunks/231-4d5411c705f5b8da.js","8559","static/chunks/8559-d2bef1f6c37d7db7.js","9315","static/chunks/app/math-tools/page-a099aa7e79657584.js"],""]
