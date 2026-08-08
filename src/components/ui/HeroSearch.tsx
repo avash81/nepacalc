@@ -61,7 +61,7 @@ export function HeroSearch() {
         </div>
         <input
           type="text"
-          placeholder="What do you want to calculate today? (e.g. Income Tax, BMI...)"
+          placeholder="Find Calculators..."
           className="w-full h-12 pl-12 pr-4 bg-white border-2 border-[#dadce0] rounded-xl text-[15px] font-medium text-[#202124] placeholder:text-[#5f6368] focus:border-blue-600 focus:outline-none shadow-sm transition-all"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
