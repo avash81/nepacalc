@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { CATEGORIES } from '@/data/calculators';
 import { InstitutionalBlock } from '@/components/layout/InstitutionalBlock';
 
-import { RecentCalculators } from '@/components/layout/RecentCalculators';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -101,10 +100,10 @@ export default function HomePage() {
       />
       
       <div className="min-h-screen bg-[#F1F3F4]">
-        <section className="pt-1 pb-8 border-b border-[#dadce0] bg-[#F1F3F4]">
+        <section className="pt-1 pb-3 border-b border-[#dadce0] bg-[#F1F3F4]">
           <div className="hp-container">
-            <div className="mb-6 max-w-4xl mx-auto text-center px-4 pt-4">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#202124] tracking-tight mb-4 leading-[1.1]">
+            <div className="mb-2 max-w-4xl mx-auto text-center px-4 pt-2">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#202124] tracking-tight mb-3 leading-[1.1]">
                 Free Online <span className="text-blue-600">Calculators</span>, Converters &amp; Digital Tools
               </h1>
               <p className="text-[15px] sm:text-base text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto">
@@ -115,11 +114,8 @@ export default function HomePage() {
 
           </div>
         </section>
-        
-        <main className="hp-container py-6">
-          <RecentCalculators />
-          
-          <div className="bg-white border border-[#dadce0] rounded-xl p-6 mb-8 shadow-sm">
+        <main className="hp-container pt-4 pb-6">
+          <div className="bg-white border border-[#dadce0] rounded-xl p-5 mb-5 shadow-sm">
             <h2 className="text-[11px] font-black uppercase tracking-widest text-[#1a73e8] mb-4 border-b border-[#f1f3f4] pb-2">Market Rates &amp; Converters</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
               <Link href="/market-rates/live-gold-price/" className="p-3 bg-[#f8f9fa] border border-[#dadce0] rounded-lg hover:border-[#1a73e8] hover:shadow-md transition-all group">
