@@ -3,7 +3,7 @@ import { useState, useEffect, useMemo } from 'react';
 import NepaliDate from 'nepali-date-converter';
 import { useSyncState } from '@/hooks/useSyncState';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
-import { NepaliDateToolsNavigation } from '@/components/calculator/NepaliDateToolsNavigation';
+import { NepaliDatePageHeader } from '@/components/calculator/NepaliDatePageHeader';
 import Link from 'next/link';
 import { 
   Calendar, RefreshCw, Clock, MapPin, Info, ArrowRight, Table,
@@ -109,13 +109,14 @@ export default function NepaliDateConverter() {
   return (
     <ModernCalcLayout
       slug="nepali-date"
-      crumbs={[{ label: 'Home', href: '/' }, { label: 'Nepal Specific', href: '/nepal/' }, { label: 'Date Converter' }]}
-      title="Nepali Date"
+      crumbs={[]}
+      hideH1={true}
+      title="Nepali Date Converter"
       description="The definitive resource for Nepalese timekeeping. Convert Gregorian (AD) to Bikram Sambat (BS) with astronomical precision for official documentation."
       icon={Calendar}
+      intro={<NepaliDatePageHeader currentPage="single" />}
       inputs={
         <div className="space-y-6">
-          <NepaliDateToolsNavigation currentPage="single" />
           <div className="grid grid-cols-1 gap-6">
             <div className="space-y-2">
                <label className="text-[11px] font-bold text-[#5F6368] uppercase tracking-wider">Conversion Protocol</label>
