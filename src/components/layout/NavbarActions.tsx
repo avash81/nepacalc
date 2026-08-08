@@ -65,8 +65,8 @@ export function NavbarActions() {
 
         {/* Navbar Search — hidden on homepage */}
         {!isHomepage && (
-          <div ref={searchRef} className="relative hidden sm:block">
-            <div className="flex items-center bg-white/10 hover:bg-white/20 focus-within:bg-white rounded-lg border border-white/20 focus-within:border-white/60 transition-all duration-200 group">
+          <div ref={searchRef} className="relative hidden sm:block mr-2">
+            <div className="flex items-center bg-white/10 hover:bg-white/20 focus-within:bg-white rounded-full border border-white/20 focus-within:border-white/60 transition-all duration-200 group w-[180px] lg:w-[240px]">
               <Search className="w-4 h-4 ml-3 text-white/70 group-focus-within:text-[#0d6e6a] shrink-0" />
               <input
                 type="text"
@@ -75,7 +75,7 @@ export function NavbarActions() {
                 onChange={e => setQuery(e.target.value)}
                 onFocus={() => query.trim() && setIsSearchOpen(true)}
                 onKeyDown={handleKeyDown}
-                className="w-48 lg:w-64 h-9 pl-2 pr-3 bg-transparent text-white placeholder:text-white/60 text-[13px] font-medium focus:text-[#202124] focus:placeholder:text-[#9aa0a6] focus:outline-none transition-colors"
+                className="w-full h-9 pl-2 pr-3 bg-transparent text-white placeholder:text-white/60 text-[13px] font-medium focus:text-[#202124] focus:placeholder:text-[#9aa0a6] focus:outline-none transition-colors rounded-full"
               />
             </div>
 

@@ -30,7 +30,7 @@ const rawHtml = `<!DOCTYPE html>
     background:var(--paper);
     color:var(--ink);
     font-family:var(--sans);
-    padding:0 20px 20px;
+    padding:0 20px 0px;
   }
   .wrap{max-width:1180px;margin:0 auto;}
 
@@ -997,7 +997,7 @@ export default function BulkCalculator() {
   useEffect(() => {
     const handleResize = (e: any) => {
       if (e.data && e.data.type === 'resize' && iframeRef.current) {
-        iframeRef.current.style.height = (e.data.height + 40) + 'px';
+        iframeRef.current.style.height = e.data.height + 'px';
       }
     };
     window.addEventListener('message', handleResize);
@@ -1005,19 +1005,17 @@ export default function BulkCalculator() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F1F3F4] font-sans text-[#3C4043] pb-20">
-      <div className="max-w-[1280px] mx-auto px-4 pt-4 pb-16">
+    <div className="min-h-screen bg-[#F1F3F4] font-sans text-[#3C4043] pb-0">
+      <div className="max-w-[1280px] mx-auto px-4 pt-4 pb-0">
 
         <NepaliDatePageHeader currentPage="bulk" />
 
-        <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-[#DADCE0]">
-           <iframe
-             ref={iframeRef}
-             srcDoc={html}
-             className="w-full border-none min-h-[200px]"
-             sandbox="allow-scripts allow-downloads allow-popups allow-same-origin"
-           />
-        </div>
+        <iframe
+          ref={iframeRef}
+          srcDoc={html}
+          className="w-full border-none min-h-[50px]" scrolling="no"
+          sandbox="allow-scripts allow-downloads allow-popups allow-same-origin"
+        />
 
       </div>
     </div>
