@@ -78,10 +78,11 @@ const rawHtml = `<!DOCTYPE html>
   .col{flex:1;min-width:260px;}
 
   .filebox{
-    border:1.5px dashed var(--line);border-radius:8px;padding:16px;
-    background:#fbfbfd;text-align:center;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    border:1.5px dashed var(--blue);border-radius:8px;padding:24px 16px;
+    background:#f0f5ff;text-align:center;cursor:pointer;
   }
-  .filebox:hover{border-color:var(--blue);}
+  .filebox:hover{background:#e5eeff;border-color:var(--blue);}
   .filebox input{display:none;}
   .filebox .lbl{font-size:13px;font-weight:600;}
   .filebox .hint{font-size:11.5px;color:var(--muted);margin-top:4px;}
