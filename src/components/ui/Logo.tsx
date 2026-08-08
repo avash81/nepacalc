@@ -28,16 +28,24 @@ export const Logo: React.FC<LogoProps> = ({ size = 'md', theme = 'indigo', class
       role="img"
       aria-label="NEPACALC.COM"
     >
-      <img 
-        src="/logo.png?v=final" 
-        alt="NepaCalc Logo" 
-        className="object-contain transition-transform group-hover:scale-105" 
-        style={{ 
-          height: h, 
-          width: 'auto',
-          objectPosition: 'center'
-        }}
-      />
+      <div
+        className={`flex items-center justify-center rounded-lg transition-all group-hover:scale-105 ${
+          isWhite
+            ? 'bg-white px-2 py-1 shadow-md'
+            : 'bg-transparent'
+        }`}
+      >
+        <img 
+          src="/logo.png?v=final" 
+          alt="NepaCalc Logo" 
+          className="object-contain" 
+          style={{ 
+            height: h, 
+            width: 'auto',
+            objectPosition: 'center'
+          }}
+        />
+      </div>
     </div>
   );
 };

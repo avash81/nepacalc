@@ -20,7 +20,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-[#2c5299] text-white no-print overflow-hidden" style={{ borderTop: '1px solid rgba(255,255,255,0.15)' }}>
+    <footer className="relative bg-[#0d6e6a] text-white no-print overflow-hidden" style={{ borderTop: '1px solid rgba(255,255,255,0.15)' }}>
       {/* Gradient top accent */}
       <div className="h-[2px] w-full bg-gradient-to-r from-[#1A73E8] via-[#34a853] to-[#ea4335] opacity-70" />
 
@@ -32,7 +32,7 @@ export function Footer() {
           {/* ── SECTION 1: Brand ── */}
           <div className="space-y-5">
             <Link href="/" className="inline-block transition-transform hover:scale-105 duration-300">
-              <Logo size="sm" theme="indigo" />
+              <Logo size="sm" theme="white" />
             </Link>
             <p className="text-[12.5px] leading-relaxed text-slate-100 max-w-[240px]">
               NepaCalc is a trusted platform providing free online calculators, converters, financial tools, engineering utilities, educational resources, health calculators and Nepal-specific digital tools. Built for speed, accuracy and everyday problem solving.
