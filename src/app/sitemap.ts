@@ -89,7 +89,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // 3. Institutional Calculation Hubs (Individual Tools)
   const calculatorPages = CALCULATORS.map((calc) => {
-    const isDirectRoute = calc.slug.includes('/') && !calc.slug.startsWith('nepali-date/');
+    const isDirectRoute = calc.slug.includes('/');
     const isMarketRate = calc.category === 'market' || calc.slug.includes('market-rates');
     const isGoldPage = calc.slug === 'market-rates/live-gold-price';
     const isCritical = ['nepal-income-tax', 'nepal-salary', 'loan-emi', 'sip-calculator', 'nepal-land'].includes(calc.id);
