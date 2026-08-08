@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import BulkCalculator from "./BulkCalculator";
+import { BulkNepaliDateSeoContent } from "@/components/calculator/BulkNepaliDateSeoContent";
 
 export const metadata: Metadata = {
-  title: "Bulk Nepali Date Converter (BS ⇄ AD) – Convert Multiple Dates",
+  title: "Bulk Nepali Date Converter BS to AD Convert Multiple Dates",
   description: "Convert multiple Nepali BS dates to AD or AD dates to BS at once with our free bulk Nepali date converter. Fast, accurate and easy for lists, Excel and CSV data.",
   alternates: {
     canonical: "https://nepacalc.com/calculator/nepali-date/bulk/",
@@ -81,6 +82,9 @@ export default function BulkNepaliDatePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(bulkSchema) }}
       />
       <BulkCalculator />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <BulkNepaliDateSeoContent />
+      </div>
     </div>
   );
 }

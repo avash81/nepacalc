@@ -182,8 +182,7 @@ const rawHtml = `<!DOCTYPE html>
   <div class="grid">
 
     <div class="card">
-      <div class="card-head">Conversion Protocol</div>
-      <div class="card-body">
+            <div class="card-body">
 
         <div class="protocol">
           <button id="mode-ad" class="active" onclick="setMode('AD_TO_BS')">
@@ -577,7 +576,7 @@ function downloadFileXlsx(){
 }
 function downloadFileCsv(){
   const csv = lastFileRows.map(row => row.map(cell => \`"\${String(cell||'').replace(/"/g,'""')}"\`).join(',')).join('\\n');
-  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const blob = new Blob(['\\ufeff', csv], {type:'text/csv;charset=utf-8;'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url; a.download = 'nepali-date-file-conversion.csv';
@@ -955,7 +954,7 @@ function downloadXlsx(){
 function downloadCsv(){
   const rows = buildRows();
   const csv = rows.map(row => row.map(cell => \`"\${String(cell||'').replace(/"/g,'""')}"\`).join(',')).join('\\n');
-  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const blob = new Blob(['\\ufeff', csv], {type:'text/csv;charset=utf-8;'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url; a.download = 'nepali-date-bulk-conversion.csv';
