@@ -21,10 +21,10 @@ export function FooterDynamicLinks() {
           <li key={link.href}>
             <Link
               href={link.href}
-              className="group flex items-center gap-2 text-slate-100 hover:text-white transition-colors duration-150 text-[12.5px]"
+              className="group flex items-center gap-2 text-white hover:text-white/80 transition-colors duration-150 text-[12.5px]"
             >
               <div
-                className="w-1 h-1 rounded-full flex-shrink-0 bg-[#1A73E8] opacity-50 transition-all duration-200 group-hover:opacity-100 group-hover:scale-150"
+                className="w-1 h-1 rounded-full flex-shrink-0 bg-white opacity-70 transition-all duration-200 group-hover:opacity-100 group-hover:scale-150"
               />
               <span className="font-medium group-hover:translate-x-0.5 transition-transform duration-150">
                 {link.name}

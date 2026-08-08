@@ -24,7 +24,7 @@ export function NavbarLinks() {
             key={link.href}
             href={link.href}
             className={`px-4 h-full flex items-center text-[11px] font-black uppercase tracking-[0.12em] transition-all relative group/nav ${
-              active ? 'text-white' : 'text-white/80 hover:text-white'
+              active ? 'text-white' : 'text-white hover:text-white'
             }`}
           >
             {link.name}

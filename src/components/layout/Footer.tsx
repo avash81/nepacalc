@@ -34,7 +34,7 @@ export function Footer() {
             <Link href="/" className="inline-block transition-transform hover:scale-105 duration-300">
               <Logo size="sm" theme="white" />
             </Link>
-            <p className="text-[12.5px] leading-relaxed text-slate-100 max-w-[240px]">
+            <p className="text-[12.5px] leading-relaxed text-white max-w-[240px]">
               NepaCalc is a trusted platform providing free online calculators, converters, financial tools, engineering utilities, educational resources, health calculators and Nepal-specific digital tools. Built for speed, accuracy and everyday problem solving.
             </p>
 
@@ -58,9 +58,9 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group flex items-center gap-2 text-slate-100 hover:text-white transition-colors duration-150 text-[12.5px]"
+                    className="group flex items-center gap-2 text-white hover:text-white/80 transition-colors duration-150 text-[12.5px]"
                   >
-                    <div className="w-1 h-1 rounded-full flex-shrink-0 bg-[#34a853] opacity-50 transition-all duration-200 group-hover:opacity-100 group-hover:scale-150" />
+                    <div className="w-1 h-1 rounded-full flex-shrink-0 bg-white opacity-70 transition-all duration-200 group-hover:opacity-100 group-hover:scale-150" />
                     <span className="font-medium group-hover:translate-x-0.5 transition-transform duration-150">
                       {link.name}
                     </span>
@@ -82,30 +82,30 @@ export function Footer() {
               <li>
                 <a
                   href="mailto:support@nepacalc.com"
-                  className="flex items-center gap-2.5 text-slate-100 hover:text-white transition-colors duration-150 text-[12.5px] group"
+                  className="flex items-center gap-2.5 text-white hover:text-white/80 transition-colors duration-150 text-[12.5px] group"
                 >
-                  <div className="w-7 h-7 rounded-lg bg-[#161618] border border-[#252529] flex items-center justify-center flex-shrink-0 group-hover:bg-[#1A73E8] group-hover:border-[#1A73E8] transition-all duration-200">
-                    <Mail className="w-3.5 h-3.5 text-[#1A73E8] group-hover:text-white transition-colors duration-200" />
+                  <div className="w-7 h-7 rounded-lg bg-white/20 border border-white/30 flex items-center justify-center flex-shrink-0 group-hover:bg-white/30 transition-all duration-200">
+                    <Mail className="w-3.5 h-3.5 text-white" />
                   </div>
                   <span className="font-medium">support@nepacalc.com</span>
                 </a>
               </li>
-              <li className="flex items-center gap-2.5 text-slate-100 text-[12.5px]">
-                <div className="w-7 h-7 rounded-lg bg-[#161618] border border-[#252529] flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-3.5 h-3.5 text-emerald-500" />
+              <li className="flex items-center gap-2.5 text-white text-[12.5px]">
+                <div className="w-7 h-7 rounded-lg bg-white/20 border border-white/30 flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-3.5 h-3.5 text-white" />
                 </div>
                 <span className="font-medium">Kathmandu, Nepal</span>
               </li>
               <li>
                 <a
                   href="https://nepacalc.com"
-                  className="flex items-center gap-2.5 text-slate-100 hover:text-white transition-colors duration-150 text-[12.5px] group"
+                  className="flex items-center gap-2.5 text-white hover:text-white/80 transition-colors duration-150 text-[12.5px] group"
                 >
-                  <div className="w-7 h-7 rounded-lg bg-[#161618] border border-[#252529] flex items-center justify-center flex-shrink-0 group-hover:bg-[#1A73E8] group-hover:border-[#1A73E8] transition-all duration-200">
-                    <Globe className="w-3.5 h-3.5 text-[#1A73E8] group-hover:text-white transition-colors duration-200" />
+                  <div className="w-7 h-7 rounded-lg bg-white/20 border border-white/30 flex items-center justify-center flex-shrink-0 group-hover:bg-white/30 transition-all duration-200">
+                    <Globe className="w-3.5 h-3.5 text-white" />
                   </div>
                   <span className="font-medium">nepacalc.com</span>
-                  <ExternalLink className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
+                  <ExternalLink className="w-3 h-3 opacity-70 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
             </ul>
