@@ -210,15 +210,14 @@ const rawHtml = `<!DOCTYPE html>
 2027-01-13
 2083-04-23
 2083-05-01</textarea>
-            <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;position:relative;">
+            <div style="margin-top:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <button class="btn btn-primary" onclick="runConversion()">Convert pasted dates</button>
+              <button class="btn btn-ghost" onclick="clearAll()">Clear</button>
+              <span style="color:var(--muted);font-size:11px;margin-left:4px;">Ctrl/Cmd+Enter</span>
+              <div style="flex:1;"></div>
               <button class="btn btn-ghost" style="padding:6px 12px;font-size:12px;white-space:nowrap;" onclick="openCalendar('AD', this)">📅 English (AD) calendar</button>
               <button class="btn btn-ghost" style="padding:6px 12px;font-size:12px;white-space:nowrap;" onclick="openCalendar('BS', this)">🗓️ Nepali (BS) calendar</button>
               <div id="calendarPopover" class="cal-backdrop"></div>
-            </div>
-            <div style="margin-top:4px;font-size:11.5px;color:var(--muted);">Ctrl/Cmd + Enter converts instantly</div>
-            <div class="actions" style="margin-top:10px;">
-              <button class="btn btn-primary" onclick="runConversion()">Convert pasted dates</button>
-              <button class="btn btn-ghost" onclick="clearAll()">Clear</button>
             </div>
           </div>
           <div class="col" style="max-width:340px;">
