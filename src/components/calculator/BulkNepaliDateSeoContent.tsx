@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export function BulkNepaliDateSeoContent() {
   return (
-    <article className="mt-12 prose prose-slate max-w-none text-[#3C4043]">
+    <article className="mt-0 prose prose-slate max-w-none text-[#3C4043]">
       <h2 className="text-2xl font-bold text-[#202124] mb-4">Bulk Nepali Date Converter BS to AD & AD to BS</h2>
       
       <p>

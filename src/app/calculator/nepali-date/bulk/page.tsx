@@ -83,24 +83,24 @@ export default function BulkNepaliDatePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(bulkSchema) }}
       />
       <BulkCalculator />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-10">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-10">
         <BulkNepaliDateSeoContent />
         
         {/* Related Calculators */}
         <div className="mt-8 mb-6">
           <h2 className="text-xl font-bold text-[#202124] mb-4 font-serif">Related Calculators</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            <Link href="/calculator/age-calculator/" className="bg-white border border-[#e4e7ef] rounded-xl p-4 hover:border-blue-600 hover:shadow-sm transition-all group">
-              <div className="font-semibold text-[#0f1729] mb-1 group-hover:text-blue-600">Age Calculator</div>
-              <div className="text-[13px] text-slate-500 line-clamp-2">Calculate your exact age from a date of birth in both AD and BS.</div>
+            <Link href="/calculator/nea-bill/" className="bg-white border border-[#e4e7ef] rounded-xl p-4 hover:border-blue-600 hover:shadow-sm transition-all group">
+              <div className="font-semibold text-[#0f1729] mb-1 group-hover:text-blue-600">Electricity Bill</div>
+              <div className="text-[13px] text-slate-500 line-clamp-2">Calculate Nepal Electricity Authority (NEA) billing and unit slabs.</div>
             </Link>
-            <Link href="/calculator/date-duration/" className="bg-white border border-[#e4e7ef] rounded-xl p-4 hover:border-blue-600 hover:shadow-sm transition-all group">
-              <div className="font-semibold text-[#0f1729] mb-1 group-hover:text-blue-600">Date Duration</div>
-              <div className="text-[13px] text-slate-500 line-clamp-2">Calculate the exact number of days between two dates.</div>
+            <Link href="/calculator/nepal-vehicle-tax/" className="bg-white border border-[#e4e7ef] rounded-xl p-4 hover:border-blue-600 hover:shadow-sm transition-all group">
+              <div className="font-semibold text-[#0f1729] mb-1 group-hover:text-blue-600">Vehicle Tax</div>
+              <div className="text-[13px] text-slate-500 line-clamp-2">Calculate road tax and bluebook renewal fees for vehicles in Nepal.</div>
             </Link>
-            <Link href="/calculator/workdays/" className="bg-white border border-[#e4e7ef] rounded-xl p-4 hover:border-blue-600 hover:shadow-sm transition-all group">
-              <div className="font-semibold text-[#0f1729] mb-1 group-hover:text-blue-600">Workdays Calculator</div>
-              <div className="text-[13px] text-slate-500 line-clamp-2">Find out how many business days are in a date range.</div>
+            <Link href="/calculator/kukl-bill/" className="bg-white border border-[#e4e7ef] rounded-xl p-4 hover:border-blue-600 hover:shadow-sm transition-all group">
+              <div className="font-semibold text-[#0f1729] mb-1 group-hover:text-blue-600">KUKL Water Bill</div>
+              <div className="text-[13px] text-slate-500 line-clamp-2">Calculate Kathmandu Upatyaka Khanepani Limited bill and sewerage tax.</div>
             </Link>
           </div>
         </div>

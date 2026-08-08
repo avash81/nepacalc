@@ -30,7 +30,7 @@ const rawHtml = `<!DOCTYPE html>
     background:var(--paper);
     color:var(--ink);
     font-family:var(--sans);
-    padding:0 20px 60px;
+    padding:0 20px 20px;
   }
   .wrap{max-width:1180px;margin:0 auto;}
 
@@ -1014,7 +1014,7 @@ export default function BulkCalculator() {
            <iframe
              ref={iframeRef}
              srcDoc={html}
-             className="w-full border-none min-h-[500px]"
+             className="w-full border-none min-h-[200px]"
              sandbox="allow-scripts allow-downloads allow-popups allow-same-origin"
            />
         </div>

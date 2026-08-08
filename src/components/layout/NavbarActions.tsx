@@ -1,19 +1,114 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Search, ChevronRight, Star, Sparkles, Globe, Wallet, Heart, Activity } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
+import { useRouter } from 'next/navigation';
+import { CALCULATORS, Calculator as CalcType } from '@/data/calculators';
+
 export function NavbarActions() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState<CalcType[]>([]);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const path = usePathname();
+  const router = useRouter();
+  const searchRef = useRef<HTMLDivElement>(null);
+  const isHomepage = path === '/';
 
   useEffect(() => setIsMenuOpen(false), [path]);
+  useEffect(() => { setQuery(''); setIsSearchOpen(false); }, [path]);
+
+  useEffect(() => {
+    if (!query.trim()) { setResults([]); return; }
+    const q = query.toLowerCase();
+    const filtered = CALCULATORS.filter(c =>
+      c.name.toLowerCase().includes(q) ||
+      c.category.toLowerCase().includes(q) ||
+      c.keywords?.some(k => k.toLowerCase().includes(q))
+    ).slice(0, 6);
+    setResults(filtered);
+    setActiveIndex(0);
+    setIsSearchOpen(true);
+  }, [query]);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setIsSearchOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowDown') { e.preventDefault(); setActiveIndex(p => (p + 1) % results.length); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); setActiveIndex(p => (p - 1 + results.length) % results.length); }
+    else if (e.key === 'Enter' && results[activeIndex]) {
+      const s = results[activeIndex];
+      router.push(s.slug.includes('/') ? `/${s.slug}/` : `/calculator/${s.slug}/`);
+      setIsSearchOpen(false); setQuery('');
+    } else if (e.key === 'Escape') setIsSearchOpen(false);
+  };
+
+  const goTo = (calc: CalcType) => {
+    router.push(calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`);
+    setIsSearchOpen(false); setQuery('');
+  };
 
   return (
     <>
-      <div className="flex items-center gap-2 sm:gap-6">
-        {/* Mobile Menu */}
+      <div className="flex items-center gap-2 sm:gap-3">
+
+        {/* Navbar Search — hidden on homepage */}
+        {!isHomepage && (
+          <div ref={searchRef} className="relative hidden sm:block">
+            <div className="flex items-center bg-white/10 hover:bg-white/20 focus-within:bg-white rounded-lg border border-white/20 focus-within:border-white/60 transition-all duration-200 group">
+              <Search className="w-4 h-4 ml-3 text-white/70 group-focus-within:text-[#0d6e6a] shrink-0" />
+              <input
+                type="text"
+                placeholder="Search calculators..."
+                value={query}
+                onChange={e => setQuery(e.target.value)}
+                onFocus={() => query.trim() && setIsSearchOpen(true)}
+                onKeyDown={handleKeyDown}
+                className="w-48 lg:w-64 h-9 pl-2 pr-3 bg-transparent text-white placeholder:text-white/60 text-[13px] font-medium focus:text-[#202124] focus:placeholder:text-[#9aa0a6] focus:outline-none transition-colors"
+              />
+            </div>
+
+            {/* Dropdown results */}
+            {isSearchOpen && results.length > 0 && (
+              <div className="absolute top-full right-0 mt-2 w-80 bg-white border border-[#dadce0] rounded-xl shadow-lg overflow-hidden z-[500]">
+                <div className="p-1.5">
+                  {results.map((calc, i) => (
+                    <button
+                      key={calc.id}
+                      onClick={() => goTo(calc)}
+                      onMouseEnter={() => setActiveIndex(i)}
+                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
+                        i === activeIndex ? 'bg-blue-50 text-blue-700' : 'text-[#202124] hover:bg-slate-50'
+                      }`}
+                    >
+                      <span className="text-lg w-7 text-center shrink-0">{typeof calc.icon === 'string' ? calc.icon : '🛠️'}</span>
+                      <div className="min-w-0">
+                        <div className="font-semibold text-[13px] leading-tight truncate">{calc.name}</div>
+                        <div className="text-[10px] uppercase tracking-widest font-bold opacity-40">{calc.category}</div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+                <div className="px-4 py-2 bg-[#f8f9fa] border-t border-[#dadce0] text-[10px] font-bold text-[#70757a] uppercase tracking-wider text-center">
+                  100+ calculators on NepaCalc
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMenuOpen(true)}
           className="lg:hidden p-2.5 hover:bg-white/10 rounded-full text-white"
@@ -22,8 +117,6 @@ export function NavbarActions() {
           <Menu className="w-5 h-5" />
         </button>
       </div>
-
-
 
       {/* Mobile Drawer Overlay */}
       {isMenuOpen && (
@@ -39,6 +132,33 @@ export function NavbarActions() {
               <X className="w-5 h-5" />
             </button>
           </div>
+
+          {/* Mobile search — shown inside drawer on non-homepage */}
+          {!isHomepage && (
+            <div className="px-4 pt-4">
+              <div className="flex items-center bg-[#F1F3F4] rounded-lg border border-[#dadce0] px-3">
+                <Search className="w-4 h-4 text-[#5F6368] shrink-0" />
+                <input
+                  type="text"
+                  placeholder="Search calculators..."
+                  className="w-full h-10 pl-2 bg-transparent text-[12px] font-semibold text-[#202124] placeholder:text-[#9aa0a6] focus:outline-none normal-case tracking-normal"
+                  onChange={e => {
+                    const q = e.target.value.toLowerCase();
+                    if (!q) return;
+                    const hit = CALCULATORS.find(c => c.name.toLowerCase().includes(q) || c.keywords?.some(k => k.toLowerCase().includes(q)));
+                    if (hit) router.push(hit.slug.includes('/') ? `/${hit.slug}/` : `/calculator/${hit.slug}/`);
+                  }}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter') {
+                      const q = (e.target as HTMLInputElement).value.toLowerCase();
+                      const hit = CALCULATORS.find(c => c.name.toLowerCase().includes(q));
+                      if (hit) router.push(hit.slug.includes('/') ? `/${hit.slug}/` : `/calculator/${hit.slug}/`);
+                    }
+                  }}
+                />
+              </div>
+            </div>
+          )}
 
           <div className="flex-1 overflow-y-auto p-6 space-y-3">
             {[
