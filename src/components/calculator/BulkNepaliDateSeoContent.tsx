@@ -6,7 +6,7 @@ export function BulkNepaliDateSeoContent() {
       <h2 className="text-2xl font-bold text-[#202124] mb-4">Bulk Nepali Date Converter BS to AD & AD to BS</h2>
       
       <p>
-        The Bulk Nepali Date Converter makes it easy to convert multiple dates between Bikram Sambat (BS) and the Gregorian calendar (AD) in one go. Instead of converting each date individually, you can process a list of dates together, making the tool useful for spreadsheets, records, forms, historical data, and other situations where many Nepali dates need to be converted.
+        The Bulk Nepali Date Converter makes it easy to convert multiple dates between Bikram Sambat (BS) and the Gregorian calendar (AD) in one go. Instead of using the <Link href="/calculator/nepali-date/" className="text-blue-600 hover:underline">Nepali date converter</Link> one date at a time, you can process a list of dates together, making the tool useful for spreadsheets, records, forms, historical data, and other situations where many Nepali dates need to be converted.
       </p>
       
       <p>
@@ -31,7 +31,7 @@ export function BulkNepaliDateSeoContent() {
         A common mistake is assuming that a Bikram Sambat date can always be converted to AD by subtracting exactly 56 or 57 years. That is not sufficient for an accurate date conversion.
       </p>
       <p>
-        Nepali calendar months do not have the same fixed lengths as Gregorian months, and the relationship between BS and AD changes throughout the calendar year. A reliable converter therefore needs year-specific calendar information to determine the corresponding date.
+        Nepali calendar months do not have the same fixed lengths as Gregorian months, and the relationship between BS and AD changes throughout the calendar year. A reliable converter therefore needs year-specific calendar information to determine the corresponding date. If you also need to find the number of days between two converted dates, use the <Link href="/calculator/date-duration/" className="text-blue-600 hover:underline">date duration calculator</Link>.
       </p>
       <p>
         This is especially important when converting dates of birth or other dates appearing on official documents.
@@ -39,7 +39,7 @@ export function BulkNepaliDateSeoContent() {
 
       <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">Nepal's Official Calendar Reference</h3>
       <p>
-        For calendar-related information, one important government reference is the Nepal Panchanga Nirnayak Development Committee (नेपाल पञ्चाङ्ग निर्णायक विकास समिति). When working with a <Link href="/calculator/nepali-date/" className="text-blue-600 hover:underline">Nepali date converter</Link>, it's helpful to know that the committee is a Government of Nepal organization under the Ministry of Culture, Tourism and Civil Aviation. Its official website publishes information and notices concerning Panchanga and calendar publication and approval.
+        For calendar-related information, one important government reference is the Nepal Panchanga Nirnayak Development Committee (नेपाल पञ्चाङ्ग निर्णायक विकास समिति). The committee is a Government of Nepal organization under the Ministry of Culture, Tourism and Civil Aviation. Its official website publishes information and notices concerning Panchanga and calendar publication and approval.
       </p>
       <p>
         For example, the committee has published notices concerning the publication of the 2083 BS Panchanga, including requirements and the calculation system to be followed for Panchanga submitted for approval.
@@ -50,7 +50,7 @@ export function BulkNepaliDateSeoContent() {
 
       <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">BS and AD Dates for Passport Applications</h3>
       <p>
-        Accurate <Link href="/calculator/nepali-date/" className="text-blue-600 hover:underline">BS to AD date conversion</Link> can be particularly important when completing government applications.
+        Accurate BS to AD date conversion can be particularly important when completing government applications.
       </p>
       <p>
         The Department of Passports, Government of Nepal, states in its passport application instructions that the date of birth from a citizenship certificate or Minor ID should be entered in the BS field, while the same date should be converted to the A.D. (Gregorian) calendar for the AD field.
@@ -88,12 +88,9 @@ export function BulkNepaliDateSeoContent() {
       <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">Related NepaCalc Calculators</h3>
       <p>If you are working with Nepali dates, these related tools may also be useful:</p>
       <ul className="list-disc pl-6 space-y-2 mb-6">
-        <li><Link href="/calculator/nepali-date/" className="text-blue-600 hover:underline">Nepali Date Converter</Link> Convert individual dates between BS and AD.</li>
-        <li><Link href="/calculator/nepali-date/" className="text-blue-600 hover:underline">Age Calculator</Link> Calculate age from a date of birth.</li>
+        <li><Link href="/calculator/age-calculator/" className="text-blue-600 hover:underline">Age Calculator</Link> Calculate age from a date of birth.</li>
         <li><Link href="/calculator/nepal-citizenship-age/" className="text-blue-600 hover:underline">Nepal Citizenship Age Calculator</Link> Check age-related citizenship requirements.</li>
-        <li><Link href="/calculator/date-duration/" className="text-blue-600 hover:underline">Date Difference Calculator</Link> Find the number of days between two dates.</li>
-        <li><Link href="/calculator/nepali-date/" className="text-blue-600 hover:underline">Day of the Week Calculator</Link> Find the weekday for a specific date.</li>
-        <li><Link href="/calculator/nepali-date/" className="text-blue-600 hover:underline">Nepali Calendar</Link> Explore Nepali dates and calendar information.</li>
+        <li><Link href="/calculator/workdays/" className="text-blue-600 hover:underline">Workdays Calculator</Link> Count business days between two dates.</li>
       </ul>
       <p>
         You can also explore other <Link href="/nepal/" className="text-blue-600 hover:underline">Nepal-specific calculators</Link> and conversion tools available on NepaCalc.
