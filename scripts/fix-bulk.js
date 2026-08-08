@@ -30,7 +30,7 @@ const rawHtml = `<!DOCTYPE html>
     background:transparent;
     color:var(--ink);
     font-family:var(--sans);
-    padding:0 20px 0px;
+    padding:0 16px 0px;
   }
   .wrap{max-width:1180px;margin:0 auto;}
 
@@ -76,7 +76,7 @@ const rawHtml = `<!DOCTYPE html>
   textarea:focus{outline:2px solid var(--blue-soft-line);border-color:var(--blue);}
 
   .row{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;margin-top:14px;}
-  .col{flex:1;min-width:260px;}
+  .col{flex:1;min-width:220px;}
 
   .filebox{
     display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -140,7 +140,7 @@ const rawHtml = `<!DOCTYPE html>
   tbody tr:hover{background:#fafbff;}
   tbody tr.bad{background:var(--err-soft);}
   tbody td.bad{background:var(--err-soft);color:var(--err);font-weight:600;}
-  .table-scroll{max-height:520px;overflow:auto;}
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
   .table-foot{padding:10px 18px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);}
 
   .empty{padding:40px 18px;text-align:center;color:var(--muted);font-size:13px;}
@@ -975,14 +975,18 @@ function clearAll(){
 }
 
 const sendHeight = () => {
-  const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight);
-  window.parent.postMessage({ type: 'resize', height: h }, '*');
+  requestAnimationFrame(() => {
+    const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight);
+    window.parent.postMessage({ type: 'resize', height: h }, '*');
+  });
 };
 const ro = new ResizeObserver(sendHeight);
 ro.observe(document.body);
 window.addEventListener('load', sendHeight);
-setTimeout(sendHeight, 100);
-setTimeout(sendHeight, 500);
+setTimeout(sendHeight, 50);
+setTimeout(sendHeight, 200);
+setTimeout(sendHeight, 600);
+setTimeout(sendHeight, 1200);
 </script>
 </body>
 </html>`;
@@ -1002,7 +1006,9 @@ export default function BulkCalculator() {
   useEffect(() => {
     const handleResize = (e: any) => {
       if (e.data && e.data.type === 'resize' && iframeRef.current) {
-        iframeRef.current.style.height = (e.data.height + 20) + 'px';
+        const newH = e.data.height + 24;
+        const curH = parseInt(iframeRef.current.style.height || '0', 10);
+        if (newH > curH) iframeRef.current.style.height = newH + 'px';
       }
     };
     window.addEventListener('message', handleResize);
