@@ -973,12 +973,18 @@ function clearAll(){
   document.getElementById('statusLine').innerHTML = '<span>No results yet, paste dates or upload a file above.</span>';
   document.getElementById('resultsBody').innerHTML = '<div class="empty"><div class="big">📅</div>Converted dates will appear here, ready to copy straight into Excel.</div>';
   document.getElementById('tableFoot').style.display = 'none';
+  sendHeight();
 }
 
-const ro = new ResizeObserver(() => {
-  window.parent.postMessage({ type: 'resize', height: document.documentElement.scrollHeight }, '*');
-});
+const sendHeight = () => {
+  const h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight);
+  window.parent.postMessage({ type: 'resize', height: h }, '*');
+};
+const ro = new ResizeObserver(sendHeight);
 ro.observe(document.body);
+window.addEventListener('load', sendHeight);
+setTimeout(sendHeight, 100);
+setTimeout(sendHeight, 500);
 </script>
 </body>
 </html>`;
@@ -998,7 +1004,7 @@ export default function BulkCalculator() {
   useEffect(() => {
     const handleResize = (e: any) => {
       if (e.data && e.data.type === 'resize' && iframeRef.current) {
-        iframeRef.current.style.height = e.data.height + 'px';
+        iframeRef.current.style.height = (e.data.height + 20) + 'px';
       }
     };
     window.addEventListener('message', handleResize);
