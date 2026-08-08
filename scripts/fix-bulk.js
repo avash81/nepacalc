@@ -196,7 +196,7 @@ const rawHtml = `<!DOCTYPE html>
           </button>
           <button id="mode-auto" onclick="setMode('AUTO')">
             Auto-detect (mixed)
-            <span class="sub">Some lines AD, some BS — normalize all to BS</span>
+            <span class="sub">Some lines AD, some BS, normalize all to BS</span>
           </button>
         </div>
 
@@ -225,7 +225,7 @@ const rawHtml = `<!DOCTYPE html>
             <label class="filebox" id="fileDropZone">
               <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" onchange="handleFile(event)">
               <div class="lbl">📄 Click or drag a .xlsx / .csv here</div>
-              <div class="hint">Keeps its row/column layout — nothing in your file is changed</div>
+              <div class="hint">Keeps its row/column layout, nothing in your file is changed</div>
             </label>
             <div style="margin-top:8px;font-size:11.5px;color:var(--muted);font-family:var(--mono);background:#fbfbfd;border:1px solid var(--line);border-radius:7px;padding:8px 10px;">
               Example layout:<br>
@@ -265,7 +265,7 @@ const rawHtml = `<!DOCTYPE html>
 
     <div class="card" id="resultsCard">
       <div class="status-line" id="statusLine">
-        <span>No results yet — paste dates or upload a file above.</span>
+        <span>No results yet, paste dates or upload a file above.</span>
       </div>
       <div id="resultsBody">
         <div class="empty">
@@ -488,19 +488,19 @@ function convertTable(headers, rows, checked){
       total++;
       const parsed = parseDateString(String(cellVal));
       if (!parsed){
-        convertedPart.push('⚠ Not converted — unrecognized format'); textPart.push('','');
+        convertedPart.push('⚠ Not converted, unrecognized format'); textPart.push('','');
         badFlags[convertedColPos] = true; bad++; return;
       }
       let direction = parsed.calendarHint;
       if (!direction) direction = (parsed.y <= 2043) ? 'AD' : 'BS';
       if (direction === 'AD'){
         const r = adToBs(parsed.y, parsed.m, parsed.d);
-        if (!r){ convertedPart.push('⚠ Not converted — outside supported range'); textPart.push('',''); badFlags[convertedColPos]=true; bad++; return; }
+        if (!r){ convertedPart.push('⚠ Not converted, outside supported range'); textPart.push('',''); badFlags[convertedColPos]=true; bad++; return; }
         convertedPart.push(bsIso(r.year,r.month,r.day));
         textPart.push(\`\${bsScriptNepali(r.year,r.month,r.day)} / \${bsScriptEnglish(r.year,r.month,r.day)}\`, \`\${WD_EN[r.wday]} / \${WD_NP[r.wday]}\`);
       } else {
         const r = bsToAd(parsed.y, parsed.m, parsed.d);
-        if (!r){ convertedPart.push('⚠ Not converted — outside supported range'); textPart.push('',''); badFlags[convertedColPos]=true; bad++; return; }
+        if (!r){ convertedPart.push('⚠ Not converted, outside supported range'); textPart.push('',''); badFlags[convertedColPos]=true; bad++; return; }
         convertedPart.push(adIso(r.year,r.month,r.day));
         textPart.push(adWordsEnglish(r.year,r.month,r.day), \`\${WD_EN[r.wday]} / \${WD_NP[r.wday]}\`);
       }
@@ -534,7 +534,7 @@ function renderFileResults(outRows, badMatrix, ok, bad, total, rowCount){
   document.getElementById('fileStatusLine').innerHTML = \`
     <span><b>\${rowCount.toLocaleString()}</b> rows · <b>\${total.toLocaleString()}</b> date cells checked</span>
     <span class="pill ok">\${ok.toLocaleString()} converted</span>
-    \${bad ? \`<span class="pill err">\${bad.toLocaleString()} not converted — see highlighted cells below</span>\` : ''}
+    \${bad ? \`<span class="pill err">\${bad.toLocaleString()} not converted, see highlighted cells below</span>\` : ''}
   \`;
   const PREVIEW = 200;
   const head = outRows[0];
@@ -585,7 +585,7 @@ function downloadFileCsv(){
   URL.revokeObjectURL(url);
 }
 
-// ---- Calendar pickers (both AD and BS) — shows the whole year at once ----
+// ---- Calendar pickers (both AD and BS), shows the whole year at once ----
 const calState = { mode: null, year: null, pickedThisSession: new Set() };
 const WD_SHORT = ['Su','Mo','Tu','We','Th','Fr','Sa'];
 
@@ -653,12 +653,12 @@ function renderCalendar(){
     <div class="cal-modal">
       <div class="cal-head">
         <button onclick="navCalendar(-1)">‹</button>
-        <span class="cal-title">\${mode === 'AD' ? 'English (AD)' : 'Nepali (BS)'} calendar — \${yearLabel}</span>
+        <span class="cal-title">\${mode === 'AD' ? 'English (AD)' : 'Nepali (BS)'} calendar, \${yearLabel}</span>
         <button onclick="navCalendar(1)">›</button>
       </div>
       <div class="cal-year-grid">\${months}</div>
       <div class="cal-foot">
-        <span>Click any day to add it — pick as many as you like, from any month or year, then hit Done.</span>
+        <span>Click any day to add it, pick as many as you like, from any month or year, then hit Done.</span>
         <button onclick="closeCalendar()">Done</button>
       </div>
     </div>\`;
@@ -720,14 +720,14 @@ function convertPastedTable(lines){
     if (sample && parseDateString(sample.trim()) !== null) checked.push(c);
   }
   if (checked.length === 0){
-    document.getElementById('statusLine').innerHTML = '<span style="color:var(--err)">Pasted multiple columns, but none of them looked like dates — check the format and try again.</span>';
+    document.getElementById('statusLine').innerHTML = '<span style="color:var(--err)">Pasted multiple columns, but none of them looked like dates, check the format and try again.</span>';
     return;
   }
 
   const {outRows, badMatrix, ok, bad, total} = convertTable(headers, rows, checked);
   lastFileRows = outRows;
   lastFileBadMatrix = badMatrix;
-  document.getElementById('resultsBody').innerHTML = '<div class="empty"><div class="big">📅</div>Multi-column input detected — results are in the table below.</div>';
+  document.getElementById('resultsBody').innerHTML = '<div class="empty"><div class="big">📅</div>Multi-column input detected, results are in the table below.</div>';
   document.getElementById('statusLine').innerHTML = \`<span>Detected \${numCols} column(s) in your paste, \${checked.length} of them dates. Full results below.</span>\`;
   document.getElementById('tableFoot').style.display = 'none';
   renderFileResults(outRows, badMatrix, ok, bad, total, rows.length);
@@ -737,7 +737,7 @@ function runConversion(){
   const raw = document.getElementById('pasteInput').value;
   const lines = raw.split(/\\r?\\n/).map(l=>l.replace(/\\r$/,'')).filter(l=>l.trim().length>0);
   if (lines.length === 0){
-    document.getElementById('statusLine').innerHTML = '<span>Nothing to convert — paste at least one date first.</span>';
+    document.getElementById('statusLine').innerHTML = '<span>Nothing to convert, paste at least one date first.</span>';
     return;
   }
   if (lines.length > 100000){
@@ -760,7 +760,7 @@ function runConversion(){
   for (const line of lines){
     const parsed = parseDateString(line.trim());
     if (!parsed){
-      results.push({original: line, bad:true, status:'⚠ Not converted — unrecognized format'});
+      results.push({original: line, bad:true, status:'⚠ Not converted, unrecognized format'});
       bad++; continue;
     }
     let mode = currentMode;
@@ -772,7 +772,7 @@ function runConversion(){
 
     if (mode === 'AD_TO_BS'){
       const r = adToBs(parsed.y, parsed.m, parsed.d);
-      if (!r){ results.push({original: line, bad:true, status:'⚠ Not converted — outside supported range'}); bad++; continue; }
+      if (!r){ results.push({original: line, bad:true, status:'⚠ Not converted, outside supported range'}); bad++; continue; }
       results.push({
         original: adIso(parsed.y, parsed.m, parsed.d),
         converted: bsIso(r.year, r.month, r.day),
@@ -783,7 +783,7 @@ function runConversion(){
       ok++;
     } else {
       const r = bsToAd(parsed.y, parsed.m, parsed.d);
-      if (!r){ results.push({original: line, bad:true, status:'⚠ Not converted — outside supported range'}); bad++; continue; }
+      if (!r){ results.push({original: line, bad:true, status:'⚠ Not converted, outside supported range'}); bad++; continue; }
       results.push({
         original: line.trim(),
         originalNormalized: bsIso(parsed.y, parsed.m, parsed.d) + ' (' + bsIsoNepali(parsed.y, parsed.m, parsed.d) + ')',
@@ -969,7 +969,7 @@ function clearAll(){
   document.getElementById('colPicker').style.display = 'none';
   document.getElementById('fileResultsCard').style.display = 'none';
   uploadedRows = null; lastResults = []; lastFileRows = [];
-  document.getElementById('statusLine').innerHTML = '<span>No results yet — paste dates or upload a file above.</span>';
+  document.getElementById('statusLine').innerHTML = '<span>No results yet, paste dates or upload a file above.</span>';
   document.getElementById('resultsBody').innerHTML = '<div class="empty"><div class="big">📅</div>Converted dates will appear here, ready to copy straight into Excel.</div>';
   document.getElementById('tableFoot').style.display = 'none';
 }
@@ -1019,36 +1019,6 @@ export default function BulkCalculator() {
            />
         </div>
 
-        {/* Related Calculators */}
-        <div className="mt-8 mb-6">
-          <h2 className="text-xl font-bold text-[#202124] mb-4 font-serif">Related Calculators</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            <Link href="/calculator/nepali-date/" className="bg-white border border-[#e4e7ef] rounded-xl p-4 hover:border-blue-600 hover:shadow-sm transition-all group">
-              <div className="font-semibold text-[#0f1729] mb-1 group-hover:text-blue-600">Single Date Converter</div>
-              <div className="text-[13px] text-slate-500 line-clamp-2">Convert a single date instantly without dealing with spreadsheets.</div>
-            </Link>
-            <Link href="/calculator/date-duration/" className="bg-white border border-[#e4e7ef] rounded-xl p-4 hover:border-blue-600 hover:shadow-sm transition-all group">
-              <div className="font-semibold text-[#0f1729] mb-1 group-hover:text-blue-600">Date Duration</div>
-              <div className="text-[13px] text-slate-500 line-clamp-2">Calculate the exact number of days between two dates.</div>
-            </Link>
-            <Link href="/calculator/workdays/" className="bg-white border border-[#e4e7ef] rounded-xl p-4 hover:border-blue-600 hover:shadow-sm transition-all group">
-              <div className="font-semibold text-[#0f1729] mb-1 group-hover:text-blue-600">Workdays Calculator</div>
-              <div className="text-[13px] text-slate-500 line-clamp-2">Find out how many business days are in a date range.</div>
-            </Link>
-          </div>
-        </div>
-
-        <div className="mt-6 bg-white border border-[#DADCE0] rounded-lg p-5 shadow-sm flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-4">
-           <p className="text-sm text-[#5F6368]">
-             Just need one date?{' '}
-           </p>
-           <Link
-             href="/calculator/nepali-date/"
-             className="shrink-0 inline-flex items-center justify-center h-10 px-5 rounded-md bg-[#2454d6] text-white text-sm font-semibold hover:opacity-90 transition-opacity"
-           >
-             Use the single converter <ArrowRight className="w-4 h-4 ml-2" />
-           </Link>
-        </div>
       </div>
     </div>
   );

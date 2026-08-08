@@ -18,9 +18,9 @@ const collectionPageSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "@id": "https://nepacalc.com/#collectionpage",
-  "name": "Free Online Calculators, Converters & Tools | NepaCalc",
+  "name": "100+ Free Online Calculators, Converters & Tools | NepaCalc",
   "url": "https://nepacalc.com/",
-  "description": "Free online calculators, converters and digital tools for finance, engineering, education, health and Nepal-specific calculations.",
+  "description": "NepaCalc provides 100+ free online calculators, converters and digital tools for finance, engineering, education, health, science and Nepal-specific calculations.",
   "publisher": { "@id": "https://nepacalc.com/#organization" },
   "isPartOf": { "@id": "https://nepacalc.com/#website" }
 };
@@ -30,7 +30,7 @@ const itemListSchema = {
   "@type": "ItemList",
   "@id": "https://nepacalc.com/#calculator-categories",
   "name": "Calculator Categories on NepaCalc",
-  "description": "All calculator categories on NepaCalc — finance, engineering, education, health, Nepal tools, converters and market rates.",
+  "description": "Explore 100+ free calculators across categories on NepaCalc — finance, engineering, education, health, Nepal tools, converters and market rates.",
   "numberOfItems": 7,
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Nepal Specific Calculators", "url": "https://nepacalc.com/nepal/" },
@@ -52,7 +52,7 @@ const faqSchema = {
       "name":"What is NepaCalc?",
       "acceptedAnswer":{
         "@type":"Answer",
-        "text":"NepaCalc is a Nepal-focused platform providing free online calculators, converters, tax tools, electricity bill calculators, educational tools, engineering calculators and market rate tracking."
+        "text":"NepaCalc is a Nepal-focused platform providing 100+ free online calculators, converters, tax tools, electricity bill calculators, educational tools, engineering calculators and market rate tracking."
       }
     },
     {
@@ -60,7 +60,7 @@ const faqSchema = {
       "name":"Are NepaCalc calculators free?",
       "acceptedAnswer":{
         "@type":"Answer",
-        "text":"Yes. All public calculators and tools on NepaCalc are available free of charge."
+        "text":"Yes. All 100+ public calculators and tools on NepaCalc are available free of charge."
       }
     },
     {
@@ -108,7 +108,7 @@ export default function HomePage() {
                 Free Online <span className="text-blue-600">Calculators</span>, Converters &amp; Digital Tools
               </h1>
               <p className="text-[14px] sm:text-[15px] text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto mb-4">
-                NepaCalc provides free online calculators, converters and digital tools covering finance, engineering, education, health, science and Nepal-specific calculations. Designed for students, professionals, businesses and everyday users.
+                NepaCalc provides 100+ free online calculators, converters and digital tools for finance, engineering, education, health, science and Nepal-specific calculations built for students, professionals, businesses and everyday users.
               </p>
               <div className="flex justify-center">
                 <HeroSearch />

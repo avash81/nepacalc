@@ -84,7 +84,7 @@ export default function BulkNepaliDatePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(bulkSchema) }}
       />
       <BulkCalculator />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-10">
         <BulkNepaliDateSeoContent />
         
         {/* Related Calculators */}
