@@ -54,15 +54,15 @@ export function HeroSearch() {
   };
 
   return (
-    <div ref={searchRef} className="relative w-full max-w-4xl group">
+    <div ref={searchRef} className="relative w-full max-w-2xl mx-auto group">
       <div className={`relative flex items-center transition-all duration-300 ${isOpen ? 'ring-4 ring-blue-500/10' : ''}`}>
-        <div className="absolute left-8 text-blue-600 group-focus-within:scale-110 transition-transform">
-          <Search size={28} strokeWidth={2.5} />
+        <div className="absolute left-4 text-blue-600 group-focus-within:scale-110 transition-transform">
+          <Search size={22} strokeWidth={2.5} />
         </div>
         <input
           type="text"
-          placeholder="What do you want to calculate today? (e.g. Income Tax, BMI, GPA...)"
-          className="w-full h-20 pl-20 pr-8 bg-white border-2 border-[#dadce0] rounded-2xl text-[18px] font-medium text-[#202124] placeholder:text-[#5f6368] focus:border-blue-600 focus:outline-none shadow-sm transition-all"
+          placeholder="What do you want to calculate today? (e.g. Income Tax, BMI...)"
+          className="w-full h-14 pl-12 pr-8 bg-white border-2 border-[#dadce0] rounded-xl text-[15px] font-medium text-[#202124] placeholder:text-[#5f6368] focus:border-blue-600 focus:outline-none shadow-sm transition-all"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => query.trim() && setIsOpen(true)}
