@@ -161,6 +161,18 @@ const rawHtml = `<!DOCTYPE html>
   .cal-year-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
   @media (max-width: 820px){ .cal-year-grid{grid-template-columns:repeat(2,1fr);} }
   @media (max-width: 480px){ .cal-year-grid{grid-template-columns:1fr;} }
+  @media (max-width: 600px){
+    body{padding:0 10px 0px;}
+    .protocol button{min-width:100%;font-size:12px;padding:10px 12px;}
+    .note{padding:14px 16px;font-size:12px;}
+    .row{gap:12px;}
+    .col{min-width:100%;}
+    table{font-size:11.5px;}
+    thead th{padding:7px 10px;font-size:10px;}
+    tbody td{padding:6px 10px;}
+    .card-body{padding:12px 0;}
+    .status-line{padding:10px 0;font-size:11.5px;gap:10px;}
+  }
   .cal-month-card{border:1px solid var(--line);border-radius:9px;padding:10px;}
   .cal-month-title{font-size:12px;font-weight:700;text-align:center;margin-bottom:6px;color:var(--ink);}
   .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
