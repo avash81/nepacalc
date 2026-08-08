@@ -39,7 +39,7 @@ export function BulkNepaliDateSeoContent() {
 
       <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">Nepal's Official Calendar Reference</h3>
       <p>
-        For calendar-related information, one important government reference is the Nepal Panchanga Nirnayak Development Committee (नेपाल पञ्चाङ्ग निर्णायक विकास समिति). The committee is a Government of Nepal organization under the Ministry of Culture, Tourism and Civil Aviation. Its official website publishes information and notices concerning Panchanga and calendar publication and approval.
+        For calendar-related information, one important government reference is the Nepal Panchanga Nirnayak Development Committee (नेपाल पञ्चाङ्ग निर्णायक विकास समिति). When working with a <Link href="/calculator/nepali-date/" className="text-blue-600 hover:underline">Nepali date converter</Link>, it's helpful to know that the committee is a Government of Nepal organization under the Ministry of Culture, Tourism and Civil Aviation. Its official website publishes information and notices concerning Panchanga and calendar publication and approval.
       </p>
       <p>
         For example, the committee has published notices concerning the publication of the 2083 BS Panchanga, including requirements and the calculation system to be followed for Panchanga submitted for approval.
@@ -50,7 +50,7 @@ export function BulkNepaliDateSeoContent() {
 
       <h3 className="text-xl font-bold text-[#202124] mt-8 mb-4">BS and AD Dates for Passport Applications</h3>
       <p>
-        Accurate date conversion can be particularly important when completing government applications.
+        Accurate <Link href="/calculator/nepali-date/" className="text-blue-600 hover:underline">BS to AD date conversion</Link> can be particularly important when completing government applications.
       </p>
       <p>
         The Department of Passports, Government of Nepal, states in its passport application instructions that the date of birth from a citizenship certificate or Minor ID should be entered in the BS field, while the same date should be converted to the A.D. (Gregorian) calendar for the AD field.

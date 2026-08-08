@@ -74,7 +74,7 @@ const rawHtml = `<!DOCTYPE html>
   }
   textarea:focus{outline:2px solid var(--blue-soft-line);border-color:var(--blue);}
 
-  .row{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;margin-top:14px;}
+  .row{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;margin-top:14px;}
   .col{flex:1;min-width:260px;}
 
   .filebox{
@@ -92,9 +92,9 @@ const rawHtml = `<!DOCTYPE html>
   }
 
   .note{
-    display:flex;gap:14px;align-items:flex-start;
+    display:flex;gap:20px;align-items:flex-start;
     background:var(--blue-soft);border:1px solid var(--blue-soft-line);
-    border-radius:8px;padding:18px 20px;margin-top:20px;font-size:13px;color:var(--ink);line-height:1.7;
+    border-radius:8px;padding:24px 28px;margin-top:20px;font-size:13px;color:var(--ink);line-height:1.7;
   }
   .note b{color:var(--blue);}
 
@@ -156,7 +156,7 @@ const rawHtml = `<!DOCTYPE html>
   .cal-head button{border:1px solid var(--line);background:#fff;border-radius:6px;width:30px;height:30px;cursor:pointer;color:var(--ink);font-size:15px;}
   .cal-head button:hover{border-color:var(--blue);color:var(--blue);}
   .cal-head .cal-title{font-size:16px;font-weight:700;font-family:var(--serif);}
-  .cal-year-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .cal-year-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
   @media (max-width: 820px){ .cal-year-grid{grid-template-columns:repeat(2,1fr);} }
   @media (max-width: 480px){ .cal-year-grid{grid-template-columns:1fr;} }
   .cal-month-card{border:1px solid var(--line);border-radius:9px;padding:10px;}

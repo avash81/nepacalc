@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import dynamic from 'next/dynamic';
 export const metadata: Metadata = {
   metadataBase: new URL('https://nepacalc.com'),
-  title: "Free Online Calculators for Nepal ,  NepaCalc",
+  title: "Free Online Calculators for Nepal | NepaCalc",
   description: "Nepal's trusted free calculator platform for income tax, EMI planning, GPA tracking, unit conversions, and 80+ professional tools. Try NepaCalc now.",
   manifest: '/manifest.json',
   icons: {
@@ -108,7 +108,7 @@ const globalSchema = {
     {
       "@type": "WebApplication",
       "@id": "https://nepacalc.com/#calculator",
-      "name": "NepaCalc ,  Professional Mathematical & Engineering Suite",
+      "name": "NepaCalc Professional Mathematical & Engineering Suite",
       "url": "https://nepacalc.com",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Any",
