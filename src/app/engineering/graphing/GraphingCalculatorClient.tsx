@@ -47,6 +47,7 @@ export default function GraphingCalculatorClient() {
   const [focusedId, setFocusedId] = useState<number>(1);
   const [keypadOpen, setKeypadOpen] = useState(false);
   const [keypadTab, setKeypadTab] = useState<'123'|'fx'|'abc'>('123');
+  const [mobileTab, setMobileTab] = useState<'functions'|'graph'>('functions');
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -60,13 +61,23 @@ export default function GraphingCalculatorClient() {
     setExprs(p => [...p, { id, text: '', color: COLORS[idx], visible: true }]);
     setFocusedId(id);
   };
-  const removeExpr = (id: number) => setExprs(p => p.length > 1 ? p.filter(e => e.id !== id) : p);
+
+  const removeExpr = (id: number) => {
+    setExprs(p => {
+      if (p.length <= 1) return p;
+      const next = p.filter(e => e.id !== id);
+      // if we removed the focused one, focus the first remaining
+      if (id === focusedId) setFocusedId(next[0]?.id ?? -1);
+      return next;
+    });
+  };
+
   const updateExpr = (id: number, text: string) => setExprs(p => p.map(e => e.id === id ? { ...e, text } : e));
   const toggleExpr = (id: number) => setExprs(p => p.map(e => e.id === id ? { ...e, visible: !e.visible } : e));
 
+  // Preset: writes into focused expression only (does NOT clear others)
   const loadPreset = (val: string) => {
-    setExprs([{ id: 1, text: val, color: COLORS[0], visible: true }]);
-    setFocusedId(1);
+    setExprs(p => p.map(e => e.id === focusedId ? { ...e, text: val } : e));
   };
 
   /* ── Keypad push into focused expression ─── */
@@ -231,8 +242,29 @@ export default function GraphingCalculatorClient() {
 
   return (
     <div className="flex flex-col bg-[#F8FAFC]" style={{ height: 'calc(100dvh - 64px)', overflow: 'hidden' }}>
-      {/* Breadcrumb */}
-      <div className="px-4 py-2 border-b border-slate-200 bg-white flex items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider shrink-0">
+
+      {/* ── Mobile Tab Bar (hidden on desktop) ── */}
+      <div className="lg:hidden flex items-center bg-white border-b border-slate-200 shrink-0">
+        <button
+          onClick={() => setMobileTab('functions')}
+          className={`flex-1 py-3 text-[12px] font-black uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 ${
+            mobileTab === 'functions' ? 'text-[#4361ee] border-b-2 border-[#4361ee]' : 'text-slate-400 hover:text-slate-600'
+          }`}
+        >
+          <span>⚙️</span> Functions
+        </button>
+        <button
+          onClick={() => setMobileTab('graph')}
+          className={`flex-1 py-3 text-[12px] font-black uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 ${
+            mobileTab === 'graph' ? 'text-[#4361ee] border-b-2 border-[#4361ee]' : 'text-slate-400 hover:text-slate-600'
+          }`}
+        >
+          <span>📈</span> Graph
+        </button>
+      </div>
+
+      {/* ── Desktop breadcrumb (hidden on mobile) ── */}
+      <div className="hidden lg:flex px-4 py-2 border-b border-slate-200 bg-white items-center gap-2 text-[11px] font-bold text-slate-400 uppercase tracking-wider shrink-0">
         <Link href="/" className="hover:text-blue-600">Home</Link>
         <span>/</span>
         <Link href="/engineering/" className="hover:text-blue-600">Engineering</Link>
@@ -240,13 +272,15 @@ export default function GraphingCalculatorClient() {
         <span className="text-slate-700">Graphing Visualizer</span>
       </div>
 
-      {/* Main Layout */}
-      <div className="flex flex-1 overflow-hidden">
+      {/* Main Layout: tab-based on mobile, side-by-side on desktop */}
+      <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
 
-        {/* ─── LEFT SIDEBAR ─── */}
-        <div className="w-full lg:w-[300px] flex-shrink-0 flex flex-col bg-white border-r border-slate-200 overflow-y-auto">
-          
-          {/* Presets */}
+        {/* ─── LEFT SIDEBAR: visible on desktop always; on mobile only when tab=functions ─── */}
+        <div
+          className={`${
+            mobileTab === 'functions' ? 'flex' : 'hidden'
+          } lg:flex w-full lg:w-[320px] flex-shrink-0 flex-col bg-white border-b lg:border-b-0 lg:border-r border-slate-200 overflow-y-auto lg:h-full`}
+        >
           <div className="px-3 pt-3 pb-2 border-b border-slate-100">
             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Presets</p>
             <div className="flex flex-wrap gap-1.5">
@@ -417,8 +451,14 @@ export default function GraphingCalculatorClient() {
           </div>
         </div>
 
-        {/* ─── RIGHT: Graph Canvas — hidden on mobile until sidebar is closed ─── */}
-        <div ref={wrapRef} className="hidden lg:block flex-1 relative bg-white overflow-hidden">
+        {/* ─── RIGHT: Graph Canvas ─── visible on desktop always; on mobile only when tab=graph ─── */}
+        <div
+          ref={wrapRef}
+          className={`${
+            mobileTab === 'graph' ? 'flex' : 'hidden'
+          } lg:flex flex-1 relative bg-white overflow-hidden`}
+          style={{ minHeight: '0' }}
+        >
           <canvas
             ref={canvasRef}
             style={{ display:'block', width:'100%', height:'100%', cursor: drag.current.active ? 'grabbing' : 'crosshair', touchAction:'none' }}
