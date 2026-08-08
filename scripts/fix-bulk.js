@@ -213,7 +213,6 @@ const rawHtml = `<!DOCTYPE html>
             <div style="margin-top:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
               <button class="btn btn-primary" onclick="runConversion()">Convert pasted dates</button>
               <button class="btn btn-ghost" onclick="clearAll()">Clear</button>
-              <span style="color:var(--muted);font-size:11px;margin-left:4px;">Ctrl/Cmd+Enter</span>
               <div style="flex:1;"></div>
               <button class="btn btn-ghost" style="padding:6px 12px;font-size:12px;white-space:nowrap;" onclick="openCalendar('AD', this)">📅 English (AD) calendar</button>
               <button class="btn btn-ghost" style="padding:6px 12px;font-size:12px;white-space:nowrap;" onclick="openCalendar('BS', this)">🗓️ Nepali (BS) calendar</button>
