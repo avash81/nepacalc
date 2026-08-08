@@ -16,7 +16,7 @@ export function NavbarActions() {
         {/* Mobile Menu */}
         <button
           onClick={() => setIsMenuOpen(true)}
-          className="lg:hidden p-2.5 hover:bg-[#F1F3F4] rounded-full text-[#5F6368]"
+          className="lg:hidden p-2.5 hover:bg-white/10 rounded-full text-white"
           aria-label="Open menu"
         >
           <Menu className="w-5 h-5" />

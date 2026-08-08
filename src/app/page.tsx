@@ -104,7 +104,7 @@ export default function HomePage() {
         <section className="pt-2 pb-4 border-b border-[#dadce0] bg-[#F1F3F4]">
           <div className="hp-container">
             <div className="max-w-5xl mx-auto text-center px-4 pt-2">
-              <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-[52px] font-black text-[#202124] tracking-tight mb-2 leading-tight">
+              <h1 className="text-base sm:text-xl md:text-2xl lg:text-[26px] font-black text-[#202124] tracking-tight mb-2 leading-tight">
                 Free Online <span className="text-blue-600">Calculators</span>, Converters &amp; Digital Tools
               </h1>
               <p className="text-[14px] sm:text-[15px] text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto mb-4">

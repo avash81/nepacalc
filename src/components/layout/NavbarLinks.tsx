@@ -24,12 +24,12 @@ export function NavbarLinks() {
             key={link.href}
             href={link.href}
             className={`px-4 h-full flex items-center text-[11px] font-black uppercase tracking-[0.12em] transition-all relative group/nav ${
-              active ? 'text-[#202124]' : 'text-[#5F6368] hover:text-[#202124]'
+              active ? 'text-white' : 'text-white/80 hover:text-white'
             }`}
           >
             {link.name}
-            {active && <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#059669] rounded-t-full" />}
-            <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#059669] scale-x-0 group-hover/nav:scale-x-100 transition-transform origin-center duration-300 rounded-t-full" />
+            {active && <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-white rounded-t-full" />}
+            <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-white scale-x-0 group-hover/nav:scale-x-100 transition-transform origin-center duration-300 rounded-t-full" />
           </Link>
         );
       })}
