@@ -449,6 +449,16 @@ export default function GraphingCalculatorClient() {
               <strong className="text-slate-500">Constants:</strong> π, e &nbsp;·&nbsp; <strong className="text-slate-500">Power:</strong> x^2
             </p>
           </div>
+
+          {/* Mobile-only: View Graph button */}
+          <div className="lg:hidden px-3 pb-3 pt-1">
+            <button
+              onClick={() => setMobileTab('graph')}
+              className="w-full py-3 bg-[#4361ee] text-white text-[13px] font-black rounded-xl flex items-center justify-center gap-2 hover:bg-[#3a56d4] active:scale-95 transition-all shadow-md"
+            >
+              📈 View Graph
+            </button>
+          </div>
         </div>
 
         {/* ─── RIGHT: Graph Canvas ─── visible on desktop always; on mobile only when tab=graph ─── */}
