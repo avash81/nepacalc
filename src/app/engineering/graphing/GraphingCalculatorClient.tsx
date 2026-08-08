@@ -257,19 +257,69 @@ export default function GraphingCalculatorClient() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 space-y-6">
-        {/* Main 2-Column Desktop Grid: Calculator (Left) & Canvas Plotter (Right) */}
         <div className="flex flex-col lg:flex-row gap-6 items-start">
-          {/* Advanced Calculator Engine */}
-          <div className="w-full lg:w-[480px] flex-shrink-0">
-            <AdvancedCalculator onExpressionChange={(text) => {
-              if (exprs.length > 0) {
-                updateExpr(exprs[0].id, text);
-              }
-            }} />
+          {/* LEFT SIDEBAR: Expressions Manager & Floating Calculator */}
+          <div className="w-full lg:w-[420px] flex flex-col gap-6 flex-shrink-0">
+            {/* Expressions Manager */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">📈</span>
+                  <h2 className="text-sm font-bold text-slate-900">Active Functions</h2>
+                </div>
+                <button onClick={addExpr} className="px-3 py-1.5 bg-[#4361ee] text-white text-[11px] font-bold rounded-lg hover:bg-[#3a56d4] transition-all shadow-sm active:scale-95 uppercase tracking-wide">
+                  + Add
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                {exprs.map((expr, i) => (
+                  <div key={expr.id} className="flex items-center gap-2.5 p-2 bg-slate-50 border border-slate-200 rounded-xl group relative transition-all hover:border-slate-300">
+                    <button onClick={() => toggleExpr(expr.id)} title="Toggle Visibility" className="w-6 h-6 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all" style={{ borderColor: expr.color, background: expr.visible ? expr.color : 'transparent' }}>
+                      {expr.visible && <span className="text-white text-[11px] font-bold">✓</span>}
+                    </button>
+                    <div className="flex-1 relative">
+                      <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-[12px] font-mono text-slate-400 font-bold">f{i+1}=</span>
+                      <input
+                        type="text"
+                        value={expr.text}
+                        onChange={e => updateExpr(expr.id, e.target.value)}
+                        placeholder="e.g. sin(x)"
+                        className="w-full pl-10 pr-3 py-2 text-[13px] font-mono rounded-lg border border-transparent focus:border-[#4361ee] focus:ring-1 focus:ring-[#4361ee] outline-none transition-all bg-white font-medium text-slate-900 shadow-sm"
+                        style={{ borderLeftColor: expr.color, borderLeftWidth: 3 }}
+                      />
+                    </div>
+                    {exprs.length > 1 && (
+                      <button onClick={() => removeExpr(expr.id)} title="Remove Function" className="text-slate-400 hover:text-red-500 text-[16px] font-bold px-1 transition-all flex-shrink-0 absolute right-2 opacity-0 group-hover:opacity-100 bg-slate-50">✕</button>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-slate-100 text-[10px] text-slate-500 flex flex-wrap gap-x-3 gap-y-1 font-medium leading-relaxed">
+                <span><strong className="text-slate-700">Supported:</strong> sin, cos, tan, log, ln, sqrt, abs, asin, acos</span>
+                <span><strong className="text-slate-700">Constants:</strong> π, e</span>
+                <span><strong className="text-slate-700">Powers:</strong> x^2</span>
+              </div>
+            </div>
+
+            {/* Input Keypad / Advanced Calculator Helper */}
+            <div className="relative">
+              <div className="absolute -top-3 left-6 bg-slate-800 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-md z-10">
+                Input Helper
+              </div>
+              <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden pt-4 relative transform transition-all hover:shadow-md">
+                <AdvancedCalculator onExpressionChange={(text) => {
+                  if (exprs.length > 0) {
+                    updateExpr(exprs[0].id, text);
+                  }
+                }} />
+              </div>
+            </div>
           </div>
 
-          {/* High-Resolution Interactive Canvas Graph */}
-          <div ref={wrapRef} className="flex-1 w-full h-[520px] relative bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+          {/* RIGHT SIDE: High-Resolution Interactive Canvas Graph */}
+          <div ref={wrapRef} className="flex-1 w-full h-[500px] lg:h-[700px] relative bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
             <canvas
               ref={canvasRef}
               style={{ display:'block', width:'100%', height:'100%', cursor: drag.current.active ? 'grabbing' : 'crosshair', touchAction:'none' }}
@@ -278,56 +328,15 @@ export default function GraphingCalculatorClient() {
             />
             
             {/* Zoom / Pan Controls Overlay */}
-            <div className="absolute right-4 bottom-16 flex flex-col gap-2 z-10">
-              <button onClick={resetView} title="Reset View" className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[14px] hover:bg-slate-50 transition-transform active:scale-95 font-bold text-slate-700">⊡</button>
-              <button onClick={() => zoomBy(0.75)} title="Zoom In" className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[18px] font-bold hover:bg-slate-50 transition-transform active:scale-95 text-slate-700">+</button>
-              <button onClick={() => zoomBy(1.33)} title="Zoom Out" className="w-9 h-9 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[18px] font-bold hover:bg-slate-50 transition-transform active:scale-95 text-slate-700">−</button>
+            <div className="absolute right-4 bottom-12 flex flex-col gap-2 z-10">
+              <button onClick={resetView} title="Reset View" className="w-10 h-10 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[16px] hover:bg-slate-50 transition-transform active:scale-95 font-bold text-slate-700">⊡</button>
+              <button onClick={() => zoomBy(0.75)} title="Zoom In" className="w-10 h-10 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[20px] font-bold hover:bg-slate-50 transition-transform active:scale-95 text-slate-700">+</button>
+              <button onClick={() => zoomBy(1.33)} title="Zoom Out" className="w-10 h-10 rounded-xl bg-white border border-slate-200 shadow-md flex items-center justify-center text-[20px] font-bold hover:bg-slate-50 transition-transform active:scale-95 text-slate-700">−</button>
             </div>
             
-            <div className="absolute bottom-4 right-14 text-[10px] font-bold text-slate-400 uppercase tracking-widest pointer-events-none">Drag to pan · Scroll to zoom</div>
-          </div>
-        </div>
-
-        {/* Compact Expressions Manager Box (Below Calculator) */}
-        <div className="w-full bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
-          <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
-            <div className="flex items-center gap-2">
-              <span className="text-xl">📈</span>
-              <h2 className="text-sm font-bold text-slate-900">Active Function Expressions</h2>
+            <div className="absolute bottom-4 right-16 text-[10px] font-bold text-slate-400 uppercase tracking-widest pointer-events-none bg-white/80 px-2 py-1 rounded">
+              Drag to pan · Scroll to zoom
             </div>
-            <button onClick={addExpr} className="px-4 py-1.5 bg-[#4361ee] text-white text-xs font-bold rounded-xl hover:bg-[#3a56d4] transition-all shadow-sm active:scale-95">
-              + Add Function
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {exprs.map((expr, i) => (
-              <div key={expr.id} className="flex items-center gap-2.5 p-2 bg-slate-50 border border-slate-200 rounded-xl group">
-                <button onClick={() => toggleExpr(expr.id)} title="Toggle Visibility" className="w-6 h-6 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all" style={{ borderColor: expr.color, background: expr.visible ? expr.color : 'transparent' }}>
-                  {expr.visible && <span className="text-white text-[11px] font-bold">✓</span>}
-                </button>
-                <div className="flex-1 relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[12px] font-mono text-slate-400 font-bold">f{i+1}=</span>
-                  <input
-                    type="text"
-                    value={expr.text}
-                    onChange={e => updateExpr(expr.id, e.target.value)}
-                    placeholder="e.g. sin(x)"
-                    className="w-full pl-11 pr-3 py-2 text-[13px] font-mono rounded-lg border border-slate-200 focus:border-[#4361ee] focus:ring-1 focus:ring-[#4361ee] outline-none transition-all bg-white font-medium text-slate-900"
-                    style={{ borderLeftColor: expr.color, borderLeftWidth: 3 }}
-                  />
-                </div>
-                {exprs.length > 1 && (
-                  <button onClick={() => removeExpr(expr.id)} title="Remove Function" className="text-slate-400 hover:text-red-500 text-[14px] font-bold px-1 transition-all flex-shrink-0">✕</button>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500 flex flex-wrap gap-4 font-medium">
-            <span><strong>Supported Functions:</strong> sin, cos, tan, asin, acos, atan, log, ln, sqrt, abs</span>
-            <span><strong>Constants:</strong> π, e</span>
-            <span><strong>Powers:</strong> x^2, x^3</span>
           </div>
         </div>
       </div>
