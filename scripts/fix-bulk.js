@@ -27,7 +27,7 @@ const rawHtml = `<!DOCTYPE html>
   *{box-sizing:border-box;}
   body{
     margin:0;
-    background:var(--paper);
+    background:transparent;
     color:var(--ink);
     font-family:var(--sans);
     padding:0 20px 0px;
@@ -36,8 +36,9 @@ const rawHtml = `<!DOCTYPE html>
 
   .grid{display:grid;grid-template-columns:1fr;gap:18px;}
   .card{
-    background:var(--card);border:1px solid var(--line);border-radius:10px;
-    overflow:hidden;
+    background:transparent;
+    border:none;
+    overflow:visible;
   }
   .card-head{
     padding:13px 18px;border-bottom:1px solid var(--line);
@@ -1013,7 +1014,7 @@ export default function BulkCalculator() {
         <iframe
           ref={iframeRef}
           srcDoc={html}
-          className="w-full border-none min-h-[50px]" scrolling="no"
+          className="w-full border-none min-h-[50px] overflow-hidden" scrolling="no"
           sandbox="allow-scripts allow-downloads allow-popups allow-same-origin"
         />
 
