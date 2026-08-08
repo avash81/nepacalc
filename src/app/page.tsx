@@ -116,17 +116,17 @@ export default function HomePage() {
         </section>
         <main className="hp-container pt-4 pb-6">
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 [grid-auto-rows:1fr]">
             {CATEGORIES.map(cat => {
               const catHref = cat.id === 'education' ? '/math-tools/' : cat.id === 'utility' ? '/converters/' : cat.id === 'market' ? '/market-rates/' : `/${cat.id}/`;
               return (
-                <div key={cat.id} className="bg-white p-4 border border-[#dadce0] rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col h-full min-h-[340px]">
-                  <Link href={catHref} className="block pb-2 mb-3">
+                <div key={cat.id} className="bg-white p-4 border border-[#dadce0] rounded-xl shadow-sm hover:shadow-md transition-all flex flex-col h-full">
+                  <Link href={catHref} className="block pb-2 mb-3 shrink-0">
                     <h2 className={`${cat.id === 'engineering' ? 'text-[#4361ee]' : 'text-[#1a73e8]'} text-[11px] font-black uppercase tracking-wider border-b border-[#f1f3f4] pb-2 hover:underline`}>
                       {cat.name}
                     </h2>
                   </Link>
-                  <ul className="flex-grow">
+                  <ul className="flex-1">
                     {cat.calculators.slice(0, 8).map(calc => {
                       const href = calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`;
                       return (
@@ -144,7 +144,7 @@ export default function HomePage() {
                       );
                     })}
                   </ul>
-                  <div className="mt-3 pt-2 border-t border-[#f1f3f4]">
+                  <div className="mt-auto pt-3 border-t border-[#f1f3f4] shrink-0">
                     <Link href={catHref} className="text-[9px] font-bold text-[#1a73e8] hover:underline uppercase tracking-widest flex items-center gap-1">
                       View All &rarr;
                     </Link>
