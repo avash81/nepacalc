@@ -4,7 +4,7 @@ const rawHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Nepali Date — Bulk Converter</title>
+<title>Nepali Date Bulk Converter</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
   :root{
@@ -30,22 +30,10 @@ const rawHtml = `<!DOCTYPE html>
     background:var(--paper);
     color:var(--ink);
     font-family:var(--sans);
-    padding:28px 20px 60px;
+    padding:0 20px 60px;
   }
   .wrap{max-width:1180px;margin:0 auto;}
-  .masthead{
-    display:flex;align-items:baseline;justify-content:space-between;
-    border-bottom:1px solid var(--line);
-    padding-bottom:14px;margin-bottom:22px;flex-wrap:wrap;gap:8px;
-  }
-  .masthead h1{
-    font-family:var(--serif);
-    font-size:26px;font-weight:700;margin:0;letter-spacing:-0.01em;
-  }
-  .masthead .tag{
-    font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;
-    font-family:var(--mono);
-  }
+
   .grid{display:grid;grid-template-columns:1fr;gap:18px;}
   .card{
     background:var(--card);border:1px solid var(--line);border-radius:10px;
@@ -104,9 +92,9 @@ const rawHtml = `<!DOCTYPE html>
   }
 
   .note{
-    display:flex;gap:10px;align-items:flex-start;
+    display:flex;gap:14px;align-items:flex-start;
     background:var(--blue-soft);border:1px solid var(--blue-soft-line);
-    border-radius:8px;padding:11px 13px;margin-top:14px;font-size:12.5px;color:#1f3f8f;line-height:1.5;
+    border-radius:8px;padding:18px 20px;margin-top:20px;font-size:13px;color:var(--ink);line-height:1.7;
   }
   .note b{color:var(--blue);}
 
@@ -191,11 +179,6 @@ const rawHtml = `<!DOCTYPE html>
 <body>
 <div class="wrap">
 
-  <div class="masthead">
-    <h1>Nepali Date — Bulk Converter</h1>
-    <div class="tag">Batch AD ⇄ BS conversion engine</div>
-  </div>
-
   <div class="grid">
 
     <div class="card">
@@ -258,7 +241,6 @@ const rawHtml = `<!DOCTYPE html>
         </div>
 
         <div class="note">
-          <span>🛈</span>
           <div>
             <b>Recognized formats:</b> YYYY-MM-DD, YYYY/MM/DD, DD-MM-YYYY, DD/MM/YYYY, "23 Shrawan 2083",
             "August 8, 2026", real Excel date cells, and Nepali digits/month names (२३ साउन २०८३).
@@ -270,9 +252,8 @@ const rawHtml = `<!DOCTYPE html>
             converted is highlighted in red with the reason, so it's easy to spot and fix.
           </div>
         </div>
-        <div class="note" style="background:var(--ok-soft);border-color:#bfe3cf;">
-          <span>✅</span>
-          <div style="color:#0f5c38;">
+        <div class="note">
+          <div>
             <b>Accuracy:</b> conversions are checked against the official BS calendar data (Baisakh 2000 –
             Chaitra 2100, roughly AD 1943–2043) and cross-verified against 20,000+ random dates plus independent
             references. Still, for anything going on a passport, citizenship, or DV Lottery form, always double-check
@@ -1004,17 +985,17 @@ ro.observe(document.body);
 const output = `
 'use client';
 import { useRef, useEffect } from 'react';
-import { NepaliDateToolsNavigation } from '@/components/calculator/NepaliDateToolsNavigation';
+import { NepaliDatePageHeader } from '@/components/calculator/NepaliDatePageHeader';
 import Link from 'next/link';
-import { ArrowRight, ChevronRight, Home } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const html = ${JSON.stringify(rawHtml)};
 
 export default function BulkCalculator() {
-  const iframeRef = useRef(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    const handleResize = (e) => {
+    const handleResize = (e: any) => {
       if (e.data && e.data.type === 'resize' && iframeRef.current) {
         iframeRef.current.style.height = (e.data.height + 40) + 'px';
       }
@@ -1024,40 +1005,48 @@ export default function BulkCalculator() {
   }, []);
 
   return (
-    <div className="bg-[#F1F3F4] min-h-screen pb-20 pt-6">
-      <div className="max-w-6xl mx-auto px-4 lg:px-8">
-        
-        {/* Breadcrumb matching the site design */}
-        <div className="flex items-center gap-1.5 text-[11px] font-bold text-[#5F6368] uppercase tracking-wider mb-6">
-          <Link href="/" className="hover:text-[#1A73E8] flex items-center gap-1">
-            <Home className="w-3.5 h-3.5" /> Home
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <Link href="/nepal/" className="hover:text-[#1A73E8]">Nepal Specific</Link>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <Link href="/calculator/nepali-date/" className="hover:text-[#1A73E8]">Nepali Date</Link>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-[#202124]">Bulk Converter</span>
-        </div>
+    <div className="min-h-screen bg-[#F1F3F4] font-sans text-[#3C4043] pb-20">
+      <div className="max-w-[1280px] mx-auto px-4 pt-4 pb-16">
 
-        <NepaliDateToolsNavigation currentPage="bulk" />
-        
+        <NepaliDatePageHeader currentPage="bulk" />
+
         <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-[#DADCE0]">
-           <iframe 
+           <iframe
              ref={iframeRef}
              srcDoc={html}
-             className="w-full border-none min-h-[900px]"
+             className="w-full border-none min-h-[500px]"
              sandbox="allow-scripts allow-downloads allow-popups allow-same-origin"
            />
         </div>
 
-        <div className="mt-8 bg-white border border-[#DADCE0] rounded-lg p-6 shadow-sm flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-4">
-           <div>
-             <h3 className="text-lg font-bold text-[#202124] mb-1">Only need to convert one date?</h3>
-             <p className="text-sm text-[#5F6368]">Use the single Nepali Date Converter for quick conversions.</p>
-           </div>
-           <Link href="/calculator/nepali-date/" className="shrink-0 inline-flex items-center justify-center h-11 px-6 rounded-md bg-[#0d6e6a] text-white text-sm font-bold tracking-wide hover:bg-[#0a5c58] transition-colors">
-             Go to Single Converter <ArrowRight className="w-4 h-4 ml-2" />
+        {/* Related Calculators */}
+        <div className="mt-8 mb-6">
+          <h2 className="text-xl font-bold text-[#202124] mb-4 font-serif">Related Calculators</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <Link href="/calculator/nepali-date/" className="bg-white border border-[#e4e7ef] rounded-xl p-4 hover:border-blue-600 hover:shadow-sm transition-all group">
+              <div className="font-semibold text-[#0f1729] mb-1 group-hover:text-blue-600">Single Date Converter</div>
+              <div className="text-[13px] text-slate-500 line-clamp-2">Convert a single date instantly without dealing with spreadsheets.</div>
+            </Link>
+            <Link href="/calculator/date-duration/" className="bg-white border border-[#e4e7ef] rounded-xl p-4 hover:border-blue-600 hover:shadow-sm transition-all group">
+              <div className="font-semibold text-[#0f1729] mb-1 group-hover:text-blue-600">Date Duration</div>
+              <div className="text-[13px] text-slate-500 line-clamp-2">Calculate the exact number of days between two dates.</div>
+            </Link>
+            <Link href="/calculator/workdays/" className="bg-white border border-[#e4e7ef] rounded-xl p-4 hover:border-blue-600 hover:shadow-sm transition-all group">
+              <div className="font-semibold text-[#0f1729] mb-1 group-hover:text-blue-600">Workdays Calculator</div>
+              <div className="text-[13px] text-slate-500 line-clamp-2">Find out how many business days are in a date range.</div>
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-6 bg-white border border-[#DADCE0] rounded-lg p-5 shadow-sm flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-4">
+           <p className="text-sm text-[#5F6368]">
+             Just need one date?{' '}
+           </p>
+           <Link
+             href="/calculator/nepali-date/"
+             className="shrink-0 inline-flex items-center justify-center h-10 px-5 rounded-md bg-[#2454d6] text-white text-sm font-semibold hover:opacity-90 transition-opacity"
+           >
+             Use the single converter <ArrowRight className="w-4 h-4 ml-2" />
            </Link>
         </div>
       </div>

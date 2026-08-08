@@ -98,17 +98,12 @@ const globalSchema = {
     {
       "@type": "WebSite",
       "@id": "https://nepacalc.com/#website",
-      "url": "https://nepacalc.com",
       "name": "NepaCalc",
-      "description": "Free online scientific calculator with real-time graphing, maths solver, and 80+ professional calculators for Nepal.",
+      "url": "https://nepacalc.com",
       "publisher": {
         "@id": "https://nepacalc.com/#organization"
       },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://nepacalc.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
+      "inLanguage": "en"
     },
     {
       "@type": "WebApplication",

@@ -234,24 +234,25 @@ export function ModernCalcLayout({
         ]} />
       )}
       <div className="max-w-[1280px] mx-auto px-4 pt-2 pb-16">
-        <div className={`mb-2 pb-2 flex flex-col md:flex-row md:items-end justify-between gap-2 border-b border-[#dadce0]`}>
-          <div>
-            {crumbs && crumbs.length > 0 && (
-              <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 text-[11px] font-medium text-[#5f6368] mb-1 uppercase tracking-wider">
-
-                {crumbs.map((c, i) => (
-                  <Fragment key={i}>
-                    {i > 0 && <span className="text-[#DADCE0] scale-75">/</span>}
-                    {c.href ? <Link href={normalizeLink(c.href) as string} className="hover:text-[#1A73E8]">{c.label}</Link> : <span className="text-[#5f6368]">{c.label}</span>}
-                  </Fragment>
-                ))}
-              </nav>
-            )}
-            {!hideH1 && (
-              <h1 className={titleClassName || `text-lg sm:text-xl font-bold text-[#202124] tracking-tight mb-0`}>{title}</h1>
-            )}
+        {((crumbs && crumbs.length > 0) || !hideH1) && (
+          <div className={`mb-2 pb-2 flex flex-col md:flex-row md:items-end justify-between gap-2 border-b border-[#dadce0]`}>
+            <div>
+              {crumbs && crumbs.length > 0 && (
+                <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 text-[11px] font-medium text-[#5f6368] mb-1 uppercase tracking-wider">
+                  {crumbs.map((c, i) => (
+                    <Fragment key={i}>
+                      {i > 0 && <span className="text-[#DADCE0] scale-75">/</span>}
+                      {c.href ? <Link href={normalizeLink(c.href) as string} className="hover:text-[#1A73E8]">{c.label}</Link> : <span className="text-[#5f6368]">{c.label}</span>}
+                    </Fragment>
+                  ))}
+                </nav>
+              )}
+              {!hideH1 && (
+                <h1 className={titleClassName || `text-lg sm:text-xl font-bold text-[#202124] tracking-tight mb-0`}>{title}</h1>
+              )}
+            </div>
           </div>
-        </div>
+        )}
         {intro && <div className="mb-3">{intro}</div>}
         {ads?.top && <div className="mb-3 flex justify-center no-print">{ads.top}</div>}
         {fullWidth && (

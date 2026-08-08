@@ -30,8 +30,8 @@ const META = {
     subtitle: 'Convert any single date between English (AD/Gregorian) and Nepali (BS/Bikram Sambat) calendars.',
   },
   bulk: {
-    title: 'Nepali Date — Bulk Converter',
-    subtitle: 'Paste a list, upload an Excel or CSV file, or pick from the full-year calendar to convert hundreds of dates at once.',
+    title: 'Bulk Nepali Date Converter (BS ⇄ AD)',
+    subtitle: 'Convert multiple Bikram Sambat (BS) dates to Gregorian (AD) dates or multiple AD dates to BS in one go. Enter or paste your dates below to convert them instantly.',
   },
 };
 
