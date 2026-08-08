@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { CATEGORIES } from '@/data/calculators';
 import { InstitutionalBlock } from '@/components/layout/InstitutionalBlock';
-import { HomeHero } from './HomeHero';
+
 import { RecentCalculators } from '@/components/layout/RecentCalculators';
 import type { Metadata } from 'next';
 
@@ -112,7 +112,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <HomeHero />
+
           </div>
         </section>
         
@@ -214,4 +214,5 @@ export default function HomePage() {
     </>
   );
 }
+
 

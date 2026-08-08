@@ -4,6 +4,7 @@ import * as math from 'mathjs';
 import * as QRCode from 'qrcode';
 import { useSyncState } from '@/hooks/useSyncState';
 import { ModernCalcLayout } from '@/components/layout/ModernCalcLayout';
+import AllInOneCalculator from '@/components/calculator/AllInOneCalculator';
 import { Calculator, TrendingUp, Info, ShieldCheck, Microscope, History, GraduationCap, Landmark, Binary, Activity, Target, Award, Sigma } from 'lucide-react';
 
 /* ── Professional Factorial ───────────────── */
@@ -224,64 +225,8 @@ export default function ScientificCalculator() {
       description="The definitive online scientific calculator. Featuring a Symbolic Computer Algebra System (CAS), real-time multi-plotting, and shift-key logic. Fully aligned with NEB, TU, and international STEM standards."
       icon={Calculator}
       inputs={
-        <div className="w-full">
-          {!isMounted ? (
-            <div className="hp-loader h-[400px] flex items-center justify-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1A73E8]"></div>
-            </div>
-          ) : (
-            <div className="space-y-6">
-              <div className="p-6 bg-[#F8F9FA] border border-[#DADCE0] rounded-lg shadow-sm relative overflow-hidden">
-                <div className="relative z-10 space-y-3">
-                  <div className="flex justify-between items-center">
-                    <div className="flex gap-2">
-                      <span className={`text-[9px] font-bold tracking-widest ${shift ? 'text-[#1A73E8]' : 'text-[#70757A]'}`}>SHIFT</span>
-                      <span className={`text-[9px] font-bold tracking-widest ${alpha ? 'text-rose-500' : 'text-[#70757A]'}`}>ALPHA</span>
-                    </div>
-                    <button onClick={()=>exec('ANGLE')} className="text-[9px] font-bold bg-white border border-[#DADCE0] px-3 py-1 rounded text-[#5F6368]">{angleMode}</button>
-                  </div>
-
-                  <div className="bg-white rounded-md p-5 border border-[#DADCE0] min-h-[120px] flex flex-col justify-end text-right">
-                    <div className="text-[#70757A] text-sm font-mono overflow-x-auto whitespace-nowrap scrollbar-hide flex items-center justify-end gap-1 mb-2">
-                      {expressions[activeIndex].split('').map((char, i) => (
-                        <span key={i} className={i === cursorIndex ? "border-l-2 border-[#1A73E8] animate-pulse" : ""}>{char}</span>
-                      ))}
-                      {cursorIndex === expressions[activeIndex].length && <span className="border-l-2 border-[#1A73E8] animate-pulse h-4" />}
-                    </div>
-                    <div className="text-4xl font-black text-[#202124] font-mono truncate">
-                      {display}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <div className="grid grid-cols-6 gap-2">
-                  <button onClick={()=>exec('SHIFT')} className={`py-2 text-[10px] font-bold border rounded transition-all ${shift ? 'bg-[#1A73E8] border-[#1A73E8] text-[#202124]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>SFT</button>
-                  <button onClick={()=>exec('ALPHA')} className={`py-2 text-[10px] font-bold border rounded transition-all ${alpha ? 'bg-rose-500 border-rose-500 text-[#202124]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>ALP</button>
-                  <button onClick={()=>exec('STO')} className={`py-2 text-[10px] font-bold border rounded transition-all ${stoMode ? 'bg-amber-500 border-amber-500 text-[#202124]' : 'bg-white border-[#DADCE0] text-[#5F6368]'}`}>STO</button>
-                  <button onClick={()=>exec('QR')} className="py-2 text-[10px] font-bold border border-[#DADCE0] bg-white text-[#5F6368] rounded">QR</button>
-                  <button onClick={()=>exec('LEFT')} className="py-2 text-[10px] font-bold border border-[#DADCE0] bg-white text-[#5F6368] rounded">←</button>
-                  <button onClick={()=>exec('RIGHT')} className="py-2 text-[10px] font-bold border border-[#DADCE0] bg-white text-[#5F6368] rounded">→</button>
-                </div>
-
-                <div className="grid grid-cols-6 gap-2">
-                    {['sin', 'cos', 'tan', 'log', 'ln', '√'].map(btn => (
-                      <button key={btn} onClick={()=>press(btn)} className="py-2 text-[10px] font-bold border border-[#DADCE0] bg-[#F8F9FA] text-[#5F6368] rounded hover:border-[#1A73E8] transition-all">{btn}</button>
-                    ))}
-                </div>
-
-                <div className="grid grid-cols-4 gap-2 bg-[#F1F3F4] p-4 rounded-lg">
-                  {['7','8','9','DEL','4','5','6','*','1','2','3','/','0','.','EXP','+'].map(btn => (
-                    <button key={btn} onClick={()=>exec(btn === 'DEL' ? 'DEL' : btn === '*' ? '*' : btn === '/' ? '/' : btn === 'EXP' ? '*10^' : btn)} className={`py-3 text-[14px] font-bold border rounded transition-all ${btn === 'DEL' ? 'bg-rose-500 border-rose-600 text-[#202124]' : 'bg-white border-[#DADCE0] text-[#202124]'}`}>{btn}</button>
-                  ))}
-                  <button onClick={()=>exec('AC')} className="py-3 text-[14px] font-bold border border-[#5F6368] bg-[#5F6368] text-[#202124] rounded">AC</button>
-                  <button onClick={()=>exec('ANS')} className="py-3 text-[14px] font-bold border border-[#DADCE0] bg-white text-[#202124] rounded">Ans</button>
-                  <button onClick={()=>exec('=')} className="col-span-2 py-3 text-[14px] font-bold border border-[#1A73E8] bg-[#1A73E8] text-[#202124] rounded shadow-sm">=</button>
-                </div>
-              </div>
-            </div>
-          )}
+        <div className="w-full flex justify-center">
+          <AllInOneCalculator onExpressionChange={(expr) => updateState({ expressions: [expr, expressions[1], expressions[2]], activeIndex: 0 })} />
         </div>
       }
       results={
@@ -625,4 +570,5 @@ export default function ScientificCalculator() {
     />
   );
 }
+
 

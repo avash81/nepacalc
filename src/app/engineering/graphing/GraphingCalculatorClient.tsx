@@ -1,6 +1,9 @@
 'use client';
 import { useState, useRef, useCallback, useEffect } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
+const AdvancedCalculator = dynamic(() => import('@/components/calculator/AdvancedCalculator'), { ssr: false });
 
 /* ── Colors for up to 8 expressions ─────────────────────────── */
 const COLORS = ['#4361ee','#f72585','#4cc9f0','#7209b7','#06d6a0','#ff6b35','#3a86ff','#e63946'];
@@ -218,9 +221,9 @@ export default function GraphingCalculatorClient() {
       </div>
 
       {/* Main layout */}
-      <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row gap-0" style={{ height: 'calc(100vh - 120px)' }}>
+      <div className="max-w-[1600px] mx-auto px-4 flex flex-col lg:flex-row gap-4" style={{ height: 'calc(100vh - 120px)' }}>`n        {/* Advanced Calculator */}`n        <div className="w-full lg:w-[450px] flex-shrink-0 flex flex-col">`n          <AdvancedCalculator onExpressionChange={(text) => { if(exprs.length > 0) updateExpr(exprs[0].id, text); }} />`n        </div>
         {/* Sidebar */}
-        <div className="w-full lg:w-[320px] flex-shrink-0 bg-white border border-slate-200 rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none overflow-hidden flex flex-col">
+        <div className="w-full lg:w-[320px] flex-shrink-0 bg-white border border-slate-200 rounded-2xl lg:rounded-l-2xl lg:rounded-tr-none overflow-hidden flex flex-col">
           <div className="p-4 border-b border-slate-100 flex items-center justify-between">
             <h1 className="text-[15px] font-bold text-[#202124]">📈 Graphing Calculator</h1>
             <button onClick={addExpr} className="px-3 py-1.5 bg-[#4361ee] text-white text-[11px] font-bold rounded-lg hover:bg-[#3a56d4] transition-colors">
@@ -275,4 +278,5 @@ export default function GraphingCalculatorClient() {
     </div>
   );
 }
+
 
