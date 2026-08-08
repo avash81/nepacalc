@@ -113,16 +113,13 @@ export const FOOTER_CATEGORIES: Record<string, FooterLinkGroup> = {
   default: {
     heading: 'Popular Tools',
     links: [
-      { name: 'Income Tax Calculator', href: '/calculator/nepal-income-tax/' },
-      { name: 'Scientific Calculator', href: '/calculator/scientific-calculator/' },
       { name: 'NEA Bill Calculator', href: '/calculator/nea-bill/' },
+      { name: 'Gold Converter', href: '/calculator/gold-converter/' },
+      { name: '3D Plotter', href: '/engineering/3d/' },
+      { name: 'Momo Calorie Counter', href: '/calculator/momo-calorie-counter/' },
       { name: 'SIP Calculator', href: '/calculator/sip-calculator/' },
-      { name: 'EMI Calculator', href: '/calculator/loan-emi/' },
-      { name: 'Live Gold Price', href: '/market-rates/live-gold-price/' },
-      { name: 'Live Silver Price', href: '/market-rates/live-silver-price/' },
-      { name: 'Exchange Rate Nepal', href: '/market-rates/exchange-rate-nepal/' },
-      { name: 'Land Area Converter', href: '/calculator/nepal-land/' },
-      { name: 'GPA Calculator', href: '/calculator/gpa/' },
+      { name: 'Engineering GPA', href: '/calculator/engineering-gpa/' },
+      { name: 'Date Calculator', href: '/calculator/nepali-date/' },
     ],
   },
 };
