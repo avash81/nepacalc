@@ -1,0 +1,26 @@
+# NepaCalc - AI Navigation Guide
+
+NepaCalc is a comprehensive suite of online calculators and digital tools specialized for Nepal.
+
+## Core Pages
+- Homepage: https://nepacalc.com/
+- Directory: https://nepacalc.com/directory/
+- Search: https://nepacalc.com/search/
+
+## Categories
+- Nepal Specific Tools: https://nepacalc.com/nepal/
+- Finance & Tax: https://nepacalc.com/finance/
+- Math Tools: https://nepacalc.com/math-tools/
+- Converters: https://nepacalc.com/converters/
+- Health: https://nepacalc.com/health/
+- Engineering: https://nepacalc.com/engineering/
+- Market Rates: https://nepacalc.com/market-rates/
+
+## Company & Methodology
+- About Us: https://nepacalc.com/about/
+- Data Sources & Methodology: https://nepacalc.com/data-policy/
+- Editorial Policy: https://nepacalc.com/about/editorial-policy/
+- Privacy Policy: https://nepacalc.com/privacy/
+- Terms & Conditions: https://nepacalc.com/terms/
+- Disclaimer: https://nepacalc.com/disclaimer/
+- Contact: https://nepacalc.com/contact/
