@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { CATEGORIES } from '@/data/calculators';
 import { InstitutionalBlock } from '@/components/layout/InstitutionalBlock';
-import { HeroSearch } from '@/components/ui/HeroSearch';
+import { SearchBar } from '@/components/ui/SearchBar';
 
 import type { Metadata } from 'next';
 
@@ -111,7 +111,7 @@ export default function HomePage() {
                 NepaCalc provides 100+ free online calculators, converters and digital tools for finance, engineering, education, health, science and Nepal-specific calculations built for students, professionals, businesses and everyday users.
               </p>
               <div className="flex justify-center">
-                <HeroSearch />
+                <SearchBar variant="hero" />
               </div>
             </div>
           </div>

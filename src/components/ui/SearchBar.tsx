@@ -1,0 +1,244 @@
+'use client';
+import { useState, useEffect, useRef } from 'react';
+import { Search, X, Calculator, ArrowRight, Sparkles } from 'lucide-react';
+import { CALCULATORS, Calculator as CalcType } from '@/data/calculators';
+import { useRouter } from 'next/navigation';
+
+interface SearchBarProps {
+  variant: 'navbar' | 'hero';
+}
+
+export function SearchBar({ variant }: SearchBarProps) {
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState<CalcType[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  
+  // Mobile navbar expansion state
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  const router = useRouter();
+  const searchRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!query.trim()) {
+      setResults([]);
+      return;
+    }
+    const q = query.toLowerCase();
+    const filtered = CALCULATORS.filter(c => 
+      c.name.toLowerCase().includes(q) || 
+      c.category.toLowerCase().includes(q) ||
+      c.keywords?.some(k => k.toLowerCase().includes(q))
+    ).slice(0, 6);
+    setResults(filtered);
+    setActiveIndex(0);
+    setIsOpen(true);
+  }, [query]);
+
+  // Handle clicking outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Autofocus when mobile search expands
+  useEffect(() => {
+    if (isExpanded && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isExpanded]);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setActiveIndex(prev => (prev + 1) % results.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setActiveIndex(prev => (prev - 1 + results.length) % results.length);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      handleSubmit();
+    } else if (e.key === 'Escape') {
+      if (isOpen) setIsOpen(false);
+      else if (isExpanded) {
+        setIsExpanded(false);
+        // Do not clear typed query on close per spec
+      }
+    }
+  };
+
+  const handleSubmit = () => {
+    if (results[activeIndex]) {
+      const selected = results[activeIndex];
+      router.push(selected.slug.includes('/') ? `/${selected.slug}/` : `/calculator/${selected.slug}/`);
+      setIsOpen(false);
+      setIsExpanded(false);
+      setQuery('');
+    } else if (query.trim()) {
+       // Optional fallback if no suggestion selected
+       router.push(`/search?q=${encodeURIComponent(query.trim())}`);
+       setIsOpen(false);
+       setIsExpanded(false);
+    }
+  };
+
+  const goTo = (calc: CalcType) => {
+    router.push(calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`);
+    setIsOpen(false);
+    setIsExpanded(false);
+    setQuery('');
+  };
+
+  const isNavbar = variant === 'navbar';
+
+  return (
+    <div 
+      ref={searchRef} 
+      className={`relative group ${isNavbar ? 'flex items-center' : 'w-full max-w-2xl mx-auto'}`}
+    >
+      {/* 
+        NAVBAR VARIANT
+      */}
+      {isNavbar && (
+        <>
+          {/* Desktop/Tablet Pill (Hidden on Mobile <768px unless expanded is handled separately, but we'll use CSS to hide the input portion) */}
+          <div className={`hidden md:flex items-center bg-white rounded-full p-1 border border-transparent focus-within:ring-2 focus-within:ring-white/40 shadow-sm transition-all duration-300 w-[180px] lg:w-[240px]`}>
+            <button 
+              onClick={handleSubmit}
+              aria-label="Search"
+              className="w-8 h-8 rounded-full bg-[#0E5C52] flex items-center justify-center text-white shrink-0 hover:bg-[#0a453d] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#0E5C52]"
+            >
+              <Search size={16} strokeWidth={2.5} />
+            </button>
+            <input
+              ref={isExpanded ? null : inputRef}
+              type="text"
+              aria-label="Search calculators"
+              placeholder="Search..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onFocus={() => query.trim() && setIsOpen(true)}
+              onKeyDown={handleKeyDown}
+              className="w-full h-8 pl-3 pr-2 bg-transparent text-[#1a1a1a] placeholder:text-[#8a8a8a] text-[14px] font-medium focus:outline-none appearance-none"
+            />
+          </div>
+
+          {/* Mobile Icon-Only Trigger (<768px) */}
+          {!isExpanded && (
+            <button 
+              onClick={() => setIsExpanded(true)}
+              aria-label="Search"
+              className="md:hidden w-10 h-10 rounded-full bg-[#0E5C52] flex items-center justify-center text-white shadow-sm hover:bg-[#0a453d] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#0E5C52]"
+            >
+              <Search size={18} strokeWidth={2.5} />
+            </button>
+          )}
+
+          {/* Mobile Expanded Overlay Overlay (<768px) */}
+          {isExpanded && (
+            <div className="md:hidden fixed inset-0 top-0 left-0 right-0 h-16 bg-[#0d6e6a] z-[300] flex items-center px-4 animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="w-full flex items-center bg-white rounded-full p-1 shadow-lg">
+                <button 
+                  onClick={handleSubmit}
+                  aria-label="Search"
+                  className="w-10 h-10 rounded-full bg-[#0E5C52] flex items-center justify-center text-white shrink-0"
+                >
+                  <Search size={18} strokeWidth={2.5} />
+                </button>
+                <input
+                  ref={inputRef}
+                  type="text"
+                  aria-label="Search calculators"
+                  placeholder="Search..."
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onFocus={() => query.trim() && setIsOpen(true)}
+                  onKeyDown={handleKeyDown}
+                  className="w-full h-10 pl-3 pr-2 bg-transparent text-[#1a1a1a] placeholder:text-[#8a8a8a] text-[16px] font-medium focus:outline-none appearance-none"
+                />
+                <button 
+                  onClick={() => setIsExpanded(false)}
+                  aria-label="Close search"
+                  className="w-10 h-10 flex items-center justify-center text-[#8a8a8a] hover:text-[#1a1a1a] shrink-0"
+                >
+                  <X size={20} strokeWidth={2} />
+                </button>
+              </div>
+            </div>
+          )}
+        </>
+      )}
+
+      {/* 
+        HERO VARIANT
+      */}
+      {!isNavbar && (
+        <div className={`relative flex items-center bg-white rounded-full p-1.5 shadow-sm border border-[#dadce0] transition-all duration-300 ${isOpen ? 'ring-4 ring-[#0E5C52]/20 border-[#0E5C52]' : 'hover:shadow-md hover:border-slate-300'}`}>
+          <input
+            ref={inputRef}
+            type="text"
+            aria-label="Search calculators"
+            placeholder="Find calculators..."
+            className="w-full h-12 pl-5 pr-4 bg-transparent text-[#1a1a1a] placeholder:text-[#8a8a8a] text-[16px] sm:text-[18px] font-medium focus:outline-none appearance-none"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onFocus={() => query.trim() && setIsOpen(true)}
+            onKeyDown={handleKeyDown}
+          />
+          <button
+            onClick={handleSubmit}
+            aria-label="Search"
+            className="w-12 h-12 rounded-full bg-[#0E5C52] flex items-center justify-center text-white shrink-0 hover:bg-[#0a453d] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0E5C52]"
+          >
+            <Search size={22} strokeWidth={2.5} />
+          </button>
+        </div>
+      )}
+
+      {/* DROPDOWN RESULTS (Shared for both variants) */}
+      {isOpen && results.length > 0 && (
+        <div className={`absolute left-0 right-0 bg-white border border-[#dadce0] rounded-2xl shadow-xl overflow-hidden z-[400] animate-in fade-in slide-in-from-top-2 duration-200 ${isNavbar && isExpanded ? 'fixed top-16 mx-4 w-auto shadow-2xl' : 'top-full mt-2 w-full max-w-2xl mx-auto'}`}>
+          <div className="p-2">
+            <div className="px-4 py-2 text-[10px] font-black text-[#5f6368] uppercase tracking-[0.2em] flex items-center gap-2">
+              <Sparkles size={12} className="text-amber-500" />
+              Suggested Tools
+            </div>
+            <div className="grid gap-1">
+              {results.map((calc, i) => (
+                <button
+                  key={calc.id}
+                  onClick={() => goTo(calc)}
+                  onMouseEnter={() => setActiveIndex(i)}
+                  className={`w-full flex items-center justify-between p-3.5 rounded-xl transition-all text-left ${
+                    i === activeIndex ? 'bg-[#0E5C52]/5 text-[#0E5C52]' : 'text-[#1a1a1a] hover:bg-slate-50'
+                  }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 flex items-center justify-center bg-white rounded-lg shadow-sm border border-slate-200 text-xl shrink-0">
+                      {typeof calc.icon === 'string' ? (calc.icon || '🛠️') : <Calculator size={20} />}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="font-bold text-[14px] leading-tight truncate">{calc.name}</div>
+                      <div className="text-[10px] uppercase tracking-widest font-black opacity-50 truncate">{calc.category}</div>
+                    </div>
+                  </div>
+                  <ArrowRight size={18} className={`shrink-0 transition-transform duration-300 ${i === activeIndex ? 'translate-x-1 opacity-100 text-[#0E5C52]' : 'opacity-0'}`} />
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="px-4 py-3 bg-[#f8f9fa] border-t border-[#dadce0] text-[10px] font-black text-[#70757a] uppercase tracking-widest text-center">
+            100+ calculators on NepaCalc
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

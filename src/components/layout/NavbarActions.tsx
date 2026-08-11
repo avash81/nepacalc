@@ -1,63 +1,17 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Search, ChevronRight, Star, Sparkles, Globe, Wallet, Heart, Activity } from 'lucide-react';
+import { Menu, X, ChevronRight, Star, Sparkles, Globe, Wallet, Heart, Activity } from 'lucide-react';
 import { Logo } from '@/components/ui/Logo';
-import { useRouter } from 'next/navigation';
-import { CALCULATORS, Calculator as CalcType } from '@/data/calculators';
+import { SearchBar } from '@/components/ui/SearchBar';
 
 export function NavbarActions() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState<CalcType[]>([]);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
   const path = usePathname();
-  const router = useRouter();
-  const searchRef = useRef<HTMLDivElement>(null);
   const isHomepage = path === '/';
 
   useEffect(() => setIsMenuOpen(false), [path]);
-  useEffect(() => { setQuery(''); setIsSearchOpen(false); }, [path]);
-
-  useEffect(() => {
-    if (!query.trim()) { setResults([]); return; }
-    const q = query.toLowerCase();
-    const filtered = CALCULATORS.filter(c =>
-      c.name.toLowerCase().includes(q) ||
-      c.category.toLowerCase().includes(q) ||
-      c.keywords?.some(k => k.toLowerCase().includes(q))
-    ).slice(0, 6);
-    setResults(filtered);
-    setActiveIndex(0);
-    setIsSearchOpen(true);
-  }, [query]);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
-        setIsSearchOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'ArrowDown') { e.preventDefault(); setActiveIndex(p => (p + 1) % results.length); }
-    else if (e.key === 'ArrowUp') { e.preventDefault(); setActiveIndex(p => (p - 1 + results.length) % results.length); }
-    else if (e.key === 'Enter' && results[activeIndex]) {
-      const s = results[activeIndex];
-      router.push(s.slug.includes('/') ? `/${s.slug}/` : `/calculator/${s.slug}/`);
-      setIsSearchOpen(false); setQuery('');
-    } else if (e.key === 'Escape') setIsSearchOpen(false);
-  };
-
-  const goTo = (calc: CalcType) => {
-    router.push(calc.slug.includes('/') ? `/${calc.slug}/` : `/calculator/${calc.slug}/`);
-    setIsSearchOpen(false); setQuery('');
-  };
 
   return (
     <>
@@ -65,46 +19,8 @@ export function NavbarActions() {
 
         {/* Navbar Search — hidden on homepage */}
         {!isHomepage && (
-          <div ref={searchRef} className="relative block mr-2">
-            <div className="flex items-center bg-[#094c4a] hover:bg-[#0a5855] focus-within:bg-white rounded-full border border-transparent focus-within:border-white/40 focus-within:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300 group w-[150px] sm:w-[200px] lg:w-[260px] overflow-hidden">
-              <Search className="w-4 h-4 ml-3.5 text-white/60 group-focus-within:text-[#0d6e6a] shrink-0 transition-colors" />
-              <input
-                type="text"
-                placeholder="Search..."
-                value={query}
-                onChange={e => setQuery(e.target.value)}
-                onFocus={() => query.trim() && setIsSearchOpen(true)}
-                onKeyDown={handleKeyDown}
-                className="w-full h-9 pl-2 pr-4 bg-transparent text-white placeholder:text-white/50 text-[13px] font-medium focus:text-[#202124] focus:placeholder:text-[#9aa0a6] focus:outline-none appearance-none"
-              />
-            </div>
-
-            {/* Dropdown results */}
-            {isSearchOpen && results.length > 0 && (
-              <div className="absolute top-full right-0 mt-2 w-80 bg-white border border-[#dadce0] rounded-xl shadow-lg overflow-hidden z-[500]">
-                <div className="p-1.5">
-                  {results.map((calc, i) => (
-                    <button
-                      key={calc.id}
-                      onClick={() => goTo(calc)}
-                      onMouseEnter={() => setActiveIndex(i)}
-                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all ${
-                        i === activeIndex ? 'bg-blue-50 text-blue-700' : 'text-[#202124] hover:bg-slate-50'
-                      }`}
-                    >
-                      <span className="text-lg w-7 text-center shrink-0">{typeof calc.icon === 'string' ? calc.icon : '🛠️'}</span>
-                      <div className="min-w-0">
-                        <div className="font-semibold text-[13px] leading-tight truncate">{calc.name}</div>
-                        <div className="text-[10px] uppercase tracking-widest font-bold opacity-40">{calc.category}</div>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-                <div className="px-4 py-2 bg-[#f8f9fa] border-t border-[#dadce0] text-[10px] font-bold text-[#70757a] uppercase tracking-wider text-center">
-                  100+ calculators on NepaCalc
-                </div>
-              </div>
-            )}
+          <div className="mr-2">
+            <SearchBar variant="navbar" />
           </div>
         )}
 
