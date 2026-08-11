@@ -37,6 +37,21 @@ export default function FinancePillarPage() {
           { name: 'Finance & Tax', item: 'https://nepacalc.com/finance/' }
         ]}
       />
+      <JsonLd
+        type="collection"
+        data={{
+          name: 'Finance & Tax Calculators',
+          description:
+            'Free finance, tax, loan, investment and savings calculators.',
+          url: 'https://nepacalc.com/finance/',
+          calculators: financeTools.map((calculator, index) => ({
+            name: calculator.name,
+            url: `https://nepacalc.com/${calculator.slug}/`,
+            description: calculator.description,
+            position: index + 1,
+          })),
+        }}
+      />
       <CalcWrapper
         title="Finance & Tax Calculators"
         description="Professional financial planning tools for loans, investments, savings, and interest calculations built on bank-grade amortization logic."

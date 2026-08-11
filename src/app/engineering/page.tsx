@@ -41,6 +41,21 @@ export default function EngineeringPillarPage() {
           { name: 'Engineering', item: 'https://NepaCalc.com/engineering/' }
         ]}
       />
+      <JsonLd
+        type="collection"
+        data={{
+          name: 'Engineering Calculators & Tools',
+          description:
+            'Engineering, physics, mathematics, scientific and technical calculation tools.',
+          url: 'https://nepacalc.com/engineering/',
+          calculators: engTools.map((calculator, index) => ({
+            name: calculator.name,
+            url: `https://nepacalc.com/${calculator.slug}/`,
+            description: calculator.description,
+            position: index + 1,
+          })),
+        }}
+      />
       <CalcWrapper
         title="Engineering & Technical Tools"
         description="High-fidelity computational engines for structural, digital, and mechanical engineering. Includes 3D surface plotters and geometry canvas tools."

@@ -52,6 +52,21 @@ export default function MathToolsPillarPage() {
           { name: 'Math Tools', item: 'https://NepaCalc.com/math-tools/' }
         ]}
       />
+      <JsonLd
+        type="collection"
+        data={{
+          name: 'Math & Education Calculators',
+          description:
+            'Free mathematics, statistics, algebra, GPA and education calculators.',
+          url: 'https://nepacalc.com/math-tools/',
+          calculators: mathTools.map((calculator, index) => ({
+            name: calculator.name,
+            url: `https://nepacalc.com/${calculator.slug}/`,
+            description: calculator.description,
+            position: index + 1,
+          })),
+        }}
+      />
       <CalcWrapper
         title="Math & Education Tools"
         description="High-precision computational engines for algebra, calculus, statistics, and academic grade calculations for students and professionals."

@@ -38,6 +38,21 @@ export default function HealthPillarPage() {
           { name: 'Health', item: 'https://NepaCalc.com/health/' }
         ]}
       />
+      <JsonLd
+        type="collection"
+        data={{
+          name: 'Health & Fitness Calculators',
+          description:
+            'Free health, fitness, calorie, BMI, BMR and body composition calculators.',
+          url: 'https://nepacalc.com/health/',
+          calculators: healthTools.map((calculator, index) => ({
+            name: calculator.name,
+            url: `https://nepacalc.com/${calculator.slug}/`,
+            description: calculator.description,
+            position: index + 1,
+          })),
+        }}
+      />
       <CalcWrapper
         title="Health & Fitness Calculators"
         description="WHO-standard physiological tools for body composition, nutrition, hydration, and wellness tracking. Accurate and easy to use."

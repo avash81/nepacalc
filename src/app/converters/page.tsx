@@ -41,6 +41,21 @@ export default function ConvertersPillarPage() {
           { name: 'Converters', item: 'https://NepaCalc.com/converters/' }
         ]}
       />
+      <JsonLd
+        type="collection"
+        data={{
+          name: 'Converters & Utility Calculators',
+          description:
+            'Free unit converters, date calculators, age calculators and everyday utility tools.',
+          url: 'https://nepacalc.com/converters/',
+          calculators: utilityTools.map((calculator, index) => ({
+            name: calculator.name,
+            url: `https://nepacalc.com/${calculator.slug}/`,
+            description: calculator.description,
+            position: index + 1,
+          })),
+        }}
+      />
       <CalcWrapper
         title="Unit Converters & Utility Tools"
         description="Precision measurement converters and everyday utility tools built on NIST-verified scientific constants for accurate results."

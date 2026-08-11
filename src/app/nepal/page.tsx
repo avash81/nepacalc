@@ -1,6 +1,7 @@
 import { CalcWrapper } from '@/components/calculator/CalcWrapper';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { calcMeta } from '@/lib/calcMeta';
+import { CALCULATORS } from '@/data/calculators';
 import Link from 'next/link';
 
 export const metadata = calcMeta({
@@ -18,6 +19,23 @@ export default function NepalDirectoryPage() {
           { name: 'Home', item: 'https://nepacalc.com/' },
           { name: 'Nepal Calculators', item: 'https://nepacalc.com/nepal/' }
         ]}
+      />
+      <JsonLd
+        type="collection"
+        data={{
+          name: 'Nepal Calculators',
+          description:
+            'Nepal-specific calculators for taxes, salaries, electricity bills, vehicle taxes, land, finance and other Nepal calculations.',
+          url: 'https://nepacalc.com/nepal/',
+          calculators: CALCULATORS.filter(
+            (calculator) => calculator.category === 'nepal'
+          ).map((calculator, index) => ({
+            name: calculator.name,
+            url: `https://nepacalc.com/${calculator.slug}/`,
+            description: calculator.description,
+            position: index + 1,
+          })),
+        }}
       />
       <CalcWrapper
         title="Nepal Calculators"

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { CATEGORIES } from '@/data/calculators';
 import { InstitutionalBlock } from '@/components/layout/InstitutionalBlock';
-import { SearchBar } from '@/components/ui/SearchBar';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 import type { Metadata } from 'next';
 
@@ -14,92 +14,70 @@ export const metadata: Metadata = {
   }
 };
 
-const collectionPageSchema = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "@id": "https://nepacalc.com/#collectionpage",
-  "name": "100+ Free Online Calculators, Converters & Tools | NepaCalc",
-  "url": "https://nepacalc.com/",
-  "description": "NepaCalc provides 100+ free online calculators, converters and digital tools for finance, engineering, education, health, science and Nepal-specific calculations.",
-  "publisher": { "@id": "https://nepacalc.com/#organization" },
-  "isPartOf": { "@id": "https://nepacalc.com/#website" }
-};
-
-const itemListSchema = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "@id": "https://nepacalc.com/#calculator-categories",
-  "name": "Calculator Categories on NepaCalc",
-  "description": "Explore 100+ free calculators across categories on NepaCalc — finance, engineering, education, health, Nepal tools, converters and market rates.",
-  "numberOfItems": 7,
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Nepal Specific Calculators", "url": "https://nepacalc.com/nepal/" },
-    { "@type": "ListItem", "position": 2, "name": "Finance & Tax Calculators", "url": "https://nepacalc.com/finance/" },
-    { "@type": "ListItem", "position": 3, "name": "Math & Education Tools", "url": "https://nepacalc.com/math-tools/" },
-    { "@type": "ListItem", "position": 4, "name": "Engineering Calculators", "url": "https://nepacalc.com/engineering/" },
-    { "@type": "ListItem", "position": 5, "name": "Health & Fitness Calculators", "url": "https://nepacalc.com/health/" },
-    { "@type": "ListItem", "position": 6, "name": "Converters & Utilities", "url": "https://nepacalc.com/converters/" },
-    { "@type": "ListItem", "position": 7, "name": "Market Rates & Financial Data", "url": "https://nepacalc.com/market-rates/" }
-  ]
-};
-
-const faqSchema = {
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {
-      "@type":"Question",
-      "name":"What is NepaCalc?",
-      "acceptedAnswer":{
-        "@type":"Answer",
-        "text":"NepaCalc is a Nepal-focused platform providing 100+ free online calculators, converters, tax tools, electricity bill calculators, educational tools, engineering calculators and market rate tracking."
-      }
-    },
-    {
-      "@type":"Question",
-      "name":"Are NepaCalc calculators free?",
-      "acceptedAnswer":{
-        "@type":"Answer",
-        "text":"Yes. All 100+ public calculators and tools on NepaCalc are available free of charge."
-      }
-    },
-    {
-      "@type":"Question",
-      "name":"How accurate are NepaCalc calculators?",
-      "acceptedAnswer":{
-        "@type":"Answer",
-        "text":"NepaCalc calculators use published formulas and official references where applicable, including government agencies and recognized institutions."
-      }
-    },
-    {
-      "@type":"Question",
-      "name":"Can I calculate my NEA electricity bill on NepaCalc?",
-      "acceptedAnswer":{
-        "@type":"Answer",
-        "text":"Yes. NepaCalc provides an NEA Electricity Bill Calculator using current tariff structures."
-      }
-    },
-    {
-      "@type":"Question",
-      "name":"Does NepaCalc provide live gold prices?",
-      "acceptedAnswer":{
-        "@type":"Answer",
-        "text":"Yes. NepaCalc publishes official benchmark gold and silver rates based on FENEGOSIDA reference data."
-      }
-    }
-  ]
-};
 
 export default function HomePage() {
   return (
     <>
-            <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify([collectionPageSchema, itemListSchema, faqSchema])
+      <JsonLd
+        type="collection"
+        data={{
+          url: 'https://nepacalc.com/',
+          name: 'Free Online Calculators, Converters & Tools | NepaCalc',
+          description:
+            'Free online calculators, converters and digital tools for finance, engineering, education, health and Nepal-specific calculations.',
+          about: 'Online calculators and converters',
         }}
       />
-      
+      <JsonLd
+        type="itemList"
+        data={{
+          url: 'https://nepacalc.com/',
+          name: 'NepaCalc Calculator Categories',
+          description:
+            'Browse NepaCalc calculators by category.',
+          items: CATEGORIES.map((category, index) => {
+            const categoryUrl =
+              category.id === 'education'
+                ? 'https://nepacalc.com/math-tools/'
+                : category.id === 'utility'
+                  ? 'https://nepacalc.com/converters/'
+                  : `https://nepacalc.com/${category.id}/`;
+
+            return {
+              position: index + 1,
+              name: category.name,
+              url: categoryUrl,
+            };
+          }),
+        }}
+      />
+      <JsonLd
+        type="faq"
+        data={{
+          questions: [
+            {
+              q: 'What is NepaCalc?',
+              a: 'NepaCalc is a free online calculator and converter platform providing tools for Nepal-specific calculations, finance, engineering, education, health and everyday calculations.',
+            },
+            {
+              q: 'Are NepaCalc calculators free?',
+              a: 'Yes. NepaCalc provides free online calculators and conversion tools.',
+            },
+            {
+              q: 'Are NepaCalc calculators available on mobile?',
+              a: 'Yes. NepaCalc tools are designed to work on mobile phones, tablets and desktop devices.',
+            },
+            {
+              q: 'Does NepaCalc provide calculators for Nepal?',
+              a: 'Yes. NepaCalc provides Nepal-specific calculators including NEA bills, vehicle tax, salary tax, land conversion, NEPSE calculations and other Nepal-related tools.',
+            },
+            {
+              q: 'How often are NepaCalc calculators updated?',
+              a: 'NepaCalc updates calculators when relevant rates, regulations, formulas or official information changes.',
+            },
+          ],
+        }}
+      />
       <div className="min-h-screen bg-[#F1F3F4]">
         <section className="pt-2 pb-4 border-b border-[#dadce0] bg-[#F1F3F4]">
           <div className="hp-container">
@@ -110,9 +88,6 @@ export default function HomePage() {
               <p className="text-[14px] sm:text-[15px] text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto mb-4">
                 NepaCalc provides 100+ free online calculators, converters and digital tools for finance, engineering, education, health, science and Nepal-specific calculations built for students, professionals, businesses and everyday users.
               </p>
-              <div className="w-full max-w-2xl mx-auto px-4">
-                <SearchBar variant="hero" />
-              </div>
             </div>
           </div>
         </section>

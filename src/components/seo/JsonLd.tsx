@@ -1,171 +1,282 @@
-/**
- * JsonLd ,  Phase 4 SEO Mastery Component
- * 
- * Provides high-precision structured data for every calculator page to dominate search results.
- * Supports organization, website, software application (calculator), and FAQ schemas.
- * Now supports 'unified' mode for single-script array injection to prevent duplicates.
- */
-interface FAQItem {
-  question: string;
-  answer: string;
-}
+import React from 'react';
 
-interface JsonLdProps {
-  type: 'calculator' | 'faq' | 'website' | 'organization' | 'breadcrumb' | 'unified';
+export interface JsonLdProps {
+  type:
+    | 'organization'
+    | 'website'
+    | 'calculator'
+    | 'faq'
+    | 'breadcrumb'
+    | 'collection'
+    | 'itemList'
+    | 'unified';
+
+  data?: Record<string, any>;
+
+  // Legacy props support to avoid breaking existing pages that haven't been updated yet
   name?: string;
   description?: string;
   url?: string;
-  faqs?: FAQItem[];
-  category?: any; // e.g., 'FinanceApplication', 'EducationalApplication' or {label, href}
-  breadcrumbItems?: { name: string; item: string }[];
+  faqs?: any[];
+  category?: any;
+  breadcrumbItems?: any[];
 }
 
-const INSTITUTIONAL_FAQS = [
-  { 
-    question: "How accurate is this calculator for professional use in Nepal?", 
-    answer: "NepaCalc uses high-precision floating point arithmetic verified against Nepal Inland Revenue Department (IRD) guidelines and international financial standards. It's suitable for professional planning, internal audits, and academic documentation." 
-  },
-  { 
-    question: "Does NepaCalc store my personal calculation data?", 
-    answer: "No. Privacy is our priority. All calculations are performed entirely on your device (client-side). Your inputs are never transmitted to our servers or stored in any database." 
-  },
-  { 
-    question: "How do I print a report of my calculation?", 
-    answer: "Most of our calculators feature a 'Print Report' button that generates a clean, professional PDF-ready layout. Alternatively, you can use (Ctrl + P) on your keyboard." 
-  },
-  { 
-    question: "What should I do if the results look incorrect?", 
-    answer: "If you notice any discrepancy, please contact our technical audit team via the 'Contact' page. We investigate all precision-related reports within 24 hours to maintain our 100% accuracy standard." 
-  }
-];
-
-export function JsonLd({ type, name, description, url, faqs, category = 'UtilitiesApplication', breadcrumbItems }: JsonLdProps) {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://nepacalc.com';
-  const siteName = 'NepaCalc';
+export function JsonLd(props: JsonLdProps) {
+  const { type } = props;
   
-  const finalFaqs = (faqs && faqs.length > 0) ? faqs : [];
-
-  // Normalize category for schema
-  const schemaCategory = typeof category === 'string' ? category : (category?.label || 'UtilitiesApplication');
-
-  const schemas: Record<string, any> = {
-    organization: {
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: siteName,
-      url: base,
-      logo: `${base}/logo.png`,
-      sameAs: [
-        'https://facebook.com/nepacalc',
-        'https://twitter.com/nepacalc',
-        'https://linkedin.com/company/nepacalc'
-      ],
-      contactPoint: [
-        {
-          '@type': 'ContactPoint',
-          contactType: 'customer support',
-          email: 'support@nepacalc.com'
-        },
-        {
-          '@type': 'ContactPoint',
-          contactType: 'technical support',
-          email: 'contact@nepacalc.com'
-        }
-      ]
-    },
-    website: {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      description: 'Free online scientific calculator with real-time graphing engine, 3D surface plotter (Orbit Camera), and 100+ professional calculators for Nepal.',
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: `${base}/search?q={search_term_string}`,
-        'query-input': 'required name=search_term_string',
-      },
-    },
+  // To support legacy usage where data was passed directly as props
+  const data = props.data || {
+    name: props.name,
+    description: props.description,
+    url: props.url,
+    faqs: props.faqs,
+    questions: props.faqs, // map faqs to questions
+    category: props.category,
+    applicationCategory: typeof props.category === 'string' ? props.category : props.category?.label,
+    items: props.breadcrumbItems,
+    breadcrumb: props.breadcrumbItems,
     calculator: {
-      '@context': 'https://schema.org',
-      '@type': 'SoftwareApplication',
-      name: name || 'NepaCalc Laboratory Tool',
-      description: description || 'Professional mathematical visualization and calculation tool.',
-      url: url || base,
-      applicationCategory: schemaCategory,
-      operatingSystem: 'Any',
-      offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'NPR',
-      },
-      author: {
-        '@type': 'Organization',
-        name: 'NepaCalc',
-        url: base,
-      },
-      featureList: [
-        'Interactive 3D Surface Plotter',
-        'High-precision Orbit Camera Visualization',
-        'Wireframe and Solid Rendering Modes',
-        'Real-time scientific visualization',
-        'Institutional Benchmarks (Nepal IRD Sync)'
-      ],
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.9',
-        ratingCount: '1250'
-      }
-    },
-    faq: {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: finalFaqs.map(f => ({
-        '@type': 'Question',
-        name: f.question,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: f.answer,
-        },
-      })),
-    },
-    breadcrumb: {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: (breadcrumbItems || []).map((item, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: item.name,
-        item: item.item,
-      })),
-    },
+      name: props.name,
+      description: props.description,
+      url: props.url,
+      applicationCategory: typeof props.category === 'string' ? props.category : props.category?.label,
+    }
   };
 
-  if (type === 'unified') {
-    const unified = [];
-    if (breadcrumbItems && breadcrumbItems.length > 0) unified.push(schemas.breadcrumb);
-    unified.push(schemas.calculator);
-    if (finalFaqs.length > 0) unified.push(schemas.faq);
-    
-    return (
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(unified),
-        }}
-      />
-    );
-  }
+  const schema = generateSchema(type, data);
 
-  const selectedSchema = schemas[type];
-  if (type === 'faq' && finalFaqs.length === 0) return null;
+  if (!schema) return null;
 
   return (
     <script
       type="application/ld+json"
       suppressHydrationWarning
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(selectedSchema),
+        __html: JSON.stringify(schema),
       }}
     />
   );
 }
 
+function generateSchema(
+  type: JsonLdProps['type'],
+  data: Record<string, any>
+) {
+  switch (type) {
+    /*
+     * ============================================================
+     * ORGANIZATION
+     * ============================================================
+     */
+    case 'organization':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        '@id': 'https://nepacalc.com/#organization',
+        name: data.name || 'NepaCalc',
+        url: 'https://nepacalc.com/',
+        logo: {
+          '@type': 'ImageObject',
+          url:
+            data.logo ||
+            'https://nepacalc.com/logo.png',
+        },
+        description:
+          data.description ||
+          'NepaCalc provides free online calculators, converters and digital tools for Nepal and international users.',
+      };
+
+    /*
+     * ============================================================
+     * WEBSITE
+     * ============================================================
+     */
+    case 'website':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        '@id': 'https://nepacalc.com/#website',
+        url: 'https://nepacalc.com/',
+        name: data.name || 'NepaCalc',
+        description:
+          data.description ||
+          'Free online calculators, converters and digital tools.',
+        publisher: {
+          '@id': 'https://nepacalc.com/#organization',
+        },
+        inLanguage: 'en-NP',
+      };
+
+    /*
+     * ============================================================
+     * CALCULATOR / SOFTWARE APPLICATION
+     * ============================================================
+     */
+    case 'calculator':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        '@id': data.url
+          ? `${data.url}#software`
+          : undefined,
+        name: data.name,
+        description: data.description,
+        url: data.url,
+        applicationCategory:
+          data.applicationCategory ||
+          'EducationalApplication',
+        operatingSystem: 'Web',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      };
+
+    /*
+     * ============================================================
+     * FAQ
+     * ============================================================
+     */
+    case 'faq':
+      if (!data.questions?.length) return null;
+
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: data.questions.map(
+          (item: any) => ({
+            '@type': 'Question',
+            name: item.q || item.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: item.a || item.answer,
+            },
+          })
+        ),
+      };
+
+    /*
+     * ============================================================
+     * BREADCRUMB
+     * ============================================================
+     */
+    case 'breadcrumb':
+      if (!data.items?.length) return null;
+
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: data.items.map(
+          (
+            item: any,
+            index: number
+          ) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            name: item.name,
+            ...(item.url || item.item
+              ? {
+                  item: item.url || item.item,
+                }
+              : {}),
+          })
+        ),
+      };
+
+    /*
+     * ============================================================
+     * COLLECTION PAGE
+     * ============================================================
+     */
+    case 'collection':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        '@id': data.url
+          ? `${data.url}#collection`
+          : undefined,
+        url: data.url,
+        name: data.name,
+        description: data.description,
+        isPartOf: {
+          '@id': 'https://nepacalc.com/#website',
+        },
+        about: data.about
+          ? {
+              '@type': 'Thing',
+              name: data.about,
+            }
+          : undefined,
+        inLanguage: 'en-NP',
+      };
+
+    /*
+     * ============================================================
+     * ITEM LIST
+     * ============================================================
+     */
+    case 'itemList':
+      if (!data.items?.length) return null;
+
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        '@id': data.url
+          ? `${data.url}#itemlist`
+          : undefined,
+        name: data.name,
+        description: data.description,
+        numberOfItems: data.items.length,
+        itemListOrder: 'https://schema.org/ItemListOrderAscending',
+        itemListElement: data.items.map(
+          (
+            item: any,
+            index: number
+          ) => ({
+            '@type': 'ListItem',
+            position: item.position || index + 1,
+            name: item.name,
+            url: item.url,
+          })
+        ),
+      };
+
+    /*
+     * ============================================================
+     * UNIFIED
+     * ============================================================
+     */
+    case 'unified':
+      return {
+        '@context': 'https://schema.org',
+        '@graph': [
+          ...(data.breadcrumb
+            ? [
+                generateSchema('breadcrumb', {
+                  items: data.breadcrumb,
+                }),
+              ]
+            : []),
+
+          ...(data.calculator || (data.name && data.url)
+            ? [
+                generateSchema('calculator', data.calculator || data),
+              ]
+            : []),
+
+          ...(data.questions || data.faqs
+            ? [
+                generateSchema('faq', {
+                  questions: data.questions || data.faqs,
+                }),
+              ]
+            : []),
+        ].filter(Boolean),
+      };
+
+    default:
+      return null;
+  }
+}
