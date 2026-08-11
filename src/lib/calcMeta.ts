@@ -14,13 +14,10 @@ export const SITE_CONFIG = {
 export function calcMeta({ title, description, slug, keywords = [], canonical, ogImage: customOgImage }: { title: string; description: string; slug: string; keywords?: string[]; canonical?: string; ogImage?: string }): Metadata {
   const ogImage = customOgImage ? customOgImage : `${SITE_CONFIG.baseUrl}/og-image.png`;
   
-  // Clean Title — Brand enforced at end with a space, NO symbols (except / for years)
-  let seoTitle = title
-    .replace(/[|&—\-_:\\(),!?]/g, ' ') // Removed / from restricted list
-    .replace(/\s+/g, ' ')               // Normalize spaces
-    .trim();
+  // Keep standard SEO punctuation: commas, pipes, ampersands, hyphens
+  let seoTitle = title.trim();
 
-  const brandSuffix = ` ${SITE_CONFIG.name}`;
+  const brandSuffix = ` | ${SITE_CONFIG.name}`;
   if (!seoTitle.toLowerCase().includes(SITE_CONFIG.name.toLowerCase())) {
     if (seoTitle.length + brandSuffix.length > 60) {
       seoTitle = seoTitle.substring(0, 60 - brandSuffix.length).trim();
@@ -31,10 +28,7 @@ export function calcMeta({ title, description, slug, keywords = [], canonical, o
   }
   
   // Clean Description — Must end with Brand reference or CTA
-  let seoDescription = description
-    .replace(/[|&—\-_:\\(),!?]/g, ' ') // Removed / from restricted list
-    .replace(/\s+/g, ' ')               // Normalize spaces
-    .trim();
+  let seoDescription = description.trim();
 
   const descSuffix = ' Try NepaCalc now.';
   if (!seoDescription.toLowerCase().includes('nepacalc')) {
