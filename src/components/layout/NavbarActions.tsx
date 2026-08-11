@@ -8,6 +8,7 @@ import { SearchBar } from '@/components/ui/SearchBar';
 
 export function NavbarActions() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const path = usePathname();
   const isHomepage = path === '/';
 
@@ -19,8 +20,8 @@ export function NavbarActions() {
 
         {/* Navbar Search — hidden on homepage */}
         {!isHomepage && (
-          <div className="mr-2">
-            <SearchBar variant="navbar" />
+          <div className={`transition-all duration-200 ${isSearchExpanded ? 'flex-1 mr-2' : 'mr-2'}`}>
+            <SearchBar variant="navbar" onExpandChange={setIsSearchExpanded} />
           </div>
         )}
 

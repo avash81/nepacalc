@@ -6,9 +6,10 @@ import { useRouter } from 'next/navigation';
 
 interface SearchBarProps {
   variant: 'navbar' | 'hero';
+  onExpandChange?: (expanded: boolean) => void;
 }
 
-export function SearchBar({ variant }: SearchBarProps) {
+export function SearchBar({ variant, onExpandChange }: SearchBarProps) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<CalcType[]>([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -150,7 +151,7 @@ export function SearchBar({ variant }: SearchBarProps) {
           {/* Mobile Icon-Only Trigger (<768px) */}
           {!isExpanded && (
             <button 
-              onClick={() => setIsExpanded(true)}
+              onClick={() => { setIsExpanded(true); onExpandChange?.(true); }}
               aria-label="Search"
               className="md:hidden w-10 h-10 rounded-full bg-[#0E5C52] flex items-center justify-center text-white shadow-sm hover:bg-[#0a453d] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#0E5C52]"
             >
@@ -158,36 +159,34 @@ export function SearchBar({ variant }: SearchBarProps) {
             </button>
           )}
 
-          {/* Mobile Expanded Overlay Overlay (<768px) */}
+          {/* Mobile Expanded — inline pill, stays between logo and hamburger */}
           {isExpanded && (
-            <div className="md:hidden fixed inset-0 top-0 left-0 right-0 h-16 bg-[#0d6e6a] z-[300] flex items-center px-4 animate-in fade-in slide-in-from-top-2 duration-200">
-              <div className="w-full flex items-center bg-white rounded-full p-1 shadow-lg">
-                <button 
-                  onClick={handleSubmit}
-                  aria-label="Search"
-                  className="w-10 h-10 rounded-full bg-[#0E5C52] flex items-center justify-center text-white shrink-0"
-                >
-                  <Search size={18} strokeWidth={2.5} />
-                </button>
-                <input
-                  ref={inputRef}
-                  type="text"
-                  aria-label="Search calculators"
-                  placeholder="Search..."
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  onFocus={() => query.trim() && setIsOpen(true)}
-                  onKeyDown={handleKeyDown}
-                  className="w-full h-10 pl-3 pr-2 bg-transparent text-[#1a1a1a] placeholder:text-[#8a8a8a] text-[16px] font-medium focus:outline-none appearance-none"
-                />
-                <button 
-                  onClick={() => setIsExpanded(false)}
-                  aria-label="Close search"
-                  className="w-10 h-10 flex items-center justify-center text-[#8a8a8a] hover:text-[#1a1a1a] shrink-0"
-                >
-                  <X size={20} strokeWidth={2} />
-                </button>
-              </div>
+            <div className="md:hidden flex items-center bg-white rounded-full p-1 shadow-lg w-full animate-in fade-in duration-150">
+              <button 
+                onClick={handleSubmit}
+                aria-label="Search"
+                className="w-8 h-8 rounded-full bg-[#0E5C52] flex items-center justify-center text-white shrink-0"
+              >
+                <Search size={16} strokeWidth={2.5} />
+              </button>
+              <input
+                ref={inputRef}
+                type="text"
+                aria-label="Search calculators"
+                placeholder="Search..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onFocus={() => query.trim() && setIsOpen(true)}
+                onKeyDown={handleKeyDown}
+                className="w-full min-w-0 h-8 pl-2 pr-1 bg-transparent text-[#1a1a1a] placeholder:text-[#8a8a8a] text-[14px] font-medium focus:outline-none appearance-none"
+              />
+              <button 
+                onClick={() => { setIsExpanded(false); onExpandChange?.(false); }}
+                aria-label="Close search"
+                className="w-8 h-8 flex items-center justify-center text-[#8a8a8a] hover:text-[#1a1a1a] shrink-0"
+              >
+                <X size={18} strokeWidth={2} />
+              </button>
             </div>
           )}
         </>
