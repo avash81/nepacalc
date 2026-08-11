@@ -110,7 +110,7 @@ export default function HomePage() {
               <p className="text-[14px] sm:text-[15px] text-slate-600 font-medium leading-relaxed max-w-3xl mx-auto mb-4">
                 NepaCalc provides 100+ free online calculators, converters and digital tools for finance, engineering, education, health, science and Nepal-specific calculations built for students, professionals, businesses and everyday users.
               </p>
-              <div className="flex justify-center">
+              <div className="w-full max-w-2xl mx-auto px-4">
                 <SearchBar variant="hero" />
               </div>
             </div>

@@ -27,12 +27,29 @@ export function SearchBar({ variant }: SearchBarProps) {
       return;
     }
     const q = query.toLowerCase();
-    const filtered = CALCULATORS.filter(c => 
-      c.name.toLowerCase().includes(q) || 
-      c.category.toLowerCase().includes(q) ||
-      c.keywords?.some(k => k.toLowerCase().includes(q))
-    ).slice(0, 6);
-    setResults(filtered);
+
+    const scored = CALCULATORS
+      .map(c => {
+        const name = c.name.toLowerCase();
+        const cat  = c.category.toLowerCase();
+        const kws  = c.keywords?.map(k => k.toLowerCase()) ?? [];
+
+        let score = 0;
+        if (name === q)                     score = 100; // exact
+        else if (name.startsWith(q))        score = 80;  // name starts with query
+        else if (name.includes(q))          score = 60;  // name contains query
+        else if (kws.some(k => k.startsWith(q))) score = 40; // keyword starts
+        else if (cat.includes(q))           score = 30;  // category
+        else if (kws.some(k => k.includes(q)))  score = 20; // keyword contains
+
+        return { calc: c, score };
+      })
+      .filter(({ score }) => score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 8)
+      .map(({ calc }) => calc);
+
+    setResults(scored);
     setActiveIndex(0);
     setIsOpen(true);
   }, [query]);
@@ -101,7 +118,7 @@ export function SearchBar({ variant }: SearchBarProps) {
   return (
     <div 
       ref={searchRef} 
-      className={`relative group ${isNavbar ? 'flex items-center' : 'w-full max-w-2xl mx-auto'}`}
+      className={`relative group ${isNavbar ? 'flex items-center' : 'w-full'}`}
     >
       {/* 
         NAVBAR VARIANT
