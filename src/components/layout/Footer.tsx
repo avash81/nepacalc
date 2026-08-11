@@ -24,7 +24,7 @@ export function Footer() {
       {/* Gradient top accent */}
       <div className="h-[2px] w-full bg-gradient-to-r from-[#1A73E8] via-[#34a853] to-[#ea4335] opacity-70" />
 
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6 pt-12 pb-6">
+      <div className="relative z-10 max-w-[1280px] mx-auto px-6 pt-12 pb-24 lg:pb-6">
 
         {/* ── MAIN GRID: 4 columns ── */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-10" style={{ borderBottom: '1px solid rgba(255,255,255,0.15)' }}>
