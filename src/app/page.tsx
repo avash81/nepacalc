@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { CATEGORIES } from '@/data/calculators';
-import { InstitutionalBlock } from '@/components/layout/InstitutionalBlock';
+import { InstitutionalBlock }
+import { SearchBar } from '@/components/ui/SearchBar'; from '@/components/layout/InstitutionalBlock';
 import { JsonLd } from '@/components/seo/JsonLd';
 
 import type { Metadata } from 'next';
