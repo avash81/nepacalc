@@ -39,7 +39,7 @@ export default function FinancePillarPage() {
           url: 'https://nepacalc.com/finance/',
           calculators: financeTools.map((calculator, index) => ({
             name: calculator.name,
-            url: `https://nepacalc.com/${calculator.slug}/`,
+            url: `https://nepacalc.com${calculator.slug.includes('/') ? '/' + calculator.slug : '/calculator/' + calculator.slug}/`,
             description: calculator.description,
             position: index + 1,
           })),

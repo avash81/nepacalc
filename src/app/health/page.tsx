@@ -40,7 +40,7 @@ export default function HealthPillarPage() {
           url: 'https://nepacalc.com/health/',
           calculators: healthTools.map((calculator, index) => ({
             name: calculator.name,
-            url: `https://nepacalc.com/${calculator.slug}/`,
+            url: `https://nepacalc.com${calculator.slug.includes('/') ? '/' + calculator.slug : '/calculator/' + calculator.slug}/`,
             description: calculator.description,
             position: index + 1,
           })),

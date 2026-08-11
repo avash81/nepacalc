@@ -24,7 +24,7 @@ export default function NepalDirectoryPage() {
             (calculator) => calculator.category === 'nepal'
           ).map((calculator, index) => ({
             name: calculator.name,
-            url: `https://nepacalc.com/${calculator.slug}/`,
+            url: `https://nepacalc.com${calculator.slug.includes('/') ? '/' + calculator.slug : '/calculator/' + calculator.slug}/`,
             description: calculator.description,
             position: index + 1,
           })),
