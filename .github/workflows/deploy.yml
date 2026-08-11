@@ -48,8 +48,12 @@ jobs:
           git diff --staged --quiet || git commit -m "ci: sync final verified build output to remote [skip ci]"
           git push origin main
 
-      - name: Trigger cPanel to pull latest build
+      - name: Trigger cPanel to pull and deploy
         run: |
-          curl -s -o /dev/null -w "%{http_code}" \
-            "https://nepacalc.com/api-deploy-webhook.php?secret=nepacalc_deploy_2026" \
-            || echo "Webhook call failed"
+          # 1. Pull latest from GitHub
+          curl -s -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://nepacalc.com:2083/execute/VersionControl/update?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc"
+            
+          # 2. Deploy to public_html
+          curl -s -H "Authorization: cpanel nepacalc:${{ secrets.CPANEL_API_TOKEN }}" \
+            "https://nepacalc.com:2083/execute/VersionControlDeployment/create?repository_root=%2Fhome%2Fnepacalc%2Frepositories%2Fnepacalc"
