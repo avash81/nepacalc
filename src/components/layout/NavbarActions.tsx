@@ -66,16 +66,16 @@ export function NavbarActions() {
         {/* Navbar Search — hidden on homepage */}
         {!isHomepage && (
           <div ref={searchRef} className="relative block mr-2">
-            <div className="flex items-center bg-white/10 hover:bg-white/20 focus-within:bg-white rounded-full border border-white/20 focus-within:border-white/60 transition-all duration-200 group w-[140px] sm:w-[180px] lg:w-[240px]">
-              <Search className="w-4 h-4 ml-3 text-white/70 group-focus-within:text-[#0d6e6a] shrink-0" />
+            <div className="flex items-center bg-[#094c4a] hover:bg-[#0a5855] focus-within:bg-white rounded-full border border-transparent focus-within:border-white/40 focus-within:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300 group w-[150px] sm:w-[200px] lg:w-[260px] overflow-hidden">
+              <Search className="w-4 h-4 ml-3.5 text-white/60 group-focus-within:text-[#0d6e6a] shrink-0 transition-colors" />
               <input
                 type="text"
-                placeholder="Search calculators..."
+                placeholder="Search..."
                 value={query}
                 onChange={e => setQuery(e.target.value)}
                 onFocus={() => query.trim() && setIsSearchOpen(true)}
                 onKeyDown={handleKeyDown}
-                className="w-full h-9 pl-2 pr-3 bg-transparent text-white placeholder:text-white/60 text-[13px] font-medium focus:text-[#202124] focus:placeholder:text-[#9aa0a6] focus:outline-none transition-colors rounded-full"
+                className="w-full h-9 pl-2 pr-4 bg-transparent text-white placeholder:text-white/50 text-[13px] font-medium focus:text-[#202124] focus:placeholder:text-[#9aa0a6] focus:outline-none appearance-none"
               />
             </div>
 
